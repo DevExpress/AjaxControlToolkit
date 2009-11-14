@@ -1,0 +1,60 @@
+<%@ Page Language="C#" AutoEventWireup="true" Title="Test of Duplicate StyleSheet references" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="Sys.Extended.UI" TagPrefix="ajax" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Test Of Duplicate StyleSheet references</title>
+</head>
+<body>
+    <form runat="server" id="frmMP">
+        <aspext:ToolkitScriptManager ID="scmMain" EnablePartialRendering="true" runat="server" />
+        <ajax:TabContainer runat="server" ID="tbcMain">
+            <ajax:TabPanel runat="server" ID="tplMain1" HeaderText="Main1">
+                <ContentTemplate>
+                    <ajax:TabContainer ID="tplSub1" runat="server">
+                        <ajax:TabPanel runat="server" ID="tplSub1_1" HeaderText="Sub1_1" />
+                        <ajax:TabPanel runat="server" ID="tplSub1_2" HeaderText="Sub1_2" />
+                        <ajax:TabPanel runat="server" ID="tplSub1_3" HeaderText="Sub1_3" />
+                        <ajax:TabPanel runat="server" ID="tplSub1_4" HeaderText="Sub1_4" />
+                        <ajax:TabPanel runat="server" ID="tplSub1_5" HeaderText="Sub1_5" />
+                        <ajax:TabPanel runat="server" ID="tplSub1_6" HeaderText="Sub1_6" />
+                        <ajax:TabPanel runat="server" ID="tplSub1_7" HeaderText="Sub1_7" />
+                    </ajax:TabContainer>
+                </ContentTemplate>
+            </ajax:TabPanel>
+            <ajax:TabPanel runat="server" ID="tplMain3" HeaderText="Main3">
+                <ContentTemplate>
+                    <ajax:TabContainer ID="tplSub3" runat="server">
+                        <ajax:TabPanel runat="server" ID="tplSub3_1" HeaderText="Sub3_1" />
+                        <ajax:TabPanel runat="server" ID="tplSub3_2" HeaderText="Sub3_2" />
+                        <ajax:TabPanel runat="server" ID="tplSub3_3" HeaderText="Sub3_3" />
+                        <ajax:TabPanel runat="server" ID="tplSub3_4" HeaderText="Sub3_4" />
+                        <ajax:TabPanel runat="server" ID="tplSub3_5" HeaderText="Sub3_5" />
+                        <ajax:TabPanel runat="server" ID="tplSub3_6" HeaderText="Sub3_6" />
+                    </ajax:TabContainer>
+                </ContentTemplate>
+            </ajax:TabPanel>
+            <ajax:TabPanel runat="server" ID="tplMain4" HeaderText="Main4">
+                <ContentTemplate>
+                    <ajax:TabContainer ID="tplSub4" runat="server">
+                        <ajax:TabPanel runat="server" ID="tplSub4_1" HeaderText="Sub4_1" />
+                        <ajax:TabPanel runat="server" ID="tplSub4_2" HeaderText="Sub4_2" />
+                        <ajax:TabPanel runat="server" ID="tplSub4_3" HeaderText="Sub4_3" />
+                        <ajax:TabPanel runat="server" ID="tplSub4_4" HeaderText="Sub4_4" />
+                        <ajax:TabPanel runat="server" ID="tplSub4_5" HeaderText="Sub4_5" />
+                        <ajax:TabPanel runat="server" ID="tplSub4_6" HeaderText="Sub4_6" />
+                        <ajax:TabPanel runat="server" ID="tplSub4_7" HeaderText="Sub4_7" />
+                        <ajax:TabPanel runat="server" ID="tplSub4_8" HeaderText="Sub4_8" />
+                        <ajax:TabPanel runat="server" ID="tplSub4_9" HeaderText="Sub4_9" />
+                        <ajax:TabPanel runat="server" ID="tplSub4_10" HeaderText="Sub4_10" />
+                        <ajax:TabPanel runat="server" ID="tplSub4_11" HeaderText="Sub4_11" />
+                    </ajax:TabContainer>
+                </ContentTemplate>
+            </ajax:TabPanel>
+        </ajax:TabContainer>
+        <asp:TextBox ID="txtA" runat="server" />
+        <ajax:CalendarExtender ID="ceCal" runat="server" TargetControlID="txtA" CssClass="MyCalendar" />
+    </form>
+</body>
+</html>

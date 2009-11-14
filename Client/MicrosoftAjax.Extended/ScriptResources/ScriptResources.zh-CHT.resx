@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlwaysVisible_ElementRequired" xml:space="preserve">
+    <value>必須替 Sys.Extended.UI.AlwaysVisibleControlBehavior 指定一個項目</value>
+  </data>
+  <data name="Animation_CannotNestSequence" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.ParallelAnimation 不能內含 Sys.Extended.UI.Animation.SequenceAnimation</value>
+  </data>
+  <data name="Animation_ChildrenNotAllowed" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation 無法加入一個不是衍生自 Sys.Extended.UI.Animation.ParentAnimation 且類型為 {0} 的子動畫</value>
+  </data>
+  <data name="Animation_InvalidBaseType" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.registerAnimation 只能註冊那些繼承自 Sys.Extended.UI.Animation.Animation 的類型</value>
+  </data>
+  <data name="Animation_InvalidColor" xml:space="preserve">
+    <value>標記名稱 Color 必須是 7 個字元的 16 進位字串（例如：#246ACF），不能是 {0}</value>
+  </data>
+  <data name="Animation_MissingAnimationName" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation 必須持有一個 AnimationName 屬性的物件</value>
+  </data>
+  <data name="Animation_NoDynamicPropertyFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation 找不到相對應的  {0} 或 {1} 屬性</value>
+  </data>
+  <data name="Animation_NoPropertyFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation 找不到相對應的 {0} 屬性</value>
+  </data>
+  <data name="Animation_TargetNotFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.Animation.set_animationTarget 需要一個 Sys.UI.DomElement 或 Sys.UI.Control 類別的控制項  ID。找不到相對應的  {0} 之項目或控制項</value>
+  </data>
+  <data name="Animation_UknownAnimationName" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation 找不到名稱為 {0} 的動畫</value>
+  </data>
+  <data name="Calendar_Today" xml:space="preserve">
+    <value>今天:  {0}</value>
+  </data>
+  <data name="CascadingDropDown_MethodError" xml:space="preserve">
+    <value>[方法錯誤 {0}]</value>
+  </data>
+  <data name="CascadingDropDown_MethodTimeout" xml:space="preserve">
+    <value>[方法逾時]</value>
+  </data>
+  <data name="CascadingDropDown_NoParentElement" xml:space="preserve">
+    <value>無法找到父項目 {0}</value>
+  </data>
+  <data name="CollapsiblePanel_NoControlID" xml:space="preserve">
+    <value>無法找到項目 {0}</value>
+  </data>
+  <data name="Common_DateTime_InvalidFormat" xml:space="preserve">
+    <value>格式無效</value>
+  </data>
+  <data name="Common_DateTime_InvalidTimeSpan" xml:space="preserve">
+    <value>{0} 的 TimeSpan 格式無效</value>
+  </data>
+  <data name="Common_InvalidBorderWidthUnit" xml:space="preserve">
+    <value>單位類型 {0} 對 parseBorderWidth 而言無效</value>
+  </data>
+  <data name="Common_InvalidPaddingUnit" xml:space="preserve">
+    <value>單位類型 {0} 對 parsePadding 而言無效</value>
+  </data>
+  <data name="Common_UnitHasNoDigits" xml:space="preserve">
+    <value>沒有數字</value>
+  </data>
+  <data name="DynamicPopulate_WebServiceError" xml:space="preserve">
+    <value>無法呼叫 Web 服務：{0}</value>
+  </data>
+  <data name="DynamicPopulate_WebServiceTimeout" xml:space="preserve">
+    <value>呼叫 Web 服務逾時</value>
+  </data>
+  <data name="ExtenderBase_CannotSetClientStateField" xml:space="preserve">
+    <value>只能在初始化之前設定 clientStateField</value>
+  </data>
+  <data name="ExtenderBase_ControlNotRegisteredForCallbacks" xml:space="preserve">
+    <value>這個控制項尚未註冊，無法提供回呼</value>
+  </data>
+  <data name="ExtenderBase_InvalidClientStateType" xml:space="preserve">
+    <value>saveClientState 必須傳回 String 型別的值</value>
+  </data>
+  <data name="ExtenderBase_PageNotRegisteredForCallbacks" xml:space="preserve">
+    <value>這個頁面尚未註冊，無法提供回呼</value>
+  </data>
+  <data name="ListSearch_DefaultPrompt" xml:space="preserve">
+    <value>請鍵入以便搜尋</value>
+  </data>
+  <data name="PasswordStrength_DefaultStrengthDescriptions" xml:space="preserve">
+    <value>沒有;很弱;弱;差;差強人意;尚可;普通;好;很好;非常好;臻於完美！</value>
+  </data>
+  <data name="PasswordStrength_GetHelpRequirements" xml:space="preserve">
+    <value>取得密碼複雜性的要求說明</value>
+  </data>
+  <data name="PasswordStrength_InvalidStrengthDescriptions" xml:space="preserve">
+    <value>所指定的密碼複雜性文字內容個數無效</value>
+  </data>
+  <data name="PasswordStrength_InvalidStrengthDescriptionStyles" xml:space="preserve">
+    <value>密碼複雜性文字說明的樣式表，必須符合文字內容之個數</value>
+  </data>
+  <data name="PasswordStrength_InvalidWeightingRatios" xml:space="preserve">
+    <value>密碼複雜性的權重比例必須有 4 種</value>
+  </data>
+  <data name="PasswordStrength_RemainingCharacters" xml:space="preserve">
+    <value>還需要 {0} 個字元</value>
+  </data>
+  <data name="PasswordStrength_RemainingMixedCase" xml:space="preserve">
+    <value>大小寫混合</value>
+  </data>
+  <data name="PasswordStrength_RemainingNumbers" xml:space="preserve">
+    <value>還需要 {0} 個數字</value>
+  </data>
+  <data name="PasswordStrength_RemainingSymbols" xml:space="preserve">
+    <value>還需要 {0} 個符號</value>
+  </data>
+  <data name="PasswordStrength_Satisfied" xml:space="preserve">
+    <value>密碼複雜性已經足夠</value>
+  </data>
+  <data name="PasswordStrength_StrengthPrompt" xml:space="preserve">
+    <value>複雜性：</value>
+  </data>
+  <data name="PopupControl_NoDefaultProperty" xml:space="preserve">
+    <value>類型 {1} 的 控制項 {0} 不支援預設屬性</value>
+  </data>
+  <data name="PopupExtender_NoParentElement" xml:space="preserve">
+    <value>無法找到父項目 {0}</value>
+  </data>
+  <data name="Rating_CallbackError" xml:space="preserve">
+    <value>發生未處理的例外狀況：\r\n{0}</value>
+  </data>
+  <data name="ReorderList_DropWatcherBehavior_CallbackError" xml:space="preserve">
+    <value>無法重新排列，請參考下面的說明：\r\n\r\n{0}</value>
+  </data>
+  <data name="ReorderList_DropWatcherBehavior_NoChild" xml:space="preserve">
+    <value>無法找到 ID 為 {0} 的子清單</value>
+  </data>
+  <data name="ResizableControlBehavior_CannotChangeProperty" xml:space="preserve">
+    <value>不支援對 {0} 的變更</value>
+  </data>
+  <data name="ResizableControlBehavior_InvalidHandler" xml:space="preserve">
+    <value>{0} 處理常式不是函式、函式名稱、或是函式文字</value>
+  </data>
+  <data name="Shared_BrowserSecurityPreventsPaste" xml:space="preserve">
+    <value>您的瀏覽器安全性設定，不允許執行自動貼上的操作。請改用鍵盤快速鍵 Ctrl + V。</value>
+  </data>
+  <data name="Slider_NoSizeProvided" xml:space="preserve">
+    <value>請在 Slider 的 CSS Class 中，設定高度與寬度屬性的有效值</value>
+  </data>
+  <data name="Tabs_ActiveTabArgumentOutOfRange" xml:space="preserve">
+    <value>參數不是索引標籤 (Tab) 集合的成員</value>
+  </data>
+  <data name="Tabs_OwnerExpected" xml:space="preserve">
+    <value>於初始化之前，必須設定擁有者</value>
+  </data>
+  <data name="Tabs_PropertySetAfterInitialization" xml:space="preserve">
+    <value>於初始化之後，無法變更 {0}</value>
+  </data>
+  <data name="Tabs_PropertySetBeforeInitialization" xml:space="preserve">
+    <value>於初始化之前，無法變更 {0}</value>
+  </data>
+  <data name="ValidatorCallout_DefaultErrorMessage" xml:space="preserve">
+    <value>這個控制項無效</value>
+  </data>
+</root>

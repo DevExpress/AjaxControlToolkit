@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{045405DE-F8D1-4085-A388-C325F7F1D5F7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>System.Web</RootNamespace>
+    <AssemblyName>System.Web.Ajax</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../AjaxKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\AjaxScriptManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\Date.HijriCalendar.debug.js">
+      <Link>Scripts\Date.HijriCalendar.debug.js</Link>
+      <LogicalName>Date.HijriCalendar.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\Date.HijriCalendar.js">
+      <Link>Scripts\Date.HijriCalendar.js</Link>
+      <LogicalName>Date.HijriCalendar.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\Date.UmAlQuraCalendar.debug.js">
+      <Link>Scripts\Date.UmAlQuraCalendar.debug.js</Link>
+      <LogicalName>Date.UmAlQuraCalendar.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\Date.UmAlQuraCalendar.js">
+      <Link>Scripts\Date.UmAlQuraCalendar.js</Link>
+      <LogicalName>Date.UmAlQuraCalendar.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjax.debug.js">
+      <Link>Scripts\MicrosoftAjax.debug.js</Link>
+      <LogicalName>MicrosoftAjax.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjax.js">
+      <Link>Scripts\MicrosoftAjax.js</Link>
+      <LogicalName>MicrosoftAjax.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxAdoNet.debug.js">
+      <Link>Scripts\MicrosoftAjaxAdoNet.debug.js</Link>
+      <LogicalName>MicrosoftAjaxAdoNet.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxAdoNet.js">
+      <Link>Scripts\MicrosoftAjaxAdoNet.js</Link>
+      <LogicalName>MicrosoftAjaxAdoNet.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxApplicationServices.debug.js">
+      <Link>Scripts\MicrosoftAjaxApplicationServices.debug.js</Link>
+      <LogicalName>MicrosoftAjaxApplicationServices.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxApplicationServices.js">
+      <Link>Scripts\MicrosoftAjaxApplicationServices.js</Link>
+      <LogicalName>MicrosoftAjaxApplicationServices.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxComponentModel.debug.js">
+      <Link>Scripts\MicrosoftAjaxComponentModel.debug.js</Link>
+      <LogicalName>MicrosoftAjaxComponentModel.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxComponentModel.js">
+      <Link>Scripts\MicrosoftAjaxComponentModel.js</Link>
+      <LogicalName>MicrosoftAjaxComponentModel.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxCore.debug.js">
+      <Link>Scripts\MicrosoftAjaxCore.debug.js</Link>
+      <LogicalName>MicrosoftAjaxCore.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxCore.js">
+      <Link>Scripts\MicrosoftAjaxCore.js</Link>
+      <LogicalName>MicrosoftAjaxCore.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxDataContext.debug.js">
+      <Link>Scripts\MicrosoftAjaxDataContext.debug.js</Link>
+      <LogicalName>MicrosoftAjaxDataContext.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxDataContext.js">
+      <Link>Scripts\MicrosoftAjaxDataContext.js</Link>
+      <LogicalName>MicrosoftAjaxDataContext.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxGlobalization.debug.js">
+      <Link>Scripts\MicrosoftAjaxGlobalization.debug.js</Link>
+      <LogicalName>MicrosoftAjaxGlobalization.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxGlobalization.js">
+      <Link>Scripts\MicrosoftAjaxGlobalization.js</Link>
+      <LogicalName>MicrosoftAjaxGlobalization.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxHistory.debug.js">
+      <Link>Scripts\MicrosoftAjaxHistory.debug.js</Link>
+      <LogicalName>MicrosoftAjaxHistory.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxHistory.js">
+      <Link>Scripts\MicrosoftAjaxHistory.js</Link>
+      <LogicalName>MicrosoftAjaxHistory.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxNetwork.debug.js">
+      <Link>Scripts\MicrosoftAjaxNetwork.debug.js</Link>
+      <LogicalName>MicrosoftAjaxNetwork.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxNetwork.js">
+      <Link>Scripts\MicrosoftAjaxNetwork.js</Link>
+      <LogicalName>MicrosoftAjaxNetwork.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxSerialization.debug.js">
+      <Link>Scripts\MicrosoftAjaxSerialization.debug.js</Link>
+      <LogicalName>MicrosoftAjaxSerialization.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxSerialization.js">
+      <Link>Scripts\MicrosoftAjaxSerialization.js</Link>
+      <LogicalName>MicrosoftAjaxSerialization.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxTemplates.debug.js">
+      <Link>Scripts\MicrosoftAjaxTemplates.debug.js</Link>
+      <LogicalName>MicrosoftAjaxTemplates.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxTemplates.js">
+      <Link>Scripts\MicrosoftAjaxTemplates.js</Link>
+      <LogicalName>MicrosoftAjaxTemplates.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxTimer.debug.js">
+      <Link>Scripts\MicrosoftAjaxTimer.debug.js</Link>
+      <LogicalName>MicrosoftAjaxTimer.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxTimer.js">
+      <Link>Scripts\MicrosoftAjaxTimer.js</Link>
+      <LogicalName>MicrosoftAjaxTimer.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxWebForms.debug.js">
+      <Link>Scripts\MicrosoftAjaxWebForms.debug.js</Link>
+      <LogicalName>MicrosoftAjaxWebForms.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxWebForms.js">
+      <Link>Scripts\MicrosoftAjaxWebForms.js</Link>
+      <LogicalName>MicrosoftAjaxWebForms.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxWebServices.debug.js">
+      <Link>Scripts\MicrosoftAjaxWebServices.debug.js</Link>
+      <LogicalName>MicrosoftAjaxWebServices.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxWebServices.js">
+      <Link>Scripts\MicrosoftAjaxWebServices.js</Link>
+      <LogicalName>MicrosoftAjaxWebServices.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\start.debug.js">
+      <Link>Scripts\start.debug.js</Link>
+      <LogicalName>start.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\start.js">
+      <Link>Scripts\start.js</Link>
+      <LogicalName>start.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptLibrary\AdoNet.Res.debug.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptLibrary\AdoNet.Res.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptLibrary\DataContext.Res.debug.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptLibrary\DataContext.Res.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptLibrary\Res.debug.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptLibrary\Res.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptLibrary\Templates.Res.debug.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptLibrary\Templates.Res.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptLibrary\WebForms.Res.debug.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScriptLibrary\WebForms.Res.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <!--
+  <UsingTask TaskName="JSBuild.CreateJSManifestResourceName" AssemblyFile="BuildTasks\JSBuild.dll" />
+  <Target Name="CreateManifestResourceNames" Condition="'@(EmbeddedResource)' != ''" DependsOnTargets="$(CreateManifestResourceNamesDependsOn)">
+    <ItemGroup>
+      <_Temporary Remove="@(_Temporary)" />
+    </ItemGroup>
+    <!- - Create manifest names for culture and non-culture Resx files, and for non-culture Non-Resx resources - ->
+    <CreateJSManifestResourceName BaseDirectory="..\..\Client\MicrosoftAjax\Scripts\" ResourceFiles="@(EmbeddedResource)" RootNamespace="" Condition="'%(EmbeddedResource.ManifestResourceName)' == '' and ('%(EmbeddedResource.WithCulture)' == 'false' or '%(EmbeddedResource.Type)' == 'Resx')">
+      <Output TaskParameter="ResourceFilesWithManifestResourceNames" ItemName="_Temporary" />
+    </CreateJSManifestResourceName>
+    <!- - Create manifest names for all culture non-resx resources - ->
+    <CreateJSManifestResourceName BaseDirectory="..\..\Client\MicrosoftAjax\Scripts\" ResourceFiles="@(EmbeddedResource)" RootNamespace="" PrependCultureAsDirectory="false" Condition="'%(EmbeddedResource.ManifestResourceName)' == '' and '%(EmbeddedResource.WithCulture)' == 'true' and '%(EmbeddedResource.Type)' == 'Non-Resx'">
+      <Output TaskParameter="ResourceFilesWithManifestResourceNames" ItemName="_Temporary" />
+    </CreateJSManifestResourceName>
+    <ItemGroup>
+      <EmbeddedResource Remove="@(EmbeddedResource)" Condition="'%(EmbeddedResource.ManifestResourceName)' == ''" />
+      <EmbeddedResource Include="@(_Temporary)" />
+      <_Temporary Remove="@(_Temporary)" />
+    </ItemGroup>
+  </Target>
+  <Target Name="BeforeBuild">
+    <ItemGroup>
+      <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Scripts\**\*.*" />
+    </ItemGroup>
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,5 @@
+// (c) Copyright Microsoft Corporation.
+// This source is subject to the Microsoft Public License.
+// See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL.
+// All other rights reserved.
+Type.registerNamespace("Sys.Extended.UI.HTMLEditor.ToolbarButton");Sys.Extended.UI.HTMLEditor.ToolbarButton.BackColorClear=function(a){Sys.Extended.UI.HTMLEditor.ToolbarButton.BackColorClear.initializeBase(this,[a])};Sys.Extended.UI.HTMLEditor.ToolbarButton.BackColorClear.prototype={callMethod:function(){if(!Sys.Extended.UI.HTMLEditor.ToolbarButton.BackColorClear.callBaseMethod(this,"callMethod"))return false;this._designPanel._execCommand("backcolor",false,"")}};Sys.Extended.UI.HTMLEditor.ToolbarButton.BackColorClear.registerClass("Sys.Extended.UI.HTMLEditor.ToolbarButton.BackColorClear",Sys.Extended.UI.HTMLEditor.ToolbarButton.MethodButton);

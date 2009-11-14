@@ -1,0 +1,3711 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Web.Testing.Lightweight</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlAttributeDictionary.Get``1(System.String)">
+            <summary>
+            Get the value of an attribute
+            </summary>
+            <typeparam name="T">Type of the attribute</typeparam>
+            <param name="key">Attribute name</param>
+            <returns>Value of the attribute</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlAttributeDictionary.Get``1(System.String,``0)">
+            <summary>
+            Get the value of an attribute 
+            </summary>
+            <typeparam name="T">Type of the attribute</typeparam>
+            <param name="key">Attribute name</param>
+            <param name="defaultValue">Default value if attribute not found</param>
+            <returns>Value of the attribute</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlAttributeDictionary.Parse``1(System.String,``0)">
+            <summary>
+            Parse a string into a particular type of value
+            </summary>
+            <typeparam name="T">Type to parse the string into</typeparam>
+            <param name="value">Value to parse</param>
+            <param name="defaultValue">Default value to use if unable to parse</param>
+            <returns>Parsed value</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlAttributeDictionary.Parse(System.String,System.Type,System.Object@)">
+            <summary>
+            Parse a string into a particular type of value
+            </summary>
+            <param name="value">Value to parse</param>
+            <param name="type">Type to parse the string into</param>
+            <param name="result">Parsed value</param>
+            <returns>Whether or not parsing succeeded</returns>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlElementCreator">
+            <summary>
+            Delegate used to create new HtmlElements
+            </summary>
+            <param name="tag">HTML tag of the element</param>
+            <param name="attributes">Attributes defined on the element</param>
+            <param name="parent">Parent HtmlElement</param>
+            <param name="page">Page containing the element</param>
+            <returns>HtmlElement</returns>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlElementFactory">
+            <summary>
+            Factory used to create new instances of types derived from HtmlElement
+            that correspond to different HTML tags
+            </summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.HtmlElementFactory._elementFactory">
+            <summary>
+            Dictionary mapping tag names to HtmlElementCreator delegates used to
+            construct them
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFactory.#cctor">
+            <summary>
+            Initialize the factory and register the types defined in
+            Microsoft.Web.Testing.Light
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFactory.Register(System.String,Microsoft.Web.Testing.Light.HtmlElementCreator)">
+            <summary>
+            Associate an HTML tag with an HtmlElementCreator delegate used to
+            construct a corresponding derived HtmlElement instance
+            </summary>
+            <param name="tag">HTML tag</param>
+            <param name="creator">
+            HtmlElementCreator used to create an HtmlElement for this type of tag
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFactory.Create(System.String,System.Collections.Generic.IDictionary{System.String,System.String},Microsoft.Web.Testing.Light.HtmlElement,Microsoft.Web.Testing.Light.HtmlPage)">
+            <summary>
+            Create a new HtmlElement
+            </summary>
+            <param name="tag">HTML tag of the element</param>
+            <param name="attributes">Attributes defined on the element</param>
+            <param name="parent">Parent HtmlElement</param>
+            <param name="page">Page containing the element</param>
+            <returns>HtmlElement</returns>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.FileSystem">
+            <summary>
+            Implementation of the Sys.IO file system
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.IFileSystem">
+            <summary>
+            FileSystem abstraction for unit testing
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.BrowserCommandExecutor">
+            <summary>
+            Default BrowserCommandExecutor, delegates all calls to the CommandManager
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.IBrowserCommandExecutor">
+            <summary>
+            Describes a type that can execute BrowserCommands
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Assert">
+            <summary>
+            Verifies conditions in unit tests using true/false propositions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.Fail">
+            <summary>
+            Throws an AssertFailedException.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.Fail(System.String)">
+            <summary>
+            Throws an AssertFailedException.
+            </summary>
+            <param name="message">
+            A message to include with the exception. This message
+            can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.Fail(System.String,System.Object[])">
+            <summary>
+            Throws an AssertFailedException.
+            </summary>
+            <param name="message">
+            A message to include with the exception. This message
+            can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.Inconclusive">
+            <summary>
+            Throws an AssertInconclusiveException.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.Inconclusive(System.String)">
+            <summary>
+            Throws an AssertInconclusiveException.
+            </summary>
+            <param name="message">
+            A message to include with the exception. This message can
+            be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.Inconclusive(System.String,System.Object[])">
+            <summary>
+            Throws an AssertInconclusiveException.
+            </summary>
+            <param name="message">
+            A message to include with the exception. This message can
+            be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsTrue(System.Boolean)">
+            <summary>
+            Tests whether the specified condition is true and fails the
+            test if the condition is false.
+            </summary>
+            <param name="condition">
+            The condition to verify is true.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsTrue(System.Boolean,System.String)">
+            <summary>
+            Tests whether the specified condition is true and fails the
+            test if the condition is false.
+            </summary>
+            <param name="condition">
+            The condition to verify is true.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsTrue(System.Boolean,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified condition is true and fails the
+            test if the condition is false.
+            </summary>
+            <param name="condition">
+            The condition to verify is true.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsTrue(System.Nullable{System.Boolean})">
+            <summary>
+            Tests whether the specified condition is true and fails the
+            test if the condition is false.
+            </summary>
+            <param name="condition">
+            The condition to verify is true.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsTrue(System.Nullable{System.Boolean},System.String)">
+            <summary>
+            Tests whether the specified condition is true and fails the
+            test if the condition is false.
+            </summary>
+            <param name="condition">
+            The condition to verify is true.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsTrue(System.Nullable{System.Boolean},System.String,System.Object[])">
+            <summary>
+            Tests whether the specified condition is true and fails the
+            test if the condition is false.
+            </summary>
+            <param name="condition">
+            The condition to verify is true.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsFalse(System.Boolean)">
+            <summary>
+            Tests whether the specified condition is false and fails the
+            test if the condition is true.
+            </summary>
+            <param name="condition">
+            The condition to verify is false.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsFalse(System.Boolean,System.String)">
+            <summary>
+            Tests whether the specified condition is false and fails the
+            test if the condition is true.
+            </summary>
+            <param name="condition">
+            The condition to verify is false.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsFalse(System.Boolean,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified condition is false and fails the
+            test if the condition is true.
+            </summary>
+            <param name="condition">
+            The condition to verify is false.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsFalse(System.Nullable{System.Boolean})">
+            <summary>
+            Tests whether the specified condition is false and fails the
+            test if the condition is true.
+            </summary>
+            <param name="condition">
+            The condition to verify is false.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsFalse(System.Nullable{System.Boolean},System.String)">
+            <summary>
+            Tests whether the specified condition is false and fails the
+            test if the condition is true.
+            </summary>
+            <param name="condition">
+            The condition to verify is false.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsFalse(System.Nullable{System.Boolean},System.String,System.Object[])">
+            <summary>
+            Tests whether the specified condition is false and fails the
+            test if the condition is true.
+            </summary>
+            <param name="condition">
+            The condition to verify is false.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsNull(System.Object)">
+            <summary>
+            Tests whether the specified object is null and fails
+            the test if it is not.
+            </summary>
+            <param name="value">The object to verify is null.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsNull(System.Object,System.String)">
+            <summary>
+            Tests whether the specified object is null and fails
+            the test if it is not.
+            </summary>
+            <param name="value">The object to verify is null.</param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsNull(System.Object,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified object is null and fails
+            the test if it is not.
+            </summary>
+            <param name="value">The object to verify is null.</param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsNotNull(System.Object)">
+            <summary>
+            Tests whether the specified object is non-null and
+            fails the test if it is null.
+            </summary>
+            <param name="value">
+            The object to verify is not null.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsNotNull(System.Object,System.String)">
+            <summary>
+            Tests whether the specified object is non-null and
+            fails the test if it is null.
+            </summary>
+            <param name="value">
+            The object to verify is not null.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsNotNull(System.Object,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified object is non-null and
+            fails the test if it is null.
+            </summary>
+            <param name="value">
+            The object to verify is not null.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.String,System.String)">
+            <summary>
+            Test whether the two specified string are equal
+            </summary>
+            <param name="expected">The expected string</param>
+            <param name="actual">The actual string</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.FindWhereStringsDiff(System.String,System.String,System.Char@,System.Char@)">
+            <summary>
+            Helper method that can find the first characted in the expected string where it differs against the actual string
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual``1(``0,``0)">
+            <summary>
+            Tests whether the specified values are equal and fails the
+            test if the two values are not equal.
+            </summary>
+            <typeparam name="T">Type of objects to compare</typeparam>
+            <param name="expected">
+            The first value to compare. This is the value the test expects.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual``1(``0,``0,System.String)">
+            <summary>
+            Tests whether the specified values are equal and fails the
+            test if the two values are not equal.
+            </summary>
+            <typeparam name="T">Type of objects to compare</typeparam>
+            <param name="expected">
+            The first value to compare. This is the value the test expects.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual``1(``0,``0,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified values are equal and fails the
+            test if the two values are not equal.
+            </summary>
+            <typeparam name="T">Type of objects to compare</typeparam>
+            <param name="expected">
+            The first value to compare. This is the value the test expects.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.Object,System.Object)">
+            <summary>
+            Tests whether the specified values are equal and fails the
+            test if the two values are not equal.
+            </summary>
+            <param name="expected">
+            The first value to compare. This is the value the test expects.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.Object,System.Object,System.String)">
+            <summary>
+            Tests whether the specified values are equal and fails the
+            test if the two values are not equal.
+            </summary>
+            <param name="expected">
+            The first value to compare. This is the value the test expects.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.Object,System.Object,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified values are equal and fails the
+            test if the two values are not equal.
+            </summary>
+            <param name="expected">
+            The first value to compare. This is the value the test expects.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.Double,System.Double,System.Double)">
+            <summary>
+            Tests whether the specified doubles are equal and fails
+            the test if they are not equal.
+            </summary>
+            <param name="expected">
+            The first double to compare. This is the double the tests expects.
+            </param>
+            <param name="actual">
+            The second double to compare. This is the double the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. An exception will be thrown only if actual
+            is different than expected by more than delta.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.Double,System.Double,System.Double,System.String)">
+            <summary>
+            Tests whether the specified doubles are equal and fails
+            the test if they are not equal.
+            </summary>
+            <param name="expected">
+            The first double to compare. This is the double the tests expects.
+            </param>
+            <param name="actual">
+            The second double to compare. This is the double the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. An exception will be thrown only if actual
+            is different than expected by more than delta.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.Double,System.Double,System.Double,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified doubles are equal and fails
+            the test if they are not equal.
+            </summary>
+            <param name="expected">
+            The first double to compare. This is the double the tests expects.
+            </param>
+            <param name="actual">
+            The second double to compare. This is the double the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. An exception will be thrown only if actual
+            is different than expected by more than delta.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.Single,System.Single,System.Single)">
+            <summary>
+            Tests whether the specified floats are equal and fails the test
+            if they are not equal.
+            </summary>
+            <param name="expected">
+            The first float to compare. This is the float the test expects.
+            </param>
+            <param name="actual">
+            The second float to compare. This is the float the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. An exception will be thrown only if actual
+            is different than expected by more than delta.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.Single,System.Single,System.Single,System.String)">
+            <summary>
+            Tests whether the specified floats are equal and fails the test
+            if they are not equal.
+            </summary>
+            <param name="expected">
+            The first float to compare. This is the float the test expects.
+            </param>
+            <param name="actual">
+            The second float to compare. This is the float the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. An exception will be thrown only if actual
+            is different than expected by more than delta.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.Single,System.Single,System.Single,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified floats are equal and fails the test
+            if they are not equal.
+            </summary>
+            <param name="expected">
+            The first float to compare. This is the float the test expects.
+            </param>
+            <param name="actual">
+            The second float to compare. This is the float the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. An exception will be thrown only if actual
+            is different than expected by more than delta.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.String,System.String,System.Boolean)">
+            <summary>
+            Tests whether the specified strings are equal and fails the test if
+            they are not equal.
+            </summary>
+            <param name="expected">
+            The first string to compare. This is the string the test expects.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Tests whether the specified strings are equal and fails the test if
+            they are not equal.
+            </summary>
+            <param name="expected">
+            The first string to compare. This is the string the test expects.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.String,System.String,System.Boolean,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified strings are equal and fails the test if
+            they are not equal.
+            </summary>
+            <param name="expected">
+            The first string to compare. This is the string the test expects.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.String,System.String,System.Boolean,System.Globalization.CultureInfo)">
+            <summary>
+            Tests whether the specified strings are equal and fails the test if
+            they are not equal.
+            </summary>
+            <param name="expected">
+            The first string to compare. This is the string the test expects.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+            <param name="culture">
+            A CultureInfo object that supplies culture-specific comparison information.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.String,System.String,System.Boolean,System.Globalization.CultureInfo,System.String)">
+            <summary>
+            Tests whether the specified strings are equal and fails the test if
+            they are not equal.
+            </summary>
+            <param name="expected">
+            The first string to compare. This is the string the test expects.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+            <param name="culture">
+            A CultureInfo object that supplies culture-specific comparison information.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreEqual(System.String,System.String,System.Boolean,System.Globalization.CultureInfo,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified strings are equal and fails the test if
+            they are not equal.
+            </summary>
+            <param name="expected">
+            The first string to compare. This is the string the test expects.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+            <param name="culture">
+            A CultureInfo object that supplies culture-specific comparison information.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual``1(``0,``0)">
+            <summary>
+            Tests whether the specified values are unequal and fails the
+            test if the two values are equal.
+            </summary>
+            <typeparam name="T">Type of the objects to compare</typeparam>
+            <param name="notExpected">
+            The first value to compare. This is the value the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual``1(``0,``0,System.String)">
+            <summary>
+            Tests whether the specified values are unequal and fails the
+            test if the two values are equal.
+            </summary>
+            <typeparam name="T">Type of the objects to compare</typeparam>
+            <param name="notExpected">
+            The first value to compare. This is the value the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual``1(``0,``0,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified values are unequal and fails the
+            test if the two values are equal.
+            </summary>
+            <typeparam name="T">Type of the objects to compare</typeparam>
+            <param name="notExpected">
+            The first value to compare. This is the value the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.Object,System.Object)">
+            <summary>
+            Tests whether the specified values are unequal and fails the
+            test if the two values are equal.
+            </summary>
+            <param name="notExpected">
+            The first value to compare. This is the value the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.Object,System.Object,System.String)">
+            <summary>
+            Tests whether the specified values are unequal and fails the
+            test if the two values are equal.
+            </summary>
+            <param name="notExpected">
+            The first value to compare. This is the value the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.Object,System.Object,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified values are unequal and fails the
+            test if the two values are equal.
+            </summary>
+            <param name="notExpected">
+            The first value to compare. This is the value the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second value to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.Double,System.Double,System.Double)">
+            <summary>
+            Tests whether the specified doubles are unequal and fails the test
+            if they are equal.
+            </summary>
+            <param name="notExpected">
+            The first double to compare. This is the double the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second double to compare. This is the double the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. An exception will be thrown only if actual is different
+            than expected by at most delta.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.Double,System.Double,System.Double,System.String)">
+            <summary>
+            Tests whether the specified doubles are unequal and fails the test
+            if they are equal.
+            </summary>
+            <param name="notExpected">
+            The first double to compare. This is the double the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second double to compare. This is the double the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. An exception will be thrown only if actual is different
+            than expected by at most delta.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.Double,System.Double,System.Double,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified doubles are unequal and fails the test
+            if they are equal.
+            </summary>
+            <param name="notExpected">
+            The first double to compare. This is the double the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second double to compare. This is the double the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. An exception will be thrown only if actual is different
+            than expected by at most delta.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.Single,System.Single,System.Single)">
+            <summary>
+            Tests whether the specified floats are unequal and fails the test
+            if they are equal.
+            </summary>
+            <param name="notExpected">
+            The first float to compare. This is the float the test expects.
+            </param>
+            <param name="actual">
+            The second float to compare. This is the float the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. The test will fail only if actual is
+            different than expected by more than delta.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.Single,System.Single,System.Single,System.String)">
+            <summary>
+            Tests whether the specified floats are unequal and fails the test
+            if they are equal.
+            </summary>
+            <param name="notExpected">
+            The first float to compare. This is the float the test expects.
+            </param>
+            <param name="actual">
+            The second float to compare. This is the float the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. The test will fail only if actual is
+            different than expected by more than delta.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.Single,System.Single,System.Single,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified floats are unequal and fails the test
+            if they are equal.
+            </summary>
+            <param name="notExpected">
+            The first float to compare. This is the float the test expects.
+            </param>
+            <param name="actual">
+            The second float to compare. This is the float the test produced.
+            </param>
+            <param name="delta">
+            The required accuracy. The test will fail only if actual is
+            different than expected by more than delta.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.String,System.String,System.Boolean)">
+            <summary>
+            Tests whether the specified strings are unequal and fails the
+            test if they are equal.
+            </summary>
+            <param name="notExpected">
+            The first string to compare. This is the string the test expects
+            not to match actual.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Tests whether the specified strings are unequal and fails the
+            test if they are equal.
+            </summary>
+            <param name="notExpected">
+            The first string to compare. This is the string the test expects
+            not to match actual.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.String,System.String,System.Boolean,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified strings are unequal and fails the
+            test if they are equal.
+            </summary>
+            <param name="notExpected">
+            The first string to compare. This is the string the test expects
+            not to match actual.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.String,System.String,System.Boolean,System.Globalization.CultureInfo)">
+            <summary>
+            Tests whether the specified strings are unequal and fails the test if
+            they are equal.
+            </summary>
+            <param name="notExpected">
+            The first string to compare. This is the string the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+            <param name="culture">
+            A CultureInfo object that supplies culture-specific comparison information.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.String,System.String,System.Boolean,System.Globalization.CultureInfo,System.String)">
+            <summary>
+            Tests whether the specified strings are unequal and fails the test if
+            they are equal.
+            </summary>
+            <param name="notExpected">
+            The first string to compare. This is the string the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+            <param name="culture">
+            A CultureInfo object that supplies culture-specific comparison information.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotEqual(System.String,System.String,System.Boolean,System.Globalization.CultureInfo,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified strings are unequal and fails the test if
+            they are equal.
+            </summary>
+            <param name="notExpected">
+            The first string to compare. This is the string the test expects not to match actual.
+            </param>
+            <param name="actual">
+            The second string to compare. This is the string the test produced.
+            </param>
+            <param name="ignoreCase">
+            A Boolean value that indicates a case-sensitive or insensitive
+            comparison. true indicates a case-insensitive comparison.
+            </param>
+            <param name="culture">
+            A CultureInfo object that supplies culture-specific comparison information.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreSame(System.Object,System.Object)">
+            <summary>
+            Tests whether the specified objects both refer to the same object
+            and fails the test if the two inputs do not refer to the same object.
+            </summary>
+            <param name="expected">
+            The first object to compare. This is the value the test expects.
+            </param>
+            <param name="actual">
+            The second object to compare. This is the value the test produced.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreSame(System.Object,System.Object,System.String)">
+            <summary>
+            Tests whether the specified objects both refer to the same object
+            and fails the test if the two inputs do not refer to the same object.
+            </summary>
+            <param name="expected">
+            The first object to compare. This is the value the test expects.
+            </param>
+            <param name="actual">
+            The second object to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreSame(System.Object,System.Object,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified objects both refer to the same object
+            and fails the test if the two inputs do not refer to the same object.
+            </summary>
+            <param name="expected">
+            The first object to compare. This is the value the test expects.
+            </param>
+            <param name="actual">
+            The second object to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotSame(System.Object,System.Object)">
+            <summary>
+            Tests whether the specified objects refer to different objects
+            and fails the test if the two inputs refer to the same object.
+            </summary>
+            <param name="notExpected">
+            The first object to compare. This is the object the test expects
+            not to match actual.
+            </param>
+            <param name="actual">
+            The second object to compare. This is the value the test produced.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotSame(System.Object,System.Object,System.String)">
+            <summary>
+            Tests whether the specified objects refer to different objects
+            and fails the test if the two inputs refer to the same object.
+            </summary>
+            <param name="notExpected">
+            The first object to compare. This is the object the test expects
+            not to match actual.
+            </param>
+            <param name="actual">
+            The second object to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.AreNotSame(System.Object,System.Object,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified objects refer to different objects
+            and fails the test if the two inputs refer to the same object.
+            </summary>
+            <param name="notExpected">
+            The first object to compare. This is the object the test expects
+            not to match actual.
+            </param>
+            <param name="actual">
+            The second object to compare. This is the value the test produced.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsInstanceOfType(System.Object,System.Type)">
+            <summary>
+            Tests whether the specified object is an instance of the expected type
+            and fails the test if the expected type is not in the inheritance
+            hierarchy of the object.
+            </summary>
+            <param name="value">
+            The object to verify is of the expected type.
+            </param>
+            <param name="expectedType">
+            The expected type of value.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsInstanceOfType(System.Object,System.Type,System.String)">
+            <summary>
+            Tests whether the specified object is an instance of the expected type
+            and fails the test if the expected type is not in the inheritance
+            hierarchy of the object.
+            </summary>
+            <param name="value">
+            The object to verify is of the expected type.
+            </param>
+            <param name="expectedType">
+            The expected type of value.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsInstanceOfType(System.Object,System.Type,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified object is an instance of the expected type
+            and fails the test if the expected type is not in the inheritance
+            hierarchy of the object.
+            </summary>
+            <param name="value">
+            The object to verify is of the expected type.
+            </param>
+            <param name="expectedType">
+            The expected type of value.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsNotInstanceOfType(System.Object,System.Type)">
+            <summary>
+            Tests whether the specified object is not an instance of the wrong type
+            and fails the test if the specified type is in the inheritance hierarchy
+            of the object.
+            </summary>
+            <param name="value">The object to verify is not of the wrong type.</param>
+            <param name="wrongType">The type that value should not be.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsNotInstanceOfType(System.Object,System.Type,System.String)">
+            <summary>
+            Tests whether the specified object is not an instance of the wrong type
+            and fails the test if the specified type is in the inheritance hierarchy
+            of the object.
+            </summary>
+            <param name="value">The object to verify is not of the wrong type.</param>
+            <param name="wrongType">The type that value should not be.</param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.IsNotInstanceOfType(System.Object,System.Type,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified object is not an instance of the wrong type
+            and fails the test if the specified type is in the inheritance hierarchy
+            of the object.
+            </summary>
+            <param name="value">The object to verify is not of the wrong type.</param>
+            <param name="wrongType">The type that value should not be.</param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringContains(System.String,System.String)">
+            <summary>
+            Tests whether the specified string contains the specified substring.
+            </summary>
+            <param name="value">
+            The string that is expected to contain substring.
+            </param>
+            <param name="substring">
+            The string expected to occur within value.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringContains(System.String,System.String,System.String)">
+            <summary>
+            Tests whether the specified string contains the specified substring.
+            </summary>
+            <param name="value">
+            The string that is expected to contain substring.
+            </param>
+            <param name="substring">
+            The string expected to occur within value.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringContains(System.String,System.String,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified string contains the specified substring.
+            </summary>
+            <param name="value">
+            The string that is expected to contain substring.
+            </param>
+            <param name="substring">
+            The string expected to occur within value.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringStartsWith(System.String,System.String)">
+            <summary>
+            Tests whether the specified string begins with the specified substring.
+            </summary>
+            <param name="value">
+            The string that is expected to begin with substring.
+            </param>
+            <param name="substring">
+            The string expected to be a prefix of value.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringStartsWith(System.String,System.String,System.String)">
+            <summary>
+            Tests whether the specified string begins with the specified substring.
+            </summary>
+            <param name="value">
+            The string that is expected to begin with substring.
+            </param>
+            <param name="substring">
+            The string expected to be a prefix of value.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringStartsWith(System.String,System.String,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified string begins with the specified substring.
+            </summary>
+            <param name="value">
+            The string that is expected to begin with substring.
+            </param>
+            <param name="substring">
+            The string expected to be a prefix of value.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringEndsWith(System.String,System.String)">
+            <summary>
+            Tests whether the specified string ends with the specified substring.
+            </summary>
+            <param name="value">
+            The string that is expected to end with substring.
+            </param>
+            <param name="substring">
+            The string expected to be a suffix of value.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringEndsWith(System.String,System.String,System.String)">
+            <summary>
+            Tests whether the specified string ends with the specified substring.
+            </summary>
+            <param name="value">
+            The string that is expected to end with substring.
+            </param>
+            <param name="substring">
+            The string expected to be a suffix of value.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringEndsWith(System.String,System.String,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified string ends with the specified substring.
+            </summary>
+            <param name="value">
+            The string that is expected to end with substring.
+            </param>
+            <param name="substring">
+            The string expected to be a suffix of value.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringMatches(System.String,System.Text.RegularExpressions.Regex)">
+            <summary>
+            Tests whether the specified string matches a regular expression.
+            </summary>
+            <param name="value">
+            The string that is expected to match pattern.
+            </param>
+            <param name="pattern">
+            The regular expression that value is expected to match.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringMatches(System.String,System.Text.RegularExpressions.Regex,System.String)">
+            <summary>
+            Tests whether the specified string matches a regular expression.
+            </summary>
+            <param name="value">
+            The string that is expected to match pattern.
+            </param>
+            <param name="pattern">
+            The regular expression that value is expected to match.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringMatches(System.String,System.Text.RegularExpressions.Regex,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified string matches a regular expression.
+            </summary>
+            <param name="value">
+            The string that is expected to match pattern.
+            </param>
+            <param name="pattern">
+            The regular expression that value is expected to match.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringDoesNotMatch(System.String,System.Text.RegularExpressions.Regex)">
+            <summary>
+            Tests whether the specified string does not match a regular expression.
+            </summary>
+            <param name="value">
+            The string that is not expected to match pattern.
+            </param>
+            <param name="pattern">
+            The regular expression that value is not expected to match.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringDoesNotMatch(System.String,System.Text.RegularExpressions.Regex,System.String)">
+            <summary>
+            Tests whether the specified string does not match a regular expression.
+            </summary>
+            <param name="value">
+            The string that is not expected to match pattern.
+            </param>
+            <param name="pattern">
+            The regular expression that value is not expected to match.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringDoesNotMatch(System.String,System.Text.RegularExpressions.Regex,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified string does not match a regular expression.
+            </summary>
+            <param name="value">
+            The string that is not expected to match pattern.
+            </param>
+            <param name="pattern">
+            The regular expression that value is not expected to match.
+            </param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringIsNullOrEmpty(System.String)">
+            <summary>
+            Tests whether the specified object is null or empty and
+            fails the test if it is not.
+            </summary>
+            <param name="value">The object to verify is null or empty.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringIsNullOrEmpty(System.String,System.String)">
+            <summary>
+            Tests whether the specified object is null or empty and
+            fails the test if it is not.
+            </summary>
+            <param name="value">The object to verify is null or empty.</param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringIsNullOrEmpty(System.String,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified object is null or empty and
+            fails the test if it is not.
+            </summary>
+            <param name="value">The object to verify is null or empty.</param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringIsNotNullOrEmpty(System.String)">
+            <summary>
+            Tests whether the specified object is null or empty
+            and fails the test if it is.
+            </summary>
+            <param name="value">The object to verify is not null or empty.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringIsNotNullOrEmpty(System.String,System.String)">
+            <summary>
+            Tests whether the specified object is null or empty
+            and fails the test if it is.
+            </summary>
+            <param name="value">The object to verify is not null or empty.</param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.StringIsNotNullOrEmpty(System.String,System.String,System.Object[])">
+            <summary>
+            Tests whether the specified object is null or empty
+            and fails the test if it is.
+            </summary>
+            <param name="value">The object to verify is not null or empty.</param>
+            <param name="message">
+            A message to include with the exception if one is thrown.
+            This message can be seen in the test results.
+            </param>
+            <param name="parameters">
+            An array of parameters to use when formatting message.
+            </param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.FormatMessage(System.String,System.Object[],System.String,System.Object[])">
+            <summary>
+            Format a message and include a standard message if provided
+            </summary>
+            <param name="message">Message format string</param>
+            <param name="parameters">Message format string parameters</param>
+            <param name="standardMessage">Standard message format string</param>
+            <param name="standardParameters">Standard message format string parameters</param>
+            <returns>Message</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.Equals(System.Object,System.Object)">
+            <summary>
+            Prevent static Object.Equals from being mistakenly called as an assertion
+            </summary>
+            <param name="objA">Object to compare</param>
+            <param name="objB">Object to compare</param>
+            <returns>True if equal, False otherwise</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Assert.ReferenceEquals(System.Object,System.Object)">
+            <summary>
+            Prevent static Object.ReferenceEquals from being mistakenly called as an assertion
+            </summary>
+            <param name="objA">Object to compare</param>
+            <param name="objB">Object to compare</param>
+            <returns>True if equal, False otherwise</returns>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlImageElementAttributeReader">
+            <summary>
+            Attribute reader for HtmlImageElement
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlElementAttributeReader">
+            <summary>
+            Attribute reader that provides strong typed access to HtmlElement properties
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementAttributeReader.Get``1(System.String)">
+            <summary>
+            Get the value of an attribute
+            </summary>
+            <typeparam name="T">Type of the attribute</typeparam>
+            <param name="key">Attribute name</param>
+            <returns>Value of the attribute</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementAttributeReader.Get``1(System.String,``0)">
+            <summary>
+            Get the value of an attribute 
+            </summary>
+            <typeparam name="T">Type of the attribute</typeparam>
+            <param name="key">Attribute name</param>
+            <param name="defaultValue">Default value if attribute not found</param>
+            <returns>Value of the attribute</returns>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementAttributeReader.Item(System.String)">
+            <summary>
+            Gets the attribute value for the specified key name
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementAttributeReader.Id">
+            <summary>
+            The id of this element as exposed by the dom
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementAttributeReader.Name">
+            <summary>
+            The name of this element as exposed by the dom.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementAttributeReader.Class">
+            <summary>
+            The class of this element as exposed by the dom.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementAttributeReader.Title">
+            <summary>
+            The title of this element as exposed by the dom.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementAttributeReader.Style">
+            <summary>
+            An HtmlStyle object that encapsulates the style propertis of this element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlImageElementAttributeReader.#ctor(Microsoft.Web.Testing.Light.HtmlElement)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="attributes">Attributes</param>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlImageElementAttributeReader.Source">
+            <summary>
+            Image source attribute
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlImageElementAttributeReader.AlternateText">
+            <summary>
+            Image alternate text attribute
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.ApplicationPathFinder">
+            <summary>
+            Default ApplicationPathFinder, stores the application path calculated by the DriverPage
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.IApplicationPathFinder">
+            <summary>
+            Describes a type that can find the Application Path to use by HtmlPage
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor">
+            <summary>
+            Class that is in charge of starting tests and monitoring them
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.FormatErrorMessage(Microsoft.Web.Testing.Light.Engine.TestcaseExecutionEventArgs)">
+            <summary>
+            Create an error message for a failed test case
+            </summary>
+            <param name="e">Information about the failure including the exception and test case name</param>
+            <returns>HTML for the error message</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.GetSourceCode(System.Exception,System.String@,System.Int32@,System.String@)">
+            <summary>
+            Get Html-formatted source code corresponding to the invocation of an exception
+            </summary>
+            <param name="exception">Exception</param>
+            <param name="methodName">Name of the method containing the source code</param>
+            <param name="fileName">Name of the file containing the source code</param>
+            <returns>Html-formatted source code</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.GetVersionInfo(System.Type)">
+            <summary>
+            Get the version information from a type's assembly
+            </summary>
+            <param name="type">Type in the assembly</param>
+            <returns>Version information</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.OnTestcaseExecuting(Microsoft.Web.Testing.Light.Engine.TestcaseExecutionEventArgs)">
+            <summary>
+            Called before a testcase is executed
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.OnTestcaseExecuted(Microsoft.Web.Testing.Light.Engine.TestcaseExecutionEventArgs)">
+            <summary>
+            Called after a testcase is executed
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.OnTestRunStarted(System.EventArgs)">
+            <summary>
+            Called when a test run is started
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.OnTestRunFinished(Microsoft.Web.Testing.Light.Engine.TestRunFinishedEventArgs)">
+            <summary>
+            Called when a test run is finished
+            </summary>
+        </member>
+        <member name="E:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.TestcaseExecuted">
+            <summary>Event raised after a testcase has been executed</summary>
+        </member>
+        <member name="E:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.TestcaseExecuting">
+            <summary>Event raised before a testcase begins execution</summary>
+        </member>
+        <member name="E:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.TestRunFinished">
+            <summary>Event raised after a test run completes</summary>
+        </member>
+        <member name="E:Microsoft.Web.Testing.Light.Engine.TestcaseExecutor.TestRunStarted">
+            <summary>Event raised after a test run is started</summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.SystemWebExtensionsWrapper.DeserializeJson(System.String)">
+            <summary>
+            Deserialize a JSON string into a CLR object
+            </summary>
+            <param name="json">JSON</param>
+            <returns>Deserialized JSON</returns>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.SystemWebExtensionsWrapper.SystemWebExtensionsAssembly">
+            <summary>
+            Reference to the System.Web.Extensions assembly
+            </summary>
+            <remarks>
+            Functionality in System.Web.Extensions is being accessed via
+            reflection because we don't want the testing framework to be tied
+            to a specific version.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.BrowserVersions">
+            <summary>
+            Browsers support by ASP.NET AJAX
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.WebTestTagAttribute">
+            <summary>
+            WebTestTag attribute used to associate individual test cases
+            with tags to easily test related functionality
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebTestTagAttribute.#ctor(System.String)">
+            <summary>
+            WebTestTag attribute used to associate individual test
+            cases with tags to easily test related functionality
+            </summary>
+            <param name="tag">Tag used to associate test cases together</param>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.WebTestTagAttribute.Tag">
+            <summary>
+            Tag used to associate test cases together
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlElementCollection">
+            <summary>
+            Class that represents a collection of Html elements.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Refresh">
+            <summary>
+            Refresh this collection of html elements from the current Dom in the web page.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Refresh(System.Collections.Generic.ICollection{System.String})">
+            <summary>
+            Refresh this collection of html elements from the current Dom in the web page including the specified list of attributes
+            </summary>
+            <param name="attributesToLoad">Collection of attribute names to load for each element</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Find(System.String)">
+            <summary>
+            Recursively finds the first element whose id or name ends with the given string.
+            </summary>
+            <param name="idEndsWith">The string that appears at the end of the element's id or name to find (case insensitive).</param>
+            <returns>The first HtmlElement whose id or name ends with the string provided</returns>
+            <exception cref="T:Microsoft.Web.Testing.Light.ElementNotFoundException">Thrown if element not found</exception>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Find(System.String,Microsoft.Web.Testing.Light.MatchMethod)">
+            <summary>
+            Recursively finds the first element whose id or name matches the given string.
+            </summary>
+            <param name="id">The string to use when matching the element's id or name to find (case insensitive).</param>
+            <param name="idMatchMethod">How to treat the string when matching it with the HtmlElement's id or name</param>
+            <returns>The first HtmlElement whose id or name matches the given string</returns>
+            <exception cref="T:Microsoft.Web.Testing.Light.ElementNotFoundException">Thrown if element not found</exception>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Find(System.String,System.Int32)">
+            <summary>
+            Recursively find the element with the determined tagName
+            </summary>
+            <param name="tagName">Tag name of the element to find (case insensitive).</param>
+            <param name="index">The zero-based index of the element to find.</param>
+            <returns>The HtmlElement in this collection that has the given tag name at the given position from the start of the Dom.</returns>
+            <exception cref="T:Microsoft.Web.Testing.Light.ElementNotFoundException">Thrown if element not found</exception>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Find(System.String,System.String,System.Int32)">
+            <summary>
+            Recursively find the element with the determined tagName and innerText
+            </summary>
+            <param name="tagName">Tag name of the element to find (case insensitive).</param>
+            <param name="innerText">The innerText of the element to find (case insensitive).</param>
+            <param name="index">The zero-based index of the element to find.</param>
+            <returns>The HtmlElement in this collection that has the given tag name and inner text at the given position from the start of the Dom.</returns>
+            <exception cref="T:Microsoft.Web.Testing.Light.ElementNotFoundException">Thrown if element not found</exception>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Find(Microsoft.Web.Testing.Light.HtmlElementFindParams)">
+            <summary>
+            Recursively find the first element that satisfies the given parameters
+            </summary>
+            <param name="findParams">HtmlElementFindParams object that encapsulates the find parameters</param>
+            <returns>The first HtmlElement in this collection that satisfies the given find parameters</returns>
+            <exception cref="T:Microsoft.Web.Testing.Light.ElementNotFoundException">Thrown if element not found</exception>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Find(Microsoft.Web.Testing.Light.HtmlElementFindParams,System.Int32)">
+            <summary>
+            Recursively find the first element that satisfies the given parameters and keep trying for the specified time
+            </summary>
+            <param name="findParams">HtmlElementFindParams object that encapsulates the find parameters</param>
+            <param name="timeoutInSeconds">Seconds to keep searching the collection if element not found</param>
+            <returns>The first HtmlElement in this collection that satisfies the given find parameters</returns>
+            <exception cref="T:Microsoft.Web.Testing.Light.ElementNotFoundException">Thrown if element not found</exception>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.FindAll(System.String,Microsoft.Web.Testing.Light.MatchMethod)">
+            <summary>
+            Recursively finds all the elements whose id or name matches the given string.
+            </summary>
+            <param name="id">The string to use when matching the element's id or name to find (case insensitive).</param>
+            <param name="idMatchMethod">How to treat the string when matching it with the HtmlElement's id or name</param>
+            <returns>A collection of  HtmlElements whose ids or names match the given string</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.FindAll(System.String)">
+            <summary>
+            Recursively finds all the elements with the given tagName
+            </summary>
+            <param name="tagName">Tag name of the element to find (case insensitive).</param>
+            <returns>A collection of HtmlElements that have the given tag name.</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.FindAll(System.String,System.String)">
+            <summary>
+            Recursively finds all the elements with the determined tagName and innerText
+            </summary>
+            <param name="tagName">Tag name of the element to find (case insensitive).</param>
+            <param name="innerText">The innerText of the element to find (case insensitive).</param>
+            <returns>A collection of HtmlElements that have the given tag name and inner text.</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.FindAll(Microsoft.Web.Testing.Light.HtmlElementFindParams)">
+            <summary>
+            Recursively finds all the elements that satisfy the given parameters
+            </summary>
+            <param name="findParams">HtmlElementFindParams object that encapsulates the find parameters</param>
+            <returns>A collection of HtmlElements that satisfy the given find parameters</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.FindAll(Microsoft.Web.Testing.Light.HtmlElementFindParams,System.Int32)">
+            <summary>
+            Recursively finds all the elements that satisfy the given parameters and keep trying for the specified time
+            </summary>
+            <param name="findParams">HtmlElementFindParams object that encapsulates the find parameters</param>
+            <param name="timeoutInSeconds">Seconds to keep searching the collection if element not found</param>
+            <returns>A collection of HtmlElements that satisfy the given find parameters</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.FindAfter(Microsoft.Web.Testing.Light.HtmlElement,System.String)">
+            <summary>
+            Returns the first occurence of an element that matches the findParams and that occurs after
+            the specified element.
+            </summary>
+            <param name="precedingElement">The element that must occur before the element that we are looking for</param>
+            <param name="idEndsWith">The id that the element we are looking for ends with.</param>
+            <returns>The element that is found.  An exception is thrown if an element is not found</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.FindAfter(Microsoft.Web.Testing.Light.HtmlElement,Microsoft.Web.Testing.Light.HtmlElementFindParams)">
+            <summary>
+            Returns the first occurence of an element that matches the findParams and that occurs after
+            the specified element.
+            </summary>
+            <param name="precedingElement">The element that must come before the what we are looking for</param>
+            <param name="findParams">The find params for the element we are looking for</param>
+            <returns>The element that is found.  An exception is thrown if an element is not found</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Exists(System.String)">
+            <summary>
+            Returns whether an element whose id or name ends with the given string exists within this collection (recursive)
+            </summary>
+            <param name="idEndsWith">The string that appears at the end of the element's id or name to find (case insensitive).</param>
+            <returns>True if an element is found, otherwise false</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Exists(System.String,Microsoft.Web.Testing.Light.MatchMethod)">
+            <summary>
+            Returns whether an element whose id or name matches the given string exists within this collection (recursive)
+            </summary>
+            <param name="id">The string to use when matching the element's id or name to find (case insensitive).</param>
+            <param name="idMatchMethod">How to treat the string when matching it with the HtmlElement's id or name</param>
+            <returns>True if an element is found, otherwise false</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Exists(Microsoft.Web.Testing.Light.HtmlElementFindParams)">
+            <summary>
+            Returns whether an element that satisfies the given parameters exists within this collection (recursive)
+            </summary>
+            <param name="findParams">HtmlElementFindParams object that encapsulates the find parameters</param>
+            <returns>True if an element is found, otherwise false</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementCollection.Exists(Microsoft.Web.Testing.Light.HtmlElementFindParams,System.Int32)">
+            <summary>
+            Returns whether an element that satisfies the given parameters exists within this collection (recursive)
+            </summary>
+            <param name="findParams">HtmlElementFindParams object that encapsulates the find parameters</param>
+            <param name="timeoutInSeconds">Seconds to keep searching the collection if element not found</param>
+            <returns>True if an element is found, otherwise false</returns>
+        </member>
+        <member name="E:Microsoft.Web.Testing.Light.HtmlElementCollection.Refreshed">
+            <summary>Event that is triggered when this collection is refreshed</summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementCollection.TestPage">
+            <summary>
+            The web page that contains this collection of elements.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementCollection.ParentElement">
+            <summary>
+            The element that contains this collection of elements.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlTableElement">
+            <summary>
+            Class that represents the 'table' html element.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlElement">
+            <summary>
+            Class that represents a Html Dom element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.IsVisible">
+            <summary>
+            Returns whether this element is visible on the browser
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.Create(System.String)">
+            <summary>
+            Creates an HtmlElement given an html markup string (ie. "&lt;span id=span1&gt;Info&lt;/span&gt;)
+            </summary>
+            <param name="htmlMarkup">Well formed html markup string.</param>
+            <returns>An HtmlElement with children and attributes fully populated.</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.GetInnerText">
+            <summary>
+            Retrieves the innerText of this element from the web page.
+            </summary>
+            <returns>The innerText as exposed by the Dom at this moment.</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.GetInnerTextRecursively">
+            <summary>
+            Recursively builds the innerText of this element and all its child elements.
+            </summary>
+            <returns>The innerText as exposed by the Dom at this moment.</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.GetInnerTextRecursively(System.Boolean)">
+            <summary>
+            Recursively builds the innerText of this element and all its child elements.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.GetAttributes">
+            <summary>
+            Method that refreshes the latest attribute dictionary for this element
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.GetOuterHtml">
+            <summary>
+            Retrieve the outer html for this element. 
+            </summary>
+            <returns>The full outer html as exposed by the Dom at this moment.</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.WaitForAttributeValue(System.String,System.String,System.Int32)">
+            <summary>
+            Wait until an attribute of this element is set to the expected value.
+            </summary>
+            <param name="attributeName">The attribute name to wait upon.</param>
+            <param name="expectedAttributeValue">The attribute value to wait upon.</param>
+            <param name="timeoutInSeconds">Timeout in seconds for the attribute to have the expected value.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.WaitForInnerText(System.String,System.Int32)">
+            <summary>
+            Wait until the inner text of this element is set to the expected value.
+            </summary>
+            <param name="expectedInnerText">The inner text value to wait upon.</param>
+            <param name="timeoutInSeconds">Timeout in seconds for the inner text to have the expected value.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.WaitUntilNotFound(System.Int32)">
+            <summary>
+            Wait until this element can no longer be found on the web page.
+            </summary>
+            <param name="timeoutInSeconds">Timeout in seconds for this element to disappear.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.Focus">
+            <summary>
+            Dispatch a focus event to this element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.Blur">
+            <summary>
+            Dispatch a blur event to this element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.Click">
+            <summary>
+            Click on this element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.MouseOver">
+            <summary>
+            Dispatch a mouseover event to this element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.SetText(System.String)">
+            <summary>
+            Set the text of this element.
+            </summary>
+            <param name="textValue">Value to set.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.SetText(System.String,System.Boolean)">
+            <summary>
+            Set the text of this element.
+            </summary>
+            <param name="textValue">Value to set.</param>
+            <param name="focusAndBlur">Wheter to dispatch focus and blur events to the textbox as part of setting the value.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElement.SetSelectedIndex(System.Int32)">
+            <summary>
+            Select an item of this list.
+            </summary>
+            <param name="selectBoxIndex">The zero-based index to select.</param>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.TagName">
+            <summary>
+            The tag name of this element.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.Id">
+            <summary>
+            The id of this element as exposed by the dom.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.Name">
+            <summary>
+            The name of this element as exposed by the dom.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.ParentElement">
+            <summary>
+            The parent of this element (null if this is root element).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.ParentPage">
+            <summary>
+            Web page that contains this element.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.ChildElements">
+            <summary>
+            The children that belong to this element
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.CachedAttributes">
+            <summary>
+            Property that returns the inmemory attribute reader for this element, containing only the attributes that were retrieved on last GetAttributes. 
+            Meant to be used by infraestructure utilities.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.CachedInnerText">
+            <summary>
+            Property that returns the inmemory inner text for this element. Meant to be used by infraestructure utilities
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.CachedInnerTextRecursive">
+            <summary>
+            Property that returns union the inmemory inner text of this element and all of its child elements. Meant to be used by infraestructure utilities.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.CanSetText">
+            <summary>
+            By default no htmlelement supports setting text
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElement.CanSelectIndex">
+            <summary>
+            By default no element supports selecting index
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlTableElement.TBody">
+            <summary>
+            The TBody element of this table, null if none exists.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlTableElement.Rows">
+            <summary>
+            A readonly collection of HtmlTableRowElement's that exists under this table
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlEventName">
+            <summary>
+            The basic events as specified by W3C.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.TagParser.MarkupFormatter">
+            <summary>
+            Class that can format any tag markup
+            </summary>
+            <change date="02/27/2008">Created</change>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.TagParser.MarkupFormatter.Format(System.String)">
+            <summary>
+            Format the given text
+            </summary>
+            <param name="text">The tag markup text to format</param>
+            <returns>A string with the markup with indentation formatting</returns>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.IAssertResultHandler">
+            <summary>
+            Describes a type that can handle the result of an Assert call
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.TestRunFinishedEventArgs">
+            <summary>
+            EventArgs provided when a test run completes
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestRunFinishedEventArgs.#ctor">
+            <summary>
+            Create TestRunFinishedEventArgs
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestRunFinishedEventArgs.#ctor(System.Collections.Generic.ICollection{Microsoft.Web.Testing.Light.Engine.Testcase},System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Create TestRunFinishedEventArgs
+            </summary>
+            <param name="testCases">Test cases that were run</param>
+            <param name="details">Details of the test run</param>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestRunFinishedEventArgs.TestCases">
+            <summary>
+            Test cases that were run
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestRunFinishedEventArgs.Details">
+            <summary>
+            Details of the test run
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestRunFinishedEventArgs.TestLog">
+            <summary>
+            Log of the test run
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.TestCaseManager">
+            <summary>
+            The TestCaseManager is used to provide access to the test cases
+            </summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.TestCaseManager._appCodeAssembly">
+            <summary>Reference to the App_Code assembly containing the tests</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.TestCaseManager._testClasses">
+            <summary>List of all classes containing the WebTestClassAttribute</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.TestCaseManager._testMethods">
+            <summary>List of all methods containing the WebTestMethodAttribute</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.TestCaseManager._testClassesByName">
+            <summary>Lookup used to index test classes by name</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.TestCaseManager._testMethodsByClass">
+            <summary>Lookup used to index test methods by class</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.TestCaseManager._tags">
+            <summary>Lookup used to index test methods by tag</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.TestCaseManager._cachedTagExpressions">
+            <summary>Mapping of tag expressions to the list of tests they represent</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.TestCaseManager._testFailures">
+            <summary>Lookup table used to find test failures in various browsers</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.TestCaseManager._syncRoot">
+            <summary>Object used to synchronize the initial load and prevent starting
+            multiple browser simultaneously from stepping on each other</summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.EnsureLoaded">
+            <summary>
+            Load the test cases
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.GetTestTypes(System.Reflection.Assembly@)">
+            <summary>
+            Returns the types that have WebTestClassAttribute inside the currently loaded assemblies.
+            First checks App_Code and App_SubCode, then checks all available assemblies
+            </summary>
+            <param name="appCodeAssembly">Returns the assembly in which the test types were found</param>
+            <returns>Array of test types found in the first assembly looked at</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.PopulateTreeView(System.Web.UI.WebControls.TreeNode)">
+            <summary>
+            Populate a TreeView's root node with all of the test cases
+            </summary>
+            <param name="root">Root node of the TreeView</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.GetSelectedTestCases(System.Web.UI.WebControls.TreeView)">
+            <summary>
+            Get the selected test cases
+            </summary>
+            <param name="tree">Tree with the test cases</param>
+            <returns>List of selected tests</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.GetTestCase(System.String,System.String)">
+            <summary>
+            Get a test method by name
+            </summary>
+            <param name="testClass">Name of the method's type</param>
+            <param name="testMethod">Name of the method</param>
+            <returns>Method</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.GetTestCase(System.String,System.String,System.Boolean)">
+            <summary>
+            Get a test method by name
+            </summary>
+            <param name="testClass">Name of the method's type</param>
+            <param name="testMethod">Name of the method</param>
+            <param name="throwIfNotFound">Throw an exception if the test isn't found</param>
+            <returns>Method</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.GetTreeRoot(System.Web.UI.WebControls.TreeView)">
+            <summary>
+            Get the root node of a TreeView
+            </summary>
+            <param name="tree">Tree</param>
+            <returns>Root node of the TreeView</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.SelectAllTests(System.Web.UI.WebControls.TreeView)">
+            <summary>
+            Select all the tests in the TreeView
+            </summary>
+            <param name="tree">TreeView</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.SelectAllTests(System.Web.UI.WebControls.TreeView,Microsoft.Web.Testing.Light.BrowserVersions)">
+            <summary>
+            Select all the tests in the TreeView
+            </summary>
+            <param name="tree">TreeView</param>
+            <param name="browser">Browser running the tests</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.SelectAllTests(System.Web.UI.WebControls.TreeNode)">
+            <summary>
+            Select all the tests in the TreeView
+            </summary>
+            <param name="root">Root node of the TreeView</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.SelectAllTests(System.Web.UI.WebControls.TreeNode,Microsoft.Web.Testing.Light.BrowserVersions)">
+            <summary>
+            Select all the tests in the TreeView
+            </summary>
+            <param name="root">Root node of the TreeView</param>
+            <param name="browser">Browser running the tests</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.SelectTaggedTests(System.Web.UI.WebControls.TreeView,System.String,Microsoft.Web.Testing.Light.BrowserVersions)">
+            <summary>
+            Select all tests in the TreeView that are tagged by the tagExpression
+            </summary>
+            <param name="tree">TreeView</param>
+            <param name="tagExpression">Tag expression</param>
+            <param name="browser">Browser running the tests</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.SelectTaggedTests(System.Web.UI.WebControls.TreeNode,System.String,Microsoft.Web.Testing.Light.BrowserVersions)">
+            <summary>
+            Select all tests in the TreeView that are tagged by the tagExpression
+            </summary>
+            <param name="root">Root node of the TreeView</param>
+            <param name="tagExpression">Tag expression</param>
+            <param name="browser">Browser running the tests</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.IgnoreFailures(System.Web.UI.WebControls.TreeView,Microsoft.Web.Testing.Light.BrowserVersions)">
+            <summary>
+            Ignore any tests that fail in the given browsers
+            </summary>
+            <param name="tree">TreeView</param>
+            <param name="browsers">Browsers to skip failures</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.IgnoreFailures(System.Web.UI.WebControls.TreeNode,Microsoft.Web.Testing.Light.BrowserVersions)">
+            <summary>
+            Ignore any tests that fail in the given browsers
+            </summary>
+            <param name="root">Root node of the TreeView</param>
+            <param name="browsers">Browsers to skip failures</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.FilterIgnoredTests(System.Web.UI.WebControls.TreeView)">
+            <summary>
+            Remove any unchecked tests
+            </summary>
+            <param name="tree">TreeView</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.FilterIgnoredTests(System.Web.UI.WebControls.TreeNode)">
+            <summary>
+            Remove any unchecked tests
+            </summary>
+            <param name="root">Root node of the TreeView</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.GetTestsByTag(System.String)">
+            <summary>
+            Get the test methods that correspond to a tag expression
+            </summary>
+            <param name="tagExpression">Tag expression</param>
+            <returns>Test methods for the tag expression</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Microsoft.Web.Testing.Light.Engine.TestCaseManager.GetTestsByTag(System.String,Microsoft.Web.Testing.Light.BrowserVersions)" -->
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestCaseManager.AppCodeAssembly">
+            <summary>
+            Reference to the App_Code assembly containing the tests
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestCaseManager.TestClasses">
+            <summary>
+            List of all classes containing the WebTestClassAttribute
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestCaseManager.TestMethods">
+            <summary>
+            List of all methods containing the WebTestMethodAttribute
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestCaseManager.Tags">
+            <summary>
+            Lookup used to index test methods by tag
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.BrowserCommand">
+            <summary>
+            Class that represents the class that is transfered between the testcase 
+            and the browser
+            </summary>
+            <change date="02/06/2006">Created</change>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.BrowserCommand.#ctor">
+            <summary>
+            	Constructor that initialized the Handler and the Target objects
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.BrowserCommand.#ctor(System.String)">
+            <summary>
+            	Constructor that receives the id of the target object and the client 
+            function name to handle the command execution
+            </summary>
+            <param name="clientFunctionName">The name of the client function that will handle the command</param>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommand.Handler">
+            <summary>
+            Object that describes the client side handler that will execute this command
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommand.Target">
+            <summary>
+            Object that describes the target DOM element upon which the command will be executed
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommand.Description">
+            <summary>
+            A description of this command. Will be printed in the driver frame
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommand.Traces">
+            <summary>
+            A list of traces to be displayed in the driver frame
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.BrowserCommand.FunctionNames">
+            <summary>
+            Class that contains constant strings for common function names
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlAttributeFindParams">
+            <summary>
+            Holds information about how to match html attributes when finding elements
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlAttributeFindParams.#ctor(System.String,System.String)">
+            <summary>
+            Constructor that takes name/value pair and defaults to Literal match method
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlAttributeFindParams.#ctor(System.String,System.String,Microsoft.Web.Testing.Light.MatchMethod)">
+            <summary>
+            Constructor that takes name/value pair and the match method to use
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlAttributeFindParams.Name">
+            <summary>The name of the attribute to find</summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlAttributeFindParams.Value">
+            <summary>The value of the attribute to find</summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlAttributeFindParams.ValueMatchMethod">
+            <summary>The match method to apply when comparing the value</summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.IWebResourceReader">
+            <summary>
+            Describes a type that can retrieve resource strings
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.TestcaseLogger">
+            <summary>
+            Writes test execution log to disk
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestcaseLogger.WriteStartupFile">
+            <summary>
+            Writes the startup file
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.AspNetPageService">
+            <summary>
+            Wrapper around System.Web.UI.Page for unit test
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.IAspNetPageService">
+            <summary>
+            Abstraction of the page services.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.WebTestException">
+            <summary>
+            Exception thrown by the automation framework during a test execution
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.WebTestConsole">
+            <summary>
+            Provides access to interact with the test console
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebTestConsole.Write(System.String)">
+            <summary>
+            Adds a message to the list to be sent to the console with next command.
+            </summary>
+            <param name="message">The message to write</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebTestConsole.Clear">
+            <summary>
+            Clears the list of messages
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebTestConsole.GetTraces">
+            <summary>
+            Retrieves the list of messages
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.NavigationVerification">
+            <summary>
+            How we determine when navigation to a new page has completed
+            </summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.NavigationVerification.Default">
+            <summary>
+            Use readystate to determine when the page has loaded
+            </summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.NavigationVerification.AspNetAjax">
+            <summary>
+            Wait for the page and the ASP.NET AJAX libraries to have loaded
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlInputElementAttributeReader">
+            <summary>
+            Attribute reader that provides strong typed access to HtmlInputElement properties
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlAttributeFindParamsCollection">
+            <summary>
+            Collection of HtmlAttributeFindParms to use when finding an element
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlAttributeFindParamsCollection.Add(System.String,System.String)">
+            <summary>
+            Add an attribute name/value pair to use when searching
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlAttributeFindParamsCollection.Add(System.String,System.String,Microsoft.Web.Testing.Light.MatchMethod)">
+            <summary>
+            Add an attribute name/value pair with a specific match method to use when searching
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator">
+            <summary>
+            Evaluate tag expressions
+            </summary>
+            <remarks>
+            Tag expressions are derived from the following EBNF grammar:
+                {Expression} :=
+                    {Expression} @ {Term} |
+                    {Expression} - {Term} |
+                    {Term}
+                {Term} :=
+                    {Term} ^ {Factor} |
+                    {Factor}
+                {Factor} :=
+                    !{Factor} |
+                    ({Expression}) |
+                    {Tag}
+                {Tag} :=
+                    All |
+                    Fail |
+                    [^InvalidCharacters]+
+             
+            The non-terminals for {Expression} and {Term} will be left factored
+            in the recursive descent parser below.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.InvalidCharacters">
+            <summary>Invalid characters in a tag name</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator._tagExpression">
+            <summary>Expression being evaluated</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator._position">
+            <summary>Current position in the expression</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator._browser">
+            <summary>Browser being tested</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator._testFailures">
+            <summary>Lookup table used to find test failures in various browsers</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator._tags">
+            <summary>Lookup used to index test methods by tag</summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator._testMethods">
+            <summary>List of all methods containing the WebTestMethodAttribute</summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.#ctor">
+            <summary>
+            Create an expression evaluator
+            </summary>
+            <param name="tagExpression">Expression</param>
+            <param name="browser">Browser being tested</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.Evaluate(System.String,Microsoft.Web.Testing.Light.BrowserVersions,System.Collections.Generic.List{System.Reflection.MethodInfo},System.Collections.Generic.Dictionary{System.Reflection.MethodInfo,Microsoft.Web.Testing.Light.BrowserVersions},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.Reflection.MethodInfo}})">
+            <summary>
+            Evaluate an expression
+            </summary>
+            <returns>Test methods described by the expression</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.Match(System.String)">
+            <summary>
+            Match a sequence of characters
+            </summary>
+            <param name="expected">String to match</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.TryMatch(System.String)">
+            <summary>
+            Try to match a sequence of characters
+            </summary>
+            <param name="expected">String to match</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.ReadExpression">
+            <summary>
+            Evaluate an expression
+            </summary>
+            <returns>Test methods described by the expression</returns>
+            <remarks>
+            We need to factor out left recursion, so:
+                {Expression} :=
+                    {Expression} @ {Term} |
+                    {Expression} - {Term} |
+                    {Term}
+            becomes:
+                {Expression} :=
+                	{Term}{Expression'}
+                
+                {Expression'} :=
+                	#empty#
+                	@ {Term}{Expression'}
+                	- {Term}{Expression'}
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.ReadExpression(System.Collections.Generic.List{System.Reflection.MethodInfo})">
+            <summary>
+            Evaluate an expression
+            </summary>
+            <param name="term">
+            Left term already read as part of the expression
+            </param>
+            <returns>Test methods described by the expression</returns>
+            <remarks>
+            Non-terminal created for left-factoring:
+                {Expression'} :=
+                	#empty#
+                	@ {Term}{Expression'}
+                	- {Term}{Expression'}
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.ReadTerm">
+            <summary>
+            Evaluate a term
+            </summary>
+            <returns>Test methods described by the expression</returns>
+            <remarks>
+            We need to factor out left recursion, so:
+                {Term} :=
+                    {Factor} ^ {Term} |
+                    {Factor}
+            becomes:
+                {Term} :=
+                    {Factor}{Term'}
+            
+                {Term'} :=
+                	#empty#
+                	^ {Factor}{Term'}
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.ReadTerm(System.Collections.Generic.List{System.Reflection.MethodInfo})">
+            <summary>
+            Evaluate a term
+            </summary>
+            <param name="term">
+            Left term already read as part of the expression
+            </param>
+            <returns>Test methods described by the expression</returns>
+            <remarks>
+            Non-terminal created for left-factoring:
+                {Term'} :=
+                	#empty#
+                	^ {Factor}{Term'}
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.ReadFactor">
+            <summary>
+            Evaluate a factor
+            </summary>
+            <returns>Test methods described by the expression</returns>
+            <remarks>
+            {Factor} :=
+                !{Factor} |
+                ({Expression}) |
+                {Tag}
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.ReadTag">
+            <summary>
+            Evaluate a tag
+            </summary>
+            <returns>Test methods described by the expression</returns>
+            <remarks>
+            {Tag} :=
+                All |
+                Fail |
+                [^InvalidCharacters]+
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.Union(System.Collections.Generic.List{System.Reflection.MethodInfo},System.Collections.Generic.List{System.Reflection.MethodInfo})">
+            <summary>
+            Union of two sets of test methods
+            </summary>
+            <param name="first">First set of test methods</param>
+            <param name="second">Second set of test methods</param>
+            <returns>Union of the two sets</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.Difference(System.Collections.Generic.List{System.Reflection.MethodInfo},System.Collections.Generic.List{System.Reflection.MethodInfo})">
+            <summary>
+            Difference between two sets of test methods
+            </summary>
+            <param name="first">First set of test methods</param>
+            <param name="second">Second set of test methods</param>
+            <returns>Difference between the two sets</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.Intersection(System.Collections.Generic.List{System.Reflection.MethodInfo},System.Collections.Generic.List{System.Reflection.MethodInfo})">
+            <summary>
+            Intersection of two sets of test methods
+            </summary>
+            <param name="first">First set of test methods</param>
+            <param name="second">Second set of test methods</param>
+            <returns>Intersection of the two sets</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.WebTestTagExpressionEvaluator.Complement(System.Collections.Generic.List{System.Reflection.MethodInfo})">
+            <summary>
+            Complement of a set of test methods
+            </summary>
+            <param name="methods">Test methods</param>
+            <returns>Complement of a set of test methods</returns>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.BrowserCommandHandler">
+            <summary>
+            Class that describes the client side handler that will execute this command
+            </summary>
+            <change date="02/06/2006">Created</change>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.BrowserCommandHandler.#ctor">
+            <summary>
+            Empty constructor for serialization
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.BrowserCommandHandler.SetArguments(System.Object[])">
+            <summary>
+            Method to facilitate setting the Arguments object array
+            </summary>
+            <param name="args">Object array containing the arguments to pass to the command handler</param>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandHandler.PopupAction">
+            <summary>
+            Whether the engine should wait for an alert to show and capture its text
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandHandler.RequiresElementFound">
+            <summary>
+            Whether the command handler requires an HtmlElement to be found in order to operate
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandHandler.ClientFunctionName">
+            <summary>
+            The name of the javascript function included in Microsoft.Web.Testing AjaxDriver to execute.
+            This is the client side handler function for this command
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandHandler.Arguments">
+            <summary>
+            Additional parameters passed to the handler function
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlEvent">
+            <summary>
+            Reperesents an event to be dispatched to an element
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.ServiceLocator">
+            <summary>
+            Class that can locate services used by core types. Used for extensibility
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.ServiceLocator.ApplicationPathFinder">
+            <summary>
+            The IApplicationPathFinder used by HtmlPage to calculate navigate Url
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.ServiceLocator.BrowserCommandExecutor">
+            <summary>
+            The IBrowserCommandExecutor used by HtmlPage to send commands to the browser
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.ServiceLocator.AssertResultHandler">
+            <summary>
+            An IAssertResultHandler that is called whenever an Assert failes or succeeds
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.ServiceLocator.WebResourceReader">
+            <summary>
+            The IWebResourceReader used by the WebResourceReader class to read resources from assemblies
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.WebTestFailureTagAttribute">
+            <summary>
+            WebTestFailureTag attribute used to associate test cases with failures
+            in specific sets of browsers so they can be properly tracked.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebTestFailureTagAttribute.#ctor(Microsoft.Web.Testing.Light.BrowserVersions,System.String)">
+            <summary>
+            WebTestFailureTag attribute used to associate test cases with failures
+            in specific sets of browsers so they can be properly tracked.
+            </summary>
+            <param name="browsers">Browsers the test cases fail in</param>
+            <param name="description">Description of the failure</param>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.WebTestFailureTagAttribute.Browsers">
+            <summary>
+            Browsers the test cases fail in
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.WebTestFailureTagAttribute.Description">
+            <summary>
+            Description of the failure
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlAnchorElement">
+            <summary>
+            Class that represents the 'anchor' html element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlAnchorElement.GetAttributes">
+            <summary>
+            Get the attributes for the anchor element
+            </summary>
+            <returns>HtmlAnchorElementAttributeReader</returns>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlAnchorElement.CachedAttributes">
+            <summary>
+            Property that returns the inmemory attribute reader for this element, containing only the attributes that were retrieved on last GetAttributes. 
+            Meant to be used by infraestructure utilities.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.TestcaseExecutionEventArgs">
+            <summary>
+            Contains information about the execution of a test.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestcaseExecutionEventArgs.WebTestName">
+            <summary>
+            The name of the testcase
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestcaseExecutionEventArgs.Passed">
+            <summary>
+            Whether the test passed
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestcaseExecutionEventArgs.Exception">
+            <summary>
+            Exception captured during testcase execution.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.MatchMethod">
+            <summary>
+            Method of matching strings when finding HtmlElements
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlMouseEvent">
+            <summary>
+            Reperesents a mouse event to be dispatched to an element.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.BrowserCommandTarget">
+            <summary>
+            Class that holds information to locate the the target DOM element 
+            upon which the command will be executed
+            </summary>
+            <change date="02/06/2006">Created</change>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.BrowserCommandTarget.#ctor">
+            <summary>
+            Public empty constructor for serialization
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandTarget.TextBetweenTags">
+            <summary>
+            The text between tags of the element to find
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandTarget.WindowCaption">
+            <summary>
+            The caption of the window where the command is to be executed
+            (eiher the title of the window or its url)
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandTarget.WindowIndex">
+            <summary>
+            The zero based index of the window where the command is to be executed.
+            The main browser is always 0, subsequent pop-up windows are incrementally indexed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandTarget.FrameHierarchy">
+            <summary>
+            The hierarchy of frame names/index to reach the target frame inside the window
+            where the command is to be executed
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandTarget.Id">
+            <summary>
+            The ID or NAME attribute of the DOM element inside the target frame
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandTarget.TagName">
+            <summary>
+            The tag name of the DOM element inside the target frame
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserCommandTarget.Index">
+            <summary>
+            The index when more than one objects are identified in the DOM
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlElementFindParams">
+            <summary>
+            Class to encapsulate find params to use in Find methods of HtmlElementCollection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.#ctor">
+            <summary>
+            Public basic constructor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.#ctor(System.String)">
+            <summary>
+            Constructor to find an HtmlElement by its partial id or name
+            </summary>
+            <param name="idEndsWith">The string to match if it appears at the end of the HtmlElement's id or name (case insensitive).</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.#ctor(System.String,Microsoft.Web.Testing.Light.MatchMethod)">
+            <summary>
+            Constructor to find an HtmlElement by its id or name (case insensitive)
+            </summary>
+            <param name="id">The id of the element to find</param>
+            <param name="idMatchMethod">How to treat the string when matching it with the HtmlElement's id or name.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.#ctor(System.String,System.Int32)">
+            <summary>
+            Constructor to find an HtmlElement by its tagname and index within the dom
+            </summary>
+            <param name="tagName">The tag name of the element to find (case insensitive).</param>
+            <param name="index">The index of the element with given tag name from the start of the Dom.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Constructor to find an HtmlElement by its tagname, its innertext and its index within the dom
+            </summary>
+            <param name="tagName">The tag name of the element to find (case insensitive).</param>
+            <param name="innerText">The inner text of the element to find (case insensitive).</param>
+            <param name="index">The index of the element with given tag name and inner text from the start of the Dom.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.DoesElementMatch(Microsoft.Web.Testing.Light.HtmlElement)">
+            <summary>
+            Determines if a given element matches all the parameters contained in this object
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.MatchTagName(Microsoft.Web.Testing.Light.HtmlElement)">
+            <summary>
+            Determines if a given element matches the tag name contained in this object
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.MatchId(Microsoft.Web.Testing.Light.HtmlElement)">
+            <summary>
+            Determines if a given element matches the id contained in this object
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.MatchAttributes(Microsoft.Web.Testing.Light.HtmlElement)">
+            <summary>
+            Determines if a given element matches the attributes contained in this object
+            </summary>
+            <param name="element"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.MatchSingleAttribute(Microsoft.Web.Testing.Light.HtmlElement,System.String,System.String,Microsoft.Web.Testing.Light.MatchMethod)">
+            <summary>
+            Determines if a given element matches a specific attribute
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlElementFindParams.MatchInnerText(Microsoft.Web.Testing.Light.HtmlElement)">
+            <summary>
+            Determines if a given element matches the inner text contained in this object
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementFindParams.Index">
+            <summary>
+            When multiple elements exists that match, this property indicates the zero-based index of the element to locate.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementFindParams.IndexInternal">
+            <summary>
+            Property that we can modify to use when searching. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementFindParams.TagName">
+            <summary>
+            The tan name of the element to find.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementFindParams.InnerText">
+            <summary>
+            The inner text of the element to find.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementFindParams.IdAttributeFindParams">
+            <summary>
+            Information about how to match the id attribute of the element to find
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlElementFindParams.Attributes">
+            <summary>
+            A dictionary of attribute/value pair to use when searching for the element.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlSelectElement">
+            <summary>
+            Class that represents the 'select' html element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlSelectElement.GetAttributes">
+            <summary>
+            Get the attributes for the select element
+            </summary>
+            <returns>HtmlSelectElementAttributeReader</returns>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlSelectElement.CachedAttributes">
+            <summary>
+            Property that returns the inmemory attribute reader for this element, containing only the attributes that were retrieved on last GetAttributes. 
+            Meant to be used by infraestructure utilities.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlImageElement">
+            <summary>
+            Represents 'img' elements
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlImageElement.#ctor(System.Collections.Generic.IDictionary{System.String,System.String},Microsoft.Web.Testing.Light.HtmlElement,Microsoft.Web.Testing.Light.HtmlPage)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="attributes">Attributes</param>
+            <param name="parentElement">Parent element</param>
+            <param name="parentPage">Parent page</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlImageElement.GetAttributes">
+            <summary>
+            Get the attributes for the image element
+            </summary>
+            <returns>HtmlImageElementAttributeReader</returns>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlImageElement.CachedAttributes">
+            <summary>
+            Property that returns the inmemory attribute reader for this element, containing only the attributes that were retrieved on last GetAttributes. 
+            Meant to be used by infraestructure utilities.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.WebTestMethodAttribute">
+            <summary>
+            Marks a method as an automated web testcase.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebTestMethodAttribute.#ctor">
+            <summary>
+            Marks a method as an automated web testcase.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebTestMethodAttribute.#ctor(System.String)">
+            <summary>
+            Marks a method as an automated web testcase and sets a scenario description.
+            </summary>
+            <param name="description">Description of the scenario</param>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.WebTestMethodAttribute.Description">
+            <summary>
+            Description of the failure
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlAnchorElementAttributeReader">
+            <summary>
+            Attribute reader that provides strong typed access to HtmlAnchorElement properties
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.QueryStringParameters">
+            <summary>
+            Class that encapsulates config options passed via query string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.QueryStringParameters.LoadFromQueryString(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            Loads settings from query string
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestDriverPage.OnInitInternal">
+            <summary>
+            Sets up the service locators and the UI
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestDriverPage.SetupServiceLocator(System.String)">
+            <summary>
+            Sets up the global ServiceLocator
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.TestDriverPage.GenerateInterface">
+            <summary>
+            Creates the default UI
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.WriteLogToDiskCheckBox">
+            <summary>
+            Checkbox that indicates whether to write the log to disk when test run is finished
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.ShowConsoleCheckBox">
+            <summary>
+            Checkbox that indicates whether to show the testcase console
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.TestsPanel">
+            <summary>
+            Panel that represents the middle area of the driver UI
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.FooterPanel">
+            <summary>
+            Panel that represents the footer area of the driver UI
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.ContentPlaceHolder">
+            <summary>
+            Reference to the place holder used to generate all the page's content
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.TestCasesTreeView">
+            <summary>
+            Reference to the TreeView containing the test cases
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.ThreadIdLabel">
+            <summary>
+            Reference to the label that displays the ThreadId
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.Errors">
+            <summary>
+            Reference to the label that displays errors
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.SystemWebExtensionsAbstractions">
+            <summary>
+            Reference to a class that abstract the use of types/methods inside System.Web.Extensions
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.AutoGenerateInterface">
+            <summary>
+            Whether the test interface should be generated automatically.
+            This must be set before OnInit to take effect.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.TestcaseExecutor">
+            <summary>
+            The testcase executor object to be used by the driver page
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.TestDriverPage.LogDetail">
+            <summary>
+            Whether logging should be detailed or rudimentary
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlInputElement">
+            <summary>
+            Class that represents the 'input' html element.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlInputElement.GetAttributes">
+            <summary>
+            Get the attributes for the input element
+            </summary>
+            <returns>HtmlInputElementAttributeReader</returns>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlInputElement.CachedAttributes">
+            <summary>
+            Property that returns the inmemory attribute reader for this element, containing only the attributes that were retrieved on last GetAttributes. 
+            Meant to be used by infraestructure utilities.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.CommandManager">
+            <summary>
+            BrowserCommands are created by tests running on the server and passed
+            down to the client to be executed.  The client executes the command and
+            passes the result back as a BrowserInfo object.  The CommandManager is
+            used to synchronize the communication between the server tests and the
+            web services called by the client browsers.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.CommandManager.NextCommandTimeout">
+            <summary>
+            Length of time in milliseconds to wait for the next command before
+            timing out
+            </summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.CommandManager._entries">
+            <summary>
+            Global list of synchronization entries for all browsers
+            </summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.Engine.CommandManager._syncRoot">
+            <summary>
+            Explicit synchronization root for the global list of entries
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.CommandManager.GetEntry(System.Int32)">
+            <summary>
+            Get the synchronization entry for a given browser
+            </summary>
+            <param name="threadId">Thread of the browser</param>
+            <returns>SynchronizationEntry for the browser</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.CommandManager.GetEntry(System.Int32,System.Boolean)">
+            <summary>
+            Get the synchronization entry for a given browser
+            </summary>
+            <param name="threadId">Thread of the browser</param>
+            <param name="throwIfNotFound">Whether to throw an exception if there is no entry for the thread or just return null</param>
+            <returns>SynchronizationEntry for the browser</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.CommandManager.CreateBrowserQueue(System.Int32)">
+            <summary>
+            Setup the CommandManager for a new test pass for a browser on
+            the given thread
+            </summary>
+            <param name="threadId">Server thread handling the tests for the browser</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.CommandManager.DestroyAllBrowserQueues">
+            <summary>
+            Destroy all browser queues
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.CommandManager.DestroyBrowserQueue(System.Int32)">
+            <summary>
+            Destroy a browser's command queue
+            </summary>
+            <param name="threadId">Server thread handling the tests for the browser</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.CommandManager.ExecuteCommand(System.Int32,Microsoft.Web.Testing.Light.Engine.BrowserCommand,System.Int32)">
+            <summary>
+            Execute a commmand on the client and wait for its result
+            </summary>
+            <param name="threadId">Server thread handling the tests for the browser</param>
+            <param name="command">Command to execute</param>
+            <param name="secondsTimeout">Maximum timeout </param>
+            <returns>Result of executing the command on the client</returns>
+            <remarks>
+            This method works hand in hand with SetResultAndGetNextCommand.
+            They wait and signal each other.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.CommandManager.SetResultAndGetNextCommand(System.Int32,Microsoft.Web.Testing.Light.Engine.BrowserInfo)">
+            <summary>
+            Post the result of the last executed command and wait for the next
+            command or return no command if 
+            </summary>
+            <param name="threadId">Server thread handling the tests for the browser</param>
+            <param name="result">Result of the executing the last command</param>
+            <returns>Next command to execute (or null if there are no more commands or we timed out while waiting)</returns>
+            <remarks>
+            This method works hand in hand with ExecuteCommand. They wait and
+            signal each other.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.Engine.CommandManager.GetBrowserInfo(System.Int32)">
+            <summary>
+            Retrieve the result of running the last test 
+            </summary>
+            <param name="threadId">Server thread handling the tests for the browser</param>
+            <returns>BrowserInfo for the last executed command</returns>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.CommandManager.SynchronizationEntry">
+            <summary>
+            The CommandManager is used to synchronize multiple different test
+            runs in different browsers.  The SynchronizationEntry class is used
+            to synchronize a single browser's test pass.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.CommandManager.SynchronizationEntry.Command">
+            <summary>
+            Command that was sent to the client
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.CommandManager.SynchronizationEntry.Result">
+            <summary>
+            Result of executing the command on the client
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.CommandManager.SynchronizationEntry.Started">
+            <summary>
+            Whether the first command has been sent down for processing
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.CommandManager.SynchronizationEntry.Finished">
+            <summary>
+            Whether the last command was a TestRunFinished command and the
+            client web service should not wait for additional commands
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.CommandManager.SynchronizationEntry.SyncRoot">
+            <summary>
+            Object used to synchronize communication between the test code
+            on the server and the web service called by the client
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.WebResourceReader">
+            <summary>
+            Class capable of reading resources from the assemblies referenced by website
+            </summary>
+            <change date="12/17/2007">Created</change>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebResourceReader.GetString(System.String,System.String,System.String)">
+            <summary>
+            Gets a string from the resources of an assembly
+            </summary>
+            <param name="partialAssemblyName">The partial name of the assembly</param>
+            <param name="resourceName">The name of the embedded resource</param>
+            <param name="resourceKey">The resource key</param>
+            <returns>The resource string if found.</returns>
+            <change date="12/21/2007">Created</change>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebResourceReader.Microsoft#Web#Testing#Light#IWebResourceReader#ReadString(System.String,System.String,System.String)">
+            <summary>
+            Method that loads the asembly specified from all the assemblies referenced by website, and extracts the given resource string
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlTextAreaElement">
+            <summary>
+            Class that represents the 'textarea' html element.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlSelectElementAttributeReader">
+            <summary>
+            Attribute reader that provides strong typed access to HtmlSelectElement properties
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.WebTestLogDetail">
+            <summary>
+            Amount of detail to include in the test log
+            </summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.WebTestLogDetail.Concise">
+            <summary>
+            Just a list of tests
+            </summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.WebTestLogDetail.Default">
+            <summary>
+            Standard list of tests and commands
+            </summary>
+        </member>
+        <member name="F:Microsoft.Web.Testing.Light.WebTestLogDetail.Verbose">
+            <summary>
+            List of tests, commands, and details for commands
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.WaitFor">
+            <summary>
+            What event to wait for after a click has been made
+            </summary>
+            <remarks>Postback will wait a maxium of 30 seconds.</remarks>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlTableRowElement">
+            <summary>
+            Class that represents a row of an html table. The 'tr' html element.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlStyle">
+            <summary>
+            Represents the style information of an html element.
+            </summary>
+            <remarks>
+            http://www.w3.org/TR/REC-CSS2/propidx.html
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlStyle.Get``1(System.String)">
+            <summary>
+            Get the value of a style descriptor
+            </summary>
+            <typeparam name="T">Type of the style descriptor</typeparam>
+            <param name="key">Style descriptor name</param>
+            <returns>Value of the style descriptor</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlStyle.Get``1(System.String,``0)">
+            <summary>
+            Get the value of a style descriptor
+            </summary>
+            <typeparam name="T">Type of the style descriptor</typeparam>
+            <param name="key">Style descriptor name</param>
+            <param name="defaultValue">Default value if attribute not found</param>
+            <returns>Value of the style descriptor</returns>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.RawStyle">
+            <summary>
+            The css style as a string
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Visibility">
+            <summary>
+            Visibility descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Position">
+            <summary>
+            Position descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.BackgroundColor">
+            <summary>
+            Background descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.BackgroundImage">
+            <summary>
+            BackgroundImage descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Color">
+            <summary>
+            Color descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Bottom">
+            <summary>
+            Bottom descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Left">
+            <summary>
+            Left descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Right">
+            <summary>
+            Right descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Top">
+            <summary>
+            Top descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.BorderSpacing">
+            <summary>
+            BorderSpacing descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Height">
+            <summary>
+            Height descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Width">
+            <summary>
+            Width descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.PaddingTop">
+            <summary>
+            PaddingTop descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.PaddingLeft">
+            <summary>
+            PaddingLeft descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.PaddingRight">
+            <summary>
+            PaddingRight descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.PaddingBottom">
+            <summary>
+            PaddingBottom descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Size">
+            <summary>
+            Size descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.TextIndent">
+            <summary>
+            TextIndent descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Align">
+            <summary>
+            Align descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.VerticalAlign">
+            <summary>
+            VerticalAlign descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.WhiteSpace">
+            <summary>
+            WhiteSpace descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Display">
+            <summary>
+            Display descriptor
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlStyle.Overflow">
+            <summary>
+            Overflow descriptor
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlInputElementType">
+            <summary>
+            The possible values for the "type" attribute of an HtmlInputElement.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlElementBuilder">
+            <summary>
+            class that is in charge of building the dom of the client
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.ElementNotFoundException">
+            <summary>
+            Exception thrown when an HtmlElement is not found within a collection
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlPage">
+            <summary>
+            Class that represents a web page as seen by the browser than can be automated.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.#ctor(System.String)">
+            <summary>
+            Constructor that automatically navigates to url specified
+            </summary>
+            <param name="navigateUrl">The Url to navigate to</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.#ctor">
+            <summary>
+            Constructs a new HtmlPage to interact with the page loaded in the browser
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.ExecuteCommand(Microsoft.Web.Testing.Light.Engine.BrowserCommand)">
+            <summary>
+            Execute a command on this web page.
+            </summary>
+            <param name="command">The command to execute</param>
+            <returns>BrowserInfo object containing results from the command execution</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.Navigate(System.String)">
+            <summary>
+            Navigate to a url and load its DOM.
+            </summary>
+            <param name="url">The absolute or relative url (relative to app root) to navigate to.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.Navigate(System.String,Microsoft.Web.Testing.Light.NavigationVerification)">
+            <summary>
+            Navigate to a url and load its DOM.
+            </summary>
+            <param name="url">The absolute or relative url (relative to app root) to navigate to.</param>
+            <param name="navigationVerificationMode">NavigationVerification mode</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.ResolveNavigateUrl(System.String)">
+            <summary>
+            Returns an absolute url based on the current application path.
+            </summary>
+            <param name="url">The relative url.</param>
+            <returns>The absolute url.</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.Navigate(System.String,Microsoft.Web.Testing.Light.NavigationVerification,System.Int32)">
+            <summary>
+            Navigate to this web page.
+            </summary>
+            <param name="url">The absolute or relative url (relative to app root) to navigate to.</param>
+            <param name="navigationVerificationMode">NavigationVerification mode</param>
+            <param name="millisecondsWaitToLoad">Time in milliseconds after navigate to wait for page to be fully loaded.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.GetCurrentUrl">
+            <summary>
+            Returns the url of the page currently loaded
+            </summary>
+            <returns>Url of the page currently loaded</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.ExecuteScript(System.String)">
+            <summary>
+            Evaluates a custom script expression in the context of the page under test
+            </summary>
+            <param name="scriptExpression">The javascript expression to evaluate</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.WaitForAsyncPostComplete">
+            <summary>
+            Method that waits until no asynchronous post is in execution
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.WaitForScript(System.String,System.Int32)">
+            <summary>
+            Method that waits until a custom script expression that is evaluated in the context of the 
+            page under test returns true
+            </summary>
+            <param name="scriptExpression">The javascript expression to evaluate</param>
+            <param name="timeoutInSeconds">The timeout in seconds to keep trying the expression before fail.</param>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.GetPopupPage(System.Int32)">
+            <summary>
+            Method that gets a reference to an HTML popup page
+            </summary>
+            <param name="index">Zero based index of windows opened by driver</param>
+            <returns>HtmlPage to interact with the supplied popup window</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.GetPopupPage(System.Int32,System.Int32)">
+            <summary>
+            Method that gets a reference to an HTML popup page
+            </summary>
+            <param name="index">Zero based index of windows opened by driver</param>
+            <param name="timeoutInSeconds">Timeout to wait for the popup window to finish loading</param>
+            <returns>HtmlPage to interact with the supplied popup window</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.GetFramePage(System.String[])">
+            <summary>
+            Method that gets a reference to an HTML frame
+            </summary>
+            <param name="frameNames">One or more frame names reachable from the current page</param>
+            <returns>HtmlPage to interact with the supplied frame</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.GetFramePage(System.String[],System.Int32)">
+            <summary>
+            Method that gets a reference to an HTML frame
+            </summary>
+            <param name="frameNames">One or more frame names reachable from the current page</param>
+            <param name="timeoutInSeconds">Timeout to wait for the target frame to finish loading</param>
+            <returns>HtmlPage to interact with the supplied frame</returns>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.TryPageRefresh(Microsoft.Web.Testing.Light.HtmlPage,System.Exception@)">
+            <summary>
+            Helper method that attempts to refresh the elements collection of a page
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.HtmlPage.IsServerError">
+            <summary>
+            Returns whether the current page is an Asp.Net server error page.
+            </summary>
+            <returns>True if current page is an Asp.Net server error page, false otherwise</returns>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlPage.WindowIndex">
+            <summary>The index of this window used to locate it in the client</summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlPage.FrameHierachy">
+            <summary>
+            TODO
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlPage.Elements">
+            <summary>
+            The Dom elements that are exposed by this web page.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.HtmlPage.RootElement">
+            <summary>
+            The root Dom element exposed by this web page
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.WebTestClassAttribute">
+            <summary>
+            Marks a class a container of automated web testcases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebTestClassAttribute.#ctor">
+            <summary>
+            Marks a class a container of automated web testcases.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.WebTestClassAttribute.#ctor(System.Int32)">
+            <summary>
+            Marks a class a container of automated web testcases.
+            </summary>
+            <param name="testcaseID">Testcase ID associated with the class</param>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.WebTestClassAttribute.TestId">
+            <summary>
+            Testcase ID associated with the class
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.HtmlKeyEvent">
+            <summary>
+            Reperesents a key event to be dispatched to an element.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.CommandParameters">
+            <summary>
+            Object that is sent to Click() (and maybe other) commands that encapsulate generic command options
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.Engine.BrowserInfo">
+            <summary>
+            Class that represents the information that is transferred between the browser
+            and the testcase
+            </summary>
+            <change date="02/06/2006">Created</change>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserInfo.Data">
+            <summary>
+            The custom return value set by the BrowserCommand handler
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserInfo.ErrorMessages">
+            <summary>
+            Error messages logged by testcase or engine through javascript.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserInfo.JavascriptErrorMessages">
+            <summary>
+            Javascript errors logged by the browser.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Web.Testing.Light.Engine.BrowserInfo.InfoMessages">
+            <summary>
+            Trace messages logged by testcase or engine through javascript.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Web.Testing.Light.BrowserUtility">
+            <summary>
+            Utility to determine the current page's browser
+            </summary>
+        </member>
+        <member name="M:Microsoft.Web.Testing.Light.BrowserUtility.GetBrowser(System.String,System.Int32)">
+            <summary>
+            Gets the browser version for the current user agent
+            </summary>
+            <param name="userAgent">HttpBrowserCapabilities.Browser</param>
+            <param name="majorVersion">HttpBrowserCapabilities.MajorVersion</param>
+            <returns>Enum representing the Browser version</returns>
+        </member>
+    </members>
+</doc>

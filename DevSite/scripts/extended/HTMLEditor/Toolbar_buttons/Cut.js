@@ -1,0 +1,5 @@
+// (c) Copyright Microsoft Corporation.
+// This source is subject to the Microsoft Public License.
+// See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL.
+// All other rights reserved.
+Type.registerNamespace("Sys.Extended.UI.HTMLEditor.ToolbarButton");Sys.Extended.UI.HTMLEditor.ToolbarButton.Cut=function(a){Sys.Extended.UI.HTMLEditor.ToolbarButton.Cut.initializeBase(this,[a])};Sys.Extended.UI.HTMLEditor.ToolbarButton.Cut.prototype={callMethod:function(){if(!Sys.Extended.UI.HTMLEditor.ToolbarButton.Cut.callBaseMethod(this,"callMethod"))return false;var a=this._designPanel;if(Sys.Extended.UI.HTMLEditor.isIE){a.openWait();setTimeout(function(){a.isShadowed();a._copyCut("x",true);a.closeWait()},0)}else a._copyCut("x",true)}};Sys.Extended.UI.HTMLEditor.ToolbarButton.Cut.registerClass("Sys.Extended.UI.HTMLEditor.ToolbarButton.Cut",Sys.Extended.UI.HTMLEditor.ToolbarButton.MethodButton);

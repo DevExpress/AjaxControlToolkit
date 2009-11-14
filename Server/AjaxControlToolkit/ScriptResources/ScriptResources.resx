@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlwaysVisible_ElementRequired" xml:space="preserve">
+    <value>Sys.Extended.UI.AlwaysVisibleControlBehavior must have an element</value>
+  </data>
+  <data name="Animation_CannotNestSequence" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.SequenceAnimation cannot be nested inside Sys.Extended.UI.Animation.ParallelAnimation</value>
+  </data>
+  <data name="Animation_ChildrenNotAllowed" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation cannot add child animations to type "{0}" that does not derive from Sys.Extended.UI.Animation.ParentAnimation</value>
+  </data>
+  <data name="Animation_InvalidBaseType" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.registerAnimation can only register types that inherit from Sys.Extended.UI.Animation.Animation</value>
+  </data>
+  <data name="Animation_InvalidColor" xml:space="preserve">
+    <value>Color must be a 7-character hex representation (e.g. #246ACF), not "{0}"</value>
+  </data>
+  <data name="Animation_MissingAnimationName" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation requires an object with an AnimationName property</value>
+  </data>
+  <data name="Animation_NoDynamicPropertyFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation found no property corresponding to "{0}" or "{1}"</value>
+  </data>
+  <data name="Animation_NoPropertyFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation found no property corresponding to "{0}"</value>
+  </data>
+  <data name="Animation_TargetNotFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.Animation.set_animationTarget requires the ID of a Sys.UI.DomElement or Sys.UI.Control.  No element or control could be found corresponding to "{0}"</value>
+  </data>
+  <data name="Animation_UknownAnimationName" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation could not find an Animation corresponding to the name "{0}"</value>
+  </data>
+  <data name="Calendar_Today" xml:space="preserve">
+    <value>Today: {0}</value>
+  </data>
+  <data name="CascadingDropDown_MethodError" xml:space="preserve">
+    <value>[Method error {0}]</value>
+  </data>
+  <data name="CascadingDropDown_MethodTimeout" xml:space="preserve">
+    <value>[Method timeout]</value>
+  </data>
+  <data name="CascadingDropDown_NoParentElement" xml:space="preserve">
+    <value>Failed to find parent element "{0}"</value>
+  </data>
+  <data name="CollapsiblePanel_NoControlID" xml:space="preserve">
+    <value>Failed to find element "{0}"</value>
+    <comment>Note: Also used by ConfirmButton</comment>
+  </data>
+  <data name="Common_DateTime_InvalidFormat" xml:space="preserve">
+    <value>Invalid format</value>
+  </data>
+  <data name="Common_DateTime_InvalidTimeSpan" xml:space="preserve">
+    <value>"{0}" is not a valid TimeSpan format</value>
+  </data>
+  <data name="Common_InvalidBorderWidthUnit" xml:space="preserve">
+    <value>A unit type of "{0}"' is invalid for parseBorderWidth</value>
+  </data>
+  <data name="Common_InvalidPaddingUnit" xml:space="preserve">
+    <value>A unit type of "{0}" is invalid for parsePadding</value>
+  </data>
+  <data name="Common_UnitHasNoDigits" xml:space="preserve">
+    <value>No digits</value>
+  </data>
+  <data name="DynamicPopulate_WebServiceError" xml:space="preserve">
+    <value>Web Service call failed: {0}</value>
+  </data>
+  <data name="DynamicPopulate_WebServiceTimeout" xml:space="preserve">
+    <value>Web service call timed out</value>
+  </data>
+  <data name="ExtenderBase_CannotSetClientStateField" xml:space="preserve">
+    <value>clientStateField can only be set before initialization</value>
+  </data>
+  <data name="ExtenderBase_ControlNotRegisteredForCallbacks" xml:space="preserve">
+    <value>This Control has not been registered for callbacks</value>
+  </data>
+  <data name="ExtenderBase_InvalidClientStateType" xml:space="preserve">
+    <value>saveClientState must return a value of type String</value>
+  </data>
+  <data name="ExtenderBase_PageNotRegisteredForCallbacks" xml:space="preserve">
+    <value>This Page has not been registered for callbacks</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_FixedBackColor_title" xml:space="preserve">
+    <value>Background color</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_BackColorClear_title" xml:space="preserve">
+    <value>Clear background color</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Bold_title" xml:space="preserve">
+    <value>Bold</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_BulletedList_title" xml:space="preserve">
+    <value>Bulleted List</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Copy_title" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Cut_title" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_DecreaseIndent_title" xml:space="preserve">
+    <value>Decrease Indent</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_FontName_defaultValue" xml:space="preserve">
+    <value>default</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_FontSize_defaultValue" xml:space="preserve">
+    <value>default</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_DesignMode_title" xml:space="preserve">
+    <value>Design mode</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_FontName_label" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_FixedForeColor_title" xml:space="preserve">
+    <value>Foreground color</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_ForeColorClear_title" xml:space="preserve">
+    <value>Clear foreground color</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_HtmlMode_title" xml:space="preserve">
+    <value>HTML text</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_IncreaseIndent_title" xml:space="preserve">
+    <value>Increase Indent</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_InsertHR_title" xml:space="preserve">
+    <value>Insert horizontal rule</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_InsertLink_title" xml:space="preserve">
+    <value>Insert/Edit URL link</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_InsertLink_message_EmptyURL" xml:space="preserve">
+    <value>URL can not be empty</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Italic_title" xml:space="preserve">
+    <value>Italic</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_JustifyCenter_title" xml:space="preserve">
+    <value>Justify Center</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_JustifyFull_title" xml:space="preserve">
+    <value>Justify</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_JustifyLeft_title" xml:space="preserve">
+    <value>Justify Left</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_JustifyRight_title" xml:space="preserve">
+    <value>Justify Right</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Ltr_title" xml:space="preserve">
+    <value>Left to right direction</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_OnPasteFromMSWord" xml:space="preserve">
+    <value>Pasting from MS Word is switched on. Just now: {0}</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_OnPastePlainText" xml:space="preserve">
+    <value>Plain text pasting is switched on. Just now: {0}</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_OrderedList_title" xml:space="preserve">
+    <value>Ordered List</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Paragraph_title" xml:space="preserve">
+    <value>Make Paragraph</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Paste_title" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_PasteText_title" xml:space="preserve">
+    <value>Paste Plain Text</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_PasteWord_title" xml:space="preserve">
+    <value>Paste from MS Word (with cleanup)</value>
+  </data>
+  <data name="HTMLEditor_toolbar_popup_LinkProperties_button_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="HTMLEditor_toolbar_popup_LinkProperties_button_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="HTMLEditor_toolbar_popup_LinkProperties_field_URL" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="HTMLEditor_toolbar_popup_LinkProperties_field_Target" xml:space="preserve">
+    <value>Target</value>
+  </data>
+  <data name="HTMLEditor_toolbar_popup_LinkProperties_field_Target_New" xml:space="preserve">
+    <value>New window</value>
+  </data>
+  <data name="HTMLEditor_toolbar_popup_LinkProperties_field_Target_Current" xml:space="preserve">
+    <value>Current window</value>
+  </data>
+  <data name="HTMLEditor_toolbar_popup_LinkProperties_field_Target_Parent" xml:space="preserve">
+    <value>Parent window</value>
+  </data>
+  <data name="HTMLEditor_toolbar_popup_LinkProperties_field_Target_Top" xml:space="preserve">
+    <value>Top window</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_PreviewMode_title" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Redo_title" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_RemoveAlignment_title" xml:space="preserve">
+    <value>Remove Alignment</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_RemoveLink_title" xml:space="preserve">
+    <value>Remove Link</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_RemoveStyles_title" xml:space="preserve">
+    <value>Remove styles</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Rtl_title" xml:space="preserve">
+    <value>Right to left direction</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_FontSize_label" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_StrikeThrough_title" xml:space="preserve">
+    <value>Strike through</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_SubScript_title" xml:space="preserve">
+    <value>Sub script</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_SuperScript_title" xml:space="preserve">
+    <value>Super script</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Underline_title" xml:space="preserve">
+    <value>Underline</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Undo_title" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="HTMLEditor_toolbar_button_Use_verb" xml:space="preserve">
+    <value>Use {0}</value>
+  </data>
+  <data name="ListSearch_DefaultPrompt" xml:space="preserve">
+    <value>Type to search</value>
+  </data>
+  <data name="PasswordStrength_DefaultStrengthDescriptions" xml:space="preserve">
+    <value>NonExistent;Very Weak;Weak;Poor;Almost OK;Barely Acceptable;Average;Good;Strong;Excellent;Unbreakable!</value>
+  </data>
+  <data name="PasswordStrength_GetHelpRequirements" xml:space="preserve">
+    <value>Get help on password requirements</value>
+  </data>
+  <data name="PasswordStrength_InvalidStrengthDescriptions" xml:space="preserve">
+    <value>Invalid number of text strength descriptions specified</value>
+  </data>
+  <data name="PasswordStrength_InvalidStrengthDescriptionStyles" xml:space="preserve">
+    <value>Text Strength description style classes must match the number of text descriptions.</value>
+  </data>
+  <data name="PasswordStrength_InvalidWeightingRatios" xml:space="preserve">
+    <value>Strength Weighting ratios must have 4 elements</value>
+  </data>
+  <data name="PasswordStrength_RemainingCharacters" xml:space="preserve">
+    <value>{0} more characters</value>
+  </data>
+  <data name="PasswordStrength_RemainingLowerCase" xml:space="preserve">
+    <value>{0} more lower case characters</value>
+  </data>
+  <data name="PasswordStrength_RemainingMixedCase" xml:space="preserve">
+    <value>Mixed case characters</value>
+  </data>
+  <data name="PasswordStrength_RemainingNumbers" xml:space="preserve">
+    <value>{0} more numbers</value>
+  </data>
+  <data name="PasswordStrength_RemainingSymbols" xml:space="preserve">
+    <value>{0} symbol characters</value>
+  </data>
+  <data name="PasswordStrength_RemainingUpperCase" xml:space="preserve">
+    <value>{0} more upper case characters</value>
+  </data>
+  <data name="PasswordStrength_Satisfied" xml:space="preserve">
+    <value>Nothing more required</value>
+  </data>
+  <data name="PasswordStrength_StrengthPrompt" xml:space="preserve">
+    <value>Strength: </value>
+  </data>
+  <data name="PopupControl_NoDefaultProperty" xml:space="preserve">
+    <value>No default property supported for control "{0}" of type "{1}"</value>
+  </data>
+  <data name="PopupExtender_NoParentElement" xml:space="preserve">
+    <value>Couldn't find parent element "{0}"</value>
+  </data>
+  <data name="Rating_CallbackError" xml:space="preserve">
+    <value>An unhandled exception has occurred:\r\n{0}</value>
+  </data>
+  <data name="ReorderList_DropWatcherBehavior_CallbackError" xml:space="preserve">
+    <value>Reorder failed, see details below.\r\n\r\n{0}</value>
+  </data>
+  <data name="ReorderList_DropWatcherBehavior_NoChild" xml:space="preserve">
+    <value>Could not find child of list with id "{0}"</value>
+  </data>
+  <data name="ResizableControlBehavior_CannotChangeProperty" xml:space="preserve">
+    <value>Changes to {0} not supported</value>
+  </data>
+  <data name="ResizableControlBehavior_InvalidHandler" xml:space="preserve">
+    <value>{0} handler not a function, function name, or function text</value>
+  </data>
+  <data name="RTE_BackgroundColor" xml:space="preserve">
+    <value>Background Color</value>
+  </data>
+  <data name="RTE_BarColor" xml:space="preserve">
+    <value>Bar Color</value>
+  </data>
+  <data name="RTE_Bold" xml:space="preserve">
+    <value>Bold</value>
+  </data>
+  <data name="RTE_Border" xml:space="preserve">
+    <value>Border</value>
+  </data>
+  <data name="RTE_BorderColor" xml:space="preserve">
+    <value>Border Color</value>
+  </data>
+  <data name="RTE_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="RTE_CellColor" xml:space="preserve">
+    <value>Cell Color</value>
+  </data>
+  <data name="RTE_CellPadding" xml:space="preserve">
+    <value>Cell Padding</value>
+  </data>
+  <data name="RTE_CellSpacing" xml:space="preserve">
+    <value>Cell Spacing</value>
+  </data>
+  <data name="RTE_ClearFormatting" xml:space="preserve">
+    <value>Clear Formatting</value>
+  </data>
+  <data name="RTE_Columns" xml:space="preserve">
+    <value>Columns</value>
+  </data>
+  <data name="RTE_Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="RTE_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="RTE_Cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="RTE_Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="RTE_FontColor" xml:space="preserve">
+    <value>Font Color</value>
+  </data>
+  <data name="RTE_Heading" xml:space="preserve">
+    <value>Heading</value>
+  </data>
+  <data name="RTE_Hyperlink" xml:space="preserve">
+    <value>Hyperlink</value>
+  </data>
+  <data name="RTE_Indent" xml:space="preserve">
+    <value>Indent</value>
+  </data>
+  <data name="RTE_InsertHorizontalRule" xml:space="preserve">
+    <value>Insert Horizontal Rule</value>
+  </data>
+  <data name="RTE_InsertImage" xml:space="preserve">
+    <value>Insert Image</value>
+  </data>
+  <data name="RTE_InsertTable" xml:space="preserve">
+    <value>Insert Table</value>
+  </data>
+  <data name="RTE_Inserttexthere" xml:space="preserve">
+    <value>Insert text here</value>
+  </data>
+  <data name="RTE_Italic" xml:space="preserve">
+    <value>Italic</value>
+  </data>
+  <data name="RTE_JustifyCenter" xml:space="preserve">
+    <value>Justify Center</value>
+  </data>
+  <data name="RTE_JustifyFull" xml:space="preserve">
+    <value>Justify Full</value>
+  </data>
+  <data name="RTE_JustifyLeft" xml:space="preserve">
+    <value>Justify Left</value>
+  </data>
+  <data name="RTE_JustifyRight" xml:space="preserve">
+    <value>Justify Right</value>
+  </data>
+  <data name="RTE_LabelColor" xml:space="preserve">
+    <value>Label Color</value>
+  </data>
+  <data name="RTE_Labels" xml:space="preserve">
+    <value>Labels</value>
+  </data>
+  <data name="RTE_Legend" xml:space="preserve">
+    <value>Legend</value>
+  </data>
+  <data name="RTE_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="RTE_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="RTE_OrderedList" xml:space="preserve">
+    <value>Ordered List</value>
+  </data>
+  <data name="RTE_Outdent" xml:space="preserve">
+    <value>Outdent</value>
+  </data>
+  <data name="RTE_Paragraph" xml:space="preserve">
+    <value>Paragraph</value>
+  </data>
+  <data name="RTE_Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="RTE_PreviewHTML" xml:space="preserve">
+    <value>Preview HTML</value>
+  </data>
+  <data name="RTE_Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="RTE_Rows" xml:space="preserve">
+    <value>Rows</value>
+  </data>
+  <data name="RTE_Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="RTE_Underline" xml:space="preserve">
+    <value>Underline</value>
+  </data>
+  <data name="RTE_Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="RTE_UnorderedList" xml:space="preserve">
+    <value>Unordered List</value>
+  </data>
+  <data name="RTE_Values" xml:space="preserve">
+    <value>Values</value>
+  </data>
+  <data name="RTE_ViewEditor" xml:space="preserve">
+    <value>View Editor</value>
+  </data>
+  <data name="RTE_ViewSource" xml:space="preserve">
+    <value>View Source</value>
+  </data>
+  <data name="RTE_ViewValues" xml:space="preserve">
+    <value>View Values</value>
+  </data>
+  <data name="Shared_BrowserSecurityPreventsPaste" xml:space="preserve">
+    <value>Your browser security settings don't permit the automatic execution of paste operations. Please use the keyboard shortcut Ctrl+V instead.</value>
+  </data>
+  <data name="Slider_NoSizeProvided" xml:space="preserve">
+    <value>Please set valid values for the height and width attributes in the slider's CSS classes</value>
+  </data>
+  <data name="Tabs_ActiveTabArgumentOutOfRange" xml:space="preserve">
+    <value>Argument is not a member of the tabs collection</value>
+  </data>
+  <data name="Tabs_OwnerExpected" xml:space="preserve">
+    <value>owner must be set before initialize</value>
+  </data>
+  <data name="Tabs_PropertySetAfterInitialization" xml:space="preserve">
+    <value>{0} cannot be changed after initialization</value>
+  </data>
+  <data name="Tabs_PropertySetBeforeInitialization" xml:space="preserve">
+    <value>{0} cannot be changed before initialization</value>
+  </data>
+  <data name="ValidatorCallout_DefaultErrorMessage" xml:space="preserve">
+    <value>This control is invalid</value>
+  </data>
+  <data name="MultiHandleSlider_CssHeightWidthRequired" xml:space="preserve">
+    <value>You must specify a CSS width and height for all handle styles as well as the rail.</value>
+  </data>
+  <data name="AsyncFileUpload_InternalErrorMessage" xml:space="preserve">
+    <value>The AsyncFileUpload control has encountered an error with the uploader in this page. Please refresh the page and try again.</value>
+  </data>
+  <data name="AsyncFileUpload_UnhandledException" xml:space="preserve">
+    <value>Unhandled Exception</value>
+  </data>
+  <data name="AsyncFileUpload_ConfirmToSeeErrorPage" xml:space="preserve">
+    <value>Do you want to see the response page?</value>
+  </data>
+  <data name="AsyncFileUpload_ServerResponseError" xml:space="preserve">
+    <value>Server Response Error</value>
+  </data>
+  <data name="AsyncFileUpload_UnknownServerError" xml:space="preserve">
+    <value>Unknown Server error</value>
+  </data>
+  <data name="AsyncFileUpload_UploadingProblem" xml:space="preserve">
+    <value>The requested file uploading problem.</value>
+  </data>
+</root>

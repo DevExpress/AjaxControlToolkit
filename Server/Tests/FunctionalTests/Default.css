@@ -1,0 +1,197 @@
+﻿body
+{
+	font-size: 10pt;
+	font-family: Verdana;
+}
+
+h1
+{
+	font-size: 16pt;
+	font-family: Tahoma;
+	font-weight: bold;
+}
+
+h2
+{
+	font-size: 10pt;
+	font-family: Verdana;
+	font-weight:bold;
+}
+
+a
+{
+	color: Blue;
+	text-decoration: none;
+}
+
+a:hover
+{
+	color: Blue;
+	text-decoration: underline;
+}
+
+.status
+{
+	font-size: 18px;
+	font-family: Tahoma;
+	font-weight: bold;
+	color: #999999;
+	background-color: #F0F0F0;
+	border: solid 1px #666666;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	display: none;
+}
+
+.testSuiteList
+{
+	width: 200px;
+	padding: 5px;
+	border: solid 1px #666666;
+	margin-right: 10px;
+	text-align: center;
+}
+
+.testSuite
+{
+	width: 100%;
+	border: solid 1px #666666;
+	margin-bottom: 10px;
+}
+
+.testSuiteHeader
+{
+	height: 15px;	
+	padding: 10px;
+	background-color: #F0F0F0;
+	font-family: Verdana;
+	font-size: 14px;
+	font-weight: bold;	
+}
+
+.testSuiteMessage
+{
+	border-top: dashed 1px #AAAAAA;
+	padding: 2px;
+	padding-left: 25px;
+}
+
+.testCase
+{
+	border-top: dashed 1px #AAAAAA;
+	padding: 2px;
+	padding-left: 25px;
+}
+
+.testCaseHeader
+{
+	background-color: #FFFFFF;
+	font-weight: bold;
+}
+
+.testCaseMessage
+{
+	padding: 2px;
+	margin-left: 50px;
+	border-top: dashed 1px #AAAAAA;
+}
+
+.commonCurrent1
+{
+	background-color: red;
+	padding: 10px;
+	padding-top: 5px;
+	border: solid 1px #000000;
+}
+
+.commonCurrent2
+{
+	background-color: blue;
+	padding: 1px;
+}
+
+
+.accordionHeader
+{
+    border: 1px solid #2F4F4F;
+    color: white;
+    background-color: #00688B;
+    font-weight: bold;
+    padding: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.accordionHeaderSelected
+{
+    border: 1px solid #2F4F4F;
+    color: white;
+    background-color: #2290AD;
+    font-weight: bold;
+    padding: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.accordionContent
+{
+    background-color: #B4CDCD;
+    border: 1px dashed #2F4F4F;
+    border-top: none;
+    padding: 5px;
+    padding-top: 10px;
+}
+
+.resizeHandle
+{
+	width:20px;
+	height:30px;
+	background-color:Lime;
+	overflow:hidden;
+}
+
+.resizeStyle
+{
+	padding:0px;
+	border-style:solid;
+	border-width:2px;
+	border-color:Fuchsia;
+	overflow:hidden;
+}
+
+.unwatermarked
+{
+}
+
+.watermarked
+{
+	background-color:Gray;
+}
+
+/* RatingControl */
+.ratingStar {
+    font-size: 0pt;
+    width: 13px;
+    height: 12px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    display: block;
+    background-repeat: no-repeat;
+}
+
+.filledRatingStar {
+    background-image: url(Images/FilledStar.png);
+
+}
+
+.emptyRatingStar {
+    background-image: url(Images/EmptyStar.png);
+}
+
+.savedRatingStar {
+    background-image: url(Images/SavedStar.png);
+}
+/* End-RatingControl */

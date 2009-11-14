@@ -1,0 +1,285 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{C391CB0D-F7F0-40D3-8FF8-81CFDEE13FE8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{22E5A71C-E3CD-4965-A7E8-F18DF3AE518C}"
+	ProjectSection(SolutionItems) = preProject
+		AjaxKey.snk = AjaxKey.snk
+		Tools\JSBuild.dll = Tools\JSBuild.dll
+		MSAjax.testrunconfig = MSAjax.testrunconfig
+		MSAjax.vsmdi = MSAjax.vsmdi
+		MSAjax1.vsmdi = MSAjax1.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Web.Ajax", "Server\System.Web.Ajax\System.Web.Ajax.csproj", "{045405DE-F8D1-4085-A388-C325F7F1D5F7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BE8ECAAA-95BB-442C-B690-61268ACED1D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{8D9AE7F6-69F7-47F4-81D2-722CD0B8DB5D}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FunctionalTests", "Server\Tests\FunctionalTests", "{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		TargetFramework = "3.5"
+		ProjectReferences = "{045405DE-F8D1-4085-A388-C325F7F1D5F7}|System.Web.Ajax.dll;{66C2EB32-CE54-4374-B73F-2A97EF13DD89}|AjaxControlToolkit.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/FunctionalTests"
+		Debug.AspNetCompiler.PhysicalPath = "Server\Tests\FunctionalTests\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\FunctionalTests\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/FunctionalTests"
+		Release.AspNetCompiler.PhysicalPath = "Server\Tests\FunctionalTests\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\FunctionalTests\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "40744"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrosoftAjax", "Client\MicrosoftAjax\MicrosoftAjax.csproj", "{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrosoftAjax.Extended", "Client\MicrosoftAjax.Extended\MicrosoftAjax.Extended.csproj", "{53BF3496-0AD1-491C-A367-258E84479594}"
+	ProjectSection(ProjectDependencies) = postProject
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7} = {045405DE-F8D1-4085-A388-C325F7F1D5F7}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{93A29C0B-4AC3-4179-A49C-C524023343A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{6ED50EB8-6E53-47DF-AE45-181059C00E2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSBuild", "Tools\JSBuild\JSBuild.csproj", "{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptOutput", "ScriptOutput", "{F905803E-B5B4-4F83-BBDB-0E2CA3DD5F5E}"
+	ProjectSection(SolutionItems) = preProject
+		Client\ScriptOutput\Date.HijriCalendar.debug.js = Client\ScriptOutput\Date.HijriCalendar.debug.js
+		Client\ScriptOutput\Date.HijriCalendar.js = Client\ScriptOutput\Date.HijriCalendar.js
+		Client\ScriptOutput\Date.UmAlQuraCalendar.debug.js = Client\ScriptOutput\Date.UmAlQuraCalendar.debug.js
+		Client\ScriptOutput\Date.UmAlQuraCalendar.js = Client\ScriptOutput\Date.UmAlQuraCalendar.js
+		Client\ScriptOutput\MicrosoftAjax.debug.js = Client\ScriptOutput\MicrosoftAjax.debug.js
+		Client\ScriptOutput\MicrosoftAjax.js = Client\ScriptOutput\MicrosoftAjax.js
+		Client\ScriptOutput\MicrosoftAjaxAdoNet.debug.js = Client\ScriptOutput\MicrosoftAjaxAdoNet.debug.js
+		Client\ScriptOutput\MicrosoftAjaxAdoNet.js = Client\ScriptOutput\MicrosoftAjaxAdoNet.js
+		Client\ScriptOutput\MicrosoftAjaxApplicationServices.debug.js = Client\ScriptOutput\MicrosoftAjaxApplicationServices.debug.js
+		Client\ScriptOutput\MicrosoftAjaxApplicationServices.js = Client\ScriptOutput\MicrosoftAjaxApplicationServices.js
+		Client\ScriptOutput\MicrosoftAjaxComponentModel.debug.js = Client\ScriptOutput\MicrosoftAjaxComponentModel.debug.js
+		Client\ScriptOutput\MicrosoftAjaxComponentModel.js = Client\ScriptOutput\MicrosoftAjaxComponentModel.js
+		Client\ScriptOutput\MicrosoftAjaxCore.debug.js = Client\ScriptOutput\MicrosoftAjaxCore.debug.js
+		Client\ScriptOutput\MicrosoftAjaxCore.js = Client\ScriptOutput\MicrosoftAjaxCore.js
+		Client\ScriptOutput\MicrosoftAjaxDataContext.debug.js = Client\ScriptOutput\MicrosoftAjaxDataContext.debug.js
+		Client\ScriptOutput\MicrosoftAjaxDataContext.js = Client\ScriptOutput\MicrosoftAjaxDataContext.js
+		Client\ScriptOutput\MicrosoftAjaxGlobalization.debug.js = Client\ScriptOutput\MicrosoftAjaxGlobalization.debug.js
+		Client\ScriptOutput\MicrosoftAjaxGlobalization.js = Client\ScriptOutput\MicrosoftAjaxGlobalization.js
+		Client\ScriptOutput\MicrosoftAjaxHistory.debug.js = Client\ScriptOutput\MicrosoftAjaxHistory.debug.js
+		Client\ScriptOutput\MicrosoftAjaxHistory.js = Client\ScriptOutput\MicrosoftAjaxHistory.js
+		Client\ScriptOutput\MicrosoftAjaxNetwork.debug.js = Client\ScriptOutput\MicrosoftAjaxNetwork.debug.js
+		Client\ScriptOutput\MicrosoftAjaxNetwork.js = Client\ScriptOutput\MicrosoftAjaxNetwork.js
+		Client\ScriptOutput\MicrosoftAjaxSerialization.debug.js = Client\ScriptOutput\MicrosoftAjaxSerialization.debug.js
+		Client\ScriptOutput\MicrosoftAjaxSerialization.js = Client\ScriptOutput\MicrosoftAjaxSerialization.js
+		Client\ScriptOutput\MicrosoftAjaxTemplates.debug.js = Client\ScriptOutput\MicrosoftAjaxTemplates.debug.js
+		Client\ScriptOutput\MicrosoftAjaxTemplates.js = Client\ScriptOutput\MicrosoftAjaxTemplates.js
+		Client\ScriptOutput\MicrosoftAjaxTimer.debug.js = Client\ScriptOutput\MicrosoftAjaxTimer.debug.js
+		Client\ScriptOutput\MicrosoftAjaxTimer.js = Client\ScriptOutput\MicrosoftAjaxTimer.js
+		Client\ScriptOutput\MicrosoftAjaxWebForms.debug.js = Client\ScriptOutput\MicrosoftAjaxWebForms.debug.js
+		Client\ScriptOutput\MicrosoftAjaxWebForms.js = Client\ScriptOutput\MicrosoftAjaxWebForms.js
+		Client\ScriptOutput\MicrosoftAjaxWebServices.debug.js = Client\ScriptOutput\MicrosoftAjaxWebServices.debug.js
+		Client\ScriptOutput\MicrosoftAjaxWebServices.js = Client\ScriptOutput\MicrosoftAjaxWebServices.js
+		Client\ScriptOutput\start.debug.js = Client\ScriptOutput\start.debug.js
+		Client\ScriptOutput\start.js = Client\ScriptOutput\start.js
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSite", "DevSite\DevSite.csproj", "{AD5692F8-892E-4C02-90C9-07E9D10D2058}"
+	ProjectSection(ProjectDependencies) = postProject
+		{53BF3496-0AD1-491C-A367-258E84479594} = {53BF3496-0AD1-491C-A367-258E84479594}
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ClientFunctionalTests", "Client\Tests\ClientFunctionalTests", "{6AEE6808-EEC3-46F4-9417-0057FC1CE204}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		TargetFramework = "3.5"
+		Debug.AspNetCompiler.VirtualPath = "/ClientFunctionalTests"
+		Debug.AspNetCompiler.PhysicalPath = "Client\Tests\ClientFunctionalTests\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ClientFunctionalTests\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/ClientFunctionalTests"
+		Release.AspNetCompiler.PhysicalPath = "Client\Tests\ClientFunctionalTests\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\ClientFunctionalTests\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "59927"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit", "Server\AjaxControlToolkit\AjaxControlToolkit.csproj", "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs10.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Server\\System.Web.Ajax\\System.Web.Ajax.csproj
+		SccProjectTopLevelParentUniqueName1 = MSAjax.sln
+		SccProjectName1 = Server/System.Web.Ajax
+		SccLocalPath1 = Server\\System.Web.Ajax
+		SccWebProject2 = true
+		SccProjectUniqueName2 = Server\\Tests\\FunctionalTests
+		SccProjectTopLevelParentUniqueName2 = MSAjax.sln
+		SccProjectName2 = Server/Tests/FunctionalTests
+		SccLocalPath2 = .
+		SccProjectFilePathRelativizedFromConnection2 = Server\\Tests\\FunctionalTests\\
+		SccProjectEnlistmentChoice2 = 2
+		SccProjectUniqueName3 = Client\\MicrosoftAjax\\MicrosoftAjax.csproj
+		SccProjectTopLevelParentUniqueName3 = MSAjax.sln
+		SccProjectName3 = Client/MicrosoftAjax
+		SccLocalPath3 = Client\\MicrosoftAjax
+		SccProjectUniqueName4 = Client\\MicrosoftAjax.Extended\\MicrosoftAjax.Extended.csproj
+		SccProjectTopLevelParentUniqueName4 = MSAjax.sln
+		SccProjectName4 = Client/MicrosoftAjax.Extended
+		SccLocalPath4 = Client\\MicrosoftAjax.Extended
+		SccProjectUniqueName5 = Tools\\JSBuild\\JSBuild.csproj
+		SccProjectTopLevelParentUniqueName5 = MSAjax.sln
+		SccProjectName5 = Tools/JSBuild
+		SccLocalPath5 = Tools\\JSBuild
+		SccProjectUniqueName6 = DevSite\\DevSite.csproj
+		SccProjectName6 = DevSite
+		SccLocalPath6 = DevSite
+		SccWebProject7 = true
+		SccProjectUniqueName7 = Client\\Tests\\ClientFunctionalTests
+		SccProjectTopLevelParentUniqueName7 = MSAjax.sln
+		SccProjectName7 = Client/Tests/ClientFunctionalTests
+		SccLocalPath7 = .
+		SccProjectFilePathRelativizedFromConnection7 = Client\\Tests\\ClientFunctionalTests\\
+		SccProjectEnlistmentChoice7 = 2
+		SccProjectUniqueName8 = Server\\AjaxControlToolkit\\AjaxControlToolkit.csproj
+		SccProjectTopLevelParentUniqueName8 = MSAjax.sln
+		SccProjectName8 = Server/AjaxControlToolkit
+		SccLocalPath8 = Server\\AjaxControlToolkit
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = MSAjax1.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7}.Release|.NET.ActiveCfg = Release|Any CPU
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}.Debug|.NET.ActiveCfg = Debug|.NET
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}.Debug|.NET.Build.0 = Debug|.NET
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}.Release|.NET.ActiveCfg = Debug|.NET
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}.Release|.NET.Build.0 = Debug|.NET
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}.Release|.NET.ActiveCfg = Release|Any CPU
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{53BF3496-0AD1-491C-A367-258E84479594}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{53BF3496-0AD1-491C-A367-258E84479594}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53BF3496-0AD1-491C-A367-258E84479594}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53BF3496-0AD1-491C-A367-258E84479594}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{53BF3496-0AD1-491C-A367-258E84479594}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{53BF3496-0AD1-491C-A367-258E84479594}.Release|.NET.ActiveCfg = Release|Any CPU
+		{53BF3496-0AD1-491C-A367-258E84479594}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53BF3496-0AD1-491C-A367-258E84479594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53BF3496-0AD1-491C-A367-258E84479594}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{53BF3496-0AD1-491C-A367-258E84479594}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Release|.NET.ActiveCfg = Release|Any CPU
+		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Release|.NET.ActiveCfg = Release|Any CPU
+		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204}.Debug|.NET.ActiveCfg = Debug|.NET
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204}.Debug|.NET.Build.0 = Debug|.NET
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204}.Release|.NET.ActiveCfg = Debug|.NET
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204}.Release|.NET.Build.0 = Debug|.NET
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Release|.NET.ActiveCfg = Release|Any CPU
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{045405DE-F8D1-4085-A388-C325F7F1D5F7} = {C391CB0D-F7F0-40D3-8FF8-81CFDEE13FE8}
+		{BE8ECAAA-95BB-442C-B690-61268ACED1D4} = {C391CB0D-F7F0-40D3-8FF8-81CFDEE13FE8}
+		{66C2EB32-CE54-4374-B73F-2A97EF13DD89} = {C391CB0D-F7F0-40D3-8FF8-81CFDEE13FE8}
+		{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D} = {BE8ECAAA-95BB-442C-B690-61268ACED1D4}
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
+		{53BF3496-0AD1-491C-A367-258E84479594} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
+		{93A29C0B-4AC3-4179-A49C-C524023343A5} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
+		{F905803E-B5B4-4F83-BBDB-0E2CA3DD5F5E} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
+		{6AEE6808-EEC3-46F4-9417-0057FC1CE204} = {93A29C0B-4AC3-4179-A49C-C524023343A5}
+		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C} = {6ED50EB8-6E53-47DF-AE45-181059C00E2F}
+	EndGlobalSection
+EndGlobal

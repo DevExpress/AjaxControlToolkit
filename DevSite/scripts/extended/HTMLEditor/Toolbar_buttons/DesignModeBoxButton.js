@@ -1,0 +1,5 @@
+// (c) Copyright Microsoft Corporation.
+// This source is subject to the Microsoft Public License.
+// See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL.
+// All other rights reserved.
+Type.registerNamespace("Sys.Extended.UI.HTMLEditor.ToolbarButton");Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeBoxButton=function(a){Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeBoxButton.initializeBase(this,[a]);this._designPanel=null};Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeBoxButton.prototype={_onmousedown:function(c){var a=false,b=this;if(b._designPanel==null)return a;if(b._designPanel.isPopup())return a;if(Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeBoxButton.callBaseMethod(b,"_onmousedown",[c])===null)return a;b.callMethod();return a},onEditPanelActivity:function(){this._designPanel=this._editPanel.get_activePanel()},callMethod:function(){if(this._designPanel==null)return false;if(this._designPanel.isPopup())return false;return true}};Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeBoxButton.registerClass("Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeBoxButton",Sys.Extended.UI.HTMLEditor.ToolbarButton.BoxButton);
