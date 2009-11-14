@@ -1,5 +1,0 @@
-// (c) Copyright Microsoft Corporation.
-// This source is subject to the Microsoft Public License.
-// See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL.
-// All other rights reserved.
-Type.registerNamespace("Sys.Extended.UI.HTMLEditor.ToolbarButton");Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeSelectButton=function(a){Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeSelectButton.initializeBase(this,[a]);this._designPanel=null};Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeSelectButton.prototype={onEditPanelActivity:function(){this._designPanel=this._editPanel.get_activePanel();this.checkState()},checkState:function(){if(!this.checkRangeInDesign())return false;return true},callMethod:function(){if(!Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeSelectButton.callBaseMethod(this,"callMethod"))return false;if(this._designPanel==null)return false;if(this._designPanel.isPopup())return false;return true}};Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeSelectButton.registerClass("Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModeSelectButton",Sys.Extended.UI.HTMLEditor.ToolbarButton.SelectButton);
