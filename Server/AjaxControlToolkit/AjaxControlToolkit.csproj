@@ -374,8 +374,6 @@
     <EmbeddedResource Include="DropShadow\DropShadow.ico" />
     <EmbeddedResource Include="DynamicPopulate\DynamicPopulate.ico" />
     <EmbeddedResource Include="FilteredTextBox\FilteredTextBox.ico" />
-    <Content Include="Headers\HeaderDebug.txt" />
-    <Content Include="Headers\HeaderRelease.txt" />
     <EmbeddedResource Include="HoverMenu\HoverMenu.ico" />
     <Content Include="HTMLEditor\DesignPanel.css" />
     <Content Include="HTMLEditor\DesignPanel.pre.js" />
@@ -665,7 +663,7 @@
       </PreJS>
     </ItemGroup>
     <Message Text="JSBuild: Executing JavaScript Preprocessor." />
-    <JSBuildTask SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(MSBuildProjectDirectory)\Scripts" DebugHeader="Headers\HeaderDebug.txt" ReleaseHeader="Headers\HeaderRelease.txt" />
+    <JSBuildTask SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(MSBuildProjectDirectory)\Scripts" />
     <!-- minify the release scripts (overwrite them) -->
     <ItemGroup>
       <JS Include="$(MSBuildProjectDirectory)\Scripts\**\*.js" Exclude="$(MSBuildProjectDirectory)\Scripts\**\*.debug.js" />
