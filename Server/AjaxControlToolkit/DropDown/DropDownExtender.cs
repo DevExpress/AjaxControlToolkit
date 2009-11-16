@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 [assembly: WebResource("DropDown.drop-arrow.gif", "image/gif")]
-[assembly: WebResource("DropDown.DropDown.css", "text/css", PerformSubstitution=true)]
+[assembly: WebResource("DropDown.DropDown_resource.css", "text/css", PerformSubstitution=true)]
 [assembly: System.Web.UI.WebResource("DropDown.DropDownBehavior.js", "text/javascript")]
 [assembly: System.Web.UI.WebResource("DropDown.DropDownBehavior.debug.js", "text/javascript")]
 
@@ -18,7 +18,7 @@ namespace AjaxControlToolkit
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(HoverExtender))]
     [RequiredScript(typeof(AnimationExtender))]
-    [ClientCssResource("DropDown.DropDown.css")]
+    [ClientCssResource("DropDown.DropDown_resource.css")]
     [ClientScriptResource("Sys.Extended.UI.DropDownBehavior", "DropDown.DropDownBehavior.js")]
     [Designer("AjaxControlToolkit.DropDownDesigner, AjaxControlToolkit")]
     [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]

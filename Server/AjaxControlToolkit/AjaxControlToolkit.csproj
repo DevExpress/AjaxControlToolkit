@@ -375,6 +375,7 @@
     <EmbeddedResource Include="DynamicPopulate\DynamicPopulate.ico" />
     <EmbeddedResource Include="FilteredTextBox\FilteredTextBox.ico" />
     <EmbeddedResource Include="HoverMenu\HoverMenu.ico" />
+    <Content Include="DropDown\DropDown_resource.css" />
     <Content Include="HTMLEditor\DesignPanel.css" />
     <Content Include="HTMLEditor\DesignPanel.pre.js" />
     <Content Include="HTMLEditor\DesignPanelEventHandler.pre.js" />
