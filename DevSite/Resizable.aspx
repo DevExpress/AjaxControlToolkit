@@ -12,7 +12,7 @@
         	border: dashed 2px red;
         	width: 300px;
         	height: 200px;
-        	overflow: scroll
+        	overflow: hidden
         }
         .sizing 
         {
