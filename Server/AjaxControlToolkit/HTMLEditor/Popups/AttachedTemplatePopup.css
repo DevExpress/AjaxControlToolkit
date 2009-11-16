@@ -28,7 +28,7 @@ div.ajax__htmleditor_attachedpopup_default
 .ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton
 {
 	border-width: 0px; overflow:hidden; font-weight:bold; vertical-align:middle; text-align: center; height: 19px; width: 100%;
-	background: url(<%=WebResource("Sys.Extended.UI.HTMLEditor.Images.BgiButton.gif")%>) repeat-x;
+	background: url(<%=WebResource("HTMLEditor.Images.BgiButton.gif")%>) repeat-x;
 }
 .ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton_hover
 {
