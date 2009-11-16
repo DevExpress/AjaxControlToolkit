@@ -23,7 +23,7 @@ using AjaxControlToolkit;
 [assembly: AssemblyFileVersion("3.0.31106.0")]
 [assembly: NeutralResourcesLanguage("en-US")]
 
-[assembly: ScriptCombine(ExcludeScripts = "Slider.SliderBehavior_resource.js")]
+[assembly: ScriptCombine(ExcludeScripts = "Slider.SliderBehavior_resource.js,Seadragon.Seadragon.Config.js")]
 
 // CDN Path
 // http[s]://ajax.microsoft.com/ajax/beta/0910/extended/*
