@@ -22,7 +22,7 @@ namespace AjaxControlToolkit
     /// of files the client must download
     /// </summary>
     [Themeable(true)]
-    public class ToolkitScriptManager : AjaxScriptManager
+    public class ToolkitScriptManager : ScriptManager
     {
         /// <summary>
         /// Request param name for the serialized combined scripts string
@@ -38,6 +38,18 @@ namespace AjaxControlToolkit
         /// Regular expression for detecting WebResource/ScriptResource substitutions in script files
         /// </summary>
         protected static readonly Regex WebResourceRegex = new Regex("<%\\s*=\\s*(?<resourceType>WebResource|ScriptResource)\\(\"(?<resourceName>[^\"]*)\"\\)\\s*%>", RegexOptions.Singleline | RegexOptions.Multiline);
+
+        private static Dictionary<String, bool> _scripts;
+
+        static ToolkitScriptManager() {
+            _scripts = new Dictionary<string, bool>();
+            _scripts.Add("MicrosoftAjax.js", true);
+            _scripts.Add("MicrosoftAjaxWebForms.js", true);
+            _scripts.Add("MicrosoftAjaxTimer.js", true);
+            _scripts.Add("MicrosoftAjax.debug.js", true);
+            _scripts.Add("MicrosoftAjaxWebForms.debug.js", true);
+            _scripts.Add("MicrosoftAjaxTimer.debug.js", true);
+        }
 
         /// <summary>
         /// Specifies whether or not multiple script references should be combined into a single file
@@ -83,6 +95,24 @@ namespace AjaxControlToolkit
         /// </summary>
         private List<ScriptReference> _uncombinableScriptReferences;
 
+        private void ApplyAssembly(ScriptReference script, bool isComposite) {
+            // if the script has a name and no path, and no assembly or the assembly is set to SWE,
+            // set the path to the resource in System.Web.Ajax. We set the path instead of just changing the assembly
+            // so that ScriptManager still considers the scripts Microsoft Ajax scripts, which allows it to emit
+            // inline script.
+            if (!String.IsNullOrEmpty(script.Name) && String.IsNullOrEmpty(script.Path) &&
+                (String.IsNullOrEmpty(script.Assembly) || Assembly.Load(script.Assembly) == typeof(ScriptManager).Assembly)) {
+                if (!isComposite && _scripts.ContainsKey(script.Name)) {
+                    RedirectScriptReference sr = new RedirectScriptReference(script.Name);
+                    script.Path = sr.GetBaseUrl(ScriptManager.GetCurrent(Page));
+                    script.ScriptMode = ScriptMode.Release;
+                }
+                else {
+                    script.Assembly = typeof(AjaxScriptManager).Assembly.FullName;
+                }
+            }
+        }
+
         /// <summary>
         /// OnLoad override that runs only when serving the original page
         /// </summary>
@@ -124,6 +154,13 @@ namespace AjaxControlToolkit
             base.OnLoad(e);
         }
 
+        protected override void OnResolveCompositeScriptReference(CompositeScriptReferenceEventArgs e) {
+            foreach (ScriptReference sr in e.CompositeScript.Scripts) {
+                ApplyAssembly(sr, true);
+            }
+            base.OnResolveCompositeScriptReference(e);
+        }
+
         /// <summary>
         /// OnResolveScriptReference override to track combinable scripts and update the script references
         /// </summary>
@@ -131,6 +168,7 @@ namespace AjaxControlToolkit
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Portability", "CA1903:UseOnlyApiFromTargetedFramework", MessageId = "System.Web.UI.ScriptReferenceBase")]
         protected override void OnResolveScriptReference(ScriptReferenceEventArgs e)
         {
+            ApplyAssembly(e.Script, false);
             base.OnResolveScriptReference(e);
 
             // If combining scripts and this is a candidate script
@@ -782,5 +820,17 @@ namespace AjaxControlToolkit
             builder.Append(@"\u");
             builder.AppendFormat(CultureInfo.InvariantCulture, "{0:x4}", new object[] { (int)c });
         }
+
+        private class RedirectScriptReference : ScriptReference {
+            public RedirectScriptReference(string name) {
+                Name = name;
+                Assembly = typeof(AjaxScriptManager).Assembly.FullName;
+            }
+
+            public string GetBaseUrl(ScriptManager sm) {
+                return base.GetUrl(sm, true);
+            }
+        }
+
     }
 }
