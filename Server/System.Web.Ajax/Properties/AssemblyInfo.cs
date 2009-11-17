@@ -76,7 +76,7 @@ using System.Web.UI;
 [assembly: AllowPartiallyTrustedCallers]
 [assembly: ComVisible(false)]
 [assembly: System.CLSCompliant(true)]
-[assembly: AssemblyVersion("3.0.31106.*")]
+[assembly: AssemblyVersion("3.0.31106.0")]
 [assembly: AssemblyFileVersion("3.0.31106.0")]
 [assembly: NeutralResourcesLanguage("en-US")]
 
