@@ -96,8 +96,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptOutput", "ScriptOutpu
 		Client\ScriptOutput\MicrosoftAjaxWebForms.js = Client\ScriptOutput\MicrosoftAjaxWebForms.js
 		Client\ScriptOutput\MicrosoftAjaxWebServices.debug.js = Client\ScriptOutput\MicrosoftAjaxWebServices.debug.js
 		Client\ScriptOutput\MicrosoftAjaxWebServices.js = Client\ScriptOutput\MicrosoftAjaxWebServices.js
-		Client\ScriptOutput\start.debug.js = Client\ScriptOutput\start.debug.js
-		Client\ScriptOutput\start.js = Client\ScriptOutput\start.js
+		Client\ScriptOutput\Start.debug.js = Client\ScriptOutput\Start.debug.js
+		Client\ScriptOutput\Start.js = Client\ScriptOutput\Start.js
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSite", "DevSite\DevSite.csproj", "{AD5692F8-892E-4C02-90C9-07E9D10D2058}"

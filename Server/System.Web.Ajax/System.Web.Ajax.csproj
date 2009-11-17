@@ -180,13 +180,13 @@
       <Link>Scripts\MicrosoftAjaxWebServices.js</Link>
       <LogicalName>MicrosoftAjaxWebServices.js</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\start.debug.js">
-      <Link>Scripts\start.debug.js</Link>
-      <LogicalName>start.debug.js</LogicalName>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\Start.debug.js">
+      <Link>Scripts\Start.debug.js</Link>
+      <LogicalName>Start.debug.js</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\start.js">
-      <Link>Scripts\start.js</Link>
-      <LogicalName>start.js</LogicalName>
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\Start.js">
+      <Link>Scripts\Start.js</Link>
+      <LogicalName>Start.js</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ScriptLibrary\AdoNet.Res.debug.resx">
       <SubType>Designer</SubType>

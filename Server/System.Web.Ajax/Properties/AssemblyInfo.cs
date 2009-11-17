@@ -14,12 +14,12 @@ using System.Web.UI;
 
 [assembly: TagPrefix("System.Web.UI", "asp")]
 
-[assembly: WebResource("start.js", "application/x-javascript")]
+[assembly: WebResource("Start.js", "application/x-javascript")]
 [assembly: WebResource("MicrosoftAjaxAdoNet.js", "application/x-javascript")]
 [assembly: WebResource("MicrosoftAjaxDataContext.js", "application/x-javascript")]
 [assembly: WebResource("MicrosoftAjaxTemplates.js", "application/x-javascript")]
 // debug versions
-[assembly: WebResource("start.debug.js", "application/x-javascript")]
+[assembly: WebResource("Start.debug.js", "application/x-javascript")]
 [assembly: WebResource("MicrosoftAjaxAdoNet.debug.js", "application/x-javascript")]
 [assembly: WebResource("MicrosoftAjaxDataContext.debug.js", "application/x-javascript")]
 [assembly: WebResource("MicrosoftAjaxTemplates.debug.js", "application/x-javascript")]

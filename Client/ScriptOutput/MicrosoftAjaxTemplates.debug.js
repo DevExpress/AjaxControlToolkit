@@ -1,6 +1,6 @@
 ﻿// Name:        MicrosoftAjaxTemplates.debug.js
 // Assembly:    System.Web.Ajax
-// Version:     3.0.31106.22099
+// Version:     3.0.31106.0
 // FileVersion: 3.0.31106.0
 /// <reference name="MicrosoftAjaxComponentModel.js" />
 /// <reference name="MicrosoftAjaxSerialization.js" />
