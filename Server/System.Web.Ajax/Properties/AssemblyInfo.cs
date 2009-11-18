@@ -81,4 +81,4 @@ using System.Web.UI;
 [assembly: NeutralResourcesLanguage("en-US")]
 
 // CDN Path
-// http[s]://ajax.microsoft.com/ajax/beta/0910/*
+// http[s]://ajax.microsoft.com/ajax/beta/0911/*
