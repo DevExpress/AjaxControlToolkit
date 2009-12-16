@@ -1,8 +1,4 @@
-﻿// Name:        MicrosoftAjaxGlobalization.debug.js
-// Assembly:    System.Web.Ajax
-// Version:     3.0.31106.0
-// FileVersion: 3.0.31106.0
-/// <reference name="MicrosoftAjaxCore.js" />
+//!/ <reference name="MicrosoftAjaxCore.js" />
 
 (function() {
 
@@ -10,26 +6,66 @@ function execute() {
 
 Type._registerScript("MicrosoftAjaxGlobalization.js", ["MicrosoftAjaxCore.js"]);
 
-var merge = Sys._merge,
-	forIn = Sys._forIn;
+var $type, $prototype,
+    merge = Sys._merge,
+	forIn = Sys._forIn,
+    foreach = Sys._foreach,
+    indexOf = Sys._indexOf;
 
-Date._appendPreOrPostMatch = function Date$_appendPreOrPostMatch(preMatch, strBuilder) {
+function outOfRange(value, low, high) {
+    return (value < low) || (value > high);
+}
+
+function expandYear(dtf, year) {
+    var now = new Date(),
+        era = getEra(now);
+    if (year < 100) {
+        var curr = getEraYear(now, dtf, era);
+        year += curr - (curr % 100);
+        if (year > dtf.Calendar.TwoDigitYearMax) {
+            year -= 100;
+        }
+    }
+    return year;
+}
+
+function getEra(date, eras) {
+    if (!eras) return 0;
+    var start, ticks = date.getTime();
+    for (var i = 0, l = eras.length; i < l; i += 4) {
+        start = eras[i+2];
+        if ((start === null) || (ticks >= start)) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+function getEraYear(date, dtf, era, sortable) {
+    var year = date.getFullYear();
+    if (!sortable && dtf.eras) {
+        year -= dtf.eras[era + 3];
+    }    
+    return year;
+}
+
+Sys._appendPreOrPostMatch = function _appendPreOrPostMatch(preMatch, strings) {
     var quoteCount = 0;
     var escaped = false;
     for (var i = 0, il = preMatch.length; i < il; i++) {
         var c = preMatch.charAt(i);
         switch (c) {
         case '\'':
-            if (escaped) strBuilder.append("'");
+            if (escaped) strings.push("'");
             else quoteCount++;
             escaped = false;
             break;
         case '\\':
-            if (escaped) strBuilder.append("\\");
+            if (escaped) strings.push("\\");
             escaped = !escaped;
             break;
         default:
-            strBuilder.append(c);
+            strings.push(c);
             escaped = false;
             break;
         }
@@ -37,10 +73,9 @@ Date._appendPreOrPostMatch = function Date$_appendPreOrPostMatch(preMatch, strBu
     return quoteCount;
 }
 
-Date._expandFormat = function Date$_expandFormat(dtf, format) {
-    if (!format) {
-        format = "F";
-    }
+$type = Date;
+$type._expandFormat = function Date$_expandFormat(dtf, format) {
+    format = format || "F";
     var len = format.length;
     if (len === 1) {
         switch (format) {
@@ -72,50 +107,22 @@ Date._expandFormat = function Date$_expandFormat(dtf, format) {
     return format;
 }
 
-Date._expandYear = function Date$_expandYear(dtf, year) {
-    var now = new Date(),
-        era = Date._getEra(now);
-    if (year < 100) {
-        var curr = Date._getEraYear(now, dtf, era);
-        year += curr - (curr % 100);
-        if (year > dtf.Calendar.TwoDigitYearMax) {
-            year -= 100;
+$type._getParseRegExp = function Date$_getParseRegExp(dtf, format) {
+    var re = dtf._parseRegExp;
+    if (!re) {
+        dtf._parseRegExp = re = {};
+    }
+    else {
+        var reFormat = re[format];
+        if (reFormat) {
+            return reFormat;
         }
-    }
-    return year;
-}
-
-Date._getEra = function Date$_getEra(date, eras) {
-    if (!eras) return 0;
-    var start, ticks = date.getTime();
-    for (var i = 0, l = eras.length; i < l; i += 4) {
-        start = eras[i+2];
-        if ((start === null) || (ticks >= start)) {
-            return i;
-        }
-    }
-    return 0;
-}
-Date._getEraYear = function Date$_getEraYear(date, dtf, era, sortable) {
-    var year = date.getFullYear();
-    if (!sortable && dtf.eras) {
-        year -= dtf.eras[era + 3];
-    }    
-    return year;
-}
-
-Date._getParseRegExp = function Date$_getParseRegExp(dtf, format) {
-    if (!dtf._parseRegExp) {
-        dtf._parseRegExp = {};
-    }
-    else if (dtf._parseRegExp[format]) {
-        return dtf._parseRegExp[format];
     }
 
     var expFormat = Date._expandFormat(dtf, format);
     expFormat = expFormat.replace(/([\^\$\.\*\+\?\|\[\]\(\)\{\}])/g, "\\\\$1");
 
-    var regexp = new Sys.StringBuilder("^");
+    var regexp = ["^"];
     var groups = [];
     var index = 0;
     var quoteCount = 0;
@@ -126,32 +133,29 @@ Date._getParseRegExp = function Date$_getParseRegExp(dtf, format) {
         var preMatch = expFormat.slice(index, match.index);
         index = tokenRegExp.lastIndex;
 
-        quoteCount += Date._appendPreOrPostMatch(preMatch, regexp);
-        if ((quoteCount%2) === 1) {
-            regexp.append(match[0]);
+        quoteCount += Sys._appendPreOrPostMatch(preMatch, regexp);
+        if (quoteCount % 2) {
+            regexp.push(match[0]);
             continue;
         }
 
-        switch (match[0]) {
+        var m = match[0],
+            len = m.length,
+            add;
+        switch (m) {
             case 'dddd': case 'ddd':
             case 'MMMM': case 'MMM':
             case 'gg': case 'g':
-                regexp.append("(\\D+)");
+                add = "(\\D+)";
                 break;
             case 'tt': case 't':
-                regexp.append("(\\D*)");
+                add = "(\\D*)";
                 break;
             case 'yyyy':
-                regexp.append("(\\d{4})");
-                break;
             case 'fff':
-                regexp.append("(\\d{3})");
-                break;
             case 'ff':
-                regexp.append("(\\d{2})");
-                break;
             case 'f':
-                regexp.append("(\\d)");
+                add = "(\\d{" + len + "})";
                 break;
             case 'dd': case 'd':
             case 'MM': case 'M':
@@ -160,36 +164,39 @@ Date._getParseRegExp = function Date$_getParseRegExp(dtf, format) {
             case 'hh': case 'h':
             case 'mm': case 'm':
             case 'ss': case 's':
-                regexp.append("(\\d\\d?)");
+                add = "(\\d\\d?)";
                 break;
             case 'zzz':
-                regexp.append("([+-]?\\d\\d?:\\d{2})");
+                add = "([+-]?\\d\\d?:\\d{2})";
                 break;
             case 'zz': case 'z':
-                regexp.append("([+-]?\\d\\d?)");
+                add = "([+-]?\\d\\d?)";
                 break;
             case '/':
-                regexp.append("(\\" + dtf.DateSeparator + ")");
+                add = "(\\" + dtf.DateSeparator + ")";
                 break;
         }
-        Array.add(groups, match[0]);
+        if (add) {
+            regexp.push(add);
+        }
+        groups.push(match[0]);
     }
-    Date._appendPreOrPostMatch(expFormat.slice(index), regexp);
-    regexp.append("$");
-    var regexpStr = regexp.toString().replace(/\s+/g, "\\s+");
+    Sys._appendPreOrPostMatch(expFormat.slice(index), regexp);
+    regexp.push("$");
+    var regexpStr = regexp.join('').replace(/\s+/g, "\\s+");
     var parseRegExp = {'regExp': regexpStr, 'groups': groups};
-    dtf._parseRegExp[format] = parseRegExp;
+    re[format] = parseRegExp;
     return parseRegExp;
 }
 
-Date._getTokenRegExp = function Date$_getTokenRegExp() {
+$type._getTokenRegExp = function Date$_getTokenRegExp() {
     return /\/|dddd|ddd|dd|d|MMMM|MMM|MM|M|yyyy|yy|y|hh|h|HH|H|mm|m|ss|s|tt|t|fff|ff|f|zzz|zz|z|gg|g/g;
 }
 
-Date.parseLocale = function Date$parseLocale(value, formats) {
-    /// <summary locid="M:J#Date.parseLocale" />
-    /// <param name="value" type="String"></param>
-    /// <param name="formats" parameterArray="true" optional="true" mayBeNull="true"></param>
+$type.parseLocale = function Date$parseLocale(value, formats) {
+    /// <summary locid="M:J#Date.parseLocale">Creates a date from a locale-specific string representation.</summary>
+    /// <param name="value" type="String">A locale-specific string that can parse to a date.</param>
+    /// <param name="formats" parameterArray="true" optional="true" mayBeNull="true">Custom formats to match.</param>
     /// <returns type="Date"></returns>
     var e = Function._validateParams(arguments, [
         {name: "value", type: String},
@@ -199,10 +206,10 @@ Date.parseLocale = function Date$parseLocale(value, formats) {
     return Date._parse(value, Sys.CultureInfo.CurrentCulture, arguments);
 }
 
-Date.parseInvariant = function Date$parseInvariant(value, formats) {
-    /// <summary locid="M:J#Date.parseInvariant" />
-    /// <param name="value" type="String"></param>
-    /// <param name="formats" parameterArray="true" optional="true" mayBeNull="true"></param>
+$type.parseInvariant = function Date$parseInvariant(value, formats) {
+    /// <summary locid="M:J#Date.parseInvariant">Creates a date from its string representation.</summary>
+    /// <param name="value" type="String">A string that can parse to a date.</param>
+    /// <param name="formats" parameterArray="true" optional="true" mayBeNull="true">Custom formats to match.</param>
     /// <returns type="Date"></returns>
     var e = Function._validateParams(arguments, [
         {name: "value", type: String},
@@ -212,7 +219,7 @@ Date.parseInvariant = function Date$parseInvariant(value, formats) {
     return Date._parse(value, Sys.CultureInfo.InvariantCulture, arguments);
 }
 
-Date._parse = function Date$_parse(value, cultureInfo, args) {
+$type._parse = function Date$_parse(value, cultureInfo, args) {
     var i, l, date, format, formats, custom = false;
     for (i = 1, l = args.length; i < l; i++) {
         format = args[i];
@@ -232,60 +239,59 @@ Date._parse = function Date$_parse(value, cultureInfo, args) {
     return null;
 }
 
-Date._parseExact = function Date$_parseExact(value, format, cultureInfo) {
+$type._parseExact = function Date$_parseExact(value, format, cultureInfo) {
     value = value.trim();
     var dtf = cultureInfo.dateTimeFormat,
-        parseInfo = Date._getParseRegExp(dtf, format),
+        parseInfo = this._getParseRegExp(dtf, format),
         match = new RegExp(parseInfo.regExp).exec(value);
     if (match === null) return null;
+    
     var groups = parseInfo.groups,
         era = null, year = null, month = null, date = null, weekDay = null,
         hour = 0, hourOffset, min = 0, sec = 0, msec = 0, tzMinOffset = null,
         pmHour = false;
+    
     for (var j = 0, jl = groups.length; j < jl; j++) {
         var matchGroup = match[j+1];
         if (matchGroup) {
-            switch (groups[j]) {
+            var current = groups[j],
+                clength = current.length,
+                matchInt = parseInt(matchGroup, 10);
+            switch (current) {
                 case 'dd': case 'd':
-                    date = parseInt(matchGroup, 10);
-                    if ((date < 1) || (date > 31)) return null;
-                    break;
-                case 'MMMM':
-                    month = cultureInfo._getMonthIndex(matchGroup);
-                    if ((month < 0) || (month > 11)) return null;
+                    date = matchInt;
+                    if (outOfRange(date, 1, 31)) return null;
                     break;
                 case 'MMM':
-                    month = cultureInfo._getMonthIndex(matchGroup, true);
-                    if ((month < 0) || (month > 11)) return null;
+                case 'MMMM':
+                    month = cultureInfo._getMonthIndex(matchGroup, clength === 3);
+                    if (outOfRange(month, 0, 11)) return null;
                     break;
                 case 'M': case 'MM':
-                    month = parseInt(matchGroup, 10) - 1;
-                    if ((month < 0) || (month > 11)) return null;
+                    month = matchInt - 1;
+                    if (outOfRange(month, 0, 11)) return null;
                     break;
                 case 'y': case 'yy':
-                    year = Date._expandYear(dtf,parseInt(matchGroup, 10));
-                    if ((year < 0) || (year > 9999)) return null;
-                    break;
                 case 'yyyy':
-                    year = parseInt(matchGroup, 10);
-                    if ((year < 0) || (year > 9999)) return null;
+                    year = clength < 4 ? expandYear(dtf,matchInt) : matchInt;
+                    if (outOfRange(year, 0, 9999)) return null;
                     break;
                 case 'h': case 'hh':
-                    hour = parseInt(matchGroup, 10);
+                    hour = matchInt;
                     if (hour === 12) hour = 0;
-                    if ((hour < 0) || (hour > 11)) return null;
+                    if (outOfRange(hour, 0, 11)) return null;
                     break;
                 case 'H': case 'HH':
-                    hour = parseInt(matchGroup, 10);
-                    if ((hour < 0) || (hour > 23)) return null;
+                    hour = matchInt;
+                    if (outOfRange(hour, 0, 23)) return null;
                     break;
                 case 'm': case 'mm':
-                    min = parseInt(matchGroup, 10);
-                    if ((min < 0) || (min > 59)) return null;
+                    min = matchInt;
+                    if (outOfRange(min, 0, 59)) return null;
                     break;
                 case 's': case 'ss':
-                    sec = parseInt(matchGroup, 10);
-                    if ((sec < 0) || (sec > 59)) return null;
+                    sec = matchInt;
+                    if (outOfRange(sec, 0, 59)) return null;
                     break;
                 case 'tt': case 't':
                     var upperToken = matchGroup.toUpperCase();
@@ -293,37 +299,28 @@ Date._parseExact = function Date$_parseExact(value, format, cultureInfo) {
                     if (!pmHour && (upperToken !== dtf.AMDesignator.toUpperCase())) return null;
                     break;
                 case 'f':
-                    msec = parseInt(matchGroup, 10) * 100;
-                    if ((msec < 0) || (msec > 999)) return null;
-                    break;
                 case 'ff':
-                    msec = parseInt(matchGroup, 10) * 10;
-                    if ((msec < 0) || (msec > 999)) return null;
-                    break;
                 case 'fff':
-                    msec = parseInt(matchGroup, 10);
-                    if ((msec < 0) || (msec > 999)) return null;
-                    break;
-                case 'dddd':
-                    weekDay = cultureInfo._getDayIndex(matchGroup);
-                    if ((weekDay < 0) || (weekDay > 6)) return null;
+                    msec = matchInt * Math.pow(10, 3-clength);
+                    if (outOfRange(msec, 0, 999)) return null;
                     break;
                 case 'ddd':
-                    weekDay = cultureInfo._getDayIndex(matchGroup, true);
-                    if ((weekDay < 0) || (weekDay > 6)) return null;
+                case 'dddd':
+                    weekDay = cultureInfo._getDayIndex(matchGroup, clength === 3);
+                    if (outOfRange(weekDay, 0, 6)) return null;
                     break;
                 case 'zzz':
                     var offsets = matchGroup.split(/:/);
                     if (offsets.length !== 2) return null;
                     hourOffset = parseInt(offsets[0], 10);
-                    if ((hourOffset < -12) || (hourOffset > 13)) return null;
+                    if (outOfRange(hourOffset, -12, 13)) return null;
                     var minOffset = parseInt(offsets[1], 10);
-                    if ((minOffset < 0) || (minOffset > 59)) return null;
+                    if (outOfRange(minOffset, 0, 59)) return null;
                     tzMinOffset = (hourOffset * 60) + (matchGroup.startsWith('-')? -minOffset : minOffset);
                     break;
                 case 'z': case 'zz':
-                    hourOffset = parseInt(matchGroup, 10);
-                    if ((hourOffset < -12) || (hourOffset > 13)) return null;
+                    hourOffset = matchInt;
+                    if (outOfRange(hourOffset, -12, 13)) return null;
                     tzMinOffset = hourOffset * 60;
                     break;
                 case 'g': case 'gg':
@@ -342,12 +339,7 @@ Date._parseExact = function Date$_parseExact(value, format, cultureInfo) {
         }
     }
     var result = new Date(), defaultYear, convert = dtf.Calendar.convert;
-    if (convert) {
-        defaultYear = convert.fromGregorian(result)[0];
-    }
-    else {
-        defaultYear = result.getFullYear();
-    }
+    defaultYear = convert ? convert.fromGregorian(result)[0] : result.getFullYear();
     if (year === null) {
         year = defaultYear;
     }
@@ -382,10 +374,11 @@ Date._parseExact = function Date$_parseExact(value, format, cultureInfo) {
     return result;
 }
 
-Date.prototype.format = function Date$format(format) {
-    /// <summary locid="M:J#Date.format" />
-    /// <param name="format" type="String"></param>
-    /// <returns type="String"></returns>
+$prototype = $type.prototype;
+$prototype.format = function Date$format(format) {
+    /// <summary locid="M:J#Date.format">Format a date using the invariant culture.</summary>
+    /// <param name="format" type="String">Format string.</param>
+    /// <returns type="String">Formatted date.</returns>
     var e = Function._validateParams(arguments, [
         {name: "format", type: String}
     ]);
@@ -393,10 +386,10 @@ Date.prototype.format = function Date$format(format) {
     return this._toFormattedString(format, Sys.CultureInfo.InvariantCulture);
 }
 
-Date.prototype.localeFormat = function Date$localeFormat(format) {
-    /// <summary locid="M:J#Date.localeFormat" />
-    /// <param name="format" type="String"></param>
-    /// <returns type="String"></returns>
+$prototype.localeFormat = function Date$localeFormat(format) {
+    /// <summary locid="M:J#Date.localeFormat">Format a date using the current culture.</summary>
+    /// <param name="format" type="String">Format string.</param>
+    /// <returns type="String">Formatted date.</returns>
     var e = Function._validateParams(arguments, [
         {name: "format", type: String}
     ]);
@@ -404,61 +397,41 @@ Date.prototype.localeFormat = function Date$localeFormat(format) {
     return this._toFormattedString(format, Sys.CultureInfo.CurrentCulture);
 }
 
-Date.prototype._toFormattedString = function Date$_toFormattedString(format, cultureInfo) {
+$prototype._toFormattedString = function Date$_toFormattedString(format, cultureInfo) {
     var dtf = cultureInfo.dateTimeFormat,
         convert = dtf.Calendar.convert;
     if (!format || !format.length || (format === 'i')) {
+        var ret;
         if (cultureInfo && cultureInfo.name.length) {
             if (convert) {
-                return this._toFormattedString(dtf.FullDateTimePattern, cultureInfo);
+                ret = this._toFormattedString(dtf.FullDateTimePattern, cultureInfo);
             }
             else {
                 var eraDate = new Date(this.getTime());
-                var era = Date._getEra(this, dtf.eras);
-                eraDate.setFullYear(Date._getEraYear(this, dtf, era));
-                return eraDate.toLocaleString();
+                var era = getEra(this, dtf.eras);
+                eraDate.setFullYear(getEraYear(this, dtf, era));
+                ret = eraDate.toLocaleString();
             }
         }
         else {
-            return this.toString();
+            ret = this.toString();
         }
+        return ret;
     }
 
     var eras = dtf.eras,
         sortable = (format === "s");
     format = Date._expandFormat(dtf, format);
 
-    var ret = new Sys.StringBuilder();
+    ret = [];
     var hour;
 
-    function addLeadingZero(num) {
-        if (num < 10) {
-            return '0' + num;
-        }
-        return num.toString();
+    var zeros = ['0','00','000'];
+    function padZeros(num, c) {
+        var s = num+'';
+        return ((c > 1) && (s.length < c)) ? (zeros[c-2]+s).substr(-c) : s;
     }
 
-    function addLeadingZeros(num) {
-        if (num < 10) {
-            return '00' + num;
-        }
-        if (num < 100) {
-            return '0' + num;
-        }
-        return num.toString();
-    }
-    function padYear(year) {
-        if (year < 10) {
-            return '000' + year;
-        }
-        else if (year < 100) {
-            return '00' + year;
-        }
-        else if (year < 1000) {
-            return '0' + year;
-        }
-        return year.toString();
-    }
     var foundDay, checkedDay, dayPartRegExp = /([^d]|^)(d|dd)([^d]|$)/g;
     function hasDay() {
         if (foundDay || checkedDay) {
@@ -468,6 +441,7 @@ Date.prototype._toFormattedString = function Date$_toFormattedString(format, cul
         checkedDay = true;
         return foundDay;
     }
+    
     var quoteCount = 0,
         tokenRegExp = Date._getTokenRegExp(),
         converted;
@@ -481,14 +455,15 @@ Date.prototype._toFormattedString = function Date$_toFormattedString(format, cul
         var ar = tokenRegExp.exec(format);
 
         var preMatch = format.slice(index, ar ? ar.index : format.length);
-        quoteCount += Date._appendPreOrPostMatch(preMatch, ret);
+        quoteCount += Sys._appendPreOrPostMatch(preMatch, ret);
 
         if (!ar) break;
 
-        if ((quoteCount%2) === 1) {
-            ret.append(ar[0]);
+        if (quoteCount % 2) {
+            ret.push(ar[0]);
             continue;
         }
+        
         function getPart(date, part) {
             if (converted) {
                 return converted[part];
@@ -500,120 +475,99 @@ Date.prototype._toFormattedString = function Date$_toFormattedString(format, cul
             }
         }
 
-        switch (ar[0]) {
-        case "dddd":
-            ret.append(dtf.DayNames[this.getDay()]);
-            break;
+        var current = ar[0],
+            clength = current.length;
+
+        switch (current) {
         case "ddd":
-            ret.append(dtf.AbbreviatedDayNames[this.getDay()]);
-            break;
-        case "dd":
-            foundDay = true;
-            ret.append(addLeadingZero(getPart(this, 2)));
+        case "dddd":
+            names = (clength === 3) ? dtf.AbbreviatedDayNames : dtf.DayNames;
+            ret.push(names[this.getDay()]);
             break;
         case "d":
+        case "dd":
             foundDay = true;
-            ret.append(getPart(this, 2));
-            break;
-        case "MMMM":
-            ret.append((dtf.MonthGenitiveNames && hasDay())
-                ? dtf.MonthGenitiveNames[getPart(this, 1)]
-                : dtf.MonthNames[getPart(this, 1)]);
+            ret.push(padZeros(getPart(this, 2), clength));
             break;
         case "MMM":
-            ret.append((dtf.AbbreviatedMonthGenitiveNames && hasDay())
-                ? dtf.AbbreviatedMonthGenitiveNames[getPart(this, 1)]
-                : dtf.AbbreviatedMonthNames[getPart(this, 1)]);
-            break;
-        case "MM":
-            ret.append(addLeadingZero(getPart(this, 1) + 1));
+        case "MMMM":
+            var namePrefix = (clength === 3 ? "Abbreviated" : ""),
+                genitiveNames = dtf[namePrefix + "MonthGenitiveNames"],
+                names = dtf[namePrefix + "MonthNames"],
+                part = getPart(this, 1);
+            ret.push((genitiveNames && hasDay())
+                ? genitiveNames[part]
+                : names[part]);
             break;
         case "M":
-            ret.append(getPart(this, 1) + 1);
-            break;
-        case "yyyy":
-            ret.append(padYear(converted ? converted[0] : Date._getEraYear(this, dtf, Date._getEra(this, eras), sortable)));
-            break;
-        case "yy":
-            ret.append(addLeadingZero((converted ? converted[0] : Date._getEraYear(this, dtf, Date._getEra(this, eras), sortable)) % 100));
+        case "MM":
+            ret.push(padZeros(getPart(this, 1) + 1, clength));
             break;
         case "y":
-            ret.append((converted ? converted[0] : Date._getEraYear(this, dtf, Date._getEra(this, eras), sortable)) % 100);
+        case "yy":
+        case "yyyy":
+            part = converted ? converted[0] : getEraYear(this, dtf, getEra(this, eras), sortable);
+            if (clength < 4) {
+                part = part % 100;
+            }
+            ret.push(padZeros(part, clength));
             break;
+        case "h":
         case "hh":
             hour = this.getHours() % 12;
             if (hour === 0) hour = 12;
-            ret.append(addLeadingZero(hour));
-            break;
-        case "h":
-            hour = this.getHours() % 12;
-            if (hour === 0) hour = 12;
-            ret.append(hour);
-            break;
-        case "HH":
-            ret.append(addLeadingZero(this.getHours()));
+            ret.push(padZeros(hour, clength));
             break;
         case "H":
-            ret.append(this.getHours());
-            break;
-        case "mm":
-            ret.append(addLeadingZero(this.getMinutes()));
+        case "HH":
+            ret.push(padZeros(this.getHours(), clength));
             break;
         case "m":
-            ret.append(this.getMinutes());
-            break;
-        case "ss":
-            ret.append(addLeadingZero(this.getSeconds()));
+        case "mm":
+            ret.push(padZeros(this.getMinutes(), clength));
             break;
         case "s":
-            ret.append(this.getSeconds());
-            break;
-        case "tt":
-            ret.append((this.getHours() < 12) ? dtf.AMDesignator : dtf.PMDesignator);
+        case "ss":
+            ret.push(padZeros(this.getSeconds(), clength));
             break;
         case "t":
-            ret.append(((this.getHours() < 12) ? dtf.AMDesignator : dtf.PMDesignator).charAt(0));
+        case "tt":
+            part = (this.getHours() < 12) ? dtf.AMDesignator : dtf.PMDesignator;
+            ret.push(clength === 1 ? part.charAt(0) : part);
             break;
         case "f":
-            ret.append(addLeadingZeros(this.getMilliseconds()).charAt(0));
-            break;
         case "ff":
-            ret.append(addLeadingZeros(this.getMilliseconds()).substr(0, 2));
-            break;
         case "fff":
-            ret.append(addLeadingZeros(this.getMilliseconds()));
+            ret.push(padZeros(this.getMilliseconds(), 3).substr(0, clength));
             break;
-        case "z":
-            hour = this.getTimezoneOffset() / 60;
-            ret.append(((hour <= 0) ? '+' : '-') + Math.floor(Math.abs(hour)));
-            break;
+        case "z": 
         case "zz":
             hour = this.getTimezoneOffset() / 60;
-            ret.append(((hour <= 0) ? '+' : '-') + addLeadingZero(Math.floor(Math.abs(hour))));
+            ret.push(((hour <= 0) ? '+' : '-') + padZeros(Math.floor(Math.abs(hour)), clength));
             break;
         case "zzz":
             hour = this.getTimezoneOffset() / 60;
-            ret.append(((hour <= 0) ? '+' : '-') + addLeadingZero(Math.floor(Math.abs(hour))) +
-                ":" + addLeadingZero(Math.abs(this.getTimezoneOffset() % 60)));
+            ret.push(((hour <= 0) ? '+' : '-') + padZeros(Math.floor(Math.abs(hour)), 2) +
+                ":" + padZeros(Math.abs(this.getTimezoneOffset() % 60), 2));
             break;
         case "g":
         case "gg":
             if (dtf.eras) {
-                ret.append(dtf.eras[Date._getEra(this, eras) + 1]);
+                ret.push(dtf.eras[getEra(this, eras) + 1]);
             }
             break;
         case "/":
-            ret.append(dtf.DateSeparator);
+            ret.push(dtf.DateSeparator);
             break;
         }
     }
-    return ret.toString();
+    return ret.join('');
 }
 String.localeFormat = function String$localeFormat(format, args) {
-    /// <summary locid="M:J#String.localeFormat" />
-    /// <param name="format" type="String"></param>
-    /// <param name="args" parameterArray="true" mayBeNull="true"></param>
-    /// <returns type="String"></returns>
+    /// <summary locid="M:J#String.localeFormat">Replaces the format items in a specified String with the text equivalents of the values of   corresponding object instances. The current culture will be used to format dates and numbers.</summary>
+    /// <param name="format" type="String">A format string.</param>
+    /// <param name="args" parameterArray="true" mayBeNull="true">The objects to format.</param>
+    /// <returns type="String">A copy of format in which the format items have been replaced by the   string equivalent of the corresponding instances of object arguments.</returns>
     var e = Function._validateParams(arguments, [
         {name: "format", type: String},
         {name: "args", mayBeNull: true, parameterArray: true}
@@ -621,166 +575,26 @@ String.localeFormat = function String$localeFormat(format, args) {
     if (e) throw e;
     return String._toFormattedString(true, arguments);
 }
-Number.parseLocale = function Number$parseLocale(value) {
-    /// <summary locid="M:J#Number.parseLocale" />
-    /// <param name="value" type="String"></param>
-    /// <returns type="Number"></returns>
-    var e = Function._validateParams(arguments, [
-        {name: "value", type: String}
-    ], false);
-    if (e) throw e;
-    return Number._parse(value, Sys.CultureInfo.CurrentCulture);
-}
-Number.parseInvariant = function Number$parseInvariant(value) {
-    /// <summary locid="M:J#Number.parseInvariant" />
-    /// <param name="value" type="String"></param>
-    /// <returns type="Number"></returns>
-    var e = Function._validateParams(arguments, [
-        {name: "value", type: String}
-    ], false);
-    if (e) throw e;
-    return Number._parse(value, Sys.CultureInfo.InvariantCulture);
-}
-Number._parse = function Number$_parse(value, cultureInfo) {
-    value = value.trim();
-    if (value.match(/^[+-]?infinity$/i)) {
-        return parseFloat(value);
-    }
-    if (value.match(/^0x[a-f0-9]+$/i)) {
-        return parseInt(value);
-    }
+var formattingPatterns = {
+    P: ["Percent", ["-n %", "-n%", "-%n"], ["n %", "n%", "%n" ], 100],
+    N: ["Number",["(n)","-n","- n","n-","n -"], null, 1],
+    C: ["Currency",["($n)","-$n","$-n","$n-","(n$)","-n$","n-$","n$-","-n $","-$ n","n $-","$ n-","$ -n","n- $","($ n)","(n $)"],["$n","n$","$ n","n $"], 1]
+};
 
-    var numFormat = cultureInfo.numberFormat;
-    var signInfo = Number._parseNumberNegativePattern(value, numFormat, numFormat.NumberNegativePattern);
-    var sign = signInfo[0];
-    var num = signInfo[1];
-    if ((sign === '') && (numFormat.NumberNegativePattern !== 1)) {
-        signInfo = Number._parseNumberNegativePattern(value, numFormat, 1);
-        sign = signInfo[0];
-        num = signInfo[1];
+Sys._toFormattedString = function _toFormattedString(format, cultureInfo) {
+    if (!format || !format.length || (format === 'i')) {
+        return (cultureInfo && cultureInfo.name.length) ?
+            this.toLocaleString() :
+            this.toString();
     }
-    if (sign === '') sign = '+';
-    var exponent;
-    var intAndFraction;
-    var exponentPos = num.indexOf('e');
-    if (exponentPos < 0) exponentPos = num.indexOf('E');
-    if (exponentPos < 0) {
-        intAndFraction = num;
-        exponent = null;
-    }
-    else {
-        intAndFraction = num.substr(0, exponentPos);
-        exponent = num.substr(exponentPos + 1);
-    }
-    var integer;
-    var fraction;
-    var decimalPos = intAndFraction.indexOf(numFormat.NumberDecimalSeparator);
-    if (decimalPos < 0) {
-        integer = intAndFraction;
-        fraction = null;
-    }
-    else {
-        integer = intAndFraction.substr(0, decimalPos);
-        fraction = intAndFraction.substr(decimalPos + numFormat.NumberDecimalSeparator.length);
-    }
-    integer = integer.split(numFormat.NumberGroupSeparator).join('');
-    var altNumGroupSeparator = numFormat.NumberGroupSeparator.replace(/\u00A0/g, " ");
-    if (numFormat.NumberGroupSeparator !== altNumGroupSeparator) {
-        integer = integer.split(altNumGroupSeparator).join('');
-    }
-    var p = sign + integer;
-    if (fraction !== null) {
-        p += '.' + fraction;
-    }
-    if (exponent !== null) {
-        var expSignInfo = Number._parseNumberNegativePattern(exponent, numFormat, 1);
-        if (expSignInfo[0] === '') {
-            expSignInfo[0] = '+';
-        }
-        p += 'e' + expSignInfo[0] + expSignInfo[1];
-    }
-
-    if (p.match(/^[+-]?\d*\.?\d*(e[+-]?\d+)?$/)) {
-        return parseFloat(p);
-    }
-    return Number.NaN;
-}
-Number._parseNumberNegativePattern = function Number$_parseNumberNegativePattern(value, numFormat, numberNegativePattern) {
-    var neg = numFormat.NegativeSign;
-    var pos = numFormat.PositiveSign;    
-    switch (numberNegativePattern) {
-        case 4: 
-            neg = ' ' + neg;
-            pos = ' ' + pos;
-        case 3: 
-            if (value.endsWith(neg)) {
-                return ['-', value.substr(0, value.length - neg.length)];
-            }
-            else if (value.endsWith(pos)) {
-                return ['+', value.substr(0, value.length - pos.length)];
-            }
-            break;
-        case 2: 
-            neg += ' ';
-            pos += ' ';
-        case 1: 
-            if (value.startsWith(neg)) {
-                return ['-', value.substr(neg.length)];
-            }
-            else if (value.startsWith(pos)) {
-                return ['+', value.substr(pos.length)];
-            }
-            break;
-        case 0: 
-            if (value.startsWith('(') && value.endsWith(')')) {
-                return ['-', value.substr(1, value.length - 2)];
-            }
-            break;
-    }
-    return ['', value];
-}
-
-Number.prototype.format = function Number$format(format) {
-    /// <summary locid="M:J#Number.format" />
-    /// <param name="format" type="String"></param>
-    /// <returns type="String"></returns>
-    var e = Function._validateParams(arguments, [
-        {name: "format", type: String}
-    ]);
-    if (e) throw e;
-    return this._toFormattedString(format, Sys.CultureInfo.InvariantCulture);
-}
-Number.prototype.localeFormat = function Number$localeFormat(format) {
-    /// <summary locid="M:J#Number.localeFormat" />
-    /// <param name="format" type="String"></param>
-    /// <returns type="String"></returns>
-    var e = Function._validateParams(arguments, [
-        {name: "format", type: String}
-    ]);
-    if (e) throw e;
-    return this._toFormattedString(format, Sys.CultureInfo.CurrentCulture);
-}
-Number.prototype._toFormattedString = function Number$_toFormattedString(format, cultureInfo) {
-    if (!format || (format.length === 0) || (format === 'i')) {
-        if (cultureInfo && (cultureInfo.name.length > 0)) {
-            return this.toLocaleString();
-        }
-        else {
-            return this.toString();
-        }
-    }
-    var _percentPositivePattern = ["n %", "n%", "%n" ];
-    var _percentNegativePattern = ["-n %", "-n%", "-%n"];
-    var _numberNegativePattern = ["(n)","-n","- n","n-","n -"];
-    var _currencyPositivePattern = ["$n","n$","$ n","n $"];
-    var _currencyNegativePattern = ["($n)","-$n","$-n","$n-","(n$)","-n$","n-$","n$-","-n $","-$ n","n $-","$ n-","$ -n","n- $","($ n)","(n $)"];
-
+    
     function zeroPad(str, count, left) {
         for (var l=str.length; l < count; l++) {
             str = (left ? ('0' + str) : (str + '0'));
         }
         return str;
     }
+    
     function expandNumber(number, precision, groupSizes, sep, decimalChar) {
         var curSize = groupSizes[0];
         var curGroupIndex = 1;
@@ -793,15 +607,19 @@ Number.prototype._toFormattedString = function Number$_toFormattedString(format,
             rounded = number;
         }
         number = rounded;
-        var numberString = number.toString();
+        
+        var numberString = number+'';
         var right = "";
         var exponent;
+        
+        
         var split = numberString.split(/e/i);
         numberString = split[0];
         exponent = (split.length > 1 ? parseInt(split[1]) : 0);
         split = numberString.split('.');
         numberString = split[0];
         right = split.length > 1 ? split[1] : "";
+        
         var l;
         if (exponent > 0) {
             right = zeroPad(right, exponent, false);
@@ -816,33 +634,23 @@ Number.prototype._toFormattedString = function Number$_toFormattedString(format,
         }
 
         if (precision > 0) {
-            if (right.length > precision) {
-                right = right.slice(0, precision);
-            }
-            else {
-                right = zeroPad(right, precision, false);
-            }
-            right = decimalChar + right;
+            right = decimalChar +
+                ((right.length > precision) ? right.slice(0, precision) : zeroPad(right, precision, false));
         }
-        else { 
+        else {
             right = "";
         }
 
         var stringIndex = numberString.length-1;
         var ret = "";
         while (stringIndex >= 0) {
-
             if (curSize === 0 || curSize > stringIndex) {
-                if (ret.length > 0)
-                    return numberString.slice(0, stringIndex + 1) + sep + ret + right;
-                else
-                    return numberString.slice(0, stringIndex + 1) + right;
+                return numberString.slice(0, stringIndex + 1) +
+                    (ret.length ? (sep + ret + right) : right);
             }
 
-            if (ret.length > 0)
-                ret = numberString.slice(stringIndex - curSize + 1, stringIndex+1) + sep + ret;
-            else
-                ret = numberString.slice(stringIndex - curSize + 1, stringIndex+1);
+            ret = numberString.slice(stringIndex - curSize + 1, stringIndex + 1) +
+                (ret.length ? (sep+ret) : "");
 
             stringIndex -= curSize;
 
@@ -857,15 +665,14 @@ Number.prototype._toFormattedString = function Number$_toFormattedString(format,
 
     var number = Math.abs(this);
 
-    if (!format)
-        format = "D";
+    format = format || "D";
 
     var precision = -1;
     if (format.length > 1) precision = parseInt(format.slice(1), 10);
 
-    var pattern;
-    switch (format.charAt(0)) {
-    case "d":
+    var pattern,
+        current = format.charAt(0).toUpperCase();    
+    switch (current) {
     case "D":
         pattern = 'n';
 
@@ -875,26 +682,14 @@ Number.prototype._toFormattedString = function Number$_toFormattedString(format,
 
         if (this < 0) number = -number;
         break;
-    case "c":
     case "C":
-        if (this < 0) pattern = _currencyNegativePattern[nf.CurrencyNegativePattern];
-        else pattern = _currencyPositivePattern[nf.CurrencyPositivePattern];
-        if (precision === -1) precision = nf.CurrencyDecimalDigits;
-        number = expandNumber(Math.abs(this), precision, nf.CurrencyGroupSizes, nf.CurrencyGroupSeparator, nf.CurrencyDecimalSeparator);
-        break;
-    case "n":
     case "N":
-        if (this < 0) pattern = _numberNegativePattern[nf.NumberNegativePattern];
-        else pattern = 'n';
-        if (precision === -1) precision = nf.NumberDecimalDigits;
-        number = expandNumber(Math.abs(this), precision, nf.NumberGroupSizes, nf.NumberGroupSeparator, nf.NumberDecimalSeparator);
-        break;
-    case "p":
     case "P":
-        if (this < 0) pattern = _percentNegativePattern[nf.PercentNegativePattern];
-        else pattern = _percentPositivePattern[nf.PercentPositivePattern];
-        if (precision === -1) precision = nf.PercentDecimalDigits;
-        number = expandNumber(Math.abs(this) * 100, precision, nf.PercentGroupSizes, nf.PercentGroupSeparator, nf.PercentDecimalSeparator);
+        current = formattingPatterns[current];
+        var name = current[0];
+        pattern = (this < 0) ? current[1][nf[name+"NegativePattern"]] : (current[2] ? current[2][nf[name+"PositivePattern"]] : "n");
+        if (precision === -1) precision = nf[name+"DecimalDigits"];
+        number = expandNumber(Math.abs(this)*current[3], precision, nf[name+"GroupSizes"], nf[name+"GroupSeparator"], nf[name+"DecimalSeparator"]);
         break;
     default:
         throw Error.format(Sys.Res.formatBadFormatSpecifier);
@@ -935,6 +730,156 @@ Number.prototype._toFormattedString = function Number$_toFormattedString(format,
 
     return ret;
 }
+
+$type = Number;
+$type.parseLocale = function Number$parseLocale(value) {
+    /// <summary locid="M:J#Number.parseLocale">Creates a number from its locale string representation.</summary>
+    /// <param name="value" type="String">A string that can parse to a number.</param>
+    /// <returns type="Number"></returns>
+    var e = Function._validateParams(arguments, [
+        {name: "value", type: String}
+    ], false);
+    if (e) throw e;
+    return Number._parse(value, Sys.CultureInfo.CurrentCulture);
+}
+$type.parseInvariant = function Number$parseInvariant(value) {
+    /// <summary locid="M:J#Number.parseInvariant">Creates a number from its string representation.</summary>
+    /// <param name="value" type="String">A string that can parse to a number.</param>
+    /// <returns type="Number"></returns>
+    var e = Function._validateParams(arguments, [
+        {name: "value", type: String}
+    ], false);
+    if (e) throw e;
+    return Number._parse(value, Sys.CultureInfo.InvariantCulture);
+}
+$type._parse = function Number$_parse(value, cultureInfo) {
+    value = value.trim();
+    
+    if (value.match(/^[+-]?infinity$/i)) {
+        return parseFloat(value);
+    }
+    if (value.match(/^0x[a-f0-9]+$/i)) {
+        return parseInt(value);
+    }
+
+    var numFormat = cultureInfo.numberFormat;
+    var signInfo = Number._parseNumberNegativePattern(value, numFormat, numFormat.NumberNegativePattern);
+    var sign = signInfo[0];
+    var num = signInfo[1];
+    
+    if ((sign === '') && (numFormat.NumberNegativePattern !== 1)) {
+        signInfo = Number._parseNumberNegativePattern(value, numFormat, 1);
+        sign = signInfo[0];
+        num = signInfo[1];
+    }
+    if (sign === '') sign = '+';
+    
+    var exponent;
+    var intAndFraction;
+    var exponentPos = num.indexOf('e');
+    if (exponentPos < 0) exponentPos = num.indexOf('E');
+    if (exponentPos < 0) {
+        intAndFraction = num;
+        exponent = null;
+    }
+    else {
+        intAndFraction = num.substr(0, exponentPos);
+        exponent = num.substr(exponentPos + 1);
+    }
+    
+    var integer;
+    var fraction;
+    var decSep = numFormat.NumberDecimalSeparator
+    var decimalPos = intAndFraction.indexOf(decSep);
+    if (decimalPos < 0) {
+        integer = intAndFraction;
+        fraction = null;
+    }
+    else {
+        integer = intAndFraction.substr(0, decimalPos);
+        fraction = intAndFraction.substr(decimalPos + decSep.length);
+    }
+    
+    var numGroupSep = numFormat.NumberGroupSeparator
+    integer = integer.split(numGroupSep).join('');
+    var altNumGroupSeparator = numGroupSep.replace(/\u00A0/g, " ");
+    if (numGroupSep !== altNumGroupSeparator) {
+        integer = integer.split(altNumGroupSeparator).join('');
+    }
+    
+    var p = sign + integer;
+    if (fraction !== null) {
+        p += '.' + fraction;
+    }
+    if (exponent !== null) {
+        var expSignInfo = Number._parseNumberNegativePattern(exponent, numFormat, 1);
+        if (expSignInfo[0] === '') {
+            expSignInfo[0] = '+';
+        }
+        p += 'e' + expSignInfo[0] + expSignInfo[1];
+    }
+
+    if (p.match(/^[+-]?\d*\.?\d*(e[+-]?\d+)?$/)) {
+        return parseFloat(p);
+    }
+    return Number.NaN;
+}
+$type._parseNumberNegativePattern = function Number$_parseNumberNegativePattern(value, numFormat, numberNegativePattern) {
+    var neg = numFormat.NegativeSign;
+    var pos = numFormat.PositiveSign;    
+    switch (numberNegativePattern) {
+        case 4:
+            neg = ' ' + neg;
+            pos = ' ' + pos;
+        case 3:
+            if (value.endsWith(neg)) {
+                return ['-', value.substr(0, value.length - neg.length)];
+            }
+            else if (value.endsWith(pos)) {
+                return ['+', value.substr(0, value.length - pos.length)];
+            }
+            break;
+        case 2:
+            neg += ' ';
+            pos += ' ';
+        case 1:
+            if (value.startsWith(neg)) {
+                return ['-', value.substr(neg.length)];
+            }
+            else if (value.startsWith(pos)) {
+                return ['+', value.substr(pos.length)];
+            }
+            break;
+        case 0:
+            if (value.startsWith('(') && value.endsWith(')')) {
+                return ['-', value.substr(1, value.length - 2)];
+            }
+            break;
+    }
+    return ['', value];
+}
+
+$prototype = $type.prototype;
+$prototype.format = function Number$format(format) {
+    /// <summary locid="M:J#Number.format">Format a number using the invariant culture.</summary>
+    /// <param name="format" type="String">Format string.</param>
+    /// <returns type="String">Formatted number.</returns>
+    var e = Function._validateParams(arguments, [
+        {name: "format", type: String}
+    ]);
+    if (e) throw e;
+    return Sys._toFormattedString.call(this, format, Sys.CultureInfo.InvariantCulture);
+}
+$prototype.localeFormat = function Number$localeFormat(format) {
+    /// <summary locid="M:J#Number.localeFormat">Format a number using the current culture.</summary>
+    /// <param name="format" type="String">Format string.</param>
+    /// <returns type="String">Formatted number.</returns>
+    var e = Function._validateParams(arguments, [
+        {name: "format", type: String}
+    ]);
+    if (e) throw e;
+    return Sys._toFormattedString.call(this, format, Sys.CultureInfo.CurrentCulture);
+}
 function toUpper(value) {
     return value.split("\u00A0").join(' ').toUpperCase();
 }
@@ -955,11 +900,11 @@ function clone(obj) {
     return objNew;
 }
 
-Sys.CultureInfo = function Sys$CultureInfo(name, numberFormat, dateTimeFormat) {
-    /// <summary locid="M:J#Sys.CultureInfo.#ctor" />
-    /// <param name="name" type="String"></param>
-    /// <param name="numberFormat" type="Object"></param>
-    /// <param name="dateTimeFormat" type="Object"></param>
+$type = Sys.CultureInfo = function CultureInfo(name, numberFormat, dateTimeFormat) {
+    /// <summary locid="M:J#Sys.CultureInfo.#ctor"></summary>
+    /// <param name="name" type="String">CultureInfo name.</param>
+    /// <param name="numberFormat" type="Object">CultureInfo number format information.</param>
+    /// <param name="dateTimeFormat" type="Object">CultureInfo date time format information.</param>
     var e = Function._validateParams(arguments, [
         {name: "name", type: String},
         {name: "numberFormat", type: Object},
@@ -970,8 +915,8 @@ Sys.CultureInfo = function Sys$CultureInfo(name, numberFormat, dateTimeFormat) {
     this.numberFormat = numberFormat;
     this.dateTimeFormat = dateTimeFormat;
 }
-
-    function Sys$CultureInfo$_getDateTimeFormats() {
+$type.prototype = {
+    _getDateTimeFormats: function CultureInfo$_getDateTimeFormats() {
         var formats = this._dateTimeFormats;
         if (!formats) {
             var dtf = this.dateTimeFormat;
@@ -988,8 +933,8 @@ Sys.CultureInfo = function Sys$CultureInfo(name, numberFormat, dateTimeFormat) {
                 dtf["UniversalSortableDateTimePattern"] ];
         }
         return formats;
-    }
-    function Sys$CultureInfo$_getMonthIndex(value, abbr) {
+    },
+    _getMonthIndex: function CultureInfo$_getMonthIndex(value, abbr) {
         var name = abbr ? "_upperAbbrMonths" : "_upperMonths",
             genitiveName = name + "Genitive",
             upperMonths = this[name];
@@ -1004,8 +949,8 @@ Sys.CultureInfo = function Sys$CultureInfo(name, numberFormat, dateTimeFormat) {
             i = indexOf(this[genitiveName], value);
         }
         return i;
-    }
-    function Sys$CultureInfo$_getDayIndex(value, abbr) {
+    },    
+    _getDayIndex: function CultureInfo$_getDayIndex(value, abbr) {
         var name = abbr ? "_upperAbbrDays" : "_upperDays",
             upperDays = this[name];
         if (!upperDays) {
@@ -1013,22 +958,17 @@ Sys.CultureInfo = function Sys$CultureInfo(name, numberFormat, dateTimeFormat) {
         }
         return indexOf(this[name], toUpper(value));
     }
-Sys.CultureInfo.prototype = {
-    _getDateTimeFormats: Sys$CultureInfo$_getDateTimeFormats,
-    _getMonthIndex: Sys$CultureInfo$_getMonthIndex,    
-    _getDayIndex: Sys$CultureInfo$_getDayIndex
 }
-Sys.CultureInfo.registerClass('Sys.CultureInfo');
+$type.registerClass('Sys.CultureInfo');
 
-merge(Sys.CultureInfo, {
-_parse: function(value) {
+$type._parse = function(value) {
     var dtf = value.dateTimeFormat;
     if (dtf && !dtf.eras) {
         dtf.eras = value.eras;
     }
     return new Sys.CultureInfo(value.name, value.numberFormat, dtf);
-},
-_setup: function() {
+}
+$type._setup = function() {
     var cultureInfo = window.__cultureInfo,
         monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December",""],
         shortMonthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",""],
@@ -1056,13 +996,8 @@ _setup: function() {
             break;
     }
 }
-});
 
-Sys.CultureInfo._setup();
-
-
-
-
+$type._setup();
 
 
 }
@@ -1075,4 +1010,3 @@ else {
 }
 
 })();
-

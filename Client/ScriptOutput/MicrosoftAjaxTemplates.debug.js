@@ -1,18 +1,14 @@
-﻿// Name:        MicrosoftAjaxTemplates.debug.js
-// Assembly:    System.Web.Ajax
-// Version:     3.0.31106.0
-// FileVersion: 3.0.31106.0
-/// <reference name="MicrosoftAjaxComponentModel.js" />
-/// <reference name="MicrosoftAjaxSerialization.js" />
 
-
+//!/ <reference name="MicrosoftAjaxComponentModel.js" />
+//!/ <reference name="MicrosoftAjaxSerialization.js" />
 
 (function() {
 
-function execute() {
+function execute($) {
 Type._registerScript("MicrosoftAjaxTemplates.js", ["MicrosoftAjaxComponentModel.js", "MicrosoftAjaxSerialization.js"]);
 
-var merge = Sys._merge,
+var $type, $prototype,
+    merge = Sys._merge,
 	foreach = Sys._foreach,
 	forIn = Sys._forIn,
 	isBrowser = Sys._isBrowser;
@@ -23,8 +19,8 @@ function serialize(obj) {
 
 Type.registerNamespace("Sys.Net");
 
-Sys.Net.WebRequestEventArgs = function Sys$Net$WebRequestEventArgs(executor, error, result) {
-    /// <summary locid="M:J#Sys.Net.WebRequestEventArgs.#ctor" />
+$type = Sys.Net.WebRequestEventArgs = function WebRequestEventArgs(executor, error, result) {
+    /// <summary locid="M:J#Sys.Net.WebRequestEventArgs.#ctor"></summary>
     /// <param name="executor" type="Sys.Net.WebRequestExecutor" mayBeNull="true"></param>
     /// <param name="error" type="Sys.Net.WebServiceError" optional="true" mayBeNull="true"></param>
     /// <param name="result" optional="true" mayBeNull="true"></param>
@@ -33,76 +29,65 @@ Sys.Net.WebRequestEventArgs = function Sys$Net$WebRequestEventArgs(executor, err
     this._result = typeof (result) === "undefined" ? null : result;
     Sys.Net.WebRequestEventArgs.initializeBase(this);
 }
-
-    function Sys$Net$WebRequestEventArgs$get_error() {
+$type.prototype = {
+    get_error: function WebRequestEventArgs$get_error() {
         /// <value type="Sys.Net.WebServiceError" mayBeNull="true" locid="P:J#Sys.Net.WebRequestEventArgs.error"></value>
         return this._error || null;
-    }
-    function Sys$Net$WebRequestEventArgs$get_executor() {
+    },
+    get_executor: function WebRequestEventArgs$get_executor() {
         /// <value type="Sys.Net.WebRequestExecutor" mayBeNull="true" locid="P:J#Sys.Net.WebRequestEventArgs.executor"></value>
         return this._executor;
-    }
-    function Sys$Net$WebRequestEventArgs$get_result() {
+    },
+    get_result: function WebRequestEventArgs$get_result() {
         /// <value mayBeNull="true" locid="P:J#Sys.Net.WebRequestEventArgs.result"></value>
         return this._result;
     }
-Sys.Net.WebRequestEventArgs.prototype = {
-    get_error: Sys$Net$WebRequestEventArgs$get_error,
-    get_executor: Sys$Net$WebRequestEventArgs$get_executor,
-    get_result: Sys$Net$WebRequestEventArgs$get_result
 };
-Sys.Net.WebRequestEventArgs.registerClass("Sys.Net.WebRequestEventArgs", Sys.EventArgs);
+$type.registerClass("Sys.Net.WebRequestEventArgs", Sys.EventArgs);
 
 Type.registerNamespace("Sys.Data");
 
-Sys.Data.DataEventArgs = function Sys$Data$DataEventArgs(data) {
-    /// <summary locid="M:J#Sys.Data.DataEventArgs.#ctor" />
+$type = Sys.Data.DataEventArgs = function Data$DataEventArgs(data) {
+    /// <summary locid="M:J#Sys.Data.DataEventArgs.#ctor"></summary>
     /// <param name="data" mayBeNull="true"></param>
     this._data = data;
     Sys.Data.DataEventArgs.initializeBase(this);
 }
-
-    function Sys$Data$DataEventArgs$get_data() {
+$type.prototype = {
+    get_data: function DataEventArgs$get_data() {
         /// <value mayBeNull="true" locid="P:J#Sys.Data.DataEventArgs.data"></value>
         var d = this._data;
         return (typeof(d) === "undefined" ? null : d);
-    }
-    function Sys$Data$DataEventArgs$set_data(value) {
+    },
+    set_data: function DataEventArgs$set_data(value) {
         this._data = value;
-    }
-    function Sys$Data$DataEventArgs$get_itemPlaceholder() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Data.DataEventArgs.itemPlaceholder"></value>
+    },
+    get_itemPlaceholder: function DataEventArgs$get_itemPlaceholder() {
+        /// <value mayBeNull="true" locid="P:J#Sys.Data.DataEventArgs.itemPlaceholder">The default location within the DataView where the item template is instantiated as a DOM Element or DOM Element Id.</value>
         return this._placeholder || null;
-    }
-    function Sys$Data$DataEventArgs$set_itemPlaceholder(value) {
+    },
+    set_itemPlaceholder: function DataEventArgs$set_itemPlaceholder(value) {
         this._placeholder = value;
-    }
-    function Sys$Data$DataEventArgs$get_itemTemplate() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Data.DataEventArgs.itemTemplate"></value>
+    },    
+    get_itemTemplate: function DataEventArgs$get_itemTemplate() {
+        /// <value mayBeNull="true" locid="P:J#Sys.Data.DataEventArgs.itemTemplate">The default template used to render each item.</value>
         return this._itemTemplate || null;
-    }
-    function Sys$Data$DataEventArgs$set_itemTemplate(value) {
+    },
+    set_itemTemplate: function DataEventArgs$set_itemTemplate(value) {
         this._itemTemplate = value;
     }
-Sys.Data.DataEventArgs.prototype = {
-    get_data: Sys$Data$DataEventArgs$get_data,
-    set_data: Sys$Data$DataEventArgs$set_data,
-    get_itemPlaceholder: Sys$Data$DataEventArgs$get_itemPlaceholder,
-    set_itemPlaceholder: Sys$Data$DataEventArgs$set_itemPlaceholder,    
-    get_itemTemplate: Sys$Data$DataEventArgs$get_itemTemplate,
-    set_itemTemplate: Sys$Data$DataEventArgs$set_itemTemplate
 };
-Sys.Data.DataEventArgs.registerClass("Sys.Data.DataEventArgs", Sys.CancelEventArgs);
+$type.registerClass("Sys.Data.DataEventArgs", Sys.CancelEventArgs);
 
 if (!Sys.Data.IDataProvider) {
-Sys.Data.IDataProvider = function Sys$Data$IDataProvider() {
+$type = Sys.Data.IDataProvider = function Data$IDataProvider() {
 }
-
-    function Sys$Data$IDataProvider$fetchData(operation, parameters, mergeOption, httpVerb, succeededCallback, failedCallback, timeout, userContext) {
-        /// <summary locid="M:J#Sys.Data.IDataProvider.fetchData" />
-        /// <param name="operation"></param>
+$type.prototype = {
+    fetchData: function IDataProvider$fetchData(operation, parameters, mergeOption, httpVerb, succeededCallback, failedCallback, timeout, userContext) {
+        /// <summary locid="M:J#Sys.Data.IDataProvider.fetchData">Fetches data from the service.</summary>
+        /// <param name="operation">The operation to fetch data with.</param>
         /// <param name="parameters" type="Object" mayBeNull="true" optional="true"></param>
-        /// <param name="mergeOption" type="Sys.Data.MergeOption" mayBeNull="true" optional="true"></param>
+        /// <param name="mergeOption" type="Sys.Data.MergeOption" mayBeNull="true" optional="true">Determines how the returned data is tracked if the DataProvider supports it.</param>
         /// <param name="httpVerb" type="String" mayBeNull="true" optional="true"></param>
         /// <param name="succeededCallback" type="Function" mayBeNull="true" optional="true"></param>
         /// <param name="failedCallback" type="Function" mayBeNull="true" optional="true"></param>
@@ -111,76 +96,71 @@ Sys.Data.IDataProvider = function Sys$Data$IDataProvider() {
         /// <returns type="Sys.Net.WebRequest"></returns>
         throw Error.notImplemented();
     }
-Sys.Data.IDataProvider.prototype = {
-    fetchData: Sys$Data$IDataProvider$fetchData
 }
-Sys.Data.IDataProvider.registerInterface("Sys.Data.IDataProvider");
+$type.registerInterface("Sys.Data.IDataProvider");
 }
 if (!Sys.Data.MergeOption) {
-Sys.Data.MergeOption = function Sys$Data$MergeOption() {
-    /// <summary locid="M:J#Sys.Data.MergeOption.#ctor" />
+$type = Sys.Data.MergeOption = function Data$MergeOption() {
+    /// <summary locid="M:J#Sys.Data.MergeOption.#ctor">Describes how an item has changed.</summary>
     /// <field name="appendOnly" type="Number" integer="true" static="true" locid="F:J#Sys.Data.MergeOption.appendOnly"></field>
     /// <field name="overwriteChanges" type="Number" integer="true" static="true" locid="F:J#Sys.Data.MergeOption.overwriteChanges"></field>
     throw Error.notImplemented();
 }
-
-
-
-
-Sys.Data.MergeOption.prototype = {
+$type.prototype = {
     appendOnly: 0,
     overwriteChanges: 1
 }
-Sys.Data.MergeOption.registerEnum("Sys.Data.MergeOption");
+$type.registerEnum("Sys.Data.MergeOption");
 
 }
 
 Type.registerNamespace("Sys.UI");
 
-Sys.Application.registerMarkupExtension = function Sys$Application$registerMarkupExtension(extensionName, extension, isExpression) {
-    /// <summary locid="M:J#Sys.Application.registerMarkupExtension" />
-    /// <param name="extensionName" type="String"></param>
-    /// <param name="extension" type="Function"></param>
-    /// <param name="isExpression" type="Boolean" optional="true"></param>
+$type = Sys.Application;
+$type.registerMarkupExtension = function Application$registerMarkupExtension(extensionName, extension, isExpression) {
+    /// <summary locid="M:J#Sys.Application.registerMarkupExtension">Registers a callback for processing of a markup extension.</summary>
+    /// <param name="extensionName" type="String">The name of the extension.</param>
+    /// <param name="extension" type="Function">The callback called while processing the extension in templtae markup.</param>
+    /// <param name="isExpression" type="Boolean" optional="true">Specifies whether the extension executes a statement or provides a value.</param>
     if (!this._extensions) {
         this._extensions = {};
     }
     isExpression = ((typeof (isExpression) === "undefined") || (isExpression === true));
     this._extensions[extensionName] = { expression: isExpression, extension: extension };
 }
-Sys.Application._getMarkupExtension = function Sys$Application$_getMarkupExtension(name) {
+$type._getMarkupExtension = function Application$_getMarkupExtension(name) {
     var extension = this._extensions ? this._extensions[name] : null;
     if (!extension) {
         throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.cannotFindMarkupExtension, name));
     }
     return extension;
 }
-Sys.UI.Template = function Sys$UI$Template(element) {
-    /// <summary locid="M:J#Sys.UI.Template.#ctor" />
-    /// <param name="element" domElement="true" mayBeNull="false"></param>
+$type = Sys.UI.Template = function Template(element) {
+    /// <summary locid="M:J#Sys.UI.Template.#ctor"></summary>
+    /// <param name="element" domElement="true" mayBeNull="false">The element that contains the template.</param>
     this._element = element;
     this._instantiateIn = null;
     this._instanceId = 0;
 }
-
-    function Sys$UI$Template$get_element() {
-        /// <value domElement="true" locid="P:J#Sys.UI.Template.element"></value>
+$type.prototype = {
+    get_element: function Template$get_element() {
+        /// <value domElement="true" locid="P:J#Sys.UI.Template.element">The root element of the template.</value>
         return this._element;
-    }
-    function Sys$UI$Template$dispose() {
+    },
+    dispose: function Template$dispose() {
         this._element = null;
         this._instantiateIn = null;
-    }
-    function Sys$UI$Template$_appendTextNode(code, storeElementCode, text) {
+    },
+    _appendTextNode: function Template$_appendTextNode(code, storeElementCode, text) {
         code.push(storeElementCode, "document.createTextNode(", serialize(text), "));\n");
-    }
-    function Sys$UI$Template$_appendAttributeSetter(code, typeIndex, attrib, expression, isExpression, booleanValue) {
+    },
+    _appendAttributeSetter: function Template$_appendAttributeSetter(code, typeIndex, attrib, expression, isExpression, booleanValue) {
         var ns = attrib.ns, name = attrib.name, restricted = (!ns && Sys.UI.Template._isRestricted(name));
         if (restricted) {
             expression = "Sys.UI.Template._checkAttribute('" + name + "', " + expression + ")";
         }
         switch (attrib.type) {
-            case 1: 
+            case 1:
                 code.push("  $component = $element;\n  ");
                 if (isExpression) {
                     if (attrib.textNode) {
@@ -206,7 +186,7 @@ Sys.UI.Template = function Sys$UI$Template(element) {
                     code.push("  $component = $element;\n  ", expression, ";\n");
                 }
                 break;
-            case 3: 
+            case 3:
                 var index = typeIndex[ns];
                 if (index.isClass) {
                     code.push("  $component = __componentIndex['", ns, "'];\n");
@@ -229,7 +209,7 @@ Sys.UI.Template = function Sys$UI$Template(element) {
                 }
                 else {
                     if (!isExpression) {
-                        throw Error.invalidOperation(); 
+                        throw Error.invalidOperation(); // todo: can't have a non-expression based attribute for a fn() call
                     }
                     var prop = serialize(attrib.name) + ": " + expression;
                     if (!index.props) {
@@ -240,10 +220,10 @@ Sys.UI.Template = function Sys$UI$Template(element) {
                     }
                 }
                 break;
-            case 4: 
+            case 4:
                 this["_" + name] = expression;
                 break;
-            default: 
+            default:
                 if (isExpression) {
                     if (/^on/i.test(name)) {
                         code.push("  $component = $element;\n  $element." + name + " = new Function(" +
@@ -267,16 +247,16 @@ Sys.UI.Template = function Sys$UI$Template(element) {
                 break;
         }
         return false;
-    }
-    function Sys$UI$Template$_processAttribute(code, typeIndex, attrib, value, booleanValue) {
+    },
+    _processAttribute: function Template$_processAttribute(code, typeIndex, attrib, value, booleanValue) {
         value = this._getAttributeExpression(attrib, value);
         if (value) {
             return this._appendAttributeSetter(code, typeIndex, attrib,
                 value.code, value.isExpression, booleanValue);
         }
         return false;
-    }
-    function Sys$UI$Template$_getAttributeExpression(attrib, value, noSerialize) {
+    },
+    _getAttributeExpression: function Template$_getAttributeExpression(attrib, value, noSerialize) {
         var type = typeof(value);
         if (type === "undefined") return null;
         if (value === null) return { isExpression: true, code: "null" };
@@ -311,8 +291,8 @@ Sys.UI.Template = function Sys$UI$Template(element) {
             value = '$id(' + serialize(value) + ')';
         }
         return { isExpression: true, code: (noSerialize ? value : serialize(value)) };
-    }
-    function Sys$UI$Template$_processBooleanAttribute(element, code, typeIndex, name) {
+    },
+    _processBooleanAttribute: function Template$_processBooleanAttribute(element, code, typeIndex, name) {
         var value, isNative, node = element.getAttributeNode("sys:" + name);
         if (!node) {
             isNative = true;
@@ -337,14 +317,14 @@ Sys.UI.Template = function Sys$UI$Template(element) {
             }
         }
         this._processAttribute(code, typeIndex, { name: name, isNative: isNative }, value, name);
-    }
-    function Sys$UI$Template$_processBooleanAttributes(element, code, typeIndex, attributes) {
+    },
+    _processBooleanAttributes: function Template$_processBooleanAttributes(element, code, typeIndex, attributes) {
         var name, node, value;
         for (var i = 0, l = attributes.length; i < l; i++) {
             this._processBooleanAttribute(element, code, typeIndex, attributes[i]);
         }
-    }
-    function Sys$UI$Template$_processCodeBlock(name, element, code) {
+    },
+    _processCodeBlock: function Template$_processCodeBlock(name, element, code) {
         var value = this._getExplicitAttribute(null, null, element, name);
         if (value) {
             value = this._getAttributeExpression({ name: name }, value, true).code;
@@ -352,8 +332,8 @@ Sys.UI.Template = function Sys$UI$Template(element) {
                         : ("  " + value + "\n"));
         }
         return !!value;
-    }
-    function Sys$UI$Template$_getExplicitAttribute(code, typeIndex, element, name, processName, isNative, attrib) {
+    },
+    _getExplicitAttribute: function Template$_getExplicitAttribute(code, typeIndex, element, name, processName, isNative, attrib) {
         var e, node, value;
         if (name === "style" && element.style) {
             value = element.style.cssText;
@@ -372,12 +352,13 @@ Sys.UI.Template = function Sys$UI$Template(element) {
             this._processAttribute(code, typeIndex, merge({ name: processName, type: 1, isNative: isNative }, attrib), value);
         }
         return value;
-    }
-    function Sys$UI$Template$_buildTemplateCode(nestedTemplates, element, code, depth) {
+    },
+    _buildTemplateCode: function Template$_buildTemplateCode(nestedTemplates, element, code, depth) {
         var i, j, l, m, typeName, isInput, isButton,
             expressionRegExp = Sys.UI.Template._expressionRegExp,
             storeElementCode = "  " + (depth ? ("__p[__d-1].appendChild(") : "__topElements.push("),
             isIE = isBrowser("InternetExplorer");
+            
         code.push("  __d++;\n");
         for (i = 0, l = element.childNodes.length; i < l; i++) {
             var childNode = element.childNodes[i], text = childNode.nodeValue;
@@ -463,7 +444,7 @@ Sys.UI.Template = function Sys$UI$Template(element) {
                     code.push("  __componentIndex = {}\n");
                     for (j = 0, m = typeNames.length; j < m; j++) {
                         typeName = typeNames[j].trim();
-                        if (typeIndex[typeName]) continue; 
+                        if (typeIndex[typeName]) continue; // already creating that type
                         var type = Sys.Application._findType(childNode, typeName, isIE);
                         if (!type) {
                             throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.invalidAttach, "sys:attach", typeName));
@@ -499,11 +480,13 @@ Sys.UI.Template = function Sys$UI$Template(element) {
                 }
                 this._getExplicitAttribute(code, typeIndex, childNode, "style", "style.cssText", true);
                 this._getExplicitAttribute(code, typeIndex, childNode, "class", "className", true);
+                
                 if (!isInput) {
                     booleanAttributes = Sys.UI.Template._booleanAttributes[tagName] ||
                         Sys.UI.Template._commonBooleanAttributes;
                     this._processBooleanAttributes(childNode, code, typeIndex, booleanAttributes[" list"]);
                 }
+                
                 var isSelect = (tagName === "select"),
                     delayedAttributes = null,
                     split = Sys.Application._splitAttribute,
@@ -545,6 +528,7 @@ Sys.UI.Template = function Sys$UI$Template(element) {
                 this._commandtarget = null;
 
                 code.push(storeElementCode + "$element);\n");
+                
                 for (typeName in typeIndex) {
                     var index = typeIndex[typeName];
                     if (index.isClass) {
@@ -580,8 +564,8 @@ Sys.UI.Template = function Sys$UI$Template(element) {
             }
         }
         code.push("  --__d;\n");
-    }
-    function Sys$UI$Template$_ensureCompiled() {
+    },
+    _ensureCompiled: function Template$_ensureCompiled() {
         if (!this._instantiateIn) {
             var element = this.get_element();
             if (element._msajaxtemplate) {
@@ -591,9 +575,9 @@ Sys.UI.Template = function Sys$UI$Template(element) {
                 this.recompile();
             }
         }
-    }
-    function Sys$UI$Template$recompile() {
-        /// <summary locid="M:J#Sys.UI.Template.recompile" />
+    },
+    recompile: function Template$recompile() {
+        /// <summary locid="M:J#Sys.UI.Template.recompile">Compiles the template.</summary>
         var element = this.get_element(),
             code = [" $index = (typeof($index) === 'number' ? $index : __instanceId);\n var $component, __componentIndex, __e, __f, __topElements = [], __d = 0, __p = [__containerElement], $element = __containerElement, $context = new Sys.UI.TemplateContext(), $id = function(prefix) { return $context.getInstanceId(prefix); };\n $context.data = (typeof(__data) === 'undefined' ? null : __data);\n $context.components = [];\n $context.nodes = __topElements;\n $context.dataItem = $dataItem;\n $context.index = $index;\n $context.parentContext = __parentContext;\n $context.containerElement = __containerElement;\n $context.insertBeforeNode = __referenceNode;\n $context.template = this;\n with($dataItem || {}) {\n"],
             nestedTemplates = [];
@@ -601,14 +585,14 @@ Sys.UI.Template = function Sys$UI$Template(element) {
         code.push("}\n $context._onInstantiated(__referenceNode);\n return $context;");
         code = code.join('');
         element._msajaxtemplate = [this._instantiateIn = new Function("__containerElement", "__data", "$dataItem", "$index", "__referenceNode", "__parentContext", "__instanceId", code), nestedTemplates];
-    }
-    function Sys$UI$Template$instantiateIn(containerElement, data, dataItem, dataIndex, nodeToInsertTemplateBefore, parentContext) {
-        /// <summary locid="M:J#$id" />
+    },
+    instantiateIn: function Template$instantiateIn(containerElement, data, dataItem, dataIndex, nodeToInsertTemplateBefore, parentContext) {
+        /// <summary locid="M:J#$id"></summary>
         /// <param name="containerElement"></param>
         /// <param name="data" optional="true" mayBeNull="true"></param>
         /// <param name="dataItem" optional="true" mayBeNull="true"></param>
         /// <param name="dataIndex" optional="true" mayBeNull="true" type="Number" integer="true"></param>
-        /// <param name="nodeToInsertTemplateBefore" optional="true" mayBeNull="true"></param>
+        /// <param name="nodeToInsertTemplateBefore" optional="true" mayBeNull="true">The child node of container before which to instantiate the template.</param>
         /// <param name="parentContext" type="Sys.UI.TemplateContext" optional="true" mayBeNull="true"></param>
         /// <returns type="Sys.UI.TemplateContext"></returns>
         containerElement = Sys.UI.DomElement._ensureGet(containerElement, null, "containerElement");
@@ -616,27 +600,12 @@ Sys.UI.Template = function Sys$UI$Template(element) {
         this._ensureCompiled();
         return this._instantiateIn(containerElement, data, dataItem, dataIndex, nodeToInsertTemplateBefore, parentContext, this._instanceId++);
     }
-Sys.UI.Template.prototype = {
-    get_element: Sys$UI$Template$get_element,
-    dispose: Sys$UI$Template$dispose,
-    _appendTextNode: Sys$UI$Template$_appendTextNode,
-    _appendAttributeSetter: Sys$UI$Template$_appendAttributeSetter,
-    _processAttribute: Sys$UI$Template$_processAttribute,
-    _getAttributeExpression: Sys$UI$Template$_getAttributeExpression,
-    _processBooleanAttribute: Sys$UI$Template$_processBooleanAttribute,
-    _processBooleanAttributes: Sys$UI$Template$_processBooleanAttributes,
-    _processCodeBlock: Sys$UI$Template$_processCodeBlock,
-    _getExplicitAttribute: Sys$UI$Template$_getExplicitAttribute,
-    _buildTemplateCode: Sys$UI$Template$_buildTemplateCode,
-    _ensureCompiled: Sys$UI$Template$_ensureCompiled,
-    recompile: Sys$UI$Template$recompile,
-    instantiateIn: Sys$UI$Template$instantiateIn
 }
-Sys.UI.Template._isRestricted = function Sys$UI$Template$_isRestricted(name) {
+$type._isRestricted = function Template$_isRestricted(name) {
     var restricted = Sys.UI.Template._getRestrictedIndex();
     return restricted.attributes[name.toLowerCase()];
 }
-Sys.UI.Template._checkAttribute = function Sys$UI$Template$_checkAttribute(name, value) {
+$type._checkAttribute = function Template$_checkAttribute(name, value) {
     if (!value) return value;
     var newValue = value, restricted = Sys.UI.Template._getRestrictedIndex();
     if (restricted.attributes[name.toLowerCase()]) {
@@ -652,12 +621,12 @@ Sys.UI.Template._checkAttribute = function Sys$UI$Template$_checkAttribute(name,
     }
     return newValue;
 }
-Sys.UI.Template._getIdFunction = function Sys$UI$Template$_getIdFunction(instance) {
+$type._getIdFunction = function Template$_getIdFunction(instance) {
     return function(prefix) {
         return prefix + instance;
     }
 }
-Sys.UI.Template._createInput = function Sys$UI$Template$_createInput(type, name, isButton) {
+$type._createInput = function Template$_createInput(type, name, isButton) {
     var err, element, callee = arguments.callee, dynamic = callee._dynamic;
     if (dynamic === true) {
         element = document.createElement(isButton ? 'button' : 'input');
@@ -684,7 +653,7 @@ Sys.UI.Template._createInput = function Sys$UI$Template$_createInput(type, name,
             dynamic = true;
         }
         if (typeof(dynamic) === "undefined") {
-            dynamc = (element.tagName.toLowerCase() !== (isButton ? "button" : "input"));
+            dynamic = (element.tagName.toLowerCase() !== (isButton ? "button" : "input"));
         }
         callee._dynamic = dynamic;
         if (dynamic) {
@@ -693,33 +662,28 @@ Sys.UI.Template._createInput = function Sys$UI$Template$_createInput(type, name,
     }
     return element;
 }
-Sys.UI.Template._isTemplate = function Sys$UI$Template$_isTemplate(element) {
+$type._isTemplate = function Template$_isTemplate(element) {
     var className = element.className;
     return (className && ((className === "sys-template") || /(^| )sys\-template($| )/.test(className)));
 }
-Sys.UI.Template._inputRequiredAttributes = {"type":1, "name":1, "sys:type":1, "sys:name":1};
-
-
-
-
-
-Sys.UI.Template._commonBooleanAttributes = { disabled: true, " list" : ["disabled"] };
-Sys.UI.Template._inputBooleanAttributes =
+$type._inputRequiredAttributes = {"type":1, "name":1, "sys:type":1, "sys:name":1};
+$type._commonBooleanAttributes = { disabled: true, " list" : ["disabled"] };
+$type._inputBooleanAttributes =
     { disabled: true, checked: true, readonly: true,
         " list": ["disabled", "checked", "readonly"] };
-Sys.UI.Template._booleanAttributes = {
+$type._booleanAttributes = {
     "input": Sys.UI.Template._inputBooleanAttributes,
     "select": { disabled: true, multiple: true, " list": ["disabled", "multiple"] },
     "option": { disabled: true, selected: true, " list": ["disabled", "selected"] },
     "img": { disabled: true, ismap: true, " list": ["disabled", "ismap"] },
     "textarea": { disabled: true, readonly: true, " list": ["disabled", "readonly"] }
 };
-Sys.UI.Template._expressionRegExp = /\{\{\s*([\w\W]*?)\s*\}\}/g;
-Sys.UI.Template.allowedProtocols = [
+$type._expressionRegExp = /\{\{\s*([\w\W]*?)\s*\}\}/g;
+$type.allowedProtocols = [
     "http",
     "https"
 ];
-Sys.UI.Template.restrictedAttributes = [
+$type.restrictedAttributes = [
     "src",
     "href",
     "codebase",
@@ -732,7 +696,7 @@ Sys.UI.Template.restrictedAttributes = [
     "classid",
     "data"
 ];
-Sys.UI.Template._getRestrictedIndex = function Sys$UI$Template$_getRestrictedIndex() {
+$type._getRestrictedIndex = function Template$_getRestrictedIndex() {
     var i, l, protocolIndex, attributeIndex,
         protocols = Sys.UI.Template.allowedProtocols || [],
         attributes = Sys.UI.Template.restrictedAttributes || [],
@@ -751,22 +715,12 @@ Sys.UI.Template._getRestrictedIndex = function Sys$UI$Template$_getRestrictedInd
     }
     return index;
 }
-Sys.UI.Template.registerClass("Sys.UI.Template", null, Sys.IDisposable);
+$type.registerClass("Sys.UI.Template", null, Sys.IDisposable);
 
+$type._protocolRegExp = /^\s*([a-zA-Z0-9\+\-\.]+)\:/;
 
-
-
-
-
-
-
-
-
-
-Sys.UI.Template._protocolRegExp = /^\s*([a-zA-Z0-9\+\-\.]+)\:/;
-
-Sys.UI.Template.findContext = function Sys$UI$Template$findContext(element) {
-    /// <summary locid="M:J#Sys.UI.Template.findContext" />
+$type.findContext = function Template$findContext(element) {
+    /// <summary locid="M:J#Sys.UI.Template.findContext"></summary>
     /// <param name="element" domElement="true"></param>
     /// <returns type="Sys.UI.TemplateContext"></returns>
     var tc;
@@ -774,24 +728,24 @@ Sys.UI.Template.findContext = function Sys$UI$Template$findContext(element) {
     return tc || Sys.Application.get_templateContext();
 }
 
-Sys._Application.prototype.get_templateContext = function Sys$_Application$get_templateContext() {
-    /// <summary locid="M:J#Sys._Application.get_templateContext" />
+$prototype = Sys._Application.prototype;
+$prototype.get_templateContext = function _Application$get_templateContext() {
+    /// <summary locid="M:J#Sys._Application.get_templateContext"></summary>
     return this._context || null;
 }
 
 
-
-Sys._Application.prototype._baseDispose = Sys._Application.prototype.dispose;
-Sys._Application.prototype.dispose = function Sys$_Application$dispose() {
+$prototype._baseDispose = $prototype.dispose;
+$prototype.dispose = function _Application$dispose() {
     var ctx = this._context;
     if (ctx) ctx.dispose();
     this._context = null;
     this._baseDispose();
 }
 
-Sys._Application.prototype.removeComponent = function Sys$_Application$removeComponent(component) {
-    /// <summary locid="M:J#Sys._Application.removeComponent" />
-    /// <param name="component" type="Sys.Component"></param>
+$prototype.removeComponent = function _Application$removeComponent(component) {
+    /// <summary locid="M:J#Sys._Application.removeComponent">Removes a top-level component from the application.</summary>
+    /// <param name="component" type="Sys.Component">The component to remove.</param>
     var id = component.get_id();
     if (id) delete this._components[id];
     var ctx = this._context;
@@ -802,8 +756,8 @@ Sys._Application.prototype.removeComponent = function Sys$_Application$removeCom
         }
     }
 }
-Sys.UI.TemplateContext = function Sys$UI$TemplateContext() {
-    /// <summary locid="M:J#Sys.UI.TemplateContext.#ctor" />
+$type = Sys.UI.TemplateContext = function TemplateContext() {
+    /// <summary locid="M:J#Sys.UI.TemplateContext.#ctor">Represents the results of a template instantiation.</summary>
     /// <field name="data" locid="F:J#Sys.UI.TemplateContext.data"></field>
     /// <field name="dataItem" locid="F:J#Sys.UI.TemplateContext.dataItem"></field>
     /// <field name="index" type="Number" integer="true" locid="F:J#Sys.UI.TemplateContext.index"></field>
@@ -817,19 +771,19 @@ Sys.UI.TemplateContext = function Sys$UI$TemplateContext() {
     this._completed = [];
     Sys.UI.TemplateContext.initializeBase(this);
 }
-
-
-
-
-
-
-
-
-
-
-
-    function Sys$UI$TemplateContext$dispose() {
-        /// <summary locid="M:J#Sys.UI.TemplateContext.dispose" />
+$type.prototype = {
+    data: null,
+    dataItem: null,
+    index: 0,
+    parentContext: null,
+    containerElement: null,
+    insertBeforeNode: null,
+    components: null,
+    nodes: null,
+    isDisposed: false,
+    _lastIndex: -1,
+    dispose: function TemplateContext$dispose() {
+        /// <summary locid="M:J#Sys.UI.TemplateContext.dispose">Disposes of the template context and the components that were created.</summary>
         if (!this._global) {
             var nodes = this.nodes;
             if (nodes) {
@@ -845,19 +799,19 @@ Sys.UI.TemplateContext = function Sys$UI$TemplateContext() {
         this.nodes = this.dataItem = this.components = this.getInstanceId =
         this.containerElement = this.insertBeforeNode = this.parentContext = this.data = null;
         this.isDisposed = true;
-    }
-    function Sys$UI$TemplateContext$query(selector) {
+    },
+    query: function TemplateContext$query(selector) {
         return this._find(selector);
-    }
-    function Sys$UI$TemplateContext$get(selector) {
+    },
+    get: function TemplateContext$get(selector) {
         return this._find(selector, true);
-    }
-    function Sys$UI$TemplateContext$_find(selector, single) {
+    },
+    _find: function TemplateContext$_find(selector, single) {
         return /^[#\$](\w|[$:\.\-])+$/.test(selector) ?
             this._findById(selector.substr(0, 1), selector.substr(1), single) :
             Sys._find(selector, this.nodes, single);
-    }
-    function Sys$UI$TemplateContext$_findById(kind, id, single) {
+    },
+    _findById: function TemplateContext$_findById(kind, id, single) {
         var element = null;
         for (var context = this; !element && context; context = context.parentContext) {
             var nodes = context.nodes,
@@ -871,26 +825,27 @@ Sys.UI.TemplateContext = function Sys$UI$TemplateContext() {
         }
         element = element || Sys.get(kind + id);
         return single ? element : (element ? [element] : []);
-    }
-    function Sys$UI$TemplateContext$getInstanceId(prefix) {
-        /// <summary locid="M:J#Sys.UI.TemplateContext.getInstanceId" />
-        /// <param name="prefix" type="String"></param>
-        /// <returns type="String"></returns>
+    },
+    getInstanceId: function TemplateContext$getInstanceId(prefix) {
+        /// <summary locid="M:J#Sys.UI.TemplateContext.getInstanceId">Generates an element id suffixed by this template context's index.</summary>
+        /// <param name="prefix" type="String">The prefix.</param>
+        /// <returns type="String">The generated id.</returns>
         var s;
         if (this._global) {
             s = "";
         }
         else {
-            s = this.index, ctx = this.parentContext;
+            s = this.index;
+            var ctx = this.parentContext;
             while (ctx && !ctx._global) {
                 s = ctx.index + "_" + s;
                 ctx = ctx.parentContext;
             }
         }
         return prefix + s;
-    }
-    function Sys$UI$TemplateContext$initializeComponents() {
-        /// <summary locid="M:J#Sys.UI.TemplateContext.initializeComponents" />
+    },
+    initializeComponents: function TemplateContext$initializeComponents() {
+        /// <summary locid="M:J#Sys.UI.TemplateContext.initializeComponents">Initializes the components created by the template instantiation.</summary>
         var components = this.components;
         if (components) {
             var i = components.length - 1, index = this._lastIndex;
@@ -907,8 +862,8 @@ Sys.UI.TemplateContext = function Sys$UI$TemplateContext() {
                 }
             }
         }
-    }
-    function Sys$UI$TemplateContext$_onInstantiated(referenceNode, global) {
+    },
+    _onInstantiated: function TemplateContext$_onInstantiated(referenceNode, global) {
         foreach(this._completed, function(callback) {
             callback();
         });
@@ -919,14 +874,14 @@ Sys.UI.TemplateContext = function Sys$UI$TemplateContext() {
                 container.insertBefore(node, referenceNode || null);
             });
         }
-    }
-    function Sys$UI$TemplateContext$_registerComponent(component) {
+    },
+    _registerComponent: function TemplateContext$_registerComponent(component) {
         var components = this.components;
         component.__tc = [this._tcindex, components.length];
         components.push(component);
         Sys.Component._register(component, null, true);
-    }
-    function Sys$UI$TemplateContext$_registerIf(result) {
+    },
+    _registerIf: function TemplateContext$_registerIf(result) {
         if (result instanceof Array) {
             for (var i = 0, l = result.length; i < l; i++) {
                 this._registerComponent(result[i]);
@@ -936,78 +891,55 @@ Sys.UI.TemplateContext = function Sys$UI$TemplateContext() {
             this._registerComponent(result);
         }
     }
-Sys.UI.TemplateContext.prototype = {
-    data: null,
-    dataItem: null,
-    index: 0,
-    parentContext: null,
-    containerElement: null,
-    insertBeforeNode: null,
-    components: null,
-    nodes: null,
-    isDisposed: false,
-    _lastIndex: -1,
-    dispose: Sys$UI$TemplateContext$dispose,
-    query: Sys$UI$TemplateContext$query,
-    get: Sys$UI$TemplateContext$get,
-    _find: Sys$UI$TemplateContext$_find,
-    _findById: Sys$UI$TemplateContext$_findById,
-    getInstanceId: Sys$UI$TemplateContext$getInstanceId,
-    initializeComponents: Sys$UI$TemplateContext$initializeComponents,
-    _onInstantiated: Sys$UI$TemplateContext$_onInstantiated,
-    _registerComponent: Sys$UI$TemplateContext$_registerComponent,
-    _registerIf: Sys$UI$TemplateContext$_registerIf
 }
-Sys.UI.TemplateContext.registerClass("Sys.UI.TemplateContext", null, Sys.IDisposable);
-Sys.UI.TemplateContext._tcindex = 0;
-Sys.UI.TemplateContext._contexts = 0;
-Sys.UI.ITemplateContextConsumer = function Sys$UI$ITemplateContextConsumer() {
+$type.registerClass("Sys.UI.TemplateContext", null, Sys.IDisposable);
+$type._tcindex = 0;
+$type._contexts = 0;
+$type = Sys.UI.ITemplateContextConsumer = function ITemplateContextConsumer() {
     throw Error.notImplemented();
 }
-
-    function Sys$UI$ITemplateContextConsumer$get_templateContext() {
+$type.prototype = {
+    get_templateContext: function ITemplateContextConsumer$get_templateContext() {
         /// <value type="Sys.UI.TemplateContext" mayBeNull="true" locid="P:J#Sys.UI.ITemplateContextConsumer.templateContext"></value>
         throw Error.notImplemented();
-    }
-    function Sys$UI$ITemplateContextConsumer$set_templateContext(value) {
+    },
+    set_templateContext: function ITemplateContextConsumer$set_templateContext(value) {
         throw Error.notImplemented();
     }
-Sys.UI.ITemplateContextConsumer.prototype = {
-    get_templateContext: Sys$UI$ITemplateContextConsumer$get_templateContext,
-    set_templateContext: Sys$UI$ITemplateContextConsumer$set_templateContext
 }
-Sys.UI.ITemplateContextConsumer.registerInterface("Sys.UI.ITemplateContextConsumer");
+$type.registerInterface("Sys.UI.ITemplateContextConsumer");
+$type = Sys.Application;
+$type._caseIndex = {};
+$type._prototypeIndex = {};
 
-Sys.Application._caseIndex = {};
+$type._context = new Sys.UI.TemplateContext();
+$type._context._global = true;
 
-Sys.Application._prototypeIndex = {};
-
-Sys.Application._context = new Sys.UI.TemplateContext();
-Sys.Application._context._global = true;
-
-Sys.Application.activateElement = function Sys$Application$activateElement(element, bindingContext, recursive) {
-    /// <summary locid="M:J#Sys.Application.activateElement" />
-    /// <param name="element" domElement="true"></param>
-    /// <param name="bindingContext" type="Object" optional="true" mayBeNull="true"></param>
-    /// <param name="recursive" optional="true" mayBeNull="true"></param>
-    /// <returns type="Sys.UI.TemplateContext"></returns>
-    return Sys.Application.activateElements(element, bindingContext || null, (recursive !== false));
+$type.activateElement = function Application$activateElement(element, bindingContext, recursive) {
+    /// <summary locid="M:J#Sys.Application.activateElement"></summary>
+    /// <param name="element" domElement="true" mayBeNull="true" optional="true">The element to process.</param>
+    /// <param name="bindingContext" type="Object" optional="true" mayBeNull="true">The binding context.</param>
+    /// <param name="recursive" optional="true" mayBeNull="true">Specifies whether processing should occur recursively.</param>
+    /// <returns type="Sys.UI.TemplateContext">A template context.</returns>
+    return Sys.Application.activateElements(element || null, bindingContext || null, (recursive !== false));
 }
 
-Sys.Application.activateElements = function Sys$Application$activateElements(elements, bindingContext, recursive) {
-    /// <summary locid="M:J#Sys.Application.activateElements" />
-    /// <param name="elements"></param>
-    /// <param name="bindingContext" optional="true" mayBeNull="true"></param>
-    /// <param name="recursive" optional="true" mayBeNull="true"></param>
-    /// <returns type="Sys.UI.TemplateContext"></returns>
+$type.activateElements = function Application$activateElements(elements, bindingContext, recursive) {
+    /// <summary locid="M:J#Sys.Application.activateElements"></summary>
+    /// <param name="elements" optional="true" mayBeNull="true">The element or elements to process. You may also pass DOM selectors or an array of DOM selectors.</param>
+    /// <param name="bindingContext" optional="true" mayBeNull="true">The binding context.</param>
+    /// <param name="recursive" optional="true" mayBeNull="true">Specifies whether processing should occur recursively.</param>
+    /// <returns type="Sys.UI.TemplateContext">A template context.</returns>
     var app = Sys.Application,
         tc = app._context,
         useDirect = isBrowser("InternetExplorer");
+    elements = elements || document.documentElement;
     tc.dataItem = typeof(bindingContext) === "undefined" ? null : bindingContext;
     tc.components = tc.components || [];
-    tc.nodes = elements;
+    tc.nodes = [];
     recursive = (recursive !== false);
     Sys._queryAll(elements, function(element) {
+        tc.nodes.push(element);
         app._activateElement(element, tc, useDirect, recursive);
     });
     tc.initializeComponents();
@@ -1026,7 +958,7 @@ Sys.registerPlugin({
     ]
 });
 
-Sys.Application._findType = function Sys$Application$_findType(element, prefix, useDirect) {
+$type._findType = function Application$_findType(element, prefix, useDirect) {
     var er, err, type, xmlns = "xmlns:" + prefix;
     function getType() {
         var ns;
@@ -1065,17 +997,17 @@ Sys.Application._findType = function Sys$Application$_findType(element, prefix, 
     return type;
 }
 
-Sys.Application._activateElement = function Sys$Application$_activateElement(parent, templateContext, useDirect, recursive) {
+$type._activateElement = function Application$_activateElement(parent, templateContext, useDirect, recursive) {
     if (recursive) {
         recursive = !Sys.UI.Template._isTemplate(parent);
     }
     var i = -1,
         allElements = recursive ? (useDirect ? parent.all : parent.getElementsByTagName("*")) : [],
-        isTemplate = /(^| )sys\-template($| )/
+        isTemplate = /(^| )sys\-template($| )/,
         expandosAreLast = useDirect && Sys.Browser.version <= 7,
         element = parent;
     do {
-        if (element.nodeType !== 1) continue; 
+        if (element.nodeType !== 1) continue; // includes comment nodes in IE
         ///// this code is inline rather than factored out into a function because
         ///// performance testing has shown that calling the factored method causes activation
         ///// to be measurably slower in IE, due to the overhead of invoking a function.
@@ -1101,22 +1033,22 @@ Sys.Application._activateElement = function Sys$Application$_activateElement(par
                     break;
                 case "sys:command":
                     var command = Sys.Application._getPropertyValue(null, null, null, value, templateContext, null, true);
-                    var commandArg = Sys.Application._getCommandAttr(element, "sys:commandargument", useDirect),
-                        commandTarget = Sys.Application._getCommandAttr(element, "sys:commandtarget", useDirect);
+                    var commandArg = Sys.Application._getCommandAttr(element, "sys:commandargument", useDirect, templateContext),
+                        commandTarget = Sys.Application._getCommandAttr(element, "sys:commandtarget", useDirect, templateContext);
                     Sys.UI.DomElement.setCommand(element, command||"", commandArg||null, Sys.UI.DomElement._ensureGet(commandTarget, templateContext, "sys:commandtarget"));
                     break;
                 default:
                     attributes2 = attributes2 || [];
                     attributes2.push(attribute);
                 }
-            } 
+            } // end for each attribute
             if (activated)  {
                 element.__msajaxactivated = true;
                 if (typeList) {
                     index = {};
                     for (var k = 0, n = typeList.length; k < n; k++) {
                         var typeName = typeList[k].trim();
-                        if (index[typeName]) continue; 
+                        if (index[typeName]) continue; // already exists
                         var type = Sys.Application._findType(element, typeName, useDirect);
                         if (!type) {
                             throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.invalidAttach, "sys:attach", typeName));
@@ -1144,16 +1076,12 @@ Sys.Application._activateElement = function Sys$Application$_activateElement(par
                             props = {};
                             instance = Type.parse(type);
                             entry = { instance: instance, props: props, typeName: typeName, type: type};
-                            if (!fnIndex) {
-                                fnIndex = [entry];
-                            }
-                            else {
-                                fnIndex[fnIndex.length] = entry;
-                            }
+                            fnIndex = (fnIndex || []);
+                            fnIndex.push(entry);
                         }
                         index[typeName] = entry;
                     }             
-                } 
+                } // typeList
                 if (attributes2) {
                     for (j = attributes2.length - 1; j >= 0; j--) {
                         attribute = attributes2[j];
@@ -1193,7 +1121,7 @@ Sys.Application._activateElement = function Sys$Application$_activateElement(par
                             value = Sys.Application._getPropertyValue(attrib, element, name, value, templateContext);
                             if (typeof(value) === "undefined") continue;
                             switch(attrib.type) {
-                                case 0: 
+                                case 0:
                                     if (/^on/i.test(name)) {
                                         element[name] = document.attachEvent ? new Function(value) : new Function("event", value);
                                         break;
@@ -1222,7 +1150,7 @@ Sys.Application._activateElement = function Sys$Application$_activateElement(par
                                     a.nodeValue = isbool ? name : value;
                                     element.setAttributeNode(a);
                                     break;
-                                case 1: 
+                                case 1:
                                     if (attrib.textNode) {
                                         Sys.Application._clearContent(element);
                                         element.appendChild(document.createTextNode(value));
@@ -1231,13 +1159,13 @@ Sys.Application._activateElement = function Sys$Application$_activateElement(par
                                         Sys.Observer.setValue(element, name, value);
                                     }
                                     break;
-                                case 2: 
+                                case 2:
                                     value ? Sys.UI.DomElement.addCssClass(element, name) : Sys.UI.DomElement.removeCssClass(element, name);
                                     break;
                             }
-                        } 
-                    } 
-                } 
+                        }
+                    }
+                }
                 if (fnIndex) {  
                     for (j = 0, m = fnIndex.length; j < m; j++) {
                         entry = fnIndex[j];
@@ -1254,9 +1182,9 @@ Sys.Application._activateElement = function Sys$Application$_activateElement(par
                         }
                     }
                 }
-            } 
+            } // if activated
             ///// end element activatation
-        } 
+        } // no expandos or already activated
         if (recursive) {
             var className = element.className;
             if (className && (className.length >= 12) && ((className === "sys-template") || isTemplate.test(className))) {
@@ -1285,11 +1213,11 @@ Sys.Application._activateElement = function Sys$Application$_activateElement(par
                 while (element);
             }
         }
-    } 
+    } // allElements
     while (!!(element = allElements[++i])); 
 }
 
-Sys.Application._clearContent = function Sys$Application$_clearContent(element) {
+$type._clearContent = function Application$_clearContent(element) {
     var err;
     Sys.Application.disposeElement(element, true);
     try { element.innerHTML = ""; }
@@ -1299,7 +1227,7 @@ Sys.Application._clearContent = function Sys$Application$_clearContent(element) 
         }
     }
 }
-Sys.Application._getCommandAttr = function Sys$Application$_getCommandAttr(element, name, useDirect) {
+$type._getCommandAttr = function Application$_getCommandAttr(element, name, useDirect, templateContext) {
     var err, value = null;
     try {
         value = useDirect ? element[name] : element.getAttribute(name);
@@ -1308,7 +1236,7 @@ Sys.Application._getCommandAttr = function Sys$Application$_getCommandAttr(eleme
     catch(err) { }
     return value;
 }
-Sys.Application._directAttributes = {
+$type._directAttributes = {
     "style": "style.cssText",
     "class": "className",
     "cellpadding" : "cellPadding",
@@ -1320,7 +1248,7 @@ Sys.Application._directAttributes = {
     "innertext": "innerText",
     "innerhtml": "innerHTML"
 }
-Sys.Application._splitAttribute = function Sys$Application$_splitAttribute(attributeName, isSelect, typeIndex) {
+$type._splitAttribute = function Application$_splitAttribute(attributeName, isSelect, typeIndex) {
     var nameParts = attributeName.split(':'),
             ns = nameParts.length > 1 ? nameParts[0] : null,
             name = nameParts[ns ? 1 : 0],
@@ -1352,7 +1280,7 @@ Sys.Application._splitAttribute = function Sys$Application$_splitAttribute(attri
         }
         else if (isSys) {
             if ((name === "command") || (name === "commandargument") || (name === "commandtarget")) {
-                type = 4; 
+                type = 4; // command bubbling
             }
             else if (name.indexOf("style-") === 0) {
                 name = "style." + Sys.Application._translateStyleName(name.substr(6));
@@ -1391,7 +1319,7 @@ Sys.Application._splitAttribute = function Sys$Application$_splitAttribute(attri
     return { ns: ns, name: name, type: type, map: map, index: index, textNode: textNode, isNative: isNative };
 }
 
-Sys.Application._translateStyleName = function Sys$Application$_translateStyleName(name) {
+$type._translateStyleName = function Application$_translateStyleName(name) {
     if (name.indexOf('-') === -1) return name;
     var parts = name.toLowerCase().split('-'),
         newName = parts[0];
@@ -1402,7 +1330,7 @@ Sys.Application._translateStyleName = function Sys$Application$_translateStyleNa
     return newName;
 }
 
-Sys.Application._getExtensionCode = function Sys$Application$_getExtensionCode(extension, doEval, templateContext) {
+$type._getExtensionCode = function Application$_getExtensionCode(extension, doEval, templateContext) {
     extension = extension.trim();
     var name, properties, propertyBag = {}, spaceIndex = extension.indexOf(' ');
     if (spaceIndex !== -1) {
@@ -1435,7 +1363,7 @@ Sys.Application._getExtensionCode = function Sys$Application$_getExtensionCode(e
     return { instance: Sys.Application._getMarkupExtension(name), name: name, properties: propertyBag };
 }
 
-Sys.Application._getPropertyValue = function Sys$Application$_getPropertyValue(attrib, target, name, value, templateContext, inExtension, suppressExtension) {
+$type._getPropertyValue = function Application$_getPropertyValue(attrib, target, name, value, templateContext, inExtension, suppressExtension) {
     var propertyValue = value;
     if (value.startsWith("{{") && value.endsWith("}}")) {
         propertyValue = this._evaluateExpression(value.slice(2, -2), templateContext);
@@ -1446,7 +1374,7 @@ Sys.Application._getPropertyValue = function Sys$Application$_getPropertyValue(a
     }
     return propertyValue;
 }
-Sys.Application._tryName = function Sys$Application$_tryName(name, type) {
+$type._tryName = function Application$_tryName(name, type) {
     var prototype = type.prototype,
         setterName = "set_" + name, setter = prototype[setterName];
     if (setter) {
@@ -1464,7 +1392,7 @@ Sys.Application._tryName = function Sys$Application$_tryName(name, type) {
     }
     return null;
 }
-Sys.Application._translateName = function Sys$Application$_translateName(name, type) {
+$type._translateName = function Application$_translateName(name, type) {
     if (name && (name !== name.toLowerCase())) {
         throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.invalidAttributeName, name));
     }
@@ -1490,7 +1418,7 @@ Sys.Application._translateName = function Sys$Application$_translateName(name, t
     index[name] = cache;
     return cache;
 }
-Sys.Application._mapToPrototype = function Sys$Application$_mapToPrototype(name, type) {
+$type._mapToPrototype = function Application$_mapToPrototype(name, type) {
     var fixedName, caseIndex = Sys.Application._caseIndex[type.__typeName];
     if (!caseIndex) {
         caseIndex = {};
@@ -1521,31 +1449,33 @@ Sys.Application._mapToPrototype = function Sys$Application$_mapToPrototype(name,
     }
     return fixedName;
 }
-Sys.Application._doEval = function Sys$Application$_doEval(__expression, $context) {
-    with($context.dataItem || {}) {
-        return eval("(" + __expression + ")");
+$type._doEval = function Application$_doEval(__expression, $context) {
+    with({$context:$context}) {
+        with($context.dataItem || {}) {
+            return eval("(" + __expression + ")");
+        }
     }
 }
-Sys.Application._evaluateExpression = function Sys$Application$_evaluateExpression($expression, $templateContext) {
+$type._evaluateExpression = function Application$_evaluateExpression($expression, $templateContext) {
     return Sys.Application._doEval.call($templateContext.dataItem, $expression, $templateContext);
 }
 
-Sys.Application._registerComponent = function Sys$Application$_registerComponent(element, component) {
+$type._registerComponent = function Application$_registerComponent(element, component) {
     var components = element._components;
     if (!components) {
         element._components = components = [];
     }
-    components[components.length] = component;
+    components.push(component);
 }
 
-Sys.Application._activateOnPartial = function Sys$Application$_activateOnPartial(panel, rendering) {
+$type._activateOnPartial = function Application$_activateOnPartial(panel, rendering) {
     this._doUpdatePanel(panel, rendering);
     if (Sys.activateDom) {
         Sys.Application.activateElement(panel);
     }
 }
 
-Sys.Application._raiseInit = function Sys$Application$_raiseInit() {
+$type._raiseInit = function Application$_raiseInit() {
     this.beginCreateComponents();
     Sys.Observer.raiseEvent(this, "init");
     if (Sys.activateDom) {
@@ -1558,23 +1488,19 @@ Sys.Application._raiseInit = function Sys$Application$_raiseInit() {
     }
     this.endCreateComponents();
 }
-Sys.BindingMode = function Sys$BindingMode() {
+$type = Sys.BindingMode = function BindingMode() {
 }
-
-
-
-
-
-
-Sys.BindingMode.prototype = {
+$type.prototype = {
     auto: 0,
     oneTime: 1,
     oneWay: 2,
     twoWay: 3,
     oneWayToSource: 4
 }
-Sys.BindingMode.registerEnum("Sys.BindingMode");
-Sys.Binding = function Sys$Binding() {
+
+$type.registerEnum("Sys.BindingMode");
+
+$type = Sys.Binding = function Binding() {
     Sys.Binding.initializeBase(this);
     this._sourceHandlers = [];
     this._targetHandlers = [];
@@ -1583,98 +1509,98 @@ Sys.Binding = function Sys$Binding() {
     this._onOptionsUpdated = Function.createDelegate(this, this._optionsUpdated);
     this._onDispose = Function.createDelegate(this, this.dispose);
 }
-
-
-    function Sys$Binding$get_convert() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Binding.convert"></value>
+$type.prototype = {
+    _defaultValue: null,
+    get_convert: function Binding$get_convert() {
+        /// <value mayBeNull="true" locid="P:J#Sys.Binding.convert">A function or function name to call when updating the target.</value>
         return this._convert || null;
-    }
-    function Sys$Binding$set_convert(value) {
+    },
+    set_convert: function Binding$set_convert(value) {
        this._convert = value;
        this._convertFn = this._resolveFunction(value);
-    }
-    function Sys$Binding$get_convertBack() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Binding.convertBack"></value>
+    },
+    get_convertBack: function Binding$get_convertBack() {
+        /// <value mayBeNull="true" locid="P:J#Sys.Binding.convertBack">A function or function name to call when updating the source.</value>
         return this._convertBack || null;
-    }
-    function Sys$Binding$set_convertBack(value) {
+    },
+    set_convertBack: function Binding$set_convertBack(value) {
        this._convertBack = value;
        this._convertBackFn = this._resolveFunction(value);
-    }
-    function Sys$Binding$get_ignoreErrors() {
-        /// <value type="Boolean" mayBeNull="false" locid="P:J#Sys.Binding.ignoreErrors"></value>
+    },
+    get_ignoreErrors: function Binding$get_ignoreErrors() {
+        /// <value type="Boolean" mayBeNull="false" locid="P:J#Sys.Binding.ignoreErrors">The option to ignore errors in convert/convertBack</value>
         return !!this._ignoreErrors;
-    }
-    function Sys$Binding$set_ignoreErrors(value) {
+    },
+    set_ignoreErrors: function Binding$set_ignoreErrors(value) {
        this._ignoreErrors = value;
-    }
-    function Sys$Binding$get_mode() {
-        /// <value type="Sys.BindingMode" mayBeNull="false" locid="P:J#Sys.Binding.mode"></value>
+    },
+    get_mode: function Binding$get_mode() {
+        /// <value type="Sys.BindingMode" mayBeNull="false" locid="P:J#Sys.Binding.mode">The mode input</value>
         return this._mode || Sys.BindingMode.auto;
-    }
-    function Sys$Binding$set_mode(value) {
+    },
+    set_mode: function Binding$set_mode(value) {
         if (this._initialized) {
             throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.commonNotAfterInit, "Binding", "mode"));
         }
         this._mode = value;
-    }
-    function Sys$Binding$get_defaultValue() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Binding.defaultValue"></value>
+    },
+    get_defaultValue: function Binding$get_defaultValue() {
+        /// <value mayBeNull="true" locid="P:J#Sys.Binding.defaultValue">The value to use when the source path evalulates to null or undefined.</value>
         return this._defaultValue;
-    }
-    function Sys$Binding$set_defaultValue(value) {
+    },
+    set_defaultValue: function Binding$set_defaultValue(value) {
         this._defaultValue = value;
-    }
-    function Sys$Binding$get_source() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Binding.source"></value>
+    },
+    get_source: function Binding$get_source() {
+        /// <value mayBeNull="true" locid="P:J#Sys.Binding.source">The source input</value>
         return this._source || null;
-    }
-    function Sys$Binding$set_source(value) {
+    },
+    set_source: function Binding$set_source(value) {
         if (this._initialized) {
             throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.commonNotAfterInit, "Binding", "source"));
         }
         this._source = value;
-    }
-    function Sys$Binding$get_templateContext() {
+    },
+    get_templateContext: function Binding$get_templateContext() {
         /// <value mayBeNull="true" type="Sys.UI.TemplateContext" locid="P:J#Sys.Binding.templateContext"></value>
         return this._templateContext || null;
-    }
-    function Sys$Binding$set_templateContext(value) {
+    },
+    set_templateContext: function Binding$set_templateContext(value) {
         this._templateContext = value;
-    }
-    function Sys$Binding$get_path() {
-        /// <value type="String" mayBeNull="true" locid="P:J#Sys.Binding.path"></value>
+    },
+    get_path: function Binding$get_path() {
+        /// <value type="String" mayBeNull="true" locid="P:J#Sys.Binding.path">The source datapath input</value>
         return this._path || "";
-    }
-    function Sys$Binding$set_path(value) {
+    },
+    set_path: function Binding$set_path(value) {
         if (this._initialized) {
             throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.commonNotAfterInit, "Binding", "path"));
         }
         this._path = value;
         this._pathArray = value ? value.split('.') : null;
-    }
-    function Sys$Binding$get_target() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Binding.target"></value>
+    },
+    get_target: function Binding$get_target() {
+        /// <value mayBeNull="true" locid="P:J#Sys.Binding.target">The target input</value>
         return this._target || null;
-    }
-    function Sys$Binding$set_target(value) {
+    },
+    set_target: function Binding$set_target(value) {
         if (this._initialized) {
             throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.commonNotAfterInit, "Binding", "target"));
         }
         this._target = value;
-    }
-    function Sys$Binding$get_targetProperty() {
-        /// <value type="String" mayBeNull="true" locid="P:J#Sys.Binding.targetProperty"></value>
+    },
+    get_targetProperty: function Binding$get_targetProperty() {
+        /// <value type="String" mayBeNull="true" locid="P:J#Sys.Binding.targetProperty">The target data path input</value>
         return this._targetProperty || "";
-    }
-    function Sys$Binding$set_targetProperty(value) {
+    },
+    set_targetProperty: function Binding$set_targetProperty(value) {
         if (this._initialized) {
             throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.commonNotAfterInit, "Binding", "targetProperty"));
         }
         this._targetProperty = value;
         this._targetPropertyArray = value ? value.split('.') : null;
-    }
-    function Sys$Binding$_addBinding(element) {
+    },
+    _addBinding: function Binding$_addBinding(element) {
         if (element.nodeType === 3) {
             element = element.parentNode;
             if (!element) return;
@@ -1682,9 +1608,9 @@ Sys.Binding = function Sys$Binding() {
         var bindings = element.__msajaxbindings = element.__msajaxbindings || [];
         bindings.push(this);
         Sys.UI.DomElement._onDispose(element, Sys.Binding._disposeBindings);
-    }
-    function Sys$Binding$dispose() {
-        /// <summary locid="M:J#Sys.Binding.dispose" />
+    },
+    dispose: function Binding$dispose() {
+        /// <summary locid="M:J#Sys.Binding.dispose"></summary>
         if (!this._disposed) {
             this._disposed = true;
             this._watchObject(null);
@@ -1715,8 +1641,8 @@ Sys.Binding = function Sys$Binding() {
             this._templateContext = null;
         }
         Sys.Binding.callBaseMethod(this, 'dispose');
-    }
-    function Sys$Binding$_getPropertyFromIndex(obj, path, startIndex, endIndex) {
+    },
+    _getPropertyFromIndex: function Binding$_getPropertyFromIndex(obj, path, startIndex, endIndex) {
         for (var i = startIndex; i <= endIndex; i++) {
             if (obj === null || typeof(obj) === "undefined") {
                 return null;
@@ -1724,16 +1650,16 @@ Sys.Binding = function Sys$Binding() {
             obj = this._getPropertyData(obj, path[i]);
         }
         return obj;
-    }
-    function Sys$Binding$_getPropertyData(obj, name) {
+    },
+    _getPropertyData: function Binding$_getPropertyData(obj, name) {
         if (typeof (obj["get_" + name]) === "function") {
             return obj["get_" + name]();
         }
         else {
             return obj[name];
         }
-    }
-    function Sys$Binding$_watchObject(object, isSource) {
+    },
+    _watchObject: function Binding$_watchObject(object, isSource) {
         var path = isSource ? this._pathArray : this._targetPropertyArray,
             handlers = isSource ? this._sourceHandlers : this._targetHandlers,
             observable = !!object;
@@ -1759,8 +1685,8 @@ Sys.Binding = function Sys$Binding() {
                 }
             }
         }
-    }
-    function Sys$Binding$_isInput(element, property) {
+    },
+    _isInput: function Binding$_isInput(element, property) {
         var ret,
             tag = (Sys.UI.DomElement.isDomElement(element) && element.nodeType === 1 && element.tagName) ?
                 element.tagName.toLowerCase() : "";
@@ -1773,8 +1699,8 @@ Sys.Binding = function Sys$Binding() {
             }
         }
         return ret;
-    }
-    function Sys$Binding$_listen(object, property, isSource) {
+    },
+    _listen: function Binding$_listen(object, property, isSource) {
         var _this = this,
             listener = isSource ? this._onSourceChanged : this._onTargetChanged,
             handlers = {
@@ -1805,18 +1731,18 @@ Sys.Binding = function Sys$Binding() {
         }
         object = null;
         return handlers;
-    }
-    function Sys$Binding$_forget(handler) {
+    },
+    _forget: function Binding$_forget(handler) {
         var object = handler.object,
             dom = handler.dom;
         Sys.Observer._removeEventHandler(object, "propertyChanged", handler.pc);
         for (var i = 0, l = dom.length; i < l; i++) {
             Sys.UI.DomEvent.removeHandler(object, dom[i], handler.listener);
         }
-    }
-    function Sys$Binding$_resolveFunction(value) {
+    },
+    _resolveFunction: function Binding$_resolveFunction(value) {
         var e, ret;
-        if (typeof(value) === 'function') { 
+        if (typeof(value) === 'function') { // this is a function, call it directly.
             ret = value;
         }
         else {
@@ -1834,10 +1760,10 @@ Sys.Binding = function Sys$Binding() {
             }
         }
         return ret;
-    }
-    function Sys$Binding$update(mode) {
-        /// <summary locid="M:J#Sys.Binding.update" />
-        /// <param name="mode" optional="true" mayBeNull="true"></param>
+    },
+    update: function Binding$update(mode) {
+        /// <summary locid="M:J#Sys.Binding.update"></summary>
+        /// <param name="mode" optional="true" mayBeNull="true">The updating direction.</param>
         if (!this._initialized) {
             throw Error.invalidOperation(Sys.UI.TemplatesRes.updateBeforeInit);
         }
@@ -1848,12 +1774,11 @@ Sys.Binding = function Sys$Binding() {
         else {
             this._sourceChanged(true);
         }
-    }
-    function Sys$Binding$_notSet(name) {
+    },
+    _notSet: function Binding$_notSet(name) {
        throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.bindingPropertyNotSet, name));
-    }
-
-    function Sys$Binding$initialize() {
+    },
+    initialize: function Binding$initialize() {
         if (!this.get_isInitialized()) {
             if (!this.get_targetProperty()) {
                 this._notSet("targetProperty");
@@ -1866,8 +1791,8 @@ Sys.Binding = function Sys$Binding() {
                 tc._completed.push(Function.createDelegate(this, this._doInitialize));
             }
         }
-    }
-    function Sys$Binding$_doInitialize() {
+    },
+    _doInitialize: function Binding$_doInitialize() {
         var source = this.get_source(),
             target = this.get_target();
         if (typeof(source) === "string") {
@@ -1926,18 +1851,16 @@ Sys.Binding = function Sys$Binding() {
         if (target && mode <= 3) {
             this._targetOption = listen.call(this, target, this.get_targetProperty());
         }
-    }
-    function Sys$Binding$_isChecked(element, name) {
+    },
+    _isChecked: function Binding$_isChecked(element, name) {
         return (name === "checked") && (element.tagName.toLowerCase() === "input");
-    }
-    function Sys$Binding$_optionsUpdated(select) {
+    },
+    _optionsUpdated: function Binding$_optionsUpdated(select) {
         if (!this._disposed) {
-            this.update(select === this.get_source() ? 4
- : 2
-);
+            this.update(select === this.get_source() ? 4/*oneWayToSource*/ : 2/*oneWay*/);
         }
-    }
-    function Sys$Binding$_sourceChanged(force) {
+    },
+    _sourceChanged: function Binding$_sourceChanged(force) {
         if (this._disposed) return;
         force = force === true;
         var er,
@@ -2006,8 +1929,8 @@ Sys.Binding = function Sys$Binding() {
         if (!force) {
             this._watchObject(this.get_source(), true);
         }
-    }
-    function Sys$Binding$_targetChanged(force) {
+    },
+    _targetChanged: function Binding$_targetChanged(force) {
         if (this._disposed) return;
         force = force === true;
         var target = this.get_target(),
@@ -2058,56 +1981,16 @@ Sys.Binding = function Sys$Binding() {
         if (!force) {
             this._watchObject(this.get_target());
         }
-    }
-    function Sys$Binding$_resolveReference(str) {
+    },
+    _resolveReference: function Binding$_resolveReference(str) {
         var ref = Sys.get(str, this.get_templateContext());
         if ((ref === null) || (typeof(ref) === "undefined")) {
             throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.unresolvedReference, str));
         }
         return ref || null;
     }
-Sys.Binding.prototype = {
-    _defaultValue: null,
-    get_convert: Sys$Binding$get_convert,
-    set_convert: Sys$Binding$set_convert,
-    get_convertBack: Sys$Binding$get_convertBack,
-    set_convertBack: Sys$Binding$set_convertBack,
-    get_ignoreErrors: Sys$Binding$get_ignoreErrors,
-    set_ignoreErrors: Sys$Binding$set_ignoreErrors,
-    get_mode: Sys$Binding$get_mode,
-    set_mode: Sys$Binding$set_mode,
-    get_defaultValue: Sys$Binding$get_defaultValue,
-    set_defaultValue: Sys$Binding$set_defaultValue,
-    get_source: Sys$Binding$get_source,
-    set_source: Sys$Binding$set_source,
-    get_templateContext: Sys$Binding$get_templateContext,
-    set_templateContext: Sys$Binding$set_templateContext,
-    get_path: Sys$Binding$get_path,
-    set_path: Sys$Binding$set_path,
-    get_target: Sys$Binding$get_target,
-    set_target: Sys$Binding$set_target,
-    get_targetProperty: Sys$Binding$get_targetProperty,
-    set_targetProperty: Sys$Binding$set_targetProperty,
-    _addBinding: Sys$Binding$_addBinding,
-    dispose: Sys$Binding$dispose,
-    _getPropertyFromIndex: Sys$Binding$_getPropertyFromIndex,
-    _getPropertyData: Sys$Binding$_getPropertyData,
-    _watchObject: Sys$Binding$_watchObject,
-    _isInput: Sys$Binding$_isInput,
-    _listen: Sys$Binding$_listen,
-    _forget: Sys$Binding$_forget,
-    _resolveFunction: Sys$Binding$_resolveFunction,
-    update: Sys$Binding$update,
-    _notSet: Sys$Binding$_notSet,
-    initialize: Sys$Binding$initialize,
-    _doInitialize: Sys$Binding$_doInitialize,
-    _isChecked: Sys$Binding$_isChecked,
-    _optionsUpdated: Sys$Binding$_optionsUpdated,
-    _sourceChanged: Sys$Binding$_sourceChanged,
-    _targetChanged: Sys$Binding$_targetChanged,
-    _resolveReference: Sys$Binding$_resolveReference
 }
-Sys.Binding._disposeBindings = function Sys$Binding$_disposeBindings() {
+$type._disposeBindings = function Binding$_disposeBindings() {
     var bindings = this.__msajaxbindings;    
     if (bindings) {
         for(var i = 0, l = bindings.length; i < l; i++) {
@@ -2116,10 +1999,10 @@ Sys.Binding._disposeBindings = function Sys$Binding$_disposeBindings() {
     }
     this.__msajaxbindings = null;
 }
-Sys.Binding.registerClass("Sys.Binding", Sys.Component, Sys.UI.ITemplateContextConsumer);
+$type.registerClass("Sys.Binding", Sys.Component, Sys.UI.ITemplateContextConsumer);
 Sys.converters = Sys.converters || {};
 
-Sys.Binding.bind = function Sys$Binding$bind(targetOrOptions, property, source, path, options) {
+$type.bind = function Binding$bind(targetOrOptions, property, source, path, options) {
     if (arguments.length > 1) {
         options = merge({
             target: targetOrOptions,
@@ -2168,102 +2051,102 @@ function(component, targetProperty, templateContext, properties) {
     templateContext.components.push(binding);
 }, 
 false);
-Sys.UI.DataView = function Sys$UI$DataView(element) {
-    /// <summary locid="M:J#Sys.UI.DataView.#ctor" />
-    /// <param name="element"></param>
+$type = Sys.UI.DataView = function DataView(element) {
+    /// <summary locid="M:J#Sys.UI.DataView.#ctor">Uses a template to render a view of a data source.</summary>
+    /// <param name="element">The element this control attaches to.</param>
     Sys.UI.DataView.initializeBase(this, [element]);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    function Sys$UI$DataView$add_command(handler) {
-    /// <summary locid="E:J#Sys.UI.DataView.command" />
+$type.prototype = {
+    _autoFetch: false,
+    _fetching: false,
+    _changed: false,
+    _data: null,
+    _dataProvider: null,
+    _wsp: null,
+    _wspClass: null,
+    _dirty: false,
+    _stale: true,
+    _dvTemplate: null,
+    _eventType: 0,
+    _httpVerb: null,
+    _initialSelectedIndex: -1,
+    _fetchParameters: null,
+    _parentContext: null,
+    _placeholder: null,
+    _query: null,
+    _contexts: null,
+    _selectedIndex: -1,
+    _selectedItemClass: null,
+    _template: null,
+    _timeout: 0,
+    _request: null,
+    add_command: function DataView$add_command(handler) {
+    /// <summary locid="E:J#Sys.UI.DataView.command"></summary>
         this._addHandler("command", handler);
-    }
-    function Sys$UI$DataView$remove_command(handler) {
+    },
+    remove_command: function DataView$remove_command(handler) {
         this._removeHandler("command", handler);
-    }
-    function Sys$UI$DataView$add_rendering(handler) {
-    /// <summary locid="E:J#Sys.UI.DataView.rendering" />
+    },
+    add_rendering: function DataView$add_rendering(handler) {
+    /// <summary locid="E:J#Sys.UI.DataView.rendering"></summary>
         this._addHandler("rendering", handler);
-    }
-    function Sys$UI$DataView$remove_rendering(handler) {
+    },
+    remove_rendering: function DataView$remove_rendering(handler) {
         this._removeHandler("rendering", handler);
-    }
-    function Sys$UI$DataView$add_rendered(handler) {
-    /// <summary locid="E:J#Sys.UI.DataView.rendered" />
+    },
+    add_rendered: function DataView$add_rendered(handler) {
+    /// <summary locid="E:J#Sys.UI.DataView.rendered"></summary>
         this._addHandler("rendered", handler);
-    }
-    function Sys$UI$DataView$remove_rendered(handler) {
+    },
+    remove_rendered: function DataView$remove_rendered(handler) {
         this._removeHandler("rendered", handler);
-    }
-    function Sys$UI$DataView$add_itemRendered(handler) {
-    /// <summary locid="E:J#Sys.UI.DataView.itemRendered" />
+    },
+    add_itemRendered: function DataView$add_itemRendered(handler) {
+    /// <summary locid="E:J#Sys.UI.DataView.itemRendered"></summary>
         this._addHandler("itemRendered", handler);
-    }
-    function Sys$UI$DataView$remove_itemRendered(handler) {
+    },
+    remove_itemRendered: function DataView$remove_itemRendered(handler) {
         this._removeHandler("itemRendered", handler);
-    }
-    function Sys$UI$DataView$add_itemRendering(handler) {
-    /// <summary locid="E:J#Sys.UI.DataView.itemRendering" />
+    },
+    add_itemRendering: function DataView$add_itemRendering(handler) {
+    /// <summary locid="E:J#Sys.UI.DataView.itemRendering"></summary>
         this._addHandler("itemRendering", handler);
-    }
-    function Sys$UI$DataView$remove_itemRendering(handler) {
+    },
+    remove_itemRendering: function DataView$remove_itemRendering(handler) {
         this._removeHandler("itemRendering", handler);
-    }
-    function Sys$UI$DataView$add_fetchFailed(handler) {
-    /// <summary locid="E:J#Sys.UI.DataView.fetchFailed" />
+    },
+    add_fetchFailed: function DataView$add_fetchFailed(handler) {
+    /// <summary locid="E:J#Sys.UI.DataView.fetchFailed"></summary>
         this._addHandler("fetchFailed", handler);
-    }
-    function Sys$UI$DataView$remove_fetchFailed(handler) {
+    },
+    remove_fetchFailed: function DataView$remove_fetchFailed(handler) {
         this._removeHandler("fetchFailed", handler);
-    }
-    function Sys$UI$DataView$add_fetchSucceeded(handler) {
-    /// <summary locid="E:J#Sys.UI.DataView.fetchSucceeded" />
+    },
+    add_fetchSucceeded: function DataView$add_fetchSucceeded(handler) {
+    /// <summary locid="E:J#Sys.UI.DataView.fetchSucceeded"></summary>
         this._addHandler("fetchSucceeded", handler);
-    }
-    function Sys$UI$DataView$remove_fetchSucceeded(handler) {
+    },
+    remove_fetchSucceeded: function DataView$remove_fetchSucceeded(handler) {
         this._removeHandler("fetchSucceeded", handler);
-    }
-    function Sys$UI$DataView$get_viewData() {
-        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.viewData"></value>
+    },
+    get_viewData: function DataView$get_viewData() {
+        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.viewData">The data used to render the DataView.</value>
         return this._viewData || null;
-    }
-    function Sys$UI$DataView$get_data() {
-        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.data"></value>
+    },
+    get_data: function DataView$get_data() {
+        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.data">The data the DataView is bound to.</value>
         return this._data;
-    }
-    function Sys$UI$DataView$set_data(value) {
+    },
+    set_data: function DataView$set_data(value) {
         if (!this._setData || (this._data !== value)) {
             this._loadData(value);
         }
-    }
-    function Sys$UI$DataView$get_dataProvider() {
-        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.dataProvider"></value>
+    },
+    get_dataProvider: function DataView$get_dataProvider() {
+        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.dataProvider">The data provider to fetch data from. May be a JSON webservice service URI, instance of a Sys.Net.WebServiceProxy, or a class that implements Sys.Data.IDataProvider.</value>
         return this._provider || null;
-    }
-    function Sys$UI$DataView$set_dataProvider(value) {
+    },
+    set_dataProvider: function DataView$set_dataProvider(value) {
         this._dataProvider = this._wsp = this._wspClass = null;
         if (Sys.Data.IDataProvider.isImplementedBy(value)) {
             this._dataProvider = value;
@@ -2286,12 +2169,12 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         else {
             this._stale = true;
         }
-    }
-    function Sys$UI$DataView$get_autoFetch() {
+    },
+    get_autoFetch: function DataView$get_autoFetch() {
         /// <value locid="P:J#Sys.UI.DataView.autoFetch"></value>
         return this._autoFetch;
-    }
-    function Sys$UI$DataView$set_autoFetch(value) {
+    },
+    set_autoFetch: function DataView$set_autoFetch(value) {
         var was = this._autoFetch;
         if (typeof(value) === "string") {
             value = Boolean.parse(value);
@@ -2303,27 +2186,27 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         if (this._isActive() && this._stale && !was && value) {
             this._doAutoFetch();
         }
-    }
-    function Sys$UI$DataView$get_isFetching() {
+    },
+    get_isFetching: function DataView$get_isFetching() {
         /// <value type="Boolean" locid="P:J#Sys.UI.DataView.isFetching"></value>
         return this._fetching;
-    }
-    function Sys$UI$DataView$get_httpVerb() {
+    },
+    get_httpVerb: function DataView$get_httpVerb() {
         /// <value type="String" locid="P:J#Sys.UI.DataView.httpVerb"></value>
         return this._httpVerb || "POST";
-    }
-    function Sys$UI$DataView$set_httpVerb(value) {
+    },
+    set_httpVerb: function DataView$set_httpVerb(value) {
         this._httpVerb = value;
-    }
-    function Sys$UI$DataView$get_contexts() {
+    },
+    get_contexts: function DataView$get_contexts() {
         /// <value type="Array" elementType="Sys.UI.TemplateContext" elementMayBeNull="true" locid="P:J#Sys.UI.DataView.contexts"></value>
         return this._contexts;
-    }
-    function Sys$UI$DataView$get_fetchParameters() {
-        /// <value type="Object" mayBeNull="true" locid="P:J#Sys.UI.DataView.fetchParameters"></value>
+    },
+    get_fetchParameters: function DataView$get_fetchParameters() {
+        /// <value type="Object" mayBeNull="true" locid="P:J#Sys.UI.DataView.fetchParameters">A dictionary of parameters to pass to the data service when fetching data.</value>
         return this._fetchParameters;
-    }
-    function Sys$UI$DataView$set_fetchParameters(value) {
+    },
+    set_fetchParameters: function DataView$set_fetchParameters(value) {
         if (this._fetchParameters !== value) {
             this._fetchParameters = value;
             if (this.get_autoFetch() && this._isActive()) {
@@ -2333,23 +2216,28 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
                 this._stale = true;
             }
         }
-    }
-    function Sys$UI$DataView$get_selectedData() {
-        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.selectedData"></value>
-        var selectedIndex = this.get_selectedIndex();
+    },
+    get_selectedData: function DataView$get_selectedData() {
+        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.selectedData">The data that is currently selected, or null if none.</value>
+        var ret = null, selectedIndex = this.get_selectedIndex();
         if (selectedIndex > -1) {
             var data = this.get_viewData();
-            if ((data instanceof Array) && (selectedIndex < data.length)) {
-                return data[selectedIndex];
+            if (data instanceof Array) {
+                if (selectedIndex < data.length) {
+                    ret = data[selectedIndex];
+                }
+            }
+            else {
+                ret = data;
             }
         }
-        return null;
-    }
-    function Sys$UI$DataView$get_selectedIndex() {
-        /// <value locid="P:J#Sys.UI.DataView.selectedIndex"></value>
+        return ret;
+    },
+    get_selectedIndex: function DataView$get_selectedIndex() {
+        /// <value locid="P:J#Sys.UI.DataView.selectedIndex">The current selected index.</value>
         return this._selectedIndex;
-    }
-    function Sys$UI$DataView$set_selectedIndex(value) {
+    },
+    set_selectedIndex: function DataView$set_selectedIndex(value) {
         value = this._validateIndexInput(value);
         if (value < -1) {
             throw Error.argumentOutOfRange("value", value);
@@ -2360,12 +2248,12 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         else {
             this._applySelectedIndex(value);
         }
-    }
-    function Sys$UI$DataView$get_initialSelectedIndex() {
-        /// <value locid="P:J#Sys.UI.DataView.initialSelectedIndex"></value>
+    },
+    get_initialSelectedIndex: function DataView$get_initialSelectedIndex() {
+        /// <value locid="P:J#Sys.UI.DataView.initialSelectedIndex">The initial selected index that selectedIndex will default to when data is loaded.</value>
         return this._initialSelectedIndex;
-    }
-    function Sys$UI$DataView$set_initialSelectedIndex(value) {
+    },
+    set_initialSelectedIndex: function DataView$set_initialSelectedIndex(value) {
         value = this._validateIndexInput(value);
         if (value < -1) {
             throw Error.argumentOutOfRange("value", value);
@@ -2374,12 +2262,12 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             this._initialSelectedIndex = value;
             this._raiseChanged("initialSelectedIndex");
         }
-    }
-    function Sys$UI$DataView$get_selectedItemClass() {
+    },
+    get_selectedItemClass: function DataView$get_selectedItemClass() {
         /// <value type="String" locid="P:J#Sys.UI.DataView.selectedItemClass"></value>
         return this._selectedItemClass || "";
-    }
-    function Sys$UI$DataView$set_selectedItemClass(value) {
+    },
+    set_selectedItemClass: function DataView$set_selectedItemClass(value) {
         var name = this.get_selectedItemClass();
         if (value !== name) {
             var index = this.get_selectedIndex();
@@ -2387,19 +2275,19 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             this._addRemoveCssClass(index, value, Sys.UI.DomElement.addCssClass);
             this._selectedItemClass = value;
         }
-    }
-    function Sys$UI$DataView$get_timeout() {
+    },
+    get_timeout: function DataView$get_timeout() {
         /// <value type="Number" integer="true" locid="P:J#Sys.UI.DataView.timeout"></value>
         return this._timeout;
-    }
-    function Sys$UI$DataView$set_timeout(value) {
+    },
+    set_timeout: function DataView$set_timeout(value) {
         this._timeout = value;
-    }
-    function Sys$UI$DataView$get_fetchOperation() {
+    },
+    get_fetchOperation: function DataView$get_fetchOperation() {
         /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.fetchOperation"></value>
         return this._query || "";
-    }
-    function Sys$UI$DataView$set_fetchOperation(value) {
+    },
+    set_fetchOperation: function DataView$set_fetchOperation(value) {
         if (this._query !== value) {
             this._query = value;
             if (this.get_autoFetch() && this._isActive()) {
@@ -2411,34 +2299,34 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
                 this._stale = true;
             }
         }
-    }
-    function Sys$UI$DataView$get_itemPlaceholder() {
-        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.itemPlaceholder"></value>
+    },    
+    get_itemPlaceholder: function DataView$get_itemPlaceholder() {
+        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.itemPlaceholder">The DOM element or DOM element id next to which the DataView renders the item template.</value>
         return this._placeholder || null;
-    }
-    function Sys$UI$DataView$set_itemPlaceholder(value) {
+    },
+    set_itemPlaceholder: function DataView$set_itemPlaceholder(value) {
         if (this._placeholder !== value) {
             this._placeholder = value;
             this._dirty = true;
             this._raiseChanged("itemPlaceholder");
         }
-    }
-    function Sys$UI$DataView$get_templateContext() {
-        /// <value mayBeNull="true" type="Sys.UI.TemplateContext" locid="P:J#Sys.UI.DataView.templateContext"></value>
+    },
+    get_templateContext: function DataView$get_templateContext() {
+        /// <value mayBeNull="true" type="Sys.UI.TemplateContext" locid="P:J#Sys.UI.DataView.templateContext">Used by nested templates to provide the context of the parent template.</value>
         return this._parentContext || Sys.UI.Template.findContext(this.get_element());
-    }
-    function Sys$UI$DataView$set_templateContext(value) {
+    },
+    set_templateContext: function DataView$set_templateContext(value) {
         if (this._parentContext !== value) {
             this._parentContext = value;
             this._dirty = true;
             this._raiseChanged("templateContext");
         }
-    }
-    function Sys$UI$DataView$get_itemTemplate() {
-        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.itemTemplate"></value>
+    },    
+    get_itemTemplate: function DataView$get_itemTemplate() {
+        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataView.itemTemplate">The template to instantiate.</value>
         return this._template || null;
-    }
-    function Sys$UI$DataView$set_itemTemplate(value) {
+    },
+    set_itemTemplate: function DataView$set_itemTemplate(value) {
         if (this._template !== value) {
             this._template = value;
             this._dirty = true;
@@ -2454,8 +2342,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
                 this._changed = true;
             }
         }
-    }
-    function Sys$UI$DataView$_applySelectedIndex(value, force) {
+    },
+    _applySelectedIndex: function DataView$_applySelectedIndex(value, force) {
         var currentIndex = this.get_selectedIndex();
         if (force || (value !== currentIndex)) {
             var data = this.get_viewData(); 
@@ -2486,8 +2374,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         else {
             this._changed = true;
         }
-    }
-    function Sys$UI$DataView$_addRemoveCssClass(index, className, addRemove) {
+    },
+    _addRemoveCssClass: function DataView$_addRemoveCssClass(index, className, addRemove) {
         if (className && (index > -1)) {
             var items = this.get_contexts(), l = items ? items.length : -1;
             if (l && (index < l)) {
@@ -2502,8 +2390,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
                 }
             }
         }
-    }
-    function Sys$UI$DataView$_collectionChanged(sender, args) {
+    },
+    _collectionChanged: function DataView$_collectionChanged(sender, args) {
         var oldSelected = this._currentData,
             changes = args.get_changes(),
             selectedIndex = this.get_selectedIndex(), oldIndex = selectedIndex;
@@ -2541,8 +2429,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         if (selectedIndex !== oldIndex) {
             this.set_selectedIndex(selectedIndex);
         }
-    }
-    function Sys$UI$DataView$_elementContains(container, element, excludeSelf) {
+    },
+    _elementContains: function DataView$_elementContains(container, element, excludeSelf) {
         if (container === element) {
             return !excludeSelf;
         }
@@ -2552,32 +2440,32 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         }
         while (element);
         return false;
-    }
-    function Sys$UI$DataView$_raiseChanged(name) {
+    },
+    _raiseChanged: function DataView$_raiseChanged(name) {
         if (this._isActive()) {
             this.raisePropertyChanged(name);
         }
         else {
             this._changed = true;
         }
-    }
-    function Sys$UI$DataView$_raiseFailed(request, error) {
+    },
+    _raiseFailed: function DataView$_raiseFailed(request, error) {
 	    var args = new Sys.Net.WebRequestEventArgs(request ? request.get_executor() : null, error);
         this.onFetchFailed(args);
         Sys.Observer.raiseEvent(this, "fetchFailed", args);
-    }
-    function Sys$UI$DataView$_raiseSelectedData() {
+    },
+    _raiseSelectedData: function DataView$_raiseSelectedData() {
         if (this._lastData !== this._currentData) {
             this._lastData = this._currentData;
             this.raisePropertyChanged('selectedData');
         }
-    }
-    function Sys$UI$DataView$_raiseSucceeded(request, result) {
+    },
+    _raiseSucceeded: function DataView$_raiseSucceeded(request, result) {
 	    var args = new Sys.Net.WebRequestEventArgs(request ? request.get_executor() : null, null, result);
         this.onFetchSucceeded(args);
         Sys.Observer.raiseEvent(this, "fetchSucceeded", args);
-    }
-    function Sys$UI$DataView$_ensureTemplate(template) {
+    },
+    _ensureTemplate: function DataView$_ensureTemplate(template) {
         if (!Sys.UI.Template.isInstanceOfType(template)) {
             template = Sys.UI.DomElement._ensureGet(template, this.get_templateContext(), "itemTemplate");
             if (template) {
@@ -2585,8 +2473,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             }
         }
         return template;
-    }
-    function Sys$UI$DataView$_getTemplate() {
+    },
+    _getTemplate: function DataView$_getTemplate() {
         if (this._dvTemplate) return this._dvTemplate;
         var template = this.get_itemTemplate();
         if (!template) {
@@ -2609,8 +2497,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             }
         }
         return template;
-    }
-    function Sys$UI$DataView$_loadData(value) {
+    },
+    _loadData: function DataView$_loadData(value) {
         this._swapData(this._data, value);
         this._data = value;
         this._setData = true;
@@ -2623,8 +2511,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         else {
             this._changed = true;
         }
-    }
-    function Sys$UI$DataView$_resetSelectedIndex() {
+    },
+    _resetSelectedIndex: function DataView$_resetSelectedIndex() {
         var data = this.get_viewData(), initialSelectedIndex = this.get_initialSelectedIndex(),
             selectedIndex = this.get_selectedIndex();
         if (!(data instanceof Array) || (initialSelectedIndex >= data.length)) {
@@ -2639,26 +2527,26 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         }
         this._currentData = this.get_selectedData();
         this._raiseSelectedData();
-    }
-    function Sys$UI$DataView$_initializeResults() {
+    },
+    _initializeResults: function DataView$_initializeResults() {
         for (var i = 0, l = this._contexts.length; i < l; i++) {
             var ctx = this._contexts[i];
             if (ctx) ctx.initializeComponents();
         }
-    }
-    function Sys$UI$DataView$_isActive() {
+    },    
+    _isActive: function DataView$_isActive() {
         return (this.get_isInitialized() && !this.get_isUpdating());
-    }
-    function Sys$UI$DataView$_raiseCommand(args) {
+    },
+    _raiseCommand: function DataView$_raiseCommand(args) {
         this.onCommand(args);
         Sys.Observer.raiseEvent(this, "command", args);
-    }
-    function Sys$UI$DataView$_raiseItem(type, args) {
+    },
+    _raiseItem: function DataView$_raiseItem(type, args) {
         this['onItem' + type](args);
         Sys.Observer.raiseEvent(this, "item" + type, args);
-    }
-    function Sys$UI$DataView$abortFetch() {
-        /// <summary locid="M:J#Sys.UI.DataView.abortFetch" />
+    },
+    abortFetch: function DataView$abortFetch() {
+        /// <summary locid="M:J#Sys.UI.DataView.abortFetch">Aborts the current fetch request, if any.</summary>
         if (this._request) {
             this._request.get_executor().abort();
             this._request = null;
@@ -2667,12 +2555,12 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             this._fetching = false;
             this._raiseChanged("isFetching");
         }
-    }
-    function Sys$UI$DataView$onBubbleEvent(source, args) {
-        /// <summary locid="M:J#Sys.UI.DataView.onBubbleEvent" />
-        /// <param name="source"></param>
-        /// <param name="args" type="Sys.EventArgs"></param>
-        /// <returns type="Boolean"></returns>
+    },    
+    onBubbleEvent: function DataView$onBubbleEvent(source, args) {
+        /// <summary locid="M:J#Sys.UI.DataView.onBubbleEvent"></summary>
+        /// <param name="source">The object that triggered the event.</param>
+        /// <param name="args" type="Sys.EventArgs">The event arguments.</param>
+        /// <returns type="Boolean">If either the command is handled by a custom handler (args.set_cancel(true) is called), or  the command is 'select' and a selection is done, return true and stop bubbling. Otherwise, return false, and let the command bubbled up the hierarchy.</returns>
         if (Sys.CommandEventArgs.isInstanceOfType(args)) {
             this._raiseCommand(args);
             if (args.get_cancel()) {
@@ -2681,8 +2569,20 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             else {
                 var name = args.get_commandName();
                 if (name && (name.toLowerCase() === "select")) {
-                    var index = this._findContextIndex(source);
-                    if (index !== -1) {
+                    var index = args.get_commandArgument();
+                    if (typeof(index) === "string") {
+                        index = parseInt(index);
+                    }
+                    if (isNaN(index) || index === null) {
+                        index = this._findContextIndex(source);
+                        if (index === -1) {
+                            index = this._findContextIndex(args.get_commandSource());
+                            if (index === -1) {
+                                index = null;
+                            }
+                        }
+                    }
+                    if (typeof(index) === "number") {
                         this.set_selectedIndex(index);
                         return true;
                     }
@@ -2690,20 +2590,24 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             }
         }
         return false;
-    }
-    function Sys$UI$DataView$onRendering(args) {
-        /// <summary locid="M:J#Sys.UI.DataView.onRendering" />
-        /// <param name="args" type="Sys.Data.DataEventArgs"></param>
-    }
-    function Sys$UI$DataView$onFetchFailed(args) {
-        /// <summary locid="M:J#Sys.UI.DataView.onFetchFailed" />
+    },
+    onRendering: function DataView$onRendering(args) {
+        /// <summary locid="M:J#Sys.UI.DataView.onRendering">Called when a new set of data is about to be rendered by the DataView control.</summary>
+        /// <param name="args" type="Sys.Data.DataEventArgs">Information about the data that is about to render.</param>
+    },
+    onRendered: function DataView$onRendered(args) {
+        /// <summary locid="M:J#Sys.UI.DataView.onRendered">Called when a new set of data has rendered.</summary>
+        /// <param name="args" type="Sys.Data.DataEventArgs">Information about the data that rendered.</param>
+    },
+    onFetchFailed: function DataView$onFetchFailed(args) {
+        /// <summary locid="M:J#Sys.UI.DataView.onFetchFailed">Called when a request to fetch data has failed.</summary>
         /// <param name="args" type="Sys.Net.WebRequestEventArgs"></param>
-    }
-    function Sys$UI$DataView$onFetchSucceeded(args) {
-        /// <summary locid="M:J#Sys.UI.DataView.onFetchSucceeded" />
+    },
+    onFetchSucceeded: function DataView$onFetchSucceeded(args) {
+        /// <summary locid="M:J#Sys.UI.DataView.onFetchSucceeded">Called when a request to fetch data has succeeded.</summary>
         /// <param name="args" type="Sys.Net.WebRequestEventArgs"></param>
-    }
-    function Sys$UI$DataView$_doAutoFetch() {
+    },
+    _doAutoFetch: function DataView$_doAutoFetch() {
         var e;
         try {
             if (this._dataProvider || this._provider) {
@@ -2714,8 +2618,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         catch (e) {
             this._raiseFailed(null, null);
         }
-    }
-    function Sys$UI$DataView$_findContextIndex(source) {
+    },
+    _findContextIndex: function DataView$_findContextIndex(source) {
         var containers = this._containers;
         if (source && containers) {
             var results = this.get_contexts();
@@ -2740,15 +2644,15 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             }
         }
         return -1;
-    }
-    function Sys$UI$DataView$findContext(source) {
-        /// <summary locid="M:J#Sys.UI.DataView.findContext" />
-        /// <param name="source"></param>
+    },
+    findContext: function DataView$findContext(source) {
+        /// <summary locid="M:J#Sys.UI.DataView.findContext">Finds the item context for a given DOM element.</summary>
+        /// <param name="source">The element or element ID to get the context from.</param>
         /// <returns type="Sys.UI.TemplateContext" mayBeNull="true"></returns>
         var index = this._findContextIndex(source);
         return (index !== -1) ? this.get_contexts()[index] : null;
-    }
-    function Sys$UI$DataView$_clearContainer(container, placeholder) {
+    },
+    _clearContainer: function DataView$_clearContainer(container, placeholder) {
         var count = placeholder ? placeholder.__msajaxphcount : -1;
         if ((count > -1) && placeholder) placeholder.__msajaxphcount = 0;
         if (count < 0) {
@@ -2783,8 +2687,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
                 container.removeChild(element);
             }
         }
-    }
-    function Sys$UI$DataView$_clearContainers(placeholders) {
+    },
+    _clearContainers: function DataView$_clearContainers(placeholders) {
         var i, l;
         for (i = 0, l = placeholders.length; i < l; i++) {
             var ph = placeholders[i],
@@ -2796,8 +2700,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             ctx.nodes = null;
             ctx.dispose();
         }
-    }
-    function Sys$UI$DataView$_isAlone(container, ph) {
+    },
+    _isAlone: function DataView$_isAlone(container, ph) {
         var childNodes = container.childNodes;
         if (childNodes.length === 1) return true;
         var node = container.firstChild, notWhitespace = /\S/;
@@ -2814,9 +2718,9 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             node = node.nextSibling;
         }
         return true;
-    }
-    function Sys$UI$DataView$refresh() {
-        /// <summary locid="M:J#Sys.UI.DataView.refresh" />
+    },
+    refresh: function DataView$refresh() {
+        /// <summary locid="M:J#Sys.UI.DataView.refresh">Forces a refresh of the rendering of the current data. Normally, a refresh occurs automatically when the data changes.</summary>
         if (!this._setData) return;
         var collectionChange = this._changing;
         this._changing = false;
@@ -2934,6 +2838,7 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
                 }
             }
         }
+        
         if (optionsChanged) {
             for (i = 0; i < optionsChanged.length; i++) {
                 Sys.Observer.raiseEvent(optionsChanged[i], "optionsChanged", Sys.EventArgs.Empty);
@@ -2958,10 +2863,11 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             }
         }
         this.raisePropertyChanged("viewData");
+        this.onRendered(renderArgs);
         Sys.Observer.raiseEvent(this, "rendered", renderArgs);
         this._initializeResults();
-    }
-    function Sys$UI$DataView$_swapData(oldData, newData) {
+    },
+    _swapData: function DataView$_swapData(oldData, newData) {
         if (oldData) {
             switch (this._eventType) {
                 case 1:
@@ -2986,8 +2892,8 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
                 this._eventType = 2;
             }
         }
-    }
-    function Sys$UI$DataView$_validateIndexInput(value) {
+    },
+    _validateIndexInput: function DataView$_validateIndexInput(value) {
         var type = typeof(value);
         if (type === "string") {
             value = parseInt(value);
@@ -2999,9 +2905,9 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             throw Error.argument(Sys.UI.TemplatesRes.invalidSelectedIndexValue);
         }
         return value;
-    }
-    function Sys$UI$DataView$dispose() {
-        /// <summary locid="M:J#clearAndShow" />
+    },
+    dispose: function DataView$dispose() {
+        /// <summary locid="M:J#clearAndShow"></summary>
         if (this._placeholders && !Sys.Application.get_isDisposing()) {
             this._clearContainers(this._placeholders);
         }
@@ -3017,20 +2923,20 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         this._contexts = this._parentContext = this._dvTemplate = this._request = this._dataProvider =
         this._wsp = this._wspClass = this._provider = this._data = this._fetchParameters = this._query = null;
         Sys.UI.DataView.callBaseMethod(this, "dispose")
-    }
-    function Sys$UI$DataView$initialize() {
-        /// <summary locid="M:J#clearAndShow" />
+    }, 
+    initialize: function DataView$initialize() {
+        /// <summary locid="M:J#clearAndShow">Called when the component is initialized.</summary>
         Sys.UI.DataView.callBaseMethod(this, "initialize");
         this.refresh();
         this.updated();
-    }
-    function Sys$UI$DataView$fetchData(succeededCallback, failedCallback, mergeOption, userContext) {
-        /// <summary locid="M:J#clearAndShow" />
+    },
+    fetchData: function DataView$fetchData(succeededCallback, failedCallback, mergeOption, userContext) {
+        /// <summary locid="M:J#clearAndShow">Fetches data from the DataContext.</summary>
         /// <param name="succeededCallback" type="Function" mayBeNull="true" optional="true"></param>
         /// <param name="failedCallback" type="Function" mayBeNull="true" optional="true"></param>
         /// <param name="mergeOption" type="Sys.Data.MergeOption" mayBeNull="true" optional="true"></param>
         /// <param name="userContext" mayBeNull="true" optional="true"></param>
-        /// <returns type="Sys.Net.WebRequest"></returns>
+        /// <returns type="Sys.Net.WebRequest">The WebRequest used to perform the operation, if any.</returns>
         this._stale = false;
         var request, _this = this;
         function onSuccess(data) {
@@ -3093,21 +2999,21 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
         this._fetching = true;
         this._raiseChanged("isFetching");
         return request;
-    }
-    function Sys$UI$DataView$onCommand(args) {
-        /// <summary locid="M:J#Sys.UI.DataView.onCommand" />
+    },
+    onCommand: function DataView$onCommand(args) {
+        /// <summary locid="M:J#Sys.UI.DataView.onCommand">Raised when a command is raised.</summary>
         /// <param name="args" type="Sys.CommandEventArgs"></param>
-    }
-    function Sys$UI$DataView$onItemRendering(args) {
-        /// <summary locid="M:J#Sys.UI.DataView.onItemRendering" />
+    },
+    onItemRendering: function DataView$onItemRendering(args) {
+        /// <summary locid="M:J#Sys.UI.DataView.onItemRendering">Called before each item is rendered.</summary>
         /// <param name="args" type="Sys.UI.DataViewItemEventArgs"></param>
-    }
-    function Sys$UI$DataView$onItemRendered(args) {
-        /// <summary locid="M:J#Sys.UI.DataView.onItemRendered" />
+    },
+    onItemRendered: function DataView$onItemRendered(args) {
+        /// <summary locid="M:J#Sys.UI.DataView.onItemRendered">Called after each item is rendered.</summary>
         /// <param name="args" type="Sys.UI.DataViewItemEventArgs"></param>
-    }
-    function Sys$UI$DataView$updated() {
-        /// <summary locid="M:J#Sys.UI.DataView.updated" />
+    },
+    updated: function DataView$updated() {
+        /// <summary locid="M:J#Sys.UI.DataView.updated">Called when beginUpdate and endUpdate are called.</summary>
         if (this._stale && this.get_autoFetch()) {
             this._doAutoFetch();
         }
@@ -3118,117 +3024,11 @@ Sys.UI.DataView = function Sys$UI$DataView(element) {
             this.raisePropertyChanged("");
             this._changed = false;
         }
-    }
-Sys.UI.DataView.prototype = {
-    _autoFetch: false,
-    _fetching: false,
-    _changed: false,
-    _data: null,
-    _dataProvider: null,
-    _wsp: null,
-    _wspClass: null,
-    _dirty: false,
-    _stale: true,
-    _dvTemplate: null,
-    _eventType: 0,
-    _httpVerb: null,
-    _initialSelectedIndex: -1,
-    _fetchParameters: null,
-    _parentContext: null,
-    _placeholder: null,
-    _query: null,
-    _contexts: null,
-    _selectedIndex: -1,
-    _selectedItemClass: null,
-    _template: null,
-    _timeout: 0,
-    _request: null,
-    add_command: Sys$UI$DataView$add_command,
-    remove_command: Sys$UI$DataView$remove_command,
-    add_rendering: Sys$UI$DataView$add_rendering,
-    remove_rendering: Sys$UI$DataView$remove_rendering,
-    add_rendered: Sys$UI$DataView$add_rendered,
-    remove_rendered: Sys$UI$DataView$remove_rendered,
-    add_itemRendered: Sys$UI$DataView$add_itemRendered,
-    remove_itemRendered: Sys$UI$DataView$remove_itemRendered,
-    add_itemRendering: Sys$UI$DataView$add_itemRendering,
-    remove_itemRendering: Sys$UI$DataView$remove_itemRendering,
-    add_fetchFailed: Sys$UI$DataView$add_fetchFailed,
-    remove_fetchFailed: Sys$UI$DataView$remove_fetchFailed,
-    add_fetchSucceeded: Sys$UI$DataView$add_fetchSucceeded,
-    remove_fetchSucceeded: Sys$UI$DataView$remove_fetchSucceeded,
-    get_viewData: Sys$UI$DataView$get_viewData,
-    get_data: Sys$UI$DataView$get_data,
-    set_data: Sys$UI$DataView$set_data,
-    get_dataProvider: Sys$UI$DataView$get_dataProvider,
-    set_dataProvider: Sys$UI$DataView$set_dataProvider,
-    get_autoFetch: Sys$UI$DataView$get_autoFetch,
-    set_autoFetch: Sys$UI$DataView$set_autoFetch,
-    get_isFetching: Sys$UI$DataView$get_isFetching,
-    get_httpVerb: Sys$UI$DataView$get_httpVerb,
-    set_httpVerb: Sys$UI$DataView$set_httpVerb,
-    get_contexts: Sys$UI$DataView$get_contexts,
-    get_fetchParameters: Sys$UI$DataView$get_fetchParameters,
-    set_fetchParameters: Sys$UI$DataView$set_fetchParameters,
-    get_selectedData: Sys$UI$DataView$get_selectedData,
-    get_selectedIndex: Sys$UI$DataView$get_selectedIndex,
-    set_selectedIndex: Sys$UI$DataView$set_selectedIndex,
-    get_initialSelectedIndex: Sys$UI$DataView$get_initialSelectedIndex,
-    set_initialSelectedIndex: Sys$UI$DataView$set_initialSelectedIndex,
-    get_selectedItemClass: Sys$UI$DataView$get_selectedItemClass,
-    set_selectedItemClass: Sys$UI$DataView$set_selectedItemClass,
-    get_timeout: Sys$UI$DataView$get_timeout,
-    set_timeout: Sys$UI$DataView$set_timeout,
-    get_fetchOperation: Sys$UI$DataView$get_fetchOperation,
-    set_fetchOperation: Sys$UI$DataView$set_fetchOperation,    
-    get_itemPlaceholder: Sys$UI$DataView$get_itemPlaceholder,
-    set_itemPlaceholder: Sys$UI$DataView$set_itemPlaceholder,
-    get_templateContext: Sys$UI$DataView$get_templateContext,
-    set_templateContext: Sys$UI$DataView$set_templateContext,    
-    get_itemTemplate: Sys$UI$DataView$get_itemTemplate,
-    set_itemTemplate: Sys$UI$DataView$set_itemTemplate,
-    _applySelectedIndex: Sys$UI$DataView$_applySelectedIndex,
-    _addRemoveCssClass: Sys$UI$DataView$_addRemoveCssClass,
-    _collectionChanged: Sys$UI$DataView$_collectionChanged,
-    _elementContains: Sys$UI$DataView$_elementContains,
-    _raiseChanged: Sys$UI$DataView$_raiseChanged,
-    _raiseFailed: Sys$UI$DataView$_raiseFailed,
-    _raiseSelectedData: Sys$UI$DataView$_raiseSelectedData,
-    _raiseSucceeded: Sys$UI$DataView$_raiseSucceeded,
-    _ensureTemplate: Sys$UI$DataView$_ensureTemplate,
-    _getTemplate: Sys$UI$DataView$_getTemplate,
-    _loadData: Sys$UI$DataView$_loadData,
-    _resetSelectedIndex: Sys$UI$DataView$_resetSelectedIndex,
-    _initializeResults: Sys$UI$DataView$_initializeResults,    
-    _isActive: Sys$UI$DataView$_isActive,
-    _raiseCommand: Sys$UI$DataView$_raiseCommand,
-    _raiseItem: Sys$UI$DataView$_raiseItem,
-    abortFetch: Sys$UI$DataView$abortFetch,    
-    onBubbleEvent: Sys$UI$DataView$onBubbleEvent,
-    onRendering: Sys$UI$DataView$onRendering,
-    onFetchFailed: Sys$UI$DataView$onFetchFailed,
-    onFetchSucceeded: Sys$UI$DataView$onFetchSucceeded,
-    _doAutoFetch: Sys$UI$DataView$_doAutoFetch,
-    _findContextIndex: Sys$UI$DataView$_findContextIndex,
-    findContext: Sys$UI$DataView$findContext,
-    _clearContainer: Sys$UI$DataView$_clearContainer,
-    _clearContainers: Sys$UI$DataView$_clearContainers,
-    _isAlone: Sys$UI$DataView$_isAlone,
-    refresh: Sys$UI$DataView$refresh,
-    _swapData: Sys$UI$DataView$_swapData,
-    _validateIndexInput: Sys$UI$DataView$_validateIndexInput,
-    dispose: Sys$UI$DataView$dispose, 
-    initialize: Sys$UI$DataView$initialize,
-    fetchData: Sys$UI$DataView$fetchData,
-    onCommand: Sys$UI$DataView$onCommand,
-    onItemRendering: Sys$UI$DataView$onItemRendering,
-    onItemRendered: Sys$UI$DataView$onItemRendered,
-    updated: Sys$UI$DataView$updated    
+    }    
 }
-Sys.UI.DataView.registerClass("Sys.UI.DataView", Sys.UI.Control, Sys.UI.ITemplateContextConsumer);
-Sys.registerComponent(Sys.UI.DataView);
-
-Sys.UI.DataView._fetchWSP = function Sys$UI$DataView$_fetchWSP(dataContext, uri, operation, parameters, httpVerb, succeededCallback, failedCallback, timeout, context) {
+$type.registerClass("Sys.UI.DataView", Sys.UI.Control, Sys.UI.ITemplateContextConsumer);
+Sys.registerComponent($type);
+$type._fetchWSP = function DataView$_fetchWSP(dataContext, uri, operation, parameters, httpVerb, succeededCallback, failedCallback, timeout, context) {
     if (!uri) {
         throw Error.invalidOperation(Sys.UI.TemplatesRes.requiredUri);
     }
@@ -3237,46 +3037,39 @@ Sys.UI.DataView._fetchWSP = function Sys$UI$DataView$_fetchWSP(dataContext, uri,
         httpVerb === "GET", parameters, succeededCallback,
         failedCallback, context, timeout);
 }
-Sys.UI.DataViewItemEventArgs = function Sys$UI$DataViewItemEventArgs(dataItem, itemContext) {
-    /// <summary locid="M:J#Sys.UI.DataViewItemEventArgs.#ctor" />
+$type = Sys.UI.DataViewItemEventArgs = function DataViewItemEventArgs(dataItem, itemContext) {
+    /// <summary locid="M:J#Sys.UI.DataViewItemEventArgs.#ctor"></summary>
     /// <param name="dataItem"></param>
     /// <param name="itemContext" type="Sys.UI.TemplateContext" mayBeNull="true" optional="true"></param>
     Sys.UI.DataViewItemEventArgs.initializeBase(this);
     this._ctx = itemContext;
     this._data = dataItem || null;
 }
-
-    function Sys$UI$DataViewItemEventArgs$get_dataItem() {
-        /// <value locid="P:J#Sys.UI.DataViewItemEventArgs.dataItem"></value>
+$type.prototype = {
+    get_dataItem: function DataViewItemEventArgs$get_dataItem() {
+        /// <value locid="P:J#Sys.UI.DataViewItemEventArgs.dataItem">The data item assocated with the event.</value>
         return this._data;
-    }
-    function Sys$UI$DataViewItemEventArgs$get_itemContext() {
-        /// <value type="Sys.UI.TemplateContext" locid="P:J#Sys.UI.DataViewItemEventArgs.itemContext"></value>
+    },
+    get_itemContext: function DataViewItemEventArgs$get_itemContext() {
+        /// <value type="Sys.UI.TemplateContext" locid="P:J#Sys.UI.DataViewItemEventArgs.itemContext">The template context created for the data item.</value>
         return this._ctx || null;
-    }
-    function Sys$UI$DataViewItemEventArgs$get_itemPlaceholder() {
-        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataViewItemEventArgs.itemPlaceholder"></value>
+    },
+    get_itemPlaceholder: function DataViewItemEventArgs$get_itemPlaceholder() {
+        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataViewItemEventArgs.itemPlaceholder">The DOM element or DOM element id next to which the DataView renders the item template.</value>
         return this._placeholder || null;
-    }
-    function Sys$UI$DataViewItemEventArgs$set_itemPlaceholder(value) {
+    },
+    set_itemPlaceholder: function DataViewItemEventArgs$set_itemPlaceholder(value) {
         this._placeholder = value;
-    }
-    function Sys$UI$DataViewItemEventArgs$get_itemTemplate() {
-        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataViewItemEventArgs.itemTemplate"></value>
+    },
+    get_itemTemplate: function DataViewItemEventArgs$get_itemTemplate() {
+        /// <value mayBeNull="true" locid="P:J#Sys.UI.DataViewItemEventArgs.itemTemplate">The template used to render this item.</value>
         return this._itemTemplate || null;
-    }
-    function Sys$UI$DataViewItemEventArgs$set_itemTemplate(value) {
+    },
+    set_itemTemplate: function DataViewItemEventArgs$set_itemTemplate(value) {
         this._itemTemplate = value;
     }
-Sys.UI.DataViewItemEventArgs.prototype = {
-    get_dataItem: Sys$UI$DataViewItemEventArgs$get_dataItem,
-    get_itemContext: Sys$UI$DataViewItemEventArgs$get_itemContext,
-    get_itemPlaceholder: Sys$UI$DataViewItemEventArgs$get_itemPlaceholder,
-    set_itemPlaceholder: Sys$UI$DataViewItemEventArgs$set_itemPlaceholder,
-    get_itemTemplate: Sys$UI$DataViewItemEventArgs$get_itemTemplate,
-    set_itemTemplate: Sys$UI$DataViewItemEventArgs$set_itemTemplate
 }
-Sys.UI.DataViewItemEventArgs.registerClass("Sys.UI.DataViewItemEventArgs", Sys.EventArgs);
+$type.registerClass("Sys.UI.DataViewItemEventArgs", Sys.EventArgs);
 }
 
 if (window.Sys && Sys.loader) {
@@ -3288,25 +3081,24 @@ else {
 
 })();
 
-Type.registerNamespace('Sys.UI');
-
-Sys.UI.TemplatesRes={
-'commonNotAfterInit':'{0} \'{1}\' cannot be set after initialize.',
-'unresolvedReference':'Sys.Binding could not find an element or component with the selector \"{0}\".',
-'stringOrBoolean':'Value must be the string \"true\", \"false\", or a Boolean.',
-'elementNotFound':'An element with id \'{0}\' could not be found.',
-'updateBeforeInit':'Update cannot be called before initialize.',
-'invalidAttributeName':'Invalid attribute name \'{0}\'. Declared attribute names must be in lowercase.',
-'invalidFunctionName':'\'{0}\' must be of type Function or the name of a function as a String.',
-'invalidDataProviderType':'Value must be a service URI, an instance of Sys.Net.WebServiceProxy, or class that implements Sys.Data.IDataProvider.',
-'requiredUri':'A serviceUri must be set prior to calling fetchData.',
-'invalidAttach':'Invalid attribute \'{0}\', the type \'{1}\' is not a registered namespace.',
-'cannotActivate':'Could not activate element with id \'{0}\', the element could not be found.',
-'misplacedTemplate':'DataView item template must not be a child element of the DataView.',
-'functionNotFound':'A function with the name \'{0}\' could not be found.',
-'bindingPropertyNotSet':'Binding \'{0}\' must be set prior to initialize.',
-'invalidSelectedIndexValue':'Value must be a Number or a String that can be converted to a Number.',
-'mustSetInputElementsExplicitly':'Input elements \'type\' and \'name\' attributes must be explicitly set.',
-'invalidTypeNamespace':'Invalid type namespace declaration, \'{0}\' is not a valid type.',
-'cannotFindMarkupExtension':'A markup extension with the name \'{0}\' could not be found.'
+Type.registerNamespace("Sys.UI");
+Sys.UI.TemplatesRes = {
+"cannotFindMarkupExtension": "A markup extension with the name \u0027{0}\u0027 could not be found.",
+"bindingPropertyNotSet": "Binding \u0027{0}\u0027 must be set prior to initialize.",
+"cannotActivate": "Could not activate element with id \u0027{0}\u0027, the element could not be found.",
+"commonNotAfterInit": "{0} \u0027{1}\u0027 cannot be set after initialize.",
+"elementNotFound": "An element with id \u0027{0}\u0027 could not be found.",
+"functionNotFound": "A function with the name \u0027{0}\u0027 could not be found.",
+"invalidAttach": "Invalid attribute \u0027{0}\u0027, the type \u0027{1}\u0027 is not a registered namespace.",
+"invalidAttributeName": "Invalid attribute name \u0027{0}\u0027. Declared attribute names must be in lowercase.",
+"invalidDataProviderType": "Value must be a service URI, an instance of Sys.Net.WebServiceProxy, or class that implements Sys.Data.IDataProvider.",
+"invalidFunctionName": "\u0027{0}\u0027 must be of type Function or the name of a function as a String.",
+"invalidSelectedIndexValue": "Value must be a Number or a String that can be converted to a Number.",
+"invalidTypeNamespace": "Invalid type namespace declaration, \u0027{0}\u0027 is not a valid type.",
+"misplacedTemplate": "DataView item template must not be a child element of the DataView.",
+"mustSetInputElementsExplicitly": "Input elements \u0027type\u0027 and \u0027name\u0027 attributes must be explicitly set.",
+"requiredUri": "A serviceUri must be set prior to calling fetchData.",
+"stringOrBoolean": "Value must be the string \"true\", \"false\", or a Boolean.",
+"unresolvedReference": "Sys.Binding could not find an element or component with the selector \"{0}\".",
+"updateBeforeInit": "Update cannot be called before initialize."
 };

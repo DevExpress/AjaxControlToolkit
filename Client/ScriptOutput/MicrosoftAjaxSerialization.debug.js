@@ -1,8 +1,4 @@
-﻿// Name:        MicrosoftAjaxSerialization.debug.js
-// Assembly:    System.Web.Ajax
-// Version:     3.0.31106.0
-// FileVersion: 3.0.31106.0
-/// <reference name="MicrosoftAjaxCore.js" />
+//!/ <reference name="MicrosoftAjaxCore.js" />
 
 (function() {
 
@@ -10,19 +6,19 @@ function execute() {
 
 Type._registerScript("MicrosoftAjaxSerialization.js", ["MicrosoftAjaxCore.js"]);
 
-var isBrowser = Sys._isBrowser,
+var $type, $prototype,
+    isBrowser = Sys._isBrowser,
 	merge = Sys._merge;
 
 Type.registerNamespace('Sys.Serialization');
 
-Sys.Serialization.JavaScriptSerializer = function Sys$Serialization$JavaScriptSerializer() {
-    /// <summary locid="M:J#Sys.Serialization.JavaScriptSerializer.#ctor" />
+$type = Sys.Serialization.JavaScriptSerializer = function Serialization$JavaScriptSerializer() {
+    /// <summary locid="M:J#Sys.Serialization.JavaScriptSerializer.#ctor">Provides serialization from JavaScript object to JavaScript object notation.</summary>
     if (arguments.length !== 0) throw Error.parameterCount();
 }
-Sys.Serialization.JavaScriptSerializer.registerClass('Sys.Serialization.JavaScriptSerializer');
+$type.registerClass('Sys.Serialization.JavaScriptSerializer');
 
-merge(Sys.Serialization.JavaScriptSerializer, {
-_esc: {
+$type._esc = {
     charsRegExs: { '"': /\"/g, '\\': /\\/g }, /*"*/
     chars: ['\\', '"'],
     dateRegEx: /(^|[^\\])\"\\\/Date\((-?[0-9]+)(?:[a-zA-Z]|(?:\+|-)[0-9]{4})?\)\\\/\"/g, /* " */
@@ -31,8 +27,8 @@ _esc: {
     escapeRegEx: /[\"\\\x00-\x1F]/i,
     jsonRegEx: /[^,:{}\[\]0-9.\-+Eaeflnr-u \n\r\t]/g,
     jsonStringRegEx: /\"(\\.|[^\"\\])*\"/g /*"*/
-},
-_init: function() {
+};
+$type._init = function() {
     var esc = this._esc,
         toEsc = esc.chars,
         toEscRE = esc.charsRegExs,
@@ -44,18 +40,14 @@ _init: function() {
         escChars[c] = escChars[c] || ("\\u" + ("000" + i.toString(16)).slice(-4));
     }
     this._load = true;
-},
-_serializeNumberWithBuilder: function(object, stringBuilder) {
+}
+$type._serializeNumberWithBuilder = function(object, stringBuilder) {
     if (!isFinite(object)) {
         throw Error.invalidOperation(Sys.Res.cannotSerializeNonFiniteNumbers);
     }
     stringBuilder.append(String(object));
-},
-
-
-
-
-_serializeStringWithBuilder: function(string, stringBuilder) {
+}
+$type._serializeStringWithBuilder = function(string, stringBuilder) {
     stringBuilder.append('"');
     var esc = this._esc;
     if (esc.escapeRegEx.test(string)) {
@@ -79,8 +71,8 @@ _serializeStringWithBuilder: function(string, stringBuilder) {
        }
     }
     stringBuilder.append(string).append('"');
-},
-_serializeWithBuilder: function(object, stringBuilder, sort, prevObjects) {
+}
+$type._serializeWithBuilder = function(object, stringBuilder, sort, prevObjects) {
     var i;
     switch (typeof object) {
     case 'object':
@@ -95,6 +87,7 @@ _serializeWithBuilder: function(object, stringBuilder, sort, prevObjects) {
             }
             try {
                 prevObjects.push(object);
+                
                 if (Number.isInstanceOfType(object)) {
                     this._serializeNumberWithBuilder(object, stringBuilder);
                 }
@@ -104,8 +97,10 @@ _serializeWithBuilder: function(object, stringBuilder, sort, prevObjects) {
                 else if (String.isInstanceOfType(object)) {
                     this._serializeStringWithBuilder(object, stringBuilder);
                 }
+            
                 else if (object instanceof Array) {
                     stringBuilder.append('[');
+                   
                     for (i = 0; i < object.length; ++i) {
                         if (i) {
                             stringBuilder.append(',');
@@ -138,6 +133,7 @@ _serializeWithBuilder: function(object, stringBuilder, sort, prevObjects) {
                     if (sort) properties.sort();
 
                     stringBuilder.append('{');
+                     
                     var needComma;
                     for (i=0; i < propertyCount; i++) {
                         var prop = properties[i], value = object[prop],
@@ -181,12 +177,11 @@ _serializeWithBuilder: function(object, stringBuilder, sort, prevObjects) {
         break;
     }
 }
-});
 
-Sys.Serialization.JavaScriptSerializer.serialize = function Sys$Serialization$JavaScriptSerializer$serialize(object) {
-    /// <summary locid="M:J#Sys.Serialization.JavaScriptSerializer.serialize" />
-    /// <param name="object" mayBeNull="true"></param>
-    /// <returns type="String"></returns>
+$type.serialize = function JavaScriptSerializer$serialize(object) {
+    /// <summary locid="M:J#Sys.Serialization.JavaScriptSerializer.serialize">Generates a JSON string from an object.</summary>
+    /// <param name="object" mayBeNull="true">The object to serialize.</param>
+    /// <returns type="String">The JSON string representation of the object.</returns>
     var e = Function._validateParams(arguments, [
         {name: "object", mayBeNull: true}
     ]);
@@ -196,11 +191,11 @@ Sys.Serialization.JavaScriptSerializer.serialize = function Sys$Serialization$Ja
     return stringBuilder.toString();
 }
 
-Sys.Serialization.JavaScriptSerializer.deserialize = function Sys$Serialization$JavaScriptSerializer$deserialize(data, secure) {
-    /// <summary locid="M:J#Sys.Serialization.JavaScriptSerializer.deserialize" />
-    /// <param name="data" type="String"></param>
-    /// <param name="secure" type="Boolean" optional="true" mayBeNull="true"></param>
-    /// <returns></returns>
+$type.deserialize = function JavaScriptSerializer$deserialize(data, secure) {
+    /// <summary locid="M:J#Sys.Serialization.JavaScriptSerializer.deserialize">Deserializes a JSON string.</summary>
+    /// <param name="data" type="String">The JSON string to eval.</param>
+    /// <param name="secure" type="Boolean" optional="true" mayBeNull="true">True if the method should perform JSON conformance checks before evaluating. False by default.</param>
+    /// <returns>The results of eval applied to data.</returns>
     var e = Function._validateParams(arguments, [
         {name: "data", type: String},
         {name: "secure", type: Boolean, mayBeNull: true, optional: true}
@@ -210,6 +205,7 @@ Sys.Serialization.JavaScriptSerializer.deserialize = function Sys$Serialization$
     var er, esc = Sys.Serialization.JavaScriptSerializer._esc;
     try {    
         var exp = data.replace(esc.dateRegEx, "$1new Date($2)");
+        
         if (secure && esc.jsonRegEx.test(exp.replace(esc.jsonStringRegEx, ''))) throw null;
 
         return window.eval('(' + exp + ')');
@@ -229,4 +225,3 @@ else {
 }
 
 })();
-

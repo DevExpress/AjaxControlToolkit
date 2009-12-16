@@ -1,12 +1,9 @@
-﻿// Name:        MicrosoftAjaxTimer.debug.js
-// Assembly:    System.Web.Ajax
-// Version:     3.0.31106.0
-// FileVersion: 3.0.31106.0
 (function() {
 
 function execute() {
 Type._registerScript("Timer.js", ["MicrosoftAjaxComponentModel.js"]);
-Sys.UI._Timer = function Sys$UI$_Timer(element) {
+var $type, $prototype;
+$type = Sys.UI._Timer = function _Timer(element) {
     Sys.UI._Timer.initializeBase(this,[element]);
     this._interval = 60000;
     this._enabled = true;
@@ -17,58 +14,60 @@ Sys.UI._Timer = function Sys$UI$_Timer(element) {
     this._pageRequestManager = null;
     this._uniqueID = null;
 }
-
-    function Sys$UI$_Timer$get_enabled() {
+$type.prototype = {
+    get_enabled: function _Timer$get_enabled() {
         /// <value type="Boolean" locid="P:J#Sys.UI._Timer.enabled"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._enabled;
-    }
-    function Sys$UI$_Timer$set_enabled(value) {
+    },
+    set_enabled: function _Timer$set_enabled(value) {
         var e = Function._validateParams(arguments, [{name: "value", type: Boolean}]);
         if (e) throw e;
         this._enabled = value;
-    }
-    function Sys$UI$_Timer$get_interval() {
+    },
+    get_interval: function _Timer$get_interval() {
         /// <value type="Number" locid="P:J#Sys.UI._Timer.interval"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._interval;
-    }
-    function Sys$UI$_Timer$set_interval(value) {
+    },
+    set_interval: function _Timer$set_interval(value) {
         var e = Function._validateParams(arguments, [{name: "value", type: Number}]);
         if (e) throw e;
         this._interval = value;
-    }
-    function Sys$UI$_Timer$get_uniqueID(){
+    },
+    get_uniqueID: function _Timer$get_uniqueID(){
         /// <value type="String" locid="P:J#Sys.UI._Timer.uniqueID"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._uniqueID;
-    }
-    function Sys$UI$_Timer$set_uniqueID(value){
+    },
+    set_uniqueID: function _Timer$set_uniqueID(value){
         var e = Function._validateParams(arguments, [{name: "value", type: String}]);
         if (e) throw e;
         this._uniqueID = value;
-    }
-    function Sys$UI$_Timer$dispose(){
+    },
+    dispose: function _Timer$dispose(){
        this._stopTimer();
        if(this._pageRequestManager !== null){
            this._pageRequestManager.remove_endRequest(this._endRequestHandlerDelegate);
        }
        Sys.UI._Timer.callBaseMethod(this,"dispose");
-    }
-    function Sys$UI$_Timer$_doPostback(){
+    },
+    _doPostback: function _Timer$_doPostback(){
         __doPostBack(this.get_uniqueID(),'');
-    }
-    function Sys$UI$_Timer$_handleEndRequest(sender, arg){
+    },
+    _handleEndRequest: function _Timer$_handleEndRequest(sender, arg){
         var dataItem = arg.get_dataItems()[this.get_id()];
 	    if (dataItem){
             this._update(dataItem[0],dataItem[1]);
 	  	}
+	  
 	    if ((this._postbackPending === true) && (this._pageRequestManager !== null)&&(this._pageRequestManager.get_isInAsyncPostBack() === false)){
     	   	this._postbackPending = false;
             this._doPostback();
         }
-    }
-    function Sys$UI$_Timer$initialize(){
+	   
+    },
+    initialize: function _Timer$initialize(){
         Sys.UI._Timer.callBaseMethod(this, 'initialize');
     	this._raiseTickDelegate = Function.createDelegate(this,this._raiseTick);
     	this._endRequestHandlerDelegate = Function.createDelegate(this,this._handleEndRequest);
@@ -81,8 +80,8 @@ Sys.UI._Timer = function Sys$UI$_Timer(element) {
         if(this.get_enabled()) {
             this._startTimer();
         }
-    }
-    function Sys$UI$_Timer$_raiseTick() {
+    },
+    _raiseTick: function _Timer$_raiseTick() {
         this._startTimer();
         if ((this._pageRequestManager === null) || (!this._pageRequestManager.get_isInAsyncPostBack())){
             this._doPostback();
@@ -91,17 +90,17 @@ Sys.UI._Timer = function Sys$UI$_Timer(element) {
         else {
             this._postbackPending = true;
         }
-    }
-    function Sys$UI$_Timer$_startTimer(){
+    },
+    _startTimer: function _Timer$_startTimer(){
         this._timer = window.setTimeout(Function.createDelegate(this,this._raiseTick),this.get_interval());
-    }
-    function Sys$UI$_Timer$_stopTimer(){
+    },
+    _stopTimer: function _Timer$_stopTimer(){
 	    if (this._timer !== null){
 	 	    window.clearTimeout(this._timer);
 		    this._timer = null;
        } 	
-    }
-    function Sys$UI$_Timer$_update(enabled,interval) {
+    },
+    _update: function _Timer$_update(enabled,interval) {
         var stopped = !this.get_enabled();
         var intervalChanged= (this.get_interval() !== interval);
 	    if ((!stopped) && ((!enabled)||(intervalChanged))){
@@ -114,23 +113,8 @@ Sys.UI._Timer = function Sys$UI$_Timer(element) {
     	    this._startTimer();
     	}
     }
-Sys.UI._Timer.prototype = {
-    get_enabled: Sys$UI$_Timer$get_enabled,
-    set_enabled: Sys$UI$_Timer$set_enabled,
-    get_interval: Sys$UI$_Timer$get_interval,
-    set_interval: Sys$UI$_Timer$set_interval,
-    get_uniqueID: Sys$UI$_Timer$get_uniqueID,
-    set_uniqueID: Sys$UI$_Timer$set_uniqueID,
-    dispose: Sys$UI$_Timer$dispose,
-    _doPostback: Sys$UI$_Timer$_doPostback,
-    _handleEndRequest: Sys$UI$_Timer$_handleEndRequest,
-    initialize: Sys$UI$_Timer$initialize,
-    _raiseTick: Sys$UI$_Timer$_raiseTick,
-    _startTimer: Sys$UI$_Timer$_startTimer,
-    _stopTimer: Sys$UI$_Timer$_stopTimer,
-    _update: Sys$UI$_Timer$_update
 }
-Sys.UI._Timer.registerClass('Sys.UI._Timer', Sys.UI.Control);
+$type.registerClass('Sys.UI._Timer', Sys.UI.Control);
 }
 
 if (window.Sys && Sys.loader) {
@@ -141,9 +125,3 @@ else {
 }
 
 })();
-
-
-
-
-
-

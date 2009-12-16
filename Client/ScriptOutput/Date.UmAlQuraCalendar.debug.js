@@ -1,7 +1,3 @@
-﻿// Name:        Date.UmAlQuraCalendar.debug.js
-// Assembly:    System.Web.Ajax
-// Version:     3.0.31106.0
-// FileVersion: 3.0.31106.0
 (function() {
 
 function execute() {
@@ -172,7 +168,7 @@ __cultureInfo.dateTimeFormat.Calendar.convert = {
         var info = this._yearInfo[hyear],
             days = Math.floor((ticks - info[1]) / 86400000),
             monthLength = info[0];
-        hyear += 1318; 
+        hyear += 1318; // the Nth array entry corresponds to hijri year 1318+N
         var daysInMonth = 29 + (monthLength & 1);
         while (days >= daysInMonth) {
             days -= daysInMonth;
@@ -193,4 +189,3 @@ else {
 }
 
 })();
-

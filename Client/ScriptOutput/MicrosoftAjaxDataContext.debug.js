@@ -1,19 +1,17 @@
-﻿// Name:        MicrosoftAjaxDataContext.debug.js
-// Assembly:    System.Web.Ajax
-// Version:     3.0.31106.0
-// FileVersion: 3.0.31106.0
-/// <reference name="MicrosoftAjaxCore.js" />
+
+//!/ <reference name="MicrosoftAjaxCore.js" />
 (function() {
 
 function execute() {
 Type._registerScript("MicrosoftAjaxDataContext.js", ["MicrosoftAjaxComponentModel.js", "MicrosoftAjaxCore.js"]);
 
+var $type, $prototype;
 var merge = Sys._merge;
 
 Type.registerNamespace("Sys.Net");
 
-Sys.Net.WebServiceOperation = function Sys$Net$WebServiceOperation(operation, parameters, httpVerb) {
-    /// <summary locid="M:J#Sys.Net.WebServiceOperation.#ctor" />
+$type = Sys.Net.WebServiceOperation = function WebServiceOperation(operation, parameters, httpVerb) {
+    /// <summary locid="M:J#Sys.Net.WebServiceOperation.#ctor">Defines a seb service operation.</summary>
     /// <param name="operation"></param>
     /// <param name="parameters" type="Object" mayBeNull="true" optional="true"></param>
     /// <param name="httpVerb" type="String" mayBeNull="true" optional="true"></param>
@@ -27,29 +25,25 @@ Sys.Net.WebServiceOperation = function Sys$Net$WebServiceOperation(operation, pa
     this.parameters = parameters || null;
     this.httpVerb = httpVerb || null;
 }
-
-
-
-
-Sys.Net.WebServiceOperation.prototype = {
+$type.prototype = {
     operation: null,
     parameters: null,
     httpVerb: null
 }
-Sys.Net.WebServiceOperation.registerClass("Sys.Net.WebServiceOperation");
+$type.registerClass("Sys.Net.WebServiceOperation");
 
 
 Type.registerNamespace("Sys.Data");
 
 if (!Sys.Data.IDataProvider) {
-Sys.Data.IDataProvider = function Sys$Data$IDataProvider() {
+$type = Sys.Data.IDataProvider = function Data$IDataProvider() {
 }
-
-    function Sys$Data$IDataProvider$fetchData(operation, parameters, mergeOption, httpVerb, succeededCallback, failedCallback, timeout, userContext) {
-        /// <summary locid="M:J#Sys.Data.IDataProvider.fetchData" />
-        /// <param name="operation"></param>
+$type.prototype = {
+    fetchData: function IDataProvider$fetchData(operation, parameters, mergeOption, httpVerb, succeededCallback, failedCallback, timeout, userContext) {
+        /// <summary locid="M:J#Sys.Data.IDataProvider.fetchData">Fetches data from the service.</summary>
+        /// <param name="operation">The operation to fetch data with.</param>
         /// <param name="parameters" type="Object" mayBeNull="true" optional="true"></param>
-        /// <param name="mergeOption" type="Sys.Data.MergeOption" mayBeNull="true" optional="true"></param>
+        /// <param name="mergeOption" type="Sys.Data.MergeOption" mayBeNull="true" optional="true">Determines how the returned data is tracked if the DataProvider supports it.</param>
         /// <param name="httpVerb" type="String" mayBeNull="true" optional="true"></param>
         /// <param name="succeededCallback" type="Function" mayBeNull="true" optional="true"></param>
         /// <param name="failedCallback" type="Function" mayBeNull="true" optional="true"></param>
@@ -58,186 +52,177 @@ Sys.Data.IDataProvider = function Sys$Data$IDataProvider() {
         /// <returns type="Sys.Net.WebRequest"></returns>
         throw Error.notImplemented();
     }
-Sys.Data.IDataProvider.prototype = {
-    fetchData: Sys$Data$IDataProvider$fetchData
 }
-Sys.Data.IDataProvider.registerInterface("Sys.Data.IDataProvider");
+$type.registerInterface("Sys.Data.IDataProvider");
 }
 if (!Sys.Data.MergeOption) {
-Sys.Data.MergeOption = function Sys$Data$MergeOption() {
-    /// <summary locid="M:J#Sys.Data.MergeOption.#ctor" />
+$type = Sys.Data.MergeOption = function Data$MergeOption() {
+    /// <summary locid="M:J#Sys.Data.MergeOption.#ctor">Describes how an item has changed.</summary>
     /// <field name="appendOnly" type="Number" integer="true" static="true" locid="F:J#Sys.Data.MergeOption.appendOnly"></field>
     /// <field name="overwriteChanges" type="Number" integer="true" static="true" locid="F:J#Sys.Data.MergeOption.overwriteChanges"></field>
     throw Error.notImplemented();
 }
-
-
-
-
-Sys.Data.MergeOption.prototype = {
+$type.prototype = {
     appendOnly: 0,
     overwriteChanges: 1
 }
-Sys.Data.MergeOption.registerEnum("Sys.Data.MergeOption");
+$type.registerEnum("Sys.Data.MergeOption");
 
 }
-Sys.Data.DataContext = function Sys$Data$DataContext() {
+$type = Sys.Data.DataContext = function Data$DataContext() {
     Sys.Data.DataContext.initializeBase(this);
     this._dataChangedDel = Function.createDelegate(this, this._dataChanged);
     this._items = {};
     this._methods = {};
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    function Sys$Data$DataContext$get_changes() {
-        /// <value type="Array" elementType="Sys.Data.ChangeOperation" locid="P:J#Sys.Data.DataContext.changes"></value>
+$type.prototype = {
+    _useIdentity: false,
+    _dirty: false,
+    _lastResults: null,
+    _items: null,
+    _ignoreChange: false,
+    _inserts: null,
+    _edits: null,
+    _deletes: null,
+    _changelist: null,
+    _hasChanges: false,
+    _mergeOption: Sys.Data.MergeOption.overwriteChanges,
+    _saverequest: null,
+    _saving: false,
+    _serviceUri: null,
+    _saveOperation: null,
+    _saveParameters: null,
+    _saveHttpVerb: null,
+    _saveTimeout: 0,
+    _methods: null,
+    get_changes: function DataContext$get_changes() {
+        /// <value type="Array" elementType="Sys.Data.ChangeOperation" locid="P:J#Sys.Data.DataContext.changes">Gets the current list of changes.</value>
         var changes = this._changelist;
         if (!changes) {
             this._changelist = changes = [];
         }
         return changes;
-    }
-    function Sys$Data$DataContext$get_createEntityMethod() {
+    },
+    get_createEntityMethod: function DataContext$get_createEntityMethod() {
         /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.createEntityMethod"></value>
         return this._methods.createEntity || null;
-    }
-    function Sys$Data$DataContext$set_createEntityMethod(value) {
+    },
+    set_createEntityMethod: function DataContext$set_createEntityMethod(value) {
         this._methods.createEntity = value;
-    }
-    function Sys$Data$DataContext$get_getIdentityMethod() {
+    },
+    get_getIdentityMethod: function DataContext$get_getIdentityMethod() {
         /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.getIdentityMethod"></value>
         return this._methods.getIdentity || null;
-    }
-    function Sys$Data$DataContext$set_getIdentityMethod(value) {
+    },
+    set_getIdentityMethod: function DataContext$set_getIdentityMethod(value) {
         if (this.get_isInitialized() && ((this._getIdentityMethod && !value) || (!this._getIdentityMethod && value))) {
             throw Error.invalidOperation(String.format(Sys.Data.DataRes.commonNotAfterInit, "DataContext", "getIdentityMethod"));
         }
         this._methods.getIdentity = value;
         this._useIdentity = !!value;
-    }
-    function Sys$Data$DataContext$get_handleSaveChangesResultsMethod() {
-        /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.handleSaveChangesResultsMethod"></value>
+    },
+    get_handleSaveChangesResultsMethod: function DataContext$get_handleSaveChangesResultsMethod() {
+        /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.handleSaveChangesResultsMethod">The method that is called when a save operation completes.</value>
         return this._methods.handleSaveResults || null;
-    }
-    function Sys$Data$DataContext$set_handleSaveChangesResultsMethod(value) {
+    },
+    set_handleSaveChangesResultsMethod: function DataContext$set_handleSaveChangesResultsMethod(value) {
         this._methods.handleSaveResults = value;
-    }
-    function Sys$Data$DataContext$get_isDeferredPropertyMethod() {
-        /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.isDeferredPropertyMethod"></value>
+    },
+    get_isDeferredPropertyMethod: function DataContext$get_isDeferredPropertyMethod() {
+        /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.isDeferredPropertyMethod">The method that determines if an entity field is currently a deferred entity link placeholder object.</value>
         return this._methods.isDeferredProperty || null;
-    }
-    function Sys$Data$DataContext$set_isDeferredPropertyMethod(value) {
+    },
+    set_isDeferredPropertyMethod: function DataContext$set_isDeferredPropertyMethod(value) {
         this._methods.isDeferredProperty = value;
-    }
-    function Sys$Data$DataContext$get_getNewIdentityMethod() {
-        /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.getNewIdentityMethod"></value>
+    },
+    get_getNewIdentityMethod: function DataContext$get_getNewIdentityMethod() {
+        /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.getNewIdentityMethod">The method that is called when a new identity is created for an inserted entity.</value>
         return this._methods.getNewIdentity || null;
-    }
-    function Sys$Data$DataContext$set_getNewIdentityMethod(value) {
+    },
+    set_getNewIdentityMethod: function DataContext$set_getNewIdentityMethod(value) {
         this._methods.getNewIdentity = value;
-    }
-    function Sys$Data$DataContext$get_getDeferredPropertyFetchOperationMethod() {
-        /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.getDeferredPropertyFetchOperationMethod"></value>
+    },
+    get_getDeferredPropertyFetchOperationMethod: function DataContext$get_getDeferredPropertyFetchOperationMethod() {
+        /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.getDeferredPropertyFetchOperationMethod">The method that determines the operation necessary to fetch a link to another entity or set of entities.</value>
         return this._methods.getDeferredQuery || null;
-    }
-    function Sys$Data$DataContext$set_getDeferredPropertyFetchOperationMethod(value) {
+    },
+    set_getDeferredPropertyFetchOperationMethod: function DataContext$set_getDeferredPropertyFetchOperationMethod(value) {
         this._methods.getDeferredQuery = value;
-    }
-    function Sys$Data$DataContext$get_items() {
-        /// <value type="Object" locid="P:J#Sys.Data.DataContext.items"></value>
+    },
+    get_items: function DataContext$get_items() {
+        /// <value type="Object" locid="P:J#Sys.Data.DataContext.items">A dictionary of entities, keyed by their identities as determined by the getIdentityMethod.</value>
         return this._items;
-    }
-    function Sys$Data$DataContext$get_lastFetchDataResults() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Data.DataContext.lastFetchDataResults"></value>
+    },
+    get_lastFetchDataResults: function DataContext$get_lastFetchDataResults() {
+        /// <value mayBeNull="true" locid="P:J#Sys.Data.DataContext.lastFetchDataResults">The data last fetched successfully.</value>
         return this._lastResults || null;
-    }
-    function Sys$Data$DataContext$get_hasChanges() {
+    },
+    get_hasChanges: function DataContext$get_hasChanges() {
         /// <value type="Boolean" locid="P:J#Sys.Data.DataContext.hasChanges"></value>
         return this._hasChanges;
-    }
-    function Sys$Data$DataContext$get_fetchDataMethod() {
+    },
+    get_fetchDataMethod: function DataContext$get_fetchDataMethod() {
         /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.fetchDataMethod"></value>
         return this._methods.fetchData || null;
-    }
-    function Sys$Data$DataContext$set_fetchDataMethod(value) {
+    },
+    set_fetchDataMethod: function DataContext$set_fetchDataMethod(value) {
         this._methods.fetchData = value;
-    }
-    function Sys$Data$DataContext$get_mergeOption() {
+    },
+    get_mergeOption: function DataContext$get_mergeOption() {
         /// <value type="Sys.Data.MergeOption" locid="P:J#Sys.Data.DataContext.mergeOption"></value>
         return this._mergeOption;
-    }
-    function Sys$Data$DataContext$set_mergeOption(value) {
+    },
+    set_mergeOption: function DataContext$set_mergeOption(value) {
         this._mergeOption = value;
-    }
-    function Sys$Data$DataContext$get_saveChangesMethod() {
+    },
+    get_saveChangesMethod: function DataContext$get_saveChangesMethod() {
         /// <value type="Function" mayBeNull="true" locid="P:J#Sys.Data.DataContext.saveChangesMethod"></value>
         return this._methods.saveChanges || null;
-    }
-    function Sys$Data$DataContext$set_saveChangesMethod(value) {
+    },
+    set_saveChangesMethod: function DataContext$set_saveChangesMethod(value) {
         this._methods.saveChanges = value;
-    }
-    function Sys$Data$DataContext$get_saveOperation() {
+    },
+    get_saveOperation: function DataContext$get_saveOperation() {
         /// <value type="String" mayBeNull="true" locid="P:J#Sys.Data.DataContext.saveOperation"></value>
         return this._saveOperation || "";
-    }
-    function Sys$Data$DataContext$set_saveOperation(value) {
+    },
+    set_saveOperation: function DataContext$set_saveOperation(value) {
         this._saveOperation = value;
-    }
-    function Sys$Data$DataContext$get_saveHttpVerb() {
+    },
+    get_saveHttpVerb: function DataContext$get_saveHttpVerb() {
         /// <value type="String" locid="P:J#Sys.Data.DataContext.saveHttpVerb"></value>
         return this._saveHttpVerb || "POST";
-    }
-    function Sys$Data$DataContext$set_saveHttpVerb(value) {
+    },
+    set_saveHttpVerb: function DataContext$set_saveHttpVerb(value) {
         this._saveHttpVerb = value;
-    }
-    function Sys$Data$DataContext$get_saveParameters() {
-        /// <value type="Object" mayBeNull="true" locid="P:J#Sys.Data.DataContext.saveParameters"></value>
+    },
+    get_saveParameters: function DataContext$get_saveParameters() {
+        /// <value type="Object" mayBeNull="true" locid="P:J#Sys.Data.DataContext.saveParameters">A dictionary of parameters use when saving changes.</value>
         return this._saveParameters;
-    }
-    function Sys$Data$DataContext$set_saveParameters(value) {
+    },
+    set_saveParameters: function DataContext$set_saveParameters(value) {
         this._saveParameters = value;
-    }
-    function Sys$Data$DataContext$get_saveChangesTimeout() {
+    },    
+    get_saveChangesTimeout: function DataContext$get_saveChangesTimeout() {
         /// <value type="Number" integer="true" locid="P:J#Sys.Data.DataContext.saveChangesTimeout"></value>
         return this._saveTimeout;
-    }
-    function Sys$Data$DataContext$set_saveChangesTimeout(value) {
+    },
+    set_saveChangesTimeout: function DataContext$set_saveChangesTimeout(value) {
         this._saveTimeout = value;
-    }
-    function Sys$Data$DataContext$get_isSaving() {
+    },        
+    get_isSaving: function DataContext$get_isSaving() {
         /// <value type="Boolean" locid="P:J#Sys.Data.DataContext.isSaving"></value>
         return this._saving;
-    }
-    function Sys$Data$DataContext$get_serviceUri() {
+    },
+    get_serviceUri: function DataContext$get_serviceUri() {
         /// <value type="String" mayBeNull="true" locid="P:J#Sys.Data.DataContext.serviceUri"></value>
         return this._serviceUri || "";
-    }
-    function Sys$Data$DataContext$set_serviceUri(value) {
+    },
+    set_serviceUri: function DataContext$set_serviceUri(value) {
         this._serviceUri = value;
-    }
-    function Sys$Data$DataContext$addLink(sourceEntity, sourcePropertyName, targetEntity) {
-        /// <summary locid="M:J#Sys.Data.DataContext.addLink" />
+    },
+    addLink: function DataContext$addLink(sourceEntity, sourcePropertyName, targetEntity) {
+        /// <summary locid="M:J#Sys.Data.DataContext.addLink"></summary>
         /// <param name="sourceEntity" type="Object"></param>
         /// <param name="sourcePropertyName" type="String"></param>
         /// <param name="targetEntity" type="Object"></param>
@@ -249,23 +234,24 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
                     null, sourceEntity, sourcePropertyName, targetEntity));
             }
         }
-    }
-    function Sys$Data$DataContext$removeLink(sourceEntity, sourcePropertyName, targetEntity) {
-        /// <summary locid="M:J#Sys.Data.DataContext.removeLink" />
+    },
+    removeLink: function DataContext$removeLink(sourceEntity, sourcePropertyName, targetEntity) {
+        /// <summary locid="M:J#Sys.Data.DataContext.removeLink"></summary>
         /// <param name="sourceEntity" type="Object"></param>
         /// <param name="sourcePropertyName" type="String"></param>
         /// <param name="targetEntity" type="Object"></param>
         var toggled = this._toggleLink(sourceEntity, sourcePropertyName, targetEntity),
             valueSet = this._setLinkField(true, sourceEntity, sourcePropertyName, targetEntity, true);
+            
         if (!toggled || (toggled.action !== Sys.Data.ChangeOperationType.insert)) {
             if (valueSet || (toggled && (toggled.action === Sys.Data.ChangeOperationType.remove))) {
                 this._registerChange(new Sys.Data.ChangeOperation(Sys.Data.ChangeOperationType.remove,
                     null, sourceEntity, sourcePropertyName, targetEntity));
             }
         }
-    }
-    function Sys$Data$DataContext$setLink(sourceEntity, sourcePropertyName, targetEntity) {
-        /// <summary locid="M:J#Sys.Data.DataContext.setLink" />
+    },
+    setLink: function DataContext$setLink(sourceEntity, sourcePropertyName, targetEntity) {
+        /// <summary locid="M:J#Sys.Data.DataContext.setLink"></summary>
         /// <param name="sourceEntity" type="Object"></param>
         /// <param name="sourcePropertyName" type="String"></param>
         /// <param name="targetEntity" type="Object" mayBeNull="true"></param>
@@ -273,9 +259,9 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
         this._setLinkField(false, sourceEntity, sourcePropertyName, targetEntity);
         this._registerChange(new Sys.Data.ChangeOperation(Sys.Data.ChangeOperationType.update,
             null, sourceEntity, sourcePropertyName, targetEntity));
-    }
-    function Sys$Data$DataContext$abortSave() {
-        /// <summary locid="M:J#Sys.Data.DataContext.abortSave" />
+    },    
+    abortSave: function DataContext$abortSave() {
+        /// <summary locid="M:J#Sys.Data.DataContext.abortSave">Aborts the current saveChanges request, if any.</summary>
         if (this._saverequest) {
             this._saverequest.get_executor().abort();
             this._saverequest = null;
@@ -284,9 +270,9 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             this._saving = false;
             this.raisePropertyChanged("isSaving");
         }
-    }
-    function Sys$Data$DataContext$clearChanges() {
-        /// <summary locid="M:J#Sys.Data.DataContext.clearChanges" />
+    },
+    clearChanges: function DataContext$clearChanges() {
+        /// <summary locid="M:J#Sys.Data.DataContext.clearChanges">Clears any tracked changes without committing them. Does not revert the changes.</summary>
         this._edits = this._deletes = this._inserts = null;
         if (this._changelist) {
             Sys.Observer.clear(this._changelist);
@@ -295,13 +281,13 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             this._hasChanges = false;
             this.raisePropertyChanged("hasChanges");
         }
-    }
-    function Sys$Data$DataContext$clearData() {
-        /// <summary locid="M:J#Sys.Data.DataContext.clearData" />
+    },
+    clearData: function DataContext$clearData() {
+        /// <summary locid="M:J#Sys.Data.DataContext.clearData">Clears the stored entities and clears tracked changes.</summary>
         this._clearData();
-    }
-    function Sys$Data$DataContext$createEntity(entitySetName) {
-        /// <summary locid="M:J#Sys.Data.DataContext.createEntity" />
+    },
+    createEntity: function DataContext$createEntity(entitySetName) {
+        /// <summary locid="M:J#Sys.Data.DataContext.createEntity">Creates a new disconnected entity.</summary>
         /// <param name="entitySetName" type="String" optional="true" mayBeNull="true"></param>
         /// <returns type="Object"></returns>
         var getter = this.get_createEntityMethod();
@@ -309,9 +295,9 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             throw Error.invalidOperation(String.format(Sys.Data.DataRes.requiredMethodProperty, "createEntityMethod", "createEntity"));
         }
         return getter(this, entitySetName);
-    }
-    function Sys$Data$DataContext$dispose() {
-        /// <summary locid="M:J#Sys.Data.DataContext.dispose" />
+    },
+    dispose: function DataContext$dispose() {
+        /// <summary locid="M:J#Sys.Data.DataContext.dispose">Disposes of the DataContext.</summary>
         if (this._disposed) return;
         this._disposed = true;
         if (this.get_isSaving()) {
@@ -322,23 +308,23 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
         this._saverequest = null;
         this._methods = {};        
         Sys.Data.DataContext.callBaseMethod(this, "dispose");
-    }
-    function Sys$Data$DataContext$initialize() {
-        /// <summary locid="M:J#Sys.Data.DataContext.initialize" />
+    },
+    initialize: function DataContext$initialize() {
+        /// <summary locid="M:J#Sys.Data.DataContext.initialize"></summary>
         this.updated();
         Sys.Data.DataContext.callBaseMethod(this, "initialize");
-    }
-    function Sys$Data$DataContext$fetchDeferredProperty(entity, propertyName, parameters, mergeOption, succeededCallback, failedCallback, timeout, userContext) {
-        /// <summary locid="M:J#Sys.Data.DataContext.fetchDeferredProperty" />
-        /// <param name="entity" type="Object"></param>
-        /// <param name="propertyName" type="String"></param>
+    },
+    fetchDeferredProperty: function DataContext$fetchDeferredProperty(entity, propertyName, parameters, mergeOption, succeededCallback, failedCallback, timeout, userContext) {
+        /// <summary locid="M:J#Sys.Data.DataContext.fetchDeferredProperty">Populates the property of a given item.</summary>
+        /// <param name="entity" type="Object">Entity containing the property to be fetched.</param>
+        /// <param name="propertyName" type="String">Name of the property which should be fetched.</param>
         /// <param name="parameters" type="Object" mayBeNull="true" optional="true"></param>
-        /// <param name="mergeOption" type="Sys.Data.MergeOption" optional="true" mayBeNull="true"></param>
-        /// <param name="succeededCallback" type="Function" mayBeNull="true" optional="true"></param>
-        /// <param name="failedCallback" type="Function" mayBeNull="true" optional="true"></param>
+        /// <param name="mergeOption" type="Sys.Data.MergeOption" optional="true" mayBeNull="true">The merge option for any entities linked on the deferred entity once it is loaded.</param>
+        /// <param name="succeededCallback" type="Function" mayBeNull="true" optional="true">Callback to execute upon successful completion of the operation.</param>
+        /// <param name="failedCallback" type="Function" mayBeNull="true" optional="true">Callback to execute upon unsuccessful completion of the operation.</param>
         /// <param name="timeout" type="Number" integer="true" mayBeNull="true" optional="true"></param>
-        /// <param name="userContext" mayBeNull="true" optional="true"></param>
-        /// <returns type="Sys.Net.WebRequest"></returns>
+        /// <param name="userContext" mayBeNull="true" optional="true">A context object associated with this operation.</param>
+        /// <returns type="Sys.Net.WebRequest">The WebRequest object used for this operation.</returns>
         var getter = this.get_getDeferredPropertyFetchOperationMethod();
         if (!getter) {
             throw Error.invalidOperation(String.format(Sys.Data.DataRes.requiredMethodProperty, "getDeferredPropertyFetchOperationMethod", "fetchDeferredProperty"));
@@ -364,19 +350,19 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             }
             return this.fetchData(query.operation, merge(null, query.parameters, parameters), mergeOption, query.httpVerb || "POST", done, fail, timeout || 0, userContext);
         }
-    }
-    function Sys$Data$DataContext$getNewIdentity(entity, entitySetName) {
-        /// <summary locid="M:J#fail" />
-        /// <param name="entity"></param>
-        /// <param name="entitySetName" type="String" mayBeNull="true"></param>
+    },
+    getNewIdentity: function DataContext$getNewIdentity(entity, entitySetName) {
+        /// <summary locid="M:J#fail">Generates a new identity for a new entity.</summary>
+        /// <param name="entity">The new entity.</param>
+        /// <param name="entitySetName" type="String" mayBeNull="true">The type of the new entity.</param>
         /// <returns mayBeNull="true"></returns>
         var getter = this.get_getNewIdentityMethod();
         return getter ? (getter(this, entity, entitySetName) || null) : null;
-    }
-    function Sys$Data$DataContext$insertEntity(entity, entitySetName) {
-        /// <summary locid="M:J#fail" />
+    },
+    insertEntity: function DataContext$insertEntity(entity, entitySetName) {
+        /// <summary locid="M:J#fail"></summary>
         /// <param name="entity"></param>
-        /// <param name="entitySetName" type="String" optional="true" mayBeNull="true"></param>
+        /// <param name="entitySetName" type="String" optional="true" mayBeNull="true">The type of entity to insert.</param>
         var identity = null;
         if (this._useIdentity) {
             identity = this.getIdentity(entity);
@@ -396,9 +382,9 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
         }
         this._inserts = this._pushChange(this._inserts, entity, identity);
         this._registerChange(new Sys.Data.ChangeOperation(Sys.Data.ChangeOperationType.insert, entity));
-    }
-    function Sys$Data$DataContext$removeEntity(entity) {
-        /// <summary locid="M:J#fail" />
+    },
+    removeEntity: function DataContext$removeEntity(entity) {
+        /// <summary locid="M:J#fail"></summary>
         /// <param name="entity"></param>
         if (this._ignoreChange) return;
         var identity = this.getIdentity(entity);
@@ -438,10 +424,10 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
         if (this._hasChanges !== hadChange) {
             this._raiseChanged("hasChanges");
         }
-    }
-    function Sys$Data$DataContext$fetchData(operation, parameters, mergeOption, httpVerb, succeededCallback, failedCallback, timeout, userContext) {
-        /// <summary locid="M:J#unregister" />
-        /// <param name="operation" mayBeNull="true" optional="true"></param>
+    },
+    fetchData: function DataContext$fetchData(operation, parameters, mergeOption, httpVerb, succeededCallback, failedCallback, timeout, userContext) {
+        /// <summary locid="M:J#unregister">Fetches data from the provided service URI.</summary>
+        /// <param name="operation" mayBeNull="true" optional="true">The operation to fetch data with.</param>
         /// <param name="parameters" type="Object" mayBeNull="true" optional="true"></param>
         /// <param name="mergeOption" type="Sys.Data.MergeOption" mayBeNull="true" optional="true"></param>
         /// <param name="httpVerb" type="String" mayBeNull="true" optional="true"></param>
@@ -484,8 +470,8 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
                        : Sys.Net.WebServiceProxy.invoke(uri, operation, httpVerb ? (httpVerb === "GET") : false, 
                                                         parameters || null, done, fail, userContext, timeout || 0)
                        );
-    }
-    function Sys$Data$DataContext$_clearData(newData) {
+    },
+    _clearData: function DataContext$_clearData(newData) {
         if (this._useIdentity) {
             for (var identity in this._items) {
                 var entity = this._items[identity];
@@ -505,8 +491,8 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
         if (oldData !== null) {
             this._raiseChanged("lastFetchDataResults");
         }
-    }
-    function Sys$Data$DataContext$_fixAfterSave(change, entity, result) {
+    },
+    _fixAfterSave: function DataContext$_fixAfterSave(change, entity, result) {
         if (this._useIdentity) {
             var oldIdentity = this.getIdentity(entity),
                 newIdentity = this.getIdentity(result);
@@ -519,15 +505,15 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
         else {
             this._combine(entity, result);
             if (change.action === Sys.NotifyCollectionChangedAction.add) {
-                this._captureEntity(item);
+                this._captureEntity(entity);
             }
         }
-    }
-    function Sys$Data$DataContext$trackData(data, mergeOption) {
-        /// <summary locid="M:J#fail" />
-        /// <param name="data" mayBeNull="true"></param>
+    },
+    trackData: function DataContext$trackData(data, mergeOption) {
+        /// <summary locid="M:J#fail">Loads the given data into the DataContext as if it were loaded with fetchData().</summary>
+        /// <param name="data" mayBeNull="true">The data to load.</param>
         /// <param name="mergeOption" type="Sys.Data.MergeOption" mayBeNull="true" optional="true"></param>
-        /// <returns mayBeNull="true"></returns>
+        /// <returns mayBeNull="true">The data being tracked. If the mergeOption is appendOnly and there are deleted entities, they will be removed from this list.</returns>
         if (this._useIdentity) {
             if ((typeof(mergeOption) === "undefined") || (mergeOption === null)) {
                 mergeOption = this.get_mergeOption();
@@ -552,8 +538,8 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             this._clearData(data);
         }
         return data;
-    }
-    function Sys$Data$DataContext$_processResults(dataContext, changes, results) {
+    },
+    _processResults: function DataContext$_processResults(dataContext, changes, results) {
         if (results && results.length === changes.length) {
             dataContext._ignoreChange = true;
             try {
@@ -568,8 +554,8 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
                 dataContext._ignoreChange = false;
             }
         }
-    }
-    function Sys$Data$DataContext$_peekChange(changearray, entity, identity, remove) {
+    },
+    _peekChange: function DataContext$_peekChange(changearray, entity, identity, remove) {
         if (!changearray) return false;
         if (identity !== null) {
             var key = "id$" + identity,
@@ -589,28 +575,28 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
                 return Array.contains(changearray, entity);
             }
         }
-    }
-    function Sys$Data$DataContext$_pushChange(changearray, entity, identity) {
+    },
+    _pushChange: function DataContext$_pushChange(changearray, entity, identity) {
         if (!changearray) {
             changearray = [];
         }
         if (identity === null) {
-            changearray[changearray.length] = entity;
+            changearray.push(entity);
         }
         else {
             changearray["id$" + identity] = true;
         }
         return changearray;
-    }
-    function Sys$Data$DataContext$_registerChange(change) {
+    },
+    _registerChange: function DataContext$_registerChange(change) {
         Sys.Observer.add(this.get_changes(), change);
         if (!this._hasChanges) {
             this._hasChanges = true;
             this.raisePropertyChanged("hasChanges");
         }        
-    }
-    function Sys$Data$DataContext$saveChanges(succeededCallback, failedCallback, userContext) {
-        /// <summary locid="M:J#Sys.Data.DataContext.saveChanges" />
+    },
+    saveChanges: function DataContext$saveChanges(succeededCallback, failedCallback, userContext) {
+        /// <summary locid="M:J#Sys.Data.DataContext.saveChanges">Saves pending changes made to the current data.</summary>
         /// <param name="succeededCallback" type="Function" mayBeNull="true" optional="true"></param>
         /// <param name="failedCallback" type="Function" mayBeNull="true" optional="true"></param>
         /// <param name="userContext" mayBeNull="true" optional="true"></param>
@@ -668,12 +654,13 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
         }
         this._saving = true;
         this._raiseChanged("isSaving");
+        
         var filteredChanges = this._filterLinks(changes);
         this._saverequest = (this.get_saveChangesMethod() || this._saveInternal)(this, filteredChanges, done, failed, userContext);
         delay = true;
         return this._saverequest;
-    }
-    function Sys$Data$DataContext$_isDeleted(entity) {
+    },
+    _isDeleted: function DataContext$_isDeleted(entity) {
         var i, l, change, changes = this.get_changes(), identity = this.getIdentity(entity);
         for (i = 0, l = changes.length; i < l; i++) {
             change = changes[i];
@@ -683,13 +670,13 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             }
         }
         return false;
-    }
-    function Sys$Data$DataContext$_removeChanges(entity, linkField, addsOnly) {
+    },
+    _removeChanges: function DataContext$_removeChanges(entity, linkField, addsOnly) {
         var i, l, toRemove, change, changes = this.get_changes(),
             anyField = (linkField === "*");
         for (i = 0, l = changes.length; i < l; i++) {
             change = changes[i];
-            if (
+            if (// doing links and the entity is the source, and the linkField is correct
                 (linkField && (!addsOnly || change.action === Sys.Data.ChangeOperationType.insert) && (change.linkSource === entity || (anyField && (change.linkTarget === entity))) && (anyField || (change.linkSourceField === linkField))) ||
                 (!linkField && change.item && (typeof(change.item) === "object") &&
                     ((change.item === entity) || (this.getIdentity(change.item) === this.getIdentity(entity))))) {
@@ -708,8 +695,8 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
                 this.raisePropertyChanged("hasChanges");
             }
         }
-    }
-    function Sys$Data$DataContext$_setLinkField(isArray, source, field, target, isRemove) {
+    },
+    _setLinkField: function DataContext$_setLinkField(isArray, source, field, target, isRemove) {
         if (isArray) {
             var value = source[field];
             if (value === null || this._getValueType(source, field, value) !== 2) {
@@ -761,8 +748,8 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
                 this._ignoreChange = false;
             }
         }
-    }
-    function Sys$Data$DataContext$_toggleLink(source, field, target, removing) {
+    },
+    _toggleLink: function DataContext$_toggleLink(source, field, target, removing) {
         var change, changes = this.get_changes();
         for (var i = 0, l = changes.length; i < l; i++) {
             change = changes[i];
@@ -778,15 +765,15 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             }
         }
         return null;
-    }
-    function Sys$Data$DataContext$updated() {
-        /// <summary locid="M:J#Sys.Data.DataContext.updated" />
+    },
+    updated: function DataContext$updated() {
+        /// <summary locid="M:J#Sys.Data.DataContext.updated"></summary>
         if (this._dirty) {
             this._dirty = false;
             this.raisePropertyChanged("");
         }
-    }
-    function Sys$Data$DataContext$_capture(data) {
+    },
+    _capture: function DataContext$_capture(data) {
         if (data instanceof Array) {
             for (var i = 0, l = data.length; i < l; i++) {
                 this._captureEntity(data[i]);
@@ -795,13 +782,13 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
         else if (data !== null) {
             this._captureEntity(data);
         }
-    }
-    function Sys$Data$DataContext$_captureEntity(item) {
+    },
+    _captureEntity: function DataContext$_captureEntity(item) {
         if (this._isCaptureable(item)) {
             Sys.Observer.addPropertyChanged(item, this._dataChangedDel);
         }
-    }
-    function Sys$Data$DataContext$_dataChanged(object, args) {
+    },
+    _dataChanged: function DataContext$_dataChanged(object, args) {
         if (this._ignoreChange) return;
         var changelist = this.get_changes();
         var identity = this.getIdentity(object);
@@ -816,16 +803,16 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
                 }
             }
         }
-    }
-    function Sys$Data$DataContext$_isActive() {
+    },
+    _isActive: function DataContext$_isActive() {
         return this.get_isInitialized() && !this.get_isUpdating();
-    }
-    function Sys$Data$DataContext$_isCaptureable(item) {
+    },
+    _isCaptureable: function DataContext$_isCaptureable(item) {
         if (item === null) return false;
         var type = typeof(item);
         return (type === "object" || type === "unknown");
-    }
-    function Sys$Data$DataContext$_raiseChanged(name) {
+    },
+    _raiseChanged: function DataContext$_raiseChanged(name) {
         if (this._isActive()) {
             this.raisePropertyChanged(name);
             return true;
@@ -834,8 +821,8 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             this._dirty = true;
             return false;
         }
-    }
-    function Sys$Data$DataContext$_release(data) {
+    },
+    _release: function DataContext$_release(data) {
         if (data instanceof Array) {
             for (var i = 0, l = data.length; i < l; i++) {
                 this._releaseEntity(data[i]);
@@ -844,13 +831,13 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
         else if (data !== null) {
             this._releaseEntity(data);
         }
-    }
-    function Sys$Data$DataContext$_releaseEntity(item) {
+    },
+    _releaseEntity: function DataContext$_releaseEntity(item) {
         if (this._isCaptureable(item)) {
             Sys.Observer.removePropertyChanged(item, this._dataChangedDel);
         }
-    }
-    function Sys$Data$DataContext$_saveInternal(dc, changes, succeededCallback, failedCallback, context) {
+    },
+    _saveInternal: function DataContext$_saveInternal(dc, changes, succeededCallback, failedCallback, context) {
         Type._checkDependency("MicrosoftAjaxWebServices.js", "Sys.Data.DataContext.saveChanges");
         var uri = dc.get_serviceUri(),
             operation = dc.get_saveOperation() || "",
@@ -869,8 +856,8 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
                 dc.get_saveChangesTimeout() || 0);
         }
         return request;
-    }
-    function Sys$Data$DataContext$_filterLinks(changeSet) {
+    },
+    _filterLinks: function DataContext$_filterLinks(changeSet) {
         if (!this._useIdentity) return changeSet;
         var i, l = changeSet.length,
             newChangeSet = new Array(l);
@@ -888,36 +875,36 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             newChangeSet[i] = new Sys.Data.ChangeOperation(change.action, item, linkSource, change.linkSourceField, linkTarget);
         }
         return newChangeSet;
-    }
-    function Sys$Data$DataContext$_getEntityOnly(source) {
+    },
+    _getEntityOnly: function DataContext$_getEntityOnly(source) {
         var target = {};
         this._combine(target, source, null, true);
         return target;
-    }
-    function Sys$Data$DataContext$getIdentity(entity) {
-        /// <summary locid="M:J#failed" />
+    },
+    getIdentity: function DataContext$getIdentity(entity) {
+        /// <summary locid="M:J#failed">Gets the unique identity for an entity.</summary>
         /// <param name="entity" type="Object" mayBeNull="false"></param>
-        /// <returns mayBeNull="true" type="String"></returns>
+        /// <returns mayBeNull="true" type="String">The identity of the entity, null if it has no identity or the identity could not be determined.</returns>
         if (entity === null) return null;
         var getter = this.get_getIdentityMethod();
         return getter ? (getter(this, entity) || null) : null;
-    }
-    function Sys$Data$DataContext$isDeferredProperty(entity, propertyName) {
-        /// <summary locid="M:J#failed" />
+    },
+    isDeferredProperty: function DataContext$isDeferredProperty(entity, propertyName) {
+        /// <summary locid="M:J#failed">Determines if the given entity and property name refer to a deferred link to another entity that has not been loaded yet.</summary>
         /// <param name="entity" type="Object"></param>
         /// <param name="propertyName" type="String"></param>
         /// <returns type="Boolean"></returns>
         var getter = this.get_isDeferredPropertyMethod();
         return getter ? (getter(this, entity, propertyName) || false) : false;
-    }
-    function Sys$Data$DataContext$_getValueType(parent, name, object) {
+    },
+    _getValueType: function DataContext$_getValueType(parent, name, object) {
         var type = typeof(object);
         if (type === "undefined") return 0;
         if ((object === null) || (type !== "object")) return 2;
         if (this.isDeferredProperty(parent, name)) return 1;
         return 2;
-    }
-    function Sys$Data$DataContext$_setField(target, name, source, value, mergeOption, isLink) {
+    },
+    _setField: function DataContext$_setField(target, name, source, value, mergeOption, isLink) {
         var doSet = true, isArray = (target instanceof Array), appendOnly = (mergeOption === Sys.Data.MergeOption.appendOnly);
         if (!isArray) {
             var targetField = target[name], valueType = this._getValueType(target, name, targetField);
@@ -954,8 +941,8 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             }
         }
         return doSet;
-    }
-    function Sys$Data$DataContext$_combine(target, source, mergeOption, excludeEntities) {
+    },
+    _combine: function DataContext$_combine(target, source, mergeOption, excludeEntities) {
         var removedChanges = false;
         for (var name in source) {
             var field = source[name], type = typeof(field);
@@ -991,8 +978,8 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
                 }
             }
         }
-    }
-    function Sys$Data$DataContext$_storeEntity(identity, entity, parent, parentField, source, mergeOption) {
+    },
+    _storeEntity: function DataContext$_storeEntity(identity, entity, parent, parentField, source, mergeOption) {
         var updated = true, storedEntity = this._items[identity];
         if ((typeof (storedEntity) !== "undefined")) {
             if (storedEntity === entity) {
@@ -1011,20 +998,16 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
             this._setField(parent, parentField, source, storedEntity, mergeOption, true);
         }
         return updated;
-    }
-    function Sys$Data$DataContext$_storeEntities(entities, mergeOption) {
+    },
+    _storeEntities: function DataContext$_storeEntities(entities, mergeOption) {
         var i, l, filtered, deleted, appendOnly = (mergeOption === Sys.Data.MergeOption.appendOnly);
         for (i = 0, l = entities.length; i < l; i++) {
             var entity = entities[i], isObject = (entity && (typeof(entity) === "object"));
             if (isObject) {
                 if (appendOnly) {
                     if (this._isDeleted(entity)) {
-                        if (!deleted) {
-                            deleted = [entity]
-                        }
-                        else {
-                            deleted[deleted.length] = entity;
-                        }
+                        deleted = (deleted || []);
+                        deleted.push(entity);
                         continue;
                     }
                 }
@@ -1044,158 +1027,50 @@ Sys.Data.DataContext = function Sys$Data$DataContext() {
         }
         return filtered || entities;
     }
-Sys.Data.DataContext.prototype = {
-    _useIdentity: false,
-    _dirty: false,
-    _lastResults: null,
-    _items: null,
-    _ignoreChange: false,
-    _inserts: null,
-    _edits: null,
-    _deletes: null,
-    _changelist: null,
-    _hasChanges: false,
-    _mergeOption: Sys.Data.MergeOption.overwriteChanges,
-    _saverequest: null,
-    _saving: false,
-    _serviceUri: null,
-    _saveOperation: null,
-    _saveParameters: null,
-    _saveHttpVerb: null,
-    _saveTimeout: 0,
-    _methods: null,
-    get_changes: Sys$Data$DataContext$get_changes,
-    get_createEntityMethod: Sys$Data$DataContext$get_createEntityMethod,
-    set_createEntityMethod: Sys$Data$DataContext$set_createEntityMethod,
-    get_getIdentityMethod: Sys$Data$DataContext$get_getIdentityMethod,
-    set_getIdentityMethod: Sys$Data$DataContext$set_getIdentityMethod,
-    get_handleSaveChangesResultsMethod: Sys$Data$DataContext$get_handleSaveChangesResultsMethod,
-    set_handleSaveChangesResultsMethod: Sys$Data$DataContext$set_handleSaveChangesResultsMethod,
-    get_isDeferredPropertyMethod: Sys$Data$DataContext$get_isDeferredPropertyMethod,
-    set_isDeferredPropertyMethod: Sys$Data$DataContext$set_isDeferredPropertyMethod,
-    get_getNewIdentityMethod: Sys$Data$DataContext$get_getNewIdentityMethod,
-    set_getNewIdentityMethod: Sys$Data$DataContext$set_getNewIdentityMethod,
-    get_getDeferredPropertyFetchOperationMethod: Sys$Data$DataContext$get_getDeferredPropertyFetchOperationMethod,
-    set_getDeferredPropertyFetchOperationMethod: Sys$Data$DataContext$set_getDeferredPropertyFetchOperationMethod,
-    get_items: Sys$Data$DataContext$get_items,
-    get_lastFetchDataResults: Sys$Data$DataContext$get_lastFetchDataResults,
-    get_hasChanges: Sys$Data$DataContext$get_hasChanges,
-    get_fetchDataMethod: Sys$Data$DataContext$get_fetchDataMethod,
-    set_fetchDataMethod: Sys$Data$DataContext$set_fetchDataMethod,
-    get_mergeOption: Sys$Data$DataContext$get_mergeOption,
-    set_mergeOption: Sys$Data$DataContext$set_mergeOption,
-    get_saveChangesMethod: Sys$Data$DataContext$get_saveChangesMethod,
-    set_saveChangesMethod: Sys$Data$DataContext$set_saveChangesMethod,
-    get_saveOperation: Sys$Data$DataContext$get_saveOperation,
-    set_saveOperation: Sys$Data$DataContext$set_saveOperation,
-    get_saveHttpVerb: Sys$Data$DataContext$get_saveHttpVerb,
-    set_saveHttpVerb: Sys$Data$DataContext$set_saveHttpVerb,
-    get_saveParameters: Sys$Data$DataContext$get_saveParameters,
-    set_saveParameters: Sys$Data$DataContext$set_saveParameters,    
-    get_saveChangesTimeout: Sys$Data$DataContext$get_saveChangesTimeout,
-    set_saveChangesTimeout: Sys$Data$DataContext$set_saveChangesTimeout,        
-    get_isSaving: Sys$Data$DataContext$get_isSaving,
-    get_serviceUri: Sys$Data$DataContext$get_serviceUri,
-    set_serviceUri: Sys$Data$DataContext$set_serviceUri,
-    addLink: Sys$Data$DataContext$addLink,
-    removeLink: Sys$Data$DataContext$removeLink,
-    setLink: Sys$Data$DataContext$setLink,    
-    abortSave: Sys$Data$DataContext$abortSave,
-    clearChanges: Sys$Data$DataContext$clearChanges,
-    clearData: Sys$Data$DataContext$clearData,
-    createEntity: Sys$Data$DataContext$createEntity,
-    dispose: Sys$Data$DataContext$dispose,
-    initialize: Sys$Data$DataContext$initialize,
-    fetchDeferredProperty: Sys$Data$DataContext$fetchDeferredProperty,
-    getNewIdentity: Sys$Data$DataContext$getNewIdentity,
-    insertEntity: Sys$Data$DataContext$insertEntity,
-    removeEntity: Sys$Data$DataContext$removeEntity,
-    fetchData: Sys$Data$DataContext$fetchData,
-    _clearData: Sys$Data$DataContext$_clearData,
-    _fixAfterSave: Sys$Data$DataContext$_fixAfterSave,
-    trackData: Sys$Data$DataContext$trackData,
-    _processResults: Sys$Data$DataContext$_processResults,
-    _peekChange: Sys$Data$DataContext$_peekChange,
-    _pushChange: Sys$Data$DataContext$_pushChange,
-    _registerChange: Sys$Data$DataContext$_registerChange,
-    saveChanges: Sys$Data$DataContext$saveChanges,
-    _isDeleted: Sys$Data$DataContext$_isDeleted,
-    _removeChanges: Sys$Data$DataContext$_removeChanges,
-    _setLinkField: Sys$Data$DataContext$_setLinkField,
-    _toggleLink: Sys$Data$DataContext$_toggleLink,
-    updated: Sys$Data$DataContext$updated,
-    _capture: Sys$Data$DataContext$_capture,
-    _captureEntity: Sys$Data$DataContext$_captureEntity,
-    _dataChanged: Sys$Data$DataContext$_dataChanged,
-    _isActive: Sys$Data$DataContext$_isActive,
-    _isCaptureable: Sys$Data$DataContext$_isCaptureable,
-    _raiseChanged: Sys$Data$DataContext$_raiseChanged,
-    _release: Sys$Data$DataContext$_release,
-    _releaseEntity: Sys$Data$DataContext$_releaseEntity,
-    _saveInternal: Sys$Data$DataContext$_saveInternal,
-    _filterLinks: Sys$Data$DataContext$_filterLinks,
-    _getEntityOnly: Sys$Data$DataContext$_getEntityOnly,
-    getIdentity: Sys$Data$DataContext$getIdentity,
-    isDeferredProperty: Sys$Data$DataContext$isDeferredProperty,
-    _getValueType: Sys$Data$DataContext$_getValueType,
-    _setField: Sys$Data$DataContext$_setField,
-    _combine: Sys$Data$DataContext$_combine,
-    _storeEntity: Sys$Data$DataContext$_storeEntity,
-    _storeEntities: Sys$Data$DataContext$_storeEntities
 }
-Sys.Data.DataContext.registerClass("Sys.Data.DataContext", Sys.Component, Sys.Data.IDataProvider);
-Sys.registerComponent(Sys.Data.DataContext);
-Sys.Data.ChangeOperationType = function Sys$Data$ChangeOperationType() {
-    /// <summary locid="M:J#Sys.Data.ChangeOperationType.#ctor" />
+$type.registerClass("Sys.Data.DataContext", Sys.Component, Sys.Data.IDataProvider);
+Sys.registerComponent($type);
+$type = Sys.Data.ChangeOperationType = function Data$ChangeOperationType() {
+    /// <summary locid="M:J#Sys.Data.ChangeOperationType.#ctor">Describes how an item has changed.</summary>
     /// <field name="insert" type="Number" integer="true" static="true" locid="F:J#Sys.Data.ChangeOperationType.insert"></field>
     /// <field name="update" type="Number" integer="true" static="true" locid="F:J#Sys.Data.ChangeOperationType.update"></field>
     /// <field name="remove" type="Number" integer="true" static="true" locid="F:J#Sys.Data.ChangeOperationType.remove"></field>
     throw Error.notImplemented();
 }
-
-
-
-
-Sys.Data.ChangeOperationType.prototype = {
+$type.prototype = {
     insert: 0,
     update: 1,
     remove: 2
 }
-Sys.Data.ChangeOperationType.registerEnum("Sys.Data.ChangeOperationType");
-Sys.Data.ChangeOperation = function Sys$Data$ChangeOperation(action, item, linkSource, linkSourceField, linkTarget) {
-    /// <summary locid="M:J#Sys.Data.ChangeOperation.#ctor" />
+$type.registerEnum("Sys.Data.ChangeOperationType");
+$type = Sys.Data.ChangeOperation = function Data$ChangeOperation(action, item, linkSource, linkSourceField, linkTarget) {
+    /// <summary locid="M:J#Sys.Data.ChangeOperation.#ctor">Describes a single change in a set of data.</summary>
     /// <param name="action" type="Sys.Data.ChangeOperationType"></param>
-    /// <param name="item" mayBeNull="true"></param>
-    /// <param name="linkSource" mayBeNull="true" optional="true"></param>
-    /// <param name="linkSourceField" mayBeNull="true" optional="true"></param>
-    /// <param name="linkTarget" mayBeNull="true" optional="true"></param>
+    /// <param name="item" mayBeNull="true">The item that was changed.</param>
+    /// <param name="linkSource" mayBeNull="true" optional="true">The item that is being linked from.</param>
+    /// <param name="linkSourceField" mayBeNull="true" optional="true">The field on the source item representing the relationship.</param>
+    /// <param name="linkTarget" mayBeNull="true" optional="true">The item that is being linked to.</param>
     /// <field name="action" type="Sys.Data.ChangeOperationType" locid="F:J#Sys.Data.ChangeOperation.action"></field>
-    /// <field name="item" mayBeNull="true" locid="F:J#Sys.Data.ChangeOperation.item"></field>
-    /// <field name="linkSource" mayBeNull="true" locid="F:J#Sys.Data.ChangeOperation.linkSource"></field>
-    /// <field name="linkSourceField" mayBeNull="true" locid="F:J#Sys.Data.ChangeOperation.linkSourceField"></field>
-    /// <field name="linkTarget" mayBeNull="true" locid="F:J#Sys.Data.ChangeOperation.linkTarget"></field>
+    /// <field name="item" mayBeNull="true" locid="F:J#Sys.Data.ChangeOperation.item">The item that was changed.</field>
+    /// <field name="linkSource" mayBeNull="true" locid="F:J#Sys.Data.ChangeOperation.linkSource">The item that is being linked from.</field>
+    /// <field name="linkSourceField" mayBeNull="true" locid="F:J#Sys.Data.ChangeOperation.linkSourceField">The field on the source item representing the relationship.</field>
+    /// <field name="linkTarget" mayBeNull="true" locid="F:J#Sys.Data.ChangeOperation.linkTarget">The item that is being linked to.</field>
     this.action = action;
     this.item = item;
     this.linkSourceField = linkSourceField;
     this.linkSource = linkSource;
     this.linkTarget = linkTarget;
 }
-
-
-
-
-
-
-Sys.Data.ChangeOperation.prototype = {
+$type.prototype = {
     action: null,
     item: null,
     linkSource: null,
     linkSourceField: null,
     linkTarget: null
 }
-Sys.Data.ChangeOperation.registerClass("Sys.Data.ChangeOperation");
+$type.registerClass("Sys.Data.ChangeOperation");
 
-Sys.Data.AdoNetDataContext = function Sys$Data$AdoNetDataContext() {
+$type = Sys.Data.AdoNetDataContext = function Data$AdoNetDataContext() {
     Sys.Data.AdoNetDataContext.initializeBase(this);
     this.set_getIdentityMethod(this._getIdentity);
     this.set_getNewIdentityMethod(this._getNewIdentity);
@@ -1206,17 +1081,17 @@ Sys.Data.AdoNetDataContext = function Sys$Data$AdoNetDataContext() {
     this.set_getDeferredPropertyFetchOperationMethod(this._getDeferredQuery);
     this.set_isDeferredPropertyMethod(this._isDeferred);
 }
-
-
-
-
-
-    function Sys$Data$AdoNetDataContext$_createEntity(dataContext, entitySetName) {
+$type.prototype = {
+    _proxy: null,
+    _puri: null,
+    _entityCounter: 0,
+    _saveCounter: 1,
+    _createEntity: function AdoNetDataContext$_createEntity(dataContext, entitySetName) {
         var obj = {};
         dataContext._createMetaData(obj, entitySetName);
         return obj;
-    }
-    function Sys$Data$AdoNetDataContext$_fetchAdoNet(dataContext, uri, operation, parameters, httpVerb, succeededCallback, failedCallback, timeout, context) {
+    },
+    _fetchAdoNet: function AdoNetDataContext$_fetchAdoNet(dataContext, uri, operation, parameters, httpVerb, succeededCallback, failedCallback, timeout, context) {
         if (operation) {
             if (typeof(operation) !== "string") {
                 operation = operation.toString();
@@ -1228,8 +1103,8 @@ Sys.Data.AdoNetDataContext = function Sys$Data$AdoNetDataContext() {
         }
         var proxy = dataContext._getProxy(uri || "");
         return proxy.fetchData(operation, parameters || null, null, httpVerb || null, succeededCallback || null, failedCallback || null, timeout || 0, context || null);
-    }
-    function Sys$Data$AdoNetDataContext$_getDeferredQuery(dataContext, entity, propertyName, parameters, userContext) {
+    },
+    _getDeferredQuery: function AdoNetDataContext$_getDeferredQuery(dataContext, entity, propertyName, parameters, userContext) {
         var uri = null, value = entity[propertyName];
         if ((value === null) || (typeof(value) === "undefined") || (value instanceof Array)) {
             uri = dataContext.getIdentity(entity);
@@ -1245,20 +1120,20 @@ Sys.Data.AdoNetDataContext = function Sys$Data$AdoNetDataContext() {
             throw Error.invalidOperation(String.format(Sys.Data.AdoNetRes.propertyNotFound, propertyName));
         }
         return new Sys.Net.WebServiceOperation(uri, parameters);
-    }
-    function Sys$Data$AdoNetDataContext$_getProxy(uri) {
+    },
+    _getProxy: function AdoNetDataContext$_getProxy(uri) {
         if (this._puri !== uri) {
             Type._checkDependency("MicrosoftAjaxAdoNet.js", "Sys.Data.AdoNetDataContext");
             this._proxy = new Sys.Data.AdoNetServiceProxy(uri);
             this._puri = uri;
         }
         return this._proxy;
-    }
-    function Sys$Data$AdoNetDataContext$_isDeferred(dataContext, entity, propertyName) {
+    },
+    _isDeferred: function AdoNetDataContext$_isDeferred(dataContext, entity, propertyName) {
         var value = entity[propertyName];
         return !!(value && (typeof(value) === "object") && value.__deferred);
-    }
-    function Sys$Data$AdoNetDataContext$_processResultsAdoNet(dataContext, changes, results) {
+    },
+    _processResultsAdoNet: function AdoNetDataContext$_processResultsAdoNet(dataContext, changes, results) {
         if (results && (results.length === changes.length)) {
             for (var i = 0, l = results.length; i < l; i++) {
                 var change = changes[i], item = change.item,
@@ -1274,8 +1149,8 @@ Sys.Data.AdoNetDataContext = function Sys$Data$AdoNetDataContext() {
                 }
             }
         }
-    }
-    function Sys$Data$AdoNetDataContext$_getBatchReference(item, batchField, batchRefPrefix, stripUri) {
+    },
+    _getBatchReference: function AdoNetDataContext$_getBatchReference(item, batchField, batchRefPrefix, stripUri) {
         var batchnum = item.__metadata[batchField];
         if (typeof(batchnum) === "number") {
             return batchRefPrefix + "$" + batchnum;
@@ -1290,8 +1165,8 @@ Sys.Data.AdoNetDataContext = function Sys$Data$AdoNetDataContext() {
             }
             return uri;
         }
-    }
-    function Sys$Data$AdoNetDataContext$_saveAdoNet(dataContext, changes, succeededCallback, failedCallback, context) {
+    },
+    _saveAdoNet: function AdoNetDataContext$_saveAdoNet(dataContext, changes, succeededCallback, failedCallback, context) {
         var uri = dataContext.get_serviceUri(),
             request = null;
         if (!uri) {
@@ -1349,43 +1224,27 @@ Sys.Data.AdoNetDataContext = function Sys$Data$AdoNetDataContext() {
             request = sequence.execute(succeededCallback, failedCallback, context);
         }
         return request;
-    }
-    function Sys$Data$AdoNetDataContext$_createMetaData(entity, entitySetName) {
+    },
+    _createMetaData: function AdoNetDataContext$_createMetaData(entity, entitySetName) {
         entity.__metadata = { entitySet: entitySetName, uri: entitySetName + "(__new" + this._entityCounter++ + ")" };
-    }
-    function Sys$Data$AdoNetDataContext$_getNewIdentity(dataContext, entity, entitySetName) {
+    },
+    _getNewIdentity: function AdoNetDataContext$_getNewIdentity(dataContext, entity, entitySetName) {
         if (!entitySetName) {
             throw Error.invalidOperation(Sys.Data.AdoNetRes.entityWithNoResourceSet);
         }
         dataContext._createMetaData(entity, entitySetName);
         return entity.__metadata.uri;
-    }
-    function Sys$Data$AdoNetDataContext$_getIdentity(dataContext, entity) {
+    },
+    _getIdentity: function AdoNetDataContext$_getIdentity(dataContext, entity) {
         var metadata = entity.__metadata;
         if (metadata) {
             return metadata.uri || null;
         }
         return null;
     }
-Sys.Data.AdoNetDataContext.prototype = {
-    _proxy: null,
-    _puri: null,
-    _entityCounter: 0,
-    _saveCounter: 1,
-    _createEntity: Sys$Data$AdoNetDataContext$_createEntity,
-    _fetchAdoNet: Sys$Data$AdoNetDataContext$_fetchAdoNet,
-    _getDeferredQuery: Sys$Data$AdoNetDataContext$_getDeferredQuery,
-    _getProxy: Sys$Data$AdoNetDataContext$_getProxy,
-    _isDeferred: Sys$Data$AdoNetDataContext$_isDeferred,
-    _processResultsAdoNet: Sys$Data$AdoNetDataContext$_processResultsAdoNet,
-    _getBatchReference: Sys$Data$AdoNetDataContext$_getBatchReference,
-    _saveAdoNet: Sys$Data$AdoNetDataContext$_saveAdoNet,
-    _createMetaData: Sys$Data$AdoNetDataContext$_createMetaData,
-    _getNewIdentity: Sys$Data$AdoNetDataContext$_getNewIdentity,
-    _getIdentity: Sys$Data$AdoNetDataContext$_getIdentity
 }
-Sys.Data.AdoNetDataContext.registerClass("Sys.Data.AdoNetDataContext", Sys.Data.DataContext);
-Sys.registerComponent(Sys.Data.AdoNetDataContext);
+$type.registerClass("Sys.Data.AdoNetDataContext", Sys.Data.DataContext);
+Sys.registerComponent($type);
 }
 
 if (window.Sys && Sys.loader) {
@@ -1397,13 +1256,12 @@ else {
 
 })();
 
-Type.registerNamespace('Sys.Data');
-
-Sys.Data.DataRes={
-'commonNotAfterInit':'{0} \'{1}\' cannot be set after initialize.',
-'requiredUri':'A serviceUri must be set prior to calling fetchData.',
-'mustBeArray':'The property \'{0}\' is not an Array.',
-'requiredMethodProperty':'The \'{0}\' property must be set to a function to use the \'{1}\' operation.',
-'requiredIdentity':'The entity must have an identity or a new identity must be creatable with the set getNewIdentityMethod.',
-'entityAlreadyExists':'Entity \'{0}\' already exists and cannot be added again.'
+Type.registerNamespace("Sys.Data");
+Sys.Data.DataRes = {
+"entityAlreadyExists": "Entity \u0027{0}\u0027 already exists and cannot be added again.",
+"requiredIdentity": "The entity must have an identity or a new identity must be creatable with the set getNewIdentityMethod.",
+"commonNotAfterInit": "{0} \u0027{1}\u0027 cannot be set after initialize.",
+"mustBeArray": "The property \u0027{0}\u0027 is not an Array.",
+"requiredMethodProperty": "The \u0027{0}\u0027 property must be set to a function to use the \u0027{1}\u0027 operation.",
+"requiredUri": "A serviceUri must be set prior to calling fetchData."
 };

@@ -1,18 +1,15 @@
-﻿// Name:        MicrosoftAjaxNetwork.debug.js
-// Assembly:    System.Web.Ajax
-// Version:     3.0.31106.0
-// FileVersion: 3.0.31106.0
-/// <reference name="MicrosoftAjaxSerialization.js" />
+//!/ <reference name="MicrosoftAjaxSerialization.js" />
 
 (function() {
 
 function execute() {
 
 Type._registerScript("MicrosoftAjaxNetwork.js", ["MicrosoftAjaxSerialization.js"]);
+var $type, $prototype;
 
 if (!window.XMLHttpRequest) {
     window.XMLHttpRequest = function window$XMLHttpRequest() {
-        var progIDs = [ 'Msxml2.XMLHTTP.3.0', 'Msxml2.XMLHTTP' ];
+        var ex, progIDs = [ 'Msxml2.XMLHTTP.3.0', 'Msxml2.XMLHTTP' ];
         for (var i = 0, l = progIDs.length; i < l; i++) {
             try {
                 return new ActiveXObject(progIDs[i]);
@@ -26,132 +23,110 @@ if (!window.XMLHttpRequest) {
 
 Type.registerNamespace('Sys.Net');
 
-Sys.Net.WebRequestExecutor = function Sys$Net$WebRequestExecutor() {
-    /// <summary locid="M:J#Sys.Net.WebRequestExecutor.#ctor" />
+$type = Sys.Net.WebRequestExecutor = function WebRequestExecutor() {
+    /// <summary locid="M:J#Sys.Net.WebRequestExecutor.#ctor">Base class for WebRequestExecutors which handle the actual execution of a WebRequest</summary>
     if (arguments.length !== 0) throw Error.parameterCount();
     this._webRequest = null;
     this._resultObject = null;
 }
 
 
-    function Sys$Net$WebRequestExecutor$get_webRequest() {
-        /// <value type="Sys.Net.WebRequest" locid="P:J#Sys.Net.WebRequestExecutor.webRequest"></value>
-        if (arguments.length !== 0) throw Error.parameterCount();
-        return this._webRequest;
-    }
-
-    function Sys$Net$WebRequestExecutor$_set_webRequest(value) {
-        if (this.get_started()) {
-            throw Error.invalidOperation(String.format(Sys.Res.cannotCallOnceStarted, 'set_webRequest'));
-        }
-
-        this._webRequest = value;
-    }
-
-
-    function Sys$Net$WebRequestExecutor$get_started() {
+$type.prototype = {
+    get_started: function WebRequestExecutor$get_started() {
         /// <value type="Boolean" locid="P:J#Sys.Net.WebRequestExecutor.started"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
-    }
-
-    function Sys$Net$WebRequestExecutor$get_responseAvailable() {
+    },
+    get_responseAvailable: function WebRequestExecutor$get_responseAvailable() {
         /// <value type="Boolean" locid="P:J#Sys.Net.WebRequestExecutor.responseAvailable"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
-    }
-
-    function Sys$Net$WebRequestExecutor$get_timedOut() {
+    },
+    get_timedOut: function WebRequestExecutor$get_timedOut() {
         /// <value type="Boolean" locid="P:J#Sys.Net.WebRequestExecutor.timedOut"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
-    }
-    function Sys$Net$WebRequestExecutor$get_aborted() {
+    },
+    get_aborted: function WebRequestExecutor$get_aborted() {
         /// <value type="Boolean" locid="P:J#Sys.Net.WebRequestExecutor.aborted"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
-    }
-    function Sys$Net$WebRequestExecutor$get_responseData() {
+    },
+    get_responseData: function WebRequestExecutor$get_responseData() {
         /// <value type="String" locid="P:J#Sys.Net.WebRequestExecutor.responseData"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
-    }
-    function Sys$Net$WebRequestExecutor$get_statusCode() {
+    },
+    get_statusCode: function WebRequestExecutor$get_statusCode() {
         /// <value type="Number" locid="P:J#Sys.Net.WebRequestExecutor.statusCode"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
-    }
-    function Sys$Net$WebRequestExecutor$get_statusText() {
+    },
+    get_statusText: function WebRequestExecutor$get_statusText() {
         /// <value type="String" locid="P:J#Sys.Net.WebRequestExecutor.statusText"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
-    }
-    function Sys$Net$WebRequestExecutor$get_xml() {
+    },
+    get_xml: function WebRequestExecutor$get_xml() {
         /// <value locid="P:J#Sys.Net.WebRequestExecutor.xml"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
-    }
-    function Sys$Net$WebRequestExecutor$get_object() {
-        /// <value locid="P:J#Sys.Net.WebRequestExecutor.object"></value>
-        if (arguments.length !== 0) throw Error.parameterCount();
-        if (!this._resultObject) {
-            this._resultObject = Sys.Serialization.JavaScriptSerializer.deserialize(this.get_responseData());
-        }
-        return this._resultObject;
-    }
-
-
-    function Sys$Net$WebRequestExecutor$executeRequest() {
-        /// <summary locid="M:J#Sys.Net.WebRequestExecutor.executeRequest" />
+    },
+    executeRequest: function WebRequestExecutor$executeRequest() {
+        /// <summary locid="M:J#Sys.Net.WebRequestExecutor.executeRequest">Begins execution of the request.</summary>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
-    }
-    function Sys$Net$WebRequestExecutor$abort() {
-        /// <summary locid="M:J#Sys.Net.WebRequestExecutor.abort" />
+    },
+    abort: function WebRequestExecutor$abort() {
+        /// <summary locid="M:J#Sys.Net.WebRequestExecutor.abort">Aborts the request.</summary>
         if (arguments.length !== 0) throw Error.parameterCount();
         throw Error.notImplemented();
-    }
-    function Sys$Net$WebRequestExecutor$getResponseHeader(header) {
-        /// <summary locid="M:J#Sys.Net.WebRequestExecutor.getResponseHeader" />
-        /// <param name="header" type="String"></param>
+    },
+    getAllResponseHeaders: function WebRequestExecutor$getAllResponseHeaders() {
+        /// <summary locid="M:J#Sys.Net.WebRequestExecutor.getAllResponseHeaders">Returns all the responses header.</summary>
+        if (arguments.length !== 0) throw Error.parameterCount();
+        throw Error.notImplemented();
+    },
+    getResponseHeader: function WebRequestExecutor$getResponseHeader(header) {
+        /// <summary locid="M:J#Sys.Net.WebRequestExecutor.getResponseHeader">Returns a response header.</summary>
+        /// <param name="header" type="String">The requested header.</param>
         var e = Function._validateParams(arguments, [
             {name: "header", type: String}
         ]);
         if (e) throw e;
         throw Error.notImplemented();
-    }
-    function Sys$Net$WebRequestExecutor$getAllResponseHeaders() {
-        /// <summary locid="M:J#Sys.Net.WebRequestExecutor.getAllResponseHeaders" />
+    },
+    get_webRequest: function WebRequestExecutor$get_webRequest() {
+        /// <value type="Sys.Net.WebRequest" locid="P:J#Sys.Net.WebRequestExecutor.webRequest"></value>
         if (arguments.length !== 0) throw Error.parameterCount();
-        throw Error.notImplemented();
+        return this._webRequest;
+    },
+    _set_webRequest: function WebRequestExecutor$_set_webRequest(value) {
+        if (this.get_started()) {
+            throw Error.invalidOperation(String.format(Sys.Res.cannotCallOnceStarted, 'set_webRequest'));
+        }
+        this._webRequest = value;
+    },
+    get_object: function WebRequestExecutor$get_object() {
+        /// <value locid="P:J#Sys.Net.WebRequestExecutor.object">The JSON eval'd response.</value>
+        if (arguments.length !== 0) throw Error.parameterCount();
+        var result = this._resultObject;
+        if (!result) {
+            this._resultObject = result = Sys.Serialization.JavaScriptSerializer.deserialize(this.get_responseData());
+        }
+        return result;
     }
-Sys.Net.WebRequestExecutor.prototype = {
-    get_webRequest: Sys$Net$WebRequestExecutor$get_webRequest,
-    _set_webRequest: Sys$Net$WebRequestExecutor$_set_webRequest,
-    get_started: Sys$Net$WebRequestExecutor$get_started,
-    get_responseAvailable: Sys$Net$WebRequestExecutor$get_responseAvailable,
-    get_timedOut: Sys$Net$WebRequestExecutor$get_timedOut,
-    get_aborted: Sys$Net$WebRequestExecutor$get_aborted,
-    get_responseData: Sys$Net$WebRequestExecutor$get_responseData,
-    get_statusCode: Sys$Net$WebRequestExecutor$get_statusCode,
-    get_statusText: Sys$Net$WebRequestExecutor$get_statusText,
-    get_xml: Sys$Net$WebRequestExecutor$get_xml,
-    get_object: Sys$Net$WebRequestExecutor$get_object,
-    executeRequest: Sys$Net$WebRequestExecutor$executeRequest,
-    abort: Sys$Net$WebRequestExecutor$abort,
-    getResponseHeader: Sys$Net$WebRequestExecutor$getResponseHeader,
-    getAllResponseHeaders: Sys$Net$WebRequestExecutor$getAllResponseHeaders
 }
-Sys.Net.WebRequestExecutor.registerClass('Sys.Net.WebRequestExecutor');
-Sys.Net.XMLDOM = function Sys$Net$XMLDOM(markup) {
-    /// <summary locid="M:J#Sys.Net.XMLDOM.#ctor" />
-    /// <param name="markup" type="String"></param>
+$type.registerClass('Sys.Net.WebRequestExecutor');
+Sys.Net.XMLDOM = function XMLDOM(markup) {
+    /// <summary locid="M:J#Sys.Net.XMLDOM.#ctor">Creates an XML document from an XML string.</summary>
+    /// <param name="markup" type="String">The XML string to parse.</param>
     var e = Function._validateParams(arguments, [
         {name: "markup", type: String}
     ]);
     if (e) throw e;
     if (!window.DOMParser) {
-        var progIDs = [ 'Msxml2.DOMDocument.3.0', 'Msxml2.DOMDocument' ];
+        var ex, progIDs = [ 'Msxml2.DOMDocument.3.0', 'Msxml2.DOMDocument' ];
         for (var i = 0, l = progIDs.length; i < l; i++) {
             try {
                 var xmlDOM = new ActiveXObject(progIDs[i]);
@@ -175,25 +150,24 @@ Sys.Net.XMLDOM = function Sys$Net$XMLDOM(markup) {
     return null;
 }
 
-Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
-    /// <summary locid="M:J#Sys.Net.XMLHttpExecutor.#ctor" />
+$type = Sys.Net.XMLHttpExecutor = function XMLHttpExecutor() {
+    /// <summary locid="M:J#Sys.Net.XMLHttpExecutor.#ctor">XMLHttpExecutor</summary>
     if (arguments.length !== 0) throw Error.parameterCount();
 
     Sys.Net.XMLHttpExecutor.initializeBase(this);
 
     var _this = this;
-    this._xmlHttpRequest = null;
-    this._webRequest = null;
-    this._responseAvailable = false;
-    this._timedOut = false;
-    this._timer = null;
-    this._aborted = false;
-    this._started = false;
 
     this._onReadyStateChange = (function () {
-
-        if (_this._xmlHttpRequest.readyState === 4 
-) {
+        /*
+            readyState values:
+            0 = uninitialized
+            1 = loading
+            2 = loaded
+            3 = interactive
+            4 = complete
+        */
+        if (_this._xmlHttpRequest.readyState === 4 /*complete*/) {
             try {
                 if (typeof(_this._xmlHttpRequest.status) === "undefined") {
                     return;
@@ -202,10 +176,11 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
             catch(ex) {
                 return;
             }
+            
             _this._clearTimer();
             _this._responseAvailable = true;
                 _this._webRequest.completed(Sys.EventArgs.Empty);
-                if (_this._xmlHttpRequest != null) {
+                if (_this._xmlHttpRequest) {
                     _this._xmlHttpRequest.onreadystatechange = Function.emptyMethod;
                     _this._xmlHttpRequest = null;
                 }
@@ -213,7 +188,7 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
     });
 
     this._clearTimer = (function() {
-        if (_this._timer != null) {
+        if (_this._timer) {
             window.clearTimeout(_this._timer);
             _this._timer = null;
         }
@@ -223,8 +198,9 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
         if (!_this._responseAvailable) {
             _this._clearTimer();
             _this._timedOut = true;
-            _this._xmlHttpRequest.onreadystatechange = Function.emptyMethod;
-            _this._xmlHttpRequest.abort();
+            var xhr = _this._xmlHttpRequest;
+            xhr.onreadystatechange = Function.emptyMethod;
+            xhr.abort();
             _this._webRequest.completed(Sys.EventArgs.Empty);
             _this._xmlHttpRequest = null;
         }
@@ -232,63 +208,64 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
 
 }
 
+$type.prototype = {
 
-
-    function Sys$Net$XMLHttpExecutor$get_timedOut() {
-        /// <value type="Boolean" locid="P:J#Sys.Net.XMLHttpExecutor.timedOut"></value>
+    get_timedOut: function XMLHttpExecutor$get_timedOut() {
+        /// <value type="Boolean" locid="P:J#Sys.Net.XMLHttpExecutor.timedOut">True if the executor has timed out.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
-        return this._timedOut;
-    }
+        return !!this._timedOut;
+    },
 
-    function Sys$Net$XMLHttpExecutor$get_started() {
-        /// <value type="Boolean" locid="P:J#Sys.Net.XMLHttpExecutor.started"></value>
+    get_started: function XMLHttpExecutor$get_started() {
+        /// <value type="Boolean" locid="P:J#Sys.Net.XMLHttpExecutor.started">True if the executor has started.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
-        return this._started;
-    }
+        return !!this._started;
+    },
 
-    function Sys$Net$XMLHttpExecutor$get_responseAvailable() {
-        /// <value type="Boolean" locid="P:J#Sys.Net.XMLHttpExecutor.responseAvailable"></value>
+    get_responseAvailable: function XMLHttpExecutor$get_responseAvailable() {
+        /// <value type="Boolean" locid="P:J#Sys.Net.XMLHttpExecutor.responseAvailable">True if a response is available.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
-        return this._responseAvailable;
-    }
+        return !!this._responseAvailable;
+    },
 
-    function Sys$Net$XMLHttpExecutor$get_aborted() {
-        /// <value type="Boolean" locid="P:J#Sys.Net.XMLHttpExecutor.aborted"></value>
+    get_aborted: function XMLHttpExecutor$get_aborted() {
+        /// <value type="Boolean" locid="P:J#Sys.Net.XMLHttpExecutor.aborted">True if the executor has been aborted.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
-        return this._aborted;
-    }
+        return !!this._aborted;
+    },
 
-    function Sys$Net$XMLHttpExecutor$executeRequest() {
-        /// <summary locid="M:J#Sys.Net.XMLHttpExecutor.executeRequest" />
+    executeRequest: function XMLHttpExecutor$executeRequest() {
+        /// <summary locid="M:J#Sys.Net.XMLHttpExecutor.executeRequest">Invokes the request.</summary>
         if (arguments.length !== 0) throw Error.parameterCount();
-        this._webRequest = this.get_webRequest();
+        var request = this.get_webRequest();
+        this._webRequest = request;
 
         if (this._started) {
             throw Error.invalidOperation(String.format(Sys.Res.cannotCallOnceStarted, 'executeRequest'));
         }
-        if (this._webRequest === null) {
+        if (!this._webRequest) {
             throw Error.invalidOperation(Sys.Res.nullWebRequest);
         }
 
-        var body = this._webRequest.get_body();
-        var headers = this._webRequest.get_headers();
-        this._xmlHttpRequest = new XMLHttpRequest();
-        this._xmlHttpRequest.onreadystatechange = this._onReadyStateChange;
-        var verb = this._webRequest.get_httpVerb();
-        this._xmlHttpRequest.open(verb, this._webRequest.getResolvedUrl(), true 
-);
-        this._xmlHttpRequest.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        var body = request.get_body();
+        var headers = request.get_headers();
+        var xhr = new XMLHttpRequest();
+        this._xmlHttpRequest = xhr;
+        xhr.onreadystatechange = this._onReadyStateChange;
+        var verb = request.get_httpVerb();
+        xhr.open(verb, request.getResolvedUrl(), true /*async*/);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         if (headers) {
             for (var header in headers) {
                 var val = headers[header];
                 if (typeof(val) !== "function")
-                    this._xmlHttpRequest.setRequestHeader(header, val);
+                    xhr.setRequestHeader(header, val);
             }
         }
 
         if (verb.toLowerCase() === "post") {
             if ((headers === null) || !headers['Content-Type']) {
-                this._xmlHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
             }
 
             if (!body) {
@@ -296,18 +273,18 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
             }
         }
 
-        var timeout = this._webRequest.get_timeout();
+        var timeout = request.get_timeout();
         if (timeout > 0) {
             this._timer = window.setTimeout(Function.createDelegate(this, this._onTimeout), timeout);
         }
-        this._xmlHttpRequest.send(body);
+        xhr.send(body);
         this._started = true;
-    }
+    },
 
-    function Sys$Net$XMLHttpExecutor$getResponseHeader(header) {
-        /// <summary locid="M:J#Sys.Net.XMLHttpExecutor.getResponseHeader" />
-        /// <param name="header" type="String"></param>
-        /// <returns type="String"></returns>
+    getResponseHeader: function XMLHttpExecutor$getResponseHeader(header) {
+        /// <summary locid="M:J#Sys.Net.XMLHttpExecutor.getResponseHeader">Returns a response header.</summary>
+        /// <param name="header" type="String">The requested header.</param>
+        /// <returns type="String">The value of the header.</returns>
         var e = Function._validateParams(arguments, [
             {name: "header", type: String}
         ]);
@@ -319,18 +296,18 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
             throw Error.invalidOperation(String.format(Sys.Res.cannotCallOutsideHandler, 'getResponseHeader'));
         }
 
-        var result;
+        var er, result;
         try {
             result = this._xmlHttpRequest.getResponseHeader(header);
-        } catch (e) {
+        } catch (er) {
         }
         if (!result) result = "";
         return result;
-    }
+    },
 
-    function Sys$Net$XMLHttpExecutor$getAllResponseHeaders() {
-        /// <summary locid="M:J#Sys.Net.XMLHttpExecutor.getAllResponseHeaders" />
-        /// <returns type="String"></returns>
+    getAllResponseHeaders: function XMLHttpExecutor$getAllResponseHeaders() {
+        /// <summary locid="M:J#Sys.Net.XMLHttpExecutor.getAllResponseHeaders">Returns all the responses header.</summary>
+        /// <returns type="String">The text of all the headers.</returns>
         if (arguments.length !== 0) throw Error.parameterCount();
         if (!this._responseAvailable) {
             throw Error.invalidOperation(String.format(Sys.Res.cannotCallBeforeResponse, 'getAllResponseHeaders'));
@@ -340,10 +317,10 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
         }
 
         return this._xmlHttpRequest.getAllResponseHeaders();
-    }
+    },
 
-    function Sys$Net$XMLHttpExecutor$get_responseData() {
-        /// <value type="String" locid="P:J#Sys.Net.XMLHttpExecutor.responseData"></value>
+    get_responseData: function XMLHttpExecutor$get_responseData() {
+        /// <value type="String" locid="P:J#Sys.Net.XMLHttpExecutor.responseData">The text of the response.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         if (!this._responseAvailable) {
             throw Error.invalidOperation(String.format(Sys.Res.cannotCallBeforeResponse, 'get_responseData'));
@@ -353,10 +330,10 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
         }
 
         return this._xmlHttpRequest.responseText;
-    }
+    },
 
-    function Sys$Net$XMLHttpExecutor$get_statusCode() {
-        /// <value type="Number" locid="P:J#Sys.Net.XMLHttpExecutor.statusCode"></value>
+    get_statusCode: function XMLHttpExecutor$get_statusCode() {
+        /// <value type="Number" locid="P:J#Sys.Net.XMLHttpExecutor.statusCode">The status code of the response.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         if (!this._responseAvailable) {
             throw Error.invalidOperation(String.format(Sys.Res.cannotCallBeforeResponse, 'get_statusCode'));
@@ -364,17 +341,17 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
         if (!this._xmlHttpRequest) {
             throw Error.invalidOperation(String.format(Sys.Res.cannotCallOutsideHandler, 'get_statusCode'));
         }
-        var result = 0;
+        var ex, result = 0;
         try {
             result = this._xmlHttpRequest.status;
         }
         catch(ex) {
         }
         return result;
-    }
+    },
 
-    function Sys$Net$XMLHttpExecutor$get_statusText() {
-        /// <value type="String" locid="P:J#Sys.Net.XMLHttpExecutor.statusText"></value>
+    get_statusText: function XMLHttpExecutor$get_statusText() {
+        /// <value type="String" locid="P:J#Sys.Net.XMLHttpExecutor.statusText">The status text of the repsonse.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         if (!this._responseAvailable) {
             throw Error.invalidOperation(String.format(Sys.Res.cannotCallBeforeResponse, 'get_statusText'));
@@ -384,10 +361,10 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
         }
 
         return this._xmlHttpRequest.statusText;
-    }
+    },
 
-    function Sys$Net$XMLHttpExecutor$get_xml() {
-        /// <value locid="P:J#Sys.Net.XMLHttpExecutor.xml"></value>
+    get_xml: function XMLHttpExecutor$get_xml() {
+        /// <value locid="P:J#Sys.Net.XMLHttpExecutor.xml">The response in xml format.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         if (!this._responseAvailable) {
             throw Error.invalidOperation(String.format(Sys.Res.cannotCallBeforeResponse, 'get_xml'));
@@ -395,11 +372,11 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
         if (!this._xmlHttpRequest) {
             throw Error.invalidOperation(String.format(Sys.Res.cannotCallOutsideHandler, 'get_xml'));
         }
-
-        var xml = this._xmlHttpRequest.responseXML;
+        var xhr = this._xmlHttpRequest;
+        var xml = xhr.responseXML;
         if (!xml || !xml.documentElement) {
 
-            xml = Sys.Net.XMLDOM(this._xmlHttpRequest.responseText);
+            xml = Sys.Net.XMLDOM(xhr.responseText);
 
             if (!xml || !xml.documentElement)
                 return null;
@@ -412,14 +389,16 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
             xml.documentElement.tagName === "parsererror") {
             return null;
         }
+        
         if (xml.documentElement.firstChild && xml.documentElement.firstChild.tagName === "parsererror") {
             return null;
         }
+        
         return xml;
-    }
+    },
 
-    function Sys$Net$XMLHttpExecutor$abort() {
-        /// <summary locid="M:J#Sys.Net.XMLHttpExecutor.abort" />
+    abort: function XMLHttpExecutor$abort() {
+        /// <summary locid="M:J#Sys.Net.XMLHttpExecutor.abort">Aborts the request.</summary>
         if (arguments.length !== 0) throw Error.parameterCount();
         if (!this._started) {
             throw Error.invalidOperation(Sys.Res.cannotAbortBeforeStart);
@@ -431,68 +410,55 @@ Sys.Net.XMLHttpExecutor = function Sys$Net$XMLHttpExecutor() {
         this._aborted = true;
 
         this._clearTimer();
+        var xhr = this._xmlHttpRequest;
+        if (xhr && !this._responseAvailable) {
 
-        if (this._xmlHttpRequest && !this._responseAvailable) {
-
-            this._xmlHttpRequest.onreadystatechange = Function.emptyMethod;
-            this._xmlHttpRequest.abort();
+            xhr.onreadystatechange = Function.emptyMethod;
+            xhr.abort();
+            
             this._xmlHttpRequest = null;            
 
             this._webRequest.completed(Sys.EventArgs.Empty);
         }
     }
-Sys.Net.XMLHttpExecutor.prototype = {
-    get_timedOut: Sys$Net$XMLHttpExecutor$get_timedOut,
-    get_started: Sys$Net$XMLHttpExecutor$get_started,
-    get_responseAvailable: Sys$Net$XMLHttpExecutor$get_responseAvailable,
-    get_aborted: Sys$Net$XMLHttpExecutor$get_aborted,
-    executeRequest: Sys$Net$XMLHttpExecutor$executeRequest,
-    getResponseHeader: Sys$Net$XMLHttpExecutor$getResponseHeader,
-    getAllResponseHeaders: Sys$Net$XMLHttpExecutor$getAllResponseHeaders,
-    get_responseData: Sys$Net$XMLHttpExecutor$get_responseData,
-    get_statusCode: Sys$Net$XMLHttpExecutor$get_statusCode,
-    get_statusText: Sys$Net$XMLHttpExecutor$get_statusText,
-    get_xml: Sys$Net$XMLHttpExecutor$get_xml,
-    abort: Sys$Net$XMLHttpExecutor$abort
 }
-Sys.Net.XMLHttpExecutor.registerClass('Sys.Net.XMLHttpExecutor', Sys.Net.WebRequestExecutor);
-Sys.Net._WebRequestManager = function Sys$Net$_WebRequestManager() {
-    /// <summary locid="P:J#Sys.Net.WebRequestManager.#ctor" />
+$type.registerClass('Sys.Net.XMLHttpExecutor', Sys.Net.WebRequestExecutor);
+$type = Sys.Net._WebRequestManager = function _WebRequestManager() {
+    /// <summary locid="P:J#Sys.Net.WebRequestManager.#ctor"></summary>
     if (arguments.length !== 0) throw Error.parameterCount();
-    this._defaultTimeout = 0;
     this._defaultExecutorType = "Sys.Net.XMLHttpExecutor";
 }
 
-
-    function Sys$Net$_WebRequestManager$add_invokingRequest(handler) {
-        /// <summary locid="E:J#Sys.Net.WebRequestManager.invokingRequest" />
+$type.prototype = {
+    add_invokingRequest: function _WebRequestManager$add_invokingRequest(handler) {
+        /// <summary locid="E:J#Sys.Net.WebRequestManager.invokingRequest"></summary>
         var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         Sys.Observer.addEventHandler(this, "invokingRequest", handler);
-    }
-    function Sys$Net$_WebRequestManager$remove_invokingRequest(handler) {
+    },
+    remove_invokingRequest: function _WebRequestManager$remove_invokingRequest(handler) {
         var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         Sys.Observer.removeEventHandler(this, "invokingRequest", handler);
-    }
+    },
 
-    function Sys$Net$_WebRequestManager$add_completedRequest(handler) {
-        /// <summary locid="E:J#Sys.Net.WebRequestManager.completedRequest" />
+    add_completedRequest: function _WebRequestManager$add_completedRequest(handler) {
+        /// <summary locid="E:J#Sys.Net.WebRequestManager.completedRequest"></summary>
         var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         Sys.Observer.addEventHandler(this, "completedRequest", handler);
-    }
-    function Sys$Net$_WebRequestManager$remove_completedRequest(handler) {
+    },
+    remove_completedRequest: function _WebRequestManager$remove_completedRequest(handler) {
         var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         Sys.Observer.removeEventHandler(this, "completedRequest", handler);
-    }
-    function Sys$Net$_WebRequestManager$get_defaultTimeout() {
-        /// <value type="Number" locid="P:J#Sys.Net.WebRequestManager.defaultTimeout"></value>
+    },
+    get_defaultTimeout: function _WebRequestManager$get_defaultTimeout() {
+        /// <value type="Number" locid="P:J#Sys.Net.WebRequestManager.defaultTimeout">The default timeout for requests in milliseconds.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
-        return this._defaultTimeout;
-    }
-    function Sys$Net$_WebRequestManager$set_defaultTimeout(value) {
+        return this._defaultTimeout || 0;
+    },
+    set_defaultTimeout: function _WebRequestManager$set_defaultTimeout(value) {
         var e = Function._validateParams(arguments, [{name: "value", type: Number}]);
         if (e) throw e;
         if (value < 0) {
@@ -500,22 +466,22 @@ Sys.Net._WebRequestManager = function Sys$Net$_WebRequestManager() {
         }
 
         this._defaultTimeout = value;
-    }
+    },
 
-    function Sys$Net$_WebRequestManager$get_defaultExecutorType() {
-        /// <value type="String" locid="P:J#Sys.Net.WebRequestManager.defaultExecutorType"></value>
+    get_defaultExecutorType: function _WebRequestManager$get_defaultExecutorType() {
+        /// <value type="String" locid="P:J#Sys.Net.WebRequestManager.defaultExecutorType">The default executor type name.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._defaultExecutorType;
-    }
-    function Sys$Net$_WebRequestManager$set_defaultExecutorType(value) {
+    },
+    set_defaultExecutorType: function _WebRequestManager$set_defaultExecutorType(value) {
         var e = Function._validateParams(arguments, [{name: "value", type: String}]);
         if (e) throw e;
         this._defaultExecutorType = value;
-    }
+    },
 
-    function Sys$Net$_WebRequestManager$executeRequest(webRequest) {
-        /// <summary locid="M:J#Sys.Net.WebRequestManager.executeRequest" />
-        /// <param name="webRequest" type="Sys.Net.WebRequest"></param>
+    executeRequest: function _WebRequestManager$executeRequest(webRequest) {
+        /// <summary locid="M:J#Sys.Net.WebRequestManager.executeRequest">Executes a request.</summary>
+        /// <param name="webRequest" type="Sys.Net.WebRequest">The webRequest to execute.</param>
         var e = Function._validateParams(arguments, [
             {name: "webRequest", type: Sys.Net.WebRequest}
         ]);
@@ -523,11 +489,12 @@ Sys.Net._WebRequestManager = function Sys$Net$_WebRequestManager() {
         var executor = webRequest.get_executor();
         if (!executor) {
 
-            var er, failed = false;
+            var er, failed;
             try {
                 var executorType = window.eval(this._defaultExecutorType);
                 executor = new executorType();
-            } catch (er) {
+            }
+            catch (er) {
                 failed = true;
             }
 
@@ -538,35 +505,22 @@ Sys.Net._WebRequestManager = function Sys$Net$_WebRequestManager() {
             webRequest.set_executor(executor);
         }
 
-        if (executor.get_aborted()) {
-            return;
-        }
-
-        var evArgs = new Sys.Net.NetworkRequestEventArgs(webRequest);
-        Sys.Observer.raiseEvent(this, "invokingRequest", evArgs);
-        if (!evArgs.get_cancel()) {
-            executor.executeRequest();
+        if (!executor.get_aborted()) {
+            var evArgs = new Sys.Net.NetworkRequestEventArgs(webRequest);
+            Sys.Observer.raiseEvent(this, "invokingRequest", evArgs);
+            if (!evArgs.get_cancel()) {
+                executor.executeRequest();
+            }
         }
     }
-Sys.Net._WebRequestManager.prototype = {
-    add_invokingRequest: Sys$Net$_WebRequestManager$add_invokingRequest,
-    remove_invokingRequest: Sys$Net$_WebRequestManager$remove_invokingRequest,
-    add_completedRequest: Sys$Net$_WebRequestManager$add_completedRequest,
-    remove_completedRequest: Sys$Net$_WebRequestManager$remove_completedRequest,
-    get_defaultTimeout: Sys$Net$_WebRequestManager$get_defaultTimeout,
-    set_defaultTimeout: Sys$Net$_WebRequestManager$set_defaultTimeout,
-    get_defaultExecutorType: Sys$Net$_WebRequestManager$get_defaultExecutorType,
-    set_defaultExecutorType: Sys$Net$_WebRequestManager$set_defaultExecutorType,
-    executeRequest: Sys$Net$_WebRequestManager$executeRequest
 }
 
-Sys.Net._WebRequestManager.registerClass('Sys.Net._WebRequestManager');
-
+$type.registerClass('Sys.Net._WebRequestManager');
 
 Sys.Net.WebRequestManager = new Sys.Net._WebRequestManager();
-Sys.Net.NetworkRequestEventArgs = function Sys$Net$NetworkRequestEventArgs(webRequest) {
-    /// <summary locid="M:J#Sys.Net.NetworkRequestEventArgs.#ctor" />
-    /// <param name="webRequest" type="Sys.Net.WebRequest"></param>
+$type = Sys.Net.NetworkRequestEventArgs = function NetworkRequestEventArgs(webRequest) {
+    /// <summary locid="M:J#Sys.Net.NetworkRequestEventArgs.#ctor">This class is raised by the WebRequestManager when a WebRequest is about to be executed.</summary>
+    /// <param name="webRequest" type="Sys.Net.WebRequest">The identifier for the event.</param>
     var e = Function._validateParams(arguments, [
         {name: "webRequest", type: Sys.Net.WebRequest}
     ]);
@@ -575,47 +529,41 @@ Sys.Net.NetworkRequestEventArgs = function Sys$Net$NetworkRequestEventArgs(webRe
     this._webRequest = webRequest;
 }
 
-
-    function Sys$Net$NetworkRequestEventArgs$get_webRequest() {
-        /// <value type="Sys.Net.WebRequest" locid="P:J#Sys.Net.NetworkRequestEventArgs.webRequest"></value>
+$type.prototype = {
+    get_webRequest: function NetworkRequestEventArgs$get_webRequest() {
+        /// <value type="Sys.Net.WebRequest" locid="P:J#Sys.Net.NetworkRequestEventArgs.webRequest">The request about to be executed.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._webRequest;
     }
-Sys.Net.NetworkRequestEventArgs.prototype = {
-    get_webRequest: Sys$Net$NetworkRequestEventArgs$get_webRequest
 }
 
-Sys.Net.NetworkRequestEventArgs.registerClass('Sys.Net.NetworkRequestEventArgs', Sys.CancelEventArgs);
-Sys.Net.WebRequest = function Sys$Net$WebRequest() {
-    /// <summary locid="M:J#Sys.Net.WebRequest.#ctor" />
+$type.registerClass('Sys.Net.NetworkRequestEventArgs', Sys.CancelEventArgs);
+$type = Sys.Net.WebRequest = function WebRequest() {
+    /// <summary locid="M:J#Sys.Net.WebRequest.#ctor">WebRequest class</summary>
     if (arguments.length !== 0) throw Error.parameterCount();
     this._url = "";
     this._headers = { };
     this._body = null;
     this._userContext = null;
     this._httpVerb = null;
-    this._executor = null;
-    this._invokeCalled = false;
-    this._timeout = 0;
 }
 
-
-
-    function Sys$Net$WebRequest$add_completed(handler) {
-    /// <summary locid="E:J#Sys.Net.WebRequest.completed" />
-    var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
-    if (e) throw e;
+$type.prototype = {
+    add_completed: function WebRequest$add_completed(handler) {
+        /// <summary locid="E:J#Sys.Net.WebRequest.completed"></summary>
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
+        if (e) throw e;
         Sys.Observer.addEventHandler(this, "completed", handler);
-    }
-    function Sys$Net$WebRequest$remove_completed(handler) {
-    var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
-    if (e) throw e;
+    },
+    remove_completed: function WebRequest$remove_completed(handler) {
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
+        if (e) throw e;
         Sys.Observer.removeEventHandler(this, "completed", handler);
-    }
+    },
 
-    function Sys$Net$WebRequest$completed(eventArgs) {
-        /// <summary locid="M:J#Sys.Net.WebRequest.completed" />
-        /// <param name="eventArgs" type="Sys.EventArgs"></param>
+    completed: function WebRequest$completed(eventArgs) {
+        /// <summary locid="M:J#Sys.Net.WebRequest.completed">The completed method should be called when the request is completed.</summary>
+        /// <param name="eventArgs" type="Sys.EventArgs">The event args to raise the event with.</param>
         var e = Function._validateParams(arguments, [
             {name: "eventArgs", type: Sys.EventArgs}
         ]);
@@ -629,27 +577,27 @@ Sys.Net.WebRequest = function Sys$Net$WebRequest() {
         raise(Sys.Net.WebRequestManager, this._executor, "completedRequest");
         raise(this, this._executor, "completed");
         Sys.Observer.clearEventHandlers(this, "completed");
-    }
+    },
 
-    function Sys$Net$WebRequest$get_url() {
-        /// <value type="String" locid="P:J#Sys.Net.WebRequest.url"></value>
+    get_url: function WebRequest$get_url() {
+        /// <value type="String" locid="P:J#Sys.Net.WebRequest.url">The url.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._url;
-    }
-    function Sys$Net$WebRequest$set_url(value) {
+    },
+    set_url: function WebRequest$set_url(value) {
         var e = Function._validateParams(arguments, [{name: "value", type: String}]);
         if (e) throw e;
         this._url = value;
-    }
+    },
 
-    function Sys$Net$WebRequest$get_headers() {
-        /// <value locid="P:J#Sys.Net.WebRequest.headers"></value>
+    get_headers: function WebRequest$get_headers() {
+        /// <value locid="P:J#Sys.Net.WebRequest.headers">The headers dictionary for the request.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._headers;
-    }
+    },
 
-    function Sys$Net$WebRequest$get_httpVerb() {
-        /// <value type="String" locid="P:J#Sys.Net.WebRequest.httpVerb"></value>
+    get_httpVerb: function WebRequest$get_httpVerb() {
+        /// <value type="String" locid="P:J#Sys.Net.WebRequest.httpVerb">The httpVerb for the request.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         if (this._httpVerb === null) {
             if (this._body === null) {
@@ -658,120 +606,93 @@ Sys.Net.WebRequest = function Sys$Net$WebRequest() {
             return "POST";
         }
         return this._httpVerb;
-    }
-    function Sys$Net$WebRequest$set_httpVerb(value) {
+    },
+    set_httpVerb: function WebRequest$set_httpVerb(value) {
         var e = Function._validateParams(arguments, [{name: "value", type: String}]);
         if (e) throw e;
         if (value.length === 0) {
             throw Error.argument('value', Sys.Res.invalidHttpVerb);
         }
-
         this._httpVerb = value;
-    }
+    },
 
-    function Sys$Net$WebRequest$get_body() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Net.WebRequest.body"></value>
+    get_body: function WebRequest$get_body() {
+        /// <value mayBeNull="true" locid="P:J#Sys.Net.WebRequest.body">The body of the request.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._body;
-    }
-    function Sys$Net$WebRequest$set_body(value) {
+    },
+    set_body: function WebRequest$set_body(value) {
         var e = Function._validateParams(arguments, [{name: "value", mayBeNull: true}]);
         if (e) throw e;
         this._body = value;
-    }
+    },
 
-    function Sys$Net$WebRequest$get_userContext() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Net.WebRequest.userContext"></value>
+    get_userContext: function WebRequest$get_userContext() {
+        /// <value mayBeNull="true" locid="P:J#Sys.Net.WebRequest.userContext">The userContext of the request.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
         return this._userContext;
-    }
-    function Sys$Net$WebRequest$set_userContext(value) {
+    },
+    set_userContext: function WebRequest$set_userContext(value) {
         var e = Function._validateParams(arguments, [{name: "value", mayBeNull: true}]);
         if (e) throw e;
         this._userContext = value;
-    }
+    },
 
-    function Sys$Net$WebRequest$get_executor() {
-        /// <value type="Sys.Net.WebRequestExecutor" locid="P:J#Sys.Net.WebRequest.executor"></value>
+    get_executor: function WebRequest$get_executor() {
+        /// <value type="Sys.Net.WebRequestExecutor" locid="P:J#Sys.Net.WebRequest.executor">The executor for the request.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
-        return this._executor;
-    }
-    function Sys$Net$WebRequest$set_executor(value) {
+        return this._executor || null;
+    },
+    set_executor: function WebRequest$set_executor(value) {
         var e = Function._validateParams(arguments, [{name: "value", type: Sys.Net.WebRequestExecutor}]);
         if (e) throw e;
-        if (this._executor !== null && this._executor.get_started()) {
+        if (this._executor && this._executor.get_started()) {
             throw Error.invalidOperation(Sys.Res.setExecutorAfterActive);
         }
-
         this._executor = value;
-        this._executor._set_webRequest(this);
-    }
+        value._set_webRequest(this);
+    },
 
-    function Sys$Net$WebRequest$get_timeout() {
-        /// <value type="Number" locid="P:J#Sys.Net.WebRequest.timeout"></value>
+    get_timeout: function WebRequest$get_timeout() {
+        /// <value type="Number" locid="P:J#Sys.Net.WebRequest.timeout">The timeout in milliseconds for the request.</value>
         if (arguments.length !== 0) throw Error.parameterCount();
-        if (this._timeout === 0) {
-            return Sys.Net.WebRequestManager.get_defaultTimeout();
-        }
-        return this._timeout;
-    }
-    function Sys$Net$WebRequest$set_timeout(value) {
+        return this._timeout || Sys.Net.WebRequestManager.get_defaultTimeout();
+    },
+    set_timeout: function WebRequest$set_timeout(value) {
         var e = Function._validateParams(arguments, [{name: "value", type: Number}]);
         if (e) throw e;
         if (value < 0) {
             throw Error.argumentOutOfRange("value", value, Sys.Res.invalidTimeout);
         }
-
         this._timeout = value;
-    }
+    },
 
-    function Sys$Net$WebRequest$getResolvedUrl() {
-        /// <summary locid="M:J#raise" />
-        /// <returns type="String"></returns>
+    getResolvedUrl: function WebRequest$getResolvedUrl() {
+        /// <summary locid="M:J#raise">The getResolvedUrl method returns the url resolved against the base url of the page if set.</summary>
+        /// <returns type="String">The resolved url for the request.</returns>
         if (arguments.length !== 0) throw Error.parameterCount();
         return Sys.Net.WebRequest._resolveUrl(this._url);
-    }
+    },
 
-    function Sys$Net$WebRequest$invoke() {
-        /// <summary locid="M:J#raise" />
+    invoke: function WebRequest$invoke() {
+        /// <summary locid="M:J#raise">Invokes the request</summary>
         if (arguments.length !== 0) throw Error.parameterCount();
         if (this._invokeCalled) {
             throw Error.invalidOperation(Sys.Res.invokeCalledTwice);
         }
-
         Sys.Net.WebRequestManager.executeRequest(this);
         this._invokeCalled = true;
     }
-Sys.Net.WebRequest.prototype = {
-    add_completed: Sys$Net$WebRequest$add_completed,
-    remove_completed: Sys$Net$WebRequest$remove_completed,
-    completed: Sys$Net$WebRequest$completed,
-    get_url: Sys$Net$WebRequest$get_url,
-    set_url: Sys$Net$WebRequest$set_url,
-    get_headers: Sys$Net$WebRequest$get_headers,
-    get_httpVerb: Sys$Net$WebRequest$get_httpVerb,
-    set_httpVerb: Sys$Net$WebRequest$set_httpVerb,
-    get_body: Sys$Net$WebRequest$get_body,
-    set_body: Sys$Net$WebRequest$set_body,
-    get_userContext: Sys$Net$WebRequest$get_userContext,
-    set_userContext: Sys$Net$WebRequest$set_userContext,
-    get_executor: Sys$Net$WebRequest$get_executor,
-    set_executor: Sys$Net$WebRequest$set_executor,
-    get_timeout: Sys$Net$WebRequest$get_timeout,
-    set_timeout: Sys$Net$WebRequest$set_timeout,
-    getResolvedUrl: Sys$Net$WebRequest$getResolvedUrl,
-    invoke: Sys$Net$WebRequest$invoke
 }
 
-
-Sys.Net.WebRequest._resolveUrl = function Sys$Net$WebRequest$_resolveUrl(url, baseUrl) {
-    if (url && url.indexOf('://') !== -1) {
+$type._resolveUrl = function WebRequest$_resolveUrl(url, baseUrl) {
+    if (url && url.indexOf('://') > 0) {
         return url;
     }
 
-    if (!baseUrl || baseUrl.length === 0) {
-        var baseElement = document.getElementsByTagName('base')[0];
-        if (baseElement && baseElement.href && baseElement.href.length > 0) {
+    if (!baseUrl || !baseUrl.length) {
+        var baseElement = Sys.get('base');
+        if (baseElement && baseElement.href && baseElement.href.length) {
             baseUrl = baseElement.href;
         }
         else {
@@ -780,16 +701,16 @@ Sys.Net.WebRequest._resolveUrl = function Sys$Net$WebRequest$_resolveUrl(url, ba
     }
 
     var qsStart = baseUrl.indexOf('?');
-    if (qsStart !== -1) {
+    if (qsStart > 0) {
         baseUrl = baseUrl.substr(0, qsStart);
     }
     qsStart = baseUrl.indexOf('#');
-    if (qsStart !== -1) {
+    if (qsStart > 0) {
         baseUrl = baseUrl.substr(0, qsStart);
     }
     baseUrl = baseUrl.substr(0, baseUrl.lastIndexOf('/') + 1);
 
-    if (!url || url.length === 0) {
+    if (!url || !url.length) {
         return baseUrl;
     }
 
@@ -816,7 +737,7 @@ Sys.Net.WebRequest._resolveUrl = function Sys$Net$WebRequest$_resolveUrl(url, ba
     }
 }
 
-Sys.Net.WebRequest._createQueryString = function Sys$Net$WebRequest$_createQueryString(queryString, encodeMethod, addParams) {
+$type._createQueryString = function WebRequest$_createQueryString(queryString, encodeMethod, addParams) {
     encodeMethod = encodeMethod || encodeURIComponent;
     var i = 0, obj, val, arg, sb = new Sys.StringBuilder();
     if (queryString) {
@@ -841,7 +762,7 @@ Sys.Net.WebRequest._createQueryString = function Sys$Net$WebRequest$_createQuery
     return sb.toString();
 }
 
-Sys.Net.WebRequest._createUrl = function Sys$Net$WebRequest$_createUrl(url, queryString, addParams) {
+$type._createUrl = function WebRequest$_createUrl(url, queryString, addParams) {
     if (!queryString && !addParams) {
         return url;
     }
@@ -851,7 +772,7 @@ Sys.Net.WebRequest._createUrl = function Sys$Net$WebRequest$_createUrl(url, quer
         : url;
 }
 
-Sys.Net.WebRequest.registerClass('Sys.Net.WebRequest');
+$type.registerClass('Sys.Net.WebRequest');
 
 }
 
@@ -863,4 +784,3 @@ else {
 }
 
 })();
-

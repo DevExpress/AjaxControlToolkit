@@ -1,7 +1,3 @@
-﻿// Name:        Date.HijriCalendar.debug.js
-// Assembly:    System.Web.Ajax
-// Version:     3.0.31106.0
-// FileVersion: 3.0.31106.0
 (function() {
 
 function execute() {
@@ -72,4 +68,3 @@ else {
 }
 
 })();
-
