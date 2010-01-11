@@ -7,10 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		AjaxKey.snk = AjaxKey.snk
 		Tools\JSBuild.dll = Tools\JSBuild.dll
+		LICENSE.txt = LICENSE.txt
 		MSAjax.testrunconfig = MSAjax.testrunconfig
 		MSAjax.vsmdi = MSAjax.vsmdi
 		MSAjax1.vsmdi = MSAjax1.vsmdi
-		ReadMe.txt = ReadMe.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Web.Ajax", "Server\System.Web.Ajax\System.Web.Ajax.csproj", "{045405DE-F8D1-4085-A388-C325F7F1D5F7}"
@@ -145,7 +145,6 @@ Global
 		SccWebProject2 = true
 		SccProjectUniqueName2 = Server\\Tests\\FunctionalTests
 		SccProjectTopLevelParentUniqueName2 = MSAjax.sln
-		SccProjectName2 = Server/Tests/FunctionalTests
 		SccLocalPath2 = .
 		SccProjectFilePathRelativizedFromConnection2 = Server\\Tests\\FunctionalTests\\
 		SccProjectEnlistmentChoice2 = 2
@@ -167,7 +166,6 @@ Global
 		SccWebProject7 = true
 		SccProjectUniqueName7 = Client\\Tests\\ClientFunctionalTests
 		SccProjectTopLevelParentUniqueName7 = MSAjax.sln
-		SccProjectName7 = Client/Tests/ClientFunctionalTests
 		SccLocalPath7 = .
 		SccProjectFilePathRelativizedFromConnection7 = Client\\Tests\\ClientFunctionalTests\\
 		SccProjectEnlistmentChoice7 = 2
