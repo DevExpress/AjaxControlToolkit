@@ -21,15 +21,15 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require([Sys.components.confirmButton, Sys.components.modalPopup], function() {
-            Sys.create.confirmButton("#confirm1", "Are you SURE?");
-            Sys.create.modalPopup("#confirm2", {
+            Sys.query("#confirm1").confirmButton("Are you SURE?");
+            Sys.query("#confirm2").modalPopup({
                 id: "modal",
                 PopupControlID: "popup",
                 OkControlID: "cmdok",
                 CancelControlID: "cmdclose",
                 BackgroundCssClass: "modalBackground"
             });
-            Sys.create.confirmButton("#confirm2", "", {
+            Sys.query("#confirm2").confirmButton("", {
                 displayModalPopupID: "modal",
                 postBackScript: "alert('post')"
             });

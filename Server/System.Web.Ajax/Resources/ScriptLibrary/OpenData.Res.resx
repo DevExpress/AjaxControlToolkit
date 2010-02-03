@@ -129,7 +129,7 @@
   <data name="serviceVersionTooHigh" xml:space="preserve">
     <value>The URI '{0}' points to an ADO.NET Data Service of a higher version than is supported by this library.</value>
   </data>
-  <data name="uriNotAdoNetService" xml:space="preserve">
+  <data name="uriNotOpenDataService" xml:space="preserve">
     <value>The URI '{0}' does not point to an ADO.NET Data Service.</value>
   </data>
 </root>

@@ -15,22 +15,22 @@ using System.Web.UI;
 [assembly: TagPrefix("System.Web.UI", "asp")]
 
 [assembly: WebResource("Start.js", "application/x-javascript")]
-[assembly: WebResource("MicrosoftAjaxAdoNet.js", "application/x-javascript")]
+[assembly: WebResource("MicrosoftAjaxOpenData.js", "application/x-javascript")]
 [assembly: WebResource("MicrosoftAjaxDataContext.js", "application/x-javascript")]
 [assembly: WebResource("MicrosoftAjaxTemplates.js", "application/x-javascript")]
 // debug versions
 [assembly: WebResource("Start.debug.js", "application/x-javascript")]
-[assembly: WebResource("MicrosoftAjaxAdoNet.debug.js", "application/x-javascript")]
+[assembly: WebResource("MicrosoftAjaxOpenData.debug.js", "application/x-javascript")]
 [assembly: WebResource("MicrosoftAjaxDataContext.debug.js", "application/x-javascript")]
 [assembly: WebResource("MicrosoftAjaxTemplates.debug.js", "application/x-javascript")]
 
 // Script resources
-//[assembly: ScriptResource("MicrosoftAjaxAdoNet.js", "System.Web.Resources.ScriptLibrary.AdoNet.Res", "Sys.Data.AdoNetRes")]
-//[assembly: ScriptResource("MicrosoftAjaxAdoNet.debug.js", "System.Web.Resources.ScriptLibrary.AdoNet.Res.debug", "Sys.Data.AdoNetRes")]
-//[assembly: ScriptResource("MicrosoftAjaxDataContext.js", "System.Web.Resources.ScriptLibrary.DataContext.Res", "Sys.Data.DataRes")]
-//[assembly: ScriptResource("MicrosoftAjaxDataContext.debug.js", "System.Web.Resources.ScriptLibrary.DataContext.Res.debug", "Sys.Data.DataRes")]
-//[assembly: ScriptResource("MicrosoftAjaxTemplates.js", "System.Web.Resources.ScriptLibrary.Templates.Res", "Sys.UI.TemplatesRes")]
-//[assembly: ScriptResource("MicrosoftAjaxTemplates.debug.js", "System.Web.Resources.ScriptLibrary.Templates.Res.debug", "Sys.UI.TemplatesRes")]
+[assembly: ScriptResource("MicrosoftAjaxOpenData.js", "System.Web.Resources.ScriptLibrary.OpenData.Res", "Sys.Data.OpenDataRes")]
+[assembly: ScriptResource("MicrosoftAjaxOpenData.debug.js", "System.Web.Resources.ScriptLibrary.OpenData.Res.debug", "Sys.Data.OpenDataRes")]
+[assembly: ScriptResource("MicrosoftAjaxDataContext.js", "System.Web.Resources.ScriptLibrary.DataContext.Res", "Sys.Data.DataRes")]
+[assembly: ScriptResource("MicrosoftAjaxDataContext.debug.js", "System.Web.Resources.ScriptLibrary.DataContext.Res.debug", "Sys.Data.DataRes")]
+[assembly: ScriptResource("MicrosoftAjaxTemplates.js", "System.Web.Resources.ScriptLibrary.Templates.Res", "Sys.UI.TemplatesRes")]
+[assembly: ScriptResource("MicrosoftAjaxTemplates.debug.js", "System.Web.Resources.ScriptLibrary.Templates.Res.debug", "Sys.UI.TemplatesRes")]
 
 // Scripts from System.Web.Extensions
 [assembly: WebResource("MicrosoftAjax.js", "application/x-javascript")]
@@ -61,12 +61,12 @@ using System.Web.UI;
 [assembly: WebResource("Date.UmAlQuraCalendar.debug.js", "application/x-javascript")]
 
 // Script resources
-//[assembly: ScriptResource("MicrosoftAjax.js", "System.Web.Resources.ScriptLibrary.Res", "Sys.Res")]
-//[assembly: ScriptResource("MicrosoftAjax.debug.js", "System.Web.Resources.ScriptLibrary.Res.debug", "Sys.Res")]
-//[assembly: ScriptResource("MicrosoftAjaxCore.js", "System.Web.Resources.ScriptLibrary.Res", "Sys.Res")]
-//[assembly: ScriptResource("MicrosoftAjaxCore.debug.js", "System.Web.Resources.ScriptLibrary.Res.debug", "Sys.Res")]
-//[assembly: ScriptResource("MicrosoftAjaxWebForms.js", "System.Web.Resources.ScriptLibrary.WebForms.Res", "Sys.WebForms.Res")]
-//[assembly: ScriptResource("MicrosoftAjaxWebForms.debug.js", "System.Web.Resources.ScriptLibrary.WebForms.Res.debug", "Sys.WebForms.Res")]
+[assembly: ScriptResource("MicrosoftAjax.js", "System.Web.Resources.ScriptLibrary.Res", "Sys.Res")]
+[assembly: ScriptResource("MicrosoftAjax.debug.js", "System.Web.Resources.ScriptLibrary.Res.debug", "Sys.Res")]
+[assembly: ScriptResource("MicrosoftAjaxCore.js", "System.Web.Resources.ScriptLibrary.Res", "Sys.Res")]
+[assembly: ScriptResource("MicrosoftAjaxCore.debug.js", "System.Web.Resources.ScriptLibrary.Res.debug", "Sys.Res")]
+[assembly: ScriptResource("MicrosoftAjaxWebForms.js", "System.Web.Resources.ScriptLibrary.WebForms.Res", "Sys.WebForms.Res")]
+[assembly: ScriptResource("MicrosoftAjaxWebForms.debug.js", "System.Web.Resources.ScriptLibrary.WebForms.Res.debug", "Sys.WebForms.Res")]
 
 
 // Default tag prefix for designer
@@ -76,9 +76,9 @@ using System.Web.UI;
 [assembly: AllowPartiallyTrustedCallers]
 [assembly: ComVisible(false)]
 [assembly: System.CLSCompliant(true)]
-[assembly: AssemblyVersion("3.0.31106.0")]
-[assembly: AssemblyFileVersion("3.0.31106.0")]
+[assembly: AssemblyVersion("3.0.40203.0")]
+[assembly: AssemblyFileVersion("3.0.40203.0")]
 [assembly: NeutralResourcesLanguage("en-US")]
 
 // CDN Path
-// http[s]://ajax.microsoft.com/ajax/beta/0911/*
+// http[s]://ajax.microsoft.com/ajax/beta/1002/*

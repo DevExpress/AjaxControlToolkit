@@ -20,10 +20,10 @@
         Sys.debug = true;
         var popup;
         Sys.require(Sys.components.popup, function() {
-            popup = Sys.create.popup("#popup", {
+            popup = Sys.query("#popup").popup({
                 parentElementID: "target",
                 onShow: '{AnimationName: "Sequence", AnimationChildren: [{AnimationName:"HideAction", visible: true},{AnimationName:"FadeIn"}]}'
-            });
+            }).get(0);
         });
     </script>
 </head>

@@ -16,15 +16,15 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.hoverMenu, function() {
-            Sys.create.hoverMenu.defaults = {
+            Sys.components.hoverMenu.defaults = {
                 popupElement: Sys.get("#menu"),
                 HoverCssClass: "hovering",
                 PopupPosition: Sys.Extended.UI.HoverMenuPopupPosition.Right
             }
-            Sys.create.hoverMenu("#hover", {
+            Sys.query("#hover").hoverMenu({
                 HoverDelay: 1000
             });
-            Sys.create.hoverMenu("#hover2");
+            Sys.query("#hover2").hoverMenu();
         });
     </script>
 </head>

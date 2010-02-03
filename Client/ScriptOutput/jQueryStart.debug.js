@@ -555,6 +555,7 @@ var callIf = function _callIf(obj, name, args) {
                 if (selfUrl) {
                     this.basePath = selfUrl.slice(0, selfUrl.lastIndexOf("/"));
                     var i = selfUrl.lastIndexOf("#"), list;
+                    list = ["jQuery"];
                     if (i !== -1) {
                         var args = selfUrl.substr(i+1).split("&");
                         foreach(args, function(pair) {
@@ -562,7 +563,7 @@ var callIf = function _callIf(obj, name, args) {
                                 name = parts[0],
                                 value = parts[1];
                             if (name === "require") {
-                                list = value.split(",");
+                                list.push.apply(list, value.split(","));
                             }
                         });
                     }

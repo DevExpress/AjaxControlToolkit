@@ -15,7 +15,7 @@
     <script type="text/javascript" src="scripts/extended/extendedcontrols.js"></script>
     <script type="text/javascript">
         Sys.require(Sys.components.watermark, function() {
-            Sys.create.watermark("#name", "<enter a name>", "wm");
+            Sys.query("#name").watermark("<enter a name>", "wm");
         });
     </script>
 </head>

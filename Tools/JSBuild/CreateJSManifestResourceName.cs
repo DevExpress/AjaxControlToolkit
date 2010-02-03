@@ -1,9 +1,9 @@
-﻿using System;
-using System.IO;
-using Microsoft.Build.Framework;
-using Microsoft.Build.Tasks;
+﻿namespace JSBuild {
+    using System;
+    using System.IO;
+    using Microsoft.Build.Framework;
+    using Microsoft.Build.Tasks;
 
-namespace JSBuild {
     public class CreateJSManifestResourceName : CreateCSharpManifestResourceName {
         private string _baseDirectory;
 

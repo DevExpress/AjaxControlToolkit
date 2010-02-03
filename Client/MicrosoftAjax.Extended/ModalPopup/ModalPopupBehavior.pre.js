@@ -120,8 +120,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._backgroundElement.className = this._BackgroundCssClass;
         }
 
-        $common.appendElementToFormOrBody(this._foregroundElement);
-        $common.appendElementToFormOrBody(this._backgroundElement);
+        this._foregroundElement.parentNode.appendChild(this._backgroundElement);
 
         this._foregroundElement.style.display = 'none';
         this._foregroundElement.style.position = 'fixed';

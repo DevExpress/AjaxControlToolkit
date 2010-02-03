@@ -31,7 +31,7 @@
         Sys.require([Sys.components.watermark]);
         Sys.onReady(ready);
         function ready() {
-            Sys.create.watermark("#wm1", "hi");
+            Sys.query("#wm1").watermark("hi");
         }
     </script>
     <div>

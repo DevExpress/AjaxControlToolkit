@@ -20,10 +20,10 @@
         Sys.debug = true;
         var popup;
         Sys.require(Sys.components.popupBehavior, function() {
-            popup = Sys.create.popupBehavior("#target", {
+            popup = Sys.query("#target").popupBehavior({
                 PopupControlID: "popup",
                 Position: Sys.Extended.UI.PopupControlPopupPosition.Bottom
-            });
+            }).get(0);
         });
     </script>
 </head>

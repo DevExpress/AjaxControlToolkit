@@ -13,7 +13,7 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.colorPicker, function() {
-            Sys.create.colorPicker("#color", {
+            Sys.query("#color").colorPicker({
             });
         });
     </script>

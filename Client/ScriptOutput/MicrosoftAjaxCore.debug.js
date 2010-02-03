@@ -97,7 +97,9 @@ if (!Sys || !Sys.loader) {
             target.attachEvent(ieName || ("on" + name), onEvent);
         }
         else {
+            if (target.addEventListener) {
             target.addEventListener(name, onEvent, false);
+            }
             if (isScript) {
                 target.addEventListener("error", onEvent, false);
             }
@@ -129,9 +131,18 @@ if (!Sys || !Sys.loader) {
         create: {},
         converters: {},
         _domLoaded: function _domLoaded() {
+            if (Sys._domChecked) return;
+            Sys._domChecked = true;
             function domReady() {
                 if (!Sys._domReady) {
                     Sys._domReady = true;
+                    var autoRequire = Sys._autoRequire;
+                    if (autoRequire) {
+                        Sys.require(autoRequire, function() {
+                            Sys._autoRequire = null;
+                            foreachCall(Sys, "_autoQueue");
+                        }, autoToken);
+                    }
                     raiseDomReady();
                     raiseOnReady();
                 }
@@ -163,15 +174,15 @@ if (!Sys || !Sys.loader) {
                 listenOnce(document, "DOMContentLoaded", null, domReady);
             }
         },
-        _getById: function _getById(found, id, single, includeSelf, element) {
+        _getById: function _getById(found, id, single, includeSelf, element, filter) {
             if (element) {
                 if (includeSelf && (element.id === id)) {
-                    found[0] = element;
+                    found.push(element);
                 }
-                else {
+                else if (!filter) {
                     foreach(all("*", element), function(element) {
                         if (element.id === id) {
-                            found[0] = element;
+                            found.push(element);
                             return true;
                         }
                     });
@@ -179,11 +190,11 @@ if (!Sys || !Sys.loader) {
             }
             else {
                 var e = document.getElementById(id);
-                if (e) found[0] = e;
+                if (e) found.push(e);
             }
             return found.length;
         },
-        _getByClass: function _getByClass(found, targetClass, single, includeSelf, element) {
+        _getByClass: function _getByClass(found, targetClass, single, includeSelf, element, filter) {
             function pushIfMatch(element) {
                 var ret, className = element.className;
                 if (className && ((className === targetClass) || (className.indexOf(' ' + targetClass) >= 0) || (className.indexOf(targetClass + ' ') >= 0))) {
@@ -196,21 +207,23 @@ if (!Sys || !Sys.loader) {
             if (includeSelf && pushIfMatch(element) && single) {
                 return true;
             }
-            element = element || document;
-            var finder = element.querySelectorAll || element.getElementsByClassName;
-            if (finder) {
-                if (element.querySelectorAll) targetClass = "." + targetClass;
-                nodes = finder.call(element, targetClass);
-                for (i = 0, l = nodes.length; i < l; i++) {
-                    found.push(nodes[i]);
-                    if (single) return true;
+            if (!filter) {
+                element = element || document;
+                var finder = element.querySelectorAll || element.getElementsByClassName;
+                if (finder) {
+                    if (element.querySelectorAll) targetClass = "." + targetClass;
+                    nodes = finder.call(element, targetClass);
+                    for (i = 0, l = nodes.length; i < l; i++) {
+                        found.push(nodes[i]);
+                        if (single) return true;
+                    }
                 }
-            }
-            else {
-                nodes = all("*", element);
-                for (i = 0, l = nodes.length; i < l; i++) {
-                    if (pushIfMatch(nodes[i]) && single) {
-                        return true;
+                else {
+                    nodes = all("*", element);
+                    for (i = 0, l = nodes.length; i < l; i++) {
+                        if (pushIfMatch(nodes[i]) && single) {
+                            return true;
+                        }
                     }
                 }
             }
@@ -218,12 +231,10 @@ if (!Sys || !Sys.loader) {
         query: function query(selector, context) {
             /// <summary>Queries the DOM for a set of DOM elements.</summary>
             /// <validationOptions enabled="false" />
-            /// <param name="selector">Selector for a set of DOM elements based on id (#&lt;id>), class (.&lt;name>), or tag name (&lt;tagname>). More complex selectors may be used if jQuery is loaded.</param>
-            /// <param name="context" optional="true" mayBeNull="true">An element, array of elements, or Sys.UI.TemplateContext to restrict the query within.</param>
-            /// <returns type="Array">Array of matching elements. If no results, an empty array.</returns>
-            return (context && typeof(context.query) === "function") ?
-                context.query(selector) :
-                this._find(selector, context);
+            /// <param name="selector">Selector for a set of DOM elements based on id (#&lt;id>), class (.&lt;name>), or tag name (&lt;tagname>). Also supports an array of DOM elements or selectors. More complex selectors may be used if jQuery is loaded.</param>
+            /// <param name="context" optional="true" mayBeNull="true">A DOM element (exclusive), array of DOM elements (inclusive), or other Sys.ElementSet or Sys.UI.TemplateContext (exclusive) to restrict the search within.</param>
+            /// <returns type="Sys.ElementSet">An object representing the set of matching elements.</returns>
+            return new Sys.ElementSet(selector, context);
         },
         get: function get(selector, context) {
             /// <summary>Queries the DOM for a single DOM element.</summary>
@@ -238,66 +249,100 @@ if (!Sys || !Sys.loader) {
                 context.get(selector) :
                 this._find(selector, context, true);
         },
-        _find: function _find(selector, context, single) {
-            var found = [];
-            if (typeof(selector) !== "string") {
-                found.push(selector);
+        _find: function _find(selector, context, single, filter) {
+            var found = [],
+                selectors;
+            if (typeof(selector) === "string") {
+                selectors = [selector];
             }
             else {
-                var includeSelf = context instanceof Array,
-                    match = /^([\$#\.])((\w|[$:\.\-])+)$/.exec(selector);
-                if (match && match.length === 4) {
-                    selector = match[2];
-                    var type = match[1];
-                    if (type === "$") {
-                        Sys._getComponent(found, selector, context);
+                selectors = selector;
+            }
+            var includeSelf = context instanceof Array,
+                simpleNonTag = /^([\$#\.])((\w|[$:\.\-])+)$/,
+                tag = /^((\w+)|\*)$/;
+            if ((typeof(context) === "string") || (context instanceof Array)) {
+                context = Sys._find(context);
+            }
+            if (context instanceof Sys.ElementSet) {
+                context = context.get();
+            }
+            foreach(selectors, function(selector) {
+                if (typeof(selector) !== "string") {
+                    if (filter) {
+                        if (contains(context, selector)) {
+                            found.push(selector);
+                        }
                     }
                     else {
-                        var finder = type === "#" ? Sys._getById : Sys._getByClass;
-                        if (context) {
+                        found.push(selector);
+                    }
+                }
+                else {
+                    var match = simpleNonTag.exec(selector);
+                    if (match && match.length === 4) {
+                        selector = match[2];
+                        var type = match[1];
+                        if (type === "$") {
+                            Sys._getComponent(found, selector, context);
+                        }
+                        else {
+                            var finder = type === "#" ? Sys._getById : Sys._getByClass;
+                            if (context) {
+                                foreach(context, function(node) {
+                                    if (node.nodeType === 1) {
+                                        return finder(found, selector, single, includeSelf, node, filter);
+                                    }
+                                });
+                            }
+                            else {
+                                finder(found, selector, single);
+                            }
+                        }
+                    }
+                    else if (tag.test(selector)) {
+                        if (context instanceof Array) {
                             foreach(context, function(node) {
                                 if (node.nodeType === 1) {
-                                    return finder(found, selector, single, includeSelf, node);
+                                    if (includeSelf && (selector === "*" || (node.tagName.toLowerCase() === selector))) {
+                                        found.push(node);
+                                        if (single) return true;
+                                    }
+                                    if (!filter) {
+                                        if(!foreach(all(selector, node), function(node) {
+                                            found.push(node);
+                                            if (single) return true;
+                                        })) {
+                                            return true;
+                                        }
+                                    }
                                 }
                             });
                         }
                         else {
-                            finder(found, selector, single);
-                        }
-                    }
-                }
-                else if (/^\w+$/.test(selector)) {
-                    if (includeSelf) {
-                        foreach(context, function(node) {
-                            if (node.nodeType === 1) {
-                                if (node.tagName.toLowerCase() === selector) {
-                                    found.push(node);
-                                    if (single) return true;
+                            var nodes = all(selector, context);
+                            if (single) {
+                                if (nodes[0]) {
+                                    found.push(nodes[0]);
                                 }
-                                if(!foreach(all(selector, node), function(node) {
-                                    found.push(node);
-                                    if (single) return true;
-                                })) {
-                                    return true;
-                                }
+                                return true;
                             }
-                        });
-                    }
-                    else {
-                        var nodes = all(selector, context);
-                        if (single) {
-                            return (nodes[0] || null);
+                            foreach(nodes, function(node) {
+                                found.push(node);
+                            });
                         }
-                        foreach(nodes, function(node) {
-                            found.push(node);
-                        });
+                    }
+                    else if (window.jQuery) {
+                        if (!filter) {
+                            found.push.apply(found, jQuery(selector, context).get());
+                        }
+                        if (includeSelf) {
+                            found.push.apply(found, jQuery(context).filter(selector).get());
+                        }
                     }
                 }
-                else if (window.jQuery) {
-                    found = jQuery(selector).get();
-                }
-            }
-            return found.length ? (single ? found[0] : found) : null;
+            });
+            return found.length ? (single ? (found[0] || null) : found) : null;
         },
         onDomReady: function onDomReady(callback) {
             /// <summary>Registers a function to be called when the DOM is ready.</summary>
@@ -312,17 +357,253 @@ if (!Sys || !Sys.loader) {
             /// <param name="callback" type="Function"></param>
             lazypush(this, "_readyQueue", callback);
             raiseOnReady();
+        },
+        _onjQuery: function _onjQuery() {
+            if (!Sys._jqLoaded) {
+                Sys._jqLoaded = true;
+                var fn = jQuery.fn,
+                    prototype = Sys.ElementSet.prototype;
+                fn.components = prototype.components;
+                fn.component = prototype.component;
+            }
+        },
+        _set: function(instance, properties) {
+            forIn(properties, function(value, field) {
+                callIf(instance, "add_" + field, value) ||
+                callIf(instance, "set_" + field, value) ||
+                (instance[field] = value);
+            });
         }
     });
+
     Sys._getComponent = Sys._getComponent || function() { }
     
     Sys._2Pass = Sys._2Pass || function _2Pass(callback) {
        foreach(callback, function(c) { c(); });
     }
-    
 
-Sys._domLoaded();
+    var obj;
+    if (!Sys.ElementSet) {
+obj = Sys.ElementSet = function(selector, context) {
+    /// <summary>Represents a set of DOM elements.</summary>
+    /// <param name="selector">The DOM selector, array of DOM selectors, or array of DOM elements to query the document for.</param>
+    /// <param name="context">A DOM selector (exclusive), A DOM element (exclusive), array of DOM elements (inclusive), or other Sys.ElementSet (exclusive) to restrict the search within.</param>
+    this._elements = ((typeof(context) === "object") && typeof(context.query) === "function") ?
+        context.query(selector).get() :
+        Sys._find(selector, context) || [];
 }
+obj.prototype = {
+    __class: true,
+    components: function(type, index) {
+        /// <summary>Gets the set of controls and behaviors associated with the current DOM elements.</summary>
+        /// <param name="type" type="Function" mayBeNull="true" optional="true">Type to limit the search to.</param>
+        /// <param name="index" type="Number" mayBeNull="true" optional="true">Index of the component to limit to.</param>
+        /// <returns type="Sys.ComponentSet" />
+        var elementSet = new Sys.ElementSet(this.get());
+        if (window.jQuery && (this instanceof jQuery)) {
+            elementSet._jquery = this;
+        }
+        return new Sys.ComponentSet(elementSet, type, index);
+    },
+    component: function(type, index) {
+        /// <summary>Get the first control or behavior associated with the current set of DOM elements.</summary>
+        /// <param name="type" type="Function" mayBeNull="true" optional="true">Type to limit the search to.</param>
+        /// <param name="index" type="Number" mayBeNull="true" optional="true">Index of the component to return.</param>
+        /// <returns type="Object" mayBeNull="true" />
+        return this.components(type, index).get(0);
+    },
+    each: function(callback) {
+        /// <summary>Enumerates all the matched elements, calling the given callback for each with the current element as the context.
+        /// The callback may return false to cancel enumeration.</summary>
+        /// <returns type="Sys.ElementSet"/>
+        var elements = this._elements;
+        for (var i = 0, l = elements.length; i < l; i++) {
+            if (callback.call(elements[i], i) === false) break;
+        }
+        return this;
+    },
+    get: function(index) {
+        /// <summary>Retrieves the element at the specified index.</summary>
+        /// <param name="index" type="Number">The index of the element to retrieve. Omit to return all elements as an array.</param>
+        /// <returns isDomElement="true">The element at the given index, or an array of all the matched elements.</returns>
+        var elements = this._elements;
+        return (typeof(index) === "undefined") ? (Array.apply(null, elements)) : (elements[index] || null);
+    },
+    find: function(selector) {
+        /// <summary>Searches the current set of DOM elements with the given selector, including descendents.</summary>
+        /// <param name="selector">DOM selector or array of DOM selectors to search with.</param>
+        /// <returns type="Sys.ElementSet">A new element set with the matched elements.</returns>
+        return new Sys.ElementSet(selector, this);
+    },
+    filter: function(selector) {
+        /// <summary>Filters the current set of DOM elements by the given selector, excluding descendents.</summary>
+        /// <param name="selector">DOM selector or array of elements to filter by.</param>
+        /// <returns type="Sys.ElementSet">A new element set with the matched elements.</returns>
+        return new Sys.ElementSet(Sys._find(selector, this._elements, false, true));
+    }
+}
+    }
+    if (!Sys.ComponentSet) {
+obj = Sys.ComponentSet = function ComponentSet(elementSet, query, index) {
+    /// <summary></summary>
+    /// <param name="elementSet" type="Sys.ElementSet" mayBeNull="true" optional="true"></param>
+    /// <param name="query" mayBeNull="true" optional="true">The type of component to filter by, or an array of components to include.</param>
+    /// <param name="index" type="Number" mayBeNull="true" optional="true">The index of the component to retrieve from the filtered list.</param>
+    this._elementSet = elementSet || (elementSet = new Sys.ElementSet());
+    this._components = this._execute(elementSet, query, index);
+}
+obj.prototype = {
+    __class: true,
+    setProperties: function ComponentSet$setProperties(properties) {
+        /// <summary>Sets properties on the matched components.</summary>
+        /// <param name="properties" type="Object" mayBeNull="false">Object with the names and values of the properties to set.</param>
+        /// <returns type="Sys.ComponentSet" />
+        return this.each(function() {
+            Sys._set(this, properties);
+        });
+    },
+    get: function ComponentSet$get(index) {
+        /// <summary>Returns the component at the specified index, or an array of all matches if not specified.</summary>
+        /// <param name="index" type="Number" mayBeNull="true" optional="true"></param>
+        /// <returns type="Object" mayBeNull="true"/>
+        var components = this._components;
+        return (typeof(index) === "undefined") ? (Array.apply(null, components)) : (components[index || 0] || null);
+    },
+    each: function ComponentSet$each(callback) {
+        /// <summary>Enumerate all the found components. The index of the component are passed as parameters to a callback. You may return 'false' to cancel the enumeration.</summary>
+        /// <param name="callback" type="Function" mayBeNull="false">Function called for each component.</param>
+        /// <returns type="Sys.ComponentSet" />
+        foreach(this._components, function(c, i) {
+            if (callback.call(c, i) === false) {
+                return true;
+            }
+        });
+        return this;
+    },
+    elements: function ComponentSet$elements() {
+        /// <summary>Returns the underlying set of elements this component collection came from.</summary>
+        /// <returns type="Sys.ElementSet" />
+        var elements = this._elementSet;
+        return elements._jquery || elements;
+    },
+    _execute: function ComponentSet$_execute(elementSet, query, index) {
+        var components = [];
+        function match(c) {
+            var ctor;
+            return (c instanceof query) ||
+                ((ctor = c.constructor) && (
+                    (ctor === query) ||
+                    (ctor.inheritsFrom && ctor.inheritsFrom(query)) ||
+                    (ctor.implementsInterface && ctor.implementsInterface(query))));
+        }
+        if (query instanceof Array) {
+            components.push.apply(components, query);
+        }
+        else {
+            elementSet.each(function() {
+                var c = this.control;
+                if (c && (!query || match(c))) {
+                    components.push(c);
+                }
+                foreach(this._behaviors, function(b) {
+                    if (!query || match(b)) {
+                        components.push(b);
+                    }
+                });
+            });
+        }
+        if ((typeof(index) !== "undefined")) {
+            if (components[index]) {
+                components = [components[index]];
+            }
+            else {
+                components = [];
+            }
+        }
+        return components;
+    }
+}
+obj = Sys._jComponentSet = function() {};
+obj.prototype = new Sys.ComponentSet();
+obj.prototype.elements = function() {
+    /// <summary>Returns the underlying set of elements this component collection came from.</summary>
+    /// <returns type="jQuery" />
+}
+    }
+    
+    obj = null;
+}
+    var getCreate = function _getCreate(options, isPlugin, isjQuery) {
+        var body = [],
+            arglist = [],
+            description = (options && options.description) || 
+                          (options.type && ("Creates an instance of the type '" + options.type.getName()  + "' and sets the given properties.")) ||
+                          "";
+        body.push("/// <summary>", description, "</summary>\n");
+        foreach(options && options.parameters, function(parameter) {
+            var name = parameter, type = '', desc = '';
+            if (typeof(parameter) !== "string") {
+                name = parameter.name;
+                type = parameter.type||'';
+                desc = parameter.description||'';
+            }
+            arglist.push(name);
+            body.push('/// <param name="', name, '"');
+            if (type) {
+                body.push(' type="', type, '"');
+            }
+            body.push('>', desc, '</param>\n');
+        });
+        var returnType;
+        if (!isPlugin) {
+            arglist.push("properties");
+            body.push('/// <param name="properties" type="Object" mayBeNull="true" optional="true">Additional properties to set on the component.</param>\n');
+            returnType = (isjQuery ? 'Sys._jComponentSet' : 'Sys.ComponentSet');
+        }
+        else {
+            returnType = options.returnType;
+            if (isjQuery && returnType === "Sys.ElementSet") {
+                returnType = "jQuery";
+            }
+        }
+        if (returnType) {
+            body.push('/// <returns type="', returnType, '" />\n');
+        }
+        if (isPlugin) {
+            var name = options.name;
+            if (isjQuery && options.dom) {
+                body.push('var elementSet = new Sys.ElementSet(this.get());\
+var ret = Sys.plugins["', name, '"].plugin.apply(elementSet, arguments);\
+if (ret === elementSet) return this;\
+if (ret instanceof jQuery) return new Sys.ElementSet(ret.get());\
+return ret;');
+            }
+            else {
+                body.push('return Sys.plugins["', name, '"].plugin.apply(this, arguments);');
+            }
+        }
+        else {
+            if (isjQuery) {
+                body.push('\
+var args = arguments,\
+    callee = args.callee,\
+    component = callee._component,\
+    source = Sys.create;\
+component.defaults = component.defaults || callee.defaults;\
+if (component._isBehavior) {\
+    source = new Sys.ElementSet(this.get()),\
+    source._jquery = this;\
+}\
+return source[component.name].apply(source, args);');
+            }
+            else {
+                body.push('return Sys._createComp.call(this, arguments.callee._component, arguments.callee._component.defaults, arguments);');
+            }
+        }
+        arglist.push(body.join(''));
+        return Function.apply(null, arglist);
+    }
+    Sys._getCreate = getCreate;
 
 function execute() {
 
@@ -1180,7 +1461,7 @@ $prototype.registerClass = function Type$registerClass(typeName, baseType, inter
     if (!Type.__fullyQualifiedIdentifierRegExp.test(typeName)) throw Error.argument('typeName', Sys.Res.notATypeName);
     var parsedName;
     try {
-        parsedName = window.eval(typeName);
+        parsedName = eval(typeName);
     }
     catch(e) {
         throw Error.argument('typeName', Sys.Res.argumentTypeName);
@@ -1247,89 +1528,90 @@ Sys.registerComponent = function registerComponent(type, options) {
     options.typeName = typeName;
     options._isBehavior = isControlOrBehavior;
     
-    Sys.components[name] = merge(Sys.components[name], options);
-    var fn = Sys.create[name],
-        defaults = fn && fn.defaults;
-    Sys.create[name] = fn = Sys._getCreate(type, isControlOrBehavior, options);
-    fn.defaults = defaults || null;
+    options = Sys.components[name] = merge(Sys.components[name], options);
+
+    var fn = Sys._getCreate(options),
+        target = isControlOrBehavior ? Sys.ElementSet.prototype : Sys.create;
+    fn._component = options;
+    target[name] = fn;
+
+    fn = Sys._getCreate(options, false, true);
     fn._component = options;
     if (window.jQuery) {
-        var jTarget = isControlOrBehavior ? jQuery.fn : jQuery;
-        fn = jTarget[name];
-        defaults = fn && fn.defaults;
-        jTarget[name] = fn = Sys._getCreate(type, isControlOrBehavior, options, true);
-        fn.defaults = defaults || null;
-        fn._component = options;
-    }
-}
-
-Sys._getCreate = function _getCreate(type, isControlOrBehavior, options, isjQuery) {
-    var typeName = type.getName(),
-        body = [],
-        arglist = [],
-        description = (options && options.description) || "Creates an instance of the type '" + typeName  + "' and sets the given properties.";
-    body.push("/// <summary>", description, "</summary>\n");
-    if (isControlOrBehavior && !isjQuery) {
-        arglist.push("target");
-        body.push('/// <param name="target">The DOM element to attach to, as a DOM element or selector.</param>\n');
-    }
-    foreach(options && options.parameters, function(parameter) {
-        var name = parameter, type = '', desc = '';
-        if (typeof(parameter) !== "string") {
-            name = parameter.name;
-            type = parameter.type||'';
-            desc = parameter.description||'';
-        }
-        arglist.push(name);
-        body.push('/// <param name="', name, '" type="', type, '">', desc, '</param>\n');
-    });
-    arglist.push("properties");
-    body.push('/// <param name="properties" type="Object" mayBeNull="true" optional="true">Additional properties to set on the component.</param>\n');
-    if (!isjQuery) {
-        body.push('/// <returns type="', typeName, '"></returns>\n',
-                  'return Sys._createComp(arguments.callee._component, arguments.callee.defaults, arguments);');
+        target = (isControlOrBehavior ? jQuery.fn : jQuery);
+        target[name] = fn;
     }
     else {
-        body.push("var callee = arguments.callee, component = callee._component, defaults = callee.defaults, args = Array.prototype.slice.call(arguments, 0);\nargs.splice(0, 0, null);\nreturn this.each(function() {\n",
-                  "    args[0] = this;\n    Sys._createComp(component, defaults, args)\n",
-                  "});");
+        options._jqQueue = fn;
     }
-    arglist.push(body.join(''));
-    return Function.apply(null, arglist);
 }
 
 Sys.registerPlugin = function registerPlugin(pluginInfo) {
     /// <summary locid="M:J#Sys.registerPlugin"></summary>
-    /// <param name="pluginInfo" type="Object">An object describing the plugin (name, plugin)</param>
+    /// <param name="pluginInfo" type="Object">An object describing the plugin (name, plugin, dom, global, components)</param>
     var e = Function._validateParams(arguments, [
         {name: "pluginInfo", type: Object}
     ]);
     if (e) throw e;
-    var name = pluginInfo.name;
+    var name = pluginInfo.name,
+        fnName = pluginInfo.functionName || name;
     Sys.plugins[name] = merge(Sys.plugins[name], pluginInfo);
-    Sys[name] = pluginInfo.plugin;
-    if (window.jQuery) {
-        jQuery[name] = Sys[name];
+    var plugin = pluginInfo.plugin,
+        sysTarget,
+        jQueryTarget;
+    if (pluginInfo.global) {
+        sysTarget = Sys;
+        jQueryTarget = window.jQuery;
+    }
+    else if (pluginInfo.dom) {
+        sysTarget = Sys.ElementSet.prototype;
+        jQueryTarget = window.jQuery ? jQuery.fn : null;
+    }
+    else if (pluginInfo.components) {
+        sysTarget = Sys.ComponentSet.prototype;
+    }
+    if (sysTarget) {
+        sysTarget[fnName] = Sys._getCreate(pluginInfo, true, false);
+        var jPlugin = Sys._getCreate(pluginInfo, true, true);
+        if (jQueryTarget) {
+            jQueryTarget[fnName] = jPlugin;
+        }
+        else {
+            if (pluginInfo.global) {
+                Sys.plugins[name]._jqQueue = jPlugin;
+            }
+            else if (pluginInfo.dom) {
+                Sys.plugins[name]._jqQueueDom = jPlugin;
+            }
+        }
     }
 }
 
 Sys._createComp = function _createComp(component, defaults, args) {
-    var parameters = component.parameters || [],
+    var type = component.type,
+        parameters = component.parameters || [],
         isBehavior = component._isBehavior,
         target = isBehavior ? args[0] : null;
-    var offsetFromTargetArgument = isBehavior ? 1 : 0;
-    var props = args[parameters.length + offsetFromTargetArgument] || {};
+    var props = args[parameters.length] || {};
     props = merge({}, defaults, props);
     foreach(parameters, function(parameter, i) {
         var name = typeof(parameter) === "string" ? parameter : parameter.name,
-            value = args[i + offsetFromTargetArgument];
+            value = args[i];
         if (typeof(value) !== "undefined" && typeof(props[name]) === "undefined") {
             props[name] = value;
         }
     });
-    return isBehavior ? 
-        Sys._create(component.type, props, target) :
-        Sys._create(component.type, props);
+    var components = [];
+    if (this instanceof Sys.ElementSet) {
+        this.each(function() {
+            components.push(Sys._create(type, props, this));
+        });
+        return new Sys.ComponentSet(this, components);
+    }
+    else {
+        components.push(Sys._create(type, props));
+        return new Sys.ComponentSet(null, components);
+    }
 }
 
 Sys._create = function _create(type, properties, target) {
@@ -1341,21 +1623,13 @@ Sys._create = function _create(type, properties, target) {
     Sys._2Pass(function() {
         instance = targetType === "undefined" ? new type() : new type(target);
         callIf(instance, "beginUpdate");
-        Sys._setProps(instance, properties);
+        Sys._set(instance, properties);
         var componentType = Sys.Component;
         if (!componentType || !componentType._register(instance)) {
             callIf(instance, "endUpdate") || callIf(instance, "initialize");
         }
     });    
     return instance;
-}
-
-Sys._setProps = function _setProps(instance, properties) {
-    forIn(properties, function(value, field) {
-        callIf(instance, "add_" + field, value) ||
-        callIf(instance, "set_" + field, value) ||
-        (instance[field] = value);
-    });
 }
 
 $prototype.registerInterface = function Type$registerInterface(typeName) {
@@ -1369,7 +1643,7 @@ $prototype.registerInterface = function Type$registerInterface(typeName) {
     if (!Type.__fullyQualifiedIdentifierRegExp.test(typeName)) throw Error.argument('typeName', Sys.Res.notATypeName);
     var parsedName;
     try {
-        parsedName = window.eval(typeName);
+        parsedName = eval(typeName);
     }
     catch(e) {
         throw Error.argument('typeName', Sys.Res.argumentTypeName);
@@ -1509,7 +1783,7 @@ $type._registerNamespace = function Type$_registerNamespace(namespacePath) {
             ns.__typeName = namespaceParts.slice(0, i + 1).join('.');
             var parsedName;
             try {
-                parsedName = window.eval(ns.__typeName);
+                parsedName = eval(ns.__typeName);
             }
             catch(e) {
                 parsedName = null;
@@ -2308,7 +2582,7 @@ $type.prototype.registerEnum = function Type$registerEnum(name, flags) {
     if (!Type.__fullyQualifiedIdentifierRegExp.test(name)) throw Error.argument('name', Sys.Res.notATypeName);
     var parsedName;
     try {
-        parsedName = window.eval(name);
+        parsedName = eval(name);
     }
     catch(e) {
         throw Error.argument('name', Sys.Res.argumentTypeName);
@@ -2991,6 +3265,10 @@ ns["_" + role + service] = {};
 
 
 
+if (window.jQuery) {
+    Sys._onjQuery();
+}
+Sys._domLoaded();
 }
 
 if (Sys.loader) {

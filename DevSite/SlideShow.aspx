@@ -28,7 +28,7 @@
     <asp:AjaxScriptManager runat="server" EnablePartialRendering="false" EnablePageMethods="true" />
     <script type="text/javascript">
         Sys.require(Sys.components.slideShow, function() {
-            Sys.create.slideShow("#ss", {
+            Sys.query("#ss").slideShow({
                 slideShowServiceMethod: "GetImages",
                 autoPlay: true,
                 previousButtonID: "prev",

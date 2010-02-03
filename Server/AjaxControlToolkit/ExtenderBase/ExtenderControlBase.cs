@@ -17,8 +17,7 @@ using System.Drawing;
 
 [assembly: System.Web.UI.WebResource(AjaxControlToolkit.Constants.BaseScriptResourceName, "text/javascript")]
 [assembly: System.Web.UI.WebResource(AjaxControlToolkit.Constants.BaseScriptResourceNameDebug, "text/javascript")]
-// resource strings set directly in the script for now
-//[assembly: ScriptResource(AjaxControlToolkit.Constants.BaseScriptResourceName, "ScriptResources.ScriptResources.resources", "Sys.Extended.UI.Resources")]
+[assembly: ScriptResource(AjaxControlToolkit.Constants.BaseScriptResourceName, "ScriptResources.BaseScriptsResources.resources", "Sys.Extended.UI.Resources")]
 
 namespace AjaxControlToolkit
 {

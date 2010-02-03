@@ -850,8 +850,14 @@ $type.prototype = {
             this._isCrossPost = false;
         }
         else {
+            var mpUniqueID = this._masterPageUniqueID;
             var clientID = this._uniqueIDToClientID(eventTarget);
             var postBackElement = document.getElementById(clientID);
+            if (!postBackElement && mpUniqueID) {
+                if (clientID.indexOf(mpUniqueID + "$") === 0) {
+                    postBackElement = document.getElementById(clientID.substr(mpUniqueID.length + 1));
+                }
+            }
             if (!postBackElement) {
                 if (Array.contains(this._asyncPostBackControlIDs, eventTarget)) {
                     this._postBackSettings = this._createPostBackSettings(true, null, eventTarget);
@@ -866,7 +872,6 @@ $type.prototype = {
                             this._postBackSettings = this._getPostBackSettings(nearestUniqueIDMatch, eventTarget);
                         }
                         else {
-                            var mpUniqueID = this._masterPageUniqueID;
                             if (mpUniqueID) {
                                 mpUniqueID += "$";
                                 if (eventTarget.indexOf(mpUniqueID) === 0) {

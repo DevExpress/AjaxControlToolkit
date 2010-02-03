@@ -12,7 +12,7 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.filteredTextBox, function() {
-            Sys.create.filteredTextBox("#tb", {
+            Sys.query("#tb").filteredTextBox({
                 ValidChars: "()",
                 FilterType: Sys.Extended.UI.FilterTypes.Numbers | Sys.Extended.UI.FilterTypes.UppercaseLetters | Sys.Extended.UI.FilterTypes.Custom
             });

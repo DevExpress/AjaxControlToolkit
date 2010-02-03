@@ -19,7 +19,7 @@
     <script type="text/javascript" src="scripts/extended/extendedcontrols.js"></script>
     <script type="text/javascript">
         Sys.require(Sys.components.pagedList, function() {
-            Sys.create.pagedList("#list", {
+            Sys.query("#list").pagedList({
                 SelectIndexCssClass: "selected",
                 UnselectIndexCssClass: "unselected",
                 Separator: " | "

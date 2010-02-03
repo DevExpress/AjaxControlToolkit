@@ -112,16 +112,13 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="batchLinkBeforeInsert" xml:space="preserve">
     <value>The source and target of a link must be inserted before the link is made.</value>
-  </data>
-  <data name="cannotChangePath" xml:space="preserve">
-    <value>Cannot change the path of a AdoNetServiceProxy.</value>
   </data>
   <data name="entityWithNoResourceSet" xml:space="preserve">
     <value>Entity does not have a resource set. Use createEntity() or set the defaultResourceSet property.</value>

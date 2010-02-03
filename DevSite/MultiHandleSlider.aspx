@@ -13,12 +13,12 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.multiHandleSlider, function() {
-            Sys.create.multiHandleSlider("#slider1", {
+            Sys.query("#slider1").multiHandleSlider({
                 maximum: 100,
                 minimum: 0,
                 boundControlID: "slider1Value"
             });
-            Sys.create.multiHandleSlider("#slider2", {
+            Sys.query("#slider2").multiHandleSlider({
                 maximum: 100,
                 minimum: 0,
                 length: 500,

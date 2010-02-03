@@ -19,8 +19,8 @@ using AjaxControlToolkit;
 [assembly: AllowPartiallyTrustedCallers]
 [assembly: ComVisible(false)]
 [assembly: System.CLSCompliant(true)]
-[assembly: AssemblyVersion("3.0.31106.0")]
-[assembly: AssemblyFileVersion("3.0.31106.0")]
+[assembly: AssemblyVersion("3.0.40203.0")]
+[assembly: AssemblyFileVersion("3.0.40203.0")]
 [assembly: NeutralResourcesLanguage("en-US")]
 
 [assembly: ScriptCombine(ExcludeScripts = "Slider.SliderBehavior_resource.js,Seadragon.Seadragon.Config.js")]

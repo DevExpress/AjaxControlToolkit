@@ -1,5 +1,4 @@
-﻿
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -9,7 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("JSBuild")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("Microsoft IT")]
 [assembly: AssemblyProduct("JSBuild")]
+[assembly: AssemblyCopyright("Copyright © Microsoft IT 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

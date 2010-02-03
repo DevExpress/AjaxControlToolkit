@@ -16,13 +16,13 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require([Sys.components.dropShadow, Sys.components.draggable], function() {
-            Sys.create.dropShadow("#shadow", {
+            Sys.query("#shadow").dropShadow({
                 Opacity: 0.8,
                 TrackPosition: true,
                 Width: 10,
                 Rounded: true
             });
-            Sys.create.draggable("#shadow", {
+            Sys.query("#shadow").draggable({
                 handle: Sys.get("#shadow")
             });
         });

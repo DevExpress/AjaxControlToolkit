@@ -227,7 +227,7 @@ $type._setReferences = function Component$_setReferences(component, references) 
         refs[name] = reference = $find(id);
         if (!reference) throw Error.invalidOperation(String.format(Sys.Res.referenceNotFound, id));
     });
-    Sys._setProps(component, refs);
+    Sys._set(component, refs);
 }
 
 $create = $type.create = function Component$create(type, properties, events, references, element) {
@@ -482,7 +482,6 @@ $type.prototype = {
 }
 $type.registerClass('Sys.UI.DomEvent');
 
-
 $addHandler = $type.addHandler = function DomEvent$addHandler(elements, eventName, handler, autoRemove) {
     /// <summary locid="M:J#Sys.UI.DomEvent.addHandler">A cross-browser way to add a DOM event handler to an element.</summary>
     /// <param name="elements">The element or text node, or array of elements or text nodes, that exposes the event. You may also pass a DOM selector or array of DOM selectors.</param>
@@ -497,46 +496,54 @@ $addHandler = $type.addHandler = function DomEvent$addHandler(elements, eventNam
     ]);
     if (e) throw e;
     if (eventName === "error") throw Error.invalidOperation(Sys.Res.addHandlerCantBeUsedForError);
-    Sys._queryAll(elements, function(element) {
-        if (!element._events) {
-            element._events = {};
+    Sys.query(elements).each(function() {
+        var nodeType = this.nodeType;
+        if (nodeType === 3 || nodeType === 2 || nodeType === 8) return;
+        Sys.UI.DomEvent._ensureDomNode(this);
+        if (!this._events) {
+            this._events = {};
         }
-        var eventCache = element._events[eventName];
+        var eventCache = this._events[eventName];
         if (!eventCache) {
-            element._events[eventName] = eventCache = [];
+            this._events[eventName] = eventCache = [];
         }
-        var browserHandler;
-        if (element.addEventListener) {
+        var element = this, 
+            browserHandler;
+        if (this.addEventListener) {
             browserHandler = function(e) {
                 return handler.call(element, new Sys.UI.DomEvent(e));
             }
-            element.addEventListener(eventName, browserHandler, false);
+            this.addEventListener(eventName, browserHandler, false);
         }
-        else if (element.attachEvent) {
+        else if (this.attachEvent) {
             browserHandler = function() {
                 var ex, ev = {};
                 try {ev = Sys.UI.DomElement._getWindow(element).event} catch(ex) {}
                 return handler.call(element, new Sys.UI.DomEvent(ev));
             }
-            element.attachEvent('on' + eventName, browserHandler);
+            this.attachEvent('on' + eventName, browserHandler);
         }
         eventCache.push({handler: handler, browserHandler: browserHandler, autoRemove: autoRemove });
         if (autoRemove) {
-            Sys.UI.DomElement._onDispose(element, Sys.UI.DomEvent._disposeHandlers);
+            Sys.UI.DomElement._onDispose(this, Sys.UI.DomEvent._disposeHandlers);
         }
     });
 }
 
 Sys.registerPlugin({
     name: "addHandler",
+    dom: true,
+    returnType: "Sys.ElementSet",
     description: "A cross-browser way to add a DOM event handler to an element.",
-    plugin: Sys.UI.DomEvent.addHandler,
     parameters: [
-        {name: "elements", description: "The element or text node, or array of elements or text nodes, that exposes the event. You may also pass a DOM selector or array of DOM selectors."},
         {name: "eventName", type: "String", description: "The name of the event. Do not include the 'on' prefix, for example, 'click' instead of 'onclick'."},
         {name: "handler", type: "Function", description: "The event handler to add."},
         {name: "autoRemove", type: "Boolean", description: "Whether the handler should be removed automatically when the element is disposed of, such as when an UpdatePanel refreshes, or Sys.Application.disposeElement is called."}
-    ]
+    ],
+    plugin: function (eventName, handler, autoRemove) {
+        Sys.UI.DomEvent.addHandler(this.get(), eventName, handler, autoRemove);
+        return this;
+    }
 });
 
 $addHandlers = $type.addHandlers = function DomEvent$addHandlers(elements, events, handlerOwner, autoRemove) {
@@ -552,28 +559,35 @@ $addHandlers = $type.addHandlers = function DomEvent$addHandlers(elements, event
         {name: "autoRemove", type: Boolean, mayBeNull: true, optional: true}
     ]);
     if (e) throw e;
-    Sys._queryAll(elements, function(element) {
+    Sys.query(elements).each(function() {
+        var nodeType = this.nodeType;
+        if (nodeType === 3 || nodeType === 2 || nodeType === 8) return;
+        Sys.UI.DomEvent._ensureDomNode(this);
         for (var name in events) {
             var handler = events[name];
             if (typeof(handler) !== 'function') throw Error.invalidOperation(Sys.Res.cantAddNonFunctionhandler);
             if (handlerOwner) {
                 handler = Function.createDelegate(handlerOwner, handler);
             }
-            $addHandler(element, name, handler, autoRemove || false);
+            $addHandler(this, name, handler, autoRemove || false);
         }
     });
 }
 
 Sys.registerPlugin({
     name: "addHandlers",
+    dom: true,
+    returnType: "Sys.ElementSet",
     description: "Adds a list of event handlers to an element. If a handlerOwner is specified, delegates are created with each of the handlers.",
-    plugin: Sys.UI.DomEvent.addHandlers,
     parameters: [
-        {name: "elements", description: "The element or text node, or array of element or text nodes, that exposes the event. You may also pass a DOM selector or array of DOM selectors."},
         {name: "events", type: "Object", description: "A dictionary of event handlers."},
         {name: "handlerOwner", description: "The owner of the event handlers that will be the this pointer for the delegates that will be created from the handlers."},
         {name: "autoRemove", type: "Boolean", description: "Whether the handler should be removed automatically when the element is disposed of, such as when an UpdatePanel refreshes, or Sys.Application.disposeElement is called."}
-    ]
+    ],
+    plugin: function (events, handlerOwner, autoRemove) {
+        Sys.UI.DomEvent.addHandlers(this.get(), events, handlerOwner, autoRemove);
+        return this;
+    }
 });
 
 $clearHandlers = $type.clearHandlers = function DomEvent$clearHandlers(elements) {
@@ -583,30 +597,38 @@ $clearHandlers = $type.clearHandlers = function DomEvent$clearHandlers(elements)
         {name: "elements"}
     ]);
     if (e) throw e;
-    Sys._queryAll(elements, function(element) {
-        Sys.UI.DomEvent._clearHandlers(element, false);
+    Sys.query(elements).each(function() {
+        var nodeType = this.nodeType;
+        if (nodeType === 3 || nodeType === 2 || nodeType === 8) return;
+        Sys.UI.DomEvent._ensureDomNode(this);
+        Sys.UI.DomEvent._clearHandlers(this, false);
     });
 }
 
 Sys.registerPlugin({
     name: "clearHandlers",
-    description: "Clears all the event handlers that were added to the element or array of elements. You may also pass a DOM selector or array of DOM selectors.",
-    plugin: Sys.UI.DomEvent.clearHandlers,
-    parameters: [
-        {name: "elements", description: "The element or text node, or an array of elements or text nodes."}
-    ]
+    dom: true,
+    returnType: "Sys.ElementSet",
+    description: "Clears all the event handlers that were added to the element or array of elements.",
+    plugin: function() {
+        Sys.UI.DomEvent.clearHandlers(this.get());
+        return this;
+    }
 });
 
 $type._clearHandlers = function DomEvent$_clearHandlers(elements, autoRemoving) {
-    Sys._queryAll(elements, function(element) {
-        if (element._events) {
-            var cache = element._events;
+    Sys.query(elements).each(function() {
+        var nodeType = this.nodeType;
+        if (nodeType === 3 || nodeType === 2 || nodeType === 8) return;
+        Sys.UI.DomEvent._ensureDomNode(this);
+        var cache = this._events;
+        if (cache) {
             for (var name in cache) {
                 var handlers = cache[name];
                 for (var i = handlers.length - 1; i >= 0; i--) {
                     var entry = handlers[i];
                     if (!autoRemoving || entry.autoRemove) {
-                        $removeHandler(element, name, entry.handler);
+                        $removeHandler(this, name, entry.handler);
                     }
                 }
             }
@@ -632,10 +654,13 @@ $removeHandler = $type.removeHandler = function DomEvent$removeHandler(elements,
     Sys.UI.DomEvent._removeHandler(elements, eventName, handler);
 }
 $type._removeHandler = function DomEvent$_removeHandler(elements, eventName, handler) {
-    Sys._queryAll(elements, function(element) {
+    Sys.query(elements).each(function() {
+        var nodeType = this.nodeType;
+        if (nodeType === 3 || nodeType === 2 || nodeType === 8) return;
+        Sys.UI.DomEvent._ensureDomNode(this);
         var browserHandler = null;
-        if ((typeof(element._events) !== 'object') || !element._events) throw Error.invalidOperation(Sys.Res.eventHandlerInvalid);
-        var cache = element._events[eventName];
+        if ((typeof(this._events) !== 'object') || !this._events) throw Error.invalidOperation(Sys.Res.eventHandlerInvalid);
+        var cache = this._events[eventName];
         if (!(cache instanceof Array)) throw Error.invalidOperation(Sys.Res.eventHandlerInvalid);
         for (var i = 0, l = cache.length; i < l; i++) {
             if (cache[i].handler === handler) {
@@ -644,11 +669,11 @@ $type._removeHandler = function DomEvent$_removeHandler(elements, eventName, han
             }
         }
         if (typeof(browserHandler) !== 'function') throw Error.invalidOperation(Sys.Res.eventHandlerInvalid);
-        if (element.removeEventListener) {
-            element.removeEventListener(eventName, browserHandler, false);
+        if (this.removeEventListener) {
+            this.removeEventListener(eventName, browserHandler, false);
         }
-        else if (element.detachEvent) {
-            element.detachEvent('on' + eventName, browserHandler);
+        else if (this.detachEvent) {
+            this.detachEvent('on' + eventName, browserHandler);
         }
         cache.splice(i, 1);
     });
@@ -656,14 +681,19 @@ $type._removeHandler = function DomEvent$_removeHandler(elements, eventName, han
 
 Sys.registerPlugin({
     name: "removeHandler",
-    description: "A cross-browser way to remove a DOM event handler from an element. You may also pass a DOM selector or array of DOM selectors.",
-    plugin: Sys.UI.DomEvent.removeHandler,
+    dom: true,
+    returnType: "Sys.ElementSet",
+    description: "A cross-browser way to remove a DOM event handler from an element.",
     parameters: [
-        {name: "elements", description: "The element or text node, or array of elements or text nodes, that exposes the event."},
         {name: "eventName", type: "String", description: "The name of the event. Do not include the 'on' prefix, for example, 'click' instead of 'onclick'."},
         {name: "handler", type: "Function", description: "The event handler to remove."}
-    ]
+    ],
+    plugin: function (eventName, handler) {
+        Sys.UI.DomEvent.removeHandler(this.get(), eventName, handler);
+        return this;
+    }
 });
+
 
 $type._ensureDomNode = function DomEvent$_ensureDomNode(element) {
     if (element && element.tagName && (element.tagName.toUpperCase() === "SCRIPT")) return;
@@ -673,25 +703,6 @@ $type._ensureDomNode = function DomEvent$_ensureDomNode(element) {
         ((typeof(element.document) !== 'object') && (element != doc) && (typeof(element.nodeType) !== 'number'))) {
         throw Error.argument("element", Sys.Res.argumentDomNode);
     }
-}
-
-Sys._queryAll = function _queryAll(selector, callback) {
-    var elements = selector;
-    if (typeof(selector) === "string") {
-        elements = Sys.query(selector);
-    }
-    Sys._foreach(elements, function(selector) {
-        var elements = selector;
-        if (typeof(selector) === "string") {
-            elements = Sys.query(selector);
-        }
-        Sys._foreach(elements, function(element) {
-            Sys.UI.DomEvent._ensureDomNode(element);
-            var nodeType = element.nodeType;
-            if (nodeType === 3 || nodeType === 2 || nodeType === 8) return;
-            callback(element);
-        });
-    });
 }
 $type = Sys.UI.DomElement = function DomElement() {
     /// <summary locid="M:J#Sys.UI.DomElement.#ctor">This static class provides helpers to work with DOM elements.</summary>
@@ -1125,7 +1136,26 @@ $type.setCommand = function DomElement$setCommand(commandSource, commandName, co
 
 Sys.registerPlugin({
     name: "setCommand",
-    plugin: Sys.UI.DomElement.setCommand
+    dom: true,
+    returnType: "Sys.ElementSet",
+    description: "Causes a DOM element to raise a bubble event when clicked.",
+    parameters: [
+        {name: "commandName", type:"String", description: "The name of the command to raise."},
+        {name: "commandArgument", description: "Optional command argument."},
+        {name: "commandTarget", description: "DOM element from which the command should start bubbling up."}
+    ],
+    plugin: function(commandName, commandArgument, commandTarget) {
+        var e = Function._validateParams(arguments, [
+            {name: "commandName", type: String, mayBeNull: true},
+            {name: "commandArgument", mayBeNull: true, optional: true},
+            {name: "commandTarget", mayBeNull: true, optional: true}
+        ]);
+        if (e) throw e;
+        return this.addHandler('click', function(ev) {
+            var source = commandTarget || this;
+            Sys.UI.DomElement.raiseBubbleEvent(source, new Sys.CommandEventArgs(commandName, commandArgument, this, ev)); 
+        }, true /*autoRemove*/);
+    }
 });
 
 $type._ensureOldDisplayMode = function DomElement$_ensureOldDisplayMode(element) {

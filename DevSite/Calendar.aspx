@@ -13,7 +13,7 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.calendar, function() {
-            Sys.create.calendar("#bdate", {});
+            Sys.query("#bdate").calendar({});
         });
     </script>
 </head>

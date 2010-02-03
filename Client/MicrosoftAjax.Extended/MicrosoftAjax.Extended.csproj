@@ -15,6 +15,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <ScriptOutput>$(ProjectDir)../ScriptOutput/extended</ScriptOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ScriptOutput>$(ProjectDir)../ScriptOutput/extended</ScriptOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ScriptOutput>$(ProjectDir)../ScriptOutput/extended</ScriptOutput>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -176,6 +179,57 @@
     <Content Include="ValidatorCallout\ValidatorCalloutBehavior.pre.js" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExtenderBase\BaseScriptsResources.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.cs.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.de.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.fr.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.he.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.hi.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.it.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.ja.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.ko.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.nl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.pt.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.ru.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.tr-TR.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.zh-CHS.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.zh-CHT.resx">
+      <SubType>Designer</SubType>
+    </Content>
     <EmbeddedResource Include="ScriptResources\ScriptResources.ar.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -257,30 +311,40 @@
   <!-- JSBuild outputs the results of a build to the Scripts folder -->
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\JSBuild.dll" />
   <Target Name="BeforeBuild">
-    <RemoveDir Directories="Scripts">
-    </RemoveDir>
+    <MakeDir Directories="@(ScriptOutput)" />
+    <!-- clean out old files from previous build -->
+    <ItemGroup>
+      <ToDelete Include="$(ScriptOutput)\**\*" />
+    </ItemGroup>
+    <Delete Files="@(ToDelete)" />
+    <!--
+    Delete all the directories. No built-in msbuild task can do this.
+    See the following for explaination:
+    http://social.msdn.microsoft.com/forums/en-US/msbuild/thread/d2833d1e-2d56-4fc4-98a4-e321b976b9ac
+    -->
+    <Exec Command="for /f %%d in ('dir /ad /b') do rd /s /q %%d"
+                       WorkingDirectory="$(ScriptOutput)" />
+
+    <!-- build pre.js files with the JSBuildTask preprocessor, which generates debug and release scripts -->
     <ItemGroup>
       <PreJS Include="**\*.pre.js">
         <InProject>False</InProject>
       </PreJS>
     </ItemGroup>
-    <Message Text="JSBuild: Executing JavaScript Preprocessor." />
-    <JSBuildTask SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(MSBuildProjectDirectory)\Scripts" />
+    <JSBuildTask IncludePathInOutput="true" SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(ScriptOutput)" />
+    
     <!-- minify the release scripts (overwrite them) -->
     <ItemGroup>
-      <JS Include="$(MSBuildProjectDirectory)\Scripts\**\*.js" Exclude="$(MSBuildProjectDirectory)\Scripts\**\*.debug.js" />
+      <JS Include="$(ScriptOutput)\**\*.js" Exclude="$(ScriptOutput)\**\*.debug.*" />
     </ItemGroup>
-    <AjaxMin SourceFiles="@(JS)" SourceExtensionPattern="\.js$" TargetExtension=".js" CollapseToLiteral="true" CombineDuplicateLiterals="true" LocalRenaming="CrunchAll" MacSafariQuirks="true" RemoveUnneededCode="true" StripDebugStatements="true" />
-    <!-- Copy Images, CSS -->
+    <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
+    
+    <!-- Copy Images and CSS directly into script output -->
     <ItemGroup>
       <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css">
         <InProject>False</InProject>
       </StaticResources>
     </ItemGroup>
-    <Copy SourceFiles="@(StaticResources)" DestinationFolder="Scripts\%(RecursiveDir)">
-    </Copy>
+    <Copy SourceFiles="@(StaticResources)" DestinationFolder="$(ScriptOutput)\%(RecursiveDir)" />
   </Target>
-  <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)scripts"  "$(ProjectDir)../scriptoutput/extended" /Y /S /I /Q</PostBuildEvent>
-  </PropertyGroup>
 </Project>

@@ -91,27 +91,31 @@
   <!-- JSBuild outputs the results of a build to the Scripts folder -->
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\JSBuild.dll" />
   <Target Name="BeforeBuild">
-    <RemoveDir Directories="Scripts">
-    </RemoveDir>
     <ItemGroup>
       <PreJS Include="**\*.pre.js">
         <InProject>False</InProject>
       </PreJS>
     </ItemGroup>
-    <Message Text="JSBuild: Executing JavaScript Preprocessor." />
-    <JSBuildTask SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(MSBuildProjectDirectory)\Scripts" />
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\ScriptOutput" />
+    <MakeDir Directories="$(MSBuildProjectDirectory)\ScriptOutput" />
+    <JSBuildTask IncludePathInOutput="false" SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(MSBuildProjectDirectory)\ScriptOutput" />
     <!-- minify the release scripts (overwrite them) -->
     <ItemGroup>
-      <JS Include="$(MSBuildProjectDirectory)\Scripts\**\*.js" Exclude="$(MSBuildProjectDirectory)\Scripts\**\*.debug.js" />
+      <JS Include="$(MSBuildProjectDirectory)\ScriptOutput\**\*.js" Exclude="$(MSBuildProjectDirectory)\ScriptOutput\**\*.debug.*" />
     </ItemGroup>
-    <AjaxMin SourceFiles="@(JS)" SourceExtensionPattern="\.js$" TargetExtension=".js" CollapseToLiteral="true" CombineDuplicateLiterals="true" LocalRenaming="CrunchAll" MacSafariQuirks="true" RemoveUnneededCode="true" StripDebugStatements="true" />
+    <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
+    <!-- jQueryStart-vsdoc.pre.js generated debug and release builds, only need the debug one and it shouldn't have 'debug' in the name -->
+    <!-- note: Commented out now since jQueryStart.js is included directly via Client/ScriptOutput -->
+    <!--
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\ScriptOutput\jQueryStart-vsdoc.debug.js" DestinationFiles="$(MSBuildProjectDirectory)\ScriptOutput\jQueryStart-vsdoc.js" />
+    <Delete Files="$(MSBuildProjectDirectory)\ScriptOutput\jQueryStart-vsdoc.debug.js" />
+    -->
     <!-- Copy Images -->
     <ItemGroup>
       <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css">
         <InProject>False</InProject>
       </StaticResources>
     </ItemGroup>
-    <Copy SourceFiles="@(StaticResources)" DestinationFolder="Scripts\%(RecursiveDir)">
-    </Copy>
+    <Copy SourceFiles="@(StaticResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
   </Target>
 </Project>

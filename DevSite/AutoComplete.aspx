@@ -28,7 +28,7 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.autoComplete, function() {
-            Sys.create.autoComplete("#tb1", {
+            Sys.query("#tb1").autoComplete({
                 minimumPrefixLength: 1,
                 serviceMethod: "GetSuggestions",
                 servicePath: location.pathname

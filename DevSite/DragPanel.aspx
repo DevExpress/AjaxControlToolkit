@@ -12,7 +12,7 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.draggable, function() {
-            Sys.create.draggable("#dragme", {
+            Sys.query("#dragme").draggable({
                 handle: Sys.get("#dragme")
             });
         });

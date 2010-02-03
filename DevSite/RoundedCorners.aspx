@@ -16,7 +16,7 @@
     <script type="text/javascript" src="scripts/extended/extendedcontrols.js"></script>
     <script type="text/javascript">
         Sys.require(Sys.components.rounded, function() {
-            Sys.create.rounded("#rounded", {
+            Sys.query("#rounded").rounded({
                 Radius: 10
             });
         });

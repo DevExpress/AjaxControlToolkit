@@ -16,9 +16,9 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.listSearch, function() {
-            Sys.create.listSearch("#dd", {
+            Sys.query("#dd").listSearch({
             });
-            Sys.create.listSearch("#list", {
+            Sys.query("#list").listSearch({
                 promptText: "my prompt",
                 promptCssClass: "prompt",
                 promptPosition: Sys.Extended.UI.ListSearchPromptPosition.Bottom,

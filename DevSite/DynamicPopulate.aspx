@@ -32,12 +32,12 @@
         Sys.debug = true;
         var popup;
         Sys.require(Sys.components.dynamicPopulate, function() {
-            popup = Sys.create.dynamicPopulate("#dynamic", {
+            popup = Sys.query("#dynamic").dynamicPopulate({
                 PopulateTriggerID: "cmdLoad",
                 ServiceMethod: "GetHTML",
                 UpdatingCssClass: "updating",
                 ClearContentsDuringUpdate: false
-            });
+            }).get(0);
         });
     </script>
     

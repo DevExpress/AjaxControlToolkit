@@ -521,7 +521,7 @@ $type.prototype = {
                     }
                 }
                 if (this._command) {
-                    code.push(" Sys.UI.DomElement.setCommand($element, " + this._command  + ", " + (this._commandargument || 'null') + ", Sys.UI.DomElement._ensureGet(" + (this._commandtarget || 'null') + ", $context, 'sys:commandtarget'));\n");
+                    code.push(" Sys.query($element).setCommand(" + this._command  + ", " + (this._commandargument || 'null') + ", Sys.UI.DomElement._ensureGet(" + (this._commandtarget || 'null') + ", $context, 'sys:commandtarget'));\n");
                     this._command = null;
                 }
                 this._commandargument = null;
@@ -769,6 +769,7 @@ $type = Sys.UI.TemplateContext = function TemplateContext() {
     var index = this._tcindex = Sys.UI.TemplateContext._tcindex++;
     Sys.UI.TemplateContext._contexts[index] = this;
     this._completed = [];
+    this.nodes = [];
     Sys.UI.TemplateContext.initializeBase(this);
 }
 $type.prototype = {
@@ -801,15 +802,37 @@ $type.prototype = {
         this.isDisposed = true;
     },
     query: function TemplateContext$query(selector) {
-        return this._find(selector);
+        return new Sys.ElementSet(this._find(selector));
     },
     get: function TemplateContext$get(selector) {
         return this._find(selector, true);
     },
     _find: function TemplateContext$_find(selector, single) {
-        return /^[#\$](\w|[$:\.\-])+$/.test(selector) ?
-            this._findById(selector.substr(0, 1), selector.substr(1), single) :
-            Sys._find(selector, this.nodes, single);
+        var found = [],
+            selectors;
+        if (typeof(selector) === "string") {
+            selectors = [selector];
+        }
+        else {
+            selectors = selector;
+        }
+        var idBased = /^[#\$](\w|[$:\.\-])+$/;
+        var tc = this;
+        foreach(selectors, function(selector) {
+            var result = idBased.test(selector) ?
+                    tc._findById(selector.substr(0, 1), selector.substr(1), single) :
+                    Sys._find(selector, tc.nodes, single);
+            if (result) {
+                if (single) {
+                    found.push(result);
+                    return true;
+                }
+                else {
+                    found.push.apply(found, result);
+                }
+            }
+        });
+        return single ? (found[0] || null) : found;
     },
     _findById: function TemplateContext$_findById(kind, id, single) {
         var element = null;
@@ -915,47 +938,32 @@ $type._prototypeIndex = {};
 $type._context = new Sys.UI.TemplateContext();
 $type._context._global = true;
 
-$type.activateElement = function Application$activateElement(element, bindingContext, recursive) {
-    /// <summary locid="M:J#Sys.Application.activateElement"></summary>
-    /// <param name="element" domElement="true" mayBeNull="true" optional="true">The element to process.</param>
-    /// <param name="bindingContext" type="Object" optional="true" mayBeNull="true">The binding context.</param>
-    /// <param name="recursive" optional="true" mayBeNull="true">Specifies whether processing should occur recursively.</param>
-    /// <returns type="Sys.UI.TemplateContext">A template context.</returns>
-    return Sys.Application.activateElements(element || null, bindingContext || null, (recursive !== false));
-}
-
-$type.activateElements = function Application$activateElements(elements, bindingContext, recursive) {
-    /// <summary locid="M:J#Sys.Application.activateElements"></summary>
-    /// <param name="elements" optional="true" mayBeNull="true">The element or elements to process. You may also pass DOM selectors or an array of DOM selectors.</param>
-    /// <param name="bindingContext" optional="true" mayBeNull="true">The binding context.</param>
-    /// <param name="recursive" optional="true" mayBeNull="true">Specifies whether processing should occur recursively.</param>
-    /// <returns type="Sys.UI.TemplateContext">A template context.</returns>
-    var app = Sys.Application,
-        tc = app._context,
-        useDirect = isBrowser("InternetExplorer");
-    elements = elements || document.documentElement;
-    tc.dataItem = typeof(bindingContext) === "undefined" ? null : bindingContext;
-    tc.components = tc.components || [];
-    tc.nodes = [];
-    recursive = (recursive !== false);
-    Sys._queryAll(elements, function(element) {
-        tc.nodes.push(element);
-        app._activateElement(element, tc, useDirect, recursive);
-    });
-    tc.initializeComponents();
-    tc._onInstantiated(null, true);
-    return tc;
-}
-
 Sys.registerPlugin({
     name: "activateElements",
-    plugin: Sys.Application.activateElements,
+    dom: true,
     returnType: "Sys.UI.TemplateContext",
     parameters: [
-        {name: "elements", description: "The element or array of elements to activate. You may also pass DOM selectors or array of DOM selectors."},
         {name: "bindingContext", description: "The binding context."},
         {name: "recursive", type: "Boolean", description: "Specifies whether processing should occur recursively."}
-    ]
+    ],
+    plugin: function(bindingContext, recursive) {
+        var elements = this.get(),
+            app = Sys.Application,
+            tc = app._context,
+            useDirect = isBrowser("InternetExplorer");
+        elements = elements || document.documentElement;
+        tc.dataItem = typeof(bindingContext) === "undefined" ? null : bindingContext;
+        tc.components = tc.components || [];
+        tc.nodes = [];
+        recursive = (recursive !== false);
+        Sys.query(elements).each(function() {
+            tc.nodes.push(this);
+            app._activateElement(this, tc, useDirect, recursive);
+        });
+        tc.initializeComponents();
+        tc._onInstantiated(null, true);
+        return tc;
+    }
 });
 
 $type._findType = function Application$_findType(element, prefix, useDirect) {
@@ -1035,7 +1043,7 @@ $type._activateElement = function Application$_activateElement(parent, templateC
                     var command = Sys.Application._getPropertyValue(null, null, null, value, templateContext, null, true);
                     var commandArg = Sys.Application._getCommandAttr(element, "sys:commandargument", useDirect, templateContext),
                         commandTarget = Sys.Application._getCommandAttr(element, "sys:commandtarget", useDirect, templateContext);
-                    Sys.UI.DomElement.setCommand(element, command||"", commandArg||null, Sys.UI.DomElement._ensureGet(commandTarget, templateContext, "sys:commandtarget"));
+                    Sys.query(element).setCommand(command||"", commandArg||null, Sys.UI.DomElement._ensureGet(commandTarget, templateContext, "sys:commandtarget"));
                     break;
                 default:
                     attributes2 = attributes2 || [];
@@ -1471,7 +1479,7 @@ $type._registerComponent = function Application$_registerComponent(element, comp
 $type._activateOnPartial = function Application$_activateOnPartial(panel, rendering) {
     this._doUpdatePanel(panel, rendering);
     if (Sys.activateDom) {
-        Sys.Application.activateElement(panel);
+        Sys.query(panel).activateElements();
     }
 }
 
@@ -1479,7 +1487,7 @@ $type._raiseInit = function Application$_raiseInit() {
     this.beginCreateComponents();
     Sys.Observer.raiseEvent(this, "init");
     if (Sys.activateDom) {
-        Sys.Application.activateElement(document.documentElement);
+        Sys.query(document.documentElement).activateElements();
     }
     if (Sys.WebForms && Sys.WebForms.PageRequestManager) {
         var prm = Sys.WebForms.PageRequestManager.getInstance();
@@ -1559,6 +1567,9 @@ $type.prototype = {
         if (this._initialized) {
             throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.commonNotAfterInit, "Binding", "source"));
         }
+        if (value instanceof Sys.ComponentSet || value instanceof Sys.ElementSet) {
+            value = value.get(0);
+        }
         this._source = value;
     },
     get_templateContext: function Binding$get_templateContext() {
@@ -1580,12 +1591,15 @@ $type.prototype = {
         this._pathArray = value ? value.split('.') : null;
     },
     get_target: function Binding$get_target() {
-        /// <value mayBeNull="true" locid="P:J#Sys.Binding.target">The target input</value>
+        /// <value mayBeNull="true" locid="P:J#Sys.Binding.target">The target object.</value>
         return this._target || null;
     },
     set_target: function Binding$set_target(value) {
         if (this._initialized) {
             throw Error.invalidOperation(String.format(Sys.UI.TemplatesRes.commonNotAfterInit, "Binding", "target"));
+        }
+        if (value instanceof Sys.ComponentSet || value instanceof Sys.ElementSet) {
+            value = value.get(0);
         }
         this._target = value;
     },
@@ -2002,39 +2016,96 @@ $type._disposeBindings = function Binding$_disposeBindings() {
 $type.registerClass("Sys.Binding", Sys.Component, Sys.UI.ITemplateContextConsumer);
 Sys.converters = Sys.converters || {};
 
-$type.bind = function Binding$bind(targetOrOptions, property, source, path, options) {
+$type._bindThis = function (propertyOrOptions, source, path, options) {
     if (arguments.length > 1) {
         options = merge({
-            target: targetOrOptions,
-            targetProperty: property,
+            targetProperty: propertyOrOptions,
             source: source,
-            path: path,
-            templateContext: Sys._isInstanceOfType(Sys.UI.TemplateContext, this) ? this : null
+            path: path
         }, options);
     }
     else {
-        options = targetOrOptions;
+        options = propertyOrOptions;
     }
-    var value = options.mode;
-    if (typeof(value) === "string") {
-        options.mode = Sys.BindingMode.parse(value);
-    }
-    value = options.ignoreErrors;
-    if (typeof(value) === "string") {
-        options.ignoreErrors = Boolean.parse(value);
-    }
-    var binding = new Sys.Binding();
-    forIn(options, function(v, n) {
-        if (typeof(v) !== "undefined") Sys.Observer.setValue(binding, n, v);
+    this.each(function() {
+        options.target = this;
+        Sys.binding(options);
     });
-    binding.initialize();
-    return binding;
+    return this;
 }
 
 Sys.registerPlugin({
-    name: "bind",
-    plugin: Sys.Binding.bind
+    name: "binding",
+    global: true,
+    returnType: "Sys.Binding",
+    description: "Creates a binding between two objects.",
+    parameters: [
+        { name: "targetOrOptions", description: "&lt;target: The target to bind to.??&gt; OR &lt;options (object): An object containing fields for each of the desired Sys.Binding properties to set&gt;" },
+        { name: "property", description: "The property or attribute of the target to bind to." },
+        { name: "source", description: "The object to bind from." },
+        { name: "path", type: "String", description: "The property or dotted property path on the source object to bind from." },
+        { name: "options", type: "Object", description: "An object containing fields for each of the desired Sys.Binding properties to set." }
+    ],
+    plugin: function(targetOrOptions, property, source, path, options) {
+        if (arguments.length > 1) {
+            options = merge({
+                target: targetOrOptions,
+                targetProperty: property,
+                source: source,
+                path: path,
+                templateContext: Sys._isInstanceOfType(Sys.UI.TemplateContext, this) ? this : null
+            }, options);
+        }
+        else {
+            options = targetOrOptions;
+        }
+        var value = options.mode;
+        if (typeof(value) === "string") {
+            options.mode = Sys.BindingMode.parse(value);
+        }
+        value = options.ignoreErrors;
+        if (typeof(value) === "string") {
+            options.ignoreErrors = Boolean.parse(value);
+        }
+        var binding = new Sys.Binding();
+        forIn(options, function(v, n) {
+            if (typeof(v) !== "undefined") Sys.Observer.setValue(binding, n, v);
+        });
+        binding.initialize();
+        return binding;
+    }
 });
+
+Sys.registerPlugin({
+    name: "domBinding",
+    functionName: "binding",
+    dom: true,
+    returnType: "Sys.ElementSet",
+    description: "Binds the set of objects to a given source.",
+    parameters: [
+        { name: "propertyOrOptions", description: "&lt;property (string): The property or attribute of the target to bind to&gt; OR &lt;options (object): An object containing fields for each of the desired Sys.Binding properties to set&gt;" },
+        { name: "source", description: "The source object to bind to." },
+        { name: "path", type:"String", description: "The property or dotted property path on the source object to bind to." },
+        { name: "options", type:"Object", description: "An object containing fields for each of the desired Sys.Binding properties to set." }
+    ],
+    plugin: Sys.Binding._bindThis
+});
+
+Sys.registerPlugin({
+    name: "componentBinding",
+    functionName: "binding",
+    components: true,
+    returnType: "Sys.ComponentSet",
+    description: "Binds the set of objects to a given source.",
+    parameters: [
+        { name: "propertyOrOptions", description: "&lt;property (string): The property or attribute of the target to bind to&gt; OR &lt;options (object): An object containing fields for each of the desired Sys.Binding properties to set&gt;" },
+        { name: "source", description: "The source object to bind to." },
+        { name: "path", type:"String", description: "The property or dotted property path on the source object to bind to." },
+        { name: "options", type:"Object", description: "An object containing fields for each of the desired Sys.Binding properties to set." }
+    ],
+    plugin: Sys.Binding._bindThis
+});
+
 
 Sys.Application.registerMarkupExtension(
 "binding", 
@@ -2047,7 +2118,7 @@ function(component, targetProperty, templateContext, properties) {
     }, properties);
     options.path = options.path || options.$default;
     delete options.$default;
-    var binding = Sys.Binding.bind(options);
+    var binding = Sys.binding(options);
     templateContext.components.push(binding);
 }, 
 false);
@@ -2148,6 +2219,9 @@ $type.prototype = {
     },
     set_dataProvider: function DataView$set_dataProvider(value) {
         this._dataProvider = this._wsp = this._wspClass = null;
+        if (value instanceof Sys.ComponentSet) {
+            value = value.get(0);
+        }
         if (Sys.Data.IDataProvider.isImplementedBy(value)) {
             this._dataProvider = value;
         }

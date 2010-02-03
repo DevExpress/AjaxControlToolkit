@@ -34,7 +34,7 @@
         }
         
         Sys.require(Sys.components.rating, function() {
-            Sys.create.rating("#rate1", {
+            Sys.query("#rate1").rating({
                 ClientStateFieldID: "state",
                 Rating: 2,
                 id: "rate1",

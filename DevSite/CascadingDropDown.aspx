@@ -68,18 +68,18 @@
         <script type="text/javascript">
             Sys.debug = true;
             Sys.require(Sys.components.cascadingDropDown, function() {
-                Sys.create.cascadingDropDown.defaults = {
+                Sys.components.cascadingDropDown.defaults = {
                     ServiceMethod: "GetCarData",
                     PromptText: "[Select]"
                 };
-                Sys.create.cascadingDropDown("#make", {
+                Sys.query("#make").cascadingDropDown({
                     Category: "make"
                 });
-                Sys.create.cascadingDropDown("#model", {
+                Sys.query("#model").cascadingDropDown({
                     Category: "model",
                     ParentControlID: "make"
                 });
-                Sys.create.cascadingDropDown("#color", {
+                Sys.query("#color").cascadingDropDown({
                     Category: "color",
                     ParentControlID: "model"
                 });

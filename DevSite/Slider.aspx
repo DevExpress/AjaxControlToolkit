@@ -12,7 +12,7 @@
     <script type="text/javascript" src="scripts/extended/extendedcontrols.js"></script>
     <script type="text/javascript">
         Sys.require(Sys.components.slider, function() {
-            Sys.create.slider("#slider1", {
+            Sys.query("#slider1").slider({
                 maximum: 100,
                 minimum: 0
             });

@@ -488,7 +488,6 @@ $type.prototype = {
         if (e) throw e;
         var executor = webRequest.get_executor();
         if (!executor) {
-
             var er, failed;
             try {
                 var executorType = window.eval(this._defaultExecutorType);

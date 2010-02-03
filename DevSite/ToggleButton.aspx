@@ -11,14 +11,13 @@
     <script type="text/javascript" src="scripts/extended/extendedcontrols.js"></script>
     <script type="text/javascript">
         Sys.require(Sys.components.toggleButton, function() {
-            Sys.create.toggleButton.defaults = {
+            Sys.components.toggleButton.defaults = {
                 CheckedImageUrl: "images/ToggleButton_checked.gif",
                 UncheckedImageUrl: "images/ToggleButton_unchecked.gif",
                 ImageWidth: 20,
                 ImageHeight: 20
             };
-            Sys.create.toggleButton("#toggle1");
-            Sys.create.toggleButton("#toggle2");
+            Sys.query(["#toggle1", "#toggle2"]).toggleButton();
         });
     </script>
 </head>

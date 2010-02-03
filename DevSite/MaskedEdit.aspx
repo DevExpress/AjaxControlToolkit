@@ -26,18 +26,18 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.maskedEdit, function() {
-            Sys.create.maskedEdit.defaults = {
+            Sys.components.maskedEdit.defaults = {
                 OnFocusCssClass: "focus",
                 OnInvalidCssClass: "invalid",
                 OnFocusCssNegative: "negative",
                 OnBlurCssNegative: "negative"
             }
-            Sys.create.maskedEdit("#money", {
+            Sys.query("#money").maskedEdit({
                 Mask: "9,999,999.99",
                 AcceptNegative: Sys.Extended.UI.MaskedEditShowSymbol.Left,
                 MaskType: Sys.Extended.UI.MaskedEditType.Number
             });
-            Sys.create.maskedEdit("#date", {
+            Sys.query("#date").maskedEdit({
                 Mask: "99/99/9999",
                 MaskType: Sys.Extended.UI.MaskedEditType.Date
             });

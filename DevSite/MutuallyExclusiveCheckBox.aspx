@@ -12,15 +12,15 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.mutuallyExclusiveCheckBox, function() {
-            Sys.create.mutuallyExclusiveCheckBox("#cb1", "[A]");
-            Sys.create.mutuallyExclusiveCheckBox("#cb2", "[B]");
-            Sys.create.mutuallyExclusiveCheckBox("#cb3", "[C]");
-            Sys.create.mutuallyExclusiveCheckBox("#cb4", "[D]");
+            Sys.query("#cb1").mutuallyExclusiveCheckBox("[A]");
+            Sys.query("#cb2").mutuallyExclusiveCheckBox("[B]");
+            Sys.query("#cb3").mutuallyExclusiveCheckBox("[C]");
+            Sys.query("#cb4").mutuallyExclusiveCheckBox("[D]");
             
-            Sys.create.mutuallyExclusiveCheckBox("#cb1a", "[A]");
-            Sys.create.mutuallyExclusiveCheckBox("#cb2a", "[B]");
-            Sys.create.mutuallyExclusiveCheckBox("#cb3a", "[C]");
-            Sys.create.mutuallyExclusiveCheckBox("#cb4a", "[D]");
+            Sys.query("#cb1a").mutuallyExclusiveCheckBox("[A]");
+            Sys.query("#cb2a").mutuallyExclusiveCheckBox("[B]");
+            Sys.query("#cb3a").mutuallyExclusiveCheckBox("[C]");
+            Sys.query("#cb4a").mutuallyExclusiveCheckBox("[D]");
         });
     </script>
 </head>

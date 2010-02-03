@@ -68,10 +68,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptOutput", "ScriptOutpu
 		Client\ScriptOutput\Date.HijriCalendar.js = Client\ScriptOutput\Date.HijriCalendar.js
 		Client\ScriptOutput\Date.UmAlQuraCalendar.debug.js = Client\ScriptOutput\Date.UmAlQuraCalendar.debug.js
 		Client\ScriptOutput\Date.UmAlQuraCalendar.js = Client\ScriptOutput\Date.UmAlQuraCalendar.js
+		Client\ScriptOutput\jQueryStart-vsdoc.js = Client\ScriptOutput\jQueryStart-vsdoc.js
+		Client\ScriptOutput\jQueryStart.debug.js = Client\ScriptOutput\jQueryStart.debug.js
+		Client\ScriptOutput\jQueryStart.js = Client\ScriptOutput\jQueryStart.js
 		Client\ScriptOutput\MicrosoftAjax.debug.js = Client\ScriptOutput\MicrosoftAjax.debug.js
 		Client\ScriptOutput\MicrosoftAjax.js = Client\ScriptOutput\MicrosoftAjax.js
-		Client\ScriptOutput\MicrosoftAjaxAdoNet.debug.js = Client\ScriptOutput\MicrosoftAjaxAdoNet.debug.js
-		Client\ScriptOutput\MicrosoftAjaxAdoNet.js = Client\ScriptOutput\MicrosoftAjaxAdoNet.js
 		Client\ScriptOutput\MicrosoftAjaxApplicationServices.debug.js = Client\ScriptOutput\MicrosoftAjaxApplicationServices.debug.js
 		Client\ScriptOutput\MicrosoftAjaxApplicationServices.js = Client\ScriptOutput\MicrosoftAjaxApplicationServices.js
 		Client\ScriptOutput\MicrosoftAjaxComponentModel.debug.js = Client\ScriptOutput\MicrosoftAjaxComponentModel.debug.js
@@ -86,6 +87,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptOutput", "ScriptOutpu
 		Client\ScriptOutput\MicrosoftAjaxHistory.js = Client\ScriptOutput\MicrosoftAjaxHistory.js
 		Client\ScriptOutput\MicrosoftAjaxNetwork.debug.js = Client\ScriptOutput\MicrosoftAjaxNetwork.debug.js
 		Client\ScriptOutput\MicrosoftAjaxNetwork.js = Client\ScriptOutput\MicrosoftAjaxNetwork.js
+		Client\ScriptOutput\MicrosoftAjaxOpenData.debug.js = Client\ScriptOutput\MicrosoftAjaxOpenData.debug.js
+		Client\ScriptOutput\MicrosoftAjaxOpenData.js = Client\ScriptOutput\MicrosoftAjaxOpenData.js
 		Client\ScriptOutput\MicrosoftAjaxSerialization.debug.js = Client\ScriptOutput\MicrosoftAjaxSerialization.debug.js
 		Client\ScriptOutput\MicrosoftAjaxSerialization.js = Client\ScriptOutput\MicrosoftAjaxSerialization.js
 		Client\ScriptOutput\MicrosoftAjaxTemplates.debug.js = Client\ScriptOutput\MicrosoftAjaxTemplates.debug.js
@@ -131,6 +134,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ClientFunctionalTests", "Cl
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit", "Server\AjaxControlToolkit\AjaxControlToolkit.csproj", "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}"
+	ProjectSection(ProjectDependencies) = postProject
+		{53BF3496-0AD1-491C-A367-258E84479594} = {53BF3496-0AD1-491C-A367-258E84479594}
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution

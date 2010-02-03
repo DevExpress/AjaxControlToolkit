@@ -26,7 +26,7 @@
         
         Sys.debug = true;
         Sys.require(Sys.components.hover, function() {
-            Sys.create.hover("#hover", {
+            Sys.query("#hover").hover({
                 hover: onHover,
                 hoverDelay: 1000,
                 unhover: onUnhover

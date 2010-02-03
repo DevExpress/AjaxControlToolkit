@@ -12,7 +12,7 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.collapsiblePanel, function() {
-            Sys.create.collapsiblePanel("#panel", {
+            Sys.query("#panel").collapsiblePanel({
                 ExpandControlID: "expand",
                 CollapseControlID: "expand"
             });

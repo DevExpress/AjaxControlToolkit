@@ -21,7 +21,7 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.accordion, function() {
-            Sys.create.accordion("#accordion", {
+            Sys.query("#accordion").accordion({
                 HeaderCssClass: "header",
                 HeaderSelectedCssClass: "selectedheader",
                 ContentCssClass: "content"

@@ -22,7 +22,7 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require([Sys.components.watermark, Sys.components.calendar, Sys.components.modalPopup], function() {
-            Sys.create.modalPopup("#show", {
+            Sys.query("#show").modalPopup({
                 PopupControlID: "popup",
                 OkControlID: "buttonOK",
                 CancelControlID: "buttonCancel",
@@ -30,10 +30,10 @@
                 OnCancelScript: cancelWasClicked,
                 BackgroundCssClass: "modalBackground"
             });
-            Sys.create.watermark("#theDate", "Click to select date...", "myDate");
-            Sys.create.watermark("#myName", "Enter your name", "myName");
-            Sys.create.watermark("#myCompany", "Enter your company", "myCompany");
-            Sys.create.calendar("#theDate", {
+            Sys.query("#theDate").watermark("Click to select date...", "myDate");
+            Sys.query("#myName").watermark("Enter your name", "myName");
+            Sys.query("#myCompany").watermark("Enter your company", "myCompany");
+            Sys.query("#theDate").calendar({
                 popupPosition: Sys.Extended.UI.CalendarPosition.Right
             });
         });

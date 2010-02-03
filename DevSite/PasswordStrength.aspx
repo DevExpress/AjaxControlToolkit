@@ -25,7 +25,7 @@
     <script type="text/javascript" src="scripts/extended/extendedcontrols.js"></script>
     <script type="text/javascript">
         Sys.require(Sys.components.passwordStrength, function() {
-            Sys.create.passwordStrength("#pw1", {
+            Sys.query("#pw1").passwordStrength({
             });
         });
     </script>

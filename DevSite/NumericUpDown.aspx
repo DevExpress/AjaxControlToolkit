@@ -37,11 +37,11 @@
 <script type="text/javascript">
     Sys.debug = true;
     Sys.require(Sys.components.upDown, function() {
-        Sys.create.upDown("#updown1", -10, 10, 100);
-        Sys.create.upDown("#updown2", -10, 10, 100, {
+        Sys.query("#updown1").upDown(-10, 10, 100);
+        Sys.query("#updown2").upDown(-10, 10, 100, {
             RefValues: "a;b;c"
         });
-        Sys.create.upDown("#updown3", null, null, 150, {
+        Sys.query("#updown3").upDown(null, null, 150, {
             ServiceDownMethod: "GetDown",
             ServiceUpMethod: "GetUp"
         });

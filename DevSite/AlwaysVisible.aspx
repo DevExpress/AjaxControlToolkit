@@ -16,7 +16,7 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.alwaysVisible, function() {
-            Sys.create.alwaysVisible(".always", { useAnimation: false, VerticalSide: Sys.Extended.UI.VerticalSide.Middle });
+            Sys.query(".always").alwaysVisible({ useAnimation: false, VerticalSide: Sys.Extended.UI.VerticalSide.Middle });
         });
     </script>
 </head>

@@ -29,7 +29,7 @@
     <script type="text/javascript" src="scripts/extended/extendedcontrols.js"></script>
     <script type="text/javascript">
         Sys.require(Sys.components.resizable, function() {
-            Sys.create.resizable("#resize", {
+            Sys.query("#resize").resizable({
                 HandleCssClass: "handle",
                 ResizableCssClass: "sizing"
             });

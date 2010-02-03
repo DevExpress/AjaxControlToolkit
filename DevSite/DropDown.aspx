@@ -13,7 +13,7 @@
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.dropDown, function() {
-            Sys.create.dropDown("#target", {
+            Sys.query("#target").dropDown({
                 dropDownControl: Sys.get("#dropdown")
             });
         });

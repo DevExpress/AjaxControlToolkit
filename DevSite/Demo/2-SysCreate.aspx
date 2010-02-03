@@ -17,17 +17,17 @@
     <script type="text/javascript">
     
     Sys.require(Sys.components.dataView, function() {
-        var dv = Sys.create.dataView("#dv", {
+        var dv = Sys.query("#dv").dataView({
             data: [1,2,3]
-        });
+        }).get(0);
         log(Object.getTypeName(dv));
     });
     
     // oops
-    //Sys.create.adoNetDataContext();
+    //Sys.create.openDataContext();
     
     Sys.require(Sys.components.confirmButton, function() {
-        Sys.create.confirmButton("#confirm", "Are you SURE?");
+        Sys.query("#confirm").confirmButton("Are you SURE?");
     });
 
     </script>
