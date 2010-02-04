@@ -52,7 +52,7 @@
     <Compile Include="UI\AjaxScriptManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjax.embed.debug.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjax.debug.js">
       <LogicalName>MicrosoftAjax.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
@@ -64,7 +64,7 @@
       <LogicalName>MicrosoftAjaxComponentModel.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxCore.embed.debug.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjaxCore.debug.js">
       <LogicalName>MicrosoftAjaxCore.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
@@ -88,7 +88,7 @@
       <LogicalName>MicrosoftAjaxTimer.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxWebForms.embed.debug.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjaxWebForms.debug.js">
       <LogicalName>MicrosoftAjaxWebForms.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
@@ -104,7 +104,7 @@
       <LogicalName>Date.UmAlQuraCalendar.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjax.embed.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjax.js">
       <LogicalName>MicrosoftAjax.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
@@ -116,7 +116,7 @@
       <LogicalName>MicrosoftAjaxComponentModel.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxCore.embed.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjaxCore.js">
       <LogicalName>MicrosoftAjaxCore.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
@@ -140,7 +140,7 @@
       <LogicalName>MicrosoftAjaxTimer.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxWebForms.embed.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjaxWebForms.js">
       <LogicalName>MicrosoftAjaxWebForms.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
@@ -164,27 +164,27 @@
       <LogicalName>Start.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxTemplates.embed.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjaxTemplates.js">
       <LogicalName>MicrosoftAjaxTemplates.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxTemplates.embed.debug.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjaxTemplates.debug.js">
       <LogicalName>MicrosoftAjaxTemplates.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxOpenData.embed.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjaxOpenData.js">
       <LogicalName>MicrosoftAjaxOpenData.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxOpenData.embed.debug.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjaxOpenData.debug.js">
       <LogicalName>MicrosoftAjaxOpenData.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxDataContext.embed.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjaxDataContext.js">
       <LogicalName>MicrosoftAjaxDataContext.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\Client\ScriptOutput\MicrosoftAjaxDataContext.embed.debug.js">
+    <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjaxDataContext.debug.js">
       <LogicalName>MicrosoftAjaxDataContext.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>

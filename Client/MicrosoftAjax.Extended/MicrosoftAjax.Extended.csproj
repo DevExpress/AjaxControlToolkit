@@ -15,7 +15,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <ScriptOutput>$(ProjectDir)../ScriptOutput/extended</ScriptOutput>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput\extended</ScriptOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,7 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ScriptOutput>$(ProjectDir)../ScriptOutput/extended</ScriptOutput>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput\extended</ScriptOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,7 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ScriptOutput>$(ProjectDir)../ScriptOutput/extended</ScriptOutput>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput\extended</ScriptOutput>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -311,7 +311,7 @@
   <!-- JSBuild outputs the results of a build to the Scripts folder -->
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\JSBuild.dll" />
   <Target Name="BeforeBuild">
-    <MakeDir Directories="@(ScriptOutput)" />
+    <MakeDir Directories="$(ScriptOutput)" />
     <!-- clean out old files from previous build -->
     <ItemGroup>
       <ToDelete Include="$(ScriptOutput)\**\*" />
@@ -322,9 +322,7 @@
     See the following for explaination:
     http://social.msdn.microsoft.com/forums/en-US/msbuild/thread/d2833d1e-2d56-4fc4-98a4-e321b976b9ac
     -->
-    <Exec Command="for /f %%d in ('dir /ad /b') do rd /s /q %%d"
-                       WorkingDirectory="$(ScriptOutput)" />
-
+    <Exec Command="for /f %%d in ('dir /ad /b') do rd /s /q %%d" WorkingDirectory="$(ScriptOutput)" />
     <!-- build pre.js files with the JSBuildTask preprocessor, which generates debug and release scripts -->
     <ItemGroup>
       <PreJS Include="**\*.pre.js">
@@ -332,13 +330,11 @@
       </PreJS>
     </ItemGroup>
     <JSBuildTask IncludePathInOutput="true" SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(ScriptOutput)" />
-    
     <!-- minify the release scripts (overwrite them) -->
     <ItemGroup>
       <JS Include="$(ScriptOutput)\**\*.js" Exclude="$(ScriptOutput)\**\*.debug.*" />
     </ItemGroup>
     <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
-    
     <!-- Copy Images and CSS directly into script output -->
     <ItemGroup>
       <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css">
@@ -347,4 +343,8 @@
     </ItemGroup>
     <Copy SourceFiles="@(StaticResources)" DestinationFolder="$(ScriptOutput)\%(RecursiveDir)" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
 </Project>
