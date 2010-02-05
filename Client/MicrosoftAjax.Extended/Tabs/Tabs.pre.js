@@ -363,6 +363,7 @@ Sys.Extended.UI.TabPanel.prototype = {
         return this._owner;
     },
     set_owner: function(value) {
+        if (value instanceof Sys.ComponentSet) value = value.get(0);
         if (this._owner != value) {
             if (this.get_isInitialized()) {
                 throw Error.invalidOperation(String.format(Sys.Extended.UI.Resources.Tabs_PropertySetAfterInitialization, 'owner'));

@@ -14,7 +14,7 @@
     <script type="text/javascript" src="scripts/extended/extendedcontrols.js"></script>
     <script type="text/javascript">
         Sys.require(Sys.components.tabContainer, function() {
-            var container = Sys.query("#tabcontainer").tabContainer(0).get(0);
+            var container = Sys.query("#tabcontainer").tabContainer(0);
             Sys.query("#tab1_body").tabPanel(container, "#tab1");
             Sys.query("#tab2_body").tabPanel(container, "#tab2");
             Sys.query("#tab3_body").tabPanel(container, "#tab3");

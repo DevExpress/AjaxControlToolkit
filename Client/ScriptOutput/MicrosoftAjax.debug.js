@@ -537,8 +537,11 @@ obj.prototype.elements = function() {
     var getCreate = function _getCreate(options, isPlugin, isjQuery) {
         var body = [],
             arglist = [],
+            type = options.type,
+            typeName = options.typeName || (type ? type.getName() : ""),
+            isBehavior = options._isBehavior,
             description = (options && options.description) || 
-                          (options.type && ("Creates an instance of the type '" + options.type.getName()  + "' and sets the given properties.")) ||
+                          (type && ("Creates an instance of the type '" + typeName  + "' and sets the given properties.")) ||
                           "";
         body.push("/// <summary>", description, "</summary>\n");
         foreach(options && options.parameters, function(parameter) {
@@ -559,7 +562,7 @@ obj.prototype.elements = function() {
         if (!isPlugin) {
             arglist.push("properties");
             body.push('/// <param name="properties" type="Object" mayBeNull="true" optional="true">Additional properties to set on the component.</param>\n');
-            returnType = (isjQuery ? 'Sys._jComponentSet' : 'Sys.ComponentSet');
+            returnType = ((isjQuery && isBehavior) ? 'Sys._jComponentSet' : (isBehavior ? 'Sys.ComponentSet' : typeName));
         }
         else {
             returnType = options.returnType;
@@ -1602,16 +1605,15 @@ Sys._createComp = function _createComp(component, defaults, args) {
             props[name] = value;
         }
     });
-    var components = [];
     if (this instanceof Sys.ElementSet) {
+        var components = [];
         this.each(function() {
             components.push(Sys._create(type, props, this));
         });
         return new Sys.ComponentSet(this, components);
     }
     else {
-        components.push(Sys._create(type, props));
-        return new Sys.ComponentSet(null, components);
+        return Sys._create(type, props);
     }
 }
 
