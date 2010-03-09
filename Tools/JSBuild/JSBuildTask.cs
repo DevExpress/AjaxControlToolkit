@@ -38,6 +38,16 @@
             set;
         }
 
+        public string DebugHeader {
+            get;
+            set;
+        }
+
+        public string ReleaseHeader {
+            get;
+            set;
+        }
+
         public override bool Execute() {
             // If nothing to process then just return
             if (SourceFiles == null || SourceFiles.Length == 0) {
@@ -63,7 +73,9 @@
                 string[] outputFiles;
                 try {
                     var preprocessor = new Preprocessor() {
-                        StripComments = StripComments
+                        StripComments = StripComments,
+                        DebugHeader = DebugHeader,
+                        ReleaseHeader = ReleaseHeader
                     };
                     outputFiles = preprocessor.Process(sourceFile, destinationRelease);
                 }

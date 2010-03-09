@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PrependTask.cs" />
     <Compile Include="CreateJSManifestResourceName.cs" />
     <Compile Include="Directive.cs" />
     <Compile Include="DirectiveFrame.cs">

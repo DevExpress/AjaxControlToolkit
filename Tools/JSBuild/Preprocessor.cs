@@ -29,15 +29,10 @@
             _directiveFrames = frames ?? new List<DirectiveFrame>();
         }
 
-        public List<String> Symbols {
-            get;
-            set;
-        }
-
-        public bool StripComments {
-            get;
-            set;
-        }
+        public List<String> Symbols { get; set; }
+        public bool StripComments { get; set; }
+        public string ReleaseHeader { get; set; }
+        public string DebugHeader { get; set; }
 
         public string[] Process(string sourcePath, string releaseOutputPath) {
             List<String> paths = new List<String>();
@@ -299,6 +294,12 @@
             _activeRelease = IsActive(false);
 
             using (sourceReader) {
+                if (!String.IsNullOrEmpty(ReleaseHeader)) {
+                    releaseWriter.WriteLine(ReleaseHeader);
+                }
+                if (!String.IsNullOrEmpty(DebugHeader)) {
+                    debugWriter.WriteLine(DebugHeader);
+                }
                 while ((_line = sourceReader.ReadLine()) != null) {
                     _lineNumber++;
                     if (DirectiveRegex.IsMatch(_line)) {
