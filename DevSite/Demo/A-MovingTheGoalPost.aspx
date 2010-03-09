@@ -11,17 +11,6 @@
     <script type="text/javascript" src="../scripts/extended/extendedcontrols.js"></script>
     <script type="text/javascript" src="foometadata.js"></script>
     <script type="text/javascript" src="util.js"></script>
-    <script type="text/javascript">
-
-
-    log(Sys.components.foo.script.releaseUrl);
-
-    Sys.require(Sys.components.foo, function() {
-        log(Sys.components.foo.script.releaseUrl);
-        Sys.create.foo();
-    });
-
-    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -33,4 +22,15 @@
     </div>
     </form>
 </body>
+<script type="text/javascript">
+
+log(Sys.components.foo.script.releaseUrl);
+
+Sys.require(Sys.components.foo, function() {
+    log(Sys.components.foo.script.releaseUrl);
+    Sys.create.foo();
+});
+
+</script>
+
 </html>

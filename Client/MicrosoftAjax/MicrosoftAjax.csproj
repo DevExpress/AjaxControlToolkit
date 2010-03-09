@@ -15,6 +15,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput</ScriptOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput</ScriptOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,36 +34,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput</ScriptOutput>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Web.Extensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Web.Mobile" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\Design\" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\MicrosoftAjax\ajaxmin.tasks" />
@@ -91,25 +65,26 @@
   <!-- JSBuild outputs the results of a build to the Scripts folder -->
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\JSBuild.dll" />
   <Target Name="BeforeBuild">
+    <MakeDir Directories="$(ScriptOutput)" />
+    <!-- clean out old files from previous build -->
+    <ItemGroup>
+      <ToDelete Include="$(ScriptOutput)\*" />
+    </ItemGroup>
+    <Delete Files="@(ToDelete)" />
     <ItemGroup>
       <PreJS Include="**\*.pre.js">
         <InProject>False</InProject>
       </PreJS>
     </ItemGroup>
-    <RemoveDir Directories="$(MSBuildProjectDirectory)\ScriptOutput" />
-    <MakeDir Directories="$(MSBuildProjectDirectory)\ScriptOutput" />
-    <JSBuildTask IncludePathInOutput="false" SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(MSBuildProjectDirectory)\ScriptOutput" />
+    <JSBuildTask IncludePathInOutput="false" SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(ScriptOutput)" />
     <!-- minify the release scripts (overwrite them) -->
     <ItemGroup>
-      <JS Include="$(MSBuildProjectDirectory)\ScriptOutput\**\*.js" Exclude="$(MSBuildProjectDirectory)\ScriptOutput\**\*.debug.*" />
+      <JS Include="$(ScriptOutput)\*.js" Exclude="$(ScriptOutput)\*.debug.*" />
     </ItemGroup>
     <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
     <!-- jQueryStart-vsdoc.pre.js generated debug and release builds, only need the debug one and it shouldn't have 'debug' in the name -->
-    <!-- note: Commented out now since jQueryStart.js is included directly via Client/ScriptOutput -->
-    <!--
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\ScriptOutput\jQueryStart-vsdoc.debug.js" DestinationFiles="$(MSBuildProjectDirectory)\ScriptOutput\jQueryStart-vsdoc.js" />
-    <Delete Files="$(MSBuildProjectDirectory)\ScriptOutput\jQueryStart-vsdoc.debug.js" />
-    -->
+    <Copy SourceFiles="$(ScriptOutput)\jQueryStart-vsdoc.debug.js" DestinationFiles="$(ScriptOutput)\jQueryStart-vsdoc.js" />
+    <Delete Files="$(ScriptOutput)\jQueryStart-vsdoc.debug.js" />
     <!-- Copy Images -->
     <ItemGroup>
       <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css">
@@ -118,4 +93,160 @@
     </ItemGroup>
     <Copy SourceFiles="@(StaticResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
   </Target>
+  <ItemGroup>
+    <Content Include="DataContext\MicrosoftAjaxDataContext.pre.js" />
+    <Content Include="Extensions\Array.js" />
+    <Content Include="Extensions\Boolean.js" />
+    <Content Include="Extensions\Compat\Browser.js" />
+    <Content Include="Extensions\Date.Globalization.js" />
+    <Content Include="Extensions\Date.HijriCalendar.js" />
+    <Content Include="Extensions\Date.HijriCalendar.pre.js" />
+    <Content Include="Extensions\Date.js" />
+    <Content Include="Extensions\Date.UmAlQuraCalendar.js" />
+    <Content Include="Extensions\Date.UmAlQuraCalendar.pre.js" />
+    <Content Include="Extensions\Error.js" />
+    <Content Include="Extensions\Function.js" />
+    <Content Include="Extensions\Global.js" />
+    <Content Include="Extensions\MicrosoftAjax.pre.js" />
+    <Content Include="Extensions\MicrosoftAjaxApplicationServices.pre.js" />
+    <Content Include="Extensions\MicrosoftAjaxComponentModel.pre.js" />
+    <Content Include="Extensions\MicrosoftAjaxCore.pre.js" />
+    <Content Include="Extensions\MicrosoftAjaxGlobalization.pre.js" />
+    <Content Include="Extensions\MicrosoftAjaxHistory.pre.js" />
+    <Content Include="Extensions\MicrosoftAjaxNetwork.pre.js" />
+    <Content Include="Extensions\MicrosoftAjaxSerialization.pre.js" />
+    <Content Include="Extensions\MicrosoftAjaxTimer.pre.js" />
+    <Content Include="Extensions\MicrosoftAjaxWebForms.pre.js" />
+    <Content Include="Extensions\MicrosoftAjaxWebServices.pre.js" />
+    <Content Include="Extensions\Number.Globalization.js" />
+    <Content Include="Extensions\Number.js" />
+    <Content Include="Extensions\Object.js" />
+    <Content Include="Extensions\RegExp.js" />
+    <Content Include="Extensions\String.Globalization.js" />
+    <Content Include="Extensions\String.js" />
+    <Content Include="Extensions\Sys\Application.History.js" />
+    <Content Include="Extensions\Sys\Application.js" />
+    <Content Include="Extensions\Sys\ApplicationLoadEventArgs.js" />
+    <Content Include="Extensions\Sys\CancelEventArgs.js" />
+    <Content Include="Extensions\Sys\CollectionChange.js" />
+    <Content Include="Extensions\Sys\CommandEventArgs.js" />
+    <Content Include="Extensions\Sys\Component.js" />
+    <Content Include="Extensions\Sys\CultureInfo.js" />
+    <Content Include="Extensions\Sys\Debug.js" />
+    <Content Include="Extensions\Sys\Enum.js" />
+    <Content Include="Extensions\Sys\EventArgs.js" />
+    <Content Include="Extensions\Sys\EventHandlerList.js" />
+    <Content Include="Extensions\Sys\HistoryEventArgs.js" />
+    <Content Include="Extensions\Sys\IContainer.js" />
+    <Content Include="Extensions\Sys\IDisposable.js" />
+    <Content Include="Extensions\Sys\INotifyDisposing.js" />
+    <Content Include="Extensions\Sys\INotifyPropertyChange.js" />
+    <Content Include="Extensions\Sys\Net\NetworkRequestEventArgs.js" />
+    <Content Include="Extensions\Sys\Net\WebRequest.js" />
+    <Content Include="Extensions\Sys\Net\WebRequestExecutor.js" />
+    <Content Include="Extensions\Sys\Net\WebRequestManager.js" />
+    <Content Include="Extensions\Sys\Net\WebServiceError.js" />
+    <Content Include="Extensions\Sys\Net\WebServiceProxy.js" />
+    <Content Include="Extensions\Sys\Net\XMLHttpExecutor.js" />
+    <Content Include="Extensions\Sys\NotifyCollectionChangedAction.js" />
+    <Content Include="Extensions\Sys\NotifyCollectionChangedEventArgs.js" />
+    <Content Include="Extensions\Sys\Observer.js" />
+    <Content Include="Extensions\Sys\PropertyChangedEventArgs.js" />
+    <Content Include="Extensions\Sys\ScriptLoader.js" />
+    <Content Include="Extensions\Sys\ScriptLoaderTask.js" />
+    <Content Include="Extensions\Sys\Serialization\JavaScriptSerializer.js" />
+    <Content Include="Extensions\Sys\Services\AuthenticationService.js" />
+    <Content Include="Extensions\Sys\Services\Compat.js" />
+    <Content Include="Extensions\Sys\Services\ProfileService.js" />
+    <Content Include="Extensions\Sys\Services\RoleService.js" />
+    <Content Include="Extensions\Sys\StringBuilder.js" />
+    <Content Include="Extensions\Sys\UI\Behavior.js" />
+    <Content Include="Extensions\Sys\UI\Bounds.js" />
+    <Content Include="Extensions\Sys\UI\Control.js" />
+    <Content Include="Extensions\Sys\UI\Controls\Timer.js" />
+    <Content Include="Extensions\Sys\UI\Controls\UpdateProgress.js" />
+    <Content Include="Extensions\Sys\UI\DomElement.js" />
+    <Content Include="Extensions\Sys\UI\DomEvent.js" />
+    <Content Include="Extensions\Sys\UI\Key.js" />
+    <Content Include="Extensions\Sys\UI\MouseButton.js" />
+    <Content Include="Extensions\Sys\UI\Point.js" />
+    <Content Include="Extensions\Sys\UI\VisibilityMode.js" />
+    <Content Include="Extensions\Sys\WebForms\BeginRequestEventArgs.js" />
+    <Content Include="Extensions\Sys\WebForms\EndRequestEventArgs.js" />
+    <Content Include="Extensions\Sys\WebForms\InitializeRequestEventArgs.js" />
+    <Content Include="Extensions\Sys\WebForms\PageLoadedEventArgs.js" />
+    <Content Include="Extensions\Sys\WebForms\PageLoadingEventArgs.js" />
+    <Content Include="Extensions\Sys\WebForms\PageRequestManager.js" />
+    <Content Include="Extensions\Sys\XMLHttpRequest.js" />
+    <Content Include="Extensions\Type.js" />
+    <Content Include="Loader\ComponentSet.js" />
+    <Content Include="Loader\Definitions.js" />
+    <Content Include="Loader\ElementSet.js" />
+    <Content Include="Loader\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Loader\jQueryStart-vsdoc.pre.js" />
+    <Content Include="Loader\jQueryStart.pre.js" />
+    <Content Include="Loader\loader.js" />
+    <Content Include="Loader\RegisterPlugin.js" />
+    <Content Include="Loader\Start.pre.js" />
+    <Content Include="Loader\typecompat.js" />
+    <Content Include="OpenData\MicrosoftAjaxOpenData.pre.js" />
+    <Content Include="Templates\Application_MarkupExtensions.js" />
+    <Content Include="Templates\Binding.js" />
+    <Content Include="Templates\BindingMode.js" />
+    <Content Include="Templates\DataView.js" />
+    <Content Include="Templates\DataViewEventArgs.js" />
+    <Content Include="Templates\data\ChangeOperation.js" />
+    <Content Include="Templates\data\ChangeOperationType.js" />
+    <Content Include="Templates\data\DataContext.js" />
+    <Content Include="Templates\data\IDataProvider.js" />
+    <Content Include="Templates\data\MergeOption.js" />
+    <Content Include="Templates\data\OpenDataActionResult.js" />
+    <Content Include="Templates\data\OpenDataActionSequence.js" />
+    <Content Include="Templates\data\OpenDataBatchReader.js" />
+    <Content Include="Templates\data\OpenDataBatchWriter.js" />
+    <Content Include="Templates\data\OpenDataContext.js" />
+    <Content Include="Templates\data\OpenDataInvokeParametersBuilder.js" />
+    <Content Include="Templates\data\OpenDataQueryBuilder.js" />
+    <Content Include="Templates\data\OpenDataServiceProxy.js" />
+    <Content Include="Templates\data\_OpenDataUtil.js" />
+    <Content Include="Templates\DOMProcessor.js" />
+    <Content Include="Templates\ITemplateContextConsumer.js" />
+    <Content Include="Templates\MicrosoftAjaxTemplates.pre.js" />
+    <Content Include="Templates\Net\WebRequestEventArgs.js" />
+    <Content Include="Templates\Net\WebServiceOperation.js" />
+    <Content Include="Templates\Template.js" />
+    <Content Include="Templates\TemplateContext.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\DataContext.Res.debug.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DataContext.Res.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\OpenData.Res.debug.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\OpenData.Res.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Res.debug.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Res.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Templates.Res.debug.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Templates.Res.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\WebForms.Res.debug.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\WebForms.Res.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

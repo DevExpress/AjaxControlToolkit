@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SignAssemblyAttribute>false</SignAssemblyAttribute>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B167DA27-7DE4-4FA8-9235-DFDA08A04789}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtlasScript</RootNamespace>
+    <AssemblyName>AtlasScript</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>.\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AtlasUnit.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Pages\App_Code\AtlasUnitUtil.cs" />
+    <Content Include="Pages\AtlasScriptProject.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\AtlasScript\AtlasScriptProject.xml" />
+    <Content Include="Pages\AtlasScript\Sys\Net\Test\NetworkRequestEventArgsTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Net\Test\WebRequestExecutorTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Net\Test\WebRequestManagerTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Net\Test\WebRequestTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Net\Test\WebServiceProxyTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Net\Test\XMLHttpExecutorTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Serialization\Test\SerializationTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Test\ApplicationTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Test\BrowserTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Test\ComponentTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Test\CultureInfoTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Test\DebugTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Test\EnumTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Test\EventHandlerListTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Test\ObserverTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Test\ScriptLoaderTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\Test\StringBuilderTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\UI\Test\BehaviorTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\UI\Test\ControlTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\UI\Test\DomElementTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\UI\Test\DomEventTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\UI\Test\UpdateProgressTest.js" />
+    <Content Include="Pages\AtlasScript\Sys\WebForms\Test\PageRequestManagerTest.js" />
+    <Content Include="Pages\AtlasScript\Test\ArrayTest.js" />
+    <Content Include="Pages\AtlasScript\Test\BooleanTest.js" />
+    <Content Include="Pages\AtlasScript\Test\DateTest.js" />
+    <Content Include="Pages\AtlasScript\Test\DateTestStoreHijriConvert.js" />
+    <Content Include="Pages\AtlasScript\Test\DateTestStoreHijriConvertPre.js" />
+    <Content Include="Pages\AtlasScript\Test\DateTestStoreUmAlQuraConvert.js" />
+    <Content Include="Pages\AtlasScript\Test\DateTestStoreUmAlQuraConvertPre.js" />
+    <Content Include="Pages\AtlasScript\Test\ErrorTest.js" />
+    <Content Include="Pages\AtlasScript\Test\ErrorTestHelper.js" />
+    <Content Include="Pages\AtlasScript\Test\FunctionTest.js" />
+    <Content Include="Pages\AtlasScript\Test\FunctionValidateParamsTest.js" />
+    <Content Include="Pages\AtlasScript\Test\GlobalTest.js" />
+    <Content Include="Pages\AtlasScript\Test\NumberTest.js" />
+    <Content Include="Pages\AtlasScript\Test\ObjectTest.js" />
+    <Content Include="Pages\AtlasScript\Test\RegExpTest.js" />
+    <Content Include="Pages\AtlasScript\Test\StringTest.js" />
+    <Content Include="Pages\AtlasScript\Test\TypeInheritanceTest.js" />
+    <Content Include="Pages\AtlasScript\Test\TypeInterfaceTest.js" />
+    <Content Include="Pages\AtlasScript\Test\TypeTest.js" />
+    <Content Include="Pages\AtlasScript\Test\XmlHttpRequestTest.js" />
+    <Content Include="Pages\AtlasUnit.js" />
+    <Content Include="Pages\AtlasUnit.master">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Pages\AtlasUnit.master.cs">
+      <DependentUpon>AtlasUnit.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Pages\AtlasUnitConsole.aspx" />
+    <Content Include="Pages\AtlasUnitConsole.aspx.cs">
+      <DependentUpon>AtlasUnitConsole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Pages\AtlasUnitConsole.js" />
+    <Content Include="Pages\AtlasUnitGui.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Pages\AtlasUnitGui.aspx.cs">
+      <DependentUpon>AtlasUnitGui.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Pages\AtlasUnitGui.js" />
+    <Content Include="Pages\AtlasUnit\AtlasUnitProject.xml" />
+    <Content Include="Pages\AtlasUnit\Console\Test\AtlasUnitConsoleTest.js" />
+    <Content Include="Pages\AtlasUnit\Sample\AtlasUnitSampleProject.xml" />
+    <Content Include="Pages\AtlasUnit\Sample\Test\AtlasUnitSampleTests.js" />
+    <Content Include="Pages\AtlasUnit\Test\AssertTest.js" />
+    <Content Include="Pages\AtlasUnit\Test\BackgroundWorkerTest.js" />
+    <Content Include="Pages\AtlasUnit\Test\CategoryCollectorTest.js" />
+    <Content Include="Pages\AtlasUnit\Test\CommonFixtures.js" />
+    <Content Include="Pages\AtlasUnit\Test\TestCaseTest.js" />
+    <Content Include="Pages\AtlasUnit\Test\TestRunnerCategoriesTest.js" />
+    <Content Include="Pages\AtlasUnit\Test\TestRunnerTest.js" />
+    <Content Include="Pages\AtlasUnit\Test\TestSuiteBuilderTest.js" />
+    <Content Include="Pages\AtlasUnit\Test\TestSuiteTest.js" />
+    <Content Include="Pages\AtlasUnit\Test\Util.js" />
+    <Content Include="Pages\AtlasUnit\Test\UtilTest.js" />
+    <Content Include="Pages\jquery-1.4.1.js" />
+    <Content Include="Pages\TemplateScriptProject.xml" />
+    <Content Include="Pages\TemplateScript\Data\Test\DataContextTest.js" />
+    <Content Include="Pages\TemplateScript\Data\Test\MockRequestHelper.js" />
+    <Content Include="Pages\TemplateScript\Data\Test\OpenDataContextTest.js" />
+    <Content Include="Pages\TemplateScript\Data\Test\OpenDataQueryBuilderTest.js" />
+    <Content Include="Pages\TemplateScript\Data\Test\OpenDataServiceErrorTest.js" />
+    <Content Include="Pages\TemplateScript\Net\Test\WebServiceOperationTest.js" />
+    <Content Include="Pages\TemplateScript\Test\BindingTest.js" />
+    <Content Include="Pages\TemplateScript\Test\CommandBubblingTest.js" />
+    <Content Include="Pages\TemplateScript\Test\LoaderCompositeTest.js" />
+    <Content Include="Pages\TemplateScript\Test\LoaderTest.js" />
+    <Content Include="Pages\TemplateScript\Test\ObserverTest.js" />
+    <Content Include="Pages\TemplateScript\Test\SysTest.js" />
+    <Content Include="Pages\TemplateScript\UI\Test\ActivationTest.js" />
+    <Content Include="Pages\TemplateScript\UI\Test\DataViewTest.js" />
+    <Content Include="Pages\TemplateScript\UI\Test\DeclarativeBindingTest.js" />
+    <Content Include="Pages\TemplateScript\UI\Test\MarkupExtensionTest.js" />
+    <Content Include="Pages\TemplateScript\UI\Test\TemplateDomElementTest.js" />
+    <Content Include="Pages\TemplateScript\UI\Test\TemplateHelper.js" />
+    <Content Include="Pages\TemplateScript\UI\Test\TemplateTest.js" />
+    <Content Include="Pages\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Server\System.Web.Ajax\System.Web.Ajax.csproj">
+      <Project>{045405DE-F8D1-4085-A388-C325F7F1D5F7}</Project>
+      <Name>System.Web.Ajax</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestUtil\Microsoft.Web.TestUtil.csproj">
+      <Project>{D0D480D0-6CB8-419D-851B-E926311C56CD}</Project>
+      <Name>Microsoft.Web.TestUtil</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="run.bat" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md Pages\bin
+copy /y System.Web.Ajax.* Pages\bin</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project>
+  <files>
+    <file>Test/AtlasUnitSampleTests.js</file>
+  </files>
+  <nameSpaces>
+    <nameSpace>AtlasUnit.Sample.Test</nameSpace>
+    <nameSpace>AtlasUnit.Sample.Test2</nameSpace>
+  </nameSpaces>
+</project>

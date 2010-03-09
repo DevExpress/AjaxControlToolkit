@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+JSONP enables you to call a service located in a different domain. This sample illustrates
+calling the feeds.delicious.com service. 
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>3 JSONP - Search Delicious</title>
+    <link href="../Styles/jsonp.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../Scripts/MicrosoftAjax/MicrosoftAjax.debug.js"></script>
+    <script type="text/javascript" src="../Scripts/MicrosoftAjax/MicrosoftAjaxTemplates.debug.js"></script>
+        
+    <script type="text/javascript">
+        var queryScript, tagInput;
+
+        Sys.onReady(function() {
+            tagInput = Sys.get("#tag");
+        
+            queryPopularLinksForTag("viewstate");
+
+            $addHandler(tagInput, "keydown",
+                function(e) {
+                    if (e.keyCode === Sys.UI.Key.enter) {
+                        e.preventDefault();
+                        queryPopularLinksForTag(tagInput.value);
+                    }
+                });
+
+            $addHandler("#go", "click",
+                function(e) {
+                    queryPopularLinksForTag(tagInput.value);
+                });
+        });
+
+        function queryPopularLinksForTag(tag) {
+            Sys.Net.WebServiceProxy.invoke("http://feeds.delicious.com/v2/json/popular/" + encodeURI(tag), null, true, null, queryComplete);
+            tagInput.value = tag;
+        }
+
+        function queryComplete(results) {
+            $find("dataView").set_data(results);
+        }
+
+        function onTaglistCommand(sender, args) {
+            queryPopularLinksForTag(args.get_commandArgument());
+        }
+    </script>
+</head>
+
+<body xmlns:sys="javascript:Sys" xmlns:dv="javascript:Sys.UI.DataView">
+    <div>
+        Popular Links for: 
+        <input id="tag" type="text" size="20" /> 
+        <input id="go" type="button" value="Go"/>
+        
+        <!--Links list-->
+        <div id="dataView" sys:attach="dv" class="sys-template">
+            <p class="linkItem">
+                <p class="linkTitle">
+                    <span class="title">
+                        <a sys:href="{{ u }}" target="delicious">{{ d }}</a>
+                    </span>
+                    <span class="href">
+                        <a sys:href="{{ u }}" target="delicious">{{ u }}</a>
+                    </span>
+                </p>
+                
+                <!--Nested tags list-->
+                <span class="taglist sys-template" 
+                    sys:attach="dv" 
+                    dv:data="{{ t }}" 
+                    dv:oncommand="{{ onTaglistCommand }}"
+                >
+                    <span class="tag" sys:command="viewtag" sys:commandargument="{{ $dataItem }}" >
+                        {{ $dataItem }}
+                    </span> |
+                </span>
+                
+                <span class="date">
+                    {{ Date.parseInvariant(dt, "yyyy-MM-ddTHH:mm:ssZ")
+                    .localeFormat("@ MM/dd/yyyy hh:mm tt") }}
+                </span>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

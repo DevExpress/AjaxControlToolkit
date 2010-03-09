@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<project>
+  <references>
+    <!-- Extended MicrosoftAjax scripts -->
+    <reference name="MicrosoftAjaxTemplates.js" assembly="System.Web.Ajax" />
+    <reference name="MicrosoftAjaxDataContext.js" assembly="System.Web.Ajax" />
+    <reference name="MicrosoftAjaxOpenData.js" assembly="System.Web.Ajax" />
+    <reference name="Start.js" assembly="System.Web.Ajax" />
+    <!-- Scripts to aid in the testing of non-gregorian calendars -->
+    <reference path="~/AtlasScript/Test/DateTestStoreHijriConvertPre.js"/>
+    <reference name="Date.HijriCalendar.js"/>
+    <reference path="~/AtlasScript/Test/DateTestStoreHijriConvert.js"/>
+    <reference path="~/AtlasScript/Test/DateTestStoreUmAlQuraConvertPre.js"/>
+    <reference name="Date.UmAlQuraCalendar.js"/>
+    <reference path="~/AtlasScript/Test/DateTestStoreUmAlQuraConvert.js"/>
+  </references>
+  <files>
+    <!-- Extended MicrosoftAjax tests -->
+    <file>TemplateScript/Data/Test/DataContextTest.js</file>
+    <file>TemplateScript/Data/Test/MockRequestHelper.js</file>
+    <file>TemplateScript/Net/Test/WebServiceOperationTest.js</file>
+    <file>TemplateScript/Data/Test/OpenDataContextTest.js</file>
+    <file>TemplateScript/Data/Test/OpenDataServiceErrorTest.js</file>
+    <file>TemplateScript/Data/Test/OpenDataQueryBuilderTest.js</file>
+    <file>TemplateScript/Test/BindingTest.js</file>
+    <file>TemplateScript/Test/CommandBubblingTest.js</file>
+    <file>TemplateScript/Test/SysTest.js</file>
+    <file>TemplateScript/Test/LoaderTest.js</file>
+    <file>TemplateScript/Test/LoaderCompositeTest.js</file>
+    <file>TemplateScript/UI/Test/ActivationTest.js</file>
+    <file>TemplateScript/UI/Test/DataViewTest.js</file>
+    <file>TemplateScript/UI/Test/DeclarativeBindingTest.js</file>
+    <file>TemplateScript/UI/Test/TemplateDomElementTest.js</file>
+    <file>TemplateScript/UI/Test/MarkupExtensionTest.js</file>
+    <file>TemplateScript/UI/Test/TemplateHelper.js</file>
+    <file>TemplateScript/UI/Test/TemplateTest.js</file>
+    <!-- Core MicrosoftAjax tests -->
+    <file>AtlasScript/Test/GlobalTest.js</file>
+    
+    <file>AtlasScript/Test/ArrayTest.js</file>
+    <file>AtlasScript/Test/BooleanTest.js</file>
+    <file>AtlasScript/Test/DateTest.js</file>
+    <file>AtlasScript/Test/ErrorTest.js</file>
+    <file>AtlasScript/Test/ErrorTestHelper.js</file>
+    <file>AtlasScript/Test/FunctionTest.js</file>
+    <file>AtlasScript/Test/FunctionValidateParamsTest.js</file>
+    <file>AtlasScript/Test/NumberTest.js</file>
+    <file>AtlasScript/Test/ObjectTest.js</file>
+    <file>AtlasScript/Test/RegExpTest.js</file>
+    <file>AtlasScript/Test/StringTest.js</file>
+    <file>AtlasScript/Test/TypeTest.js</file>
+    <file>AtlasScript/Test/TypeInheritanceTest.js</file>
+    <file>AtlasScript/Test/TypeInterfaceTest.js</file>
+    <file>AtlasScript/Test/XmlHttpRequestTest.js</file>
+    <file>AtlasScript/Sys/Test/ApplicationTest.js</file>
+    <file>AtlasScript/Sys/Test/BrowserTest.js</file>
+    <file>AtlasScript/Sys/Test/ComponentTest.js</file>
+    <file>AtlasScript/Sys/Test/CultureInfoTest.js</file>
+    <file>AtlasScript/Sys/Test/DebugTest.js</file>
+    <file>AtlasScript/Sys/Test/EnumTest.js</file>
+    <file>AtlasScript/Sys/Test/EventHandlerListTest.js</file>
+    <file>AtlasScript/Sys/Test/ObserverTest.js</file>
+    <file>AtlasScript/Sys/Test/ScriptLoaderTest.js</file>
+    <file>AtlasScript/Sys/Test/StringBuilderTest.js</file>
+    <file>AtlasScript/Sys/Net/Test/WebRequestTest.js</file>
+    <file>AtlasScript/Sys/Net/Test/XMLHttpExecutorTest.js</file>
+    <file>AtlasScript/Sys/Net/Test/WebRequestManagerTest.js</file>
+    <file>AtlasScript/Sys/Net/Test/WebRequestExecutorTest.js</file>
+    <file>AtlasScript/Sys/Net/Test/WebServiceProxyTest.js</file>
+    <file>AtlasScript/Sys/Net/Test/NetworkRequestEventArgsTest.js</file>
+    <file>AtlasScript/Sys/Serialization/Test/SerializationTest.js</file>
+    <file>AtlasScript/Sys/UI/Test/BehaviorTest.js</file>
+    <file>AtlasScript/Sys/UI/Test/ControlTest.js</file>
+    <file>AtlasScript/Sys/UI/Test/DomElementTest.js</file>
+    <file>AtlasScript/Sys/UI/Test/DomEventTest.js</file>
+    <file>AtlasScript/Sys/UI/Test/UpdateProgressTest.js</file>
+    
+    <file>AtlasScript/Sys/WebForms/Test/PageRequestManagerTest.js</file>
+  </files>
+  <nameSpaces>
+    <nameSpace>Sys.Data.Test</nameSpace>
+    <nameSpace>Sys.Net.Test</nameSpace>
+    <nameSpace>Sys.Serialization.Test</nameSpace>
+    <nameSpace>Sys.Test</nameSpace>
+    <nameSpace>Sys.UI.Test</nameSpace>
+    <nameSpace>Sys.WebForms.Test</nameSpace>
+    <nameSpace>AtlasScript.Test</nameSpace>
+  </nameSpaces>
+</project>

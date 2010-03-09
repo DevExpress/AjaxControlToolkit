@@ -1,0 +1,1 @@
+AtlasScript /setup /gui AtlasScriptProject.xml

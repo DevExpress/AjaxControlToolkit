@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<project>
+  <references>
+    <reference name="MicrosoftAjaxWebForms.js"/>
+    <reference path="~/AtlasScript/Test/DateTestStoreHijriConvertPre.js"/>
+    <reference name="Date.HijriCalendar.js"/>
+    <reference path="~/AtlasScript/Test/DateTestStoreHijriConvert.js"/>
+    <reference path="~/AtlasScript/Test/DateTestStoreUmAlQuraConvertPre.js"/>
+    <reference name="Date.UmAlQuraCalendar.js"/>
+    <reference path="~/AtlasScript/Test/DateTestStoreUmAlQuraConvert.js"/>
+  </references>
+  <files>
+    <file>Test/GlobalTest.js</file>
+    <file>Test/ArrayTest.js</file>
+    <file>Test/BooleanTest.js</file>
+    <file>Test/DateTest.js</file>
+    <file>Test/ErrorTest.js</file>
+    <file>Test/ErrorTestHelper.js</file>
+    <file>Test/FunctionTest.js</file>
+    <file>Test/FunctionValidateParamsTest.js</file>
+    <file>Test/NumberTest.js</file>
+    <file>Test/ObjectTest.js</file>
+    <file>Test/RegExpTest.js</file>
+    <file>Test/StringTest.js</file>
+    <file>Test/TypeTest.js</file>
+    <file>Test/TypeInheritanceTest.js</file>
+    <file>Test/TypeInterfaceTest.js</file>
+    <file>Test/XmlHttpRequestTest.js</file>
+    <file>Sys/Test/ApplicationTest.js</file>
+    <file>Sys/Test/BrowserTest.js</file>
+    <file>Sys/Test/ComponentTest.js</file>
+    <file>Sys/Test/CultureInfoTest.js</file>
+    <file>Sys/Test/DebugTest.js</file>
+    <file>Sys/Test/EnumTest.js</file>
+    <file>Sys/Test/EventHandlerListTest.js</file>
+    <file>Sys/Test/ObserverTest.js</file>
+    <file>Sys/Test/ScriptLoaderTest.js</file>
+    <file>Sys/Test/StringBuilderTest.js</file>
+    <file>Sys/Net/Test/WebRequestTest.js</file>
+    <file>Sys/Net/Test/XMLHttpExecutorTest.js</file>
+    <file>Sys/Net/Test/WebRequestManagerTest.js</file>
+    <file>Sys/Net/Test/WebRequestExecutorTest.js</file>
+    <file>Sys/Net/Test/WebServiceProxyTest.js</file>
+    <file>Sys/Net/Test/NetworkRequestEventArgsTest.js</file>
+    <file>Sys/Serialization/Test/SerializationTest.js</file>
+    <file>Sys/UI/Test/BehaviorTest.js</file>
+    <file>Sys/UI/Test/ControlTest.js</file>
+    <file>Sys/UI/Test/DomElementTest.js</file>
+    <file>Sys/UI/Test/DomEventTest.js</file>
+    <file>Sys/UI/Test/UpdateProgressTest.js</file>
+    <file>Sys/WebForms/Test/MenuTest.js</file>
+    <file>Sys/WebForms/Test/PageRequestManagerTest.js</file>
+  </files>
+  <nameSpaces>
+    <nameSpace>AtlasScript.Test</nameSpace>
+    <nameSpace>Sys.Net.Test</nameSpace>
+    <nameSpace>Sys.Serialization.Test</nameSpace>
+    <nameSpace>Sys.Test</nameSpace>
+    <nameSpace>Sys.UI.Test</nameSpace>
+    <nameSpace>Sys.WebForms.Test</nameSpace>
+  </nameSpaces>
+</project>

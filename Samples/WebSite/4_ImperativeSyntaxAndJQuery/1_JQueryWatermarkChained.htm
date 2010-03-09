@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how you can use jQuery chaining when creating controls.
+Notice that hte border color of the watermark control is changed after it is created.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>jQuery Watermark</title>
+    <link href="../styles/images.css" rel="stylesheet" type="text/css" />
+
+    <script src="../Scripts/MicrosoftAjax/jQueryStart.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Extended/ExtendedControls.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        Sys.require(Sys.components.watermark);
+      
+        Sys.onReady(function() {
+            $(".imagetitle")
+                .watermark("Add title here...", "watermarked")
+                .elements()
+                .css({
+                    borderColor: "red",
+                    color: "red" 
+                });
+       
+        });
+ 
+    </script>
+
+</head>
+<body>
+
+    <input class="imagetitle" type="text" />
+
+</body>
+</html>

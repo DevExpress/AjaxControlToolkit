@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample shows how to create an control that derives from DataView. 
+This is the imageView control used in the earlier "RegisteringCustomScripts" example.
+
+It takes functionality from the "SwitchTemplates" and "Converters" samples, 
+encapsulated in a custom derived control, and loads the control using the 
+Script Loader, with custom script registration as in the earlier 
+"RegisteringCustomScripts" example.
+
+A following sample will show how to create a server control which 'wraps' this
+derived DataView client control.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Derived DataView</title>
+    <link href="../Styles/images.css" rel="stylesheet" type="text/css"/>
+
+    <script src="../Scripts/MicrosoftAjax/jQueryStart.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MyClientControls/RegisterMyClientControls.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        var gallery = [
+            { Name: "Morro Rock",               Uri: "../images/p58.jpg" },
+            { Name: "Seagull reflections",      Uri: "../images/p52.jpg" },
+            { Name: "Pier",                     Uri: "../images/p59.jpg" },
+            { Name: "Giraffe Zoom",             Uri: "../images/p183.jpg" },
+            { Name: "Oryx",                     Uri: "../images/p172.jpg" }
+        ],
+        editMode,
+        imagesList;
+        
+        Sys.converters.boolToString = function(value, binding) {
+            return value ? binding.trueValue : binding.falseValue
+        }
+
+        Sys.require([Sys.components.imageView]);
+      
+        Sys.onReady(function() {
+            imagesList = $(".imageslist").imageView({ data: gallery }).get(0);
+
+            $addHandler("#switchMode", "click", function() {
+                Sys.Observer.setValue(window, "editMode", !editMode);
+                imagesList.set_editMode(editMode);
+            });
+        });
+   </script>
+</head>
+
+<body xmlns:sys="javascript:Sys">
+
+    <input id="switchMode" type="button" sys:value="{binding editMode, source={{window}}, convert=boolToString, trueValue=Browse, falseValue=Edit}"/>  
+
+    <div class="imageslist"></div>
+
+</body>
+</html>
+

@@ -52,6 +52,48 @@
     <Compile Include="UI\AjaxScriptManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\DataContext.Res.resx">
+      <Link>Resources\ScriptLibrary\DataContext.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\DataContext.Res.debug.resx">
+      <Link>Resources\ScriptLibrary\DataContext.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\OpenData.Res.resx">
+      <Link>Resources\ScriptLibrary\OpenData.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\OpenData.Res.debug.resx">
+      <Link>Resources\ScriptLibrary\OpenData.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Res.resx">
+      <Link>Resources\ScriptLibrary\Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Res.debug.resx">
+      <Link>Resources\ScriptLibrary\Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Templates.Res.resx">
+      <Link>Resources\ScriptLibrary\Templates.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Templates.Res.debug.resx">
+      <Link>Resources\ScriptLibrary\Templates.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\WebForms.Res.resx">
+      <Link>Resources\ScriptLibrary\WebForms.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\WebForms.Res.debug.resx">
+      <Link>Resources\ScriptLibrary\WebForms.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="..\..\Client\ScriptOutput\embed\MicrosoftAjax.debug.js">
       <LogicalName>MicrosoftAjax.debug.js</LogicalName>
       <InProject>False</InProject>
@@ -188,36 +230,9 @@
       <LogicalName>MicrosoftAjaxDataContext.debug.js</LogicalName>
       <InProject>False</InProject>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ScriptLibrary\DataContext.Res.debug.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ScriptLibrary\DataContext.Res.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ScriptLibrary\OpenData.Res.debug.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ScriptLibrary\OpenData.Res.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ScriptLibrary\Res.debug.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ScriptLibrary\Res.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ScriptLibrary\Templates.Res.debug.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ScriptLibrary\Templates.Res.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ScriptLibrary\WebForms.Res.debug.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ScriptLibrary\WebForms.Res.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\ScriptLibrary\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

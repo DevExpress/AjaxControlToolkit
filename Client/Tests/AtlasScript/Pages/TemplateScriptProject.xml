@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<project>
+  <references>
+    <reference name="MicrosoftAjaxTemplates.js" assembly="System.Web.Ajax" />
+    <reference name="MicrosoftAjaxDataContext.js" assembly="System.Web.Ajax" />
+    <reference name="MicrosoftAjaxOpenData.js" assembly="System.Web.Ajax" />
+    <reference name="Start.js" assembly="System.Web.Ajax" />
+  </references>
+  <files>
+    <file>TemplateScript/Data/Test/DataContextTest.js</file>
+    <file>TemplateScript/Data/Test/MockRequestHelper.js</file>
+    <file>TemplateScript/Net/Test/WebServiceOperationTest.js</file>
+    <file>TemplateScript/Data/Test/OpenDataContextTest.js</file>
+    <file>TemplateScript/Data/Test/OpenDataServiceErrorTest.js</file>
+    <file>TemplateScript/Data/Test/OpenDataQueryBuilderTest.js</file>
+    <file>TemplateScript/Test/BindingTest.js</file>
+    <file>TemplateScript/Test/CommandBubblingTest.js</file>
+    <file>TemplateScript/Test/LoaderTest.js</file>
+    <file>TemplateScript/Test/LoaderCompositeTest.js</file>
+    <file>TemplateScript/UI/Test/ActivationTest.js</file>
+    <file>TemplateScript/UI/Test/DataViewTest.js</file>
+    <file>TemplateScript/UI/Test/DeclarativeBindingTest.js</file>
+    <file>TemplateScript/UI/Test/TemplateDomElementTest.js</file>
+    <file>TemplateScript/UI/Test/MarkupExtensionTest.js</file>
+    <file>TemplateScript/UI/Test/TemplateHelper.js</file>
+    <file>TemplateScript/UI/Test/TemplateTest.js</file>
+  </files>
+  <nameSpaces>
+    <nameSpace>Sys.Data.Test</nameSpace>
+    <nameSpace>Sys.Net.Test</nameSpace>
+    <nameSpace>Sys.Serialization.Test</nameSpace>
+    <nameSpace>Sys.Test</nameSpace>
+    <nameSpace>Sys.UI.Test</nameSpace>
+  </nameSpaces>
+</project>
