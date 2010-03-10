@@ -1,10 +1,10 @@
 $type = Sys.Data.OpenDataServiceProxy = function Data$OpenDataServiceProxy(serviceUri) {
     /// <summary locid="M:J#Sys.Data.OpenDataServiceProxy.#ctor"></summary>
     /// <param name="serviceUri" type="String" mayBeNull="true" optional="true">Path to the OData Service.</param>
+    Sys.Data.OpenDataServiceProxy.initializeBase(this);
     if (serviceUri) {
         this.set_path(serviceUri);
     }
-    Sys.Data.OpenDataServiceProxy.initializeBase(this);
 }
 $type.prototype = {
     _replaceOnUpdate: false,
