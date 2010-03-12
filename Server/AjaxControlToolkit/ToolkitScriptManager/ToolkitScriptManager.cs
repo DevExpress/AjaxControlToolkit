@@ -97,7 +97,7 @@ namespace AjaxControlToolkit
 
         private void ApplyAssembly(ScriptReference script, bool isComposite) {
             // if the script has a name and no path, and no assembly or the assembly is set to SWE,
-            // set the path to the resource in System.Web.Ajax. We set the path instead of just changing the assembly
+            // set the path to the resource in ACT. We set the path instead of just changing the assembly
             // so that ScriptManager still considers the scripts Microsoft Ajax scripts, which allows it to emit
             // inline script.
             if (!String.IsNullOrEmpty(script.Name) && String.IsNullOrEmpty(script.Path) &&
@@ -108,7 +108,7 @@ namespace AjaxControlToolkit
                     script.ScriptMode = ScriptMode.Release;
                 }
                 else {
-                    script.Assembly = typeof(AjaxScriptManager).Assembly.FullName;
+                    script.Assembly = typeof(ToolkitScriptManager).Assembly.FullName;
                 }
             }
         }
@@ -824,7 +824,7 @@ namespace AjaxControlToolkit
         private class RedirectScriptReference : ScriptReference {
             public RedirectScriptReference(string name) {
                 Name = name;
-                Assembly = typeof(AjaxScriptManager).Assembly.FullName;
+                Assembly = typeof(ToolkitScriptManager).Assembly.FullName;
             }
 
             public string GetBaseUrl(ScriptManager sm) {

@@ -138,10 +138,6 @@
       <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
       <Name>AjaxControlToolkit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Server\System.Web.Ajax\System.Web.Ajax.csproj">
-      <Project>{045405DE-F8D1-4085-A388-C325F7F1D5F7}</Project>
-      <Name>System.Web.Ajax</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

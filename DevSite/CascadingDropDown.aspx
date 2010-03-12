@@ -64,7 +64,7 @@
 </head>
 <body>
     <form runat="server">
-        <asp:AjaxScriptManager runat="server" EnablePartialRendering="false" EnablePageMethods="true" />
+        <asp:ToolkitScriptManager runat="server" EnablePartialRendering="false" EnablePageMethods="true" />
         <script type="text/javascript">
             Sys.debug = true;
             Sys.require(Sys.components.cascadingDropDown, function() {

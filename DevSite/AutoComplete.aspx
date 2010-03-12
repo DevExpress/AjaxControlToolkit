@@ -24,7 +24,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:AjaxScriptManager ID="sm1" runat="server" EnablePageMethods="true" />
+    <asp:ToolkitScriptManager ID="sm1" runat="server" EnablePageMethods="true" />
     <script type="text/javascript">
         Sys.debug = true;
         Sys.require(Sys.components.autoComplete, function() {

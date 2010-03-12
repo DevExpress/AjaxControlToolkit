@@ -9,11 +9,11 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:AjaxScriptManager runat="server" />
+        <asp:ToolkitScriptManager runat="server" />
     
         <div style="position: relative;">
             <asp:TextBox runat="server" ID="TB1" /><br/>
-            <aspext:CalendarExtender runat="server" TargetControlID="TB1" />
+            <asp:CalendarExtender runat="server" TargetControlID="TB1" />
             <asp:DropDownList runat="server" ID="DDL1"></asp:DropDownList>
         </div>
         
@@ -21,7 +21,7 @@
         
         <div style="position: relative; text-align: center;">
             <asp:TextBox runat="server" ID="TB2" /><br/>
-            <aspext:CalendarExtender runat="server" TargetControlID="TB2" />
+            <asp:CalendarExtender runat="server" TargetControlID="TB2" />
             <asp:DropDownList runat="server" ID="DDL2"></asp:DropDownList>
         </div>     
     

@@ -16,11 +16,11 @@
 <body>
     
     <form id="form1" runat="server">
-        <asp:AjaxScriptManager runat="server" EnablePartialRendering="false"/>
+        <asp:ToolkitScriptManager runat="server" EnablePartialRendering="false"/>
         
         <asp:TextBox ID="text1" runat="server" CssClass="slider" />
         <asp:Label ID="slidervalue" runat="server" />
-        <aspext:SliderExtender TargetControlID="text1" runat="server" Minimum="0" Maximum="100" BoundControlID="slidervalue"  />
+        <asp:SliderExtender TargetControlID="text1" runat="server" Minimum="0" Maximum="100" BoundControlID="slidervalue"  />
     </form>
     
     

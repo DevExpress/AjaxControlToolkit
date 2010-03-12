@@ -12,7 +12,7 @@ function execute() {
 var version = Sys.version;
 if (!version && !Sys._versionChecked) {
     Sys._versionChecked = true;
-    throw new Error("AjaxControlToolkit requires ASP.NET Ajax 4.0 scripts. Ensure the correct version of the scripts are referenced. If you are using an ASP.NET ScriptManager, switch to the AjaxScriptManager in System.Web.Ajax.dll, or use the ToolkitScriptManager in AjaxControlToolkit.dll.");
+    throw new Error("AjaxControlToolkit requires ASP.NET Ajax 4.0 scripts. Ensure the correct version of the scripts are referenced. If you are using an ASP.NET ScriptManager, switch to the ToolkitScriptManager in AjaxControlToolkit.dll.");
 }
 
 Type.registerNamespace('Sys.Extended.UI');

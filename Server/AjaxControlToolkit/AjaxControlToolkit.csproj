@@ -582,6 +582,46 @@
     <None Include="ExtenderBase\Design\ExternalReferences.t4" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\DataContext.Res.resx">
+      <Link>ScriptResources\DataContext.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\DataContext.Res.debug.resx">
+      <Link>ScriptResources\DataContext.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\OpenData.Res.resx">
+      <Link>ScriptResources\OpenData.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\OpenData.Res.debug.resx">
+      <Link>ScriptResources\OpenData.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Res.resx">
+      <Link>ScriptResources\Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Res.debug.resx">
+      <Link>ScriptResources\Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Templates.Res.resx">
+      <Link>ScriptResources\Templates.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Templates.Res.debug.resx">
+      <Link>ScriptResources\Templates.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\WebForms.Res.resx">
+      <Link>ScriptResources\WebForms.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\WebForms.Res.debug.resx">
+      <Link>ScriptResources\WebForms.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.ar.resx">
       <Link>ScriptResources\BaseScriptsResources.ar.resx</Link>
       <SubType>Designer</SubType>
@@ -656,15 +696,8 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\System.Web.Ajax\System.Web.Ajax.csproj">
-      <Project>{045405DE-F8D1-4085-A388-C325F7F1D5F7}</Project>
-      <Name>System.Web.Ajax</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\MicrosoftAjax\ajaxmin.tasks" />
-
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\JSBuild.dll" />
   <Target Name="BeforeBuild">
     <MakeDir Directories="ScriptOutput" />
@@ -679,7 +712,6 @@
     http://social.msdn.microsoft.com/forums/en-US/msbuild/thread/d2833d1e-2d56-4fc4-98a4-e321b976b9ac
     -->
     <Exec Command="for /f %%d in ('dir /ad /b') do rd /s /q %%d" WorkingDirectory="ScriptOutput" />
-
     <!-- Build pre.js files that are in the server project -->
     <Message Text="JSBuild: Executing JavaScript Preprocessor." />
     <ItemGroup>
@@ -693,7 +725,6 @@
       <JS Include="ScriptOutput\**\*.js" Exclude="ScriptOutput\**\*.debug.*" />
     </ItemGroup>
     <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
-
     <!-- Copy Server project Images and CSS into the Scripts Folder -->
     <ItemGroup>
       <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css;" />
@@ -701,12 +732,14 @@
     <Copy SourceFiles="@(StaticResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
     <!-- Copy client project script output into the server output folder -->
     <ItemGroup>
-      <ScriptResources Include="..\..\Client\ScriptOutput\extended\**\*"
-                       Exclude="..\..\Client\ScriptOutput\extended\**\embed\*;..\..\Client\ScriptOutput\extended\**\loc\*" />
-      <EmbedScriptResources Include="..\..\Client\ScriptOutput\extended\**\embed\*" />
+      <BaseScriptResources Include="..\..\Client\ScriptOutput\**\*" Exclude="..\..\Client\ScriptOutput\**\embed\*;..\..\Client\ScriptOutput\**\loc\*;..\..\Client\ScriptOutput\extended\**\*" />
+      <ExtendedScriptResources Include="..\..\Client\ScriptOutput\extended\**\*" Exclude="..\..\Client\ScriptOutput\extended\**\embed\*;..\..\Client\ScriptOutput\extended\**\loc\*" />
+      <BaseEmbedScriptResources Include="..\..\Client\ScriptOutput\**\embed\*" Exclude="..\..\Client\ScriptOutput\extended\**\embed\*" />
+      <ExtendedEmbedScriptResources Include="..\..\Client\ScriptOutput\extended\**\embed\*" />
     </ItemGroup>
     <Message Text="======== Copying script resources from client project ========" />
-    <Copy SourceFiles="@(ScriptResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
+    <Copy SourceFiles="@(BaseScriptResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
+    <Copy SourceFiles="@(ExtendedScriptResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
     <!--
     Some scripts have a special version that is meant for embedding into the assembly.
     This is because of the localization feature of ScriptResourceHandler, where each localized
@@ -716,21 +749,18 @@
     so copy each to it's parent directory, overwriting the existing files.
     -->
     <Message Text="======== Copying embed script resources from client project ========" />
-    <Copy SourceFiles="@(EmbedScriptResources)" DestinationFiles="@(EmbedScriptResources -> 'ScriptOutput\%(RecursiveDir)..\%(Filename)%(Extension)')"
-          OverwriteReadOnlyFiles="true" />
-    
-    <!-- Mark everything under the ScriptOutput folder as embedded resource, except the special 'embed' folders -->
+    <Copy SourceFiles="@(BaseEmbedScriptResources)" DestinationFiles="@(BaseEmbedScriptResources -> 'ScriptOutput\%(RecursiveDir)..\%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="@(ExtendedEmbedScriptResources)" DestinationFiles="@(ExtendedEmbedScriptResources -> 'ScriptOutput\%(RecursiveDir)..\%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" />
+    <!-- Mark everything under the ScriptOutput folder as embedded resource -->
     <ItemGroup>
       <EmbeddedResource Include="ScriptOutput\**\*" />
     </ItemGroup>
   </Target>
-
   <UsingTask TaskName="JSBuild.CreateJSManifestResourceName" AssemblyFile="..\..\Tools\JSBuild.dll" />
   <Target Name="CreateManifestResourceNames" Condition="'@(EmbeddedResource)' != ''" DependsOnTargets="$(CreateManifestResourceNamesDependsOn)">
     <ItemGroup>
       <_Temporary Remove="@(_Temporary)" />
     </ItemGroup>
-      
     <!-- Create manifest names for ICOs -->
     <CreateJSManifestResourceName BaseDirectory="\" ResourceFiles="@(EmbeddedResource)" RootNamespace="AjaxControlToolkit" Condition="'%(Extension)' == '.ico'">
       <Output TaskParameter="ResourceFilesWithManifestResourceNames" ItemName="_Temporary" />

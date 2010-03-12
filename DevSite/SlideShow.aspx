@@ -25,7 +25,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:AjaxScriptManager runat="server" EnablePartialRendering="false" EnablePageMethods="true" />
+    <asp:ToolkitScriptManager runat="server" EnablePartialRendering="false" EnablePageMethods="true" />
     <script type="text/javascript">
         Sys.require(Sys.components.slideShow, function() {
             Sys.query("#ss").slideShow({

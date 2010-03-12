@@ -25,7 +25,7 @@
 <body>
 
 <form id="form1" runat="server">
-<asp:AjaxScriptManager runat="server" EnablePageMethods="true" EnablePartialRendering="false" />
+<asp:ToolkitScriptManager runat="server" EnablePageMethods="true" EnablePartialRendering="false" />
 
 
 <input id="updown1" type="text" value="0" style="width:85px" />    
