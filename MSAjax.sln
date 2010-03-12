@@ -68,33 +68,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit", "Serve
 		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}
 	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ClientFunctionalTests", "Client\Tests\ClientFunctionalTests", "{0CC73855-9C2E-490B-A40C-4263F47491E6}"
-	ProjectSection(WebsiteProperties) = preProject
-		SccProjectName = "SAK"
-		SccAuxPath = "SAK"
-		SccLocalPath = "SAK"
-		SccProvider = "SAK"
-		TargetFramework = "3.5"
-		Debug.AspNetCompiler.VirtualPath = "/ClientFunctionalTests"
-		Debug.AspNetCompiler.PhysicalPath = "Client\Tests\ClientFunctionalTests\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ClientFunctionalTests\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/ClientFunctionalTests"
-		Release.AspNetCompiler.PhysicalPath = "Client\Tests\ClientFunctionalTests\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\ClientFunctionalTests\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "59927"
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
+		SccNumberOfProjects = 7
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs03.codeplex.com/
 		SccLocalPath0 = .
@@ -124,12 +100,6 @@ Global
 		SccProjectTopLevelParentUniqueName6 = MSAjax.sln
 		SccProjectName6 = Server/AjaxControlToolkit
 		SccLocalPath6 = Server\\AjaxControlToolkit
-		SccWebProject7 = true
-		SccProjectUniqueName7 = Client\\Tests\\ClientFunctionalTests
-		SccProjectTopLevelParentUniqueName7 = MSAjax.sln
-		SccProjectName7 = Client/Tests/ClientFunctionalTests
-		SccLocalPath7 = Client\\Tests\\ClientFunctionalTests
-		SccProjectEnlistmentChoice7 = 2
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -199,16 +169,6 @@ Global
 		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Release|Any CPU.Build.0 = Release|Any CPU
 		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{0CC73855-9C2E-490B-A40C-4263F47491E6}.Debug|.NET.ActiveCfg = Debug|.NET
-		{0CC73855-9C2E-490B-A40C-4263F47491E6}.Debug|.NET.Build.0 = Debug|.NET
-		{0CC73855-9C2E-490B-A40C-4263F47491E6}.Debug|Any CPU.ActiveCfg = Debug|.NET
-		{0CC73855-9C2E-490B-A40C-4263F47491E6}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
-		{0CC73855-9C2E-490B-A40C-4263F47491E6}.Debug|Mixed Platforms.Build.0 = Debug|.NET
-		{0CC73855-9C2E-490B-A40C-4263F47491E6}.Release|.NET.ActiveCfg = Debug|.NET
-		{0CC73855-9C2E-490B-A40C-4263F47491E6}.Release|.NET.Build.0 = Debug|.NET
-		{0CC73855-9C2E-490B-A40C-4263F47491E6}.Release|Any CPU.ActiveCfg = Debug|.NET
-		{0CC73855-9C2E-490B-A40C-4263F47491E6}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
-		{0CC73855-9C2E-490B-A40C-4263F47491E6}.Release|Mixed Platforms.Build.0 = Debug|.NET
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -221,7 +181,6 @@ Global
 		{53BF3496-0AD1-491C-A367-258E84479594} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{93A29C0B-4AC3-4179-A49C-C524023343A5} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{F905803E-B5B4-4F83-BBDB-0E2CA3DD5F5E} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
-		{0CC73855-9C2E-490B-A40C-4263F47491E6} = {93A29C0B-4AC3-4179-A49C-C524023343A5}
 		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C} = {6ED50EB8-6E53-47DF-AE45-181059C00E2F}
 	EndGlobalSection
 EndGlobal
