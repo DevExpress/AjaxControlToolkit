@@ -20,7 +20,7 @@ namespace AjaxControlToolkit
     [RequiredScript(typeof(AnimationExtender), 2)]
     [ClientScriptResource("Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior", "UpdatePanelAnimation.UpdatePanelAnimationBehavior.js")]
     [TargetControlType(typeof(UpdatePanel))]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [ToolboxItem(Utility.ToolBoxItemTypeName)]
     [ToolboxBitmap(typeof(UpdatePanelAnimationExtender), "UpdatePanelAnimation.UpdatePanelAnimation.ico")]
     public class UpdatePanelAnimationExtender : AnimationExtenderControlBase
     {

@@ -10,6 +10,11 @@ namespace AjaxControlToolkit
     /// </summary>
     public static class Utility
     {
+#if NET4
+        internal const string ToolBoxItemTypeName = "System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+#else
+        internal const string ToolBoxItemTypeName = "System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
+#endif
         /// <summary>
         /// Set the focus of a control after all the client-side behaviors
         /// have finished initializing

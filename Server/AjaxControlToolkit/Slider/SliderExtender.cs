@@ -70,7 +70,11 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(""),
+#if NET4
+         Editor("System.Web.UI.Design.ImageUrlEditor, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor)),
+#else
          Editor("System.Web.UI.Design.ImageUrlEditor, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(System.Drawing.Design.UITypeEditor)),
+#endif
          UrlProperty,
          System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Justification = "Following ASP.NET pattern")]
         public string HandleImageUrl

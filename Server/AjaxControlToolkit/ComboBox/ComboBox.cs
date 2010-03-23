@@ -38,7 +38,7 @@ namespace AjaxControlToolkit
     [RequiredScript(typeof(ScriptControlBase), 2)]
     [RequiredScript(typeof(PopupExtender), 3)]
     [RequiredScript(typeof(CommonToolkitScripts), 4)]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [ToolboxItem(Utility.ToolBoxItemTypeName)]
     [ToolboxBitmap(typeof(ComboBox), "ComboBox.ComboBox.ico")]
     public class ComboBox : ListControl, IScriptControl, IPostBackDataHandler, INamingContainer, IControlResolver
     {
@@ -70,7 +70,11 @@ namespace AjaxControlToolkit
                     _scriptManager = ScriptManager.GetCurrent(this.Page);
                     if (_scriptManager == null)
                     {
+#if NET4
+                        throw new HttpException(Properties.Resources_NET4.E_NoScriptManager);
+#else
                         throw new HttpException(Properties.Resources.E_NoScriptManager);
+#endif
                     }
                 }
                 return _scriptManager;

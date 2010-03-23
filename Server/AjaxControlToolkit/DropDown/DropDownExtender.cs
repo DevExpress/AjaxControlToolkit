@@ -21,7 +21,7 @@ namespace AjaxControlToolkit
     [ClientCssResource("DropDown.DropDown_resource.css")]
     [ClientScriptResource("Sys.Extended.UI.DropDownBehavior", "DropDown.DropDownBehavior.js")]
     [Designer("AjaxControlToolkit.DropDownDesigner, AjaxControlToolkit")]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [ToolboxItem(Utility.ToolBoxItemTypeName)]
     [ToolboxBitmap(typeof(DropDownExtender), "DropDown.DropDown.ico")]
     public class DropDownExtender : DynamicPopulateExtenderControlBase
     {

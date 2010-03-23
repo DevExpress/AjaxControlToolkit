@@ -22,7 +22,7 @@ namespace AjaxControlToolkit
     [TargetControlType(typeof(IValidator))]
     [ClientCssResource("ValidatorCallout.ValidatorCallout.css")]
     [ClientScriptResource("Sys.Extended.UI.ValidatorCalloutBehavior", "ValidatorCallout.ValidatorCalloutBehavior.js")]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [ToolboxItem(Utility.ToolBoxItemTypeName)]
     [ToolboxBitmap(typeof(ValidatorCalloutExtender), "ValidatorCallout.ValidatorCallout.ico")]
     public class ValidatorCalloutExtender : AnimationExtenderControlBase
     {

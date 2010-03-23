@@ -21,7 +21,7 @@ namespace AjaxControlToolkit
     [RequiredScript(typeof(AnimationExtender), 2)]
     [Description("Lets users search incrementally within ListBoxes")]
     [Designer(typeof(ListSearchDesigner))]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [ToolboxItem(Utility.ToolBoxItemTypeName)]
     [ToolboxBitmap(typeof(ListSearchExtender), "ListSearch.ListSearch.ico")]
     public class ListSearchExtender : AnimationExtenderControlBase
     {

@@ -25,7 +25,7 @@ namespace AjaxControlToolkit
     [RequiredScript(typeof(TimerScript))]
     [RequiredScript(typeof(AnimationExtender))]
     [TargetControlType(typeof(TextBox))]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [ToolboxItem(Utility.ToolBoxItemTypeName)]
     [ToolboxBitmap(typeof(AutoCompleteExtender), "AutoComplete.AutoComplete.ico")]
     public class AutoCompleteExtender : AnimationExtenderControlBase
     {

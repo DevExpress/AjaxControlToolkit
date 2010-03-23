@@ -12,7 +12,9 @@ using AjaxControlToolkit;
 [assembly: DependencyAttribute("System.Web.Ajax,", LoadHint.Always)]
 [assembly: DependencyAttribute("System.Web.Extensions,", LoadHint.Always)]
 
+#pragma warning disable 0618
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, Execution = true)]
+#pragma warning restore 0618
 
 [assembly: TagPrefix("AjaxControlToolkit", "asp")]
 [assembly: TagPrefix("System.Web.UI", "asp")]
@@ -20,8 +22,16 @@ using AjaxControlToolkit;
 [assembly: AllowPartiallyTrustedCallers]
 [assembly: ComVisible(false)]
 [assembly: System.CLSCompliant(true)]
+
+#if NET4
+[assembly: SecurityRules(SecurityRuleSet.Level1)]
+[assembly: System.Web.Script.AjaxFrameworkAssembly]
+[assembly: AssemblyVersion("4.0.40203.0")]
+[assembly: AssemblyFileVersion("4.0.40203.0")]
+#else
 [assembly: AssemblyVersion("3.0.40203.0")]
 [assembly: AssemblyFileVersion("3.0.40203.0")]
+#endif
 [assembly: NeutralResourcesLanguage("en-US")]
 
 [assembly: ScriptCombine(ExcludeScripts = "Slider.SliderBehavior_resource.js,Seadragon.Seadragon.Config.js")]

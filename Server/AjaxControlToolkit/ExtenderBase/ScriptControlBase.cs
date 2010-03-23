@@ -217,7 +217,11 @@ namespace AjaxControlToolkit
                 _scriptManager = ScriptManager.GetCurrent(Page);
                 if (_scriptManager == null)
                 {
+#if NET4
+                    throw new HttpException(Properties.Resources_NET4.E_NoScriptManager);
+#else
                     throw new HttpException(Properties.Resources.E_NoScriptManager);
+#endif
                 }
             }
         }

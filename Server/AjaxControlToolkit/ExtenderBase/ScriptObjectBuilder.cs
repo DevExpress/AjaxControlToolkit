@@ -328,7 +328,11 @@ namespace AjaxControlToolkit
                     ScriptManager scriptManager = ScriptManager.GetCurrent(control.Page);
                     if (null == scriptManager)
                     {
+#if NET4
+                        throw new InvalidOperationException(Properties.Resources_NET4.E_NoScriptManager);
+#else
                         throw new InvalidOperationException(Properties.Resources.E_NoScriptManager);
+#endif
                     }
                     if (scriptManager.IsInAsyncPostBack)
                     {

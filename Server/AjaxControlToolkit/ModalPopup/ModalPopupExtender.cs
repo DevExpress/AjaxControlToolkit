@@ -21,7 +21,7 @@ namespace AjaxControlToolkit
     [RequiredScript(typeof(DragPanelExtender))]
     [RequiredScript(typeof(DropShadowExtender))]
     [TargetControlType(typeof(Control))]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [ToolboxItem(Utility.ToolBoxItemTypeName)]
     [ToolboxBitmap(typeof(ModalPopupExtender), "ModalPopup.ModalPopup.ico")]
     public class ModalPopupExtender : DynamicPopulateExtenderControlBase
     {

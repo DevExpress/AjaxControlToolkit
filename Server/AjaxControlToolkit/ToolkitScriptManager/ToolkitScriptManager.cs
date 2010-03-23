@@ -39,6 +39,7 @@ namespace AjaxControlToolkit
         /// </summary>
         protected static readonly Regex WebResourceRegex = new Regex("<%\\s*=\\s*(?<resourceType>WebResource|ScriptResource)\\(\"(?<resourceName>[^\"]*)\"\\)\\s*%>", RegexOptions.Singleline | RegexOptions.Multiline);
 
+#if !NET4
         private static Dictionary<String, bool> _scripts;
 
         static ToolkitScriptManager() {
@@ -50,6 +51,7 @@ namespace AjaxControlToolkit
             _scripts.Add("MicrosoftAjaxWebForms.debug.js", true);
             _scripts.Add("MicrosoftAjaxTimer.debug.js", true);
         }
+#endif
 
         /// <summary>
         /// Specifies whether or not multiple script references should be combined into a single file
@@ -95,6 +97,7 @@ namespace AjaxControlToolkit
         /// </summary>
         private List<ScriptReference> _uncombinableScriptReferences;
 
+#if !NET4
         private void ApplyAssembly(ScriptReference script, bool isComposite) {
             // if the script has a name and no path, and no assembly or the assembly is set to SWE,
             // set the path to the resource in ACT. We set the path instead of just changing the assembly
@@ -112,6 +115,7 @@ namespace AjaxControlToolkit
                 }
             }
         }
+#endif
 
         /// <summary>
         /// OnLoad override that runs only when serving the original page
@@ -155,10 +159,12 @@ namespace AjaxControlToolkit
         }
 
         protected override void OnResolveCompositeScriptReference(CompositeScriptReferenceEventArgs e) {
+#if !NET4
             foreach (ScriptReference sr in e.CompositeScript.Scripts) {
                 ApplyAssembly(sr, true);
             }
             base.OnResolveCompositeScriptReference(e);
+#endif
         }
 
         /// <summary>
@@ -168,7 +174,9 @@ namespace AjaxControlToolkit
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Portability", "CA1903:UseOnlyApiFromTargetedFramework", MessageId = "System.Web.UI.ScriptReferenceBase")]
         protected override void OnResolveScriptReference(ScriptReferenceEventArgs e)
         {
+#if !NET4
             ApplyAssembly(e.Script, false);
+#endif
             base.OnResolveScriptReference(e);
 
             // If combining scripts and this is a candidate script
@@ -377,8 +385,8 @@ namespace AjaxControlToolkit
                         Assembly scriptAssembly = scriptEntry.LoadAssembly();
                         foreach (ScriptResourceAttribute scriptResourceAttribute in scriptAssembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false))
                         {
-                            if (scriptResourceAttribute.ScriptName == scriptEntry.Name)
-                            {
+                            if (scriptResourceAttribute.ScriptName == scriptEntry.Name) {
+#pragma warning disable 0618 // obsolete members of ScriptResourceAttribute are used but necessary in the 3.5 build
                                 // Found a matching script resource; write it out
                                 outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0}={{", scriptResourceAttribute.TypeName));
 
@@ -388,6 +396,7 @@ namespace AjaxControlToolkit
                                 {
                                     scriptResourceName = scriptResourceName.Substring(0, scriptResourceName.Length - 10);
                                 }
+#pragma warning restore 0618
 
                                 // Load a ResourceManager/ResourceSet and walk through the list to output them all
                                 System.Resources.ResourceManager resourceManager = new System.Resources.ResourceManager(scriptResourceName, scriptAssembly);
