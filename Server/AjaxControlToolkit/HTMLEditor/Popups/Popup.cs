@@ -231,7 +231,7 @@ namespace AjaxControlToolkit.HTMLEditor.Popups
 
         protected override void OnInit(EventArgs e)
         {
-            _rm = new ResourceManager("ScriptResources.ScriptResources", Assembly.GetExecutingAssembly());
+            _rm = new ResourceManager("ScriptResources.BaseScriptsResources", Assembly.GetExecutingAssembly());
             base.OnInit(e);
 
             if (!isDesign)

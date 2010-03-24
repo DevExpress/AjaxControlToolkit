@@ -185,7 +185,7 @@ namespace AjaxControlToolkit.HTMLEditor.ToolbarButton
 
         protected override void OnInit(EventArgs e)
         {
-            _rm = new ResourceManager("ScriptResources.ScriptResources", Assembly.GetExecutingAssembly());
+            _rm = new ResourceManager("ScriptResources.BaseScriptsResources", Assembly.GetExecutingAssembly());
             ToolTip = _rm.GetString("HTMLEditor_toolbar_button_" + this.GetType().Name + "_title");
             base.OnInit(e);
         }
