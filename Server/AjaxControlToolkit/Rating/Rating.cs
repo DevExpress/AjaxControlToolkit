@@ -168,6 +168,7 @@ namespace AjaxControlToolkit
         }
 
         [Browsable(true)]
+        [Themeable(true)]
         [Category("Behavior")]
         [Description("StarCssClass")]
         [DefaultValue("")]
@@ -186,6 +187,7 @@ namespace AjaxControlToolkit
         }
 
         [Browsable(true)]
+        [Themeable(true)]
         [Category("Behavior")]
         [Description("FilledStarCssClass")]
         [DefaultValue("")]
@@ -204,6 +206,7 @@ namespace AjaxControlToolkit
         }
 
         [Browsable(true)]
+        [Themeable(true)]
         [Category("Behavior")]
         [Description("EmptyStarCssClass")]
         [DefaultValue("")]
@@ -222,6 +225,7 @@ namespace AjaxControlToolkit
         }
 
         [Browsable(true)]
+        [Themeable(true)]
         [Category("Behavior")]
         [Description("WaitingStarCssClass")]
         [DefaultValue("")]
@@ -240,6 +244,7 @@ namespace AjaxControlToolkit
         }
 
         [Browsable(true)]
+        [Themeable(true)]
         [Category("Appearance")]
         [Description("Rating Align")]
         [DefaultValue(Orientation.Horizontal)]
@@ -250,6 +255,7 @@ namespace AjaxControlToolkit
         }
 
         [Browsable(true)]
+        [Themeable(true)]
         [Category("Appearance")]
         [Description("Rating Direction")]
         [DefaultValue(RatingDirection.LeftToRightTopToBottom)]
