@@ -12,15 +12,15 @@ public partial class Patch5340 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        AsyncFileUpload3.ClearAllFilesFromSession();
-        //        AsyncFileUpload2.ClearFileFromSession();
-        //AsyncFileUpload1.UploaderStyle = AjaxControlToolkit.AsyncFileUpload.UploaderStyleEnum.Modern;
         AsyncFileUpload1.UploadedComplete += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload_UploadedComplete);
         AsyncFileUpload2.UploadedComplete += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload_UploadedComplete);
         AsyncFileUpload3.UploadedComplete += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload_UploadedComplete);
         AsyncFileUpload1.UploadedFileError += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload_UploadedFileError);
         AsyncFileUpload2.UploadedFileError += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload_UploadedFileError);
         AsyncFileUpload3.UploadedFileError += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload_UploadedFileError);
+
+        AsyncFileUpload3.ClearFileFromSession();
+    //    AsyncFileUpload3.ClearAllFilesFromSession();
     }
 
     void AsyncFileUpload_UploadedComplete(object sender, AsyncFileUploadEventArgs e)
@@ -30,7 +30,6 @@ public partial class Patch5340 : System.Web.UI.Page
         AsyncFileUpload asyncFileUpload = (AsyncFileUpload) sender;
         string savePath = MapPath("~/Patches/AsyncFileUpload/Uploads/" + Path.GetFileName(e.filename));
         asyncFileUpload.SaveAs(savePath);
-        AsyncFileUpload3.ClearFileFromSession();
     }
 
     void AsyncFileUpload_UploadedFileError(object sender, AsyncFileUploadEventArgs e) {

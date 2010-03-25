@@ -12,7 +12,7 @@ public partial class Patch5356 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        AsyncFileUpload1.ClearAllFilesFromSession();
+//        AsyncFileUpload1.ClearAllFilesFromSession();
         AsyncFileUpload1.UploadedComplete += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload_UploadedComplete);
         AsyncFileUpload1.UploadedFileError += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload_UploadedFileError);
     }

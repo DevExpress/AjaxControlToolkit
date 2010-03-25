@@ -9,7 +9,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">
 
 
-    <div>PersistedStoreType default "None"</div>
+    <div>PersistFileInSession default "false"</div>
     <br />
     <asp:AsyncFileUpload runat="server" ID="AsyncFileUpload1"  
         Width="800px" 
@@ -24,7 +24,7 @@
     ><img align="middle" alt="" src="uploading.gif" /></asp:Label>
 
     <br />
-    <div>PersistedStoreType set to "Session"</div>
+    <div>PersistFileInSession set to true</div>
     <div>Last location remembered after page refresh</div>
     <br />
     
@@ -42,7 +42,7 @@
     ><img align="middle" alt="" src="uploading.gif" /></asp:Label>
 
     <br />
-    <div>PersistedStoreType set to "Session". ClearState called in code behind</div>
+    <div>PersistFileInSession set to true. ClearState called in code behind</div>
     <br />
     
     <asp:AsyncFileUpload runat="server" ID="AsyncFileUpload3"  

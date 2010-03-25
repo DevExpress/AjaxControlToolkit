@@ -14,11 +14,11 @@
     ><img align="middle" alt="" src="uploading.gif" /></asp:Label>
 
     <br />
-    <div>PersistedStoreType set to "Session"</div>
+    <div>PersistFileInSession set to "true"</div>
     <br />
     <div>Last location remembered after page refresh</div>
     <br />
-    <div>However setting sessionState mode to <i>StateServer</i> causes an exception: "Unable to serialize the session state". The default setting of PersistedStoreType set to <i>None</i> avoids this exception</div>
+    <div>However setting sessionState mode to <i>StateServer</i> causes an exception: "Unable to serialize the session state". The default setting of PersistFileInSession set to <i>false</i> avoids this exception</div>
     <br />
 
     <asp:AsyncFileUpload runat="server" ID="AsyncFileUpload1"  
