@@ -223,14 +223,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         }
 
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(e);
-        if (this._ClearMaskOnLostfocus)
-        {
-            this._InitValue(wrapper.get_Value(),true);
-        }
-        else
-        {
-            this._InitValue(wrapper.get_Value().substring(this._LogicFirstPos,this._LogicLastPos+1),true);
-        }
+        this._InitValue(wrapper.get_Value(), true);
         if (hasInitialFocus) 
         {
             this._onFocus();
@@ -361,14 +354,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         var e = this.get_element();
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(e);
         this._initialvalue = wrapper.get_Value();
-        if (this._ClearMaskOnLostfocus)
-        {
-            this._InitValue(wrapper.get_Value(),false);
-        }
-        else
-        {
-            this._InitValue(wrapper.get_Value().substring(this._LogicFirstPos,this._LogicLastPos+1),false);
-        }
+        this._InitValue(wrapper.get_Value(), false);
         var ClearText = this._getClearMask();
         var hastip = false;
         if (this._MessageValidatorTip && ClearText == "")

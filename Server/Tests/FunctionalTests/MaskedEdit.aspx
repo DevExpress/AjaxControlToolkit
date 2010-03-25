@@ -39,6 +39,9 @@
         ControlToValidate="TextBox4" Display="Dynamic" IsValidEmpty="False"
         EmptyValueMessage="Message Empty" InvalidValueMessage="Message Invalid" MaximumValueMessage="Message Max"
         MinimumValueMessage="Message Min" TooltipMessage="Input a Text" MinimumValue="3" ValidationGroup="Demo1"></aspext:MaskedEditValidator>
+    <asp:TextBox ID="TextBox14703" Text="1111111111" runat="server"></asp:TextBox>
+    <aspext:MaskedEditExtender ID="MaskedEditExtender14703" TargetControlID="TextBox14703" runat="server"
+            ClearMaskOnLostFocus="false" Mask="(999) 999-9999" MaskType="None" />
     <script type="text/javascript">
         // Script objects that should be loaded before we run
         var typeDependencies = ["Sys.Extended.UI.MaskedEditBehavior","Sys.Extended.UI.MaskedEditBehavior"];
@@ -51,6 +54,7 @@
         var MaskedEditvalid3 = null;
         var MaskedEdit4 = null;
         var MaskedEditvalid4 = null;
+        var MaskedEdit14703 = null;
         // Test Harness
         var testHarness = null;
 
@@ -119,6 +123,9 @@
             target.InsertAMPM(AMPM);
             target._onBlur();
             testHarness.assertEqual(target.get_element().value, expectedText, "Value in " + target.id + " should be '" + expectedText + "', not '" + target.get_element().value + "'");
+        }
+        function checkInitialValue(target, expectedText) {
+            testHarness.assertEqual(target.get_element().value, expectedText, "Initial Value in " + target.id + " should be '" + expectedText + "', not '" + target.get_element().value + "'");
         }
         // Register the tests
         function registerTests(harness)
@@ -222,7 +229,14 @@
             test.addStep(function(){checkText(MaskedEdit4, "abcdefghijabcdefghijabcdefghijabcdefghijabcdefghijabcdefghij", "abcdefghijabcdefghijabcdefghij");});
             // Check error Min Text
             var test = testHarness.addTest('Test message Min validator none');
-            test.addStep(function(){checkvalidMsgErrMin(MaskedEdit4,MaskedEditvalid4,"a");});
+            test.addStep(function() { checkvalidMsgErrMin(MaskedEdit4, MaskedEditvalid4, "a"); });
+
+            // Get the controls from the page
+            MaskedEdit14703 = testHarness.getObject("ctl00_ContentPlaceHolder1_MaskedEditExtender14703");
+
+            // Check Inital text
+            var test = testHarness.addTest('Issue -> 14703');
+            test.addStep(function() { checkInitialValue(MaskedEdit14703, "(111) 111-1111"); });
         }
     </script>
 </asp:Content>
