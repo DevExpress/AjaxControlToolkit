@@ -24,6 +24,10 @@ namespace AjaxControlToolkit
     [Themeable(true)]
     public class ToolkitScriptManager : ScriptManager
     {
+        private static readonly Dictionary<Assembly, WebResourceAttribute[]> _webResourceAttributeCache = new Dictionary<Assembly, WebResourceAttribute[]>();
+        private static readonly Dictionary<Assembly, ScriptCombineAttribute[]> _scriptCombineAttributeCache = new Dictionary<Assembly, ScriptCombineAttribute[]>();
+        private static readonly Dictionary<Assembly, ScriptResourceAttribute[]> _scriptResourceAttributeCache = new Dictionary<Assembly, ScriptResourceAttribute[]>();
+
         /// <summary>
         /// Request param name for the serialized combined scripts string
         /// </summary>
@@ -52,6 +56,32 @@ namespace AjaxControlToolkit
             _scripts.Add("MicrosoftAjaxTimer.debug.js", true);
         }
 #endif
+        private static WebResourceAttribute[] GetWebResourceAttributes(Assembly assembly) {
+            WebResourceAttribute[] attributes;
+            if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes)) {
+                attributes = (WebResourceAttribute[])assembly.GetCustomAttributes(typeof(WebResourceAttribute), false);
+                _webResourceAttributeCache[assembly] = attributes;
+            }
+            return attributes;
+        }
+
+        private static ScriptResourceAttribute[] GetScriptResourceAttributes(Assembly assembly) {
+            ScriptResourceAttribute[] attributes;
+            if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes)) {
+                attributes = (ScriptResourceAttribute[])assembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false);
+                _scriptResourceAttributeCache[assembly] = attributes;
+            }
+            return attributes;
+        }
+
+        private static ScriptCombineAttribute[] GetScriptCombineAttributes(Assembly assembly) {
+            ScriptCombineAttribute[] attributes;
+            if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes)) {
+                attributes = (ScriptCombineAttribute[])assembly.GetCustomAttributes(typeof(ScriptCombineAttribute), false);
+                _scriptCombineAttributeCache[assembly] = attributes;
+            }
+            return attributes;
+        }
 
         /// <summary>
         /// Specifies whether or not multiple script references should be combined into a single file
@@ -383,7 +413,7 @@ namespace AjaxControlToolkit
 
                         // Write out the associated script resources (if any) in the proper culture
                         Assembly scriptAssembly = scriptEntry.LoadAssembly();
-                        foreach (ScriptResourceAttribute scriptResourceAttribute in scriptAssembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false))
+                        foreach (ScriptResourceAttribute scriptResourceAttribute in GetScriptResourceAttributes(scriptAssembly))
                         {
                             if (scriptResourceAttribute.ScriptName == scriptEntry.Name) {
 #pragma warning disable 0618 // obsolete members of ScriptResourceAttribute are used but necessary in the 3.5 build
@@ -448,7 +478,7 @@ namespace AjaxControlToolkit
             // Load the script's assembly and look for ScriptCombineAttribute
             bool combinable = false;
             Assembly assembly = scriptEntry.LoadAssembly();
-            foreach (ScriptCombineAttribute scriptCombineAttribute in assembly.GetCustomAttributes(typeof(ScriptCombineAttribute), false))
+            foreach (ScriptCombineAttribute scriptCombineAttribute in GetScriptCombineAttributes(assembly))
             {
                 if (string.IsNullOrEmpty(scriptCombineAttribute.IncludeScripts))
                 {
@@ -486,7 +516,7 @@ namespace AjaxControlToolkit
             {
                 // Make sure the script has an associated WebResourceAttribute (else ScriptManager wouldn't have served it)
                 bool correspondingWebResourceAttribute = false;
-                foreach (WebResourceAttribute webResourceAttribute in assembly.GetCustomAttributes(typeof(WebResourceAttribute), false))
+                foreach (WebResourceAttribute webResourceAttribute in GetWebResourceAttributes(assembly))
                 {
                     if (scriptEntry.Name == webResourceAttribute.WebResource)
                     {
