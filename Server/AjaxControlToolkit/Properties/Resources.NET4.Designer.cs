@@ -68,5 +68,14 @@ namespace AjaxControlToolkit.Properties {
                 return ResourceManager.GetString("E_NoScriptManager", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The AsyncFileUpload control only supports session state mode &quot;InProc&quot; when persisting files in session..
+        /// </summary>
+        internal static string SessionStateOutOfProcessNotSupported {
+            get {
+                return ResourceManager.GetString("SessionStateOutOfProcessNotSupported", resourceCulture);
+            }
+        }
     }
 }

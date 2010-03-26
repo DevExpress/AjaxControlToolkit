@@ -19,8 +19,8 @@ public partial class Patch5340 : System.Web.UI.Page
         AsyncFileUpload2.UploadedFileError += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload_UploadedFileError);
         AsyncFileUpload3.UploadedFileError += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload_UploadedFileError);
 
-        AsyncFileUpload3.ClearFileFromSession();
-    //    AsyncFileUpload3.ClearAllFilesFromSession();
+        AsyncFileUpload3.ClearFileFromPersistedStore();
+        //AsyncFileUpload3.ClearAllFilesFromPersistedStore();
     }
 
     void AsyncFileUpload_UploadedComplete(object sender, AsyncFileUploadEventArgs e)

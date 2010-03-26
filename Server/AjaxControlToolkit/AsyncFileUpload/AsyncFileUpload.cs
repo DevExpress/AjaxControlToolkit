@@ -72,6 +72,7 @@ namespace AjaxControlToolkit
 
         #region [ Fields ]
 
+        private HttpPostedFile postedFile = null;
         private PersistedStoreTypeEnum persistStorageType = PersistedStoreTypeEnum.Session;
         private string lastError = String.Empty;
         private bool failedValidation = false;
@@ -79,6 +80,7 @@ namespace AjaxControlToolkit
         private string hiddenFieldID = String.Empty;
         private string innerTBID = String.Empty;
         private HtmlInputFile inputFile = null;
+        private bool persistFile = false;
 
         #endregion
 
@@ -145,6 +147,12 @@ namespace AjaxControlToolkit
         {
             get { return (HttpContext.Current == null); }
         }
+
+        private HttpPostedFile CurrentFile {
+            get {
+                return persistFile ? AfuPersistedStoreManager.Instance.GetFileFromSession(this.ClientID) : postedFile;
+            }
+        }
         #endregion
 
         #region [ Public Properties ]
@@ -154,7 +162,7 @@ namespace AjaxControlToolkit
             get
             {
                 PopulatObjectPriorToRender(this.ClientID);
-                HttpPostedFile file = AfuPersistedStoreManager.Instance.GetFileFromSession(this.ClientID);
+                HttpPostedFile file = CurrentFile;
                 if (file != null)
                 {
                     try
@@ -248,7 +256,7 @@ namespace AjaxControlToolkit
             get
             {
                 PopulatObjectPriorToRender(this.ClientID);
-                return AfuPersistedStoreManager.Instance.GetFileFromSession(this.ClientID);
+                return CurrentFile;
             }
         }
 
@@ -258,7 +266,10 @@ namespace AjaxControlToolkit
             get
             {
                 PopulatObjectPriorToRender(this.ClientID);
-                return AfuPersistedStoreManager.Instance.FileExists(this.ClientID);
+                if (persistFile) {
+                    return AfuPersistedStoreManager.Instance.FileExists(this.ClientID);
+                }
+                return (postedFile != null);
             }
         }
 
@@ -268,7 +279,13 @@ namespace AjaxControlToolkit
             get
             {
                 PopulatObjectPriorToRender(this.ClientID);
-                return Path.GetFileName(AfuPersistedStoreManager.Instance.GetFileName(this.ClientID));
+                if (persistFile) {
+                    return Path.GetFileName(AfuPersistedStoreManager.Instance.GetFileName(this.ClientID));
+                }
+                else if (postedFile != null) {
+                    return Path.GetFileName(postedFile.FileName);
+                }
+                return String.Empty;
             }
         }
 
@@ -278,7 +295,13 @@ namespace AjaxControlToolkit
             get
             {
                 PopulatObjectPriorToRender(this.ClientID);
-                return AfuPersistedStoreManager.Instance.GetContentType(this.ClientID);
+                if (persistFile) {
+                    return AfuPersistedStoreManager.Instance.GetContentType(this.ClientID);
+                }
+                else if (postedFile != null) {
+                    return postedFile.ContentType;
+                }
+                return String.Empty;
             }
         }
 
@@ -288,15 +311,12 @@ namespace AjaxControlToolkit
             get
             {
                 PopulatObjectPriorToRender(this.ClientID);
-                HttpPostedFile postedFile = AfuPersistedStoreManager.Instance.GetFileFromSession(this.ClientID);
-                if (postedFile.InputStream != null)
+                HttpPostedFile file = CurrentFile;
+                if (file != null && file.InputStream != null)
                 {
-                    return postedFile.InputStream;
+                    return file.InputStream;
                 }
-                else
-                {
-                    return null;
-                }
+                return null;
             }
         }
 
@@ -308,22 +328,51 @@ namespace AjaxControlToolkit
                 return (this.Page.Request.QueryString[Constants.FileUploadIDKey] != null);
             }
         }
+
+        [Bindable(true)]
+        [BrowsableAttribute(true)]
+        [DefaultValue(false)]
+        public bool PersistFile
+        {
+            get {
+                return persistFile;
+            }
+            set {
+                persistFile = value;
+            }
+        }
+
         #endregion
 
         #region [ Methods ]
 
+        public void ClearAllFilesFromPersistedStore() {
+            AfuPersistedStoreManager.Instance.ClearAllFilesFromSession(this.ClientID);
+        }
+
+        public void ClearFileFromPersistedStore() {
+            AfuPersistedStoreManager.Instance.RemoveFileFromSession(this.ClientID);
+        }
+
         public void SaveAs(string filename)
         {
             PopulatObjectPriorToRender(this.ClientID);
-            HttpPostedFile postedFile = AfuPersistedStoreManager.Instance.GetFileFromSession(this.ClientID);
-            postedFile.SaveAs(filename);
+            HttpPostedFile file = CurrentFile;
+            file.SaveAs(filename);
         }
         
         private void PopulatObjectPriorToRender(string controlId)
         {
-            if ((!AfuPersistedStoreManager.Instance.FileExists(controlId)) && (this.Page != null && this.Page.Request.Files.Count != 0))
+            bool exists;
+            if (persistFile) {
+                exists = AfuPersistedStoreManager.Instance.FileExists(controlId);
+            }
+            else {
+                exists = (postedFile != null);
+            }
+            if ((!exists) && (this.Page != null && this.Page.Request.Files.Count != 0))
             {
-                RecievedFile(controlId);
+                ReceivedFile(controlId);
             }
         }
 
@@ -344,7 +393,7 @@ namespace AjaxControlToolkit
             //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "OnUploadedComplete", "top.$find(\"" + this.ClientID + "\")._stopLoad('111------www');", true);
         }
 
-        private void RecievedFile(string sendingControlID)
+        private void ReceivedFile(string sendingControlID)
         {
             AsyncFileUploadEventArgs eventArgs = null;
             lastError = String.Empty;
@@ -358,11 +407,11 @@ namespace AjaxControlToolkit
                 }
                 else
                 {
-                    foreach (string postedFile in this.Page.Request.Files)
+                    foreach (string uploadedFile in this.Page.Request.Files)
                     {
-                        if (postedFile.Replace("$","_").StartsWith(sendingControlID))
+                        if (uploadedFile.Replace("$", "_").StartsWith(sendingControlID))
                         {
-                            file = this.Page.Request.Files[postedFile];
+                            file = this.Page.Request.Files[uploadedFile];
                             break;
                         }
                     }
@@ -394,8 +443,13 @@ namespace AjaxControlToolkit
                 else
                 {
                     eventArgs = new AsyncFileUploadEventArgs(AsyncFileUploadState.Success, String.Empty, file.FileName, file.ContentLength.ToString());
-                    GC.SuppressFinalize(file);
-                    AfuPersistedStoreManager.Instance.AddFileToSession(this.ClientID, file.FileName, file);
+                    if (persistFile) {
+                        GC.SuppressFinalize(file);
+                        AfuPersistedStoreManager.Instance.AddFileToSession(this.ClientID, file.FileName, file);
+                    }
+                    else {
+                        postedFile = file;
+                    }
                     OnUploadedComplete(eventArgs);
                 }
             }
@@ -433,7 +487,7 @@ namespace AjaxControlToolkit
 
             if ((sendingControlID != null && sendingControlID.StartsWith(this.ClientID)) || sendingControlID == null)
             {
-                RecievedFile(this.ClientID);
+                ReceivedFile(this.ClientID);
                 if (sendingControlID != null && sendingControlID.StartsWith(this.ClientID))
                 {
                     if (lastError == String.Empty)
@@ -470,12 +524,14 @@ namespace AjaxControlToolkit
             {
                 this.hiddenFieldID = GenerateHtmlInputHiddenControl();
                 string lastFileName = String.Empty;
-
-                if (AfuPersistedStoreManager.Instance.FileExists(this.ClientID))
-                {
-                    lastFileName = AfuPersistedStoreManager.Instance.GetFileName(this.ClientID);
+                if (persistFile) {
+                    if (AfuPersistedStoreManager.Instance.FileExists(this.ClientID)) {
+                        lastFileName = AfuPersistedStoreManager.Instance.GetFileName(this.ClientID);
+                    }
                 }
-
+                else if (postedFile != null) {
+                    lastFileName = postedFile.FileName;
+                }
                 GenerateHtmlInputFileControl(lastFileName);
             }
         }

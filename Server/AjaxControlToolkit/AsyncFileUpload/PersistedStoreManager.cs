@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Web.SessionState;
+using AjaxControlToolkit.Properties;
 
 namespace AjaxControlToolkit
 {
@@ -78,27 +81,37 @@ namespace AjaxControlToolkit
             HttpContext currentContext = null;
             if ((currentContext = GetCurrentContext()) != null)
             {
+                Collection<string> keysToRemove = new Collection<string>();
                 foreach (string key in currentContext.Session.Keys)
                 {
                     if (key.StartsWith(extendedFileUploadGUID))
                     {
-                        currentContext.Session.Remove(key);
+                        keysToRemove.Add(key);
                     }
+                }
+                foreach (string key in keysToRemove)
+                {
+                    currentContext.Session.Remove(key);
                 }
             }
         }
 
-        public void RemoveFileFromSession(string controlId, string filename)
+        public void RemoveFileFromSession(string controlId)
         {
             HttpContext currentContext = null;
             if ((currentContext = GetCurrentContext()) != null)
             {
+                Collection<string> keysToRemove = new Collection<string>();
                 foreach (string key in currentContext.Session.Keys)
                 {
                     if (key.StartsWith(GetFullID(controlId)))
                     {
-                        currentContext.Session.Remove(key);
+                        keysToRemove.Add(key);
                     }
+                }
+                foreach (string key in keysToRemove)
+                {
+                    currentContext.Session.Remove(key);
                 }
             }
         }
@@ -117,6 +130,14 @@ namespace AjaxControlToolkit
             HttpContext currentContext = null;
             if ((currentContext = GetCurrentContext()) != null)
             {
+                var mode = currentContext.Session.Mode;
+                if (mode != SessionStateMode.InProc) {
+#if NET4
+                    throw new InvalidOperationException(Resources_NET4.SessionStateOutOfProcessNotSupported);
+#else
+                    throw new InvalidOperationException(Resources.SessionStateOutOfProcessNotSupported);
+#endif
+                }
                 currentContext.Session.Add(GetFullID(controlId), fileUpload);
             }
         }

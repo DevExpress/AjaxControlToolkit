@@ -120,4 +120,7 @@
   <data name="E_NoScriptManager" xml:space="preserve">
     <value>A ScriptManager is required on the page to use ASP.NET AJAX Script Components.</value>
   </data>
+  <data name="SessionStateOutOfProcessNotSupported" xml:space="preserve">
+    <value>The AsyncFileUpload control only supports session state mode "InProc" when persisting files in session.</value>
+  </data>
 </root>

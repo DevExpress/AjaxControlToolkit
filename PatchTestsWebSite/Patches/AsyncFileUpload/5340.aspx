@@ -9,7 +9,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">
 
 
-    <div>PersistFileInSession default "false"</div>
+    <div>PersistFile default "false"</div>
     <br />
     <asp:AsyncFileUpload runat="server" ID="AsyncFileUpload1"  
         Width="800px" 
@@ -24,12 +24,12 @@
     ><img align="middle" alt="" src="uploading.gif" /></asp:Label>
 
     <br />
-    <div>PersistFileInSession set to true</div>
+    <div>PersistFile set to true</div>
     <div>Last location remembered after page refresh</div>
     <br />
     
     <asp:AsyncFileUpload runat="server" ID="AsyncFileUpload2"  
-        PersistFileInSession="true"
+        PersistFile="true"
         Width="800px" 
         UploaderStyle="Modern" 
         UploadingBackColor="#CCFFFF" 
@@ -42,11 +42,11 @@
     ><img align="middle" alt="" src="uploading.gif" /></asp:Label>
 
     <br />
-    <div>PersistFileInSession set to true. ClearState called in code behind</div>
+    <div>PersistFile set to true. Clear called in code behind</div>
     <br />
     
     <asp:AsyncFileUpload runat="server" ID="AsyncFileUpload3"  
-        PersistFileInSession="true"
+        PersistFile="true"
         Width="800px" 
         UploaderStyle="Modern" 
         UploadingBackColor="#CCFFFF" 
