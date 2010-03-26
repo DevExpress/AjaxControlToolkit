@@ -186,6 +186,11 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         /// Play the OnMouseOver/OnHoverOver animations
         /// </summary>
         /// <returns />
+        // Private property to track whether a mouseOver event has already occured, and thus eliminate dups
+        if (this._mouseHasEntered) {
+            // This is an additional onMouseOver triggered by child content
+            return;
+        }
         if (this._onMouseOver) {
             this._onMouseOver.play();
         }
@@ -195,9 +200,8 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
             }
             this._onHoverOver.play();
         }
+        this._mouseHasEntered = true;
     },
-    
-    
     
     get_OnMouseOut : function() {
         /// <value type="String" mayBeNull="true">
@@ -220,25 +224,45 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         /// </value>
         return this._onMouseOut;
     },
-    
-    OnMouseOut : function() {
+
+    OnMouseOut: function(e) {
         /// <summary>
         /// Play the OnMouseOver/OnHoverOver animations
         /// </summary>
         /// <returns />
-        if (this._onMouseOut) {
-            this._onMouseOut.play();
-        }
-        if (this._onHoverOut) {
-            if (this._onHoverOver) {
-                this._onHoverOver.quit();
+        var ev = e.rawEvent;
+        var pt = this.get_element();
+        var tg = e.target;
+        if (tg.nodeName !== pt.nodeName) return;
+
+        var rel = ev.relatedTarget || ev.toElement;
+        if (pt != rel && !this._isChild(pt, rel)) {
+            this._mouseHasEntered = false;
+            if (this._onMouseOut) {
+                this._onMouseOut.play();
             }
-            this._onHoverOut.play();
+            if (this._onHoverOut) {
+                if (this._onHoverOver) {
+                    this._onHoverOver.quit();
+                }
+                this._onHoverOut.play();
+            }
         }
     },
-    
-    
-    
+    _isChild: function(elmtA, elmtB) {
+        var body = document.body;
+        while (elmtB && elmtA != elmtB && body != elmtB) {
+            try {
+                elmtB = elmtB.parentNode;
+            } catch (e) {
+                // Firefox sometimes fires events for XUL elements, which throws
+                // a "permission denied" error. so this is not a child.
+                return false;
+            }
+        }
+        return elmtA == elmtB;
+    },
+        
     get_OnHoverOver : function() {
         /// <value type="String" mayBeNull="true">
         /// Generic OnHoverOver Animation's JSON definition

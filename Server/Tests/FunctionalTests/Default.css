@@ -195,3 +195,16 @@ a:hover
     background-image: url(Images/SavedStar.png);
 }
 /* End-RatingControl */
+/* Animation */
+#parentDiv
+{
+    height:250px;
+    width:250px;
+    background-color:Gray;
+}
+#childDiv
+{
+    height:100px;
+    width:100px;
+    background-color:Blue;
+}
