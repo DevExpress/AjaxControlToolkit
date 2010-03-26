@@ -317,10 +317,10 @@ Sys.Extended.UI.ComboBox.prototype = {
             }
 
             // replace HTML entities with character equivalents
-            text = text.replace('&amp;', '&')
-                .replace('&quot;', '"')
-                .replace('&gt;', '>')
-                .replace('&lt;', '<');
+            text = text.replace(/\&amp;/g, '&')
+                .replace(/\&quot;/g, '"')
+                .replace(/\&gt;/g, '>')
+                .replace(/\&lt;/g, '<');
 
             item.text = text.trim();
             Array.add(this._optionListItems, item);
