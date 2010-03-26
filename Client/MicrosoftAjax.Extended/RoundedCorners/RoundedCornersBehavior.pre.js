@@ -124,6 +124,13 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
         newParent.style.border = "";
         newParent.style.margin = "";
         newParent.style.width = "100%";
+        if ((newParent.style.overflow == "") && ($common.getCurrentStyle(e, "overflow") == "visible")) {
+            // If the style of the target element has not been set inline, 
+            // and has not been set in a stylesheet to something other than "visible" 
+            // (which is the default), then set it to "auto", so that any child block elements
+            // do not cause the rounded corner divs to display as separated from the target div  
+            newParent.style.overflow = "auto";
+        }    
         newParent.id = "";
         newParent.removeAttribute("control");
 
