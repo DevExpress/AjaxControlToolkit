@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/DefaultTests.master" AutoEventWireup="true" CodeFile="test5069.aspx.cs"
+﻿<%@ Page Language="C#" MasterPageFile="~/DefaultTests.master" AutoEventWireup="true" CodeFile="5069.aspx.cs"
     Inherits="Patch5069" Title="Untitled Page" UICulture="en-US" Culture="en-US" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" Runat="Server">
 
