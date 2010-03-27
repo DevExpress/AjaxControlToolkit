@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/DefaultTests.master" AutoEventWireup="true" CodeFile="5352.aspx.cs"
     Inherits="Patch5352" Title="Untitled Page" UICulture="en-US" Culture="en-US" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" Runat="Server">
-    <strong>Enter Date and Time (format: <em>99/99/9999 99:99:99</em>)</strong>
+    <strong>Enter Date and Time (format: <em>9999/99/99 99:99:99</em>)</strong>
         <br />
         <asp:TextBox ID="TextBox5" runat="server" Width="180px" ValidationGroup="Demo1" />
         <asp:MaskedEditExtender ID="MaskedEditExtender5" runat="server"

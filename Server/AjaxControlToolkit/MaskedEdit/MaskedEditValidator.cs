@@ -442,8 +442,8 @@ namespace AjaxControlToolkit
                         { 
                             //date
                             string AttibSep = ControlCulture.DateTimeFormat.DateSeparator;
-                            char sep = System.Char.Parse(ControlCulture.DateTimeFormat.DateSeparator);
-                            string[] arrDate = ControlCulture.DateTimeFormat.ShortDatePattern.Split(sep);
+                            string[] arrDate = ControlCulture.DateTimeFormat.ShortDatePattern.Split(new string[] { ControlCulture.DateTimeFormat.DateSeparator }, StringSplitOptions.None);
+                           
                             string AttibFmt = arrDate[0].Substring(0, 1).ToUpper(ControlCulture);
                             AttibFmt += arrDate[1].Substring(0, 1).ToUpper(ControlCulture);
                             AttibFmt += arrDate[2].Substring(0, 1).ToUpper(ControlCulture);
@@ -471,7 +471,7 @@ namespace AjaxControlToolkit
                             {
                                 if (!String.IsNullOrEmpty(AttibSyb))
                                 {
-                                    sep = System.Char.Parse(AttibSep);
+                                    char sep = System.Char.Parse(AttibSep);
                                     string[] arrSyb = AttibSyb.Split(sep);
                                     LastMaskPosition += arrSyb[0].Length + 1;
                                 }
@@ -485,8 +485,8 @@ namespace AjaxControlToolkit
                     case MaskedEditType.Date:
                         {
                             string AttibSep = ControlCulture.DateTimeFormat.DateSeparator;
-                            char sep = System.Char.Parse(ControlCulture.DateTimeFormat.DateSeparator);
-                            string[] arrDate = ControlCulture.DateTimeFormat.ShortDatePattern.Split(sep);
+                            string[] arrDate = ControlCulture.DateTimeFormat.ShortDatePattern.Split(new string[] { ControlCulture.DateTimeFormat.DateSeparator }, StringSplitOptions.None);
+                           
                             string AttibFmt = arrDate[0].Substring(0, 1).ToUpper(ControlCulture);
                             AttibFmt += arrDate[1].Substring(0, 1).ToUpper(ControlCulture);
                             AttibFmt += arrDate[2].Substring(0, 1).ToUpper(ControlCulture);
@@ -619,7 +619,15 @@ namespace AjaxControlToolkit
                                 tamtext -= (ArrAMPM[0].Length + 1);
                             }
                         }
-                        if (MaskedEditCommon.GetValidMask(MaskExt.Mask).Length != tamtext)
+                        int expectedLength = MaskedEditCommon.GetValidMask(MaskExt.Mask).Length;
+                        if (MaskExt.MaskType != MaskedEditType.Time)
+                        {
+                            int currentCultureDateSeparatorLength =
+                                (String.IsNullOrEmpty(MaskExt.CultureName) ? CultureInfo.CurrentCulture : CultureInfo.GetCultureInfo(MaskExt.CultureName)).DateTimeFormat.DateSeparator.Length;
+                            // there are always 2 separators, and each separator adds to the expected length by the amount over size 1 that it is.
+                            expectedLength += (currentCultureDateSeparatorLength - 1) * 2;
+                        }
+                        if (expectedLength != tamtext)
                         {
                             ok = false;
                         }

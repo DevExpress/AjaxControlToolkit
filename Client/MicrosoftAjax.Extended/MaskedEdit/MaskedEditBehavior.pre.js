@@ -111,8 +111,9 @@ Sys.Extended.UI.MaskedEditBehavior = function(element)
     this._LogicPrompt = String.fromCharCode(1); // logic prompt char
     this._LogicEscape = String.fromCharCode(2); // logic escape char
     this._LogicFirstPos = -1; // first valid position
-    this._LogicLastPos = -1; // Last valid position 
+    this._LogicLastPos = -1; // Last valid position
     this._LogicLastInt = -1; // Last valid position RTL Integer with decimal
+    this._LogicDateTimeSepPos = -1; // valid position seperating date & time
     this._QtdValidInput = 0; // Qtd Valid input Position 
     this._InLostfocus = false; // Flag to validate in lost focus not duplicate clearMask execute
     this._ExternalMessageError = ""; // Save local MessageError from Controls Validator
@@ -171,13 +172,12 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             this.set_ClientState(null);            
         }
         //only for ie , for firefox see keydown
-        if (document.activeElement)
-        {
-            if (e.id == document.activeElement.id)
-            {
+        try {
+            if (e === document.activeElement) {
                 hasInitialFocus = true;
             }
         }
+        catch (ex) { }
         
         // Create delegates Attach events
         if (this._ShowMessageErrorFloat)
@@ -1195,7 +1195,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 exec = true;
                 if (this._MaskType == Sys.Extended.UI.MaskedEditType.DateTime)
                 {
-                    var arr_mask = masktext.split(" ");
+                    var arr_mask = this._SplitDateTime(masktext);
                     var posmask = curpos - this._LogicFirstPos;
                     if (posmask > arr_mask[0].length)
                     {
@@ -1246,7 +1246,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 {
                     var oritext = wrapper.get_Value().substring(this._LogicFirstPos,this._LogicLastPos+1);
                     var orilogi = this._LogicTextMask.substring(this._LogicFirstPos,this._LogicLastPos+1)
-                    var arr_mask = oritext.split(" ");
+                    var arr_mask = this._SplitDateTime(oritext);
                     var posmask = curpos - this._LogicFirstPos;
                     if (posmask > arr_mask[0].length)
                     {
@@ -1269,6 +1269,17 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         }
         return exec;
     }
+    , _SplitDateTime: function(inputText) {
+            var arr = [];
+            if (inputText.charAt(this._LogicDateTimeSepPos) == " ") {
+                arr[0] = inputText.substring(this._LogicFirstPos, this._LogicDateTimeSepPos);
+                arr[1] = inputText.substring(this._LogicDateTimeSepPos + 1);
+            }
+            else {
+                arr[0] = inputText;
+            }
+            return arr;
+     }
     //
     // Paste clip board
     //
@@ -1709,7 +1720,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         var valueTM = wrapper.get_Value().substring(this._LogicFirstPos,this._LogicLastPos+1);
         if (this._MaskType == Sys.Extended.UI.MaskedEditType.DateTime)
         {
-            valueTM = valueTM.split(" ")[1];
+            valueTM = (this._SplitDateTime(valueTM))[1];
         }
         var m_arrTime = valueTM.split(this.get_CultureTimePlaceholder());
         var elem = this._GetTimeElementText(type);
@@ -1811,7 +1822,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         var input = wrapper.get_Value().substring(this._LogicFirstPos,this._LogicLastPos+1);
         if (this._MaskType == Sys.Extended.UI.MaskedEditType.DateTime)
         {
-            input = input.split(" ")[0];
+            input = this._SplitDateTime(input)[0];
         }
         var m_arrDate = input.split(this.get_CultureDatePlaceholder());
         var type = "";
@@ -1948,13 +1959,15 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         if (this._MaskType == Sys.Extended.UI.MaskedEditType.DateTime)
         {
             var aux = wrapper.get_Value().substring(this._LogicFirstPos,this._LogicLastPos+1);
-            if (aux.split(" ").length == 3)
+            var arr = this._SplitDateTime(aux);
+            var time_arr = arr[1].split(" ");
+            if (time_arr.length == 2) 
             {
-                value += " " + aux.split(" ")[1] + " " + aux.split(" ")[2];
+                value += " " + time_arr[0] + " " + time_arr[1];
             }
-            else
+            else 
             {
-                value += " " + aux.split(" ")[1];
+                value += " " + arr[1];
             }
         }
         this.loadMaskValue(value,this._LogicFirstPos,this._LogicSymbol);
@@ -1969,7 +1982,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         var m_arrDate;
         if (this._MaskType == Sys.Extended.UI.MaskedEditType.DateTime)
         {
-            var auxdate = this._LogicTextMask.substring(this._LogicFirstPos,this._LogicLastPos+1).split(" ")[0];
+            var auxdate = this._SplitDateTime(this._LogicTextMask.substring(this._LogicFirstPos, this._LogicLastPos + 1))[0];
             m_arrDate = auxdate.split(this.get_CultureDatePlaceholder());
         }
         else
@@ -2545,13 +2558,15 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         }
         if (this._MaskType == Sys.Extended.UI.MaskedEditType.DateTime)
         {
-            if (ValueText.split(" ").length == 3)
+            var arr = this._SplitDateTime(ValueText);
+            var time_arr = arr[1].split(" ");
+            if (time_arr.length == 2) 
             {
-                ValueText = ValueText.split(" ")[1] + " " + ValueText.split(" ")[2]; 
+                ValueText = time_arr[0] + " " + time_arr[1];
             }
-            else
+            else 
             {
-                ValueText = ValueText.split(" ")[1]; 
+                ValueText = arr[0];
             }
             if (autocomp != "")
             {
@@ -2560,13 +2575,14 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 {
                     autocomp = " " + autocomp;
                 }
-                if (autocomp.split(" ").length == 3)
+                var autocomp_arr = this._SplitDateTime(autocomp);
+                var autocomptime_arr = autocomp_arr[1].split(" ");
+                if (autocomptime_arr.length == 2) 
                 {
-                    autocomp = autocomp.split(" ")[1] + " " + autocomp.split(" ")[2];
+                    autocomp = autocomptime_arr[0] + " " + autocomptime_arr[1];
                 }
-                else
-                {
-                    autocomp = autocomp.split(" ")[1];
+                else {
+                    autocomp = autocomp_arr[0];
                 }
             }
         }
@@ -2763,7 +2779,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 {
                     autocomp = autocomp + " ";
                 }
-                var partdt = autocomp.split(" ")[0]; 
+                var partdt = this._SplitDateTime(autocomp)[0];
                 m_arrDate = partdt.split(this.get_CultureDatePlaceholder());
             }
             else
@@ -3013,11 +3029,12 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     //
     , ConvFmtDateTime : function(input,loadFirst)
     {
-        var partdt = input.split(" ")[0];
-        var parttm = input.split(" ")[1];
-        if (input.split(" ").length == 3)
+        var arr = this._SplitDateTime(input);
+        var partdt = arr[0];
+        var parttm = arr[1];
+        if (parttm.split(" ").length == 2) 
         {
-            parttm += " " + input.split(" ")[2];
+            parttm += " " + parttm.split(" ")[1];
         }
         partdt = this.ConvFmtDate(partdt,loadFirst);
         parttm = this.ConvFmtTime(parttm,loadFirst);
@@ -3721,6 +3738,14 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             {
                 this._LogicFirstPos = i;
             }
+            if (this._LogicMask.substring(i, i + this.get_CultureDatePlaceholder().length) == this.get_CultureDatePlaceholder()) 
+            {
+                continue;
+            }
+            else if (this._LogicMask.substring(i, i + 1) == " ") 
+            {
+                this._LogicDateTimeSepPos = i;
+            }
             if (this._LogicMask.substring(i,i+1) == this._LogicPrompt)
             {
                 this._LogicLastPos = i;
@@ -3761,9 +3786,10 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 }
                 else if (this._LogicTextMask.substring(i, i+1) != this._LogicPrompt && this._LogicTextMask.substring(i, i+1) != this._LogicEscape)
                 {
-                    if (this._LogicTextMask.substring(i,i+1) == this.get_CultureDatePlaceholder() && (this._MaskType == Sys.Extended.UI.MaskedEditType.Date || this._MaskType == Sys.Extended.UI.MaskedEditType.DateTime))
+                    if (this._LogicTextMask.substring(i, i + this.get_CultureDatePlaceholder().length) == this.get_CultureDatePlaceholder() && (this._MaskType == Sys.Extended.UI.MaskedEditType.Date || this._MaskType == Sys.Extended.UI.MaskedEditType.DateTime)) 
                     {
-                        clearmask += (clearmask == "")?"":this.get_CultureDatePlaceholder();
+                        clearmask += (clearmask == "") ? "" : this.get_CultureDatePlaceholder();
+                        i += (this.get_CultureDatePlaceholder().length - 1);
                     }
                     else if (this._LogicTextMask.substring(i,i+1) == this.get_CultureTimePlaceholder() && (this._MaskType == Sys.Extended.UI.MaskedEditType.Time || this._MaskType == Sys.Extended.UI.MaskedEditType.DateTime))
                     {
@@ -3956,7 +3982,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     , _convertMaskNotEscape : function()
     {
         this._LogicMaskConv = "";
-        var atumask = this._MaskConv;
+        var atumask = this._MaskConv.replace(/(\/)/g, this.get_CultureDatePlaceholder());
         var flagescape = false;
         var i;
         for (i = 0 ; i < parseInt(atumask.length,10); i++) 

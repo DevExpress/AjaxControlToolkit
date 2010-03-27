@@ -405,8 +405,7 @@ namespace AjaxControlToolkit
                 CultureTimePlaceholder = ControlCulture.DateTimeFormat.TimeSeparator;
                 CultureDecimalPlaceholder = ControlCulture.NumberFormat.NumberDecimalSeparator;
                 CultureThousandsPlaceholder = ControlCulture.NumberFormat.NumberGroupSeparator;
-                char sep = System.Char.Parse(ControlCulture.DateTimeFormat.DateSeparator);
-                string[] arrDate = ControlCulture.DateTimeFormat.ShortDatePattern.Split(sep);
+                string[] arrDate = ControlCulture.DateTimeFormat.ShortDatePattern.Split(new string[] { ControlCulture.DateTimeFormat.DateSeparator }, StringSplitOptions.None);
                 string ret = arrDate[0].Substring(0, 1).ToUpper(ControlCulture);
                 ret += arrDate[1].Substring(0, 1).ToUpper(ControlCulture);
                 ret += arrDate[2].Substring(0, 1).ToUpper(ControlCulture);

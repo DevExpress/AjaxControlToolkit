@@ -93,12 +93,8 @@ function MaskedEditValidatorDateTime(value)
             return false;
         }
     }
-    var PartDate = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(target).get_Value().split(" ")[0];
-    var PartTime = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(target).get_Value().split(" ")[1];
-    if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(target).get_Value().split(" ").length == 3)
-    {
-        PartTime += " " + Sys.Extended.UI.TextBoxWrapper.get_Wrapper(target).get_Value().split(" ")[2];
-    }
+    var PartDate = target.MaskedEditBehavior.AutoFormatDate();
+    var PartTime = target.MaskedEditBehavior.AutoFormatTime();   
     var MinVlDt = "";
     var MinVlTm = "";
     if (value.MinimumValue != "")
