@@ -145,7 +145,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // Need to know when partial updates complete
         this.registerPartialUpdateEvents();
     },
-
     dispose: function() {
         /// <summary>
         /// Dispose the behavior
@@ -451,6 +450,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
         this._backgroundElement.style.display = 'none';
         this._foregroundElement.style.display = 'none';
+        this._popupElement.style.display = 'none';
 
         this.restoreTab();
 
