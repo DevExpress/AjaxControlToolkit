@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Untitled Page</title>
+    <style type="text/css">
+        .focus 
+        {
+        	background-color: #DDDDFF;
+        	border: solid 1px blue;
+        }
+        .invalid 
+        {
+        	background-color: #FF0000;
+        	border: solid 1px #FF0000;
+        }
+        .negative
+        {
+        	background-color: #FF5555;
+        }
+    </style>
+    <script type="text/javascript" src="../../scripts/start.debug.js"></script>
+    <script type="text/javascript" src="../../scripts/extended/extendedcontrols.js"></script>
+    <script type="text/javascript">
+        Sys.debug = true;
+        Sys.require(Sys.components.maskedEdit, function() {
+            Sys.components.maskedEdit.defaults = {
+                OnFocusCssClass: "focus",
+                OnInvalidCssClass: "invalid",
+                OnFocusCssNegative: "negative",
+                OnBlurCssNegative: "negative"
+            }
+            Sys.query(".money").maskedEdit({
+                Mask: "9,999,999.99",
+                AcceptNegative: Sys.Extended.UI.MaskedEditShowSymbol.Left,
+                MaskType: Sys.Extended.UI.MaskedEditType.Number
+            });
+            Sys.query(".date").maskedEdit({
+                Mask: "99/99/9999",
+                MaskType: Sys.Extended.UI.MaskedEditType.Date
+            });
+        });
+        function disable(val) {
+            var tb1=$get('maskedEdit1');
+            tb2=$get('maskedEdit2');
+
+            tb1.readOnly=val;
+            tb2.readOnly=!val;
+            (val ? tb2 : tb1).focus();
+        }
+    </script>
+</head>
+<body>
+
+    Money:<br />    
+    <input type="text" id="maskedEdit1" readonly="readonly" class="money" />
+    <br />
+    Date:<br />
+    <input type="text" id="maskedEdit2" readonly="readonly" class="date" />
+
+    <input type="button" onclick="disable(true)" value="Enable First"/>
+    <input type="button" onclick="disable(false)" value="Enable Second"/>
+
+</body>
+</html>
