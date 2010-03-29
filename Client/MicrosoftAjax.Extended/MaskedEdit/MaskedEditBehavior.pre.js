@@ -345,13 +345,26 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     }
     , _onFocus : function() 
     {
+    
+        var e = this.get_element();
+        if (e.readOnly || e.disabled) {
+            return;
+        }
+        if (!this._keypressdown) {
+            this._keypressdown = Function.createDelegate(this, this._onKeyPressdown);
+            $addHandler(e, "keydown", this._keypressdown);
+        }
+        if (!this._keypressHandler) {
+            this._keypressHandler = Function.createDelegate(this, this._onKeyPress);
+            $addHandler(e, "keypress", this._keypressHandler); 
+        }
+
         this._InLostfocus = false;
         this._RemoveDivToolTip();
         if (this._OnFocusCssClass != "")
         {
             this.AddCssClassMaskedEdit(this._OnFocusCssClass);
         }
-        var e = this.get_element();
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(e);
         this._initialvalue = wrapper.get_Value();
         this._InitValue(wrapper.get_Value(), false);
