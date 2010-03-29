@@ -1648,6 +1648,11 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         this.focus();
         // make sure we clean up the flag due to issues with alert/alt-tab/etc
         this._popupMouseDown = false;
+        // set to the date currently in the text box
+        if (this._visibleDate != this._selectedDate) {
+            this._visibleDate = this._selectedDate
+            this.invalidate();
+        }
     },
     _button_onblur: function(e) {
         /// <summary> 
