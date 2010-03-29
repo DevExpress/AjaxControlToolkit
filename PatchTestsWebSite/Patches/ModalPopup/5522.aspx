@@ -90,10 +90,11 @@
                 <div style="width:230px;height:100px">
                 <p>
                     Set the z-index of alwaysVisible controls to more than 10000 in order to have them sit in front of the modalPopup background.
+                    Set it to less than 10100 to show in back of a 2nd nested modal dialog. Each modal dialog gets zIndex 10000 + nestCount*100.
                 </p>
                     <asp:Panel ID="timer" runat="server"
                         Width="250px" BackColor="White" ForeColor="DarkBlue"
-                        BorderWidth="2" BorderStyle="solid" BorderColor="DarkBlue" style="z-index: 15000;">
+                        BorderWidth="2" BorderStyle="solid" BorderColor="DarkBlue" style="z-index: 10050;">
                             <div style="width: 100%; height: 100%; vertical-align: middle; text-align: center;">
                                 <p>Current Time:</p>
                                 <span id="currentTime" runat="server" style="font-size:xx-large;font-weight:bold;line-height:40px;"/>

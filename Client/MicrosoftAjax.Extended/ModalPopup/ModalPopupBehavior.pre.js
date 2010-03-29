@@ -113,9 +113,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._backgroundElement.style.position = 'fixed';
         this._backgroundElement.style.left = '0px';
         this._backgroundElement.style.top = '0px';
-        // Want zIndex to big enough that the background sits above everything else
-        // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
-        this._backgroundElement.style.zIndex = 10000;
         if (this._BackgroundCssClass) {
             this._backgroundElement.className = this._BackgroundCssClass;
         }
@@ -124,7 +121,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
         this._foregroundElement.style.display = 'none';
         this._foregroundElement.style.position = 'fixed';
-        this._foregroundElement.style.zIndex = $common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex) + 1;
 
         this._showHandler = Function.createDelegate(this, this._onShow);
         $addHandler(this.get_element(), 'click', this._showHandler);
@@ -309,7 +305,13 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if (eventArgs.get_cancel()) {
             return;
         }
-
+        
+        // Want zIndex to big enough that the background sits above everything else
+        // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
+        var zindex = 10000 + (Sys.Extended.UI.ModalPopupBehavior._openCount++ * 1000);
+        this._backgroundElement.style.zIndex = zindex;
+        this._foregroundElement.style.zIndex = zindex + 1;
+        
         this.populate();
         this._attachPopup();
 
@@ -448,6 +450,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// Internal implementation to hide the modal dialog
         /// </summary>
 
+        Sys.Extended.UI.ModalPopupBehavior._openCount--;
         this._backgroundElement.style.display = 'none';
         this._foregroundElement.style.display = 'none';
         this._popupElement.style.display = 'none';
@@ -953,6 +956,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 }
 Sys.Extended.UI.ModalPopupBehavior.registerClass('Sys.Extended.UI.ModalPopupBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
 Sys.registerComponent(Sys.Extended.UI.ModalPopupBehavior, { name: "modalPopup" });
+Sys.Extended.UI.ModalPopupBehavior._openCount = 0;
 
 Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function(behaviorID, show) {
     /// <summary>
