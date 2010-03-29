@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
 <%--    <asp:ToolkitScriptManager ID="ScriptManager1" runat="server" CombineScriptsHandlerUrl="~/CombineScriptsHandler.ashx" />
 --%>    
-    <asp:ToolkitScriptManager ID="ScriptManager1" runat="server" CombineScripts="false" ScriptMode="Debug" />
+    <asp:ToolkitScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true" CombineScripts="false" ScriptMode="Debug" />
     <div>
         <asp:contentplaceholder id="SampleContent" runat="server">
         </asp:contentplaceholder>
