@@ -75,8 +75,10 @@
             controls lives on the server in a web service.  This web service can use any suitable method for
             storing and looking up the relevant data.  The sample web service used here reads the data set
             from a simple hierarchical XML data file.  The sample data file shows that the DropDownList items
-            can have distinct names and value (values are optional in the sample).  There is also a walkthrough
-            showing how to use a <a href="../Walkthrough/CCDWithDB.aspx">CascadingDropDown with a database</a>.
+            can have distinct names and value (values are optional in the sample).  It also demonstrates that
+            items can have an optional optionTitle attribute which will be displayed as a tooltip over the
+            item in some modern browsers.  There is also a walkthrough showing how to use a 
+            <a href="../Walkthrough/CCDWithDB.aspx">CascadingDropDown with a database</a>.        
         </p>
     </asp:Panel>
 

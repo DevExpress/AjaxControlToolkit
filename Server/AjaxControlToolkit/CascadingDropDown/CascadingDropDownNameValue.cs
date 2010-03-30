@@ -17,6 +17,8 @@ namespace AjaxControlToolkit
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:DoNotDeclareVisibleInstanceFields", Justification = "Necessary for web service serialization")]
         public bool isDefaultValue;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:DoNotDeclareVisibleInstanceFields", Justification = "Necessary for web service serialization")]
+        public string optionTitle;
 
         public CascadingDropDownNameValue()
         {

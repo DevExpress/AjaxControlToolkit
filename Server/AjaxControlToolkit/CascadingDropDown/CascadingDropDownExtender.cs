@@ -199,7 +199,7 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Populate DropDownLists with their SelectedValues
         /// </summary>
-        private void CascadingDropDown_ClientStateValuesLoaded(object sender, EventArgs e)
+            private void CascadingDropDown_ClientStateValuesLoaded(object sender, EventArgs e)
         {
             DropDownList dropDownList = (DropDownList)TargetControl;
             dropDownList.Items.Clear();
@@ -213,10 +213,16 @@ namespace AjaxControlToolkit
             }
             else
             {
-                // Parse the value/text out of ClientState and set them
-                string value = clientState.Substring(0, separatorIndex);
-                string text = clientState.Substring(separatorIndex + separator.Length);
-                dropDownList.Items.Add(new ListItem(text, value));
+                // Parse the value/text/optionTitle out of ClientState and set them
+                string[] tokens = Regex.Split(clientState, separator);
+                string value = tokens[0];
+                string text = tokens[1];
+                ListItem item = new ListItem(text, value);
+                if (tokens.Length > 2) {
+                    string optionTitle = tokens[2];
+                    item.Attributes.Add("title", optionTitle);
+                }
+                dropDownList.Items.Add(item);
             }        
         }
 
@@ -339,7 +345,12 @@ namespace AjaxControlToolkit
                 string value = ((null != valueNode) ? valueNode.Value : name);
                 XmlNode defaultNode = node.Attributes.GetNamedItem("default");
                 bool defaultValue = ((null != defaultNode) ? bool.Parse(defaultNode.Value) : false);
-                result.Add(new CascadingDropDownNameValue(name, value, defaultValue));
+                CascadingDropDownNameValue dropDownOptionItem = new CascadingDropDownNameValue(name, value, defaultValue);
+
+                XmlNode optionTitleNode = node.Attributes.GetNamedItem("optionTitle");
+                string optionTitle = ((null != optionTitleNode) ? optionTitleNode.Value : "");
+                dropDownOptionItem.optionTitle = optionTitle;
+                result.Add(dropDownOptionItem);
             }
 
             // Return the list

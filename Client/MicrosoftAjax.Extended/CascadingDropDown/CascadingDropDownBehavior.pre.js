@@ -235,6 +235,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             for (i = 0 ; i < list.length ; i++) {
                 var listItemName = list[i].name;
                 var listItemValue = list[i].value;
+                var listItemOptionTitle = list[i].optionTitle;
                 
                 if (list[i].isDefaultValue) {
                     defaultIndex = i;
@@ -248,6 +249,11 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
                 var optionElement = new Option(listItemName, listItemValue);
                 if (listItemValue == this._selectedValue) {
                     selectedValueOption = optionElement;
+                }
+                // Populate the title attribute with the optionTitle value provided by the service (shows tooltip over item on some
+                // modern browsers)
+                if (listItemOptionTitle) {
+                    optionElement.setAttribute('title', listItemOptionTitle);
                 }
 
                 e.options[e.options.length] = optionElement;
@@ -313,7 +319,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         
         // Record the selected value in the client state
         if ((-1 != e.selectedIndex) && !(this._promptText && (0 == e.selectedIndex))) {
-            this.set_SelectedValue(e.options[e.selectedIndex].value, e.options[e.selectedIndex].text);
+            this.set_SelectedValue(e.options[e.selectedIndex].value, e.options[e.selectedIndex].text, e.options[e.selectedIndex].title);
         } else {
             this.set_SelectedValue('', '');
         }
@@ -515,7 +521,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
          /// </value>
         return this._selectedValue;
     },
-    set_SelectedValue : function(value, text) {
+    set_SelectedValue : function(value, text, title) {
         if (this._selectedValue != value) {
             if (!text) {
                 // Initial population by server; look for "value:::text" pair
@@ -524,13 +530,18 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
                     text = value.slice(i + 3);
                     value = value.slice(0, i);
                 }
+                i = text.indexOf(':::');
+                if (-1 != i) {
+                    title = text.slice(i + 3);
+                    text = text.slice(0, i);
+                }
             }
             var oldValue = this._selectedValue;
             this._selectedValue = value;
             this.raisePropertyChanged('SelectedValue');
             this.raiseSelectionChanged(new Sys.Extended.UI.CascadingDropDownSelectionChangedEventArgs(oldValue, value));
         }
-        Sys.Extended.UI.CascadingDropDownBehavior.callBaseMethod(this, 'set_ClientState', [ this._selectedValue+':::'+text ]);
+        Sys.Extended.UI.CascadingDropDownBehavior.callBaseMethod(this, 'set_ClientState', [ this._selectedValue+':::'+text+':::'+title ]);
     },
 
     get_ServicePath : function() {
