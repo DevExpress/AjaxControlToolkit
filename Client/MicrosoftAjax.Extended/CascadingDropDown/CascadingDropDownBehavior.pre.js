@@ -541,7 +541,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             this.raisePropertyChanged('SelectedValue');
             this.raiseSelectionChanged(new Sys.Extended.UI.CascadingDropDownSelectionChangedEventArgs(oldValue, value));
         }
-        Sys.Extended.UI.CascadingDropDownBehavior.callBaseMethod(this, 'set_ClientState', [ this._selectedValue+':::'+text+':::'+title ]);
+        Sys.Extended.UI.CascadingDropDownBehavior.callBaseMethod(this, 'set_ClientState', [ this._selectedValue+':::' + text+':::' + (title ? (':::' + title) : '') ]);
     },
 
     get_ServicePath : function() {
