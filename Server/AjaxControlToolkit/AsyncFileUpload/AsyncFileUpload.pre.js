@@ -332,7 +332,9 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
 
                 var valid = this._onStart(this._inputFile.value);
                 if (valid) {
-                    mainForm.action = this._postBackUrl + '?AsyncFileUploadID=' + this.get_element().id + '&rnd=' + Math.random().toString().replace(/\./g, "");
+                    var url = this._postBackUrl;
+                    url += url.indexOf("?") === -1 ? "?" : "&";
+                    mainForm.action = url + 'AsyncFileUploadID=' + this.get_element().id + '&rnd=' + Math.random().toString().replace(/\./g, "");
                     mainForm.target = this._iframeName;
                     cleanup = false;
                     this.setThrobber(true);

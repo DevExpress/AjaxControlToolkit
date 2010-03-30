@@ -490,18 +490,26 @@ namespace AjaxControlToolkit
                 ReceivedFile(this.ClientID);
                 if (sendingControlID != null && sendingControlID.StartsWith(this.ClientID))
                 {
-                    if (lastError == String.Empty)
-                    {
+                    string result;
+                    if (lastError == String.Empty) {
                         byte[] bytes = this.FileBytes;
-                        if (bytes != null)
-                        {
-                            Controls.Add(new LiteralControl(bytes.Length.ToString() + "------" + ContentType));
+                        if (bytes != null) {
+                            result = bytes.Length.ToString() + "------" + ContentType;
+                        }
+                        else {
+                            result = "";
                         }
                     }
-                    else
-                    {
-                        Controls.Add(new LiteralControl("error------" + lastError));
+                    else {
+                        result = "error------" + lastError;
                     }
+
+                    TextWriter output = Page.Response.Output;
+                    Page.Response.ClearContent();
+                    output.Write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title></title></head><body><div id='" + ClientID + "'>");
+                    output.Write(result);
+                    output.Write("</div></body></html>");
+                    Page.Response.End();
                 }
             }
         }
@@ -685,7 +693,7 @@ namespace AjaxControlToolkit
                 if (this.hiddenFieldID != String.Empty) descriptor.AddElementProperty("hiddenField", this.hiddenFieldID);
                 if (this.innerTBID != String.Empty) descriptor.AddElementProperty("innerTB", this.innerTBID);
                 if (this.inputFile != null) descriptor.AddElementProperty("inputFile", this.inputFile.ClientID);
-                descriptor.AddProperty("postBackUrl", Path.GetFileName(this.Page.Request.FilePath));
+                descriptor.AddProperty("postBackUrl", this.Page.Request.RawUrl);
                 descriptor.AddProperty("formName", Path.GetFileName(this.Page.Form.Name));
                 if (CompleteBackColor != Color.Empty)
                 {
