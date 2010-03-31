@@ -112,9 +112,9 @@ if (document.documentElement.getBoundingClientRect) {
         }
         // Firefox 3 can return decimals here, so round them.
         // This appears to be consistent with how the display engine actually places the element when there is a decimal.
-        var ex, documentElement = element.ownerDocument.documentElement,
-            offsetX = Math.round(clientRect.left) + documentElement.scrollLeft,
-            offsetY = Math.round(clientRect.top) + documentElement.scrollTop;
+        var ex, ownerDoc = element.ownerDocument, documentElement = ownerDoc.documentElement,
+            offsetX = Math.round(clientRect.left) + (documentElement.scrollLeft || (ownerDoc.body ? ownerDoc.body.scrollLeft : 0)),
+            offsetY = Math.round(clientRect.top) + (documentElement.scrollTop || (ownerDoc.body ? ownerDoc.body.scrollTop : 0));
         if (isBrowser("InternetExplorer")) {
             // When the window is an iframe, the frameborder needs to be added. This is only available from
             // script when the parent window is in the same domain as the frame, hence the try/catch.

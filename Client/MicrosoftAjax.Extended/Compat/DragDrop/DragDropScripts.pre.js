@@ -739,9 +739,6 @@ Sys.Extended.UI.GenericDragDropManager.prototype = {
         this._mouseMoveHandler = Function.createDelegate(this, this._onMouseMove);
         this._keyPressHandler = Function.createDelegate(this, this._onKeyPress);
         this._scrollerTickHandler = Function.createDelegate(this, this._onScrollerTick);
-        if (Sys.Browser.agent === Sys.Browser.Safari) {
-            Sys.Extended.UI.GenericDragDropManager.__loadSafariCompatLayer(this);
-        }
         this._scroller = new Sys.Timer();
         this._scroller.set_interval(10);
         this._scroller.add_tick(this._scrollerTickHandler);
@@ -837,27 +834,6 @@ Sys.Extended.UI.GenericDragDropManager.prototype = {
     }
 }
 Sys.Extended.UI.GenericDragDropManager.registerClass('Sys.Extended.UI.GenericDragDropManager', Sys.Extended.UI.IEDragDropManager);
-
-
-if (Sys.Browser.agent === Sys.Browser.Safari) {
-    Sys.Extended.UI.GenericDragDropManager.__loadSafariCompatLayer = function(ddm) {
-        ddm._getScrollOffset = ddm.getScrollOffset;
-
-        ddm.getScrollOffset = function(element, recursive) {
-            return { x: 0, y: 0 };
-        }
-
-        ddm._getBrowserRectangle = ddm.getBrowserRectangle;
-
-        ddm.getBrowserRectangle = function() {
-            var browserRect = ddm._getBrowserRectangle();
-            
-            var offset = ddm._getScrollOffset(document.body, true);
-            return { x: browserRect.x + offset.x, y: browserRect.y + offset.y,
-                width: browserRect.width + offset.x, height: browserRect.height + offset.y };
-        }
-    }
-}
 
 } // execute
 
