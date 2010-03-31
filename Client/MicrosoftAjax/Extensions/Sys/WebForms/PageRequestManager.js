@@ -1365,6 +1365,10 @@ $type.prototype = {
                     Array.add(scriptDisposeNodes, deltaNode);
                     break;
                 case "pageRedirect":
+                    if (versionNode && parseFloat(versionNode.content) >= 4) {
+                        // asp.net 4+ will uri encode the entire value
+                        deltaNode.content = unescape(deltaNode.content);
+                    }
                     // DevDiv Bugs 100201: IE does not set referrer header on redirect if you set window.location, inject anchor node instead
                     // dynamic anchor technique only works on IE
                     if (Sys.Browser.agent === Sys.Browser.InternetExplorer) {
