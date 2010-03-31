@@ -160,7 +160,10 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     },
     addHandlers: function() {
-        $addHandlers(this._optionListControl,
+        
+        var optionListControl = this.get_optionListControl();
+
+        $addHandlers(optionListControl,
 		{
 		    'mouseover': this._listMouseOverHandler,
 		    'mouseout': this._listMouseOutHandler,
@@ -194,18 +197,18 @@ Sys.Extended.UI.ComboBox.prototype = {
         $addHandler(document, 'click', this._documentClickHandler);
         
         // FF doesn't have an onmousewheel event
-        if (typeof (this._optionListControl.onmousewheel) === 'undefined') {
-            $addHandler(this._optionListControl, 'DOMMouseScroll', this._listMouseWheelHandler);
+        if (typeof (optionListControl.onmousewheel) === 'undefined') {
+            $addHandler(optionListControl, 'DOMMouseScroll', this._listMouseWheelHandler);
             $addHandler(document, 'DOMMouseScroll', this._documentMouseWheelHandler);
         }
         else {
-            $addHandler(this._optionListControl, 'mousewheel', this._listMouseWheelHandler);
+            $addHandler(optionListControl, 'mousewheel', this._listMouseWheelHandler);
             $addHandler(document, 'mousewheel', this._documentMouseWheelHandler);
         }
     },
     clearHandlers: function() {
 
-        $clearHandlers(this._optionListControl);
+        $clearHandlers(this.get_optionListControl());
         $clearHandlers(this.get_textBoxControl());
         $clearHandlers(this.get_buttonControl());
         $clearHandlers(document);
@@ -244,27 +247,28 @@ Sys.Extended.UI.ComboBox.prototype = {
     initializeOptionList: function() {
 
         // when there are no option items, server does not render a UL element. 
-        if (this._optionListControl == null) {
+        if (this.get_optionListControl() == null) {
             var optionList = document.createElement('ul');
             this.get_element().appendChild(optionList);
             this.set_optionListControl(optionList);
         }
+        var optionListControl = this.get_optionListControl();
 
         // force inline display on Safari by moving the list to the bottom of the form.
         if (Sys.Browser.agent === Sys.Browser.Safari || Sys.Browser.agent === Sys.Browser.WebKit) {
-            this.get_element().removeChild(this._optionListControl);
+            this.get_element().removeChild(optionListControl);
             var parent = this.get_element().parentNode;
             while (typeof (parent) != typeof (document.forms[0])) {
                 parent = parent.parentNode
             }
             var safariListContainer = document.createElement('div');
             safariListContainer.className = this.get_element().className;
-            safariListContainer.appendChild(this._optionListControl);
+            safariListContainer.appendChild();
             parent.appendChild(safariListContainer);
         }
 
         // initialize style
-        var style = this._optionListControl.style;
+        var style = optionListControl.style;
 
         // option list is originally display-none to force inline rendering
         style.display = 'block';
@@ -272,7 +276,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // build an array of list items
         this._optionListItems = new Array();
-        var children = this._optionListControl.childNodes;
+        var children = optionListControl.childNodes;
         for (var i = 0; i < children.length; i++) {
 
             // evaluate the current node to see if it should be added to the list items array
@@ -281,7 +285,7 @@ Sys.Extended.UI.ComboBox.prototype = {
             // there may be more childNodes than items in the list -- remove non-li elements
             if (child.tagName == undefined || child.tagName.toUpperCase() != 'LI') {
                 // remove the child, then re-evaluate this index
-                this._optionListControl.removeChild(child);
+                optionListControl.removeChild(child);
                 i--;
                 continue;
             }
@@ -329,7 +333,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 		    'id': this.get_id() + '_PopupBehavior'
 			, 'parentElement': this.get_textBoxControl()
 			, "positioningMode": Sys.Extended.UI.PositioningMode.BottomLeft
-		}, null, null, this._optionListControl);
+		}, null, null, optionListControl);
         this._popupBehavior.add_showing(this._popupShowingHandler);
         this._popupBehavior.add_shown(this._popupShownHandler);
         this._popupBehavior.add_hiding(this._popupHidingHandler);
@@ -345,7 +349,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // show and hide the popup behavior to initialize dimensions and overflow
         this._popupShowing();
-        this._optionListControl.style.display = "none";
+        optionListControl.style.display = "none";
 
     },
     initializeOptionListItem: function(liElement) {
@@ -438,7 +442,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
         // set width & height
-        var style = this._optionListControl.style;
+        var style = this.get_optionListControl().style;
         style.height = maxHeight + 'px';
         style.width = maxWidth + 'px';
 
@@ -461,16 +465,18 @@ Sys.Extended.UI.ComboBox.prototype = {
             this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.TopLeft);
         else if (compositeAlign == 'TopRight')
             this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.TopRight);
-        this._optionListControl.style.visibility = 'hidden';
+        
+        style.visibility = 'hidden';
 
     },
     _popupShown: function() {
 
-        this._optionListControl.style.display = 'block';
+        var optionListControl = this.get_optionListControl();
+        optionListControl.style.display = 'block';
 
         // check and enforce correct positioning.
         var tableBounds = Sys.UI.DomElement.getBounds(this.get_comboTableControl());
-        var listBounds = Sys.UI.DomElement.getBounds(this._optionListControl);
+        var listBounds = Sys.UI.DomElement.getBounds(optionListControl);
         var textBoxBounds = Sys.UI.DomElement.getBounds(this.get_textBoxControl());
         var y = listBounds.y;
         var x;
@@ -484,22 +490,24 @@ Sys.Extended.UI.ComboBox.prototype = {
             x = textBoxBounds.x - (listBounds.width - textBoxBounds.width);
         }
 
-        Sys.UI.DomElement.setLocation(this._optionListControl, x, y);
+        Sys.UI.DomElement.setLocation(optionListControl, x, y);
 
         // enforce default scroll
         this._ensureHighlightedIndex();
         this._ensureScrollTop();
 
         // show the option list
-        this._optionListControl.style.visibility = 'visible';
+        optionListControl.style.visibility = 'visible';
 
     },
     _popupHiding: function() {
 
         // hide the option list
         this._highlightSuggestedItem = false;
-        this._optionListControl.style.display = 'none';
-        this._optionListControl.style.visibility = 'hidden';
+        
+        var style = this.get_optionListControl().style;
+        style.display = 'none';
+        style.visibility = 'hidden';
 
     },
     _onButtonClick: function(e) {
@@ -580,10 +588,8 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
         // each event scrolls approximately 1 list item up or down
-        var scrollStep = this._getOptionListItemHeight() * direction;
-        var newScrollTop = this._optionListControl.scrollTop + scrollStep;
-        this._optionListControl.scrollTop = newScrollTop;
-
+        this.get_optionListControl().scrollTop += this._getOptionListItemHeight() * direction;
+        
         // tell parents we have handled this event
         e.stopPropagation();
         e.preventDefault();
@@ -591,11 +597,11 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     },
     _onListMouseOver: function(e) {
-
+        var optionListControl = this.get_optionListControl();
         // do not highlight unless an LI is being hovered
-        if (e.target !== this._optionListControl) {
+        if (e.target !== optionListControl) {
             var target = e.target;
-            var children = this._optionListControl.childNodes;
+            var children = optionListControl.childNodes;
 
             // loop through children to find a match with the target
             for (var i = 0; i < children.length; ++i) {
@@ -619,16 +625,16 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     },
     _onListMouseDown: function(e) {
+        var optionListControl = this.get_optionListControl();
 
-        if (e.target == this._optionListControl || e.target.tagName == 'scrollbar') {
+        if (e.target == optionListControl || e.target.tagName == 'scrollbar') {
             return true;
         }
 
         // set the TextBox to the highlighted ListItem's text and update selectedIndex
-        if (e.target !== this._optionListControl) {
-            var highlightedItem = this._optionListControl.
-				childNodes[this._highlightedIndex];
-            var text = this._optionListItems[this._highlightedIndex].text;
+        if (e.target !== optionListControl) {
+            var highlightedItem = optionListControl.childNodes[this._highlightedIndex],
+                text = this._optionListItems[this._highlightedIndex].text;
             this.get_textBoxControl().value = text;
             this.set_selectedIndex(this._highlightedIndex);
 
@@ -648,7 +654,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     _onListClick: function(e) {
 
-        if (e.target == this._optionListControl) {
+        if (e.target == this.get_optionListControl()) {
             return true;
         }
 
@@ -920,7 +926,7 @@ Sys.Extended.UI.ComboBox.prototype = {
             return;
         }
 
-        var children = this._optionListControl.childNodes;
+        var children = this.get_optionListControl().childNodes;
         var liElement = children[index];
 
         // item is being hovered
@@ -1301,14 +1307,16 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     _ensureScrollTop: function() {
 
+        var optionListControl = this.get_optionListControl();
+        
         // automatically scroll if the highlighted index is not visible. 
         if (this._highlightedIndex >= 0) {
-            var itemHeight = this._getOptionListItemHeight();
-            var itemTop = itemHeight * this._highlightedIndex;
-            var scrollBottom = this._optionListControl.scrollTop + this._optionListControl.clientHeight;
+            var itemHeight = this._getOptionListItemHeight(),
+                itemTop = itemHeight * this._highlightedIndex,
+                scrollBottom = optionListControl.scrollTop + optionListControl.clientHeight;
 
-            if (itemTop <= this._optionListControl.scrollTop || itemTop >= scrollBottom)
-                this._optionListControl.scrollTop = this._highlightedIndex * itemHeight;
+            if (itemTop <= optionListControl.scrollTop || itemTop >= scrollBottom)
+                optionListControl.scrollTop = this._highlightedIndex * itemHeight;
         }
 
     },
@@ -1463,13 +1471,15 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     _getOptionListItemHeight: function() {
 
+        var optionListControl = this.get_optionListControl();
+        
         // gets the height of an individual option list item
-        if (this._optionListItemHeight == null && this._optionListControl.scrollHeight > 0) {
-            this._optionListItemHeight = Math.round(this._optionListControl.scrollHeight / this._optionListItems.length);
+        if (this._optionListItemHeight == null && optionListControl.scrollHeight > 0) {
+            this._optionListItemHeight = Math.round(optionListControl.scrollHeight / this._optionListItems.length);
         }
         else if (Sys.Browser.agent === Sys.Browser.InternetExplorer && Sys.Browser.version < 7
-            && Math.round(this._optionListControl.scrollHeight / this._optionListItems.length) < this._optionListItemHeight) {
-            this._optionListItemHeight = Math.round(this._optionListControl.scrollHeight / this._optionListItems.length);
+            && Math.round(optionListControl.scrollHeight / this._optionListItems.length) < this._optionListItemHeight) {
+            this._optionListItemHeight = Math.round(optionListControl.scrollHeight / this._optionListItems.length);
         }
         return this._optionListItemHeight;
 
@@ -1501,13 +1511,15 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     _getOptionListWidth: function() {
 
+        var optionListControl = this.get_optionListControl();
+        
         // gets the width of the option list
         if (this._optionListWidth == null) {
             var leftBorder = 1;
             var rightBorder = 1;
             var leftPadding = 0;
             var rightPadding = 0;
-            var style = this._optionListControl.style;
+            var style = optionListControl.style;
 
 
             // before doing anything, make sure overflow is auto
@@ -1527,9 +1539,9 @@ Sys.Extended.UI.ComboBox.prototype = {
             style.width = bestWidth + 'px';
 
             // now compare the list's scrollWidth to the box width
-            if (this.get_comboTableControl().offsetWidth < this._optionListControl.scrollWidth) {
+            if (this.get_comboTableControl().offsetWidth < optionListControl.scrollWidth) {
                 // allow the list to extend as wide as necessary according to its contents
-                bestWidth = this._optionListControl.scrollWidth + rightPadding + leftPadding;
+                bestWidth = optionListControl.scrollWidth + rightPadding + leftPadding;
             }
 
             // hide the overflow, as there shouldn't be any scrollbars needed now

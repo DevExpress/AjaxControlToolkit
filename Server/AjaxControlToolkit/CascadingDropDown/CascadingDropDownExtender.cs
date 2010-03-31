@@ -199,7 +199,7 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Populate DropDownLists with their SelectedValues
         /// </summary>
-            private void CascadingDropDown_ClientStateValuesLoaded(object sender, EventArgs e)
+        private void CascadingDropDown_ClientStateValuesLoaded(object sender, EventArgs e)
         {
             DropDownList dropDownList = (DropDownList)TargetControl;
             dropDownList.Items.Clear();
