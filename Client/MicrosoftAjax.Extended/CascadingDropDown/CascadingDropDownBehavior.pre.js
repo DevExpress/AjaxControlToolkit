@@ -228,16 +228,17 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         }
 
         // Add each item to the DropDownList, selecting the previously selected item
-        var selectedValueOption = null;
-        var defaultIndex = -1;
+        var selectedValueOption = null,
+            defaultIndex = -1;
 
         if (list) {
             for (i = 0 ; i < list.length ; i++) {
-                var listItemName = list[i].name;
-                var listItemValue = list[i].value;
-                var listItemOptionTitle = list[i].optionTitle;
+                var item = list[i], 
+                    listItemName = item.name,
+                    listItemValue = item.value,
+                    listItemOptionTitle = item.optionTitle;
                 
-                if (list[i].isDefaultValue) {
+                if (item.isDefaultValue) {
                     defaultIndex = i;
                     if (this._promptText) {
                         // bump the index if there's a prompt item in the list.
