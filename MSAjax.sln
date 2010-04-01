@@ -56,12 +56,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSBuild", "Tools\JSBuild\JS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptOutput", "ScriptOutput", "{F905803E-B5B4-4F83-BBDB-0E2CA3DD5F5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevSite", "DevSite\DevSite.csproj", "{AD5692F8-892E-4C02-90C9-07E9D10D2058}"
-	ProjectSection(ProjectDependencies) = postProject
-		{53BF3496-0AD1-491C-A367-258E84479594} = {53BF3496-0AD1-491C-A367-258E84479594}
-		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit", "Server\AjaxControlToolkit\AjaxControlToolkit.csproj", "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}"
 	ProjectSection(ProjectDependencies) = postProject
 		{53BF3496-0AD1-491C-A367-258E84479594} = {53BF3496-0AD1-491C-A367-258E84479594}
@@ -112,7 +106,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PatchTestsWebSite", "PatchT
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs03.codeplex.com/
 		SccLocalPath0 = .
@@ -135,13 +129,10 @@ Global
 		SccProjectTopLevelParentUniqueName4 = MSAjax.sln
 		SccProjectName4 = Tools/JSBuild
 		SccLocalPath4 = Tools\\JSBuild
-		SccProjectUniqueName5 = DevSite\\DevSite.csproj
-		SccProjectName5 = DevSite
-		SccLocalPath5 = DevSite
-		SccProjectUniqueName6 = Server\\AjaxControlToolkit\\AjaxControlToolkit.csproj
-		SccProjectTopLevelParentUniqueName6 = MSAjax.sln
-		SccProjectName6 = Server/AjaxControlToolkit
-		SccLocalPath6 = Server\\AjaxControlToolkit
+		SccProjectUniqueName5 = Server\\AjaxControlToolkit\\AjaxControlToolkit.csproj
+		SccProjectTopLevelParentUniqueName5 = MSAjax.sln
+		SccProjectName5 = Server/AjaxControlToolkit
+		SccLocalPath5 = Server\\AjaxControlToolkit
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -191,16 +182,6 @@ Global
 		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Release|.NET.ActiveCfg = Release|Any CPU
-		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{AD5692F8-892E-4C02-90C9-07E9D10D2058}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{66C2EB32-CE54-4374-B73F-2A97EF13DD89}.Debug|Any CPU.Build.0 = Debug|Any CPU
