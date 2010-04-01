@@ -663,7 +663,7 @@
             _getUrl: function _getUrl(scriptInfo) {
                 var debug = Sys.debug,
                     name = scriptInfo.name,
-                    path = (debug ? (scriptInfo.debugUrl || scriptInfo.releaseUrl) : scriptInfo.releaseUrl).replace(/\{0\}/, name) || "";
+                    path = (debug ? (scriptInfo.debugUrl || scriptInfo.releaseUrl) : scriptInfo.releaseUrl).replace(/\{0\}/g, name) || "";
                 if (path.substr(0, 2) === "%/") {
                     var basePath = this.basePath,
                         hasSlash = (basePath.charAt(basePath.length-1) === "/");
