@@ -1,4 +1,9 @@
 $type = Sys.Net.WebServiceProxy = function WebServiceProxy() {
+    var type = Object.getType(this);
+    
+    if (type._staticInstance && (typeof(type._staticInstance.get_enableJsonp) === "function")) {
+        this._jsonp = (type._staticInstance.get_enableJsonp());
+    }
 }
 $type.prototype = {
     get_timeout: function WebServiceProxy$get_timeout() {
