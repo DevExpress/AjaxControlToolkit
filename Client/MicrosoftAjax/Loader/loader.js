@@ -628,15 +628,21 @@
                 // Urls found are stored in _loadedScripts so even script elements that have been removed will be remembered.
                 foreach(all("script"), function(script) {
                     var src = script.src;
-                    if (src) loaded[src] = true;
+                    if (src && !loaded[src]) loaded[src] = [];
                 });
-                if (loaded[script.src]) {
-                    if (callback) callback();
+                var ls = loaded[src];
+                if (ls) {
+                    if (callback) ls.push(callback);
                 }
                 else {
-                    listenOnce(script, "load", "onreadystatechange", callback, true, true);
+                    listenOnce(script, "load", "onreadystatechange", function() {
+                        foreach(ls, function(callback) {callback();});
+                        loaded[src] = null;
+                    }, 
+                    true, true);
+
                     this._loading++;
-                    loaded[script.src] = true;
+                    loaded[src] = ls = callback ? [callback] : [];
                     all("head")[0].appendChild(script);
                 }
             },
