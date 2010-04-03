@@ -1,0 +1,58 @@
+<%@ Master
+    Language="C#"
+    AutoEventWireup="true"
+    CodeFile="DefaultMaster.master.cs"
+    Inherits="DefaultMaster_Default"  %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="MasterHead" runat="server">
+    <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body><form id="MasterPageForm" runat="server">
+    <div id="master_header">
+        <div id="master_headertop">
+            <asp:HyperLink ID="HomePageLink" runat="server" NavigateUrl="~/Default.aspx" ToolTip="Ajax Control Toolkit">
+                <asp:Image runat="server" ID="HeaderImage" ImageUrl="~/images/headertop_img.jpg" AlternateText="Ajax Control Toolkit" />
+            </asp:HyperLink>
+        </div>
+        <div id="master_headerbottom"></div>
+    </div>
+    <div id="master_page">
+        <div id="master_menu">
+            <div class="sidebar">
+                <div class="sidebarheader">Samples</div>
+                <div id="master_sidebarSamples" class="sidebarcontent">
+                    <asp:Repeater ID="SamplesLinks" runat="server" DataSourceID="SamplesSiteMap" EnableViewState="false">
+                        <ItemTemplate>
+                            <asp:HyperLink ID="SamplesLink" runat="server" Text='<%# Eval("Title") %>' NavigateUrl='<%# Eval("Url") %>' EnableViewState="false" /><br /></ItemTemplate>
+                    </asp:Repeater>
+                    <asp:SiteMapDataSource ID="SamplesSiteMap" runat="server" SiteMapProvider="SamplesSiteMap" ShowStartingNode="false" />
+                </div>
+            </div>
+            <div class="sidebar">
+                <div class="sidebarheader">Walkthroughs</div>
+                            
+                <div id="master_sidebarWalkthroughs" class="sidebarcontent">
+                    <asp:HyperLink ID="GettingStartedLink" runat="server" Text="Getting Started" NavigateUrl="http://www.asp.net/learn/Ajax-Control-Toolkit/tutorial-47-cs.aspx" EnableViewState="false" /><br />
+                    <asp:HyperLink ID="SampleExtenderLink" runat="server" Text="Using a Sample Extender" NavigateUrl="http://www.asp.net/learn/Ajax-Control-Toolkit/tutorial-48-cs.aspx" EnableViewState="false" /><br />
+                    <asp:HyperLink ID="CreateExtenderLink" runat="server" Text="Creating a New Extender" NavigateUrl="http://www.asp.net/learn/Ajax-Control-Toolkit/tutorial-49-cs.aspx" EnableViewState="false" /><br />
+                    <asp:HyperLink ID="TutorialsLink" runat="server" Text="Toolkit Tutorials" NavigateUrl="http://www.asp.net/learn/ajax/#ajaxcontroltoolkit" EnableViewState="false" /><br />
+                    <asp:HyperLink ID="VideosLink" runat="server" Text="Tookit Videos" NavigateUrl="http://www.asp.net/learn/ajax-videos/#ajaxcontroltoolkit" EnableViewState="false" /><br /><br />
+                    <p>
+                        <span class="heading">Other Walkthroughs:</span></p>
+                    <asp:Repeater ID="WalkthroughsLinks" runat="server" DataSourceID="WalkthroughsSiteMap" EnableViewState="false">
+                        <ItemTemplate>
+                            <asp:HyperLink ID="SamplesLink" runat="server" Text='<%# Eval("Title") %>' NavigateUrl='<%# Eval("Url") %>' EnableViewState="false" /><br /></ItemTemplate>
+                    </asp:Repeater>
+                    <asp:SiteMapDataSource ID="WalkthroughsSiteMap" runat="server" SiteMapProvider="WalkthroughsSiteMap" ShowStartingNode="false" />
+                </div>
+            </div>
+        </div>
+        <div id="master_content">
+            <div id="master_contentheader"></div>
+            <div id="master_contentplaceholder"><asp:ContentPlaceHolder ID="SampleContent" runat="server" /></div>
+            <div id="master_contentfooter">Copyright &#169; 2006-2009 Microsoft Corporation. All Rights Reserved.</div>
+        </div>
+    </div>
+</form></body>
+</html>
