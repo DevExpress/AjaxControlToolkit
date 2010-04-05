@@ -800,6 +800,8 @@ $type.prototype = {
         this._placeholders = placeholders = [];
         this._containers = containers = [];
         this._contexts = new Array(len);
+        // ensure the regular placeholder is hidden
+        if (ph) ph.style.display = 'none';
         for (var i = 0; i < len; i++) {
             var item = list[i];
             args = new Sys.UI.DataViewEventArgs(item);
