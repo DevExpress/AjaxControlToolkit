@@ -1,4 +1,0 @@
-<asp:Panel runat="server"
-    SkinID="ContextMenuPanel"
-    Style="display: none; visibility: hidden;"
-    CssClass="ContextMenuPanel" />
