@@ -31,7 +31,7 @@ an WCF Data Service, by using a Sys.Data.OpenDataContext.
         });
     
         function onRendering(sender, args) {
-            imageData = args.get_data();
+            imageData = args.data;
             Sys.Observer.makeObservable(imageData);
         }
 

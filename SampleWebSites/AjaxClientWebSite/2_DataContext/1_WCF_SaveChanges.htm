@@ -29,7 +29,7 @@ a WCF service, by using a Sys.Data.DataContext.
     
         function onRendering(sender, args) {
             imagesList = sender;
-            imageData = args.get_data();
+            imageData = args.data;
             Sys.Observer.makeObservable(imageData);
         }
 

@@ -11,7 +11,6 @@ $type = Sys.UI.DataViewEventArgs = function UI$DataViewEventArgs(data) {
     Sys.UI.DataViewEventArgs.initializeBase(this);
 }
 $type.prototype = {
-    context: null,
     data: null,
     itemTemplate: null,
     itemPlaceholder: null
