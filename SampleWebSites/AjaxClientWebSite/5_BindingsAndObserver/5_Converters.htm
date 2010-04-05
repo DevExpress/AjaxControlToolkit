@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates a converter that converts a boolean value to a string value.
+The converter is added to the Sys.converters object, and uses values (trueValue and falseValue) 
+that are set as expando properties on the binding.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Converters</title>
+    <link href="../styles/Images.css" rel="stylesheet" type="text/css"/>
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjax.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjaxTemplates.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var editMode = false;
+                
+        Sys.converters.boolToString = function(value, binding) {
+            return value ? binding.trueValue : binding.falseValue
+        }
+
+        Sys.onReady(function() {
+            $addHandler("#switchMode", "click", function() {
+                Sys.Observer.setValue(window, "editMode", !editMode);
+            });
+        });
+   </script>
+</head>
+
+<body xmlns:sys="javascript:Sys">
+    
+    <input id="switchMode" type="button" sys:value="{binding editMode, source={{window}}, convert=boolToString, trueValue=Browse, falseValue=Edit}"/>  
+    
+    <div sys:innerhtml="{binding editMode, source={{window}}, convert=boolToString, trueValue=Browse, falseValue=Edit}"></div>  
+
+</body>
+</html>
+

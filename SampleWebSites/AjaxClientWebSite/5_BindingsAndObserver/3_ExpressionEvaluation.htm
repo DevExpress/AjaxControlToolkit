@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates top-level expression evaluation. 
+
+Notice that the expression {{image.Uri}} is evaluated even 
+though it is not contained in a template.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Expression Evaluation</title>
+    <link href="../styles/images.css" rel="stylesheet" type="text/css"/>
+ 
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjax.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjaxTemplates.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        var image = { Name: "Morro Rock", Uri: "../images/p58.jpg" };
+
+   </script>
+</head>
+
+<body xmlns:sys="javascript:Sys">
+
+    <input type="text" sys:value="{{ image.Name }}"/>
+        
+    <div class="namedimageitem">
+        <img sys:src="{{ image.Uri }}" />
+        <div sys:innertext="{{ image.Name }}"></div>
+    </div>
+
+</body>
+</html>
+
+

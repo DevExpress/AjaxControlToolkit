@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates top-level bindings. 
+
+Notice that the expression {binding image.Uri, source={{window}}} 
+is interpreted outside of any template.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Binding</title>
+    <link href="../styles/images.css" rel="stylesheet" type="text/css"/>
+ 
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjax.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjaxTemplates.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        var image = { Name: "", Uri: "../images/question.jpg" };
+    
+        var gallery = [
+            { Name: "Pier", Uri: "../images/p59.jpg" },
+            { Name: "Giraffe Zoom", Uri: "../images/p183.jpg" }
+        ];
+
+            Sys.onReady(function() {
+
+                $addHandler("#setImage1", "click", function() {
+                    Sys.Observer.setValue(window, "image", gallery[0]);
+                });
+
+                $addHandler("#setImage2", "click", function() {
+                    Sys.Observer.setValue(window, "image", gallery[1]);
+                });
+
+            });
+   </script>
+</head>
+
+<body xmlns:sys="javascript:Sys">
+
+    <input id="setImage1" type="button" value="Set Image One"/>  
+    <input id="setImage2" type="button" value="Set Image Two"/>  
+    
+    <input type="text" value="first" sys:value="{binding image.Name, source={{window}}}"/>
+
+    <div class="namedimageitem">
+        <img sys:src="{binding image.Uri, source={{window}}}"/>
+        <div sys:innertext="{binding image.Name, source={{window}}}"></div>
+    </div>
+
+</body>
+</html>
+
+
