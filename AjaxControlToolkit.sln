@@ -64,6 +64,50 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit", "Serve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Client\UnitTests\UnitTests.csproj", "{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleWebSites", "SampleWebSites", "{03BF07FE-5A7F-46BF-832B-2DD6BCBA9133}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxClientWebSite", "SampleWebSites\AjaxClientWebSite", "{9A227814-BEA4-4FAE-A013-6704BD31D076}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "3.5"
+		ProjectReferences = "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}|AjaxControlToolkit.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/AjaxClientWebSite"
+		Debug.AspNetCompiler.PhysicalPath = "SampleWebSites\AjaxClientWebSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxClientWebSite\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/AjaxClientWebSite"
+		Release.AspNetCompiler.PhysicalPath = "SampleWebSites\AjaxClientWebSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxClientWebSite\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "29283"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitWebSite", "SampleWebSites\AjaxControlToolkitWebSite", "{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "3.5"
+		ProjectReferences = "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}|AjaxControlToolkit.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/AjaxControlToolkitWebSite"
+		Debug.AspNetCompiler.PhysicalPath = "SampleWebSites\AjaxControlToolkitWebSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkitWebSite\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/AjaxControlToolkitWebSite"
+		Release.AspNetCompiler.PhysicalPath = "SampleWebSites\AjaxControlToolkitWebSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkitWebSite\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "29284"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -133,6 +177,26 @@ Global
 		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9A227814-BEA4-4FAE-A013-6704BD31D076}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{9A227814-BEA4-4FAE-A013-6704BD31D076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A227814-BEA4-4FAE-A013-6704BD31D076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A227814-BEA4-4FAE-A013-6704BD31D076}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9A227814-BEA4-4FAE-A013-6704BD31D076}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9A227814-BEA4-4FAE-A013-6704BD31D076}.Release|.NET.ActiveCfg = Debug|Any CPU
+		{9A227814-BEA4-4FAE-A013-6704BD31D076}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A227814-BEA4-4FAE-A013-6704BD31D076}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{9A227814-BEA4-4FAE-A013-6704BD31D076}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9A227814-BEA4-4FAE-A013-6704BD31D076}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}.Release|.NET.ActiveCfg = Debug|Any CPU
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -147,5 +211,7 @@ Global
 		{F905803E-B5B4-4F83-BBDB-0E2CA3DD5F5E} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C} = {6ED50EB8-6E53-47DF-AE45-181059C00E2F}
+		{9A227814-BEA4-4FAE-A013-6704BD31D076} = {03BF07FE-5A7F-46BF-832B-2DD6BCBA9133}
+		{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5} = {03BF07FE-5A7F-46BF-832B-2DD6BCBA9133}
 	EndGlobalSection
 EndGlobal
