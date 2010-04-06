@@ -21,10 +21,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{8D9AE7F6
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FunctionalTests", "Server\Tests\FunctionalTests", "{DE4EFA54-306B-42F3-91F5-6E9AA4C5B14D}"
 	ProjectSection(WebsiteProperties) = preProject
-		SccProjectName = "SAK"
-		SccAuxPath = "SAK"
-		SccLocalPath = "SAK"
-		SccProvider = "SAK"
+		SccProjectName = ""
+		SccAuxPath = ""
+		SccLocalPath = ""
+		SccProvider = ""
 		TargetFramework = "3.5"
 		ProjectReferences = "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}|AjaxControlToolkit.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/FunctionalTests"
@@ -65,39 +65,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Client\UnitTests\UnitTests.csproj", "{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs03.codeplex.com/
-		SccLocalPath0 = .
-		SccWebProject1 = true
-		SccProjectUniqueName1 = Server\\Tests\\FunctionalTests
-		SccProjectTopLevelParentUniqueName1 = MSAjax.sln
-		SccProjectName1 = Server/Tests/FunctionalTests
-		SccLocalPath1 = .
-		SccProjectFilePathRelativizedFromConnection1 = Server\\Tests\\FunctionalTests\\
-		SccProjectEnlistmentChoice1 = 2
-		SccProjectUniqueName2 = Client\\MicrosoftAjax\\MicrosoftAjax.csproj
-		SccProjectTopLevelParentUniqueName2 = MSAjax.sln
-		SccProjectName2 = Client/MicrosoftAjax
-		SccLocalPath2 = Client\\MicrosoftAjax
-		SccProjectUniqueName3 = Client\\MicrosoftAjax.Extended\\MicrosoftAjax.Extended.csproj
-		SccProjectTopLevelParentUniqueName3 = MSAjax.sln
-		SccProjectName3 = Client/MicrosoftAjax.Extended
-		SccLocalPath3 = Client\\MicrosoftAjax.Extended
-		SccProjectUniqueName4 = Tools\\JSBuild\\JSBuild.csproj
-		SccProjectTopLevelParentUniqueName4 = MSAjax.sln
-		SccProjectName4 = Tools/JSBuild
-		SccLocalPath4 = Tools\\JSBuild
-		SccProjectUniqueName5 = Server\\AjaxControlToolkit\\AjaxControlToolkit.csproj
-		SccProjectTopLevelParentUniqueName5 = MSAjax.sln
-		SccProjectName5 = Server/AjaxControlToolkit
-		SccLocalPath5 = Server\\AjaxControlToolkit
-		SccProjectUniqueName6 = Client\\UnitTests\\UnitTests.csproj
-		SccProjectTopLevelParentUniqueName6 = MSAjax.sln
-		SccProjectName6 = Client/UnitTests
-		SccLocalPath6 = Client\\UnitTests
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
 		Debug|Any CPU = Debug|Any CPU
