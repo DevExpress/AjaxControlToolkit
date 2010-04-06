@@ -104,9 +104,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "PatchTestsWebSite", "PatchT
 		VWDPort = "26523"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Client\UnitTests\UnitTests.csproj", "{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 7
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs03.codeplex.com/
 		SccLocalPath0 = .
@@ -133,6 +135,10 @@ Global
 		SccProjectTopLevelParentUniqueName5 = MSAjax.sln
 		SccProjectName5 = Server/AjaxControlToolkit
 		SccLocalPath5 = Server\\AjaxControlToolkit
+		SccProjectUniqueName6 = Client\\UnitTests\\UnitTests.csproj
+		SccProjectTopLevelParentUniqueName6 = MSAjax.sln
+		SccProjectName6 = Client/UnitTests
+		SccLocalPath6 = Client\\UnitTests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -212,6 +218,16 @@ Global
 		{FCF2B660-0211-4A2B-8D4E-5C537AEEA624}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{FCF2B660-0211-4A2B-8D4E-5C537AEEA624}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{FCF2B660-0211-4A2B-8D4E-5C537AEEA624}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|.NET.ActiveCfg = Release|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -224,6 +240,7 @@ Global
 		{53BF3496-0AD1-491C-A367-258E84479594} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{93A29C0B-4AC3-4179-A49C-C524023343A5} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{F905803E-B5B4-4F83-BBDB-0E2CA3DD5F5E} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C} = {6ED50EB8-6E53-47DF-AE45-181059C00E2F}
 	EndGlobalSection
 EndGlobal
