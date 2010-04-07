@@ -84,7 +84,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxClientWebSite", "Sample
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "29283"
+		VWDPort = "33627"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitWebSite", "SampleWebSites\AjaxControlToolkitWebSite", "{BC2D6659-BF3A-4324-B9AF-5B11FC8B39B5}"
