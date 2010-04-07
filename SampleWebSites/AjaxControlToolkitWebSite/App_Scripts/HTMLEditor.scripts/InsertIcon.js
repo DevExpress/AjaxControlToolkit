@@ -1,13 +1,13 @@
-Type.registerNamespace("AjaxControlToolkit.HTMLEditor.CustomToolbarButton");
+Type.registerNamespace("Sys.Extended.UI.HTMLEditor.CustomToolbarButton");
 
-AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertIcon = function(element) {
-AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertIcon.initializeBase(this, [element]);
+Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertIcon = function(element) {
+Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertIcon.initializeBase(this, [element]);
 }
 
-AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertIcon.prototype = {
+Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertIcon.prototype = {
 
     callMethod: function() {
-        if (!AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertIcon.callBaseMethod(this, "callMethod")) return false;
+        if (!Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertIcon.callBaseMethod(this, "callMethod")) return false;
         this.openPopup(Function.createDelegate(this, this._onopened));
         return true;
     },
@@ -40,5 +40,5 @@ AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertIcon.prototype = {
     }
 }
 
-AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertIcon.registerClass("AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertIcon", AjaxControlToolkit.HTMLEditor.ToolbarButton.DesignModePopupImageButton);
+Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertIcon.registerClass("Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertIcon", Sys.Extended.UI.HTMLEditor.ToolbarButton.DesignModePopupImageButton);
 Sys.Application.notifyScriptLoaded();

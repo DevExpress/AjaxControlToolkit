@@ -1,12 +1,12 @@
-Type.registerNamespace("AjaxControlToolkit.HTMLEditor.CustomToolbarButton");
+Type.registerNamespace("Sys.Extended.UI.HTMLEditor.CustomToolbarButton");
 
-AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertDate = function(element) {
-AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertDate.initializeBase(this, [element]);
+Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertDate = function(element) {
+Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertDate.initializeBase(this, [element]);
 }
 
-AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertDate.prototype = {
+Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertDate.prototype = {
     callMethod: function() {
-        if (!AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertDate.callBaseMethod(this, "callMethod")) return false;
+        if (!Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertDate.callBaseMethod(this, "callMethod")) return false;
         var editor = this._designPanel;
         var editPanel = this._editPanel;
 
@@ -28,5 +28,5 @@ AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertDate.prototype = {
     }
 }
 
-AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertDate.registerClass("AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertDate", AjaxControlToolkit.HTMLEditor.ToolbarButton.MethodButton);
+Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertDate.registerClass("Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertDate", Sys.Extended.UI.HTMLEditor.ToolbarButton.MethodButton);
 Sys.Application.notifyScriptLoaded();

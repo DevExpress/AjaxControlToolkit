@@ -75,7 +75,7 @@ namespace AjaxControlToolkit.HTMLEditor.CustomToolbarButton
 
         protected override string ClientControlType
         {
-            get { return "AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertIcon"; }
+            get { return "Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertIcon"; }
         }
 
         public override string ScriptPath
@@ -107,7 +107,7 @@ namespace AjaxControlToolkit.HTMLEditor.CustomToolbarButton
 
         protected override string ClientControlType
         {
-            get { return "AjaxControlToolkit.HTMLEditor.CustomToolbarButton.InsertDate"; }
+            get { return "Sys.Extended.UI.HTMLEditor.CustomToolbarButton.InsertDate"; }
         }
 
         public override string ScriptPath
