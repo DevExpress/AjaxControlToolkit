@@ -530,11 +530,12 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
                 if (-1 != i) {
                     text = value.slice(i + 3);
                     value = value.slice(0, i);
-                }
-                i = text.indexOf(':::');
-                if (-1 != i) {
-                    title = text.slice(i + 3);
-                    text = text.slice(0, i);
+
+                    i = text.indexOf(':::');
+                    if (-1 != i) {
+                        title = text.slice(i + 3);
+                        text = text.slice(0, i);
+                    }
                 }
             }
             var oldValue = this._selectedValue;
