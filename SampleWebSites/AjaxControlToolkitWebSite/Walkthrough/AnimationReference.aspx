@@ -46,7 +46,7 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.Animation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.Animation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
@@ -54,11 +54,11 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.Animation(target, duration, fps);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.Animation(target, duration, fps);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.Animation.play(target, duration, fps);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.Animation.play(target, duration, fps);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -218,19 +218,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ParentAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ParentAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></td>
+                <td class="animationReferenceCode"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.ParentAnimation(target, duration, fps, animations);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.ParentAnimation(target, duration, fps, animations);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ParentAnimation.play(target, duration, fps, animations);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ParentAnimation.play(target, duration, fps, animations);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -247,49 +247,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -314,19 +314,19 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -338,37 +338,37 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -386,19 +386,19 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -426,19 +426,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ParallelAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ParallelAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.ParallelAnimation(target, duration, fps, animations);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.ParallelAnimation(target, duration, fps, animations);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ParallelAnimation.play(target, duration, fps, animations);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ParallelAnimation.play(target, duration, fps, animations);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -447,55 +447,55 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Array animations; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -514,13 +514,13 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">clear();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -532,19 +532,19 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">initialize();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -568,43 +568,43 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">remove(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">removeAt(index);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -632,19 +632,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.SequenceAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.SequenceAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.SequenceAnimation(target, duration, fps, animations, iterations);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.SequenceAnimation(target, duration, fps, animations, iterations);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.SequenceAnimation.play(target, duration, fps, animations, iterations);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.SequenceAnimation.play(target, duration, fps, animations, iterations);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -653,43 +653,43 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Array animations; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>, but this property is ignored
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>, but this property is ignored
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>, but this property is ignored
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>, but this property is ignored
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -702,13 +702,13 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -721,19 +721,19 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">add(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">clear();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -746,19 +746,19 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">initialize();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -777,7 +777,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -796,19 +796,19 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">remove(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">removeAt(index);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -847,19 +847,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.SelectionAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.SelectionAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.SelectionAnimation(target, duration, fps, animations);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.SelectionAnimation(target, duration, fps, animations);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.SelectionAnimation.play(target, duration, fps, animations);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.SelectionAnimation.play(target, duration, fps, animations);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -868,55 +868,55 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Array animations; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -929,19 +929,19 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">add(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">clear();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -953,19 +953,19 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">initialize();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -989,43 +989,43 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">remove(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">removeAt(index);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -1051,19 +1051,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ConditionAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ConditionAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#SelectionAnimation">AjaxControlToolkit.Animation.SelectionAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#SelectionAnimation">Sys.Extended.UI.Animation.SelectionAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.ConditionAnimation(target, duration, fps, animations, conditionScript);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.ConditionAnimation(target, duration, fps, animations, conditionScript);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ConditionAnimation.play(target, duration, fps, animations, conditionScript);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ConditionAnimation.play(target, duration, fps, animations, conditionScript);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -1072,7 +1072,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Array animations; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -1084,49 +1084,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -1139,103 +1139,103 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">add(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">clear();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">AjaxControlToolkit.Animation.SelectionAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">Sys.Extended.UI.Animation.SelectionAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">initialize();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">AjaxControlToolkit.Animation.SelectionAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">Sys.Extended.UI.Animation.SelectionAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">AjaxControlToolkit.Animation.SelectionAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">Sys.Extended.UI.Animation.SelectionAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">AjaxControlToolkit.Animation.SelectionAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">Sys.Extended.UI.Animation.SelectionAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">remove(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">removeAt(index);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -1261,19 +1261,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.CaseAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.CaseAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#SelectionAnimation">AjaxControlToolkit.Animation.SelectionAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#SelectionAnimation">Sys.Extended.UI.Animation.SelectionAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.CaseAnimation(target, duration, fps, animations, selectScript);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.CaseAnimation(target, duration, fps, animations, selectScript);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.CaseAnimation.play(target, duration, fps, animations, selectScript);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.CaseAnimation.play(target, duration, fps, animations, selectScript);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -1282,49 +1282,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Array animations; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -1336,7 +1336,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -1349,103 +1349,103 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">add(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">clear();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">AjaxControlToolkit.Animation.SelectionAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">Sys.Extended.UI.Animation.SelectionAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">initialize();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">AjaxControlToolkit.Animation.SelectionAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">Sys.Extended.UI.Animation.SelectionAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">AjaxControlToolkit.Animation.SelectionAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">Sys.Extended.UI.Animation.SelectionAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">AjaxControlToolkit.Animation.SelectionAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SelectionAnimation">Sys.Extended.UI.Animation.SelectionAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">remove(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">removeAt(index);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -1459,7 +1459,7 @@
     <a name="FadeAnimation" /><div class="subheading">Fade Animation</div>
     <p>
             The <span class="codeReference">FadeAnimation</span> is used to fade an element in or out of view, depending on the provided
-            <span class="codeReference">AjaxControlToolkit.Animation.FadeEffect</span>.  The minimum and maximum opacity values can be specified to precisely control the fade.
+            <span class="codeReference">Sys.Extended.UI.Animation.FadeEffect</span>.  The minimum and maximum opacity values can be specified to precisely control the fade.
             Also, due to known issues with Internet Explorer, the <span class="codeReference">forceLayoutInIE</span>
             property is used to enforce certain conditions (specifically that it has a set size and background color).  You may also consider using
             <span class="codeReference"><a href="#FadeInAnimation">FadeInAnimation</a></span> and <span class="codeReference"><a href="#FadeOutAnimation">FadeOutAnimation</a></span> if you know the specific direction you are fading.
@@ -1471,19 +1471,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.FadeAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.FadeAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></td>
+                <td class="animationReferenceCode"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.FadeAnimation(target, duration, fps, effect, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.FadeAnimation(target, duration, fps, effect, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.FadeAnimation.play(target, duration, fps, effect, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.FadeAnimation.play(target, duration, fps, effect, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -1492,12 +1492,12 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
-                                <div class="animationReferenceItemCode">AjaxControlToolkit.Animation.FadeEffect effect;</div>
+                                <div class="animationReferenceItemCode">Sys.Extended.UI.Animation.FadeEffect effect;</div>
                                 Determines whether we fade in or out.  Possible values are <span class="codeReference">FadeIn</span> and 
                                 <span class="codeReference">FadeOut</span>.  The default falue is <span class="codeReference">FadeIn</span>.
                             </td>
@@ -1513,31 +1513,31 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -1555,13 +1555,13 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -1574,7 +1574,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -1586,49 +1586,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -1640,7 +1640,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -1663,19 +1663,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.FadeInAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.FadeInAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.FadeInAnimation(target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.FadeInAnimation(target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.FadeInAnimation.play(target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.FadeInAnimation.play(target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -1684,73 +1684,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
-                                <div class="animationReferenceItemCode">AjaxControlToolkit.Animation.FadeEffect effect;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                <div class="animationReferenceItemCode">Sys.Extended.UI.Animation.FadeEffect effect;</div>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean forceLayoutInIE;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number maximumOpacity;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number minimumOpacity;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -1763,73 +1763,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -1852,19 +1852,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.FadeOutAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.FadeOutAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.FadeOutAnimation(target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.FadeOutAnimation(target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.FadeOutAnimation.play(target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.FadeOutAnimation.play(target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -1873,73 +1873,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
-                                <div class="animationReferenceItemCode">AjaxControlToolkit.Animation.FadeEffect effect;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                <div class="animationReferenceItemCode">Sys.Extended.UI.Animation.FadeEffect effect;</div>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean forceLayoutInIE;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number maximumOpacity;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number minimumOpacity;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -1952,73 +1952,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -2042,19 +2042,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.PulseAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.PulseAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#SequenceAnimation">AjaxControlToolkit.Animation.SequenceAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#SequenceAnimation">Sys.Extended.UI.Animation.SequenceAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.PulseAnimation(target, duration, fps, iterations, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.PulseAnimation(target, duration, fps, iterations, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.PulseAnimation.play(target, duration, fps, iterations, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.PulseAnimation.play(target, duration, fps, iterations, minimumOpacity, maximumOpacity, forceLayoutInIE);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -2063,7 +2063,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Array animations; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -2075,67 +2075,67 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean forceLayoutInIE;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number iterations;</div>
-                                Inherited from <span class="codeReference"><a href="#SequenceAnimation">AjaxControlToolkit.Animation.SequenceAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SequenceAnimation">Sys.Extended.UI.Animation.SequenceAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number maximumOpacity;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number minimumOpacity;</div>
-                                Inherited from <span class="codeReference"><a href="#FadeAnimation">AjaxControlToolkit.Animation.FadeAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#FadeAnimation">Sys.Extended.UI.Animation.FadeAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -2148,103 +2148,103 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">add(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">clear();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#SequenceAnimation">AjaxControlToolkit.Animation.SequenceAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SequenceAnimation">Sys.Extended.UI.Animation.SequenceAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">initialize();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#SequenceAnimation">AjaxControlToolkit.Animation.SequenceAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SequenceAnimation">Sys.Extended.UI.Animation.SequenceAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#SequenceAnimation">AjaxControlToolkit.Animation.SequenceAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#SequenceAnimation">Sys.Extended.UI.Animation.SequenceAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">remove(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">removeAt(index);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -2269,19 +2269,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.PropertyAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.PropertyAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></td>
+                <td class="animationReferenceCode"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.PropertyAnimation(target, duration, fps, property, propertyKey);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.PropertyAnimation(target, duration, fps, property, propertyKey);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.PropertyAnimation.play(target, duration, fps, property, propertyKey);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.PropertyAnimation.play(target, duration, fps, property, propertyKey);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -2290,43 +2290,43 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -2347,7 +2347,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -2360,73 +2360,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -2449,19 +2449,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.DiscreteAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.DiscreteAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#PropertyAnimation">AjaxControlToolkit.Animation.PropertyAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#PropertyAnimation">Sys.Extended.UI.Animation.PropertyAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.DiscreteAnimation(target, duration, fps, property, propertyKey, values);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.DiscreteAnimation(target, duration, fps, property, propertyKey, values);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.DiscreteAnimation.play(target, duration, fps, property, propertyKey, values);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.DiscreteAnimation.play(target, duration, fps, property, propertyKey, values);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -2470,61 +2470,61 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">String property;</div>
-                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">AjaxControlToolkit.Animation.PropertyAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">Sys.Extended.UI.Animation.PropertyAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">String propertyKey;</div>
-                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">AjaxControlToolkit.Animation.PropertyAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">Sys.Extended.UI.Animation.PropertyAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -2544,73 +2544,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -2633,19 +2633,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.InterpolatedAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.InterpolatedAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#PropertyAnimation">AjaxControlToolkit.Animation.PropertyAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#PropertyAnimation">Sys.Extended.UI.Animation.PropertyAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.InterpolatedAnimation(target, duration, fps, property, propertyKey, startValue, endValue);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.InterpolatedAnimation(target, duration, fps, property, propertyKey, startValue, endValue);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.InterpolatedAnimation.play(target, duration, fps, property, propertyKey, startValue, endValue);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.InterpolatedAnimation.play(target, duration, fps, property, propertyKey, startValue, endValue);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -2654,7 +2654,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -2666,49 +2666,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">String property;</div>
-                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">AjaxControlToolkit.Animation.PropertyAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">Sys.Extended.UI.Animation.PropertyAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">String propertyKey;</div>
-                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">AjaxControlToolkit.Animation.PropertyAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">Sys.Extended.UI.Animation.PropertyAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -2720,7 +2720,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -2733,73 +2733,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -2822,19 +2822,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ColorAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ColorAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#InterpolatedAnimation">AjaxControlToolkit.Animation.InterpolatedAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#InterpolatedAnimation">Sys.Extended.UI.Animation.InterpolatedAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.ColorAnimation(target, duration, fps, property, propertyKey, startValue, endValue);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.ColorAnimation(target, duration, fps, property, propertyKey, startValue, endValue);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ColorAnimation.play(target, duration, fps, property, propertyKey, startValue, endValue);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ColorAnimation.play(target, duration, fps, property, propertyKey, startValue, endValue);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -2843,7 +2843,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -2855,49 +2855,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">String property;</div>
-                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">AjaxControlToolkit.Animation.PropertyAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">Sys.Extended.UI.Animation.PropertyAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">String propertyKey;</div>
-                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">AjaxControlToolkit.Animation.PropertyAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">Sys.Extended.UI.Animation.PropertyAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -2909,7 +2909,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -2922,73 +2922,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -3010,19 +3010,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.LengthAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.LengthAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#InterpolatedAnimation">AjaxControlToolkit.Animation.InterpolatedAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#InterpolatedAnimation">Sys.Extended.UI.Animation.InterpolatedAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.LengthAnimation(target, duration, fps, property, propertyKey, startValue, endValue, unit);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.LengthAnimation(target, duration, fps, property, propertyKey, startValue, endValue, unit);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.LengthAnimation.play(target, duration, fps, property, propertyKey, startValue, endValue, unit);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.LengthAnimation.play(target, duration, fps, property, propertyKey, startValue, endValue, unit);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -3031,7 +3031,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3043,49 +3043,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">String property;</div>
-                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">AjaxControlToolkit.Animation.PropertyAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">Sys.Extended.UI.Animation.PropertyAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">String propertyKey;</div>
-                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">AjaxControlToolkit.Animation.PropertyAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#PropertyAnimation">Sys.Extended.UI.Animation.PropertyAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3097,7 +3097,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3116,73 +3116,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -3210,19 +3210,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.MoveAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.MoveAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#ParallelAnimation">AjaxControlToolkit.Animation.ParallelAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#ParallelAnimation">Sys.Extended.UI.Animation.ParallelAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.MoveAnimation(target, duration, fps, horizontal, vertical, relative, unit);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.MoveAnimation(target, duration, fps, horizontal, vertical, relative, unit);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.MoveAnimation.play(target, duration, fps, horizontal, vertical, relative, unit);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.MoveAnimation.play(target, duration, fps, horizontal, vertical, relative, unit);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -3231,19 +3231,19 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Array animations; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3256,31 +3256,31 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3292,7 +3292,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3318,49 +3318,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">add(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">AjaxControlToolkit.Animation.ParallelAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">Sys.Extended.UI.Animation.ParallelAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">clear();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">AjaxControlToolkit.Animation.ParallelAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">Sys.Extended.UI.Animation.ParallelAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">initialize();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">AjaxControlToolkit.Animation.ParallelAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">Sys.Extended.UI.Animation.ParallelAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3373,49 +3373,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">AjaxControlToolkit.Animation.ParallelAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">Sys.Extended.UI.Animation.ParallelAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">remove(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">removeAt(index);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -3438,19 +3438,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ResizeAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ResizeAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#ParallelAnimation">AjaxControlToolkit.Animation.ParallelAnimation</a></td>
+                <td class="animationReferenceCode"><a href="#ParallelAnimation">Sys.Extended.UI.Animation.ParallelAnimation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.ResizeAnimation(target, duration, fps, width, height, unit);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.ResizeAnimation(target, duration, fps, width, height, unit);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ResizeAnimation.play(target, duration, fps, width, height, unit);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ResizeAnimation.play(target, duration, fps, width, height, unit);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -3459,19 +3459,19 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Array animations; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3483,37 +3483,37 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3538,49 +3538,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">add(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">AjaxControlToolkit.Animation.ParallelAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">Sys.Extended.UI.Animation.ParallelAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">clear();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">AjaxControlToolkit.Animation.ParallelAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">Sys.Extended.UI.Animation.ParallelAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">initialize();</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">AjaxControlToolkit.Animation.ParallelAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">Sys.Extended.UI.Animation.ParallelAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3592,49 +3592,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">AjaxControlToolkit.Animation.ParallelAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParallelAnimation">Sys.Extended.UI.Animation.ParallelAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">remove(animation);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">removeAt(index);</div>
-                                Inherited from <span class="codeReference"><a href="#ParentAnimation">AjaxControlToolkit.Animation.ParentAnimation</a></span>
+                                Inherited from <span class="codeReference"><a href="#ParentAnimation">Sys.Extended.UI.Animation.ParentAnimation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -3662,19 +3662,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ScaleAnimation</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ScaleAnimation</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></td>
+                <td class="animationReferenceCode"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.ScaleAnimation(target, duration, fps, scaleFactor, unit, center, scaleFont, fontUnit);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.ScaleAnimation(target, duration, fps, scaleFactor, unit, center, scaleFont, fontUnit);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ScaleAnimation.play(target, duration, fps, scaleFactor, unit, center, scaleFont, fontUnit);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ScaleAnimation.play(target, duration, fps, scaleFactor, unit, center, scaleFont, fontUnit);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -3689,7 +3689,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3701,37 +3701,37 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3751,7 +3751,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3770,73 +3770,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -3860,19 +3860,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.Action</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.Action</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></td>
+                <td class="animationReferenceCode"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.Action(target, duration, fps);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.Action(target, duration, fps);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.Action.play(target, duration, fps);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.Action.play(target, duration, fps);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -3881,49 +3881,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -3936,25 +3936,25 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -3966,43 +3966,43 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -4024,19 +4024,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.EnableAction</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.EnableAction</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#Action">AjaxControlToolkit.Animation.Action</a></td>
+                <td class="animationReferenceCode"><a href="#Action">Sys.Extended.UI.Animation.Action</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.EnableAction(target, duration, fps, enabled);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.EnableAction(target, duration, fps, enabled);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.EnableAction.play(target, duration, fps, enabled);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.EnableAction.play(target, duration, fps, enabled);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -4045,7 +4045,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -4057,43 +4057,43 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -4106,73 +4106,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Action">AjaxControlToolkit.Animation.Action</a></span>
+                                Inherited from <span class="codeReference"><a href="#Action">Sys.Extended.UI.Animation.Action</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -4194,19 +4194,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.HideAction</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.HideAction</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#Action">AjaxControlToolkit.Animation.Action</a></td>
+                <td class="animationReferenceCode"><a href="#Action">Sys.Extended.UI.Animation.Action</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.HideAction(target, duration, fps, visible);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.HideAction(target, duration, fps, visible);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.HideAction.play(target, duration, fps, visible);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.HideAction.play(target, duration, fps, visible);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -4215,49 +4215,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -4277,73 +4277,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Action">AjaxControlToolkit.Animation.Action</a></span>
+                                Inherited from <span class="codeReference"><a href="#Action">Sys.Extended.UI.Animation.Action</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -4365,19 +4365,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.StyleAction</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.StyleAction</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#Action">AjaxControlToolkit.Animation.Action</a></td>
+                <td class="animationReferenceCode"><a href="#Action">Sys.Extended.UI.Animation.Action</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.StyleAction(target, duration, fps, attribute, value);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.StyleAction(target, duration, fps, attribute, value);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.StyleAction.play(target, duration, fps, attribute, value);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.StyleAction.play(target, duration, fps, attribute, value);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -4392,49 +4392,49 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -4453,73 +4453,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Action">AjaxControlToolkit.Animation.Action</a></span>
+                                Inherited from <span class="codeReference"><a href="#Action">Sys.Extended.UI.Animation.Action</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -4541,19 +4541,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.OpacityAction</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.OpacityAction</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#Action">AjaxControlToolkit.Animation.Action</a></td>
+                <td class="animationReferenceCode"><a href="#Action">Sys.Extended.UI.Animation.Action</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.OpacityAction(target, duration, fps, opacity);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.OpacityAction(target, duration, fps, opacity);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.OpacityAction.play(target, duration, fps, opacity);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.OpacityAction.play(target, duration, fps, opacity);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -4562,37 +4562,37 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -4604,13 +4604,13 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -4623,73 +4623,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Action">AjaxControlToolkit.Animation.Action</a></span>
+                                Inherited from <span class="codeReference"><a href="#Action">Sys.Extended.UI.Animation.Action</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -4711,19 +4711,19 @@
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Class:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ScriptAction</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ScriptAction</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Base:</td>
-                <td class="animationReferenceCode"><a href="#Action">AjaxControlToolkit.Animation.Action</a></td>
+                <td class="animationReferenceCode"><a href="#Action">Sys.Extended.UI.Animation.Action</a></td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Constructor:</td>
-                <td class="animationReferenceCode">new AjaxControlToolkit.Animation.ScriptAction(target, duration, fps, script);</td>
+                <td class="animationReferenceCode">new Sys.Extended.UI.Animation.ScriptAction(target, duration, fps, script);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Play:</td>
-                <td class="animationReferenceCode">AjaxControlToolkit.Animation.ScriptAction.play(target, duration, fps, script);</td>
+                <td class="animationReferenceCode">Sys.Extended.UI.Animation.ScriptAction.play(target, duration, fps, script);</td>
             </tr>
             <tr class="animationReferenceRow">
                 <td class="animationReferenceField">Properties:</td>
@@ -4732,43 +4732,43 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number duration;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number fps;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isActive; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isInitialized; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isPlaying; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Boolean isUpdating; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Number percentComplete; // Read Only</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
@@ -4780,7 +4780,7 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">Object target;</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>
@@ -4793,73 +4793,73 @@
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">dispose();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getAnimatedValue();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">getDescriptor();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">interpolate(start, end, percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onEnd();</div>
-                                Inherited from <span class="codeReference"><a href="#Action">AjaxControlToolkit.Animation.Action</a></span>
+                                Inherited from <span class="codeReference"><a href="#Action">Sys.Extended.UI.Animation.Action</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStart();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">onStep(percentage);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">pause();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">play();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setOwner(owner);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">setValue(value);</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                         <tr class="animationReferenceItemRow">
                             <td class="animationReferenceItem">
                                 <div class="animationReferenceItemCode">stop();</div>
-                                Inherited from <span class="codeReference"><a href="#Animation">AjaxControlToolkit.Animation.Animation</a></span>
+                                Inherited from <span class="codeReference"><a href="#Animation">Sys.Extended.UI.Animation.Animation</a></span>
                             </td>
                         </tr>
                     </table>

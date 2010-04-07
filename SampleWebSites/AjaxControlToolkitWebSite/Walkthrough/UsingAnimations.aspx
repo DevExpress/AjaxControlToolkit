@@ -116,7 +116,7 @@
     <p></p>
     <p>
         Each animation corresponds to a JavaScript class (for example, <span class="codeReference">FadeIn</span> is mapped to the
-        <span class="codeReference">AjaxControlToolkit.Animation.FadeInAnimation</span> class).  The name of the animation is used
+        <span class="codeReference">Sys.Extended.UI.Animation.FadeInAnimation</span> class).  The name of the animation is used
         as the generic XML animation declaration's tag and its properties, which correspond to the properties on the JavaScript class,
         are attributes of that tag.  For example, to change the size of an element we could use <span class="codeReference">Resize</span>
         which has properties <span class="codeReference">Width</span>, <span class="codeReference">Height</span>, and <span class="codeReference">Unit</span>.

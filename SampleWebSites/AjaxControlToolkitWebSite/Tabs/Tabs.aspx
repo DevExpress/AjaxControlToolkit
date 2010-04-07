@@ -27,7 +27,7 @@
         var HighlightAnimations = {};
         function Highlight(el) {
             if (HighlightAnimations[el.uniqueID] == null) {
-                HighlightAnimations[el.uniqueID] = AjaxControlToolkit.Animation.createAnimation({
+                HighlightAnimations[el.uniqueID] = Sys.Extended.UI.Animation.createAnimation({
                     AnimationName : "color",
                     duration : 0.5,
                     property : "style",
