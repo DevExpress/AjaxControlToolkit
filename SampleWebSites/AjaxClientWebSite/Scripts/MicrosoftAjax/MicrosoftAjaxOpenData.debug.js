@@ -47,7 +47,7 @@ $type.registerEnum("Sys.Data.MergeOption");
 
 }
 $type = Sys.Data.OpenDataQueryBuilder = function Data$OpenDataQueryBuilder(uri) {
-    /// <summary locid="M:J#Sys.Data.OpenDataQueryBuilder.#ctor">Allows construction of OpenData Service queries.</summary>
+    /// <summary locid="M:J#Sys.Data.OpenDataQueryBuilder.#ctor">Allows construction of ADO.NET Data Service queries.</summary>
     /// <param name="uri" type="String">The URI (absolute or relative) to parse.</param>
     this._queryParameters = {};
     this._uri = uri;
@@ -565,7 +565,7 @@ $type._guidRegex = /^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}
 $type.registerClass("Sys.Data.OpenDataInvokeParametersBuilder");
 $type = Sys.Data.OpenDataServiceProxy = function Data$OpenDataServiceProxy(serviceUri) {
     /// <summary locid="M:J#Sys.Data.OpenDataServiceProxy.#ctor"></summary>
-    /// <param name="serviceUri" type="String" mayBeNull="true" optional="true">Path to the OpenData Service.</param>
+    /// <param name="serviceUri" type="String" mayBeNull="true" optional="true">Path to the OData Service.</param>
     Sys.Data.OpenDataServiceProxy.initializeBase(this);
     if (serviceUri) {
         this.set_path(serviceUri);
@@ -582,7 +582,7 @@ $type.prototype = {
         this._replaceOnUpdate = value;
     },
     get_serviceUri: function OpenDataServiceProxy$get_serviceUri() {
-        /// <value type="String" mayBeNull="false" locid="P:J#Sys.Data.OpenDataServiceProxy.serviceUri">The path to the OpenData Service.</value>
+        /// <value type="String" mayBeNull="false" locid="P:J#Sys.Data.OpenDataServiceProxy.serviceUri">The path to the ADO.NET Data Service.</value>
         return this.get_path() || "";
     },
     set_serviceUri: function OpenDataServiceProxy$set_serviceUri(value) {
@@ -1240,8 +1240,8 @@ Sys.Data.OpenDataRes = {
 "invalidBatchResponse": "The batch operation failed due to an invalid response from \u0027{0}\u0027.",
 "operationFailed": "The data operation \u0027{0}\u0027 failed.",
 "operationTimedOut": "The data operation \u0027{0}\u0027 timed out.",
-"serviceVersionTooHigh": "The URI \u0027{0}\u0027 points to an OpenData Service of a higher version than is supported by this library.",
-"uriNotOpenDataService": "The URI \u0027{0}\u0027 does not point to an OpenData Service.",
+"serviceVersionTooHigh": "The URI \u0027{0}\u0027 points to an ADO.NET Data Service of a higher version than is supported by this library.",
+"uriNotOpenDataService": "The URI \u0027{0}\u0027 does not point to an ADO.NET Data Service.",
 "batchLinkBeforeInsert": "The source and target of a link must be inserted before the link is made.",
 "entityWithNoResourceSet": "Entity does not have a resource set. Use createEntity() or set the defaultResourceSet property.",
 "invalidGuid": "The provided value must be of the form \u0027dddddddd-dddd-dddd-dddd-dddddddddddd\u0027, where each d is a digit or a character A - F.",
