@@ -59,6 +59,52 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxClientWebSite", "Sample
 		VWDPort = "29283"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Client\UnitTests\UnitTests.csproj", "{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitWebSite", "SampleWebSites\AjaxControlToolkitWebSite", "{FA568CF0-A44F-4D9C-B103-95EC56141C14}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/AjaxControlToolkitWebSite"
+		Debug.AspNetCompiler.PhysicalPath = "SampleWebSites\AjaxControlToolkitWebSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkitWebSite\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/AjaxControlToolkitWebSite"
+		Release.AspNetCompiler.PhysicalPath = "SampleWebSites\AjaxControlToolkitWebSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkitWebSite\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "29284"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FunctionalTests", "Server\Tests\FunctionalTests", "{12E25AFE-B7D8-4E00-9309-F2D505783178}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = ""
+		SccAuxPath = ""
+		SccLocalPath = ""
+		SccProvider = ""
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/FunctionalTests"
+		Debug.AspNetCompiler.PhysicalPath = "Server\Tests\FunctionalTests\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\FunctionalTests\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/FunctionalTests"
+		Release.AspNetCompiler.PhysicalPath = "Server\Tests\FunctionalTests\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\FunctionalTests\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "38082"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 7
@@ -149,6 +195,36 @@ Global
 		{688374B2-A730-4BD1-90BD-B48232EC8B36}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{688374B2-A730-4BD1-90BD-B48232EC8B36}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{688374B2-A730-4BD1-90BD-B48232EC8B36}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|.NET.ActiveCfg = Release|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14}.Release|.NET.ActiveCfg = Debug|Any CPU
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{12E25AFE-B7D8-4E00-9309-F2D505783178}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{12E25AFE-B7D8-4E00-9309-F2D505783178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E25AFE-B7D8-4E00-9309-F2D505783178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12E25AFE-B7D8-4E00-9309-F2D505783178}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{12E25AFE-B7D8-4E00-9309-F2D505783178}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{12E25AFE-B7D8-4E00-9309-F2D505783178}.Release|.NET.ActiveCfg = Debug|Any CPU
+		{12E25AFE-B7D8-4E00-9309-F2D505783178}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{12E25AFE-B7D8-4E00-9309-F2D505783178}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{12E25AFE-B7D8-4E00-9309-F2D505783178}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{12E25AFE-B7D8-4E00-9309-F2D505783178}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -160,7 +236,9 @@ Global
 		{F905803E-B5B4-4F83-BBDB-0E2CA3DD5F5E} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{53BF3496-0AD1-491C-A367-258E84479594} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
+		{12E25AFE-B7D8-4E00-9309-F2D505783178} = {93A29C0B-4AC3-4179-A49C-C524023343A5}
 		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C} = {6ED50EB8-6E53-47DF-AE45-181059C00E2F}
 		{688374B2-A730-4BD1-90BD-B48232EC8B36} = {E2ED2468-021E-4020-AD37-057943EC0364}
+		{FA568CF0-A44F-4D9C-B103-95EC56141C14} = {E2ED2468-021E-4020-AD37-057943EC0364}
 	EndGlobalSection
 EndGlobal
