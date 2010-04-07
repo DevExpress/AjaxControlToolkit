@@ -2817,10 +2817,8 @@ $type.prototype = {
         this._placeholders = placeholders = [];
         this._containers = containers = [];
         this._contexts = new Array(len);
-        if (!len && ph) {
-            ph.style.display = 'none';
-        } 
-        else for (var i = 0; i < len; i++) {
+        if (ph) ph.style.display = 'none';
+        for (var i = 0; i < len; i++) {
             var item = list[i];
             args = new Sys.UI.DataViewEventArgs(item);
             args.itemTemplate = template;
@@ -2873,6 +2871,7 @@ $type.prototype = {
                     parentContext: pctx
                 });
             }
+            args.context = result;
             this._contexts[i] = result;
             this._raiseItem("Rendered", result);
             if (itemTemplate && currentPh) {
