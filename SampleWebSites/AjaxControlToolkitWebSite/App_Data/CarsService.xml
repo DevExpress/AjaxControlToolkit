@@ -23,7 +23,7 @@
     </model>
     <model name="S4" value="S4 (value)" optionTitle="Introduced: 2006">
       <color name="Silver" value="Silver (value)" />
-      <color name="Metallic" value="Metallic (value)" optionTitle="Additional Charge for this high quality finish"/>
+      <color name="Metallic" value="Metallic (value)" optionTitle="Additional charge for this high quality finish"/>
     </model>
     <model name="A6" value="A6 (value)" optionTitle="Introduced: 2009">
       <color name="Cyan" value="Cyan (value)" />
