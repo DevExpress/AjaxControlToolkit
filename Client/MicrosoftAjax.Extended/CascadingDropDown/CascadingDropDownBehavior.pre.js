@@ -222,8 +222,9 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
                 headerValue = this._promptValue;
             }
         }
+        var optionElement; 
         if (headerText) {
-            var optionElement = new Option(headerText, headerValue);
+            optionElement = new Option(headerText, headerValue);
             e.options[e.options.length] = optionElement;
         }
 
@@ -247,7 +248,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
                     }
                 }
 
-                var optionElement = new Option(listItemName, listItemValue);
+                optionElement = new Option(listItemName, listItemValue);
                 if (listItemValue == this._selectedValue) {
                     selectedValueOption = optionElement;
                 }
