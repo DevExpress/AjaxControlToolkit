@@ -65,20 +65,6 @@
             };
         }
 
-        function checkMutipleFired() {
-            return function() {
-                testHarness.assertEqual(1, count, 'Event fired multiple times');
-            };
-        }
-        function waitForMultipleChanged(flag) {
-            return function() {
-                if (flag)
-                    return (0 == count);
-                else
-                    return (1 == count);
-            };
-        }
-
         // Fire an onmouseover event at point (x,y)
         function mouseOver(element, x, y) {
             return function() {
@@ -121,7 +107,7 @@
 
             panel2 = testHarness.getElement('ctl00_ContentPlaceHolder1_Panel2');
             extender2 = testHarness.getObject('ctl00_ContentPlaceHolder1_Extender2');
-            childDiv = testHarness.getElement('childDiv');
+            var childDiv = testHarness.getElement('childDiv');
 
             var id = function() { };
 
@@ -138,11 +124,6 @@
             test.addStep(mouseOut(panel, 0, 0), waitChanged('backgroundColor', 'green'), checkFired('backgroundColor', 'green'));
             test.addStep(mouseOver(panel, panel.offsetWidth + 20, panel.offsetHeight + 20), waitChanged('color', 'blue'), checkFired('color', 'blue'));
             test.addStep(mouseOut(panel, 0, 0), waitChanged('color', 'yellow'), checkFired('color', 'yellow'));
-
-            test = testHarness.addTest('Issue : 8884');
-            test.addStep(mouseOver(childDiv, childDiv.offsetWidth + 20, childDiv.offsetHeight + 20), waitForMultipleChanged(true));
-            test.addStep(mouseOut(childDiv, 0, 0), waitForMultipleChanged(false), checkMutipleFired());
-
         }
     </script>
 
