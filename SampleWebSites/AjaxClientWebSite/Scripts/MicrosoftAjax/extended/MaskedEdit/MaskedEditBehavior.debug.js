@@ -2720,17 +2720,6 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             {
                 input = input.substring(0,input.length-1);
             }
-            if (input.indexOf(this.get_CultureDecimalPlaceholder()) == -1)
-            {
-                input += this.get_CultureDecimalPlaceholder();
-                var i;
-                var m_mask = this._maskvalid;
-                for (i = 0;i < m_mask.length;i++)
-                {
-                    input += "0";
-                }
-                return input;
-            }
         }
         return input;
     }
