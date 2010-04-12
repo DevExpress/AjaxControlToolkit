@@ -18,7 +18,7 @@
                    text-decoration:underline;
            }
            a:hover {
-                   color:crimson;
+                   color:#DC143C;
            }
     </style>
     <style type="text/css">

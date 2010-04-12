@@ -17,7 +17,6 @@
             Type some characters in this textbox.  The web service returns random words
             that start with the text you have typed.
             <br /><br />
-            <p />
             <asp:TextBox runat="server" ID="myTextBox" Width="300" autocomplete="off" />
             <ajaxToolkit:AutoCompleteExtender
                 runat="server" 

@@ -130,7 +130,6 @@
                         <ajaxToolkit:ComboBox ID="ComboBox1" runat="server" DropDownStyle="DropDownList"
                             AutoCompleteMode="SuggestAppend" CssClass="" OnItemInserted="ComboBox1_ItemInserted"
                             OnSelectedIndexChanged="ComboBox1_SelectedIndexChanged" AppendDataBoundItems="false">
-                            <asp:ListItem>Fox</asp:ListItem>
                         </ajaxToolkit:ComboBox>
                         <asp:Button ID="ManualPostBackButton" runat="server" Text="Submit" />
                     </div>

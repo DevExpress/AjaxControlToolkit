@@ -103,8 +103,7 @@
         </code>
         At runtime, the extender will make callbacks to a web service we specify (which
             is decorated with the <strong>System.Web.Script.Services.ScriptService</strong> attribute).
-        In that web service, it expects a WebMethod with the following signature (<strong><font
-            color="#ff0000"><em>note that parameter names must match too</em></font></strong>!):<br />
+        In that web service, it expects a WebMethod with the following signature (<span style="color:#ff0000"><em>note that parameter names must match too</em></span></strong>!):<br />
         <code>
             <span style="font-size: 10pt; font-family: 'Courier New'; ">[<span
                 style="color: teal">WebMethod</span>]</span>
@@ -113,11 +112,8 @@
                 public</span><span style="font-size: 10pt; font-family: 'Courier New'; ">
                     <span style="color: teal">CascadingDropDownNameValue</span>[] GetColorsForModel(<br />
                       </span><span
-                        style="font-size: 10pt; color: blue; font-family: 'Courier New'; ;
-                          
-                        ">string</span><span style="font-size: 10pt; font-family: 'Courier New';
-                            ;  
-                             "> <strong>knownCategoryValues</strong>,<br />
+                        style="font-size: 10pt; color: blue; font-family: 'Courier New';">string</span>
+                        <span style="font-size: 10pt; font-family: 'Courier New';"> <strong>knownCategoryValues</strong>,<br />
                              
                             <span style="color: blue">string</span> <strong>category</strong>)<span style=""><br />
                             </span></span>

@@ -19,7 +19,7 @@
            }
 
            a:hover {
-                   color:crimson;
+                   color:#DC143C;
            }
     </style>
 </head>

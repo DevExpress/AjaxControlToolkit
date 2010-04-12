@@ -18,21 +18,22 @@
                    text-decoration:underline;
            }
            a:hover {
-                   color:crimson;
+                   color:#DC143C;
            }
     </style>
 </head>
 <body style="font:12px Verdana;">
     <a href="../HTMLEditor.aspx">< Back to <strong>HTMLEditor</strong> page</a>
     <br /><br />
-    Full editor without a bottom toolbar.<br /> 
+    This sample demonstrates a lighter set of buttons in the top toolbar.<br />
+    The bottom toolbar is absent.<br /> 
     <br />
     <form id="form1" runat="server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <asp:UpdatePanel ID="updatePanel1" runat="server">
     <ContentTemplate>
-        <customEditors:FullNoBottom runat="server" id="editor" Height="400px" Width="500px" />
-        <asp:LinkButton runat="server" Text="Submit content" ID="submit" />
+        <customEditors:LiteNoBottom runat="server" id="editor" Height="400px" Width="500px" />
+        <asp:Button runat="server" Text="Submit content" ID="submit" />
     </ContentTemplate>
     </asp:UpdatePanel>
     </form>

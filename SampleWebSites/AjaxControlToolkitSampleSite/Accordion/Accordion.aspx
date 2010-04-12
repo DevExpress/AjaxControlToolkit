@@ -85,15 +85,15 @@
                     switch (ctrl.selectedIndex) {
                         case 0 :
                             behavior.get_element().style.height = 'auto';
-                            size = AjaxControlToolkit.AutoSize.None;
+                            size = Sys.Extended.UI.AutoSize.None;
                             break;
                         case 1 :
                             behavior.get_element().style.height = '400px';
-                            size = AjaxControlToolkit.AutoSize.Limit;
+                            size = Sys.Extended.UI.AutoSize.Limit;
                             break;
                         case 2 :
                             behavior.get_element().style.height = '400px';
-                            size = AjaxControlToolkit.AutoSize.Fill;
+                            size = Sys.Extended.UI.AutoSize.Fill;
                             break;
                     }
                     behavior.set_AutoSize(size);

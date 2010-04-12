@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Lite.aspx.cs" Inherits="test" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LiteNoBottom.aspx.cs" Inherits="test" %>
 <%@ Register
     Assembly="AjaxControlToolkit"
     Namespace="AjaxControlToolkit"
@@ -17,23 +17,22 @@
                    color:#315686;
                    text-decoration:underline;
            }
-
            a:hover {
-                   color:crimson;
+                   color:#DC143C;
            }
     </style>
 </head>
 <body style="font:12px Verdana;">
     <a href="../HTMLEditor.aspx">< Back to <strong>HTMLEditor</strong> page</a>
     <br /><br />
-    This sample demonstrates a lighter set of buttons in the top toolbar.<br />
+    Full editor without a bottom toolbar.<br /> 
     <br />
     <form id="form1" runat="server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <asp:UpdatePanel ID="updatePanel1" runat="server">
     <ContentTemplate>
-        <customEditors:Lite runat="server" id="editor" Height="400px" Width="500px" />
-        <asp:Button runat="server" Text="Submit content" ID="submit" />
+        <customEditors:FullNoBottom runat="server" id="editor" Height="400px" Width="500px" />
+        <asp:LinkButton runat="server" Text="Submit content" ID="submit" />
     </ContentTemplate>
     </asp:UpdatePanel>
     </form>

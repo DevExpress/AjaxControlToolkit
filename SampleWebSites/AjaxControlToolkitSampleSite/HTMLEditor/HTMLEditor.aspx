@@ -15,14 +15,7 @@
     Namespace="AjaxControlToolkit.HTMLEditor"
     TagPrefix="HTMLEditor" %>
 <asp:Content ContentPlaceHolderID="SampleContent" runat="Server">
-    <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1">
-        <Scripts>
-            <asp:ScriptReference Path="~/AspNetAjaxPreview3/MicrosoftAjaxAdoNet.js" ScriptMode="Release" />
-            <asp:ScriptReference Path="~/AspNetAjaxPreview3/MicrosoftAjaxTemplates.js" ScriptMode="Release" />
-        </Scripts>
-    </ajaxToolkit:ToolkitScriptManager>
-    <script type="text/javascript">
-    </script>
+    <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <div class="demoarea">
         <div class="demoheading">HTMLEditor Demonstration</div>
         <asp:UpdatePanel ID="updatePanel1" runat="server">
@@ -58,7 +51,7 @@
     </asp:Panel>
     <asp:Panel ID="Samples_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            <a href="OtherSamples/ClientSide.htm">Client-side made HTMLEditor</a><br />
+            <a href="OtherSamples/ClientSide.htm">Client-side HTMLEditor</a><br />
             <a href="OtherSamples/AnotherStyle.aspx">Custom skin with modified bottom toolbar</a><br />
             <a href="OtherSamples/Lite.aspx">Lite top toolbar</a><br />
             <a href="OtherSamples/LiteNoBottom.aspx">Lite top toolbar without bottom toolbar</a><br />
