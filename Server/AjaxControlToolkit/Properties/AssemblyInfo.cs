@@ -7,6 +7,16 @@ using System.Security.Permissions;
 using System.Web.UI;
 using AjaxControlToolkit;
 
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+[assembly: AssemblyTitle("Ajax Control Toolkit")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyProduct("AjaxControlToolkit")]
+[assembly: AssemblyCopyright("Copyright © CodePlex Foundation 2009")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+
 // Dependency Attribute for assemblies 
 [assembly: DependencyAttribute("System.Web,", LoadHint.Always)]
 [assembly: DependencyAttribute("System.Web.Ajax,", LoadHint.Always)]
@@ -26,11 +36,11 @@ using AjaxControlToolkit;
 #if NET4
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 [assembly: System.Web.Script.AjaxFrameworkAssembly]
-[assembly: AssemblyVersion("4.0.40203.0")]
-[assembly: AssemblyFileVersion("4.0.40203.0")]
+[assembly: AssemblyVersion("4.1.40412")]
+[assembly: AssemblyFileVersion("4.1.40412")]
 #else
-[assembly: AssemblyVersion("3.0.40203.0")]
-[assembly: AssemblyFileVersion("3.0.40203.0")]
+[assembly: AssemblyVersion("3.5.40412")]
+[assembly: AssemblyFileVersion("3.5.40412")]  
 #endif
 [assembly: NeutralResourcesLanguage("en-US")]
 

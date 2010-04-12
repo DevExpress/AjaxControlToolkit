@@ -263,7 +263,7 @@ Sys.Extended.UI.ComboBox.prototype = {
             }
             var safariListContainer = document.createElement('div');
             safariListContainer.className = this.get_element().className;
-            safariListContainer.appendChild();
+            safariListContainer.appendChild(optionListControl);
             parent.appendChild(safariListContainer);
         }
 
