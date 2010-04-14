@@ -81,6 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="QUnit.cs" />
     <Compile Include="PrependTask.cs" />
     <Compile Include="CreateJSManifestResourceName.cs" />
     <Compile Include="Directive.cs" />

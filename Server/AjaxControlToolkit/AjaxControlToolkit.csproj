@@ -747,7 +747,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\MicrosoftAjax\ajaxmin.tasks" />
-  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\JSBuild.dll" />
+  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
   <Target Name="BeforeBuild">
     <MakeDir Directories="ScriptOutput" />
     <!-- clean out old files from previous build -->
@@ -805,7 +805,7 @@
       <EmbeddedResource Include="ScriptOutput\**\*" />
     </ItemGroup>
   </Target>
-  <UsingTask TaskName="JSBuild.CreateJSManifestResourceName" AssemblyFile="..\..\Tools\JSBuild.dll" />
+  <UsingTask TaskName="JSBuild.CreateJSManifestResourceName" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
   <Target Name="CreateManifestResourceNames" Condition="'@(EmbeddedResource)' != ''" DependsOnTargets="$(CreateManifestResourceNamesDependsOn)">
     <ItemGroup>
       <_Temporary Remove="@(_Temporary)" />
