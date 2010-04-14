@@ -89,45 +89,23 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
-  <UsingTask TaskName="JSBuild.QUnit" AssemblyFile="..\..\Tools\JSBuild.dll" />
-  <Target Name="QUnit">
+  <UsingTask TaskName="JSBuild.QUnit" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
+  <Target Name="QUnit-CI">
     <ItemGroup>
-    <!-- Define a 'Browser' element for each browser to test with -->
-        <Browser Include="C:\Program Files (x86)\Mozilla Firefox\firefox.exe">
-            <Name>FireFox36</Name>
-            <Arguments>(none)</Arguments>
-            <Concurrency>0</Concurrency>
-        </Browser>
-        <Browser Include="C:\Program Files (x86)\Mozilla Firefox3\firefox.exe">
-            <Name>FireFox30</Name>
-            <Arguments>(none)</Arguments>
-            <Generation>0</Generation>
-            <Concurrency>1</Concurrency>
-        </Browser>
+        <!-- Define a 'Browser' element for each browser to test with -->
         <Browser Include="C:\Program Files (x86)\Internet Explorer\iexplore.exe">
             <Name>IE8</Name>
             <Arguments>(none)</Arguments>
             <Concurrency>0</Concurrency>
         </Browser>
-        <Browser Include="C:\Users\dareed\AppData\Local\Google\Chrome\Application\chrome.exe">
-            <Name>Chrome4</Name>
-            <Arguments>(none)</Arguments>
-            <Concurrency>0</Concurrency>
-        </Browser>
     </ItemGroup>
-    <!--
-    <QUnit LogDirectory="$(MSBuildProjectDirectory)\logs"
-           Browsers="C:\Program Files (x86)\Mozilla Firefox\firefox.exe;C:\Program Files (x86)\Mozilla Firefox3\firefox.exe;C:\Program Files (x86)\Internet Explorer\iexplore.exe;C:\Users\dareed\AppData\Local\Google\Chrome\Application\chrome.exe"
-           BrowserNames="FireFox36;FireFox30;IE8;Chrome4"
-           TestPath="http://127.0.0.1/qunittests/runtests-automation.aspx" />
--->
     <QUnit LogDirectory="$(MSBuildProjectDirectory)\logs"
            TimeOut="30"
            Browsers="@(Browser)"
            BrowserNames="@(Browser -> '%(Name)')"
            BrowserArguments="@(Browser -> '%(Arguments)')"
            BrowserConcurrencies="@(Browser -> '%(Concurrency)')"
-           TestPath="http://127.0.0.1/qunittests/runtests-automation.aspx" />
+           TestPath="http://206.72.126.217/qunittests/runtests-automation.aspx" />
   </Target>
   <ProjectExtensions>
     <VisualStudio>

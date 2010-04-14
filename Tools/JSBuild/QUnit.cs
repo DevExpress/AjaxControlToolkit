@@ -114,7 +114,9 @@
                     if (done) break;
                     if (maxSeconds == 0) {
                         foreach(var test in tests) {
-                            if (test.Concurrency == concurrency && !test.Done) test.TimeOut();
+                            if (test.Concurrency == concurrency && !test.Done) {
+                                test.TimeOut();
+                            }
                         }
                     }
                     else {
@@ -243,6 +245,9 @@
             }
             
             public void TimeOut() {
+                if (Done) {
+                    throw new InvalidOperationException("Completed tests should not be marked as timed out.");
+                }
                 Done = true;
                 ErrContent = String.Format("Test '{2}' timed out in browser '{0}'. {1}", BrowserName, ErrContent, TestName);
                 if (!BrowserProcess.HasExited) {
