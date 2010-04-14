@@ -62,21 +62,37 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="core\array.js" />
+    <Content Include="qunit\qunit-automation.css" />
+    <Content Include="qunit\qunit_automation.js" />
+    <Content Include="qunit\qunit-report.js" />
     <Content Include="qunit\qunit.css" />
     <Content Include="qunit\qunit.js" />
     <Content Include="qunit\qunit_asserts.js" />
     <Content Include="RunTests.html" />
-    <Content Include="Web.config" />
+    <Content Include="RunTests-Automation.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ajaxlib\" />
     <Folder Include="App_Data\" />
+    <Folder Include="logs\" />
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TestResults.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
   <UsingTask TaskName="JSBuild.QUnit" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
-  <Target Name="QUnit-CI">
+  <Target Name="UpdateAjaxLib">
+      <ItemGroup>
+          <ScriptOutput Include="$(ProjectDir)..\scriptoutput\**\*" />
+      </ItemGroup>
+      <Copy SourceFiles="@(ScriptOutput)" DestinationFolder="$(ProjectDir)ajaxlib\%(RecursiveDir)" />
+  </Target>
+  <Target Name="QUnit-CI" DependsOnTargets="UpdateAjaxLib">
     <ItemGroup>
         <!-- Define a 'Browser' element for each browser to test with -->
         <Browser Include="C:\Program Files (x86)\Internet Explorer\iexplore.exe">
@@ -92,6 +108,8 @@
            BrowserArguments="@(Browser -> '%(Arguments)')"
            BrowserConcurrencies="@(Browser -> '%(Concurrency)')"
            TestPath="http://206.72.125.217/qunittests/runtests-automation.aspx" />
+  </Target>
+  <Target Name="AfterBuild" DependsOnTargets="UpdateAjaxLib">
   </Target>
   <ProjectExtensions>
     <VisualStudio>
@@ -112,7 +130,4 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <PropertyGroup>
-    <PreBuildEvent>xcopy "$(ProjectDir)..\scriptoutput" "$(ProjectDir)ajaxlib" /Q /R /S /Y</PreBuildEvent>
-  </PropertyGroup>
 </Project>

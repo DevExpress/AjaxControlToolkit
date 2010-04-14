@@ -90,7 +90,13 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <UsingTask TaskName="JSBuild.QUnit" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
-  <Target Name="QUnit-CI">
+  <Target Name="UpdateAjaxLib">
+      <ItemGroup>
+          <ScriptOutput Include="$(ProjectDir)..\scriptoutput\**\*" />
+      </ItemGroup>
+      <Copy SourceFiles="@(ScriptOutput)" DestinationFolder="$(ProjectDir)ajaxlib\%(RecursiveDir)" />
+  </Target>
+  <Target Name="QUnit-CI" DependsOnTargets="UpdateAjaxLib">
     <ItemGroup>
         <!-- Define a 'Browser' element for each browser to test with -->
         <Browser Include="C:\Program Files (x86)\Internet Explorer\iexplore.exe">
@@ -106,6 +112,8 @@
            BrowserArguments="@(Browser -> '%(Arguments)')"
            BrowserConcurrencies="@(Browser -> '%(Concurrency)')"
            TestPath="http://206.72.126.217/qunittests/runtests-automation.aspx" />
+  </Target>
+  <Target Name="AfterBuild" DependsOnTargets="UpdateAjaxLib">
   </Target>
   <ProjectExtensions>
     <VisualStudio>
@@ -126,7 +134,4 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <PropertyGroup>
-    <PreBuildEvent>xcopy "$(ProjectDir)..\scriptoutput" "$(ProjectDir)ajaxlib" /Q /R /S /Y</PreBuildEvent>
-  </PropertyGroup>
 </Project>
