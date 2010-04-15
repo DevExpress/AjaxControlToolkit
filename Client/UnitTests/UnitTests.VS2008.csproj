@@ -100,6 +100,16 @@
             <Arguments>(none)</Arguments>
             <Concurrency>0</Concurrency>
         </Browser>
+        <Browser Include="C:\Program Files (x86)\Mozilla Firefox\firefox.exe">
+            <Name>Firefox36</Name>
+            <Arguments>(none)</Arguments>
+            <Concurrency>0</Concurrency>
+        </Browser>
+        <Browser Include="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe">
+            <Name>Chrome41</Name>
+            <Arguments>(none)</Arguments>
+            <Concurrency>0</Concurrency>
+        </Browser>
     </ItemGroup>
     <QUnit LogDirectory="$(MSBuildProjectDirectory)\logs"
            TimeOut="30"
