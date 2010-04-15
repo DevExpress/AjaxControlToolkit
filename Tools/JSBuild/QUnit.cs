@@ -59,7 +59,6 @@
                 File.Delete(file);
             }
 
-            // launch all the browsers
             if (BrowserNames != null && BrowserNames.Length > 0) {
                 if (BrowserNames.Length != Browsers.Length) {
                     throw new InvalidOperationException("BrowserNames must be the same length as Browsers. Specify a browser name for all browsers.");
@@ -84,6 +83,7 @@
             else {
                 BrowserConcurrencies = new int[Browsers.Length];
             }         
+            // launch all the browsers
             int concurrency = 0;   
             bool higherConcurrency;
             bool failedToKill = false;
@@ -146,7 +146,7 @@
                     Log.LogError(String.Format("Test '{2}' failed in browser '{0}'. {1}", test.BrowserName, test.ErrContent, test.TestName));
                 }
             }
-            return true;
+            return !Log.HasLoggedErrors;
         }
         
         private bool WaitForExit(List<BrowserTestInfo> tests) {
@@ -156,7 +156,7 @@
                 waiting = false;
                 foreach(var test in tests) {
                     if (test.Done && !test.BrowserProcess.HasExited) {
-                        Thread.Sleep(1000);
+                        test.BrowserProcess.WaitForExit(1000);
                         waiting = true;
                         break;
                     }
