@@ -96,7 +96,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if (this._DropShadow) {
             this._foregroundElement = document.createElement('div');
             this._foregroundElement.id = this.get_id() + '_foregroundElement';
-            this._popupElement.parentNode.appendChild(this._foregroundElement);
+            this._popupElement.parentNode.insertBefore(this._foregroundElement, this._popupElement);
             this._foregroundElement.appendChild(this._popupElement);
         }
         else {
@@ -142,15 +142,13 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// <summary>
         /// Dispose the behavior
         /// </summary>
-
         this._hideImplementation();
 
         if (this._foregroundElement && this._foregroundElement.parentNode) {
             this._backgroundElement.parentNode.removeChild(this._backgroundElement);
 
             if (this._DropShadow) {
-                this._foregroundElement.parentNode.appendChild(this._popupElement);
-                this._foregroundElement.parentNode.removeChild(this._foregroundElement);
+                this._foregroundElement.parentNode.replaceChild(this._popupElement, this._foregroundElement);
             }
         }
 
@@ -297,6 +295,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
         
         var zindex = 10000 + (Sys.Extended.UI.ModalPopupBehavior._openCount++ * 1000);
+        this._showing = true;
         this._backgroundElement.style.zIndex = zindex;
         this._foregroundElement.style.zIndex = zindex + 1;
         
@@ -427,15 +426,17 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// <summary>
         /// Internal implementation to hide the modal dialog
         /// </summary>
+        if (this._showing) {
+            Sys.Extended.UI.ModalPopupBehavior._openCount--;
+            this._backgroundElement.style.display = 'none';
+            this._foregroundElement.style.display = 'none';
+            this._popupElement.style.display = 'none';
+            this._showing = false;
 
-        Sys.Extended.UI.ModalPopupBehavior._openCount--;
-        this._backgroundElement.style.display = 'none';
-        this._foregroundElement.style.display = 'none';
-        this._popupElement.style.display = 'none';
+            this.restoreTab();
 
-        this.restoreTab();
-
-        this._detachPopup();
+            this._detachPopup();
+        }
     },
 
     _layout: function() {

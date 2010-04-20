@@ -1547,7 +1547,10 @@ Sys.registerComponent = function registerComponent(type, options) {
     fn = Sys._getCreate(options, false, true);
     if (window.jQuery) {
         target = (isControlOrBehavior ? jQuery.fn : jQuery);
-        target[name] = fn;
+        var existing = target[name];
+        if (!existing || existing._slmock) {
+            target[name] = fn;
+        }
     }
     else {
         options._jqQueue = fn;
@@ -1582,7 +1585,10 @@ Sys.registerPlugin = function registerPlugin(pluginInfo) {
         sysTarget[fnName] = Sys._getCreate(pluginInfo, true, false);
         var jPlugin = Sys._getCreate(pluginInfo, true, true);
         if (jQueryTarget) {
-            jQueryTarget[fnName] = jPlugin;
+            var existing = jQueryTarget[fnName];
+            if (!existing || existing._slmock) {
+                jQueryTarget[fnName] = jPlugin;
+            }
         }
         else {
             if (pluginInfo.global) {

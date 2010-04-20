@@ -868,8 +868,12 @@
                         //     and dom.
                         // OR  Use _getCreate to create a temporary placeholder function that contains doc comments for intellisense
                         //     purposes in debug mode. This will eventually be replaced by the real function when it is registered.
-                        target[fnName] = ((!isPlugin || component.global) ? source[name]._jqQueue : source[name]._jqQueueDom) ||
-                            Sys._getCreate(component, isPlugin, true);
+                        var existing = target[fnName];
+                        // don't overwrite an existing plugin, unless it is a mock created by start.js
+                        if (!existing || existing._slmock) {
+                            target[fnName] = ((!isPlugin || component.global) ? source[name]._jqQueue : source[name]._jqQueueDom) ||
+                                Sys._getCreate(component, isPlugin, true);
+                        }
                     }
                 }
             },

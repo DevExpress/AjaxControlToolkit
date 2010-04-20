@@ -765,8 +765,11 @@ var callIf = function _callIf(obj, name, args) {
                         if (isPlugin) {
                             fnName = component.functionName || name;
                         }
-                        target[fnName] = ((!isPlugin || component.global) ? source[name]._jqQueue : source[name]._jqQueueDom) ||
-                            Sys._getCreate(component, isPlugin, true);
+                        var existing = target[fnName];
+                        if (!existing || existing._slmock) {
+                            target[fnName] = ((!isPlugin || component.global) ? source[name]._jqQueue : source[name]._jqQueueDom) ||
+                                Sys._getCreate(component, isPlugin, true);
+                        }
                     }
                 }
             },
@@ -1073,6 +1076,7 @@ obj.prototype.elements = function() {
         if (!isPlugin) {
             fn._component = options;
         }
+        fn._slmock = true;
         return fn;
         
     }

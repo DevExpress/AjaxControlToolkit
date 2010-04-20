@@ -81,11 +81,6 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
         
         el.style.position = "fixed";
         $common.setLocation(el, _location);
-
-        $common.appendElementToFormOrBody(el);
-
-
-
     }
     
     this.dispose = function() {
