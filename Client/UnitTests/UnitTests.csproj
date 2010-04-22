@@ -121,7 +121,7 @@
            BrowserNames="@(Browser -> '%(Name)')"
            BrowserArguments="@(Browser -> '%(Arguments)')"
            BrowserConcurrencies="@(Browser -> '%(Concurrency)')"
-           TestPath="http://206.72.126.217/qunittests/runtests-automation.aspx" />
+           TestPath="http://127.0.0.1:8888/qunittests/runtests-automation.aspx" />
   </Target>
   <Target Name="AfterBuild" DependsOnTargets="UpdateAjaxLib">
   </Target>
