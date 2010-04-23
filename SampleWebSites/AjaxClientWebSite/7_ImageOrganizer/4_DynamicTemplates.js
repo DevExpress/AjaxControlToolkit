@@ -12,14 +12,14 @@ Sys.require([Sys.components.openDataContext, Sys.components.dataView]);
 
 Sys.onReady(function() {
     // Create DataContext pointing at a WCF Data Service
-    dataContext = $.openDataContext(
+    dataContext = Sys.create.openDataContext(
         {
             serviceUri: "../Services/ImagesDataService.svc",
             mergeOption: Sys.Data.MergeOption.appendOnly
         }
     );
 
-    $(document.documentElement).activateElements();
+    Sys.query(document.documentElement).activateElements();
 
     imagesList = $find("imagesListView");
     peopleList = $find("peopleListView");

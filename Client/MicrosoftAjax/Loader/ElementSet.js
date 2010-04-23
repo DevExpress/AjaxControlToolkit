@@ -14,9 +14,6 @@ obj.prototype = {
         /// <param name="index" type="Number" mayBeNull="true" optional="true">Index of the component to limit to.</param>
         /// <returns type="Sys.ComponentSet" />
         var elementSet = new Sys.ElementSet(this.get());
-        if (window.jQuery && (this instanceof jQuery)) {
-            elementSet._jquery = this;
-        }
         return new Sys.ComponentSet(elementSet, type, index);
     },
     component: function(type, index) {

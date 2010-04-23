@@ -325,15 +325,6 @@ Sys.registerComponent = function registerComponent(type, options) {
     var fn = Sys._getCreate(options),
         target = isControlOrBehavior ? Sys.ElementSet.prototype : Sys.create;
     target[name] = fn;
-
-    fn = Sys._getCreate(options, false, true);
-    if (window.jQuery) {
-        target = (isControlOrBehavior ? jQuery.fn : jQuery);
-        target[name] = fn;
-    }
-    else {
-        options._jqQueue = fn;
-    }
 }
 
 Sys.registerPlugin = function registerPlugin(pluginInfo) {
@@ -349,33 +340,18 @@ Sys.registerPlugin = function registerPlugin(pluginInfo) {
         fnName = pluginInfo.functionName || name;
     Sys.plugins[name] = merge(Sys.plugins[name], pluginInfo);
     var plugin = pluginInfo.plugin,
-        sysTarget,
-        jQueryTarget;
+        sysTarget;
     if (pluginInfo.global) {
         sysTarget = Sys;
-        jQueryTarget = window.jQuery;
     }
     else if (pluginInfo.dom) {
         sysTarget = Sys.ElementSet.prototype;
-        jQueryTarget = window.jQuery ? jQuery.fn : null;
     }
     else if (pluginInfo.components) {
         sysTarget = Sys.ComponentSet.prototype;
     }
     if (sysTarget) {
-        sysTarget[fnName] = Sys._getCreate(pluginInfo, true, false);
-        var jPlugin = Sys._getCreate(pluginInfo, true, true);
-        if (jQueryTarget) {
-            jQueryTarget[fnName] = jPlugin;
-        }
-        else {
-            if (pluginInfo.global) {
-                Sys.plugins[name]._jqQueue = jPlugin;
-            }
-            else if (pluginInfo.dom) {
-                Sys.plugins[name]._jqQueueDom = jPlugin;
-            }
-        }
+        sysTarget[fnName] = Sys._getCreate(pluginInfo, true);
     }
 }
 

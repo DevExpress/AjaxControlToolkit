@@ -478,17 +478,6 @@
             lazypush(this, "_readyQueue", callback);
             raiseOnReady();
         },
-        _onjQuery: function _onjQuery() {
-            // called either immediately via inline code or upon dynamic loading of jquery by the script loader.
-            if (!Sys._jqLoaded) {
-                Sys._jqLoaded = true;
-                var fn = jQuery.fn,
-                    prototype = Sys.ElementSet.prototype;
-                // define built-in plugins
-                fn.components = prototype.components;
-                fn.component = prototype.component;
-            }
-        },
         _set: function(instance, properties) {
             forIn(properties, function(value, field) {
                 // events, then properties, then fields.
@@ -593,9 +582,6 @@
                 if (selfUrl) {
                     this.basePath = selfUrl.slice(0, selfUrl.lastIndexOf("/"));
                     var i = selfUrl.lastIndexOf("#"), list;
-                    //#if JQUERYSTART
-                    list = ["jQuery"];
-                    //#endif
                     if (i !== -1) {
                         var args = selfUrl.substr(i+1).split("&");
                         foreach(args, function(pair) {
@@ -605,11 +591,7 @@
                             if (name === "require") {
                                 // list of scipts to automatically require.
                                 // e.g. start.js#require=Core,jQuery
-                                //#if JQUERYSTART
-                                list.push.apply(list, value.split(","));
-                                //#else
                                 list = value.split(",");
-                                //#endif
                             }
                             // possibly add 'culture', 'uiculture' when localization and globalization support is added
                         });
@@ -800,15 +782,6 @@
                         // there can be only one, but this is a dirty trick to call this field if it exists
                         // and delete it in a consise way.
                         foreachCall(scriptInfo, "_callback");
-                        if (scriptInfo.name === "jQuery" && window.jQuery) {
-                            // create jquery plugins for components/plugins that have previously been registered
-                            var loader = Sys.loader;
-                            forIn(Sys.components, loader._createPlugin);
-                            forIn(Sys.plugins, function(plugin) {
-                                loader._createPlugin(plugin, true);
-                            });
-                            Sys._onjQuery();
-                        }
                         // Now that this script has loaded, see if any of its parent scripts are waiting for it
                         // We only need to do this in readOnly mode since otherwise, a require() call is coming
                         // again anyway.
@@ -841,37 +814,6 @@
                 }
                 foreach(scriptInfo["dependencies"], register);
                 foreach(scriptInfo["executionDependencies"], register);
-            },
-            _createPlugin: function _createPlugin(component, isPlugin) {
-                if (window.jQuery) {
-                    // this fn called via forIn, so isPlugin might be the field name,
-                    // only explicit 'true' is treated as a plugin.
-                    isPlugin = isPlugin === true;
-                    var target, source;
-                    if (isPlugin) {
-                        target = component.global ? jQuery : (component.dom ? jQuery.fn : null);
-                        source = Sys.plugins;
-                    }
-                    else {
-                        target = component._isBehavior ? jQuery.fn : jQuery,
-                        source = Sys.components;
-                    }
-                    if (target) {
-                        var name = component.name,
-                            fnName = name;
-                        if (isPlugin) {
-                            fnName = component.functionName || name;
-                        }
-                        //     Use the already created _jqQueue or _jqQueueDom if it is set -- this is the case when the plugin/component
-                        //     was registered 'for real' before jquery was loaded, in which case the function is already the
-                        //     real deal. _jqQueue and _jqQueueDom may both be set in the case a plugin registered as both global
-                        //     and dom.
-                        // OR  Use _getCreate to create a temporary placeholder function that contains doc comments for intellisense
-                        //     purposes in debug mode. This will eventually be replaced by the real function when it is registered.
-                        target[fnName] = ((!isPlugin || component.global) ? source[name]._jqQueue : source[name]._jqQueueDom) ||
-                            Sys._getCreate(component, isPlugin, true);
-                    }
-                }
             },
             defineScript: function defineScript(scriptInfo) {
                 /// <summary>Defines a script and its dependencies.</summary>
@@ -922,7 +864,6 @@
                             fn = Sys._getCreate(component),
                             target = isBehavior ? Sys.ElementSet.prototype : Sys.create;
                         target[name] = target[name] || fn;
-                        loader._createPlugin(component);
                     }
                     foreach(scriptInfo.components, registerComponent);
                     isBehavior = true;
@@ -944,7 +885,6 @@
                         if (target) {
                             target[fnName] = target[fnName] || Sys._getCreate(plugin, true);
                         }
-                        loader._createPlugin(plugin, true);
                     });
                 }
                 if (scriptInfo.isLoaded) {

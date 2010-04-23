@@ -36,11 +36,11 @@ and to attach a Watermark behavior to a textbox.
         Sys.onReady(function() {
         
             // Create the DataView control and attach to images ul element
-            $("#images")
+            Sys.query("#images")
                 .dataView({ data: gallery });
 
             // Create the Watermark and attach to the images gallerytitle input element
-            $(".gallerytitle").watermark("Add title here...", "watermarked");
+            Sys.query(".gallerytitle").watermark("Add title here...", "watermarked");
         });
         
    </script>

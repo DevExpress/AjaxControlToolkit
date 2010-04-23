@@ -32,7 +32,7 @@ Script Manager, in an aspx page.
             var imagesList;
             Sys.onReady(function() {
                 // Create DataView
-                imagesList = $(".imageslist").dataView().get(0);
+                imagesList = Sys.query(".imageslist").dataView().get(0);
 
                 // Call Web service proxy from script
                 Uc.ImagesWcfService.GetImages("Name", querySucceeded);

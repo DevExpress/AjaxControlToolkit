@@ -8,7 +8,7 @@ a WCF service, by using a Sys.Data.DataContext.
     <title>Read-write, with DataContext</title>
     <link href="../styles/Images.css" rel="stylesheet" type="text/css"/>
     
-    <script src="../Scripts/MicrosoftAjax/jQueryStart.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         var imagesList, imageData, dataContext,
@@ -19,12 +19,12 @@ a WCF service, by using a Sys.Data.DataContext.
         Sys.require([Sys.components.dataView, Sys.components.dataContext, Sys.scripts.WebServices]);
 
         Sys.onReady(function() {
-            dataContext = $.dataContext({
+            dataContext = Sys.create.dataContext({
                 serviceUri: "../Services/ImagesWcfService.svc",
                 saveOperation: "SaveImages"
             });
 
-            $(document.documentElement).activateElements();
+            Sys.query(document.documentElement).activateElements();
         });
     
         function onRendering(sender, args) {

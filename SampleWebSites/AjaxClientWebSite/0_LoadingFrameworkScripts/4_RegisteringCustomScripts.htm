@@ -8,7 +8,7 @@ The custom control is registered in the Scripts/MyClientControls/RegisterMyClien
     <title>Registering Custom Scripts</title>
     <link href="../styles/images.css" rel="stylesheet" type="text/css" />
 
-    <script src="../Scripts/MicrosoftAjax/JQueryStart.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
     <script src="../Scripts/MyClientControls/RegisterMyClientControls.js" type="text/javascript"></script>
     
     <script type="text/javascript">
@@ -23,7 +23,7 @@ The custom control is registered in the Scripts/MyClientControls/RegisterMyClien
         Sys.require([Sys.components.imageView]);
       
         Sys.onReady(function() {
-            $(".images").imageView({ data: gallery });
+            Sys.query(".images").imageView({ data: gallery });
         });
     </script>
 

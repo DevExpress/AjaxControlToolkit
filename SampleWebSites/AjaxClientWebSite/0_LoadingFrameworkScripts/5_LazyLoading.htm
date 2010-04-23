@@ -12,7 +12,7 @@ the user clicks on a 'Show Gallery' button.
     <title>Lazy Loading</title>
     <link href="../styles/images.css" rel="stylesheet" type="text/css" />
 
-    <script src="../Scripts/MicrosoftAjax/jQueryStart.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
     <script src="../Scripts/MyClientControls/RegisterMyClientControls.js" type="text/javascript"></script>
 
     <script type="text/javascript">
@@ -43,7 +43,7 @@ the user clicks on a 'Show Gallery' button.
                 }
                 else {
                     // The control has not been created. Use the auto-generated jQuery plugin to create it
-                    control = $(".images").imageView({ data: gallery }).get(0);
+                    control = Sys.query(".images").imageView({ data: gallery }).get(0);
                 }
             });
         }

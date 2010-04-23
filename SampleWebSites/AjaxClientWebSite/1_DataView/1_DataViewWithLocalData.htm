@@ -10,7 +10,7 @@ The data can be modified, or loaded into the DataView, by the user.
 <head>
     <title>DataView  with Local Data</title>
     <link href="../Styles/images.css" rel="stylesheet" type="text/css"/>
-    <script src="../Scripts/MicrosoftAjax/jQueryStart.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         var gallery1 = [
@@ -34,7 +34,7 @@ The data can be modified, or loaded into the DataView, by the user.
         Sys.onReady(function() {
 
             // Create the DataView control and attach to imageslist element
-            var imagesList = $(".imageslist").dataView(
+            var imagesList = Sys.query(".imageslist").dataView(
                 {
                     data: gallery1,
                     selecteditemclass: "selecteditem", 

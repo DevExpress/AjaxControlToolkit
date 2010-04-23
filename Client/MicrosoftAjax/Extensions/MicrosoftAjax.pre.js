@@ -140,9 +140,6 @@ Type.registerNamespace('Sys.Net');
 Type.registerNamespace("Sys.Services");
 //#include "Sys\Services\Compat.js"
 
-if (window.jQuery) {
-    Sys._onjQuery();
-}
 Sys._domLoaded();
 }
 

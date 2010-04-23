@@ -7,9 +7,6 @@ if (!Sys || !Sys.loader) {
 //#include "RegisterPlugin.js"
 //#include "Definitions.js"
 //#include "typecompat.js"
-if (window.jQuery) {
-    Sys._onjQuery();
-}
 Sys._domLoaded();
 }
 

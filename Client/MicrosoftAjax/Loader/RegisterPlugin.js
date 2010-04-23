@@ -1,4 +1,4 @@
-﻿    var getCreate = function _getCreate(options, isPlugin, isjQuery) {
+﻿    var getCreate = function _getCreate(options, isPlugin) {
         // IN THE LOADER
         //      Creates a new function dynamically that actually has the specified parameters and doc comments for intellisense,
         //      but has no actual implementation.
@@ -35,16 +35,11 @@
         var returnType;
         if (!isPlugin) {
             arglist.push("properties");
-            // return type is Sys._jComponentSet only in debug mode in order to get the different intellisense that
-            // componentSet.elements() returns a jquery object, not a Sys.ElementSet.
             body.push('/// <param name="properties" type="Object" mayBeNull="true" optional="true">Additional properties to set on the component.</param>\n');
-            returnType = ((isjQuery && isBehavior) ? 'Sys._jComponentSet' : (isBehavior ? 'Sys.ComponentSet' : typeName));
+            returnType = isBehavior ? 'Sys.ComponentSet' : typeName;
         }
         else {
             returnType = options.returnType;
-            if (isjQuery && returnType === "Sys.ElementSet") {
-                returnType = "jQuery";
-            }
         }
         if (returnType) {
             body.push('/// <returns type="', returnType, '" />\n');
@@ -55,35 +50,10 @@
         //#else
         // core actually implements it
         if (isPlugin) {
-            var name = options.name;
-            if (isjQuery && options.dom) {
-                body.push('var elementSet = new Sys.ElementSet(this.get());\
-var ret = Sys.plugins["', name, '"].plugin.apply(elementSet, arguments);\
-if (ret === elementSet) return this;\
-if (ret instanceof jQuery) return new Sys.ElementSet(ret.get());\
-return ret;');
-            }
-            else {
-                body.push('return Sys.plugins["', name, '"].plugin.apply(this, arguments);');
-            }
+            body.push('return Sys.plugins["', options.name, '"].plugin.apply(this, arguments);');
         }
         else {
-            if (isjQuery) {
-                body.push('\
-var args = arguments,\
-    callee = args.callee,\
-    component = callee._component,\
-    source = Sys.create;\
-component.defaults = component.defaults || callee.defaults;\
-if (component._isBehavior) {\
-    source = new Sys.ElementSet(this.get()),\
-    source._jquery = this;\
-}\
-return source[component.name].apply(source, args);');
-            }
-            else {
-                body.push('return Sys._createComp.call(this, arguments.callee._component, arguments.callee._component.defaults, arguments);');
-            }
+            body.push('return Sys._createComp.call(this, arguments.callee._component, arguments.callee._component.defaults, arguments);');
         }
         //#endif
         arglist.push(body.join(''));
@@ -103,36 +73,12 @@ return source[component.name].apply(source, args);');
         //#else
         // core actually implements it
         if (isPlugin) {
-            return (isjQuery && options.dom) ?
-                function() {
-                    var elementSet = new Sys.ElementSet(this.get());
-                    var ret = Sys.plugins[options.name].plugin.apply(elementSet, arguments);
-                    if (ret === elementSet) return this;
-                    if (ret instanceof jQuery) return new Sys.ElementSet(ret.get());
-                    return ret;
-                }
-                :
-                function() {
+            return function() {
                     return Sys.plugins[options.name].plugin.apply(this, arguments);
                 };
         }
         else {
-            var fn = isjQuery ? 
-                function() {
-                    var args = arguments,
-                        callee = args.callee,
-                        component = callee._component,
-                        source = Sys.create;
-                    // if $().foo.defaults exists, overwrite Sys.components.foo.defaults.
-                    component.defaults = component.defaults || callee.defaults;
-                    if (component._isBehavior) {
-                        source = new Sys.ElementSet(this.get()),
-                        source._jquery = this;
-                    }
-                    return source[component.name].apply(source, args);
-                }
-                :
-                function() {
+            var fn = function() {
                     var callee = arguments.callee,
                         component = callee._component;
                     return Sys._createComp.call(this, component, component.defaults, arguments);

@@ -11,16 +11,16 @@ for  the service.
     <title>Server Data</title>
     <link href="../styles/Images.css" rel="stylesheet" type="text/css"/>
 
-    <script src="../Scripts/MicrosoftAjax/jQueryStart.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         
         Sys.require([Sys.components.dataView, Sys.components.openDataServiceProxy]);
 
         Sys.onReady(function() {
-            var OpenDataDataServiceProxy = $.openDataServiceProxy('../Services/ImagesDataService.svc');
+            var OpenDataDataServiceProxy = Sys.create.openDataServiceProxy('../Services/ImagesDataService.svc');
             
-            $(".imageslist").dataView(
+            Sys.query(".imageslist").dataView(
                 {
                     dataProvider: OpenDataDataServiceProxy,
                     fetchOperation: "Images",

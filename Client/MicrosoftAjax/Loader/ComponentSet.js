@@ -37,8 +37,7 @@ obj.prototype = {
     elements: function ComponentSet$elements() {
         /// <summary>Returns the underlying set of elements this component collection came from.</summary>
         /// <returns type="Sys.ElementSet" />
-        var elements = this._elementSet;
-        return elements._jquery || elements;
+        return this._elementSet;
     },
     _execute: function ComponentSet$_execute(elementSet, query, index) {
         var components = [];
@@ -78,15 +77,3 @@ obj.prototype = {
         return components;
     }
 }
-//#if DEBUG
-// this class is only used for VS intellisense, it is never instantiated at runtime.
-// VS will think this is the return type of control/behavior plugins and so will report
-// the correct intellisense for the elements() function, which returns a different value
-// for jQuery usage.
-obj = Sys._jComponentSet = function() {};
-obj.prototype = new Sys.ComponentSet();
-obj.prototype.elements = function() {
-    /// <summary>Returns the underlying set of elements this component collection came from.</summary>
-    /// <returns type="jQuery" />
-}
-//#endif

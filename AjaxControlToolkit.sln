@@ -45,6 +45,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FunctionalTests", "Server\T
 		SccLocalPath = ""
 		SccProvider = ""
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}|AjaxControlToolkit.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/FunctionalTests"
 		Debug.AspNetCompiler.PhysicalPath = "Server\Tests\FunctionalTests\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\FunctionalTests\"
@@ -65,6 +66,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxClientWebSite", "SampleWebSites\AjaxClientWebSite\", "{1C6EA3D1-9CE9-4792-9710-6C5D0DC5C0D6}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}|AjaxControlToolkit.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/AjaxClientWebSite"
 		Debug.AspNetCompiler.PhysicalPath = "SampleWebSites\AjaxClientWebSite\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxClientWebSite\"
@@ -204,6 +206,7 @@ Global
 		{F905803E-B5B4-4F83-BBDB-0E2CA3DD5F5E} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
 		{53BF3496-0AD1-491C-A367-258E84479594} = {B0C998DF-AEF2-4C75-BE75-9980D73F7CEF}
+		{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB} = {93A29C0B-4AC3-4179-A49C-C524023343A5}
 		{69871CED-67C3-4AE1-A7C3-2323AC94CE5C} = {6ED50EB8-6E53-47DF-AE45-181059C00E2F}
 		{1C6EA3D1-9CE9-4792-9710-6C5D0DC5C0D6} = {E2ED2468-021E-4020-AD37-057943EC0364}
 		{9B98A515-874C-44C3-9ED1-81151C243DB0} = {E2ED2468-021E-4020-AD37-057943EC0364}

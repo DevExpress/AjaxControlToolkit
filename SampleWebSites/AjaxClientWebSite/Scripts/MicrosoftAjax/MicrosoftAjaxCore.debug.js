@@ -359,15 +359,6 @@ if (!Sys || !Sys.loader) {
             lazypush(this, "_readyQueue", callback);
             raiseOnReady();
         },
-        _onjQuery: function _onjQuery() {
-            if (!Sys._jqLoaded) {
-                Sys._jqLoaded = true;
-                var fn = jQuery.fn,
-                    prototype = Sys.ElementSet.prototype;
-                fn.components = prototype.components;
-                fn.component = prototype.component;
-            }
-        },
         _set: function(instance, properties) {
             forIn(properties, function(value, field) {
                 callIf(instance, "add_" + field, value) ||
@@ -401,9 +392,6 @@ obj.prototype = {
         /// <param name="index" type="Number" mayBeNull="true" optional="true">Index of the component to limit to.</param>
         /// <returns type="Sys.ComponentSet" />
         var elementSet = new Sys.ElementSet(this.get());
-        if (window.jQuery && (this instanceof jQuery)) {
-            elementSet._jquery = this;
-        }
         return new Sys.ComponentSet(elementSet, type, index);
     },
     component: function(type, index) {
@@ -484,8 +472,7 @@ obj.prototype = {
     elements: function ComponentSet$elements() {
         /// <summary>Returns the underlying set of elements this component collection came from.</summary>
         /// <returns type="Sys.ElementSet" />
-        var elements = this._elementSet;
-        return elements._jquery || elements;
+        return this._elementSet;
     },
     _execute: function ComponentSet$_execute(elementSet, query, index) {
         var components = [];
@@ -524,17 +511,11 @@ obj.prototype = {
         return components;
     }
 }
-obj = Sys._jComponentSet = function() {};
-obj.prototype = new Sys.ComponentSet();
-obj.prototype.elements = function() {
-    /// <summary>Returns the underlying set of elements this component collection came from.</summary>
-    /// <returns type="jQuery" />
-}
     }
     
     obj = null;
 }
-    var getCreate = function _getCreate(options, isPlugin, isjQuery) {
+    var getCreate = function _getCreate(options, isPlugin) {
         var body = [],
             arglist = [],
             type = options.type,
@@ -562,47 +543,19 @@ obj.prototype.elements = function() {
         if (!isPlugin) {
             arglist.push("properties");
             body.push('/// <param name="properties" type="Object" mayBeNull="true" optional="true">Additional properties to set on the component.</param>\n');
-            returnType = ((isjQuery && isBehavior) ? 'Sys._jComponentSet' : (isBehavior ? 'Sys.ComponentSet' : typeName));
+            returnType = isBehavior ? 'Sys.ComponentSet' : typeName;
         }
         else {
             returnType = options.returnType;
-            if (isjQuery && returnType === "Sys.ElementSet") {
-                returnType = "jQuery";
-            }
         }
         if (returnType) {
             body.push('/// <returns type="', returnType, '" />\n');
         }
         if (isPlugin) {
-            var name = options.name;
-            if (isjQuery && options.dom) {
-                body.push('var elementSet = new Sys.ElementSet(this.get());\
-var ret = Sys.plugins["', name, '"].plugin.apply(elementSet, arguments);\
-if (ret === elementSet) return this;\
-if (ret instanceof jQuery) return new Sys.ElementSet(ret.get());\
-return ret;');
-            }
-            else {
-                body.push('return Sys.plugins["', name, '"].plugin.apply(this, arguments);');
-            }
+            body.push('return Sys.plugins["', options.name, '"].plugin.apply(this, arguments);');
         }
         else {
-            if (isjQuery) {
-                body.push('\
-var args = arguments,\
-    callee = args.callee,\
-    component = callee._component,\
-    source = Sys.create;\
-component.defaults = component.defaults || callee.defaults;\
-if (component._isBehavior) {\
-    source = new Sys.ElementSet(this.get()),\
-    source._jquery = this;\
-}\
-return source[component.name].apply(source, args);');
-            }
-            else {
-                body.push('return Sys._createComp.call(this, arguments.callee._component, arguments.callee._component.defaults, arguments);');
-            }
+            body.push('return Sys._createComp.call(this, arguments.callee._component, arguments.callee._component.defaults, arguments);');
         }
         arglist.push(body.join(''));
     
@@ -1543,15 +1496,6 @@ Sys.registerComponent = function registerComponent(type, options) {
     var fn = Sys._getCreate(options),
         target = isControlOrBehavior ? Sys.ElementSet.prototype : Sys.create;
     target[name] = fn;
-
-    fn = Sys._getCreate(options, false, true);
-    if (window.jQuery) {
-        target = (isControlOrBehavior ? jQuery.fn : jQuery);
-        target[name] = fn;
-    }
-    else {
-        options._jqQueue = fn;
-    }
 }
 
 Sys.registerPlugin = function registerPlugin(pluginInfo) {
@@ -1565,33 +1509,18 @@ Sys.registerPlugin = function registerPlugin(pluginInfo) {
         fnName = pluginInfo.functionName || name;
     Sys.plugins[name] = merge(Sys.plugins[name], pluginInfo);
     var plugin = pluginInfo.plugin,
-        sysTarget,
-        jQueryTarget;
+        sysTarget;
     if (pluginInfo.global) {
         sysTarget = Sys;
-        jQueryTarget = window.jQuery;
     }
     else if (pluginInfo.dom) {
         sysTarget = Sys.ElementSet.prototype;
-        jQueryTarget = window.jQuery ? jQuery.fn : null;
     }
     else if (pluginInfo.components) {
         sysTarget = Sys.ComponentSet.prototype;
     }
     if (sysTarget) {
-        sysTarget[fnName] = Sys._getCreate(pluginInfo, true, false);
-        var jPlugin = Sys._getCreate(pluginInfo, true, true);
-        if (jQueryTarget) {
-            jQueryTarget[fnName] = jPlugin;
-        }
-        else {
-            if (pluginInfo.global) {
-                Sys.plugins[name]._jqQueue = jPlugin;
-            }
-            else if (pluginInfo.dom) {
-                Sys.plugins[name]._jqQueueDom = jPlugin;
-            }
-        }
+        sysTarget[fnName] = Sys._getCreate(pluginInfo, true);
     }
 }
 
@@ -3272,9 +3201,6 @@ ns["_" + role + service] = {};
 
 
 
-if (window.jQuery) {
-    Sys._onjQuery();
-}
 Sys._domLoaded();
 }
 

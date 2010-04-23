@@ -9,7 +9,7 @@ an WCF Data Service, by using a Sys.Data.OpenDataContext.
     <title>Read-write, with OpenDataContext</title>
     <link href="../styles/Images.css" rel="stylesheet" type="text/css"/>
     
-    <script src="../Scripts/MicrosoftAjax/jQueryStart.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         var imagesList, imageData, dataContext,
@@ -20,12 +20,12 @@ an WCF Data Service, by using a Sys.Data.OpenDataContext.
         Sys.require([Sys.components.dataView, Sys.components.openDataContext]);
 
         Sys.onReady(function() {
-            dataContext = $.openDataContext({
+            dataContext = Sys.create.openDataContext({
                 serviceUri: "../Services/ImagesDataService.svc",
                 mergeOption: Sys.Data.MergeOption.appendOnly
             });
     
-            $(document.documentElement).activateElements();
+            Sys.query(document.documentElement).activateElements();
 
             imagesList = $find("imagesListView");
         });

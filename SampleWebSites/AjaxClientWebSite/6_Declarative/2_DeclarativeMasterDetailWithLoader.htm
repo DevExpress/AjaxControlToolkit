@@ -15,7 +15,7 @@ attached Watermark behavior - used when the Name string in the data is empty) ha
     <title>Declarative Master Detail with Loader</title>
     <link href="../styles/images.css" rel="stylesheet" type="text/css" />
     
-    <script src="../Scripts/MicrosoftAjax/jQueryStart.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
     <script src="../Scripts/MicrosoftAjax/Extended/ExtendedControls.debug.js" type="text/javascript"></script>
     
     <script type="text/javascript">
@@ -34,7 +34,7 @@ attached Watermark behavior - used when the Name string in the data is empty) ha
 
         Sys.onReady(function() {
             // Activate DOM now that scripts for attached controls and behaviors loaded
-            $(document.documentElement).activateElements();
+            Sys.query(document.documentElement).activateElements();
         });
     </script>
 </head>

@@ -19,7 +19,7 @@ Microsoft Ajax DataView control and a Watermark behavior to HTML elements.
     <title>DataView</title>
     <link href="../styles/images.css" rel="stylesheet" type="text/css" />
 
-    <script src="../Scripts/MicrosoftAjax/JQueryStart.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
     <script src="../Scripts/MicrosoftAjax/Extended/ExtendedControls.debug.js" type="text/javascript"></script>
 
     <script type="text/javascript">
@@ -40,11 +40,11 @@ Microsoft Ajax DataView control and a Watermark behavior to HTML elements.
         
         function loadComplete(features) {
             // Create the DataView control and attach to images ul element
-            $("#images")
+            Sys.query("#images")
                 .dataView({ data: gallery });
 
             // Create the Watermark and attach to the images gallerytitle input element
-            $(".gallerytitle").watermark("Add title here...", "watermarked");
+            Sys.query(".gallerytitle").watermark("Add title here...", "watermarked");
         }
    </script>
 </head>
