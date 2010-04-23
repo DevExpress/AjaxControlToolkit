@@ -116,7 +116,7 @@
         </Browser>
     </ItemGroup>
     <QUnit LogDirectory="$(MSBuildProjectDirectory)\logs"
-           TimeOut="30"
+           TimeOut="60"
            Browsers="@(Browser)"
            BrowserNames="@(Browser -> '%(Name)')"
            BrowserArguments="@(Browser -> '%(Arguments)')"
