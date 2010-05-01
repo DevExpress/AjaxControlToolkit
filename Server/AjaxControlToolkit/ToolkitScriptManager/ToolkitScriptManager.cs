@@ -169,11 +169,11 @@ namespace AjaxControlToolkit
                         string.Format(CultureInfo.InvariantCulture,
                             "(function() {{" +
                                 "var fn = function() {{" +
-                                    "$get('{0}').value = '';" +
+                                    "$get(\"{0}\").value = '';" +
                                     "Sys.Application.remove_init(fn);" +
                                 "}};" +
                                 "Sys.Application.add_init(fn);" +
-                            "}})();", hiddenFieldName.Replace("'", "\\'"))
+                            "}})();", QuoteString(hiddenFieldName), "")
                         , true);
                 }
             }
@@ -359,11 +359,13 @@ namespace AjaxControlToolkit
                     outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture, 
                         "(function() {{" +
                             "var fn = function() {{" +
-                                "$get('{0}').value += '{1}';" +
+                                "$get(\"{0}\").value += '{1}';" +
                                 "Sys.Application.remove_load(fn);" +
                             "}};" +
                             "Sys.Application.add_load(fn);" +
-                        "}})();", hiddenFieldName.Replace("'", "\\'"), SerializeScriptEntries(scriptEntries, true)));
+                        "}})();",
+                            QuoteString(hiddenFieldName),
+                            SerializeScriptEntries(scriptEntries, true)));
                 }
 
                 output = true;
