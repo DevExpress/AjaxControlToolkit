@@ -98,10 +98,16 @@ namespace AjaxControlToolkit
 
         #region [ Public Server Events ]
 
+        /// <summary>
+        /// Event to raise on the server when the file is uploaded successfully
+        /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AsyncFileUploadEventArgs> UploadedComplete;
 
+        /// <summary>
+        /// Event to raise on the server when the file is corrupted
+        /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AsyncFileUploadEventArgs> UploadedFileError;
@@ -110,6 +116,9 @@ namespace AjaxControlToolkit
 
         #region [ Public Client Events ]
 
+        /// <summary>
+        /// Gets or sets the client script that executes when a file upload starts
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -120,6 +129,9 @@ namespace AjaxControlToolkit
             set { ViewState["OnClientUploadStarted"] = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the client script that executes when a file upload completes
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -130,6 +142,9 @@ namespace AjaxControlToolkit
             set { ViewState["OnClientUploadComplete"] = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the client script that executes when a file upload error occurs
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -155,6 +170,10 @@ namespace AjaxControlToolkit
         }
         #endregion
 
+
+        /// <summary>
+        /// Gets an array of the bytes in the file being uploaded
+        /// </summary>
         #region [ Public Properties ]
         [BrowsableAttribute(false)]
         public byte[] FileBytes
@@ -177,6 +196,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Gets or sets the ID of a control that is displayed while the file is being uploaded
+        /// </summary>
         [Category("Behavior")]
         [Description("ID of Throbber")]
         [DefaultValue("")]
@@ -186,6 +208,10 @@ namespace AjaxControlToolkit
             set { ViewState["ThrobberID"] = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the control's background color when the file is uploaded.
+        /// The default value is Lime
+        /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
         [Description("Control's background color on upload complete.")]
@@ -196,6 +222,11 @@ namespace AjaxControlToolkit
             set { ViewState["CompleteBackColor"] = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the control's background color while the file is
+        /// in the process of being uploaded.
+        /// The default value is White
+        /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
         [Description("Control's background color when uploading is in progress.")]
@@ -206,6 +237,10 @@ namespace AjaxControlToolkit
             set { ViewState["UploadingBackColor"] = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the control's background color when there is an upload error. 
+        /// The default value is Red
+        /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
         [Description("Control's background color on upload error.")]
@@ -216,6 +251,9 @@ namespace AjaxControlToolkit
             set { ViewState["ErrorBackColor"] = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the control's width
+        /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Layout")]
         public override Unit Width
@@ -231,6 +269,10 @@ namespace AjaxControlToolkit
             set { failedValidation = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the storage provider for the control.
+        /// The default is value is Session.
+        /// </summary>
         [Bindable(true)]
         [Category("Behavior")]
         [DefaultValue(AsyncFileUpload.PersistedStoreTypeEnum.Session)]
@@ -240,6 +282,10 @@ namespace AjaxControlToolkit
             set { persistStorageType = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the control's appearance (Traditional, Modern).
+        /// The default value is Traditional
+        /// </summary>
         [Bindable(true)]
         [Category("Appearance")]
         [BrowsableAttribute(true)]
@@ -250,6 +296,9 @@ namespace AjaxControlToolkit
             set { controlStyle = value; }
         }
 
+        /// <summary>
+        /// Gets an HttpPostedFile object that provides access to the uploaded file
+        /// </summary>
         [BrowsableAttribute(false)]
         public HttpPostedFile PostedFile
         {
@@ -260,6 +309,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Returns true when a file has been uploaded
+        /// </summary>
         [BrowsableAttribute(false)]
         public bool HasFile
         {
@@ -273,6 +325,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Gets the file name of the uploaded file
+        /// </summary>
         [BrowsableAttribute(false)]
         public string FileName
         {
@@ -289,6 +344,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Gets the content type of the uploaded file
+        /// </summary>
         [BrowsableAttribute(false)]
         public string ContentType
         {
@@ -305,6 +363,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Gets a Stream object that points to an uploaded file to prepare for reading the contents of the file
+        /// </summary>
         [BrowsableAttribute(false)]
         public Stream FileContent
         {
@@ -320,6 +381,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Returns true when the file is in the process of being uploaded
+        /// </summary>
         [BrowsableAttribute(false)]
         public bool IsUploading
         {
@@ -346,14 +410,23 @@ namespace AjaxControlToolkit
 
         #region [ Methods ]
 
+        /// <summary>
+        /// Removes all files from the storage provider
+        /// </summary>
         public void ClearAllFilesFromPersistedStore() {
             AfuPersistedStoreManager.Instance.ClearAllFilesFromSession(this.ClientID);
         }
 
+        /// <summary>
+        /// Removes a particular file from the storage provider
+        /// </summary>
         public void ClearFileFromPersistedStore() {
             AfuPersistedStoreManager.Instance.RemoveFileFromSession(this.ClientID);
         }
 
+        /// <summary>
+        /// Saves the uploaded file with a particular file name
+        /// </summary>
         public void SaveAs(string filename)
         {
             PopulatObjectPriorToRender(this.ClientID);
@@ -455,6 +528,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Retrieves an array of bytes from a file stream
+        /// </summary>
         public byte[] GetBytesFromStream(Stream stream)
         {
             byte[] buffer = new byte[32768];

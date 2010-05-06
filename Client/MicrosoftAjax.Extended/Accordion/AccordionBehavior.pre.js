@@ -1316,7 +1316,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     get_Count: function() {
         /// <value type="Number" integer="true" mayBeNull="false">
         /// Number of Accordion panes
-        /// </summary>
+        /// </value>
         return this._panes ? this._panes.length : 0;
     },
 
