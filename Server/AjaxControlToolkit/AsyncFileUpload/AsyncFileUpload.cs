@@ -31,6 +31,11 @@ using System.Drawing.Design;
 
 namespace AjaxControlToolkit
 {
+    /// <summary>
+    /// AsyncFileUpload enables you to you asynchronously upload files to a server. The results of the file upload can be checked both in the server and client sides. 
+    /// 
+    /// You can save the uploaded file by calling the SaveAs() method in a handler for the server UploadedComplete event.
+    /// </summary>
     [Designer("AjaxControlToolkit.AsyncFileUploadDesigner, AjaxControlToolkit")]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.AsyncFileUpload", "AsyncFileUpload.AsyncFileUpload.js")]
