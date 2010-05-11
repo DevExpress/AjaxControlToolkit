@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		AjaxKey.snk = AjaxKey.snk
 		Tools\JSBuild.dll = Tools\JSBuild.dll
 		LICENSE.txt = LICENSE.txt
+		ReadMe.html = ReadMe.html
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BE8ECAAA-95BB-442C-B690-61268ACED1D4}"
