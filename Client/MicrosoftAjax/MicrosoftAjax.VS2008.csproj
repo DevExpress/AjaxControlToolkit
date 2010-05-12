@@ -92,9 +92,6 @@
     <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
     <!-- Write the copyright header to the now minified scripts -->
     <PrependTask Text="// (c) 2010 CodePlex Foundation" SourceFiles="@(JS)" />
-    <!-- jQueryStart-vsdoc.pre.js generated debug and release builds, only need the debug one and it shouldn't have 'debug' in the name -->
-    <Copy SourceFiles="$(ScriptOutput)\jQueryStart-vsdoc.debug.js" DestinationFiles="$(ScriptOutput)\jQueryStart-vsdoc.js" />
-    <Delete Files="$(ScriptOutput)\jQueryStart-vsdoc.debug.js" />
     <!-- Copy Images -->
     <ItemGroup>
       <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css">
@@ -192,9 +189,6 @@
     <Content Include="Loader\ComponentSet.js" />
     <Content Include="Loader\Definitions.js" />
     <Content Include="Loader\ElementSet.js" />
-    <Content Include="Loader\jquery-1.4.1-vsdoc.js" />
-    <Content Include="Loader\jQueryStart-vsdoc.pre.js" />
-    <Content Include="Loader\jQueryStart.pre.js" />
     <Content Include="Loader\loader.js" />
     <Content Include="Loader\RegisterPlugin.js" />
     <Content Include="Loader\Start.pre.js" />
