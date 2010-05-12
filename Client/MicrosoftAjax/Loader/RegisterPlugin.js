@@ -62,6 +62,9 @@
         if (!isPlugin) {
             fn._component = options;
         }
+        //#if LOADER
+        fn._slmock = true;
+        //#endif
         return fn;
         
         // end of DEBUG mode
@@ -69,7 +72,9 @@
         // start of RELEASE mode
         //#if LOADER
         // the loader only mocks the method
-        return function() {};
+        var fn = function() {};
+        fn._slmock = true;
+        return fn;
         //#else
         // core actually implements it
         if (isPlugin) {

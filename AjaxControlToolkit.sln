@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		AjaxKey.snk = AjaxKey.snk
 		Tools\JSBuild.dll = Tools\JSBuild.dll
 		LICENSE.txt = LICENSE.txt
+		ReadMe.html = ReadMe.html
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BE8ECAAA-95BB-442C-B690-61268ACED1D4}"
@@ -37,6 +38,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleWebSites", "SampleWebSites", "{E2ED2468-021E-4020-AD37-057943EC0364}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Client\UnitTests\UnitTests.csproj", "{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{53BF3496-0AD1-491C-A367-258E84479594} = {53BF3496-0AD1-491C-A367-258E84479594}
+		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}
+	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FunctionalTests", "Server\Tests\FunctionalTests\", "{12E25AFE-B7D8-4E00-9309-F2D505783178}"
 	ProjectSection(WebsiteProperties) = preProject

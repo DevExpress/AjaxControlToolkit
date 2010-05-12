@@ -80,36 +80,6 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
         
         el.style.position = "fixed";
         $common.setLocation(el, _location);
-
-        $common.appendElementToFormOrBody(el);
-
-//        var p = this.get_profileProperty();
-//        if(p) {
-//            var b = new Sys.Preview.Binding();
-//            b.beginUpdate();
-//            b.set_target(this);
-//            b.set_property("location");
-//            var profile = this.get_profileComponent();
-//            if(!profile) profile = Sys.Preview.Services.Components.Profile.instance;
-//            b.set_dataContext(profile);
-//            b.set_dataPath(p);
-//            b.set_direction(Sys.Preview.BindingDirection.InOut);            
-//                      
-//            // we must hook into the loaded event since the profile may be loaded and the location property
-//            // will be different. But profile doesnt raise a change notificaiton for every property after a load
-//            var a = new Sys.Preview.InvokeMethodAction();
-//            a.beginUpdate();
-//            a.set_eventSource(profile);
-//            a.set_eventName("loadComplete");
-//            a.set_target(b);
-//            a.set_method("evaluateIn");
-
-//            a.endUpdate();
-//            b.endUpdate();
-
-//            this._binding = b;
-//            this._action = a;
-//        }
     }
     
     this.dispose = function() {

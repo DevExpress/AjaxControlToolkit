@@ -815,6 +815,7 @@
                 foreach(scriptInfo["dependencies"], register);
                 foreach(scriptInfo["executionDependencies"], register);
             },
+
             defineScript: function defineScript(scriptInfo) {
                 /// <summary>Defines a script and its dependencies.</summary>
                 /// <validationOptions enabled="false" />

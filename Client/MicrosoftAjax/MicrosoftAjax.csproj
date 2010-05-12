@@ -78,8 +78,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <!-- JSBuild outputs the results of a build to the Scripts folder -->
-  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\JSBuild.dll" />
-  <UsingTask TaskName="JSBuild.PrependTask" AssemblyFile="..\..\Tools\JSBuild.dll" />
+  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
+  <UsingTask TaskName="JSBuild.PrependTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
   <Target Name="BeforeBuild">
     <MakeDir Directories="$(ScriptOutput)" />
     <!-- clean out old files from previous build -->

@@ -19,21 +19,7 @@ namespace AjaxControlToolkit
     /// The Accordion control represents a series of panes that can be viewed
     /// one at a time.  The control is used to create "strongly typed" access
     /// to the AccordionBehavior.  Its major purpose is to structure the content
-    /// in a way that the AccordionBehavior can understand it.  We need a series
-    /// of HTML container elements, such as divs, that looks like the following:
-    ///   <div id="Accordion">
-    ///     <span id="AccordionPane1">
-    ///       <div id="AccordionPane1Header"></div>
-    ///       <div id="AccordionPane1Content"></div>
-    ///     </span>
-    ///     <span id="AccordionPane2">
-    ///       <div id="AccordionPane2Header"></div>
-    ///       <div id="AccordionPane2Content"></div>
-    ///     </span>
-    ///     .
-    ///     .
-    ///     .
-    ///   </div>
+    /// in a way that the AccordionBehavior can understand it. 
     /// </summary>
     [ParseChildren(true)]
     [PersistChildren(true)]
