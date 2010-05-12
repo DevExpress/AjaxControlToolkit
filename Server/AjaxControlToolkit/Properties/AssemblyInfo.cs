@@ -37,10 +37,10 @@ using AjaxControlToolkit;
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 [assembly: System.Web.Script.AjaxFrameworkAssembly]
 [assembly: AssemblyVersion("4.1.40412")]
-[assembly: AssemblyFileVersion("4.1.40412.1")]
+[assembly: AssemblyFileVersion("4.1.40412.2")]
 #else
 [assembly: AssemblyVersion("3.5.40412")]
-[assembly: AssemblyFileVersion("3.5.40412.1")]  
+[assembly: AssemblyFileVersion("3.5.40412.2")]  
 #endif
 [assembly: NeutralResourcesLanguage("en-US")]
 
