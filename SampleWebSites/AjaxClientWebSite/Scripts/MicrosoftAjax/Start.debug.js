@@ -730,6 +730,7 @@ var callIf = function _callIf(obj, name, args) {
                 foreach(scriptInfo["dependencies"], register);
                 foreach(scriptInfo["executionDependencies"], register);
             },
+
             defineScript: function defineScript(scriptInfo) {
                 /// <summary>Defines a script and its dependencies.</summary>
                 /// <validationOptions enabled="false" />
@@ -1018,6 +1019,7 @@ obj.prototype = {
         if (!isPlugin) {
             fn._component = options;
         }
+        fn._slmock = true;
         return fn;
         
     }
