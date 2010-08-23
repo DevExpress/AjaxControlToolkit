@@ -174,4 +174,4 @@ $type.prototype = {
 }
 $type.registerClass("Sys.UI.TemplateContext", null, Sys.IDisposable);
 $type._tcindex = 0;
-$type._contexts = 0;
+$type._contexts = [];
