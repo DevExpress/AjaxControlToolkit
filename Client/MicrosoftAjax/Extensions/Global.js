@@ -19,9 +19,10 @@ var foreach = function _foreach(arr, callback, start) {
     var cancelled;
     if (arr) {
         // javascript array
-        arr = arr instanceof Array || 
+        arr = arr !== window &&
+            (arr instanceof Array || 
             // arguments array, or nodelist (has .item and is not a dom element or window)
-            (typeof(arr.length) === 'number' && (typeof(arr.callee) === "function" || (arr.item && typeof(arr.nodeType) === "undefined") && !arr.addEventListener && !arr.attachEvent))
+            (typeof(arr.length) === 'number' && (typeof(arr.callee) === "function" || (arr.item && typeof(arr.nodeType) === "undefined") && !arr.addEventListener && !arr.attachEvent)))
             ? arr : [arr];
         for (var i = start||0, l = arr.length; i < l; i++) {
             if (callback(arr[i], i)) {
