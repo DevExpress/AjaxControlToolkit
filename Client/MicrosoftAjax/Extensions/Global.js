@@ -19,7 +19,7 @@ var foreach = function _foreach(arr, callback, start) {
     var cancelled;
     if (arr) {
         // javascript array
-        arr = arr !== window &&
+        arr = arr !== window && typeof(arr.nodeType) === "undefined" &&
             (arr instanceof Array || 
             // arguments array, or nodelist (has .item and is not a dom element or window)
             (typeof(arr.length) === 'number' && (typeof(arr.callee) === "function" || (arr.item && typeof(arr.nodeType) === "undefined") && !arr.addEventListener && !arr.attachEvent)))
