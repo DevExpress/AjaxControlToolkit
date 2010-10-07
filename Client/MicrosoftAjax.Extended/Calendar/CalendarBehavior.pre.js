@@ -99,8 +99,7 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
         mousedown: Function.createDelegate(this, this._popup_onmousedown),
         mouseup: Function.createDelegate(this, this._popup_onmouseup),
         drag: Function.createDelegate(this, this._popup_onevent),
-        dragstart: Function.createDelegate(this, this._popup_onevent),
-        select: Function.createDelegate(this, this._popup_onevent)
+        dragstart: Function.createDelegate(this, this._popup_onevent)
     }
     this._cell$delegates = {
         mouseover: Function.createDelegate(this, this._cell_onmouseover),
