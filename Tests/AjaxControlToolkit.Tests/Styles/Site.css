@@ -1,0 +1,25 @@
+﻿
+html {
+    font-family: Verdana;   
+}
+
+#resultsTable td, #resultsTable th {
+    padding: 10px;
+}
+
+#resultsTable th {
+    background-color:black;
+    color:White;
+}
+
+#resultsTable.tr {
+    border:solid 3px white;
+}
+
+.fail {
+    background-color: #FF1A00;   
+}
+
+.success {
+    background-color: #99CC9A   
+}
