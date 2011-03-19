@@ -8,8 +8,8 @@ $type = Sys._ScriptLoaderTask = function _ScriptLoaderTask(scriptElement, comple
     /// <param name="completedCallback" type="Function">Callback to call when the script has loaded or failed to load.</param>
     //#if DEBUG
     var e = Function._validateParams(arguments, [
-        {name: "scriptElement", domElement: true},
-        {name: "completedCallback", type: Function}
+        { name: "scriptElement", domElement: true },
+        { name: "completedCallback", type: Function }
     ]);
     if (e) throw e;
     //#endif
@@ -24,10 +24,10 @@ $type.prototype = {
         //#endif
         return this._scriptElement;
     },
-    
+
     dispose: function _ScriptLoaderTask$dispose() {
         // disposes of the task by removing the load handlers, aborting the window timeout, and releasing the ref to the dom element
-        if(this._disposed) {
+        if (this._disposed) {
             // already disposed
             return;
         }
@@ -37,7 +37,7 @@ $type.prototype = {
         Sys._ScriptLoaderTask._clearScript(this._scriptElement);
         this._scriptElement = null;
     },
-        
+
     execute: function _ScriptLoaderTask$execute() {
         /// <summary locid="M:J#Sys._ScriptLoaderTask.execute">Begins loading the given script element.</summary>
         //#if DEBUG
@@ -45,42 +45,43 @@ $type.prototype = {
         //#endif
         this._addScriptElementHandlers();
         // DevDiv Bugs 146697: use lowercase names on getElementsByTagName to work with xhtml content type
-//#if DEBUG
+        //#if DEBUG
         // DevDiv Bugs 146327: In debug mode, report useful error message for pages without <head> element
         var headElements = document.getElementsByTagName('head');
         if (headElements.length === 0) {
-             throw new Error.invalidOperation(Sys.Res.scriptLoadFailedNoHead);
+            throw new Error.invalidOperation(Sys.Res.scriptLoadFailedNoHead);
         }
         else {
-             headElements[0].appendChild(this._scriptElement);
+            headElements[0].appendChild(this._scriptElement);
         }
-//#else
+        //#else
         document.getElementsByTagName('head')[0].appendChild(this._scriptElement);
-//#endif
+        //#endif
     },
-       
+
     _addScriptElementHandlers: function _ScriptLoaderTask$_addScriptElementHandlers() {
         // adds the necessary event handlers to the script node to know when it is finished loading
         this._scriptLoadDelegate = Function.createDelegate(this, this._scriptLoadHandler);
-        
+
         if (document.addEventListener) {
-            this._scriptElement.readyState = 'loaded';
+            if (!this._scriptElement.readyState)
+                this._scriptElement.readyState = 'loaded';
             $addHandler(this._scriptElement, 'load', this._scriptLoadDelegate);
         }
         else {
             $addHandler(this._scriptElement, 'readystatechange', this._scriptLoadDelegate);
-        }    
+        }
         // FF throws onerror if the script doesn't exist, not loaded.
         // DevDev Bugs 86101 -- cant use DomElement.addHandler because it throws for 'error' events.
         if (this._scriptElement.addEventListener) {
             this._scriptErrorDelegate = Function.createDelegate(this, this._scriptErrorHandler);
             this._scriptElement.addEventListener('error', this._scriptErrorDelegate, false);
         }
-    },    
-    
+    },
+
     _removeScriptElementHandlers: function _ScriptLoaderTask$_removeScriptElementHandlers() {
         // removes the load and error handlers from the script element
-        if(this._scriptLoadDelegate) {
+        if (this._scriptLoadDelegate) {
             var scriptElement = this.get_scriptElement();
             if (document.addEventListener) {
                 $removeHandler(scriptElement, 'load', this._scriptLoadDelegate);
@@ -95,21 +96,21 @@ $type.prototype = {
             }
             this._scriptLoadDelegate = null;
         }
-    },    
+    },
 
     _scriptErrorHandler: function _ScriptLoaderTask$_scriptErrorHandler() {
         // handler for when the script element's error event occurs
-        if(this._disposed) {
+        if (this._disposed) {
             return;
         }
-        
+
         // false == did not load successfully (404, etc)
         this._completedCallback(this.get_scriptElement(), false);
     },
-           
+
     _scriptLoadHandler: function _ScriptLoaderTask$_scriptLoadHandler() {
         // handler for when the script element's load/readystatechange event occurs
-        if(this._disposed) {
+        if (this._disposed) {
             return;
         }
 
@@ -118,9 +119,9 @@ $type.prototype = {
             (scriptElement.readyState !== 'complete')) {
             return;
         }
-        
+
         this._completedCallback(scriptElement, true);
-    }  
+    }
 }
 $type.registerClass("Sys._ScriptLoaderTask", null, Sys.IDisposable);
 
