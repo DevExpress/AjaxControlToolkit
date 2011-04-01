@@ -14,15 +14,48 @@
 </style> 
 <body> 
  
-<h1>AJAX Control Toolkit &mdash; April 2010 Release</h1> 
+<h1>AJAX Control Toolkit &mdash; April 2011 Release</h1> 
  
 <p> 
-This release contains more than 15 bug fixes. You can view a partial list of these bug fixes here:
+This release of the Ajax Control Toolkit includes several bug fixes to improve the compatibility of the Ajax Control Toolkit with
+Internet Explorer 9. This release also contains enhancements to the following two controls:
 </p> 
-<blockquote> 
-  <a href="http://ajaxcontroltoolkit.codeplex.com/wikipage?title=40412">Release Page</a> 
-</blockquote> 
 
+<ul>
+    <li>
+    <p>
+    <b>RoundedCorners</b> &mdash; The RoundedCorners extender has been enhanced to take advantage
+    of the CSS 3 border-radius attribute when a browser supports this attribute. For example, Internet
+    Explorer 9 supports the border-radius attribute.  
+    </p>
+    <p>
+    The RoundedCorners extender will use the -moz-border-radius attribute in the case of 
+    Mozilla Firefox and the -webkit-border-radius in the case of Apple Safari and older
+    versions of Google Chrome.
+    </p>
+    <p>
+    Finally, in the case of older browsers such as Internet Explorer 6, the RoundedCorners
+    extender will fall back to simulating rounded corners by generating multiple DIV elements
+    in the page.
+    </p>
+    </li>
+    <li>
+    <p>
+    <b>DropShadow</b> &mdash; The DropShadow extender has been enhanced to take advantage of
+    CSS 3 when a browser supports CSS 3. For example, Internet Explorer 9 will use the
+    CSS 3 box-shadow attribute.
+    </p>
+    <p>
+    Mozilla Firefox will use the -moz-box-shadow attribute. Apple Safari and older versions
+    of Google Chrome will use the -webkit-box-shadow attribute.
+    </p>
+    <p>
+    Finally, really old browsers such as Internet Explorer 6, will simulate a drop shadow by
+    injecting an additional DIV element into the page dynamically. 
+    </p>
+    </li>
+
+</ul>
 
  
 <h2>What's in the Download</h2> 
@@ -37,8 +70,11 @@ If you want to download the AJAX Control Toolkit source files then you should do
   <a href="http://ajaxcontroltoolkit.codeplex.com">http://ajaxcontroltoolkit.codeplex.com</a> 
 </blockquote> 
  
- <b><i>Note: You must install the free Microsoft Ajax Minifier to open the source code version of the Ajax Control Toolkit. You can download the Microsoft Ajax Minifier from  <a target="_top" href="http://aspnet.codeplex.com/releases/view/40584">Microsoft Ajax Minifier</a>.</i></b>
-
+ <b><i>
+ Note: When opening the Ajax Control Toolkit solution in Visual Studio 2008, you will receive
+ a security warning because the Ajax Control Toolkit project files have been modified to
+ use the Microsoft Ajax Minifier. Select the option to Load the Project Normally. 
+ </i></b>
 
 <h2>Installation Instructions</h2> 
  
