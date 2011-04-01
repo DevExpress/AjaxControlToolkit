@@ -19,3 +19,5 @@ glob:Server/Tests/FunctionalTests/Bin/*
 glob:Tests/AjaxControlToolkit.Tests/AjaxControlToolkit.Tests.csproj.user
 glob:Client/UnitTests/ajaxlib/*
 glob:SampleWebSites/AjaxControlToolkitSampleSite/Bin/*
+syntax: glob
+AjaxControlToolkit.VS2008.suo
