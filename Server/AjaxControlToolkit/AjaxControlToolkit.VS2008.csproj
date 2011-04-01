@@ -701,8 +701,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\MicrosoftAjax\ajaxmin.tasks" />
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
+  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
+
   <Target Name="BeforeBuild">
     <MakeDir Directories="ScriptOutput" />
     <!-- clean out old files from previous build -->

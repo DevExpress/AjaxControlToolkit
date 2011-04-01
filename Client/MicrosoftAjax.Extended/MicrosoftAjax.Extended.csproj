@@ -299,7 +299,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\MicrosoftAjax\ajaxmin.tasks" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -329,6 +328,8 @@
   <!-- JSBuild outputs the results of a build to the Scripts folder -->
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
   <UsingTask TaskName="JSBuild.PrependTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
+  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
+
   <Target Name="BeforeBuild">
     <MakeDir Directories="$(ScriptOutput)" />
     <!-- clean out old files from previous build -->

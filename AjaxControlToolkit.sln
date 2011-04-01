@@ -6,6 +6,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{22E5A71C-E3CD-4965-A7E8-F18DF3AE518C}"
 	ProjectSection(SolutionItems) = preProject
 		AjaxKey.snk = AjaxKey.snk
+		AjaxMin.dll = AjaxMin.dll
+		AjaxMinTask.dll = AjaxMinTask.dll
 		Tools\JSBuild.dll = Tools\JSBuild.dll
 		LICENSE.txt = LICENSE.txt
 		ReadMe.html = ReadMe.html
@@ -107,7 +109,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSit
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "8896"
+		VWDPort = "43377"
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0842B4F5-E78A-4003-8993-86E3CFF3F992}"
