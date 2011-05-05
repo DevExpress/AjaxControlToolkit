@@ -61,35 +61,27 @@
                     e.style.position = "relative";
                 }
 
-
                 // set up our initial state
                 if (this._rounded) {
                     this.setupRounded();
                 }
 
-                // execute if browser does not support css3
-                if (e.style.boxShadow == undefined && e.style.MozBoxShadow == undefined && e.style.WebkitBoxShadow == undefined) {
-                    if (this._trackPosition) {
-                        this.startTimer();
-                    }
+                if (this._trackPosition) {
+                    this.startTimer();
                 }
-                this.setShadow();
 
+                this.setShadow();
             },
 
             dispose: function () {
                 /// <summary>
                 /// Dispose the behavior
                 /// </summary>
-                if (!e)
-                    e = this.get_element();
 
-                // execute if browser does not support css3
-                if (e.style.boxShadow == undefined && e.style.MozBoxShadow == undefined && e.style.WebkitBoxShadow == undefined) {
-                    this.stopTimer();
-                    this.disposeShadowDiv();
-                    Sys.Extended.UI.DropShadowBehavior.callBaseMethod(this, 'dispose');
-                }
+                this.stopTimer();
+                this.disposeShadowDiv();
+                Sys.Extended.UI.DropShadowBehavior.callBaseMethod(this, 'dispose');
+
             },
 
             buildShadowDiv: function () {
@@ -144,22 +136,19 @@
                 /// Dispose of the div we use as the shadow
                 /// </summary>
 
-                // execute if browser does not support css3
-                if (e.style.boxShadow == undefined && e.style.MozBoxShadow == undefined && e.style.WebkitBoxShadow == undefined) {
-                    if (this._shadowDiv) {
-                        // on page teardown (or in an update panel, this may already
-                        // be gone)
-                        //
-                        if (this._shadowDiv.parentNode) {
-                            this._shadowDiv.parentNode.removeChild(this._shadowDiv);
-                        }
-                        this._shadowDiv = null;
+                if (this._shadowDiv) {
+                    // on page teardown (or in an update panel, this may already
+                    // be gone)
+                    //
+                    if (this._shadowDiv.parentNode) {
+                        this._shadowDiv.parentNode.removeChild(this._shadowDiv);
                     }
+                    this._shadowDiv = null;
+                }
 
-                    if (this._shadowRoundedBehavior) {
-                        this._shadowRoundedBehavior.dispose();
-                        this._shadowRoundedBehavior = null;
-                    }
+                if (this._shadowRoundedBehavior) {
+                    this._shadowRoundedBehavior.dispose();
+                    this._shadowRoundedBehavior = null;
                 }
             },
 
@@ -259,6 +248,35 @@
                         this._shadowDiv.style.visibility = $common.getCurrentStyle(e, 'visibility');
                     }
                 }
+                // create dropshadow effect on div if browser supports css3
+                else {
+
+                    var boxShadowVals;
+
+                    //To display effect of opacity set different color
+                    // on the basis of selected % of opacity 
+                    if (this._opacity == ".25")
+                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#D3D3D3";
+                    else if (this._opacity == ".5")
+                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#778899";
+                    else if (this._opacity == ".75")
+                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#808080";
+                    else
+                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#000";
+
+                    // this works in IE9 and Chrome latest versions
+                    if (e.style.boxShadow != undefined) {
+                        e.style.boxShadow = boxShadowVals;
+                    }
+                    // this works for Mozila Firefox
+                    else if (e.style.MozBoxShadow != undefined) {
+                        e.style.MozBoxShadow = boxShadowVals;
+                    }
+                    // this works for Chrome older version, Safari
+                    else if (e.style.WebkitBoxShadow != undefined) {
+                        e.style.WebkitBoxShadow = boxShadowVals;
+                    }
+                }
             },
 
             setupOpacity: function () {
@@ -326,40 +344,10 @@
                 if (this._opacity != value) {
                     this._opacity = value;
 
-                    // get element to set drop shadow
-                    if (!e)
-                        e = this.get_element();
+                    this.setShadow();
+                    this.setupOpacity();
 
-                    var boxShadowVals;
-
-                    //To display effect of opacity set different color
-                    // on the basis of selected % of opacity 
-                    if (this._opacity == ".25")
-                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#D3D3D3";
-                    else if (this._opacity == ".5")
-                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#778899";
-                    else if (this._opacity == ".75")
-                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#808080";
-                    else
-                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#000";
-
-                    // this works in IE9 and Chrome latest versions
-                    if (e.style.boxShadow != undefined) {
-                        e.style.boxShadow = boxShadowVals;
-                    }
-                    // this works for Mozila Firefox
-                    else if (e.style.MozBoxShadow != undefined) {
-                        e.style.MozBoxShadow = boxShadowVals;
-                    }
-                    // this works for Chrome older version, Safari
-                    else if (e.style.WebkitBoxShadow != undefined) {
-                        e.style.WebkitBoxShadow = boxShadowVals;
-                    }
-                    else {
-                        this.setupOpacity();
-
-                        this.raisePropertyChanged('Opacity');
-                    }
+                    this.raisePropertyChanged('Opacity');
                 }
             },
 
@@ -405,44 +393,12 @@
                 if (value != this._width) {
                     this._width = value;
 
-                    // Get element to set drop shadow
-                    if (!e)
-                        e = this.get_element();
-
-                    var boxShadowVals;
-
-                    //To display effect of opacity set different color
-                    // on the basis of selected % of opacity
-                    if (this._opacity == ".25")
-                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#D3D3D3";
-                    else if (this._opacity == ".5")
-                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#778899";
-                    else if (this._opacity == ".75")
-                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#808080";
-                    else
-                        boxShadowVals = this._width + "px " + this._width + "px " + this._width + "px " + "#000000";
-
-                    // this works in IE9 and Chrome latest versions
-                    if (e.style.boxShadow != undefined) {
-                        e.style.boxShadow = boxShadowVals;
+                    if (this._shadowDiv) {
+                        $common.setVisible(this._shadowDiv, value > 0);
                     }
-                    // this works for Mozila Firefox
-                    else if (e.style.MozBoxShadow != undefined) {
-                        e.style.MozBoxShadow = boxShadowVals;
-                    }
-                    // this works for Chrome older version, Safari
-                    else if (e.style.WebkitBoxShadow != undefined) {
-                        e.style.WebkitBoxShadow = boxShadowVals;
-                    }
-                    else {
 
-                        if (this._shadowDiv) {
-                            $common.setVisible(this._shadowDiv, value > 0);
-                        }
-
-                        this.setShadow(true);
-                        this.raisePropertyChanged('Width');
-                    }
+                    this.setShadow(true);
+                    this.raisePropertyChanged('Width');
                 }
             },
 
@@ -476,6 +432,7 @@
                 /// </value>
                 return this._trackPosition;
             },
+
             set_TrackPosition: function (value) {
                 if (value != this._trackPosition) {
                     this._trackPosition = value;
