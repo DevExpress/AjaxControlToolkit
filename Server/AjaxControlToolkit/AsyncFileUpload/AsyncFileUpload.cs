@@ -510,11 +510,14 @@ namespace AjaxControlToolkit {
                     }
 
                     TextWriter output = Page.Response.Output;
-                    Page.Response.ClearContent();
-                    output.Write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title></title></head><body><div id='" + ClientID + "'>");
+                    //Page.Response.ClearContent();
+                    //output.Write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title></title></head><body><div id='" + ClientID + "'>");
+                    //output.Write(result);
+                    //output.Write("</div></body></html>");
+                    //Page.Response.End();
+                    output.Write("<div id='" + ClientID + "'>");
                     output.Write(result);
-                    output.Write("</div></body></html>");
-                    Page.Response.End();
+                    output.Write("</div>");
                 }
             }
         }
