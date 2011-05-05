@@ -76,6 +76,8 @@
     <Content Include="Tests\Animation\Animation_TestPage.aspx" />
     <Content Include="Tests\DropDown\DropDown.aspx" />
     <Content Include="Tests\DropDown\DropDown_TestPage.aspx" />
+    <Content Include="Tests\DropShadow\DropShadow.aspx" />
+    <Content Include="Tests\DropShadow\DropShadow_TestPage.aspx" />
     <Content Include="Tests\RatingControl\Images\EmptyStar.png" />
     <Content Include="Tests\RatingControl\Images\FilledStar.png" />
     <Content Include="Tests\RatingControl\Images\SavedStar.png" />
@@ -162,6 +164,18 @@
     </Compile>
     <Compile Include="Tests\DropDown\DropDown_TestPage.aspx.designer.cs">
       <DependentUpon>DropDown_TestPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\DropShadow\DropShadow.aspx.cs">
+      <DependentUpon>DropShadow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\DropShadow\DropShadow.aspx.designer.cs">
+      <DependentUpon>DropShadow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\DropShadow\DropShadow_TestPage.aspx.cs">
+      <DependentUpon>DropShadow_TestPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\DropShadow\DropShadow_TestPage.aspx.designer.cs">
+      <DependentUpon>DropShadow_TestPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests\RatingControl\RatingControl.aspx.cs">
       <DependentUpon>RatingControl.aspx</DependentUpon>
