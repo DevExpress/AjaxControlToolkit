@@ -197,8 +197,8 @@
 
             <br />
             <br />
-            With OnShowing/OnShown/OnHiding/OnHidden modalpopup extender provides animation effects on a modalpopup 
-            window. Modalpopup extender also allows to control fadein, fadeout, center, resize duration, scaling of modalpopup window with simple setting of properties. 
+            You can provide OnShowing/OnShown/OnHiding/OnHidden animations which are played when the modal content is shown and hidden. For example, you can
+            use these animations to fade-in and fade-out modal content. 
         </p>
     </asp:Panel>
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
@@ -228,6 +228,7 @@
             &lt;OnShowing&gt; ..  &lt;/OnShowing&gt;
             &lt;OnShown&gt;   ..  &lt;/OnShown&gt;    
             &lt;OnHiding&gt;  ..  &lt;/OnHiding&gt;            
+            &lt;OnHidden&gt;  ..  &lt;/OnHidden&gt;            
         &lt;/Animations&gt;
     &lt;/ajaxToolkit:ModalPopupExtender&gt;
     </pre>
@@ -254,16 +255,6 @@
                 (the popup will be centered vertically if not specified)</li>
             <li><strong>RepositionMode</strong> - The setting that determines if the popup needs
                 to be repositioned when the window is resized or scrolled.</li>
-            <li><strong>OnShowing</strong> - This is required to setup settings when modalpopup is opening.</li>
-            <li><strong>Duration</strong> - This tells after how many seconds animation will start.</li>
-            <li><strong>Height</strong> - This sets the height of animated modalpopup.</li>
-            <li><strong>Weight</strong> - This sets the weight of animated modalpopup.</li>
-            <li><strong>OnShown</strong> - This provides the settings when modalpopup is shown.</li>
-            <li><strong>ScaleFactor</strong> - This sets the scale factor of fadein.</li>
-            <li><strong>Center</strong> - This sets fadein will happen from center.</li>
-            <li><strong>OnHiding</strong> - This provides the settings when modalpopup is hiding.</li>
-            <li><strong>ScaleFactor</strong> - This sets the scale factor of fadeout.</li>
-            <li><strong>Center</strong> - This sets fadeout will happen from center.</li>
         </ul>
     </asp:Panel>
     <script type="text/javascript">
