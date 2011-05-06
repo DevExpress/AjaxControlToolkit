@@ -108,7 +108,7 @@ namespace AjaxControlToolkit {
         /// Initializes a new AsyncFileUpload.
         /// </summary>
         public AsyncFileUpload()
-            : base(true, HtmlTextWriterTag.Span) {
+            : base(true, HtmlTextWriterTag.Div) {
         }
 
         #endregion
