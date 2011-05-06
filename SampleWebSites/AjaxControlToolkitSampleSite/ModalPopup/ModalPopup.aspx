@@ -1,15 +1,7 @@
-<%@ Page 
-    Language="C#" 
-    MasterPageFile="~/DefaultMaster.master" 
-    AutoEventWireup="true"
-    Inherits="CommonPage" 
-    Title="ModalPopup Sample"
-    Theme="SampleSiteTheme" %>
-<%@ Register 
-    Assembly="AjaxControlToolkit" 
-    Namespace="AjaxControlToolkit" 
-    TagPrefix="ajaxToolkit" %>
+<%@ Page Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true"
+    Inherits="CommonPage" Title="ModalPopup Sample" Theme="SampleSiteTheme" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <script runat="server">
 
     protected void showModalPopupServerOperatorButton_Click(object sender, EventArgs e)
@@ -21,114 +13,167 @@
         this.programmaticModalPopup.Hide();
     }
 </script>
-
-<asp:Content ContentPlaceHolderID="SampleContent" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" ID="ScriptManager1" />
     <script type="text/javascript">
         var styleToSelect;
         function onOk() {
             $get('Paragraph1').className = styleToSelect;
         }
-        
+
         // Add click handlers for buttons to show and hide modal popup on pageLoad
         function pageLoad() {
             $addHandler($get("showModalPopupClientButton"), 'click', showModalPopupViaClient);
-            $addHandler($get("hideModalPopupViaClientButton"), 'click', hideModalPopupViaClient);        
+            $addHandler($get("hideModalPopupViaClientButton"), 'click', hideModalPopupViaClient);
         }
-        
+
         function showModalPopupViaClient(ev) {
             ev.preventDefault();
             var modalPopupBehavior = $find('programmaticModalPopupBehavior');
             modalPopupBehavior.show();
         }
-        
+
         function hideModalPopupViaClient(ev) {
-            ev.preventDefault();        
+            ev.preventDefault();
             var modalPopupBehavior = $find('programmaticModalPopupBehavior');
             modalPopupBehavior.hide();
         }
     </script>
     <div class="demoarea">
-        <div class="demoheading">ModalPopup Demonstration</div>
-        <p id="Paragraph1"><%= GetContentFillerText() %></p><br />
+        <div class="demoheading">
+            ModalPopup Demonstration</div>
+        <p id="Paragraph1">
+            <%= GetContentFillerText() %></p>
+        <br />
         <asp:LinkButton ID="LinkButton1" runat="server" Text="Click here to change the paragraph style" />
-        
         <asp:Panel ID="Panel1" runat="server" Style="display: none" CssClass="modalPopup">
-            <asp:Panel ID="Panel3" runat="server" Style="cursor: move;background-color:#DDDDDD;border:solid 1px Gray;color:Black">
+            <asp:Panel ID="Panel3" runat="server" Style="cursor: move; background-color: #DDDDDD;
+                border: solid 1px Gray; color: Black">
                 <div>
-                    <p>Choose the paragraph style you would like:</p>
+                    <p>
+                        Choose the paragraph style you would like:</p>
                 </div>
             </asp:Panel>
-                <div>
-                    <p>
-                        <input type="radio" name="Radio" id="RadioA" checked="checked"
-                            onclick="styleToSelect = 'sampleStyleA';" />
-                        <label for="RadioA" class="sampleStyleA"
-                            style="padding: 3px;">Sample paragraph text</label>
-                    </p>
-                    <p>
-                        <input type="radio" name="Radio" id="RadioB"
-                            onclick="styleToSelect = 'sampleStyleB';" />
-                        <label for="RadioB" class="sampleStyleB"
-                            style="padding: 3px;">Sample paragraph text</label>
-                    </p>
-                    <p>
-                        <input type="radio" name="Radio" id="RadioC"
-                            onclick="styleToSelect = 'sampleStyleC';" />
-                        <label for="RadioC" class="sampleStyleC"
-                            style="padding: 3px;">Sample paragraph text</label>
-                    </p>
-                    <p>
-                        <input type="radio" name="Radio" id="RadioD"
-                            onclick="styleToSelect = 'sampleStyleD';" />
-                        <label for="RadioD" class="sampleStyleD"
-                            style="padding: 3px;">Sample paragraph text</label>
-                    </p>
-                    <p style="text-align: center;">
-                        <asp:Button ID="OkButton" runat="server" Text="OK" />
-                        <asp:Button ID="CancelButton" runat="server" Text="Cancel" />
-                    </p>
-                </div>
+            <div>
+                <p>
+                    <input type="radio" name="Radio" id="RadioA" checked="checked" onclick="styleToSelect = 'sampleStyleA';" />
+                    <label for="RadioA" class="sampleStyleA" style="padding: 3px;">
+                        Sample paragraph text</label>
+                </p>
+                <p>
+                    <input type="radio" name="Radio" id="RadioB" onclick="styleToSelect = 'sampleStyleB';" />
+                    <label for="RadioB" class="sampleStyleB" style="padding: 3px;">
+                        Sample paragraph text</label>
+                </p>
+                <p>
+                    <input type="radio" name="Radio" id="RadioC" onclick="styleToSelect = 'sampleStyleC';" />
+                    <label for="RadioC" class="sampleStyleC" style="padding: 3px;">
+                        Sample paragraph text</label>
+                </p>
+                <p>
+                    <input type="radio" name="Radio" id="RadioD" onclick="styleToSelect = 'sampleStyleD';" />
+                    <label for="RadioD" class="sampleStyleD" style="padding: 3px;">
+                        Sample paragraph text</label>
+                </p>
+                <p style="text-align: center;">
+                    <asp:Button ID="OkButton" runat="server" Text="OK" />
+                    <asp:Button ID="CancelButton" runat="server" Text="Cancel" />
+                </p>
+            </div>
         </asp:Panel>
-        <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender" runat="server" 
-            TargetControlID="LinkButton1"
-            PopupControlID="Panel1" 
-            BackgroundCssClass="modalBackground" 
-            OkControlID="OkButton"
-            OnOkScript="onOk()" 
-            CancelControlID="CancelButton" 
-            DropShadow="true"
-            PopupDragHandleControlID="Panel3" />
+        <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender" runat="server" TargetControlID="LinkButton1"
+            PopupControlID="Panel1" BackgroundCssClass="modalBackground" OkControlID="OkButton"
+            OnOkScript="onOk()" CancelControlID="CancelButton" DropShadow="true" PopupDragHandleControlID="Panel3" />
         <br />
-        <br /><hr /><br />
-         This ModalPopup will be spawned programmatically. The ModalPopupExtender that this popup is attached to
-            has a hidden TargetControl. The popup can be <asp:LinkButton runat="server" ID="showModalPopupServerOperatorButton" Text="shown via server in code behind" OnClick="showModalPopupServerOperatorButton_Click" /> and 
-            <a id="showModalPopupClientButton" href="#">on the client in script</a> by calling the ModalPopupExtender methods to show and hide.<br />
-        <asp:Button runat="server" ID="hiddenTargetControlForModalPopup" style="display:none"/>
-        <ajaxToolkit:ModalPopupExtender runat="server" ID="programmaticModalPopup"
-            BehaviorID="programmaticModalPopupBehavior"
-            TargetControlID="hiddenTargetControlForModalPopup"
-            PopupControlID="programmaticPopup" 
-            BackgroundCssClass="modalBackground"
-            DropShadow="True"
-            PopupDragHandleControlID="programmaticPopupDragHandle"
-            RepositionMode="RepositionOnWindowScroll" >
+        <br />
+        <hr />
+        <br />
+        This ModalPopup will be spawned programmatically. The ModalPopupExtender that this
+        popup is attached to has a hidden TargetControl. The popup can be
+        <asp:LinkButton runat="server" ID="showModalPopupServerOperatorButton" Text="shown via server in code behind"
+            OnClick="showModalPopupServerOperatorButton_Click" />
+        and <a id="showModalPopupClientButton" href="#">on the client in script</a> by calling
+        the ModalPopupExtender methods to show and hide.<br />
+        <asp:Button runat="server" ID="hiddenTargetControlForModalPopup" Style="display: none" />
+        <ajaxToolkit:ModalPopupExtender runat="server" ID="programmaticModalPopup" BehaviorID="programmaticModalPopupBehavior"
+            TargetControlID="hiddenTargetControlForModalPopup" PopupControlID="programmaticPopup"
+            BackgroundCssClass="modalBackground" DropShadow="True" PopupDragHandleControlID="programmaticPopupDragHandle"
+            RepositionMode="RepositionOnWindowScroll">
         </ajaxToolkit:ModalPopupExtender>
-        <asp:Panel runat="server" CssClass="modalPopup" ID="programmaticPopup" style="display:none;width:350px;padding:10px">
-            <asp:Panel runat="Server" ID="programmaticPopupDragHandle" Style="cursor: move;background-color:#DDDDDD;border:solid 1px Gray;color:Black;text-align:center;">
+        <asp:Panel runat="server" CssClass="modalPopup" ID="programmaticPopup" Style="display: none;
+            width: 350px; padding: 10px">
+            <asp:Panel runat="Server" ID="programmaticPopupDragHandle" Style="cursor: move; background-color: #DDDDDD;
+                border: solid 1px Gray; color: Black; text-align: center;">
                 ModalPopup shown and hidden in code
             </asp:Panel>
-                You can now use this sample to see how to use ModalPopup with an invisible TargetControl. The ModalPopupExtender
-                this popup is attached to has a hidden target control. The popup is hidden 
-                <asp:LinkButton runat="server" ID="hideModalPopupViaServer" Text="on the server side in code behind" OnClick="hideModalPopupViaServer_Click" /> and 
-                <a id="hideModalPopupViaClientButton" href="#">on the client in script</a>.
-           <br />
+            You can now use this sample to see how to use ModalPopup with an invisible TargetControl.
+            The ModalPopupExtender this popup is attached to has a hidden target control. The
+            popup is hidden
+            <asp:LinkButton runat="server" ID="hideModalPopupViaServer" Text="on the server side in code behind"
+                OnClick="hideModalPopupViaServer_Click" />
+            and <a id="hideModalPopupViaClientButton" href="#">on the client in script</a>.
         </asp:Panel>
+        <br />
+        <hr />
+        <br />
+        The ModalPopup supports 4 animation events that allow you to spice up its showing
+        and hiding with visual effects.
+        <asp:LinkButton ID="OpenButton" runat="server" Text="Open an animated modal popup" />
+        <asp:Panel ID="AnimatedModalPopupPanel" runat="server" BorderStyle="Solid" Height="20"
+            Style="display: none" Width="100" CssClass="modalPopup">
+            <table style="height: 100%; width: 100%">
+                <tr>
+                    <td style="text-align: left; vertical-align: top" valign="top">
+                        The animation can be applied to the main target, the PopupControlID, or to any other
+                        target, e.g the Close button.
+                        <br />
+                        You can animate the closing of the popup also. Click the Close Button to see this.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; vertical-align: bottom" valign="bottom">
+                        <asp:Button ID="CloseButton" runat="server" Text="Close" />
+                    </td>
+                </tr>
+            </table>
+        </asp:Panel>
+        <ajaxToolkit:ModalPopupExtender ID="OpenButton_AnimatedModalPopupExtender1" runat="server"
+            CancelControlID="CloseButton" Enabled="True" PopupControlID="AnimatedModalPopupPanel"
+            TargetControlID="OpenButton">
+            <Animations>
+                    <OnShowing>
+                        <Sequence>
+                            <StyleAction AnimationTarget="CloseButton" Attribute="display" Value="none" />
+                            <Resize Duration="0" Height="50px" Width="50px" />
+                        </Sequence>
+                    </OnShowing>
+                    <OnShown>
+                        <Sequence>
+                            <Parallel>
+                                <FadeIn />
+                                <Scale ScaleFactor="5" Center="True" />
+                            </Parallel>
+                            <StyleAction AnimationTarget="CloseButton" Attribute="display" Value="" />
+                        </Sequence>
+                    </OnShown>    
+                    <OnHiding>
+                        <Sequence>                            
+                            <StyleAction AnimationTarget="CloseButton" Attribute="display" Value="none" />
+                            <Parallel>
+                                <FadeOut />
+                                <Scale ScaleFactor="5" Center="True" />
+                            </Parallel>
+                        </Sequence>
+                    </OnHiding>            
+            </Animations>
+        </ajaxToolkit:ModalPopupExtender>
     </div>
-    <div class="demobottom"></div>
+    <div class="demobottom">
+    </div>
     <asp:Panel ID="Description_HeaderPanel" runat="server" Style="cursor: pointer;">
         <div class="heading">
-            <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg" AlternateText="collapse" />
+            <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg"
+                AlternateText="collapse" />
             ModalPopup Description
         </div>
     </asp:Panel>
@@ -137,29 +182,37 @@
             The ModalPopup extender allows a page to display content to the user in a "modal"
             manner which prevents the user from interacting with the rest of the page. The modal
             content can be any hierarchy of controls and is displayed above a background that
-            can have a custom style applied to it. When displayed, only the modal content can
+            can have a custom style applied to it. 
+            <br />
+            <br />
+            When displayed, only the modal content can 
             be interacted with; clicking on the rest of the page does nothing. When the user
             is done interacting with the modal content, a click of an OK/Cancel control dismisses
             the modal content and optionally runs custom script. The custom script will typically
             be used to apply whatever changes were made while the modal mode was active. If
             a postback is required, simply allow the OK/Cancel control to postback and the page
-            to re-render. You can also absolutely position a modal popup by setting the X and Y 
-            properties. By default it is centered on the page, however if just X or Y is specified
+            to re-render. You can also absolutely position a modal popup by setting the X and
+            Y properties. By default it is centered on the page, however if just X or Y is specified
             then it is centered vertically or horizontally.
+
+            <br />
+            <br />
+            With OnShowing/OnShown/OnHiding/OnHidden modalpopup extender provides animation effects on a modalpopup 
+            window. Modalpopup extender also allows to control fadein, fadeout, center, resize duration, scaling of modalpopup window with simple setting of properties. 
         </p>
     </asp:Panel>
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
         <div class="heading">
-            <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg" AlternateText="expand" />
+            <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
+                AlternateText="expand" />
             ModalPopup Properties
         </div>
     </asp:Panel>
     <asp:Panel ID="Properties_ContentPanel" runat="server" Style="overflow: hidden;"
         Height="0px">
         <p>
-            The control above is initialized with this code. The display on the modal popup element
-            is set to none to avoid a flicker on render. 
-            The <em>italic</em> properties
+            The control above is initialized with this code. The display on the modal popup
+            element is set to none to avoid a flicker on render. The <em>italic</em> properties
             are optional:
         </p>
         <pre>&lt;ajaxToolkit:ModalPopupExtender ID="MPE" runat="server"
@@ -170,7 +223,14 @@
     <em>OkControlID</em>="OkButton" 
     <em>OnOkScript</em>="onOk()"
     <em>CancelControlID</em>="CancelButton" 
-    <em>PopupDragHandleControlID</em>="Panel3" /&gt;</pre>
+    <em>PopupDragHandleControlID</em>="Panel3" &gt;
+        &lt;Animations&gt;
+            &lt;OnShowing&gt; ..  &lt;/OnShowing&gt;
+            &lt;OnShown&gt;   ..  &lt;/OnShown&gt;    
+            &lt;OnHiding&gt;  ..  &lt;/OnHiding&gt;            
+        &lt;/Animations&gt;
+    &lt;/ajaxToolkit:ModalPopupExtender&gt;
+    </pre>
         <ul>
             <li><strong>TargetControlID</strong> - The ID of the element that activates the modal
                 popup</li>
@@ -182,20 +242,30 @@
             <li><strong>OkControlID</strong> - The ID of the element that dismisses the modal popup</li>
             <li><strong>OnOkScript</strong> - Script to run when the modal popup is dismissed with
                 the OkControlID</li>
-            <li><strong>CancelControlID</strong> - The ID of the element that cancels the modal popup</li>
+            <li><strong>CancelControlID</strong> - The ID of the element that cancels the modal
+                popup</li>
             <li><strong>OnCancelScript</strong> - Script to run when the modal popup is dismissed
                 with the CancelControlID</li>
             <li><strong>PopupDragHandleControlID</strong> - The ID of the embedded element that
                 contains the popup header/title which will be used as a drag handle</li>
-            <li><strong>X</strong> - The X coordinate of the top/left corner of the modal
-                popup (the popup will be centered horizontally if not specified)</li>
-            <li><strong>Y</strong> - The Y coordinate of the top/left corner of the modal
-                popup (the popup will be centered vertically if not specified)</li>
-            <li><strong>RepositionMode</strong> - The setting that determines if
-            the popup needs to be repositioned when the window is resized or scrolled.</li>
+            <li><strong>X</strong> - The X coordinate of the top/left corner of the modal popup
+                (the popup will be centered horizontally if not specified)</li>
+            <li><strong>Y</strong> - The Y coordinate of the top/left corner of the modal popup
+                (the popup will be centered vertically if not specified)</li>
+            <li><strong>RepositionMode</strong> - The setting that determines if the popup needs
+                to be repositioned when the window is resized or scrolled.</li>
+            <li><strong>OnShowing</strong> - This is required to setup settings when modalpopup is opening.</li>
+            <li><strong>Duration</strong> - This tells after how many seconds animation will start.</li>
+            <li><strong>Height</strong> - This sets the height of animated modalpopup.</li>
+            <li><strong>Weight</strong> - This sets the weight of animated modalpopup.</li>
+            <li><strong>OnShown</strong> - This provides the settings when modalpopup is shown.</li>
+            <li><strong>ScaleFactor</strong> - This sets the scale factor of fadein.</li>
+            <li><strong>Center</strong> - This sets fadein will happen from center.</li>
+            <li><strong>OnHiding</strong> - This provides the settings when modalpopup is hiding.</li>
+            <li><strong>ScaleFactor</strong> - This sets the scale factor of fadeout.</li>
+            <li><strong>Center</strong> - This sets fadeout will happen from center.</li>
         </ul>
     </asp:Panel>
-
     <script type="text/javascript">
         // The following snippet works around a problem where FloatingBehavior
         // doesn't allow drops outside the "content area" of the page - where "content
@@ -207,17 +277,10 @@
         setBodyHeightToContentHeight();
         $addHandler(window, "resize", setBodyHeightToContentHeight);    
     </script>
-
-    <ajaxToolkit:CollapsiblePanelExtender ID="cpeDescription" runat="Server"
-        TargetControlID="Description_ContentPanel"
-        ExpandControlID="Description_HeaderPanel"
-        CollapseControlID="Description_HeaderPanel"
-        Collapsed="False"
-        ImageControlID="Description_ToggleImage" />
-    <ajaxToolkit:CollapsiblePanelExtender ID="cpeProperties" runat="Server"
-        TargetControlID="Properties_ContentPanel"
-        ExpandControlID="Properties_HeaderPanel"
-        CollapseControlID="Properties_HeaderPanel"
-        Collapsed="True"
-        ImageControlID="Properties_ToggleImage" />
+    <ajaxToolkit:CollapsiblePanelExtender ID="cpeDescription" runat="Server" TargetControlID="Description_ContentPanel"
+        ExpandControlID="Description_HeaderPanel" CollapseControlID="Description_HeaderPanel"
+        Collapsed="False" ImageControlID="Description_ToggleImage" />
+    <ajaxToolkit:CollapsiblePanelExtender ID="cpeProperties" runat="Server" TargetControlID="Properties_ContentPanel"
+        ExpandControlID="Properties_HeaderPanel" CollapseControlID="Properties_HeaderPanel"
+        Collapsed="True" ImageControlID="Properties_ToggleImage" />
 </asp:Content>

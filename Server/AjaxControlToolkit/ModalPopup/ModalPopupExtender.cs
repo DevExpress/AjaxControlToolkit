@@ -10,8 +10,7 @@ using System.Web.UI.WebControls;
 [assembly: System.Web.UI.WebResource("ModalPopup.ModalPopupBehavior.js", "text/javascript")]
 [assembly: System.Web.UI.WebResource("ModalPopup.ModalPopupBehavior.debug.js", "text/javascript")]
 
-namespace AjaxControlToolkit
-{
+namespace AjaxControlToolkit {
     /// <summary>
     /// Extender for the ModalPopup
     /// </summary>
@@ -20,15 +19,21 @@ namespace AjaxControlToolkit
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(DragPanelExtender))]
     [RequiredScript(typeof(DropShadowExtender))]
+    [RequiredScript(typeof(AnimationExtender))]
     [TargetControlType(typeof(Control))]
     [ToolboxItem(Utility.ToolBoxItemTypeName)]
     [ToolboxBitmap(typeof(ModalPopupExtender), "ModalPopup.ModalPopup.ico")]
-    public class ModalPopupExtender : DynamicPopulateExtenderControlBase
-    {
+    public class ModalPopupExtender : DynamicPopulateExtenderControlBase {
         /// <summary>
         /// Desired visibility state: true, false or none
         /// </summary>
         private bool? _show;
+
+        private Animation _onHidden;
+        private Animation _onShown;
+        private Animation _onHiding;
+        private Animation _onShowing;
+
 
         /// <summary>
         /// The ID of the element to display as a modal popup
@@ -38,8 +43,7 @@ namespace AjaxControlToolkit
         [IDReferenceProperty(typeof(WebControl))]
         [RequiredProperty]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", Justification = "Following ASP.NET AJAX pattern")]
-        public string PopupControlID
-        {
+        public string PopupControlID {
             get { return GetPropertyValue("PopupControlID", ""); }
             set { SetPropertyValue("PopupControlID", value); }
         }
@@ -49,8 +53,7 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
-        public string BackgroundCssClass
-        {
+        public string BackgroundCssClass {
             get { return GetPropertyValue("BackgroundCssClass", ""); }
             set { SetPropertyValue("BackgroundCssClass", value); }
         }
@@ -62,8 +65,7 @@ namespace AjaxControlToolkit
         [DefaultValue("")]
         [IDReferenceProperty(typeof(WebControl))]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", Justification = "Following ASP.NET AJAX pattern")]
-        public string OkControlID
-        {
+        public string OkControlID {
             get { return GetPropertyValue("OkControlID", ""); }
             set { SetPropertyValue("OkControlID", value); }
         }
@@ -75,8 +77,7 @@ namespace AjaxControlToolkit
         [DefaultValue("")]
         [IDReferenceProperty(typeof(WebControl))]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", Justification = "Following ASP.NET AJAX pattern")]
-        public string CancelControlID
-        {
+        public string CancelControlID {
             get { return GetPropertyValue("CancelControlID", ""); }
             set { SetPropertyValue("CancelControlID", value); }
         }
@@ -86,8 +87,7 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
-        public string OnOkScript
-        {
+        public string OnOkScript {
             get { return GetPropertyValue("OnOkScript", ""); }
             set { SetPropertyValue("OnOkScript", value); }
         }
@@ -97,8 +97,7 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
-        public string OnCancelScript
-        {
+        public string OnCancelScript {
             get { return GetPropertyValue("OnCancelScript", ""); }
             set { SetPropertyValue("OnCancelScript", value); }
         }
@@ -110,8 +109,7 @@ namespace AjaxControlToolkit
         [ExtenderControlProperty]
         [DefaultValue(-1)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "X", Justification = "Common term")]
-        public int X
-        {
+        public int X {
             get { return GetPropertyValue("X", -1); }
             set { SetPropertyValue("X", value); }
         }
@@ -123,8 +121,7 @@ namespace AjaxControlToolkit
         [ExtenderControlProperty]
         [DefaultValue(-1)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Y", Justification = "Common term")]
-        public int Y
-        {
+        public int Y {
             get { return GetPropertyValue("Y", -1); }
             set { SetPropertyValue("Y", value); }
         }
@@ -135,8 +132,7 @@ namespace AjaxControlToolkit
         [ExtenderControlProperty]
         [DefaultValue(false)]
         [Obsolete("The drag feature on modal popup will be automatically turned on if you specify the PopupDragHandleControlID property. Setting the Drag property is a noop")]
-        public bool Drag
-        {
+        public bool Drag {
             get { return GetPropertyValue("stringDrag", false); }
             set { SetPropertyValue("stringDrag", value); }
         }
@@ -149,8 +145,7 @@ namespace AjaxControlToolkit
         [IDReferenceProperty(typeof(WebControl))]
         [DefaultValue("")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", Justification = "Following ASP.NET AJAX pattern")]
-        public string PopupDragHandleControlID
-        {
+        public string PopupDragHandleControlID {
             get { return GetPropertyValue("PopupDragHandleControlID", ""); }
             set { SetPropertyValue("PopupDragHandleControlID", value); }
         }
@@ -160,8 +155,7 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
-        public bool DropShadow
-        {
+        public bool DropShadow {
             get { return GetPropertyValue("stringDropShadow", false); }
             set { SetPropertyValue("stringDropShadow", value); }
         }
@@ -169,17 +163,56 @@ namespace AjaxControlToolkit
         [ExtenderControlProperty]
         [DefaultValue(ModalPopupRepositionMode.RepositionOnWindowResizeAndScroll)]
         [ClientPropertyName("repositionMode")]
-        public ModalPopupRepositionMode RepositionMode
-        {
+        public ModalPopupRepositionMode RepositionMode {
             get { return GetPropertyValue("RepositionMode", ModalPopupRepositionMode.RepositionOnWindowResizeAndScroll); }
             set { SetPropertyValue("RepositionMode", value); }
         }
 
         /// <summary>
+        /// Animation to perform once the modal popup is shown
+        /// </summary>
+        [Browsable(false)]
+        [ExtenderControlProperty]
+        public Animation OnShown {
+            get { return GetAnimation(ref _onShown, "OnShown"); }
+            set { SetAnimation(ref _onShown, "OnShown", value); }
+        }
+
+        /// <summary>
+        /// Animation to perform once the modal popup is hidden
+        /// </summary>
+        [Browsable(false)]
+        [ExtenderControlProperty]
+        public Animation OnHidden {
+            get { return GetAnimation(ref _onHidden, "OnHidden"); }
+            set { SetAnimation(ref _onHidden, "OnHidden", value); }
+        }
+
+        /// <summary>
+        /// Animation to perform just before the modal popup is being shown
+        /// </summary>
+        [Browsable(false)]
+        [ExtenderControlProperty]
+        public Animation OnShowing {
+            get { return GetAnimation(ref _onShowing, "OnShowing"); }
+            set { SetAnimation(ref _onShowing, "OnShowing", value); }
+        }
+
+        /// <summary>
+        /// Animation to perform just before the modal popup is being hidden.
+        /// The popup closes only after the animation completes.
+        /// </summary>
+        [Browsable(false)]
+        [ExtenderControlProperty]
+        public Animation OnHiding {
+            get { return GetAnimation(ref _onHiding, "OnHiding"); }
+            set { SetAnimation(ref _onHiding, "OnHiding", value); }
+        }
+
+        /// <summary>
         /// Cause the ModalPopup to be shown by sending script to the client
         /// </summary>
-        public void Show()
-        {
+        public void Show() {
             // It is possible for Show() to be called numerous times during the same
             // postback so we just remember the desired state
             _show = true;
@@ -188,8 +221,7 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Cause the ModalPopup to be hidden by sending script to the client
         /// </summary>
-        public void Hide()
-        {
+        public void Hide() {
             // It is possible for Hide() to be called numerous times during the same
             // postback so we just remember the desired state
             _show = false;
@@ -199,13 +231,16 @@ namespace AjaxControlToolkit
         /// Handles the PreRender event.
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnPreRender(EventArgs e)
-        {
+        protected override void OnPreRender(EventArgs e) {
             // If Show() or Hide() were called during the request, change the visibility now
-            if (_show.HasValue)
-            {
+            if (_show.HasValue) {
                 ChangeVisibility(_show.Value);
             }
+
+            ResolveControlIDs(_onShown);
+            ResolveControlIDs(_onHidden);
+            ResolveControlIDs(_onShowing);
+            ResolveControlIDs(_onHiding);
 
             base.OnPreRender(e);
         }
@@ -217,25 +252,20 @@ namespace AjaxControlToolkit
         /// <param name="show">True to show the popup, false to hide it</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:DoNotPassLiteralsAsLocalizedParameters", Justification = "Assembly is not localized")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "Raising for property, not parameter")]
-        private void ChangeVisibility(bool show)
-        {
-            if (TargetControl == null)
-            {
+        private void ChangeVisibility(bool show) {
+            if (TargetControl == null) {
                 throw new ArgumentNullException("TargetControl", "TargetControl property cannot be null");
             }
 
             string operation = show ? "show" : "hide";
 
-            if (ScriptManager.GetCurrent(Page).IsInAsyncPostBack)
-            {
+            if (ScriptManager.GetCurrent(Page).IsInAsyncPostBack) {
                 // RegisterDataItem is more elegant, but we can only call it during an async postback
                 ScriptManager.GetCurrent(Page).RegisterDataItem(TargetControl, operation);
-            }
-            else if (this.Enabled)
-            {
+            } else {
                 // Add a load handler to show the popup and then remove itself
                 string script = string.Format(CultureInfo.InvariantCulture,
-                    ";(function() {{" +
+                    "(function() {{" +
                         "var fn = function() {{" +
                             "Sys.Extended.UI.ModalPopupBehavior.invokeViaServer('{0}', {1}); " +
                             "Sys.Application.remove_load(fn);" +

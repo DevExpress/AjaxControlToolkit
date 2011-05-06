@@ -2,22 +2,21 @@
 
 
 /// <reference name="MicrosoftAjax.debug.js" />
+/// <reference name="MicrosoftAjaxTimer.debug.js" />
 /// <reference name="MicrosoftAjaxWebForms.debug.js" />
 /// <reference path="../ExtenderBase/BaseScripts.js" />
 /// <reference path="../Common/Common.js" />
 /// <reference path="../DynamicPopulate/DynamicPopulateBehavior.js" />
+/// <reference path="../RoundedCorners/RoundedCornersBehavior.js" />
+/// <reference path="../Compat/Timer/Timer.js" />
 /// <reference path="../DropShadow/DropShadowBehavior.js" />
 /// <reference path="../Compat/DragDrop/DragDropScripts.js" />
 /// <reference path="../DragPanel/FloatingBehavior.js" />
 
-(function() {
-var scriptName = "ExtendedModalPopup";
-
-function execute() {
 
 Type.registerNamespace('Sys.Extended.UI');
 
-Sys.Extended.UI.ModalPopupRepositionMode = function() {
+Sys.Extended.UI.ModalPopupRepositionMode = function () {
     /// <summary>
     /// The ModalPopupRepositionMode enumeration describes how the modal popup repositions
     /// </summary>
@@ -28,15 +27,15 @@ Sys.Extended.UI.ModalPopupRepositionMode = function() {
     throw Error.invalidOperation();
 }
 Sys.Extended.UI.ModalPopupRepositionMode.prototype = {
-    None : 0,
-    RepositionOnWindowResize : 1,
-    RepositionOnWindowScroll : 2,
-    RepositionOnWindowResizeAndScroll : 3
+    None: 0,
+    RepositionOnWindowResize: 1,
+    RepositionOnWindowScroll: 2,
+    RepositionOnWindowResizeAndScroll: 3
 }
 Sys.Extended.UI.ModalPopupRepositionMode.registerEnum('Sys.Extended.UI.ModalPopupRepositionMode');
 
 
-Sys.Extended.UI.ModalPopupBehavior = function(element) {
+Sys.Extended.UI.ModalPopupBehavior = function (element) {
     /// <summary>
     /// The ModalPopupBehavior is used to display the target element as a modal dialog
     /// </summary>
@@ -44,13 +43,13 @@ Sys.Extended.UI.ModalPopupBehavior = function(element) {
     /// DOM Element the behavior is associated with
     /// </param>
     Sys.Extended.UI.ModalPopupBehavior.initializeBase(this, [element]);
-    
+
     // Properties
     this._PopupControlID = null;
     this._PopupDragHandleControlID = null;
     this._BackgroundCssClass = null;
     this._DropShadow = false;
-    this._Drag = false;    
+    this._Drag = false;
     this._OkControlID = null;
     this._CancelControlID = null;
     this._OnOkScript = null;
@@ -58,6 +57,10 @@ Sys.Extended.UI.ModalPopupBehavior = function(element) {
     this._xCoordinate = -1;
     this._yCoordinate = -1;
     this._repositionMode = Sys.Extended.UI.ModalPopupRepositionMode.RepositionOnWindowResizeAndScroll;
+    this._onShown = new Sys.Extended.UI.Animation.GenericAnimationBehavior(element); //element replaced later with popuptarget
+    this._onHidden = new Sys.Extended.UI.Animation.GenericAnimationBehavior(element);
+    this._onShowing = new Sys.Extended.UI.Animation.GenericAnimationBehavior(element);
+    this._onHiding = new Sys.Extended.UI.Animation.GenericAnimationBehavior(element);
 
     // Variables
     this._backgroundElement = null;
@@ -77,10 +80,15 @@ Sys.Extended.UI.ModalPopupBehavior = function(element) {
 
     this._saveTabIndexes = new Array();
     this._saveDesableSelect = new Array();
-    this._tagWithTabIndex = new Array('A','AREA','BUTTON','INPUT','OBJECT','SELECT','TEXTAREA','IFRAME');
+    this._tagWithTabIndex = new Array('A', 'AREA', 'BUTTON', 'INPUT', 'OBJECT', 'SELECT', 'TEXTAREA', 'IFRAME');
+
+    this._isAnimationJustEnded = false;
+    this._hidingAnimationEndedHandler = null;
+    this._showingAnimationEndedHandler = null;
+
 }
 Sys.Extended.UI.ModalPopupBehavior.prototype = {
-    initialize: function() {
+    initialize: function () {
         /// <summary>
         /// Initialize the behavior
         /// </summary>
@@ -97,9 +105,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if (this._DropShadow) {
             this._foregroundElement = document.createElement('div');
             this._foregroundElement.id = this.get_id() + '_foregroundElement';
-            // put the foreground element before the popup element
-            // then move the popup element inside the foreground element
-            this._popupElement.parentNode.insertBefore(this._foregroundElement, this._popupElement);
+            this._popupElement.parentNode.appendChild(this._foregroundElement);
             this._foregroundElement.appendChild(this._popupElement);
         }
         else {
@@ -108,21 +114,20 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._backgroundElement = document.createElement('div');
         this._backgroundElement.id = this.get_id() + '_backgroundElement';
         this._backgroundElement.style.display = 'none';
-        // position:fixed; does not work in IE in quirks mode, so need to set to absolute
-        if (Sys.Browser.agent == Sys.Browser.InternetExplorer && document.compatMode != "CSS1Compat")
-            this._backgroundElement.style.position = 'absolute';
-        else
-            this._backgroundElement.style.position = 'fixed';
+        this._backgroundElement.style.position = 'fixed';
         this._backgroundElement.style.left = '0px';
         this._backgroundElement.style.top = '0px';
+        // Want zIndex to big enough that the background sits above everything else
+        // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
+        this._backgroundElement.style.zIndex = 10000;
         if (this._BackgroundCssClass) {
             this._backgroundElement.className = this._BackgroundCssClass;
         }
-
         this._foregroundElement.parentNode.appendChild(this._backgroundElement);
 
         this._foregroundElement.style.display = 'none';
         this._foregroundElement.style.position = 'fixed';
+        this._foregroundElement.style.zIndex = $common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex) + 1;
 
         this._showHandler = Function.createDelegate(this, this._onShow);
         $addHandler(this.get_element(), 'click', this._showHandler);
@@ -142,21 +147,46 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
         // Need to know when partial updates complete
         this.registerPartialUpdateEvents();
+
+        // We initally set it to the element, but needs to be targeted at
+        // the popup contorl
+        this._resetAnimationsTarget();
+
+        // attach to animation end events to signal hiding animation completed
+        // an call hide()/show() to hide/show the  popup.        
+        if (this._onHiding.get_animation()) {
+            this._hidingAnimationEndedHandler = Function.createDelegate(this, function () {
+                this._isAnimationJustEnded = true;
+                this.hide();
+            });
+            this._onHiding.get_animation().add_ended(this._hidingAnimationEndedHandler);
+        }
+
+        if (this._onShowing.get_animation()) {
+            this._showingAnimationEndedHandler = Function.createDelegate(this, function () {
+                this._isAnimationJustEnded = true;
+                this.show();
+            });
+            this._onShowing.get_animation().add_ended(this._showingAnimationEndedHandler);
+        }
     },
-    dispose: function() {
+
+    dispose: function () {
         /// <summary>
         /// Dispose the behavior
         /// </summary>
+
         // Going away; restore any changes to the page
         this._hideImplementation();
 
         if (this._foregroundElement && this._foregroundElement.parentNode) {
             // Remove background we added to the DOM
-            this._backgroundElement.parentNode.removeChild(this._backgroundElement);
+            this._foregroundElement.parentNode.removeChild(this._backgroundElement);
 
             if (this._DropShadow) {
                 // Remove DIV wrapper added in initialize
-                this._foregroundElement.parentNode.replaceChild(this._popupElement, this._foregroundElement);
+                this._foregroundElement.parentNode.appendChild(this._popupElement);
+                this._foregroundElement.parentNode.removeChild(this._foregroundElement);
             }
         }
 
@@ -175,10 +205,18 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._showHandler = null;
         }
 
+        if (this._hidingAnimationEndedHandler) {
+            this._onHiding.get_animation().remove_ended(this._hidingAnimationEndedHandler);
+        }
+
+        if (this._showingAnimationEndedHandler) {
+            this._onShowing.get_animation().remove_ended(this._showingAnimationEndedHandler);
+        }
+
         Sys.Extended.UI.ModalPopupBehavior.callBaseMethod(this, 'dispose');
     },
 
-    _attachPopup: function() {
+    _attachPopup: function () {
         /// <summary>
         /// Attach the event handlers for the popup
         /// </summary>
@@ -195,7 +233,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._windowHandlersAttached = true;
     },
 
-    _detachPopup: function() {
+    _detachPopup: function () {
         /// <summary>
         /// Detach the event handlers for the popup
         /// </summary>
@@ -221,7 +259,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    _onShow: function(e) {
+    _onShow: function (e) {
         /// <summary>
         /// Handler for the target's click event
         /// </summary>
@@ -236,7 +274,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    _onOk: function(e) {
+    _onOk: function (e) {
         /// <summary>
         /// Handler for the modal dialog's OK button click
         /// </summary>
@@ -254,7 +292,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    _onCancel: function(e) {
+    _onCancel: function (e) {
         /// <summary>
         /// Handler for the modal dialog's Cancel button click
         /// </summary>
@@ -272,7 +310,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    _onLayout: function(e) {
+    _onLayout: function (e) {
         /// <summary>
         /// Handler for scrolling and resizing events that would require a repositioning of the modal dialog
         /// </summary>
@@ -295,24 +333,26 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    show: function() {
+    show: function () {
         /// <summary>
         /// Display the element referenced by PopupControlID as a modal dialog
         /// </summary>
 
-        var eventArgs = new Sys.CancelEventArgs();
-        this.raiseShowing(eventArgs);
-        if (eventArgs.get_cancel()) {
-            return;
+        if (!this._isAnimationJustEnded) {
+            var eventArgs = new Sys.CancelEventArgs();
+            this.raiseShowing(eventArgs);
+            if (eventArgs.get_cancel()) {
+                return;
+            }
+            else if (this._onShowing.get_animation()) {
+                this._onShowing.play();
+                return;
+            }
         }
-        
-        // Want zIndex to big enough that the background sits above everything else
-        // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
-        var zindex = 10000 + (Sys.Extended.UI.ModalPopupBehavior._openCount++ * 1000);
-        this._showing = true;
-        this._backgroundElement.style.zIndex = zindex;
-        this._foregroundElement.style.zIndex = zindex + 1;
-        
+        else {
+            this._isAnimationJustEnded = false;
+        }
+
         this.populate();
         this._attachPopup();
 
@@ -346,9 +386,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._layout();
 
         this.raiseShown(Sys.EventArgs.Empty);
+
+        this._onShown.play();
     },
 
-    disableTab: function() {
+    disableTab: function () {
         /// <summary>
         /// Change the tab indices so we only tab through the modal popup
         /// (and hide SELECT tags in IE6)
@@ -406,7 +448,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    restoreTab: function() {
+    restoreTab: function () {
         /// <summary>
         /// Restore the tab indices so we tab through the page like normal
         /// (and restore SELECT tags in IE6)
@@ -426,7 +468,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    hide: function() {
+    hide: function () {
         /// <summary>
         /// Hide the modal dialog
         /// </summary>
@@ -434,36 +476,44 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// Whether or not the dialog was hidden
         /// </returns>
 
-        var eventArgs = new Sys.CancelEventArgs();
-        this.raiseHiding(eventArgs);
-        if (eventArgs.get_cancel()) {
-            return false;
+        if (!this._isAnimationJustEnded) {
+            var eventArgs = new Sys.CancelEventArgs();
+            this.raiseHiding(eventArgs);
+            if (eventArgs.get_cancel()) {
+                return false;
+            }
+            else if (this._onHiding.get_animation()) {
+                this._onHiding.play();
+                return true;
+            }
+        }
+        else {
+            this._isAnimationJustEnded = false;
         }
 
         this._hideImplementation();
 
         this.raiseHidden(Sys.EventArgs.Empty);
+
+        this._onHidden.play();
+
         return true;
     },
 
-    _hideImplementation: function() {
+    _hideImplementation: function () {
         /// <summary>
         /// Internal implementation to hide the modal dialog
         /// </summary>
-        if (this._showing) {
-            Sys.Extended.UI.ModalPopupBehavior._openCount--;
-            this._backgroundElement.style.display = 'none';
-            this._foregroundElement.style.display = 'none';
-            this._popupElement.style.display = 'none';
-            this._showing = false;
 
-            this.restoreTab();
+        this._backgroundElement.style.display = 'none';
+        this._foregroundElement.style.display = 'none';
 
-            this._detachPopup();
-        }
+        this.restoreTab();
+
+        this._detachPopup();
     },
 
-    _layout: function() {
+    _layout: function () {
         /// <summary>
         /// Position the modal dialog 
         /// </summary>
@@ -535,7 +585,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._layoutBackgroundElement();
     },
 
-    _layoutForegroundElement: function(xCoord, yCoord) {
+    _layoutForegroundElement: function (xCoord, yCoord) {
         /// <summary>
         /// Set the correct location of the foreground element to ensure that it is absolutely 
         /// positioned with respect to the browser. This is just a workaround for IE 6 since
@@ -563,7 +613,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    _layoutBackgroundElement: function() {
+    _layoutBackgroundElement: function () {
         /// <summary>
         /// Set the correct location of the background element to ensure that it is absolutely 
         /// positioned with respect to the browser.
@@ -593,19 +643,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         var clientBounds = $common.getClientBounds();
         var clientWidth = clientBounds.width;
         var clientHeight = clientBounds.height;
-        // In IE quirks mode, document.body.scrollWidth is the one to use,
-        // which does not include scroll bars in its value.
-        if (Sys.Browser.agent == Sys.Browser.InternetExplorer && document.compatMode != "CSS1Compat") {
-            this._backgroundElement.style.width = document.body.scrollWidth + "px";
-            this._backgroundElement.style.height = document.body.scrollHeight + "px";
-        }
-        else {
-            this._backgroundElement.style.width = Math.max(Math.max(document.documentElement.scrollWidth, document.body.scrollWidth), clientWidth) + 'px';
-            this._backgroundElement.style.height = Math.max(Math.max(document.documentElement.scrollHeight, document.body.scrollHeight), clientHeight) + 'px';
-        }
+        this._backgroundElement.style.width = Math.max(Math.max(document.documentElement.scrollWidth, document.body.scrollWidth), clientWidth) + 'px';
+        this._backgroundElement.style.height = Math.max(Math.max(document.documentElement.scrollHeight, document.body.scrollHeight), clientHeight) + 'px';
     },
 
-    _fixupDropShadowBehavior: function() {
+    _fixupDropShadowBehavior: function () {
         /// <summary>
         /// Some browsers don't update the location values immediately, so
         /// the location of the drop shadow would always be a step behind
@@ -617,7 +659,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    _partialUpdateEndRequest: function(sender, endRequestEventArgs) {
+    _partialUpdateEndRequest: function (sender, endRequestEventArgs) {
         /// <summary>
         /// Show the popup if requested during a partial postback
         /// </summary>
@@ -644,7 +686,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._layout();
     },
 
-    _onPopulated: function(sender, eventArgs) {
+    _onPopulated: function (sender, eventArgs) {
         /// <summary>
         /// Re-layout the popup after we've dynamically populated
         /// </summary>
@@ -661,163 +703,228 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._layout();
     },
 
-    get_PopupControlID: function() {
+    _replaceAnimationTarget: function (memberName, target) {
+        var json = this[memberName].get_json();
+        this[memberName] = new Sys.Extended.UI.Animation.GenericAnimationBehavior(target);
+        this[memberName].set_json(json);
+        this[memberName].initialize();
+    },
+
+    _resetAnimationsTarget: function () {
+
+        var target = $get(this.get_PopupControlID());
+
+        this._replaceAnimationTarget('_onShowing', target);
+        this._replaceAnimationTarget('_onShown', target);
+        this._replaceAnimationTarget('_onHiding', target);
+        this._replaceAnimationTarget('_onHidden', target);
+    },
+
+    get_PopupControlID: function () {
         /// <value type="String">
         /// The ID of the element to display as a modal popup
         /// </value>
         return this._PopupControlID;
     },
-    set_PopupControlID: function(value) {
+    set_PopupControlID: function (value) {
         if (this._PopupControlID != value) {
             this._PopupControlID = value;
             this.raisePropertyChanged('PopupControlID');
         }
     },
 
-    get_X: function() {
+    get_X: function () {
         /// <value type="Number" integer="true">
         /// The number of pixels from the left of the browser to position the modal popup.
         /// </value>
         return this._xCoordinate;
     },
-    set_X: function(value) {
+    set_X: function (value) {
         if (this._xCoordinate != value) {
             this._xCoordinate = value;
             this.raisePropertyChanged('X');
         }
     },
 
-    get_Y: function() {
+    get_Y: function () {
         /// <value type="Number" integer="true">
         /// The number of pixels from the top of the browser to position the modal popup.
         /// </value>
         return this._yCoordinate;
     },
-    set_Y: function(value) {
+    set_Y: function (value) {
         if (this._yCoordinate != value) {
             this._yCoordinate = value;
             this.raisePropertyChanged('Y');
         }
     },
 
-    get_PopupDragHandleControlID: function() {
+    get_PopupDragHandleControlID: function () {
         /// <value type="String">
         /// The ID of the element to display as the drag handle for the modal popup
         /// </value>
         return this._PopupDragHandleControlID;
     },
-    set_PopupDragHandleControlID: function(value) {
+    set_PopupDragHandleControlID: function (value) {
         if (this._PopupDragHandleControlID != value) {
             this._PopupDragHandleControlID = value;
             this.raisePropertyChanged('PopupDragHandleControlID');
         }
     },
 
-    get_BackgroundCssClass: function() {
+    get_BackgroundCssClass: function () {
         /// <value type="String">
         /// The CSS class to apply to the background when the modal popup is displayed
         /// </value>
         return this._BackgroundCssClass;
     },
-    set_BackgroundCssClass: function(value) {
+    set_BackgroundCssClass: function (value) {
         if (this._BackgroundCssClass != value) {
             this._BackgroundCssClass = value;
             this.raisePropertyChanged('BackgroundCssClass');
         }
     },
 
-    get_DropShadow: function() {
+    get_DropShadow: function () {
         /// <value type="Boolean">
         /// Whether or not a drop-shadow should be added to the modal popup
         /// </value>
         return this._DropShadow;
     },
-    set_DropShadow: function(value) {
+    set_DropShadow: function (value) {
         if (this._DropShadow != value) {
             this._DropShadow = value;
             this.raisePropertyChanged('DropShadow');
         }
     },
 
-    get_Drag: function() {
+    get_Drag: function () {
         /// <value type="Boolean">
         /// Obsolete: Setting the _Drag property is a noop
         /// </value>
         return this._Drag;
     },
-    set_Drag: function(value) {
+    set_Drag: function (value) {
         if (this._Drag != value) {
             this._Drag = value;
             this.raisePropertyChanged('Drag');
         }
     },
 
-    get_OkControlID: function() {
+    get_OkControlID: function () {
         /// <value type="String">
         /// The ID of the element that dismisses the modal popup
         /// </value>
         return this._OkControlID;
     },
-    set_OkControlID: function(value) {
+    set_OkControlID: function (value) {
         if (this._OkControlID != value) {
             this._OkControlID = value;
             this.raisePropertyChanged('OkControlID');
         }
     },
 
-    get_CancelControlID: function() {
+    get_CancelControlID: function () {
         /// <value type="String">
         /// The ID of the element that cancels the modal popup
         /// </value>
         return this._CancelControlID;
     },
-    set_CancelControlID: function(value) {
+    set_CancelControlID: function (value) {
         if (this._CancelControlID != value) {
             this._CancelControlID = value;
             this.raisePropertyChanged('CancelControlID');
         }
     },
 
-    get_OnOkScript: function() {
+    get_OnOkScript: function () {
         /// <value type="String">
         /// Script to run when the modal popup is dismissed with the OkControlID
         /// </value>
         return this._OnOkScript;
     },
-    set_OnOkScript: function(value) {
+    set_OnOkScript: function (value) {
         if (this._OnOkScript != value) {
             this._OnOkScript = value;
             this.raisePropertyChanged('OnOkScript');
         }
     },
 
-    get_OnCancelScript: function() {
+    get_OnCancelScript: function () {
         /// <value type="String">
         /// Script to run when the modal popup is dismissed with the CancelControlID
         /// </value>
         return this._OnCancelScript;
     },
-    set_OnCancelScript: function(value) {
+    set_OnCancelScript: function (value) {
         if (this._OnCancelScript != value) {
             this._OnCancelScript = value;
             this.raisePropertyChanged('OnCancelScript');
         }
     },
 
-    get_repositionMode: function() {
-        /// <value type="Sys.Extended.UI.ModalPopupRepositionMode">
+    get_repositionMode: function () {
+        /// <value type="AjaxControlToolkit.ModalPopupRepositionMode">
         /// Determines if the ModalPopup should be repositioned on window resize/scroll
         /// </value>
         return this._repositionMode;
     },
-    set_repositionMode: function(value) {
+    set_repositionMode: function (value) {
         if (this._repositionMode !== value) {
             this._repositionMode = value;
             this.raisePropertyChanged('RepositionMode');
         }
     },
 
-    add_showing: function(handler) {
+    get_OnShowing: function () {
+        /// <value type="String" mayBeNull="true">
+        /// Generic OnShowing Animation's JSON definition. Played before the Popup is being shown.
+        /// </value>
+        return this._onShowing.get_json();
+    },
+
+    set_OnShowing: function (value) {
+        this._onShowing.set_json(value);
+        this.raisePropertyChanged('OnShowing');
+    },
+
+    get_OnShown: function () {
+        /// <value type="String" mayBeNull="true">
+        /// Generic OnShown Animation's JSON definition. Played once the Popup is shown.
+        /// </value>    
+        return this._onShown.get_json();
+    },
+
+    set_OnShown: function (value) {
+        this._onShown.set_json(value);
+        this.raisePropertyChanged('OnShown');
+    },
+
+    get_OnHiding: function () {
+        /// <value type="String" mayBeNull="true">
+        /// Generic OnHiding Animation's JSON definition. Played before the Popup is being hidden.
+        /// </value>
+        return this._onHiding.get_json();
+    },
+
+    set_OnHiding: function (value) {
+        this._onHiding.set_json(value);
+        this.raisePropertyChanged('OnHiding');
+    },
+
+    get_OnHidden: function () {
+        /// <value type="String" mayBeNull="true">
+        /// Generic OnHidden Animation's JSON definition. Played once the Popup is hidden.
+        /// </value>    
+        return this._onHidden.get_json();
+    },
+
+    set_OnHidden: function (value) {
+        this._onHidden.set_json(value);
+        this.raisePropertyChanged('OnHidden');
+    },
+
+    add_showing: function (handler) {
         /// <summary>
         /// Add an event handler for the showing event
         /// </summary>
@@ -827,7 +934,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// <returns />
         this.get_events().addHandler('showing', handler);
     },
-    remove_showing: function(handler) {
+    remove_showing: function (handler) {
         /// <summary>
         /// Remove an event handler from the showing event
         /// </summary>
@@ -837,7 +944,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// <returns />
         this.get_events().removeHandler('showing', handler);
     },
-    raiseShowing: function(eventArgs) {
+    raiseShowing: function (eventArgs) {
         /// <summary>
         /// Raise the showing event
         /// </summary>
@@ -852,7 +959,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    add_shown: function(handler) {
+    add_shown: function (handler) {
         /// <summary>
         /// Add an event handler for the shown event
         /// </summary>
@@ -862,7 +969,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// <returns />
         this.get_events().addHandler('shown', handler);
     },
-    remove_shown: function(handler) {
+    remove_shown: function (handler) {
         /// <summary>
         /// Remove an event handler from the shown event
         /// </summary>
@@ -872,7 +979,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// <returns />
         this.get_events().removeHandler('shown', handler);
     },
-    raiseShown: function(eventArgs) {
+    raiseShown: function (eventArgs) {
         /// <summary>
         /// Raise the shown event
         /// </summary>
@@ -887,7 +994,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    add_hiding: function(handler) {
+    add_hiding: function (handler) {
         /// <summary>
         /// Add an event handler for the hiding event
         /// </summary>
@@ -897,7 +1004,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// <returns />
         this.get_events().addHandler('hiding', handler);
     },
-    remove_hiding: function(handler) {
+    remove_hiding: function (handler) {
         /// <summary>
         /// Remove an event handler from the hiding event
         /// </summary>
@@ -907,7 +1014,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// <returns />
         this.get_events().removeHandler('hiding', handler);
     },
-    raiseHiding: function(eventArgs) {
+    raiseHiding: function (eventArgs) {
         /// <summary>
         /// Raise the hiding event
         /// </summary>
@@ -922,7 +1029,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    add_hidden: function(handler) {
+    add_hidden: function (handler) {
         /// <summary>
         /// Add an event handler for the hidden event
         /// </summary>
@@ -932,7 +1039,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// <returns />
         this.get_events().addHandler('hidden', handler);
     },
-    remove_hidden: function(handler) {
+    remove_hidden: function (handler) {
         /// <summary>
         /// Remove an event handler from the hidden event
         /// </summary>
@@ -942,7 +1049,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         /// <returns />
         this.get_events().removeHandler('hidden', handler);
     },
-    raiseHidden: function(eventArgs) {
+    raiseHidden: function (eventArgs) {
         /// <summary>
         /// Raise the hidden event
         /// </summary>
@@ -958,10 +1065,8 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     }
 }
 Sys.Extended.UI.ModalPopupBehavior.registerClass('Sys.Extended.UI.ModalPopupBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
-Sys.registerComponent(Sys.Extended.UI.ModalPopupBehavior, { name: "modalPopup" });
-Sys.Extended.UI.ModalPopupBehavior._openCount = 0;
 
-Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function(behaviorID, show) {
+Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function (behaviorID, show) {
     /// <summary>
     /// This static function (that is intended to be called from script emitted
     /// on the server) will show or hide the behavior associated with behaviorID
@@ -984,13 +1089,3 @@ Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function(behaviorID, show) 
     }
 }
 
-} // execute
-
-if (window.Sys && Sys.loader) {
-    Sys.loader.registerScript(scriptName, ["ExtendedDynamicPopulate", "ExtendedDropShadow", "ExtendedFloating"], execute);
-}
-else {
-    execute();
-}
-
-})();
