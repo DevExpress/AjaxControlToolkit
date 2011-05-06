@@ -184,7 +184,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
                 });
             }
             if (Sys.Browser.agent == Sys.Browser.Firefox) {
-                this._inputFile.size = 1;
+                this._inputFile.size = 20;
                 var width = this._inputFile.offsetWidth;
                 this._inputFile.style.width = "";
                 while (this._inputFile.offsetWidth < width) {

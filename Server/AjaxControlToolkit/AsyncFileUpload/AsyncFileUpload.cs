@@ -686,9 +686,9 @@ namespace AjaxControlToolkit {
             if (this.UploaderStyle == UploaderStyleEnum.Modern) {
                 string bgImage = String.Empty;
                 bgImage = Page.ClientScript.GetWebResourceUrl(typeof(AsyncFileUpload), "AsyncFileUpload.images.fileupload.png");
-                string style = "background:url(" + bgImage + ") no-repeat 100% 1px; height:24px; margin:0px;";
+                string style = "background:url(" + bgImage + ") no-repeat 100% 1px; height:24px; margin:0px; text-align:right;";
                 if (!Width.IsEmpty) {
-                    style += "width:" + Width.ToString() + ";";
+                    style += "min-width:" + Width.ToString() + ";width:" + Width.ToString() + " !important;";
                 } else {
                     style += "width:355px;";
                 }
@@ -728,7 +728,7 @@ namespace AjaxControlToolkit {
                     HtmlGenericControl div1 = new HtmlGenericControl("div");
                     div.Controls.Add(div1);
                     //div1.Attributes.Add("Name", div.ClientID);
-                    style = "margin-top:-23px;";
+                    style = "margin-top:-23px;text-align:left;";
                     div1.Attributes.Add("style", style);
                     div1.Attributes.Add("type", "text");
                     div1.Controls.Add(textBox);
