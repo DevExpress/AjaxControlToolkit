@@ -167,12 +167,14 @@
     </Compile>
     <Compile Include="Tests\DropShadow\DropShadow.aspx.cs">
       <DependentUpon>DropShadow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Tests\DropShadow\DropShadow.aspx.designer.cs">
       <DependentUpon>DropShadow.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests\DropShadow\DropShadow_TestPage.aspx.cs">
       <DependentUpon>DropShadow_TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Tests\DropShadow\DropShadow_TestPage.aspx.designer.cs">
       <DependentUpon>DropShadow_TestPage.aspx</DependentUpon>
