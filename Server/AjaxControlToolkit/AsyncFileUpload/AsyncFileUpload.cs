@@ -40,10 +40,18 @@ namespace AjaxControlToolkit {
     [ClientScriptResource("Sys.Extended.UI.AsyncFileUpload", "AsyncFileUpload.AsyncFileUpload.js")]
     public class AsyncFileUpload : ScriptControlBase {
         #region [ Phrases Static Class ]
+
+        /// <summary>
+        /// Constants to keep static string values. These values will be used by classes to upload file asynchronously.
+        /// </summary>
         public static class Constants {
             public readonly static string FileUploadIDKey = "AsyncFileUploadID";
             public readonly static string InternalErrorInvalidIFrame = "The ExtendedFileUpload control has encountered an error with the uploader in this page. Please refresh the page and try again.";
             public readonly static string fileUploadGUID = "b3b89160-3224-476e-9076-70b500c816cf";
+
+            /// <summary>
+            /// Errors to keep user friendly error messages. These error messages will be displayed to end user if any error occurs during the file upload.
+            /// </summary>
             public static class Errors {
                 public readonly static string NoFiles = "No files are attached to the upload.";
                 public readonly static string FileNull = "The file attached is invalid.";
@@ -51,6 +59,10 @@ namespace AjaxControlToolkit {
                 public readonly static string InputStreamNull = "The file attached could not be read.";
                 public readonly static string EmptyContentLength = "The file attached is empty.";
             }
+
+            /// <summary>
+            /// StatusMessages keep state message that will be displayed after file is uploaded at server.
+            /// </summary>
             public static class StatusMessages {
                 public readonly static string UploadSuccessful = "The file uploaded successfully.";
             }
@@ -58,11 +70,19 @@ namespace AjaxControlToolkit {
         #endregion
 
         #region [ Public Enums ]
+
+        /// <summary>
+        /// UploaderStyleEnum represents available apprearance styles for AsyncFileUpload (Traditional, Modern). 
+        /// Default value is Traditional.
+        /// </summary>
         public enum UploaderStyleEnum {
             Traditional = 0,
             Modern = 1
         }
 
+        /// <summary>
+        /// Store type to persist values (Session). Currently asyncFileUpload persist values in session only.
+        /// </summary>
         public enum PersistedStoreTypeEnum {
             Session = 0
         }
@@ -85,7 +105,7 @@ namespace AjaxControlToolkit {
         #region [ Constructors ]
 
         /// <summary>
-        /// Initializes a new AsyncFileUpload
+        /// Initializes a new AsyncFileUpload.
         /// </summary>
         public AsyncFileUpload()
             : base(true, HtmlTextWriterTag.Span) {
@@ -96,14 +116,14 @@ namespace AjaxControlToolkit {
         #region [ Public Server Events ]
 
         /// <summary>
-        /// Event to raise on the server when the file is uploaded successfully
+        /// Event to raise on the server when the file is uploaded successfully.
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AsyncFileUploadEventArgs> UploadedComplete;
 
         /// <summary>
-        /// Event to raise on the server when the file is corrupted
+        /// Event to raise on the server when the file is corrupted.
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
@@ -114,7 +134,7 @@ namespace AjaxControlToolkit {
         #region [ Public Client Events ]
 
         /// <summary>
-        /// Gets or sets the client script that executes when a file upload starts
+        /// Gets or sets the client script that executes when a file upload starts.
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -126,8 +146,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the client script that executes when a file upload completes
-        /// </summary>
+        /// Gets or sets the client script that executes when a file upload completes.
+        /// </summary>                
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -138,7 +158,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the client script that executes when a file upload error occurs
+        /// Gets or sets the client script that executes when a file upload error occurs.
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -152,10 +172,16 @@ namespace AjaxControlToolkit {
         #endregion
 
         #region [ Private Properties ]
+        /// <summary>
+        /// Gets whether control is in design mode or not.
+        /// </summary>
         private bool IsDesignMode {
             get { return (HttpContext.Current == null); }
         }
 
+        /// <summary>
+        /// Gets the reference of current posted file.
+        /// </summary>
         private HttpPostedFile CurrentFile {
             get {
                 return persistFile ? AfuPersistedStoreManager.Instance.GetFileFromSession(this.ClientID) : postedFile;
@@ -163,11 +189,11 @@ namespace AjaxControlToolkit {
         }
         #endregion
 
+        #region [ Public Properties ]
 
         /// <summary>
-        /// Gets an array of the bytes in the file being uploaded
-        /// </summary>
-        #region [ Public Properties ]
+        /// Gets an array of the bytes in the file being uploaded.
+        /// </summary>        
         [BrowsableAttribute(false)]
         public byte[] FileBytes {
             get {
@@ -184,7 +210,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the ID of a control that is displayed while the file is being uploaded
+        /// Gets or sets the ID of a control that is displayed while the file is being uploaded.
         /// </summary>
         [Category("Behavior")]
         [Description("ID of Throbber")]
@@ -210,7 +236,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Gets or sets the control's background color while the file is
         /// in the process of being uploaded.
-        /// The default value is White
+        /// The default value is White.
         /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
@@ -235,7 +261,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the control's width
+        /// Gets or sets the control's width.
         /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Layout")]
@@ -244,6 +270,9 @@ namespace AjaxControlToolkit {
             set { base.Width = value; }
         }
 
+        /// <summary>
+        /// Gets or Sets the status of validation failed.
+        /// </summary>
         [BrowsableAttribute(false)]
         public bool FailedValidation {
             get { return failedValidation; }
@@ -276,7 +305,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets an HttpPostedFile object that provides access to the uploaded file
+        /// Gets an HttpPostedFile object that provides access to the uploaded file.
         /// </summary>
         [BrowsableAttribute(false)]
         public HttpPostedFile PostedFile {
@@ -287,7 +316,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Returns true when a file has been uploaded
+        /// Returns true when a file has been uploaded.
+        /// Else returns false.
         /// </summary>
         [BrowsableAttribute(false)]
         public bool HasFile {
@@ -301,7 +331,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets the file name of the uploaded file
+        /// Gets the file name of the uploaded file.
+        /// Else returns empty string.
         /// </summary>
         [BrowsableAttribute(false)]
         public string FileName {
@@ -317,7 +348,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets the content type of the uploaded file
+        /// Gets the Type of contents of the uploaded file.
         /// </summary>
         [BrowsableAttribute(false)]
         public string ContentType {
@@ -333,7 +364,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets a Stream object that points to an uploaded file to prepare for reading the contents of the file
+        /// Gets a Stream object that points to an uploaded file to prepare for reading the contents of the file.
         /// </summary>
         [BrowsableAttribute(false)]
         public Stream FileContent {
@@ -348,7 +379,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Returns true when the file is in the process of being uploaded
+        /// Returns true when the file is in the process of being uploaded.
         /// </summary>
         [BrowsableAttribute(false)]
         public bool IsUploading {
@@ -357,6 +388,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Gets or sets the status whether file is persisted or not.
+        /// </summary>
         [Bindable(true)]
         [BrowsableAttribute(true)]
         [DefaultValue(false)]
@@ -374,28 +408,34 @@ namespace AjaxControlToolkit {
         #region [ Methods ]
 
         /// <summary>
-        /// Removes all files from the storage provider
+        /// Removes all files from the storage provider.
         /// </summary>
         public void ClearAllFilesFromPersistedStore() {
             AfuPersistedStoreManager.Instance.ClearAllFilesFromSession(this.ClientID);
         }
 
         /// <summary>
-        /// Removes a particular file from the storage provider
+        /// Removes a particular file from the storage provider.
         /// </summary>
         public void ClearFileFromPersistedStore() {
             AfuPersistedStoreManager.Instance.RemoveFileFromSession(this.ClientID);
         }
 
         /// <summary>
-        /// Saves the uploaded file with a particular file name
+        /// Saves the uploaded file with a particular file name.
         /// </summary>
+        /// <param name="fileName">file name at server.</param>
         public void SaveAs(string filename) {
             PopulatObjectPriorToRender(this.ClientID);
             HttpPostedFile file = CurrentFile;
             file.SaveAs(filename);
         }
 
+        /// <summary>
+        /// PopulateObjectPriorToRender passes the file to upload 
+        /// if file is already not in request to upload and uploadable file is in request.          
+        /// </summary>
+        /// <param name="controlId">Id of AsyncFileUpload.</param>
         private void PopulatObjectPriorToRender(string controlId) {
             bool exists;
             if (persistFile) {
@@ -408,12 +448,22 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// OnUploadedFileError execute the event attached to UploadedFileError
+        /// When error occurs during file upload.
+        /// </summary>
+        /// <param name="e">Arguments containing information of uploadable file.</param>
         protected virtual void OnUploadedFileError(AsyncFileUploadEventArgs e) {
             if (UploadedFileError != null) {
                 UploadedFileError(this, e);
             }
         }
 
+        /// <summary>
+        /// OnUploadedComplete execute the event attached to UploadedFileComplete
+        /// after the file uploaded successfully.
+        /// </summary>
+        /// <param name="e">Arguments containing information of uploadable file.</param>
         protected virtual void OnUploadedComplete(AsyncFileUploadEventArgs e) {
             if (UploadedComplete != null) {
                 UploadedComplete(this, e);
@@ -421,6 +471,10 @@ namespace AjaxControlToolkit {
             //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "OnUploadedComplete", "top.$find(\"" + this.ClientID + "\")._stopLoad('111------www');", true);
         }
 
+        /// <summary>
+        /// ReceivedFile takes the file from request for upload, creates AsyncFileUploadEventArgs and calls to OnUploadError/OnUploadComplete events.
+        /// </summary>
+        /// <param name="sendingControlID">Id of AsyncFileUpload.</param>
         private void ReceivedFile(string sendingControlID) {
             AsyncFileUploadEventArgs eventArgs = null;
             lastError = String.Empty;
@@ -439,22 +493,50 @@ namespace AjaxControlToolkit {
                 }
                 if (file == null) {
                     lastError = Constants.Errors.FileNull;
-                    eventArgs = new AsyncFileUploadEventArgs(AsyncFileUploadState.Failed, Constants.Errors.FileNull, String.Empty, String.Empty);
+                    eventArgs = new AsyncFileUploadEventArgs();
+                    eventArgs.State = AsyncFileUploadState.Failed;
+                    eventArgs.StatusMessage = Constants.Errors.FileNull;
+                    eventArgs.FileName = string.Empty;
+                    eventArgs.FileSize = string.Empty;
+
                     OnUploadedFileError(eventArgs);
                 } else if (file.FileName == String.Empty) {
                     lastError = Constants.Errors.NoFileName;
-                    eventArgs = new AsyncFileUploadEventArgs(AsyncFileUploadState.Unknown, Constants.Errors.NoFileName, file.FileName, file.ContentLength.ToString());
+
+                    eventArgs = new AsyncFileUploadEventArgs();
+                    eventArgs.State = AsyncFileUploadState.Unknown;
+                    eventArgs.StatusMessage = Constants.Errors.NoFileName;
+                    eventArgs.FileName = file.FileName;
+                    eventArgs.FileSize = file.ContentLength.ToString();
+
                     OnUploadedFileError(eventArgs);
                 } else if (file.InputStream == null) {
                     lastError = Constants.Errors.NoFileName;
-                    eventArgs = new AsyncFileUploadEventArgs(AsyncFileUploadState.Failed, Constants.Errors.NoFileName, file.FileName, file.ContentLength.ToString());
+
+                    eventArgs = new AsyncFileUploadEventArgs();
+                    eventArgs.State = AsyncFileUploadState.Failed;
+                    eventArgs.StatusMessage = Constants.Errors.NoFileName;
+                    eventArgs.FileName = file.FileName;
+                    eventArgs.FileSize = file.ContentLength.ToString();
+
                     OnUploadedFileError(eventArgs);
                 } else if (file.ContentLength < 1) {
                     lastError = Constants.Errors.EmptyContentLength;
-                    eventArgs = new AsyncFileUploadEventArgs(AsyncFileUploadState.Unknown, Constants.Errors.EmptyContentLength, file.FileName, file.ContentLength.ToString());
+
+                    eventArgs = new AsyncFileUploadEventArgs();
+                    eventArgs.State = AsyncFileUploadState.Unknown;
+                    eventArgs.StatusMessage = Constants.Errors.EmptyContentLength;
+                    eventArgs.FileName = file.FileName;
+                    eventArgs.FileSize = file.ContentLength.ToString();
+
                     OnUploadedFileError(eventArgs);
                 } else {
-                    eventArgs = new AsyncFileUploadEventArgs(AsyncFileUploadState.Success, String.Empty, file.FileName, file.ContentLength.ToString());
+                    eventArgs = new AsyncFileUploadEventArgs();
+                    eventArgs.State = AsyncFileUploadState.Success;
+                    eventArgs.StatusMessage = String.Empty;
+                    eventArgs.FileName = file.FileName;
+                    eventArgs.FileSize = file.ContentLength.ToString();
+
                     if (persistFile) {
                         GC.SuppressFinalize(file);
                         AfuPersistedStoreManager.Instance.AddFileToSession(this.ClientID, file.FileName, file);
@@ -467,8 +549,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Retrieves an array of bytes from a file stream
+        /// Retrieves an array of bytes from a file stream.
         /// </summary>
+        /// <param name="stream">stream containg file contents.</param>
+        /// <returns>Array of bytes of contents of requested file.</returns>
         public byte[] GetBytesFromStream(Stream stream) {
             byte[] buffer = new byte[32768];
             using (MemoryStream ms = new MemoryStream()) {
@@ -487,7 +571,10 @@ namespace AjaxControlToolkit {
 
         #region [ Members ]
 
-
+        /// <summary>
+        /// OnPreRender renders the output of result to client side.        
+        /// </summary>
+        /// <param name="e">Event arguments.</param>
         protected override void OnPreRender(EventArgs e) {
             base.OnPreRender(e);
             AfuPersistedStoreManager.Instance.PersistedStorageType = (AfuPersistedStoreManager.PersistedStoreTypeEnum)this.PersistedStoreType;
@@ -522,11 +609,17 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// CreateChilds call to create child controls for asyncfileupload.
+        /// </summary>
         internal void CreateChilds() {
             this.Controls.Clear();
             this.CreateChildControls();
         }
 
+        /// <summary>
+        /// CreateChildControls creates html controls for a asyncFileUpload control.
+        /// </summary>
         protected override void CreateChildControls() {
             AfuPersistedStoreManager.Instance.ExtendedFileUploadGUID = Constants.fileUploadGUID;
             string sendingControlID = null;
@@ -570,16 +663,25 @@ namespace AjaxControlToolkit {
 
         //}
 
+        /// <summary>
+        /// GenerateHtmlInputHiddenControl creates a html hidden control for AsyncFileUpload control.
+        /// </summary>
+        /// <returns>returns if of newly created hidden control.</returns>
         protected string GenerateHtmlInputHiddenControl() {
             HiddenField field = new HiddenField();
             Controls.Add(field);
             return field.ClientID;
         }
 
+        /// <summary>
+        /// GenerateHtmlInputFileControl creates input file control for AsyncFileUpload control.
+        /// </summary>
+        /// <param name="lastFileName">Name of Posted file.</param>
+        /// <returns>Return the client id of parent div that contains all other html controls.</returns>
         protected string GenerateHtmlInputFileControl(string lastFileName) {
             HtmlGenericControl div = new HtmlGenericControl("div");
             Controls.Add(div);
-            div.Attributes.Add("name", div.ClientID);
+            //div.Attributes.Add("Name", div.ClientID);
 
             if (this.UploaderStyle == UploaderStyleEnum.Modern) {
                 string bgImage = String.Empty;
@@ -596,7 +698,7 @@ namespace AjaxControlToolkit {
             if (!(this.UploaderStyle == UploaderStyleEnum.Modern && IsDesignMode)) {
                 inputFile = new HtmlInputFile();
                 div.Controls.Add(inputFile);
-                inputFile.Attributes.Add("id", inputFile.ClientID);
+                inputFile.Attributes.Add("name", inputFile.ClientID);
                 //inputFile.Attributes.Add("onkeydown", "return false;");
                 //inputFile.Attributes.Add("onkeypress", "return false;");
                 //inputFile.Attributes.Add("onmousedown", "return false;");
@@ -623,7 +725,7 @@ namespace AjaxControlToolkit {
                 if (!IsDesignMode) {
                     HtmlGenericControl div1 = new HtmlGenericControl("div");
                     div.Controls.Add(div1);
-                    div1.Attributes.Add("name", div.ClientID);
+                    //div1.Attributes.Add("Name", div.ClientID);
                     style = "margin-top:-23px;";
                     div1.Attributes.Add("style", style);
                     div1.Attributes.Add("type", "text");
@@ -660,6 +762,10 @@ namespace AjaxControlToolkit {
             return div.ClientID;
         }
 
+        /// <summary>
+        /// DescribeComponent creates propreties in ScriptComponentDescriptor for child controls in asyncFileUpload
+        /// </summary>
+        /// <param name="descriptor">Descriptor object which will accpet server components to convert in client script.</param>
         protected override void DescribeComponent(ScriptComponentDescriptor descriptor) {
             base.DescribeComponent(descriptor);
             if (!IsDesignMode) {
@@ -686,6 +792,10 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// CreateControlStyle creates object of style for AsyncFileUpload control.
+        /// </summary>
+        /// <returns>Style object.</returns>
         protected override Style CreateControlStyle() {
             AsyncFileUploadStyle style = new AsyncFileUploadStyle(ViewState);
             return style;
@@ -695,11 +805,20 @@ namespace AjaxControlToolkit {
 
         #region [ AsyncFileUploadStyle ]
 
+        /// <summary>
+        /// AsyncFileUploadStyle sets css attributes for the AsyncFileUpload control.
+        /// </summary>
         private sealed class AsyncFileUploadStyle : Style {
             public AsyncFileUploadStyle(StateBag state)
                 : base(state) {
             }
 
+
+            /// <summary>
+            /// FillStyleAttributes sets the css atrribute for asyncFileUpload.
+            /// </summary>
+            /// <param name="attributes">css attributes</param>
+            /// <param name="urlResolver">object of IUrlResolutionService</param>
             protected override void FillStyleAttributes(CssStyleCollection attributes, IUrlResolutionService urlResolver) {
                 base.FillStyleAttributes(attributes, urlResolver);
 
