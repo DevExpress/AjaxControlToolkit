@@ -1,6 +1,6 @@
 ﻿Type.registerNamespace("Sys.Extended.UI");
 
-Sys.Extended.UI.AsyncFileUpload = function(element) {
+Sys.Extended.UI.AsyncFileUpload = function (element) {
     Sys.Extended.UI.AsyncFileUpload.initializeBase(this, [element]);
 
     this._hiddenField = null;
@@ -23,76 +23,76 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
 
 Sys.Extended.UI.AsyncFileUpload.prototype = {
 
-    get_throbber: function() {
+    get_throbber: function () {
         return this._throbber;
     },
-    set_throbber: function(value) {
+    set_throbber: function (value) {
         this._throbber = value;
     },
 
-    get_completeBackColor: function() {
+    get_completeBackColor: function () {
         return this._completeBackColor;
     },
-    set_completeBackColor: function(value) {
+    set_completeBackColor: function (value) {
         this._completeBackColor = value;
     },
 
-    get_errorBackColor: function() {
+    get_errorBackColor: function () {
         return this._errorBackColor;
     },
-    set_errorBackColor: function(value) {
+    set_errorBackColor: function (value) {
         this._errorBackColor = value;
     },
 
-    get_uploadingBackColor: function() {
+    get_uploadingBackColor: function () {
         return this._uploadingBackColor;
     },
-    set_uploadingBackColor: function(value) {
+    set_uploadingBackColor: function (value) {
         this._uploadingBackColor = value;
     },
 
-    get_inputFile: function() {
+    get_inputFile: function () {
         return this._inputFile;
     },
-    set_inputFile: function(value) {
+    set_inputFile: function (value) {
         this._inputFile = value;
     },
 
-    get_hiddenField: function() {
+    get_hiddenField: function () {
         return this._hiddenField;
     },
-    set_hiddenField: function(value) {
+    set_hiddenField: function (value) {
         this._hiddenField = value;
     },
 
-    get_innerTB: function() {
+    get_innerTB: function () {
         return this._innerTB;
     },
-    set_innerTB: function(value) {
+    set_innerTB: function (value) {
         this._innerTB = value;
     },
 
-    get_postBackUrl: function() {
+    get_postBackUrl: function () {
         return this._postBackUrl;
     },
-    set_postBackUrl: function(value) {
+    set_postBackUrl: function (value) {
         this._postBackUrl = value;
     },
 
-    get_formName: function() {
+    get_formName: function () {
         return this._formName;
     },
-    set_formName: function(value) {
+    set_formName: function (value) {
         this._formName = value;
     },
 
-    add_uploadStarted: function(handler) {
+    add_uploadStarted: function (handler) {
         this.get_events().addHandler("uploadStarted", handler);
     },
-    remove_uploadStarted: function(handler) {
+    remove_uploadStarted: function (handler) {
         this.get_events().removeHandler("uploadStarted", handler);
     },
-    raiseUploadStarted: function(e) {
+    raiseUploadStarted: function (e) {
         var eh = this.get_events().getHandler("uploadStarted");
         if (eh) {
             return eh(this, e);
@@ -100,26 +100,26 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         return true;
     },
 
-    add_uploadComplete: function(handler) {
+    add_uploadComplete: function (handler) {
         this.get_events().addHandler("uploadComplete", handler);
     },
-    remove_uploadComplete: function(handler) {
+    remove_uploadComplete: function (handler) {
         this.get_events().removeHandler("uploadComplete", handler);
     },
-    raiseUploadComplete: function(e) {
+    raiseUploadComplete: function (e) {
         var eh = this.get_events().getHandler("uploadComplete");
         if (eh) {
             eh(this, e);
         }
     },
 
-    add_uploadError: function(handler) {
+    add_uploadError: function (handler) {
         this.get_events().addHandler("uploadError", handler);
     },
-    remove_uploadError: function(handler) {
+    remove_uploadError: function (handler) {
         this.get_events().removeHandler("uploadError", handler);
     },
-    raiseUploadError: function(e) {
+    raiseUploadError: function (e) {
         var eh = this.get_events().getHandler("uploadError");
         if (eh) {
             eh(this, e);
@@ -128,13 +128,13 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         return false;
     },
 
-    setThrobber: function(value) {
+    setThrobber: function (value) {
         if (this.get_throbber() != null) {
             this.get_throbber().style.display = value ? "" : "none";
         }
     },
 
-    _onStart: function(fileName) {
+    _onStart: function (fileName) {
         var valid = this.raiseUploadStarted(new Sys.Extended.UI.AsyncFileUploadEventArgs(fileName, null, null, null));
         if (typeof valid == 'undefined') {
             valid = true;
@@ -143,14 +143,14 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         return valid;
     },
 
-    initialize: function() {
+    initialize: function () {
         Sys.Extended.UI.AsyncFileUpload.callBaseMethod(this, "initialize");
         Sys.Application.add_load(this._app_onload$delegate);
         this._iframeName = this.get_element() + "_iframe";
         this.setThrobber(false);
     },
 
-    dispose: function() {
+    dispose: function () {
         Sys.Application.remove_load(this._app_onload$delegate);
         if (this._onchange$delegate != null) {
             $common.removeHandlers(this._inputFile, {
@@ -168,13 +168,13 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         Sys.Extended.UI.AsyncFileUpload.callBaseMethod(this, "dispose");
     },
 
-    _onmouseup: function() {
+    _onmouseup: function () {
         var inputFile = this._inputFile;
-        setTimeout(function() { inputFile.blur(); }, 0);
+        setTimeout(function () { inputFile.blur(); }, 0);
         return true;
     },
 
-    _app_onload: function(sender, e) {
+    _app_onload: function (sender, e) {
         this.setThrobber(false);
         if (this._inputFile != null) {
             if (this._onchange$delegate == null) {
@@ -184,7 +184,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
                 });
             }
             if (Sys.Browser.agent == Sys.Browser.Firefox) {
-                this._inputFile.size = 0;
+                this._inputFile.size = 1;
                 var width = this._inputFile.offsetWidth;
                 this._inputFile.style.width = "";
                 while (this._inputFile.offsetWidth < width) {
@@ -194,7 +194,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
             if (this._innerTB != null) {
                 this._inputFile.blur();
                 var inputFile = this._inputFile;
-                setTimeout(function() { inputFile.blur(); }, 0);
+                setTimeout(function () { inputFile.blur(); }, 0);
                 this._innerTB.style.width = (this._inputFile.offsetWidth - 107) + "px";
                 this._inputFile.parentNode.style.width = this._inputFile.offsetWidth + "px";
                 if (Sys.Browser.agent == Sys.Browser.InternetExplorer) {
@@ -207,7 +207,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         }
     },
 
-    _removeIframe: function() {
+    _removeIframe: function () {
         this._removeTimer();
         if (this._iframe != null) {
             if (this._onload$delegate != null) {
@@ -221,14 +221,14 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         }
     },
 
-    _removeTimer: function() {
+    _removeTimer: function () {
         if (this._waitTimer != null) {
             window.clearTimeout(this._waitTimer);
             this._waitTimer = null;
         }
     },
 
-    _onError: function(error) {
+    _onError: function (error) {
         var unhandledException = Sys.Extended.UI.Resources.AsyncFileUpload_UnhandledException;
         this.setThrobber(false);
 
@@ -244,7 +244,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         }
     },
 
-    _onchange: function(e) {
+    _onchange: function (e) {
         var value = this._inputFile.value;
         if (value == "") {
             return;
@@ -282,7 +282,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         }
     },
 
-    _stopLoad: function(result) {
+    _stopLoad: function (result) {
         var mainForm = document.getElementById(this._formName);
         this._removeTimer();
         this.setThrobber(false);
@@ -311,7 +311,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this.raiseUploadComplete(new Sys.Extended.UI.AsyncFileUploadEventArgs(this._inputFile.value, length, contentType, null));
     },
 
-    _onload: function(e) {
+    _onload: function (e) {
         var cleanup = true;
         var uploader = this;
         var mainForm = document.getElementById(this._formName);
@@ -338,9 +338,9 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
                     mainForm.target = this._iframeName;
                     cleanup = false;
                     this.setThrobber(true);
-                    setTimeout(function() {
+                    setTimeout(function () {
                         mainForm.submit();
-                        uploader._waitTimer = setTimeout(function() { uploader._wait() }, 100);
+                        uploader._waitTimer = setTimeout(function () { uploader._wait() }, 100);
                     }, 0);
                     return true;
                 }
@@ -349,10 +349,10 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
                 if (frameDocument.body.innerHTML == "") {
                     return true;
                 }
-//                if (this._waitTimer == null) {
-//                    setTimeout(function() { uploader._removeIframe(); }, 100);
-//                    return true;
-//                }
+                //                if (this._waitTimer == null) {
+                //                    setTimeout(function() { uploader._removeIframe(); }, 100);
+                //                    return true;
+                //                }
                 //----------------------------------------
                 var result = frameDocument.getElementById(this.get_element().id);
                 var length;
@@ -419,12 +419,12 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         }
         finally {
             if (cleanup) {
-                setTimeout(function() { uploader._removeIframe(); }, 100);
+                setTimeout(function () { uploader._removeIframe(); }, 100);
             }
         }
     },
 
-    _wait: function() {
+    _wait: function () {
         if (this._waitTimer == null) {
             return;
         }
@@ -433,10 +433,10 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
             var frameDocument = this._iframe.contentWindow.document;
             var location = frameDocument.location;
             var href = location.href;
-            this._waitTimer = setTimeout(function() { uploader._wait() }, 100);
+            this._waitTimer = setTimeout(function () { uploader._wait() }, 100);
         } catch (ex) {
-            setTimeout(function() { uploader._removeIframe(); }, 100);
-            setTimeout(function() { uploader._onError(Sys.Extended.UI.Resources.AsyncFileUpload_UploadingProblem); }, 0);
+            setTimeout(function () { uploader._removeIframe(); }, 100);
+            setTimeout(function () { uploader._onError(Sys.Extended.UI.Resources.AsyncFileUpload_UploadingProblem); }, 0);
             this._waitTimer = null;
         }
     }
@@ -444,7 +444,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
 
 Sys.Extended.UI.AsyncFileUpload.registerClass("Sys.Extended.UI.AsyncFileUpload", Sys.Extended.UI.ControlBase);
 
-Sys.Extended.UI.AsyncFileUploadEventArgs = function(fileName, length, contentType, errorMessage) {
+Sys.Extended.UI.AsyncFileUploadEventArgs = function (fileName, length, contentType, errorMessage) {
     if (arguments.length != 4) throw Error.parameterCount();
 
     //Calling the base class constructor
@@ -457,23 +457,23 @@ Sys.Extended.UI.AsyncFileUploadEventArgs = function(fileName, length, contentTyp
 
 Sys.Extended.UI.AsyncFileUploadEventArgs.prototype =
 {
-    get_fileName: function() {
+    get_fileName: function () {
         var slashPos = this._fileName.lastIndexOf("/");
         var backSlashPos = this._fileName.lastIndexOf("\\");
 
         var fileName = this._fileName.substr(((slashPos > backSlashPos) ? slashPos : backSlashPos) + 1);
         return fileName;
     },
-    get_path: function() {
+    get_path: function () {
         return this._fileName;
     },
-    get_length: function() {
+    get_length: function () {
         return this._length;
     },
-    get_contentType: function() {
-    return this._contentType;
+    get_contentType: function () {
+        return this._contentType;
     },
-    get_errorMessage: function() {
+    get_errorMessage: function () {
         return this._errorMessage;
     }
 }
