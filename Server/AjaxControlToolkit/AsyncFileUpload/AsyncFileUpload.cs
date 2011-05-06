@@ -485,7 +485,7 @@ namespace AjaxControlToolkit {
                     file = this.Page.Request.Files[0];
                 } else {
                     foreach (string uploadedFile in this.Page.Request.Files) {
-                        if (uploadedFile.Replace("$", "_").StartsWith(sendingControlID)) {
+                        if (uploadedFile.Replace("$", "_").Replace("_ctl02", "").EndsWith(sendingControlID)) {
                             file = this.Page.Request.Files[uploadedFile];
                             break;
                         }
@@ -700,7 +700,7 @@ namespace AjaxControlToolkit {
                 if (!this.Enabled)
                     inputFile.Disabled = true;
                 div.Controls.Add(inputFile);
-                inputFile.Attributes.Add("name", inputFile.ClientID);
+                inputFile.Attributes.Add("id", inputFile.Name.Replace("$", "_"));
                 //inputFile.Attributes.Add("onkeydown", "return false;");
                 //inputFile.Attributes.Add("onkeypress", "return false;");
                 //inputFile.Attributes.Add("onmousedown", "return false;");
@@ -773,7 +773,7 @@ namespace AjaxControlToolkit {
             if (!IsDesignMode) {
                 if (this.hiddenFieldID != String.Empty) descriptor.AddElementProperty("hiddenField", this.hiddenFieldID);
                 if (this.innerTBID != String.Empty) descriptor.AddElementProperty("innerTB", this.innerTBID);
-                if (this.inputFile != null) descriptor.AddElementProperty("inputFile", this.inputFile.ClientID);
+                if (this.inputFile != null) descriptor.AddElementProperty("inputFile", this.inputFile.Name.Replace("$", "_"));
                 descriptor.AddProperty("postBackUrl", this.Page.Request.RawUrl);
                 descriptor.AddProperty("formName", Path.GetFileName(this.Page.Form.Name));
                 if (CompleteBackColor != Color.Empty) {
