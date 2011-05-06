@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html> 
-<head><title>AJAX Control Toolkit Read Me</title></head> 
+<head><title>AJAX Control Toolkit Read Me</title> 
 <style type="text/css"> 
   body
   {
@@ -12,49 +12,34 @@
     margin-bottom: 15px;
   }
 </style> 
+</head>
 <body> 
  
-<h1>AJAX Control Toolkit &mdash; April 2011 Release</h1> 
+<h1>AJAX Control Toolkit &mdash; May 2011 Release</h1> 
  
 <p> 
-This release of the Ajax Control Toolkit includes several bug fixes to improve the compatibility of the Ajax Control Toolkit with
-Internet Explorer 9. This release also contains enhancements to the following two controls:
+This release of the Ajax Control Toolkit focused on making fixes and improvements to the ModalPopup, AsyncFileUpload, and DropShadow controls:
 </p> 
 
 <ul>
     <li>
     <p>
-    <b>RoundedCorners</b> &mdash; The RoundedCorners extender has been enhanced to take advantage
-    of the CSS 3 border-radius attribute when a browser supports this attribute. For example, Internet
-    Explorer 9 supports the border-radius attribute.  
-    </p>
-    <p>
-    The RoundedCorners extender will use the -moz-border-radius attribute in the case of 
-    Mozilla Firefox and the -webkit-border-radius in the case of Apple Safari and older
-    versions of Google Chrome.
-    </p>
-    <p>
-    Finally, in the case of older browsers such as Internet Explorer 6, the RoundedCorners
-    extender will fall back to simulating rounded corners by generating multiple DIV elements
-    in the page.
+    <b>ModalPopup</b> &mdash; The ModalPopup extender has been enhanced to support animations. 
+    The ModalPopup now supports OnShowing, OnShown, OnHiding, OnHidden animations. For example, you can fade-in the popup when it opens and 
+    fade-out the popup when it closes. Or, you can get super fancy with your animations.  
     </p>
     </li>
     <li>
     <p>
-    <b>DropShadow</b> &mdash; The DropShadow extender has been enhanced to take advantage of
-    CSS 3 when a browser supports CSS 3. For example, Internet Explorer 9 will use the
-    CSS 3 box-shadow attribute.
+    <b>AsyncFileUpload</b> &mdash; This release fixes several significant issues with the AsyncFileUpload. For example, previous to this release, 
+    the AsyncFileUpload control did not work correctly in a master page or when ClientIDMode="static".
+    In this release, the AsyncFileUpload has been enhanced to be HTML5 compatible and to work with Mozilla Firefox 4.
     </p>
     <p>
-    Mozilla Firefox will use the -moz-box-shadow attribute. Apple Safari and older versions
-    of Google Chrome will use the -webkit-box-shadow attribute.
-    </p>
-    <p>
-    Finally, really old browsers such as Internet Explorer 6, will simulate a drop shadow by
-    injecting an additional DIV element into the page dynamically. 
+    <b>DropShadow</b> &mdash; This release fixes an issue with the DropShadow extender which prevented it from working correctly in an UpdatePanel. This
+    release also includes better test coverage for the DropShadow with the addition of new QUnit tests.
     </p>
     </li>
-
 </ul>
 
  
