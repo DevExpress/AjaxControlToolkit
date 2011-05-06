@@ -697,6 +697,8 @@ namespace AjaxControlToolkit {
 
             if (!(this.UploaderStyle == UploaderStyleEnum.Modern && IsDesignMode)) {
                 inputFile = new HtmlInputFile();
+                if (!this.Enabled)
+                    inputFile.Disabled = true;
                 div.Controls.Add(inputFile);
                 inputFile.Attributes.Add("name", inputFile.ClientID);
                 //inputFile.Attributes.Add("onkeydown", "return false;");
