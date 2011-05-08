@@ -26,76 +26,63 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// This constructor is obsolete as fields are replaced by public properties
-        /// and public fields are obsolete.
+        /// Creates a new instance of FileUploadEventArgs
         /// </summary>
         /// <param name="state"></param>
         /// <param name="statusMessage"></param>
         /// <param name="filename"></param>
         /// <param name="filesize"></param>
-        [Obsolete]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+
         public AsyncFileUploadEventArgs(AsyncFileUploadState state, string statusMessage, string filename, string filesize) {
-            this.statusMessage = statusMessage;
-            this.filename = filename;
-            this.filesize = filesize;
-            this.state = state;
+            _statusMessage = statusMessage;
+            _filename = filename;
+            _filesize = filesize;
+            _state = state;
         }
 
-        /// <summary>
-        /// Public field statusMessage is replaced with public property
-        /// so it is obsoleted and removed from intellisense.
-        /// </summary>
-        [Obsolete]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string statusMessage = String.Empty;
-
-        /// <summary>
-        /// Public field filename is replaced with public property
-        /// so it is obsoleted and removed from intellisense.
-        /// </summary>
-        [Obsolete]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string filename = String.Empty;
-
-        /// <summary>
-        /// Public field filesize is replaced with public property
-        /// so it is obsoleted and removed from intellisense.
-        /// </summary>
-        [Obsolete]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string filesize = String.Empty;
-
-        /// <summary>
-        /// Public field state is replaced with public property
-        /// so it is obsoleted and removed from intellisense.
-        /// </summary>
-        [Obsolete]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AsyncFileUploadState state = AsyncFileUploadState.Unknown;
+        private string _statusMessage = String.Empty;
+        private string _filename = String.Empty;
+        private string _filesize = String.Empty;
+        private AsyncFileUploadState _state = AsyncFileUploadState.Unknown;
 
 
         #region Properties
 
         /// <summary>
-        /// Gets or Sets Status message of uploaded file.
+        /// Gets status message of uploaded file.
         /// </summary>
-        public string StatusMessage { get; set; }
+        public string StatusMessage {
+            get {
+                return _statusMessage;
+            }
+        }
 
         /// <summary>
-        /// Gets or Sets file name of uploaded file.
+        /// Gets file name of uploaded file.
         /// </summary>
-        public string FileName { get; set; }
+        public string FileName {
+            get {
+                return _filename;
+            }
+        }
 
         /// <summary>
-        /// Gets or Sets fileSize of uploaded file.
+        /// Gets file size of uploaded file.
         /// </summary>
-        public string FileSize { get; set; }
+        public string FileSize {
+            get {
+                return _filesize;
+            }
+        }
 
         /// <summary>
-        /// Gets or Sets State of uploaded file.
+        /// Gets state of uploaded file.
         /// </summary>
-        public AsyncFileUploadState State { get; set; }
+        public AsyncFileUploadState State {
+            get {
+                return _state;
+            }
+        }
 
         #endregion
     }

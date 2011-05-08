@@ -425,10 +425,10 @@ namespace AjaxControlToolkit {
         /// Saves the uploaded file with a particular file name.
         /// </summary>
         /// <param name="fileName">file name at server.</param>
-        public void SaveAs(string filename) {
+        public void SaveAs(string fileName) {
             PopulatObjectPriorToRender(this.ClientID);
             HttpPostedFile file = CurrentFile;
-            file.SaveAs(filename);
+            file.SaveAs(fileName);
         }
 
         /// <summary>
@@ -493,49 +493,54 @@ namespace AjaxControlToolkit {
                 }
                 if (file == null) {
                     lastError = Constants.Errors.FileNull;
-                    eventArgs = new AsyncFileUploadEventArgs();
-                    eventArgs.State = AsyncFileUploadState.Failed;
-                    eventArgs.StatusMessage = Constants.Errors.FileNull;
-                    eventArgs.FileName = string.Empty;
-                    eventArgs.FileSize = string.Empty;
+                    eventArgs = new AsyncFileUploadEventArgs(
+                        AsyncFileUploadState.Failed,
+                        Constants.Errors.FileNull,
+                        String.Empty,
+                        String.Empty
+                    );
 
                     OnUploadedFileError(eventArgs);
                 } else if (file.FileName == String.Empty) {
                     lastError = Constants.Errors.NoFileName;
 
-                    eventArgs = new AsyncFileUploadEventArgs();
-                    eventArgs.State = AsyncFileUploadState.Unknown;
-                    eventArgs.StatusMessage = Constants.Errors.NoFileName;
-                    eventArgs.FileName = file.FileName;
-                    eventArgs.FileSize = file.ContentLength.ToString();
+                    eventArgs = new AsyncFileUploadEventArgs(
+                       AsyncFileUploadState.Unknown,
+                       Constants.Errors.NoFileName,
+                       file.FileName,
+                       file.ContentLength.ToString()
+                    );
 
                     OnUploadedFileError(eventArgs);
                 } else if (file.InputStream == null) {
                     lastError = Constants.Errors.NoFileName;
 
-                    eventArgs = new AsyncFileUploadEventArgs();
-                    eventArgs.State = AsyncFileUploadState.Failed;
-                    eventArgs.StatusMessage = Constants.Errors.NoFileName;
-                    eventArgs.FileName = file.FileName;
-                    eventArgs.FileSize = file.ContentLength.ToString();
+                    eventArgs = new AsyncFileUploadEventArgs(
+                        AsyncFileUploadState.Failed,
+                        Constants.Errors.NoFileName,
+                        file.FileName,
+                        file.ContentLength.ToString()
+                    );
 
                     OnUploadedFileError(eventArgs);
                 } else if (file.ContentLength < 1) {
                     lastError = Constants.Errors.EmptyContentLength;
 
-                    eventArgs = new AsyncFileUploadEventArgs();
-                    eventArgs.State = AsyncFileUploadState.Unknown;
-                    eventArgs.StatusMessage = Constants.Errors.EmptyContentLength;
-                    eventArgs.FileName = file.FileName;
-                    eventArgs.FileSize = file.ContentLength.ToString();
+                    eventArgs = new AsyncFileUploadEventArgs(
+                        AsyncFileUploadState.Unknown,
+                        Constants.Errors.EmptyContentLength,
+                        file.FileName,
+                        file.ContentLength.ToString()
+                    );
 
                     OnUploadedFileError(eventArgs);
                 } else {
-                    eventArgs = new AsyncFileUploadEventArgs();
-                    eventArgs.State = AsyncFileUploadState.Success;
-                    eventArgs.StatusMessage = String.Empty;
-                    eventArgs.FileName = file.FileName;
-                    eventArgs.FileSize = file.ContentLength.ToString();
+                    eventArgs = new AsyncFileUploadEventArgs(
+                        AsyncFileUploadState.Success,
+                        String.Empty,
+                        file.FileName,
+                        file.ContentLength.ToString()
+                    );
 
                     if (persistFile) {
                         GC.SuppressFinalize(file);
