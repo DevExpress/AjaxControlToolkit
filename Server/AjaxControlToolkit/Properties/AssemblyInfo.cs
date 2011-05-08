@@ -36,11 +36,11 @@ using AjaxControlToolkit;
 #if NET4
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 [assembly: System.Web.Script.AjaxFrameworkAssembly]
-[assembly: AssemblyVersion("4.1.50506")]
-[assembly: AssemblyFileVersion("4.1.50506")]
+[assembly: AssemblyVersion("4.1.50508")]
+[assembly: AssemblyFileVersion("4.1.50508")]
 #else
-[assembly: AssemblyVersion("3.5.50506")]
-[assembly: AssemblyFileVersion("3.5.50506")]  
+[assembly: AssemblyVersion("3.5.50508")]
+[assembly: AssemblyFileVersion("3.5.50508")]  
 #endif
 [assembly: NeutralResourcesLanguage("en-US")]
 
