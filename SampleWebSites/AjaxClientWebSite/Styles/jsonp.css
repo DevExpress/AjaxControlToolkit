@@ -1,0 +1,30 @@
+﻿.sys-template { display: none; }
+.date {
+    font-size: small;
+    font-style: italic
+}
+.taglist {
+    font-size: small; color:Red;
+}
+.linkItem {
+}
+.linkTitle {
+    margin: 0px;
+}
+.title {
+    font-weight: bold;
+}
+.href {
+    font-size: smaller;
+    font-style: italic;
+}
+.href a {
+    text-decoration: none;
+}
+.submitted {
+    font-size: small
+}
+.tag {
+    text-decoration: underline;
+    cursor: pointer;
+}

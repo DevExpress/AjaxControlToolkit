@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!-- 
+    Note: As an alternative to hand editing this file you can use the 
+    web admin tool to configure settings for your application. Use
+    the Website->Asp.Net Configuration option in Visual Studio.
+    A full list of settings and comments can be found in 
+    machine.config.comments usually located in 
+    \Windows\Microsoft.Net\Framework\v2.x\Config 
+-->
+<configuration>
+  <appSettings/>
+  <system.web>
+    <!-- 
+            Set compilation debug="true" to insert debugging 
+            symbols into the compiled page. Because this 
+            affects performance, set this value to true only 
+            during development.
+        -->
+    <compilation debug="true" targetFramework="4.0">
+      <assemblies>
+        <add assembly="System.Data.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System.Data.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System.Data.Services.Client, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Data.Entity.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System.Web.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+        <add assembly="System.Web.Extensions.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35"/>
+        <add assembly="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+        <add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+      </assemblies>
+      <buildProviders>
+        <add extension=".edmx" type="System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider"/>
+      </buildProviders>
+    </compilation>
+    <!--
+            The <authentication> section enables configuration 
+            of the security authentication mode used by 
+            ASP.NET to identify an incoming user. 
+        -->
+    <authentication mode="Windows"/>
+    <!--
+            The <customErrors> section enables configuration 
+            of what to do if/when an unhandled error occurs 
+            during the execution of a request. Specifically, 
+            it enables developers to configure html error pages 
+            to be displayed in place of a error stack trace.
+
+        <customErrors mode="RemoteOnly" defaultRedirect="GenericErrorPage.htm">
+            <error statusCode="403" redirect="NoAccess.htm" />
+            <error statusCode="404" redirect="FileNotFound.htm" />
+        </customErrors>
+        -->
+    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID">
+      <controls>
+        <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit"/>
+      </controls>
+    </pages>
+  </system.web>
+  <!-- 
+        The system.webServer section is required for running ASP.NET AJAX under Internet
+        Information Services 7.0.  It is not necessary for previous version of IIS.
+    -->
+  <system.webServer>
+    <directoryBrowse enabled="true"/>
+  </system.webServer>
+  <system.serviceModel>
+    <serviceHostingEnvironment aspNetCompatibilityEnabled="true"/>
+    <services>
+      <service behaviorConfiguration="ImagesWcfServiceBehavior" name="ImagesWcfService">
+        <endpoint address="" behaviorConfiguration="ImagesWcfServiceAspNetAjaxBehavior" binding="webHttpBinding" contract="ImagesWcfService"/>
+      </service>
+    </services>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="ImagesWcfServiceAspNetAjaxBehavior">
+          <enableWebScript/>
+        </behavior>
+      </endpointBehaviors>
+      <serviceBehaviors>
+        <behavior name="ImagesWcfServiceBehavior">
+          <serviceMetadata httpGetEnabled="true"/>
+          <serviceDebug includeExceptionDetailInFaults="false"/>
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+  </system.serviceModel>
+  <connectionStrings>
+    <add name="ImagesEntities" connectionString="metadata=res://*;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=.\SQLEXPRESS;AttachDbFilename=|DataDirectory|\Images.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True;MultipleActiveResultSets=True&quot;" providerName="System.Data.EntityClient"/>
+  </connectionStrings>
+</configuration>

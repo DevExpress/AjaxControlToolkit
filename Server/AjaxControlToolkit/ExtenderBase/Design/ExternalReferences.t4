@@ -1,0 +1,396 @@
+<#@ template language="C#" #>
+<#@ output  extension=".cs" #>
+<#@ assembly name="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" #>
+<#@ assembly name="EnvDTE80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" #>
+<#@ assembly name="VsWebSite.Interop, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#
+    AddType(typeof(EnvDTE.vsCMElement), "vsCMElementClass", "vsCMElementNamespace", "vsCMElementFunction");
+    AddType(typeof(EnvDTE.vsCMAccess), "vsCMAccessPublic");
+    AddType(typeof(EnvDTE.vsCMFunction), "vsCMFunctionFunction");
+    AddType(typeof(EnvDTE.vsCMTypeRef), "vsCMTypeRefArray", "vsCMTypeRefPointer");
+    AddType(typeof(EnvDTE.CodeTypeRef), "AsFullName", "ElementType", "Rank", "TypeKind");
+    AddType(typeof(EnvDTE.CodeElements), "Count", "GetEnumerator");
+    AddType(typeof(EnvDTE80.FileCodeModel2), "CodeElements", "IsCodeType", "Kind");
+    AddType(typeof(EnvDTE80.CodeElement2), "Children", "CodeElements", "FullName", "IsCodeType", "Kind", "Name", "Type");
+    AddType(typeof(EnvDTE80.CodeClass2), "AddFunction", "Children");
+    AddType(typeof(EnvDTE80.CodeFunction2), "Access", "AddAttribute", "AddParameter", "Attributes", "Children", "IsShared", "Parameters", "Type");
+    AddType(typeof(EnvDTE80.CodeParameter2), "Name", "Type");
+    AddType(typeof(EnvDTE80.CodeAttribute2), "Name");
+    AddType(typeof(EnvDTE80.DTE2), "ActiveDocument", "UndoContext");
+    AddType(typeof(EnvDTE.UndoContext), "Close", "IsOpen", "Open");
+    AddType(typeof(EnvDTE.Document), "ProjectItem");
+    AddType(typeof(EnvDTE.ProjectItem), "FileCodeModel", "Object");
+    AddType(typeof(VsWebSite.VSWebProjectItem), "Load", "ProjectItem", "Unload");
+    
+    TypeAliases.Add(typeof(EnvDTE.FileCodeModel), typeof(EnvDTE80.FileCodeModel2));
+    TypeAliases.Add(typeof(EnvDTE.CodeElement), typeof(EnvDTE80.CodeElement2));
+    TypeAliases.Add(typeof(EnvDTE.CodeClass), typeof(EnvDTE80.CodeClass2));
+    TypeAliases.Add(typeof(EnvDTE.CodeFunction), typeof(EnvDTE80.CodeFunction2));
+    TypeAliases.Add(typeof(EnvDTE.CodeParameter), typeof(EnvDTE80.CodeParameter2));
+    TypeAliases.Add(typeof(EnvDTE.CodeAttribute), typeof(EnvDTE80.CodeAttribute2));
+    TypeAliases.Add(typeof(EnvDTE.DTE), typeof(EnvDTE80.DTE2));
+    TypeAliases.Add(typeof(EnvDTE._DTE), typeof(EnvDTE80.DTE2));
+
+    Assemblies.Add(typeof(EnvDTE._DTE).Assembly, "EnvDTE");
+    Assemblies.Add(typeof(EnvDTE80.DTE2).Assembly, "EnvDTE80");
+    Assemblies.Add(typeof(VsWebSite.VSWebProjectItem).Assembly, "VsWebSite");
+#>
+
+
+//////////////////////
+// Auto-generated code
+//////////////////////
+
+using System;
+using System.Reflection;
+
+namespace AjaxControlToolkit.Design
+{
+    internal static class ReferencedAssemblies
+    {
+<#
+    foreach (KeyValuePair<Assembly, string> pair in Assemblies)
+    {
+        string fieldName = "_" + pair.Value;
+#>
+        private static Assembly <#= fieldName #>;
+        public static Assembly <#= pair.Value #>
+        {
+            get
+            {
+                if (<#= fieldName #> == null)
+                {
+                    <#= fieldName #> = Assembly.Load("<#= pair.Key.FullName #>");
+                }
+                return <#= fieldName #>;
+            }
+        }
+        
+<#
+    }
+#>
+    }
+    
+<#
+    foreach (Type type in Types)
+    {
+        if (type.IsEnum && type.IsDefined(typeof(FlagsAttribute), true))
+        {
+#>
+    [Flags]
+<#
+        }
+#>
+    internal class <#= type.Name #>
+    {
+        public static Type ReferencedType
+        {
+            get
+            {
+                if (_referencedType == null)
+                {
+                    _referencedType = ReferencedAssemblies.<#= Assemblies[type.Assembly] #>.GetType("<#= type.FullName #>");
+                    if (_referencedType == null)
+                    {
+                        throw new InvalidOperationException("Failed to load type '<#= type.FullName #>' from assembly '<#= type.Assembly.FullName #>'.");
+                    }
+                }
+                return _referencedType;
+            }
+        }
+        private static Type _referencedType;
+        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Auto-generated wrapper")]
+        public object Reference
+        {
+            get { return _reference; }
+            set { _reference = value; }
+        }
+        private object _reference;
+        
+        public <#= type.Name #>()
+            : this(null)
+        {
+        }
+        
+        public <#= type.Name #>(object reference)
+        {
+            _reference = ReferencedType.IsInstanceOfType(reference)<# if (type.IsEnum) { #> || (reference is int)<# } #> ? reference : null;
+        }
+        
+<#
+        if (type.IsEnum)
+        {
+            foreach (FieldInfo field in type.GetFields(BindingFlags.Static | BindingFlags.Public))
+            {
+                string cc = !IncludeMember(type, field.Name) ? "// " : "";
+#>
+        <#= cc #>public static readonly <#= type.Name #> <#= field.Name #> = new <#= type.Name #>(<#= (int) field.GetValue(null) #>);
+<#
+            }
+#>
+        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Auto-generated wrapper")]
+        public int Value
+        {
+            get { return (int) _reference; }
+        }
+        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Auto-generated wrapper")]
+        public override bool Equals(object obj)
+        {
+            <#= type.Name #> other = obj as <#= type.Name #>;
+            if (other == null)
+            {
+                return false;
+            }
+            else if (_reference == null)
+            {
+                return other._reference == null;
+            }
+            else if (other._reference == null)
+            {
+                return false;
+            }
+            return Value == other.Value;
+        }
+        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Auto-generated wrapper")]
+        public override int GetHashCode()
+        {
+            return _reference == null ? 0 : Value.GetHashCode();
+        }
+        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Auto-generated wrapper")]
+        public static bool operator == (<#= type.Name #> left, <#= type.Name #> right)
+        {
+            if (object.ReferenceEquals(left, null))
+            {
+                return object.ReferenceEquals(right, null);
+            }
+            return left.Equals(right);
+        }
+        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Auto-generated wrapper")]
+        public static bool operator != (<#= type.Name #> left, <#= type.Name #> right)
+        {
+            return !(left == right);
+        }
+<#
+        }
+        else
+        {
+            foreach (FieldInfo field in type.GetFields())
+            {
+                string cc = !IncludeMember(type, field.Name) || !IsExposableType(field.FieldType) ? "// " : "";
+                string fieldType = GetTypeName(field.FieldType);
+                bool wrapped = IsWrappedType(field.FieldType);
+#>
+        <#= cc #>[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Auto-generated wrapper")]
+        <#= cc #>public <#= fieldType #> <#= field.Name #>
+        <#= cc #>{
+<#
+                if (wrapped)
+                {
+#>
+        <#= cc #>    get
+        <#= cc #>    {
+        <#= cc #>        object value = ReferencedType.GetField("<#= field.Name #>").GetValue(_reference);
+        <#= cc #>        return value != null ? new <#= fieldType #>(value) : null;
+        <#= cc #>    }
+<#
+                }
+                else
+                {
+#>
+        <#= cc #>    get { return (<#= fieldType #>) ReferencedType.GetField("<#= field.Name #>").GetValue(_reference); }
+<#
+                }
+#>>
+        <#= cc #>    set { ReferencedType.GetField("<#= field.Name #>").SetValue(_reference, value<#= wrapped ? " != null ? value.Reference : null" : "" #>); }
+        <#= cc #>}
+<#
+            }
+            foreach (PropertyInfo property in type.GetProperties())
+            {
+                string cc = !IncludeMember(type, property.Name) || !IsExposableType(property.PropertyType) ? "// " : "";
+                string propertyType = GetTypeName(property.PropertyType);
+                bool wrapped = IsWrappedType(property.PropertyType);
+#>
+        <#= cc #>[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Auto-generated wrapper")]
+        <#= cc #>public <#= propertyType #> <#= property.Name #>
+        <#= cc #>{
+<#
+                if (property.CanRead)
+                {
+                    if (wrapped)
+                    {
+#>
+        <#= cc #>    get
+        <#= cc #>    {
+        <#= cc #>        object value = ReferencedType.GetProperty("<#= property.Name #>").GetValue(_reference, new object[] { });
+        <#= cc #>        return value != null ? new <#= propertyType #>(value) : null;
+        <#= cc #>    }
+<#
+                    }
+                    else
+                    {
+#>
+        <#= cc #>    get { return (<#= propertyType #>) ReferencedType.GetProperty("<#= property.Name #>").GetValue(_reference, new object[] { }); }
+<#
+                    }
+                }
+                if (property.CanWrite)
+                {
+#>
+        <#= cc #>    set { ReferencedType.GetProperty("<#= property.Name #>").SetValue(_reference, value<#= wrapped ? " != null ? value.Reference : null" : "" #>, new object[] { }); }
+<#
+                }
+#>
+        <#= cc #>}
+        
+<# 
+            }
+            foreach (MethodInfo method in type.GetMethods())
+            {
+                if (method.IsSpecialName)
+                {
+                    continue;
+                }
+                
+                ParameterInfo[] parameters = method.GetParameters();
+                
+                string cc = !IncludeMember(type, method.Name) || !IsExposableType(method.ReturnType) ? "// " : "";
+                foreach (ParameterInfo parameter in parameters)
+                {
+                    if (!IsExposableType(parameter.ParameterType) || parameter.IsOut)
+                    {
+                        cc = "// ";
+                    }
+                }
+                
+                bool wrapped = IsWrappedType(method.ReturnType);
+                bool returns = method.ReturnType != typeof(void);
+                string returnType = GetTypeName(method.ReturnType);
+                
+                string returnName = "value";
+                bool unique;
+                do
+                {
+                    unique = true;
+                    foreach (ParameterInfo parameter in parameters)
+                    {
+                        if (string.Compare(parameter.Name, returnName, StringComparison.Ordinal) == 0)
+                        {
+                            unique = false;
+                            returnName = "_" + returnName;
+                            break;
+                        }
+                    }
+                } while (!unique);
+#>
+        <#= cc #>[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Auto-generated wrapper")]
+        <#= cc #>public <#= returnType #> <#= method.Name #>(<#
+                    bool first = true;
+                    foreach (ParameterInfo parameter in parameters)
+                    {
+                        if (!first)
+                        {
+                            #>, <#
+                        }
+                        first = false;
+                        #><#= GetTypeName(parameter.ParameterType) #> <#= parameter.Name #><#
+                    }
+#>)
+        <#= cc #>{
+        <#= cc #>    <# if (returns) { #>object <#= returnName #> = <# } #>ReferencedType.GetMethod("<#= method.Name #>").Invoke(_reference, new object[] { <#
+                    first = true;
+                    foreach (ParameterInfo parameter in parameters)
+                    {
+                        if (!first)
+                        {
+                            #>, <#
+                        }
+                        first = false;
+                        if (IsWrappedType(parameter.ParameterType))
+                        {
+                            #><#= parameter.Name #> != null ? <#= parameter.Name #>.Reference : null<#
+                        }
+                        else
+                        {
+                            #><#= parameter.Name #><#
+                        }
+                    }#> });
+<#
+                    if (returns)
+                    {
+                        if (wrapped)
+                        {
+#>
+        <#= cc #>    return <#= returnName #> != null ? new <#= returnType #>(<#= returnName #>) : null;
+<#
+                        }
+                        else
+                        {
+#>
+        <#= cc #>    return (<#= returnType #>) <#= returnName #>;
+<#
+                        }
+                    }
+#>
+        <#= cc #>}
+        
+<#
+            }    
+        }
+#>
+    }
+
+<#
+    }
+#>
+}
+<#+ 
+    public List<Type> Types = new List<Type>();
+    public Dictionary<Assembly, string> Assemblies = new Dictionary<Assembly, string>();
+    public Dictionary<Type, Type> TypeAliases = new Dictionary<Type, Type>();
+    public Dictionary<Type, List<string>> TypeMembers = new Dictionary<Type, List<string>>();
+    
+    public string GetTypeName(Type t)
+    {
+        if (t == typeof(void))
+        {
+            return "void";
+        }
+        t = (TypeAliases.ContainsKey(t)) ? TypeAliases[t] : t;
+        return string.Format("{0}{1}", !Assemblies.ContainsKey(t.Assembly) ? t.Namespace + "." : "", t.Name);
+    }
+    
+    public bool IsExposableType(Type t)
+    {
+        return !t.IsPointer && !t.IsByRef && (!Assemblies.ContainsKey(t.Assembly) || Types.Contains(t) || (TypeAliases.ContainsKey(t) && IsExposableType(TypeAliases[t])));
+    }
+    
+    public bool IsWrappedType(Type t)
+    {
+        return Types.Contains(t) || (TypeAliases.ContainsKey(t) && IsWrappedType(TypeAliases[t]));
+    }
+    
+    public void AddType(Type type, params string[] members)
+    {
+        Types.Add(type);
+        TypeMembers[type] = new List<string>(members);
+    }
+    
+    public bool IncludeMember(Type type, string name)
+    {
+        List<string> members;
+        if (!TypeMembers.TryGetValue(type, out members) || members == null)
+        {
+            return false;
+        }
+        return members.Contains(name);
+    }
+#>

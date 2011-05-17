@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how you can render a tree view by using recursive templates
+with the DataView control.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Recursive Templates</title>
+    <link href="../styles/recursiveTemplate.css" rel="stylesheet" type="text/css" />
+
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        Sys.activateDom = false; 
+    
+        Sys.require(Sys.components.dataView);
+
+        Sys.onReady(function() {
+            Sys.query(document.documentElement).activateElements();
+        });
+    
+        function onCommand(sender, args) {
+            var commandName = args.get_commandName();
+            var source = args.get_commandSource();
+
+            if (commandName === 'toggle') {
+                var ctx = getDataViewContainer(source);
+                var e = Sys.get("#contents", ctx);
+                var img = Sys.get("#folder", ctx);
+                if (e.className === 'collapsed') {
+                    e.className = '';
+                    img.setAttribute('src', '../images/folder/collapse.png');
+                }
+                else {
+                    e.className = 'collapsed';
+                    img.setAttribute('src', '../images/folder/expand.png');
+                }
+            }
+        }
+
+        function getDataViewContainer(source) {
+            var dv = source;
+            while (!dv.control || Object.getType(dv.control) !== Sys.UI.DataView) {
+                dv = dv.parentNode;
+            }
+            return dv.control.findContext(source);
+        }
+
+        var directoryHierarchyData = {
+            name: 'inetpub',
+            files: [],
+            directories: [
+                {     
+                    name: 'wwwroot',
+                    files: ['iisstartt.htm', 'index.htm', 'welcome.png'],
+                    directories: [
+                        {
+                            name: 'settings',
+                            files: ['index.htm'],
+                            directories: []
+                        }
+                    ]
+                },
+                { 
+                    name: 'logs',
+                    files: ['failed.log', 'passed.log', '404.log'],
+                    directories: []
+                }
+            ]
+        };
+    </script> 
+</head>
+
+<body xmlns:sys="javascript:Sys" xmlns:dataview="javascript:Sys.UI.DataView">
+
+    <!-- Top level DataView for folders -->
+    <ul id="folderTemplate" 
+        sys:attach="dataview" class="root sys-template" 
+        dataview:data="{{ directoryHierarchyData }}"
+        dataview:oncommand="{{ onCommand }}"
+    >
+        <li style="list-style: none">
+            <a href="#" onclick="return false;" sys:command="toggle">
+                <img id="folder" src="../images/folder/collapse.png" alt="toggle" />
+            </a>
+            <img src="../images/folder/folder.png" alt="folder" />
+            <span>{{ name }}</span>       
+        </li>
+
+        <li id="contents" style="list-style: none">
+            <!-- Nested DataView for folders - same template -->
+            <ul 
+                sys:attach="dataview" 
+                dataview:data="{{ directories }}"
+                dataview:itemtemplate="#folderTemplate" 
+                class="folder" 
+            ></ul>
+            <!-- Nested DataView for files - different template -->
+            <ul 
+                sys:attach="dataview" 
+                dataview:data="{{ files }}" 
+                class="file sys-template"
+            >
+                <li>                        
+                    <span>{{ $dataItem }}</span>                            
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</body>
+</html>

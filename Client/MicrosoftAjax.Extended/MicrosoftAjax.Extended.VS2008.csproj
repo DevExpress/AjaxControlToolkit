@@ -1,0 +1,361 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{53BF3496-0AD1-491C-A367-258E84479594}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MicrosoftAjax.Extended</RootNamespace>
+    <AssemblyName>MicrosoftAjax.Extended</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput\extended</ScriptOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput\extended</ScriptOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput\extended</ScriptOutput>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Accordion\AccordionBehavior.pre.js" />
+    <Content Include="AlwaysVisibleControl\AlwaysVisibleControlBehavior.pre.js" />
+    <Content Include="Animation\AnimationBehavior.pre.js" />
+    <Content Include="Animation\Animations.pre.js" />
+    <Content Include="AutoComplete\AutoCompleteBehavior.pre.js" />
+    <Content Include="Calendar\arrow-left.gif" />
+    <Content Include="Calendar\arrow-right.gif" />
+    <Content Include="Calendar\Calendar.css" />
+    <Content Include="Calendar\CalendarBehavior.pre.js" />
+    <Content Include="CascadingDropDown\CascadingDropDownBehavior.pre.js" />
+    <Content Include="CollapsiblePanel\CollapsiblePanelBehavior.pre.js" />
+    <Content Include="ColorPicker\ColorPicker.css" />
+    <Content Include="ColorPicker\ColorPickerBehavior.pre.js" />
+    <Content Include="ExtendedControls.pre.js" />
+    <Content Include="Common\Common.pre.js" />
+    <Content Include="Common\DateTime.pre.js" />
+    <Content Include="Common\Threading.pre.js" />
+    <Content Include="Compat\DragDrop\DragDropScripts.pre.js" />
+    <Content Include="Compat\Timer\Timer.pre.js" />
+    <Content Include="ConfirmButton\confirmButtonBehavior.pre.js" />
+    <Content Include="DragPanel\FloatingBehavior.pre.js" />
+    <Content Include="DropDown\drop-arrow.gif" />
+    <Content Include="DropDown\DropDown.css" />
+    <Content Include="DropDown\DropDownBehavior.pre.js" />
+    <Content Include="DropShadow\DropShadowBehavior.pre.js" />
+    <Content Include="DynamicPopulate\DynamicPopulateBehavior.pre.js" />
+    <Content Include="ExtenderBase\BaseScripts.pre.js" />
+    <Content Include="FilteredTextBox\FilteredTextBoxBehavior.pre.js" />
+    <Content Include="HoverExtender\HoverBehavior.pre.js" />
+    <Content Include="HoverMenu\HoverMenuBehavior.pre.js" />
+    <Content Include="ListSearch\ListSearchBehavior.pre.js" />
+    <Content Include="MaskedEdit\MaskedEditBehavior.pre.js" />
+    <Content Include="MaskedEdit\MaskedEditValidator.pre.js" />
+    <Content Include="ModalPopup\ModalPopupBehavior.pre.js" />
+    <Content Include="MultiHandleSlider\Images\slider_h_handle.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_h_handle_down.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_h_handle_hover.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_h_rail.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_h_rail_outer.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_v_handle.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_v_handle_down.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_v_handle_hover.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_v_rail.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_v_rail_outer.gif" />
+    <Content Include="MultiHandleSlider\MultiHandleSlider.css" />
+    <Content Include="MultiHandleSlider\MultiHandleSliderBehavior.pre.js" />
+    <Content Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxBehavior.pre.js" />
+    <Content Include="NumericUpDown\NumericUpDownBehavior.pre.js" />
+    <Content Include="PagingBulletedList\PagingBulletedListBehavior.pre.js" />
+    <Content Include="PasswordStrength\PasswordStrengthExtenderBehavior.pre.js" />
+    <Content Include="PopupControl\PopupControlBehavior.pre.js" />
+    <Content Include="PopupExtender\PopupBehavior.pre.js" />
+    <Content Include="Rating\RatingBehavior.pre.js" />
+    <Content Include="ResizableControl\ResizableControlBehavior.pre.js" />
+    <Content Include="RoundedCorners\RoundedCornersBehavior.pre.js" />
+    <Content Include="Seadragon\images\fullpage_grouphover.png" />
+    <Content Include="Seadragon\images\fullpage_hover.png" />
+    <Content Include="Seadragon\images\fullpage_pressed.png" />
+    <Content Include="Seadragon\images\fullpage_rest.png" />
+    <Content Include="Seadragon\images\home_grouphover.png" />
+    <Content Include="Seadragon\images\home_hover.png" />
+    <Content Include="Seadragon\images\home_pressed.png" />
+    <Content Include="Seadragon\images\home_rest.png" />
+    <Content Include="Seadragon\images\zoomin_grouphover.png" />
+    <Content Include="Seadragon\images\zoomin_hover.png" />
+    <Content Include="Seadragon\images\zoomin_pressed.png" />
+    <Content Include="Seadragon\images\zoomin_rest.png" />
+    <Content Include="Seadragon\images\zoomout_grouphover.png" />
+    <Content Include="Seadragon\images\zoomout_hover.png" />
+    <Content Include="Seadragon\images\zoomout_pressed.png" />
+    <Content Include="Seadragon\images\zoomout_rest.png" />
+    <Content Include="Seadragon\Seadragon.Buttons.pre.js" />
+    <Content Include="Seadragon\Seadragon.Config.pre.js" />
+    <Content Include="Seadragon\Seadragon.DeepZoom.pre.js" />
+    <Content Include="Seadragon\Seadragon.DisplayRect.pre.js" />
+    <Content Include="Seadragon\Seadragon.Drawer.pre.js" />
+    <Content Include="Seadragon\Seadragon.ImageLoader.pre.js" />
+    <Content Include="Seadragon\Seadragon.pre.js" />
+    <Content Include="Seadragon\Seadragon.MouseTracker.pre.js" />
+    <Content Include="Seadragon\Seadragon.Point.pre.js" />
+    <Content Include="Seadragon\Seadragon.Profiler.pre.js" />
+    <Content Include="Seadragon\Seadragon.Rect.pre.js" />
+    <Content Include="Seadragon\Seadragon.Spring.pre.js" />
+    <Content Include="Seadragon\Seadragon.Strings.pre.js" />
+    <Content Include="Seadragon\Seadragon.TileSource.pre.js" />
+    <Content Include="Seadragon\Seadragon.Utils.pre.js" />
+    <Content Include="Seadragon\Seadragon.Viewport.pre.js" />
+    <Content Include="Slider\Images\slider_h_handle.gif" />
+    <Content Include="Slider\Images\slider_h_rail.gif" />
+    <Content Include="Slider\Images\slider_v_handle.gif" />
+    <Content Include="Slider\Images\slider_v_rail.gif" />
+    <Content Include="Slider\Slider.css" />
+    <Content Include="Slider\SliderBehavior.pre.js" />
+    <Content Include="SlideShow\SlideShowBehavior.pre.js" />
+    <Content Include="Tabs\tab-active-left.gif" />
+    <Content Include="Tabs\tab-active-right.gif" />
+    <Content Include="Tabs\tab-active.gif" />
+    <Content Include="Tabs\tab-hover-left.gif" />
+    <Content Include="Tabs\tab-hover-right.gif" />
+    <Content Include="Tabs\tab-hover.gif" />
+    <Content Include="Tabs\tab-left.gif" />
+    <Content Include="Tabs\tab-line.gif" />
+    <Content Include="Tabs\tab-right.gif" />
+    <Content Include="Tabs\tab.gif" />
+    <Content Include="Tabs\Tabs.css" />
+    <Content Include="Tabs\Tabs.pre.js" />
+    <Content Include="TextboxWatermark\TextboxWatermark.pre.js" />
+    <Content Include="ToggleButton\ToggleButton.pre.js" />
+    <Content Include="UpdatePanelAnimation\UpdatePanelAnimationBehavior.pre.js" />
+    <Content Include="ValidatorCallout\alert-large.gif" />
+    <Content Include="ValidatorCallout\alert-small.gif" />
+    <Content Include="ValidatorCallout\close.gif" />
+    <Content Include="ValidatorCallout\ValidatorCallout.css" />
+    <Content Include="ValidatorCallout\ValidatorCalloutBehavior.pre.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExtenderBase\BaseScriptsResources.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.cs.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.de.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.fr.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.he.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.hi.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.it.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.ja.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.ko.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.nl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.pt.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.ru.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.tr-TR.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.zh-CHS.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.zh-CHT.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ar.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.cs.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.es.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.fr.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.he.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.hi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.it.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ja.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ko.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.nl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.pt.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.tr-TR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.zh-CHS.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.zh-CHT.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>31658</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- JSBuild outputs the results of a build to the Scripts folder -->
+  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
+  <UsingTask TaskName="JSBuild.PrependTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
+  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
+
+  <Target Name="BeforeBuild">
+    <MakeDir Directories="$(ScriptOutput)" />
+    <!-- clean out old files from previous build -->
+    <ItemGroup>
+      <ToDelete Include="$(ScriptOutput)\**\*" />
+    </ItemGroup>
+    <Delete Files="@(ToDelete)" />
+    <!--
+    Delete all the directories. No built-in msbuild task can do this.
+    See the following for explaination:
+    http://social.msdn.microsoft.com/forums/en-US/msbuild/thread/d2833d1e-2d56-4fc4-98a4-e321b976b9ac
+    -->
+    <Exec Command="for /f %%d in ('dir /ad /b') do rd /s /q %%d" WorkingDirectory="$(ScriptOutput)" />
+    <!-- build pre.js files with the JSBuildTask preprocessor, which generates debug and release scripts -->
+    <ItemGroup>
+      <PreJS Include="**\*.pre.js">
+        <InProject>False</InProject>
+      </PreJS>
+    </ItemGroup>
+    <JSBuildTask IncludePathInOutput="true" SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(ScriptOutput)" DebugHeader="// (c) 2010 CodePlex Foundation" />
+    <!-- minify the release scripts (overwrite them) -->
+    <ItemGroup>
+      <JS Include="$(ScriptOutput)\**\*.js" Exclude="$(ScriptOutput)\**\*.debug.*" />
+    </ItemGroup>
+    <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
+    <!-- Write the copyright header to the now minified scripts -->
+    <PrependTask Text="// (c) 2010 CodePlex Foundation" SourceFiles="@(JS)" />
+    <!-- Copy Images and CSS directly into script output -->
+    <ItemGroup>
+      <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css">
+        <InProject>False</InProject>
+      </StaticResources>
+    </ItemGroup>
+    <Copy SourceFiles="@(StaticResources)" DestinationFolder="$(ScriptOutput)\%(RecursiveDir)" />
+  </Target>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+</Project>

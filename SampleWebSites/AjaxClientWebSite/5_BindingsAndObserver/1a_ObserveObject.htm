@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how you can use static methods of Sys.Observer 
+to make 'observable changes to a DOM element, JavaScript array, or, in this
+example JavaScript Object. 
+
+You can also use static Sys.Observer methods to add 
+propertyChanged event handlers to a DOM element or JavaScript object, 
+or collectionChanged event handlers to JavaScript arrays.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>  
+    <title>Observer</title>
+    <link href="../styles/images.css" rel="stylesheet" type="text/css"/>
+
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjax.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjaxTemplates.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var image = { Name: "Question mark", Uri: "../images/question.jpg" },
+        imageElement, statusElement;
+
+        // Use a static method to add a Property Changed event handler to the object
+        Sys.Observer.addPropertyChanged(image, function(source, args) {
+            statusElement.innerHTML += args.get_propertyName() + ": " + source[args.get_propertyName()] + "<br/>";
+            imageElement.src = image.Uri;
+        });
+
+        Sys.onReady(function() {
+            $addHandler("#setImage1", "click", function() {
+                statusElement.innerHTML = "";
+                // Use a static method to make an 'observable' change
+                Sys.Observer.setValue(image, "Name", "Tiger");
+                Sys.Observer.setValue(image, "Uri", "../images/p190.jpg");
+            });
+
+            $addHandler("#setImage2", "click", function() {
+                statusElement.innerHTML = "";
+                // Use a static method to make an 'observable' change
+                Sys.Observer.setValue(image, "Name", "Birds");
+                Sys.Observer.setValue(image, "Uri", "../images/p52.jpg");
+            });
+
+            imageElement = Sys.get("#imageEl");
+            statusElement = Sys.get("#statusEl");
+            imageElement.src = image.Uri;
+        });
+   </script>
+</head>
+
+<body>
+
+    <input id="setImage1" type="button" value="Set Image One"/>  
+    <input id="setImage2" type="button" value="Set Image Two"/>  
+
+    <div class="imageitem">
+        <img id="imageEl"/>
+    </div>
+
+    <div id="statusEl"></div>
+</body>
+</html>

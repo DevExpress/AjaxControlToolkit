@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This is the first of a set of samples showing a rich Image Organizer application, using a largely declarative 
+approach to dynamic data-driven UI.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Image Organizer 1</title>
+    <link href="../Styles/Images.css" rel="stylesheet" type="text/css" />
+
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+    <script type="text/javascript" src="1_ImageOrganizerStep1.js"></script>
+</head>
+<body xmlns:dataview="javascript:Sys.UI.DataView" xmlns:sys="javascript:Sys">
+<div class="title">Image Organizer</div>
+
+<!--Toolbar-->
+<a href="#" onclick="saveChanges()">Save Changes</a>
+<a href="#" onclick="addNewImage()">Add New Image</a>
+
+<!--Master View-->
+<!--Attached DataView control-->
+<div id="imagesListView" class="imageslist" sys:attach="dataview"
+    dataview:itemtemplate="#masterTemplate"
+    dataview:itemplaceholder="#masterItemPlaceholder"
+    dataview:selecteditemclass="selecteditem" 
+    dataview:initialselectedindex="0" 
+>
+    <span id="masterItemPlaceholder">Loading...</span>
+</div>
+
+<!--Detail View-->
+<div id="detailView" class="sys-template" sys:attach="dataview"
+    dataview:data="{binding selectedData, source=$imagesListView}" 
+>
+    <!-- Detail View template -->
+    <div class="detailbox">
+        <a class="leftbutton" href="#" onclick="deleteImage()">Delete Image</a>
+        <div class="detailtitle">{binding Name}</div>
+        <div class="fieldblock">
+            <label for="name">Name: </label>
+            <input id="name" type="text" sys:value="{binding Name}"/>
+        </div>
+        <div class="fieldblock">
+            <label for="description">Description: </label>
+            <input id="description" type="text" sys:value="{binding Description}"/>
+        </div>
+        <div class="fieldblock">
+            <label for="uri">Uri: </label>
+            <input id="uri" type="text" sys:value="{binding Uri}"/>
+        </div>
+    </div>
+    <img class="detailimage" sys:src="{binding Uri}"/>
+</div>    
+
+<!-- Master view template -->
+<div id="masterTemplate" class="sys-template">
+    <span sys:command="Select" class="listitem">
+        <input type="button" sys:value="{binding Name}" />
+        <!-- data binding-->
+        <img sys:src="{binding Uri}"/>
+    </span>
+</div>
+</body>
+</html>

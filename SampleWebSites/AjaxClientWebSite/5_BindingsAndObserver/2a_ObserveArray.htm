@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how you can use static methods of Sys.Observer 
+to make 'observable changes to a DOM element, JavaScript object, or, in this
+example JavaScript arrau. 
+
+You can also use static Sys.Observer methods to add 
+propertyChanged event handlers to a DOM element or JavaScript object, 
+or collectionChanged event handlers to JavaScript arrays.
+
+Notice that you can detect which array elements were changed, in the 
+collectionChanged event handler.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>  
+    <title>Observer</title>
+    <link href="../styles/images.css" rel="stylesheet" type="text/css"/>
+
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjax.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjaxTemplates.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var imagesList = [
+            { Name: "Pier", Uri: "../images/p59.jpg" },
+            { Name: "Giraffe Zoom", Uri: "../images/p183.jpg" }
+        ],
+        imageElement, statusElement;
+
+        // Use a static method to add a Collection Changed event handler to the array
+        Sys.Observer.addCollectionChanged(imagesList, function(source, args) {
+            statusElement.innerHTML = "Uri: " + args.get_changes()[0].newItems[0].Uri + ". Length: " + source.length + "<br/>";
+            imageElement.src = imagesList[imagesList.length-1].Uri;
+        });
+
+        Sys.onReady(function() {
+            $addHandler("#insertImage", "click", function() {
+                var newImage = { Name: "", Uri: "../images/question.jpg" };
+                // Use a static method to make an 'observable' change
+                Sys.Observer.add(imagesList, newImage);
+            });
+
+            imageElement = Sys.get("#imageEl");
+            imageElement.src = imagesList[1].Uri;
+            statusElement = Sys.get("#statusEl");
+        });
+   </script>
+</head>
+
+<body>
+
+    <input id="insertImage" type="button" value="Insert Image"/>  
+
+    <div class="imageitem">
+        <img id="imageEl"/>
+    </div>
+    Last Image<br />
+    Inserted Images:
+    <div id="statusEl"></div>
+</body>
+</html>

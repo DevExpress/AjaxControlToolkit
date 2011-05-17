@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ImagesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="ImagesModelStoreContainer">
+          <EntitySet Name="Images" EntityType="ImagesModel.Store.Images" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ImageTags" EntityType="ImagesModel.Store.ImageTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="People" EntityType="ImagesModel.Store.People" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tags" EntityType="ImagesModel.Store.Tags" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Images_Contributor" Association="ImagesModel.Store.FK_Images_Contributor">
+            <End Role="People" EntitySet="People" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageTags_Images" Association="ImagesModel.Store.FK_ImageTags_Images">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ImageTags" EntitySet="ImageTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageTags_Tags" Association="ImagesModel.Store.FK_ImageTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="ImageTags" EntitySet="ImageTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tags_CreatedBy" Association="ImagesModel.Store.FK_Tags_CreatedBy">
+            <End Role="People" EntitySet="People" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Uri" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContributorID" Type="int" />
+        </EntityType>
+        <EntityType Name="ImageTags">
+          <Key>
+            <PropertyRef Name="ImageID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="ImageID" Type="int" Nullable="false" />
+          <Property Name="TagID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PersonID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nchar" MaxLength="20" />
+          <Property Name="CreatedBy" Type="int" />
+        </EntityType>
+        <Association Name="FK_Images_Contributor">
+          <End Role="People" Type="ImagesModel.Store.People" Multiplicity="0..1" />
+          <End Role="Images" Type="ImagesModel.Store.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="ContributorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageTags_Images">
+          <End Role="Images" Type="ImagesModel.Store.Images" Multiplicity="1" />
+          <End Role="ImageTags" Type="ImagesModel.Store.ImageTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ImageID" />
+            </Principal>
+            <Dependent Role="ImageTags">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageTags_Tags">
+          <End Role="Tags" Type="ImagesModel.Store.Tags" Multiplicity="1" />
+          <End Role="ImageTags" Type="ImagesModel.Store.ImageTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagID" />
+            </Principal>
+            <Dependent Role="ImageTags">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tags_CreatedBy">
+          <End Role="People" Type="ImagesModel.Store.People" Multiplicity="0..1" />
+          <End Role="Tags" Type="ImagesModel.Store.Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ImagesModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="ImagesEntities">
+          <EntitySet Name="Images" EntityType="ImagesModel.Images" />
+          <EntitySet Name="People" EntityType="ImagesModel.People" />
+          <EntitySet Name="Tags" EntityType="ImagesModel.Tags" />
+          <AssociationSet Name="FK_Images_Contributor" Association="ImagesModel.FK_Images_Contributor">
+            <End Role="People" EntitySet="People" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tags_CreatedBy" Association="ImagesModel.FK_Tags_CreatedBy">
+            <End Role="People" EntitySet="People" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="ImageTags" Association="ImagesModel.ImageTags">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Uri" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Contributor" Relationship="ImagesModel.FK_Images_Contributor" FromRole="Images" ToRole="People" />
+          <NavigationProperty Name="Tags" Relationship="ImagesModel.ImageTags" FromRole="Images" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="People">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Images" Relationship="ImagesModel.FK_Images_Contributor" FromRole="People" ToRole="Images" />
+          <NavigationProperty Name="Tags" Relationship="ImagesModel.FK_Tags_CreatedBy" FromRole="People" ToRole="Tags" />
+          <Property Name="LastName" Type="String" Nullable="true" /></EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="CreatedBy" Relationship="ImagesModel.FK_Tags_CreatedBy" FromRole="Tags" ToRole="People" />
+          <NavigationProperty Name="Images" Relationship="ImagesModel.ImageTags" FromRole="Tags" ToRole="Images" />
+        </EntityType>
+        <Association Name="FK_Images_Contributor">
+          <End Role="People" Type="ImagesModel.People" Multiplicity="0..1" />
+          <End Role="Images" Type="ImagesModel.Images" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Tags_CreatedBy">
+          <End Role="People" Type="ImagesModel.People" Multiplicity="0..1" />
+          <End Role="Tags" Type="ImagesModel.Tags" Multiplicity="*" />
+        </Association>
+        <Association Name="ImageTags">
+          <End Role="Images" Type="ImagesModel.Images" Multiplicity="*" />
+          <End Role="Tags" Type="ImagesModel.Tags" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="ImagesModelStoreContainer" CdmEntityContainer="ImagesEntities">
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="IsTypeOf(ImagesModel.Images)">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Uri" ColumnName="Uri" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="IsTypeOf(ImagesModel.People)">
+              <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="IsTypeOf(ImagesModel.Tags)">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Images_Contributor" TypeName="ImagesModel.FK_Images_Contributor" StoreEntitySet="Images">
+            <EndProperty Name="People">
+              <ScalarProperty Name="PersonID" ColumnName="ContributorID" />
+            </EndProperty>
+            <EndProperty Name="Images">
+              <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+            </EndProperty>
+            <Condition ColumnName="ContributorID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Tags_CreatedBy" TypeName="ImagesModel.FK_Tags_CreatedBy" StoreEntitySet="Tags">
+            <EndProperty Name="People">
+              <ScalarProperty Name="PersonID" ColumnName="CreatedBy" />
+            </EndProperty>
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="TagID" ColumnName="TagID" />
+            </EndProperty>
+            <Condition ColumnName="CreatedBy" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ImageTags" TypeName="ImagesModel.ImageTags" StoreEntitySet="ImageTags">
+            <EndProperty Name="Images">
+              <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+            </EndProperty>
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="TagID" ColumnName="TagID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="Images">
+        <EntityTypeShape EntityType="ImagesModel.Images" Width="1.5" PointX="3" PointY="0.875" Height="2.1725878906250005" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImagesModel.People" Width="1.5" PointX="0.75" PointY="1" Height="1.9802864583333331" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImagesModel.Tags" Width="1.5" PointX="5.25" PointY="0.875" Height="2.1725878906250005" IsExpanded="true" />
+        <AssociationConnector Association="ImagesModel.FK_Images_Contributor" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.9901432291666663" />
+          <ConnectorPoint PointX="3" PointY="1.9901432291666663" /></AssociationConnector>
+        <AssociationConnector Association="ImagesModel.FK_Tags_CreatedBy" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="2.9802864583333331" />
+          <ConnectorPoint PointX="1.5" PointY="3.3552864583333331" />
+          <ConnectorPoint PointX="6" PointY="3.3552864583333331" />
+          <ConnectorPoint PointX="6" PointY="3.0475878906250005" /></AssociationConnector>
+        <AssociationConnector Association="ImagesModel.ImageTags" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="1.9612939453125002" />
+          <ConnectorPoint PointX="5.25" PointY="1.9612939453125002" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode>
+    <siteMapNode url="~/Default.aspx" title="HOME" />
+    <siteMapNode url="~/Accordion/Accordion.aspx" title="Accordion" />
+    <siteMapNode url="~/AlwaysVisibleControl/AlwaysVisibleControl.aspx" title="AlwaysVisibleControl" />
+    <siteMapNode url="~/Animation/Animation.aspx" title="Animation" />
+    <siteMapNode url="~/AsyncFileUpload/AsyncFileUpload.aspx" title="AsyncFileUpload" />
+    <siteMapNode url="~/AutoComplete/AutoComplete.aspx" title="AutoComplete" />
+    <siteMapNode url="~/Calendar/Calendar.aspx" title="Calendar" />
+    <siteMapNode url="~/CascadingDropDown/CascadingDropDown.aspx" title="CascadingDropDown" />
+    <siteMapNode url="~/CollapsiblePanel/CollapsiblePanel.aspx" title="CollapsiblePanel" />
+    <siteMapNode url="~/ColorPicker/ColorPicker.aspx" title="ColorPicker" />
+    <siteMapNode url="~/ComboBox/ComboBox.aspx" title="ComboBox" />
+    <siteMapNode url="~/ConfirmButton/ConfirmButton.aspx" title="ConfirmButton" />
+    <siteMapNode url="~/DragPanel/DragPanel.aspx" title="DragPanel" />
+    <siteMapNode url="~/DropDown/DropDown.aspx" title="DropDown" />
+    <siteMapNode url="~/DropShadow/DropShadow.aspx" title="DropShadow" />
+    <siteMapNode url="~/DynamicPopulate/DynamicPopulate.aspx" title="DynamicPopulate" />
+    <siteMapNode url="~/FilteredTextBox/FilteredTextBox.aspx" title="FilteredTextBox" />
+    <siteMapNode url="~/HoverMenu/HoverMenu.aspx" title="HoverMenu" />
+    <siteMapNode url="~/HTMLEditor/HTMLEditor.aspx" title="HTMLEditor" />
+    <siteMapNode url="~/ListSearch/ListSearch.aspx" title="ListSearch" />
+    <siteMapNode url="~/MaskedEdit/MaskedEdit.aspx" title="MaskedEdit" />
+    <siteMapNode url="~/ModalPopup/ModalPopup.aspx" title="ModalPopup" />
+    <siteMapNode url="~/MultiHandleSlider/MultiHandleSlider.aspx" title="MultiHandleSlider" />
+    <siteMapNode url="~/MutuallyExclusiveCheckBox/MutuallyExclusiveCheckBox.aspx" title="MutuallyExclusiveCheckBox" />
+    <siteMapNode url="~/NoBot/NoBot.aspx" title="NoBot" />
+    <siteMapNode url="~/NumericUpDown/NumericUpDown.aspx" title="NumericUpDown" />
+    <siteMapNode url="~/PagingBulletedList/PagingBulletedList.aspx" title="PagingBulletedList" />
+    <siteMapNode url="~/PasswordStrength/PasswordStrength.aspx" title="PasswordStrength" />
+    <siteMapNode url="~/PopupControl/PopupControl.aspx" title="PopupControl" />
+    <siteMapNode url="~/Rating/Rating.aspx" title="Rating" />
+    <siteMapNode url="~/ReorderList/ReorderList.aspx" title="ReorderList" />
+    <siteMapNode url="~/ResizableControl/ResizableControl.aspx" title="ResizableControl" />
+    <siteMapNode url="~/RoundedCorners/RoundedCorners.aspx" title="RoundedCorners" />
+    <siteMapNode url="~/Seadragon/Seadragon.aspx" title="Seadragon" />
+    <siteMapNode url="~/Slider/Slider.aspx" title="Slider" />
+    <siteMapNode url="~/SlideShow/SlideShow.aspx" title="SlideShow" />
+    <siteMapNode url="~/Tabs/Tabs.aspx" title="Tabs" />
+    <siteMapNode url="~/TextBoxWatermark/TextBoxWatermark.aspx" title="TextBoxWatermark" />
+    <siteMapNode url="~/ToggleButton/ToggleButton.aspx" title="ToggleButton" />
+    <siteMapNode url="~/UpdatePanelAnimation/UpdatePanelAnimation.aspx" title="UpdatePanelAnimation" />
+    <siteMapNode url="~/ValidatorCallout/ValidatorCallout.aspx" title="ValidatorCallout" />
+  </siteMapNode>
+</siteMap>

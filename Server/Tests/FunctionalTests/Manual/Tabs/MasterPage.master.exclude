@@ -1,0 +1,36 @@
+<%@ Master %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="Sys.Extended.UI" TagPrefix="act" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Untitled Page</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    Click all the tabs - should be pairs of XYZ/xyz & ABC/abc.
+     <asp:ScriptManager ID="ScriptManager1" runat="server" />
+        <div>
+            <act:TabContainer ID="tc1" runat="server">
+                <act:TabPanel ID="foo" runat="server" HeaderText="tp1">
+                    <ContentTemplate>
+                                <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+                                </asp:contentplaceholder>
+                    </ContentTemplate>                
+                </act:TabPanel>            
+                <act:TabPanel ID="TabPanel1" runat="server" HeaderText="tp2">
+                    <ContentTemplate>
+                                <asp:contentplaceholder id="ContentPlaceHolder2" runat="server">
+                                </asp:contentplaceholder>
+                    </ContentTemplate>                
+                </act:TabPanel>            
+            </act:TabContainer>
+        </div>
+    
+        
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<%@ Page
+    Language="C#"
+    MasterPageFile="~/Default.master"
+    AutoEventWireup="true"
+    CodeFile="Repeater.aspx.cs"
+    Inherits="Manual_Repeater"
+    Title="Controls in a Repeater Tests" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+
+    <asp:Repeater ID="Repeater1" runat="server">
+        <ItemTemplate>
+            Row "<%# Eval("Value")%>".
+            <br />
+            PopupControl: <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <hr />
+            <aspext:PopupControlExtender ID="PopupControlExtender1" runat="server" TargetControlID="TextBox1" PopupControlID="ctl00$ContentPlaceHolder1$Panel1" Position="Right" />
+        </ItemTemplate>
+    </asp:Repeater>
+
+    <asp:Panel ID="Panel1" runat="server" BackColor="White">
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </asp:Panel>
+
+</asp:Content>

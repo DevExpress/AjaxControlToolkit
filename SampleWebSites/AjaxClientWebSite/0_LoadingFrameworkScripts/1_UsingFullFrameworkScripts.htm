@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample shows loading the full Microsoft Ajax framework (MicrosoftAjax.js) 
+and the additional MicrosoftAjaxTemplates.js file, along with scripts from the 
+extended controls.
+
+They are used to load a Microsoft Ajax DataView control for displaying data, 
+and to attach a Watermark behavior to a textbox.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DataView</title>
+    <link href="../styles/images.css" rel="stylesheet" type="text/css" />
+
+    <script src="../Scripts/jQuery/jquery-1.4.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../Scripts/MicrosoftAjax/MicrosoftAjax.debug.js"></script>
+    <script type="text/javascript" src="../Scripts/MicrosoftAjax/MicrosoftAjaxTemplates.debug.js"></script>
+
+    <script src="../Scripts/MicrosoftAjax/Extended/ExtenderBase/BaseScripts.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Extended/Common/Common.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Extended/TextboxWatermark/TextboxWatermark.debug.js" type="text/javascript"></script>
+   
+    <script type="text/javascript">
+    
+        // Data
+        var gallery = [
+            { Name: "Morro Rock"          },
+            { Name: "Seagull reflections" },
+            { Name: "Pier"                },
+            { Name: "Giraffe Zoom"        },
+            { Name: "Oryx"                }
+        ]
+        
+        // The onReady callback will be called when the DOMReady event has fired, 
+        // (and when any dynamically loaded scripts have loaded - see later examples).
+        Sys.onReady(function() {
+        
+            // Create the DataView control and attach to images ul element
+            Sys.query("#images")
+                .dataView({ data: gallery });
+
+            // Create the Watermark and attach to the images gallerytitle input element
+            Sys.query(".gallerytitle").watermark("Add title here...", "watermarked");
+        });
+        
+   </script>
+</head>
+<body>
+    
+    <input class="gallerytitle" type="text" />
+
+    <!--Client Template used by attached DataView-->
+    <ul id="images" class="sys-template">
+        <li>{{ Name }}</li>
+    </ul>
+
+</body>
+</html>

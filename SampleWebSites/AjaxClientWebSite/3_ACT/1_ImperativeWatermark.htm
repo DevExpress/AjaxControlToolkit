@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how to attach a Watermark behavior to a textbox, from code. 
+Required scripts are added statically. The next sample will use the Script Loader to 
+load the required scripts dynamically.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Watermark</title>
+    <link href="../styles/images.css" rel="stylesheet" type="text/css" />
+
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjaxCore.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjaxGlobalization.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/MicrosoftAjaxComponentModel.debug.js" type="text/javascript"></script>
+
+    <script src="../Scripts/MicrosoftAjax/Extended/ExtenderBase/BaseScripts.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Extended/Common/Common.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Extended/TextboxWatermark/TextboxWatermark.debug.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        Sys.onReady(function() {
+
+            Sys.query(".imagetitle").watermark("Add title here...", "watermarked");
+   
+        });
+    </script>
+
+</head>
+<body>
+
+    <input class="imagetitle" type="text" />
+
+</body>
+</html>

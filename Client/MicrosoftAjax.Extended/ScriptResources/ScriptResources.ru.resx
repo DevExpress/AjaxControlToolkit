@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlwaysVisible_ElementRequired" xml:space="preserve">
+    <value>Sys.Extended.UI.AlwaysVisibleControlBehavior: элемент должен быть указан</value>
+  </data>
+  <data name="Animation_CannotNestSequence" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.SequenceAnimation не может быть вложен в Sys.Extended.UI.Animation.ParallelAnimation</value>
+  </data>
+  <data name="Animation_ChildrenNotAllowed" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation не может добавить дочернюю анимацию к типу "{0}", который не является производным от Sys.Extended.UI.Animation.ParentAnimation</value>
+  </data>
+  <data name="Animation_InvalidBaseType" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.registerAnimation может регистрировать только типы, которые наследуются от Sys.Extended.UI.Animation.Animation</value>
+  </data>
+  <data name="Animation_InvalidColor" xml:space="preserve">
+    <value>Цвето должен быть в 7-ми символьном шестнадцатеричном представлении (т.е. #246ACF), но не "{0}"</value>
+  </data>
+  <data name="Animation_MissingAnimationName" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation требует объект со свойством AnimationName</value>
+  </data>
+  <data name="Animation_NoDynamicPropertyFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation не нашел свойство, относящееся к "{0}" или "{1}"</value>
+  </data>
+  <data name="Animation_NoPropertyFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation не нашел свойство, относящееся к "{0}"</value>
+  </data>
+  <data name="Animation_TargetNotFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.Animation.set_animationTarget требует ID типа Sys.UI.DomElement or Sys.UI.Control.  Невозможно найти элемент или контрол, соответствующий "{0}"</value>
+  </data>
+  <data name="Animation_UknownAnimationName" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation невозможно найти Animation, относящуюся к имени "{0}"</value>
+  </data>
+  <data name="Calendar_Today" xml:space="preserve">
+    <value>Сегодня: {0}</value>
+  </data>
+  <data name="CascadingDropDown_MethodError" xml:space="preserve">
+    <value>[Ошибка метода {0}]</value>
+  </data>
+  <data name="CascadingDropDown_MethodTimeout" xml:space="preserve">
+    <value>[Превышено время ожидания в методе]</value>
+  </data>
+  <data name="CascadingDropDown_NoParentElement" xml:space="preserve">
+    <value>Невозможно найти родителя элемента "{0}"</value>
+  </data>
+  <data name="CollapsiblePanel_NoControlID" xml:space="preserve">
+    <value>Невозможно найти элемент "{0}"</value>
+  </data>
+  <data name="Common_DateTime_InvalidFormat" xml:space="preserve">
+    <value>Неверный формат</value>
+  </data>
+  <data name="Common_DateTime_InvalidTimeSpan" xml:space="preserve">
+    <value>"{0}" не является правильным TimeSpan форматом</value>
+  </data>
+  <data name="Common_InvalidBorderWidthUnit" xml:space="preserve">
+    <value>Единица типа "{0}"' не является правильной для parseBorderWidth</value>
+  </data>
+  <data name="Common_InvalidPaddingUnit" xml:space="preserve">
+    <value>Единица типа "{0}" не является правильной для parsePadding</value>
+  </data>
+  <data name="Common_UnitHasNoDigits" xml:space="preserve">
+    <value>Нет цифр</value>
+  </data>
+  <data name="DynamicPopulate_WebServiceError" xml:space="preserve">
+    <value>Неудачный вызов вебсервиса: {0}</value>
+  </data>
+  <data name="DynamicPopulate_WebServiceTimeout" xml:space="preserve">
+    <value>Превышено время ожидания вебсервиса</value>
+  </data>
+  <data name="ExtenderBase_CannotSetClientStateField" xml:space="preserve">
+    <value>clientStateField может быть установлено только перед инициализацией</value>
+  </data>
+  <data name="ExtenderBase_ControlNotRegisteredForCallbacks" xml:space="preserve">
+    <value>Этот Control не был зарегистрирован для обратных вызовов</value>
+  </data>
+  <data name="ExtenderBase_InvalidClientStateType" xml:space="preserve">
+    <value>saveClientState должен возвращать значение типа String</value>
+  </data>
+  <data name="ExtenderBase_PageNotRegisteredForCallbacks" xml:space="preserve">
+    <value>Этот Page не был зарегистрирован для обратных вызовов</value>
+  </data>
+  <data name="ListSearch_DefaultPrompt" xml:space="preserve">
+    <value>Тип для поиска</value>
+  </data>
+  <data name="PasswordStrength_DefaultStrengthDescriptions" xml:space="preserve">
+    <value>Отсутствует;Очень слабый;Слабый;Неподходящий;Почти хороший;Примерно нормальный;Нормальный;Хороший;Сильный;Замечательный;Первокласный!</value>
+  </data>
+  <data name="PasswordStrength_GetHelpRequirements" xml:space="preserve">
+    <value>Получить помощь по требованиям к паролю</value>
+  </data>
+  <data name="PasswordStrength_InvalidStrengthDescriptions" xml:space="preserve">
+    <value>Указано неверное кол-во описаний для уровней защищенности пароля</value>
+  </data>
+  <data name="PasswordStrength_InvalidWeightingRatios" xml:space="preserve">
+    <value>Кол-во весовых коэффициентов защищенности пароля должно быть равно 4.</value>
+  </data>
+  <data name="PasswordStrength_RemainingCharacters" xml:space="preserve">
+    <value>Еще {0} букв(ы)</value>
+  </data>
+  <data name="PasswordStrength_RemainingMixedCase" xml:space="preserve">
+    <value>Требуются символ(ы) в разных регистрах</value>
+  </data>
+  <data name="PasswordStrength_RemainingNumbers" xml:space="preserve">
+    <value>Еще {0} цифр(ы)</value>
+  </data>
+  <data name="PasswordStrength_RemainingSymbols" xml:space="preserve">
+    <value>Еще {0} символ(а|ов)</value>
+  </data>
+  <data name="PasswordStrength_Satisfied" xml:space="preserve">
+    <value>Все ок.</value>
+  </data>
+  <data name="PasswordStrength_StrengthPrompt" xml:space="preserve">
+    <value>Пароль: </value>
+  </data>
+  <data name="PopupControl_NoDefaultProperty" xml:space="preserve">
+    <value>Свойство по умолчанию типа "{1}" для control "{0}" не поддерживается.</value>
+  </data>
+  <data name="PopupExtender_NoParentElement" xml:space="preserve">
+    <value>Невозможно найти родителя элемента "{0}"</value>
+  </data>
+  <data name="Rating_CallbackError" xml:space="preserve">
+    <value>Возникло необработанное исключение:\r\n{0}</value>
+  </data>
+  <data name="ReorderList_DropWatcherBehavior_CallbackError" xml:space="preserve">
+    <value>Ошибка пересортировки, дополнительная информация ниже.\r\n\r\n{0}</value>
+  </data>
+  <data name="ReorderList_DropWatcherBehavior_NoChild" xml:space="preserve">
+    <value>Невозможно найти ребенка листа с id "{0}"</value>
+  </data>
+  <data name="ResizableControlBehavior_CannotChangeProperty" xml:space="preserve">
+    <value>Изменения для {0} не поддерживаются</value>
+  </data>
+  <data name="ResizableControlBehavior_InvalidHandler" xml:space="preserve">
+    <value>{0} обработчик не является функцией, именем функции или текстом функции</value>
+  </data>
+  <data name="Shared_BrowserSecurityPreventsPaste" xml:space="preserve">
+    <value>Настройки безопасности Вашего браузера не позволяют автоматическое выполнение операции вставки. Пожалуйста, воспользуйтесь комбинацией Ctrl+V.</value>
+    <comment>Shared between MaskedEdit and TextCount</comment>
+  </data>
+  <data name="Slider_NoSizeProvided" xml:space="preserve">
+    <value>Пожалуйста, установите правильные значения высоты и ширины для CSS класса ползунка</value>
+  </data>
+  <data name="Tabs_ActiveTabArgumentOutOfRange" xml:space="preserve">
+    <value>Аргумент не является цленом коллекции закладок</value>
+  </data>
+  <data name="Tabs_OwnerExpected" xml:space="preserve">
+    <value>Владелец должен быть установлен перед инициализацией</value>
+  </data>
+  <data name="Tabs_PropertySetAfterInitialization" xml:space="preserve">
+    <value>{0} не может быть изменен после инициализации</value>
+  </data>
+  <data name="Tabs_PropertySetBeforeInitialization" xml:space="preserve">
+    <value>{0} не может быть изменен перед инициализацией</value>
+  </data>
+  <data name="TextCount_DefaultAlertFormat" xml:space="preserve">
+    <value>Максимальная длина {2}</value>
+  </data>
+  <data name="TextCount_DefaultDisplayFormat" xml:space="preserve">
+    <value>Кол-во: {0} Осталось букв: {1} Максимальная длина: {2}</value>
+  </data>
+  <data name="TextCount_DefaultInsertText" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="TextCount_DefaultKeyboardModeFormat" xml:space="preserve">
+    <value>Режим клавиатуры: {3}</value>
+  </data>
+  <data name="TextCount_DefaultOverwriteText" xml:space="preserve">
+    <value>Презаписать</value>
+  </data>
+  <data name="ValidatorCallout_DefaultErrorMessage" xml:space="preserve">
+    <value>Данный элемент не является валидным</value>
+  </data>
+</root>

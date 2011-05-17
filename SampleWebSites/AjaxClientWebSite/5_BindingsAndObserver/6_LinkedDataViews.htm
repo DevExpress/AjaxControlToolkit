@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample illustrates use of the Sys.Observer features to make 'observable' changes to a JavaScript array.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>  
+    <title>Linked DataViews</title>
+    <link href="../Styles/list.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="../Scripts/MicrosoftAjax/MicrosoftAjax.debug.js"></script>
+    <script type="text/javascript" src="../Scripts/MicrosoftAjax/MicrosoftAjaxTemplates.debug.js"></script>
+
+    <script type="text/javascript">
+        var imageData = [
+            { Name: "Crashing water", Description: "A splash of waves captured." },
+            { Name: "Dazed", Description: "Mid-day heat?" },
+            { Name: "Close Zoom on Giraffe", Description: "Closeup of a Giraffe at Wild Animal Park." },
+            { Name: "Pier", Description: "A pier in Morro Bay." },
+            { Name: "Seagull reflections", Description: "Seagulls at peace." },
+            { Name: "Spain", Description: "In Balboa Park, in downtown San Diego." },
+            { Name: "Sumatran Tiger", Description: "Restful." }
+        ];
+
+        // Make the data collection 'observable'
+        // This will add instance methods to the array
+        Sys.Observer.makeObservable(imageData);
+
+        function moveUp(sender) {
+            var nameList = $find("names");
+
+            // Find the DataView item the button was in
+            var item = nameList.findContext(sender);
+            var index = item.index;
+            var dataItem = item.dataItem;
+            var newIndex = index > 0 ? index - 1 : imageData.length;
+
+            // Move data item up one ('observably'), using the added instance methods 
+            imageData.beginUpdate();
+            imageData.remove(dataItem);
+            imageData.insert(newIndex, dataItem);
+            imageData.endUpdate();
+        }
+    </script>
+</head>
+
+<body xmlns:dataview="javascript:Sys.UI.DataView" xmlns:sys="javascript:Sys">
+    <div class="title">Names:</div>
+    
+    <ul class="sys-template list" id="names"
+        sys:attach="dataview"
+        dataview:data="{{ imageData }}"
+        dataview:initialselectedindex="0"
+        dataview:selecteditemclass="selecteditem"
+    >
+        <li sys:command="select">
+            <button onclick = "moveUp(this)">↑</button>
+            <span>{{ Name }}</span>
+        </li>
+    </ul>
+
+    <div class="title">Descriptions:</div>
+    
+    <ul class="sys-template list"
+        sys:attach="dataview"
+        dataview:data="{{ imageData }}"
+        dataview:selecteditemclass="selecteditem"
+        dataview:selectedindex="{binding selectedIndex, source=$names}"
+    >
+        <li sys:command="select">{{ Description }}</li>
+    </ul>
+</body>
+</html>

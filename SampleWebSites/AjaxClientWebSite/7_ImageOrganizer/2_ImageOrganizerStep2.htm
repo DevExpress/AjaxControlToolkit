@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This is the second of a set of samples showing a rich Image Organizer application, using a largely declarative 
+approach to dynamic data-driven UI.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Image Organizer 2</title>
+    <link href="../Styles/Images.css" rel="stylesheet" type="text/css" />
+
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+    <script type="text/javascript" src="2_ImageOrganizerStep2.js"></script>
+ </head>
+<body xmlns:dataview="javascript:Sys.UI.DataView" xmlns:sys="javascript:Sys">
+<div class="title">Image Organizer</div>
+
+<!--Toolbar Sort-->
+<span class="sorttoolbar"> 
+    Sort:
+    <select onchange="onSort(this.value)">
+        <option value="Name">Name</option>
+        <option value="Description">Description</option>
+    </select>
+</span>
+
+<!--Toolbar Edit Buttons-->
+<span class="sys-template" sys:attach="dataview"
+    dataview:data="{binding editMode, source={{window}} }" 
+>
+    <a class="editbutton" href="#" onclick="setEditMode(!editMode)">{{ editMode ? 'Browse' : 'Edit'}}</a>
+    <span sys:style-display="{binding hasChanges, source={{dataContext}}, convert=display}">
+        <a class="editbutton" href="#" onclick="cancelChanges()">Cancel Changes</a>
+        <a class="editbutton" href="#" onclick="saveChanges()">Save Changes</a>
+    </span>
+    <a sys:if="editMode" href="#" onclick="addNewImage(false)">Add New Image</a>
+</span>
+    
+<!--Master View-->
+<div id="imagesListView" class="imageslist" sys:attach="dataview"
+    dataview:autofetch="true"
+    dataview:itemtemplate="#masterTemplate"
+    dataview:itemplaceholder="#masterItemPlaceholder"
+    dataview:dataprovider="{{ dataContext }}" 
+    dataview:fetchoperation="Images"
+    dataview:fetchparameters="{{ fetchParameters }}"
+    dataview:selecteditemclass="selecteditem" 
+    dataview:onfetchsucceeded="{{ onImagesFetched }}" 
+    dataview:onfetchfailed="{{ onFetchFailed }}" 
+    dataview:initialselectedindex="0" 
+>
+    <span id="masterItemPlaceholder">Loading...</span>
+</div>
+
+<div id="detailView" class="sys-template" sys:attach="dataview"
+    dataview:oncommand="{{ onDetailViewCommand }}"
+    dataview:data="{binding selectedData, source=$imagesListView}" 
+>
+    <div class="detailbox">
+        <div class="detailtitle">{binding Name}</div>
+        <div class="description">{binding Description}</div>
+        <div>
+            <label>URI</label><div>{binding Uri}</div>
+            <label>Contributor</label><div>{binding Contributor, convert=nameConvert}</div>
+        </div>
+    </div>    
+    <img class="detailimage" sys:alt="{binding Name}" sys:src="{binding Uri}" />
+</div>    
+       
+<!--ITEM TEMPLATES-->
+<div id="masterTemplate" class="sys-template">
+    <span sys:command="Select" class="listitem">
+        <input type="button" sys:value="{binding Name}" />
+        <img sys:src="{binding Uri}"/>
+        <span sys:innertext="{binding Contributor, convert=convertImageContributor}" ></span>
+    </span>
+</div>
+
+<div id="detailViewEditTemplate" class="sys-template">
+    <div class="detailbox edit">
+        <a href="#" sys:command="Delete" class="leftbutton" >Delete Image</a>
+        <div class="detailtitle">{binding Name}</div>
+        <div class="fieldblock">
+            <label for="name">Name: </label>
+            <input id="name" type="text" sys:value="{binding Name}"/>
+        </div>
+        <div class="fieldblock">
+            <label for="description">Description: </label>
+            <input id="description" type="text" sys:value="{binding Description}"/>
+        </div>
+        <div class="fieldblock">
+            <label for="uri">Uri: </label>
+            <input id="uri" type="text" sys:value="{binding Uri}"/>
+        </div>
+        <div class="fieldblock">
+            <label for="contributor">Contributor: </label>
+            <select id="contributor" class="selectContributor"  onchange="setContributor(this)" 
+                sys:attach="dataview" 
+                dataview:itemtemplate="#selectContributorTemplate"
+                dataview:itemplaceholder="#selectContributorPlaceholder"
+                dataview:onitemrendered="{{ onContributorItemRendered }}"
+                dataview:data="{binding people, source={{ data }}}"
+            >
+                <option value="-1"></option>
+                <option id="selectContributorPlaceholder"></option>
+            </select>
+        </div>
+        <div class="fieldblock">
+            <input id="firstName" type="text" sys:value="{binding Contributor.FirstName, convertBack=convertBackName, defaultValue=}"/>
+            <input id="lastName" type="text" sys:value="{binding Contributor.LastName, convertBack=convertBackName, defaultValue=}"/>
+        </div>
+    </div>
+    <img class="detailimage" sys:alt="{binding Name}" sys:src="{binding Uri}" />
+</div>
+
+<select id="selectContributorTemplate" class="sys-template">
+    <option sys:value="{{$index}}"></option>
+</select>
+</body>
+</html>

@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This is the third and final sample from a set showing a rich Image Organizer application, using a largely declarative 
+approach to dynamic data-driven UI.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Image Organizer Complete. Links and Associations</title>
+    <link href="../styles/ImageOrganizerComplete.css" rel="stylesheet" type="text/css" />
+
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+    <script src="3_ImageOrganizerComplete.js" type="text/javascript"></script>
+ </head>
+<body xmlns:dataview="javascript:Sys.UI.DataView" xmlns:sys="javascript:Sys">
+<div class="title">Image Organizer</div>
+
+<!--Toolbar Sort-->
+<span class="sorttoolbar"> 
+    Sort:
+    <select onchange="onSort(this.value)">
+        <option value="Name">Name</option>
+        <option value="Description">Description</option>
+    </select>
+</span>
+
+<!--Toolbar Edit Buttons-->
+<span class="sys-template" sys:attach="dataview"
+    dataview:data="{binding editMode, source={{window}} }" 
+>
+    <a class="editbutton" href="#" onclick="setEditMode(!editMode)">{{ editMode ? 'Browse' : 'Edit'}}</a>
+    <span sys:style-display="{binding hasChanges, source={{dataContext}}, convert=display}">
+        <a class="editbutton" href="#" onclick="cancelChanges()">Cancel Changes</a>
+        <a class="editbutton" href="#" onclick="saveChanges()">Save Changes</a>
+    </span>
+    <a sys:if="editMode" href="#" onclick="addNewImage(false)">Add New Image</a>
+</span>
+
+<!--Master View-->
+<div id="imagesListView" class="imageslist"sys:attach="dataview"
+    dataview:autofetch="true"
+    dataview:itemtemplate="#masterTemplate"
+    dataview:itemplaceholder="#masterItemPlaceholder"
+    dataview:dataprovider="{{ dataContext }}" 
+    dataview:fetchoperation="Images"
+    dataview:fetchparameters="{{ fetchParameters }}"
+    dataview:selecteditemclass="selecteditem" 
+    dataview:onrendering="{{ onMasterRendering }}" 
+    dataview:onfetchsucceeded="{{ onImagesFetched }}" 
+    dataview:onfetchfailed="{{ onFetchFailed }}" 
+    dataview:initialselectedindex="0" 
+>
+    <span id="masterItemPlaceholder">Loading...</span>
+</div>
+
+<div class="filterlists" sys:bind="true" sys:style-display="{binding ready, convert=display, source={{data}} }" style="display:none" >
+    <!--Contributors View-->
+    <div class="filtertitle">Contributors</div>
+    <div id="peopleListView"  class="sys-template" sys:attach="dataview"
+        dataview:autofetch="true"
+        dataview:dataprovider="{{ dataContext }}"
+        dataview:fetchoperation="People"
+        dataview:fetchparameters="{{ {$expand: 'Images'} }}"
+        dataview:onfetchsucceeded="{{ onPeopleFetched }}" 
+        dataview:onfetchfailed="{{ onFetchFailed }}" 
+        dataview:oncommand="{{ onMasterPeopleCommand }}" 
+    > 
+        <div sys:command="MultiSelect" class="multiselect">
+            <input type="checkbox" sys:checked="{{ filters.people[$index] }}" /><span><span>{binding FirstName}</span> <span>{binding LastName}</span></span>
+        </div>
+    </div>
+    <a href="#" onclick="addPerson('first','last')" sys:bind="true" sys:style-display="{binding editMode, convert=display, source={{window}} }" >Add Contributor</a>
+    <!--Tags View-->
+    <div class="filtertitle">Tags</div>
+    <div id="tagsListView" class="sys-template" sys:attach="dataview"
+        dataview:autofetch="true"
+        dataview:dataprovider="{{ dataContext }}"
+        dataview:fetchoperation="Tags"
+        dataview:fetchparameters="{{ {$expand: 'Images'} }}"
+        dataview:onfetchsucceeded="{{ onTagsFetched }}" 
+        dataview:onfetchfailed="{{ onFetchFailed }}" 
+        dataview:oncommand="{{ onMasterTagsCommand }}" 
+    > 
+        <div sys:command="MultiSelect" class="multiselect">
+            <input type="checkbox" sys:checked="{{ filters.tags[$index] }}" /><span>{binding Name}</span>
+        </div>
+    </div>
+    <a href="#" onclick="addTag('tag')" sys:bind="true" sys:style-display="{binding editMode, convert=display, source={{window}} }" >Add Tag</a>
+</div>
+
+<div id="detailView" class="sys-template" sys:attach="dataview"
+    dataview:oncommand="{{ onDetailViewCommand }}"
+    dataview:data="{binding selectedData, source=$imagesListView}" 
+>
+    <div class="detailbox">
+        <div class="detailtitle">{binding Name}</div>
+        <div class="description">{binding Description}</div>
+        <div>
+            <label>URI</label><div>{binding Uri}</div>
+            <label>Contributor</label><div>{binding Contributor, convert=nameConvert}</div>
+        </div>
+        <div>
+            <div class="tagtitle">Tags</div>
+            <div class="sys-template imagetags" sys:attach="dataview"
+                dataview:data="{binding data, source={{tagsList}}}"
+            > 
+                <span class="imagetag" sys:if="containsTag($context.parentContext.dataItem.Tags, Name)" ><span>{binding Name}</span></span>
+            </div>
+        </div>
+    </div>    
+    <img class="detailimage" sys:alt="{binding Name}" sys:src="{binding Uri}" />
+</div>    
+       
+<!--ITEM TEMPLATES-->
+
+<div id="masterTemplate" class="sys-template">
+    <span sys:command="Select" class="listitem">
+        <input type="button" sys:value="{binding Name}" />
+        <img sys:src="{binding Uri}"/>
+        <span sys:innertext="{binding Contributor, convert=convertImageContributor}"></span>
+    </span>
+</div>
+
+<div id="detailViewEditTemplate" class="sys-template">
+    <div class="detailbox edit">
+        <a href="#" sys:command="Delete" class="leftbutton" >Delete Image</a>
+        <div class="detailtitle">{binding Name}</div>
+        <div class="fieldblock">
+            <label for="name">Name: </label>
+            <input id="name" type="text" sys:value="{binding Name}"/>
+        </div>
+        <div class="fieldblock">
+            <label for="description">Description: </label>
+            <input id="description" type="text" sys:value="{binding Description}"/>
+        </div>
+        <div class="fieldblock">
+            <label for="uri">Uri: </label>
+            <input id="uri" type="text" sys:value="{binding Uri}"/>
+        </div>
+        <div class="fieldblock">
+            <label for="contributor">Contributor: </label>
+            <select id="contributor" class="selectContributor"  onchange="setContributor(this)" 
+                sys:attach="dataview" 
+                dataview:itemtemplate="#selectContributorTemplate"
+                dataview:itemplaceholder="#selectContributorPlaceholder"
+                dataview:onitemrendered="{{ onContributorItemRendered }}"
+                dataview:data="{binding data, source={{ peopleList }}}"
+            >
+                <option value="-1"></option>
+                <option id="selectContributorPlaceholder"></option>
+            </select>
+        </div>
+
+        <div class="tagtitle">Tags</div>
+        <div class="sys-template imagetags" sys:attach="dataview" 
+            dataview:data="{binding data, source={{tagsList}}}" 
+            dataview:oncommand="{{ onTagCheckBoxListCommand }}" 
+        > 
+            <span class="imagetagedit">
+                <input type="checkbox" sys:checked="{{ containsTag($context.parentContext.dataItem.Tags, Name) }}" sys:command="SetTag"  />
+                <span>{binding Name}</span>
+            </span>
+        </div>
+    </div>
+    <img class="detailimage" sys:alt="{binding Name}" sys:src="{binding Uri}" />
+</div>
+
+<div id="peopleEditTemplate"  class="sys-template"> 
+    <div class="multiselect">
+        <input class="firstname" type="text" sys:value="{binding FirstName, convertBack=convertBackName}" /><input class="lastname" type="text" sys:value="{binding LastName, convertBack=convertBackName}" />
+        <a class="deletebutton" href="#" sys:command="Delete"><img src="../styles/delete.bmp" /></a>
+</div>
+
+<div id="tagsEditTemplate" class="sys-template"> 
+    <div class="multiselect">
+        <input type="text" sys:value="{binding Name, convert=trim, convertBack=convertBackTag}" />
+        <a class="deletebutton" href="#" sys:command="Delete"><img src="../styles/delete.bmp" /></a>
+    </div>
+</div>
+
+<select id="selectContributorTemplate" class="sys-template">
+    <option sys:value="{{$index}}"></option>
+</select>
+</body>
+</html>

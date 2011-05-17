@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CarsService>
+  <make name="Acura">
+    <model name="Integra">
+      <color name="Green" />
+      <color name="Sea Green" />
+      <color name="Pale Green" />
+    </model>
+    <model name="RL">
+      <color name="*Red" default="True"/>
+      <color name="Bright Red" />
+    </model>
+    <model name="TL">
+      <color name="*Teal" default="True" />
+      <color name="Dark Teal" />
+    </model>
+  </make>
+  <make name="*Audi" value="Audi (value)" default="True">
+    <model name="A4" value="A4 (value)">
+      <color name="*Azure" value="Azure (value)" default="True"/>
+      <color name="Light Azure" value="Light Azure (value)" />
+      <color name="Dark Azure" value="Dark Azure (value)" />
+    </model>
+    <model name="*S4" value="S4 (value)" default="true">
+      <color name="Silver" value="Silver (value)" />
+      <color name="*Metallic" value="Metallic (value)" default="True"/>
+    </model>
+    <model name="A6" value="A6 (value)">
+      <color name="*Cyan" value="Cyan (value)" default="True"/>
+    </model>
+  </make>
+  <make name="BMW" value="BMW (value)">
+    <model name="3 series" value="3 series (value)">
+      <color name="*Blue" value="Blue (value)" default="True"/>
+      <color name="Sky Blue" value="Sky Blue (value)" />
+      <color name="Racing Blue" value="Racing Blue (value)" />
+    </model>
+    <model name="*5 series" value="5 series (value)" default="True">
+      <color name="Yellow" value="Yellow (value)" />
+      <color name="Banana" value="Banana (value)" />
+    </model>
+    <model name="7 series" value="7 series (value)">
+      <color name="*Brown" value="Brown (value)" default="True"/>
+    </model>
+  </make>
+  <make name="Incomplete Make">
+    <model name="Incomplete Model">
+    </model>
+  </make>
+</CarsService>

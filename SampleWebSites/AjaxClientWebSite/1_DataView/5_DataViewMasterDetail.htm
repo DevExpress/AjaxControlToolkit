@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+This sample demonstrates how you can display master/detail information using two 
+DataView controls. The DataView control's are bound by calling Sys.bind(). 
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DataView Master/Detail</title>
+    <link href="../styles/Images.css" rel="stylesheet" type="text/css"/>
+
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        var gallery = [
+            { Name: "Seagull reflections",      Uri: "../images/p52.jpg" },
+            { Name: "Pier",                     Uri: "../images/p59.jpg" },
+            { Name: "Giraffe Zoom",             Uri: "../images/p183.jpg" },
+            { Name: "Oryx",                     Uri: "../images/p172.jpg" }
+        ];
+
+        Sys.require(Sys.components.dataView);
+    
+        Sys.onReady(function() {
+            var master = Sys.query(".imageslist").dataView( {
+                data: gallery,
+                selectedItemClass: "selecteditem",
+                initialSelectedIndex: 0
+            });
+
+            Sys.query("#detailView").dataView()
+                            .binding("data", master, "selectedData");
+        });
+    </script>
+</head>
+<body xmlns:sys="javascript:Sys">
+    <!--Master View-->
+    <div class="imageslist sys-template">
+        <span sys:command="select" class="namedlistitem">
+            <img sys:src="{{ Uri }}"/>
+            <div>{binding Name}</div>
+        </span>
+    </div>
+      
+    <!--Detail View-->
+    <div id="detailView" class="sys-template">
+        <span class="nameddetailitem">
+            <img sys:src="{{ Uri }}"/>
+            <input type="text" sys:value="{binding Name}" />
+         </span>
+     </div>
+</body>
+</html>

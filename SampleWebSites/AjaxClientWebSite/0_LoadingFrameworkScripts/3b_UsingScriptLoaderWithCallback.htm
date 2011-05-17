@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample shows using the Script Loader (Start.js) to dynamically load just
+those scripts required by the DataView and Watermark components.
+
+This is different from the previous sample because it uses a completed callback from Sys.require, 
+instead of using the onReady event.  The onReady event waits the DOM is ready, and all scripts 
+that have been required on the page are loaded, whereas the coompleted callback on Sys.require 
+is called as soon as the the DOM is ready, and the scripts specified in the this call to Sys.require 
+have loaded.  
+
+In this example, there is no difference as there is only one Sys.require on the page.
+
+Once the the callback is called, the scripts are used to attach a 
+Microsoft Ajax DataView control and a Watermark behavior to HTML elements.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DataView</title>
+    <link href="../styles/images.css" rel="stylesheet" type="text/css" />
+
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Extended/ExtendedControls.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        // The release version (MicrosoftAjax/jQueryStart.js), of the loader will load 
+        // release versions of scripts, unless you set Sys.loader.debug to true. 
+        
+        // Data
+        var gallery = [
+            { Name: "Morro Rock"          },
+            { Name: "Seagull reflections" },
+            { Name: "Pier"                },
+            { Name: "Giraffe Zoom"        },
+            { Name: "Oryx"                }
+        ]
+
+        // Specify what scripts or components are required (using Sys.components or Sys.scripts).
+        Sys.require([Sys.components.dataView, Sys.components.watermark], loadComplete);
+        
+        function loadComplete(features) {
+            // Create the DataView control and attach to images ul element
+            Sys.query("#images")
+                .dataView({ data: gallery });
+
+            // Create the Watermark and attach to the images gallerytitle input element
+            Sys.query(".gallerytitle").watermark("Add title here...", "watermarked");
+        }
+   </script>
+</head>
+<body>
+    
+    <input class="gallerytitle" type="text" />
+
+    <!--Client Template used by attached DataView-->
+    <ul id="images" class="sys-template">
+        <li>{{ Name }}</li>
+    </ul>
+
+</body>
+</html>

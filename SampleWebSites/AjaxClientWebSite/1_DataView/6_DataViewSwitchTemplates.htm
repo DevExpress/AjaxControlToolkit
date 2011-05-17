@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how you can programmatically switch templates when using a DataView
+control. When you click the Edit button, the DataView control switches to using the Edit template.
+
+It also shows using the observer pattern and using a binding with a convert function, so that 
+the button text automatically switches from "Browse" to "Edit".
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Switching Templates</title>
+    <link href="../styles/Images.css" rel="stylesheet" type="text/css"/>
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var gallery = [
+            { Name: "Morro Rock",               Uri: "../images/p58.jpg" },
+            { Name: "Seagull reflections",      Uri: "../images/p52.jpg" },
+            { Name: "Pier",                     Uri: "../images/p59.jpg" },
+            { Name: "Giraffe Zoom",             Uri: "../images/p183.jpg" },
+            { Name: "Oryx",                     Uri: "../images/p172.jpg" }
+        ],
+        editMode,
+        imagesList;
+        
+        Sys.converters.boolToString = function(value, binding) {
+            return value ? binding.trueValue : binding.falseValue
+        }
+
+        Sys.require(Sys.components.dataView);
+
+        Sys.onReady(function() {
+            imagesList = Sys.query(".imageslist").dataView(
+                {
+                    data: gallery
+                }
+            ).get(0);
+
+            $addHandler("#switchMode", "click", function() {
+                Sys.Observer.setValue(window, "editMode", !editMode);
+                imagesList.set_itemTemplate(editMode ? "#editTemplate" : ".imageslist");
+            });
+        });
+   </script>
+</head>
+
+<body xmlns:sys="javascript:Sys">
+    <input id="switchMode" type="button" sys:value="{binding editMode, source={{window}}, convert=boolToString, trueValue=Browse, falseValue=Edit}" value="Edit"/>  
+
+    <!--Client Template used by attached DataView-->
+    <div class="imageslist sys-template">
+        <span class="namedlistitem">
+            <img sys:src="{binding Uri}"/>
+            <div sys:innerhtml="{binding Name}"></div>
+        </span>
+    </div>
+
+    <div id="editTemplate" class="sys-template">
+        <span class="namedlistitem">
+            <img sys:src="{binding Uri}"/>
+            <input type="text" sys:value="{binding Name}"/>
+        </span>
+    </div>
+</body>
+</html>
+

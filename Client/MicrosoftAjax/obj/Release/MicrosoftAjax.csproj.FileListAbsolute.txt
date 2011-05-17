@@ -1,0 +1,17 @@
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\bin\MicrosoftAjax.dll
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\bin\MicrosoftAjax.pdb
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.Resources.DataContext.Res.debug.resources
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.Resources.DataContext.Res.resources
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.Resources.OpenData.Res.debug.resources
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.Resources.OpenData.Res.resources
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.Resources.Res.debug.resources
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.Resources.Res.resources
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.Resources.Templates.Res.debug.resources
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.Resources.Templates.Res.resources
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.Resources.WebForms.Res.debug.resources
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.Resources.WebForms.Res.resources
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\GenerateResource.read.1.tlog
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\GenerateResource.write.1.tlog
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.dll
+C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\MicrosoftAjax\obj\Release\MicrosoftAjax.pdb

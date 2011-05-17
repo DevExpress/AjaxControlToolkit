@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how to display master/details information using a declarative approach. 
+
+In this version of the sample, we are using the Script Loader to load required scripts. 
+
+We first set Sys.activateDom to false, so that activation (attaching of controls specified by the 
+declarative sys:attach attribute) will not take place until required scripts are loaded. 
+
+We trigger activation by calling Sys.activateElements, but only when scripts (such as for the 
+attached Watermark behavior - used when the Name string in the data is empty) have been loaded.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Declarative Master Detail with Loader</title>
+    <link href="../styles/images.css" rel="stylesheet" type="text/css" />
+    
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Extended/ExtendedControls.debug.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+        var gallery = [
+            { Name: "",                         Uri: "../images/p58.jpg" },
+            { Name: "Seagull reflections",      Uri: "../images/p52.jpg" },
+            { Name: "Pier",                     Uri: "../images/p59.jpg" },
+            { Name: "Giraffe Zoom",             Uri: "../images/p183.jpg" },
+            { Name: "Oryx",                     Uri: "../images/p172.jpg" }
+        ];
+
+        // Delay DOM activation
+        Sys.activateDom = false; 
+
+        Sys.require([Sys.components.watermark, Sys.components.dataView]);
+
+        Sys.onReady(function() {
+            // Activate DOM now that scripts for attached controls and behaviors loaded
+            Sys.query(document.documentElement).activateElements();
+        });
+    </script>
+</head>
+<body xmlns:wm="javascript:Sys.Extended.UI.TextBoxWatermarkBehavior" xmlns:dataview="javascript:Sys.UI.DataView" xmlns:sys="javascript:Sys">
+    <!--Master View-->
+    <div id="imagesListView" class="imageslist sys-template" 
+        sys:attach="dataview"
+        dataview:data="{{gallery}}" 
+        dataview:selecteditemclass="selecteditem" 
+        dataview:initialselectedindex="0" 
+    >
+        <span sys:command="select" class="namedlistitem">
+            <img sys:src="{binding Uri}"/>
+            <div sys:innertext="{binding Name}"></div>
+        </span>
+    </div>
+      
+    <!--Detail View-->
+    <div id="detailView" class="sys-template"
+        sys:attach="dataview"
+        dataview:data="{binding selectedData, source=$imagesListView}" 
+    >
+        <span class="nameddetailitem">
+            <img sys:src="{binding Uri}"/>
+            <input type="text" 
+                sys:value="{binding Name}" 
+                sys:attach="wm" 
+                wm:watermarktext="Add title here..."
+                wm:watermarkcssclass="watermarked"
+            />
+        </span>
+     </div>
+</body>
+</html>
+

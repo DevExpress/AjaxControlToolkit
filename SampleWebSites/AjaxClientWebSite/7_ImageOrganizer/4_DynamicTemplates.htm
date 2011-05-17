@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This is a variant of the Image Organizer application, showing how desired placeholder location or 
+item template for a given dataItem can be determined dynamcally in the the itemRendering event 
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dynamic Templates</title>
+    <link href="../Styles/ImageOrganizerComplete.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+    <script type="text/javascript" src="4_DynamicTemplates.js"></script>
+
+    <script type="text/javascript">    
+        function onMasterItemRendering(sender, args) {
+            // If the data item is associated with one of 'favorite' tags, display in a 
+            // separate list
+            if (isFavorite(args.data)) {
+                args.itemPlaceholder = "#favoriteItemsPlaceholder";
+            }
+            // If the data item was contributed by someoone designated as a 'friend',
+            // use a template that allows editing of the Name field
+            if (isFriend(args.data)) {
+                args.itemTemplate = "#friendItemTemplate";
+            }
+        }
+
+        function isFavorite(thisImage) {
+            var i, l, length = 0;
+            
+            for (var tag in filters.tags) {
+                if (!filters.tags[tag]) continue;
+                length++;
+                for (i = 0, l = data.tags[tag].Images.length; i < l; i++) {
+                    if (data.tags[tag].Images[i] == thisImage) return true;
+                }
+            }
+            return false;
+        }
+
+        function isFriend(thisImage) {
+            var i, l, length = 0;
+            
+            for (var person in filters.people) {
+                if (!filters.people[person]) continue;
+                length++;
+                for (i = 0, l = data.people[person].Images.length; i < l; i++) {
+                    if (data.people[person].Images[i] == thisImage) return true;
+                }
+            }
+            return false;
+        }
+
+        // This function is called from the filtering code in DynamicTemplates.js, whenever the checkbox settings have been changed.
+        function filterImages() {
+            imagesList.refresh();
+        }
+    </script>
+
+ </head>
+<body xmlns:dataview="javascript:Sys.UI.DataView" xmlns:sys="javascript:Sys">
+<div class="title">Image Organizer</div>
+
+<!--Toolbar Sort-->
+<span class="sorttoolbar"> 
+    Sort:
+    <select onchange="onSort(this.value)">
+        <option value="Name">Name</option>
+        <option value="Description">Description</option>
+    </select>
+</span>
+
+<!--Toolbar Edit Buttons-->
+<span class="sys-template" sys:attach="dataview"
+    dataview:data="{binding editMode, source={{window}} }" 
+>
+    <span sys:style-display="{binding hasChanges, source={{dataContext}}, convert=display}">
+        <a class="editbutton" href="#" onclick="cancelChanges()">Cancel Changes</a>
+        <a class="editbutton" href="#" onclick="saveChanges()">Save Changes</a>
+    </span>
+</span>
+
+<!--Master View
+With onitemrendering handler
+-->
+<div id="imagesListView" class="imageslist" sys:attach="dataview"
+    dataview:onrendering="{{ onMasterRendering }}" 
+    dataview:onitemrendering="{{ onMasterItemRendering }}" 
+
+    dataview:autofetch="true"
+    dataview:itemtemplate="#masterTemplate"
+    dataview:itemplaceholder="#masterItemPlaceholder"
+    dataview:dataprovider="{{ dataContext }}" 
+    dataview:fetchoperation="Images"
+    dataview:fetchparameters="{{ fetchParameters }}"
+    dataview:onfetchsucceeded="{{ onImagesFetched }}" 
+    dataview:onfetchfailed="{{ onFetchFailed }}" 
+>
+    <span id="masterItemPlaceholder">Loading...</span>
+</div>
+
+<div>
+    <span  id="favoriteItemsPlaceholder"></span>
+</div>
+
+<div class="filterlists" sys:bind="true" sys:style-display="{binding ready, convert=display, source={{data}} }" style="display:none" >
+    <!--Contributors View-->
+    <div class="filtertitle">Friends</div>
+    <div id="peopleListView"  class="sys-template" sys:attach="dataview"
+        dataview:autofetch="true"
+        dataview:dataprovider="{{ dataContext }}"
+        dataview:fetchoperation="People"
+        dataview:fetchparameters="{{ {$expand: 'Images'} }}"
+        dataview:onfetchsucceeded="{{ onPeopleFetched }}" 
+        dataview:onfetchfailed="{{ onFetchFailed }}" 
+        dataview:oncommand="{{ onMasterPeopleCommand }}" 
+    > 
+        <div sys:command="MultiSelect" class="multiselect">
+            <input type="checkbox" sys:checked="{{ filters.people[$index] }}" /><span><span>{binding FirstName}</span> <span>{binding LastName}</span></span>
+        </div>
+    </div>
+    <a href="#" onclick="addPerson('first','last')" sys:bind="true" sys:style-display="{binding editMode, convert=display, source={{window}} }" >Add Contributor</a>
+    <!--Tags View-->
+    <div class="filtertitle">Favorite Tags</div>
+    <div id="tagsListView" class="sys-template" sys:attach="dataview"
+        dataview:autofetch="true"
+        dataview:dataprovider="{{ dataContext }}"
+        dataview:fetchoperation="Tags"
+        dataview:fetchparameters="{{ {$expand: 'Images'} }}"
+        dataview:onfetchsucceeded="{{ onTagsFetched }}" 
+        dataview:onfetchfailed="{{ onFetchFailed }}" 
+        dataview:oncommand="{{ onMasterTagsCommand }}" 
+    > 
+        <div sys:command="MultiSelect" class="multiselect">
+            <input type="checkbox" sys:checked="{{ filters.tags[$index] }}" /><span>{binding Name}</span>
+        </div>
+    </div>
+    <a href="#" onclick="addTag('tag')" sys:bind="true" sys:style-display="{binding editMode, convert=display, source={{window}} }" >Add Tag</a>
+</div>
+
+<!--ITEM TEMPLATES-->
+
+<div id="masterTemplate" class="sys-template">
+    <span class="listitem">
+        <input type="button" sys:value="{binding Name}" />
+        <img sys:src="{binding Uri}"/>
+        <span sys:innerhtml="{binding Contributor, convert=convertImageContributor}"></span>
+    </span>
+</div>
+
+<div id="friendItemTemplate" class="sys-template">
+    <span class="listitem">
+        <input type="text" sys:value="{binding Name}" />
+        <img sys:src="{binding Uri}"/>
+        <span sys:innerhtml="{binding Contributor, convert=convertImageContributor}"></span>
+    </span>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how to use context variables such as $index and $element. This sample also
+demonstrates how you can use conditional rendering attributes such as sys:if, sys:class, and sys:codeafter.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Context Variables and CodeAfter</title>
+    <link href="../styles/Images.css" rel="stylesheet" type="text/css"/>
+
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        Sys.loader.debug = true;
+        
+        function getColor(index, dataLength) {
+            var degree = index / dataLength,
+            startColor = "#ff00ff",
+            endColor = "#00ff00", 
+            midColor = "#";
+            for (var i = 1; i < 7; i++) {
+                var startChar = parseInt(startColor.charAt(i),16),
+                endChar = parseInt(endColor.charAt(i),16),
+                mChar = parseInt(startChar + (endChar - startChar) * (index / dataLength) + .5).toString(16);
+                midColor += mChar;
+            }
+            return midColor;
+        } 
+
+        Sys.require([Sys.components.dataView, Sys.components.dataContext]);
+        
+        Sys.onReady(function() {
+            Sys.query(".imageslist").dataView(
+                {
+                    dataProvider: "../Services/ImagesWcfService.svc",
+                    fetchOperation: "GetImages",
+                    fetchParameters: { orderby: "Name" },
+                    autoFetch: "true"
+                }
+            );
+        });
+
+    </script>
+</head>
+<body xmlns:sys="javascript:Sys">
+    
+    <div class="imageslist sys-template">
+
+        <span class="separator" 
+            sys:if="$index > 0" 
+            sys:codeafter="$element.style.backgroundColor=getColor($index, $context.data.length)"
+        ></span>
+
+        <span class="namedlistitem" sys:class-odd="{{ $index%2 }}">
+            <img sys:src="{{Uri}}"/>
+            <div>{{Name}}</div>
+        </span>
+
+    </div>
+
+</body>
+</html>

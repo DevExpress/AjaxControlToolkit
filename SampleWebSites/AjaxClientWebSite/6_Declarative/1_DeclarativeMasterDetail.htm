@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how to display master/details information using a declarative approach. 
+
+Notice that the DataView controls are attached to the DOM elements using the sys:attach attribute.
+
+Notice also how the detail DataView is bound to the master DataView with the 
+{binding selectedData, source=$imagesListView} binding expression.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Declarative Master Detail</title>
+    <link href="../Styles/images.css" rel="stylesheet" type="text/css"/>
+    
+    <script type="text/javascript" src="../Scripts/MicrosoftAjax/MicrosoftAjax.debug.js"></script>
+    <script type="text/javascript" src="../Scripts/MicrosoftAjax/MicrosoftAjaxTemplates.debug.js"></script>
+    
+    <script src="../Scripts/MicrosoftAjax/Extended/ExtenderBase/BaseScripts.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Extended/Common/Common.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MicrosoftAjax/Extended/TextboxWatermark/TextboxWatermark.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var gallery = [
+            { Name: "",                         Uri: "../images/p58.jpg" },
+            { Name: "Seagull reflections",      Uri: "../images/p52.jpg" },
+            { Name: "Pier",                     Uri: "../images/p59.jpg" },
+            { Name: "Giraffe Zoom",             Uri: "../images/p183.jpg" },
+            { Name: "Oryx",                     Uri: "../images/p172.jpg" }
+        ];
+   </script>
+</head>
+
+<body xmlns:wm="javascript:Sys.Extended.UI.TextBoxWatermarkBehavior" xmlns:dataview="javascript:Sys.UI.DataView" xmlns:sys="javascript:Sys">
+    <!--Master View-->
+    <div id="imagesListView" class="imageslist sys-template" 
+        sys:attach="dataview"
+        dataview:data="{{gallery}}" 
+        dataview:selecteditemclass="selecteditem" 
+        dataview:initialselectedindex="0" 
+    >
+        <span sys:command="select" class="namedlistitem">
+            <img sys:src="{binding Uri}"/>
+            <div sys:innertext="{binding Name}"></div>
+        </span>
+    </div>
+      
+    <!--Detail View-->
+    <div id="detailView" class="sys-template"
+        sys:attach="dataview"
+        dataview:data="{binding selectedData, source=$imagesListView}" 
+    >
+        <span class="nameddetailitem">
+            <img sys:src="{binding Uri}"/>
+            <input type="text" 
+                sys:value="{binding Name}" 
+                sys:attach="wm" 
+                wm:watermarktext="Add title here..."
+                wm:watermarkcssclass="watermarked"
+            />
+        </span>
+     </div>
+</body>
+</html>
+

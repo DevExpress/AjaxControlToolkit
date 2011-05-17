@@ -1,0 +1,65 @@
+<%@ Page Language="C#" AutoEventWireup="true" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Untitled Page</title>
+    <style type="text/css">
+    
+    a.ContextMenuItem
+{
+	margin: 1px 0 1px 0;
+	display: block;
+	color: #003399;
+	text-decoration: none;
+	cursor: pointer;	
+	padding: 4px 19px 4px 33px;
+	white-space: nowrap;
+}
+
+a.ContextMenuItem-Selected
+{
+	font-weight: bold;
+}
+
+a.ContextMenuItem:hover
+{
+	background-color: #FFE6A0;
+	color: #003399;
+	border: 1px solid #D2B47A;
+	padding: 3px 18px 3px 32px;
+}
+</style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        Click on the textbox and hover over the label to make sure that the dropdown
+        frame with the down arrow is positioned correctly.
+        <div style="position: relative">
+            <asp:ScriptManager ID="ScriptManager1" runat="Server">
+            </asp:ScriptManager>
+            Textbox in relatively positioned container
+            <asp:TextBox ID="TextBox1" runat="server" Width="80px" />
+            <asp:Panel ID="Panel1" runat="server" Width="100px" Height="100px" Style="display: none">
+                <asp:LinkButton ID="LinkButton3" runat="server">LinkButton 1</asp:LinkButton>
+                <asp:LinkButton ID="LinkButton4" runat="server">LinkButton 2</asp:LinkButton>
+            </asp:Panel>
+            <aspext:DropDownExtender runat="server" ID="DropDownExtender1" TargetControlID="TextBox1"
+                DropDownControlID="Panel1" />
+        </div>
+        <div style="position: absolute; top:300px; left: 200px">
+            Label in absolutely positioned container
+            <asp:Label ID="TextLabel" runat="server" Text="Hover Over Me" Font-Names="Tahoma"
+                Font-Size="11px" Style="display: block; width: 300px; padding: 2px; padding-right: 50px;" />
+            <asp:Panel ID="DropPanel" runat="server" CssClass="ContextMenuPanel" Style="display: none;
+                visibility: hidden;">
+                <asp:LinkButton runat="server" ID="Option1" Text="Option 1" CssClass="ContextMenuItem" />
+                <asp:LinkButton runat="server" ID="Option2" Text="Option 2" CssClass="ContextMenuItem" />
+                <asp:LinkButton runat="server" ID="Option3" Text="Option 3 (Click Me!)" CssClass="ContextMenuItem" />
+            </asp:Panel>
+            <aspext:DropDownExtender runat="server" ID="DDE" TargetControlID="TextLabel"
+                DropDownControlID="DropPanel" />
+        </div>
+    </form>
+</body>
+</html>

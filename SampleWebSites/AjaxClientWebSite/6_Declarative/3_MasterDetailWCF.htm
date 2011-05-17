@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how you can retrieve data from a WCF service and display the 
+data using client DataView controls. This sample uses a declarative approach. 
+
+Notice how the detail DataView is bound to the master DataView with the 
+{binding selectedData, source=$imagesListView} binding expression.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Master Detail Declarative WCF</title>
+    <link href="../styles/Images.css" rel="stylesheet" type="text/css"/>
+    
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        // Delay DOM activation
+        Sys.activateDom = false; 
+
+        Sys.require([Sys.components.dataView, Sys.scripts.WebServices]);
+
+        Sys.onReady(function() {
+            // Activate DOM now that scripts for attached controls and behaviors loaded
+            Sys.query(document.documentElement).activateElements();
+        });
+    
+    </script>
+</head>
+<body xmlns:dataview="javascript:Sys.UI.DataView" xmlns:sys="javascript:Sys">
+    <!--Master View-->
+    <div id="imagesListView" class="imageslist sys-template" 
+        sys:attach="dataview"
+        dataview:autofetch="true"
+        dataview:dataprovider="../Services/ImagesWcfService.svc"
+        dataview:fetchoperation="GetImages"
+        dataview:fetchparameters="{{ {orderby: 'Name'} }}"
+        dataview:selecteditemclass="selecteditem" 
+        dataview:initialselectedindex="0" 
+    >
+        <span sys:command="Select" class="listitem" id="listItem" >
+            <input type="button" sys:value="{binding Name}" />
+            <!--Live binding oneWay-->
+            <img sys:src="{binding Uri}"/>
+            <span>{binding Contributor}</span>
+        </span>
+    </div>
+      
+    <!--Detail View-->
+    <!--Live binding to Master View-->
+    <div id="detailView" class="sys-template"
+        sys:attach="dataview"
+        dataview:data="{binding selectedData, source=$imagesListView}" 
+    >
+        <div class="detailbox edit">
+            <div class="detailtitle">{binding Name}</div>
+            <div class="fieldblock">
+                <label for="name">Name: </label>
+                <input id="name" type="text" sys:value="{binding Name}"/>
+            </div>
+            <div class="fieldblock">
+                <label for="description">Description: </label>
+                <input id="description" type="text" sys:value="{binding Description}"/>
+            </div>
+            <div class="fieldblock">
+                <label for="uri">Uri: </label>
+                <input id="uri" type="text" sys:value="{binding Uri}"/>
+            </div>
+            <div class="fieldblock">
+                <label for="contributor">Contributor: </label>
+                <input id="contributor" type="text" sys:value="{binding Contributor}"/>
+            </div>
+        </div>
+        <img class="detailimage" sys:alt="{binding Name}" sys:src="{binding Uri}" />
+    </div>
+</body>
+</html>
+
+

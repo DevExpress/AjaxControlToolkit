@@ -1,0 +1,7 @@
+.ajax__dropdown_arrow {position:absolute;height:100%;overflow:hidden;}
+.ajax__dropdown_panel {background:white;border:1px solid #868686;}
+.ajax__dropdown_frame {border:1px solid #2353B2;overflow:hidden;font-size:1px;text-align:right;position:absolute;cursor:pointer;}
+.ajax__dropdown_frame_line {overflow:hidden;font-size:1px;position:absolute;cursor:pointer;}
+.ajax__dropdown_arrow_image {background:url(drop-arrow.gif) no-repeat 50% 50%;}
+.ajax__dropdown_arrow_wrapper {position:absolute;top:50%;left:50%;}
+.ajax__dropdown_arrow_wrapper img {position:relative;top:-50%;left:-50%;}

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+This sample demonstrates how you can display data retrieved from an 
+OpenData Data service in a Microsoft Ajax DataView.
+
+The dataProvider property of the DataView is set to the OpenDataServiceProxy
+for  the service. 
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Server Data</title>
+    <link href="../styles/Images.css" rel="stylesheet" type="text/css"/>
+
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        
+        Sys.require([Sys.components.dataView, Sys.components.openDataServiceProxy]);
+
+        Sys.onReady(function() {
+            var OpenDataDataServiceProxy = Sys.create.openDataServiceProxy('../Services/ImagesDataService.svc');
+            
+            Sys.query(".imageslist").dataView(
+                {
+                    dataProvider: OpenDataDataServiceProxy,
+                    fetchOperation: "Images",
+                    fetchParameters: { orderby: 'Name' },
+                    autoFetch: "true"
+                }
+            );
+
+        }); 
+    </script>
+</head>
+<body xmlns:sys="javascript:Sys">
+
+    <!--Client Template used by attached DataView-->
+    <div class="imageslist sys-template">
+        <span class="namedlistitem">
+            <img sys:src="{{ Uri }}"/>
+            <div>{{ Name }}</div>
+        </span>
+    </div>
+
+</body>
+</html>

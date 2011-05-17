@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This sample demonstrates how to use the Script Loader to load scripts only when required, 
+based on user actions. 
+
+In this case a custom control is registered through a static script: "RegisterMyClientControls.js", 
+but the actual script for the client control ("ImageView.js" ) is only loaded the first time 
+the user clicks on a 'Show Gallery' button. 
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Lazy Loading</title>
+    <link href="../styles/images.css" rel="stylesheet" type="text/css" />
+
+    <script src="../Scripts/MicrosoftAjax/Start.debug.js" type="text/javascript"></script>
+    <script src="../Scripts/MyClientControls/RegisterMyClientControls.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var gallery1 = [
+            { Name: "Morro Rock", Uri: "../images/p58.jpg" },
+            { Name: "Seagull reflections", Uri: "../images/p52.jpg" },
+            { Name: "Pier", Uri: "../images/p59.jpg" },
+            { Name: "Giraffe Zoom", Uri: "../images/p183.jpg" },
+            { Name: "Oryx", Uri: "../images/p172.jpg" }
+        ],
+
+        gallery2 = [
+            { Name: "Dazed Mid-day Look", Uri: "../images/p163.jpg" },
+            { Name: "Lone Boat", Uri: "../images/p123.jpg" },
+            { Name: "Off the Gliderport trail", Uri: "../images/p152.jpg" },
+            { Name: "Sumatran Tiger", Uri: "../images/p190.jpg" },
+            { Name: "Crashing water", Uri: "../images/p71.jpg" },
+            { Name: "Spanish Architecture", Uri: "../images/p89.jpg" }
+        ];
+                
+        var control;
+
+        function showImages(gallery) {
+            Sys.require(Sys.components.imageView, function (features) {
+                if (control) {
+                    // ImageView control has already been created. Set the data to the selected gallery. 
+                    Sys.Observer.setValue(control, "data", gallery);
+                }
+                else {
+                    // The control has not been created. Use the auto-generated jQuery plugin to create it
+                    control = Sys.query(".images").imageView({ data: gallery }).get(0);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <input type="button" onclick="showImages(gallery1)"value="Show Gallery 1"/>  
+    <input type="button" onclick="showImages(gallery2)"value="Show Gallery 2"/>  
+
+    <div class="images"></div>
+</body>
+</html>

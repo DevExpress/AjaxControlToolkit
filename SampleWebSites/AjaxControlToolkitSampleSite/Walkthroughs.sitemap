@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode>
+    <siteMapNode url="~/Walkthrough/ExtenderClasses.aspx" title="Extender base class features" />
+    <siteMapNode url="~/Walkthrough/UsingAnimations.aspx" title="Using Animations" />
+    <siteMapNode url="~/Walkthrough/AnimationReference.aspx" title="Animation Reference" />
+    <siteMapNode url="~/Walkthrough/CCDWithDB.aspx" title="CascadingDropDown with&lt;br/&gt;&#160;&#160;&#160;&#160;&#160;a Database" />
+    <siteMapNode url="~/Walkthrough/OtherNeatStuff.aspx" title="Other neat stuff" />
+  </siteMapNode>
+</siteMap>
