@@ -58,6 +58,44 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bugs\AsyncFileUpload\25678\AsyncFileUploadForOpera.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26128\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26687\WidthProperty.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26691\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26691\WebForm2.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26698\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26698\WebForm2.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26731\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26737\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26751\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26751\WebForm2.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26761\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26804\ConflictIds.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26863\MultipleAsyncFileUpload.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26864\Ful.ascx" />
+    <Content Include="Bugs\AsyncFileUpload\26864\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26889\DoubleUploadIssue.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26890\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26907\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\26907\WebUserControl1.ascx" />
+    <Content Include="Bugs\AsyncFileUpload\26915\WebForm1.aspx" />
+    <Content Include="Bugs\AsyncFileUpload\Somefile.txt" />
+    <Content Include="Bugs\AsyncFileUpload\Task153\AFU.ascx" />
+    <Content Include="Bugs\AsyncFileUpload\Task153\WebForm1.aspx" />
+    <Content Include="Bugs\ModalPopup\26732\LandingUserControl.ascx" />
+    <Content Include="Bugs\ModalPopup\26732\ModalupPopupWithUpdatePanel.aspx" />
+    <Content Include="Bugs\ModalPopup\26775\ModalPopupBackground.aspx" />
+    <Content Include="Bugs\ModalPopup\26775\StyleSheet.css" />
+    <Content Include="Bugs\ModalPopup\26808\WebForm1.aspx" />
+    <Content Include="Bugs\ModalPopup\26909\LandingUserControl.ascx" />
+    <Content Include="Bugs\ModalPopup\26909\Page.aspx" />
+    <Content Include="Bugs\ModalPopup\6944\AnimateMe2.aspx" />
+    <Content Include="Bugs\ModalPopup\6944\AnimateModalpopup.aspx" />
+    <Content Include="Bugs\ModalPopup\6944\collapse.jpg" />
+    <Content Include="Bugs\ModalPopup\6944\expand.jpg" />
+    <Content Include="Bugs\ModalPopup\6944\StyleSheet.css" />
+    <Content Include="Bugs\US152\ResourceIssue.aspx" />
+    <Content Include="Bugs\XSS\WebForm1.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Scripts\jquery-1.5.min.js" />
     <Content Include="Scripts\jQuery.tmpl.js" />
@@ -94,6 +132,222 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bugs\AsyncFileUpload\25678\AsyncFileUploadForOpera.aspx.cs">
+      <DependentUpon>AsyncFileUploadForOpera.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\25678\AsyncFileUploadForOpera.aspx.designer.cs">
+      <DependentUpon>AsyncFileUploadForOpera.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26128\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26128\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26687\WidthProperty.aspx.cs">
+      <DependentUpon>WidthProperty.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26687\WidthProperty.aspx.designer.cs">
+      <DependentUpon>WidthProperty.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26691\Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26691\Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26691\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26691\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26691\WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26691\WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26698\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26698\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26698\WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26698\WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26731\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26731\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26737\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26737\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26751\Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26751\Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26751\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26751\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26751\WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26751\WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26761\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26761\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26804\ConflictIds.aspx.cs">
+      <DependentUpon>ConflictIds.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26804\ConflictIds.aspx.designer.cs">
+      <DependentUpon>ConflictIds.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26863\MultipleAsyncFileUpload.aspx.cs">
+      <DependentUpon>MultipleAsyncFileUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26863\MultipleAsyncFileUpload.aspx.designer.cs">
+      <DependentUpon>MultipleAsyncFileUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26864\Ful.ascx.cs">
+      <DependentUpon>Ful.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26864\Ful.ascx.designer.cs">
+      <DependentUpon>Ful.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26864\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26864\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26889\DoubleUploadIssue.aspx.cs">
+      <DependentUpon>DoubleUploadIssue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26889\DoubleUploadIssue.aspx.designer.cs">
+      <DependentUpon>DoubleUploadIssue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26890\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26890\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26907\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26907\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26907\WebUserControl1.ascx.cs">
+      <DependentUpon>WebUserControl1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26907\WebUserControl1.ascx.designer.cs">
+      <DependentUpon>WebUserControl1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26915\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\26915\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\Task153\AFU.ascx.cs">
+      <DependentUpon>AFU.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\Task153\AFU.ascx.designer.cs">
+      <DependentUpon>AFU.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\Task153\Site1.Master.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\Task153\Site1.Master.designer.cs">
+      <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\Task153\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\AsyncFileUpload\Task153\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26732\LandingUserControl.ascx.cs">
+      <DependentUpon>LandingUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26732\LandingUserControl.ascx.designer.cs">
+      <DependentUpon>LandingUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26732\ModalupPopupWithUpdatePanel.aspx.cs">
+      <DependentUpon>ModalupPopupWithUpdatePanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26732\ModalupPopupWithUpdatePanel.aspx.designer.cs">
+      <DependentUpon>ModalupPopupWithUpdatePanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26775\ModalPopupBackground.aspx.cs">
+      <DependentUpon>ModalPopupBackground.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26775\ModalPopupBackground.aspx.designer.cs">
+      <DependentUpon>ModalPopupBackground.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26808\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26808\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26909\LandingUserControl.ascx.cs">
+      <DependentUpon>LandingUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26909\LandingUserControl.ascx.designer.cs">
+      <DependentUpon>LandingUserControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26909\Page.aspx.cs">
+      <DependentUpon>Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\26909\Page.aspx.designer.cs">
+      <DependentUpon>Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\6944\AnimateMe2.aspx.cs">
+      <DependentUpon>AnimateMe2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\6944\AnimateMe2.aspx.designer.cs">
+      <DependentUpon>AnimateMe2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\6944\AnimateModalpopup.aspx.cs">
+      <DependentUpon>AnimateModalpopup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ModalPopup\6944\AnimateModalpopup.aspx.designer.cs">
+      <DependentUpon>AnimateModalpopup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\US152\ResourceIssue.aspx.cs">
+      <DependentUpon>ResourceIssue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\US152\ResourceIssue.aspx.designer.cs">
+      <DependentUpon>ResourceIssue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\XSS\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\XSS\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -216,6 +470,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bugs\AsyncFileUpload\26691\Site1.Master" />
+    <Content Include="Bugs\AsyncFileUpload\26737.zip" />
+    <Content Include="Bugs\AsyncFileUpload\26751\Site1.Master" />
+    <Content Include="Bugs\AsyncFileUpload\26890.zip" />
+    <Content Include="Bugs\AsyncFileUpload\26907.zip" />
+    <Content Include="Bugs\AsyncFileUpload\Task153\Site1.Master" />
+    <Content Include="Bugs\ModalPopup\26775.zip" />
+    <Content Include="Bugs\ModalPopup\26808.zip" />
+    <Content Include="Bugs\ModalPopup\26909.zip" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
