@@ -12,3 +12,9 @@ Client/MicrosoftAjax.Extended/bin/
 Client/MicrosoftAjax.Extended/bin/
 Tests/AjaxControlToolkit.Tests/bin/
 Client/MicrosoftAjax.Extended/bin/
+SampleWebSites/AjaxClientWebSite/Bin/Server.XML
+SampleWebSites/AjaxControlToolkitSampleSite/Bin/Server.XML
+Server/Tests/FunctionalTests/Bin/Server.XML
+Tests/AjaxControlToolkit.Tests/AjaxControlToolkit.Tests.csproj.user
+Tests/AjaxControlToolkit.Tests/AjaxControlToolkit.Tests.csproj.user
+Tests/AjaxControlToolkit.Tests/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
