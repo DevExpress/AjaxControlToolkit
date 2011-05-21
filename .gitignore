@@ -37,3 +37,5 @@ Tests/AjaxControlToolkit.Tests/Bin/
 Server/Tests/FunctionalTests/Bin/
 Tools/JSBuild/bin/
 Tools/JSBuild/obj/
+Client/UnitTests/ajaxlib/extended/Accordion/AccordionBehavior.js
+Client/UnitTests/ajaxlib/Start.js
