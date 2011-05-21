@@ -1,5 +1,0 @@
-C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\UnitTests\bin\UnitTests.dll
-C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\UnitTests\bin\UnitTests.pdb
-C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\UnitTests\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\UnitTests\obj\Debug\UnitTests.dll
-C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Client\UnitTests\obj\Debug\UnitTests.pdb

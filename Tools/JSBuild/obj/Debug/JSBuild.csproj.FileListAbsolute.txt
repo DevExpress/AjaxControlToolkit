@@ -1,5 +1,0 @@
-C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Tools\JSBuild\bin\Debug\JSBuild.dll
-C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Tools\JSBuild\bin\Debug\JSBuild.pdb
-C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Tools\JSBuild\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Tools\JSBuild\obj\Debug\JSBuild.dll
-C:\Users\Stephen\Documents\Workspaces\AjaxControlToolkitPrime\Tools\JSBuild\obj\Debug\JSBuild.pdb
