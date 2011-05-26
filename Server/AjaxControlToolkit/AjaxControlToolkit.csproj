@@ -280,6 +280,7 @@
     <Compile Include="HTMLEditor\Toolbar_buttons\SuperScript.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Underline.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Undo.cs" />
+    <Compile Include="HtmlExtender\HtmlExtender.cs" />
     <Compile Include="ListSearch\ListSearchDesigner.cs" />
     <Compile Include="ListSearch\ListSearchExtender.cs" />
     <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
@@ -749,7 +750,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
   <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
-
   <Target Name="BeforeBuild">
     <MakeDir Directories="ScriptOutput" />
     <!-- clean out old files from previous build -->

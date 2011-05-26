@@ -108,6 +108,7 @@
     <Content Include="FilteredTextBox\FilteredTextBoxBehavior.pre.js" />
     <Content Include="HoverExtender\HoverBehavior.pre.js" />
     <Content Include="HoverMenu\HoverMenuBehavior.pre.js" />
+    <Content Include="HtmlExtender\HtmlExtenderBehavior.Pre.js" />
     <Content Include="ListSearch\ListSearchBehavior.pre.js" />
     <Content Include="MaskedEdit\MaskedEditBehavior.pre.js" />
     <Content Include="MaskedEdit\MaskedEditValidator.pre.js" />
@@ -329,7 +330,6 @@
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
   <UsingTask TaskName="JSBuild.PrependTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
   <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
-
   <Target Name="BeforeBuild">
     <MakeDir Directories="$(ScriptOutput)" />
     <!-- clean out old files from previous build -->
