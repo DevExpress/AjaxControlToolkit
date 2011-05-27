@@ -6,25 +6,23 @@
 
     // The unique name of the script registered with the
     // client script loader
-    var scriptName = "HtmlExtenderBehavior";
+    var scriptName = "HtmlEditorExtenderBehavior";
 
     function execute() {
         Type.registerNamespace('AjaxControlToolkit');
 
-        AjaxControlToolkit.HtmlExtenderBehavior = function (element) {
+        AjaxControlToolkit.HtmlEditorExtenderBehavior = function (element) {
             /// <summary>
             /// A sample behavior which assigns text to a TextBox
             /// </summmary>
             /// <param name="element" type="Sys.UI.DomElement">The element to attach to</param>
-            AjaxControlToolkit.HtmlExtenderBehavior.initializeBase(this, [element]);
+            AjaxControlToolkit.HtmlEditorExtenderBehavior.initializeBase(this, [element]);
 
             this._textbox = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);            
             this._editableTemplate = {
                 nodeName: "div",
                 properties: {
-                    style: {                                            
-                        width: "400px",
-                        height: "100px",
+                    style: {                                                                    
                         backgroundColor: "transparent",                        
                         borderStyle: "outset",
                         overFlow: "auto"
@@ -41,30 +39,26 @@
         }
 
 
-        AjaxControlToolkit.HtmlExtenderBehavior.prototype = {
+        AjaxControlToolkit.HtmlEditorExtenderBehavior.prototype = {
             initialize: function () {
-                AjaxControlToolkit.HtmlExtenderBehavior.callBaseMethod(this, 'initialize');
+                AjaxControlToolkit.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
 
             },
 
             _createEditableDiv: function (txtBoxControl) {
                 e = this.get_element();
 
-                var div = $common.createElementFromTemplate(this._editableTemplate, e.parentNode);                    
-                $common.setBounds(div, $common.getBounds(txtBoxControl._element));
+                this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, e.parentNode);                    
+                $common.setBounds(this._editableDiv, $common.getBounds(txtBoxControl._element));
 
-//                if (e.id) {
-//                    div.id = e.id + "_HtmlExtender";
-//                }
-                div.innerText = txtBoxControl._element.value;
-                this._editableDiv = div;
-
+                this._editableDiv.innerText = txtBoxControl._element.value;
+                $common.setVisible(txtBoxControl._element, false);
             },            
              
         };
 
-        AjaxControlToolkit.HtmlExtenderBehavior.registerClass('AjaxControlToolkit.HtmlExtenderBehavior', Sys.Extended.UI.BehaviorBase);
-        Sys.registerComponent(AjaxControlToolkit.HtmlExtenderBehavior, { name: "HtmlExtender" });
+        AjaxControlToolkit.HtmlEditorExtenderBehavior.registerClass('AjaxControlToolkit.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
+        Sys.registerComponent(AjaxControlToolkit.HtmlEditorExtenderBehavior, { name: "HtmlEditorExtender" });
 
     } // execute
 

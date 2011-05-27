@@ -108,7 +108,7 @@
     <Content Include="FilteredTextBox\FilteredTextBoxBehavior.pre.js" />
     <Content Include="HoverExtender\HoverBehavior.pre.js" />
     <Content Include="HoverMenu\HoverMenuBehavior.pre.js" />
-    <Content Include="HtmlExtender\HtmlExtenderBehavior.Pre.js" />
+    <Content Include="HtmlEditorExtender\HtmlEditorExtenderBehavior.Pre.js" />
     <Content Include="ListSearch\ListSearchBehavior.pre.js" />
     <Content Include="MaskedEdit\MaskedEditBehavior.pre.js" />
     <Content Include="MaskedEdit\MaskedEditValidator.pre.js" />

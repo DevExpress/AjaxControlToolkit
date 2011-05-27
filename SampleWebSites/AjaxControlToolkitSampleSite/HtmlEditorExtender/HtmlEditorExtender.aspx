@@ -10,9 +10,9 @@
             HtmlExtender Demonstration</div>
         <div>
             <br />
-            <asp:TextBox runat="server" ID="txtBox1" width="200px" Height="50px" Text="Hello world" /><br />
-            <ajaxToolkit:HtmlExtender ID="htmlExtender1" TargetControlID="txtBox1" runat="server">
-            </ajaxToolkit:HtmlExtender>
+            <asp:TextBox runat="server" ID="txtBox1" width="200px" Height="50px" Text="Hello world" /><br />            
+            <ajaxToolkit:HtmlEditorExtender  ID="htmlExtender1" TargetControlID="txtBox1" runat="server">
+            </ajaxToolkit:HtmlEditorExtender>
         </div>
     </div>
 </asp:Content>

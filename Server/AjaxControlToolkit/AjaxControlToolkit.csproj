@@ -280,7 +280,7 @@
     <Compile Include="HTMLEditor\Toolbar_buttons\SuperScript.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Underline.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Undo.cs" />
-    <Compile Include="HtmlExtender\HtmlExtender.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtender.cs" />
     <Compile Include="ListSearch\ListSearchDesigner.cs" />
     <Compile Include="ListSearch\ListSearchExtender.cs" />
     <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
