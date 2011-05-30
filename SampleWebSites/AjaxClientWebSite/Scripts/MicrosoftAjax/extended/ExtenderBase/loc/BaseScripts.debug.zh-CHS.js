@@ -691,5 +691,5 @@ Sys.Extended.UI.Resources = {
 "AsyncFileUpload_ServerResponseError": "Server Response Error",
 "AsyncFileUpload_UnknownServerError": "Unknown Server error",
 "AsyncFileUpload_UploadingProblem": "The requested file uploading problem.",
-"Calendar_Today1": "今天:  {0}"
+"Calendar_Today": "今天:  {0}"
 };
