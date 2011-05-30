@@ -147,7 +147,7 @@
   <data name="Animation_UknownAnimationName" xml:space="preserve">
     <value>Sys.Extended.UI.Animation.createAnimation 找不到名称为 {0} 的动画</value>
   </data>
-  <data name="Calendar_Today" xml:space="preserve">
+  <data name="Calendar_Today1" xml:space="preserve">
     <value>今天:  {0}</value>
   </data>
   <data name="CascadingDropDown_MethodError" xml:space="preserve">
