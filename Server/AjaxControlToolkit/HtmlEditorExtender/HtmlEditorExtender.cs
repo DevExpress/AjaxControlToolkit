@@ -12,21 +12,61 @@ using System;
 
 namespace AjaxControlToolkit
 {
-    
+
     [TargetControlType(typeof(TextBox))]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditorExtenderBehavior", "HtmlEditorExtender.HtmlEditorExtenderBehavior.js")]
     [ClientCssResource("HtmlEditorExtender.HtmlEditorExtender_resource.css")]
     public class HtmlEditorExtender : ExtenderControlBase
     {
-        [ExtenderControlProperty]
-        [DefaultValue("test")]        
-        public string ToolbarContent
+        internal const int ButtonWidthDef = 23;
+        internal const int ButtonHeightDef = 21;
+
+
+        [ExtenderControlProperty(true, true)]
+        [DefaultValue(null)]
+        public HtmlEditorExtenderButton[] ToolbarButtons
         {
-            get { return GetPropertyValue("ToolbarContent", "Bold|Italic|Underline|Strike|Subscript|Superscript|LeftToRight|RightToLeft|Center"); }
-            set { SetPropertyValue("ToolbarContent", value); }
+            get { return GetPropertyValue("ToolbarButtons", ButtonList.Buttons.ToArray()); }
+            set { SetPropertyValue("ToolbarButtons", value); }
         }
-        
+
+        [ExtenderControlProperty]
+        [DefaultValue("")]
+        public string Text
+        {
+            get { return GetPropertyValue("Text", ""); }
+            set
+            {
+                SetPropertyValue("Text", DecodeValues(value));
+            }
+        }
+
+        private string DecodeValues(string value)
+        {
+            foreach (HtmlEditorExtenderButton button in ButtonList.Buttons)
+            {
+                value = button.Decode(value);
+            }
+            return value;
+        }
+
+        [ExtenderProvidedProperty]
+        [DefaultValue(ButtonWidthDef)]
+        public int ButtonWidth
+        {
+            get { return GetPropertyIntValue("ButtonWidth"); }
+            set { SetPropertyIntValue("ButtonWidth", value); }
+        }
+
+        [ExtenderProvidedProperty]
+        [DefaultValue(ButtonHeightDef)]
+        public int ButtonHeight
+        {
+            get { return GetPropertyIntValue("ButtonHeight"); }
+            set { SetPropertyIntValue("ButtonHeight", value); }
+        }
+
     }
 
 }

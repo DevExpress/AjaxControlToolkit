@@ -11,6 +11,65 @@
     function execute() {
         Type.registerNamespace('Sys.Extended.UI');
 
+        Sys.Extended.UI.HtmlEditorExtenderButton = function () {
+            /// <summary>
+            /// Class for each Toolbar button            
+            /// </summary>
+
+            this._name = null;
+            this._iconIndex = null;
+            this._title = null;
+            this._offset = null;
+        }
+
+        Sys.Extended.UI.HtmlEditorExtenderButton.prototype = {
+            get_Name: function () {
+                return this._name;
+            },
+
+            set_Name: function () {
+                if (this._name != value) {
+                    this._name = value;
+                    this.raisePropertyChanged("Name")
+                }
+            },
+
+            get_Title: function () {
+                return this._title + 'test-prototype-success';
+            },
+
+            set_Title: function () {
+                if (this._title != value) {
+                    this._title = value;
+                    this.raisePropertyChanged("Title")
+                }
+            },
+
+            get_IconIndex: function () {
+                return this._iconIndex;
+            },
+
+            set_IconIndex: function () {
+                if (this._iconIndex != value) {
+                    this._iconIndex = value;
+                    this.raisePropertyChanged("IconIndex")
+                }
+            },
+
+            get_Offset: function () {
+                return this._offset;
+            },
+
+            set_Offset: function () {
+                if (this._iconIndex != value) {
+                    this._iconIndex = value;
+                    this.raisePropertyChanged("Offset")
+                }
+            }
+        }
+
+        Sys.Extended.UI.HtmlEditorExtenderButton.registerClass('Sys.Extended.UI.HtmlEditorExtenderButton');
+
         Sys.Extended.UI.HtmlEditorExtenderBehavior = function (element) {
             /// <summary>
             /// A sample behavior which assigns text to a TextBox
@@ -18,13 +77,15 @@
             /// <param name="element" type="Sys.UI.DomElement">The element to attach to</param>
             Sys.Extended.UI.HtmlEditorExtenderBehavior.initializeBase(this, [element]);
             textbox = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
+            window.document.designMode = "On";
+
             var id = this.get_id();
 
-            this._buttonWidth = 23;
-            this._buttonHeight = 21;            
+            this._ButtonWidth = 23;
+            this._ButtonHeight = 21;
 
             this._containerTemplate = {
-                nodeName: "div", visible: true,
+                nodeName: "div",
                 properties: {
                     id: id + "_ExtenderContainer"
                 }
@@ -41,18 +102,16 @@
                         overflow: "scroll",
                         clear: "both"
                     },
-                    contentEditable: true,
-                    designMode: "on"
-                },
-                visible: true
+                    contentEditable: true
+                }
             };
 
             this._buttonTemplate = {
                 nodeName: "div",
                 properties: {
                     style: {
-                        width: this._buttonWidth + "px",
-                        height: this._buttonHeight + "px"
+                        width: this._ButtonWidth + "px",
+                        height: this._ButtonHeight + "px"
                     }
                 },
                 cssClasses: ["ajax__html_editor_extender_button"]
@@ -65,26 +124,20 @@
                 }
             };
 
+            this._topButtonContainerTemplate = {
+                nodeName: "div",
+                properties: {
+                    id: id + "_ExtenderButtonContainer"
+                }
+            };
+
             this._container = null;
-            this._ToolbarContent = null;
+            this._ToolbarButtons = null;
             this._editableDiv = null;
             this._topButtonContainer = null;
             this._buttons = [];
             this._btnClickHandler = null;
-
-            this._button_names = new Array(
-							 "undo", "redo", "bold", "italic", "underline", "strike", "subscript",
-							 "superscript", "left_to_right", "right_to_left", "justify_left", "justify_center",
-							 "justify_right", "justify", "remove_alignment", "ordered_list", "bulleted_list",
-							 "insert_horizontal_rule", "insert_edit_url", "remove_url", "remove_style", "cut",
-							 "paste_plain_text", "paste_from_msword", "decrease_indent", "increase_indent");
-
-            this._button_titles = new Array(
-							 "Undo", "Redo", "Bold", "Italic", "Underline", "Strike Through", "Sub script",
-							 "Super script", "Left to right direction", "Right to left direction", "Justify Left", "Justify Center",
-							 "Justify Right", "Justify", "Remove Alignment", "Ordered List", "Bulleted List",
-							 "Insert horizontal rule", "Insert/edit URL", "Remove URL", "Remove Style", "Cut",
-							 "Paste plain text", "Paste from MS Word", "Decrease Indent", "Increase Indent");
+            this._requested_buttons = new Array();
         }
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
@@ -93,11 +146,6 @@
 
                 var idx = 0;
                 this._button_list = new Array();
-                for (var btnName in this._button_names) {
-                    this._button_list[idx] = new this._buttonInfo(this._button_names[idx], this._button_titles[idx], idx, idx * this._buttonWidth, 0);
-                    idx++;
-                }
-
                 this._createContainer();
                 this._createTopButtonContainer();
                 this._createEditableDiv(this._textbox);
@@ -119,10 +167,10 @@
                 for (var i = 0; i < this._buttons.length; i++) {
                     $addHandler(this._buttons[i], "click", this._btnClickHandler);
                 }
+
             },
 
             _dispose: function () {
-
                 $removeHandler(textbox._element, "blur", this._textBox_onblur);
                 $removeHandler(this._editableDiv, "blur", this._editableDiv_onblur);
                 $removeHandler(document.forms[0], "submit", this._editableDiv_submit);
@@ -137,7 +185,6 @@
             _createContainer: function () {
                 var e = this.get_element();
                 this._container = $common.createElementFromTemplate(this._containerTemplate, e.parentNode);
-
                 $common.wrapElement(textbox._element, this._container, this._container);
             },
 
@@ -146,13 +193,13 @@
             },
 
             _createButton: function () {
-                for (var i = 0; i < this._button_list.length; i++) {
+                for (i = 0; i < this._ToolbarButtons.length; i++) {
                     var _btn = $common.createElementFromTemplate(this._buttonTemplate, this._topButtonContainer);
-                    _btn.setAttribute("id", this._button_list[i].Name);
-                    _btn.setAttribute("name", this._button_list[i].Name);
-                    _btn.setAttribute("title", this._button_list[i].Title);
+                    _btn.setAttribute("id", this._ToolbarButtons[i].Name);
+                    _btn.setAttribute("name", this._ToolbarButtons[i].Name);
+                    _btn.setAttribute("title", this._ToolbarButtons[i].Title);
                     _btn.setAttribute("unselectable", "on");
-                    _btn.style.backgroundPosition = (this._button_list[i].X * -1) + 'px ' + (this._button_list[i].Y * -1) + 'px';
+                    _btn.style.backgroundPosition = this._ToolbarButtons[i].Offset;
                     Array.add(this._buttons, _btn);
                 }
             },
@@ -161,8 +208,7 @@
                 var e = this.get_element();
 
                 this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
-                var decodeHtml = this._decodeText(textbox._element.value);
-                this._editableDiv.innerHTML = textbox._element.value = decodeHtml;
+                this._editableDiv.innerHTML = textbox._element.value;
 
                 var bounds = $common.getBounds(textbox._element);
                 $common.setSize(this._editableDiv, {
@@ -171,13 +217,7 @@
                 });
 
                 $common.setVisible(textbox._element, false);
-
             },
-
-
-
-
-
 
             _editableDiv_onblur: function () {
                 textbox._element.value = this.innerHTML;
@@ -191,23 +231,18 @@
                 var encodedHtml = textbox._element.value.replace(/&/ig, "&amp;").replace(/</ig, "&lt;").replace(/>/ig, "&gt;").replace(/\"/ig, "&quot;").replace(/\xA0/ig, "&nbsp;");
                 textbox._element.value = encodedHtml;
             },
-                        
-            _encodeText: function (str) {
-                return str.replace(/&/ig, "&amp;").replace(/</ig, "&lt;").replace(/>/ig, "&gt;").replace(/\"/ig, "&quot;").replace(/\xA0/ig, "&nbsp;");
-            },
 
-            _decodeText: function (str) {
-                return str.replace(/&amp;/ig, "&").replace(/&lt;/ig, "<").replace(/&gt;/ig, ">").replace(/&quot;/ig, "\"").replace(/&nbsp;/ig, "\xA0");
-            },
+
 
             _executeCommand: function (command) {
-                            
+
                 switch (command.target.title.toUpperCase()) {
                     case "BOLD":
-                        document.execCommand('Bold');
+                        document.execCommand('styleWithCSS', 0, false);
+                        document.execCommand('Bold', false, null);
                         break;
                     case "ITALIC":
-                        document.execCommand('Italic');
+                        document.execCommand('Italic', false, null);
                         break;
                     case "UNDERLINE":
                         document.execCommand('Underline');
@@ -230,38 +265,65 @@
                     case "JUSTIFY CENTER":
                         document.execCommand('JustifyCenter');
                         break;
-                    case "ORDERED LIST":
+                    case "INSERT ORDERED LIST":
                         document.execCommand('insertOrderedList');
                         break;
-                    case "BULLETED LIST":
+                    case "INSERT UNORDERED LIST":
                         document.execCommand('insertUnorderedList');
                         break;
                 }
             },
 
-            _buttonInfo: function (_name, _title, _index, _x, _y) {
-                this.Index = _index;
-                this.X = _x;
-                this.Y = _y;
-                this.Name = 'btn_' + _name;
-                this.Title = _title;
+            get_ButtonWidth: function () {
+                return this._ButtonWidth;
             },
 
-            get_ToolbarContent: function () {
-                return this._ToolbarContent;
-            },
-
-            set_ToolbarContent: function (value) {
-                if (this._ToolbarContent != value) {
-                    this._ToolbarContent = value;
+            set_ButtonWidth: function (value) {
+                if (this._ButtonWidth != value) {
+                    this._ButtonWidth = value;
+                    this.raisePropertyChanged("ButtonWidth");
                 }
-                this.raisePropertyChanged("ToolbarContent");
+            },
+
+            get_ButtonHeight: function () {
+                return this._ButtonHeight;
+            },
+
+            set_ButtonHeight: function (value) {
+                if (this._ButtonHeight != value) {
+                    this._ButtonHeight = value;
+                    this.raisePropertyChanged("ButtonHeight");
+                }
+            },
+
+            get_ToolbarButtons: function () {
+                return this._ToolbarButtons;
+            },
+
+            set_ToolbarButtons: function (value) {
+                if (this._ToolbarButtons != value) {
+                    this._ToolbarButtons = value;
+                    this.raisePropertyChanged("ToolbarButtons");
+                }
+
+            },
+
+            get_Text: function () {
+                return this._Text;
+            },
+
+            set_Text: function (value) {
+                if (this._Text != value) {
+                    this._Text = value;
+                    this.raisePropertyChanged("Text");
+                }
+
             }
 
         };
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
-        Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: "HtmlEditorExtender", parameters: [{ name: "ToolbarContent", type: "String"}] });
+        Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: "HtmlEditorExtender", parameters: [{ name: "ToolbarButtons", type: "HtmlEditorExtenderButton[]"}] });
 
     } // execute
 
