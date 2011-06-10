@@ -77,7 +77,6 @@
             /// <param name="element" type="Sys.UI.DomElement">The element to attach to</param>
             Sys.Extended.UI.HtmlEditorExtenderBehavior.initializeBase(this, [element]);
             textbox = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
-            window.document.designMode = "On";
 
             var id = this.get_id();
 
@@ -88,7 +87,8 @@
                 nodeName: "div",
                 properties: {
                     id: id + "_ExtenderContainer"
-                }
+                },
+                cssClasses: ["unselectable"]
             };
 
             this._editableTemplate = {
@@ -107,8 +107,9 @@
             };
 
             this._buttonTemplate = {
-                nodeName: "div",
+                nodeName: "input",
                 properties: {
+                    type: "button",
                     style: {
                         width: this._ButtonWidth + "px",
                         height: this._ButtonHeight + "px"
@@ -121,14 +122,7 @@
                 nodeName: "div",
                 properties: {
                     id: id + "_ExtenderButtonContainer"
-                }
-            };
-
-            this._topButtonContainerTemplate = {
-                nodeName: "div",
-                properties: {
-                    id: id + "_ExtenderButtonContainer"
-                }
+                }                
             };
 
             this._container = null;
@@ -164,8 +158,9 @@
                 $addHandler(formElement, "submit", this._editableDiv_submit, true);
 
                 this._btnClickHandler = Function.createDelegate(this, this._executeCommand);
+                
                 for (var i = 0; i < this._buttons.length; i++) {
-                    $addHandler(this._buttons[i], "click", this._btnClickHandler);
+                    $addHandler(this._buttons[i], "click", this._btnClickHandler);                
                 }
 
             },
@@ -176,7 +171,7 @@
                 $removeHandler(document.forms[0], "submit", this._editableDiv_submit);
 
                 for (var i = 0; i < this._buttons.length; i++) {
-                    $removeHandler(this._buttons[i], "click", this._btnClickHandler);
+                    $removeHandler(this._buttons[i], "click", this._btnClickHandler);                    
                 }
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
@@ -237,43 +232,42 @@
             _executeCommand: function (command) {
 
                 switch (command.target.title.toUpperCase()) {
-                    case "BOLD":
-                        document.execCommand('styleWithCSS', 0, false);
+                    case "BOLD":                        
                         document.execCommand('Bold', false, null);
                         break;
                     case "ITALIC":
                         document.execCommand('Italic', false, null);
                         break;
                     case "UNDERLINE":
-                        document.execCommand('Underline');
+                        document.execCommand('Underline', false, null);
                         break;
                     case "STRIKE THROUGH":
-                        document.execCommand('StrikeThrough');
+                        document.execCommand('StrikeThrough', false, null);
                         break;
                     case "SUB SCRIPT":
-                        document.execCommand('Subscript');
+                        document.execCommand('Subscript', false, null);
                         break;
                     case "SUPER SCRIPT":
-                        document.execCommand('Superscript');
+                        document.execCommand('Superscript', false, null);
                         break;
                     case "JUSTIFY LEFT":
-                        document.execCommand('JustifyLeft');
+                        document.execCommand('Justifyleft', false, null);
                         break;
                     case "JUSTIFY RIGHT":
-                        document.execCommand('JustifyRight');
+                        document.execCommand('Justifyright', false, null);
                         break;
                     case "JUSTIFY CENTER":
-                        document.execCommand('JustifyCenter');
+                        document.execCommand('Justifycenter', false, null);
                         break;
                     case "INSERT ORDERED LIST":
-                        document.execCommand('insertOrderedList');
+                        document.execCommand('insertOrderedList', false, null);
                         break;
                     case "INSERT UNORDERED LIST":
-                        document.execCommand('insertUnorderedList');
+                        document.execCommand('insertUnorderedList', false, null);
                         break;
                 }
             },
-
+            
             get_ButtonWidth: function () {
                 return this._ButtonWidth;
             },
