@@ -38,10 +38,14 @@ namespace AjaxControlToolkit
         }
       
         public override string Decode(string value) {
-            var result = Regex.Replace(value, "&gt;b&lt;", "<b>");            
-            result = Regex.Replace(result, "&gt;/b&lt;", "</b>");
-            result = Regex.Replace(result, "&gt;strong&lt;", "<strong>");
-            return Regex.Replace(result, "&gt;/strong&lt;", "</strong>");
+            var result = Regex.Replace(value, "&lt;b&gt;", "<b>");            
+            result = Regex.Replace(result, "&lt;/b&gt;", "</b>");
+            result = Regex.Replace(result, "&lt;B&gt;", "<b>");
+            result = Regex.Replace(result, "&lt;/B&gt;", "</b>");
+            result = Regex.Replace(result, "&lt;strong&gt;", "<strong>");
+            result = Regex.Replace(result, "&lt;/strong&gt;", "</strong>");
+            result = Regex.Replace(result, "&lt;STRONG&gt;", "<strong>");
+            return Regex.Replace(result, "&lt;/STRONG&gt;", "</strong>");
 
         }
 
@@ -58,8 +62,10 @@ namespace AjaxControlToolkit
         }
       
         public override string Decode(string value) {
-            var result = Regex.Replace(value, "&gt;i&lt;", "<i>");
-            return Regex.Replace(result, "&gt;/i&lt;", "</i>");
+            var result = Regex.Replace(value, "&lt;i&gt;", "<i>");
+            result = Regex.Replace(result, "&lt;/i&gt;", "</i>");
+            result = Regex.Replace(result, "&lt;I&gt;", "<i>");            
+            return Regex.Replace(result, "&lt;/I&gt;", "</i>");
         }
 
     }
@@ -78,8 +84,10 @@ namespace AjaxControlToolkit
 
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&gt;u&lt;", "<u>");
-            return Regex.Replace(result, "&gt;/u&lt;", "</u>");
+            var result = Regex.Replace(value, "&lt;u&gt;", "<u>");            
+            result = Regex.Replace(result, "&lt;/u&gt;", "</u>");
+            result = Regex.Replace(result, "&lt;U&gt;", "<u>");
+            return Regex.Replace(result, "&lt;/U&gt;", "</u>");
         }
 
     }
@@ -103,10 +111,14 @@ namespace AjaxControlToolkit
 
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&gt;s&lt;", "<s>");
-            result = Regex.Replace(result, "&gt;/s&lt;", "</s>");
-            result = Regex.Replace(value, "&gt;strike&lt;", "<strike>");
-            return Regex.Replace(result, "&gt;/strike&lt;", "</strike>");
+            var result = Regex.Replace(value, "&lt;s&gt;", "<s>");
+            result = Regex.Replace(result, "&lt;/s&gt;", "</s>");
+            result = Regex.Replace(result, "&lt;S&gt;", "<s>");
+            result = Regex.Replace(result, "&lt;/S&gt;", "</s>");
+            result = Regex.Replace(result, "&lt;strike&gt;", "<strike>");
+            result = Regex.Replace(result, "&lt;/strike&gt;", "</strike>");
+            result = Regex.Replace(result, "&lt;STRIKE&gt;", "<strike>");
+            return Regex.Replace(result, "&lt;/STRIKE&gt;", "</strike>");
 
         }
 
@@ -131,8 +143,10 @@ namespace AjaxControlToolkit
 
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&gt;sub&lt;", "<sub>");
-            return Regex.Replace(result, "&gt;/sub&lt;", "</sub>");
+            var result = Regex.Replace(value, "&lt;sub&gt;", "<sub>");
+            result = Regex.Replace(result, "&lt;/sub&gt;", "</sub>");
+            result = Regex.Replace(result, "&lt;SUB&gt;", "<sub>");
+            return Regex.Replace(result, "&lt;/SUB&gt;", "</sub>");
         }
 
     }
@@ -156,8 +170,10 @@ namespace AjaxControlToolkit
 
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&gt;sup&lt;", "<sup>");
-            return Regex.Replace(result, "&gt;/sup&lt;", "</sup>");
+            var result = Regex.Replace(value, "&lt;sup&gt;", "<sup>");
+            result = Regex.Replace(result, "&lt;/sup&gt;", "</sup>");
+            result = Regex.Replace(result, "&lt;SUP&gt;", "<sup>");
+            return Regex.Replace(result, "&lt;/SUP&gt;", "</sup>");
         }
 
     }
@@ -181,8 +197,14 @@ namespace AjaxControlToolkit
 
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&gt;p&lt;", "<p>");
-            return Regex.Replace(result, "&gt;/p&lt;", "</p>");
+            var result = Regex.Replace(value, "&lt;p&gt;", "<p>");
+            result = Regex.Replace(result, "&lt;/p&gt;", "</p>");
+            result = Regex.Replace(result, "&lt;P&gt;", "<p>");
+            result = Regex.Replace(result, "&lt;/P&gt;", "</p>");
+            result = Regex.Replace(result, "&lt;div&gt;", "<div>");
+            result = Regex.Replace(result, "&lt;/div&gt;", "</div>");
+            result = Regex.Replace(result, "&lt;DIV&gt;", "<div>");
+            return Regex.Replace(result, "&lt;/DIV&gt;", "</div>");
         }
 
     }
@@ -206,8 +228,14 @@ namespace AjaxControlToolkit
 
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&gt;p&lt;", "<p>");
-            return Regex.Replace(result, "&gt;/p&lt;", "</p>");
+            var result = Regex.Replace(value, "&lt;p&gt;", "<p>");
+            result = Regex.Replace(result, "&lt;/p&gt;", "</p>");
+            result = Regex.Replace(result, "&lt;P&gt;", "<p>");
+            result = Regex.Replace(result, "&lt;/P&gt;", "</p>");
+            result = Regex.Replace(result, "&lt;div&gt;", "<div>");
+            result = Regex.Replace(result, "&lt;/div&gt;", "</div>");
+            result = Regex.Replace(result, "&lt;DIV&gt;", "<div>");
+            return Regex.Replace(result, "&lt;/DIV&gt;", "</div>");
         }
 
     }
@@ -231,10 +259,18 @@ namespace AjaxControlToolkit
 
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&gt;p&lt;", "<p>");
-            result = Regex.Replace(result, "&gt;/p&lt;", "</p>");
-            result = Regex.Replace(value, "&gt;center&lt;", "<center>");
-            return Regex.Replace(result, "&gt;/center&lt;", "</center>");
+            var result = Regex.Replace(value, "&lt;p&gt;", "<p>");
+            result = Regex.Replace(result, "&lt;/p&gt;", "</p>");
+            result = Regex.Replace(result, "&lt;P&gt;", "<p>");
+            result = Regex.Replace(result, "&lt;/P&gt;", "</p>");
+            result = Regex.Replace(result, "&lt;div&gt;", "<div>");
+            result = Regex.Replace(result, "&lt;/div&gt;", "</div>");
+            result = Regex.Replace(result, "&lt;DIV&gt;", "<div>");
+            result = Regex.Replace(result, "&lt;/DIV&gt;", "</div>");
+            result = Regex.Replace(result, "&lt;center&gt;", "<center>");
+            result = Regex.Replace(result, "&lt;/center&gt;", "</center>");
+            result = Regex.Replace(result, "&lt;CENTER&gt;", "<center>");
+            return Regex.Replace(result, "&lt;/CENTER&gt;", "</center>");
         }
 
     }
@@ -258,10 +294,14 @@ namespace AjaxControlToolkit
 
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&gt;ol&lt;", "<ol>");
-            result = Regex.Replace(result, "&gt;/ol&lt;", "</ol>");
-            result = Regex.Replace(value, "&gt;l1&lt;", "<l1>");
-            return Regex.Replace(result, "&gt;/l1&lt;", "</l1>");
+            var result = Regex.Replace(value, "&lt;ol&gt;", "<ol>");
+            result = Regex.Replace(result, "&lt;/ol&gt;", "</ol>");
+            result = Regex.Replace(result, "&lt;OL&gt;", "<ol>");
+            result = Regex.Replace(result, "&lt;/OL&gt;", "</ol>");
+            result = Regex.Replace(result, "&lt;li&gt;", "<li>");
+            result = Regex.Replace(result, "&lt;/li&gt;", "</li>");
+            result = Regex.Replace(result, "&lt;LI&gt;", "<li>");
+            return Regex.Replace(result, "&lt;/LI&gt;", "</li>");
         }
 
     }
@@ -285,10 +325,14 @@ namespace AjaxControlToolkit
 
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&gt;ul&lt;", "<ul>");
-            result = Regex.Replace(result, "&gt;/ul&lt;", "</ul>");
-            result = Regex.Replace(value, "&gt;l1&lt;", "<l1>");
-            return Regex.Replace(result, "&gt;/l1&lt;", "</l1>");
+            var result = Regex.Replace(value, "&lt;ul&gt;", "<ul>");
+            result = Regex.Replace(result, "&lt;/ul&gt;", "</ul>");
+            result = Regex.Replace(result, "&lt;UL&gt;", "<ul>");
+            result = Regex.Replace(result, "&lt;/UL&gt;", "</ul>");
+            result = Regex.Replace(result, "&lt;l1&gt;", "<l1>");
+            result = Regex.Replace(result, "&lt;/l1&gt;", "</l1>");
+            result = Regex.Replace(result, "&lt;L1&gt;", "<l1>");
+            return Regex.Replace(result, "&lt;/L1&gt;", "</l1>");
         }
 
     }

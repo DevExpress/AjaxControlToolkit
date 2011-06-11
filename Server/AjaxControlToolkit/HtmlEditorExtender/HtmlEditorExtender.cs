@@ -31,16 +31,16 @@ namespace AjaxControlToolkit
             set { SetPropertyValue("ToolbarButtons", value); }
         }
 
-        [ExtenderControlProperty]
-        [DefaultValue("")]
-        public string Text
-        {
-            get { return GetPropertyValue("Text", ""); }
-            set
-            {
-                SetPropertyValue("Text", DecodeValues(value));
-            }
-        }
+        //[ExtenderControlProperty]
+        //[DefaultValue("")]
+        //public string Text
+        //{
+        //    get { return GetPropertyValue("Text", ""); }
+        //    set
+        //    {
+        //        SetPropertyValue("Text", DecodeValues(value));
+        //    }
+        //}
 
         private string DecodeValues(string value)
         {
@@ -55,18 +55,26 @@ namespace AjaxControlToolkit
         [DefaultValue(ButtonWidthDef)]
         public int ButtonWidth
         {
-            get { return GetPropertyIntValue("ButtonWidth"); }
-            set { SetPropertyIntValue("ButtonWidth", value); }
+            get { return GetPropertyValue<int>("ButtonWidth", 23); }
+            set { SetPropertyValue<int>("ButtonWidth", value); }
         }
 
         [ExtenderProvidedProperty]
         [DefaultValue(ButtonHeightDef)]
         public int ButtonHeight
         {
-            get { return GetPropertyIntValue("ButtonHeight"); }
-            set { SetPropertyIntValue("ButtonHeight", value); }
+            get { return GetPropertyValue<int>("ButtonHeight", 21); }
+            set { SetPropertyValue<int>("ButtonHeight", value); }
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            // decode values of textbox
+            TextBox txtBox = (TextBox) TargetControl;
+            txtBox.Text = DecodeValues(txtBox.Text);
+        }
     }
 
 }

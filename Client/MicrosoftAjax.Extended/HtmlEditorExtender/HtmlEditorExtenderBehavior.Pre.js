@@ -310,19 +310,19 @@
                     this.raisePropertyChanged("ToolbarButtons");
                 }
 
-            },
+            }//,
 
-            get_Text: function () {
-                return this._Text;
-            },
+//            get_Text: function () {
+//                return this._Text;
+//            },
 
-            set_Text: function (value) {
-                if (this._Text != value) {
-                    this._Text = value;
-                    this.raisePropertyChanged("Text");
-                }
+//            set_Text: function (value) {
+//                if (this._Text != value) {
+//                    this._Text = value;
+//                    this.raisePropertyChanged("Text");
+//                }
 
-            }
+//            }
 
         };
 
