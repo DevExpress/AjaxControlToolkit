@@ -7,6 +7,7 @@
 
     var scriptName = "HtmlEditorExtenderBehavior";
     var textbox = null;
+    var editableDiv = null;
 
     function execute() {
         Type.registerNamespace('Sys.Extended.UI');
@@ -122,12 +123,11 @@
                 nodeName: "div",
                 properties: {
                     id: id + "_ExtenderButtonContainer"
-                }                
+                }
             };
 
             this._container = null;
             this._ToolbarButtons = null;
-            this._editableDiv = null;
             this._topButtonContainer = null;
             this._buttons = [];
             this._btnClickHandler = null;
@@ -154,24 +154,24 @@
                     throw "Missing Form tag";
 
                 $addHandler(textbox._element, "blur", this._textBox_onblur, true);
-                $addHandler(this._editableDiv, "blur", this._editableDiv_onblur, true);
+                $addHandler(editableDiv, "blur", this._editableDiv_onblur, true);
                 $addHandler(formElement, "submit", this._editableDiv_submit, true);
 
                 this._btnClickHandler = Function.createDelegate(this, this._executeCommand);
-                
+
                 for (var i = 0; i < this._buttons.length; i++) {
-                    $addHandler(this._buttons[i], "click", this._btnClickHandler);                
+                    $addHandler(this._buttons[i], "click", this._btnClickHandler);
                 }
 
             },
 
             _dispose: function () {
                 $removeHandler(textbox._element, "blur", this._textBox_onblur);
-                $removeHandler(this._editableDiv, "blur", this._editableDiv_onblur);
+                $removeHandler(editableDiv, "blur", this._editableDiv_onblur);
                 $removeHandler(document.forms[0], "submit", this._editableDiv_submit);
 
                 for (var i = 0; i < this._buttons.length; i++) {
-                    $removeHandler(this._buttons[i], "click", this._btnClickHandler);                    
+                    $removeHandler(this._buttons[i], "click", this._btnClickHandler);
                 }
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
@@ -202,11 +202,11 @@
             _createEditableDiv: function () {
                 var e = this.get_element();
 
-                this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
-                this._editableDiv.innerHTML = textbox._element.value;
+                editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
+                editableDiv.innerHTML = textbox._element.value;
 
                 var bounds = $common.getBounds(textbox._element);
-                $common.setSize(this._editableDiv, {
+                $common.setSize(editableDiv, {
                     width: bounds.width,
                     height: bounds.height
                 });
@@ -219,11 +219,26 @@
             },
 
             _textBox_onblur: function () {
-                this._editableDiv.innerHTML = this.value;
+                editableDiv.innerHTML = this.value;
             },
 
             _editableDiv_submit: function () {
-                var encodedHtml = textbox._element.value.replace(/&/ig, "&amp;").replace(/</ig, "&lt;").replace(/>/ig, "&gt;").replace(/\"/ig, "&quot;").replace(/\xA0/ig, "&nbsp;");
+                var char = 3;
+                var sel = null;
+                editableDiv.focus();
+                if (Sys.Browser.agent != Sys.Browser.Firefox) {
+                    if (document.selection) {
+                        sel = document.selection.createRange();
+                        sel.moveStart('character', char);
+                        sel.select();
+                    }
+                    else {
+                        sel = window.getSelection();
+                        sel.collapse(editableDiv.firstChild, char);
+                    }
+                }
+                                
+                var encodedHtml = editableDiv.innerHTML.replace(/&/ig, "&amp;").replace(/</ig, "&lt;").replace(/>/ig, "&gt;").replace(/\"/ig, "&quot;").replace(/\xA0/ig, "&nbsp;");
                 textbox._element.value = encodedHtml;
             },
 
@@ -231,8 +246,14 @@
 
             _executeCommand: function (command) {
 
+                var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox;
+
+                if (isFireFox) {
+                    document.execCommand("styleWithCSS", false, false);
+                }
+
                 switch (command.target.title.toUpperCase()) {
-                    case "BOLD":                        
+                    case "BOLD":
                         document.execCommand('Bold', false, null);
                         break;
                     case "ITALIC":
@@ -267,7 +288,7 @@
                         break;
                 }
             },
-            
+
             get_ButtonWidth: function () {
                 return this._ButtonWidth;
             },
@@ -300,7 +321,7 @@
                     this.raisePropertyChanged("ToolbarButtons");
                 }
 
-            }//,
+            } //,
 
 
 

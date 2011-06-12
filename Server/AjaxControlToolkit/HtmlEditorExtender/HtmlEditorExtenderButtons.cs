@@ -46,7 +46,6 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "&lt;/strong&gt;", "</strong>");
             result = Regex.Replace(result, "&lt;STRONG&gt;", "<strong>");
             return Regex.Replace(result, "&lt;/STRONG&gt;", "</strong>");
-
         }
 
     }
@@ -64,8 +63,16 @@ namespace AjaxControlToolkit
         public override string Decode(string value) {
             var result = Regex.Replace(value, "&lt;i&gt;", "<i>");
             result = Regex.Replace(result, "&lt;/i&gt;", "</i>");
-            result = Regex.Replace(result, "&lt;I&gt;", "<i>");            
-            return Regex.Replace(result, "&lt;/I&gt;", "</i>");
+            result = Regex.Replace(result, "&lt;I&gt;", "<i>");
+            result = Regex.Replace(result, "&lt;/I&gt;", "</i>");
+            result = Regex.Replace(result, "&lt;em&gt;", "<em>");
+            result = Regex.Replace(result, "&lt;/em&gt;", "</em>");
+            result = Regex.Replace(result, "&lt;EM&gt;", "<EM>");
+            result = Regex.Replace(result, "&lt;/EM&gt;", "</EM>");
+            result = Regex.Replace(result, "&lt;span", "<span>");
+            result = Regex.Replace(result, "&lt;/span&gt;", "</span>");
+            result = Regex.Replace(result, "&lt;SPAN", "<span>");
+            return Regex.Replace(result, "&lt;/SPAN&gt;", "</span>");
         }
 
     }
@@ -87,7 +94,11 @@ namespace AjaxControlToolkit
             var result = Regex.Replace(value, "&lt;u&gt;", "<u>");            
             result = Regex.Replace(result, "&lt;/u&gt;", "</u>");
             result = Regex.Replace(result, "&lt;U&gt;", "<u>");
-            return Regex.Replace(result, "&lt;/U&gt;", "</u>");
+            result = Regex.Replace(result, "&lt;/U&gt;", "</u>");
+            result = Regex.Replace(result, "&lt;span", "<span>");
+            result = Regex.Replace(result, "&lt;/span&gt;", "</span>");
+            result = Regex.Replace(result, "&lt;SPAN", "<span>");
+            return Regex.Replace(result, "&lt;/SPAN&gt;", "</span>");
         }
 
     }
@@ -198,12 +209,19 @@ namespace AjaxControlToolkit
         public override string Decode(string value)
         {
             var result = Regex.Replace(value, "&lt;p&gt;", "<p>");
+            result = Regex.Replace(result, "&lt;p align=&quot;left&quot;&gt;", "<p align=\"left\">");
+            result = Regex.Replace(result, "&lt;p align=left&gt;", "<p align=left>");
+            result = Regex.Replace(result, "&lt;P align=left&gt;", "<p align=left>");
+            result = Regex.Replace(result, "&lt;p style=&quot;text-align: left;&quot;&gt;", "<p style=\"text-align: left;\">");
             result = Regex.Replace(result, "&lt;/p&gt;", "</p>");
             result = Regex.Replace(result, "&lt;P&gt;", "<p>");
             result = Regex.Replace(result, "&lt;/P&gt;", "</p>");
             result = Regex.Replace(result, "&lt;div&gt;", "<div>");
+            result = Regex.Replace(result, "&lt;div align=&quot;left&quot;&gt;", "<div align=\"left\">");   
+            result = Regex.Replace(result, "&lt;div align=left&gt;", "<div align=left>");
+            result = Regex.Replace(result, "&lt;div style=&quot;text-align: left;&quot;&gt;", "<div style=\"text-align: left;\">");
             result = Regex.Replace(result, "&lt;/div&gt;", "</div>");
-            result = Regex.Replace(result, "&lt;DIV&gt;", "<div>");
+            result = Regex.Replace(result, "&lt;DIV align=&quot;left&quot;&gt;", "<div align=\"left\">");
             return Regex.Replace(result, "&lt;/DIV&gt;", "</div>");
         }
 
@@ -229,12 +247,19 @@ namespace AjaxControlToolkit
         public override string Decode(string value)
         {
             var result = Regex.Replace(value, "&lt;p&gt;", "<p>");
+            result = Regex.Replace(result, "&lt;p align=&quot;right&quot;&gt;", "<p align=\"right\">");
+            result = Regex.Replace(result, "&lt;p align=right&gt;", "<p align=right>");
+            result = Regex.Replace(result, "&lt;P align=right&gt;", "<p align=right>");
+            result = Regex.Replace(result, "&lt;p style=&quot;text-align: right;&quot;&gt;", "<p style=\"text-align: right;\">");
             result = Regex.Replace(result, "&lt;/p&gt;", "</p>");
             result = Regex.Replace(result, "&lt;P&gt;", "<p>");
             result = Regex.Replace(result, "&lt;/P&gt;", "</p>");
             result = Regex.Replace(result, "&lt;div&gt;", "<div>");
+            result = Regex.Replace(result, "&lt;div align=&quot;right&quot;&gt;", "<div align=\"right\">");
+            result = Regex.Replace(result, "&lt;div align=right&gt;", "<div align=right>");
+            result = Regex.Replace(result, "&lt;div style=&quot;text-align: right;&quot;&gt;", "<div style=\"text-align: right;\">");
             result = Regex.Replace(result, "&lt;/div&gt;", "</div>");
-            result = Regex.Replace(result, "&lt;DIV&gt;", "<div>");
+            result = Regex.Replace(result, "&lt;DIV align=&quot;right&quot;&gt;", "<div align=\"right\">");
             return Regex.Replace(result, "&lt;/DIV&gt;", "</div>");
         }
 
@@ -260,12 +285,19 @@ namespace AjaxControlToolkit
         public override string Decode(string value)
         {
             var result = Regex.Replace(value, "&lt;p&gt;", "<p>");
+            result = Regex.Replace(result, "&lt;p align=&quot;center&quot;&gt;", "<p align=\"center\">");
+            result = Regex.Replace(result, "&lt;p align=center&gt;", "<p align=center>");
+            result = Regex.Replace(result, "&lt;P align=center&gt;", "<p align=center>");
+            result = Regex.Replace(result, "&lt;p style=&quot;text-align: center;&quot;&gt;", "<p style=\"text-align: center;\">");
             result = Regex.Replace(result, "&lt;/p&gt;", "</p>");
             result = Regex.Replace(result, "&lt;P&gt;", "<p>");
             result = Regex.Replace(result, "&lt;/P&gt;", "</p>");
             result = Regex.Replace(result, "&lt;div&gt;", "<div>");
+            result = Regex.Replace(result, "&lt;div align=&quot;center&quot;&gt;", "<div align=\"center\">");
+            result = Regex.Replace(result, "&lt;div align=center&gt;", "<div align=center>");
+            result = Regex.Replace(result, "&lt;div style=&quot;text-align: center;&quot;&gt;", "<div style=\"text-align: center;\">");
             result = Regex.Replace(result, "&lt;/div&gt;", "</div>");
-            result = Regex.Replace(result, "&lt;DIV&gt;", "<div>");
+            result = Regex.Replace(result, "&lt;DIV align=&quot;center&quot;&gt;", "<div align=\"center\">");
             result = Regex.Replace(result, "&lt;/DIV&gt;", "</div>");
             result = Regex.Replace(result, "&lt;center&gt;", "<center>");
             result = Regex.Replace(result, "&lt;/center&gt;", "</center>");
@@ -299,6 +331,15 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "&lt;OL&gt;", "<ol>");
             result = Regex.Replace(result, "&lt;/OL&gt;", "</ol>");
             result = Regex.Replace(result, "&lt;li&gt;", "<li>");
+            result = Regex.Replace(result, "&lt;l1align=&quot;left&quot;&gt;", "<l1 align=\"left\">");
+            result = Regex.Replace(result, "&lt;l1align=&quot;center&quot;&gt;", "<l1 align=\"center\">");
+            result = Regex.Replace(result, "&lt;l1align=&quot;right&quot;&gt;", "<l1 align=\"right\">");
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: left;&quot;&gt;", "<l1 style=\"text-align: left;\">");
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: right;&quot;&gt;", "<l1 style=\"text-align: right;\">");
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: center;&quot;&gt;", "<l1 style=\"text-align: center;\">");
+            result = Regex.Replace(result, "&lt;l1align=left&gt;", "<l1 align=left>");
+            result = Regex.Replace(result, "&lt;l1align=center&gt;", "<l1 align=center>");
+            result = Regex.Replace(result, "&lt;l1align=right&gt;", "<l1 align=right>");
             result = Regex.Replace(result, "&lt;/li&gt;", "</li>");
             result = Regex.Replace(result, "&lt;LI&gt;", "<li>");
             return Regex.Replace(result, "&lt;/LI&gt;", "</li>");
@@ -330,6 +371,15 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "&lt;UL&gt;", "<ul>");
             result = Regex.Replace(result, "&lt;/UL&gt;", "</ul>");
             result = Regex.Replace(result, "&lt;l1&gt;", "<l1>");
+            result = Regex.Replace(result, "&lt;l1align=&quot;left&quot;&gt;", "<l1 align=\"left\">");
+            result = Regex.Replace(result, "&lt;l1align=&quot;center&quot;&gt;", "<l1 align=\"center\">");
+            result = Regex.Replace(result, "&lt;l1align=&quot;right&quot;&gt;", "<l1 align=\"right\">");
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: left;&quot;&gt;", "<l1 style=\"text-align: left;\">");
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: right;&quot;&gt;", "<l1 style=\"text-align: right;\">");
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: center;&quot;&gt;", "<l1 style=\"text-align: center;\">");
+            result = Regex.Replace(result, "&lt;l1align=left&gt;", "<l1 align=left>");
+            result = Regex.Replace(result, "&lt;l1align=center&gt;", "<l1 align=center>");
+            result = Regex.Replace(result, "&lt;l1align=right&gt;", "<l1 align=right>");
             result = Regex.Replace(result, "&lt;/l1&gt;", "</l1>");
             result = Regex.Replace(result, "&lt;L1&gt;", "<l1>");
             return Regex.Replace(result, "&lt;/L1&gt;", "</l1>");

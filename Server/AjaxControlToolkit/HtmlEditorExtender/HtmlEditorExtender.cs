@@ -4,6 +4,7 @@ using AjaxControlToolkit;
 using System.ComponentModel;
 using System.Text;
 using System;
+using System.Text.RegularExpressions;
 
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.js", "text/javascript")]
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.debug.js", "text/javascript")]
@@ -48,7 +49,17 @@ namespace AjaxControlToolkit
             {
                 value = button.Decode(value);
             }
+            Decode(value);
             return value;
+        }
+
+        private string Decode(string value)
+        {
+            var result = Regex.Replace(value, "&lt;br&gt;", "</br>");
+            result = Regex.Replace(result, "&lt;/br&gt;", "</br>");
+            result = Regex.Replace(result, "&lt;BR&gt;", "</br>");
+            result = Regex.Replace(result, "&lt;/BR&gt;", "</br>");                      
+            return result;
         }
 
         [ExtenderProvidedProperty]

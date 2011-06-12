@@ -8,6 +8,7 @@
     // client script loader
     var scriptName = "HtmlEditorExtenderBehavior";
     var textbox = null;
+    var editableDiv = null;
 
     function execute() {
         Type.registerNamespace('Sys.Extended.UI');
@@ -123,12 +124,12 @@
                 nodeName: "div",
                 properties: {
                     id: id + "_ExtenderButtonContainer"
-                }                
+                }
             };
 
             this._container = null;
             this._ToolbarButtons = null;
-            this._editableDiv = null;
+            //this._editableDiv = null;
             this._topButtonContainer = null;
             this._buttons = [];
             this._btnClickHandler = null;
@@ -155,26 +156,28 @@
                 if (formElement == null)
                     throw "Missing Form tag";
 
+                //this_FormSubmitHandler = Function.createDelegate(this, this._editableDiv_submit(this._editableDiv));
                 // handlers
                 $addHandler(textbox._element, "blur", this._textBox_onblur, true);
-                $addHandler(this._editableDiv, "blur", this._editableDiv_onblur, true);
+                $addHandler(editableDiv, "blur", this._editableDiv_onblur, true);
                 $addHandler(formElement, "submit", this._editableDiv_submit, true);
+                //                $addHandler(formElement, "submit", this_FormSubmitHandler);
 
                 this._btnClickHandler = Function.createDelegate(this, this._executeCommand);
-                
+
                 for (var i = 0; i < this._buttons.length; i++) {
-                    $addHandler(this._buttons[i], "click", this._btnClickHandler);                
+                    $addHandler(this._buttons[i], "click", this._btnClickHandler);
                 }
 
             },
 
             _dispose: function () {
                 $removeHandler(textbox._element, "blur", this._textBox_onblur);
-                $removeHandler(this._editableDiv, "blur", this._editableDiv_onblur);
+                $removeHandler(editableDiv, "blur", this._editableDiv_onblur);
                 $removeHandler(document.forms[0], "submit", this._editableDiv_submit);
 
                 for (var i = 0; i < this._buttons.length; i++) {
-                    $removeHandler(this._buttons[i], "click", this._btnClickHandler);                    
+                    $removeHandler(this._buttons[i], "click", this._btnClickHandler);
                 }
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
@@ -205,11 +208,11 @@
             _createEditableDiv: function () {
                 var e = this.get_element();
 
-                this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
-                this._editableDiv.innerHTML = textbox._element.value;
+                editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
+                editableDiv.innerHTML = textbox._element.value;
 
                 var bounds = $common.getBounds(textbox._element);
-                $common.setSize(this._editableDiv, {
+                $common.setSize(editableDiv, {
                     width: bounds.width,
                     height: bounds.height
                 });
@@ -222,12 +225,27 @@
             },
 
             _textBox_onblur: function () {
-                this._editableDiv.innerHTML = this.value;
+                editableDiv.innerHTML = this.value;
             },
 
             _editableDiv_submit: function () {
-                //html encode
-                var encodedHtml = textbox._element.value.replace(/&/ig, "&amp;").replace(/</ig, "&lt;").replace(/>/ig, "&gt;").replace(/\"/ig, "&quot;").replace(/\xA0/ig, "&nbsp;");
+                //html encode                                         
+                var char = 3;
+                var sel = null;
+                editableDiv.focus();
+                if (Sys.Browser.agent != Sys.Browser.Firefox) {
+                    if (document.selection) {
+                        sel = document.selection.createRange();
+                        sel.moveStart('character', char);
+                        sel.select();
+                    }
+                    else {
+                        sel = window.getSelection();
+                        sel.collapse(editableDiv.firstChild, char);
+                    }
+                }
+                                
+                var encodedHtml = editableDiv.innerHTML.replace(/&/ig, "&amp;").replace(/</ig, "&lt;").replace(/>/ig, "&gt;").replace(/\"/ig, "&quot;").replace(/\xA0/ig, "&nbsp;");
                 textbox._element.value = encodedHtml;
             },
 
@@ -241,43 +259,59 @@
 
             _executeCommand: function (command) {
 
+                var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox;
+
+                if (isFireFox) {
+                    document.execCommand("styleWithCSS", false, false);
+                }
+
                 switch (command.target.title.toUpperCase()) {
-                    case "BOLD":                        
+                    case "BOLD":
                         document.execCommand('Bold', false, null);
                         break;
                     case "ITALIC":
+                        //document.execCommand("styleWithCSS", false, false);
                         document.execCommand('Italic', false, null);
                         break;
                     case "UNDERLINE":
+                        //document.execCommand("styleWithCSS", false, false);
                         document.execCommand('Underline', false, null);
                         break;
                     case "STRIKE THROUGH":
+                        //document.execCommand("styleWithCSS", false, false);
                         document.execCommand('StrikeThrough', false, null);
                         break;
                     case "SUB SCRIPT":
+                        //document.execCommand("styleWithCSS", false, false);
                         document.execCommand('Subscript', false, null);
                         break;
                     case "SUPER SCRIPT":
+                        //document.execCommand("styleWithCSS", false, false);
                         document.execCommand('Superscript', false, null);
                         break;
                     case "JUSTIFY LEFT":
+                        //document.execCommand("styleWithCSS", false, false);
                         document.execCommand('Justifyleft', false, null);
                         break;
                     case "JUSTIFY RIGHT":
+                        //document.execCommand("styleWithCSS", false, false);
                         document.execCommand('Justifyright', false, null);
                         break;
                     case "JUSTIFY CENTER":
+                        //document.execCommand("styleWithCSS", false, false);
                         document.execCommand('Justifycenter', false, null);
                         break;
                     case "INSERT ORDERED LIST":
+                        //document.execCommand("styleWithCSS", false, false);
                         document.execCommand('insertOrderedList', false, null);
                         break;
                     case "INSERT UNORDERED LIST":
+                        //document.execCommand("styleWithCSS", false, false);
                         document.execCommand('insertUnorderedList', false, null);
                         break;
                 }
             },
-            
+
             get_ButtonWidth: function () {
                 return this._ButtonWidth;
             },
@@ -310,19 +344,19 @@
                     this.raisePropertyChanged("ToolbarButtons");
                 }
 
-            }//,
+            } //,
 
-//            get_Text: function () {
-//                return this._Text;
-//            },
+            //            get_Text: function () {
+            //                return this._Text;
+            //            },
 
-//            set_Text: function (value) {
-//                if (this._Text != value) {
-//                    this._Text = value;
-//                    this.raisePropertyChanged("Text");
-//                }
+            //            set_Text: function (value) {
+            //                if (this._Text != value) {
+            //                    this._Text = value;
+            //                    this.raisePropertyChanged("Text");
+            //                }
 
-//            }
+            //            }
 
         };
 
