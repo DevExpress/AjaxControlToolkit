@@ -1,1 +1,21 @@
-﻿.ajax__html_editor_extender_button { background:url(<%=WebResource("HtmlEditorExtender.Images.html-editor-buttons.png")%>) no-repeat; cursor:pointer; display:block; float:left}
+﻿.ajax__html_editor_extender_button { background:url(<%=WebResource("HtmlEditorExtender.Images.html-editor-buttons.png")%>) no-repeat; cursor:pointer; display:block; float:left; border: none; background-color:#c2c2c2; }
+.ajax__html_editor_extender_button:hover { background-color:#3c8aff; }
+.ajax__html_editor_extender_buttoncontainer
+{
+    background-color:#F0F0F0;  
+    height:21px;
+    padding: 2px 2px 2px 2px; 
+    border: 1px solid #c2c2c2;
+    width:100%; 
+}
+.ajax__html_editor_extender_texteditor
+{
+    border-width:1px;
+    border-color:#c2c2c2;
+    border-style:solid;
+    padding: 2px 2px 2px 2px;
+    border-top:none;
+}
+.ajax__html_editor_extender_container
+{  
+}

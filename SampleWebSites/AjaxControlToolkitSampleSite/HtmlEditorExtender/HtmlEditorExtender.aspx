@@ -10,7 +10,7 @@
             HtmlExtender Demonstration</div>
         <div>
             <br />            
-            <asp:TextBox runat="server" ID="txtBox1" Width="300px" Height="75px" Text="Hello world" /><br />
+            <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10" Text="Hello <b>world</b>" /><br />
             <ajaxToolkit:HtmlEditorExtender ID="htmlExtender1" TargetControlID="txtBox1" runat="server">
             </ajaxToolkit:HtmlEditorExtender>            
             <br />

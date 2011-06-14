@@ -6,14 +6,29 @@ using System.Text.RegularExpressions;
 
 namespace AjaxControlToolkit
 {
+    /// <summary>
+    /// All toolbar buttons for HtmlEditorExtender will be derived from this class.
+    /// </summary>
     public abstract class HtmlEditorExtenderButton
     {
-        public abstract string Name {  get; }
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public abstract string CommandName {  get; }
 
-        public virtual string Title { get { return Name; } }
+        /// <summary>
+        /// get value to show tooltip for the button
+        /// </summary>
+        public virtual string Tooltip { get { return CommandName; } }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public abstract int IconIndex { get; }
 
+        /// <summary>
+        /// Get offset value
+        /// </summary>
         public string Offset
         {
             get
@@ -22,393 +37,507 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Abstract method that will be overridden by child classes to implement decoding 
+        /// for tags associated to a button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public abstract string Decode(string value);
     }
 
     #region button classes
 
+    /// <summary>
+    /// Bold class represents to bold tag
+    /// </summary>
     public class Bold : HtmlEditorExtenderButton 
     {
-        public override string Name {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
             get {return "Bold"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex {
             get {return 2; }
         }
-      
+
+        /// <summary>         
+        /// Decode tags associated to a bold button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value) {
-            var result = Regex.Replace(value, "&lt;b&gt;", "<b>");            
-            result = Regex.Replace(result, "&lt;/b&gt;", "</b>");
-            result = Regex.Replace(result, "&lt;B&gt;", "<b>");
-            result = Regex.Replace(result, "&lt;/B&gt;", "</b>");
-            result = Regex.Replace(result, "&lt;strong&gt;", "<strong>");
-            result = Regex.Replace(result, "&lt;/strong&gt;", "</strong>");
-            result = Regex.Replace(result, "&lt;STRONG&gt;", "<strong>");
-            return Regex.Replace(result, "&lt;/STRONG&gt;", "</strong>");
+            var result = Regex.Replace(value, "&lt;b&gt;", "<b>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;/b&gt;", "</b>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;strong&gt;", "<strong>", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/strong&gt;", "</strong>", RegexOptions.IgnoreCase);            
         }
 
     }
 
+    /// <summary>
+    /// Italic class represents to italic tag
+    /// </summary>
     public class Italic : HtmlEditorExtenderButton 
     {
-        public override string Name {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
             get {return "Italic"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex {
             get {return 3; }
         }
-      
+
+        /// <summary>         
+        /// Decode tags associated to a Italic button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value) {
-            var result = Regex.Replace(value, "&lt;i&gt;", "<i>");
-            result = Regex.Replace(result, "&lt;/i&gt;", "</i>");
-            result = Regex.Replace(result, "&lt;I&gt;", "<i>");
-            result = Regex.Replace(result, "&lt;/I&gt;", "</i>");
-            result = Regex.Replace(result, "&lt;em&gt;", "<em>");
-            result = Regex.Replace(result, "&lt;/em&gt;", "</em>");
-            result = Regex.Replace(result, "&lt;EM&gt;", "<EM>");
-            result = Regex.Replace(result, "&lt;/EM&gt;", "</EM>");
-            result = Regex.Replace(result, "&lt;span", "<span>");
-            result = Regex.Replace(result, "&lt;/span&gt;", "</span>");
-            result = Regex.Replace(result, "&lt;SPAN", "<span>");
-            return Regex.Replace(result, "&lt;/SPAN&gt;", "</span>");
+            var result = Regex.Replace(value, "&lt;i&gt;", "<i>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;/i&gt;", "</i>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;em&gt;", "<em>", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/em&gt;", "</em>", RegexOptions.IgnoreCase);            
         }
 
     }
 
+    /// <summary>
+    /// Underline class represents to underline tag
+    /// </summary>
     public class Underline : HtmlEditorExtenderButton
     {
-        public override string Name
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
         {
             get { return "Underline"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex
         {
             get { return 4; }
         }
 
+        /// <summary>         
+        /// Decode tags associated to a Underline button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;u&gt;", "<u>");            
-            result = Regex.Replace(result, "&lt;/u&gt;", "</u>");
-            result = Regex.Replace(result, "&lt;U&gt;", "<u>");
-            result = Regex.Replace(result, "&lt;/U&gt;", "</u>");
-            result = Regex.Replace(result, "&lt;span", "<span>");
-            result = Regex.Replace(result, "&lt;/span&gt;", "</span>");
-            result = Regex.Replace(result, "&lt;SPAN", "<span>");
-            return Regex.Replace(result, "&lt;/SPAN&gt;", "</span>");
+            var result = Regex.Replace(value, "&lt;u&gt;", "<u>", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/u&gt;", "</u>", RegexOptions.IgnoreCase);            
         }
 
     }
 
+    /// <summary>
+    /// StrikeThrough class represents to Strike Through tag
+    /// </summary>
     public class StrikeThrough : HtmlEditorExtenderButton
     {
-        public override string Name
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
         {
             get { return "StrikeThrough"; }
         }
 
-        public override string Title
+        /// <summary>
+        /// Get tooltip associated to this button
+        /// </summary>
+        public override string Tooltip
         {
             get { return "Strike Through"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex
         {
             get { return 5; }
         }
 
+        /// <summary>         
+        /// Decode tags associated to a stikethrough button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;s&gt;", "<s>");
-            result = Regex.Replace(result, "&lt;/s&gt;", "</s>");
-            result = Regex.Replace(result, "&lt;S&gt;", "<s>");
-            result = Regex.Replace(result, "&lt;/S&gt;", "</s>");
-            result = Regex.Replace(result, "&lt;strike&gt;", "<strike>");
-            result = Regex.Replace(result, "&lt;/strike&gt;", "</strike>");
-            result = Regex.Replace(result, "&lt;STRIKE&gt;", "<strike>");
-            return Regex.Replace(result, "&lt;/STRIKE&gt;", "</strike>");
-
+            var result = Regex.Replace(value, "&lt;s&gt;", "<s>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;/s&gt;", "</s>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;strike&gt;", "<strike>", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/strike&gt;", "</strike>", RegexOptions.IgnoreCase);
         }
 
     }
 
+    /// <summary>
+    /// Subscript class represents to Subscript tag
+    /// </summary>
     public class Subscript : HtmlEditorExtenderButton
     {
-        public override string Name
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
         {
             get { return "Subscript"; }
         }
 
-        public override string Title
+        /// <summary>
+        /// Get tooltip assciated to Subscript button
+        /// </summary>
+        public override string Tooltip
         {
             get { return "Sub Script"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex
         {
             get { return 6; }
         }
 
+        /// <summary>         
+        /// Decode tags associated to a Subscript button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;sub&gt;", "<sub>");
-            result = Regex.Replace(result, "&lt;/sub&gt;", "</sub>");
-            result = Regex.Replace(result, "&lt;SUB&gt;", "<sub>");
-            return Regex.Replace(result, "&lt;/SUB&gt;", "</sub>");
+            var result = Regex.Replace(value, "&lt;sub&gt;", "<sub>", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/sub&gt;", "</sub>", RegexOptions.IgnoreCase);            
         }
 
     }
 
+    /// <summary>
+    /// Superscript class represents to Superscript tag
+    /// </summary>
     public class Superscript : HtmlEditorExtenderButton
     {
-        public override string Name
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
         {
             get { return "Superscript"; }
         }
 
-        public override string Title
+        /// <summary>
+        /// Get tooltip assciated to Superscript button
+        /// </summary>
+        public override string Tooltip
         {
             get { return "Super Script"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex
         {
             get { return 7; }
         }
 
+        /// <summary>         
+        /// Decode tags associated to a Superscript button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;sup&gt;", "<sup>");
-            result = Regex.Replace(result, "&lt;/sup&gt;", "</sup>");
-            result = Regex.Replace(result, "&lt;SUP&gt;", "<sup>");
-            return Regex.Replace(result, "&lt;/SUP&gt;", "</sup>");
+            var result = Regex.Replace(value, "&lt;sup&gt;", "<sup>", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/sup&gt;", "</sup>", RegexOptions.IgnoreCase);            
         }
 
     }
 
+    /// <summary>
+    /// JustifyLeft class represents to JustifyLeft tag
+    /// </summary>
     public class JustifyLeft : HtmlEditorExtenderButton
     {
-        public override string Name
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
         {
             get { return "JustifyLeft"; }
         }
 
-        public override string Title
+        /// <summary>
+        /// Get tooltip assciated to JustifyLeft button
+        /// </summary>
+        public override string Tooltip
         {
             get { return "Justify Left"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex
         {
             get { return 10; }
         }
 
+        /// <summary>         
+        /// Decode tags associated to a JustifyLeft button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;p&gt;", "<p>");
-            result = Regex.Replace(result, "&lt;p align=&quot;left&quot;&gt;", "<p align=\"left\">");
-            result = Regex.Replace(result, "&lt;p align=left&gt;", "<p align=left>");
-            result = Regex.Replace(result, "&lt;P align=left&gt;", "<p align=left>");
-            result = Regex.Replace(result, "&lt;p style=&quot;text-align: left;&quot;&gt;", "<p style=\"text-align: left;\">");
-            result = Regex.Replace(result, "&lt;/p&gt;", "</p>");
-            result = Regex.Replace(result, "&lt;P&gt;", "<p>");
-            result = Regex.Replace(result, "&lt;/P&gt;", "</p>");
-            result = Regex.Replace(result, "&lt;div&gt;", "<div>");
-            result = Regex.Replace(result, "&lt;div align=&quot;left&quot;&gt;", "<div align=\"left\">");   
-            result = Regex.Replace(result, "&lt;div align=left&gt;", "<div align=left>");
-            result = Regex.Replace(result, "&lt;div style=&quot;text-align: left;&quot;&gt;", "<div style=\"text-align: left;\">");
-            result = Regex.Replace(result, "&lt;/div&gt;", "</div>");
-            result = Regex.Replace(result, "&lt;DIV align=&quot;left&quot;&gt;", "<div align=\"left\">");
-            return Regex.Replace(result, "&lt;/DIV&gt;", "</div>");
+            var result = Regex.Replace(value, "&lt;p&gt;", "<p>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;p align=&quot;left&quot;&gt;", "<p align=\"left\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;p align=left&gt;", "<p align=left>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;p style=&quot;text-align: left;&quot;&gt;", "<p style=\"text-align: left;\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;div&gt;", "<div>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div align=&quot;left&quot;&gt;", "<div align=\"left\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div align=left&gt;", "<div align=left>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div style=&quot;text-align: left;&quot;&gt;", "<div style=\"text-align: left;\">", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/div&gt;", "</div>", RegexOptions.IgnoreCase);
+            
         }
 
     }
 
+    /// <summary>
+    /// JustifyRight class represents to JustifyRight tag
+    /// </summary>
     public class JustifyRight : HtmlEditorExtenderButton
     {
-        public override string Name
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
         {
             get { return "JustifyRight"; }
         }
 
-        public override string Title
+        /// <summary>
+        /// Get tooltip assciated to JustifyRight button
+        /// </summary>
+        public override string Tooltip
         {
             get { return "Justify Right"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex
         {
             get { return 12; }
         }
 
+        /// <summary>         
+        /// Decode tags associated to a JustifyRight button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;p&gt;", "<p>");
-            result = Regex.Replace(result, "&lt;p align=&quot;right&quot;&gt;", "<p align=\"right\">");
-            result = Regex.Replace(result, "&lt;p align=right&gt;", "<p align=right>");
-            result = Regex.Replace(result, "&lt;P align=right&gt;", "<p align=right>");
-            result = Regex.Replace(result, "&lt;p style=&quot;text-align: right;&quot;&gt;", "<p style=\"text-align: right;\">");
-            result = Regex.Replace(result, "&lt;/p&gt;", "</p>");
-            result = Regex.Replace(result, "&lt;P&gt;", "<p>");
-            result = Regex.Replace(result, "&lt;/P&gt;", "</p>");
-            result = Regex.Replace(result, "&lt;div&gt;", "<div>");
-            result = Regex.Replace(result, "&lt;div align=&quot;right&quot;&gt;", "<div align=\"right\">");
-            result = Regex.Replace(result, "&lt;div align=right&gt;", "<div align=right>");
-            result = Regex.Replace(result, "&lt;div style=&quot;text-align: right;&quot;&gt;", "<div style=\"text-align: right;\">");
-            result = Regex.Replace(result, "&lt;/div&gt;", "</div>");
-            result = Regex.Replace(result, "&lt;DIV align=&quot;right&quot;&gt;", "<div align=\"right\">");
-            return Regex.Replace(result, "&lt;/DIV&gt;", "</div>");
+            var result = Regex.Replace(value, "&lt;p&gt;", "<p>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;p align=&quot;right&quot;&gt;", "<p align=\"right\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;p align=right&gt;", "<p align=right>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;p style=&quot;text-align: right;&quot;&gt;", "<p style=\"text-align: right;\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;div&gt;", "<div>",RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div align=&quot;right&quot;&gt;", "<div align=\"right\">",RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div align=right&gt;", "<div align=right>",RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div style=&quot;text-align: right;&quot;&gt;", "<div style=\"text-align: right;\">",RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/div&gt;", "</div>",RegexOptions.IgnoreCase);
+            
         }
 
     }
 
+    /// <summary>
+    /// JustifyCenter class represents to JustifyCenter tag
+    /// </summary>
     public class JustifyCenter : HtmlEditorExtenderButton
     {
-        public override string Name
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
         {
             get { return "JustifyCenter"; }
         }
 
-        public override string Title
+        /// <summary>
+        /// Get tooltip assciated to JustifyCenter button
+        /// </summary>
+        public override string Tooltip
         {
             get { return "Justify Center"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex
         {
             get { return 11; }
         }
 
+        /// <summary>         
+        /// Decode tags associated to a JustifyCenter button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;p&gt;", "<p>");
-            result = Regex.Replace(result, "&lt;p align=&quot;center&quot;&gt;", "<p align=\"center\">");
-            result = Regex.Replace(result, "&lt;p align=center&gt;", "<p align=center>");
-            result = Regex.Replace(result, "&lt;P align=center&gt;", "<p align=center>");
-            result = Regex.Replace(result, "&lt;p style=&quot;text-align: center;&quot;&gt;", "<p style=\"text-align: center;\">");
-            result = Regex.Replace(result, "&lt;/p&gt;", "</p>");
-            result = Regex.Replace(result, "&lt;P&gt;", "<p>");
-            result = Regex.Replace(result, "&lt;/P&gt;", "</p>");
-            result = Regex.Replace(result, "&lt;div&gt;", "<div>");
-            result = Regex.Replace(result, "&lt;div align=&quot;center&quot;&gt;", "<div align=\"center\">");
-            result = Regex.Replace(result, "&lt;div align=center&gt;", "<div align=center>");
-            result = Regex.Replace(result, "&lt;div style=&quot;text-align: center;&quot;&gt;", "<div style=\"text-align: center;\">");
-            result = Regex.Replace(result, "&lt;/div&gt;", "</div>");
-            result = Regex.Replace(result, "&lt;DIV align=&quot;center&quot;&gt;", "<div align=\"center\">");
-            result = Regex.Replace(result, "&lt;/DIV&gt;", "</div>");
-            result = Regex.Replace(result, "&lt;center&gt;", "<center>");
-            result = Regex.Replace(result, "&lt;/center&gt;", "</center>");
-            result = Regex.Replace(result, "&lt;CENTER&gt;", "<center>");
-            return Regex.Replace(result, "&lt;/CENTER&gt;", "</center>");
+            var result = Regex.Replace(value, "&lt;p&gt;", "<p>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;p align=&quot;center&quot;&gt;", "<p align=\"center\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;p align=center&gt;", "<p align=center>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;p style=&quot;text-align: center;&quot;&gt;", "<p style=\"text-align: center;\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;div&gt;", "<div>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div align=&quot;center&quot;&gt;", "<div align=\"center\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div align=center&gt;", "<div align=center>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div style=&quot;text-align: center;&quot;&gt;", "<div style=\"text-align: center;\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;/div&gt;", "</div>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;center&gt;", "<center>", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/center&gt;", "</center>", RegexOptions.IgnoreCase);            
         }
 
     }
 
+    /// <summary>
+    /// insertOrderedList class represents to OrderedList tag
+    /// </summary>
     public class insertOrderedList : HtmlEditorExtenderButton
     {
-        public override string Name
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
         {
             get { return "insertOrderedList"; }
         }
 
-        public override string Title
+        /// <summary>
+        /// Get tooltip assciated to OrderedList button
+        /// </summary>
+        public override string Tooltip
         {
             get { return "Insert Ordered List"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex
         {
-            get { return 13; }
+            get { return 15; }
         }
 
+        /// <summary>         
+        /// Decode tags associated to a OrderedList button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;ol&gt;", "<ol>");
-            result = Regex.Replace(result, "&lt;/ol&gt;", "</ol>");
-            result = Regex.Replace(result, "&lt;OL&gt;", "<ol>");
-            result = Regex.Replace(result, "&lt;/OL&gt;", "</ol>");
-            result = Regex.Replace(result, "&lt;li&gt;", "<li>");
-            result = Regex.Replace(result, "&lt;l1align=&quot;left&quot;&gt;", "<l1 align=\"left\">");
-            result = Regex.Replace(result, "&lt;l1align=&quot;center&quot;&gt;", "<l1 align=\"center\">");
-            result = Regex.Replace(result, "&lt;l1align=&quot;right&quot;&gt;", "<l1 align=\"right\">");
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: left;&quot;&gt;", "<l1 style=\"text-align: left;\">");
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: right;&quot;&gt;", "<l1 style=\"text-align: right;\">");
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: center;&quot;&gt;", "<l1 style=\"text-align: center;\">");
-            result = Regex.Replace(result, "&lt;l1align=left&gt;", "<l1 align=left>");
-            result = Regex.Replace(result, "&lt;l1align=center&gt;", "<l1 align=center>");
-            result = Regex.Replace(result, "&lt;l1align=right&gt;", "<l1 align=right>");
-            result = Regex.Replace(result, "&lt;/li&gt;", "</li>");
-            result = Regex.Replace(result, "&lt;LI&gt;", "<li>");
-            return Regex.Replace(result, "&lt;/LI&gt;", "</li>");
+            var result = Regex.Replace(value, "&lt;ol&gt;", "<ol>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;/ol&gt;", "</ol>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;li&gt;", "<li>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=&quot;left&quot;&gt;", "<l1 align=\"left\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=&quot;center&quot;&gt;", "<l1 align=\"center\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=&quot;right&quot;&gt;", "<l1 align=\"right\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: left;&quot;&gt;", "<l1 style=\"text-align: left;\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: right;&quot;&gt;", "<l1 style=\"text-align: right;\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: center;&quot;&gt;", "<l1 style=\"text-align: center;\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=left&gt;", "<l1 align=left>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=center&gt;", "<l1 align=center>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=right&gt;", "<l1 align=right>", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/li&gt;", "</li>", RegexOptions.IgnoreCase);            
         }
 
     }
 
+    /// <summary>
+    /// insertUnOrderedList class represents to UnOrderedList tag
+    /// </summary>
     public class insertUnorderedList : HtmlEditorExtenderButton
     {
-        public override string Name
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
         {
             get { return "insertUnorderedList"; }
         }
 
-        public override string Title
+        /// <summary>
+        /// Get tooltip assciated to UnOrderedList button
+        /// </summary>
+        public override string Tooltip
         {
             get { return "Insert Unordered List"; }
         }
 
+        /// <summary>
+        /// Get index of icon
+        /// </summary>
         public override int IconIndex
         {
-            get { return 14; }
+            get { return 16; }
         }
 
+        /// <summary>         
+        /// Decode tags associated to a UnOrderedList button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;ul&gt;", "<ul>");
-            result = Regex.Replace(result, "&lt;/ul&gt;", "</ul>");
-            result = Regex.Replace(result, "&lt;UL&gt;", "<ul>");
-            result = Regex.Replace(result, "&lt;/UL&gt;", "</ul>");
-            result = Regex.Replace(result, "&lt;l1&gt;", "<l1>");
-            result = Regex.Replace(result, "&lt;l1align=&quot;left&quot;&gt;", "<l1 align=\"left\">");
-            result = Regex.Replace(result, "&lt;l1align=&quot;center&quot;&gt;", "<l1 align=\"center\">");
-            result = Regex.Replace(result, "&lt;l1align=&quot;right&quot;&gt;", "<l1 align=\"right\">");
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: left;&quot;&gt;", "<l1 style=\"text-align: left;\">");
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: right;&quot;&gt;", "<l1 style=\"text-align: right;\">");
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: center;&quot;&gt;", "<l1 style=\"text-align: center;\">");
-            result = Regex.Replace(result, "&lt;l1align=left&gt;", "<l1 align=left>");
-            result = Regex.Replace(result, "&lt;l1align=center&gt;", "<l1 align=center>");
-            result = Regex.Replace(result, "&lt;l1align=right&gt;", "<l1 align=right>");
-            result = Regex.Replace(result, "&lt;/l1&gt;", "</l1>");
-            result = Regex.Replace(result, "&lt;L1&gt;", "<l1>");
-            return Regex.Replace(result, "&lt;/L1&gt;", "</l1>");
+            var result = Regex.Replace(value, "&lt;ul&gt;", "<ul>",RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;/ul&gt;", "</ul>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1&gt;", "<l1>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=&quot;left&quot;&gt;", "<l1 align=\"left\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=&quot;center&quot;&gt;", "<l1 align=\"center\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=&quot;right&quot;&gt;", "<l1 align=\"right\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: left;&quot;&gt;", "<l1 style=\"text-align: left;\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: right;&quot;&gt;", "<l1 style=\"text-align: right;\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: center;&quot;&gt;", "<l1 style=\"text-align: center;\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=left&gt;", "<l1 align=left>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=center&gt;", "<l1 align=center>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;l1align=right&gt;", "<l1 align=right>", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/l1&gt;", "</l1>", RegexOptions.IgnoreCase);
+            
         }
 
     }
 
-    #endregion
-
-    public static class ButtonList
-    {
-        public static List<HtmlEditorExtenderButton> Buttons 
-        {
-            get{
-                List<HtmlEditorExtenderButton> buttonList = new List<HtmlEditorExtenderButton>();
-                buttonList.Add(new Bold());
-                buttonList.Add(new Italic());
-                buttonList.Add(new Underline());
-                buttonList.Add(new StrikeThrough());
-                buttonList.Add(new Subscript());
-                buttonList.Add(new Superscript());
-                buttonList.Add(new JustifyLeft());
-                buttonList.Add(new JustifyRight());
-                buttonList.Add(new JustifyCenter());
-                buttonList.Add(new insertOrderedList());
-                buttonList.Add(new insertUnorderedList());
-                
-                return buttonList;
-            }
-        }
-    }
+    #endregion    
 }
