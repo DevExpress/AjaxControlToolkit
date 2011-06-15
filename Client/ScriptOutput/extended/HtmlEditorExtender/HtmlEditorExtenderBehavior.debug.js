@@ -6,115 +6,289 @@
 (function () {
 
     var scriptName = "HtmlEditorExtenderBehavior";
-    var textbox = null;
 
     function execute() {
-        Type.registerNamespace('AjaxControlToolkit');
+        Type.registerNamespace('Sys.Extended.UI');       
 
-        AjaxControlToolkit.HtmlEditorExtenderBehavior = function (element) {
+        Sys.Extended.UI.HtmlEditorExtenderBehavior = function (element) {
             /// <summary>
-            /// A sample behavior which assigns text to a TextBox
+            /// Html Extender behavior which Extends TextBox 
             /// </summmary>
             /// <param name="element" type="Sys.UI.DomElement">The element to attach to</param>
-            AjaxControlToolkit.HtmlEditorExtenderBehavior.initializeBase(this, [element]);
-                       
-            textbox = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);                        
+            Sys.Extended.UI.HtmlEditorExtenderBehavior.initializeBase(this, [element]);
+            this._textbox = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
+
+            var id = this.get_id();
+
+            this._ButtonWidth = 23;
+            this._ButtonHeight = 21;
+
             this._containerTemplate = {
-                    nodeName: "div",
-                    properties: {
-                        style: {                                                                                                
-                            position: "absolute"
-                        },
-                    },                    
-                    visible: true
+                nodeName: "div",
+                properties: {
+                    id: id + "_ExtenderContainer"
+                },
+                cssClasses: ["unselectable", "ajax__html_editor_extender_container"]
             };
 
             this._editableTemplate = {
                 nodeName: "div",
                 properties: {
-                    style: {                                                                    
+                    id: id + "_ExtenderContentEditable",
+                    style: {
                         width: "100%",
                         height: "100%",
-                        backgroundColor: "transparent",                        
-                        borderStyle: "outset",
-                        overflow: "scroll"
+                        overflow: "auto",
+                        clear: "both"
                     },
-                    contentEditable: true             
-                },                           
-                visible: true
-                
+                    contentEditable: true
+                },
+                cssClasses: ["ajax__html_editor_extender_texteditor"]
             };
-            
+
+            this._buttonTemplate = {
+                nodeName: "input",
+                properties: {
+                    type: "button",
+                    style: {
+                        width: this._ButtonWidth + "px",
+                        height: this._ButtonHeight + "px"
+                    }
+                },
+                cssClasses: ["ajax__html_editor_extender_button"]
+            };
+
+            this._topButtonContainerTemplate = {
+                nodeName: "div",
+                properties: {
+                    id: id + "_ExtenderButtonContainer"
+                },
+                cssClasses: ["ajax__html_editor_extender_buttoncontainer"]
+            };
+
             this._container = null;
-            this._editableDiv = null;                                    
-            this._createContainer(this._textbox);
-            this._createEditableDiv(this._textbox);
-            $addHandler(textbox._element, "blur", this._textBox_onblur, true);
-            $addHandler(this._editableDiv, "blur", this._editableDiv_onblur, true);            
-            $addHandler(document.forms[0], "submit", this._editableDiv_submit, true);
-        }
-        
-        AjaxControlToolkit.HtmlEditorExtenderBehavior.prototype = {
-            initialize: function () {
-                AjaxControlToolkit.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
-                                                
-            },
+            this._toolbarButtons = null;
+            this._editableDiv = null;
+            this._topButtonContainer = null;
+            this._buttons = [];
+            this._btnClickHandler = null;
+            this._requested_buttons = new Array();
 
-            _createContainer: function()
-            {
-                e = this.get_element();
-                this._container = $common.createElementFromTemplate(this._containerTemplate, e.parentNode);
-                $common.setBounds(this._container, $common.getBounds(textbox._element));                
-                
-                $common.wrapElement(textbox._element, this._container, this._container);
-            },           
-            
-            _createEditableDiv: function () {
-                e = this.get_element();
-
-                this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, e.parentNode);                 
-                var decodeHtml = unescape(textbox._element.value);                
-                this._editableDiv.innerHTML = textbox._element.value = decodeHtml;
-
-                $common.setVisible(textbox._element, false);                
-                $common.wrapElement(this._editableDiv, this._container, this._container);                
-            },    
-            
-            _editableDiv_onblur: function()
-            {   
-                textbox._element.value = this.innerHTML;                
-            },
-                        
-            _textBox_onblur: function()
-            {                
-                this._editableDiv.innerHTML = this.value;
-                alert(this._editableDiv.innerHTML);
-            },
-            
-            _editableDiv_submit: function()
-            {
-                var encodedHtml = escape(textbox._element.value);                
-    	        encodedHtml = encodedHtml.replace(/\//g,"%2F");
-    	        encodedHtml = encodedHtml.replace(/\?/g,"%3F");
-    	        encodedHtml = encodedHtml.replace(/=/g,"%3D");
-    	        encodedHtml = encodedHtml.replace(/&/g,"%26");
-    	        encodedHtml = encodedHtml.replace(/@/g,"%40");
-    	        textbox._element.value = encodedHtml;                
-            },
-
-            _dispose: function() {
-                
-                $removeHandler(textbox._element, "blur", this._textBox_onblur);
-                $removeHandler(this._editableDiv, "blur", this._editableDiv_onblur);            
-                $removeHandler(document.forms[0], "submit", this._editableDiv_submit);
-
-                AjaxControlToolkit.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
+            if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
+                Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit = WebForm_OnSubmit;
+                WebForm_OnSubmit = Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit;
             }
-                         
+        }
+
+        Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
+            initialize: function () {
+                Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
+
+                var idx = 0;
+                this._button_list = new Array();
+                this._createContainer();
+                this._createTopButtonContainer();
+                this._createEditableDiv();
+                this._createButton();
+
+                var formElement = this._textbox._element.parentNode;
+                while (formElement != null && formElement.nodeName != 'FORM') {
+                    formElement = formElement.parentNode;
+                }
+
+                if (formElement == null)
+                    throw "Missing Form tag";
+
+                var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
+                var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
+                var btnClickHandler = Function.createDelegate(this, this._executeCommand);
+
+                $addHandler(this._textbox._element, "blur", delTextBox_onblur, true);
+                $addHandler(this._editableDiv, "blur", delEditableDiv_onblur, true);
+                $addHandler(this._topButtonContainer, "click", btnClickHandler);
+            },
+
+            _dispose: function () {
+                $removeHandler(this._textbox._element, "blur", delTextBox_onblur);
+                $removeHandler(this._editableDiv, "blur", delEditableDiv_onblur);
+                $removeHandler(_topButtonContainer, "click", btnClickHandler);
+
+                Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
+            },
+
+            _createContainer: function () {
+                var e = this.get_element();
+                this._container = $common.createElementFromTemplate(this._containerTemplate, e.parentNode);
+
+                var bounds = $common.getBounds(this._textbox._element);
+                $common.setSize(this._container, {
+                    width: bounds.width,
+                    height: bounds.height
+                });
+
+                $common.wrapElement(this._textbox._element, this._container, this._container);
+            },
+
+            _createTopButtonContainer: function () {
+                this._topButtonContainer = $common.createElementFromTemplate(this._topButtonContainerTemplate, this._container);
+            },
+
+            _createButton: function () {
+                for (i = 0; i < this._toolbarButtons.length; i++) {
+                    var _btn = $common.createElementFromTemplate(this._buttonTemplate, this._topButtonContainer);
+                    _btn.setAttribute("id", this._id + this._toolbarButtons[i].CommandName);
+                    _btn.setAttribute("name", this._toolbarButtons[i].CommandName);
+                    _btn.setAttribute("title", this._toolbarButtons[i].Tooltip);
+                    _btn.setAttribute("unselectable", "on");
+                    _btn.setAttribute("class", "ajax__html_editor_extender_button ajax__html_editor_extender_" + this._toolbarButtons[i].CommandName);
+                    Array.add(this._buttons, _btn);
+                }
+            },
+
+            _createEditableDiv: function () {
+                this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
+                this._editableDiv.innerHTML = this._textbox._element.value;
+                $common.setVisible(this._textbox._element, false);
+            },
+
+            _editableDiv_onblur: function () {
+                this._textbox._element.value = this.innerHTML;
+            },
+
+            _textBox_onblur: function () {
+                this._editableDiv.innerHTML = this.value;
+            },
+
+            _editableDiv_submit: function () {
+                var char = 3;
+                var sel = null;
+                this._editableDiv.focus();
+                if (Sys.Browser.agent != Sys.Browser.Firefox) {
+                    if (document.selection) {
+                        sel = document.selection.createRange();
+                        sel.moveStart('character', char);
+                        sel.select();
+                    }
+                    else {
+                        sel = window.getSelection();
+                        sel.collapse(this._editableDiv.firstChild, char);
+                    }
+                }
+                
+                var encodedHtml = this._editableDiv.innerHTML.replace(/&/ig, "&amp;").replace(/</ig, "&lt;").replace(/>/ig, "&gt;").replace(/\"/ig, "&quot;").replace(/\xA0/ig, "&nbsp;");                
+                encodedHtml = encodedHtml.replace(/&lt;STRONG&gt;/ig, "&lt;b&gt;").replace(/&lt;\/STRONG&gt;/ig, "&lt;/b&gt;").replace(/&lt;EM&gt;/ig, "&lt;i&gt;").replace(/&lt;\/EM&gt;/ig, "&lt;/i&gt;");
+                this._textbox._element.value = encodedHtml;
+            },
+
+            _executeCommand: function (command) {
+                var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox;
+
+                if (isFireFox) {
+                    document.execCommand("styleWithCSS", false, false);
+                }
+
+                if ((command.target.name == 'JustifyRight') || (command.target.name == 'JustifyLeft') ||
+                    (command.target.name == 'JustifyCenter') || (command.target.name == 'JustifyFull')) {
+
+                    try {
+                        document.execCommand(command.target.name, false, null);
+                    }
+                    catch (e) {
+                        if (e && e.result == 2147500037) {
+                            var range = window.getSelection().getRangeAt(0);
+                            var dummy = document.createElement('div');
+
+                            var restoreSelection = false;
+                            dummy.style.height = "1px;";
+
+
+                            if (range.startContainer.contentEditable == 'true') {
+                                window.getSelection().collapseToEnd();
+                                restoreSelection = true;
+                            }
+
+                            var ceNode = window.getSelection().getRangeAt(0).startContainer;
+
+                            while (ceNode && ceNode.contentEditable != 'true')
+                                ceNode = ceNode.parentNode;
+
+                            if (!ceNode) throw 'Selected node is not editable!';
+
+                            ceNode.insertBefore(dummy, ceNode.childNodes[0]);
+                            document.execCommand(command.target.name, false, null);
+                            dummy.parentNode.removeChild(dummy);
+
+                            if (restoreSelection) {
+                                window.getSelection().addRange(range);
+                            }
+                        }
+                        else if (console && console.log) console.log(e);
+                    }
+                }
+                else {
+                    document.execCommand(command.target.name, false, null);
+                }
+
+            },
+
+            get_ButtonWidth: function () {
+                return this._ButtonWidth;
+            },
+
+            set_ButtonWidth: function (value) {
+                if (this._ButtonWidth != value) {
+                    this._ButtonWidth = value;
+                    this.raisePropertyChanged("ButtonWidth");
+                }
+            },
+
+            get_ButtonHeight: function () {
+                return this._ButtonHeight;
+            },
+
+            set_ButtonHeight: function (value) {
+                if (this._ButtonHeight != value) {
+                    this._ButtonHeight = value;
+                    this.raisePropertyChanged("ButtonHeight");
+                }
+            },
+
+            get_ToolbarButtons: function () {
+                return this._toolbarButtons;
+            },
+
+            set_ToolbarButtons: function (value) {
+                if (this._toolbarButtons != value) {
+                    this._toolbarButtons = value;
+                    this.raisePropertyChanged("ToolbarButtons");
+                }
+            }
+
         };
 
-        AjaxControlToolkit.HtmlEditorExtenderBehavior.registerClass('AjaxControlToolkit.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
-        Sys.registerComponent(AjaxControlToolkit.HtmlEditorExtenderBehavior, { name: "HtmlEditorExtender" });
+        Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
+        Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: "HtmlEditorExtender", parameters: [{ name: "ToolbarButtons", type: "HtmlEditorExtenderButton[]"}] });
+
+        Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit = function () {
+            /// <summary>
+            /// Wraps ASP.NET's WebForm_OnSubmit in order to encode tags prior to submission
+            /// </summary>
+            /// <returns type="Boolean">
+            /// Result of original WebForm_OnSubmit
+            /// </returns>
+            
+            var result = Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit();
+            if (result) {
+                var components = Sys.Application.getComponents();
+                for (var i = 0; i < components.length; i++) {
+                    var component = components[i];
+                    if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component)) {
+                        component._editableDiv_submit();
+                    }
+                }
+            }
+            return result;
+        }
 
     } // execute
 
