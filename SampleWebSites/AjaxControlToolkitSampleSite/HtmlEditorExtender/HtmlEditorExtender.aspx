@@ -15,6 +15,11 @@
             </ajaxToolkit:HtmlEditorExtender>            
             <br />
             <br />
+
+            <asp:TextBox runat="server" ID="txtBox2" TextMode="MultiLine" Columns="50" Rows="10" Text="Hello <b>world2</b>" /><br />
+            <ajaxToolkit:HtmlEditorExtender ID="HtmlEditorExtender2" TargetControlID="txtBox2" runat="server">
+            </ajaxToolkit:HtmlEditorExtender>            
+
             <br />
             <br />
             <asp:Button ID="btnSubmit" Text="Submit" runat="server" />

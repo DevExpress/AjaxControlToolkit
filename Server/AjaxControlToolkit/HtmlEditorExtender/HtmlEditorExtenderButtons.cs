@@ -20,23 +20,7 @@ namespace AjaxControlToolkit
         /// get value to show tooltip for the button
         /// </summary>
         public virtual string Tooltip { get { return CommandName; } }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public abstract int IconIndex { get; }
-
-        /// <summary>
-        /// Get offset value
-        /// </summary>
-        public string Offset
-        {
-            get
-            {
-                return (IconIndex * HtmlEditorExtender.ButtonWidthDef * -1) + "px 0px";
-            }
-        }
-
+        
         /// <summary>
         /// Abstract method that will be overridden by child classes to implement decoding 
         /// for tags associated to a button
@@ -60,14 +44,7 @@ namespace AjaxControlToolkit
         {
             get {return "Bold"; }
         }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex {
-            get {return 2; }
-        }
-
+                
         /// <summary>         
         /// Decode tags associated to a bold button
         /// </summary>
@@ -94,14 +71,7 @@ namespace AjaxControlToolkit
         {
             get {return "Italic"; }
         }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex {
-            get {return 3; }
-        }
-
+        
         /// <summary>         
         /// Decode tags associated to a Italic button
         /// </summary>
@@ -128,15 +98,7 @@ namespace AjaxControlToolkit
         {
             get { return "Underline"; }
         }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex
-        {
-            get { return 4; }
-        }
-
+        
         /// <summary>         
         /// Decode tags associated to a Underline button
         /// </summary>
@@ -170,15 +132,7 @@ namespace AjaxControlToolkit
         {
             get { return "Strike Through"; }
         }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex
-        {
-            get { return 5; }
-        }
-
+        
         /// <summary>         
         /// Decode tags associated to a stikethrough button
         /// </summary>
@@ -215,14 +169,6 @@ namespace AjaxControlToolkit
             get { return "Sub Script"; }
         }
 
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex
-        {
-            get { return 6; }
-        }
-
         /// <summary>         
         /// Decode tags associated to a Subscript button
         /// </summary>
@@ -256,15 +202,7 @@ namespace AjaxControlToolkit
         {
             get { return "Super Script"; }
         }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex
-        {
-            get { return 7; }
-        }
-
+                
         /// <summary>         
         /// Decode tags associated to a Superscript button
         /// </summary>
@@ -297,14 +235,6 @@ namespace AjaxControlToolkit
         public override string Tooltip
         {
             get { return "Justify Left"; }
-        }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex
-        {
-            get { return 10; }
         }
 
         /// <summary>         
@@ -349,15 +279,7 @@ namespace AjaxControlToolkit
         {
             get { return "Justify Right"; }
         }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex
-        {
-            get { return 12; }
-        }
-
+                
         /// <summary>         
         /// Decode tags associated to a JustifyRight button
         /// </summary>
@@ -400,15 +322,7 @@ namespace AjaxControlToolkit
         {
             get { return "Justify Center"; }
         }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex
-        {
-            get { return 11; }
-        }
-
+                
         /// <summary>         
         /// Decode tags associated to a JustifyCenter button
         /// </summary>
@@ -452,15 +366,7 @@ namespace AjaxControlToolkit
         {
             get { return "Insert Ordered List"; }
         }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex
-        {
-            get { return 15; }
-        }
-
+                
         /// <summary>         
         /// Decode tags associated to a OrderedList button
         /// </summary>
@@ -504,14 +410,6 @@ namespace AjaxControlToolkit
         public override string Tooltip
         {
             get { return "Insert Unordered List"; }
-        }
-
-        /// <summary>
-        /// Get index of icon
-        /// </summary>
-        public override int IconIndex
-        {
-            get { return 16; }
         }
 
         /// <summary>         

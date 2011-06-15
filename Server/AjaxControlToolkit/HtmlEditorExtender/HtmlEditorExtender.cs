@@ -29,6 +29,11 @@ namespace AjaxControlToolkit
         internal const int ButtonHeightDef = 21;
         List<HtmlEditorExtenderButton> buttonList = null;
 
+        public HtmlEditorExtender()
+        {
+            EnableClientState = true;
+        }
+
         /// <summary>
         /// Get or set list of toolbar buttons
         /// </summary>
@@ -105,6 +110,13 @@ namespace AjaxControlToolkit
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
+            // Register an empty OnSubmit statement so the ASP.NET WebForm_OnSubmit method will be automatically
+            // created and our behavior will be able to wrap it to encode html tags prior to submission
+            ScriptManager.RegisterOnSubmitStatement(this, typeof(HtmlEditorExtender), "HtmlEditorExtenderOnSubmit", "null;");
+
+            // If this extender has default focus, use ClientState to let it know
+            ClientState = (string.Compare(Page.Form.DefaultFocus, TargetControlID, StringComparison.OrdinalIgnoreCase) == 0) ? "Focused" : null;
 
             // decode values of textbox
             TextBox txtBox = (TextBox)TargetControl;
