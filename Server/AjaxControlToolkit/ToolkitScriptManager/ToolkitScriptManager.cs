@@ -228,7 +228,7 @@ namespace AjaxControlToolkit
                     if (null == _combinedScriptUrl)
                     {
                         // Url is invalid; update it
-                        _combinedScriptUrl = String.Format(CultureInfo.InvariantCulture, "{0}?{1}={2}&{3}={4}", ((null != _combineScriptsHandlerUrl) ? _combineScriptsHandlerUrl.ToString() : Page.Request.Path), HiddenFieldParamName, HiddenFieldName, CombinedScriptsParamName, HttpUtility.UrlEncode(SerializeScriptEntries(_scriptEntries, false)));
+                        _combinedScriptUrl = String.Format(CultureInfo.InvariantCulture, "{0}?{1}={2}&{3}={4}", ((null != _combineScriptsHandlerUrl) ? _combineScriptsHandlerUrl.ToString() : Page.Request.Path.Replace(" ", "%20").ToString()), HiddenFieldParamName, HiddenFieldName, CombinedScriptsParamName, HttpUtility.UrlEncode(SerializeScriptEntries(_scriptEntries, false)));
                     }
 
                     // Remove the script from the list and track it
