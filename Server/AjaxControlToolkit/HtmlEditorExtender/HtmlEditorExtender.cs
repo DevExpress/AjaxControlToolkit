@@ -129,6 +129,8 @@ namespace AjaxControlToolkit
         protected virtual void CreateButtons()
         {
             buttonList = new List<HtmlEditorExtenderButton>();
+            buttonList.Add(new Undo());
+            buttonList.Add(new Redo());
             buttonList.Add(new Bold());
             buttonList.Add(new Italic());
             buttonList.Add(new Underline());
@@ -136,10 +138,29 @@ namespace AjaxControlToolkit
             buttonList.Add(new Subscript());
             buttonList.Add(new Superscript());
             buttonList.Add(new JustifyLeft());
-            buttonList.Add(new JustifyRight());
             buttonList.Add(new JustifyCenter());
+            buttonList.Add(new JustifyRight());
+            buttonList.Add(new JustifyFull());
             buttonList.Add(new insertOrderedList());
             buttonList.Add(new insertUnorderedList());
+            buttonList.Add(new CreateLink());
+            buttonList.Add(new UnLink());            
+            buttonList.Add(new FormatBlock());
+            buttonList.Add(new RemoveFormat());            
+            buttonList.Add(new InsertImage());
+            buttonList.Add(new SelectAll());
+            buttonList.Add(new UnSelect());            
+            buttonList.Add(new Delete());
+            buttonList.Add(new Cut());
+            buttonList.Add(new Copy());            
+            buttonList.Add(new Paste());            
+            buttonList.Add(new BackColor());
+            buttonList.Add(new ForeColor());
+            buttonList.Add(new FontName());
+            buttonList.Add(new Indent());
+            buttonList.Add(new Outdent());            
+            buttonList.Add(new InsertHorizontalRule());            
+            
         }
     }
 

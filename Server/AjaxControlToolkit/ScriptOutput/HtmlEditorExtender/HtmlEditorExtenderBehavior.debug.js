@@ -8,7 +8,7 @@
     var scriptName = "HtmlEditorExtenderBehavior";
 
     function execute() {
-        Type.registerNamespace('Sys.Extended.UI');       
+        Type.registerNamespace('Sys.Extended.UI');
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior = function (element) {
             /// <summary>
@@ -174,8 +174,8 @@
                         sel.collapse(this._editableDiv.firstChild, char);
                     }
                 }
-                
-                var encodedHtml = this._editableDiv.innerHTML.replace(/&/ig, "&amp;").replace(/</ig, "&lt;").replace(/>/ig, "&gt;").replace(/\"/ig, "&quot;").replace(/\xA0/ig, "&nbsp;");                
+
+                var encodedHtml = this._editableDiv.innerHTML.replace(/&/ig, "&amp;").replace(/</ig, "&lt;").replace(/>/ig, "&gt;").replace(/\"/ig, "&quot;").replace(/\xA0/ig, "&nbsp;");
                 encodedHtml = encodedHtml.replace(/&lt;STRONG&gt;/ig, "&lt;b&gt;").replace(/&lt;\/STRONG&gt;/ig, "&lt;/b&gt;").replace(/&lt;EM&gt;/ig, "&lt;i&gt;").replace(/&lt;\/EM&gt;/ig, "&lt;/i&gt;");
                 this._textbox._element.value = encodedHtml;
             },
@@ -188,7 +188,9 @@
                 }
 
                 if ((command.target.name == 'JustifyRight') || (command.target.name == 'JustifyLeft') ||
-                    (command.target.name == 'JustifyCenter') || (command.target.name == 'JustifyFull')) {
+                    (command.target.name == 'JustifyCenter') || (command.target.name == 'JustifyFull')
+                    || (command.target.name == 'InsertOrderedList') || (command.target.name == 'InsertUnorderedList')
+                    ) {
 
                     try {
                         document.execCommand(command.target.name, false, null);
@@ -225,10 +227,21 @@
                         else if (console && console.log) console.log(e);
                     }
                 }
+                else if (command.target.name == 'createLink') {
+                    var url = this.add_url();
+                    if (url != ''){
+                        document.execCommand(command.target.name, false, url);
+                    }
+                }
                 else {
                     document.execCommand(command.target.name, false, null);
                 }
 
+            },
+
+            add_url: function add_url() {
+                str1 = prompt("Please insert  URL ", "");
+                return str1;
             },
 
             get_ButtonWidth: function () {
@@ -276,7 +289,7 @@
             /// <returns type="Boolean">
             /// Result of original WebForm_OnSubmit
             /// </returns>
-            
+
             var result = Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit();
             if (result) {
                 var components = Sys.Application.getComponents();
