@@ -14,13 +14,13 @@ namespace AjaxControlToolkit
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public abstract string CommandName {  get; }
+        public abstract string CommandName { get; }
 
         /// <summary>
         /// get value to show tooltip for the button
         /// </summary>
         public virtual string Tooltip { get { return CommandName; } }
-        
+
         /// <summary>
         /// Abstract method that will be overridden by child classes to implement decoding 
         /// for tags associated to a button
@@ -35,26 +35,27 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Bold class represents to bold tag
     /// </summary>
-    public class Bold : HtmlEditorExtenderButton 
+    public class Bold : HtmlEditorExtenderButton
     {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
         public override string CommandName
         {
-            get {return "Bold"; }
+            get { return "Bold"; }
         }
-                
+
         /// <summary>         
         /// Decode tags associated to a bold button
         /// </summary>
         /// <param name="value">string that contains tags to decode</param>
         /// <returns>string value after decode</returns>
-        public override string Decode(string value) {
+        public override string Decode(string value)
+        {
             var result = Regex.Replace(value, "&lt;b&gt;", "<b>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;/b&gt;", "</b>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;strong&gt;", "<strong>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/strong&gt;", "</strong>", RegexOptions.IgnoreCase);            
+            return Regex.Replace(result, "&lt;/strong&gt;", "</strong>", RegexOptions.IgnoreCase);
         }
 
     }
@@ -62,26 +63,27 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Italic class represents to italic tag
     /// </summary>
-    public class Italic : HtmlEditorExtenderButton 
+    public class Italic : HtmlEditorExtenderButton
     {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
         public override string CommandName
         {
-            get {return "Italic"; }
+            get { return "Italic"; }
         }
-        
+
         /// <summary>         
         /// Decode tags associated to a Italic button
         /// </summary>
         /// <param name="value">string that contains tags to decode</param>
         /// <returns>string value after decode</returns>
-        public override string Decode(string value) {
+        public override string Decode(string value)
+        {
             var result = Regex.Replace(value, "&lt;i&gt;", "<i>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;/i&gt;", "</i>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;em&gt;", "<em>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/em&gt;", "</em>", RegexOptions.IgnoreCase);            
+            return Regex.Replace(result, "&lt;/em&gt;", "</em>", RegexOptions.IgnoreCase);
         }
 
     }
@@ -98,7 +100,7 @@ namespace AjaxControlToolkit
         {
             get { return "Underline"; }
         }
-        
+
         /// <summary>         
         /// Decode tags associated to a Underline button
         /// </summary>
@@ -107,7 +109,7 @@ namespace AjaxControlToolkit
         public override string Decode(string value)
         {
             var result = Regex.Replace(value, "&lt;u&gt;", "<u>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/u&gt;", "</u>", RegexOptions.IgnoreCase);            
+            return Regex.Replace(result, "&lt;/u&gt;", "</u>", RegexOptions.IgnoreCase);
         }
 
     }
@@ -132,7 +134,7 @@ namespace AjaxControlToolkit
         {
             get { return "Strike Through"; }
         }
-        
+
         /// <summary>         
         /// Decode tags associated to a stikethrough button
         /// </summary>
@@ -177,7 +179,7 @@ namespace AjaxControlToolkit
         public override string Decode(string value)
         {
             var result = Regex.Replace(value, "&lt;sub&gt;", "<sub>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/sub&gt;", "</sub>", RegexOptions.IgnoreCase);            
+            return Regex.Replace(result, "&lt;/sub&gt;", "</sub>", RegexOptions.IgnoreCase);
         }
 
     }
@@ -202,7 +204,7 @@ namespace AjaxControlToolkit
         {
             get { return "Super Script"; }
         }
-                
+
         /// <summary>         
         /// Decode tags associated to a Superscript button
         /// </summary>
@@ -211,7 +213,7 @@ namespace AjaxControlToolkit
         public override string Decode(string value)
         {
             var result = Regex.Replace(value, "&lt;sup&gt;", "<sup>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/sup&gt;", "</sup>", RegexOptions.IgnoreCase);            
+            return Regex.Replace(result, "&lt;/sup&gt;", "</sup>", RegexOptions.IgnoreCase);
         }
 
     }
@@ -246,15 +248,15 @@ namespace AjaxControlToolkit
         {
             var result = Regex.Replace(value, "&lt;p&gt;", "<p>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;p align=&quot;left&quot;&gt;", "<p align=\"left\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p align=left&gt;", "<p align=left>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;p align=left&gt;", "<p align=left>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;p style=&quot;text-align: left;&quot;&gt;", "<p style=\"text-align: left;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;div&gt;", "<div>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;div align=&quot;left&quot;&gt;", "<div align=\"left\">", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;div align=left&gt;", "<div align=left>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;div style=&quot;text-align: left;&quot;&gt;", "<div style=\"text-align: left;\">", RegexOptions.IgnoreCase);
             return Regex.Replace(result, "&lt;/div&gt;", "</div>", RegexOptions.IgnoreCase);
-            
+
         }
 
     }
@@ -279,7 +281,7 @@ namespace AjaxControlToolkit
         {
             get { return "Justify Right"; }
         }
-                
+
         /// <summary>         
         /// Decode tags associated to a JustifyRight button
         /// </summary>
@@ -289,15 +291,15 @@ namespace AjaxControlToolkit
         {
             var result = Regex.Replace(value, "&lt;p&gt;", "<p>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;p align=&quot;right&quot;&gt;", "<p align=\"right\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p align=right&gt;", "<p align=right>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;p align=right&gt;", "<p align=right>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;p style=&quot;text-align: right;&quot;&gt;", "<p style=\"text-align: right;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);            
-            result = Regex.Replace(result, "&lt;div&gt;", "<div>",RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div align=&quot;right&quot;&gt;", "<div align=\"right\">",RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div align=right&gt;", "<div align=right>",RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div style=&quot;text-align: right;&quot;&gt;", "<div style=\"text-align: right;\">",RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/div&gt;", "</div>",RegexOptions.IgnoreCase);
-            
+            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div&gt;", "<div>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div align=&quot;right&quot;&gt;", "<div align=\"right\">", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div align=right&gt;", "<div align=right>", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&lt;div style=&quot;text-align: right;&quot;&gt;", "<div style=\"text-align: right;\">", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/div&gt;", "</div>", RegexOptions.IgnoreCase);
+
         }
 
     }
@@ -322,7 +324,7 @@ namespace AjaxControlToolkit
         {
             get { return "Justify Center"; }
         }
-                
+
         /// <summary>         
         /// Decode tags associated to a JustifyCenter button
         /// </summary>
@@ -332,16 +334,50 @@ namespace AjaxControlToolkit
         {
             var result = Regex.Replace(value, "&lt;p&gt;", "<p>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;p align=&quot;center&quot;&gt;", "<p align=\"center\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p align=center&gt;", "<p align=center>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;p align=center&gt;", "<p align=center>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;p style=&quot;text-align: center;&quot;&gt;", "<p style=\"text-align: center;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;div&gt;", "<div>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;div align=&quot;center&quot;&gt;", "<div align=\"center\">", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;div align=center&gt;", "<div align=center>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;div style=&quot;text-align: center;&quot;&gt;", "<div style=\"text-align: center;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/div&gt;", "</div>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;/div&gt;", "</div>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;center&gt;", "<center>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/center&gt;", "</center>", RegexOptions.IgnoreCase);            
+            return Regex.Replace(result, "&lt;/center&gt;", "</center>", RegexOptions.IgnoreCase);
+        }
+
+    }
+
+    /// <summary>
+    /// JustifyFull class represents to JustifyFull tag
+    /// </summary>
+    public class JustifyFull : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "JustifyFull"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to JustifyFull button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Justify Full"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a JustifyFull button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            //code will come here to decode tags associated to this class
+            return value;
         }
 
     }
@@ -366,7 +402,7 @@ namespace AjaxControlToolkit
         {
             get { return "Insert Ordered List"; }
         }
-                
+
         /// <summary>         
         /// Decode tags associated to a OrderedList button
         /// </summary>
@@ -375,7 +411,7 @@ namespace AjaxControlToolkit
         public override string Decode(string value)
         {
             var result = Regex.Replace(value, "&lt;ol&gt;", "<ol>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/ol&gt;", "</ol>", RegexOptions.IgnoreCase);            
+            result = Regex.Replace(result, "&lt;/ol&gt;", "</ol>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;li&gt;", "<li>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;l1align=&quot;left&quot;&gt;", "<l1 align=\"left\">", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;l1align=&quot;center&quot;&gt;", "<l1 align=\"center\">", RegexOptions.IgnoreCase);
@@ -386,7 +422,7 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "&lt;l1align=left&gt;", "<l1 align=left>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;l1align=center&gt;", "<l1 align=center>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;l1align=right&gt;", "<l1 align=right>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/li&gt;", "</li>", RegexOptions.IgnoreCase);            
+            return Regex.Replace(result, "&lt;/li&gt;", "</li>", RegexOptions.IgnoreCase);
         }
 
     }
@@ -419,7 +455,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;ul&gt;", "<ul>",RegexOptions.IgnoreCase);
+            var result = Regex.Replace(value, "&lt;ul&gt;", "<ul>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;/ul&gt;", "</ul>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;l1&gt;", "<l1>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;l1align=&quot;left&quot;&gt;", "<l1 align=\"left\">", RegexOptions.IgnoreCase);
@@ -432,10 +468,737 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "&lt;l1align=center&gt;", "<l1 align=center>", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&lt;l1align=right&gt;", "<l1 align=right>", RegexOptions.IgnoreCase);
             return Regex.Replace(result, "&lt;/l1&gt;", "</l1>", RegexOptions.IgnoreCase);
-            
+
+        }
+    }
+
+    /// <summary>
+    /// Undo class represents to undo action
+    /// </summary>
+    public class Undo : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "Undo"; }
+        }
+
+        /// <summary>         
+        /// Nothing to undo for undo action
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
         }
 
     }
 
-    #endregion    
+    /// <summary>
+    /// Redo class represents to undo action
+    /// </summary>
+    public class Redo : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "Redo"; }
+        }
+
+        /// <summary>         
+        /// Nothing to redo for redo action
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+
+    }
+
+    /// <summary>
+    /// CreateLink class represents to hyperlink tag
+    /// </summary>
+    public class CreateLink : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "createLink"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to CreateLink button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Create Link"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a CreateLink button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            var result = Regex.Replace(value, "&lt;a", "<a", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&gt;", ">", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/a&gt;", "</a>", RegexOptions.IgnoreCase);
+        }
+    }
+
+    /// <summary>
+    /// Delete class represents to Delete button
+    /// </summary>
+    public class Delete : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "Delete"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to UnOrderedList button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Delete"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a Delete button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// FormatBlock class represents to FormatBlock action
+    /// </summary>
+    public class FormatBlock : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "FormatBlock"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to FormatBlock button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Format Block"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a FormatBlock button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// InsertImage class represents to FormatBlock action
+    /// </summary>
+    public class InsertImage : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "InsertImage"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to InsertImage button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Insert Image"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a InsertImage button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            var result = Regex.Replace(value, "&lt;img", "<img", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&gt;", ">", RegexOptions.IgnoreCase);
+            return Regex.Replace(result, "&lt;/img&gt;", "</img>", RegexOptions.IgnoreCase);
+        }
+    }
+
+    /// <summary>
+    /// InsertLineBreak class represents to InsertLineBreak action
+    /// </summary>
+    public class InsertLineBreak : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "InsertLineBreak"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to InsertLineBreak button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Insert Line Break"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a InsertLineBreak button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// InsertParagraph class represents to InsertParagraph action
+    /// </summary>
+    public class InsertParagraph : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "InsertParagraph"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to InsertParagraph button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Insert Paragraph"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a InsertParagraph button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+
+    /// <summary>
+    /// InsertText class represents to InsertText action
+    /// </summary>
+    public class InsertText : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "InsertText"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to InsertText button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Insert Text"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a InsertText button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// SelectAll class represents to SelectAll action
+    /// </summary>
+    public class SelectAll : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "SelectAll"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to SelectAll button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Select All"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a SelectAll button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// UnSelect class represents to UnSelect action
+    /// </summary>
+    public class UnSelect : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "UnSelect"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to UnSelect button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "UnSelect"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a UnSelect button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// UnLink class represents to UnLink action
+    /// </summary>
+    public class UnLink : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "UnLink"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to UnSelect button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "UnLink"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a UnLink button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// BackColor class represents to BackColor action
+    /// </summary>
+    public class BackColor : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "BackColor"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to BackColor button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Back Color"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a BackColor button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// Copy class represents to Copy action
+    /// </summary>
+    public class Copy : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "Copy"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to Copy button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Copy"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a Copy button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// Cut class represents to Cut action
+    /// </summary>
+    public class Cut : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "Cut"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to Cut button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Cut"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a Cut button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// Paste class represents to Copy action
+    /// </summary>
+    public class Paste : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "Paste"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to Paste button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Paste"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a Paste button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+
+    /// <summary>
+    /// FontName class represents to FontName action
+    /// </summary>
+    public class FontName : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "FontName"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to FontName button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Font Name"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a FontName button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// FontSize class represents to FontSize action
+    /// </summary>
+    public class FontSize : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "FontSize"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to FontSize button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Font Size"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a FontSize button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// ForeColor class represents to ForeColor action
+    /// </summary>
+    public class ForeColor : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "ForeColor"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to ForeColor button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Fore Color"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a ForeColor button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// Indent class represents to Indent action
+    /// </summary>
+    public class Indent : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "Indent"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to Indent button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Indent"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a Indent button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// InsertHorizontalRule class represents to InsertHorizontalRule action
+    /// </summary>
+    public class InsertHorizontalRule : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "InsertHorizontalRule"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to InsertHorizontalRule button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Insert Horizontal Rule"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a InsertHorizontalRule button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+        
+    /// <summary>
+    /// Outdent class represents to Outdent action
+    /// </summary>
+    public class Outdent : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "Outdent"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to Outdent button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Outdent"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a Outdent button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// RemoveFormat class represents to RemoveFormat action
+    /// </summary>
+    public class RemoveFormat : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "RemoveFormat"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to RemoveFormat button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Remove Format"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a RemoveFormat button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    #endregion
 }

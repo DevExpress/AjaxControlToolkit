@@ -1,20 +1,20 @@
 // (c) 2010 CodePlex Foundation
-/// <reference name="MicrosoftAjax.js" />
-/// <reference path="../ExtenderBase/BaseScripts.js" />
-/// <reference path="../Common/Common.js" />
+/// <reference name='MicrosoftAjax.js' />
+/// <reference path='../ExtenderBase/BaseScripts.js' />
+/// <reference path='../Common/Common.js' />
 
 (function () {
 
-    var scriptName = "HtmlEditorExtenderBehavior";
+    var scriptName = 'HtmlEditorExtenderBehavior';
 
     function execute() {
-        Type.registerNamespace('Sys.Extended.UI');       
+        Type.registerNamespace('Sys.Extended.UI');
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior = function (element) {
             /// <summary>
             /// Html Extender behavior which Extends TextBox 
             /// </summmary>
-            /// <param name="element" type="Sys.UI.DomElement">The element to attach to</param>
+            /// <param name='element' type='Sys.UI.DomElement'>The element to attach to</param>
             Sys.Extended.UI.HtmlEditorExtenderBehavior.initializeBase(this, [element]);
             this._textbox = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
 
@@ -24,46 +24,64 @@
             this._ButtonHeight = 21;
 
             this._containerTemplate = {
-                nodeName: "div",
+                nodeName: 'div',
                 properties: {
-                    id: id + "_ExtenderContainer"
+                    id: id + '_ExtenderContainer'
                 },
-                cssClasses: ["unselectable", "ajax__html_editor_extender_container"]
+                cssClasses: ['unselectable', 'ajax__html_editor_extender_container']
             };
 
             this._editableTemplate = {
-                nodeName: "div",
+                nodeName: 'div',
                 properties: {
-                    id: id + "_ExtenderContentEditable",
+                    id: id + '_ExtenderContentEditable',
                     style: {
-                        width: "100%",
-                        height: "100%",
-                        overflow: "auto",
-                        clear: "both"
+                        width: '100%',
+                        height: '80%',
+                        overflow: 'auto',
+                        clear: 'both'
                     },
                     contentEditable: true
                 },
-                cssClasses: ["ajax__html_editor_extender_texteditor"]
+                cssClasses: ['ajax__html_editor_extender_texteditor']
             };
 
             this._buttonTemplate = {
-                nodeName: "input",
+                nodeName: 'input',
                 properties: {
-                    type: "button",
+                    type: 'button',
                     style: {
-                        width: this._ButtonWidth + "px",
-                        height: this._ButtonHeight + "px"
+                        width: this._ButtonWidth + 'px',
+                        height: this._ButtonHeight + 'px'
                     }
                 },
-                cssClasses: ["ajax__html_editor_extender_button"]
+                cssClasses: ['ajax__html_editor_extender_button']
+            };
+
+            this._textboxTemplate = {
+                nodeName: 'input',
+                properties: {
+                    type: 'text'                    
+                },                
+            };
+
+            this._dropDownTemplate = {
+                nodeName: 'select',
+                properties: {
+                    style: {
+                        width: this._ButtonWidth + 'px',
+                        height: this._ButtonHeight + 'px'
+                    }
+                },
+                cssClasses: ['ajax__html_editor_extender_button']
             };
 
             this._topButtonContainerTemplate = {
-                nodeName: "div",
+                nodeName: 'div',
                 properties: {
-                    id: id + "_ExtenderButtonContainer"
+                    id: id + '_ExtenderButtonContainer'
                 },
-                cssClasses: ["ajax__html_editor_extender_buttoncontainer"]
+                cssClasses: ['ajax__html_editor_extender_buttoncontainer']
             };
 
             this._container = null;
@@ -73,6 +91,8 @@
             this._buttons = [];
             this._btnClickHandler = null;
             this._requested_buttons = new Array();
+            this._colorPicker = null;
+            this._backColor = null;
 
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
                 Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit = WebForm_OnSubmit;
@@ -97,21 +117,21 @@
                 }
 
                 if (formElement == null)
-                    throw "Missing Form tag";
+                    throw 'Missing Form tag';
 
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
 
-                $addHandler(this._textbox._element, "blur", delTextBox_onblur, true);
-                $addHandler(this._editableDiv, "blur", delEditableDiv_onblur, true);
-                $addHandler(this._topButtonContainer, "click", btnClickHandler);
+                $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
+                $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
+                $addHandler(this._topButtonContainer, 'click', btnClickHandler);
             },
 
             _dispose: function () {
-                $removeHandler(this._textbox._element, "blur", delTextBox_onblur);
-                $removeHandler(this._editableDiv, "blur", delEditableDiv_onblur);
-                $removeHandler(_topButtonContainer, "click", btnClickHandler);
+                $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
+                $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
+                $removeHandler(_topButtonContainer, 'click', btnClickHandler);
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
             },
@@ -135,12 +155,24 @@
 
             _createButton: function () {
                 for (i = 0; i < this._toolbarButtons.length; i++) {
-                    var _btn = $common.createElementFromTemplate(this._buttonTemplate, this._topButtonContainer);
-                    _btn.setAttribute("id", this._id + this._toolbarButtons[i].CommandName);
-                    _btn.setAttribute("name", this._toolbarButtons[i].CommandName);
-                    _btn.setAttribute("title", this._toolbarButtons[i].Tooltip);
-                    _btn.setAttribute("unselectable", "on");
-                    _btn.setAttribute("class", "ajax__html_editor_extender_button ajax__html_editor_extender_" + this._toolbarButtons[i].CommandName);
+                    var _btn;
+                    if (this._toolbarButtons[i].CommandName == 'FontName') {
+                        _btn = $common.createElementFromTemplate(this._dropDownTemplate, this._topButtonContainer);
+                        var option = new Option('Times New Roman', 'Times New Roman');
+                        _btn.options[0] = option;
+                        _btn.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
+                        _btn.setAttribute('name', this._toolbarButtons[i].CommandName);
+                        _btn.setAttribute('title', this._toolbarButtons[i].Tooltip);
+                        _btn.setAttribute('unselectable', 'on');
+                    }
+                    else {
+                        _btn = $common.createElementFromTemplate(this._buttonTemplate, this._topButtonContainer);
+                        _btn.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
+                        _btn.setAttribute('name', this._toolbarButtons[i].CommandName);
+                        _btn.setAttribute('title', this._toolbarButtons[i].Tooltip);
+                        _btn.setAttribute('unselectable', 'on');
+                        _btn.setAttribute('class', 'ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName);
+                    }
                     Array.add(this._buttons, _btn);
                 }
             },
@@ -174,9 +206,9 @@
                         sel.collapse(this._editableDiv.firstChild, char);
                     }
                 }
-                
-                var encodedHtml = this._editableDiv.innerHTML.replace(/&/ig, "&amp;").replace(/</ig, "&lt;").replace(/>/ig, "&gt;").replace(/\"/ig, "&quot;").replace(/\xA0/ig, "&nbsp;");                
-                encodedHtml = encodedHtml.replace(/&lt;STRONG&gt;/ig, "&lt;b&gt;").replace(/&lt;\/STRONG&gt;/ig, "&lt;/b&gt;").replace(/&lt;EM&gt;/ig, "&lt;i&gt;").replace(/&lt;\/EM&gt;/ig, "&lt;/i&gt;");
+
+                var encodedHtml = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
+                encodedHtml = encodedHtml.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
                 this._textbox._element.value = encodedHtml;
             },
 
@@ -184,12 +216,17 @@
                 var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox;
 
                 if (isFireFox) {
-                    document.execCommand("styleWithCSS", false, false);
+                    document.execCommand('styleWithCSS', false, false);
                 }
 
-                if ((command.target.name == 'JustifyRight') || (command.target.name == 'JustifyLeft') ||
-                    (command.target.name == 'JustifyCenter') || (command.target.name == 'JustifyFull')) {
+                var map = {
+                    JustifyRight: 1,
+                    JustifyLeft: 1,
+                    JustifyCenter: 1,
+                    JustifyFull: 1
+                }
 
+                if (map[command.target.name]) {
                     try {
                         document.execCommand(command.target.name, false, null);
                     }
@@ -199,8 +236,7 @@
                             var dummy = document.createElement('div');
 
                             var restoreSelection = false;
-                            dummy.style.height = "1px;";
-
+                            dummy.style.height = '1px;';
 
                             if (range.startContainer.contentEditable == 'true') {
                                 window.getSelection().collapseToEnd();
@@ -222,7 +258,38 @@
                                 window.getSelection().addRange(range);
                             }
                         }
-                        else if (console && console.log) console.log(e);
+                        else if (window.console && window.console.log) {
+                            window.console.log(e);
+                        }
+                    }
+                }
+                else if (command.target.name == "createLink") {
+                    var url = prompt('Please insert  URL', '');
+                    if (url) {
+                        document.execCommand('createLink', false, url);
+                    }
+                }
+                else if (command.target.name == 'BackColor' || command.target.name == 'ForeColor') {
+                    var element = this.get_element();
+                    if (!this._backColor) {
+                        this._backColor = $common.createElementFromTemplate(this._editableTemplate, element.parentNode);                        
+                    }
+                    if (!this._colorPicker) {
+                        this._colorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, null, null, null, this._editableDiv);
+                    }
+                    this._colorPicker.show();
+                    document.execCommand(command.target.name, false, this._backColor.value);
+                }
+                else if (command.target.name == 'FontName') {
+                    var fontName = prompt('Please insert  Font Name', '');
+                    if (fontName) {
+                        document.execCommand(command.target.name, false, fontName);
+                    }
+                }
+                else if (command.target.name == 'FontSize') {
+                    var fontSize = prompt('Please insert  Font Size', '');
+                    if (fontSize) {
+                        document.execCommand(command.target.name, false, fontSize);
                     }
                 }
                 else {
@@ -238,7 +305,7 @@
             set_ButtonWidth: function (value) {
                 if (this._ButtonWidth != value) {
                     this._ButtonWidth = value;
-                    this.raisePropertyChanged("ButtonWidth");
+                    this.raisePropertyChanged('ButtonWidth');
                 }
             },
 
@@ -249,7 +316,7 @@
             set_ButtonHeight: function (value) {
                 if (this._ButtonHeight != value) {
                     this._ButtonHeight = value;
-                    this.raisePropertyChanged("ButtonHeight");
+                    this.raisePropertyChanged('ButtonHeight');
                 }
             },
 
@@ -260,23 +327,22 @@
             set_ToolbarButtons: function (value) {
                 if (this._toolbarButtons != value) {
                     this._toolbarButtons = value;
-                    this.raisePropertyChanged("ToolbarButtons");
+                    this.raisePropertyChanged('ToolbarButtons');
                 }
             }
 
         };
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
-        Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: "HtmlEditorExtender", parameters: [{ name: "ToolbarButtons", type: "HtmlEditorExtenderButton[]"}] });
+        Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: 'HtmlEditorExtender', parameters: [{ name: 'ToolbarButtons', type: 'HtmlEditorExtenderButton[]'}] });
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit = function () {
             /// <summary>
             /// Wraps ASP.NET's WebForm_OnSubmit in order to encode tags prior to submission
             /// </summary>
-            /// <returns type="Boolean">
+            /// <returns type='Boolean'>
             /// Result of original WebForm_OnSubmit
             /// </returns>
-            
             var result = Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit();
             if (result) {
                 var components = Sys.Application.getComponents();
@@ -293,7 +359,7 @@
     } // execute
 
     if (window.Sys && Sys.loader) {
-        Sys.loader.registerScript(scriptName, ["ExtendedBase", "ExtendedCommon"], execute);
+        Sys.loader.registerScript(scriptName, ['ExtendedBase', 'ExtendedCommon'], execute);
 
     }
     else {

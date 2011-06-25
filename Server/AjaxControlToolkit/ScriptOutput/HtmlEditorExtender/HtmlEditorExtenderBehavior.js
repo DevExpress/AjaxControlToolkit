@@ -1,2 +1,369 @@
 // (c) 2010 CodePlex Foundation
-(function(){var b="HtmlEditorExtenderBehavior";function a(){var g="ToolbarButtons",b=false,e="blur",a=null,d=true,f="unselectable",c="div";Type.registerNamespace("Sys.Extended.UI");Sys.Extended.UI.HtmlEditorExtenderBehavior=function(g){var b=this;Sys.Extended.UI.HtmlEditorExtenderBehavior.initializeBase(b,[g]);b._textbox=Sys.Extended.UI.TextBoxWrapper.get_Wrapper(g);var e=b.get_id();b._ButtonWidth=23;b._ButtonHeight=21;b._containerTemplate={nodeName:c,properties:{id:e+"_ExtenderContainer"},cssClasses:[f,"ajax__html_editor_extender_container"]};b._editableTemplate={nodeName:c,properties:{id:e+"_ExtenderContentEditable",style:{width:"100%",height:"100%",overflow:"auto",clear:"both"},contentEditable:d},cssClasses:["ajax__html_editor_extender_texteditor"]};b._buttonTemplate={nodeName:"input",properties:{type:"button",style:{width:b._ButtonWidth+"px",height:b._ButtonHeight+"px"}},cssClasses:["ajax__html_editor_extender_button"]};b._topButtonContainerTemplate={nodeName:c,properties:{id:e+"_ExtenderButtonContainer"},cssClasses:["ajax__html_editor_extender_buttoncontainer"]};b._container=a;b._toolbarButtons=a;b._editableDiv=a;b._topButtonContainer=a;b._buttons=[];b._btnClickHandler=a;b._requested_buttons=[];if(typeof WebForm_OnSubmit=="function"&&!Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit){Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit=WebForm_OnSubmit;WebForm_OnSubmit=Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit}};Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype={initialize:function(){var b=this;Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(b,"initialize");var i=0;b._button_list=[];b._createContainer();b._createTopButtonContainer();b._createEditableDiv();b._createButton();var c=b._textbox._element.parentNode;while(c!=a&&c.nodeName!="FORM")c=c.parentNode;if(c==a)throw"Missing Form tag";var g=Function.createDelegate(b,b._textBox_onblur),f=Function.createDelegate(b,b._editableDiv_onblur),h=Function.createDelegate(b,b._executeCommand);$addHandler(b._textbox._element,e,g,d);$addHandler(b._editableDiv,e,f,d);$addHandler(b._topButtonContainer,"click",h)},_dispose:function(){$removeHandler(this._textbox._element,e,delTextBox_onblur);$removeHandler(this._editableDiv,e,delEditableDiv_onblur);$removeHandler(_topButtonContainer,"click",btnClickHandler);Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this,"dispose")},_createContainer:function(){var a=this,c=a.get_element();a._container=$common.createElementFromTemplate(a._containerTemplate,c.parentNode);var b=$common.getBounds(a._textbox._element);$common.setSize(a._container,{width:b.width,height:b.height});$common.wrapElement(a._textbox._element,a._container,a._container)},_createTopButtonContainer:function(){this._topButtonContainer=$common.createElementFromTemplate(this._topButtonContainerTemplate,this._container)},_createButton:function(){var a=this;for(i=0;i<a._toolbarButtons.length;i++){var b=$common.createElementFromTemplate(a._buttonTemplate,a._topButtonContainer);b.setAttribute("id",a._id+a._toolbarButtons[i].CommandName);b.setAttribute("name",a._toolbarButtons[i].CommandName);b.setAttribute("title",a._toolbarButtons[i].Tooltip);b.setAttribute(f,"on");b.setAttribute("class","ajax__html_editor_extender_button ajax__html_editor_extender_"+a._toolbarButtons[i].CommandName);Array.add(a._buttons,b)}},_createEditableDiv:function(){var a=this;a._editableDiv=$common.createElementFromTemplate(a._editableTemplate,a._container);a._editableDiv.innerHTML=a._textbox._element.value;$common.setVisible(a._textbox._element,b)},_editableDiv_onblur:function(){this._textbox._element.value=this.innerHTML},_textBox_onblur:function(){this._editableDiv.innerHTML=this.value},_editableDiv_submit:function(){var c=this,e=3,b=a;c._editableDiv.focus();if(Sys.Browser.agent!=Sys.Browser.Firefox)if(document.selection){b=document.selection.createRange();b.moveStart("character",e);b.select()}else{b=window.getSelection();b.collapse(c._editableDiv.firstChild,e)}var d=c._editableDiv.innerHTML.replace(/&/ig,"&amp;").replace(/</ig,"&lt;").replace(/>/ig,"&gt;").replace(/\"/ig,"&quot;").replace(/\xA0/ig,"&nbsp;");d=d.replace(/&lt;STRONG&gt;/ig,"&lt;b&gt;").replace(/&lt;\/STRONG&gt;/ig,"&lt;/b&gt;").replace(/&lt;EM&gt;/ig,"&lt;i&gt;").replace(/&lt;\/EM&gt;/ig,"&lt;/i&gt;");c._textbox._element.value=d},_executeCommand:function(e){var j=Sys.Browser.agent==Sys.Browser.Firefox;j&&document.execCommand("styleWithCSS",b,b);if(e.target.name=="JustifyRight"||e.target.name=="JustifyLeft"||e.target.name=="JustifyCenter"||e.target.name=="JustifyFull")try{document.execCommand(e.target.name,b,a)}catch(k){if(k&&k.result==2147500037){var i=window.getSelection().getRangeAt(0),g=document.createElement(c),h=b;g.style.height="1px;";if(i.startContainer.contentEditable=="true"){window.getSelection().collapseToEnd();h=d}var f=window.getSelection().getRangeAt(0).startContainer;while(f&&f.contentEditable!="true")f=f.parentNode;if(!f)throw"Selected node is not editable!";f.insertBefore(g,f.childNodes[0]);document.execCommand(e.target.name,b,a);g.parentNode.removeChild(g);h&&window.getSelection().addRange(i)}else console&&console.log&&console.log(k)}else document.execCommand(e.target.name,b,a)},get_ButtonWidth:function(){return this._ButtonWidth},set_ButtonWidth:function(a){if(this._ButtonWidth!=a){this._ButtonWidth=a;this.raisePropertyChanged("ButtonWidth")}},get_ButtonHeight:function(){return this._ButtonHeight},set_ButtonHeight:function(a){if(this._ButtonHeight!=a){this._ButtonHeight=a;this.raisePropertyChanged("ButtonHeight")}},get_ToolbarButtons:function(){return this._toolbarButtons},set_ToolbarButtons:function(a){if(this._toolbarButtons!=a){this._toolbarButtons=a;this.raisePropertyChanged(g)}}};Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass("Sys.Extended.UI.HtmlEditorExtenderBehavior",Sys.Extended.UI.BehaviorBase);Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior,{name:"HtmlEditorExtender",parameters:[{name:g,type:"HtmlEditorExtenderButton[]"}]});Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit=function(){var d=Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit();if(d)for(var b=Sys.Application.getComponents(),a=0;a<b.length;a++){var c=b[a];Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(c)&&c._editableDiv_submit()}return d}}if(window.Sys&&Sys.loader)Sys.loader.registerScript(b,["ExtendedBase","ExtendedCommon"],a);else a()})();
+/// <reference name='MicrosoftAjax.js' />
+/// <reference path='../ExtenderBase/BaseScripts.js' />
+/// <reference path='../Common/Common.js' />
+
+(function () {
+
+    var scriptName = 'HtmlEditorExtenderBehavior';
+
+    function execute() {
+        Type.registerNamespace('Sys.Extended.UI');
+
+        Sys.Extended.UI.HtmlEditorExtenderBehavior = function (element) {
+            /// <summary>
+            /// Html Extender behavior which Extends TextBox 
+            /// </summmary>
+            /// <param name='element' type='Sys.UI.DomElement'>The element to attach to</param>
+            Sys.Extended.UI.HtmlEditorExtenderBehavior.initializeBase(this, [element]);
+            this._textbox = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
+
+            var id = this.get_id();
+
+            this._ButtonWidth = 23;
+            this._ButtonHeight = 21;
+
+            this._containerTemplate = {
+                nodeName: 'div',
+                properties: {
+                    id: id + '_ExtenderContainer'
+                },
+                cssClasses: ['unselectable', 'ajax__html_editor_extender_container']
+            };
+
+            this._editableTemplate = {
+                nodeName: 'div',
+                properties: {
+                    id: id + '_ExtenderContentEditable',
+                    style: {
+                        width: '100%',
+                        height: '80%',
+                        overflow: 'auto',
+                        clear: 'both'
+                    },
+                    contentEditable: true
+                },
+                cssClasses: ['ajax__html_editor_extender_texteditor']
+            };
+
+            this._buttonTemplate = {
+                nodeName: 'input',
+                properties: {
+                    type: 'button',
+                    style: {
+                        width: this._ButtonWidth + 'px',
+                        height: this._ButtonHeight + 'px'
+                    }
+                },
+                cssClasses: ['ajax__html_editor_extender_button']
+            };
+
+            this._textboxTemplate = {
+                nodeName: 'input',
+                properties: {
+                    type: 'text'                    
+                },                
+            };
+
+            this._dropDownTemplate = {
+                nodeName: 'select',
+                properties: {
+                    style: {
+                        width: this._ButtonWidth + 'px',
+                        height: this._ButtonHeight + 'px'
+                    }
+                },
+                cssClasses: ['ajax__html_editor_extender_button']
+            };
+
+            this._topButtonContainerTemplate = {
+                nodeName: 'div',
+                properties: {
+                    id: id + '_ExtenderButtonContainer'
+                },
+                cssClasses: ['ajax__html_editor_extender_buttoncontainer']
+            };
+
+            this._container = null;
+            this._toolbarButtons = null;
+            this._editableDiv = null;
+            this._topButtonContainer = null;
+            this._buttons = [];
+            this._btnClickHandler = null;
+            this._requested_buttons = new Array();
+            this._colorPicker = null;
+            this._backColor = null;
+
+            if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
+                Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit = WebForm_OnSubmit;
+                WebForm_OnSubmit = Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit;
+            }
+        }
+
+        Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
+            initialize: function () {
+                Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
+
+                var idx = 0;
+                this._button_list = new Array();
+                this._createContainer();
+                this._createTopButtonContainer();
+                this._createEditableDiv();
+                this._createButton();
+
+                var formElement = this._textbox._element.parentNode;
+                while (formElement != null && formElement.nodeName != 'FORM') {
+                    formElement = formElement.parentNode;
+                }
+
+                if (formElement == null)
+                    throw 'Missing Form tag';
+
+                var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
+                var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
+                var btnClickHandler = Function.createDelegate(this, this._executeCommand);
+
+                $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
+                $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
+                $addHandler(this._topButtonContainer, 'click', btnClickHandler);
+            },
+
+            _dispose: function () {
+                $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
+                $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
+                $removeHandler(_topButtonContainer, 'click', btnClickHandler);
+
+                Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
+            },
+
+            _createContainer: function () {
+                var e = this.get_element();
+                this._container = $common.createElementFromTemplate(this._containerTemplate, e.parentNode);
+
+                var bounds = $common.getBounds(this._textbox._element);
+                $common.setSize(this._container, {
+                    width: bounds.width,
+                    height: bounds.height
+                });
+
+                $common.wrapElement(this._textbox._element, this._container, this._container);
+            },
+
+            _createTopButtonContainer: function () {
+                this._topButtonContainer = $common.createElementFromTemplate(this._topButtonContainerTemplate, this._container);
+            },
+
+            _createButton: function () {
+                for (i = 0; i < this._toolbarButtons.length; i++) {
+                    var _btn;
+                    if (this._toolbarButtons[i].CommandName == 'FontName') {
+                        _btn = $common.createElementFromTemplate(this._dropDownTemplate, this._topButtonContainer);
+                        var option = new Option('Times New Roman', 'Times New Roman');
+                        _btn.options[0] = option;
+                        _btn.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
+                        _btn.setAttribute('name', this._toolbarButtons[i].CommandName);
+                        _btn.setAttribute('title', this._toolbarButtons[i].Tooltip);
+                        _btn.setAttribute('unselectable', 'on');
+                    }
+                    else {
+                        _btn = $common.createElementFromTemplate(this._buttonTemplate, this._topButtonContainer);
+                        _btn.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
+                        _btn.setAttribute('name', this._toolbarButtons[i].CommandName);
+                        _btn.setAttribute('title', this._toolbarButtons[i].Tooltip);
+                        _btn.setAttribute('unselectable', 'on');
+                        _btn.setAttribute('class', 'ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName);
+                    }
+                    Array.add(this._buttons, _btn);
+                }
+            },
+
+            _createEditableDiv: function () {
+                this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
+                this._editableDiv.innerHTML = this._textbox._element.value;
+                $common.setVisible(this._textbox._element, false);
+            },
+
+            _editableDiv_onblur: function () {
+                this._textbox._element.value = this.innerHTML;
+            },
+
+            _textBox_onblur: function () {
+                this._editableDiv.innerHTML = this.value;
+            },
+
+            _editableDiv_submit: function () {
+                var char = 3;
+                var sel = null;
+                this._editableDiv.focus();
+                if (Sys.Browser.agent != Sys.Browser.Firefox) {
+                    if (document.selection) {
+                        sel = document.selection.createRange();
+                        sel.moveStart('character', char);
+                        sel.select();
+                    }
+                    else {
+                        sel = window.getSelection();
+                        sel.collapse(this._editableDiv.firstChild, char);
+                    }
+                }
+
+                var encodedHtml = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
+                encodedHtml = encodedHtml.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
+                this._textbox._element.value = encodedHtml;
+            },
+
+            _executeCommand: function (command) {
+                var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox;
+
+                if (isFireFox) {
+                    document.execCommand('styleWithCSS', false, false);
+                }
+
+                var map = {
+                    JustifyRight: 1,
+                    JustifyLeft: 1,
+                    JustifyCenter: 1,
+                    JustifyFull: 1
+                }
+
+                if (map[command.target.name]) {
+                    try {
+                        document.execCommand(command.target.name, false, null);
+                    }
+                    catch (e) {
+                        if (e && e.result == 2147500037) {
+                            var range = window.getSelection().getRangeAt(0);
+                            var dummy = document.createElement('div');
+
+                            var restoreSelection = false;
+                            dummy.style.height = '1px;';
+
+                            if (range.startContainer.contentEditable == 'true') {
+                                window.getSelection().collapseToEnd();
+                                restoreSelection = true;
+                            }
+
+                            var ceNode = window.getSelection().getRangeAt(0).startContainer;
+
+                            while (ceNode && ceNode.contentEditable != 'true')
+                                ceNode = ceNode.parentNode;
+
+                            if (!ceNode) throw 'Selected node is not editable!';
+
+                            ceNode.insertBefore(dummy, ceNode.childNodes[0]);
+                            document.execCommand(command.target.name, false, null);
+                            dummy.parentNode.removeChild(dummy);
+
+                            if (restoreSelection) {
+                                window.getSelection().addRange(range);
+                            }
+                        }
+                        else if (window.console && window.console.log) {
+                            window.console.log(e);
+                        }
+                    }
+                }
+                else if (command.target.name == "createLink") {
+                    var url = prompt('Please insert  URL', '');
+                    if (url) {
+                        document.execCommand('createLink', false, url);
+                    }
+                }
+                else if (command.target.name == 'BackColor' || command.target.name == 'ForeColor') {
+                    var element = this.get_element();
+                    if (!this._backColor) {
+                        this._backColor = $common.createElementFromTemplate(this._editableTemplate, element.parentNode);                        
+                    }
+                    if (!this._colorPicker) {
+                        this._colorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, null, null, null, this._editableDiv);
+                    }
+                    this._colorPicker.show();
+                    document.execCommand(command.target.name, false, this._backColor.value);
+                }
+                else if (command.target.name == 'FontName') {
+                    var fontName = prompt('Please insert  Font Name', '');
+                    if (fontName) {
+                        document.execCommand(command.target.name, false, fontName);
+                    }
+                }
+                else if (command.target.name == 'FontSize') {
+                    var fontSize = prompt('Please insert  Font Size', '');
+                    if (fontSize) {
+                        document.execCommand(command.target.name, false, fontSize);
+                    }
+                }
+                else {
+                    document.execCommand(command.target.name, false, null);
+                }
+
+            },
+
+            get_ButtonWidth: function () {
+                return this._ButtonWidth;
+            },
+
+            set_ButtonWidth: function (value) {
+                if (this._ButtonWidth != value) {
+                    this._ButtonWidth = value;
+                    this.raisePropertyChanged('ButtonWidth');
+                }
+            },
+
+            get_ButtonHeight: function () {
+                return this._ButtonHeight;
+            },
+
+            set_ButtonHeight: function (value) {
+                if (this._ButtonHeight != value) {
+                    this._ButtonHeight = value;
+                    this.raisePropertyChanged('ButtonHeight');
+                }
+            },
+
+            get_ToolbarButtons: function () {
+                return this._toolbarButtons;
+            },
+
+            set_ToolbarButtons: function (value) {
+                if (this._toolbarButtons != value) {
+                    this._toolbarButtons = value;
+                    this.raisePropertyChanged('ToolbarButtons');
+                }
+            }
+
+        };
+
+        Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
+        Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: 'HtmlEditorExtender', parameters: [{ name: 'ToolbarButtons', type: 'HtmlEditorExtenderButton[]'}] });
+
+        Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit = function () {
+            /// <summary>
+            /// Wraps ASP.NET's WebForm_OnSubmit in order to encode tags prior to submission
+            /// </summary>
+            /// <returns type='Boolean'>
+            /// Result of original WebForm_OnSubmit
+            /// </returns>
+            var result = Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit();
+            if (result) {
+                var components = Sys.Application.getComponents();
+                for (var i = 0; i < components.length; i++) {
+                    var component = components[i];
+                    if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component)) {
+                        component._editableDiv_submit();
+                    }
+                }
+            }
+            return result;
+        }
+
+    } // execute
+
+    if (window.Sys && Sys.loader) {
+        Sys.loader.registerScript(scriptName, ['ExtendedBase', 'ExtendedCommon'], execute);
+
+    }
+    else {
+        execute();
+    }
+
+})();    
