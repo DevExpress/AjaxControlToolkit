@@ -376,18 +376,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            //var result = Regex.Replace(value, "&lt;p&gt;", "<p>", RegexOptions.IgnoreCase);
-            //result = Regex.Replace(result, "&lt;p align=&quot;center&quot;&gt;", "<p align=\"center\">", RegexOptions.IgnoreCase);
-            //result = Regex.Replace(result, "&lt;p align=center&gt;", "<p align=center>", RegexOptions.IgnoreCase);
-            //result = Regex.Replace(result, "&lt;p style=&quot;text-align: center;&quot;&gt;", "<p style=\"text-align: center;\">", RegexOptions.IgnoreCase);
-            //result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);
-            //result = Regex.Replace(result, "&lt;div&gt;", "<div>", RegexOptions.IgnoreCase);
-            //result = Regex.Replace(result, "&lt;div align=&quot;center&quot;&gt;", "<div align=\"center\">", RegexOptions.IgnoreCase);
-            //result = Regex.Replace(result, "&lt;div align=center&gt;", "<div align=center>", RegexOptions.IgnoreCase);
-            //result = Regex.Replace(result, "&lt;div style=&quot;text-align: center;&quot;&gt;", "<div style=\"text-align: center;\">", RegexOptions.IgnoreCase);
-            //result = Regex.Replace(result, "&lt;/div&gt;", "</div>", RegexOptions.IgnoreCase);
-            //result = Regex.Replace(result, "&lt;center&gt;", "<center>", RegexOptions.IgnoreCase);
-            //return Regex.Replace(result, "&lt;/center&gt;", "</center>", RegexOptions.IgnoreCase);
+            //code will come here to decode tags associated to this class
             return value;
         }
 
@@ -1010,6 +999,38 @@ namespace AjaxControlToolkit
 
         /// <summary>         
         /// Decode tags associated to a FontName button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// FontSize class represents to FontSize action
+    /// </summary>
+    public class FontSize : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "FontSize"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to FontSize button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Font Size"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a FontSize button
         /// </summary>
         /// <param name="value">string that contains tags to decode</param>
         /// <returns>string value after decode</returns>

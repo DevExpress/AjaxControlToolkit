@@ -14,15 +14,18 @@ using System.Collections.Generic;
 
 namespace AjaxControlToolkit
 {
-
     /// <summary>
     /// HtmlEditorExtender extends to a textbox and creates and renders an editable div 
     /// in place of targeted textbox.
     /// </summary>
     [TargetControlType(typeof(TextBox))]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
+    [RequiredScript(typeof(ColorPickerExtender), 1)]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditorExtenderBehavior", "HtmlEditorExtender.HtmlEditorExtenderBehavior.js")]
     [ClientCssResource("HtmlEditorExtender.HtmlEditorExtender_resource.css")]
+    [ParseChildren(true)]
+    [PersistChildren(false)]
+    //[Designer(typeof(HtmlEditorExtenderDesigner))]
     public class HtmlEditorExtender : ExtenderControlBase
     {
         internal const int ButtonWidthDef = 23;
@@ -34,24 +37,44 @@ namespace AjaxControlToolkit
             EnableClientState = true;
         }
 
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [ExtenderControlProperty(true, true)]
+        [DefaultValue(null)]
+        [ClientPropertyName("ToolbarButtons")]
+        public List<HtmlEditorExtenderButton> Toolbar
+        {
+            get 
+            {
+                if (buttonList == null)
+                    CreateButtons();
+                return GetPropertyValue("ToolbarButtons",buttonList);
+            }
+            set
+            {
+                SetPropertyValue("ToolbarButtons", value);
+            }
+        }
+
         /// <summary>
         /// Get or set list of toolbar buttons
         /// </summary>
-        [ExtenderControlProperty(true, true)]
-        [DefaultValue(null)]
-        public HtmlEditorExtenderButton[] ToolbarButtons
-        {
-            get
-            {
-                if (buttonList == null)
-                {
-                    CreateButtons();
-                }
-                return GetPropertyValue("ToolbarButtons", buttonList.ToArray());
-            }
-            set { SetPropertyValue("ToolbarButtons", value); }
-        }
-                
+        //[ExtenderControlProperty(true, true)]
+        //[DefaultValue(null)]
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        //public HtmlEditorExtenderButton[] ToolbarButtons
+        //{
+        //    get
+        //    {
+        //        if (buttonList == null)
+        //        {
+        //            CreateButtons();
+        //        }
+        //        return GetPropertyValue("ToolbarButtons", buttonList.ToArray());
+        //    }
+        //    set { SetPropertyValue("ToolbarButtons", value); }
+        //}
+
         private string DecodeValues(string value)
         {
             if (buttonList == null)
@@ -81,27 +104,27 @@ namespace AjaxControlToolkit
             return result;
         }
 
-        /// <summary>
-        /// Get or Set width of button icon
-        /// </summary>
-        [ExtenderProvidedProperty]
-        [DefaultValue(ButtonWidthDef)]
-        public int ButtonWidth
-        {
-            get { return GetPropertyValue<int>("ButtonWidth", 23); }
-            set { SetPropertyValue<int>("ButtonWidth", value); }
-        }
+        ///// <summary>
+        ///// Get or Set width of button icon
+        ///// </summary>
+        //[ExtenderProvidedProperty]
+        //[DefaultValue(ButtonWidthDef)]
+        //public int ButtonWidth
+        //{
+        //    get { return GetPropertyValue<int>("ButtonWidth", 23); }
+        //    set { SetPropertyValue<int>("ButtonWidth", value); }
+        //}
 
-        /// <summary>
-        /// Get or set height of button icon
-        /// </summary>
-        [ExtenderProvidedProperty]
-        [DefaultValue(ButtonHeightDef)]
-        public int ButtonHeight
-        {
-            get { return GetPropertyValue<int>("ButtonHeight", 21); }
-            set { SetPropertyValue<int>("ButtonHeight", value); }
-        }
+        ///// <summary>
+        ///// Get or set height of button icon
+        ///// </summary>
+        //[ExtenderProvidedProperty]
+        //[DefaultValue(ButtonHeightDef)]
+        //public int ButtonHeight
+        //{
+        //    get { return GetPropertyValue<int>("ButtonHeight", 21); }
+        //    set { SetPropertyValue<int>("ButtonHeight", value); }
+        //}
 
         /// <summary>
         /// On load method decode contents of textbox before render these to client side.
@@ -144,24 +167,23 @@ namespace AjaxControlToolkit
             buttonList.Add(new insertOrderedList());
             buttonList.Add(new insertUnorderedList());
             buttonList.Add(new CreateLink());
-            buttonList.Add(new UnLink());            
+            buttonList.Add(new UnLink());
             buttonList.Add(new FormatBlock());
-            buttonList.Add(new RemoveFormat());            
+            buttonList.Add(new RemoveFormat());
             buttonList.Add(new InsertImage());
             buttonList.Add(new SelectAll());
-            buttonList.Add(new UnSelect());            
+            buttonList.Add(new UnSelect());
             buttonList.Add(new Delete());
             buttonList.Add(new Cut());
-            buttonList.Add(new Copy());            
-            buttonList.Add(new Paste());            
+            buttonList.Add(new Copy());
+            buttonList.Add(new Paste());
             buttonList.Add(new BackColor());
             buttonList.Add(new ForeColor());
             buttonList.Add(new FontName());
+            //buttonList.Add(new FontSize());
             buttonList.Add(new Indent());
-            buttonList.Add(new Outdent());            
-            buttonList.Add(new InsertHorizontalRule());            
-            
+            buttonList.Add(new Outdent());
+            buttonList.Add(new InsertHorizontalRule());
         }
     }
-
 }
