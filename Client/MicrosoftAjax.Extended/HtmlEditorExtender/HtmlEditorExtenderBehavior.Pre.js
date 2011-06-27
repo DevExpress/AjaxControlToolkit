@@ -134,7 +134,7 @@
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
                 $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
                 //$addHandler(formElement, 'submit', formSubmitHandler, true);
-                $addHandler(this._topButtonContainer, 'click', btnClickHandler);
+                $addHandler(this._topButtonContainer, 'click', btnClickHandler);                
             },
 
             _dispose: function () {
@@ -167,22 +167,158 @@
                 for (i = 0; i < this._toolbarButtons.length; i++) {
                     var _btn;
                     if (this._toolbarButtons[i].CommandName == 'FontName') {
-                        _btn = $common.createElementFromTemplate(this._dropDownTemplate, this._topButtonContainer);
-                        var option = new Option('Times New Roman', 'Times New Roman');
-                        _btn.options[0] = option;
-                        _btn.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
-                        _btn.setAttribute('name', this._toolbarButtons[i].CommandName);
-                        _btn.setAttribute('title', this._toolbarButtons[i].Tooltip);
-                        _btn.setAttribute('unselectable', 'on');
-                    }
+                        _btn = $common.createElementFromTemplate({
+                            nodeName: "nobr",
+                            properties: {
+                                style: {
+                                    cssFloat: 'left',
+                                    fontSize: '11px'
+                                }
+                            },
+                            children : [{
+                                nodeName: "span",
+                                properties: {
+                                    innerText: "Font ",
+                                    style: {
+                                        paddingLeft: '5px',
+                                        fontWeight: 'bold'
+                                    }
+                                }
+                            }]
+                        }, this._topButtonContainer);
+                        
+                        _select = $common.createElementFromTemplate({
+                            nodeName: "select",
+                            properties: {
+                                style: {
+                                    fontSize: '11px',
+                                    fontFamily: 'Arial',
+                                    height: "20px",
+                                    width: '115px'
+                                }
+                            },
+                            events: {
+                                change : function(e) {                                         
+                                        document.execCommand("FontName", false, this.options[this.selectedIndex].value);
+                                    }
+                            }
+                        }, _btn);                                               
+
+                        var option = [
+                            { Text: "Arial", Value: "arial,helvetica,sans-serif" },
+                            { Text: "Courier New", Value: "courier new,courier,monospace" },
+                            { Text: "Georgia", Value: "georgia,times new roman,times,serif"},
+                            { Text: "Tahoma", Value: "tahoma,arial,helvetica,sans-serif" },
+                            { Text: "Times New Roman", Value: "times new roman,times,serif" },
+                            { Text: "Verdana", Value: "verdana,arial,helvetica,sans-serif" },
+                            { Text: "Impact", Value: "impact" },
+                            { Text: "WingDings", Value: "wingdings" }
+                            ];
+
+                        for (x in option)
+                        {
+                            var elOptNew = document.createElement('option');
+                            elOptNew.text = option[x].Text;
+                            elOptNew.value = option[x].Value;
+                            try {
+                              _select.add(elOptNew, null); // standards compliant; doesn't work in IE
+                            }
+                            catch(ex) {
+                              _select.add(elOptNew); // IE only
+                            }
+                        }
+                        
+                        _select.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
+                        _select.setAttribute('name', this._toolbarButtons[i].CommandName);
+                        _select.setAttribute('title', this._toolbarButtons[i].Tooltip);
+                        _select.setAttribute('unselectable', 'on');
+                    }   
+                    else if (this._toolbarButtons[i].CommandName == 'FontSize') {
+                        _btn = $common.createElementFromTemplate({
+                            nodeName: "nobr",
+                            properties: {
+                                style: {
+                                    cssFloat: 'left',
+                                    fontSize: '11px'
+                                }
+                            },
+                            children : [{
+                                nodeName: "span",
+                                properties: {
+                                    innerText: "Font ",
+                                    style: {
+                                        paddingLeft: '5px',
+                                        fontWeight: 'bold'
+                                    }
+                                }
+                            }]
+                        }, this._topButtonContainer);
+                        
+                        _select = $common.createElementFromTemplate({
+                            nodeName: "select",
+                            properties: {
+                                style: {
+                                    fontSize: '11px',
+                                    fontFamily: 'Arial',
+                                    height: "20px",
+                                    width: '50px'
+                                }
+                            },
+                            events: {
+                                change : function(e) { 
+                                        document.execCommand("FontSize", false, this.options[this.selectedIndex].value);
+                                    }
+                            }
+                        }, _btn);                        
+
+                        var option = [
+                            { Text: "1", Value: "1" },
+                            { Text: "2", Value: "2" },
+                            { Text: "3", Value: "3" },
+                            { Text: "4", Value: "4" },
+                            { Text: "5", Value: "5" },
+                            { Text: "6", Value: "6" },
+                            { Text: "7", Value: "7" }                            
+                            ];
+
+                        for (x in option)
+                        {
+                            var elOptNew = document.createElement('option');
+                            elOptNew.text = option[x].Text;
+                            elOptNew.value = option[x].Value;
+                            try {
+                              _select.add(elOptNew, null); // standards compliant; doesn't work in IE
+                            }
+                            catch(ex) {
+                              _select.add(elOptNew); // IE only
+                            }
+                        }
+                        
+                        _select.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
+                        _select.setAttribute('name', this._toolbarButtons[i].CommandName);
+                        _select.setAttribute('title', this._toolbarButtons[i].Tooltip);
+                        _select.setAttribute('unselectable', 'on');
+                    }                                     
                     else {
-                        _btn = $common.createElementFromTemplate(this._buttonTemplate, this._topButtonContainer);
-                        _btn.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
-                        _btn.setAttribute('name', this._toolbarButtons[i].CommandName);
-                        _btn.setAttribute('title', this._toolbarButtons[i].Tooltip);
-                        _btn.setAttribute('unselectable', 'on');
-                        _btn.setAttribute('class', 'ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName);
-                        //_btn.style.backgroundPosition = this._toolbarButtons[i].Offset;                    
+                        var map = {
+                                Copy: 1,
+                                Cut: 1,
+                                Paste: 1
+                        }
+                                                
+                        if (Sys.Browser.agent == Sys.Browser.Firefox && map[this._toolbarButtons[i].CommandName]) {
+                            // don't render button
+                        }
+                        else
+                        {
+                            _btn = $common.createElementFromTemplate(this._buttonTemplate, this._topButtonContainer);
+                            _btn.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
+                            _btn.setAttribute('name', this._toolbarButtons[i].CommandName);
+                            _btn.setAttribute('title', this._toolbarButtons[i].Tooltip);
+                            _btn.setAttribute('unselectable', 'on');
+                            _btn.setAttribute('class', 'ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName);
+                            //_btn.style.backgroundPosition = this._toolbarButtons[i].Offset;                    
+                        }
                     }
                     Array.add(this._buttons, _btn);
                 }
@@ -287,27 +423,13 @@
                     if (url) {
                         document.execCommand('createLink', false, url);
                     }
-                }
+                }                
                 else if (command.target.name == 'BackColor' || command.target.name == 'ForeColor') {                    
                     var color = prompt('Please insert  Color', '');
                     if (color) {
                         document.execCommand(command.target.name, false, color);
                     }
-                }
-                else if (command.target.name == 'FontName') {
-                    // to do open popup
-                    var fontName = prompt('Please insert  Font Name', '');
-                    if (fontName) {
-                        document.execCommand(command.target.name, false, fontName);
-                    }
-                }
-                else if (command.target.name == 'FontSize') {
-                    // to do open popup
-                    var fontSize = prompt('Please insert  Font Size', '');
-                    if (fontSize) {
-                        document.execCommand(command.target.name, false, fontSize);
-                    }
-                }
+                }                
                 else {
                     document.execCommand(command.target.name, false, null);
                 }

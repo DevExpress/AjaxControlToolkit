@@ -168,9 +168,9 @@ namespace AjaxControlToolkit
             buttonList.Add(new insertUnorderedList());
             buttonList.Add(new CreateLink());
             buttonList.Add(new UnLink());
-            buttonList.Add(new FormatBlock());
+            //buttonList.Add(new FormatBlock());
             buttonList.Add(new RemoveFormat());
-            buttonList.Add(new InsertImage());
+            //buttonList.Add(new InsertImage());
             buttonList.Add(new SelectAll());
             buttonList.Add(new UnSelect());
             buttonList.Add(new Delete());
@@ -180,7 +180,7 @@ namespace AjaxControlToolkit
             buttonList.Add(new BackColor());
             buttonList.Add(new ForeColor());
             buttonList.Add(new FontName());
-            //buttonList.Add(new FontSize());
+            buttonList.Add(new FontSize());
             buttonList.Add(new Indent());
             buttonList.Add(new Outdent());
             buttonList.Add(new InsertHorizontalRule());
