@@ -64,7 +64,7 @@
                 nodeName: 'input',
                 properties: {
                     type: 'text'                    
-                },                
+                }                
             };
 
             this._dropDownTemplate = {
