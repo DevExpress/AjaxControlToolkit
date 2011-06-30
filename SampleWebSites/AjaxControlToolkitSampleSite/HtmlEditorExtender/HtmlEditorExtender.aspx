@@ -24,7 +24,12 @@
             <ajaxToolkit:HtmlEditorExtender ID="HtmlEditorExtender1" TargetControlID="TextBox1" runat="server">
                 <Toolbar>
                     <ajaxToolkit:Bold />
-                    <ajaxToolkit:InsertHorizontalRule />
+                    <ajaxToolkit:Italic />
+                    <ajaxToolkit:Underline />
+                    <ajaxToolkit:HorizontalSeparator />
+                    <ajaxToolkit:FontName />
+                    <ajaxToolkit:FontSize />
+                    <ajaxToolkit:HorizontalSeparator />
                 </Toolbar>
             </ajaxToolkit:HtmlEditorExtender>         
             <br />
