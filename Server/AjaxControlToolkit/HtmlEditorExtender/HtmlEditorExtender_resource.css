@@ -34,7 +34,7 @@
 .ajax__html_editor_extender_JustifyFull{ background-position:-299px 0px;}
 .ajax__html_editor_extender_insertOrderedList{ background-position:-345px 0px;}
 .ajax__html_editor_extender_insertUnorderedList{ background-position:-368px 0px;}
-.ajax__html_editor_extender_CreateLink{ background-position:-391px 0px;}
+.ajax__html_editor_extender_createLink{ background-position:-414px 0px;}
 .ajax__html_editor_extender_UnLink{ background-position:-437px 0px;}
 
 .ajax__html_editor_extender_FormatBlock{ background-position:-897px 0px;}
@@ -46,9 +46,10 @@
 .ajax__html_editor_extender_Cut{ background-position:-483px 0px;}
 .ajax__html_editor_extender_Copy{ background-position:-713px 0px;}
 .ajax__html_editor_extender_Paste{ background-position:-736px 0px;}
-.ajax__html_editor_extender_BackColor{ background-position:-759px 0px;}
-.ajax__html_editor_extender_ForeColor{ background-position:-782px 0px;}
+.ajax__html_editor_extender_BackColor{ background-position:-760px -1px; text-indent:-9999px}
+.ajax__html_editor_extender_ForeColor{ background-position:-783px -1px; text-indent:-9999px}
 .ajax__html_editor_extender_FontName{  background-position:-0px 48px;}
 .ajax__html_editor_extender_Indent{ background-position:-575px 0px;}
 .ajax__html_editor_extender_Outdent{ background-position:-552px 0px;}
 .ajax__html_editor_extender_InsertHorizontalRule{ background-position:-391px 0px;}
+.ajax__html_editor_extender_separator{background:url(<%=WebResource("HtmlEditorExtender.Images.html-editor-buttons.png")%>) no-repeat -920px 0;display: block;float: left;border: none;width:13px;height:21px;}

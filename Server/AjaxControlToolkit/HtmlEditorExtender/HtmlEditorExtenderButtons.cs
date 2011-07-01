@@ -587,73 +587,7 @@ namespace AjaxControlToolkit
             return value;
         }
     }
-
-    /// <summary>
-    /// FormatBlock class represents to FormatBlock action
-    /// </summary>
-    public class FormatBlock : HtmlEditorExtenderButton
-    {
-        /// <summary>
-        /// get name of command that will be passed to execCommand method 
-        /// </summary>
-        public override string CommandName
-        {
-            get { return "FormatBlock"; }
-        }
-
-        /// <summary>
-        /// Get tooltip assciated to FormatBlock button
-        /// </summary>
-        public override string Tooltip
-        {
-            get { return "Format Block"; }
-        }
-
-        /// <summary>         
-        /// Decode tags associated to a FormatBlock button
-        /// </summary>
-        /// <param name="value">string that contains tags to decode</param>
-        /// <returns>string value after decode</returns>
-        public override string Decode(string value)
-        {
-            return value;
-        }
-    }
-
-    /// <summary>
-    /// InsertImage class represents to FormatBlock action
-    /// </summary>
-    public class InsertImage : HtmlEditorExtenderButton
-    {
-        /// <summary>
-        /// get name of command that will be passed to execCommand method 
-        /// </summary>
-        public override string CommandName
-        {
-            get { return "InsertImage"; }
-        }
-
-        /// <summary>
-        /// Get tooltip assciated to InsertImage button
-        /// </summary>
-        public override string Tooltip
-        {
-            get { return "Insert Image"; }
-        }
-
-        /// <summary>         
-        /// Decode tags associated to a InsertImage button
-        /// </summary>
-        /// <param name="value">string that contains tags to decode</param>
-        /// <returns>string value after decode</returns>
-        public override string Decode(string value)
-        {
-            var result = Regex.Replace(value, "&lt;img", "<img", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&gt;", ">", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/img&gt;", "</img>", RegexOptions.IgnoreCase);
-        }
-    }
-
+    
     /// <summary>
     /// InsertLineBreak class represents to InsertLineBreak action
     /// </summary>
@@ -1191,6 +1125,38 @@ namespace AjaxControlToolkit
 
         /// <summary>         
         /// Decode tags associated to a RemoveFormat button
+        /// </summary>
+        /// <param name="value">string that contains tags to decode</param>
+        /// <returns>string value after decode</returns>
+        public override string Decode(string value)
+        {
+            return value;
+        }
+    }
+
+    /// <summary>
+    /// HorizontalSeparator class represents to add HorizontalSeparator
+    /// </summary>
+    public class HorizontalSeparator : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "HorizontalSeparator"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to InsertImage button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Separator"; }
+        }
+
+        /// <summary>         
+        /// Decode tags associated to a InsertImage button
         /// </summary>
         /// <param name="value">string that contains tags to decode</param>
         /// <returns>string value after decode</returns>
