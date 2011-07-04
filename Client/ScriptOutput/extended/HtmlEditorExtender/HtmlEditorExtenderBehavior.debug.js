@@ -383,13 +383,17 @@
             },
 
             _editableDiv_onblur: function () {
-                this._textbox._element.value = this.innerHTML;
+                this._textbox._element.value = this._encodeHtml();
             },
 
             _textBox_onblur: function () {
-                this._editableDiv.innerHTML = this.value;
+                this._editableDiv.innerHTML = this._textbox._element.value;
             },
-
+            _encodeHtml: function () {
+                var html = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
+                html = html.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
+                return html;
+            },
             _editableDiv_submit: function () {
                 var char = 3;
                 var sel = null;
@@ -406,9 +410,7 @@
                     }
                 }
 
-                var encodedHtml = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
-                encodedHtml = encodedHtml.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
-                this._textbox._element.value = encodedHtml;
+                this._textbox._element.value = this._encodedHtml();
             },
 
             _executeCommand: function (command) {
@@ -491,12 +493,23 @@
                     else {
                         document.execCommand(command.target.name, false, null);
                     }
-                }
+                }                
                 else {
                     document.execCommand(command.target.name, false, null);
                 }
             },
 
+            _colorPicker_onchange: function (e) {
+                this.restoreSelection();
+                if (this._commandName == "backcolor") {
+                    if (!document.execCommand("hilitecolor", false, "#" + e._selectedColor)) {
+                        document.execCommand("backcolor", false, "#" + e._selectedColor);
+                    }
+                }
+                else
+                    document.execCommand(this._commandName, false, "#" + e._selectedColor);
+            },
+            
             _colorPicker_onchange: function (e) {
                 this.restoreSelection();
                 if (this._commandName == "backcolor") {

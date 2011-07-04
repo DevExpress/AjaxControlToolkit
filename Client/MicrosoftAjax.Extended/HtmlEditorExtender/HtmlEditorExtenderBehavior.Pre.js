@@ -425,7 +425,7 @@
                 }
 
                 //Encode html tags
-                this._textbox._element.value = encodedHtml;
+                this._textbox._element.value = this._encodedHtml();
             },
 
             _executeCommand: function (command) {
@@ -501,7 +501,6 @@
                         this._foreColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, { 'unselectable': 'on' }, {}, {}, this._foreColor);
                         this._foreColorPicker.set_sample(this._foreColor.parentNode);
                         this._foreColorPicker.add_colorSelectionChanged(delcolorPicker_onchange);
-<<<<<<< HEAD
                     }
                     this._foreColorPicker.show();
                 }
@@ -514,27 +513,24 @@
                     else {
                         document.execCommand(command.target.name, false, null);
                     }
-=======
-                    }
-                    this._foreColorPicker.show();
-                }
-                else if (command.target.name == 'UnSelect') {
-                    if (isFireFox) {                                                
-                        this._editableDiv.focus();
-                        var sel = window.getSelection();
-                        sel.collapse(this._editableDiv.firstChild, 0);
-                    }
-                    else {
-                        document.execCommand(command.target.name, false, null);
-                    }
->>>>>>> 82fb2e9744f5d3b436c76d2b60a8adc434b398e5
-                }
+                }                
                 else {
                     document.execCommand(command.target.name, false, null);
                 }
             },
-<<<<<<< HEAD
 
+            // BackColor & ForeColor colorpicker onchange, fill color to selected text
+            _colorPicker_onchange: function (e) {
+                this.restoreSelection();
+                if (this._commandName == "backcolor") {
+                    if (!document.execCommand("hilitecolor", false, "#" + e._selectedColor)) {
+                        document.execCommand("backcolor", false, "#" + e._selectedColor);
+                    }
+                }
+                else
+                    document.execCommand(this._commandName, false, "#" + e._selectedColor);
+            },
+            
             // BackColor & ForeColor colorpicker onchange, fill color to selected text
             _colorPicker_onchange: function (e) {
                 this.restoreSelection();
@@ -559,33 +555,6 @@
                 }
             },
 
-=======
-
-            // BackColor & ForeColor colorpicker onchange, fill color to selected text
-            _colorPicker_onchange: function (e) {
-                this.restoreSelection();
-                if (this._commandName == "backcolor") {
-                    if (!document.execCommand("hilitecolor", false, "#" + e._selectedColor)) {
-                        document.execCommand("backcolor", false, "#" + e._selectedColor);
-                    }
-                }
-                else
-                    document.execCommand(this._commandName, false, "#" + e._selectedColor);
-            },
-
-            // Save selected text
-            saveSelection: function () {
-                if (window.getSelection)//non IE Browsers
-                {
-                    this.savedRange = window.getSelection().getRangeAt(0);
-                }
-                else if (document.selection)//IE
-                {
-                    this.savedRange = document.selection.createRange();
-                }
-            },
-
->>>>>>> 82fb2e9744f5d3b436c76d2b60a8adc434b398e5
             //Restore selected text
             restoreSelection: function () {
                 this.isInFocus = true;
