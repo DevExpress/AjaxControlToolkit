@@ -410,7 +410,7 @@
                     }
                 }
 
-                this._textbox._element.value = this._encodedHtml();
+                this._textbox._element.value = this._encodeHtml();
             },
 
             _executeCommand: function (command) {
@@ -493,23 +493,12 @@
                     else {
                         document.execCommand(command.target.name, false, null);
                     }
-                }                
+                }
                 else {
                     document.execCommand(command.target.name, false, null);
                 }
             },
 
-            _colorPicker_onchange: function (e) {
-                this.restoreSelection();
-                if (this._commandName == "backcolor") {
-                    if (!document.execCommand("hilitecolor", false, "#" + e._selectedColor)) {
-                        document.execCommand("backcolor", false, "#" + e._selectedColor);
-                    }
-                }
-                else
-                    document.execCommand(this._commandName, false, "#" + e._selectedColor);
-            },
-            
             _colorPicker_onchange: function (e) {
                 this.restoreSelection();
                 if (this._commandName == "backcolor") {

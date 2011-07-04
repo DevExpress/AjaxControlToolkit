@@ -27,9 +27,12 @@
                     <ajaxToolkit:Italic />
                     <ajaxToolkit:Underline />
                     <ajaxToolkit:HorizontalSeparator />
-                    <ajaxToolkit:FontName />
-                    <ajaxToolkit:FontSize />
+                    <ajaxToolkit:FontNameSelector />
+                    <ajaxToolkit:FontSizeSelector />
                     <ajaxToolkit:HorizontalSeparator />
+                    <ajaxToolkit:Undo />
+                    <ajaxToolkit:UnLink />
+                    <ajaxToolkit:insertUnorderedList />
                 </Toolbar>
             </ajaxToolkit:HtmlEditorExtender>         
             <br />

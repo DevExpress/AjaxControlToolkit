@@ -6,6 +6,8 @@ using System.Text;
 using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Drawing.Design;
 
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.js", "text/javascript")]
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.debug.js", "text/javascript")]
@@ -25,55 +27,58 @@ namespace AjaxControlToolkit
     [ClientCssResource("HtmlEditorExtender.HtmlEditorExtender_resource.css")]
     [ParseChildren(true)]
     [PersistChildren(false)]
+    [System.Drawing.ToolboxBitmap(typeof(HtmlEditorExtender), "HtmlEditorExtender.html_editor_extender.ico")]
     //[Designer(typeof(HtmlEditorExtenderDesigner))]
     public class HtmlEditorExtender : ExtenderControlBase
     {
         internal const int ButtonWidthDef = 23;
         internal const int ButtonHeightDef = 21;
-        List<HtmlEditorExtenderButton> buttonList = null;
+        HtmlEditorExtenderButtonCollection buttonList = null;
 
         public HtmlEditorExtender()
         {
             EnableClientState = true;
         }
 
+        /// <summary>
+        /// Provide button list to client side. Need help from Toolbar property 
+        /// for designer experience support, cause Editor always blocks the property
+        /// ability to provide values to client side as ExtenderControlProperty on run time.
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]                
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
-        [DefaultValue(null)]
-        [ClientPropertyName("ToolbarButtons")]
-        public List<HtmlEditorExtenderButton> Toolbar
+        public HtmlEditorExtenderButtonCollection ToolbarButtons
         {
             get 
             {
-                if (buttonList == null)
+                if (buttonList == null || buttonList.Count == 0)
                     CreateButtons();
-                return GetPropertyValue("ToolbarButtons",buttonList);
-            }
-            set
-            {
-                SetPropertyValue("ToolbarButtons", value);
+                return buttonList;
             }
         }
 
         /// <summary>
-        /// Get or set list of toolbar buttons
+        /// Helper property to cacth buttons from modifed buttons on design time.
+        /// This property will only attached when Toolbar property are not empty in design time.
         /// </summary>
-        //[ExtenderControlProperty(true, true)]
-        //[DefaultValue(null)]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        //public HtmlEditorExtenderButton[] ToolbarButtons
-        //{
-        //    get
-        //    {
-        //        if (buttonList == null)
-        //        {
-        //            CreateButtons();
-        //        }
-        //        return GetPropertyValue("ToolbarButtons", buttonList.ToArray());
-        //    }
-        //    set { SetPropertyValue("ToolbarButtons", value); }
-        //}
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DefaultValue(null)]
+        [NotifyParentProperty(true)]
+        [Editor(typeof(HtmlEditorExtenderButtonCollectionEditor), typeof(UITypeEditor))]
+        [Description("Costumize visible buttons, leave empty to show all buttons")]
+        public HtmlEditorExtenderButtonCollection Toolbar
+        {
+            get
+            {
+                if (buttonList == null)
+                    buttonList = new HtmlEditorExtenderButtonCollection();
+                return buttonList;
+            }
+        }
 
         private string DecodeValues(string value)
         {
@@ -147,51 +152,58 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// CreateButtons creates list of buttons for the toolbar
+        /// When user defines/customize buttons on design time Toolbar property will accessed twice
+        /// so we need to skip the first accessing of this property to avoid buttons created twice
         /// </summary>
+        bool tracked = false;
+
+        /// <summary>
+        /// CreateButtons creates list of buttons for the toolbar
+        /// </summary>        
         protected virtual void CreateButtons()
-        {            
-            buttonList = new List<HtmlEditorExtenderButton>();
+        {
+            buttonList = new HtmlEditorExtenderButtonCollection();
+
+            // avoid buttons for twice buttons craetion
+            if (!tracked)
+            {
+                tracked = true;
+                return;
+            }
+            tracked = false;
             buttonList.Add(new Undo());
             buttonList.Add(new Redo());
-            buttonList.Add(new HorizontalSeparator());
             buttonList.Add(new Bold());
             buttonList.Add(new Italic());
             buttonList.Add(new Underline());
             buttonList.Add(new StrikeThrough());
             buttonList.Add(new Subscript());
             buttonList.Add(new Superscript());
-            buttonList.Add(new HorizontalSeparator());
             buttonList.Add(new JustifyLeft());
             buttonList.Add(new JustifyCenter());
             buttonList.Add(new JustifyRight());
             buttonList.Add(new JustifyFull());
-            buttonList.Add(new HorizontalSeparator());
             buttonList.Add(new insertOrderedList());
             buttonList.Add(new insertUnorderedList());
-            buttonList.Add(new HorizontalSeparator());            
+            buttonList.Add(new CreateLink());
+            buttonList.Add(new UnLink());
+            //buttonList.Add(new FormatBlock());
+            buttonList.Add(new RemoveFormat());
+            //buttonList.Add(new InsertImage());
             buttonList.Add(new SelectAll());
             buttonList.Add(new UnSelect());
             buttonList.Add(new Delete());
-            buttonList.Add(new HorizontalSeparator());
             buttonList.Add(new Cut());
             buttonList.Add(new Copy());
             buttonList.Add(new Paste());
-            buttonList.Add(new HorizontalSeparator());
-            buttonList.Add(new BackColor());
-            buttonList.Add(new ForeColor());
-            buttonList.Add(new HorizontalSeparator());
-            buttonList.Add(new FontName());
-            buttonList.Add(new FontSize());
-            buttonList.Add(new HorizontalSeparator());
+            buttonList.Add(new BackgroundColorSelector());
+            buttonList.Add(new ForeColorSelector());
+            buttonList.Add(new FontNameSelector());
+            buttonList.Add(new FontSizeSelector());
             buttonList.Add(new Indent());
             buttonList.Add(new Outdent());
-            buttonList.Add(new HorizontalSeparator());
             buttonList.Add(new InsertHorizontalRule());
-            buttonList.Add(new CreateLink());
-            buttonList.Add(new UnLink());
             buttonList.Add(new HorizontalSeparator());
-            buttonList.Add(new RemoveFormat());
         }
     }
 }
