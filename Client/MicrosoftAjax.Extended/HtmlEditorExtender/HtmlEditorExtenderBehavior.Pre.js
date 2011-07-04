@@ -425,7 +425,7 @@
                 }
 
                 //Encode html tags
-                this._textbox._element.value = encodedHtml;
+                this._textbox._element.value = this._encodeHtml();
             },
 
             _executeCommand: function (command) {
