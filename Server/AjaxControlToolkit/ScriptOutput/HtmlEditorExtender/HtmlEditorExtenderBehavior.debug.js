@@ -68,8 +68,13 @@
             this._textboxTemplate = {
                 nodeName: 'input',
                 properties: {
+<<<<<<< HEAD
                     type: 'text'
                 }
+=======
+                    type: 'text'                    
+                }                
+>>>>>>> 82fb2e9744f5d3b436c76d2b60a8adc434b398e5
             };
 
             this._dropDownTemplate = {
@@ -189,7 +194,7 @@
                                 }
                             }]
                         }, this._topButtonContainer);
-
+                        
                         _select = $common.createElementFromTemplate({
                             nodeName: "select",
                             properties: {
@@ -255,7 +260,7 @@
                                 }
                             }]
                         }, this._topButtonContainer);
-
+                        
                         _select = $common.createElementFromTemplate({
                             nodeName: "select",
                             properties: {

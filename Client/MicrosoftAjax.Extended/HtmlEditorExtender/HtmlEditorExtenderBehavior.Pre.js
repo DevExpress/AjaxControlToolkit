@@ -394,13 +394,19 @@
             },
 
             _editableDiv_onblur: function () {
-                this._textbox._element.value = this.innerHTML;
+                this._textbox._element.value = this._encodeHtml();
             },
 
             _textBox_onblur: function () {
-                this._editableDiv.innerHTML = this.value;
+                this._editableDiv.innerHTML = this._textbox._element.value;
             },
-
+            _encodeHtml: function () {
+                //Encode html tags
+                var html = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
+                //converter to convert different tags into Html5 standard tags
+                html = html.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
+                return html;
+            },
             _editableDiv_submit: function () {
                 //html encode
                 var char = 3;
@@ -419,9 +425,6 @@
                 }
 
                 //Encode html tags
-                var encodedHtml = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
-                //converter to convert different tags into Html5 standard tags
-                encodedHtml = encodedHtml.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
                 this._textbox._element.value = encodedHtml;
             },
 
@@ -498,6 +501,7 @@
                         this._foreColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, { 'unselectable': 'on' }, {}, {}, this._foreColor);
                         this._foreColorPicker.set_sample(this._foreColor.parentNode);
                         this._foreColorPicker.add_colorSelectionChanged(delcolorPicker_onchange);
+<<<<<<< HEAD
                     }
                     this._foreColorPicker.show();
                 }
@@ -510,11 +514,26 @@
                     else {
                         document.execCommand(command.target.name, false, null);
                     }
+=======
+                    }
+                    this._foreColorPicker.show();
+                }
+                else if (command.target.name == 'UnSelect') {
+                    if (isFireFox) {                                                
+                        this._editableDiv.focus();
+                        var sel = window.getSelection();
+                        sel.collapse(this._editableDiv.firstChild, 0);
+                    }
+                    else {
+                        document.execCommand(command.target.name, false, null);
+                    }
+>>>>>>> 82fb2e9744f5d3b436c76d2b60a8adc434b398e5
                 }
                 else {
                     document.execCommand(command.target.name, false, null);
                 }
             },
+<<<<<<< HEAD
 
             // BackColor & ForeColor colorpicker onchange, fill color to selected text
             _colorPicker_onchange: function (e) {
@@ -540,6 +559,33 @@
                 }
             },
 
+=======
+
+            // BackColor & ForeColor colorpicker onchange, fill color to selected text
+            _colorPicker_onchange: function (e) {
+                this.restoreSelection();
+                if (this._commandName == "backcolor") {
+                    if (!document.execCommand("hilitecolor", false, "#" + e._selectedColor)) {
+                        document.execCommand("backcolor", false, "#" + e._selectedColor);
+                    }
+                }
+                else
+                    document.execCommand(this._commandName, false, "#" + e._selectedColor);
+            },
+
+            // Save selected text
+            saveSelection: function () {
+                if (window.getSelection)//non IE Browsers
+                {
+                    this.savedRange = window.getSelection().getRangeAt(0);
+                }
+                else if (document.selection)//IE
+                {
+                    this.savedRange = document.selection.createRange();
+                }
+            },
+
+>>>>>>> 82fb2e9744f5d3b436c76d2b60a8adc434b398e5
             //Restore selected text
             restoreSelection: function () {
                 this.isInFocus = true;
