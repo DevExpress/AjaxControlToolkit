@@ -5,7 +5,7 @@
 
 using System;
 
-public partial class HTMLEditorExtenderSample : CommonPage
+public partial class HTMLEditorExtender : CommonPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {

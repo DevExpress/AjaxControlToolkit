@@ -148,7 +148,8 @@ namespace AjaxControlToolkit
 
             // decode values of textbox
             TextBox txtBox = (TextBox)TargetControl;
-            txtBox.Text = DecodeValues(txtBox.Text);
+            if (txtBox != null)
+                txtBox.Text = DecodeValues(txtBox.Text);
         }
 
         /// <summary>
