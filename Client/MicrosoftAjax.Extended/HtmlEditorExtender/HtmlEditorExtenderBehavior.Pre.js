@@ -1,4 +1,4 @@
-﻿/// <reference name='MicrosoftAjax.js' />
+/// <reference name='MicrosoftAjax.js' />
 /// <reference path='../ExtenderBase/BaseScripts.js' />
 /// <reference path='../Common/Common.js' />
 

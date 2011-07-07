@@ -12,13 +12,20 @@
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior = function (element) {
             /// <summary>
-            /// Html Extender behavior which Extends TextBox 
+            /// Html Extender behavior which Extends TextBox
             /// </summmary>
             /// <param name='element' type='Sys.UI.DomElement'>The element to attach to</param>
             Sys.Extended.UI.HtmlEditorExtenderBehavior.initializeBase(this, [element]);
             this._textbox = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
 
             var id = this.get_id();
+
+            this._backColor = null;
+            this._foreColor = null;
+            this._commandName = null;
+            this.savedRange = null;
+            this.isInFocus = null;
+            _flag = false;
 
             this._ButtonWidth = 23;
             this._ButtonHeight = 21;
@@ -61,8 +68,8 @@
             this._textboxTemplate = {
                 nodeName: 'input',
                 properties: {
-                    type: 'text'                    
-                }                
+                    type: 'text'
+                }
             };
 
             this._dropDownTemplate = {
@@ -125,7 +132,7 @@
 
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
                 $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
-                $addHandler(this._topButtonContainer, 'click', btnClickHandler);                
+                $addHandler(this._topButtonContainer, 'click', btnClickHandler);
             },
 
             _dispose: function () {
@@ -156,7 +163,13 @@
             _createButton: function () {
                 for (i = 0; i < this._toolbarButtons.length; i++) {
                     var _btn;
-                    if (this._toolbarButtons[i].CommandName == 'FontName') {
+                    if (this._toolbarButtons[i].CommandName == 'HorizontalSeparator') {
+                        _btn = $common.createElementFromTemplate({
+                            nodeName: "span",
+                            cssClasses: ['ajax__html_editor_extender_separator']
+                        }, this._topButtonContainer);
+                    }
+                    else if (this._toolbarButtons[i].CommandName == 'FontName') {
                         _btn = $common.createElementFromTemplate({
                             nodeName: "nobr",
                             properties: {
@@ -165,10 +178,10 @@
                                     fontSize: '11px'
                                 }
                             },
-                            children : [{
+                            children: [{
                                 nodeName: "span",
                                 properties: {
-                                    innerText: "Font ",
+                                    textContent: "Font ",
                                     style: {
                                         paddingLeft: '5px',
                                         fontWeight: 'bold'
@@ -176,7 +189,7 @@
                                 }
                             }]
                         }, this._topButtonContainer);
-                        
+
                         _select = $common.createElementFromTemplate({
                             nodeName: "select",
                             properties: {
@@ -188,16 +201,16 @@
                                 }
                             },
                             events: {
-                                change : function(e) {                                         
-                                        document.execCommand("FontName", false, this.options[this.selectedIndex].value);
-                                    }
+                                change: function (e) {
+                                    document.execCommand("FontName", false, this.options[this.selectedIndex].value);
+                                }
                             }
-                        }, _btn);                                               
+                        }, _btn);
 
                         var option = [
                             { Text: "Arial", Value: "arial,helvetica,sans-serif" },
                             { Text: "Courier New", Value: "courier new,courier,monospace" },
-                            { Text: "Georgia", Value: "georgia,times new roman,times,serif"},
+                            { Text: "Georgia", Value: "georgia,times new roman,times,serif" },
                             { Text: "Tahoma", Value: "tahoma,arial,helvetica,sans-serif" },
                             { Text: "Times New Roman", Value: "times new roman,times,serif" },
                             { Text: "Verdana", Value: "verdana,arial,helvetica,sans-serif" },
@@ -205,24 +218,23 @@
                             { Text: "WingDings", Value: "wingdings" }
                             ];
 
-                        for (x in option)
-                        {
+                        for (x in option) {
                             var elOptNew = document.createElement('option');
                             elOptNew.text = option[x].Text;
                             elOptNew.value = option[x].Value;
                             try {
-                              _select.add(elOptNew, null); // standards compliant; doesn't work in IE
+                                _select.add(elOptNew, null); // standards compliant; doesn't work in IE
                             }
-                            catch(ex) {
-                              _select.add(elOptNew); // IE only
+                            catch (ex) {
+                                _select.add(elOptNew); // IE only
                             }
                         }
-                        
+
                         _select.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
                         _select.setAttribute('name', this._toolbarButtons[i].CommandName);
                         _select.setAttribute('title', this._toolbarButtons[i].Tooltip);
                         _select.setAttribute('unselectable', 'on');
-                    }   
+                    }
                     else if (this._toolbarButtons[i].CommandName == 'FontSize') {
                         _btn = $common.createElementFromTemplate({
                             nodeName: "nobr",
@@ -232,10 +244,10 @@
                                     fontSize: '11px'
                                 }
                             },
-                            children : [{
+                            children: [{
                                 nodeName: "span",
                                 properties: {
-                                    innerText: "Font ",
+                                    textContent: "Size ",
                                     style: {
                                         paddingLeft: '5px',
                                         fontWeight: 'bold'
@@ -243,7 +255,7 @@
                                 }
                             }]
                         }, this._topButtonContainer);
-                        
+
                         _select = $common.createElementFromTemplate({
                             nodeName: "select",
                             properties: {
@@ -255,60 +267,112 @@
                                 }
                             },
                             events: {
-                                change : function(e) { 
-                                        document.execCommand("FontSize", false, this.options[this.selectedIndex].value);
-                                    }
+                                change: function (e) {
+                                    document.execCommand("FontSize", false, this.options[this.selectedIndex].value);
+                                }
                             }
-                        }, _btn);                        
+                        }, _btn);
 
                         var option = [
-                            { Text: "1", Value: "1" },
-                            { Text: "2", Value: "2" },
-                            { Text: "3", Value: "3" },
-                            { Text: "4", Value: "4" },
-                            { Text: "5", Value: "5" },
-                            { Text: "6", Value: "6" },
-                            { Text: "7", Value: "7" }                            
+                            { Text: "1 (8 pt)", Value: "8pt" },
+                            { Text: "2 (10 pt)", Value: "10pt" },
+                            { Text: "3 (12 pt)", Value: "12pt" },
+                            { Text: "4 (14 pt)", Value: "14pt" },
+                            { Text: "5 (18 pt)", Value: "18pt" },
+                            { Text: "6 (24 pt)", Value: "24pt" },
+                            { Text: "7 (36 pt)", Value: "36pt" }
                             ];
 
-                        for (x in option)
-                        {
+                        for (x in option) {
                             var elOptNew = document.createElement('option');
                             elOptNew.text = option[x].Text;
                             elOptNew.value = option[x].Value;
                             try {
-                              _select.add(elOptNew, null); // standards compliant; doesn't work in IE
+                                _select.add(elOptNew, null); // standards compliant; doesn't work in IE
                             }
-                            catch(ex) {
-                              _select.add(elOptNew); // IE only
+                            catch (ex) {
+                                _select.add(elOptNew); // IE only
                             }
                         }
-                        
+
                         _select.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
                         _select.setAttribute('name', this._toolbarButtons[i].CommandName);
                         _select.setAttribute('title', this._toolbarButtons[i].Tooltip);
                         _select.setAttribute('unselectable', 'on');
-                    }                                     
+                    }
+                    else if (this._toolbarButtons[i].CommandName == 'ForeColor') {
+
+                        _btn = $common.createElementFromTemplate({
+                            nodeName: "span",
+                            properties: {
+                                style: {
+                                    backgroundColor: '#ff0000',
+                                    border: 'solid 1px #c2c2c2',
+                                    display: 'block',
+                                    cssFloat: 'left'
+                                }
+                            }
+                        }, this._topButtonContainer);
+                        _btn.setAttribute('unselectable', 'on');
+
+                        this._foreColor = $common.createElementFromTemplate({
+                            nodeName: 'input',
+                            properties: {
+                                type: 'button',
+                                id: this._id + this._toolbarButtons[i].CommandName,
+                                name: this._toolbarButtons[i].CommandName,
+                                title: this._toolbarButtons[i].Tooltip,
+                                style: {
+                                    backgroundColor: 'transparent',
+                                    width: '21px',
+                                    height: '19px'
+                                }
+                            },
+                            cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName]
+                        }, _btn);
+                        this._foreColor.setAttribute('unselectable', 'on');
+
+                        /*
+                        this._foreColor = $common.createElementFromTemplate(this._buttonTemplate, _btn);
+                        this._foreColor.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
+                        this._foreColor.setAttribute('name', this._toolbarButtons[i].CommandName);
+                        this._foreColor.setAttribute('title', this._toolbarButtons[i].Tooltip);
+                        this._foreColor.setAttribute('style', "background-color:transparent;width:21px;height:19px");
+                        this._foreColor.setAttribute('unselectable', 'on');
+                        --------------------------------------------------
+                        >>>>>>>> THIS CODE IS CAUSE AN ISSUES ON IE7
+                        --------------------------------------------------
+                        this._foreColor.setAttribute('class', 'ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName);
+                        */
+                    }
                     else {
                         var map = {
-                                Copy: 1,
-                                Cut: 1,
-                                Paste: 1
+                            Copy: 1,
+                            Cut: 1,
+                            Paste: 1
                         }
-                                                
-                        if (Sys.Browser.agent == Sys.Browser.Firefox && map[this._toolbarButtons[i].CommandName]) {
+
+                        if (Sys.Browser.agent != Sys.Browser.InternetExplorer && map[this._toolbarButtons[i].CommandName]) {
                         }
-                        else
-                        {
-                            _btn = $common.createElementFromTemplate(this._buttonTemplate, this._topButtonContainer);
-                            _btn.setAttribute('id', this._id + this._toolbarButtons[i].CommandName);
-                            _btn.setAttribute('name', this._toolbarButtons[i].CommandName);
-                            _btn.setAttribute('title', this._toolbarButtons[i].Tooltip);
+                        else {
+                            _btn = $common.createElementFromTemplate({
+                                nodeName: 'input',
+                                properties: {
+                                    type: 'button',
+                                    id: this._id + this._toolbarButtons[i].CommandName,
+                                    name: this._toolbarButtons[i].CommandName,
+                                    title: this._toolbarButtons[i].Tooltip,
+                                    style: {
+                                        width: '23px',
+                                        height: '21px'
+                                    }
+                                },
+                                cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName]
+                            }, this._topButtonContainer);
                             _btn.setAttribute('unselectable', 'on');
-                            _btn.setAttribute('class', 'ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName);
                         }
+                        Array.add(this._buttons, _btn);
                     }
-                    Array.add(this._buttons, _btn);
                 }
             },
 
@@ -319,13 +383,17 @@
             },
 
             _editableDiv_onblur: function () {
-                this._textbox._element.value = this.innerHTML;
+                this._textbox._element.value = this._encodeHtml();
             },
 
             _textBox_onblur: function () {
-                this._editableDiv.innerHTML = this.value;
+                this._editableDiv.innerHTML = this._textbox._element.value;
             },
-
+            _encodeHtml: function () {
+                var html = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
+                html = html.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
+                return html;
+            },
             _editableDiv_submit: function () {
                 var char = 3;
                 var sel = null;
@@ -342,13 +410,15 @@
                     }
                 }
 
-                var encodedHtml = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
-                encodedHtml = encodedHtml.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
-                this._textbox._element.value = encodedHtml;
+                this._textbox._element.value = this._encodeHtml();
             },
 
             _executeCommand: function (command) {
+                if (command.target.name == undefined)
+                    return;
+
                 var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox;
+                var delcolorPicker_onchange = Function.createDelegate(this, this._colorPicker_onchange);
 
                 if (isFireFox) {
                     document.execCommand('styleWithCSS', false, false);
@@ -359,7 +429,7 @@
                     JustifyLeft: 1,
                     JustifyCenter: 1,
                     JustifyFull: 1
-                }
+                };
 
                 if (map[command.target.name]) {
                     try {
@@ -403,17 +473,77 @@
                     if (url) {
                         document.execCommand('createLink', false, url);
                     }
-                }                
-                else if (command.target.name == 'BackColor' || command.target.name == 'ForeColor') {                    
-                    var color = prompt('Please insert  Color', '');
-                    if (color) {
-                        document.execCommand(command.target.name, false, color);
+                }
+                else if (command.target.name == 'ForeColor') {
+                    this._commandName = command.target.name;
+                    this.saveSelection();
+                    if (!this._foreColorPicker) {
+                        this._foreColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, { 'unselectable': 'on' }, {}, {}, this._foreColor);
+                        this._foreColorPicker.set_sample(this._foreColor.parentNode);
+                        this._foreColorPicker.add_colorSelectionChanged(delcolorPicker_onchange);
                     }
-                }                
+                    this._foreColorPicker.show();
+                }
+                else if (command.target.name == 'UnSelect') {
+                    if (isFireFox) {                                                
+                        this._editableDiv.focus();
+                        var sel = window.getSelection();
+                        sel.collapse(this._editableDiv.firstChild, 0);
+                    }
+                    else {
+                        document.execCommand(command.target.name, false, null);
+                    }
+                }
                 else {
                     document.execCommand(command.target.name, false, null);
                 }
+            },
 
+            _colorPicker_onchange: function (e) {
+                this.restoreSelection();
+                if (this._commandName == "backcolor") {
+                    if (!document.execCommand("hilitecolor", false, "#" + e._selectedColor)) {
+                        document.execCommand("backcolor", false, "#" + e._selectedColor);
+                    }
+                }
+                else
+                    document.execCommand(this._commandName, false, "#" + e._selectedColor);
+            },
+
+            saveSelection: function () {
+                if (window.getSelection)//non IE Browsers
+                {
+                    this.savedRange = window.getSelection().getRangeAt(0);
+                }
+                else if (document.selection)//IE
+                {
+                    this.savedRange = document.selection.createRange();
+                }
+            },
+
+            restoreSelection: function () {
+                this.isInFocus = true;
+                if (this.savedRange != null) {
+                    if (window.getSelection)//non IE and there is already a selection
+                    {
+                        var s = window.getSelection();
+                        if (s.rangeCount > 0)
+                            s.removeAllRanges();
+                        s.addRange(this.savedRange);
+                    }
+                    else {
+                        if (document.createRange)//non IE and no selection
+                        {
+                            window.getSelection().addRange(this.savedRange);
+                        }
+                        else {
+                            if (document.selection)//IE
+                            {
+                                this.savedRange.select();
+                            }
+                        }
+                    }
+                }
             },
 
             get_ButtonWidth: function () {
@@ -484,4 +614,4 @@
         execute();
     }
 
-})();    
+})();

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web.UI;
+using System.ComponentModel;
 
 namespace AjaxControlToolkit
 {
     /// <summary>
     /// All toolbar buttons for HtmlEditorExtender will be derived from this class.
     /// </summary>
-    public abstract class HtmlEditorExtenderButton
+    //[ToolboxItem(false)]
+    public abstract class HtmlEditorExtenderButton //: Control
     {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
@@ -19,7 +22,7 @@ namespace AjaxControlToolkit
         /// <summary>
         /// get value to show tooltip for the button
         /// </summary>
-        public virtual string Tooltip { get { return CommandName; } }
+        public virtual string Tooltip { get { return CommandName; }  }
 
         /// <summary>
         /// Abstract method that will be overridden by child classes to implement decoding 
@@ -587,103 +590,6 @@ namespace AjaxControlToolkit
             return value;
         }
     }
-    
-    /// <summary>
-    /// InsertLineBreak class represents to InsertLineBreak action
-    /// </summary>
-    public class InsertLineBreak : HtmlEditorExtenderButton
-    {
-        /// <summary>
-        /// get name of command that will be passed to execCommand method 
-        /// </summary>
-        public override string CommandName
-        {
-            get { return "InsertLineBreak"; }
-        }
-
-        /// <summary>
-        /// Get tooltip assciated to InsertLineBreak button
-        /// </summary>
-        public override string Tooltip
-        {
-            get { return "Insert Line Break"; }
-        }
-
-        /// <summary>         
-        /// Decode tags associated to a InsertLineBreak button
-        /// </summary>
-        /// <param name="value">string that contains tags to decode</param>
-        /// <returns>string value after decode</returns>
-        public override string Decode(string value)
-        {
-            return value;
-        }
-    }
-
-    /// <summary>
-    /// InsertParagraph class represents to InsertParagraph action
-    /// </summary>
-    public class InsertParagraph : HtmlEditorExtenderButton
-    {
-        /// <summary>
-        /// get name of command that will be passed to execCommand method 
-        /// </summary>
-        public override string CommandName
-        {
-            get { return "InsertParagraph"; }
-        }
-
-        /// <summary>
-        /// Get tooltip assciated to InsertParagraph button
-        /// </summary>
-        public override string Tooltip
-        {
-            get { return "Insert Paragraph"; }
-        }
-
-        /// <summary>         
-        /// Decode tags associated to a InsertParagraph button
-        /// </summary>
-        /// <param name="value">string that contains tags to decode</param>
-        /// <returns>string value after decode</returns>
-        public override string Decode(string value)
-        {
-            return value;
-        }
-    }
-
-
-    /// <summary>
-    /// InsertText class represents to InsertText action
-    /// </summary>
-    public class InsertText : HtmlEditorExtenderButton
-    {
-        /// <summary>
-        /// get name of command that will be passed to execCommand method 
-        /// </summary>
-        public override string CommandName
-        {
-            get { return "InsertText"; }
-        }
-
-        /// <summary>
-        /// Get tooltip assciated to InsertText button
-        /// </summary>
-        public override string Tooltip
-        {
-            get { return "Insert Text"; }
-        }
-
-        /// <summary>         
-        /// Decode tags associated to a InsertText button
-        /// </summary>
-        /// <param name="value">string that contains tags to decode</param>
-        /// <returns>string value after decode</returns>
-        public override string Decode(string value)
-        {
-            return value;
-        }
-    }
 
     /// <summary>
     /// SelectAll class represents to SelectAll action
@@ -784,7 +690,7 @@ namespace AjaxControlToolkit
     /// <summary>
     /// BackColor class represents to BackColor action
     /// </summary>
-    public class BackColor : HtmlEditorExtenderButton
+    public class BackgroundColorSelector : HtmlEditorExtenderButton
     {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
@@ -913,7 +819,7 @@ namespace AjaxControlToolkit
     /// <summary>
     /// FontName class represents to FontName action
     /// </summary>
-    public class FontName : HtmlEditorExtenderButton
+    public class FontNameSelector : HtmlEditorExtenderButton
     {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
@@ -945,7 +851,7 @@ namespace AjaxControlToolkit
     /// <summary>
     /// FontSize class represents to FontSize action
     /// </summary>
-    public class FontSize : HtmlEditorExtenderButton
+    public class FontSizeSelector : HtmlEditorExtenderButton
     {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
@@ -977,7 +883,7 @@ namespace AjaxControlToolkit
     /// <summary>
     /// ForeColor class represents to ForeColor action
     /// </summary>
-    public class ForeColor : HtmlEditorExtenderButton
+    public class ForeColorSelector : HtmlEditorExtenderButton
     {
         /// <summary>
         /// get name of command that will be passed to execCommand method 

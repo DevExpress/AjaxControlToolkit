@@ -3,23 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.UI.Design;
+using System.ComponentModel.Design;
 
 namespace AjaxControlToolkit
 {
-    public class HtmlEditorExtenderDesigner : ControlDesigner
-    {
-        HtmlEditorExtender extender = null;
-        public override void Initialize(System.ComponentModel.IComponent component)
+    // STILL IN RESEARCH MODE
+    public class HtmlEditorExtenderDesigner : AjaxControlToolkit.Design.ExtenderControlBaseDesigner<HtmlEditorExtender>
+    {        
+        protected override bool UsePreviewControl
         {
-            base.Initialize(component);
-            extender = component as HtmlEditorExtender;
-            if (extender == null)
-                throw new Exception("Control must be a HTML Editor Extender");
+            get { return true; }
         }
 
-        public override string GetDesignTimeHtml()
+        public override string GetDesignTimeHtml(DesignerRegionCollection regions)
         {
-            return "DUMMY TEST HTML DESIGN VIEW";
+            return "RESEARCH: TEST HTML DESIGN VIEW DesignerRegionCollection";
+        }
+
+        public override string GetPersistenceContent()
+        {
+            return "RESEARCH: PERSIST CONTENTS";
+        }
+
+        protected override bool Visible
+        {
+            get { return true; }
         }
     }
 }

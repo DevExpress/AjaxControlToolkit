@@ -20,6 +20,7 @@
     <siteMapNode url="~/FilteredTextBox/FilteredTextBox.aspx" title="FilteredTextBox" />
     <siteMapNode url="~/HoverMenu/HoverMenu.aspx" title="HoverMenu" />
     <siteMapNode url="~/HTMLEditor/HTMLEditor.aspx" title="HTMLEditor" />
+    <siteMapNode url="~/HTMLEditorExtender/HTMLEditorExtender.aspx" title="HTMLEditorExtender" />
     <siteMapNode url="~/ListSearch/ListSearch.aspx" title="ListSearch" />
     <siteMapNode url="~/MaskedEdit/MaskedEdit.aspx" title="MaskedEdit" />
     <siteMapNode url="~/ModalPopup/ModalPopup.aspx" title="ModalPopup" />
