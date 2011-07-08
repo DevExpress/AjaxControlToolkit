@@ -74,7 +74,7 @@ namespace AjaxControlToolkit
         {
             get
             {
-                if (buttonList == null)
+                if (buttonList == null || buttonList.Count == 0)
                     buttonList = new HtmlEditorExtenderButtonCollection();
                 return buttonList;
             }
@@ -82,7 +82,7 @@ namespace AjaxControlToolkit
 
         private string DecodeValues(string value)
         {
-            if (buttonList == null)
+            if (buttonList == null || buttonList.Count == 0)
             {
                 CreateButtons();
             }
@@ -169,7 +169,10 @@ namespace AjaxControlToolkit
             if (!tracked)
             {
                 tracked = true;
+                if (this.Site != null && this.Site.DesignMode)
+                {
                 return;
+            }
             }
             tracked = false;
             buttonList.Add(new Undo());
