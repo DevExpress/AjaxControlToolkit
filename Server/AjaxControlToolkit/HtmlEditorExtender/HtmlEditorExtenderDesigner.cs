@@ -40,8 +40,7 @@ namespace AjaxControlToolkit
             //Init();
             //CreateLayout();
             //return sbHtmlEditorExtender.ToString();            
-            //return "<div><div>" + sbButtons.ToString() + "</div>Some Contents</div>"; 
-            return "<div><div><input type=\"button\" value=\"Bold\" unselectable=\"on\" class=\"ajax__html_editor_extender_button ajax__html_editor_extender_Bold\" style=\"width: 23px; height: 21px;\" title=\"bold\" name=\"bold\" \"></div> some contents here " + ext.ToolbarButtons.Count + " </div>";
+            return "<div><div>" + sbButtons.ToString() + "</div>Some Contents</div>";             
         }
 
         public override string GetDesignTimeHtml(DesignerRegionCollection regions)
@@ -91,10 +90,7 @@ namespace AjaxControlToolkit
 //                                        </select>
 //                                    </nobr>
                                     
-            return toolbarHtml;
-            //Init();
-            //CreateLayout();
-            //return sbHtmlEditorExtender.ToString();
+            return toolbarHtml;            
         }
 
         public override string GetPersistenceContent()

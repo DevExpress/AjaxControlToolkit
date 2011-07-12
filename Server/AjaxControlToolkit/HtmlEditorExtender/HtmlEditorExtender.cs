@@ -80,6 +80,7 @@ namespace AjaxControlToolkit
             }
         }
 
+        // decode for each button
         private string DecodeValues(string value)
         {
             if (buttonList == null)
