@@ -2,11 +2,11 @@
 .ajax__html_editor_extender_button:hover { background-color:#3c8aff; }
 .ajax__html_editor_extender_buttoncontainer
 {
-    background-color:#F0F0F0;  
-    height:65px;
+    background-color:#F0F0F0; 
+    display:table;
     padding: 2px 2px 2px 2px; 
     border: 1px solid #c2c2c2;
-    width:100%; 
+    border-bottom: none;
 }
 .ajax__html_editor_extender_texteditor
 {
@@ -14,7 +14,6 @@
     border-color:#c2c2c2;
     border-style:solid;
     padding: 2px 2px 2px 2px;
-    border-top:none;
 }
 .ajax__html_editor_extender_container
 {  

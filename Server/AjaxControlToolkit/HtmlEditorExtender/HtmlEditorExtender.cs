@@ -28,7 +28,7 @@ namespace AjaxControlToolkit
     [ParseChildren(true)]
     [PersistChildren(false)]
     [System.Drawing.ToolboxBitmap(typeof(HtmlEditorExtender), "HtmlEditorExtender.html_editor_extender.ico")]
-    //[Designer(typeof(HtmlEditorExtenderDesigner))]
+    [Designer(typeof(AjaxControlToolkit.HtmlEditorExtenderDesigner))]
     public class HtmlEditorExtender : ExtenderControlBase
     {
         internal const int ButtonWidthDef = 23;
@@ -165,7 +165,7 @@ namespace AjaxControlToolkit
         {
             buttonList = new HtmlEditorExtenderButtonCollection();
 
-            // avoid buttons for twice buttons craetion
+            // avoid buttons for twice buttons creation
             if (!tracked)
             {
                 tracked = true;

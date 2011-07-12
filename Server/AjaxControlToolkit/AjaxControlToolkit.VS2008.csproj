@@ -174,6 +174,11 @@
     <Compile Include="HoverMenu\HoverMenuDesigner.cs" />
     <Compile Include="HoverMenu\HoverMenuExtender.cs" />
     <Compile Include="HoverMenu\HoverMenuPopupPosition.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtender.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollection.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollectionEditor.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtons.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderDesigner.cs" />
     <Compile Include="HTMLEditor\DesignPanel.cs" />
     <Compile Include="HTMLEditor\DesignPanelEventHandler.cs" />
     <Compile Include="HTMLEditor\Editor.cs" />
@@ -380,6 +385,8 @@
     <EmbeddedResource Include="FilteredTextBox\FilteredTextBox.ico" />
     <EmbeddedResource Include="HoverMenu\HoverMenu.ico" />
     <Content Include="DropDown\DropDown_resource.css" />
+    <Content Include="HtmlEditorExtender\HtmlEditorExtender_resource.css" />
+    <Content Include="HtmlEditorExtender\html_editor_extender.ico" />
     <Content Include="HTMLEditor\DesignPanel.css" />
     <Content Include="HTMLEditor\DesignPanel.pre.js" />
     <Content Include="HTMLEditor\DesignPanelEventHandler.pre.js" />
@@ -703,7 +710,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
   <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
-
   <Target Name="BeforeBuild">
     <MakeDir Directories="ScriptOutput" />
     <!-- clean out old files from previous build -->

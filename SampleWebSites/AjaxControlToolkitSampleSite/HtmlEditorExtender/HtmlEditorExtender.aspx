@@ -8,8 +8,8 @@
     <div class="demoarea">
         <div class="demoheading">
             HTMLEditorExtender Demonstration</div>
-        <asp:UpdatePanel ID="updatePanel1" runat="server">
-            <ContentTemplate>
+        <asp:UpdatePanel ID="updatePanel1" runat="server">                    
+            <ContentTemplate>                                
                 <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10"
                     Text="Hello <b>world1</b>" /><br />
                 <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1"
@@ -24,7 +24,7 @@
                     Text="Hello <b>world1</b>" /><br />
                 <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender2" TargetControlID="txtBox2"
                     runat="server">
-                    <Toolbar>
+                    <Toolbar>                        
                         <ajaxToolkit:Bold />
                         <ajaxToolkit:Italic />
                         <ajaxToolkit:Underline />
@@ -32,7 +32,7 @@
                         <ajaxToolkit:JustifyLeft />
                         <ajaxToolkit:JustifyCenter />
                         <ajaxToolkit:JustifyRight />
-                        <ajaxToolkit:JustifyFull />
+                        <ajaxToolkit:JustifyFull />                                                
                     </Toolbar>
                 </ajaxToolkit:HtmlEditorExtender>
                 <br />
