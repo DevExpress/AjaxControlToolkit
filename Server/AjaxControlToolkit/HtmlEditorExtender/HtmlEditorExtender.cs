@@ -74,7 +74,7 @@ namespace AjaxControlToolkit
         {
             get
             {
-                if (buttonList == null)
+                if (buttonList == null || buttonList.Count == 0)
                     buttonList = new HtmlEditorExtenderButtonCollection();
                 return buttonList;
             }
@@ -83,7 +83,7 @@ namespace AjaxControlToolkit
         // decode for each button
         private string DecodeValues(string value)
         {
-            if (buttonList == null)
+            if (buttonList == null || buttonList.Count == 0)
             {
                 CreateButtons();
             }
@@ -102,8 +102,7 @@ namespace AjaxControlToolkit
         /// <returns>value after decoded</returns>
         protected virtual string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;br&gt;", "<br>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/br&gt;", "</br>", RegexOptions.IgnoreCase);
+            var result = Regex.Replace(value, "(?:\\&lt\\;|\\<)(\\/?)((?:font|div|span|br|p|b|i|u)(?:\\s(?:style|class|size|color)=\"?[\\(\\)\\,\\w\\-#\\s\\:\\;]*\"?)*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
 
@@ -170,7 +169,10 @@ namespace AjaxControlToolkit
             if (!tracked)
             {
                 tracked = true;
+                if (this.Site != null && this.Site.DesignMode)
+                {
                 return;
+            }
             }
             tracked = false;
             buttonList.Add(new Undo());
