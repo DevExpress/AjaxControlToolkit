@@ -212,7 +212,7 @@
                             },
                             events: {
                                 change: function (e) {
-                                    document.execCommand("FontName", false, this.options[this.selectedIndex].value);
+                                    document.execCommand("fontname", false, this.options[this.selectedIndex].value);
                                 }
                             }
                         }, _btn);
@@ -278,19 +278,19 @@
                             },
                             events: {
                                 change: function (e) {
-                                    document.execCommand("FontSize", false, this.options[this.selectedIndex].value);
+                                    document.execCommand("fontsize", false, this.options[this.selectedIndex].value);
                                 }
                             }
                         }, _btn);
 
                         var option = [
-                            { Text: "1 (8 pt)", Value: "8pt" },
-                            { Text: "2 (10 pt)", Value: "10pt" },
-                            { Text: "3 (12 pt)", Value: "12pt" },
-                            { Text: "4 (14 pt)", Value: "14pt" },
-                            { Text: "5 (18 pt)", Value: "18pt" },
-                            { Text: "6 (24 pt)", Value: "24pt" },
-                            { Text: "7 (36 pt)", Value: "36pt" }
+                            { Text: "1", Value: "1" },
+                            { Text: "2", Value: "2" },
+                            { Text: "3", Value: "3" },
+                            { Text: "4", Value: "4" },
+                            { Text: "5", Value: "5" },
+                            { Text: "6", Value: "6" },
+                            { Text: "7", Value: "7" }
                             ];
 
                         for (x in option) {
@@ -354,6 +354,39 @@
                         --------------------------------------------------
                         this._foreColor.setAttribute('class', 'ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName);
                         */
+                    }
+                    else if (this._toolbarButtons[i].CommandName == 'BackColor') {
+
+                        _btn = $common.createElementFromTemplate({
+                            nodeName: "span",
+                            properties: {
+                                style: {
+                                    backgroundColor: '#ff0000',
+                                    border: 'solid 1px #c2c2c2',
+                                    display: 'block',
+                                    cssFloat: 'left'
+                                }
+                            }
+                        }, this._topButtonContainer);
+                        _btn.setAttribute('unselectable', 'on');
+
+                        this._backColor = $common.createElementFromTemplate({
+                            nodeName: 'input',
+                            properties: {
+                                type: 'button',
+                                id: this._id + this._toolbarButtons[i].CommandName,
+                                name: this._toolbarButtons[i].CommandName,
+                                title: this._toolbarButtons[i].Tooltip,
+                                style: {
+                                    backgroundColor: 'transparent',
+                                    width: '21px',
+                                    height: '19px'
+                                }
+                            },
+                            cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName]
+                        }, _btn);
+                        this._backColor.setAttribute('unselectable', 'on');
+
                     }
                     else {
                         var map = {
@@ -504,6 +537,16 @@
                     }
                     this._foreColorPicker.show();
                 }
+                else if (command.target.name == 'BackColor') {
+                    this._commandName = command.target.name;
+                    this.saveSelection();
+                    if (!this._backColorPicker) {
+                        this._backColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, { 'unselectable': 'on' }, {}, {}, this._backColor);
+                        this._backColorPicker.set_sample(this._backColor.parentNode);
+                        this._backColorPicker.add_colorSelectionChanged(delcolorPicker_onchange);
+                    }
+                    this._backColorPicker.show();
+                }
                 else if (command.target.name == 'UnSelect') {
                     if (isFireFox) {                                                
                         this._editableDiv.focus();
@@ -522,8 +565,13 @@
             // BackColor & ForeColor colorpicker onchange, fill color to selected text
             _colorPicker_onchange: function (e) {
                 this.restoreSelection();
-                if (this._commandName == "backcolor") {
-                    if (!document.execCommand("hilitecolor", false, "#" + e._selectedColor)) {
+                if (/backcolor/i.test(this._commandName)) {
+                    var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox;
+                    if (isFireFox) {
+                        document.execCommand('stylewithcss', false, true);
+                        document.execCommand("hilitecolor", false, "#" + e._selectedColor);
+                        document.execCommand('stylewithcss', false, false);
+                    } else {
                         document.execCommand("backcolor", false, "#" + e._selectedColor);
                     }
                 }

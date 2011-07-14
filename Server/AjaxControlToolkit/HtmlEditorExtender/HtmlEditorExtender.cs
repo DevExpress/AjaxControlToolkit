@@ -101,7 +101,7 @@ namespace AjaxControlToolkit
         /// <returns>value after decoded</returns>
         protected virtual string Decode(string value)
         {
-            var result = Regex.Replace(value, "(?:\\&lt\\;|\\<)(\\/?)((?:font|div|span|br|p)(?:\\s(?:style|class|size|color)=\"[\\w\\-#]*\")*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            var result = Regex.Replace(value, "(?:\\&lt\\;|\\<)(\\/?)((?:font|div|span|br|p|b|i|u)(?:\\s(?:style|class|size|color)=\"?[\\(\\)\\,\\w\\-#\\s\\:\\;]*\"?)*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
 
