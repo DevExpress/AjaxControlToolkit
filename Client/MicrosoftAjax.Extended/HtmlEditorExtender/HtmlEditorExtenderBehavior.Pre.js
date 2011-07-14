@@ -192,6 +192,7 @@
                                 nodeName: "span",
                                 properties: {
                                     textContent: "Font ",
+                                    innerText: "Font ",
                                     style: {
                                         paddingLeft: '5px',
                                         fontWeight: 'bold'
@@ -204,15 +205,18 @@
                             nodeName: "select",
                             properties: {
                                 style: {
-                                    fontSize: '11px',
+                                    fontSize: '9px',
                                     fontFamily: 'Arial',
                                     height: "20px",
-                                    width: '115px'
+                                    width: '90px'
                                 }
                             },
                             events: {
                                 change: function (e) {
-                                    document.execCommand("fontname", false, this.options[this.selectedIndex].value);
+                                    var value = this.options[this.selectedIndex].value;
+                                    setTimeout(function () {
+                                        document.execCommand("fontname", false, value);
+                                    }, 200);
                                 }
                             }
                         }, _btn);
@@ -258,6 +262,7 @@
                                 nodeName: "span",
                                 properties: {
                                     textContent: "Size ",
+                                    innerText: "Size ",
                                     style: {
                                         paddingLeft: '5px',
                                         fontWeight: 'bold'
@@ -273,12 +278,15 @@
                                     fontSize: '11px',
                                     fontFamily: 'Arial',
                                     height: "20px",
-                                    width: '50px'
+                                    width: '30px'
                                 }
                             },
                             events: {
                                 change: function (e) {
-                                    document.execCommand("fontsize", false, this.options[this.selectedIndex].value);
+                                    var value = this.options[this.selectedIndex].value;
+                                    setTimeout(function () {
+                                        document.execCommand("fontsize", false, value);
+                                    }, 200);
                                 }
                             }
                         }, _btn);
@@ -435,7 +443,7 @@
             },
             _encodeHtml: function () {
                 //Encode html tags
-                var html = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
+                var html = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&apos;').replace(/\"/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
                 //converter to convert different tags into Html5 standard tags
                 html = html.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
                 return html;

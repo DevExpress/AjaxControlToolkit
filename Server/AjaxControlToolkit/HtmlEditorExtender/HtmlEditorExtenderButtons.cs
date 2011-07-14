@@ -554,6 +554,9 @@ namespace AjaxControlToolkit
         public override string Decode(string value)
         {
             var result = Regex.Replace(value, "&lt;a", "<a", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "href.*javascript\\:", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "\\son[\\w\\s]+\\=", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);//remove handlers onclick, onmouse...
+            //todo: fix this to allow a few attributes and nothing else target|href|style etc..
             result = Regex.Replace(result, "&gt;", ">", RegexOptions.IgnoreCase);
             return Regex.Replace(result, "&lt;/a&gt;", "</a>", RegexOptions.IgnoreCase);
         }
