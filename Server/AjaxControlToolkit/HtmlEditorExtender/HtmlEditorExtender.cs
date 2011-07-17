@@ -215,7 +215,8 @@ namespace AjaxControlToolkit
         }
 
         public override void RenderControl(HtmlTextWriter output)
-        {            
+        {
+            base.RenderControl(output);
             if (this.DesignMode)
             {
                 string imageSrc = @"C:\Documents and Settings\html-editor-buttons_Designer.png";
