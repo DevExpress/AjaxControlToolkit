@@ -443,7 +443,20 @@
             },
             _encodeHtml: function () {
                 //Encode html tags
-                var html = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&apos;').replace(/\"/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
+                var elements = this._editableDiv.getElementsByTagName('*');
+                var len = elements.length;
+                var element;
+                for (var i = 0; element = elements[i]; i++) {
+                    try {
+                        element.className = '';
+                        element.removeAttribute('class');
+                    } catch (ex) { }
+                    try {
+                        element.id = '';
+                        element.removeAttribute('id');
+                    } catch (ex) { }
+                }
+                var html = this._editableDiv.innerHTML.replace(/\sclass\=\"\"/gi, '').replace(/\sid\=\"\"/gi, '').replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&apos;').replace(/\"/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
                 //converter to convert different tags into Html5 standard tags
                 html = html.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
                 return html;

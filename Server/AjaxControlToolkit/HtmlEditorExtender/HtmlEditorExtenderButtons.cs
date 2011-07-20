@@ -55,10 +55,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;b&gt;", "<b>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/b&gt;", "</b>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;strong&gt;", "<strong>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/strong&gt;", "</strong>", RegexOptions.IgnoreCase);
+            return value;
         }
 
     }
@@ -83,10 +80,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;i&gt;", "<i>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/i&gt;", "</i>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;em&gt;", "<em>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/em&gt;", "</em>", RegexOptions.IgnoreCase);
+            return value;
         }
 
     }
@@ -111,8 +105,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;u&gt;", "<u>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/u&gt;", "</u>", RegexOptions.IgnoreCase);
+            return value;
         }
 
     }
@@ -145,10 +138,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;s&gt;", "<s>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/s&gt;", "</s>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;strike&gt;", "<strike>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/strike&gt;", "</strike>", RegexOptions.IgnoreCase);
+            return value;
         }
 
     }
@@ -181,8 +171,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;sub&gt;", "<sub>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/sub&gt;", "</sub>", RegexOptions.IgnoreCase);
+            return value;
         }
 
     }
@@ -215,8 +204,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;sup&gt;", "<sup>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/sup&gt;", "</sup>", RegexOptions.IgnoreCase);
+            return value;
         }
 
     }
@@ -249,17 +237,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;p&gt;", "<p>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p align=&quot;left&quot;&gt;", "<p align=\"left\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p align=left&gt;", "<p align=left>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p style=&quot;text-align: left;&quot;&gt;", "<p style=\"text-align: left;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div&gt;", "<div>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div align=&quot;left&quot;&gt;", "<div align=\"left\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div align=left&gt;", "<div align=left>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div style=&quot;text-align: left;&quot;&gt;", "<div style=\"text-align: left;\">", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/div&gt;", "</div>", RegexOptions.IgnoreCase);
-
+            return value;
         }
 
     }
@@ -292,17 +270,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;p&gt;", "<p>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p align=&quot;right&quot;&gt;", "<p align=\"right\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p align=right&gt;", "<p align=right>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p style=&quot;text-align: right;&quot;&gt;", "<p style=\"text-align: right;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div&gt;", "<div>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div align=&quot;right&quot;&gt;", "<div align=\"right\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div align=right&gt;", "<div align=right>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div style=&quot;text-align: right;&quot;&gt;", "<div style=\"text-align: right;\">", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/div&gt;", "</div>", RegexOptions.IgnoreCase);
-
+            return value;
         }
 
     }
@@ -335,18 +303,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;p&gt;", "<p>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p align=&quot;center&quot;&gt;", "<p align=\"center\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p align=center&gt;", "<p align=center>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;p style=&quot;text-align: center;&quot;&gt;", "<p style=\"text-align: center;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/p&gt;", "</p>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div&gt;", "<div>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div align=&quot;center&quot;&gt;", "<div align=\"center\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div align=center&gt;", "<div align=center>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;div style=&quot;text-align: center;&quot;&gt;", "<div style=\"text-align: center;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/div&gt;", "</div>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;center&gt;", "<center>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/center&gt;", "</center>", RegexOptions.IgnoreCase);
+            return value;
         }
 
     }
@@ -413,19 +370,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;ol&gt;", "<ol>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/ol&gt;", "</ol>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;li&gt;", "<li>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=&quot;left&quot;&gt;", "<l1 align=\"left\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=&quot;center&quot;&gt;", "<l1 align=\"center\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=&quot;right&quot;&gt;", "<l1 align=\"right\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: left;&quot;&gt;", "<l1 style=\"text-align: left;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: right;&quot;&gt;", "<l1 style=\"text-align: right;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: center;&quot;&gt;", "<l1 style=\"text-align: center;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=left&gt;", "<l1 align=left>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=center&gt;", "<l1 align=center>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=right&gt;", "<l1 align=right>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/li&gt;", "</li>", RegexOptions.IgnoreCase);
+            return value;
         }
 
     }
@@ -458,20 +403,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;ul&gt;", "<ul>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;/ul&gt;", "</ul>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1&gt;", "<l1>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=&quot;left&quot;&gt;", "<l1 align=\"left\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=&quot;center&quot;&gt;", "<l1 align=\"center\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=&quot;right&quot;&gt;", "<l1 align=\"right\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: left;&quot;&gt;", "<l1 style=\"text-align: left;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: right;&quot;&gt;", "<l1 style=\"text-align: right;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1 style=&quot;text-align: center;&quot;&gt;", "<l1 style=\"text-align: center;\">", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=left&gt;", "<l1 align=left>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=center&gt;", "<l1 align=center>", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "&lt;l1align=right&gt;", "<l1 align=right>", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/l1&gt;", "</l1>", RegexOptions.IgnoreCase);
-
+            return value;
         }
     }
 
@@ -553,12 +485,7 @@ namespace AjaxControlToolkit
         /// <returns>string value after decode</returns>
         public override string Decode(string value)
         {
-            var result = Regex.Replace(value, "&lt;a", "<a", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "href.*javascript\\:", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            result = Regex.Replace(result, "\\son[\\w\\s]+\\=", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);//remove handlers onclick, onmouse...
-            //todo: fix this to allow a few attributes and nothing else target|href|style etc..
-            result = Regex.Replace(result, "&gt;", ">", RegexOptions.IgnoreCase);
-            return Regex.Replace(result, "&lt;/a&gt;", "</a>", RegexOptions.IgnoreCase);
+            return value;
         }
     }
 
