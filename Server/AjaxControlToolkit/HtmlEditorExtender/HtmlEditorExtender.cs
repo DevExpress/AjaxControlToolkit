@@ -101,11 +101,20 @@ namespace AjaxControlToolkit
         /// <returns>value after decoded</returns>
         protected virtual string Decode(string value)
         {
-            var result = Regex.Replace(value, "(?:\\&lt\\;|\\<)(\\/?)((?:font|div|span|br|strong|em|strike|sub|sup|center|ol|ul|li|s|p|b|i|u|a)(?:\\s(?:style|class|size|color|face)=\"?[\\'\\(\\)\\,\\w\\-#\\s\\:\\;\\/]*\"?)*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            //todo: cleanup style tagss no positioning
+            string tags = "font|div|span|br|strong|em|strike|sub|sup|center|blockquote|hr|ol|ul|li|br|s|p|b|i|u";
+            string attributes = "style|size|color|face|align";
+            string attributeCharacters = "\\'\\(\\)\\,\\w\\-#\\s\\:\\;";
+            var result = Regex.Replace(value, "\\&quot\\;", "\"", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)((?:" + tags + ")(?:\\s(?:" + attributes + ")=\"[" + attributeCharacters + "]*\")*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            string hrefCharacters = "^\\\"\\>\\<\\\\";
+            result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "\\&", "9", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&quot;", "\"", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&apos;", "'", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "<[^>]*expression[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
             return result;
         }
