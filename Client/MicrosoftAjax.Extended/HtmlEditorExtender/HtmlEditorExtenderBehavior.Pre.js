@@ -170,6 +170,7 @@
             },
 
             _createButton: function () {
+                var isIE = Sys.Browser.agent == Sys.Browser.InternetExplorer;
                 for (i = 0; i < this._toolbarButtons.length; i++) {
                     var _btn;
                     if (this._toolbarButtons[i].CommandName == 'HorizontalSeparator') {
@@ -277,7 +278,7 @@
                                     fontSize: '11px',
                                     fontFamily: 'Arial',
                                     height: "20px",
-                                    width: '30px'
+                                    width: isIE ? '30px' : '50px'
                                 }
                             },
                             events: {
@@ -526,7 +527,9 @@
                     JustifyRight: 1,
                     JustifyLeft: 1,
                     JustifyCenter: 1,
-                    JustifyFull: 1
+                    JustifyFull: 1,
+                    Indent: 1,
+                    Outdent: 1
                 };
 
                 if (map[command.target.name]) {
