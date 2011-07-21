@@ -38,12 +38,11 @@
                 cssClasses: ['unselectable', 'ajax__html_editor_extender_container']
             };
 
-            this._editableTemplate = {
+           this._editableTemplate = {
                 nodeName: 'div',
                 properties: {
                     id: id + '_ExtenderContentEditable',
                     style: {
-                        width: '100%',
                         height: '80%',
                         overflow: 'auto',
                         clear: 'both'

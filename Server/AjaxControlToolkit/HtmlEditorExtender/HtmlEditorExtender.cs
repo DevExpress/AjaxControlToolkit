@@ -8,6 +8,8 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Drawing.Design;
+using System.IO;
+using System.Reflection;
 
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.js", "text/javascript")]
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.debug.js", "text/javascript")]
@@ -28,7 +30,7 @@ namespace AjaxControlToolkit
     [ParseChildren(true)]
     [PersistChildren(false)]
     [System.Drawing.ToolboxBitmap(typeof(HtmlEditorExtender), "HtmlEditorExtender.html_editor_extender.ico")]
-    //[Designer(typeof(HtmlEditorExtenderDesigner))]
+    [Designer(typeof(AjaxControlToolkit.HtmlEditorExtenderDesigner))]
     public class HtmlEditorExtender : ExtenderControlBase
     {
         internal const int ButtonWidthDef = 23;
@@ -46,13 +48,13 @@ namespace AjaxControlToolkit
         /// ability to provide values to client side as ExtenderControlProperty on run time.
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]                
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
         public HtmlEditorExtenderButtonCollection ToolbarButtons
         {
-            get 
+            get
             {
                 if (buttonList == null || buttonList.Count == 0)
                     CreateButtons();
@@ -80,6 +82,7 @@ namespace AjaxControlToolkit
             }
         }
 
+        // decode for each button
         private string DecodeValues(string value)
         {
             if (buttonList == null || buttonList.Count == 0)
@@ -174,14 +177,14 @@ namespace AjaxControlToolkit
         {
             buttonList = new HtmlEditorExtenderButtonCollection();
 
-            // avoid buttons for twice buttons craetion
+            // avoid buttons for twice buttons creation
             if (!tracked)
             {
                 tracked = true;
                 if (this.Site != null && this.Site.DesignMode)
                 {
-                return;
-            }
+                    return;
+                }
             }
             tracked = false;
             buttonList.Add(new Undo());
@@ -218,5 +221,44 @@ namespace AjaxControlToolkit
             buttonList.Add(new InsertHorizontalRule());
             buttonList.Add(new HorizontalSeparator());
         }
+
+        public override void RenderControl(HtmlTextWriter output)
+        {
+            base.RenderControl(output);
+            if (this.DesignMode)
+            {
+                string imageSrc = @"C:\Documents and Settings\html-editor-buttons_Designer.png";
+                string imageHtmlOutput = string.Empty;
+                byte[] imageData = new byte[25252];
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("HtmlEditorExtender.html-editor-buttons_Designer.png"))
+                {
+                    stream.Read(imageData, 0, imageData.Length);
+                }
+
+                using (FileStream fs = new FileStream(imageSrc, FileMode.Create))
+                using (BinaryWriter bw = new BinaryWriter(fs))
+                {
+                    bw.Write(imageData);
+                }
+
+                System.Web.UI.HtmlControls.HtmlImage image = new System.Web.UI.HtmlControls.HtmlImage();
+                image.Src = imageSrc;
+                using (StringWriter stringWriter = new StringWriter())
+                using (System.Web.UI.HtmlTextWriter htmlTextWriter = new System.Web.UI.HtmlTextWriter(stringWriter))
+                {
+                    image.RenderControl(htmlTextWriter);
+                    imageHtmlOutput = stringWriter.ToString();
+                }
+
+                output.Write("<div style='width: 423px; height: 181px;'>");
+                output.Write("<div style='background-color:#F0F0F0; display:table; padding: 2px 2px 2px 2px; border: 1px solid #c2c2c2; border-bottom: none;' >");
+                output.Write(imageHtmlOutput);
+                output.Write("</div>");
+                output.Write("<div style='border-width:1px; border-color:#c2c2c2; border-style:solid; padding: 2px 2px 2px 2px; height: 80%; overflow: auto; clear: both;' contenteditable='true'>test test</div>");
+                output.Write("</div>");
+            }
+        }
     }
+
+
 }
