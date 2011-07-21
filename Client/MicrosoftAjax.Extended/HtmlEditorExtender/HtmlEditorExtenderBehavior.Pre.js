@@ -441,11 +441,21 @@
             _textBox_onblur: function () {
                 this._editableDiv.innerHTML = this._textbox._element.value;
             },
+            _attributes: {
+                style: 'st_yle_',
+                size: 'si_ze_',
+                color: 'co_lor_',
+                face: 'fa_ce_',
+                align: 'al_ign_'
+            },
             _encodeHtml: function () {
                 //Encode html tags
+                var isIE = Sys.Browser.agent == Sys.Browser.InternetExplorer;
                 var elements = this._editableDiv.getElementsByTagName('*');
                 var len = elements.length;
                 var element;
+                var key;
+                var value;
                 for (var i = 0; element = elements[i]; i++) {
                     try {
                         element.className = '';
@@ -455,10 +465,30 @@
                         element.id = '';
                         element.removeAttribute('id');
                     } catch (ex) { }
+                    try {
+                        element.removeAttribute('width');
+                    } catch (ex) { }
+                    if (isIE) {
+                        for (key in this._attributes) {
+                            value = element.getAttribute(key);
+                            if (value) {
+                                element.setAttribute(this._attributes[key], '^^"' + value + '"^^');
+                                try {
+                                    element.removeAttribute(key);
+                                } catch (ex) { }
                 }
-                var html = this._editableDiv.innerHTML.replace(/\sclass\=\"\"/gi, '').replace(/\sid\=\"\"/gi, '').replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&apos;').replace(/\"/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
+                        }
+                    }
+                }
+                var html = this._editableDiv.innerHTML.replace(/\sclass\=\"\"/gi, '').replace(/\sid\=\"\"/gi, '').replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\xA0/ig, '&nbsp;');
                 //converter to convert different tags into Html5 standard tags
-                html = html.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
+                if (isIE) {
+                    for (key in this._attributes) {
+                        html = html.replace(this._attributes[key], key);
+                    }
+                    html = html.replace(/[\"\']\^\^[\"\']?|[\"\']?\^\^[\"\']/g, '"');
+                }
+                html = html.replace(/\'/ig, '&apos;').replace(/\"/ig, '&quot;').replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
                 return html;
             },
             _editableDiv_submit: function () {
