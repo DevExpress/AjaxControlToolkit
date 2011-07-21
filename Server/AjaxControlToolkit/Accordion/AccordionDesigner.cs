@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI;
 using System.Web.UI.Design;
 using System.Web.UI.Design.WebControls;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace AjaxControlToolkit
 {
@@ -52,20 +54,46 @@ namespace AjaxControlToolkit
         [SuppressMessage("Microsoft.Security", "CA2116:AptcaMethodsShouldOnlyCallAptcaMethods", Justification = "Security handled by base class")]
         public override string GetDesignTimeHtml()
         {
+            if (_accordion.Height == Unit.Empty)
+                _accordion.Height = new Unit(175);
+
+            if (_accordion.Width == Unit.Empty)
+                _accordion.Width = new Unit(300);
+
             // Ensure the controls have been created
             ControlCollection controls = _accordion.Controls;
 
             // Get the base html for the accordion's div
-            // so that any accordion styles will be applied
-            StringBuilder html = new StringBuilder();
-            html.Append(base.GetDesignTimeHtml());
-
+            // so that any accordion styles will be applied   
             // Remove the closing div tag so we can insert the HTML
             // for all of the panes
-            html.Remove(html.Length - 6, 6);
+            string originalHtml = base.GetDesignTimeHtml();
 
-            // Add the HTMl for each pane
-            foreach (AccordionPane pane in _accordion.Panes)
+            int lastIdx = originalHtml.ToString().IndexOf("<div", 1);
+            if (lastIdx > 0)
+                originalHtml = originalHtml.ToString().Substring(0, (originalHtml.ToString().IndexOf("<div", 1)));
+            else
+                originalHtml = originalHtml.Remove(originalHtml.Length - 6, 6);
+
+            // remove all tabs and new lines
+            originalHtml = originalHtml
+                    .Replace("\r", "")
+                    .Replace("\n", "")
+                    .Replace("\t", "");
+
+            // apply overflow:scroll so user will able to see accordion contents in design time 
+            // when it's overflow style if it doesn't exists
+            if (!originalHtml.Contains("overflow"))
+            {
+                originalHtml = originalHtml.Replace("style=\"", "style=\"overflow:scroll;");
+            }
+
+            StringBuilder html = new StringBuilder(originalHtml);
+            // Add the HTMl for each pane ---------------
+            // Clone Panes to prevent direct access to _accordion.Panes so it will avoid 
+            //    "collection was modified enumeration operation may not execute" exception when user
+            //    modify design in source view and back again to design view
+            foreach (AccordionPane pane in (AccordionPane[])_accordion.Panes.ToArray().Clone())
             {
                 html.Append("<span>");
                 string headerCSS = !string.IsNullOrEmpty(pane.HeaderCssClass) ? pane.HeaderCssClass : _accordion.HeaderCssClass;
@@ -73,6 +101,11 @@ namespace AjaxControlToolkit
                 TemplateBuilder builder = pane.Header as TemplateBuilder;
                 if (builder != null)
                     html.Append(builder.Text);
+                else
+                {
+                    html.Append("AccordionPane Header ");
+                    html.Append(pane.ID);
+                }
                 html.Append("</div>");
 
                 string contentCSS = !string.IsNullOrEmpty(pane.ContentCssClass) ? pane.ContentCssClass : _accordion.ContentCssClass;
@@ -80,6 +113,12 @@ namespace AjaxControlToolkit
                 builder = pane.Content as TemplateBuilder;
                 if (builder != null)
                     html.Append(builder.Text);
+                else
+                {
+                    html.Append("AccordionPane Content ");
+                    html.Append(pane.ID);
+                }
+
                 html.Append("</div>");
                 html.Append("</span>");
             }

@@ -22,7 +22,7 @@ namespace AjaxControlToolkit
     /// in a way that the AccordionBehavior can understand it. 
     /// </summary>
     [ParseChildren(true)]
-    [PersistChildren(true)]
+    [PersistChildren(false)]
     [Designer("AjaxControlToolkit.AccordionDesigner, AjaxControlToolkit")]
     [ToolboxData("<{0}:Accordion runat=server></{0}:Accordion>")]
     [System.Drawing.ToolboxBitmap(typeof(Accordion), "Accordion.Accordion.ico")]
@@ -60,7 +60,7 @@ namespace AjaxControlToolkit
         /// </summary>
         private AccordionPaneCollection _panes;
 
-#region DataBinding Fields
+        #region DataBinding Fields
 
         /// <summary>
         /// DataSource to bind the Accordion to
@@ -129,7 +129,7 @@ namespace AjaxControlToolkit
         /// </summary>
         EventWaitHandle _selectWait;
 
-#endregion
+        #endregion
 
         /// <summary>
         /// Default constructor that tells ASP.NET to render it as a DIV
@@ -292,7 +292,7 @@ namespace AjaxControlToolkit
         [Category("Behavior")]
         [Description("Whether or not we suppress the client-side click handlers of any elements in the header sections")]
         [DefaultValue(false)]
-        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Postbacks", Justification="ASP.NET term")]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Postbacks", Justification = "ASP.NET term")]
         public bool SuppressHeaderPostbacks
         {
             get { return AccordionExtender.SuppressHeaderPostbacks; }
@@ -324,7 +324,7 @@ namespace AjaxControlToolkit
             get { return base.Controls; }
         }
 
-#region DataBinding Properties
+        #region DataBinding Properties
 
         /// <summary>
         /// Template for the Header of databound panes
@@ -447,7 +447,7 @@ namespace AjaxControlToolkit
             }
         }
 
-#endregion
+        #endregion
 
         /// <summary>
         /// OnInit handler to wireup the Page's PreLoad event
@@ -537,12 +537,12 @@ namespace AjaxControlToolkit
         protected override void CreateChildControls()
         {
             base.CreateChildControls();
-                        
+
             // If we already have items in the ViewState, create the control
             // hierarchy using the view state (and not the datasource)
             if (AccordionExtender != null && ViewState[ItemCountViewStateKey] != null)
                 CreateControlHierarchy(false);
-            
+
             ClearChildViewState();
 
             // Ensure creation of child controls
@@ -633,7 +633,7 @@ namespace AjaxControlToolkit
                     Controls.RemoveAt(i);
         }
 
-#region DataBinding
+        #region DataBinding
 
         /// <summary>
         /// Connects this data bound control to the appropriate DataSourceView
@@ -722,7 +722,7 @@ namespace AjaxControlToolkit
             base.OnDataBinding(e);
 
             //Only bind if the control has the DataSource or DataSourceID set
-            if (this.DataSource!=null || IsBoundUsingDataSourceID)
+            if (this.DataSource != null || IsBoundUsingDataSourceID)
             {
                 // reset the control state
                 ClearPanes();
@@ -963,6 +963,6 @@ namespace AjaxControlToolkit
                 ItemDataBound(this, args);
         }
 
-#endregion
+        #endregion
     }
 }
