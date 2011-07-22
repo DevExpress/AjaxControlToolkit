@@ -106,17 +106,24 @@ namespace AjaxControlToolkit
         {
             //todo: cleanup style tagss no positioning
             string tags = "font|div|span|br|strong|em|strike|sub|sup|center|blockquote|hr|ol|ul|li|br|s|p|b|i|u";
-            string attributes = "style|size|color|face|align";
-            string attributeCharacters = "\\'\\(\\)\\,\\w\\-#\\s\\:\\;";
+            string attributes = "style|size|color|face|align|dir";
+            string attributeCharacters = "\\'\\,\\w\\-#\\s\\:\\;";
             var result = Regex.Replace(value, "\\&quot\\;", "\"", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&apos;", "'", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)((?:" + tags + ")(?:\\s(?:" + attributes + ")=\"[" + attributeCharacters + "]*\")*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            string hrefCharacters = "^\\\"\\>\\<\\\\";
-            result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            //for decoding a tags
+            //string hrefCharacters = "^\\\"\\>\\<\\\\";
+            //result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "<[^>]*expression[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            result = Regex.Replace(result, "<[^>]*position\\:[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "<[^>]*expression[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "<[^>]*data\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "<[^>]*script[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "<[^>]*filter[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "<[^>]*behavior[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "<[^>]*url[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "<[^>]*javascript\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "<[^>]*position\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
             return result;
         }
@@ -201,8 +208,8 @@ namespace AjaxControlToolkit
             buttonList.Add(new JustifyFull());
             buttonList.Add(new insertOrderedList());
             buttonList.Add(new insertUnorderedList());
-            buttonList.Add(new CreateLink());
-            buttonList.Add(new UnLink());
+            //buttonList.Add(new CreateLink());
+            //buttonList.Add(new UnLink());
             //buttonList.Add(new FormatBlock());
             buttonList.Add(new RemoveFormat());
             //buttonList.Add(new InsertImage());

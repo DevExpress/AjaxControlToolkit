@@ -448,6 +448,10 @@
                 face: 'fa_ce_',
                 align: 'al_ign_'
             },
+            _rgbToHex: function (s) {
+                var a = /rgb\s?\(\s?(\d+)\s?,\s?(\d+)\s?,\s?(\d+)\s?\)/.exec(s);
+                return '#' + (parseInt(a[3], 10) | (parseInt(a[2], 10) << 8) | (parseInt(a[1], 10) << 16)).toString(16);
+            },
             _encodeHtml: function () {
                 //Encode html tags
                 var isIE = Sys.Browser.agent == Sys.Browser.InternetExplorer;
@@ -469,26 +473,35 @@
                         element.removeAttribute('width');
                     } catch (ex) { }
                     if (isIE) {
-                        for (key in this._attributes) {
-                            value = element.getAttribute(key);
-                            if (value) {
-                                element.setAttribute(this._attributes[key], '^^"' + value + '"^^');
-                                try {
-                                    element.removeAttribute(key);
-                                } catch (ex) { }
                 }
                         }
-                    }
-                }
-                var html = this._editableDiv.innerHTML.replace(/\sclass\=\"\"/gi, '').replace(/\sid\=\"\"/gi, '').replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\xA0/ig, '&nbsp;');
-                //converter to convert different tags into Html5 standard tags
+                var html = this._editableDiv.innerHTML;
                 if (isIE) {
-                    for (key in this._attributes) {
-                        html = html.replace(this._attributes[key], key);
+                    //force attributes to be double quoted
+                    var allTags = /\<[^\>]+\>/g;
+                    html = html.replace(allTags, function (tag) {
+                        var sQA = /\=\'([^\'])*\'/g; //single quoted attributes
+                        var nQA = /\=([^\"][^\s\/\>]*)/g; //non double quoted attributes
+                        return tag.replace(sQA, '="$1"').replace(nQA, '="$1"');
+                    });
                     }
-                    html = html.replace(/[\"\']\^\^[\"\']?|[\"\']?\^\^[\"\']/g, '"');
-                }
-                html = html.replace(/\'/ig, '&apos;').replace(/\"/ig, '&quot;').replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
+                //convert rgb colors to hex
+                var fixRGB = this._rgbToHex;
+                var replaceRGB = function () {
+                    html = html.replace(/(\<[^\>]+)(rgb\s?\(\d{1,3}\s?\,\s?\d{1,3}\s?\,\s?\d{1,3}\s?\))([^\>]*\>)/gi, function (text, p1, p2, p3) {
+                        return (p1 || '') + ((p2 && fixRGB(p2)) || '') + (p3 || '');
+                    });
+                };
+                //twice in case a tag has more than one rgb color in it;
+                replaceRGB();
+                replaceRGB();
+                // remove empty class and id attributes
+                html = html.replace(/\sclass\=\"\"/gi, '').replace(/\sid\=\"\"/gi, '');
+                //converter to convert different tags into Html5 standard tags
+                html = html.replace(/\<(\/?)strong\>/gi, '<$1b>').replace(/\<(\/?)em\>/gi, '<$1i>');
+                //encode for safe transport
+                html = html.replace(/&/ig, '&amp;').replace(/\xA0/ig, '&nbsp;');
+                html = html.replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&apos;').replace(/\"/ig, '&quot;');
                 return html;
             },
             _editableDiv_submit: function () {
