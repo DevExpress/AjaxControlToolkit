@@ -2,11 +2,10 @@
 .ajax__html_editor_extender_button:hover { background-color:#3c8aff; }
 .ajax__html_editor_extender_buttoncontainer
 {
-    background-color:#F0F0F0; 
-    display:table;
+    background-color:#F0F0F0;     
     padding: 2px 2px 2px 2px; 
-    border: 1px solid #c2c2c2;
-    border-bottom: none;
+    border: 1px solid #c2c2c2;    
+    overflow: auto;
 }
 .ajax__html_editor_extender_texteditor
 {
@@ -14,10 +13,15 @@
     border-color:#c2c2c2;
     border-style:solid;
     padding: 2px 2px 2px 2px;
+    border-top:none;
 }
 .ajax__html_editor_extender_container
 {  
 }
+.backcolorclass{float:left;}
+.forecolorclass{float:left;}
+.fontnameclass{float:left;}
+.fontsizeclass{float:left;}
 
 .ajax__html_editor_extender_Undo{ background-position:-0px 0px;}
 .ajax__html_editor_extender_Redo{ background-position:-23px 0px;}

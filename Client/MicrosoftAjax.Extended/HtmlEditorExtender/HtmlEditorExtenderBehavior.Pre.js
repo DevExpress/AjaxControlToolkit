@@ -184,10 +184,12 @@
                             nodeName: "nobr",
                             properties: {
                                 style: {
+                                    float: 'left',
                                     cssFloat: 'left',
                                     fontSize: '11px'
                                 }
                             },
+                            cssClasses: ['fontnameclass'],                            
                             children: [{
                                 nodeName: "span",
                                 properties: {
@@ -254,10 +256,12 @@
                             nodeName: "nobr",
                             properties: {
                                 style: {
-                                    cssFloat: 'left',
+                                    float: 'left',
+                                    cssFloat:'left',
                                     fontSize: '11px'
                                 }
                             },
+                            cssClasses: ['fontsizeclass'],
                             children: [{
                                 nodeName: "span",
                                 properties: {
@@ -327,9 +331,11 @@
                                     backgroundColor: '#ff0000',
                                     border: 'solid 1px #c2c2c2',
                                     display: 'block',
+                                    float: 'left',
                                     cssFloat: 'left'
                                 }
-                            }
+                            },
+                            cssClasses: ['forecolorclass']
                         }, this._topButtonContainer);
                         _btn.setAttribute('unselectable', 'on');
 
@@ -343,7 +349,8 @@
                                 style: {
                                     backgroundColor: 'transparent',
                                     width: '21px',
-                                    height: '19px'
+                                    height: '19px',
+                                    color: 'transparent'
                                 }
                             },
                             cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName]
@@ -372,9 +379,11 @@
                                     backgroundColor: '#ff0000',
                                     border: 'solid 1px #c2c2c2',
                                     display: 'block',
+                                    float: 'left',
                                     cssFloat: 'left'
                                 }
-                            }
+                            },
+                            cssClasses: ['backcolorclass']
                         }, this._topButtonContainer);
                         _btn.setAttribute('unselectable', 'on');
 
@@ -388,7 +397,8 @@
                                 style: {
                                     backgroundColor: 'transparent',
                                     width: '21px',
-                                    height: '19px'
+                                    height: '19px',
+                                    color: 'transparent'
                                 }
                             },
                             cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName]

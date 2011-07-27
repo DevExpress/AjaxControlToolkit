@@ -6,6 +6,7 @@
 	float: left;
 	border: none;
 	background-color:#c2c2c2;
+	padding-bottom:2px;	
 }
 .ajax__html_editor_extender_button:hover 
 {
@@ -13,10 +14,10 @@
 }
 .ajax__html_editor_extender_buttoncontainer
 {
-    background-color:#F0F0F0; 
-    height:65px;
+    background-color:#F0F0F0;     
     padding: 2px 2px 2px 2px;
-    border: 1px solid #c2c2c2 ;   
+    border: 1px solid #c2c2c2;    
+    overflow:auto;
 }
 .ajax__html_editor_extender_texteditor
 {
@@ -25,11 +26,14 @@
     border-style:solid;
     padding: 2px 2px 2px 2px;
     border-top:none;
-    height:80%;
 }
 .ajax__html_editor_extender_container
 {
 }
+.backcolorclass{float:left;}
+.forecolorclass{float:left;}
+.fontnameclass{float:left;}
+.fontsizeclass{float:left;}
 
 .ajax__html_editor_extender_Undo{ background-position:-0px 0px;}
 .ajax__html_editor_extender_Redo{ background-position:-23px 0px;}
