@@ -160,6 +160,7 @@
             },
 
             _createButton: function () {
+                var isIE = Sys.Browser.agent == Sys.Browser.InternetExplorer;
                 for (i = 0; i < this._toolbarButtons.length; i++) {
                     var _btn;
                     if (this._toolbarButtons[i].CommandName == 'HorizontalSeparator') {
@@ -173,14 +174,17 @@
                             nodeName: "nobr",
                             properties: {
                                 style: {
+                                    float: 'left',
                                     cssFloat: 'left',
                                     fontSize: '11px'
                                 }
                             },
+                            cssClasses: ['fontnameclass'],                            
                             children: [{
                                 nodeName: "span",
                                 properties: {
                                     textContent: "Font ",
+                                    innerText: "Font ",
                                     style: {
                                         paddingLeft: '5px',
                                         fontWeight: 'bold'
@@ -193,15 +197,18 @@
                             nodeName: "select",
                             properties: {
                                 style: {
-                                    fontSize: '11px',
+                                    fontSize: '9px',
                                     fontFamily: 'Arial',
                                     height: "20px",
-                                    width: '115px'
+                                    width: '90px'
                                 }
                             },
                             events: {
                                 change: function (e) {
-                                    document.execCommand("FontName", false, this.options[this.selectedIndex].value);
+                                    var value = this.options[this.selectedIndex].value;
+                                    setTimeout(function () {
+                                        document.execCommand("fontname", false, value);
+                                    }, 200);
                                 }
                             }
                         }, _btn);
@@ -239,14 +246,17 @@
                             nodeName: "nobr",
                             properties: {
                                 style: {
-                                    cssFloat: 'left',
+                                    float: 'left',
+                                    cssFloat:'left',
                                     fontSize: '11px'
                                 }
                             },
+                            cssClasses: ['fontsizeclass'],
                             children: [{
                                 nodeName: "span",
                                 properties: {
                                     textContent: "Size ",
+                                    innerText: "Size ",
                                     style: {
                                         paddingLeft: '5px',
                                         fontWeight: 'bold'
@@ -262,24 +272,27 @@
                                     fontSize: '11px',
                                     fontFamily: 'Arial',
                                     height: "20px",
-                                    width: '50px'
+                                    width: isIE ? '30px' : '50px'
                                 }
                             },
                             events: {
                                 change: function (e) {
-                                    document.execCommand("FontSize", false, this.options[this.selectedIndex].value);
+                                    var value = this.options[this.selectedIndex].value;
+                                    setTimeout(function () {
+                                        document.execCommand("fontsize", false, value);
+                                    }, 200);
                                 }
                             }
                         }, _btn);
 
                         var option = [
-                            { Text: "1 (8 pt)", Value: "8pt" },
-                            { Text: "2 (10 pt)", Value: "10pt" },
-                            { Text: "3 (12 pt)", Value: "12pt" },
-                            { Text: "4 (14 pt)", Value: "14pt" },
-                            { Text: "5 (18 pt)", Value: "18pt" },
-                            { Text: "6 (24 pt)", Value: "24pt" },
-                            { Text: "7 (36 pt)", Value: "36pt" }
+                            { Text: "1", Value: "1" },
+                            { Text: "2", Value: "2" },
+                            { Text: "3", Value: "3" },
+                            { Text: "4", Value: "4" },
+                            { Text: "5", Value: "5" },
+                            { Text: "6", Value: "6" },
+                            { Text: "7", Value: "7" }
                             ];
 
                         for (x in option) {
@@ -308,9 +321,11 @@
                                     backgroundColor: '#ff0000',
                                     border: 'solid 1px #c2c2c2',
                                     display: 'block',
+                                    float: 'left',
                                     cssFloat: 'left'
                                 }
-                            }
+                            },
+                            cssClasses: ['forecolorclass']
                         }, this._topButtonContainer);
                         _btn.setAttribute('unselectable', 'on');
 
@@ -324,7 +339,8 @@
                                 style: {
                                     backgroundColor: 'transparent',
                                     width: '21px',
-                                    height: '19px'
+                                    height: '19px',
+                                    color: 'transparent'
                                 }
                             },
                             cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName]
@@ -343,6 +359,42 @@
                         --------------------------------------------------
                         this._foreColor.setAttribute('class', 'ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName);
                         */
+                    }
+                    else if (this._toolbarButtons[i].CommandName == 'BackColor') {
+
+                        _btn = $common.createElementFromTemplate({
+                            nodeName: "span",
+                            properties: {
+                                style: {
+                                    backgroundColor: '#ff0000',
+                                    border: 'solid 1px #c2c2c2',
+                                    display: 'block',
+                                    float: 'left',
+                                    cssFloat: 'left'
+                                }
+                            },
+                            cssClasses: ['backcolorclass']
+                        }, this._topButtonContainer);
+                        _btn.setAttribute('unselectable', 'on');
+
+                        this._backColor = $common.createElementFromTemplate({
+                            nodeName: 'input',
+                            properties: {
+                                type: 'button',
+                                id: this._id + this._toolbarButtons[i].CommandName,
+                                name: this._toolbarButtons[i].CommandName,
+                                title: this._toolbarButtons[i].Tooltip,
+                                style: {
+                                    backgroundColor: 'transparent',
+                                    width: '21px',
+                                    height: '19px',
+                                    color: 'transparent'
+                                }
+                            },
+                            cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName]
+                        }, _btn);
+                        this._backColor.setAttribute('unselectable', 'on');
+
                     }
                     else {
                         var map = {
@@ -388,9 +440,60 @@
             _textBox_onblur: function () {
                 this._editableDiv.innerHTML = this._textbox._element.value;
             },
+            _attributes: {
+                style: 'st_yle_',
+                size: 'si_ze_',
+                color: 'co_lor_',
+                face: 'fa_ce_',
+                align: 'al_ign_'
+            },
+            _rgbToHex: function (s) {
+                var a = /rgb\s?\(\s?(\d+)\s?,\s?(\d+)\s?,\s?(\d+)\s?\)/.exec(s);
+                return '#' + (parseInt(a[3], 10) | (parseInt(a[2], 10) << 8) | (parseInt(a[1], 10) << 16)).toString(16);
+            },
             _encodeHtml: function () {
-                var html = this._editableDiv.innerHTML.replace(/&/ig, '&amp;').replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&quot;').replace(/\xA0/ig, '&nbsp;');
-                html = html.replace(/&lt;STRONG&gt;/ig, '&lt;b&gt;').replace(/&lt;\/STRONG&gt;/ig, '&lt;/b&gt;').replace(/&lt;EM&gt;/ig, '&lt;i&gt;').replace(/&lt;\/EM&gt;/ig, '&lt;/i&gt;');
+                var isIE = Sys.Browser.agent == Sys.Browser.InternetExplorer;
+                var elements = this._editableDiv.getElementsByTagName('*');
+                var len = elements.length;
+                var element;
+                var key;
+                var value;
+                for (var i = 0; element = elements[i]; i++) {
+                    try {
+                        element.className = '';
+                        element.removeAttribute('class');
+                    } catch (ex) { }
+                    try {
+                        element.id = '';
+                        element.removeAttribute('id');
+                    } catch (ex) { }
+                    try {
+                        element.removeAttribute('width');
+                    } catch (ex) { }
+                    if (isIE) {
+                }
+                        }
+                var html = this._editableDiv.innerHTML;
+                if (isIE) {
+                    var allTags = /\<[^\>]+\>/g;
+                    html = html.replace(allTags, function (tag) {
+                        var sQA = /\=\'([^\'])*\'/g; //single quoted attributes
+                        var nQA = /\=([^\"][^\s\/\>]*)/g; //non double quoted attributes
+                        return tag.replace(sQA, '="$1"').replace(nQA, '="$1"');
+                    });
+                    }
+                var fixRGB = this._rgbToHex;
+                var replaceRGB = function () {
+                    html = html.replace(/(\<[^\>]+)(rgb\s?\(\d{1,3}\s?\,\s?\d{1,3}\s?\,\s?\d{1,3}\s?\))([^\>]*\>)/gi, function (text, p1, p2, p3) {
+                        return (p1 || '') + ((p2 && fixRGB(p2)) || '') + (p3 || '');
+                    });
+                };
+                replaceRGB();
+                replaceRGB();
+                html = html.replace(/\sclass\=\"\"/gi, '').replace(/\sid\=\"\"/gi, '');
+                html = html.replace(/\<(\/?)strong\>/gi, '<$1b>').replace(/\<(\/?)em\>/gi, '<$1i>');
+                html = html.replace(/&/ig, '&amp;').replace(/\xA0/ig, '&nbsp;');
+                html = html.replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&apos;').replace(/\"/ig, '&quot;');
                 return html;
             },
             _editableDiv_submit: function () {
@@ -427,7 +530,9 @@
                     JustifyRight: 1,
                     JustifyLeft: 1,
                     JustifyCenter: 1,
-                    JustifyFull: 1
+                    JustifyFull: 1,
+                    Indent: 1,
+                    Outdent: 1
                 };
 
                 if (map[command.target.name]) {
@@ -483,6 +588,16 @@
                     }
                     this._foreColorPicker.show();
                 }
+                else if (command.target.name == 'BackColor') {
+                    this._commandName = command.target.name;
+                    this.saveSelection();
+                    if (!this._backColorPicker) {
+                        this._backColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, { 'unselectable': 'on' }, {}, {}, this._backColor);
+                        this._backColorPicker.set_sample(this._backColor.parentNode);
+                        this._backColorPicker.add_colorSelectionChanged(delcolorPicker_onchange);
+                    }
+                    this._backColorPicker.show();
+                }
                 else if (command.target.name == 'UnSelect') {
                     if (isFireFox) {                                                
                         this._editableDiv.focus();
@@ -500,8 +615,13 @@
 
             _colorPicker_onchange: function (e) {
                 this.restoreSelection();
-                if (this._commandName == "backcolor") {
-                    if (!document.execCommand("hilitecolor", false, "#" + e._selectedColor)) {
+                if (/backcolor/i.test(this._commandName)) {
+                    var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox;
+                    if (isFireFox) {
+                        document.execCommand('stylewithcss', false, true);
+                        document.execCommand("hilitecolor", false, "#" + e._selectedColor);
+                        document.execCommand('stylewithcss', false, false);
+                    } else {
                         document.execCommand("backcolor", false, "#" + e._selectedColor);
                     }
                 }

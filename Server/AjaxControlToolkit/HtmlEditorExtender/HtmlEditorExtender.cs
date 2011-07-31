@@ -87,7 +87,7 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="value">Value that contains html tags to decode</param>
         /// <returns>value after decoded</returns>
-        protected virtual string Decode(string value)
+        public static string Decode(string value)
         {
             //todo: cleanup style tagss no positioning
             string tags = "font|div|span|br|strong|em|strike|sub|sup|center|blockquote|hr|ol|ul|li|br|s|p|b|i|u";
