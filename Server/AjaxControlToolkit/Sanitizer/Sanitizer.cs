@@ -35,13 +35,17 @@ namespace AjaxControlToolkit.Sanitizer {
 
         }
 
-
-        public static string GetSafeHtmlFragment(string htmlFragment) {
+        public static SanitizerProvider GetProvider() {
             Sanitizer.Initialize();
-            if (_provider != null) {
-                htmlFragment = _provider.GetSafeHtmlFragment(htmlFragment);
-            }
-            return htmlFragment;
+            return _provider;
         }
+
+        //public static string GetSafeHtmlFragment(string htmlFragment) {
+        //    Sanitizer.Initialize();
+        //    if (_provider != null) {
+        //        htmlFragment = _provider.GetSafeHtmlFragment(htmlFragment);
+        //    }
+        //    return htmlFragment;
+        //}
     }
 }

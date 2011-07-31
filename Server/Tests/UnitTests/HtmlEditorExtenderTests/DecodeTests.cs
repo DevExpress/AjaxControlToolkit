@@ -59,11 +59,12 @@ namespace UnitTests.HtmlEditorExtenderTests {
         [TestMethod]
         public void TestDecode() {
             // Arrange
+            var editor = new HtmlEditorExtender();
             var input = TestContext.DataRow["Input"] as string;
             var output = TestContext.DataRow["Output"] as string;
 
             // Act
-            var result = HtmlEditorExtender.Decode(input);
+            var result = editor.Decode(input);
             
             // Assert
             Assert.AreEqual(output, input);

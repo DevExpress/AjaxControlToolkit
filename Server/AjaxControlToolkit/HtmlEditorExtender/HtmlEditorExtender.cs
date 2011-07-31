@@ -10,6 +10,7 @@ using System.ComponentModel.Design;
 using System.Drawing.Design;
 using System.IO;
 using System.Reflection;
+using AjaxControlToolkit.Sanitizer;
 
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.js", "text/javascript")]
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.debug.js", "text/javascript")]
@@ -35,12 +36,20 @@ namespace AjaxControlToolkit
     {
         internal const int ButtonWidthDef = 23;
         internal const int ButtonHeightDef = 21;
-        HtmlEditorExtenderButtonCollection buttonList = null;
+        private HtmlEditorExtenderButtonCollection buttonList = null;
+        private SanitizerProvider sanitizerProvider = null; 
+
 
         public HtmlEditorExtender()
         {
             EnableClientState = true;
+            sanitizerProvider = Sanitizer.Sanitizer.GetProvider();
         }
+
+        public string SanitizationProviderName {
+            get { return sanitizerProvider.Name; }
+        }
+
 
         /// <summary>
         /// Provide button list to client side. Need help from Toolbar property 
@@ -87,7 +96,7 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="value">Value that contains html tags to decode</param>
         /// <returns>value after decoded</returns>
-        public static string Decode(string value)
+        public string Decode(string value)
         {
             //todo: cleanup style tagss no positioning
             string tags = "font|div|span|br|strong|em|strike|sub|sup|center|blockquote|hr|ol|ul|li|br|s|p|b|i|u";
@@ -110,7 +119,11 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "<[^>]*javascript\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "<[^>]*position\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
-            return Sanitizer.Sanitizer.GetSafeHtmlFragment(result);
+            if (sanitizerProvider != null) {
+                result = sanitizerProvider.GetSafeHtmlFragment(result);
+            }
+
+            return result;
         }
 
 
