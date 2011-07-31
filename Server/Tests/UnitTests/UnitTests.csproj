@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -55,6 +56,10 @@
     <ProjectReference Include="..\..\AjaxControlToolkit\AjaxControlToolkit.csproj">
       <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
       <Name>AjaxControlToolkit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SanitizerProviders\SanitizerProviders.csproj">
+      <Project>{BE5E36F1-B65D-4C4B-97DB-54DCC19D3548}</Project>
+      <Name>SanitizerProviders</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

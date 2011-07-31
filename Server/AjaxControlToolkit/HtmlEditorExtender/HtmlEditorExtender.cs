@@ -46,8 +46,9 @@ namespace AjaxControlToolkit
             sanitizerProvider = Sanitizer.Sanitizer.GetProvider();
         }
 
-        public string SanitizationProviderName {
-            get { return sanitizerProvider.Name; }
+        public SanitizerProvider SanitizationProvider {
+            get { return this.sanitizerProvider; }
+            set { this.sanitizerProvider = value; }
         }
 
 

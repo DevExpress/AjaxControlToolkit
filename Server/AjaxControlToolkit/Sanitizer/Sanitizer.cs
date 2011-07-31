@@ -25,7 +25,7 @@ namespace AjaxControlToolkit.Sanitizer {
                 // use the ProvidersHelper class to call Initialize on each 
                 // configured provider
                 ProvidersHelper.InstantiateProviders(sanitizerConfig.Providers, _providers, typeof(SanitizerProvider));
-
+                
                 // set a reference to the default provider
                 _provider = _providers[sanitizerConfig.DefaultProvider];
             }

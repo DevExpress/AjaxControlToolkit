@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AjaxControlToolkit;
+using System.Web.Configuration;
+using AjaxControlToolkit.Sanitizer;
 
 namespace UnitTests.HtmlEditorExtenderTests {
     /// <summary>
@@ -54,12 +56,25 @@ namespace UnitTests.HtmlEditorExtenderTests {
         //
         #endregion
 
+        [TestMethod]
+        public void TestDecodeSanitizerProvider() {
+            // Arrange
+            var editor = new HtmlEditorExtender();
+            
+            // Act
+            editor.SanitizationProvider = new AntiXssSanitizerProvider();
+
+            // Assert
+            Assert.AreEqual("AjaxControlToolkit.AntiXssSanitizerProvider", editor.SanitizationProvider.Name);
+        }
+
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "Inputs.csv", "Inputs#csv", DataAccessMethod.Sequential)]
         [DeploymentItem("Server\\Tests\\UnitTests\\HtmlEditorExtenderTests\\Inputs.csv")]
         [TestMethod]
         public void TestDecode() {
             // Arrange
             var editor = new HtmlEditorExtender();
+            editor.SanitizationProvider = new AntiXssSanitizerProvider();
             var input = TestContext.DataRow["Input"] as string;
             var output = TestContext.DataRow["Output"] as string;
 
