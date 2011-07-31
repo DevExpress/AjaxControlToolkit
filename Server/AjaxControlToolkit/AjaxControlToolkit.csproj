@@ -355,6 +355,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
+    <Compile Include="Sanitizer\ProviderSanitizerSection.cs" />
+    <Compile Include="Sanitizer\Sanitizer.cs" />
+    <Compile Include="Sanitizer\SanitizerProvider.cs" />
+    <Compile Include="Sanitizer\SanitizerProviderCollection.cs" />
     <Compile Include="Seadragon\OverlayCollectionEditor.cs" />
     <Compile Include="Seadragon\Seadragon.cs" />
     <Compile Include="Seadragon\SeadragonControl.cs" />
@@ -753,6 +757,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
   <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />

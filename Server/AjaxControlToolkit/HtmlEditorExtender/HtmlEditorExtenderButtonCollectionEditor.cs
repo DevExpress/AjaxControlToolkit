@@ -30,8 +30,6 @@ namespace AjaxControlToolkit
                 typeof( JustifyFull),
                 typeof( insertOrderedList),
                 typeof( insertUnorderedList),
-                typeof( CreateLink),
-                typeof( UnLink),
                 typeof( RemoveFormat),
                 typeof( SelectAll),
                 typeof( UnSelect),
