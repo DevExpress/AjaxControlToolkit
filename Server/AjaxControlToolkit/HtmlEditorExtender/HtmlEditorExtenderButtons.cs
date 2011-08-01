@@ -256,7 +256,7 @@ namespace AjaxControlToolkit {
             get { return "Redo"; }
         }
     }
-    /*
+    
         /// <summary>
         /// CreateLink class represents to hyperlink tag
         /// </summary>
@@ -278,7 +278,7 @@ namespace AjaxControlToolkit {
                 get { return "Create Link"; }
             }
         }
-    */
+    
     /// <summary>
     /// Delete class represents to Delete button
     /// </summary>
@@ -335,7 +335,7 @@ namespace AjaxControlToolkit {
             get { return "UnSelect"; }
         }
     }
-    /*
+    
         /// <summary>
         /// UnLink class represents to UnLink action
         /// </summary>
@@ -357,7 +357,7 @@ namespace AjaxControlToolkit {
                 get { return "UnLink"; }
             }
         }
-    */
+    
     /// <summary>
     /// BackColor class represents to BackColor action
     /// </summary>

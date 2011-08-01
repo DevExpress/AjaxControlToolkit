@@ -66,11 +66,21 @@ namespace AjaxControlToolkit
         {
             get
             {
-                if (buttonList == null || buttonList.Count == 0)
-                    CreateButtons();
+                EnsureButtons();
                 return buttonList;
             }
         }
+
+        /// <summary>
+        /// Ensure Toolbar buttons are created. Only creates the buttons
+        /// once no matter how many times called
+        /// </summary>
+        private void EnsureButtons() {
+            if (buttonList == null || buttonList.Count == 0) {
+                CreateButtons();
+            }
+        }
+
 
         /// <summary>
         /// Helper property to cacth buttons from modifed buttons on design time.
@@ -99,7 +109,8 @@ namespace AjaxControlToolkit
         /// <returns>value after decoded</returns>
         public string Decode(string value)
         {
-            //todo: cleanup style tagss no positioning
+            EnsureButtons();
+
             string tags = "font|div|span|br|strong|em|strike|sub|sup|center|blockquote|hr|ol|ul|li|br|s|p|b|i|u";
             string attributes = "style|size|color|face|align|dir";
             string attributeCharacters = "\\'\\,\\w\\-#\\s\\:\\;";
@@ -107,8 +118,10 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "&apos;", "'", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)((?:" + tags + ")(?:\\s(?:" + attributes + ")=\"[" + attributeCharacters + "]*\")*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             //for decoding a tags
-            //string hrefCharacters = "^\\\"\\>\\<\\\\";
-            //result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            if (buttonList.Find(b => b.CommandName == "createLink") != null) {
+                string hrefCharacters = "^\\\"\\>\\<\\\\";
+                result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            }
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "<[^>]*expression[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
@@ -212,35 +225,35 @@ namespace AjaxControlToolkit
             base.RenderControl(output);
             if (this.DesignMode)
             {
-                string imageSrc = @"C:\Documents and Settings\html-editor-buttons_Designer.png";
-                string imageHtmlOutput = string.Empty;
-                byte[] imageData = new byte[25252];
-                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("HtmlEditorExtender.html-editor-buttons_Designer.png"))
-                {
-                    stream.Read(imageData, 0, imageData.Length);
-                }
+                //string imageSrc = @"C:\Documents and Settings\html-editor-buttons_Designer.png";
+                //string imageHtmlOutput = string.Empty;
+                //byte[] imageData = new byte[25252];
+                //using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("HtmlEditorExtender.html-editor-buttons_Designer.png"))
+                //{
+                //    stream.Read(imageData, 0, imageData.Length);
+                //}
 
-                using (FileStream fs = new FileStream(imageSrc, FileMode.Create))
-                using (BinaryWriter bw = new BinaryWriter(fs))
-                {
-                    bw.Write(imageData);
-                }
+                //using (FileStream fs = new FileStream(imageSrc, FileMode.Create))
+                //using (BinaryWriter bw = new BinaryWriter(fs))
+                //{
+                //    bw.Write(imageData);
+                //}
 
-                System.Web.UI.HtmlControls.HtmlImage image = new System.Web.UI.HtmlControls.HtmlImage();
-                image.Src = imageSrc;
-                using (StringWriter stringWriter = new StringWriter())
-                using (System.Web.UI.HtmlTextWriter htmlTextWriter = new System.Web.UI.HtmlTextWriter(stringWriter))
-                {
-                    image.RenderControl(htmlTextWriter);
-                    imageHtmlOutput = stringWriter.ToString();
-                }
+                //System.Web.UI.HtmlControls.HtmlImage image = new System.Web.UI.HtmlControls.HtmlImage();
+                //image.Src = imageSrc;
+                //using (StringWriter stringWriter = new StringWriter())
+                //using (System.Web.UI.HtmlTextWriter htmlTextWriter = new System.Web.UI.HtmlTextWriter(stringWriter))
+                //{
+                //    image.RenderControl(htmlTextWriter);
+                //    imageHtmlOutput = stringWriter.ToString();
+                //}
 
-                output.Write("<div style='width: 423px; height: 181px;'>");
-                output.Write("<div style='background-color:#F0F0F0; display:table; padding: 2px 2px 2px 2px; border: 1px solid #c2c2c2; border-bottom: none;' >");
-                output.Write(imageHtmlOutput);
-                output.Write("</div>");
-                output.Write("<div style='border-width:1px; border-color:#c2c2c2; border-style:solid; padding: 2px 2px 2px 2px; height: 80%; overflow: auto; clear: both;' contenteditable='true'>test test</div>");
-                output.Write("</div>");
+                //output.Write("<div style='width: 423px; height: 181px;'>");
+                //output.Write("<div style='background-color:#F0F0F0; display:table; padding: 2px 2px 2px 2px; border: 1px solid #c2c2c2; border-bottom: none;' >");
+                //output.Write(imageHtmlOutput);
+                //output.Write("</div>");
+                //output.Write("<div style='border-width:1px; border-color:#c2c2c2; border-style:solid; padding: 2px 2px 2px 2px; height: 80%; overflow: auto; clear: both;' contenteditable='true'>test test</div>");
+                //output.Write("</div>");
             }
         }
     }
