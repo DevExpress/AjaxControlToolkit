@@ -5,12 +5,7 @@ namespace AjaxControlToolkit.Sanitizer {
   
         private string _applicationName;
 
-        public override string Name {
-            get {
-                return "AjaxControlToolkit.AntiXssSanitizerProvider";
-            }
-        }
-
+ 
 
         public override string ApplicationName {
             get {

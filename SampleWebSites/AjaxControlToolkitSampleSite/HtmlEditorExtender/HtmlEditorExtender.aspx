@@ -11,7 +11,7 @@
         <asp:UpdatePanel ID="updatePanel1" runat="server">                    
             <ContentTemplate>                                
                 <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10"
-                    Text="Hello <b>world1</b>" /><br />
+                    Text="Hello <b>world!</b>" /><br />
                 <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1"
                     runat="server">
                 </ajaxToolkit:HtmlEditorExtender>
@@ -21,7 +21,7 @@
                 <b>Below example with configurable toolbar:</b>
                 <br />                
                 <asp:TextBox runat="server" ID="txtBox2" TextMode="MultiLine" Columns="50" Rows="10"
-                    Text="Hello <b>world1</b>" /><br />
+                    Text="Hello <b>world!</b>" /><br />
                 <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender2" TargetControlID="txtBox2"
                     runat="server">
                     <Toolbar>                        
