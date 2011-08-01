@@ -10,8 +10,14 @@
 <configuration>
 
 
-    <configSections>
-      <sectionGroup name="system.web.extensions" type="System.Web.Configuration.SystemWebExtensionsSectionGroup, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35">
+  <configSections>
+    <sectionGroup name="system.web">
+      <section name="sanitizer" requirePermission="false"
+               type="AjaxControlToolkit.Sanitizer.ProviderSanitizerSection, AjaxControlToolkit" />
+    </sectionGroup>
+
+
+    <sectionGroup name="system.web.extensions" type="System.Web.Configuration.SystemWebExtensionsSectionGroup, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35">
         <sectionGroup name="scripting" type="System.Web.Configuration.ScriptingSectionGroup, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35">
           <section name="scriptResourceHandler" type="System.Web.Configuration.ScriptingScriptResourceHandlerSection, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35" requirePermission="false" allowDefinition="MachineToApplication"/>
           <sectionGroup name="webServices" type="System.Web.Configuration.ScriptingWebServicesSectionGroup, System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35">
@@ -28,9 +34,18 @@
     <appSettings/>
     <connectionStrings/>
     <system.web>
-        <trust level="Medium"/>
+      
+      <trust level="Full"/>
 
-        <!-- 
+
+      <sanitizer defaultProvider="AntiXssSanitizerProvider">
+        <providers>
+          <add name="AntiXssSanitizerProvider" type="AjaxControlToolkit.Sanitizer.AntiXssSanitizerProvider"></add>
+        </providers>
+      </sanitizer>
+
+
+      <!-- 
             Set compilation debug="true" to insert debugging 
             symbols into the compiled page. Because this 
             affects performance, set this value to true only 
