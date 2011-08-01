@@ -198,7 +198,7 @@ namespace AjaxControlToolkit {
     /// <summary>
     /// insertOrderedList class represents to OrderedList tag
     /// </summary>
-    public class insertOrderedList : HtmlEditorExtenderButton {
+    public class InsertOrderedList : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
@@ -217,7 +217,7 @@ namespace AjaxControlToolkit {
     /// <summary>
     /// insertUnOrderedList class represents to UnOrderedList tag
     /// </summary>
-    public class insertUnorderedList : HtmlEditorExtenderButton {
+    public class InsertUnorderedList : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
