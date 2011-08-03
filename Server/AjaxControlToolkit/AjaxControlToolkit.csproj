@@ -198,6 +198,10 @@
     <Compile Include="HoverMenu\HoverMenuDesigner.cs" />
     <Compile Include="HoverMenu\HoverMenuExtender.cs" />
     <Compile Include="HoverMenu\HoverMenuPopupPosition.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollection.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollectionEditor.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtons.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderDesigner.cs" />
     <Compile Include="HTMLEditor\DesignPanel.cs" />
     <Compile Include="HTMLEditor\DesignPanelEventHandler.cs" />
     <Compile Include="HTMLEditor\Editor.cs" />
@@ -280,6 +284,7 @@
     <Compile Include="HTMLEditor\Toolbar_buttons\SuperScript.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Underline.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Undo.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtender.cs" />
     <Compile Include="ListSearch\ListSearchDesigner.cs" />
     <Compile Include="ListSearch\ListSearchExtender.cs" />
     <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
@@ -350,6 +355,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
+    <Compile Include="Sanitizer\ProviderSanitizerSection.cs" />
+    <Compile Include="Sanitizer\Sanitizer.cs" />
+    <Compile Include="Sanitizer\SanitizerProvider.cs" />
+    <Compile Include="Sanitizer\SanitizerProviderCollection.cs" />
     <Compile Include="Seadragon\OverlayCollectionEditor.cs" />
     <Compile Include="Seadragon\Seadragon.cs" />
     <Compile Include="Seadragon\SeadragonControl.cs" />
@@ -404,6 +413,8 @@
     <EmbeddedResource Include="FilteredTextBox\FilteredTextBox.ico" />
     <EmbeddedResource Include="HoverMenu\HoverMenu.ico" />
     <Content Include="DropDown\DropDown_resource.css" />
+    <Content Include="HtmlEditorExtender\HtmlEditorExtender_resource.css" />
+    <EmbeddedResource Include="HtmlEditorExtender\html_editor_extender.ico" />
     <Content Include="HTMLEditor\DesignPanel.css" />
     <Content Include="HTMLEditor\DesignPanel.pre.js" />
     <Content Include="HTMLEditor\DesignPanelEventHandler.pre.js" />
@@ -746,10 +757,10 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
   <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
-
   <Target Name="BeforeBuild">
     <MakeDir Directories="ScriptOutput" />
     <!-- clean out old files from previous build -->

@@ -1,4 +1,7 @@
 ﻿<?xml version="1.0"?>
+
+
+
 <!-- 
     Note: As an alternative to hand editing this file you can use the 
     web admin tool to configure settings for your application. Use
@@ -7,11 +10,37 @@
     machine.config.comments usually located in 
     \Windows\Microsoft.Net\Framework\v2.x\Config 
 -->
+
 <configuration>
+  <configSections>
+    <sectionGroup name="system.web">
+      <section name="sanitizer" requirePermission="false"
+               type="AjaxControlToolkit.Sanitizer.ProviderSanitizerSection, AjaxControlToolkit" />
+    </sectionGroup>
+  </configSections>
+
   <appSettings/>
   <connectionStrings/>
   <system.web>
-    <trust level="Medium"/>
+
+
+    <trust level="Full" />
+
+    <!--
+      The AntiXSS Library requires Full Trust. We don't recommend using the 
+      HtmlEditorExtender for a public website without running the website in
+      Full Trust.  If you do not plan to use the HtmlEditorExtender then you
+      can remove the following sanitizer section.
+      -->
+
+    <sanitizer defaultProvider="AntiXssSanitizerProvider">
+      <providers>
+        <add name="AntiXssSanitizerProvider" type="AjaxControlToolkit.Sanitizer.AntiXssSanitizerProvider"></add>
+      </providers>
+    </sanitizer>
+
+
+
     <!-- 
             Set compilation debug="true" to insert debugging 
             symbols into the compiled page. Because this 

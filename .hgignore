@@ -21,3 +21,10 @@ glob:Client/UnitTests/ajaxlib/*
 glob:SampleWebSites/AjaxControlToolkitSampleSite/Bin/*
 syntax: glob
 AjaxControlToolkit.VS2008.suo
+AjaxControlToolkit.vsmdi
+Server/SanitizerProviders/bin/
+Server/SanitizerProviders/obj/
+Server/SanitizerProviders/SanitizerProviders.VS2008.csproj.user
+Server/Tests/UnitTests/bin/
+Client/MicrosoftAjax.Extended/HtmlEditorExtender/Images/Thumbs.db
+Server/Tests/UnitTests/obj/
