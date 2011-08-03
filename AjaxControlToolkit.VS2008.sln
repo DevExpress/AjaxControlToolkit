@@ -39,7 +39,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSite", "SampleWebSites\AjaxControlToolkitSampleSite\", "{586DC9E0-7780-421E-A2E7-135A62F95E6E}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
-		ProjectReferences = "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}|AjaxControlToolkit.dll;"
+		ProjectReferences = "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}|AjaxControlToolkit.dll;{E21B0D80-8D01-44C9-B99A-69FFFF2081D2}|SanitizerProviders.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/AjaxControlToolkitSampleSite"
 		Debug.AspNetCompiler.PhysicalPath = "SampleWebSites\AjaxControlToolkitSampleSite\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkitSampleSite\"

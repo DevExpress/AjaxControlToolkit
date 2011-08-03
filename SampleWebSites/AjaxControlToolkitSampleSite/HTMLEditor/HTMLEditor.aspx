@@ -17,9 +17,9 @@
 <asp:Content ContentPlaceHolderID="SampleContent" runat="Server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <div>
-        <a href="../HtmlEditorExtender/HTMLEditorExtender.aspx" style="text-decoration:none">
-            Note: We recommend that you use the new HtmlEditorExtender instead of the HtmlEditor control described on this page. The HtmlEditorExtender takes advantage of HTML5 and works with IE6 and later.
-         </a>
+            Note: We recommend that you use 
+            <a href="../HtmlEditorExtender/HTMLEditorExtender.aspx">the new HtmlEditorExtender</a> 
+            instead of the HtmlEditor control described on this page. The HtmlEditorExtender takes advantage of HTML5 and works with IE6 and later.
     </div>
     <br />
     <div class="demoarea">
