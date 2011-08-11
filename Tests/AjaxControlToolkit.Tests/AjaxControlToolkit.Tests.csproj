@@ -21,6 +21,7 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -85,6 +86,8 @@
     <Content Include="Tests\RatingControl\RatingControl_TestPage.aspx" />
     <Content Include="Tests\RoundedCorners\RoundedCorners.aspx" />
     <Content Include="Tests\RoundedCorners\RoundedCorners_TestPage.aspx" />
+    <Content Include="Tests\Tabs\Tabs.aspx" />
+    <Content Include="Tests\Tabs\Tabs_TestPage.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -206,6 +209,20 @@
     </Compile>
     <Compile Include="Tests\RoundedCorners\RoundedCorners_TestPage.aspx.designer.cs">
       <DependentUpon>RoundedCorners_TestPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Tabs\Tabs.aspx.cs">
+      <DependentUpon>Tabs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tests\Tabs\Tabs.aspx.designer.cs">
+      <DependentUpon>Tabs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Tabs\Tabs_TestPage.aspx.cs">
+      <DependentUpon>Tabs_TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tests\Tabs\Tabs_TestPage.aspx.designer.cs">
+      <DependentUpon>Tabs_TestPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
