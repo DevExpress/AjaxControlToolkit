@@ -40,6 +40,8 @@
             this._button = null;
             this._popupMouseDown = false;
             this._selectedDate = null;
+            this._startDate = null;
+            this._endDate = null;
             this._visibleDate = null;
             this._todaysDate = null;
             this._firstDayOfWeek = Sys.Extended.UI.FirstDayOfWeek.Default;
@@ -188,6 +190,40 @@
                 }
             },
 
+            set_startDate: function (value) {
+                /// <value type="Date">
+                /// The property of the start date for range
+                /// </value>
+                if (this._startDate != value) {
+                    this._startDate = value;
+                    this.raisePropertyChanged('startDate');
+                }
+            },
+
+            get_startDate: function () {
+                /// <value type="Date">
+                /// The property of the start date for range
+                /// </value>
+                return this._startDate;
+            },
+
+            set_endDate: function (value) {
+                /// <value type="Date">
+                /// The property of the end date for range
+                /// </value>
+                if (this._endDate != value) {
+                    this._endDate = value;
+                    this.raisePropertyChanged('_endDate');
+                }
+            },
+
+            get_endDate: function () {
+                /// <value type="Date">
+                /// The property of the end date for range
+                /// </value>
+                return this._endDate;
+            },
+
             get_format: function () {
                 /// <value type="String">
                 /// The format to use for the date value
@@ -234,7 +270,6 @@
                 /// <value type="Date">
                 /// The date value represented by the text box
                 /// </value>
-
                 if (this._selectedDate == null) {
                     var value = this._textbox.get_Value();
                     if (value) {
@@ -252,7 +287,6 @@
                 }
 
                 if (value) value = value.getDateOnly();
-
                 if (this._selectedDate != value) {
                     this._selectedDate = value;
                     this._selectedDateChanging = true;
@@ -569,7 +603,6 @@
                 /// <summary>
                 /// Initializes the components and parameters for this behavior
                 /// </summary>
-
                 Sys.Extended.UI.CalendarBehavior.callBaseMethod(this, "initialize");
 
                 var elt = this.get_element();
@@ -1028,6 +1061,81 @@
                 }
             },
 
+            _isInDateRange: function (currentDate, type) {
+                var isInRange = false;
+                if (type == "days") {
+
+                    if (this._startDate) {
+                        if (new Date(this._startDate).getTime() <= currentDate.getTime()) { isInRange = true; }
+                    }
+
+                    if (this._endDate) {
+                        if (new Date(this._endDate).getTime() >= currentDate.getTime()) { isInRange = true; }
+                    }
+
+                    if (this._startDate && this._endDate) {
+                        if ((new Date(this._startDate).getTime() <= currentDate.getTime()) && (new Date(this._endDate).getTime() >= currentDate.getTime())) {
+                            isInRange = true;
+                        }
+                        else {
+                            isInRange = false;
+                        }
+                    }
+                    if (!this._startDate && !this._endDate) {
+                        isInRange = true;
+                    }
+                }
+                else if (type == "months") {
+                    var isInRange = false;
+                    if (this._startDate) {
+                        if (new Date(this._startDate).getMonth() <= currentDate.getMonth()) { isInRange = true; }
+                    }
+
+                    if (this._endDate) {
+                        if (new Date(this._endDate).getMonth() >= currentDate.getMonth()) { isInRange = true; }
+                    }
+
+                    if (this._startDate && this._endDate) {
+                        if ((new Date(this._startDate).getMonth() <= currentDate.getMonth()) && (new Date(this._endDate).getMonth() >= currentDate.getMonth())) {
+                            isInRange = true;
+                        }
+                        else {
+                            isInRange = false;
+                        }
+                    }
+
+                    if (!this._startDate && !this._endDate) {
+                        isInRange = true;
+                    }
+                }
+                else if (type == "years") {
+                    var isInRange = false;
+                    var currentYear = currentDate.getFullYear();
+                    if (this._startDate) {
+                        if (new Date(this._startDate).getFullYear() <= currentYear) { isInRange = true; }
+                    }
+
+                    if (this._endDate) {
+                        if (new Date(this._endDate).getFullYear() >= currentYear) { isInRange = true; }
+                    }
+
+                    if (this._startDate && this._endDate) {
+                        if ((new Date(this._startDate).getFullYear() <= currentYear) && (new Date(this._endDate).getFullYear() >= currentYear)) {
+                            isInRange = true;
+                        }
+                        else {
+                            isInRange = false;
+                        }
+                    }
+
+                    if (!this._startDate && !this._endDate) {
+                        isInRange = true;
+                    }
+                }
+
+                return isInRange;
+            },
+
             _performLayout: function () {
                 /// <summmary>
                 /// Updates the various views of the calendar to match the current selected and visible dates
@@ -1042,7 +1150,6 @@
                 var selectedDate = this.get_selectedDate();
                 var visibleDate = this._getEffectiveVisibleDate();
                 var todaysDate = this.get_todaysDate();
-
                 switch (this._mode) {
                     case "days":
 
@@ -1072,7 +1179,16 @@
                                 dayCell.title = currentDate.localeFormat("D");
                                 dayCell.date = currentDate;
                                 $common.removeCssClasses(dayCell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
-                                Sys.UI.DomElement.addCssClass(dayCell.parentNode, this._getCssClass(dayCell.date, 'd'));
+
+                                if (!this._isInDateRange(currentDate, "days")) {
+                                    $common.removeCssClasses(dayCell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
+                                    Sys.UI.DomElement.addCssClass(dayCell.parentNode, "ajax__calendar_invalid");
+                                } else {
+                                    $common.removeCssClasses(dayCell.parentNode, ["ajax__calendar_invalid", "ajax__calendar_other", "ajax__calendar_active", ""]);
+                                    Sys.UI.DomElement.addCssClass(dayCell.parentNode, this._getCssClass(dayCell.date, 'd'));
+                                }
+
+                                //Sys.UI.DomElement.addCssClass(dayCell.parentNode, this._getCssClass(dayCell.date, 'd'));
                                 currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1, this._hourOffsetForDst);
                             }
                         }
@@ -1088,15 +1204,22 @@
 
                         break;
                     case "months":
-
                         for (var i = 0; i < this._monthsBody.rows.length; i++) {
                             var row = this._monthsBody.rows[i];
                             for (var j = 0; j < row.cells.length; j++) {
                                 var cell = row.cells[j].firstChild;
                                 cell.date = new Date(visibleDate.getFullYear(), cell.month, 1, this._hourOffsetForDst);
                                 cell.title = cell.date.localeFormat("Y");
-                                $common.removeCssClasses(cell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
-                                Sys.UI.DomElement.addCssClass(cell.parentNode, this._getCssClass(cell.date, 'M'));
+
+                                if (!this._isInDateRange(cell.date, "months")) {
+                                    $common.removeCssClasses(cell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
+                                    Sys.UI.DomElement.addCssClass(cell.parentNode, "ajax__calendar_invalid");
+                                }
+                                else {
+
+                                    $common.removeCssClasses(cell.parentNode, ["ajax__calendar_invalid", "ajax__calendar_other", "ajax__calendar_active"]);
+                                    Sys.UI.DomElement.addCssClass(cell.parentNode, this._getCssClass(cell.date, 'M'));
+                                }
                             }
                         }
 
@@ -1124,8 +1247,15 @@
                                     cell.appendChild(document.createElement("br"));
                                 }
                                 cell.appendChild(document.createTextNode(minYear + cell.year));
-                                $common.removeCssClasses(cell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
-                                Sys.UI.DomElement.addCssClass(cell.parentNode, this._getCssClass(cell.date, 'y'));
+
+                                if (!this._isInDateRange(cell.date,"years")) {
+                                    $common.removeCssClasses(cell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
+                                    Sys.UI.DomElement.addCssClass(cell.parentNode, "ajax__calendar_invalid");
+                                }
+                                else {
+                                    $common.removeCssClasses(cell.parentNode, ["ajax__calendar_invalid", "ajax__calendar_other", "ajax__calendar_active"]);
+                                    Sys.UI.DomElement.addCssClass(cell.parentNode, this._getCssClass(cell.date, 'y'));
+                                }
                             }
                         }
 
@@ -1199,6 +1329,34 @@
                 // Check _isAnimating to make sure we don't animate horizontally and vertically at the same time
                 if (this._isAnimating) {
                     return;
+                }
+
+                if (date) {
+                    var isInRange = false;
+                    if (this._startDate) {
+                        if (new Date(this._startDate).getMonth() <= date.getMonth()) { isInRange = true; }
+                    }
+
+                    if (this._endDate) {
+                        if (new Date(this._endDate).getMonth() >= date.getMonth()) { isInRange = true; }
+                    }
+
+                    if (this._startDate && this._endDate) {
+                        if ((new Date(this._startDate).getMonth() <= date.getMonth()) && (new Date(this._endDate).getMonth() >= date.getMonth())) {
+                            isInRange = true;
+                        }
+                        else {
+                            isInRange = false;
+                        }
+                    }
+
+                    if (!this._startDate && !this._endDate) {
+                        isInRange = true;
+                    }
+
+                    if (!isInRange) {
+                        return;
+                    }
                 }
 
                 var visibleDate = this._getEffectiveVisibleDate();
@@ -1584,6 +1742,9 @@
                 if (!this._enabled) return;
 
                 var target = e.target;
+                if (target.parentNode.className.indexOf("ajax__calendar_invalid") != -1) {
+                    return;
+                }
                 var visibleDate = this._getEffectiveVisibleDate();
                 Sys.UI.DomElement.removeCssClass(target.parentNode, "ajax__calendar_hover");
                 switch (target.mode) {

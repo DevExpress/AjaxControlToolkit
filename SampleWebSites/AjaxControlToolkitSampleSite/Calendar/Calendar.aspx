@@ -13,7 +13,7 @@
         <b>Default calendar: </b>
         <br />
         <asp:TextBox runat="server" ID="Date1" autocomplete="off" /><br />
-        <ajaxToolkit:CalendarExtender ID="defaultCalendarExtender" runat="server" TargetControlID="Date1" />
+        <ajaxToolkit:CalendarExtender ID="defaultCalendarExtender" runat="server" TargetControlID="Date1" StartDate="08.03.2011" EndDate="09.04.2011" />
         <div style="font-size: 90%">
             <em>(Set the focus to the textbox to show the calendar)</em></div>
         <br />
