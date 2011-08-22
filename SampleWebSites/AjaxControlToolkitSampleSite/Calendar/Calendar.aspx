@@ -13,7 +13,7 @@
         <b>Default calendar: </b>
         <br />
         <asp:TextBox runat="server" ID="Date1" autocomplete="off" /><br />
-        <ajaxToolkit:CalendarExtender ID="defaultCalendarExtender" runat="server" TargetControlID="Date1" StartDate="08.03.2011" EndDate="09.04.2011" />
+        <ajaxToolkit:CalendarExtender ID="defaultCalendarExtender" runat="server" TargetControlID="Date1" />
         <div style="font-size: 90%">
             <em>(Set the focus to the textbox to show the calendar)</em></div>
         <br />
@@ -34,6 +34,13 @@
         <div style="font-size: 90%">
             <em>(Click the image button to show the calendar; this calendar dismisses automatically
                 when you choose a date)</em></div>
+        <br />
+        <br />
+        <b>Calendar with date range:</b><br />
+        <asp:TextBox runat="server" ID="Date6" />
+        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" Format="MM/dd/yyyy" TargetControlID="Date6" StartDate="8/3/2011" EndDate="9/4/2011" />
+        <div style="font-size: 90%">
+            <em>(Set the focus to the textbox to show the calendar. This calendar's StartDate property is '8/3/2011' and EndDate is '9/4/2011')</em></div>
     </div>
     <div class="demobottom">
     </div>
@@ -100,6 +107,12 @@
                 at the BottomLeft(default), BottomRight, TopLeft, TopRight, Left or Right of the TextBox.</li>
             <li><strong>SelectedDate</strong> - Indicates the date the Calendar extender is 
                 initialized with.</li>
+            <li>
+                <strong>StartDate</strong> - Indicates start date for range that available for selection.
+            </li>
+            <li> 
+                <strong>EndDate</strong> - Indicates end date for range that available for selection.
+            </li>
         </ul>
     </asp:Panel>
     <asp:Panel runat="server" ID="CalendarCSS_HeaderPanel" Style="cursor: pointer;">

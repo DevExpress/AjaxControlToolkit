@@ -195,7 +195,7 @@
                 /// The property of the start date for range
                 /// </value>
                 if (this._startDate != value) {
-                    this._startDate = value;
+                    this._startDate = new Date(value);
                     this.raisePropertyChanged('startDate');
                 }
             },
@@ -212,7 +212,7 @@
                 /// The property of the end date for range
                 /// </value>
                 if (this._endDate != value) {
-                    this._endDate = value;
+                    this._endDate = new Date(value);
                     this.raisePropertyChanged('_endDate');
                 }
             },
@@ -1062,75 +1062,22 @@
             },
 
             _isInDateRange: function (currentDate, type) {
-                var isInRange = false;
-                if (type == "days") {
-
-                    if (this._startDate) {
-                        if (new Date(this._startDate).getTime() <= currentDate.getTime()) { isInRange = true; }
-                    }
-
-                    if (this._endDate) {
-                        if (new Date(this._endDate).getTime() >= currentDate.getTime()) { isInRange = true; }
-                    }
-
-                    if (this._startDate && this._endDate) {
-                        if ((new Date(this._startDate).getTime() <= currentDate.getTime()) && (new Date(this._endDate).getTime() >= currentDate.getTime())) {
-                            isInRange = true;
-                        }
-                        else {
-                            isInRange = false;
-                        }
-                    }
-                    if (!this._startDate && !this._endDate) {
-                        isInRange = true;
-                    }
-                }
-                else if (type == "months") {
-                    var isInRange = false;
-                    if (this._startDate) {
-                        if (new Date(this._startDate).getMonth() <= currentDate.getMonth()) { isInRange = true; }
-                    }
-
-                    if (this._endDate) {
-                        if (new Date(this._endDate).getMonth() >= currentDate.getMonth()) { isInRange = true; }
-                    }
-
-                    if (this._startDate && this._endDate) {
-                        if ((new Date(this._startDate).getMonth() <= currentDate.getMonth()) && (new Date(this._endDate).getMonth() >= currentDate.getMonth())) {
-                            isInRange = true;
-                        }
-                        else {
-                            isInRange = false;
-                        }
-                    }
-
-                    if (!this._startDate && !this._endDate) {
-                        isInRange = true;
-                    }
-                }
-                else if (type == "years") {
-                    var isInRange = false;
+                var isInRange = true;
+                currentDate.setHours(0);
+                switch (type) {
+                   case "days":
+                    if ((this._startDate) && (new Date(this._startDate).getTime() > currentDate.getTime())) { isInRange = false; }                    
+                    if ((this._endDate) && (new Date(this._endDate).getTime() < currentDate.getTime())) { isInRange = false; }
+                    break;
+                case "months":              
+                    if ((this._startDate) && (new Date(this._startDate).getMonth() > currentDate.getMonth())) { isInRange = false; }      
+                    if ((this._endDate) && (new Date(this._endDate).getMonth() < currentDate.getMonth())) { isInRange = false; }
+                    break;
+                case "years":
                     var currentYear = currentDate.getFullYear();
-                    if (this._startDate) {
-                        if (new Date(this._startDate).getFullYear() <= currentYear) { isInRange = true; }
-                    }
-
-                    if (this._endDate) {
-                        if (new Date(this._endDate).getFullYear() >= currentYear) { isInRange = true; }
-                    }
-
-                    if (this._startDate && this._endDate) {
-                        if ((new Date(this._startDate).getFullYear() <= currentYear) && (new Date(this._endDate).getFullYear() >= currentYear)) {
-                            isInRange = true;
-                        }
-                        else {
-                            isInRange = false;
-                        }
-                    }
-
-                    if (!this._startDate && !this._endDate) {
-                        isInRange = true;
-                    }
+                    if ((this._startDate) && (new Date(this._startDate).getFullYear() > currentYear)) { isInRange = false; }
+                    if ((this._endDate) && (new Date(this._endDate).getFullYear() < currentYear)) { isInRange = false; }
+                    break;
                 }
 
                 return isInRange;
@@ -1188,7 +1135,6 @@
                                     Sys.UI.DomElement.addCssClass(dayCell.parentNode, this._getCssClass(dayCell.date, 'd'));
                                 }
 
-                                //Sys.UI.DomElement.addCssClass(dayCell.parentNode, this._getCssClass(dayCell.date, 'd'));
                                 currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1, this._hourOffsetForDst);
                             }
                         }
@@ -1248,7 +1194,7 @@
                                 }
                                 cell.appendChild(document.createTextNode(minYear + cell.year));
 
-                                if (!this._isInDateRange(cell.date,"years")) {
+                                if (!this._isInDateRange(cell.date, "years")) {
                                     $common.removeCssClasses(cell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
                                     Sys.UI.DomElement.addCssClass(cell.parentNode, "ajax__calendar_invalid");
                                 }
@@ -1331,32 +1277,8 @@
                     return;
                 }
 
-                if (date) {
-                    var isInRange = false;
-                    if (this._startDate) {
-                        if (new Date(this._startDate).getMonth() <= date.getMonth()) { isInRange = true; }
-                    }
-
-                    if (this._endDate) {
-                        if (new Date(this._endDate).getMonth() >= date.getMonth()) { isInRange = true; }
-                    }
-
-                    if (this._startDate && this._endDate) {
-                        if ((new Date(this._startDate).getMonth() <= date.getMonth()) && (new Date(this._endDate).getMonth() >= date.getMonth())) {
-                            isInRange = true;
-                        }
-                        else {
-                            isInRange = false;
-                        }
-                    }
-
-                    if (!this._startDate && !this._endDate) {
-                        isInRange = true;
-                    }
-
-                    if (!isInRange) {
-                        return;
-                    }
+                if (date && !this._isInDateRange(date, "months")) {
+                    return;
                 }
 
                 var visibleDate = this._getEffectiveVisibleDate();
