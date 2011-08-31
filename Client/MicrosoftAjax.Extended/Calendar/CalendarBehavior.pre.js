@@ -195,7 +195,7 @@
                 /// The property of the start date for range
                 /// </value>
                 if (this._startDate != value) {
-                    this._startDate = new Date(value);
+                    this._startDate = new Date(value).getDateOnly();
                     this.raisePropertyChanged('startDate');
                 }
             },
@@ -213,6 +213,7 @@
                 /// </value>
                 if (this._endDate != value) {
                     this._endDate = new Date(value);
+                    this._endDate.setHours(23, 59, 59, 0);
                     this.raisePropertyChanged('_endDate');
                 }
             },
@@ -1063,7 +1064,6 @@
 
             _isInDateRange: function (currentDate, type) {
                 var isInRange = true;
-                currentDate.setHours(0);
                 switch (type) {
                    case "days":
                     if ((this._startDate) && (new Date(this._startDate).getTime() > currentDate.getTime())) { isInRange = false; }                    

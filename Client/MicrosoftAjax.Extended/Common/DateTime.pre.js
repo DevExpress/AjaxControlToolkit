@@ -446,11 +446,19 @@ Date.prototype.getTimeOfDay = function Date$getTimeOfDay() {
 }
 Date.prototype.getDateOnly = function Date$getDateOnly() {
     /// <summary>
-    /// Gets a Date representing the Date only part of the Date
+    /// Gets a Date representing the Date only part of the Date and Adjusts for DST switch at midnight.
     /// </summary>
     /// <returns type="Date" />
 
-    return new Date(this.getFullYear(), this.getMonth(), this.getDate());
+    var tempDate = new Date(this.getFullYear(), this.getMonth(), this.getDate());
+
+    if (!((this.getMonth() === tempDate.getMonth()) && (this.getDate() === tempDate.getDate()))) {
+
+        tempDate.setMinutes(120);
+
+    }
+
+    return tempDate;
 }
 Date.prototype.add = function Date$add(span) {
     /// <summary>
