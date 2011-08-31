@@ -4,8 +4,8 @@
 .ajax__calendar_container TABLE {padding:0px;margin:0px;font-size:11px;}
 .ajax__calendar_container TD {padding:0px;margin:0px;font-size:11px;}
 .ajax__calendar_header {height:20px;width:100%;}
-.ajax__calendar_prev {cursor:pointer;width:15px;height:15px;float:left;background-repeat:no-repeat;background-position:50% 50%;background-image:url(<%=WebResource("Calendar.arrow-left.gif")%>);}
-.ajax__calendar_next {cursor:pointer;width:15px;height:15px;float:right;background-repeat:no-repeat;background-position:50% 50%;background-image:url(<%=WebResource("Calendar.arrow-right.gif")%>);}
+.ajax__calendar_prev {cursor:pointer;width:15px;height:15px;float:left;background-repeat:no-repeat;background-position:50% 50%;background-image:url(arrow-left.gif);}
+.ajax__calendar_next {cursor:pointer;width:15px;height:15px;float:right;background-repeat:no-repeat;background-position:50% 50%;background-image:url(arrow-right.gif);}
 .ajax__calendar_title {cursor:pointer;font-weight:bold; margin-left:15px; margin-right:15px;}
 .ajax__calendar_footer {height:15px;}
 .ajax__calendar_today {cursor:pointer;padding-top:3px;}
@@ -25,6 +25,11 @@
 .ajax__calendar .ajax__calendar_active .ajax__calendar_month {background-color:#edf9ff;border-color:#0066cc;color:#0066cc;}
 .ajax__calendar .ajax__calendar_active .ajax__calendar_year {background-color:#edf9ff;border-color:#0066cc;color:#0066cc;}
 
+.ajax__calendar .ajax__calendar_today .ajax__calendar_day {border-color:#0066cc;}
+.ajax__calendar .ajax__calendar_today .ajax__calendar_month {border-color:#0066cc;}
+.ajax__calendar .ajax__calendar_today .ajax__calendar_year {border-color:#0066cc;}
+
+
 .ajax__calendar .ajax__calendar_other .ajax__calendar_day {background-color:#ffffff;border-color:#ffffff;color:#646464;}
 .ajax__calendar .ajax__calendar_other .ajax__calendar_year {background-color:#ffffff;border-color:#ffffff;color:#646464;}
 
@@ -36,7 +41,7 @@
 .ajax__calendar .ajax__calendar_hover .ajax__calendar_today {color:#0066cc;}
 
 /* styles for invalid dates as defined by startDate and endDate*/
-.ajax__calendar .ajax__calendar_invalid .ajax__calendar_day {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}
+.ajax__calendar .ajax__calendar_invalid .ajax__calendar_day {background-color:#ffffff;border-color:#ffffff; color:#646464; cursor:default;}
 .ajax__calendar .ajax__calendar_invalid .ajax__calendar_month {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}
 .ajax__calendar .ajax__calendar_invalid .ajax__calendar_year {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}
 .ajax__calendar .ajax__calendar_invalid .ajax__calendar_today  {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}

@@ -1125,7 +1125,7 @@
                                 dayCell.appendChild(document.createTextNode(currentDate.getDate()));
                                 dayCell.title = currentDate.localeFormat("D");
                                 dayCell.date = currentDate;
-                                $common.removeCssClasses(dayCell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
+                                $common.removeCssClasses(dayCell.parentNode, ["ajax__calendar_other", "ajax__calendar_active", "ajax__calendar_today"]);
 
                                 if (!this._isInDateRange(currentDate, "days")) {
                                     $common.removeCssClasses(dayCell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
@@ -1485,6 +1485,10 @@
                     return "ajax__calendar_active";
                 } else if (this._isOther(date, part)) {
                     return "ajax__calendar_other";
+                } else if ((this.get_todaysDate().getFullYear() === date.getFullYear()) &&
+                    (this.get_todaysDate().getMonth() === date.getMonth()) &&	
+                    (this.get_todaysDate().getDate() === date.getDate())) {
+                  return "ajax__calendar_today";
                 } else {
                     return "";
                 }
