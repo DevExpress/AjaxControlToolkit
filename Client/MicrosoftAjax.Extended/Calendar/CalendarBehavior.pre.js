@@ -300,8 +300,14 @@
                                 tbvalue = this._parseTextValue(tbvalue);
                             }
                             if (tbvalue) {
-                                if (value != tbvalue.getDateOnly()) {
-                                    text = value.add(tbvalue.getTimeOfDay()).localeFormat(this._format);
+                                if (value != tbvalue.getDateOnly()) {      
+                                    if ((value.getHours() === 0) || ((value.getHours() >= 1) && (tbvalue.getHours() > 1))) {
+                                       value.setHours(tbvalue.getHours());
+                                    }
+                                    value.setMinutes(tbvalue.getMinutes());	
+                                    value.setSeconds(tbvalue.getSeconds());	
+                                    value.setMilliseconds(tbvalue.getMilliseconds());
+                                    text = value.localeFormat(this._format);
                                 }
                             }
                         }
