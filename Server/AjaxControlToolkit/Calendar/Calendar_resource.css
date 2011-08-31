@@ -44,4 +44,4 @@
 .ajax__calendar .ajax__calendar_invalid .ajax__calendar_day {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}
 .ajax__calendar .ajax__calendar_invalid .ajax__calendar_month {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}
 .ajax__calendar .ajax__calendar_invalid .ajax__calendar_year {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}
-.ajax__calendar .ajax__calendar_invalid .ajax__calendar_today  {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}
+.ajax__calendar .ajax__calendar_invalid .ajax__calendar_today  {visibility:hidden; cursor:default;}

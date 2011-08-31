@@ -70,3 +70,4 @@ _ReSharper*/
 Server/AjaxControlToolkit/AjaxControlToolkit.csproj.user
 Client/ScriptOutput/extended/HtmlEditorExtender/HtmlEditorExtenderBehavior.debug.js
 Client/UnitTests/ajaxlib/
+PackageForNET4/
