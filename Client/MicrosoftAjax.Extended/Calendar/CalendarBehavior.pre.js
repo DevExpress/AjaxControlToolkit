@@ -1225,7 +1225,13 @@
                 if (this._today.firstChild) {
                     this._today.removeChild(this._today.firstChild);
                 }
+
+                $common.removeCssClasses(this._today.parentNode, ["ajax__calendar_invalid"]);
                 this._today.appendChild(document.createTextNode(String.format(Sys.Extended.UI.Resources.Calendar_Today, todaysDate.localeFormat(this.get_todaysDateFormat()))));
+                if (!this._isInDateRange(todaysDate, "days")) {
+                    Sys.UI.DomElement.addCssClass(this._today.parentNode, "ajax__calendar_invalid");
+                }
+                
                 this._today.date = todaysDate;
             },
 

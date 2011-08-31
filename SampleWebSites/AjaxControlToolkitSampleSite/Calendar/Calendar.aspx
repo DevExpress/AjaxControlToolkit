@@ -38,9 +38,9 @@
         <br />
         <b>Calendar with date range:</b><br />
         <asp:TextBox runat="server" ID="Date6" />
-        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" Format="MM/dd/yyyy" TargetControlID="Date6" StartDate="8/3/2011" EndDate="9/4/2011" SelectedDate="8/3/2011" />
+        <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" Format="MM/dd/yyyy" TargetControlID="Date6" StartDate="8/3/2010" EndDate="9/4/2010" SelectedDate="8/3/2010" />
         <div style="font-size: 90%">
-            <em>(Set the focus to the textbox to show the calendar. This calendar's StartDate property is '8/3/2011' and EndDate is '9/4/2011')</em></div>
+            <em>(Set the focus to the textbox to show the calendar. This calendar's StartDate property is '8/3/2010' and EndDate is '9/4/2010')</em></div>
     </div>
     <div class="demobottom">
     </div>
