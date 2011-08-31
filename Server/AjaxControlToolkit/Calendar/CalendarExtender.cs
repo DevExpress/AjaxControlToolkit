@@ -250,5 +250,34 @@ namespace AjaxControlToolkit
             get { return GetPropertyValue("OnClientDateSelectionChanged", string.Empty); }
             set { SetPropertyValue("OnClientDateSelectionChanged", value); }
         }
+
+        //Issue#8109
+
+
+        /// <summary>
+        /// Gets or sets the property of the start date for range
+        /// </summary>
+        [DefaultValue(null)]
+        [ExtenderControlProperty]
+        [ClientPropertyName("startDate")]
+        public DateTime? StartDate
+        {
+            get { return GetPropertyValue<DateTime?>("StartDate", null); }
+            set { SetPropertyValue<DateTime?>("StartDate", value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the property of the end date for range
+        /// </summary>
+        [DefaultValue(null)]
+        [ExtenderControlProperty]
+        [ClientPropertyName("endDate")]
+        public DateTime? EndDate
+        {
+            get { return GetPropertyValue<DateTime?>("EndDate", null); }
+            set { SetPropertyValue<DateTime?>("EndDate", value); }
+        }
+
+
     }
 }
