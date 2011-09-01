@@ -1131,6 +1131,7 @@
                                 dayCell.appendChild(document.createTextNode(currentDate.getDate()));
                                 dayCell.title = currentDate.localeFormat("D");
                                 dayCell.date = currentDate;
+                                // Added support for highlighting today's date
                                 $common.removeCssClasses(dayCell.parentNode, ["ajax__calendar_other", "ajax__calendar_active", "ajax__calendar_today"]);
 
                                 if (!this._isInDateRange(currentDate, "days")) {
@@ -1497,6 +1498,7 @@
                     return "ajax__calendar_active";
                 } else if (this._isOther(date, part)) {
                     return "ajax__calendar_other";
+                // Highlight today's date
                 } else if ((this.get_todaysDate().getFullYear() === date.getFullYear()) &&
                     (this.get_todaysDate().getMonth() === date.getMonth()) &&
                     (this.get_todaysDate().getDate() === date.getDate())) {
