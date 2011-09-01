@@ -25,6 +25,11 @@
 .ajax__calendar .ajax__calendar_active .ajax__calendar_month {background-color:#edf9ff;border-color:#0066cc;color:#0066cc;}
 .ajax__calendar .ajax__calendar_active .ajax__calendar_year {background-color:#edf9ff;border-color:#0066cc;color:#0066cc;}
 
+.ajax__calendar .ajax__calendar_today .ajax__calendar_day {border-color:#0066cc;}
+.ajax__calendar .ajax__calendar_today .ajax__calendar_month {border-color:#0066cc;}
+.ajax__calendar .ajax__calendar_today .ajax__calendar_year {border-color:#0066cc;}
+
+
 .ajax__calendar .ajax__calendar_other .ajax__calendar_day {background-color:#ffffff;border-color:#ffffff;color:#646464;}
 .ajax__calendar .ajax__calendar_other .ajax__calendar_year {background-color:#ffffff;border-color:#ffffff;color:#646464;}
 
@@ -34,3 +39,9 @@
 
 .ajax__calendar .ajax__calendar_hover .ajax__calendar_title {color:#0066cc;}
 .ajax__calendar .ajax__calendar_hover .ajax__calendar_today {color:#0066cc;}
+
+/* styles for invalid dates as defined by startDate and endDate*/
+.ajax__calendar .ajax__calendar_invalid .ajax__calendar_day {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}
+.ajax__calendar .ajax__calendar_invalid .ajax__calendar_month {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}
+.ajax__calendar .ajax__calendar_invalid .ajax__calendar_year {background-color:#ffffff;border-color:#ffffff; color:#646464; text-decoration:line-through; cursor:default;}
+.ajax__calendar .ajax__calendar_invalid .ajax__calendar_today  {visibility:hidden; cursor:default;}
