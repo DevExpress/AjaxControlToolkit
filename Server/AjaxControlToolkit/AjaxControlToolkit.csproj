@@ -193,6 +193,10 @@
     <Compile Include="FilteredTextBox\FilteredTextBoxExtender.cs" />
     <Compile Include="FilteredTextBox\FilterModes.cs" />
     <Compile Include="FilteredTextBox\FilterTypes.cs" />
+    <Compile Include="Gravatar\Gravatar.cs" />
+    <Compile Include="Gravatar\GravatarDefaultImageBehavior.cs" />
+    <Compile Include="Gravatar\GravatarDesigner.cs" />
+    <Compile Include="Gravatar\GravatarRating.cs" />
     <Compile Include="HoverExtender\HoverExtender.cs" />
     <Compile Include="HoverExtender\HoverExtenderDesigner.cs" />
     <Compile Include="HoverMenu\HoverMenuDesigner.cs" />
@@ -413,6 +417,12 @@
     <EmbeddedResource Include="FilteredTextBox\FilteredTextBox.ico" />
     <EmbeddedResource Include="HoverMenu\HoverMenu.ico" />
     <Content Include="DropDown\DropDown_resource.css" />
+    <Content Include="Gravatar\Gravatar.ico" />
+    <Content Include="Gravatar\Images\gravatar-anonymous.jpg" />
+    <Content Include="Gravatar\Images\gravatar-G.jpg" />
+    <Content Include="Gravatar\Images\gravatar-PG.jpg" />
+    <Content Include="Gravatar\Images\gravatar-R.jpg" />
+    <Content Include="Gravatar\Images\gravatar-X.jpg" />
     <Content Include="HtmlEditorExtender\HtmlEditorExtender_resource.css" />
     <EmbeddedResource Include="HtmlEditorExtender\html_editor_extender.ico" />
     <Content Include="HTMLEditor\DesignPanel.css" />

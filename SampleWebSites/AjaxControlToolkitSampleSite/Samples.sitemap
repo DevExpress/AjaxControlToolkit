@@ -18,6 +18,7 @@
     <siteMapNode url="~/DropShadow/DropShadow.aspx" title="DropShadow" />
     <siteMapNode url="~/DynamicPopulate/DynamicPopulate.aspx" title="DynamicPopulate" />
     <siteMapNode url="~/FilteredTextBox/FilteredTextBox.aspx" title="FilteredTextBox" />
+    <siteMapNode url="~/Gravatar/Gravatar.aspx" title="Gravatar" />
     <siteMapNode url="~/HoverMenu/HoverMenu.aspx" title="HoverMenu" />
     <siteMapNode url="~/HTMLEditor/HTMLEditor.aspx" title="HTMLEditor" />
     <siteMapNode url="~/HTMLEditorExtender/HTMLEditorExtender.aspx" title="HTMLEditorExtender" />
