@@ -300,6 +300,7 @@
                                 tbvalue = this._parseTextValue(tbvalue);
                             }
                             if (tbvalue) {
+                                // Fix for CodePlex issue 26770
                                 if (value != tbvalue.getDateOnly()) {
                                     if ((value.getHours() === 0) || ((value.getHours() >= 1) && (tbvalue.getHours() > 1))) {
                                         value.setHours(tbvalue.getHours());
