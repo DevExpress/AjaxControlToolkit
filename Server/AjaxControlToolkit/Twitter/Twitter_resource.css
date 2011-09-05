@@ -1,0 +1,37 @@
+﻿.ajax__twitter {
+    width:300px;
+    background-color:Gray;   
+    color:White;
+    font-size: 12px;
+    font-family: "lucida grande", lucida, tahoma, helvetica, arial, sans-serif;
+}
+
+.ajax__twitter_itemlist {
+    width: 100%;
+    list-style-type:none;
+    margin: 0px;
+    padding: 0px;
+    list-style-position:inside;
+    text-indent: 0px;
+}
+
+
+.ajax__twitter_itemlist li {
+    border-bottom: 1px dashed white;   
+    padding: 4px;
+    margin: 0px;
+    background-color:Black;     
+}
+    
+    
+.ajax__twitter_profileheader img {
+    float:left;   
+}    
+
+
+.ajax__twitter_profilename {
+  font-size: 14px;
+  font-weight: bold;   
+}
+    
+    
