@@ -10,9 +10,19 @@ using System.Globalization;
 using System.Web;
 
 namespace AjaxControlToolkit {
+
+
+    /// <summary>
+    /// Contains methods for interacting with the Twitter API over the network.
+    /// </summary>
     public class TwitterAPI {
 
-
+        /// <summary>
+        /// Executes search query against the Twitter API
+        /// </summary>
+        /// <param name="search">The search query</param>
+        /// <param name="count">The number of results to return</param>
+        /// <returns></returns>
         public IList<TwitterStatus> GetSearch(string search, int count) {
             // Build query URL
             var sb = new StringBuilder();
@@ -62,11 +72,22 @@ namespace AjaxControlToolkit {
  
 
 
-
+        /// <summary>
+        /// Returns tweets for a particular Twitter screen name.
+        /// </summary>
+        /// <param name="screenName">The Twitter screen name</param>
+        /// <param name="count">The number of results to return</param>
+        /// <param name="includeRetweets">Include retweets of other people's tweets</param>
+        /// <param name="includeReplies">Include replies</param>
+        /// <returns></returns>
         public IList<TwitterStatus> GetProfile(string screenName, int count, bool includeRetweets, bool includeReplies) {
             // Build query URL
             var sb = new StringBuilder();
-            sb.AppendFormat("http://api.twitter.com/1/statuses/user_timeline.xml?screen_name={0}&count={1}", screenName, count);
+            sb.AppendFormat(
+                "http://api.twitter.com/1/statuses/user_timeline.xml?screen_name={0}&count={1}", 
+                HttpUtility.UrlEncode(screenName), 
+                count
+            );
             if (includeRetweets) {
                 sb.AppendFormat("&include_rts=1");
             }
