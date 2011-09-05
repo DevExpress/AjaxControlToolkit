@@ -42,6 +42,7 @@
     <siteMapNode url="~/Tabs/Tabs.aspx" title="Tabs" />
     <siteMapNode url="~/TextBoxWatermark/TextBoxWatermark.aspx" title="TextBoxWatermark" />
     <siteMapNode url="~/ToggleButton/ToggleButton.aspx" title="ToggleButton" />
+    <siteMapNode url="~/Twitter/Twitter.aspx" title="Twitter" />
     <siteMapNode url="~/UpdatePanelAnimation/UpdatePanelAnimation.aspx" title="UpdatePanelAnimation" />
     <siteMapNode url="~/ValidatorCallout/ValidatorCallout.aspx" title="ValidatorCallout" />
   </siteMapNode>

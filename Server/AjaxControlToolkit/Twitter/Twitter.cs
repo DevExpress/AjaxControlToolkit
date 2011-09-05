@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI.HtmlControls;
 using AjaxControlToolkit;
 using System.Text;
+using System.Text.RegularExpressions;
 
 [assembly: WebResource("Twitter.Twitter_resource.css", "text/css", PerformSubstitution = true)]
 
@@ -59,14 +60,36 @@ namespace AjaxControlToolkit {
         /// </summary>
         public int CacheDuration { get; set; }
 
-
+        /// <summary>
+        /// The equivalent to the ItemTemplate in a ListView
+        /// </summary>
         [Browsable(false)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [TemplateContainer(typeof(ListViewItem))]
         public ITemplate StatusTemplate { get; set; }
 
 
+        /// <summary>
+        /// The equivalent to the AlternatingItemTemplate in a ListView
+        /// </summary>
+        [Browsable(false)]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [TemplateContainer(typeof(ListViewItem))]
+        public ITemplate AlternatingStatusTemplate { get; set; }
 
+
+        /// <summary>
+        /// The equivalent to the EmptyDataTemplate in a ListView
+        /// </summary>
+        [Browsable(false)]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [TemplateContainer(typeof(ListView))]
+        public ITemplate EmptyDataTemplate { get; set; }
+
+
+        /// <summary>
+        /// Displays the root content of the Twitter control
+        /// </summary>
         [Browsable(false)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [TemplateContainer(typeof(Twitter))]
@@ -90,7 +113,6 @@ namespace AjaxControlToolkit {
             // Default mode is Profile
             this.Mode = TwitterMode.Profile;
 
-
             // By default, cache for 5 minutes
             this.CacheDuration = 5 * 60;
 
@@ -102,14 +124,22 @@ namespace AjaxControlToolkit {
         }
 
 
-
+        /// <summary>
+        /// We need to manually register the CSS references because the Twitter control
+        /// is a Composite control and not an extender control.
+        /// </summary>
+        /// <param name="e"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2109:ReviewVisibleEventHandlers", MessageId = "0#")]
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
             ScriptObjectBuilder.RegisterCssReferences(this);
         }
 
-
+        /// <summary>
+        /// Validates required properties and binds the data
+        /// to the ListView
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnPreRender(System.EventArgs e) {
             base.OnPreRender(e);
             this.ControlPropertiesValid();
@@ -119,7 +149,7 @@ namespace AjaxControlToolkit {
             switch (this.Mode) {
                 case TwitterMode.Profile:
                     statuses = this.GetProfile();
-                    if (statuses.Count > 0) {
+                    if (statuses != null && statuses.Count > 0) {
                         _user = statuses[0].User;
                     }
                     break;
@@ -130,15 +160,15 @@ namespace AjaxControlToolkit {
 
             _listView.DataSource = statuses;
             _listView.DataBind();
-
-        
         }
 
 
 
 
 
-
+        /// <summary>
+        /// Validates that required properties are set.
+        /// </summary>
         private void ControlPropertiesValid() {
             switch (this.Mode) {
                 case TwitterMode.Profile:
@@ -152,12 +182,12 @@ namespace AjaxControlToolkit {
                     }
                     break;
             }
-
-
         }
 
 
-
+        /// <summary>
+        /// Adds the ListView control to the child controls.
+        /// </summary>
         protected override void CreateChildControls() {
             Controls.Clear();
 
@@ -170,7 +200,9 @@ namespace AjaxControlToolkit {
         }
 
 
-
+        /// <summary>
+        /// Assigns default templates depending on the Mode.
+        /// </summary>
         private void PrepareTemplates() {
             // Set appropriate default templates for each twitter mode
             switch (this.Mode) {
@@ -192,13 +224,23 @@ namespace AjaxControlToolkit {
                     break;
             }
 
+            // Assign default empty data template
+            if (this.EmptyDataTemplate == null) {
+                this.EmptyDataTemplate = new DefaultEmptyDataTemplate();
+            }
+
             // Copy templates from Twitter control to ListView
             _listView.LayoutTemplate = this.LayoutTemplate;
             _listView.ItemTemplate = this.StatusTemplate;
+            _listView.AlternatingItemTemplate = this.AlternatingStatusTemplate;
+            _listView.EmptyDataTemplate = this.EmptyDataTemplate;
         }
 
 
-
+        /// <summary>
+        /// Get the Profile tweets from the Twitter API. Cache the results.
+        /// </summary>
+        /// <returns></returns>
         private IList<TwitterStatus> GetProfile() {
             var cacheKey = String.Format("__TwitterProfile_{0}_{1}_{2}_{3}", this.ScreenName, this.Count, this.IncludeRetweets, this.IncludeReplies);
 
@@ -223,7 +265,10 @@ namespace AjaxControlToolkit {
         }
 
 
-
+        /// <summary>
+        /// Get the search results from the Twitter API. Cache the results.
+        /// </summary>
+        /// <returns></returns>
         private IList<TwitterStatus> GetSearch() {
             var cacheKey = String.Format("__TwitterSearch_{0}_{1}", this.Search, this.Count);
 
@@ -248,8 +293,43 @@ namespace AjaxControlToolkit {
         }
 
 
+        #region Helper Methods
+
+        /// <summary>
+        /// Returns the number of minutes or hours or days 
+        /// between current date and supplied date.
+        /// </summary>
+        /// <param name="date">A date</param>
+        /// <returns></returns>
+        public static string Ago(DateTime date) {
+            var timeSpan = DateTime.Now - date;
+            if (timeSpan.TotalMinutes < 1) {
+                return "Less than a minute ago";
+            } else if (Math.Round(timeSpan.TotalHours) < 2) {
+                return String.Format("{0} minutes ago", Math.Round(timeSpan.TotalMinutes));
+            } else if (Math.Round(timeSpan.TotalDays) < 2) {
+                return String.Format("{0} hours ago", Math.Round(timeSpan.TotalHours));
+            } else {
+                return String.Format("{0} days ago", Math.Round(timeSpan.TotalDays));
+            }
+        }
 
 
+        public static string ActivateLinks(string text) {
+            string pattern = @"(((http|https)+\:\/\/)[&#95;.a-z0-9-]+\.[a-z0-9\/&#95;:@=.+?,##%&~-]*[^.|\'|\# |!|\(|?|,| |>|<|;|\)])";
+            var r = new Regex(pattern, RegexOptions.IgnoreCase);
+            return r.Replace(text, "<a href=\"$1\">$1</a>");
+        }
+
+
+        #endregion
+
+
+        #region Default Templates
+
+        /// <summary>
+        /// Default template used for Status Template in Profile Mode
+        /// </summary>
         internal sealed class DefaultProfileStatusTemplate : ITemplate {
  
             private Twitter _twitter;
@@ -260,26 +340,41 @@ namespace AjaxControlToolkit {
             
             
             void ITemplate.InstantiateIn(Control container) {
-                // Get data item
-                var listItem = (ListViewItem)container;
-                var status = ((TwitterStatus)listItem.DataItem);
 
-                // Show status
-                var statusToDisplay = String.Format(
-                    "<li>{0}<br />{1}</li>",
-                    status.Text,
-                    status.CreatedAt
-                );
 
-                container.Controls.Add(new LiteralControl(statusToDisplay));
+                // Note: In .NET 3.5, DataItem only has a value
+                // during databinding. Therefore, we write up
+                // a handler
+                var ctlStatus = new LiteralControl();
+                ctlStatus.DataBinding += ctlStatus_DataBind;
+                container.Controls.Add(ctlStatus);
+
             }
+
+
+            private void ctlStatus_DataBind(object sender, EventArgs e)
+            {
+                // set the Text property of the Label to the TotalPostCount property
+                var ctlStatus = (LiteralControl)sender;
+                var container = (ListViewDataItem)ctlStatus.NamingContainer;
+                var status = ((TwitterStatus)container.DataItem);
+
+                ctlStatus.Text = String.Format(
+                    "<li>{0}<br />{1}</li>",
+                    Twitter.ActivateLinks(status.Text),
+                    Twitter.Ago(status.CreatedAt)
+                );
+            }
+
 
         }
 
 
 
 
-
+        /// <summary>
+        /// Default template used for LayoutTemplate in Profile Mode
+        /// </summary>
         internal sealed class DefaultProfileLayoutTemplate : ITemplate {
 
             private Twitter _twitter;
@@ -330,13 +425,13 @@ namespace AjaxControlToolkit {
                 ctlList.Controls.Add(plhItem);
             }
 
-
-
         }
 
 
 
-
+        /// <summary>
+        /// Default template used for StatusTemplate in Search Mode
+        /// </summary>
         internal sealed class DefaultSearchStatusTemplate : ITemplate {
 
             private Twitter _twitter;
@@ -347,19 +442,33 @@ namespace AjaxControlToolkit {
 
 
             void ITemplate.InstantiateIn(Control container) {
-                // Get data item
-                var listItem = (ListViewItem)container;
-                var status = ((TwitterStatus)listItem.DataItem);
+
+                // Note: In .NET 3.5, DataItem only has a value
+                // during databinding. Therefore, we write up
+                // a handler
+                var ctlStatus = new LiteralControl();
+                ctlStatus.DataBinding += ctlStatus_DataBind;
+                container.Controls.Add(ctlStatus);
+            }
+
+
+
+
+            private void ctlStatus_DataBind(object sender, EventArgs e)
+            {
+                // set the Text property of the Label to the TotalPostCount property
+                var ctlStatus = (LiteralControl)sender;
+                var container = (ListViewDataItem)ctlStatus.NamingContainer;
+                var status = ((TwitterStatus)container.DataItem);
 
                 // Show status
-                var statusToDisplay = String.Format(
+                ctlStatus.Text = String.Format(
                     "<li><img src=\"{0}\" />{1}<br />{2}</li>",
                     status.User.ProfileImageUrl,
                     status.Text,
-                    status.CreatedAt
+                    Twitter.Ago(status.CreatedAt)
                 );
 
-                container.Controls.Add(new LiteralControl(statusToDisplay));
             }
 
         }
@@ -367,7 +476,9 @@ namespace AjaxControlToolkit {
 
 
 
-
+        /// <summary>
+        /// Default template used for Layout template in Search Mode
+        /// </summary>
         internal sealed class DefaultSearchLayoutTemplate : ITemplate {
 
             private Twitter _twitter;
@@ -417,13 +528,21 @@ namespace AjaxControlToolkit {
                 plhItem.ID = "ItemPlaceholder";
                 ctlList.Controls.Add(plhItem);
             }
-
-
-
         }
 
 
 
+        /// <summary>
+        /// Default template used for no results
+        /// </summary>
+        internal sealed class DefaultEmptyDataTemplate : ITemplate {
+            void ITemplate.InstantiateIn(Control container) {
+                container.Controls.Add(new LiteralControl("There are no matching tweets."));
+            }
+        }
+
+
+        #endregion
 
 
 

@@ -15,18 +15,18 @@
         <div class="demoheading">
             Twitter Demonstration</div>
             <div>
-                Displays timeline for ScottGu Twitter account:
-                <br />
+                Displays status messages (tweets) for a Twitter account:
+                <br /><br />
                 <ajaxToolkit:Twitter ID="Twitter1" Mode="Profile" ScreenName="ScottGu" runat="server" />
                 <br />
+                
+ 
+
                 <hr />
-                Displays Twitter search for ASP.NET:
+                Displays status messages (tweets) for a Twitter account using a custom LayoutTemplate and StatusTemplate:
                 <br />
-                <ajaxToolkit:Twitter ID="Twitter2" Mode="Search" Search="ASP.NET" runat="server" /> 
-                <br />
-                <hr />
-                Custom profile using a LayoutTemplate and StatusTemplate:
-                <br />
+ 
+ 
                 <ajaxToolkit:Twitter ID="Twitter3" Mode="Profile" ScreenName="ScottGu" runat="server">
                     <LayoutTemplate>
                         <b>Scott Guthrie's Tweets:</b>
@@ -35,12 +35,23 @@
                     <StatusTemplate>
                         <div style="border:solid 2px white;padding:10px">
                             <img src="<%# Eval("User.ProfileImageUrl") %>" />
-                            <%# Eval("Text") %>
+                            <%# Twitter.ActivateLinks( (string)Eval("Text") ) %>
                             <br />
-                            posted: <%# Eval("CreatedAt", "d") %>
+                            posted: <%# Twitter.Ago((DateTime)Eval("CreatedAt")) %>
                         </div>
                     </StatusTemplate>
                 </ajaxToolkit:Twitter> 
+
+
+                
+                <hr />
+                Displays Twitter search results for <i>'Ajax Control Toolkit'</i>:
+                <br />
+                <ajaxToolkit:Twitter ID="Twitter2" Mode="Search" Search="'Ajax Control Toolkit'" runat="server" /> 
+                <br />
+
+ 
+
 
             </div>                                       
     </div>
@@ -55,29 +66,22 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            The Gravatar control is an ASP.NET AJAX control that enables you to use gravatar images on your web forms. A gravatar
-            is a "Globally Recognized Avatar" provided by Gravatar.com.
+            The Twitter control is an ASP.NET AJAX control that enables you to display Twitter status messages (tweets) from Twitter.com.
+            This control has two modes: Profile and Search. In Profile mode, you can display the latest tweets from a particular user by 
+            supplying the user's Twitter screen name. In Search mode, you can display all tweets which match a search query.
         </p>
         <br />
         <p>
-            This control is extremely simple to use. The only required property which you need to set is your email. 
-            In addition, you can specify the requested size of the image, required rating, default image, and default image behavior.             
+            Twitter limits the number of times that you can interact with their API in an hour. Twitter recommends that you cache
+            results on the server (<a href="https://dev.twitter.com/docs/rate-limiting">https://dev.twitter.com/docs/rate-limiting</a>). By default, the Twitter control caches 
+            results on the server a duration of 5 minutes. You can modify the cache duration by assigning a value (in seconds) to the 
+            Twitter control's CacheDuration property.              
         </p>
         <br />
         <p>
-            You can use the DefaultImageBehavior property to control what happens when an email account does not have an associated gravatar. The
-            possible options are:
+            The Twitter control wraps a standard ASP.NET ListView control. You can customize the appearance of the Twitter control
+            by modifying its LayoutTemplate, StatusTemplate, AlternatingStatusTemplate, and EmptyDataTemplate.
         </p>
-            <ul>
-                <li>MysteryMan &mdash; The same image of a Mystery Man (an anonymous profile of a man) is displayed for all unrecognized emails.</li>
-                <li>Identicon &mdash; A different geometric pattern is generated for each unrecognized email.</li>
-                <li>MonsterId &mdash; A different image of a monster is generated for each unrecognized email.</li>               
-                <li>Wavatar &mdash; A different image of a face is generated for each unrecognized email.</li>
-                <li>Retro &mdash; A different 8-bit arcade-style face is generated for each unrecognized email.</li>
-            </ul>
-
-            <br />
-            Alternatively, you can specify a custom default image by setting the DefaultImage property to point at an absolute URL.
 
         <p>
         </p>     
@@ -88,28 +92,27 @@
         <div class="heading">
             <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
                 AlternateText="expand" />
-            Gravatar Properties
+            Twitter Properties
         </div>
     </asp:Panel>
     <asp:Panel ID="Properties_ContentPanel" runat="server" Style="overflow: hidden;"
         Height="0px">
-        <p>
-            The first sample above is initialized with this code. The <em>italic</em> properties
-            are optional:
-        </p>        
-        <pre>&lt;ajaxToolkit:Gravatar runat="server"
-            Email="test@superexpert.com"
-            <em>Size</em>="200"
-            <em>Rating</em>="R"
-            <em>DefaultImageBehavior="Identicon"</em>
-            <em>DefaultImage</em>="http://tinyurl.com/3bpsaac" /&gt;</pre>
+        <pre>&lt;ajaxToolkit:Twitter 
+            Mode="Profile"
+            ScreenName="ScottGu" 
+            runat="server" /&gt;</pre>
             <ul>
-                <li><strong>Email</strong> - email that is associated with account at gravatar.</li>
-                <li><strong>Size</strong> - The requested size of the image that gravatar needs to render (both width and height).</li>
-                <li><strong>Rating</strong> - Acceptable rating of the image to display. </li>
-                <li><strong>DefaultImageBehavior</strong> - The image displayed when a gravater is not associated with an email account. Possible values are Identicon, MonsterId, MysteryMan, Retro, Wavatar</li>
-                <li><strong>DefaultImage</strong> - Url of the image, that will be diplayed, if the gravatar image can't be displayed because of inacceptable rating or the email account
-                is not associated with a gravatar. This must be an absolute URL.</li>
+                <li><strong>Mode</strong> - either Profile or Search mode.</li>
+                <li><strong>ScreenName</strong> - required in Profile mode. The Twitter user to display. </li>
+                <li><strong>Search</strong> - required in Search mode. The search to perform. You can build complex queries with <a href="https://dev.twitter.com/docs/using-search">search operators</a> </li>
+                <li><strong>Count</strong> - number of status messages (tweets) to display. The default value is 5.</li>                
+                <li><strong>CacheDuration</strong> - amount of time to cache results from Twitter in seconds. The default value is 300 seconds.</li>
+                <li><strong>IncludeRetweets</strong> - in Profile mode, indicates whether retweets are displayed.</li>
+                <li><strong>IncludeReplies</strong> - in Profile mode, indicates whether replies are displayed.</li>
+                <li><strong>LayoutTemplate</strong> - template which contains the HTML for the root container of the ListView content.</li>
+                <li><strong>StatusTemplate</strong> - template which contains each status message (tweet).</li>
+                <li><strong>AlternatingStatusTemplate</strong> - template which is applied for alternating status messages (tweets).</li>
+                <li><strong>EmptyDataTemplate</strong> - template which displays content when there are no tweets.</li>
             </ul>
     </asp:Panel>    
     

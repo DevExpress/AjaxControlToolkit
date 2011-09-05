@@ -363,6 +363,11 @@
     <Compile Include="ToggleButton\ToggleButtonExtenderDesigner.cs" />
     <Compile Include="ToolkitScriptManager\ScriptCombineAttribute.cs" />
     <Compile Include="ToolkitScriptManager\ToolkitScriptManager.cs" />
+    <Compile Include="Twitter\Twitter.cs" />
+    <Compile Include="Twitter\TwitterAPI.cs" />
+    <Compile Include="Twitter\TwitterMode.cs" />
+    <Compile Include="Twitter\TwitterStatus.cs" />
+    <Compile Include="Twitter\TwitterUser.cs" />
     <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationDesigner.cs" />
     <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationExtender.cs" />
     <Compile Include="ValidatorCallout\ValidatorCalloutDesigner.cs" />
@@ -597,6 +602,7 @@
     <EmbeddedResource Include="Slider\Slider.ico" />
     <EmbeddedResource Include="SlideShow\SlideShow.ico" />
     <Content Include="Tabs\Tabs_resource.css" />
+    <Content Include="Twitter\Twitter_resource.css" />
     <EmbeddedResource Include="Tabs\Tabs.ico" />
     <EmbeddedResource Include="TextboxWatermark\TextboxWatermark.ico" />
     <EmbeddedResource Include="ToggleButton\ToggleButton.ico" />

@@ -23,6 +23,10 @@
     background-color:Black;     
 }
     
+.ajax__twitter_itemlist li img {
+    width: 48px;
+    height: 48px;
+}
     
 .ajax__twitter_profileheader img {
     float:left;   
