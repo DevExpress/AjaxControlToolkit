@@ -10,12 +10,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 [assembly: WebResource("Twitter.Twitter_resource.css", "text/css", PerformSubstitution = true)]
+[assembly: WebResource("Twitter.Twitter32.png", "img/png")]
 
 
 namespace AjaxControlToolkit {
 
     [ClientCssResource("Twitter.Twitter_resource.css")]
     [ParseChildren(ChildrenAsProperties = true), PersistChildren(false)]
+    [Designer(typeof(TwitterDesigner))]
     public class Twitter : CompositeControl {
 
 
@@ -59,6 +61,15 @@ namespace AjaxControlToolkit {
         /// Time in minutes that twitter results are cached.
         /// </summary>
         public int CacheDuration { get; set; }
+
+
+        /// <summary>
+        /// Enable get live content from twitter server at design time
+        /// </summary>
+        [Browsable(true)]
+        [Description("Enable get live content from twitter server at design time")]
+        public bool IsLiveContentOnDesignMode { get; set; }
+
 
         /// <summary>
         /// The equivalent to the ItemTemplate in a ListView
