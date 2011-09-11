@@ -1,0 +1,91 @@
+﻿.ajax__twitter {
+    width:300px;
+    background-color:Gray;   
+    color:White;
+    font-size: 12px;
+    font-family: "lucida grande", lucida, tahoma, helvetica, arial, sans-serif;	  
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.ajax__twitter_itemlist {
+    width: 100%;
+    list-style-type:none;
+    margin: 0px;
+    padding: 0px;
+    list-style-position:inside;
+    text-indent: 0px;
+}
+
+.ajax__twitter_itemlist li {
+    border-bottom: 1px dotted white;   
+    padding: 10px;
+    margin: 0px;
+    background-color:Black;   
+	clear:both;	
+}
+
+.ajax__twitter_itemlist li  div {
+	display: block;
+	margin-left:35px;
+}
+
+.ajax__twitter_itemlist li  div a {
+	color:#4AED05;
+	text-decoration: none !important;
+}
+
+.ajax__twitter_itemlist li  div a:hover {
+  text-decoration: underline !important;
+}
+    
+.ajax__twitter_itemlist li img {
+    width: 30px;
+    height: 30px;
+	float: left;
+	margin-right: 5px;
+	
+}
+
+.ajax__twitter_header {
+	padding:10px;
+	position:relative;
+	min-height:34px;
+}
+    
+.ajax__twitter_header img {
+    float:left;
+	margin-right:5px;
+	width: 34px;
+    height: 34px;
+}    
+
+.ajax__twitter_header h4 {
+    font-size: 18px;
+    font-weight: normal;   
+	padding:0px;
+	margin:0px;
+}
+
+.ajax__twitter_header h3 {
+    font-size: 11px;
+	font-weight: normal;   
+	padding:0px;
+	margin:0px;
+}
+
+.ajax__twitter_createat {
+    color: #4AED05;
+	font-size: 10px;	
+}
+
+.ajax__twitter_footer {
+	height:36px;
+}
+
+.ajax__twitter_footer  img {
+	margin-right:10px;
+	margin-top:6px;
+    float: right;
+}

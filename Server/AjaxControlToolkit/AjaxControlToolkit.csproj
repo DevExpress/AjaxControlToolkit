@@ -387,6 +387,12 @@
     <Compile Include="ToggleButton\ToggleButtonExtenderDesigner.cs" />
     <Compile Include="ToolkitScriptManager\ScriptCombineAttribute.cs" />
     <Compile Include="ToolkitScriptManager\ToolkitScriptManager.cs" />
+    <Compile Include="Twitter\Twitter.cs" />
+    <Compile Include="Twitter\TwitterAPI.cs" />
+    <Compile Include="Twitter\TwitterDesigner.cs" />
+    <Compile Include="Twitter\TwitterMode.cs" />
+    <Compile Include="Twitter\TwitterStatus.cs" />
+    <Compile Include="Twitter\TwitterUser.cs" />
     <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationDesigner.cs" />
     <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationExtender.cs" />
     <Compile Include="ValidatorCallout\ValidatorCalloutDesigner.cs" />
@@ -394,6 +400,10 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Twitter\Twitter.ico" />
+    <Content Include="Twitter\Twitter24.png" />
+    <Content Include="Twitter\Twitter32.png" />
+    <Content Include="Twitter\Twitter_resource.css" />
     <EmbeddedResource Include="Accordion\Accordion.ico" />
     <EmbeddedResource Include="AlwaysVisibleControl\AlwaysVisible.ico" />
     <EmbeddedResource Include="Animation\Animation.ico" />
