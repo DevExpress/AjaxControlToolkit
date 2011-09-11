@@ -365,6 +365,7 @@
     <Compile Include="ToolkitScriptManager\ToolkitScriptManager.cs" />
     <Compile Include="Twitter\Twitter.cs" />
     <Compile Include="Twitter\TwitterAPI.cs" />
+    <Compile Include="Twitter\TwitterDesigner.cs" />
     <Compile Include="Twitter\TwitterMode.cs" />
     <Compile Include="Twitter\TwitterStatus.cs" />
     <Compile Include="Twitter\TwitterUser.cs" />
@@ -602,6 +603,9 @@
     <EmbeddedResource Include="Slider\Slider.ico" />
     <EmbeddedResource Include="SlideShow\SlideShow.ico" />
     <Content Include="Tabs\Tabs_resource.css" />
+    <Content Include="Twitter\Twitter.ico" />
+    <Content Include="Twitter\Twitter24.png" />
+    <Content Include="Twitter\Twitter32.png" />
     <Content Include="Twitter\Twitter_resource.css" />
     <EmbeddedResource Include="Tabs\Tabs.ico" />
     <EmbeddedResource Include="TextboxWatermark\TextboxWatermark.ico" />

@@ -99,6 +99,12 @@ namespace AjaxControlToolkit {
                     case TwitterMode.Profile:
                         statuses = api.GetProfile(_twitter.ScreenName, _twitter.Count,
                                                     _twitter.IncludeRetweets, _twitter.IncludeReplies);
+                        if (statuses != null && statuses.Count > 0) {
+                            var user = statuses[0].User;
+                            _twitter.Title = _twitter.Title ?? user.Name;
+                            _twitter.Caption = _twitter.Caption ?? user.ScreenName;
+                            _twitter.ProfileImageUrl = _twitter.ProfileImageUrl ?? user.ProfileImageUrl;
+                        }
                         break;
                     default:
                         statuses = api.GetSearch(_twitter.Search, _twitter.Count);
@@ -132,6 +138,10 @@ namespace AjaxControlToolkit {
                     Text = "Ajax Control Toolkit",
                     User = user
                 });
+                _twitter.Title = _twitter.Title ?? user.Name;
+                _twitter.Caption = _twitter.Caption ?? user.ScreenName;
+                _twitter.ProfileImageUrl = _twitter.ProfileImageUrl ?? user.ProfileImageUrl;
+
             } else {
                 var searchText = _twitter.Search.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var s in searchText) {

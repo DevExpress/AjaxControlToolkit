@@ -11,9 +11,17 @@ using System.Text.RegularExpressions;
 
 [assembly: WebResource("Twitter.Twitter_resource.css", "text/css", PerformSubstitution = true)]
 [assembly: WebResource("Twitter.Twitter32.png", "img/png")]
-
+[assembly: WebResource("Twitter.Twitter24.png", "img/png")]
 
 namespace AjaxControlToolkit {
+
+
+    /// <summary>
+    /// Displays tweets from Twitter.com. Supports Profile mode for showing tweets
+    /// for a particular user and Search mode for showing tweets which match a 
+    /// search string.
+    /// </summary>
+
 
     [ClientCssResource("Twitter.Twitter_resource.css")]
     [ParseChildren(ChildrenAsProperties = true), PersistChildren(false)]
@@ -22,7 +30,6 @@ namespace AjaxControlToolkit {
 
 
         private ListView _listView;
-        private TwitterUser  _user;
 
         /// <summary>
         /// Determines the overall behavior of the control
@@ -32,7 +39,33 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Twitter Screen Name used when Mode=Profile
         /// </summary>
+        [Category("Profile")]
+        [Description("Twitter Screen Name used when Mode=Profile")]
         public string ScreenName { get; set; }
+
+        /// <summary>
+        /// Twitter Caption which appears in default layout template
+        /// </summary>
+        [Category("Search")]
+        [Description("Twitter Caption")]
+        public string Caption { get; set; }
+
+        /// <summary>
+        /// Twitter Title which appears in default layout template
+        /// </summary>
+        [Category("Search")]
+        [Description("Twitter Title")]
+        public string Title { get; set; }
+
+
+
+        /// <summary>
+        /// Twitter Profile image which appears in default layout template
+        /// </summary>
+        [Category("Search")]
+        [Description("Twitter Profile Image Url")]
+        public string ProfileImageUrl { get; set; }
+
 
         /// <summary>
         /// The twitter search query used when in Mode=Search
@@ -161,7 +194,10 @@ namespace AjaxControlToolkit {
                 case TwitterMode.Profile:
                     statuses = this.GetProfile();
                     if (statuses != null && statuses.Count > 0) {
-                        _user = statuses[0].User;
+                        var user = statuses[0].User;
+                        this.Title = this.Title ?? user.Name;
+                        this.Caption = this.Caption ?? user.ScreenName;
+                        this.ProfileImageUrl = this.ProfileImageUrl ?? user.ProfileImageUrl;
                     }
                     break;
                 case TwitterMode.Search:
@@ -342,14 +378,14 @@ namespace AjaxControlToolkit {
         /// Default template used for Status Template in Profile Mode
         /// </summary>
         internal sealed class DefaultProfileStatusTemplate : ITemplate {
- 
+
             private Twitter _twitter;
 
             internal DefaultProfileStatusTemplate(Twitter twitter) {
                 _twitter = twitter;
             }
-            
-            
+
+
             void ITemplate.InstantiateIn(Control container) {
 
 
@@ -363,15 +399,14 @@ namespace AjaxControlToolkit {
             }
 
 
-            private void ctlStatus_DataBind(object sender, EventArgs e)
-            {
+            private void ctlStatus_DataBind(object sender, EventArgs e) {
                 // set the Text property of the Label to the TotalPostCount property
                 var ctlStatus = (LiteralControl)sender;
                 var container = (ListViewDataItem)ctlStatus.NamingContainer;
                 var status = ((TwitterStatus)container.DataItem);
 
                 ctlStatus.Text = String.Format(
-                    "<li>{0}<br />{1}</li>",
+                    "<li>{0}<br /><span class=\"ajax__twitter_createat\">{1}</span></li>",
                     Twitter.ActivateLinks(status.Text),
                     Twitter.Ago(status.CreatedAt)
                 );
@@ -395,45 +430,47 @@ namespace AjaxControlToolkit {
             }
 
             void ITemplate.InstantiateIn(Control container) {
+                   
 
                 // Add header
                 var ctlHeader = new HtmlGenericControl("div");
-                ctlHeader.Attributes.Add("class", "ajax__twitter_profileheader");
+                ctlHeader.Attributes.Add("class", "ajax__twitter_header");
                 container.Controls.Add(ctlHeader);
 
-                if (_twitter._user != null) {
 
-                    // Create Profile Image Url
-                    var profileImage = new Image() {
-                        ImageUrl = _twitter._user.ProfileImageUrl
-                    };
-                    ctlHeader.Controls.Add(profileImage);
+                // Create Profile Image Url
+                var ctlProfileImage = new Image() {
+                    ImageUrl = _twitter.ProfileImageUrl
+                };
+                ctlHeader.Controls.Add(ctlProfileImage);
 
 
-                    // Create Name
-                    var ctlName = new HtmlGenericControl("div") {
-                        InnerText = _twitter._user.Name,
-                    };
-                    ctlName.Attributes.Add("class", "ajax__twitter_profilename");
-                    ctlHeader.Controls.Add(ctlName);
-                }
+                // Create Title
+                var ctlTitle = new HtmlGenericControl("h3");
+                ctlTitle.Controls.Add(new LiteralControl(_twitter.Title));
+                ctlHeader.Controls.Add(ctlTitle);
 
-                // Create ScreenName
-                var ctlScreenName = new HtmlGenericControl("div");
-                ctlScreenName.InnerText = _twitter.ScreenName;
-                ctlScreenName.Attributes.Add("class", "ajax__twitter_profilescreenname");
-                ctlHeader.Controls.Add(ctlScreenName);
+                // Create Caption
+                var ctlCaption = new HtmlGenericControl("h4");
+                ctlCaption.Controls.Add(new LiteralControl(_twitter.Caption));
+                ctlHeader.Controls.Add(ctlCaption);
 
                 // Add unordered list
                 var ctlList = new HtmlGenericControl("ul");
                 ctlList.Attributes.Add("class", "ajax__twitter_itemlist");
+                ctlList.Style.Add("margin", "0px");
                 container.Controls.Add(ctlList);
-
 
                 // Create item placeholder
                 var plhItem = new PlaceHolder();
                 plhItem.ID = "ItemPlaceholder";
                 ctlList.Controls.Add(plhItem);
+
+                var ctlFooter = new HtmlGenericControl("div");
+                var smallLogoUrl = _twitter.Page.ClientScript.GetWebResourceUrl(_twitter.GetType(), "Twitter.Twitter24.png");
+                ctlFooter.Attributes.Add("class", "ajax__twitter_footer");
+                ctlFooter.Controls.Add(new Image() { ImageUrl = smallLogoUrl });
+                container.Controls.Add(ctlFooter);
             }
 
         }
@@ -455,7 +492,7 @@ namespace AjaxControlToolkit {
             void ITemplate.InstantiateIn(Control container) {
 
                 // Note: In .NET 3.5, DataItem only has a value
-                // during databinding. Therefore, we write up
+                // during databinding. Therefore, we wire up
                 // a handler
                 var ctlStatus = new LiteralControl();
                 ctlStatus.DataBinding += ctlStatus_DataBind;
@@ -465,8 +502,7 @@ namespace AjaxControlToolkit {
 
 
 
-            private void ctlStatus_DataBind(object sender, EventArgs e)
-            {
+            private void ctlStatus_DataBind(object sender, EventArgs e) {
                 // set the Text property of the Label to the TotalPostCount property
                 var ctlStatus = (LiteralControl)sender;
                 var container = (ListViewDataItem)ctlStatus.NamingContainer;
@@ -474,7 +510,7 @@ namespace AjaxControlToolkit {
 
                 // Show status
                 ctlStatus.Text = String.Format(
-                    "<li><img src=\"{0}\" />{1}<br />{2}</li>",
+                    "<li><img src=\"{0}\" /><div>{1}<br /><span class=\"ajax__twitter_createat\">{2}</span></div></li>",
                     status.User.ProfileImageUrl,
                     status.Text,
                     Twitter.Ago(status.CreatedAt)
@@ -502,34 +538,22 @@ namespace AjaxControlToolkit {
 
                 // Add header
                 var ctlHeader = new HtmlGenericControl("div");
-                ctlHeader.Attributes.Add("class", "ajax__twitter_profileheader");
+                ctlHeader.Attributes.Add("class", "ajax__twitter_header");
                 container.Controls.Add(ctlHeader);
 
-                if (_twitter._user != null) {
+                // Create Title
+                var ctlTitle = new HtmlGenericControl("h3");
+                ctlTitle.Controls.Add(new LiteralControl(_twitter.Title));
+                ctlHeader.Controls.Add(ctlTitle);
 
-                    // Create Profile Image Url
-                    var profileImage = new Image() {
-                        ImageUrl = _twitter._user.ProfileImageUrl
-                    };
-                    ctlHeader.Controls.Add(profileImage);
-
-
-                    // Create Name
-                    var ctlName = new HtmlGenericControl("div") {
-                        InnerText = _twitter._user.Name,
-                    };
-                    ctlName.Attributes.Add("class", "ajax__twitter_profilename");
-                    ctlHeader.Controls.Add(ctlName);
-                }
-
-                // Create ScreenName
-                var ctlScreenName = new HtmlGenericControl("div");
-                ctlScreenName.InnerText = _twitter.ScreenName;
-                ctlScreenName.Attributes.Add("class", "ajax__twitter_profilescreenname");
-                ctlHeader.Controls.Add(ctlScreenName);
+                // Create Caption
+                var ctlCaption = new HtmlGenericControl("h4");
+                ctlCaption.Controls.Add(new LiteralControl(_twitter.Caption));
+                ctlHeader.Controls.Add(ctlCaption);
 
                 // Add unordered list
                 var ctlList = new HtmlGenericControl("ul");
+                ctlList.Style.Add("margin", "0px");
                 ctlList.Attributes.Add("class", "ajax__twitter_itemlist");
                 container.Controls.Add(ctlList);
 
@@ -538,6 +562,12 @@ namespace AjaxControlToolkit {
                 var plhItem = new PlaceHolder();
                 plhItem.ID = "ItemPlaceholder";
                 ctlList.Controls.Add(plhItem);
+
+                var ctlFooter = new HtmlGenericControl("div");
+                var smallLogoUrl = _twitter.Page.ClientScript.GetWebResourceUrl(_twitter.GetType(), "Twitter.Twitter24.png");
+                ctlFooter.Attributes.Add("class", "ajax__twitter_footer");
+                ctlFooter.Controls.Add(new Image() { ImageUrl = smallLogoUrl });
+                container.Controls.Add(ctlFooter);
             }
         }
 

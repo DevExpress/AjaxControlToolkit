@@ -401,6 +401,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Twitter\Twitter.ico" />
+    <Content Include="Twitter\Twitter24.png" />
     <Content Include="Twitter\Twitter32.png" />
     <Content Include="Twitter\Twitter_resource.css" />
     <EmbeddedResource Include="Accordion\Accordion.ico" />

@@ -25,29 +25,45 @@
                 <hr />
                 Displays status messages (tweets) for a Twitter account using a custom LayoutTemplate and StatusTemplate:
                 <br />
- 
- 
+                <style>
+                #twitter_custom_style .ajax__twitter 
+                {
+                    background-color:rgb(228, 236, 230);
+                    -moz-border-radius: 0px;
+                    -webkit-border-radius: 0px;
+                    border-radius: 0px;
+                    border:1px solid green;
+                    color:darkcyan;
+                }
+                
+                </style>
+                <div id="twitter_custom_style">
                 <ajaxToolkit:Twitter ID="Twitter3" Mode="Profile" ScreenName="ScottGu" runat="server">
                     <LayoutTemplate>
-                        <b>Scott Guthrie's Tweets:</b>
+                        <h2 style="padding: 10px">Scott Guthrie's Tweets:</h2>
+                        <div style="border:solid 5px white;padding:10px">
                         <asp:PlaceHolder id="itemPlaceholder" runat="server" />
+                        </div>
                     </LayoutTemplate>
                     <StatusTemplate>
-                        <div style="border:solid 2px white;padding:10px">
+                        <div style="border-bottom:dotted 1px white;padding:10px">
                             <img src="<%# Eval("User.ProfileImageUrl") %>" />
                             <%# Twitter.ActivateLinks( (string)Eval("Text") ) %>
                             <br />
-                            posted: <%# Twitter.Ago((DateTime)Eval("CreatedAt")) %>
+                            posted: <i><%# Twitter.Ago((DateTime)Eval("CreatedAt")) %></i>
                         </div>
                     </StatusTemplate>
                 </ajaxToolkit:Twitter> 
-
+                </div>
 
                 
                 <hr />
                 Displays Twitter search results for <i>'Ajax Control Toolkit'</i>:
                 <br />
-                <ajaxToolkit:Twitter ID="Twitter2" Mode="Search" Search="'Ajax Control Toolkit'" runat="server" /> 
+                <ajaxToolkit:Twitter ID="Twitter2" Mode="Search" 
+                    Search="'Ajax Control Toolkit'" runat="server" Caption="The Caption" 
+                    Title="Title goes here..." >                     
+                </ajaxToolkit:Twitter>
                 <br />
 
  
@@ -113,6 +129,8 @@
                 <li><strong>StatusTemplate</strong> - template which contains each status message (tweet).</li>
                 <li><strong>AlternatingStatusTemplate</strong> - template which is applied for alternating status messages (tweets).</li>
                 <li><strong>EmptyDataTemplate</strong> - template which displays content when there are no tweets.</li>
+                <li><strong>Title</strong> - enables you to display title text in the header. In Profile mode, the default value is the full user name.</li>
+                <li><strong>Caption</strong> - enables you to display caption text in the header. In Profile mode, the default value is the user screen name.</li>
             </ul>
     </asp:Panel>    
     
