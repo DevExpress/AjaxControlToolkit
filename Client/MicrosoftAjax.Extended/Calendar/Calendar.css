@@ -25,10 +25,10 @@
 .ajax__calendar .ajax__calendar_active .ajax__calendar_month {background-color:#edf9ff;border-color:#0066cc;color:#0066cc;}
 .ajax__calendar .ajax__calendar_active .ajax__calendar_year {background-color:#edf9ff;border-color:#0066cc;color:#0066cc;}
 
+/* styles for calendar today */
 .ajax__calendar .ajax__calendar_today .ajax__calendar_day {border-color:#0066cc;}
 .ajax__calendar .ajax__calendar_today .ajax__calendar_month {border-color:#0066cc;}
 .ajax__calendar .ajax__calendar_today .ajax__calendar_year {border-color:#0066cc;}
-
 
 .ajax__calendar .ajax__calendar_other .ajax__calendar_day {background-color:#ffffff;border-color:#ffffff;color:#646464;}
 .ajax__calendar .ajax__calendar_other .ajax__calendar_year {background-color:#ffffff;border-color:#ffffff;color:#646464;}

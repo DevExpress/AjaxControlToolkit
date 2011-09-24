@@ -82,7 +82,7 @@
             this._height = 139;
             this._modes = { "days": null, "months": null, "years": null };
             this._modeOrder = { "days": 0, "months": 1, "years": 2 };
-            this._hourOffsetForDst = 12;  // Hour value for calls to new Date(...) to avoid DST issues
+            //this._hourOffsetForDst = 12;  // Hour value for calls to new Date(...) to avoid DST issues
             this._blur = new Sys.Extended.UI.DeferredOperation(1, this, this.blur);
 
             this._button$delegates = {
@@ -195,7 +195,7 @@
                 /// The property of the start date for range
                 /// </value>
                 if (this._startDate != value) {
-                    this._startDate = new Date(value).getDateOnly();
+                    this._startDate = new Date(value);
                     this.raisePropertyChanged('startDate');
                 }
             },
@@ -213,7 +213,6 @@
                 /// </value>
                 if (this._endDate != value) {
                     this._endDate = new Date(value);
-                    this._endDate.setHours(23, 59, 59, 0);
                     this.raisePropertyChanged('_endDate');
                 }
             },
@@ -276,7 +275,7 @@
                     if (value) {
                         value = this._parseTextValue(value);
                         if (value) {
-                            this._selectedDate = value.getDateOnly();
+                            this._selectedDate = value;
                         }
                     }
                 }
@@ -287,30 +286,29 @@
                     value = new Date(value);
                 }
 
-                if (value) value = value.getDateOnly();
                 if (this._selectedDate != value) {
                     this._selectedDate = value;
                     this._selectedDateChanging = true;
                     var text = "";
                     if (value) {
-                        text = value.localeFormat(this._format);
-                        if (!this._clearTime) {
-                            var tbvalue = this._textbox.get_Value();
-                            if (tbvalue) {
-                                tbvalue = this._parseTextValue(tbvalue);
-                            }
-                            if (tbvalue) {
-                                if (value != tbvalue.getDateOnly()) {      
-                                    if ((value.getHours() === 0) || ((value.getHours() >= 1) && (tbvalue.getHours() > 1))) {
-                                       value.setHours(tbvalue.getHours());
-                                    }
-                                    value.setMinutes(tbvalue.getMinutes());	
-                                    value.setSeconds(tbvalue.getSeconds());	
-                                    value.setMilliseconds(tbvalue.getMilliseconds());
-                                    text = value.localeFormat(this._format);
-                                }
-                            }
-                        }
+                        text = this._convertToLocal(value).localeFormat(this._format);
+                        //                        if (!this._clearTime) {
+                        //                            var tbvalue = this._textbox.get_Value();
+                        //                            if (tbvalue) {
+                        //                                tbvalue = this._parseTextValue(tbvalue);
+                        //                            }
+                        //                            if (tbvalue) {
+                        //                                if (value != tbvalue) {
+                        //                                    if ((value.getHours() === 0) || ((value.getHours() >= 1) && (tbvalue.getHours() > 1))) {
+                        //                                        value.setHours(tbvalue.getHours());
+                        //                                    }
+                        //                                    value.setMinutes(tbvalue.getMinutes());
+                        //                                    value.setSeconds(tbvalue.getSeconds());
+                        //                                    value.setMilliseconds(tbvalue.getMilliseconds());
+                        //                                    text = value.localeFormat(this._format);
+                        //                                }
+                        //                            }
+                        //                        }
                     }
                     if (text != this._textbox.get_Value()) {
                         this._textbox.set_Value(text);
@@ -345,7 +343,6 @@
                 return this._visibleDate;
             },
             set_visibleDate: function (value) {
-                if (value) value = value.getDateOnly();
                 if (this._visibleDate != value) {
                     this._switchMonth(value, !this._isOpen);
                     this.raisePropertyChanged("visibleDate");
@@ -366,12 +363,12 @@
                 if (this._todaysDate != null) {
                     return this._todaysDate;
                 }
-                return new Date().getDateOnly();
+                return this._convertToUTC(new Date());
             },
             set_todaysDate: function (value) {
-                if (value) value = value.getDateOnly();
                 if (this._todaysDate != value) {
                     this._todaysDate = value;
+
                     this.invalidate();
                     this.raisePropertyChanged("todaysDate");
                 }
@@ -1068,26 +1065,56 @@
                 }
             },
 
-            _isInDateRange: function (currentDate, type) {
-                var isInRange = true;
-                switch (type) {
-                   case "days":
-                    if ((this._startDate) && (new Date(this._startDate).getTime() > currentDate.getTime())) { isInRange = false; }                    
-                    if ((this._endDate) && (new Date(this._endDate).getTime() < currentDate.getTime())) { isInRange = false; }
-                    break;
-                case "months":              
-                    if ((this._startDate) && (new Date(this._startDate).getMonth() > currentDate.getMonth())) { isInRange = false; }      
-                    if ((this._endDate) && (new Date(this._endDate).getMonth() < currentDate.getMonth())) { isInRange = false; }
-                    break;
-                case "years":
-                    var currentYear = currentDate.getFullYear();
-                    if ((this._startDate) && (new Date(this._startDate).getFullYear() > currentYear)) { isInRange = false; }
-                    if ((this._endDate) && (new Date(this._endDate).getFullYear() < currentYear)) { isInRange = false; }
-                    break;
-                }
 
-                return isInRange;
+            _isInDateRange: function (date, part) {
+                switch (part) {
+                    case "d":
+                        if ((this._startDate) && (this._getDateOnly(date) < this._getDateOnly(this._startDate))) { return false; }
+                        if ((this._endDate) && (this._getDateOnly(date) > this._getDateOnly(this._endDate))) { return false; }
+                        break;
+                    case "M":
+                        if ((this._startDate) && (this._getMonthOnly(date) < this._getMonthOnly(this._startDate))) { return false; }
+                        if ((this._endDate) && (this._getMonthOnly(date) > this._getMonthOnly(this._endDate))) { return false; }
+                        break;
+                    case "y":
+                        if ((this._startDate) && (date.getUTCFullYear() < this._startDate.getUTCFullYear())) { return false; }
+                        if ((this._endDate) && (date.getUTCFullYear() > this._endDate.getUTCFullYear())) { return false; }
+                        break;
+                }
+                return true;
             },
+
+
+            _getDateOnly: function (date) {
+                return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+            },
+
+
+            _getMonthOnly: function (date) {
+                return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1));
+            },
+
+
+
+            _convertToUTC: function (value) {
+                /// <summary>Converts a local date such as 1/1/2007 into 1/1/2007 GMT 
+                /// without adjusting for time zone</summary>
+                if (value) {
+                    value = new Date(Date.UTC(value.getFullYear(), value.getMonth(), value.getDate()));
+                }
+                return value;
+            },
+
+
+            _convertToLocal: function (value) {
+                /// <summary>Converts a UTC date such as 1/1/2007 GMT into 1/1/2007  
+                /// without adjusting for time zone</summary>
+
+                return new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate());
+            },
+
+
+
 
             _performLayout: function () {
                 /// <summmary>
@@ -1107,12 +1134,14 @@
                     case "days":
 
                         var firstDayOfWeek = this._getFirstDayOfWeek();
-                        var daysToBacktrack = visibleDate.getDay() - firstDayOfWeek;
+                        var daysToBacktrack = visibleDate.getUTCDay() - firstDayOfWeek;
                         if (daysToBacktrack <= 0)
                             daysToBacktrack += 7;
 
-                        var startDate = new Date(visibleDate.getFullYear(), visibleDate.getMonth(), visibleDate.getDate() - daysToBacktrack, this._hourOffsetForDst);
-                        var currentDate = startDate;
+                        //var startDate = new Date(Date.UTC(visibleDate.getUTCFullYear(), visibleDate.getUTCMonth(), visibleDate.getUTCDate() - daysToBacktrack));
+                        var startDate = new Date(visibleDate);
+                        startDate.setUTCDate(startDate.getUTCDate() - daysToBacktrack);
+                        var currentDate = new Date(startDate);
 
                         for (var i = 0; i < 7; i++) {
                             var dayCell = this._daysTableHeaderRow.cells[i].firstChild;
@@ -1128,12 +1157,12 @@
                                 if (dayCell.firstChild) {
                                     dayCell.removeChild(dayCell.firstChild);
                                 }
-                                dayCell.appendChild(document.createTextNode(currentDate.getDate()));
-                                dayCell.title = currentDate.localeFormat("D");
+                                dayCell.appendChild(document.createTextNode(currentDate.getUTCDate()));
+                                dayCell.title = this._convertToLocal(currentDate).localeFormat("D");
                                 dayCell.date = currentDate;
                                 $common.removeCssClasses(dayCell.parentNode, ["ajax__calendar_other", "ajax__calendar_active", "ajax__calendar_today"]);
 
-                                if (!this._isInDateRange(currentDate, "days")) {
+                                if (!this._isInDateRange(currentDate, "d")) {
                                     $common.removeCssClasses(dayCell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
                                     Sys.UI.DomElement.addCssClass(dayCell.parentNode, "ajax__calendar_invalid");
                                 } else {
@@ -1141,17 +1170,19 @@
                                     Sys.UI.DomElement.addCssClass(dayCell.parentNode, this._getCssClass(dayCell.date, 'd'));
                                 }
 
-                                currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1, this._hourOffsetForDst);
+                                //currentDate = new Date(Date.UTC(currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate() + 1));
+                                currentDate = new Date(currentDate);
+                                currentDate.setUTCDate(currentDate.getUTCDate() + 1);
                             }
                         }
 
-                        this._prevArrow.date = new Date(visibleDate.getFullYear(), visibleDate.getMonth() - 1, 1, this._hourOffsetForDst);
-                        this._nextArrow.date = new Date(visibleDate.getFullYear(), visibleDate.getMonth() + 1, 1, this._hourOffsetForDst);
+                        this._prevArrow.date = new Date(Date.UTC(visibleDate.getUTCFullYear(), visibleDate.getUTCMonth() - 1, 1));
+                        this._nextArrow.date = new Date(Date.UTC(visibleDate.getUTCFullYear(), visibleDate.getUTCMonth() + 1, 1));
                         if (this._title.firstChild) {
                             this._title.removeChild(this._title.firstChild);
                         }
 
-                        this._title.appendChild(document.createTextNode(visibleDate.localeFormat(this.get_daysModeTitleFormat())));
+                        this._title.appendChild(document.createTextNode(this._convertToLocal(visibleDate).localeFormat(this.get_daysModeTitleFormat())));
                         this._title.date = visibleDate;
 
                         break;
@@ -1160,10 +1191,10 @@
                             var row = this._monthsBody.rows[i];
                             for (var j = 0; j < row.cells.length; j++) {
                                 var cell = row.cells[j].firstChild;
-                                cell.date = new Date(visibleDate.getFullYear(), cell.month, 1, this._hourOffsetForDst);
+                                cell.date = new Date(Date.UTC(visibleDate.getUTCFullYear(), cell.month, 1));
                                 cell.title = cell.date.localeFormat("Y");
 
-                                if (!this._isInDateRange(cell.date, "months")) {
+                                if (!this._isInDateRange(cell.date, "M")) {
                                     $common.removeCssClasses(cell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
                                     Sys.UI.DomElement.addCssClass(cell.parentNode, "ajax__calendar_invalid");
                                 }
@@ -1179,20 +1210,20 @@
                             this._title.removeChild(this._title.firstChild);
                         }
 
-                        this._title.appendChild(document.createTextNode(visibleDate.localeFormat("yyyy")));
+                        this._title.appendChild(document.createTextNode(this._convertToLocal(visibleDate).localeFormat("yyyy")));
                         this._title.date = visibleDate;
-                        this._prevArrow.date = new Date(visibleDate.getFullYear() - 1, 0, 1, this._hourOffsetForDst);
-                        this._nextArrow.date = new Date(visibleDate.getFullYear() + 1, 0, 1, this._hourOffsetForDst);
+                        this._prevArrow.date = new Date(Date.UTC(visibleDate.getUTCFullYear() - 1, 0, 1));
+                        this._nextArrow.date = new Date(Date.UTC(visibleDate.getUTCFullYear() + 1, 0, 1));
 
                         break;
                     case "years":
 
-                        var minYear = (Math.floor(visibleDate.getFullYear() / 10) * 10);
+                        var minYear = (Math.floor(visibleDate.getUTCFullYear() / 10) * 10);
                         for (var i = 0; i < this._yearsBody.rows.length; i++) {
                             var row = this._yearsBody.rows[i];
                             for (var j = 0; j < row.cells.length; j++) {
                                 var cell = row.cells[j].firstChild;
-                                cell.date = new Date(minYear + cell.year, 0, 1, this._hourOffsetForDst);
+                                cell.date = new Date(Date.UTC(minYear + cell.year, 0, 1));
                                 if (cell.firstChild) {
                                     cell.removeChild(cell.lastChild);
                                 } else {
@@ -1200,7 +1231,7 @@
                                 }
                                 cell.appendChild(document.createTextNode(minYear + cell.year));
 
-                                if (!this._isInDateRange(cell.date, "years")) {
+                                if (!this._isInDateRange(cell.date, "y")) {
                                     $common.removeCssClasses(cell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
                                     Sys.UI.DomElement.addCssClass(cell.parentNode, "ajax__calendar_invalid");
                                 }
@@ -1217,8 +1248,8 @@
 
                         this._title.appendChild(document.createTextNode(minYear.toString() + "-" + (minYear + 9).toString()));
                         this._title.date = visibleDate;
-                        this._prevArrow.date = new Date(minYear - 10, 0, 1, this._hourOffsetForDst);
-                        this._nextArrow.date = new Date(minYear + 10, 0, 1, this._hourOffsetForDst);
+                        this._prevArrow.date = new Date(Date.UTC(minYear - 10, 0, 1));
+                        this._nextArrow.date = new Date(Date.UTC(minYear + 10, 0, 1));
 
                         break;
                 }
@@ -1227,11 +1258,11 @@
                 }
 
                 $common.removeCssClasses(this._today.parentNode, ["ajax__calendar_invalid"]);
-                this._today.appendChild(document.createTextNode(String.format(Sys.Extended.UI.Resources.Calendar_Today, todaysDate.localeFormat(this.get_todaysDateFormat()))));
-                if (!this._isInDateRange(todaysDate, "days")) {
+                this._today.appendChild(document.createTextNode(String.format(Sys.Extended.UI.Resources.Calendar_Today, this._convertToLocal(todaysDate).localeFormat(this.get_todaysDateFormat()))));
+                if (!this._isInDateRange(todaysDate, "d")) {
                     Sys.UI.DomElement.addCssClass(this._today.parentNode, "ajax__calendar_invalid");
                 }
-                
+
                 this._today.date = todaysDate;
             },
 
@@ -1289,7 +1320,7 @@
                     return;
                 }
 
-                if (date && !this._isInDateRange(date, "months")) {
+                if (date && !this._isInDateRange(date, "M")) {
                     return;
                 }
 
@@ -1454,17 +1485,21 @@
                 if (!value) return false;
                 switch (part) {
                     case 'd':
-                        if (date.getDate() != value.getDate()) return false;
+                        if (date.getUTCDate() != value.getUTCDate()) return false;
                         // goto case 'M';
                     case 'M':
-                        if (date.getMonth() != value.getMonth()) return false;
+                        if (date.getUTCMonth() != value.getUTCMonth()) return false;
                         // goto case 'y';
                     case 'y':
-                        if (date.getFullYear() != value.getFullYear()) return false;
+                        if (date.getUTCFullYear() != value.getUTCFullYear()) return false;
                         break;
                 }
                 return true;
             },
+
+
+
+
             _isOther: function (date, part) {
                 /// <summary>
                 /// Gets whether the supplied date is in a different view from the current visible month
@@ -1476,15 +1511,20 @@
                 var value = this._getEffectiveVisibleDate();
                 switch (part) {
                     case 'd':
-                        return (date.getFullYear() != value.getFullYear() || date.getMonth() != value.getMonth());
+                        return (date.getUTCFullYear() != value.getUTCFullYear() || date.getUTCMonth() != value.getUTCMonth());
                     case 'M':
                         return false;
                     case 'y':
-                        var minYear = (Math.floor(value.getFullYear() / 10) * 10);
-                        return date.getFullYear() < minYear || (minYear + 10) <= date.getFullYear();
+                        var minYear = (Math.floor(value.getUTCFullYear() / 10) * 10);
+                        return date.getUTCFullYear() < minYear || (minYear + 10) <= date.getUTCFullYear();
                 }
                 return false;
             },
+
+            _isTodaysDate: function (date) {
+                return this._getDateOnly(this.get_todaysDate()).valueOf() === this._getDateOnly(date).valueOf();
+            },
+
             _getCssClass: function (date, part) {
                 /// <summary>
                 /// Gets the cssClass to apply to a cell based on a supplied date
@@ -1497,10 +1537,9 @@
                     return "ajax__calendar_active";
                 } else if (this._isOther(date, part)) {
                     return "ajax__calendar_other";
-                } else if ((this.get_todaysDate().getFullYear() === date.getFullYear()) &&
-                    (this.get_todaysDate().getMonth() === date.getMonth()) &&	
-                    (this.get_todaysDate().getDate() === date.getDate())) {
-                  return "ajax__calendar_today";
+                    // Highlight today's date
+                } else if (this._isTodaysDate(date)) {
+                    return "ajax__calendar_today";
                 } else {
                     return "";
                 }
@@ -1511,7 +1550,13 @@
                     value = this.get_selectedDate();
                 if (value == null)
                     value = this.get_todaysDate();
-                return new Date(value.getFullYear(), value.getMonth(), 1, this._hourOffsetForDst);
+
+                value = new Date(value);
+                value.setUTCDate(1);
+
+                return value;
+
+                //return new Date(Date.UTC(value.getUTCFullYear(), value.getUTCMonth(), 1));
             },
             _getFirstDayOfWeek: function () {
                 /// <summary>
@@ -1532,7 +1577,7 @@
 
                 var value = null;
                 if (text) {
-                    value = Date.parseLocale(text, this.get_format());
+                    value = this._convertToUTC(Date.parseLocale(text, this.get_format()));
                 }
                 if (isNaN(value)) {
                     value = null;
@@ -1569,7 +1614,6 @@
                 /// <param name="e" type="Sys.UI.DomEvent">The arguments for the event</param>
                 if (!this._selectedDateChanging) {
                     var value = this._parseTextValue(this._textbox.get_Value());
-                    if (value) value = value.getDateOnly();
                     this._selectedDate = value;
                     if (this._isOpen) {
                         this._switchMonth(this._selectedDate, this._selectedDate == null);

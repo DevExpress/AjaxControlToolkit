@@ -70,7 +70,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FunctionalTests", "Server\T
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "38082"
+		VWDPort = "25644"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxClientWebSite", "SampleWebSites\AjaxClientWebSite\", "{1C6EA3D1-9CE9-4792-9710-6C5D0DC5C0D6}"
@@ -91,7 +91,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxClientWebSite", "Sample
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "29283"
+		VWDPort = "25647"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSite", "SampleWebSites\AjaxControlToolkitSampleSite\", "{9B98A515-874C-44C3-9ED1-81151C243DB0}"

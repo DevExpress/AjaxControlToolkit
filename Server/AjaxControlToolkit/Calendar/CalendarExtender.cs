@@ -17,8 +17,7 @@ using AjaxControlToolkit;
 
 #endregion
 
-namespace AjaxControlToolkit
-{
+namespace AjaxControlToolkit {
     /// <summary>
     /// The Calendar control extender can be attached to any ASP.NET TextBox control. It provides client-side 
     /// date-picking functionality with customizable date format and UI in a popup control. You can interact 
@@ -40,16 +39,14 @@ namespace AjaxControlToolkit
     [ClientCssResource("Calendar.Calendar_resource.css")]
     [ClientScriptResource("Sys.Extended.UI.CalendarBehavior", "Calendar.CalendarBehavior.js")]
     [System.Drawing.ToolboxBitmap(typeof(CalendarExtender), "Calendar.Calendar.ico")]
-    public class CalendarExtender : ExtenderControlBase
-    {
+    public class CalendarExtender : ExtenderControlBase {
         /// <summary>
         /// Name of the Cascading Style Sheet class used to style the calendar 
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("cssClass")]
-        public virtual string CssClass
-        {
+        public virtual string CssClass {
             get { return GetPropertyValue("CssClass", string.Empty); }
             set { SetPropertyValue("CssClass", value); }
         }
@@ -60,8 +57,7 @@ namespace AjaxControlToolkit
         [DefaultValue("d")]
         [ExtenderControlProperty]
         [ClientPropertyName("format")]
-        public virtual string Format
-        {
+        public virtual string Format {
             get { return GetPropertyValue("Format", "d"); }
             set { SetPropertyValue("Format", value); }
         }
@@ -72,8 +68,7 @@ namespace AjaxControlToolkit
         [DefaultValue("MMMM d, yyyy")]
         [ExtenderControlProperty]
         [ClientPropertyName("todaysDateFormat")]
-        public virtual string TodaysDateFormat
-        {
+        public virtual string TodaysDateFormat {
             get { return GetPropertyValue("TodaysDateFormat", "MMMM d, yyyy"); }
             set { SetPropertyValue("TodaysDateFormat", value); }
         }
@@ -84,8 +79,7 @@ namespace AjaxControlToolkit
         [DefaultValue("MMMM, yyyy")]
         [ExtenderControlProperty]
         [ClientPropertyName("daysModeTitleFormat")]
-        public virtual string DaysModeTitleFormat
-        {
+        public virtual string DaysModeTitleFormat {
             get { return GetPropertyValue("DaysModeTitleFormat", "MMMM, yyyy"); }
             set { SetPropertyValue("DaysModeTitleFormat", value); }
         }
@@ -96,8 +90,7 @@ namespace AjaxControlToolkit
         [DefaultValue(false)]
         [ExtenderControlProperty]
         [ClientPropertyName("clearTime")]
-        public virtual bool ClearTime
-        {
+        public virtual bool ClearTime {
             get { return GetPropertyValue("ClearTime", false); }
             set { SetPropertyValue("ClearTime", value); }
         }
@@ -108,8 +101,7 @@ namespace AjaxControlToolkit
         [DefaultValue(true)]
         [ExtenderControlProperty]
         [ClientPropertyName("enabled")]
-        public virtual bool EnabledOnClient
-        {
+        public virtual bool EnabledOnClient {
             get { return GetPropertyValue("EnabledOnClient", true); }
             set { SetPropertyValue("EnabledOnClient", value); }
         }
@@ -120,8 +112,7 @@ namespace AjaxControlToolkit
         [DefaultValue(true)]
         [ExtenderControlProperty]
         [ClientPropertyName("animated")]
-        public virtual bool Animated
-        {
+        public virtual bool Animated {
             get { return GetPropertyValue("Animated", true); }
             set { SetPropertyValue("Animated", value); }
         }
@@ -132,8 +123,7 @@ namespace AjaxControlToolkit
         [DefaultValue(FirstDayOfWeek.Default)]
         [ExtenderControlProperty]
         [ClientPropertyName("firstDayOfWeek")]
-        public virtual FirstDayOfWeek FirstDayOfWeek
-        {
+        public virtual FirstDayOfWeek FirstDayOfWeek {
             get { return GetPropertyValue("FirstDayOfWeek", FirstDayOfWeek.Default); }
             set { SetPropertyValue("FirstDayOfWeek", value); }
         }
@@ -147,12 +137,11 @@ namespace AjaxControlToolkit
         [ElementReference]
         [IDReferenceProperty]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", Justification = "Following ASP.NET AJAX pattern")]
-        public virtual string PopupButtonID
-        {
+        public virtual string PopupButtonID {
             get { return GetPropertyValue("PopupButtonID", string.Empty); }
             set { SetPropertyValue("PopupButtonID", value); }
-        }        
-        
+        }
+
         /// <summary>
         /// Gets or sets the popup position of the calendar. The default value is BottomLeft
         /// </summary>
@@ -160,8 +149,7 @@ namespace AjaxControlToolkit
         [ClientPropertyName("popupPosition")]
         [DefaultValue(CalendarPosition.BottomLeft)]
         [Description("Indicates where you want the calendar displayed, bottom or top of the textbox.")]
-        public virtual CalendarPosition PopupPosition
-        {
+        public virtual CalendarPosition PopupPosition {
             get { return GetPropertyValue("PopupPosition", CalendarPosition.BottomLeft); }
             set { SetPropertyValue("PopupPosition", value); }
         }
@@ -172,10 +160,16 @@ namespace AjaxControlToolkit
         [DefaultValue(null)]
         [ExtenderControlProperty]
         [ClientPropertyName("selectedDate")]
-        public DateTime? SelectedDate
-        {
-            get { return GetPropertyValue<DateTime?>("SelectedDate", null); }
-            set { SetPropertyValue<DateTime?>("SelectedDate", value); }
+        public DateTime? SelectedDate {
+            get {
+                DateTime? selectedDate = GetPropertyValue<DateTime?>("SelectedDate", null);
+                return selectedDate != null ? (DateTime?)DateTime.SpecifyKind(selectedDate.Value, DateTimeKind.Utc) : null;
+            }
+            set {
+                var utcValue = value != null ? (DateTime?)DateTime.SpecifyKind(value.Value, DateTimeKind.Utc) : null;
+                SetPropertyValue<DateTime?>("SelectedDate", utcValue);
+            }
+
         }
 
         /// <summary>
@@ -185,8 +179,7 @@ namespace AjaxControlToolkit
         [ExtenderControlProperty]
         [ClientPropertyName("defaultView")]
         [Description("Default view of the calendar when it first pops up.")]
-        public virtual CalendarDefaultView DefaultView
-        {
+        public virtual CalendarDefaultView DefaultView {
             get { return GetPropertyValue("DefaultView", CalendarDefaultView.Days); }
             set { SetPropertyValue("DefaultView", value); }
         }
@@ -197,8 +190,7 @@ namespace AjaxControlToolkit
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("showing")]
-        public virtual string OnClientShowing
-        {
+        public virtual string OnClientShowing {
             get { return GetPropertyValue("OnClientShowing", string.Empty); }
             set { SetPropertyValue("OnClientShowing", value); }
         }
@@ -209,8 +201,7 @@ namespace AjaxControlToolkit
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("shown")]
-        public virtual string OnClientShown
-        {
+        public virtual string OnClientShown {
             get { return GetPropertyValue("OnClientShown", string.Empty); }
             set { SetPropertyValue("OnClientShown", value); }
         }
@@ -221,8 +212,7 @@ namespace AjaxControlToolkit
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("hiding")]
-        public virtual string OnClientHiding
-        {
+        public virtual string OnClientHiding {
             get { return GetPropertyValue("OnClientHiding", string.Empty); }
             set { SetPropertyValue("OnClientHiding", value); }
         }
@@ -233,8 +223,7 @@ namespace AjaxControlToolkit
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("hidden")]
-        public virtual string OnClientHidden
-        {
+        public virtual string OnClientHidden {
             get { return GetPropertyValue("OnClientHidden", string.Empty); }
             set { SetPropertyValue("OnClientHidden", value); }
         }
@@ -245,8 +234,7 @@ namespace AjaxControlToolkit
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("dateSelectionChanged")]
-        public virtual string OnClientDateSelectionChanged
-        {
+        public virtual string OnClientDateSelectionChanged {
             get { return GetPropertyValue("OnClientDateSelectionChanged", string.Empty); }
             set { SetPropertyValue("OnClientDateSelectionChanged", value); }
         }
@@ -260,10 +248,14 @@ namespace AjaxControlToolkit
         [DefaultValue(null)]
         [ExtenderControlProperty]
         [ClientPropertyName("startDate")]
-        public DateTime? StartDate
-        {
-            get { return GetPropertyValue<DateTime?>("StartDate", null); }
-            set { SetPropertyValue<DateTime?>("StartDate", value); }
+        public DateTime? StartDate {
+            get {
+                DateTime? startDate = GetPropertyValue<DateTime?>("StartDate", null);
+                return startDate != null ? (DateTime?)DateTime.SpecifyKind(startDate.Value, DateTimeKind.Utc) : null;
+            }
+            set {
+                SetPropertyValue<DateTime?>("StartDate", value != null ? (DateTime?)DateTime.SpecifyKind(value.Value, DateTimeKind.Utc) : null);
+            }
         }
 
         /// <summary>
@@ -272,10 +264,14 @@ namespace AjaxControlToolkit
         [DefaultValue(null)]
         [ExtenderControlProperty]
         [ClientPropertyName("endDate")]
-        public DateTime? EndDate
-        {
-            get { return GetPropertyValue<DateTime?>("EndDate", null); }
-            set { SetPropertyValue<DateTime?>("EndDate", value); }
+        public DateTime? EndDate {
+            get {
+                DateTime? endDate = GetPropertyValue<DateTime?>("EndDate", null);
+                return endDate != null ? (DateTime?)DateTime.SpecifyKind(endDate.Value, DateTimeKind.Utc) : null;
+            }
+            set {
+                SetPropertyValue<DateTime?>("EndDate", value != null ? (DateTime?)DateTime.SpecifyKind(value.Value, DateTimeKind.Utc) : null);
+            }
         }
 
 
