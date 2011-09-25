@@ -291,24 +291,11 @@
                     this._selectedDateChanging = true;
                     var text = "";
                     if (value) {
+                        if (this._clearTime) {
+                            value = this._getDateOnly(value);
+                        }
+
                         text = this._convertToLocal(value).localeFormat(this._format);
-                        //                        if (!this._clearTime) {
-                        //                            var tbvalue = this._textbox.get_Value();
-                        //                            if (tbvalue) {
-                        //                                tbvalue = this._parseTextValue(tbvalue);
-                        //                            }
-                        //                            if (tbvalue) {
-                        //                                if (value != tbvalue) {
-                        //                                    if ((value.getHours() === 0) || ((value.getHours() >= 1) && (tbvalue.getHours() > 1))) {
-                        //                                        value.setHours(tbvalue.getHours());
-                        //                                    }
-                        //                                    value.setMinutes(tbvalue.getMinutes());
-                        //                                    value.setSeconds(tbvalue.getSeconds());
-                        //                                    value.setMilliseconds(tbvalue.getMilliseconds());
-                        //                                    text = value.localeFormat(this._format);
-                        //                                }
-                        //                            }
-                        //                        }
                     }
                     if (text != this._textbox.get_Value()) {
                         this._textbox.set_Value(text);
@@ -1107,10 +1094,10 @@
 
 
             _convertToLocal: function (value) {
-                /// <summary>Converts a UTC date such as 1/1/2007 GMT into 1/1/2007  
-                /// without adjusting for time zone</summary>
+                /// <summary>Converts a UTC date such as 1/1/2007 GMT into 1/1/2007 without adjusting for time zone</summary>
+                /// <param name="value" type="Date">The date to convert</param>
 
-                return new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate());
+                return new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate(), value.getUTCHours(), value.getUTCMinutes(), value.getUTCSeconds(), value.getUTCMilliseconds());
             },
 
 
@@ -1138,7 +1125,6 @@
                         if (daysToBacktrack <= 0)
                             daysToBacktrack += 7;
 
-                        //var startDate = new Date(Date.UTC(visibleDate.getUTCFullYear(), visibleDate.getUTCMonth(), visibleDate.getUTCDate() - daysToBacktrack));
                         var startDate = new Date(visibleDate);
                         startDate.setUTCDate(startDate.getUTCDate() - daysToBacktrack);
                         var currentDate = new Date(startDate);
@@ -1170,7 +1156,6 @@
                                     Sys.UI.DomElement.addCssClass(dayCell.parentNode, this._getCssClass(dayCell.date, 'd'));
                                 }
 
-                                //currentDate = new Date(Date.UTC(currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate() + 1));
                                 currentDate = new Date(currentDate);
                                 currentDate.setUTCDate(currentDate.getUTCDate() + 1);
                             }
@@ -1554,10 +1539,10 @@
                 value = new Date(value);
                 value.setUTCDate(1);
 
-                return value;
-
-                //return new Date(Date.UTC(value.getUTCFullYear(), value.getUTCMonth(), 1));
+                return this._getDateOnly(value);
             },
+
+
             _getFirstDayOfWeek: function () {
                 /// <summary>
                 /// Gets the first day of the week
