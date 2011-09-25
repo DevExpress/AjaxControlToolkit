@@ -354,7 +354,7 @@
                 if (this._todaysDate != null) {
                     return this._todaysDate;
                 }
-                return this._convertToUTC(new Date());
+                return new Date();
             },
             set_todaysDate: function (value) {
                 if (this._todaysDate != value) {
@@ -1101,7 +1101,13 @@
                 /// <summary>Converts a UTC date such as 1/1/2007 GMT into 1/1/2007 without adjusting for time zone</summary>
                 /// <param name="value" type="Date">The date to convert</param>
 
-                return new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate(), value.getUTCHours(), value.getUTCMinutes(), value.getUTCSeconds(), value.getUTCMilliseconds());
+                var result = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate(), value.getUTCHours(), value.getUTCMinutes(), value.getUTCSeconds(), value.getUTCMilliseconds());
+
+                // Handle daylight savings time offset (The first hour of September 25 becomes the last hour of September 24 when DST starts)
+                if (result.getDate() != value.getUTCDate()) {
+                    result = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate(), value.getUTCHours() + 1, value.getUTCMinutes(), value.getUTCSeconds(), value.getUTCMilliseconds());
+                }
+                return result;
             },
 
 
@@ -1181,7 +1187,7 @@
                             for (var j = 0; j < row.cells.length; j++) {
                                 var cell = row.cells[j].firstChild;
                                 cell.date = new Date(Date.UTC(visibleDate.getUTCFullYear(), cell.month, 1));
-                                cell.title = cell.date.localeFormat("Y");
+                                cell.title = this._convertToLocal(cell.date).localeFormat("Y");
 
                                 if (!this._isInDateRange(cell.date, "M")) {
                                     $common.removeCssClasses(cell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
@@ -1247,12 +1253,12 @@
                 }
 
                 $common.removeCssClasses(this._today.parentNode, ["ajax__calendar_invalid"]);
-                this._today.appendChild(document.createTextNode(String.format(Sys.Extended.UI.Resources.Calendar_Today, this._convertToLocal(todaysDate).localeFormat(this.get_todaysDateFormat()))));
+                this._today.appendChild(document.createTextNode(String.format(Sys.Extended.UI.Resources.Calendar_Today, todaysDate.localeFormat(this.get_todaysDateFormat()))));
                 if (!this._isInDateRange(todaysDate, "d")) {
                     Sys.UI.DomElement.addCssClass(this._today.parentNode, "ajax__calendar_invalid");
                 }
 
-                this._today.date = todaysDate;
+                this._today.date = this._convertToUTC(todaysDate);
             },
 
             _ensureCalendar: function () {
@@ -1530,7 +1536,7 @@
             },
 
             _isTodaysDate: function (date) {
-                return this._getDateOnly(this.get_todaysDate()).valueOf() === this._getDateOnly(date).valueOf();
+                return this._convertToUTC(this.get_todaysDate()).valueOf() === date.valueOf();
             },
 
             _getCssClass: function (date, part) {
