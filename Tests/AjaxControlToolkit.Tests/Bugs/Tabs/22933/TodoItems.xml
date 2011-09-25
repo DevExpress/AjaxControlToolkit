@@ -1,0 +1,50 @@
+<TodoItems xmlns="http://tempuri.org/TodoItems.xsd">
+  <TodoItems>
+    <ItemID>0</ItemID>
+    <Title>Have product idea</Title>
+    <Description>Figure out opportunities</Description>
+    <Priority>0</Priority>
+  </TodoItems>
+  <TodoItems>
+    <ItemID>1</ItemID>
+    <Title>Talk to customers</Title>
+    <Description>Make sure they want it</Description>
+    <Priority>1</Priority>
+  </TodoItems>
+  <TodoItems>
+    <ItemID>2</ItemID>
+    <Title>Design product</Title>
+    <Description>Figure out the features and architecture</Description>
+    <Priority>2</Priority>
+  </TodoItems>
+  <TodoItems>
+    <ItemID>3</ItemID>
+    <Title>Build prototype</Title>
+    <Description>Work out the issues</Description>
+    <Priority>3</Priority>
+  </TodoItems>
+  <TodoItems>
+    <ItemID>4</ItemID>
+    <Title>Test features</Title>
+    <Description>Use TDD and automated testing</Description>
+    <Priority>4</Priority>
+  </TodoItems>
+  <TodoItems>
+    <ItemID>7</ItemID>
+    <Title>Build production version</Title>
+    <Description>Make it fast and robust</Description>
+    <Priority>5</Priority>
+  </TodoItems>
+  <TodoItems>
+    <ItemID>5</ItemID>
+    <Title>Fix bugs</Title>
+    <Description>Make sure it works</Description>
+    <Priority>6</Priority>
+  </TodoItems>
+  <TodoItems>
+    <ItemID>6</ItemID>
+    <Title>Ship</Title>
+    <Description>Ship it!</Description>
+    <Priority>7</Priority>
+  </TodoItems>
+</TodoItems>
