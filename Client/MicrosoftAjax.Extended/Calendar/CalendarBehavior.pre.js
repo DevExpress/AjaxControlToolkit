@@ -330,6 +330,10 @@
                 return this._visibleDate;
             },
             set_visibleDate: function (value) {
+                if (value && (String.isInstanceOfType(value)) && (value.length != 0)) {
+                    value = new Date(value);
+                }
+
                 if (this._visibleDate != value) {
                     this._switchMonth(value, !this._isOpen);
                     this.raisePropertyChanged("visibleDate");
@@ -1305,7 +1309,9 @@
                     return;
                 }
 
-                if (date && !this._isInDateRange(date, "M")) {
+
+                // Check if can switch month depending on the startDate and endDAte
+                if (date && !this._canSwitchMonth(date)) {
                     return;
                 }
 
@@ -1379,6 +1385,23 @@
                     this.invalidate();
                 }
             },
+
+            _canSwitchMonth: function (date) {
+                switch (this._mode) {
+                    case "days":
+                        if (!this._isInDateRange(date, "M")) {
+                            return false;
+                        }
+                        break;
+                    case "months":
+                        if (!this._isInDateRange(date, "y")) {
+                            return false;
+                        }
+                        break;
+                }
+                return true;
+            },
+
             _switchMode: function (mode, dontAnimate) {
                 /// <summary>
                 /// Switches the visible view from "days" to "months" to "years"
