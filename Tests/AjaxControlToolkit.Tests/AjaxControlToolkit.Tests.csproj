@@ -97,7 +97,6 @@
     <Content Include="Bugs\ModalPopup\6944\collapse.jpg" />
     <Content Include="Bugs\ModalPopup\6944\expand.jpg" />
     <Content Include="Bugs\ModalPopup\6944\StyleSheet.css" />
-    <Content Include="Bugs\Tabs\12648\Tabs\Tabs.pre.js" />
     <Content Include="Bugs\Tabs\12648\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\13037\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\16616\MemoryLeak1.aspx" />

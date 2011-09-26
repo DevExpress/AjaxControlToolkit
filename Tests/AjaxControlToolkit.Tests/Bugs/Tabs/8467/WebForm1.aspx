@@ -24,7 +24,7 @@
                 </ContentTemplate>
             </act:TabPanel>
 
-            <act:TabPanel runat="server" ID="Panel3" HeaderText="Email" >
+            <act:TabPanel runat="server" ID="Panel3" HeaderText="Email" ForeColor="Blue">
                 <ContentTemplate>
                     Email: <asp:TextBox ID="emailText" runat="server" />
                     <br /><br />
