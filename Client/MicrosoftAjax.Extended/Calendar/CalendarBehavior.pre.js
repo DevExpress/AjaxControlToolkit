@@ -1404,6 +1404,11 @@
                             return false;
                         }
                         break;
+                    case "years":
+                        if (!this._isInDateRange(date, "y")) {
+                            return false;
+                        }
+                        break;                        
                 }
                 return true;
             },
