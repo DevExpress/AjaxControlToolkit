@@ -291,11 +291,27 @@
                     this._selectedDateChanging = true;
                     var text = "";
                     if (value) {
-                        if (this._clearTime) {
-                            value = this._getDateOnly(value);
+                        text = this._convertToLocal(value).localeFormat(this._format);
+
+                        // If we don't clear the time then we transfer the time from the
+                        // textbox to the selected value
+                        if (!this._clearTime) {
+                            var tbvalue = this._textbox.get_Value();
+                            if (tbvalue) {
+                                tbvalue = this._parseTextValue(tbvalue);
+                            }
+                            if (tbvalue) {
+                                if (value != tbvalue.getDateOnly()) {
+                                    // Transfer time from textbox to selected value
+                                    value.setUTCHours(tbvalue.getUTCHours());
+                                    value.setUTCMinutes(tbvalue.getUTCMinutes());
+                                    value.setUTCMilliseconds(tbvalue.getUTCMilliseconds());
+
+                                    text = this._convertToLocal(value).localeFormat(this._format);
+                                }
+                            }
                         }
 
-                        text = this._convertToLocal(value).localeFormat(this._format);
                     }
                     if (text != this._textbox.get_Value()) {
                         this._textbox.set_Value(text);
@@ -1091,7 +1107,7 @@
                 /// <summary>Converts a local date such as 1/1/2007 into 1/1/2007 GMT 
                 /// without adjusting for time zone</summary>
                 if (value) {
-                    value = new Date(Date.UTC(value.getFullYear(), value.getMonth(), value.getDate()));
+                    value = new Date(Date.UTC(value.getFullYear(), value.getMonth(), value.getDate(), value.getHours(), value.getMinutes(), value.getSeconds(), value.getMilliseconds()));
                 }
                 return value;
             },
@@ -1408,7 +1424,7 @@
                         if (!this._isInDateRange(date, "y")) {
                             return false;
                         }
-                        break;                        
+                        break;
                 }
                 return true;
             },
