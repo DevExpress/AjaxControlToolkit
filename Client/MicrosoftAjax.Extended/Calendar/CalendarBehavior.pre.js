@@ -1557,7 +1557,7 @@
             },
 
             _isTodaysDate: function (date) {
-                return this._convertToUTC(this.get_todaysDate()).valueOf() === date.valueOf();
+                return this._getDateOnly(this._convertToUTC(this.get_todaysDate())).valueOf() === this._getDateOnly(date).valueOf();
             },
 
             _getCssClass: function (date, part) {
