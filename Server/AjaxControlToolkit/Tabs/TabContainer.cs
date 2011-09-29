@@ -107,6 +107,7 @@ namespace AjaxControlToolkit
                 {
                     if (!Tabs[i].Visible) counter--;
                 }
+                if (counter < 0) counter = 0;
                 return counter;
             }
         }
@@ -580,6 +581,7 @@ namespace AjaxControlToolkit
                 Debug.Assert(parseIndex != -1, "Expected new active tab index!");
                 if (parseIndex != -1 && Int32.TryParse(eventArgument.Substring(parseIndex + 1), out parseIndex))
                 {
+                    parseIndex = getServerActiveTabIndex(parseIndex);
                     if (parseIndex != ActiveTabIndex)
                     {
                         ActiveTabIndex = parseIndex;
