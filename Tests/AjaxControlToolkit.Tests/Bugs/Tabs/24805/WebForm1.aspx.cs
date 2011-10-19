@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace AjaxControlToolkit.Tests.Bugs.Tabs._24805
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Button1_click(object sender, EventArgs e)
+        { 
+            if (!ClientScript.IsStartupScriptRegistered("Message"))  
+            {
+                ScriptManager.RegisterStartupScript(Page, this.GetType(), "Message", "alert('Test message');", true);
+            }
+        }
+    }
+}

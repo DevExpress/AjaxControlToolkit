@@ -97,6 +97,30 @@
     <Content Include="Bugs\ModalPopup\6944\collapse.jpg" />
     <Content Include="Bugs\ModalPopup\6944\expand.jpg" />
     <Content Include="Bugs\ModalPopup\6944\StyleSheet.css" />
+    <Content Include="Bugs\Tabs\12648\Tabs\Tabs.pre.js" />
+    <Content Include="Bugs\Tabs\12648\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\13037\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\16616\MemoryLeak1.aspx" />
+    <Content Include="Bugs\Tabs\16616\MemoryLeak2.aspx" />
+    <Content Include="Bugs\Tabs\21959\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\22933\TodoItems.xml" />
+    <Content Include="Bugs\Tabs\22933\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\23169\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\23482\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\24789\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\24805\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\24818\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\25193\Default.aspx" />
+    <Content Include="Bugs\Tabs\25193\PageOne.aspx" />
+    <Content Include="Bugs\Tabs\25193\UserControls\Example1.ascx" />
+    <Content Include="Bugs\Tabs\25686\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\25762\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\25821\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\26457\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\26702\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\7564\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\8467\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\9493\WebForm1.aspx" />
     <Content Include="Bugs\TestGit.aspx" />
     <Content Include="Bugs\US152\ResourceIssue.aspx" />
     <Content Include="Bugs\XSS\WebForm1.aspx" />
@@ -376,6 +400,168 @@
     <Compile Include="Bugs\ModalPopup\6944\AnimateModalpopup.aspx.designer.cs">
       <DependentUpon>AnimateModalpopup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Bugs\Tabs\12648\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\12648\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\13037\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\13037\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\16616\MemoryLeak1.aspx.cs">
+      <DependentUpon>MemoryLeak1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\16616\MemoryLeak1.aspx.designer.cs">
+      <DependentUpon>MemoryLeak1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\16616\MemoryLeak2.aspx.cs">
+      <DependentUpon>MemoryLeak2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\16616\MemoryLeak2.aspx.designer.cs">
+      <DependentUpon>MemoryLeak2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\21959\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\21959\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\22933\TodoItems.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TodoItems.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\22933\TodoXmlDataObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\22933\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\22933\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\23169\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\23169\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\23482\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\23482\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\24789\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\24789\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\24805\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\24805\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\24818\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\24818\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25193\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25193\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25193\PageOne.aspx.cs">
+      <DependentUpon>PageOne.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25193\PageOne.aspx.designer.cs">
+      <DependentUpon>PageOne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25193\UserControls\Example1.ascx.cs">
+      <DependentUpon>Example1.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25193\UserControls\Example1.ascx.designer.cs">
+      <DependentUpon>Example1.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25686\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25686\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25762\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25762\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25821\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25821\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\26457\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\26457\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\26702\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\26702\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\7564\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\7564\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\8467\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\8467\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\9493\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\9493\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Bugs\TestGit.aspx.cs">
       <DependentUpon>TestGit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -539,6 +725,22 @@
     <Content Include="Bugs\AsyncFileUpload\26751\Site1.Master" />
     <Content Include="Bugs\AsyncFileUpload\Task153\Site1.Master" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Bugs\Tabs\22933\TodoItems.xsc">
+      <DependentUpon>TodoItems.xsd</DependentUpon>
+    </None>
+    <None Include="Bugs\Tabs\22933\TodoItems.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TodoItems.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Bugs\Tabs\22933\TodoItems.xss">
+      <DependentUpon>TodoItems.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Bugs\Tabs\26126\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
@@ -547,7 +749,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1341</DevelopmentServerPort>
+          <DevelopmentServerPort>2313</DevelopmentServerPort>
           <DevelopmentServerVPath>/MyApp</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

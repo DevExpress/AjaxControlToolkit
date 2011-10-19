@@ -40,7 +40,7 @@ namespace AjaxControlToolkit
         <div style='text-align:center;color:{0}; background-color:{1};border-left:thin white outset; border-right:thin white outset;height:1em;'>{2}</div>
         <div style='color:{3}; background-color:{4};border-left:thin white outset; border-right:thin white outset;height:1em;text-align:left;'>{5}</div>
                 
-  <div style='clear:both;text-align:left;border-left:thin white outset; border-bottom:thin white outset; border-right:thin white outset;background-color:{10};height:100%;' {9}='0'>{6}</div>
+  <div style='clear:both;text-align:left;border-left:thin white outset; border-bottom:thin white outset; border-right:thin white outset;background-color:{10};height:100%;padding:7px;' {9}='0'>{6}</div>
       
  </div>";
 
