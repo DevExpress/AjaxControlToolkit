@@ -118,6 +118,10 @@
     <Compile Include="AsyncFileUpload\PersistedStoreManager.cs" />
     <Compile Include="AutoComplete\AutoCompleteDesigner.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtender.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupDesigner.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupExtender.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupPosition.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupStyle.cs" />
     <Compile Include="Calendar\CalendarDefaultView.cs" />
     <Compile Include="Calendar\CalendarDesigner.cs" />
     <Compile Include="Calendar\CalendarExtender.cs" />
@@ -400,6 +404,8 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BalloonPopup\BalloonPopup.ico" />
+    <Content Include="BalloonPopup\BalloonPopup_resource.css" />
     <Content Include="Twitter\Twitter.ico" />
     <Content Include="Twitter\Twitter24.png" />
     <Content Include="Twitter\Twitter32.png" />
