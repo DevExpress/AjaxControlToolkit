@@ -12,13 +12,13 @@
     <div>
         <act:tabcontainer runat="server" id="Tabs" height="138px" autopostback="true"
             width="100%">
-            <act:TabPanel runat="server" ID="Panel1" Visible="false" HeaderText="Signature and Bio_1">
+            <act:TabPanel runat="server" ID="Panel1" HeaderText="Signature and Bio_1">
                 <ContentTemplate>
                     Signature_1:
                 </ContentTemplate>
             </act:TabPanel>
 
-            <act:TabPanel runat="server" ID="TabPanel1" HeaderText="Signature and Bio_2">
+            <act:TabPanel runat="server" ID="Panel2" HeaderText="Signature and Bio_2">
                 <ContentTemplate>
                     Signature_2:
                 </ContentTemplate>

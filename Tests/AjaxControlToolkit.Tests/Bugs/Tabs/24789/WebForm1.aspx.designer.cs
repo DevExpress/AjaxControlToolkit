@@ -49,13 +49,13 @@ namespace AjaxControlToolkit.Tests.Bugs.Tabs._24789 {
         protected global::AjaxControlToolkit.TabPanel Panel1;
         
         /// <summary>
-        /// TabPanel1 control.
+        /// Panel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel1;
+        protected global::AjaxControlToolkit.TabPanel Panel2;
         
         /// <summary>
         /// Panel3 control.
