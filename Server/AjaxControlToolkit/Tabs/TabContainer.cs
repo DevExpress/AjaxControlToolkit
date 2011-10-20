@@ -561,6 +561,7 @@ namespace AjaxControlToolkit
                 base.FillStyleAttributes(attributes, urlResolver);
 
                 attributes.Remove(HtmlTextWriterStyle.Height);
+                // commented below line to fix the issue #25821
                 //attributes.Remove(HtmlTextWriterStyle.BackgroundColor);
                 attributes.Remove(HtmlTextWriterStyle.BackgroundImage);
             }
