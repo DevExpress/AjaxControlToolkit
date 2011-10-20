@@ -514,7 +514,7 @@ namespace AjaxControlToolkit
         {
             int tabIndex = ActiveTabIndex;
             bool result = base.LoadPostData(postDataKey, postCollection);
-            if (tabIndex != ActiveTabIndex)
+            if (ActiveTabIndex == 0 || tabIndex != ActiveTabIndex)
             {
                 return true;
             }

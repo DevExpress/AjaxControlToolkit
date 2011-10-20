@@ -116,6 +116,7 @@
     <Content Include="Bugs\Tabs\25762\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\25821\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\26457\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\26701\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\26702\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\7564\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\8467\WebForm1.aspx" />
@@ -531,6 +532,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Bugs\Tabs\26457\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\26701\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\26701\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Bugs\Tabs\26702\WebForm1.aspx.cs">
