@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 namespace AjaxControlToolkit
 {
-    [ParseChildren(true)]
+    [ParseChildren(true)]    
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(DynamicPopulateExtender))]
     [RequiredScript(typeof(TabContainer))]
@@ -39,7 +39,7 @@ namespace AjaxControlToolkit
         #region [ Constructors ]
 
         public TabPanel()
-            : base(false)
+            : base(false, HtmlTextWriterTag.Div)
         {
         }
 
@@ -217,7 +217,7 @@ namespace AjaxControlToolkit
             {
                 _headerControl.Visible = false;
             }
-            
+            base.AddAttributesToRender(writer);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID);
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_panel");
             if (!Active || !Enabled)
