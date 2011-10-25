@@ -59,7 +59,7 @@ namespace AjaxControlToolkit
         }
 
         [ExtenderControlProperty]
-        [DefaultValue(BalloonPopupPosition.TopRight)]
+        [DefaultValue(BalloonPopupPosition.Auto)]
         [ClientPropertyName("balloonPopupPosition")]
         public BalloonPopupPosition Position
         {
@@ -146,6 +146,42 @@ namespace AjaxControlToolkit
         {
             get { return GetAnimation(ref _onHide, "OnHide"); }
             set { SetAnimation(ref _onHide, "OnHide", value); }
+        }
+
+        /// <summary>
+        /// Display popup on OnMouseover or not 
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("displayOnMouseOver")]
+        [DefaultValue(false)]
+        public bool DisplayOnMouseOver
+        {
+            get { return GetPropertyValue("DisplayOnMouseOver", false); }
+            set { SetPropertyValue("DisplayOnMouseOver", value); }
+        }
+
+        /// <summary>
+        /// Display popup on OnFocus or not 
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("displayOnFocus")]
+        [DefaultValue(false)]
+        public bool DisplayOnFocus
+        {
+            get { return GetPropertyValue("DisplayOnFocus", false); }
+            set { SetPropertyValue("DisplayOnFocus", value); }
+        }
+
+        /// <summary>
+        /// Display popup on OnClick or not 
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("displayOnClick")]
+        [DefaultValue(true)]
+        public bool DisplayOnClick
+        {
+            get { return GetPropertyValue("DisplayOnClick", true); }
+            set { SetPropertyValue("DisplayOnClick", value); }
         }
 
     }

@@ -27,13 +27,16 @@
 
             // Properties
             this._balloonPopupControlID = null;
-            this._position = Sys.Extended.UI.BalloonPopupPosition.TopRight;
+            this._position = Sys.Extended.UI.BalloonPopupPosition.Auto;
             this._balloonStyle = Sys.Extended.UI.BalloonPopupStyle.Rectangle;
             this._offsetX = 0;
             this._offsetY = 0;
             this._extenderControlID = null;
             this._width = 200;
             this._height = 125;
+            this._displayOnMouseOver = false;
+            this._displayOnFocus = false;
+            this._displayOnClick = true;
 
             // Variables
             this._popupElement = null;
@@ -41,6 +44,7 @@
             this._popupVisible = false;
             this._focusHandler = null;
             this._mouseOverHandler = null;
+            this._clickHandler = null;
             this._popupClickHandler = null;
             this._bodyClickHandler = null;
             this._onShowJson = null;
@@ -68,16 +72,31 @@
                 }
 
                 // Create delegates
-                this._focusHandler = Function.createDelegate(this, this._onFocus);
-                this._mouseOverHandler = Function.createDelegate(this, this._onMouseOver);
+                if (this._displayOnFocus) {
+                    this._focusHandler = Function.createDelegate(this, this._onFocus);
+                }
+                if (this._displayOnMouseOver) {
+                    this._mouseOverHandler = Function.createDelegate(this, this._onMouseOver);
+                }
+                if (this._displayOnClick) {
+                    this._clickHandler = Function.createDelegate(this, this._onFocus);
+                }
+
                 this._popupClickHandler = Function.createDelegate(this, this._onPopupClick);
                 this._bodyClickHandler = Function.createDelegate(this, this._onBodyClick);
 
                 // Attach events
-                $addHandler(e, 'focus', this._focusHandler);
-                $addHandler(e, 'mouseover', this._mouseOverHandler);
-                $addHandler(e, 'click', this._focusHandler);  // So that a dismissed popup can be more easily re-popped
-                $addHandler(document.body, 'click', this._bodyClickHandler);
+                if (this._displayOnFocus) {
+                    $addHandler(e, 'focus', this._focusHandler);
+                }
+                if (this._displayOnMouseOver) {
+                    $addHandler(e, 'mouseover', this._mouseOverHandler);
+                }
+                if (this._displayOnClick) {
+                    $addHandler(e, 'click', this._clickHandler);
+                }
+                //$addHandler(e, 'click', this._focusHandler);  // So that a dismissed popup can be more easily re-popped
+                $addHandler(document, 'click', this._bodyClickHandler);
                 $addHandler(this._popupElement, 'click', this._popupClickHandler);
             },
 
@@ -97,12 +116,19 @@
                 }
                 if (this._focusHandler) {
                     $removeHandler(e, 'focus', this._focusHandler);
-                    $removeHandler(e, 'mouseover', this._mouseOverHandler);
-                    $removeHandler(e, 'click', this._focusHandler);
                     this._focusHandler = null;
                 }
+                if (this._mouseOverHandler) {
+                    $removeHandler(e, 'mouseover', this._mouseOverHandler);
+                    this._mouseOverHandler = null;
+                }
+                if (this._clickHandler) {
+                    $removeHandler(e, 'click', this._clickHandler);
+                    this._clickHandler = null;
+                }
+
                 if (this._bodyClickHandler) {
-                    $removeHandler(document.body, 'click', this._bodyClickHandler);
+                    $removeHandler(document, 'click', this._bodyClickHandler);
                     this._bodyClickHandler = null;
                 }
                 if (this._popupClickHandler) {
@@ -183,14 +209,22 @@
                         id: 'type2',
                         style: {
                             height: this._height + 'px',
-                            width: this._width + 'px',
-                            overflow: 'auto',
-                            disable: true
+                            width: this._width + 'px'                            
                         }
                     },
                     cssClasses: ['roundedBox']
                 }, this._popupElement);
-                roundedBox.appendChild($get(this._balloonPopupControlID));
+                var contentContainer = $common.createElementFromTemplate({
+                    nodeName: 'div',
+                    properties: {
+                        style: {
+                            height: '100%',
+                            width: '100%',
+                            overflow: 'auto'
+                        }
+                    }
+                }, roundedBox);
+                contentContainer.appendChild($get(this._balloonPopupControlID));
                 var topLeftCorner = $common.createElementFromTemplate({
                     nodeName: 'div', cssClasses: ['corner topLeft']
                 }, roundedBox);
@@ -325,8 +359,8 @@
                 /// </returns>
 
                 // Get the left offset for the balloon popup
-                var xoffSet;                
-                if (Sys.Extended.UI.BalloonPopupPosition.BottomLeft == this._position || Sys.Extended.UI.BalloonPopupPosition.TopLeft == this._position) {                    
+                var xoffSet;
+                if (Sys.Extended.UI.BalloonPopupPosition.BottomLeft == this._position || Sys.Extended.UI.BalloonPopupPosition.TopLeft == this._position) {
                     xoffSet = (-1 * (this._width + 30)) + this._offsetX;
                 } else if (Sys.Extended.UI.BalloonPopupPosition.BottomRight == this._position || Sys.Extended.UI.BalloonPopupPosition.TopRight == this._position) {
                     xoffSet = this.get_element().offsetWidth + this._offsetX;
@@ -524,6 +558,48 @@
                 }
             },
 
+            get_displayOnMouseOver: function () {
+                /// <value type="bool">
+                /// get whether to display balloon popup onmouseover or not
+                /// </value>
+                return this._displayOnMouseOver;
+            },
+
+            set_displayOnMouseOver: function (value) {
+                if (this._displayOnMouseOver != value) {
+                    this._displayOnMouseOver = value;
+                    this.raisePropertyChanged('DisplayOnMouseOver');
+                }
+            },
+
+            get_displayOnFocus: function () {
+                /// <value type="bool">
+                /// get whether to display balloon popup onfocus or not
+                /// </value>
+                return this._displayOnFocus;
+            },
+
+            set_displayOnFocus: function (value) {
+                if (this._displayOnFocus != value) {
+                    this._displayOnFocus = value;
+                    this.raisePropertyChanged('DisplayOnFocus');
+                }
+            },
+
+            get_displayOnClick: function () {
+                /// <value type="bool">
+                /// get whether to display balloon popup onClick or not
+                /// </value>
+                return this._displayOnClick;
+            },
+
+            set_displayOnClick: function (value) {
+                if (this.displayOnClick != value) {
+                    this.displayOnClick = value;
+                    this.raisePropertyChanged('DisplayOnClick');
+                }
+            },
+
             get_PopupVisible: function () {
                 /// <value type="Boolean">
                 /// Whether the popup control is currently visible
@@ -712,10 +788,11 @@
             throw Error.invalidOperation();
         }
         Sys.Extended.UI.BalloonPopupPosition.prototype = {
-            TopRight: 0,
-            TopLeft: 1,
-            BottomRight: 2,
-            BottomLeft: 3
+            Auto: 0,
+            TopRight: 1,
+            TopLeft: 2,
+            BottomRight: 3,
+            BottomLeft: 4
         }
 
         Sys.Extended.UI.BalloonPopupPosition.registerEnum("Sys.Extended.UI.BalloonPopupPosition", false);
