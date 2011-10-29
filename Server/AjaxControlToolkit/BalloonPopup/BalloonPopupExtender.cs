@@ -6,15 +6,14 @@ using System.Drawing;
 using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 [assembly: System.Web.UI.WebResource("BalloonPopup.BalloonPopupExtenderBehavior.js", "text/javascript")]
 [assembly: System.Web.UI.WebResource("BalloonPopup.BalloonPopupExtenderBehavior.debug.js", "text/javascript")]
-[assembly: WebResource("BalloonPopup.BalloonPopup_resource.css", "text/css", PerformSubstitution = true)]
-[assembly: WebResource("BalloonPopup.act_down_left.png", "img/png")]
-[assembly: WebResource("BalloonPopup.act_down_right.png", "img/png")]
-[assembly: WebResource("BalloonPopup.act_up_left.png", "img/png")]
-[assembly: WebResource("BalloonPopup.act_up_right.png", "img/png")]
-[assembly: WebResource("BalloonPopup.corners-type2.gif", "img/gif")]
+[assembly: WebResource("BalloonPopup.Rectangle.BalloonPopup_resource.css", "text/css", PerformSubstitution = true)]
+[assembly: WebResource("BalloonPopup.Rectangle.sprite.png", "img/png")]
+[assembly: WebResource("BalloonPopup.Cloud.BalloonPopup_resource.css", "text/css", PerformSubstitution = true)]
+[assembly: WebResource("BalloonPopup.Cloud.sprite.png", "img/png")]
 
 namespace AjaxControlToolkit
 {
@@ -25,7 +24,8 @@ namespace AjaxControlToolkit
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(Control))]
-    [ClientCssResource("BalloonPopup.BalloonPopup_resource.css")]
+    [ClientCssResource("BalloonPopup.Rectangle.BalloonPopup_resource.css")]
+    [ClientCssResource("BalloonPopup.Cloud.BalloonPopup_resource.css")]    
     [Designer("AjaxControlToolkit.BalloonPopupDesigner, AjaxControlToolkit")]
     [ToolboxItem(Utility.ToolBoxItemTypeName)]
     [ToolboxBitmap(typeof(BalloonPopupExtender), "BalloonPopup.BalloonPopup.ico")]
@@ -97,29 +97,7 @@ namespace AjaxControlToolkit
             get { return GetPropertyValue("OffsetY", 0); }
             set { SetPropertyValue("OffsetY", value); }
         }
-
-        /// <summary>
-        /// Optional width for the balloon popup window
-        /// </summary>
-        [ExtenderControlProperty]
-        [DefaultValue(300)]
-        public int Width
-        {
-            get { return GetPropertyValue("Width", 300); }
-            set { SetPropertyValue("Width", value); }
-        }
-
-        /// <summary>
-        /// Optional height for the balloon popup window
-        /// </summary>
-        [ExtenderControlProperty]
-        [DefaultValue(200)]
-        public int Height
-        {
-            get { return GetPropertyValue("Height", 200); }
-            set { SetPropertyValue("Height", value); }
-        }
-
+        
         /// <summary>
         /// OnShow animation
         /// </summary>
@@ -184,5 +162,63 @@ namespace AjaxControlToolkit
             set { SetPropertyValue("DisplayOnClick", value); }
         }
 
+        /// <summary>
+        /// Size of Popup whether Small, Medium or Large. 
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("balloonSize")]
+        [DefaultValue(BalloonPopupSize.Small)]
+        public BalloonPopupSize BalloonSize
+        {
+            get { return GetPropertyValue("BalloonSize", BalloonPopupSize.Small); }
+            set { SetPropertyValue("BalloonSize", value); }
+        }
+
+        /// <summary>
+        /// Display popup on OnClick or not 
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("useShadow")]
+        [DefaultValue(true)]
+        public bool UseShadow
+        {
+            get { return GetPropertyValue("UseShadow", true); }
+            set { SetPropertyValue("UseShadow", value); }
+        }
+
+        //[ExtenderControlProperty]
+        //[ClientPropertyName("customImageUrl")]
+        //[DefaultValue("")]
+        //public string CustomImageUrl
+        //{
+        //    get { return GetPropertyValue("CustomImageUrl", ""); }
+        //    set { SetPropertyValue("CustomImageUrl", value); }
+        //}
+
+        [DefaultValue("")]
+        public string CustomCssUrl
+        {
+            get;
+            set;
+        }        
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            if (BalloonStyle == BalloonPopupStyle.Custom)
+            {
+                HtmlLink css = new HtmlLink();
+                if (CustomCssUrl == "")
+                    throw new ArgumentException("Must pass CustomCssUrl value.");
+                //if (CustomImageUrl == "")
+                //    throw new ArgumentException("Must pass CustomImageUrl value.");
+                css.Href = ResolveClientUrl(CustomCssUrl);
+                css.Attributes["rel"] = "stylesheet";
+                css.Attributes["type"] = "text/css";
+                css.Attributes["media"] = "all";
+                Page.Header.Controls.Add(css);
+            }
+        }
     }
 }

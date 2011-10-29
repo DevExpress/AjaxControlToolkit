@@ -18,7 +18,7 @@
                 some text some text some text                            
         </asp:Panel>
         <ajaxToolkit:BalloonPopupExtender ID="PopupControlExtender2" runat="server" TargetControlID="MessageTextBox"
-            BalloonPopupControlID="Panel2" Position="BottomLeft" BalloonStyle="Rectangle" Width="200" Height="75" />
+            BalloonPopupControlID="Panel2" Position="BottomRight" BalloonStyle="Cloud" BalloonSize="Medium" UseShadow="false" />
 <br />
 <br />
         <asp:HyperLink ID="link1" runat="server">Show Balloon popup</asp:HyperLink>
@@ -31,8 +31,21 @@
                 These are some contents to display for Balloon popup                                           
         </asp:Panel>
         <ajaxToolkit:BalloonPopupExtender ID="BalloonPopupExtender1" runat="server" TargetControlID="link1"
-            BalloonPopupControlID="Panel1" Position="BottomLeft" BalloonStyle="Rectangle" Width="200" Height="75" />
+            BalloonPopupControlID="Panel1" Position="TopRight" BalloonStyle="Rectangle" BalloonSize="Small" UseShadow="true" />
+    <br />
+    <br />
 
+    <asp:TextBox ID="txtCustom" runat="server" Width="200" autocomplete="off" />        
+        <br />
+        <br />
+        <asp:Panel ID="Panel3" runat="server">            
+                Contents for custom style
+                Contents for custom style
+                Contents for custom style
+                Contents for custom style
+        </asp:Panel>
+        <ajaxToolkit:BalloonPopupExtender ID="BalloonPopupExtender2" runat="server" TargetControlID="txtCustom"
+            BalloonPopupControlID="Panel3" Position="BottomRight" BalloonStyle="Custom" CustomCssUrl="http://browsers.superexpert.com/MohinderJ/CustomTheme/BalloonPopup_resource.css" BalloonSize="Medium" UseShadow="true" />
     </div>
     <div class="demobottom">
     </div>

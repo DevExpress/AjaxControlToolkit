@@ -7,9 +7,10 @@ namespace AjaxControlToolkit
 {
     public enum BalloonPopupPosition
     {
-        TopRight = 0,
-        TopLeft = 1,
-        BottomRight = 2,
-        BottomLeft = 3
+        Auto = 0,
+        TopRight = 1,
+        TopLeft = 2,
+        BottomRight = 3,
+        BottomLeft = 4
     }
 }

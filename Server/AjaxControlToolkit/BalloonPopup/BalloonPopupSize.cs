@@ -5,10 +5,10 @@ using System.Text;
 
 namespace AjaxControlToolkit
 {
-    public enum BalloonPopupStyle
+    public enum BalloonPopupSize
     {
-        Rectangle = 0,
-        Cloud = 1,
-        Custom = 2
+        Small = 0,
+        Medium = 1,
+        Large = 2
     }
 }

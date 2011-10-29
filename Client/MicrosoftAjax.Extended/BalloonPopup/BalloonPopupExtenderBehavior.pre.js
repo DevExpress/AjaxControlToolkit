@@ -32,14 +32,19 @@
             this._offsetX = 0;
             this._offsetY = 0;
             this._extenderControlID = null;
-            this._width = 200;
-            this._height = 125;
             this._displayOnMouseOver = false;
             this._displayOnFocus = false;
             this._displayOnClick = true;
+            this._balloonSize = 'small';
+            this._shadow = true;
+//            this._customImageUrl = "";
 
             // Variables
             this._popupElement = null;
+            this._styleElement = null;
+            this._sizeElement = null;
+            this._shadowElement = null;
+            this._directionElement = null;
             this._popupBehavior = null;
             this._popupVisible = false;
             this._focusHandler = null;
@@ -49,6 +54,8 @@
             this._bodyClickHandler = null;
             this._onShowJson = null;
             this._onHideJson = null;
+            this._popupWidth = 0;
+            this._popupHeight = 0;
         }
         Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
             initialize: function () {
@@ -59,6 +66,7 @@
 
                 // Identify popup element from control id
                 var e = this.get_element();
+
                 this.createPopupElement();
                 // Hook up a PopupBehavior
                 this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { 'id': this.get_id() + 'BalloonPopupBehavior', 'parentElement': e }, null, null, this._popupElement);
@@ -141,113 +149,166 @@
 
             createPopupElement: function () {
                 var e = this.get_element();
-                // create main container for balloon popup
-                var containerTemplate =
-                 this._popupElement = $common.createElementFromTemplate({
-                     nodeName: 'div',
-                     properties: {
-                         id: this.get_id() + '_balloonPopup'
-                     }
-                 }, e.parentNode);
 
-                // create theme/style as per user's setting
-                switch (this._balloonStyle) {
-                    case Sys.Extended.UI.BalloonPopupStyle.Rectangle:
-                        this._popupElement.setAttribute("class", "roundRectangle");
-                        if (Sys.Extended.UI.BalloonPopupPosition.TopLeft == this._position || Sys.Extended.UI.BalloonPopupPosition.TopRight == this._position) {
-                            this.createRectangleStyleBalloon();
-                            this.addArrowPointer();
-                        }
-                        else {
-                            this.addArrowPointer();
-                            var clearElement = $common.createElementFromTemplate({
-                                nodeName: 'div', cssClasses: ['clear']
-                            }, this._popupElement);
-                            this.createRectangleStyleBalloon();
-                        }
-                        break;
-                    case Sys.Extended.UI.BalloonPopupStyle.Cloud:
-                        this._popupElement.setAttribute("class", "cloudBox");
-                        break;
-                    default:
-                        this._popupElement.setAttribute("class", "roundRectangle");
-                        this.createRectangleStyleBalloon();
-                        break;
-                }
-
-            },
-
-            addArrowPointer: function () {
-                var arrowElement = $common.createElementFromTemplate({
-                    nodeName: 'div'
-                }, this._popupElement);
-
-                switch (this._position) {
-                    case Sys.Extended.UI.BalloonPopupPosition.BottomLeft:
-                        arrowElement.setAttribute("class", "down-left-arrow");
-                        break;
-                    case Sys.Extended.UI.BalloonPopupPosition.BottomRight:
-                        arrowElement.setAttribute("class", "down-right-arrow");
-                        break;
-                    case Sys.Extended.UI.BalloonPopupPosition.TopLeft:
-                        arrowElement.setAttribute("class", "up-left-arrow");
-                        break;
-                    case Sys.Extended.UI.BalloonPopupPosition.TopRight:
-                        arrowElement.setAttribute("class", "up-right-arrow");
-                        break;
-                    default:
-                        arrowElement.setAttribute("class", "up-right-arrow");
-                        break;
-                }
-
-            },
-
-            createRectangleStyleBalloon: function () {
-                var roundedBox = $common.createElementFromTemplate({
+                // create main container for balloon popup                
+                this._popupElement = $common.createElementFromTemplate({
                     nodeName: 'div',
                     properties: {
-                        id: 'type2',
+                        id: this.get_id() + '_balloonPopup',
                         style: {
-                            height: this._height + 'px',
-                            width: this._width + 'px'                            
+                            display: 'block',
+                            position: 'absolute'
                         }
                     },
-                    cssClasses: ['roundedBox']
-                }, this._popupElement);
-                var contentContainer = $common.createElementFromTemplate({
-                    nodeName: 'div',
-                    properties: {
-                        style: {
-                            height: '100%',
-                            width: '100%',
-                            overflow: 'auto'
-                        }
+                    cssClasses: ['ajax__baloon_popup']
+                }, e.parentNode);
+
+                // create element for theme/style
+                this._styleElement = $common.createElementFromTemplate({
+                    nodeName: 'span',
+                    Properties: {
+                        id: 'ajax__style_wrapper'
                     }
-                }, roundedBox);
-                contentContainer.appendChild($get(this._balloonPopupControlID));
-                var topLeftCorner = $common.createElementFromTemplate({
-                    nodeName: 'div', cssClasses: ['corner topLeft']
-                }, roundedBox);
-                var topRightCorner = $common.createElementFromTemplate({
-                    nodeName: 'div', cssClasses: ['corner topRight']
-                }, roundedBox);
-                var bottomLeftCorner = $common.createElementFromTemplate({
-                    nodeName: 'div', cssClasses: ['corner bottomLeft']
-                }, roundedBox);
-                var bottomRightCorner = $common.createElementFromTemplate({
-                    nodeName: 'div', cssClasses: ['corner bottomRight']
-                }, roundedBox);
+                }, this._popupElement);
 
+                // create element for balloonpopup size
+                this._sizeElement = $common.createElementFromTemplate({
+                    nodeName: 'span',
+                    Properties: {
+                        id: 'ajax__size_wrapper'
+                    }
+                }, this._styleElement);
+
+                // create element for shadow
+                this._shadowElement = $common.createElementFromTemplate({
+                    nodeName: 'div',
+                    Properties: {
+                        id: 'ajax__shadow_wrapper'
+                    }
+                }, this._sizeElement);
+
+                // create element for direction of arrow
+                this._directionElement = $common.createElementFromTemplate({
+                    nodeName: 'div',
+                    Properties: {
+                        id: 'ajax__direction_wrapper'
+                    }
+                }, this._shadowElement);
+
+                // create element to hold contents
+                var contentElement = $common.createElementFromTemplate({
+                    nodeName: 'div',
+                    Properties: {
+                        id: 'ajax__content'
+                    }
+                }, this._directionElement);
+
+                contentElement.appendChild($get(this._balloonPopupControlID));
+
+                // set theme/style as per user's setting
+                this.setStyle();
+                // set size of balloon popup
+                this.setSize();
+
+                if (this.get_balloonPopupPosition() != Sys.Extended.UI.BalloonPopupPosition.Auto) {
+                    // set position of arrow and drop shadow
+                    this.setPosition();
+                }
+                this._popupWidth = this._directionElement.offsetWidth;
+                this._popupHeight = this._directionElement.offsetHeight;
             },
 
-            createCloudStyleBalloon: function () {
-
+            setStyle: function () {                
+                switch (this.get_balloonPopupStyle()) {
+                    case Sys.Extended.UI.BalloonPopupStyle.Rectangle:
+                        this._styleElement.className = "rect";
+                        this._directionElement.className = "rect";
+                        this._shadowElement.className = "rect";
+                        break;
+                    case Sys.Extended.UI.BalloonPopupStyle.Cloud:
+                        this._styleElement.className = "cloud";
+                        this._directionElement.className = "cloud";
+                        this._shadowElement.className = "cloud";
+                        break;
+                    case Sys.Extended.UI.BalloonPopupStyle.Custom:
+                        this._styleElement.className = "custom";
+                        this._directionElement.className = "custom";
+                        this._shadowElement.className = "custom";
+//                        this._styleElement.setAttribute("background-image", this.get_customImageUrl());
+//                        this._directionElement.setAttribute("background-image", this.get_customImageUrl());
+//                        this._shadowElement.setAttribute("background-image", this.get_customImageUrl());
+                        break;
+                    default:
+                        this._styleElement.className = "rect";
+                        this._directionElement.className = "rect";
+                        this._shadowElement.className = "rect";
+                        break;
+                }
             },
+
+            setSize: function () {
+                switch (this.get_balloonSize()) {
+                    case Sys.Extended.UI.BalloonPopupSize.Small:
+                        this._sizeElement.className += " small";
+                        this._directionElement.className += " small";
+                        this._shadowElement.className += " small";
+                        break;
+                    case Sys.Extended.UI.BalloonPopupSize.Medium:
+                        this._sizeElement.className += " medium";
+                        this._directionElement.className += " medium";
+                        this._shadowElement.className += " medium";
+                        break;
+                    case Sys.Extended.UI.BalloonPopupSize.Large:
+                        this._sizeElement.className += " large";
+                        this._directionElement.className += " large";
+                        this._shadowElement.className += " large";
+                        break;
+                    default:
+                        this._sizeElement.className += " small";
+                        this._directionElement.className += " small";
+                        this._shadowElement.className += " small";
+                        break;
+                }
+            },
+
+            setPosition: function () {
+                switch (this.get_balloonPopupPosition()) {
+                    case Sys.Extended.UI.BalloonPopupPosition.TopLeft:
+                        this._directionElement.className += " top_left";
+                        this._shadowElement.className += " top_left_shadow";
+                        break;
+                    case Sys.Extended.UI.BalloonPopupPosition.TopRight:
+                        this._directionElement.className += " top_right";
+                        this._shadowElement.className += " top_right_shadow";
+                        break;
+                    case Sys.Extended.UI.BalloonPopupPosition.BottomLeft:
+                        this._directionElement.className += " bottom_left";
+                        this._shadowElement.className += " bottom_left_shadow";
+                        break;
+                    case Sys.Extended.UI.BalloonPopupPosition.BottomRight:
+                        this._directionElement.className += " bottom_right";
+                        this._shadowElement.className += " bottom_right_shadow";
+                        break;
+                    default:
+                        this._directionElement.className += " top_right";
+                        this._shadowElement.className += " top_right_shadow";
+                        break;
+                }
+            },            
 
             showPopup: function () {
                 /// <summary>
                 /// Display the ballon popup
-                /// </summary>
+                /// </summary>                
+                if (Sys.Extended.UI.BalloonPopupPosition.Auto == this._position) {
+                    this._setAutoPosition();                    
+                    this.setPosition();
+                }
+
+                // don't display shadow if user set useShadow property to false
+                if (!this._shadow) {
+                    this._shadowElement.className = "";
+                }
 
                 var old = Sys.Extended.UI.BalloonPopupControlBehavior.__VisiblePopup;
                 if (old && old._popupBehavior) {
@@ -359,14 +420,15 @@
                 /// </returns>
 
                 // Get the left offset for the balloon popup
-                var xoffSet;
+                var xoffSet = 0;
                 if (Sys.Extended.UI.BalloonPopupPosition.BottomLeft == this._position || Sys.Extended.UI.BalloonPopupPosition.TopLeft == this._position) {
-                    xoffSet = (-1 * (this._width + 30)) + this._offsetX;
+                    xoffSet = (-1 * (this._popupWidth)) + this._offsetX;
                 } else if (Sys.Extended.UI.BalloonPopupPosition.BottomRight == this._position || Sys.Extended.UI.BalloonPopupPosition.TopRight == this._position) {
                     xoffSet = this.get_element().offsetWidth + this._offsetX;
                 } else {
                     xoffSet = this._offsetX;
                 }
+
                 return xoffSet;
             },
 
@@ -378,16 +440,62 @@
                 /// Top offset for the balloon popup
                 /// </returns>
 
-                // Get the top offset for the balloon popup
-                var yoffSet;
+                // Get the top offset for the balloon popup                
+                var yoffSet = 0;
                 if (Sys.Extended.UI.BalloonPopupPosition.TopLeft == this._position || Sys.Extended.UI.BalloonPopupPosition.TopRight == this._position) {
-                    yoffSet = (this.get_element().offsetHeight - (this._height + 80)) + this._offsetY;
+                    yoffSet = (-1 * (this._popupHeight)) + this._offsetY;
+
                 } else if (Sys.Extended.UI.BalloonPopupPosition.BottomLeft == this._position || Sys.Extended.UI.BalloonPopupPosition.BottomRight == this._position) {
-                    yoffSet = this.get_element().offsetHeight + this._offsetY;
+                    yoffSet = (this.get_element().offsetHeight) + this._offsetY;
                 } else {
                     yoffSet = this._offsetY;
                 }
+
                 return yoffSet;
+            },
+
+            _setAutoPosition: function () {
+                // get elements absolute left and top position
+                var _elementTopPosition = 0;
+                var _elementLeftPosition = 0;
+                var e = this.get_element();
+                if (e.offsetParent) {
+                    do {
+                        _elementLeftPosition += e.offsetLeft;
+                        _elementTopPosition += e.offsetTop;
+                    } while (e = e.offsetParent);
+                }
+
+                var _pageTopPosition = this.posTop();
+                var _pageLeftPosition = this.posLeft();
+                var _pagewidth = this.pageWidth();
+                var _pageHeight = this.pageHeight();
+                var _pageBottom = _pageTopPosition + _pageHeight;
+                var _pageRight = _pageLeftPosition + _pagewidth;
+
+                var _popTopPosition = _elementTopPosition - this._popupHeight;
+                var _popLeftPosition = _elementLeftPosition - this._popupWidth;
+                var _popBottomPosition = _elementTopPosition + this.get_element().offsetHeight + this._popupHeight;
+                var _popRightPosition = _elementLeftPosition + this.get_element().offsetWidth + this._popupWidth;                
+
+                if ((_popTopPosition - _pageTopPosition) > 0 && ((_popTopPosition - _pageTopPosition) > (_pageBottom - _popBottomPosition))) {
+                    if ((_popLeftPosition - _popLeftPosition) > 0 && ((_popLeftPosition - _popLeftPosition) > (_pageRight - _popRightPosition))) {
+                        this.set_balloonPopupPosition(Sys.Extended.UI.BalloonPopupPosition.TopLeft)
+                    }
+                    else {
+                        this.set_balloonPopupPosition(Sys.Extended.UI.BalloonPopupPosition.TopRight)
+                    }
+                }
+                else {
+                    if ((_pageLeftPosition - _popLeftPosition) > 0 && ((_pageLeftPosition - _popLeftPosition) > (_pageRight - _popRightPosition))) {
+                        this.set_balloonPopupPosition(Sys.Extended.UI.BalloonPopupPosition.BottomLeft)
+                    }
+                    else {
+                        this.set_balloonPopupPosition(Sys.Extended.UI.BalloonPopupPosition.BottomRight)
+                    }
+                }
+                //alert("top: " + _popTopPosition + " left: " + _popLeftPosition + " bottom: " + _popBottomPosition + " right: " + _popRightPosition);
+                //alert("pagetop: " + _pageTopPosition + " pageleft: " + _pageLeftPosition + " pageBottom: " + _pageBottom + " pageright: " + _pageRight);
             },
 
             get_onShow: function () {
@@ -528,35 +636,7 @@
                     this._offsetY = value;
                     this.raisePropertyChanged('OffsetY');
                 }
-            },
-
-            get_Width: function () {
-                /// <value type="Number" integer="true">
-                /// The number of pixels for the balloon Popup width
-                /// </value>
-                return this._width;
-            },
-
-            set_Width: function (value) {
-                if (this._width != value) {
-                    this._width = value;
-                    this.raisePropertyChanged('Width');
-                }
-            },
-
-            get_Height: function () {
-                /// <value type="Number" integer="true">
-                /// The number of pixels for the balloon Popup height
-                /// </value>
-                return this._height;
-            },
-
-            set_Height: function (value) {
-                if (this._height != value) {
-                    this._height = value;
-                    this.raisePropertyChanged('Height');
-                }
-            },
+            },            
 
             get_displayOnMouseOver: function () {
                 /// <value type="bool">
@@ -597,6 +677,34 @@
                 if (this.displayOnClick != value) {
                     this.displayOnClick = value;
                     this.raisePropertyChanged('DisplayOnClick');
+                }
+            },
+
+            get_balloonSize: function () {
+                /// <value type="Sys.Extended.UI.BalloonPopupSize">
+                /// get the size of balloon popup whether small, medium or large
+                /// </value>
+                return this._balloonSize;
+            },
+
+            set_balloonSize: function (value) {
+                if (this._balloonSize != value) {
+                    this._balloonSize = value;
+                    this.raisePropertyChanged('BalloonSize');
+                }
+            },
+
+            get_useShadow: function () {
+                /// <value type="bool">
+                /// get whether to display shadow or not
+                /// </value>
+                return this._shadow;
+            },
+
+            set_useShadow: function (value) {
+                if (this._shadow != value) {
+                    this._shadow = value;
+                    this.raisePropertyChanged('UseShadow');
                 }
             },
 
@@ -765,6 +873,66 @@
                 if (this._popupBehavior) {
                     this._popupBehavior.raiseHidden(eventArgs);
                 }
+            },
+
+            posTop: function () {
+                var winTopPosition = 0;
+
+                if (typeof window.pageYOffset != 'undefined') {
+                    winTopPosition = window.pageYOffset;
+                }
+                else if (document.documentElement && document.documentElement.scrollTop) {
+                    winTopPosition = document.documentElement.scrollTop;
+                }
+                else if (document.body.scrollTop) {
+                    winTopPosition = document.body.scrollTop;
+                }
+                return winTopPosition;
+            },
+
+            posLeft: function () {
+                var winLeftPosition = 0;
+
+                if (typeof window.pageXOffset != 'undefined') {
+                    winLeftPosition = window.pageXOffset;
+                }
+                else if (document.documentElement && document.documentElement.scrollLeft) {
+                    winLeftPosition = document.documentElement.scrollLeft;
+                }
+                else if (document.body.scrollLeft) {
+                    winLeftPosition = document.body.scrollLeft;
+                }
+                return winLeftPosition;
+            },
+
+            pageHeight: function () {
+                var _height = null;
+
+                if (window.innerHeight != null) {
+                    _height = window.innerHeight;
+                }
+                else if (document.documentElement && document.documentElement.clientHeight) {
+                    _height = document.documentElement.clientHeight;
+                }
+                else if (document.body != null) {
+                    _height = document.body.clientHeight;
+                }
+                return _height;
+            },
+
+            pageWidth: function () {
+                var _width = null;
+
+                if (window.innerWidth != null) {
+                    _width = window.innerWidth;
+                }
+                else if (document.documentElement && document.documentElement.clientWidth) {
+                    _width = document.documentElement.clientWidth;
+                }
+                else if (document.body != null) {
+                    _width = document.body.clientWidth;
+                }
+                return _width;
             }
         }
         Sys.Extended.UI.BalloonPopupControlBehavior.registerClass('Sys.Extended.UI.BalloonPopupControlBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
@@ -807,9 +975,28 @@
         }
         Sys.Extended.UI.BalloonPopupStyle.prototype = {
             Rectangle: 0,
-            Cloud: 1
+            Cloud: 1,
+            Custom: 2
         }
+
         Sys.Extended.UI.BalloonPopupStyle.registerEnum("Sys.Extended.UI.BalloonPopupStyle", false);
+
+        Sys.Extended.UI.BalloonPopupSize = function () {
+            /// <summary>
+            /// Size of the popup 
+            /// </summary>            
+            /// <field name="Small" type="Number" integer="true" />
+            /// <field name="Medium" type="Number" integer="true" />
+            /// <field name="Large" type="Number" integer="true" />            
+            throw Error.invalidOperation();
+        }
+        Sys.Extended.UI.BalloonPopupSize.prototype = {
+            Small: 0,
+            Medium: 1,
+            Large: 2
+        }
+
+        Sys.Extended.UI.BalloonPopupSize.registerEnum("Sys.Extended.UI.BalloonPopupSize", false);
 
     } // execute
 
