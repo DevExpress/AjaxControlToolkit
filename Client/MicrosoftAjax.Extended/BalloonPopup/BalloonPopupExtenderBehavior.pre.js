@@ -37,7 +37,7 @@
             this._displayOnClick = true;
             this._balloonSize = 'small';
             this._shadow = true;
-//            this._customImageUrl = "";
+            //            this._customImageUrl = "";
 
             // Variables
             this._popupElement = null;
@@ -205,6 +205,7 @@
                 }, this._directionElement);
 
                 contentElement.appendChild($get(this._balloonPopupControlID));
+                this.disableContents(contentElement);
 
                 // set theme/style as per user's setting
                 this.setStyle();
@@ -219,7 +220,7 @@
                 this._popupHeight = this._directionElement.offsetHeight;
             },
 
-            setStyle: function () {                
+            setStyle: function () {
                 switch (this.get_balloonPopupStyle()) {
                     case Sys.Extended.UI.BalloonPopupStyle.Rectangle:
                         this._styleElement.className = "rect";
@@ -235,9 +236,9 @@
                         this._styleElement.className = "custom";
                         this._directionElement.className = "custom";
                         this._shadowElement.className = "custom";
-//                        this._styleElement.setAttribute("background-image", this.get_customImageUrl());
-//                        this._directionElement.setAttribute("background-image", this.get_customImageUrl());
-//                        this._shadowElement.setAttribute("background-image", this.get_customImageUrl());
+                        //                        this._styleElement.setAttribute("background-image", this.get_customImageUrl());
+                        //                        this._directionElement.setAttribute("background-image", this.get_customImageUrl());
+                        //                        this._shadowElement.setAttribute("background-image", this.get_customImageUrl());
                         break;
                     default:
                         this._styleElement.className = "rect";
@@ -295,14 +296,28 @@
                         this._shadowElement.className += " top_right_shadow";
                         break;
                 }
-            },            
+            },
+
+            disableContents: function (contentElement) {
+                try {
+                    contentElement.disabled = contentElement.disabled ? false : true;
+                }
+                catch (E) { }
+
+                if (contentElement.childNodes && contentElement.childNodes.length > 0) {
+                    for (var x = 0; x < contentElement.childNodes.length; x++) {
+                        this.disableContents(contentElement.childNodes[x]);
+                    }
+                }
+
+            },
 
             showPopup: function () {
                 /// <summary>
                 /// Display the ballon popup
                 /// </summary>                
                 if (Sys.Extended.UI.BalloonPopupPosition.Auto == this._position) {
-                    this._setAutoPosition();                    
+                    this._setAutoPosition();
                     this.setPosition();
                 }
 
@@ -477,10 +492,10 @@
                 var _popTopPosition = _elementTopPosition - this._popupHeight;
                 var _popLeftPosition = _elementLeftPosition - this._popupWidth;
                 var _popBottomPosition = _elementTopPosition + this.get_element().offsetHeight + this._popupHeight;
-                var _popRightPosition = _elementLeftPosition + this.get_element().offsetWidth + this._popupWidth;                
+                var _popRightPosition = _elementLeftPosition + this.get_element().offsetWidth + this._popupWidth;
 
                 if ((_popTopPosition - _pageTopPosition) > 0 && ((_popTopPosition - _pageTopPosition) > (_pageBottom - _popBottomPosition))) {
-                    if ((_popLeftPosition - _popLeftPosition) > 0 && ((_popLeftPosition - _popLeftPosition) > (_pageRight - _popRightPosition))) {
+                    if (_pageRight < _popRightPosition) {
                         this.set_balloonPopupPosition(Sys.Extended.UI.BalloonPopupPosition.TopLeft)
                     }
                     else {
@@ -637,7 +652,7 @@
                     this._offsetY = value;
                     this.raisePropertyChanged('OffsetY');
                 }
-            },            
+            },
 
             get_displayOnMouseOver: function () {
                 /// <value type="bool">
