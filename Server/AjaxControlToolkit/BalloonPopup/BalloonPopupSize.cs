@@ -5,6 +5,9 @@ using System.Text;
 
 namespace AjaxControlToolkit
 {
+    /// <summary>
+    /// Defines the size of Balloon Popup.
+    /// </summary>
     public enum BalloonPopupSize
     {
         Small = 0,

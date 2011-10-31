@@ -5,6 +5,9 @@ using System.Text;
 
 namespace AjaxControlToolkit
 {
+    /// <summary>
+    /// Defines the position values of Balloon popup.
+    /// </summary>
     public enum BalloonPopupPosition
     {
         Auto = 0,

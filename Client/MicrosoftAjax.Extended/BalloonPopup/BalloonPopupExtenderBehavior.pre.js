@@ -200,7 +200,8 @@
                     nodeName: 'div',
                     Properties: {
                         id: 'ajax__content'
-                    }
+                    },
+                    cssClasses: ['ajax__content']
                 }, this._directionElement);
 
                 contentElement.appendChild($get(this._balloonPopupControlID));

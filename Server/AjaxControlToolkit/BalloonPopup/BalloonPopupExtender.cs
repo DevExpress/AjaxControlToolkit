@@ -35,6 +35,9 @@ namespace AjaxControlToolkit
         private Animation _onHide;
         private Animation _onShow;
 
+        /// <summary>
+        /// Id of target control on which balloon popup will be displayed.
+        /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", Justification = "Following ASP.NET AJAX pattern")]
@@ -45,7 +48,7 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// ID of the control that Balloon pops up
+        /// ID of the control which will be displayed in the Balloon popup.
         /// </summary>
         [ExtenderControlProperty]
         [IDReferenceProperty(typeof(WebControl))]
@@ -58,6 +61,10 @@ namespace AjaxControlToolkit
             set { SetPropertyValue("BalloonPopupControlID", value); }
         }
 
+        /// <summary>
+        /// Position of Balloon popup control whether to display on TopLeft, TopRight,
+        /// BottomLeft, BottomRight or Auto.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(BalloonPopupPosition.Auto)]
         [ClientPropertyName("balloonPopupPosition")]
@@ -67,6 +74,9 @@ namespace AjaxControlToolkit
             set;
         }
 
+        /// <summary>
+        /// Theme of Balloon popup whether to display Cloud or Rectangle or Custom.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(BalloonPopupStyle.Rectangle)]
         [ClientPropertyName("balloonPopupStyle")]
@@ -195,6 +205,9 @@ namespace AjaxControlToolkit
         //    set { SetPropertyValue("CustomImageUrl", value); }
         //}
 
+        /// <summary>
+        /// Url of custom css that is required to display custom theme of Balloon Popup.
+        /// </summary>
         [DefaultValue("")]
         public string CustomCssUrl
         {
@@ -202,22 +215,39 @@ namespace AjaxControlToolkit
             set;
         }        
 
+        /// <summary>
+        /// This event fires at load of control.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
             if (BalloonStyle == BalloonPopupStyle.Custom)
-            {
-                HtmlLink css = new HtmlLink();
+            {                
                 if (CustomCssUrl == "")
                     throw new ArgumentException("Must pass CustomCssUrl value.");
                 //if (CustomImageUrl == "")
-                //    throw new ArgumentException("Must pass CustomImageUrl value.");
-                css.Href = ResolveClientUrl(CustomCssUrl);
-                css.Attributes["rel"] = "stylesheet";
-                css.Attributes["type"] = "text/css";
-                css.Attributes["media"] = "all";
-                Page.Header.Controls.Add(css);
+                //    throw new ArgumentException("Must pass CustomImageUrl value.");                
+                var isLinked = false;
+                foreach (Control c in Page.Header.Controls)
+                {
+                    if (c.ID == "customCssUrl")
+                    {
+                        isLinked = true;
+                        break;
+                    }
+                }
+                if (!isLinked)
+                {
+                    HtmlLink css = new HtmlLink();
+                    css.Href = ResolveClientUrl(CustomCssUrl);
+                    css.Attributes["id"] = "customCssUrl";
+                    css.Attributes["rel"] = "stylesheet";
+                    css.Attributes["type"] = "text/css";
+                    css.Attributes["media"] = "all";
+                    Page.Header.Controls.Add(css);
+                }
             }
         }
     }
