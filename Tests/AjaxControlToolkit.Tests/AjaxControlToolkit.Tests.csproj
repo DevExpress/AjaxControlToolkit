@@ -151,6 +151,8 @@
     <Content Include="Tests\RatingControl\RatingControl_TestPage.aspx" />
     <Content Include="Tests\RoundedCorners\RoundedCorners.aspx" />
     <Content Include="Tests\RoundedCorners\RoundedCorners_TestPage.aspx" />
+    <Content Include="Tests\Tabs\Tab2.aspx" />
+    <Content Include="Tests\Tabs\TabFull.aspx" />
     <Content Include="Tests\Tabs\Tabs.aspx" />
     <Content Include="Tests\Tabs\Tabs_TestPage.aspx" />
     <Content Include="Web.config" />
@@ -702,6 +704,18 @@
     </Compile>
     <Compile Include="Tests\RoundedCorners\RoundedCorners_TestPage.aspx.designer.cs">
       <DependentUpon>RoundedCorners_TestPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Tabs\Tab2.aspx.cs">
+      <DependentUpon>Tab2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Tabs\Tab2.aspx.designer.cs">
+      <DependentUpon>Tab2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Tabs\TabFull.aspx.cs">
+      <DependentUpon>TabFull.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\Tabs\TabFull.aspx.designer.cs">
+      <DependentUpon>TabFull.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests\Tabs\Tabs.aspx.cs">
       <DependentUpon>Tabs.aspx</DependentUpon>

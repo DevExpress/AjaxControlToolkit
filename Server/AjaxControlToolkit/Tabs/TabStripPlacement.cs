@@ -17,6 +17,16 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Render the tabs below the panel
         /// </summary>
-        Bottom
+        Bottom,
+
+        /// <summary>
+        /// Render the tabs on top right of the panel
+        /// </summary>
+        TopRight,
+
+        /// <summary>
+        /// Render the tabs on bottom right of the panel
+        /// </summary>
+        BottomRight
     }
 }
