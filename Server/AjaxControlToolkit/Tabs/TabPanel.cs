@@ -188,18 +188,24 @@ namespace AjaxControlToolkit
 
         protected internal virtual void RenderHeader(HtmlTextWriter writer)
         {
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_tab");
-            writer.RenderBeginTag(HtmlTextWriterTag.Span);
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_outer");
-            writer.RenderBeginTag(HtmlTextWriterTag.Span);
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_inner");
-            writer.RenderBeginTag(HtmlTextWriterTag.Span);
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_tab");            
+            RenderBeginTag(writer);
+
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_outer");            
+            RenderBeginTag(writer);
+
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_inner");            
+            RenderBeginTag(writer);
+
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_tab");
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, "__tab_" + ClientID);
-            writer.RenderBeginTag(HtmlTextWriterTag.Span);
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, "__tab_" + ClientID);            
+            RenderBeginTag(writer);
+
             if (_headerControl != null)
             {
+                _headerControl.Visible = true;
                 _headerControl.RenderControl(writer);
+                _headerControl.Visible = false;
             }
             else
             {
@@ -209,6 +215,13 @@ namespace AjaxControlToolkit
             writer.RenderEndTag();
             writer.RenderEndTag();
             writer.RenderEndTag();
+        }
+
+        private void RenderBeginTag(HtmlTextWriter writer)
+        {
+            if (_owner.UseVerticalStripPlacement)
+                writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
+            writer.RenderBeginTag(HtmlTextWriterTag.Span);
         }
 
         protected override void Render(HtmlTextWriter writer)
