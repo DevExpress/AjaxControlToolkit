@@ -182,7 +182,22 @@ namespace AjaxControlToolkit
             {
                 Control c = new Control();
                 _contentTemplate.InstantiateIn(c);
-                Controls.Add(c);
+
+                if (_owner.OnDemand)
+                {
+                    var updatePanel = new UpdatePanel()
+                                          {
+                                              ID=ClientID + "_updatePanel",
+                                              UpdateMode = UpdatePanelUpdateMode.Conditional,
+                                          };
+
+                    updatePanel.ContentTemplateContainer.Controls.Add(c);
+
+                    //updatePanel.Controls.Add(c);
+                    Controls.Add(updatePanel);
+                }
+                else
+                    Controls.Add(c);
             }
         }
 
