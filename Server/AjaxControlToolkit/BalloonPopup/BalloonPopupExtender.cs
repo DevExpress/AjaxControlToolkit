@@ -213,7 +213,21 @@ namespace AjaxControlToolkit
         {
             get;
             set;
-        }        
+        }
+
+        /// <summary>
+        /// Scroll bars behavior when content is overflow
+        /// </summary>
+        [DefaultValue(ScrollBars.Auto)]
+        [Category("Behavior")]
+        [ClientPropertyName("scrollBars")]
+        [Description("Scroll bars behavior when content is overflow")]
+        [ExtenderControlProperty]
+        public ScrollBars ScrollBars
+        {
+            get { return GetPropertyValue("ScrollBars", ScrollBars.Auto); }
+            set { SetPropertyValue("ScrollBars", value); }
+        }
 
         /// <summary>
         /// This event fires at load of control.
