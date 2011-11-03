@@ -83,6 +83,11 @@
     <Content Include="Animation\AnimationBehavior.pre.js" />
     <Content Include="Animation\Animations.pre.js" />
     <Content Include="AutoComplete\AutoCompleteBehavior.pre.js" />
+    <Content Include="BalloonPopup\BalloonPopupExtenderBehavior.pre.js" />
+    <Content Include="BalloonPopup\Cloud\BalloonPopup.css" />
+    <Content Include="BalloonPopup\Cloud\sprite.png" />
+    <Content Include="BalloonPopup\Rectangle\BalloonPopup.css" />
+    <Content Include="BalloonPopup\Rectangle\sprite.png" />
     <Content Include="Calendar\arrow-left.gif" />
     <Content Include="Calendar\arrow-right.gif" />
     <Content Include="Calendar\Calendar.css" />
