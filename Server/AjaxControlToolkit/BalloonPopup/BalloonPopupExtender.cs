@@ -194,16 +194,7 @@ namespace AjaxControlToolkit
         {
             get { return GetPropertyValue("UseShadow", true); }
             set { SetPropertyValue("UseShadow", value); }
-        }
-
-        //[ExtenderControlProperty]
-        //[ClientPropertyName("customImageUrl")]
-        //[DefaultValue("")]
-        //public string CustomImageUrl
-        //{
-        //    get { return GetPropertyValue("CustomImageUrl", ""); }
-        //    set { SetPropertyValue("CustomImageUrl", value); }
-        //}
+        }        
 
         /// <summary>
         /// Url of custom css that is required to display custom theme of Balloon Popup.
@@ -213,7 +204,31 @@ namespace AjaxControlToolkit
         {
             get;
             set;
-        }        
+        }
+
+        /// <summary>
+        /// Name of the css class that will be used in custom css code.
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("customClassName")]
+        [DefaultValue("")]
+        public string CustomClassName
+        {
+            get { return GetPropertyValue("CustomClassName", ""); }
+            set { SetPropertyValue("CustomClassName", value); }
+        }
+
+        /// <summary>
+        /// Determine whether to display scrollbar or not for overflow contents 
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("useScrollBar")]
+        [DefaultValue(true)]
+        public bool UseScrollBar
+        {
+            get { return GetPropertyValue("UseScrollBar", true); }
+            set { SetPropertyValue("UseScrollBar", value); }
+        }
 
         /// <summary>
         /// This event fires at load of control.
@@ -227,8 +242,9 @@ namespace AjaxControlToolkit
             {                
                 if (CustomCssUrl == "")
                     throw new ArgumentException("Must pass CustomCssUrl value.");
-                //if (CustomImageUrl == "")
-                //    throw new ArgumentException("Must pass CustomImageUrl value.");                
+                if (CustomClassName == "")
+                    throw new ArgumentException("Must pass CustomClassName value.");                
+
                 var isLinked = false;
                 foreach (Control c in Page.Header.Controls)
                 {

@@ -41,8 +41,8 @@
             for custom style
         </asp:Panel>
         <ajaxToolkit:BalloonPopupExtender ID="BalloonPopupExtender2" runat="server" TargetControlID="txtCustom"
-            BalloonPopupControlID="Panel3" Position="BottomRight" BalloonStyle="Custom" CustomCssUrl="http://browsers.superexpert.com/MohinderJ/CustomTheme/BalloonPopup_resource.css"
-            BalloonSize="Medium" UseShadow="true" />
+            BalloonPopupControlID="Panel3" Position="BottomRight" BalloonStyle="Custom" CustomCssUrl="http://browsers.superexpert.com/BalloonPopup/CustomTheme/BalloonPopup_resource.css"
+            CustomClassName="oval" BalloonSize="Medium" UseShadow="true" />
     </div>
     <div class="demobottom">
     </div>
@@ -55,35 +55,27 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            BalloonPopup Control is an ASP.NET AJAX extender that can be attached to any control
-            in order to open a popup window that displays additional content with shape in background
-            to resemble like balloon. This popup window will be readonly and use will not able
-            to perform any further action in this popup.
+            The BalloonPopup control displays a popup which can contain any content. For example, you can use 
+            the BalloonPopup control to display help information when you move focus to a TextBox control.
         </p>
         <br />
         <p>
-            This control provides Rectangle and cloud themes in 3 different sizes - small, 
-            medium and large. This control also provides custom theme that provides facility 
-            for end user to extend themes and define their own themes. For this they need to 
-            set BalloonStyle property to custom and provide value of CustomCssUrl. This 
-            control by default displays shadow of balloon popup but user can set UseShadow 
-            property to false to hide shadow.
+            The BalloonPopup supports three different styles: Balloon, Rectangle, and Custom. You can select 
+            among three different sizes for the popup: small, medium, and large. If you set the BalloonPopup 
+            style to the value Custom then you can define a custom appearance for the BalloonPopup. In that 
+            case, you also need to set the CustomCssUrl property to point to a custom style sheet.
         </p>
         <br />
         <p>
-            This control can be set at 5 positions - TopLeft, TopRight, BottomLeft, BottomRight
-            and Auto. If user selects Auto then position of balloon popup will be automatically
-            set as per the available space and size of balloon popup.
+            This control can be set to 5 positions - TopLeft, TopRight, BottomLeft, BottomRight and Auto. If 
+            you select the value Auto then the position of the BalloonPopup is determined automatically based 
+            on available space.
         </p>
         <br />
         <p>
-            This control displays on MouseOver, Focus and Click events. This control provides functionality
-            to user to customize on which event BalloonPopup to display.
-        </p>
-        <br />
-        <p>
-            This control hides as user clicks outside the balloon popup.
-        </p>
+            You can set the BalloonPop to be triggered by the MouseOver, Focus or Click events. The control is 
+            hidden automatically when you click outside the BalloonPopup.
+        </p>        
         <br />
     </asp:Panel>
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
@@ -105,7 +97,8 @@
         <em>Position</em>="BottomRight" 
         <em>BalloonStyle</em>="Cloud"
         <em>BalloonSize</em>="Small"
-        <em>CustomCssUrl</em>="http://browsers.superexpert.com/MohinderJ/CustomTheme/BalloonPopup_resource.css"
+        <em>CustomCssUrl</em>="http://browsers.superexpert.com/BalloonPopup/CustomTheme/BalloonPopup_resource.css"
+        <em>CustomClassName</em>="oval"
         <em>UseShadow</em>="true" 
         <em>DisplayOnMouseOver</em>="true"
         <em>DisplayOnFocus</em>="false"
@@ -125,14 +118,16 @@
             (Small, Medium and Large). Default value is Small.</li>
             <li><strong>CustomCssUrl</strong> - This is required if user choose BalloonStyle to Custom. 
             This specifies the url of custom css which will display custom theme.</li>
+            <li><strong>CustomClassName</strong> - This is required if user choose BalloonStyle to Custom. 
+            This specifies the name of the css class for the custom theme.</li>
             <li><strong>UseShadow</strong> - Optional setting specifying whether to display shadow of balloon 
             popup or not.</li>
             <li><strong>DisplayOnMouseOver</strong> - Optional setting specifying whether to display balloon 
-            popup onMouseOver event. Default value is false.</li>
+            popup on the client onMouseOver event. Default value is false.</li>
             <li><strong>DisplayOnFocus</strong> - Optional setting specifying whether to display balloon 
-            popup onFocus event. Default value is false.</li>
-            <li><strong>DisplayOnClick</strong> - Optional setting specifying whether to display balloon 
-            popup onClick event. Default value is true.</li>
+            popup  on the client  onFocus event. Default value is false.</li>
+            <li><strong>DisplayOnClick</strong> - Optional setting specifying whether to display balloon popup  
+            on the client  onClick event. Default value is true.</li>
             <li><strong>Animations</strong> - Generic animations for the PopupControlExtender. See
                 the <a href="../Walkthrough/UsingAnimations.aspx">Using Animations</a> walkthrough
                 and <a href="../Walkthrough/AnimationReference.aspx">Animation Reference</a> for

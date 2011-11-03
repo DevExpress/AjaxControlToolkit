@@ -14,7 +14,7 @@
 
     function execute() {
 
-        Type.registerNamespace('Sys.Extended.UI');
+        Type.registerNamespace("Sys.Extended.UI");
 
         Sys.Extended.UI.BalloonPopupControlBehavior = function (element) {
             /// <summary>
@@ -35,9 +35,10 @@
             this._displayOnMouseOver = false;
             this._displayOnFocus = false;
             this._displayOnClick = true;
-            this._balloonSize = 'small';
+            this._balloonSize = "small";
             this._shadow = true;
-            //            this._customImageUrl = "";
+            this._customClassName = "";
+            this._useScrollBar = true;
 
             // Variables
             this._popupElement = null;
@@ -56,20 +57,21 @@
             this._onHideJson = null;
             this._popupWidth = 0;
             this._popupHeight = 0;
+            this._AutoPosition = null;
         }
         Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
             initialize: function () {
                 /// <summary>
                 /// Initialize the behavior
                 /// </summary>
-                Sys.Extended.UI.BalloonPopupControlBehavior.callBaseMethod(this, 'initialize');
+                Sys.Extended.UI.BalloonPopupControlBehavior.callBaseMethod(this, "initialize");
 
                 // Identify popup element from control id
                 var e = this.get_element();
 
                 this.createPopupElement();
                 // Hook up a PopupBehavior
-                this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { 'id': this.get_id() + 'BalloonPopupBehavior', 'parentElement': e }, null, null, this._popupElement);
+                this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { "id": this.get_id() + "BalloonPopupBehavior", "parentElement": e }, null, null, this._popupElement);
 
                 // Create the animations (if they were set before initialize was called)
                 if (this._onShowJson) {
@@ -95,17 +97,17 @@
 
                 // Attach events
                 if (this._displayOnFocus) {
-                    $addHandler(e, 'focus', this._focusHandler);
+                    $addHandler(e, "focus", this._focusHandler);
                 }
                 if (this._displayOnMouseOver) {
-                    $addHandler(e, 'mouseover', this._mouseOverHandler);
+                    $addHandler(e, "mouseover", this._mouseOverHandler);
                 }
                 if (this._displayOnClick) {
-                    $addHandler(e, 'click', this._clickHandler);
+                    $addHandler(e, "click", this._clickHandler);
                 }
-                //$addHandler(e, 'click', this._focusHandler);  // So that a dismissed popup can be more easily re-popped
-                $addHandler(document, 'click', this._bodyClickHandler);
-                $addHandler(this._popupElement, 'click', this._popupClickHandler);
+                //$addHandler(e, "click", this._focusHandler);  // So that a dismissed popup can be more easily re-popped
+                $addHandler(document, "click", this._bodyClickHandler);
+                $addHandler(this._popupElement, "click", this._popupClickHandler);
             },
 
             dispose: function () {
@@ -123,28 +125,28 @@
                     this._popupBehavior = null;
                 }
                 if (this._focusHandler) {
-                    $removeHandler(e, 'focus', this._focusHandler);
+                    $removeHandler(e, "focus", this._focusHandler);
                     this._focusHandler = null;
                 }
                 if (this._mouseOverHandler) {
-                    $removeHandler(e, 'mouseover', this._mouseOverHandler);
+                    $removeHandler(e, "mouseover", this._mouseOverHandler);
                     this._mouseOverHandler = null;
                 }
                 if (this._clickHandler) {
-                    $removeHandler(e, 'click', this._clickHandler);
+                    $removeHandler(e, "click", this._clickHandler);
                     this._clickHandler = null;
                 }
 
                 if (this._bodyClickHandler) {
-                    $removeHandler(document, 'click', this._bodyClickHandler);
+                    $removeHandler(document, "click", this._bodyClickHandler);
                     this._bodyClickHandler = null;
                 }
                 if (this._popupClickHandler) {
-                    $removeHandler(this._popupElement, 'click', this._popupClickHandler);
+                    $removeHandler(this._popupElement, "click", this._popupClickHandler);
                     this._popupClickHandler = null;
                 }
 
-                Sys.Extended.UI.BalloonPopupControlBehavior.callBaseMethod(this, 'dispose');
+                Sys.Extended.UI.BalloonPopupControlBehavior.callBaseMethod(this, "dispose");
             },
 
             createPopupElement: function () {
@@ -152,59 +154,67 @@
 
                 // create main container for balloon popup                
                 this._popupElement = $common.createElementFromTemplate({
-                    nodeName: 'div',
+                    nodeName: "div",
                     properties: {
-                        id: this.get_id() + '_balloonPopup',
+                        id: this.get_id() + "_balloonPopup",
                         style: {
-                            display: 'block',
-                            position: 'absolute'
+                            display: "block",
+                            position: "absolute"
                         }
                     },
-                    cssClasses: ['ajax__baloon_popup']
+                    cssClasses: ["ajax__baloon_popup"]
                 }, e.parentNode);
 
                 // create element for theme/style
                 this._styleElement = $common.createElementFromTemplate({
-                    nodeName: 'span',
+                    nodeName: "span",
                     Properties: {
-                        id: 'ajax__style_wrapper'
+                        id: "ajax__style_wrapper"
                     }
                 }, this._popupElement);
 
                 // create element for balloonpopup size
                 this._sizeElement = $common.createElementFromTemplate({
-                    nodeName: 'span',
+                    nodeName: "span",
                     Properties: {
-                        id: 'ajax__size_wrapper'
+                        id: "ajax__size_wrapper"
                     }
                 }, this._styleElement);
 
                 // create element for shadow
                 this._shadowElement = $common.createElementFromTemplate({
-                    nodeName: 'div',
+                    nodeName: "div",
                     Properties: {
-                        id: 'ajax__shadow_wrapper'
+                        id: "ajax__shadow_wrapper"
                     }
                 }, this._sizeElement);
 
                 // create element for direction of arrow
                 this._directionElement = $common.createElementFromTemplate({
-                    nodeName: 'div',
+                    nodeName: "div",
                     Properties: {
-                        id: 'ajax__direction_wrapper'
+                        id: "ajax__direction_wrapper"
                     }
                 }, this._shadowElement);
 
                 // create element to hold contents
                 var contentElement = $common.createElementFromTemplate({
-                    nodeName: 'div',
+                    nodeName: "div",
                     Properties: {
-                        id: 'ajax__content'
+                        id: "ajax__content"
                     },
-                    cssClasses: ['ajax__content']
+                    cssClasses: ["ajax__content"]
                 }, this._directionElement);
 
                 contentElement.appendChild($get(this._balloonPopupControlID));
+
+                //                if (this.get_useScrollBar()) {
+                //                    contentElement.setAttribute("style", "overflow:scroll");
+                //                }
+                //                else {
+                //                    contentElement.setAttribute("style", "overflow:hidden");
+                //                }
+
                 this.disableContents(contentElement);
 
                 // set theme/style as per user's setting
@@ -233,12 +243,9 @@
                         this._shadowElement.className = "cloud";
                         break;
                     case Sys.Extended.UI.BalloonPopupStyle.Custom:
-                        this._styleElement.className = "custom";
-                        this._directionElement.className = "custom";
-                        this._shadowElement.className = "custom";
-                        //                        this._styleElement.setAttribute("background-image", this.get_customImageUrl());
-                        //                        this._directionElement.setAttribute("background-image", this.get_customImageUrl());
-                        //                        this._shadowElement.setAttribute("background-image", this.get_customImageUrl());
+                        this._styleElement.className = this.get_customClassName();
+                        this._directionElement.className = this.get_customClassName(); ;
+                        this._shadowElement.className = this.get_customClassName(); ;
                         break;
                     default:
                         this._styleElement.className = "rect";
@@ -274,7 +281,15 @@
             },
 
             setPosition: function () {
-                switch (this.get_balloonPopupPosition()) {
+                var currentPosition = null;
+                if (this.get_balloonPopupPosition() == Sys.Extended.UI.BalloonPopupPosition.Auto) {
+                    currentPosition = this._autoPosition;
+                }
+                else {
+                    currentPosition = this.get_balloonPopupPosition();
+                }
+                
+                switch (currentPosition) {
                     case Sys.Extended.UI.BalloonPopupPosition.TopLeft:
                         this._directionElement.className += " top_left";
                         this._shadowElement.className += " top_left_shadow";
@@ -287,7 +302,7 @@
                         this._directionElement.className += " bottom_left";
                         this._shadowElement.className += " bottom_left_shadow";
                         break;
-                    case Sys.Extended.UI.BalloonPopupPosition.BottomRight:
+                    case Sys.Extended.UI.BalloonPopupPosition.BottomRight:                        
                         this._directionElement.className += " bottom_right";
                         this._shadowElement.className += " bottom_right_shadow";
                         break;
@@ -331,7 +346,7 @@
                     old.hidePopup();
                 }
 
-                Sys.Extended.UI.BalloonPopupControlBehavior.callBaseMethod(this, 'populate');
+                Sys.Extended.UI.BalloonPopupControlBehavior.callBaseMethod(this, "populate");
 
                 this._popupBehavior.set_x(this._getLeftOffset());
                 this._popupBehavior.set_y(this._getTopOffset());
@@ -383,7 +398,6 @@
                 if (e) {
                     e.stopPropagation();
                 }
-
             },
 
             _onPopupClick: function (e) {
@@ -419,7 +433,7 @@
                 /// <param name="eventArgs" type="Sys.EventArgs">
                 /// Event arguments
                 /// </param>
-                Sys.Extended.UI.BalloonPopupControlBehavior.callBaseMethod(this, '_onPopulated', [sender, eventArgs]);
+                Sys.Extended.UI.BalloonPopupControlBehavior.callBaseMethod(this, "_onPopulated", [sender, eventArgs]);
 
                 // Dynamic populate may have added content; re-layout to accomodate it
                 if (this._popupVisible) {
@@ -437,9 +451,10 @@
 
                 // Get the left offset for the balloon popup
                 var xoffSet = 0;
-                if (Sys.Extended.UI.BalloonPopupPosition.BottomLeft == this._position || Sys.Extended.UI.BalloonPopupPosition.TopLeft == this._position) {
+                var currentPosition = Sys.Extended.UI.BalloonPopupPosition.Auto == this._position ? this._autoPosition : this._position;
+                if (Sys.Extended.UI.BalloonPopupPosition.BottomLeft == currentPosition || Sys.Extended.UI.BalloonPopupPosition.TopLeft == currentPosition) {
                     xoffSet = (-1 * (this._popupWidth)) + this._offsetX;
-                } else if (Sys.Extended.UI.BalloonPopupPosition.BottomRight == this._position || Sys.Extended.UI.BalloonPopupPosition.TopRight == this._position) {
+                } else if (Sys.Extended.UI.BalloonPopupPosition.BottomRight == currentPosition || Sys.Extended.UI.BalloonPopupPosition.TopRight == currentPosition) {
                     xoffSet = this.get_element().offsetWidth + this._offsetX;
                 } else {
                     xoffSet = this._offsetX;
@@ -458,10 +473,10 @@
 
                 // Get the top offset for the balloon popup                
                 var yoffSet = 0;
-                if (Sys.Extended.UI.BalloonPopupPosition.TopLeft == this._position || Sys.Extended.UI.BalloonPopupPosition.TopRight == this._position) {
+                var currentPosition = Sys.Extended.UI.BalloonPopupPosition.Auto == this._position ? this._autoPosition : this._position;
+                if (Sys.Extended.UI.BalloonPopupPosition.TopLeft == currentPosition || Sys.Extended.UI.BalloonPopupPosition.TopRight == currentPosition) {
                     yoffSet = (-1 * (this._popupHeight)) + this._offsetY;
-
-                } else if (Sys.Extended.UI.BalloonPopupPosition.BottomLeft == this._position || Sys.Extended.UI.BalloonPopupPosition.BottomRight == this._position) {
+                } else if (Sys.Extended.UI.BalloonPopupPosition.BottomLeft == currentPosition || Sys.Extended.UI.BalloonPopupPosition.BottomRight == currentPosition) {
                     yoffSet = (this.get_element().offsetHeight) + this._offsetY;
                 } else {
                     yoffSet = this._offsetY;
@@ -495,23 +510,22 @@
                 var _popRightPosition = _elementLeftPosition + this.get_element().offsetWidth + this._popupWidth;
 
                 if ((_popTopPosition - _pageTopPosition) > 0 && ((_popTopPosition - _pageTopPosition) > (_pageBottom - _popBottomPosition))) {
+                    //if (_pageBottom > _popBottomPosition) {
                     if (_pageRight < _popRightPosition) {
-                        this.set_balloonPopupPosition(Sys.Extended.UI.BalloonPopupPosition.TopLeft)
+                        this._autoPosition = Sys.Extended.UI.BalloonPopupPosition.TopLeft;
                     }
                     else {
-                        this.set_balloonPopupPosition(Sys.Extended.UI.BalloonPopupPosition.TopRight)
+                        this._autoPosition = Sys.Extended.UI.BalloonPopupPosition.TopRight;
                     }
                 }
                 else {
-                    if ((_pageLeftPosition - _popLeftPosition) > 0 && ((_pageLeftPosition - _popLeftPosition) > (_pageRight - _popRightPosition))) {
-                        this.set_balloonPopupPosition(Sys.Extended.UI.BalloonPopupPosition.BottomLeft)
+                    if (_pageRight < _popRightPosition) {
+                        this._autoPosition = Sys.Extended.UI.BalloonPopupPosition.BottomLeft;
                     }
                     else {
-                        this.set_balloonPopupPosition(Sys.Extended.UI.BalloonPopupPosition.BottomRight)
-                    }
-                }
-                //alert("top: " + _popTopPosition + " left: " + _popLeftPosition + " bottom: " + _popBottomPosition + " right: " + _popRightPosition);
-                //alert("pagetop: " + _pageTopPosition + " pageleft: " + _pageLeftPosition + " pageBottom: " + _pageBottom + " pageright: " + _pageRight);
+                        this._autoPosition = Sys.Extended.UI.BalloonPopupPosition.BottomRight;
+                    }                    
+                }                
             },
 
             get_onShow: function () {
@@ -526,7 +540,7 @@
                 } else {
                     this._onShowJson = value;
                 }
-                this.raisePropertyChanged('onShow');
+                this.raisePropertyChanged("onShow");
             },
             get_onShowBehavior: function () {
                 /// <value type="Sys.Extended.UI.Animation.GenericAnimationBehavior">
@@ -556,7 +570,7 @@
                 } else {
                     this._onHideJson = value;
                 }
-                this.raisePropertyChanged('onHide');
+                this.raisePropertyChanged("onHide");
             },
             get_onHideBehavior: function () {
                 /// <value type="Sys.Extended.UI.Animation.GenericAnimationBehavior">
@@ -583,7 +597,7 @@
             set_BalloonPopupControlID: function (value) {
                 if (this._balloonPopupControlID != value) {
                     this._balloonPopupControlID = value;
-                    this.raisePropertyChanged('BalloonPopupControlID');
+                    this.raisePropertyChanged("BalloonPopupControlID");
                 }
             },
 
@@ -596,7 +610,7 @@
             set_balloonPopupPosition: function (value) {
                 if (this._position != value) {
                     this._position = value;
-                    this.raisePropertyChanged('Position');
+                    this.raisePropertyChanged("Position");
                 }
             },
 
@@ -610,7 +624,7 @@
             set_balloonPopupStyle: function (value) {
                 if (this._balloonStyle != value) {
                     this._balloonStyle = value;
-                    this.raisePropertyChanged('BalloonStyle');
+                    this.raisePropertyChanged("BalloonStyle");
                 }
             },
 
@@ -624,7 +638,7 @@
             set_ExtenderControlID: function (value) {
                 if (this._extenderControlID != value) {
                     this._extenderControlID = value;
-                    this.raisePropertyChanged('ExtenderControlID');
+                    this.raisePropertyChanged("ExtenderControlID");
                 }
             },
 
@@ -637,7 +651,7 @@
             set_OffsetX: function (value) {
                 if (this._offsetX != value) {
                     this._offsetX = value;
-                    this.raisePropertyChanged('OffsetX');
+                    this.raisePropertyChanged("OffsetX");
                 }
             },
 
@@ -650,7 +664,7 @@
             set_OffsetY: function (value) {
                 if (this._offsetY != value) {
                     this._offsetY = value;
-                    this.raisePropertyChanged('OffsetY');
+                    this.raisePropertyChanged("OffsetY");
                 }
             },
 
@@ -664,7 +678,7 @@
             set_displayOnMouseOver: function (value) {
                 if (this._displayOnMouseOver != value) {
                     this._displayOnMouseOver = value;
-                    this.raisePropertyChanged('DisplayOnMouseOver');
+                    this.raisePropertyChanged("DisplayOnMouseOver");
                 }
             },
 
@@ -678,7 +692,7 @@
             set_displayOnFocus: function (value) {
                 if (this._displayOnFocus != value) {
                     this._displayOnFocus = value;
-                    this.raisePropertyChanged('DisplayOnFocus');
+                    this.raisePropertyChanged("DisplayOnFocus");
                 }
             },
 
@@ -692,7 +706,7 @@
             set_displayOnClick: function (value) {
                 if (this.displayOnClick != value) {
                     this.displayOnClick = value;
-                    this.raisePropertyChanged('DisplayOnClick');
+                    this.raisePropertyChanged("DisplayOnClick");
                 }
             },
 
@@ -706,7 +720,7 @@
             set_balloonSize: function (value) {
                 if (this._balloonSize != value) {
                     this._balloonSize = value;
-                    this.raisePropertyChanged('BalloonSize');
+                    this.raisePropertyChanged("BalloonSize");
                 }
             },
 
@@ -720,7 +734,7 @@
             set_useShadow: function (value) {
                 if (this._shadow != value) {
                     this._shadow = value;
-                    this.raisePropertyChanged('UseShadow');
+                    this.raisePropertyChanged("UseShadow");
                 }
             },
 
@@ -729,6 +743,34 @@
                 /// Whether the popup control is currently visible
                 /// </value>
                 return this._popupVisible;
+            },
+
+            get_customClassName: function () {
+                /// <value type="bool">
+                /// Name of the css class that will be used for the custom theme.
+                /// </value>
+                return this._customClassName;
+            },
+
+            set_customClassName: function (value) {
+                if (this._customClassName != value) {
+                    this._customClassName = value;
+                    this.raisePropertyChanged("CustomClassName");
+                }
+            },
+
+            get_useScrollBar: function () {
+                /// <value type="bool">
+                /// get whether to display shadow or not
+                /// </value>
+                return this._useScrollBar;
+            },
+
+            set_useShadow: function (value) {
+                if (this._useScrollBar != value) {
+                    this._useScrollBar = value;
+                    this.raisePropertyChanged("UseScrollBar");
+                }
             },
 
             add_showing: function (handler) {
@@ -894,7 +936,7 @@
             posTop: function () {
                 var winTopPosition = 0;
 
-                if (typeof window.pageYOffset != 'undefined') {
+                if (typeof window.pageYOffset != "undefined") {
                     winTopPosition = window.pageYOffset;
                 }
                 else if (document.documentElement && document.documentElement.scrollTop) {
@@ -909,7 +951,7 @@
             posLeft: function () {
                 var winLeftPosition = 0;
 
-                if (typeof window.pageXOffset != 'undefined') {
+                if (typeof window.pageXOffset != "undefined") {
                     winLeftPosition = window.pageXOffset;
                 }
                 else if (document.documentElement && document.documentElement.scrollLeft) {
@@ -951,7 +993,7 @@
                 return _width;
             }
         }
-        Sys.Extended.UI.BalloonPopupControlBehavior.registerClass('Sys.Extended.UI.BalloonPopupControlBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
+        Sys.Extended.UI.BalloonPopupControlBehavior.registerClass("Sys.Extended.UI.BalloonPopupControlBehavior", Sys.Extended.UI.DynamicPopulateBehaviorBase);
         Sys.registerComponent(Sys.Extended.UI.BalloonPopupControlBehavior, { name: "balloonPopupBehavior" });
 
         // This global variable tracks the currently visible popup.  Automatically
