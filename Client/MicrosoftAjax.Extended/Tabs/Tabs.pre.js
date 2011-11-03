@@ -200,7 +200,7 @@
                 ]);
 
                 this._invalidate();
-                this._pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
+                if(this._onDemand) this._pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
                 Sys.Application.add_load(this._app_onload$delegate);
             },
             dispose: function () {
@@ -601,7 +601,7 @@
                     Sys.UI.DomElement.addCssClass(this._headerOuterWrapper, "ajax__tab_outer");
                     Sys.UI.DomElement.addCssClass(this._headerInnerWrapper, "ajax__tab_inner");
                     Sys.UI.DomElement.addCssClass(this._header, "ajax__tab_tab");
-                    Sys.UI.DomElement.addCssClass(this.get_element(), "ajax__tab_panel");                
+                    Sys.UI.DomElement.addCssClass(this.get_element(), "ajax__tab_panel");
                 }
             },
 
