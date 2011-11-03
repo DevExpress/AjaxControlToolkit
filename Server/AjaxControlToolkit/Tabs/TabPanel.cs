@@ -180,10 +180,46 @@ namespace AjaxControlToolkit
             }
             if (_contentTemplate != null)
             {
-                Control c = new Control();
+                var c = new Control();
                 _contentTemplate.InstantiateIn(c);
-                Controls.Add(c);
+
+                if (_owner.OnDemand)
+                {
+                    var invisiblePanelID = ClientID + "_onDemandPanel";
+                    var invisiblePanel = new Panel()
+                                             {
+                                                 ID = invisiblePanelID,
+                                                 Visible = false
+                                             };
+                    invisiblePanel.Controls.Add(c);
+
+                    var updatePanel = new UpdatePanel()
+                    {
+                        ID = ClientID + "_updatePanel",
+                        UpdateMode = UpdatePanelUpdateMode.Conditional
+                    };
+                    updatePanel.Load += UpdatePanelOnLoad;
+                    updatePanel.ContentTemplateContainer.Controls.Add(invisiblePanel);
+                    Controls.Add(updatePanel);
+                }
+                else
+                    Controls.Add(c);
             }
+        }
+
+        void UpdatePanelOnLoad(object sender, EventArgs e)
+        {
+            if (!(sender is UpdatePanel))
+                return;
+
+            var updatePanelID = (sender as UpdatePanel).ID;
+            var tabID = updatePanelID.Substring(0, updatePanelID.Length - 12);
+            if (!Active)
+                return;
+
+            var invisiblePanel = FindControl(tabID + "_onDemandPanel");
+            if (invisiblePanel != null && invisiblePanel is Panel)
+                invisiblePanel.Visible = true;
         }
 
         protected internal virtual void RenderHeader(HtmlTextWriter writer)

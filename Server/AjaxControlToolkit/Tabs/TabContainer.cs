@@ -96,6 +96,7 @@ namespace AjaxControlToolkit
         private TabStripPlacement _tabStripPlacement;
         private bool _useVerticalStripPlacement;
         private Unit _verticalStripWidth = new Unit(120, UnitType.Pixel);
+        private bool _onDemand;
 
         #endregion
 
@@ -369,6 +370,22 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Load tab content when it's activated
+        /// </summary>
+        [DefaultValue(false)]
+        [Category("Behavior")]
+        public bool OnDemand
+        {
+            get
+            {
+                return _onDemand;
+            }
+            set
+            {
+                _onDemand = value;
+            }
+        }
         #endregion
 
         #region [ Methods ]
@@ -753,7 +770,8 @@ namespace AjaxControlToolkit
         {
             base.DescribeComponent(descriptor);
             descriptor.AddProperty("tabStripPlacement", this.TabStripPlacement);
-            descriptor.AddProperty("useVerticalStripPlacement", this.UseVerticalStripPlacement);            
+            descriptor.AddProperty("useVerticalStripPlacement", this.UseVerticalStripPlacement);
+            descriptor.AddProperty("onDemand", this.OnDemand);
         }
     }
 }
