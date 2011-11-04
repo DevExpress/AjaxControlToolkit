@@ -207,14 +207,6 @@
                 }, this._directionElement);
 
                 contentElement.appendChild($get(this._balloonPopupControlID));
-
-                //                if (this.get_useScrollBar()) {
-                //                    contentElement.setAttribute("style", "overflow:scroll");
-                //                }
-                //                else {
-                //                    contentElement.setAttribute("style", "overflow:hidden");
-                //                }
-
                 this.disableContents(contentElement);
 
                 // set theme/style as per user's setting
@@ -757,21 +749,7 @@
                     this._customClassName = value;
                     this.raisePropertyChanged("CustomClassName");
                 }
-            },
-
-            get_useScrollBar: function () {
-                /// <value type="bool">
-                /// get whether to display shadow or not
-                /// </value>
-                return this._useScrollBar;
-            },
-
-            set_useShadow: function (value) {
-                if (this._useScrollBar != value) {
-                    this._useScrollBar = value;
-                    this.raisePropertyChanged("UseScrollBar");
-                }
-            },
+            },            
 
             add_showing: function (handler) {
                 /// <summary>

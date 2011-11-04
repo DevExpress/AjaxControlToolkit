@@ -217,26 +217,14 @@ namespace AjaxControlToolkit
             get { return GetPropertyValue("CustomClassName", ""); }
             set { SetPropertyValue("CustomClassName", value); }
         }
-
+        
         /// <summary>
-        /// Determine whether to display scrollbar or not for overflow contents 
-        /// </summary>
-        [ExtenderControlProperty]
-        [ClientPropertyName("useScrollBar")]
-        [DefaultValue(true)]
-        public bool UseScrollBar
-        {
-            get { return GetPropertyValue("UseScrollBar", true); }
-            set { SetPropertyValue("UseScrollBar", value); }
-        }
-
-        /// <summary>
-        /// This event fires at load of control.
+        /// This event fires before rendering of control.
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnLoad(EventArgs e)
+        protected override void OnPreRender(EventArgs e)
         {
-            base.OnLoad(e);
+            base.OnPreRender(e);
 
             if (BalloonStyle == BalloonPopupStyle.Custom)
             {                
