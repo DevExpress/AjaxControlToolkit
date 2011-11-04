@@ -196,15 +196,6 @@ namespace AjaxControlToolkit
             set { SetPropertyValue("UseShadow", value); }
         }
 
-        //[ExtenderControlProperty]
-        //[ClientPropertyName("customImageUrl")]
-        //[DefaultValue("")]
-        //public string CustomImageUrl
-        //{
-        //    get { return GetPropertyValue("CustomImageUrl", ""); }
-        //    set { SetPropertyValue("CustomImageUrl", value); }
-        //}
-
         /// <summary>
         /// Url of custom css that is required to display custom theme of Balloon Popup.
         /// </summary>
@@ -230,19 +221,32 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// This event fires at load of control.
+        /// Name of the css class that will be used in custom css code.
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("customClassName")]
+        [DefaultValue("")]
+        public string CustomClassName
+        {
+            get { return GetPropertyValue("CustomClassName", ""); }
+            set { SetPropertyValue("CustomClassName", value); }
+        }
+        
+        /// <summary>
+        /// This event fires before rendering of control.
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnLoad(EventArgs e)
+        protected override void OnPreRender(EventArgs e)
         {
-            base.OnLoad(e);
+            base.OnPreRender(e);
 
             if (BalloonStyle == BalloonPopupStyle.Custom)
             {                
                 if (CustomCssUrl == "")
                     throw new ArgumentException("Must pass CustomCssUrl value.");
-                //if (CustomImageUrl == "")
-                //    throw new ArgumentException("Must pass CustomImageUrl value.");                
+                if (CustomClassName == "")
+                    throw new ArgumentException("Must pass CustomClassName value.");                
+
                 var isLinked = false;
                 foreach (Control c in Page.Header.Controls)
                 {

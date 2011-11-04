@@ -292,23 +292,26 @@
                     var text = "";
                     if (value) {
                         text = this._convertToLocal(value).localeFormat(this._format);
-                        //                        if (!this._clearTime) {
-                        //                            var tbvalue = this._textbox.get_Value();
-                        //                            if (tbvalue) {
-                        //                                tbvalue = this._parseTextValue(tbvalue);
-                        //                            }
-                        //                            if (tbvalue) {
-                        //                                if (value != tbvalue) {
-                        //                                    if ((value.getHours() === 0) || ((value.getHours() >= 1) && (tbvalue.getHours() > 1))) {
-                        //                                        value.setHours(tbvalue.getHours());
-                        //                                    }
-                        //                                    value.setMinutes(tbvalue.getMinutes());
-                        //                                    value.setSeconds(tbvalue.getSeconds());
-                        //                                    value.setMilliseconds(tbvalue.getMilliseconds());
-                        //                                    text = value.localeFormat(this._format);
-                        //                                }
-                        //                            }
-                        //                        }
+
+                        // If we don't clear the time then we transfer the time from the
+                        // textbox to the selected value
+                        if (!this._clearTime) {
+                            var tbvalue = this._textbox.get_Value();
+                            if (tbvalue) {
+                                tbvalue = this._parseTextValue(tbvalue);
+                            }
+                            if (tbvalue) {
+                                if (value != tbvalue.getDateOnly()) {
+                                    // Transfer time from textbox to selected value
+                                    value.setUTCHours(tbvalue.getUTCHours());
+                                    value.setUTCMinutes(tbvalue.getUTCMinutes());
+                                    value.setUTCMilliseconds(tbvalue.getUTCMilliseconds());
+
+                                    text = this._convertToLocal(value).localeFormat(this._format);
+                                }
+                            }
+                        }
+
                     }
                     if (text != this._textbox.get_Value()) {
                         this._textbox.set_Value(text);
@@ -343,6 +346,10 @@
                 return this._visibleDate;
             },
             set_visibleDate: function (value) {
+                if (value && (String.isInstanceOfType(value)) && (value.length != 0)) {
+                    value = new Date(value);
+                }
+
                 if (this._visibleDate != value) {
                     this._switchMonth(value, !this._isOpen);
                     this.raisePropertyChanged("visibleDate");
@@ -363,7 +370,7 @@
                 if (this._todaysDate != null) {
                     return this._todaysDate;
                 }
-                return this._convertToUTC(new Date());
+                return new Date();
             },
             set_todaysDate: function (value) {
                 if (this._todaysDate != value) {
@@ -1100,17 +1107,23 @@
                 /// <summary>Converts a local date such as 1/1/2007 into 1/1/2007 GMT 
                 /// without adjusting for time zone</summary>
                 if (value) {
-                    value = new Date(Date.UTC(value.getFullYear(), value.getMonth(), value.getDate()));
+                    value = new Date(Date.UTC(value.getFullYear(), value.getMonth(), value.getDate(), value.getHours(), value.getMinutes(), value.getSeconds(), value.getMilliseconds()));
                 }
                 return value;
             },
 
 
             _convertToLocal: function (value) {
-                /// <summary>Converts a UTC date such as 1/1/2007 GMT into 1/1/2007  
-                /// without adjusting for time zone</summary>
+                /// <summary>Converts a UTC date such as 1/1/2007 GMT into 1/1/2007 without adjusting for time zone</summary>
+                /// <param name="value" type="Date">The date to convert</param>
 
-                return new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate());
+                var result = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate(), value.getUTCHours(), value.getUTCMinutes(), value.getUTCSeconds(), value.getUTCMilliseconds());
+
+                // Handle daylight savings time offset (The first hour of September 25 becomes the last hour of September 24 when DST starts)
+                if (result.getDate() != value.getUTCDate()) {
+                    result = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate(), value.getUTCHours() + 1, value.getUTCMinutes(), value.getUTCSeconds(), value.getUTCMilliseconds());
+                }
+                return result;
             },
 
 
@@ -1138,7 +1151,6 @@
                         if (daysToBacktrack <= 0)
                             daysToBacktrack += 7;
 
-                        //var startDate = new Date(Date.UTC(visibleDate.getUTCFullYear(), visibleDate.getUTCMonth(), visibleDate.getUTCDate() - daysToBacktrack));
                         var startDate = new Date(visibleDate);
                         startDate.setUTCDate(startDate.getUTCDate() - daysToBacktrack);
                         var currentDate = new Date(startDate);
@@ -1170,7 +1182,6 @@
                                     Sys.UI.DomElement.addCssClass(dayCell.parentNode, this._getCssClass(dayCell.date, 'd'));
                                 }
 
-                                //currentDate = new Date(Date.UTC(currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate() + 1));
                                 currentDate = new Date(currentDate);
                                 currentDate.setUTCDate(currentDate.getUTCDate() + 1);
                             }
@@ -1192,7 +1203,7 @@
                             for (var j = 0; j < row.cells.length; j++) {
                                 var cell = row.cells[j].firstChild;
                                 cell.date = new Date(Date.UTC(visibleDate.getUTCFullYear(), cell.month, 1));
-                                cell.title = cell.date.localeFormat("Y");
+                                cell.title = this._convertToLocal(cell.date).localeFormat("Y");
 
                                 if (!this._isInDateRange(cell.date, "M")) {
                                     $common.removeCssClasses(cell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
@@ -1258,12 +1269,12 @@
                 }
 
                 $common.removeCssClasses(this._today.parentNode, ["ajax__calendar_invalid"]);
-                this._today.appendChild(document.createTextNode(String.format(Sys.Extended.UI.Resources.Calendar_Today, this._convertToLocal(todaysDate).localeFormat(this.get_todaysDateFormat()))));
+                this._today.appendChild(document.createTextNode(String.format(Sys.Extended.UI.Resources.Calendar_Today, todaysDate.localeFormat(this.get_todaysDateFormat()))));
                 if (!this._isInDateRange(todaysDate, "d")) {
                     Sys.UI.DomElement.addCssClass(this._today.parentNode, "ajax__calendar_invalid");
                 }
 
-                this._today.date = todaysDate;
+                this._today.date = this._convertToUTC(todaysDate);
             },
 
             _ensureCalendar: function () {
@@ -1320,7 +1331,9 @@
                     return;
                 }
 
-                if (date && !this._isInDateRange(date, "M")) {
+
+                // Check if can switch month depending on the startDate and endDAte
+                if (date && !this._canSwitchMonth(date)) {
                     return;
                 }
 
@@ -1394,6 +1407,28 @@
                     this.invalidate();
                 }
             },
+
+            _canSwitchMonth: function (date) {
+                switch (this._mode) {
+                    case "days":
+                        if (!this._isInDateRange(date, "M")) {
+                            return false;
+                        }
+                        break;
+                    case "months":
+                        if (!this._isInDateRange(date, "y")) {
+                            return false;
+                        }
+                        break;
+                    case "years":
+                        if (!this._isInDateRange(date, "y")) {
+                            return false;
+                        }
+                        break;
+                }
+                return true;
+            },
+
             _switchMode: function (mode, dontAnimate) {
                 /// <summary>
                 /// Switches the visible view from "days" to "months" to "years"
@@ -1522,7 +1557,7 @@
             },
 
             _isTodaysDate: function (date) {
-                return this._getDateOnly(this.get_todaysDate()).valueOf() === this._getDateOnly(date).valueOf();
+                return this._getDateOnly(this._convertToUTC(this.get_todaysDate())).valueOf() === this._getDateOnly(date).valueOf();
             },
 
             _getCssClass: function (date, part) {
@@ -1554,10 +1589,10 @@
                 value = new Date(value);
                 value.setUTCDate(1);
 
-                return value;
-
-                //return new Date(Date.UTC(value.getUTCFullYear(), value.getUTCMonth(), 1));
+                return this._getDateOnly(value);
             },
+
+
             _getFirstDayOfWeek: function () {
                 /// <summary>
                 /// Gets the first day of the week

@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 namespace AjaxControlToolkit
 {
-    [ParseChildren(true)]
+    [ParseChildren(true)]    
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(DynamicPopulateExtender))]
     [RequiredScript(typeof(TabContainer))]
@@ -39,7 +39,7 @@ namespace AjaxControlToolkit
         #region [ Constructors ]
 
         public TabPanel()
-            : base(false)
+            : base(false, HtmlTextWriterTag.Div)
         {
         }
 
@@ -180,26 +180,68 @@ namespace AjaxControlToolkit
             }
             if (_contentTemplate != null)
             {
-                Control c = new Control();
+                var c = new Control();
                 _contentTemplate.InstantiateIn(c);
-                Controls.Add(c);
+
+                if (_owner.OnDemand)
+                {
+                    var invisiblePanelID = ClientID + "_onDemandPanel";
+                    var invisiblePanel = new Panel()
+                                             {
+                                                 ID = invisiblePanelID,
+                                                 Visible = false
+                                             };
+                    invisiblePanel.Controls.Add(c);
+
+                    var updatePanel = new UpdatePanel()
+                    {
+                        ID = ClientID + "_updatePanel",
+                        UpdateMode = UpdatePanelUpdateMode.Conditional
+                    };
+                    updatePanel.Load += UpdatePanelOnLoad;
+                    updatePanel.ContentTemplateContainer.Controls.Add(invisiblePanel);
+                    Controls.Add(updatePanel);
+                }
+                else
+                    Controls.Add(c);
             }
+        }
+
+        void UpdatePanelOnLoad(object sender, EventArgs e)
+        {
+            if (!(sender is UpdatePanel))
+                return;
+
+            var updatePanelID = (sender as UpdatePanel).ID;
+            var tabID = updatePanelID.Substring(0, updatePanelID.Length - 12);
+            if (!Active)
+                return;
+
+            var invisiblePanel = FindControl(tabID + "_onDemandPanel");
+            if (invisiblePanel != null && invisiblePanel is Panel)
+                invisiblePanel.Visible = true;
         }
 
         protected internal virtual void RenderHeader(HtmlTextWriter writer)
         {
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_tab");
-            writer.RenderBeginTag(HtmlTextWriterTag.Span);
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_outer");
-            writer.RenderBeginTag(HtmlTextWriterTag.Span);
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_inner");
-            writer.RenderBeginTag(HtmlTextWriterTag.Span);
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_tab");            
+            RenderBeginTag(writer);
+
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_outer");            
+            RenderBeginTag(writer);
+
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_inner");            
+            RenderBeginTag(writer);
+
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_tab");
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, "__tab_" + ClientID);
-            writer.RenderBeginTag(HtmlTextWriterTag.Span);
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, "__tab_" + ClientID);            
+            RenderBeginTag(writer);
+
             if (_headerControl != null)
             {
+                _headerControl.Visible = true;
                 _headerControl.RenderControl(writer);
+                _headerControl.Visible = false;
             }
             else
             {
@@ -211,13 +253,20 @@ namespace AjaxControlToolkit
             writer.RenderEndTag();
         }
 
+        private void RenderBeginTag(HtmlTextWriter writer)
+        {
+            if (_owner.UseVerticalStripPlacement)
+                writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
+            writer.RenderBeginTag(HtmlTextWriterTag.Span);
+        }
+
         protected override void Render(HtmlTextWriter writer)
         {
             if (_headerControl != null)
             {
                 _headerControl.Visible = false;
             }
-            
+            base.AddAttributesToRender(writer);
             writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID);
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_panel");
             if (!Active || !Enabled)

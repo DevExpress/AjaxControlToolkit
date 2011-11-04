@@ -28,6 +28,7 @@ using System.Diagnostics;
 [assembly: System.Web.UI.WebResource("Tabs.Tabs.debug.js", "application/x-javascript")]
 [assembly: WebResource("Tabs.Tabs_resource.css", "text/css", PerformSubstitution=true)]
 [assembly: WebResource("Tabs.tab-line.gif", "image/gif")]
+// horizontal top (default) images
 [assembly: WebResource("Tabs.tab.gif", "image/gif")]
 [assembly: WebResource("Tabs.tab-left.gif", "image/gif")]
 [assembly: WebResource("Tabs.tab-right.gif", "image/gif")]
@@ -37,6 +38,36 @@ using System.Diagnostics;
 [assembly: WebResource("Tabs.tab-active.gif", "image/gif")]
 [assembly: WebResource("Tabs.tab-active-left.gif", "image/gif")]
 [assembly: WebResource("Tabs.tab-active-right.gif", "image/gif")]
+// horizontal bottom images
+[assembly: WebResource("Tabs.tab-bottom.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-bottom-left.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-bottom-right.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-bottom-hover.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-bottom-hover-left.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-bottom-hover-right.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-bottom-active.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-bottom-active-left.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-bottom-active-right.gif", "image/gif")]
+// vertical left images
+[assembly: WebResource("Tabs.tab-verticalleft.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-left-verticalleft.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-right-verticalleft.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-hover-verticalleft.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-hover-left-verticalleft.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-hover-right-verticalleft.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-active-verticalleft.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-active-left-verticalleft.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-active-right-verticalleft.gif", "image/gif")]
+// vertical right images
+[assembly: WebResource("Tabs.tab-verticalright.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-left-verticalright.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-right-verticalright.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-hover-verticalright.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-hover-left-verticalright.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-hover-right-verticalright.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-active-verticalright.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-active-left-verticalright.gif", "image/gif")]
+[assembly: WebResource("Tabs.tab-active-right-verticalright.gif", "image/gif")]
 
 #endregion
 
@@ -63,6 +94,9 @@ namespace AjaxControlToolkit
         private bool _initialized;
         private bool _autoPostBack;
         private TabStripPlacement _tabStripPlacement;
+        private bool _useVerticalStripPlacement;
+        private Unit _verticalStripWidth = new Unit(120, UnitType.Pixel);
+        private bool _onDemand;
 
         #endregion
 
@@ -107,6 +141,7 @@ namespace AjaxControlToolkit
                 {
                     if (!Tabs[i].Visible) counter--;
                 }
+                if (counter < 0) counter = 0;
                 return counter;
             }
         }
@@ -221,10 +256,10 @@ namespace AjaxControlToolkit
             get { return base.Height; }
             set
             {
-                if (!value.IsEmpty && value.Type != UnitType.Pixel)
-                {
-                    throw new ArgumentOutOfRangeException("value", "Height must be set in pixels only, or Empty.");
-                }
+                //if (!value.IsEmpty && value.Type != UnitType.Pixel)
+                //{
+                //    throw new ArgumentOutOfRangeException("value", "Height must be set in pixels only, or Empty.");
+                //}
                 base.Height = value;
             }
         }
@@ -304,6 +339,53 @@ namespace AjaxControlToolkit
             return IsRenderingScript && AutoPostBack;
         }
 
+        /// <summary>
+        /// Change tab header placement verticaly
+        /// </summary>
+        [Description("Change tab header placement vertically when value set to true")]
+        [DefaultValue(false)]
+        [Category("Appearance")]
+        public bool UseVerticalStripPlacement 
+        { 
+            get { return _useVerticalStripPlacement; } 
+            set { _useVerticalStripPlacement=value ; } 
+        }
+
+        /// <summary>
+        /// Set width of tab strips when UseVerticalStripPlacement is set to true
+        /// </summary>
+        [Description("Set width of tab strips when UseVerticalStripPlacement is set to true. Size must be in pixel")]
+        [DefaultValue(typeof(Unit), "120px")]
+        [Category("Appearance")]
+        public Unit VerticalStripWidth
+        {
+            get { return _verticalStripWidth; }
+            set 
+            {
+                if (!value.IsEmpty && value.Type != UnitType.Pixel)
+                {
+                    throw new ArgumentOutOfRangeException("value", "VerticalStripWidth must be set in pixels only, or Empty.");
+                }
+                _verticalStripWidth = value; 
+            }
+        }
+
+        /// <summary>
+        /// Load tab content when it's activated
+        /// </summary>
+        [DefaultValue(false)]
+        [Category("Behavior")]
+        public bool OnDemand
+        {
+            get
+            {
+                return _onDemand;
+            }
+            set
+            {
+                _onDemand = value;
+            }
+        }
         #endregion
 
         #region [ Methods ]
@@ -460,59 +542,150 @@ namespace AjaxControlToolkit
         {
             Style.Remove(HtmlTextWriterStyle.Visibility);
             if (!ControlStyleCreated)
-            {
                 writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_xp");
-            }
+            if (_useVerticalStripPlacement)
+                writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
+            if (!Height.IsEmpty && Height.Type == UnitType.Percentage)
+                writer.AddStyleAttribute(HtmlTextWriterStyle.Height, Height.ToString());
+
             base.AddAttributesToRender(writer);
             writer.AddStyleAttribute(HtmlTextWriterStyle.Visibility, "hidden");
         }
 
         protected override void RenderContents(HtmlTextWriter writer)
         {
+            //base.Render(writer);
             Page.VerifyRenderingInServerForm(this);
 
-            if (_tabStripPlacement == TabStripPlacement.Top)
-            {
+            if (_tabStripPlacement == TabStripPlacement.Top 
+                || _tabStripPlacement == TabStripPlacement.TopRight
+                || (_tabStripPlacement == TabStripPlacement.Bottom && _useVerticalStripPlacement)
+                || (_tabStripPlacement == TabStripPlacement.BottomRight && _useVerticalStripPlacement)
+                )
                 RenderHeader(writer);
-            }
 
             if (!Height.IsEmpty)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Height, Height.ToString());
+            else
+                writer.AddStyleAttribute(HtmlTextWriterStyle.Height, "100%");
 
             writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_body");
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_body" + GetSuffixTabStripPlacementCss());
+            writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
             writer.RenderBeginTag(HtmlTextWriterTag.Div);
-            {
-                RenderChildren(writer);
-            }
+            RenderChildren(writer);
             writer.RenderEndTag();
 
-            if (_tabStripPlacement == TabStripPlacement.Bottom)
-            {
+            if ((_tabStripPlacement == TabStripPlacement.Bottom && !_useVerticalStripPlacement)
+                || _tabStripPlacement == TabStripPlacement.BottomRight && !_useVerticalStripPlacement)
                 RenderHeader(writer);
-
-            }
         }
 
         protected virtual void RenderHeader(HtmlTextWriter writer)
-        {
+        {            
             writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_header");
-            writer.RenderBeginTag(HtmlTextWriterTag.Div);
-            foreach (TabPanel panel in Tabs)
-            {
-                if (panel.Visible)
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_header" + GetSuffixTabStripPlacementCss());
+            if (_tabStripPlacement == TabStripPlacement.BottomRight ||
+                _tabStripPlacement == TabStripPlacement.TopRight)
+                writer.AddStyleAttribute(HtmlTextWriterStyle.Direction, "rtl");
+
+            if (_useVerticalStripPlacement)
+            {                
+                writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
+                if (_tabStripPlacement == TabStripPlacement.Bottom || _tabStripPlacement == TabStripPlacement.Top)
                 {
-                    panel.RenderHeader(writer);
+                    writer.AddAttribute(HtmlTextWriterAttribute.Style, "float:left");
+                }
+                else
+                {
+                    writer.AddAttribute(HtmlTextWriterAttribute.Style, "float:right");
+                }
+                writer.AddStyleAttribute(HtmlTextWriterStyle.Width, _verticalStripWidth.ToString());
+            }
+
+            writer.RenderBeginTag(HtmlTextWriterTag.Div);
+
+            if (_tabStripPlacement == TabStripPlacement.Bottom || _tabStripPlacement == TabStripPlacement.BottomRight) 
+                RenderSpannerForVerticalTabs(writer);
+
+            if (!_useVerticalStripPlacement &&
+                (_tabStripPlacement == TabStripPlacement.BottomRight 
+                || _tabStripPlacement == TabStripPlacement.TopRight))
+            {
+                // reverse tab order placement
+                var tabs = Tabs.Count;
+                for (int i = tabs - 1; i >= 0; i--)
+                {
+                    var panel = Tabs[i];
+                    if (panel.Visible)
+                    {
+                        panel.RenderHeader(writer);
+                    }
                 }
             }
-            writer.RenderEndTag();
+            else
+            {
+                foreach (TabPanel panel in Tabs)
+                {
+                    if (panel.Visible)
+                    {
+                        panel.RenderHeader(writer);
+                    }
+                }
+            }
 
+            if (_tabStripPlacement == TabStripPlacement.Top || _tabStripPlacement == TabStripPlacement.TopRight)
+                RenderSpannerForVerticalTabs(writer);
+
+            writer.RenderEndTag();
+        }
+
+        private void RenderSpannerForVerticalTabs(HtmlTextWriter writer)
+        {
+            if (_useVerticalStripPlacement)
+            {
+                writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_headerSpannerHeight");
+                writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
+                writer.RenderBeginTag(HtmlTextWriterTag.Div);
+                writer.RenderEndTag();
+            }
+        }
+
+        private string GetSuffixTabStripPlacementCss()
+        {
+            var tabStripPlacementCss = "";
+            if (_useVerticalStripPlacement)
+            {
+                tabStripPlacementCss += "_vertical";
+                switch (_tabStripPlacement)
+                {
+                    case TabStripPlacement.Top:
+                    case TabStripPlacement.Bottom:
+                        tabStripPlacementCss += "left";
+                        break;
+                    case TabStripPlacement.TopRight:
+                    case TabStripPlacement.BottomRight:
+                        tabStripPlacementCss += "right";
+                        break;
+                }
+            } else
+            {
+                switch (_tabStripPlacement)
+                {
+                    case TabStripPlacement.Bottom:
+                    case TabStripPlacement.BottomRight:
+                        tabStripPlacementCss = "_bottom";
+                        break;
+                }                
+            }
+            return tabStripPlacementCss;
         }
 
         protected override bool LoadPostData(string postDataKey, NameValueCollection postCollection)
         {
             int tabIndex = ActiveTabIndex;
             bool result = base.LoadPostData(postDataKey, postCollection);
-            if (tabIndex != ActiveTabIndex)
+            if (ActiveTabIndex == 0 || tabIndex != ActiveTabIndex)
             {
                 return true;
             }
@@ -560,7 +733,8 @@ namespace AjaxControlToolkit
                 base.FillStyleAttributes(attributes, urlResolver);
 
                 attributes.Remove(HtmlTextWriterStyle.Height);
-                attributes.Remove(HtmlTextWriterStyle.BackgroundColor);
+                // commented below line to fix the issue #25821
+                //attributes.Remove(HtmlTextWriterStyle.BackgroundColor);
                 attributes.Remove(HtmlTextWriterStyle.BackgroundImage);
             }
         }
@@ -580,6 +754,7 @@ namespace AjaxControlToolkit
                 Debug.Assert(parseIndex != -1, "Expected new active tab index!");
                 if (parseIndex != -1 && Int32.TryParse(eventArgument.Substring(parseIndex + 1), out parseIndex))
                 {
+                    parseIndex = getServerActiveTabIndex(parseIndex);
                     if (parseIndex != ActiveTabIndex)
                     {
                         ActiveTabIndex = parseIndex;
@@ -590,5 +765,13 @@ namespace AjaxControlToolkit
         }
 
         #endregion
+
+        protected override void DescribeComponent(ScriptComponentDescriptor descriptor)
+        {
+            base.DescribeComponent(descriptor);
+            descriptor.AddProperty("tabStripPlacement", this.TabStripPlacement);
+            descriptor.AddProperty("useVerticalStripPlacement", this.UseVerticalStripPlacement);
+            descriptor.AddProperty("onDemand", this.OnDemand);
+        }
     }
 }

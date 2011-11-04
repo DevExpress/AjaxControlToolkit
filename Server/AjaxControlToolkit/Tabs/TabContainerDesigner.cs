@@ -29,20 +29,18 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Our HTML templates for design time.
         /// </summary>
-        private const string TabLink = "<a style='padding:2px;border-top:thin white inset;border-left:thin white inset; border-right:thin white inset;;' href='#'>{0}</a>";
+        private const string TabLink = "<a style='padding:2px;border-top:thin white inset;border-left:thin white inset; border-right:thin white inset;' href='#'>{0}</a>";
         private const string ActiveTabLink = "{0}";
 
-        private const string ClickRegionHtml = @"<div style='float:left;padding:2px;color:{3}; background-color:{4};{5};height:1em;' {0}='{1}'>{2}</div>";
+        private const string ClickRegionHtml = @"<div style='float:left;padding:2px;color:{3}; background-color:{4};{5};height:20px;' {0}='{1}'>{2}</div>";
         
 
         private const string DesignTimeHtml =
-  @"<div style=""padding:2px;width:{7};height:{8}"">
-        <div style='text-align:center;color:{0}; background-color:{1};border-left:thin white outset; border-right:thin white outset;height:1em;'>{2}</div>
-        <div style='color:{3}; background-color:{4};border-left:thin white outset; border-right:thin white outset;height:1em;text-align:left;'>{5}</div>
-                
-  <div style='clear:both;text-align:left;border-left:thin white outset; border-bottom:thin white outset; border-right:thin white outset;background-color:{10};height:100%;' {9}='0'>{6}</div>
-      
- </div>";
+            @"<div style=""padding:2px;width:{7};height:{8}"">
+                <div style='text-align:center;color:{0}; background-color:{1};border-left:thin white outset; border-right:thin white outset;height:20px;'>{2}</div>
+                <div style='color:{3}; background-color:{4};border-left:thin white outset; border-right:thin white outset;height:24px;text-align:left;'>{5}</div>
+                <div style='clear:both;text-align:left;border-left:thin white outset; border-bottom:thin white outset; border-right:thin white outset;background-color:{10};height:{11}; padding:8px; overflow:{12};' {9}='0'>{6}</div>
+            </div>";
 
         private const string EmptyDesignTimeHtml =
              @"<div style='display:inline-block;padding:2px;'>
@@ -206,7 +204,7 @@ namespace AjaxControlToolkit
                         String.Format(CultureInfo.InvariantCulture, isActive ? ActiveTabLink : TabLink, headerText),
                         ColorTranslator.ToHtml(SystemColors.ControlText),
                         (isActive ? ColorTranslator.ToHtml(SystemColors.Window) : "transparent"),
-                        (isActive ? "border-top:thin white outset;border-left:thin white outset;border-right:thin white outset;" : "")
+                        (isActive ? "border-left:thin white outset;border-right:thin white outset;" : "")
                       );
 
 
@@ -232,6 +230,11 @@ namespace AjaxControlToolkit
                 // OK build out the final full HTML for this control.
                 //
                 StringBuilder sb = new StringBuilder(1024);
+                var actualHeight =
+                    (!TabContainer.Height.IsEmpty && TabContainer.Height.Type == UnitType.Pixel)
+                    ? (TabContainer.Height.Value - 62).ToString() + "px" :
+                    "100%";
+
                 sb.Append(String.Format(CultureInfo.InvariantCulture,
                                         DesignTimeHtml,
                                         ColorTranslator.ToHtml(SystemColors.ControlText),
@@ -244,7 +247,9 @@ namespace AjaxControlToolkit
                                         TabContainer.Width,
                                         TabContainer.Height,
                                         DesignerRegion.DesignerRegionAttributeName,
-                                        ColorTranslator.ToHtml(SystemColors.Window)
+                                        ColorTranslator.ToHtml(SystemColors.Window),
+                                        actualHeight,
+                                        HideOverflowContent ? "hidden" : "visible"
                                         ));
                 return sb.ToString();                
             }
@@ -423,11 +428,14 @@ namespace AjaxControlToolkit
         /// <param name="propertyName"></param>
         private static void PersistTemplate(TabPanel panel, IDesignerHost host, ITemplate template, string propertyName)
         {
-            PropertyDescriptor descriptor = TypeDescriptor.GetProperties(panel)[propertyName];
-            using (DesignerTransaction transaction = host.CreateTransaction("SetEditableDesignerRegionContent"))
+            using (var transaction = host.CreateTransaction("SetEditableDesignerRegionContent"))
             {
-                descriptor.SetValue(panel, template);
-                transaction.Commit();
+                var propertyInfo = panel.GetType().GetProperty(propertyName);
+                if (propertyInfo != null)
+                {
+                    propertyInfo.SetValue(panel, template, null);
+                    transaction.Commit();
+                }
             }
         }
 
@@ -563,6 +571,28 @@ namespace AjaxControlToolkit
                 }
             }
         }
+
+        [CategoryAttribute("Design")]
+        [DesignOnlyAttribute(true)]
+        [DefaultValueAttribute(false)]
+        [DescriptionAttribute("Hide overflow content at design-time.")]
+        public bool HideOverflowContent
+        {
+            get 
+            { 
+                var state = DesignerState["HideOverflowContent"];
+                return state != null && (bool)state;
+            } 
+            set
+            {
+                var state = DesignerState["HideOverflowContent"];
+                if (state == null || (bool)state != value)
+                {
+                    DesignerState["HideOverflowContent"] = value;
+                    UpdateDesignTimeHtml();
+                }
+            }
+        }
      
         /// <summary>
         /// Manages our designer verbs
@@ -585,10 +615,18 @@ namespace AjaxControlToolkit
 
                 DesignerActionMethodItem addItem = new DesignerActionMethodItem(this, "OnAddTabPanel", "Add Tab Panel", true);
                 DesignerActionMethodItem removeItem = new DesignerActionMethodItem(this, "OnRemoveTabPanel", "Remove Tab Panel", true);
+                DesignerActionPropertyItem hideContentOverflowItem = new DesignerActionPropertyItem("HideOverflowContent", "Hide overflow content at design-time");
                 items.Add(addItem);
                 items.Add(removeItem);
+                items.Add(hideContentOverflowItem);
 
                 return items;
+            }
+
+            public bool HideOverflowContent
+            {
+                get { return _designer.HideOverflowContent; }
+                set { _designer.HideOverflowContent = value; }
             }
 
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "Called via reflection")]
