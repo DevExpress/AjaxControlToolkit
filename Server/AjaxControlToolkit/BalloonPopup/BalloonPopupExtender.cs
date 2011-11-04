@@ -194,7 +194,7 @@ namespace AjaxControlToolkit
         {
             get { return GetPropertyValue("UseShadow", true); }
             set { SetPropertyValue("UseShadow", value); }
-        }        
+        }
 
         /// <summary>
         /// Url of custom css that is required to display custom theme of Balloon Popup.
@@ -204,6 +204,20 @@ namespace AjaxControlToolkit
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// Scroll bars behavior when content is overflow
+        /// </summary>
+        [DefaultValue(ScrollBars.Auto)]
+        [Category("Behavior")]
+        [ClientPropertyName("scrollBars")]
+        [Description("Scroll bars behavior when content is overflow")]
+        [ExtenderControlProperty]
+        public ScrollBars ScrollBars
+        {
+            get { return GetPropertyValue("ScrollBars", ScrollBars.Auto); }
+            set { SetPropertyValue("ScrollBars", value); }
         }
 
         /// <summary>

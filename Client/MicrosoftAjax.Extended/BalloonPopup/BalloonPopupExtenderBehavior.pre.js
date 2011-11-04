@@ -37,8 +37,7 @@
             this._displayOnClick = true;
             this._balloonSize = "small";
             this._shadow = true;
-            this._customClassName = "";
-            this._useScrollBar = true;
+            this._scrollBars = Sys.Extended.UI.ScrollBars.Auto;
 
             // Variables
             this._popupElement = null;
@@ -220,6 +219,34 @@
                 }
                 this._popupWidth = this._directionElement.offsetWidth;
                 this._popupHeight = this._directionElement.offsetHeight;
+
+                var contentPadding = $common.getPaddingBox(contentElement);
+                var content = $get(this._balloonPopupControlID);
+                $common.setBounds(content,
+                {
+                    x: this._offsetX + contentPadding.left,
+                    y: this._offsetY + contentPadding.top,
+                    width: this._popupWidth - contentPadding.left - contentPadding.right,
+                    height: this._popupHeight - contentPadding.top - contentPadding.bottom
+                });
+
+                switch (this.get_scrollBars()) {
+                    case Sys.Extended.UI.ScrollBars.Horizontal:
+                        $common.setStyle(content, { overflowX: "scroll", overflowY: "hidden" });
+                        break;
+                    case Sys.Extended.UI.ScrollBars.Vertical:
+                        $common.setStyle(content, { overflowY: "scroll", overflowX: "hidden" });
+                        break;
+                    case Sys.Extended.UI.ScrollBars.Both:
+                        $common.setStyle(content, { overflow: "scroll" });
+                        break;
+                    case Sys.Extended.UI.ScrollBars.None:
+                        $common.setStyle(content, { overflow: "hidden" });
+                        break;
+                    default:
+                        $common.setStyle(content, { overflow: "auto" });
+                        break;
+                }
             },
 
             setStyle: function () {
@@ -730,6 +757,20 @@
                 }
             },
 
+            get_scrollBars: function () {
+                /// <value type="Sys.Extended.UI.ScrollBars">
+                /// get scroll bars behavior when content is overflow
+                /// </value>
+                return this._scrollBars;
+            },
+
+            set_scrollBars: function (value) {
+                if (this._scrollBars != value) {
+                    this._scrollBars = value;
+                    this.raisePropertyChanged('ScrollBars');
+                }
+            },
+
             get_PopupVisible: function () {
                 /// <value type="Boolean">
                 /// Whether the popup control is currently visible
@@ -1033,6 +1074,16 @@
         }
 
         Sys.Extended.UI.BalloonPopupSize.registerEnum("Sys.Extended.UI.BalloonPopupSize", false);
+
+        Sys.Extended.UI.ScrollBars = function () { throw Error.invalidOperation(); }
+        Sys.Extended.UI.ScrollBars.prototype = {
+            None: 0x00,
+            Horizontal: 0x01,
+            Vertical: 0x02,
+            Both: 0x03,
+            Auto: 0x04
+        }
+        Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", false);
 
     } // execute
 
