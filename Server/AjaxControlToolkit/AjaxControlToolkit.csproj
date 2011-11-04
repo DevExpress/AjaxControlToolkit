@@ -380,6 +380,7 @@
     <Compile Include="SlideShow\Slide.cs" />
     <Compile Include="SlideShow\SlideShowDesigner.cs" />
     <Compile Include="SlideShow\SlideShowExtender.cs" />
+    <Compile Include="Tabs\OnDemandMode.cs" />
     <Compile Include="Tabs\TabContainer.cs" />
     <Compile Include="Tabs\TabContainerDesigner.cs" />
     <Compile Include="Tabs\TabPanel.cs" />

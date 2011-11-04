@@ -136,6 +136,16 @@ namespace AjaxControlToolkit
             set { ViewState["DynamicContextKey"] = value; }
         }
 
+        [DefaultValue(OnDemandMode.Always)]
+        [Category("Behavior")]
+        [ExtenderControlProperty]
+        [ClientPropertyName("onDemandMode")]
+        public OnDemandMode OnDemandMode
+        {
+            get { return (OnDemandMode)(ViewState["OnDemandMode"] ?? OnDemandMode.Always); }
+            set { ViewState["OnDemandMode"] = value; }
+        }
+
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -154,7 +164,7 @@ namespace AjaxControlToolkit
         {
             get { return (string)(ViewState["OnClientPopulated"] ?? string.Empty); }
             set { ViewState["OnClientPopulated"] = value; }
-        }
+        }        
 
         internal bool Active
         {
@@ -183,7 +193,7 @@ namespace AjaxControlToolkit
                 var c = new Control();
                 _contentTemplate.InstantiateIn(c);
 
-                if (_owner.OnDemand)
+                if (_owner.OnDemand && OnDemandMode != OnDemandMode.None)
                 {
                     var invisiblePanelID = ClientID + "_onDemandPanel";
                     var invisiblePanel = new Panel()
