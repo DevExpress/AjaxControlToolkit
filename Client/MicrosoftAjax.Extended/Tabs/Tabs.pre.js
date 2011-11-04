@@ -363,6 +363,7 @@
             this._header_onmousedown$delegate = Function.createDelegate(this, this._header_onmousedown);
             this._dynamicPopulate_onpopulated$delegate = Function.createDelegate(this, this._dynamicPopulate_onpopulated);
             this._oncancel$delegate = Function.createDelegate(this, this._oncancel);
+            this._onkeyup$delegate = Function.createDelegate(this, this._onkeyup);
         }
         Sys.Extended.UI.TabPanel.prototype = {
 
@@ -626,7 +627,8 @@
                 $addHandlers(this._header, {
                     click: this._header_onclick$delegate,
                     mouseover: this._header_onmouseover$delegate,
-                    mouseout: this._header_onmouseout$delegate
+                    mouseout: this._header_onmouseout$delegate,
+                    keyup: this._onkeyup$delegate
                 });
             },
 
@@ -634,7 +636,8 @@
                 $common.removeHandlers(this._header, {
                     click: this._header_onclick$delegate,
                     mouseover: this._header_onmouseover$delegate,
-                    mouseout: this._header_onmouseout$delegate
+                    mouseout: this._header_onmouseout$delegate,
+                    keyup: this._onkeyup$delegate
                 });
             },
 
@@ -702,10 +705,24 @@
                     Sys.UI.DomElement.addCssClass(this._tab, "ajax__tab_disabled");
                 }
             },
-
+            _setFocus: function (obj) {
+                var bodyNode = obj.get_element().parentNode;
+                if (bodyNode) {
+                    var tabContainerNode = bodyNode.parentNode;
+                    if (tabContainerNode) {
+                        var hyperlinks = tabContainerNode.getElementsByTagName("a");
+                        if (hyperlinks && hyperlinks.length > 0) {
+                            var x = window.scrollX, y = window.scrollY;
+                            hyperlinks[obj.get_tabIndex()].focus();
+                            window.scrollTo(x, y);
+                        }
+                    }
+                }
+            },
             _header_onclick: function (e) {
                 this.raiseClick();
                 this.get_owner().set_activeTab(this);
+                this._setFocus(this);
             },
             _header_onmouseover: function (e) {
                 Sys.UI.DomElement.addCssClass(this._tab, "ajax__tab_hover");
@@ -719,6 +736,41 @@
             _oncancel: function (e) {
                 e.stopPropagation();
                 e.preventDefault();
+            },
+            _onkeyup: function (e) {
+                var keyCode = ('which' in e) ? e.which : e.keyCode;
+                if (keyCode == "39")//right
+                {
+                    var next = this._owner.getNextTab(false);
+                    if (next) {
+                        this._owner.set_activeTab(next);
+                        this._setFocus(next);
+                    }
+                }
+                else if (keyCode == "37")//left
+                {
+                    var next = this._owner.getPreviousTab(false);
+                    if (next) {
+                        this._owner.set_activeTab(next);
+                        this._setFocus(next);
+                    }
+                }
+                else if (keyCode == "35")//end
+                {
+                    var next = this._owner.getLastTab(false);
+                    if (next) {
+                        this._owner.set_activeTab(next);
+                        this._setFocus(next);
+                    }
+                }
+                else if (keyCode == "36")//home
+                {
+                    var next = this._owner.getFirstTab(false);
+                    if (next) {
+                        this._owner.set_activeTab(next);
+                        this._setFocus(next);
+                    }
+                }
             },
             _dynamicPopulate_onpopulated: function (sender, e) {
                 this.raisePopulated();
