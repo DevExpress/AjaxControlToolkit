@@ -38,7 +38,6 @@
             this._balloonSize = "small";
             this._shadow = true;
             this._scrollBars = Sys.Extended.UI.ScrollBars.Auto;
-            this._useScrollBar = true;
 
             // Variables
             this._popupElement = null;
