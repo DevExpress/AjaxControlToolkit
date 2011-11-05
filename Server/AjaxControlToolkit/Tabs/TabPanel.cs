@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 namespace AjaxControlToolkit
 {
-    [ParseChildren(true)]    
+    [ParseChildren(true)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(DynamicPopulateExtender))]
     [RequiredScript(typeof(TabContainer))]
@@ -28,7 +28,7 @@ namespace AjaxControlToolkit
     {
         #region [ Fields ]
 
-        private bool _active ;
+        private bool _active;
         private ITemplate _contentTemplate;
         private ITemplate _headerTemplate;
         private TabContainer _owner;
@@ -234,17 +234,21 @@ namespace AjaxControlToolkit
 
         protected internal virtual void RenderHeader(HtmlTextWriter writer)
         {
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_tab");            
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_tab");
             RenderBeginTag(writer);
 
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_outer");            
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_outer");
             RenderBeginTag(writer);
 
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_inner");            
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_inner");
             RenderBeginTag(writer);
 
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_tab");
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, "__tab_" + ClientID);            
+            writer.AddAttribute(HtmlTextWriterAttribute.Id, "__tab_" + ClientID);
+
+            writer.AddAttribute(HtmlTextWriterAttribute.Href, "#");
+            writer.RenderBeginTag(HtmlTextWriterTag.A);
+
             RenderBeginTag(writer);
 
             if (_headerControl != null)
@@ -303,7 +307,7 @@ namespace AjaxControlToolkit
 
         internal void SetOwner(TabContainer owner)
         {
-            _owner = owner; 
+            _owner = owner;
         }
 
         #endregion
