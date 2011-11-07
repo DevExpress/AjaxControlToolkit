@@ -713,20 +713,10 @@
                 }
             },
             _setFocus: function (obj) {
-                var bodyNode = obj.get_element().parentNode;
-                if (bodyNode) {
-                    var tabContainerNode = bodyNode.parentNode;
-                    if (tabContainerNode) {
-                        var hyperlinks = tabContainerNode.getElementsByTagName("a");
-                        if (hyperlinks && hyperlinks.length > 0) {
-                            var x = window.scrollX, y = window.scrollY;
-                            hyperlinks[obj.get_tabIndex()].focus();
-                            window.scrollTo(x, y);
-                        }
-                    }
-                }
+                $get("__tab_" + obj.get_element().id).focus();
             },
             _header_onclick: function (e) {
+                e.preventDefault();
                 this.raiseClick();
                 this.get_owner().set_activeTab(this);
                 this._setFocus(this);

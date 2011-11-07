@@ -247,6 +247,7 @@ namespace AjaxControlToolkit
             writer.AddAttribute(HtmlTextWriterAttribute.Id, "__tab_" + ClientID);
 
             writer.AddAttribute(HtmlTextWriterAttribute.Href, "#");
+            writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
             writer.RenderBeginTag(HtmlTextWriterTag.A);
 
             RenderBeginTag(writer);
@@ -261,6 +262,7 @@ namespace AjaxControlToolkit
             {
                 writer.Write(HeaderText);
             }
+            writer.RenderEndTag();
             writer.RenderEndTag();
             writer.RenderEndTag();
             writer.RenderEndTag();
