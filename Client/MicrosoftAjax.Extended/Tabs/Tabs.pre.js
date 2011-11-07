@@ -382,7 +382,7 @@
             this._header_onmousedown$delegate = Function.createDelegate(this, this._header_onmousedown);
             this._dynamicPopulate_onpopulated$delegate = Function.createDelegate(this, this._dynamicPopulate_onpopulated);
             this._oncancel$delegate = Function.createDelegate(this, this._oncancel);
-            this._onkeyup$delegate = Function.createDelegate(this, this._onkeyup);
+            this._onkeydown$delegate = Function.createDelegate(this, this._onkeydown);
         }
         Sys.Extended.UI.TabPanel.prototype = {
 
@@ -635,7 +635,7 @@
                     click: this._header_onclick$delegate,
                     mouseover: this._header_onmouseover$delegate,
                     mouseout: this._header_onmouseout$delegate,
-                    keyup: this._onkeyup$delegate
+                    keydown: this._onkeydown$delegate
                 });
             },
 
@@ -644,7 +644,7 @@
                     click: this._header_onclick$delegate,
                     mouseover: this._header_onmouseover$delegate,
                     mouseout: this._header_onmouseout$delegate,
-                    keyup: this._onkeyup$delegate
+                    keydown: this._onkeydown$delegate
                 });
             },
 
@@ -734,18 +734,20 @@
                 e.stopPropagation();
                 e.preventDefault();
             },
-            _onkeyup: function (e) {
+            _onkeydown: function (e) {
                 var keyCode = ('which' in e) ? e.which : e.keyCode;
-                if (keyCode == "39")//right
+                if ((keyCode == "39" && !this._owner._useVerticalStripPlacement) || (keyCode == "40" && this._owner._useVerticalStripPlacement))//right or down
                 {
+                    e.preventDefault();
                     var next = this._owner.getNextTab(false);
                     if (next) {
                         this._owner.set_activeTab(next);
                         this._setFocus(next);
                     }
                 }
-                else if (keyCode == "37")//left
+                else if ((keyCode == "37" && !this._owner._useVerticalStripPlacement) || (keyCode == "38" && this._owner._useVerticalStripPlacement))//left or up
                 {
+                    e.preventDefault();
                     var next = this._owner.getPreviousTab(false);
                     if (next) {
                         this._owner.set_activeTab(next);
@@ -754,6 +756,7 @@
                 }
                 else if (keyCode == "35")//end
                 {
+                    e.preventDefault();
                     var next = this._owner.getLastTab(false);
                     if (next) {
                         this._owner.set_activeTab(next);
@@ -762,6 +765,7 @@
                 }
                 else if (keyCode == "36")//home
                 {
+                    e.preventDefault();
                     var next = this._owner.getFirstTab(false);
                     if (next) {
                         this._owner.set_activeTab(next);
