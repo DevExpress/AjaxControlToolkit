@@ -183,6 +183,11 @@
     <Content Include="ValidatorCallout\ValidatorCalloutBehavior.pre.js" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BalloonPopup\BalloonPopupExtenderBehavior.pre.js" />
+    <Content Include="BalloonPopup\Cloud\BalloonPopup.css" />
+    <Content Include="BalloonPopup\Cloud\sprite.png" />
+    <Content Include="BalloonPopup\Rectangle\BalloonPopup.css" />
+    <Content Include="BalloonPopup\Rectangle\sprite.png" />
     <Content Include="ExtenderBase\BaseScriptsResources.ar.resx">
       <SubType>Designer</SubType>
     </Content>
@@ -318,7 +323,6 @@
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
   <UsingTask TaskName="JSBuild.PrependTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
   <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
-
   <Target Name="BeforeBuild">
     <MakeDir Directories="$(ScriptOutput)" />
     <!-- clean out old files from previous build -->
