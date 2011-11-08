@@ -100,6 +100,7 @@
         <em>CustomCssUrl</em>="http://browsers.superexpert.com/BalloonPopup/CustomTheme/BalloonPopup_resource.css"
         <em>CustomClassName</em>="oval"
         <em>UseShadow</em>="true" 
+        <em>ScrollBars</em>="Auto"
         <em>DisplayOnMouseOver</em>="true"
         <em>DisplayOnFocus</em>="false"
         <em>DisplayOnClick</em>=&quot;true&quot; /&gt;</pre>
@@ -122,6 +123,9 @@
             This specifies the name of the css class for the custom theme.</li>
             <li><strong>UseShadow</strong> - Optional setting specifying whether to display shadow of balloon 
             popup or not.</li>
+            <li><strong>ScrollBars</strong> - Optional setting specifying whether to display scrollbar if 
+            contents are overflowing. This property contains 5 options - None, Horizontal, Vertical, Both 
+            and Auto. Default value is Auto.</li>
             <li><strong>DisplayOnMouseOver</strong> - Optional setting specifying whether to display balloon 
             popup on the client onMouseOver event. Default value is false.</li>
             <li><strong>DisplayOnFocus</strong> - Optional setting specifying whether to display balloon 
