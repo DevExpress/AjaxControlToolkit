@@ -36,6 +36,14 @@
         Sys.Extended.UI.UseVerticalStripPlacement = function () { }
         Sys.Extended.UI.OnDemand = function () { }
 
+        Sys.Extended.UI.OnDemandMode = function () { }
+        Sys.Extended.UI.OnDemandMode.prototype = {
+            None: 0,
+            Always: 1,
+            Once: 2
+        }
+        Sys.Extended.UI.OnDemandMode.registerEnum("Sys.Extended.UI.OnDemandMode", true);
+
         Sys.Extended.UI.TabContainer = function (element) {
             Sys.Extended.UI.TabContainer.initializeBase(this, [element]);
             this._cachedActiveTabIndex = -1;
@@ -104,9 +112,16 @@
                         /*this._body.style.height = "auto";*/
                         if (this._loaded && changed) {
                             if (this._onDemand) {
-                                var activeTabId = this.get_tabs()[this._activeTabIndex]._tab.id;
-                                var updatePanelID = activeTabId.substr(0, activeTabId.length - 4) + "_updatePanel";
-                                this._pageRequestManager.beginAsyncPostBack([updatePanelID], null, null, false, null);
+                                var activeTab = this.get_tabs()[this._activeTabIndex];
+                                if (activeTab._onDemandMode != Sys.Extended.UI.OnDemandMode.None) {
+                                    if ((activeTab._onDemandMode == Sys.Extended.UI.OnDemandMode.Once && activeTab._wasLoaded == false)
+                                        || activeTab._onDemandMode == Sys.Extended.UI.OnDemandMode.Always) {
+                                        var activeTabId = activeTab._tab.id;
+                                        var updatePanelID = activeTabId.substr(0, activeTabId.length - 4) + "_updatePanel";
+                                        this._pageRequestManager.beginAsyncPostBack([updatePanelID], null, null, false, null);
+                                        activeTab._wasLoaded = true;
+                                    }
+                                }
                             }
                             this.raiseActiveTabChanged();
                         }
@@ -200,7 +215,7 @@
                 ]);
 
                 this._invalidate();
-                if(this._onDemand) this._pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
+                if (this._onDemand) this._pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
                 Sys.Application.add_load(this._app_onload$delegate);
             },
             dispose: function () {
@@ -330,8 +345,12 @@
                 if (this._cachedActiveTabIndex != -1) {
                     this.set_activeTabIndex(this._cachedActiveTabIndex);
                     this._cachedActiveTabIndex = -1;
-                }
 
+                    var activeTab = this.get_tabs()[this._activeTabIndex];
+                    if (activeTab) {
+                        activeTab._wasLoaded = true;
+                    }
+                }
 
                 this._loaded = true;
             }
@@ -355,15 +374,15 @@
             this._dynamicServiceMethod = null;
             this._dynamicPopulateBehavior = null;
             this._scrollBars = Sys.Extended.UI.ScrollBars.None;
-            this._useVerticalStripPlacement = false;
-            this._tabStripPlacement = Sys.Extended.UI.TabStripPlacement.Top;
+            this._onDemandMode = Sys.Extended.UI.OnDemandMode.Always;
+            this._wasLoaded = false;
             this._header_onclick$delegate = Function.createDelegate(this, this._header_onclick);
             this._header_onmouseover$delegate = Function.createDelegate(this, this._header_onmouseover);
             this._header_onmouseout$delegate = Function.createDelegate(this, this._header_onmouseout);
             this._header_onmousedown$delegate = Function.createDelegate(this, this._header_onmousedown);
             this._dynamicPopulate_onpopulated$delegate = Function.createDelegate(this, this._dynamicPopulate_onpopulated);
             this._oncancel$delegate = Function.createDelegate(this, this._oncancel);
-            this._onkeyup$delegate = Function.createDelegate(this, this._onkeyup);
+            this._onkeydown$delegate = Function.createDelegate(this, this._onkeydown);
         }
         Sys.Extended.UI.TabPanel.prototype = {
 
@@ -485,25 +504,13 @@
                 }
             },
 
-            get_tabStripPlacement: function () {
-                return this._tabStripPlacement;
+            get_onDemandMode: function () {
+                return this._onDemandMode;
             },
-            set_tabStripPlacement: function (value) {
-                if (this._tabStripPlacement != value) {
-                    this._tabStripPlacement = value;
-                    this._invalidate();
-                    this.raisePropertyChanged("tabStripPlacement");
-                }
-            },
-
-            get_useVerticalStripPlacement: function () {
-                return this._useVerticalStripPlacement;
-            },
-            set_useVerticalStripPlacement: function (value) {
-                if (this._useVerticalStripPlacement != value) {
-                    this._useVerticalStripPlacement = value;
-                    this._invalidate();
-                    this.raisePropertyChanged("useVerticalStripPlacement");
+            set_onDemandMode: function (value) {
+                if (this._onDemandMode != value) {
+                    this._onDemandMode = value;
+                    this.raisePropertyChanged("onDemandMode");
                 }
             },
 
@@ -628,7 +635,7 @@
                     click: this._header_onclick$delegate,
                     mouseover: this._header_onmouseover$delegate,
                     mouseout: this._header_onmouseout$delegate,
-                    keyup: this._onkeyup$delegate
+                    keydown: this._onkeydown$delegate
                 });
             },
 
@@ -637,7 +644,7 @@
                     click: this._header_onclick$delegate,
                     mouseover: this._header_onmouseover$delegate,
                     mouseout: this._header_onmouseout$delegate,
-                    keyup: this._onkeyup$delegate
+                    keydown: this._onkeydown$delegate
                 });
             },
 
@@ -706,20 +713,10 @@
                 }
             },
             _setFocus: function (obj) {
-                var bodyNode = obj.get_element().parentNode;
-                if (bodyNode) {
-                    var tabContainerNode = bodyNode.parentNode;
-                    if (tabContainerNode) {
-                        var hyperlinks = tabContainerNode.getElementsByTagName("a");
-                        if (hyperlinks && hyperlinks.length > 0) {
-                            var x = window.scrollX, y = window.scrollY;
-                            hyperlinks[obj.get_tabIndex()].focus();
-                            window.scrollTo(x, y);
-                        }
-                    }
-                }
+                $get("__tab_" + obj.get_element().id).focus();
             },
             _header_onclick: function (e) {
+                e.preventDefault();
                 this.raiseClick();
                 this.get_owner().set_activeTab(this);
                 this._setFocus(this);
@@ -737,18 +734,20 @@
                 e.stopPropagation();
                 e.preventDefault();
             },
-            _onkeyup: function (e) {
+            _onkeydown: function (e) {
                 var keyCode = ('which' in e) ? e.which : e.keyCode;
-                if (keyCode == "39")//right
+                if ((keyCode == "39" && !this._owner._useVerticalStripPlacement) || (keyCode == "40" && this._owner._useVerticalStripPlacement))//right or down
                 {
+                    e.preventDefault();
                     var next = this._owner.getNextTab(false);
                     if (next) {
                         this._owner.set_activeTab(next);
                         this._setFocus(next);
                     }
                 }
-                else if (keyCode == "37")//left
+                else if ((keyCode == "37" && !this._owner._useVerticalStripPlacement) || (keyCode == "38" && this._owner._useVerticalStripPlacement))//left or up
                 {
+                    e.preventDefault();
                     var next = this._owner.getPreviousTab(false);
                     if (next) {
                         this._owner.set_activeTab(next);
@@ -757,6 +756,7 @@
                 }
                 else if (keyCode == "35")//end
                 {
+                    e.preventDefault();
                     var next = this._owner.getLastTab(false);
                     if (next) {
                         this._owner.set_activeTab(next);
@@ -765,6 +765,7 @@
                 }
                 else if (keyCode == "36")//home
                 {
+                    e.preventDefault();
                     var next = this._owner.getFirstTab(false);
                     if (next) {
                         this._owner.set_activeTab(next);
