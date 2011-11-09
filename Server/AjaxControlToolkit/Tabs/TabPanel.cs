@@ -247,6 +247,7 @@ namespace AjaxControlToolkit
             writer.AddAttribute(HtmlTextWriterAttribute.Id, "__tab_" + ClientID);
 
             writer.AddAttribute(HtmlTextWriterAttribute.Href, "#");
+            writer.AddStyleAttribute(HtmlTextWriterStyle.TextDecoration, "none");
             if(_owner.UseVerticalStripPlacement)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
             writer.RenderBeginTag(HtmlTextWriterTag.A);
