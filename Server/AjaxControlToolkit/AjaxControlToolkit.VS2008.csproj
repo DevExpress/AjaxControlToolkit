@@ -389,8 +389,7 @@
     <Content Include="AsyncFileUpload\images\fileupload.png" />
     <EmbeddedResource Include="AutoComplete\AutoComplete.ico" />
     <EmbeddedResource Include="Calendar\Calendar.ico" />
-    <Content Include="BalloonPopup\BalloonPopup.ico" />
-    <Content Include="BalloonPopup\BalloonPopup_resource.css" />
+    <EmbeddedResource Include="BalloonPopup\BalloonPopup.ico" />
     <Content Include="BalloonPopup\Cloud\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Cloud\sprite.png" />
     <Content Include="BalloonPopup\Rectangle\BalloonPopup_resource.css" />
