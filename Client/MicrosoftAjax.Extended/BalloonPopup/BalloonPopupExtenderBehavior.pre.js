@@ -57,7 +57,8 @@
             this._onHideJson = null;
             this._popupWidth = 0;
             this._popupHeight = 0;
-            this._AutoPosition = null;
+            this._AutoPosition = null; // to hold correct position when Position mode is auto
+            this._directionClassName = null; // temporary store class names for direction and shadow elements
         }
         Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
             initialize: function () {
@@ -213,6 +214,8 @@
                 this.setStyle();
                 // set size of balloon popup
                 this.setSize();
+                // set class name to directionElement to set height and width of balloon popup
+                this._directionElement.className = this._directionClassName;
 
                 this._popupWidth = this._directionElement.offsetWidth;
                 this._popupHeight = this._directionElement.offsetHeight;
@@ -227,56 +230,57 @@
             },
 
             setStyle: function () {
+                /// <summary>
+                /// Set theme for balloon popup control. 
+                /// </summary>
                 switch (this.get_balloonPopupStyle()) {
                     case Sys.Extended.UI.BalloonPopupStyle.Rectangle:
                         this._styleElement.className = "rect";
-                        this._directionElement.className = "rect";
-                        this._shadowElement.className = "rect";
+                        this._directionClassName = "rect";
                         break;
                     case Sys.Extended.UI.BalloonPopupStyle.Cloud:
                         this._styleElement.className = "cloud";
-                        this._directionElement.className = "cloud";
-                        this._shadowElement.className = "cloud";
+                        this._directionClassName = "cloud";
                         break;
                     case Sys.Extended.UI.BalloonPopupStyle.Custom:
                         this._styleElement.className = this.get_customClassName();
-                        this._directionElement.className = this.get_customClassName(); ;
-                        this._shadowElement.className = this.get_customClassName(); ;
+                        this._directionClassName = this.get_customClassName();
                         break;
                     default:
                         this._styleElement.className = "rect";
-                        this._directionElement.className = "rect";
-                        this._shadowElement.className = "rect";
+                        this._directionClassName = "rect";
                         break;
                 }
             },
 
             setSize: function () {
+                /// <summary>
+                /// Set size of balloon popup control. 
+                /// </summary>
                 switch (this.get_balloonSize()) {
                     case Sys.Extended.UI.BalloonPopupSize.Small:
                         this._sizeElement.className += " small";
-                        this._directionElement.className += " small";
-                        this._shadowElement.className += " small";
+                        this._directionClassName += " small";
                         break;
                     case Sys.Extended.UI.BalloonPopupSize.Medium:
                         this._sizeElement.className += " medium";
-                        this._directionElement.className += " medium";
-                        this._shadowElement.className += " medium";
+                        this._directionClassName += " medium";
                         break;
                     case Sys.Extended.UI.BalloonPopupSize.Large:
                         this._sizeElement.className += " large";
-                        this._directionElement.className += " large";
-                        this._shadowElement.className += " large";
+                        this._directionClassName += " large";
                         break;
                     default:
                         this._sizeElement.className += " small";
-                        this._directionElement.className += " small";
-                        this._shadowElement.className += " small";
+                        this._directionClassName += " small";
                         break;
                 }
             },
 
             setPosition: function () {
+                /// <summary>
+                /// Set position of balloon popup control. 
+                /// </summary>
                 var currentPosition = null;
                 if (this.get_balloonPopupPosition() == Sys.Extended.UI.BalloonPopupPosition.Auto) {
                     currentPosition = this._autoPosition;
@@ -287,29 +291,33 @@
 
                 switch (currentPosition) {
                     case Sys.Extended.UI.BalloonPopupPosition.TopLeft:
-                        this._directionElement.className += " top_left";
-                        this._shadowElement.className += " top_left_shadow";
+                        this._directionElement.className = this._directionClassName + " top_left";
+                        this._shadowElement.className = this._directionClassName + " top_left_shadow";
                         break;
                     case Sys.Extended.UI.BalloonPopupPosition.TopRight:
-                        this._directionElement.className += " top_right";
-                        this._shadowElement.className += " top_right_shadow";
+                        this._directionElement.className = this._directionClassName + " top_right";
+                        this._shadowElement.className = this._directionClassName + " top_right_shadow";
                         break;
                     case Sys.Extended.UI.BalloonPopupPosition.BottomLeft:
-                        this._directionElement.className += " bottom_left";
-                        this._shadowElement.className += " bottom_left_shadow";
+                        this._directionElement.className = this._directionClassName + " bottom_left";
+                        this._shadowElement.className = this._directionClassName + " bottom_left_shadow";
                         break;
                     case Sys.Extended.UI.BalloonPopupPosition.BottomRight:
-                        this._directionElement.className += " bottom_right";
-                        this._shadowElement.className += " bottom_right_shadow";
+                        this._directionElement.className = this._directionClassName + " bottom_right";
+                        this._shadowElement.className = this._directionClassName + " bottom_right_shadow";
                         break;
                     default:
-                        this._directionElement.className += " top_right";
-                        this._shadowElement.className += " top_right_shadow";
+                        this._directionElement.className = this._directionClassName + " top_right";
+                        this._shadowElement.className = this._directionClassName + " top_right_shadow";
                         break;
                 }
+
             },
 
             setContentPadding: function () {
+                /// <summary>
+                /// Set padding style for balloon popup contents 
+                /// </summary>
                 var contentPadding = $common.getPaddingBox(this._contentElement);
                 var content = $get(this._balloonPopupControlID);
                 $common.setBounds(content,
@@ -322,6 +330,9 @@
             },
 
             setScrollBar: function () {
+                /// <summary>
+                /// Set overflow style for balloon popup contents 
+                /// </summary>
                 var content = $get(this._balloonPopupControlID);
                 switch (this.get_scrollBars()) {
                     case Sys.Extended.UI.ScrollBars.Horizontal:
@@ -343,6 +354,9 @@
             },
 
             disableContents: function (contentElement) {
+                /// <summary>
+                /// Disable all contents in the balloon popup
+                /// </summary>
                 try {
                     contentElement.disabled = contentElement.disabled ? false : true;
                 }
@@ -488,7 +502,7 @@
                     xoffSet = this.get_element().offsetWidth + this._offsetX;
                 } else {
                     xoffSet = this._offsetX;
-                }                
+                }
                 return xoffSet;
             },
 
@@ -509,7 +523,7 @@
                     yoffSet = (this.get_element().offsetHeight) + this._offsetY;
                 } else {
                     yoffSet = this._offsetY;
-                }                
+                }
                 return yoffSet;
             },
 
@@ -537,8 +551,7 @@
                 var _popBottomPosition = _elementTopPosition + this.get_element().offsetHeight + this._popupHeight;
                 var _popRightPosition = _elementLeftPosition + this.get_element().offsetWidth + this._popupWidth;
 
-                if ((_popTopPosition - _pageTopPosition) > 0 && ((_popTopPosition - _pageTopPosition) > (_pageBottom - _popBottomPosition))) {
-                    //if (_pageBottom > _popBottomPosition) {
+                if ((_popTopPosition - _pageTopPosition) > 0 && ((_popTopPosition - _pageTopPosition) > (_pageBottom - _popBottomPosition))) {                    
                     if (_pageRight < _popRightPosition) {
                         this._autoPosition = Sys.Extended.UI.BalloonPopupPosition.TopLeft;
                     }
@@ -553,7 +566,7 @@
                     else {
                         this._autoPosition = Sys.Extended.UI.BalloonPopupPosition.BottomRight;
                     }
-                }                
+                }
             },
 
             get_onShow: function () {
