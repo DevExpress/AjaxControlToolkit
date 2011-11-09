@@ -45,6 +45,7 @@
             this._sizeElement = null;
             this._shadowElement = null;
             this._directionElement = null;
+            this._contentElement = null;
             this._popupBehavior = null;
             this._popupVisible = false;
             this._focusHandler = null;
@@ -197,7 +198,7 @@
                 }, this._shadowElement);
 
                 // create element to hold contents
-                var contentElement = $common.createElementFromTemplate({
+                this._contentElement = $common.createElementFromTemplate({
                     nodeName: "div",
                     Properties: {
                         id: "ajax__content"
@@ -205,48 +206,24 @@
                     cssClasses: ["ajax__content"]
                 }, this._directionElement);
 
-                contentElement.appendChild($get(this._balloonPopupControlID));
-                this.disableContents(contentElement);
+                this._contentElement.appendChild($get(this._balloonPopupControlID));
+                this.disableContents(this._contentElement);
 
                 // set theme/style as per user's setting
                 this.setStyle();
                 // set size of balloon popup
                 this.setSize();
 
-                if (this.get_balloonPopupPosition() != Sys.Extended.UI.BalloonPopupPosition.Auto) {
-                    // set position of arrow and drop shadow
-                    this.setPosition();
-                }
                 this._popupWidth = this._directionElement.offsetWidth;
                 this._popupHeight = this._directionElement.offsetHeight;
 
-                var contentPadding = $common.getPaddingBox(contentElement);
-                var content = $get(this._balloonPopupControlID);
-                $common.setBounds(content,
-                {
-                    x: this._offsetX + contentPadding.left,
-                    y: this._offsetY + contentPadding.top,
-                    width: this._popupWidth - contentPadding.left - contentPadding.right,
-                    height: this._popupHeight - contentPadding.top - contentPadding.bottom
-                });
-
-                switch (this.get_scrollBars()) {
-                    case Sys.Extended.UI.ScrollBars.Horizontal:
-                        $common.setStyle(content, { overflowX: "scroll", overflowY: "hidden" });
-                        break;
-                    case Sys.Extended.UI.ScrollBars.Vertical:
-                        $common.setStyle(content, { overflowY: "scroll", overflowX: "hidden" });
-                        break;
-                    case Sys.Extended.UI.ScrollBars.Both:
-                        $common.setStyle(content, { overflow: "scroll" });
-                        break;
-                    case Sys.Extended.UI.ScrollBars.None:
-                        $common.setStyle(content, { overflow: "hidden" });
-                        break;
-                    default:
-                        $common.setStyle(content, { overflow: "auto" });
-                        break;
+                if (this.get_balloonPopupPosition() != Sys.Extended.UI.BalloonPopupPosition.Auto) {
+                    // set position of arrow and drop shadow
+                    this.setPosition();
+                    this.setContentPadding();
+                    this.setScrollBar();
                 }
+
             },
 
             setStyle: function () {
@@ -307,7 +284,7 @@
                 else {
                     currentPosition = this.get_balloonPopupPosition();
                 }
-                
+
                 switch (currentPosition) {
                     case Sys.Extended.UI.BalloonPopupPosition.TopLeft:
                         this._directionElement.className += " top_left";
@@ -321,13 +298,46 @@
                         this._directionElement.className += " bottom_left";
                         this._shadowElement.className += " bottom_left_shadow";
                         break;
-                    case Sys.Extended.UI.BalloonPopupPosition.BottomRight:                        
+                    case Sys.Extended.UI.BalloonPopupPosition.BottomRight:
                         this._directionElement.className += " bottom_right";
                         this._shadowElement.className += " bottom_right_shadow";
                         break;
                     default:
                         this._directionElement.className += " top_right";
                         this._shadowElement.className += " top_right_shadow";
+                        break;
+                }
+            },
+
+            setContentPadding: function () {
+                var contentPadding = $common.getPaddingBox(this._contentElement);
+                var content = $get(this._balloonPopupControlID);
+                $common.setBounds(content,
+                {
+                    x: this._offsetX + contentPadding.left,
+                    y: this._offsetY + contentPadding.top,
+                    width: this._popupWidth - contentPadding.left - contentPadding.right,
+                    height: this._popupHeight - contentPadding.top - contentPadding.bottom
+                });
+            },
+
+            setScrollBar: function () {
+                var content = $get(this._balloonPopupControlID);
+                switch (this.get_scrollBars()) {
+                    case Sys.Extended.UI.ScrollBars.Horizontal:
+                        $common.setStyle(content, { overflowX: "scroll", overflowY: "hidden" });
+                        break;
+                    case Sys.Extended.UI.ScrollBars.Vertical:
+                        $common.setStyle(content, { overflowY: "scroll", overflowX: "hidden" });
+                        break;
+                    case Sys.Extended.UI.ScrollBars.Both:
+                        $common.setStyle(content, { overflow: "scroll" });
+                        break;
+                    case Sys.Extended.UI.ScrollBars.None:
+                        $common.setStyle(content, { overflow: "hidden" });
+                        break;
+                    default:
+                        $common.setStyle(content, { overflow: "auto" });
                         break;
                 }
             },
@@ -343,7 +353,6 @@
                         this.disableContents(contentElement.childNodes[x]);
                     }
                 }
-
             },
 
             showPopup: function () {
@@ -353,6 +362,8 @@
                 if (Sys.Extended.UI.BalloonPopupPosition.Auto == this._position) {
                     this._setAutoPosition();
                     this.setPosition();
+                    this.setContentPadding();
+                    this.setScrollBar();
                 }
 
                 // don't display shadow if user set useShadow property to false
@@ -477,8 +488,7 @@
                     xoffSet = this.get_element().offsetWidth + this._offsetX;
                 } else {
                     xoffSet = this._offsetX;
-                }
-
+                }                
                 return xoffSet;
             },
 
@@ -499,8 +509,7 @@
                     yoffSet = (this.get_element().offsetHeight) + this._offsetY;
                 } else {
                     yoffSet = this._offsetY;
-                }
-
+                }                
                 return yoffSet;
             },
 
@@ -543,7 +552,7 @@
                     }
                     else {
                         this._autoPosition = Sys.Extended.UI.BalloonPopupPosition.BottomRight;
-                    }                    
+                    }
                 }                
             },
 
@@ -790,7 +799,7 @@
                     this._customClassName = value;
                     this.raisePropertyChanged("CustomClassName");
                 }
-            },            
+            },
 
             add_showing: function (handler) {
                 /// <summary>
