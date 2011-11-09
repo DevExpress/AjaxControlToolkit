@@ -15,20 +15,20 @@
 	background-position: 0 0;
 }
 .ajax__baloon_popup .cloud .small .bottom_right .ajax__content {
-	padding: 60px 35px 35px 35px;
+	padding: 33px 25px 33px 35px;
 }
 .ajax__baloon_popup .cloud .small .bottom_right_shadow {
-	background-position: -869px 0;
+	background-position: -950px 0;
 }
 
 .ajax__baloon_popup .cloud .small .bottom_left {
 	background-position: 0 -150px;
 }
 .ajax__baloon_popup .cloud .small .bottom_left .ajax__content {
-	padding: 60px 35px 35px 35px;
+	padding: 33px 25px 33px 35px;
 }
 .ajax__baloon_popup .cloud .small .bottom_left_shadow {
-	background-position: -869px -150px;
+	background-position: -950px -150px;
 }
 
 
@@ -36,26 +36,26 @@
 	background-position: 0 -300px;
 }
 .ajax__baloon_popup .cloud .small .top_right .ajax__content {
-	padding: 35px 35px 60px 35px;
+	padding: 33px 25px 33px 35px;
 }
 .ajax__baloon_popup .cloud .small .top_right_shadow {
-	background-position: -869px -300px;
+	background-position: -950px -300px;
 }
 
 .ajax__baloon_popup .cloud .small .top_left {
 	background-position: 0 -450px;
 }
 .ajax__baloon_popup .cloud .small .top_left .ajax__content {
-	padding: 35px 35px 60px 35px;
+	padding: 33px 25px 33px 35px;
 }
 .ajax__baloon_popup .cloud .small .top_left_shadow {
-	background-position: -869px -450px;
+	background-position: -950px -450px;
 }
 /* END OF - SMALL SIZE */
 
 /* MEDIUM SIZE */
 .ajax__baloon_popup .cloud .medium {
-	width:268px;
+	width:250px;
 	height:200px;
 }
 
@@ -63,86 +63,86 @@
 	background-position: -200px 0;
 }
 .ajax__baloon_popup .cloud .medium .bottom_right .ajax__content {
-	padding: 75px 40px 40px 40px;
+	padding: 40px;
 }
 .ajax__baloon_popup .cloud .medium .bottom_right_shadow {
-	background-position: -1070px 0;
+	background-position: -1150px 0;
 }
 
 .ajax__baloon_popup .cloud .medium .bottom_left {
 	background-position: -200px -200px;
 }
 .ajax__baloon_popup .cloud .medium .bottom_left .ajax__content {
-	padding: 75px 40px 40px 40px;
+	padding: 40px;
 }
 .ajax__baloon_popup .cloud .medium .bottom_left_shadow {
-	background-position: -1070px -200px;
+	background-position: -1150px -200px;
 }
 
 .ajax__baloon_popup .cloud .medium .top_right {
 	background-position: -200px -400px;
 }
 .ajax__baloon_popup .cloud .medium .top_right .ajax__content {
-	padding: 40px 40px 75px 40px;
+	padding: 40px;
 }
 .ajax__baloon_popup .cloud .medium .top_right_shadow {
-	background-position: -1070px -400px;
+	background-position: -1150px -400px;
 }
 
 .ajax__baloon_popup .cloud .medium .top_left {
 	background-position: -200px -600px;
 }
 .ajax__baloon_popup .cloud .medium .top_left .ajax__content {
-	padding: 40px 40px 75px 40px;
+	padding: 40px;
 }
 .ajax__baloon_popup .cloud .medium .top_left_shadow {
-	background-position: -1070px -600px;
+	background-position: -1150px -600px;
 }
 /* END OF - MEDIUM SIZE */
 
 /* LARGE SIZE */
 .ajax__baloon_popup .cloud .large {
-	width:402px;
+	width:500px;
 	height:300px;
 }
 
 .ajax__baloon_popup .cloud .large .bottom_right {
-	background-position: -468px 0;
+	background-position: -450px 0;
 }
 .ajax__baloon_popup .cloud .large .bottom_right .ajax__content {
-	padding: 100px 50px 50px 50px;
+	padding: 50px;
 }
 .ajax__baloon_popup .cloud .large .bottom_right_shadow {
-	background-position: -1338px 0;
+	background-position: -1400px 0;
 }
 
 .ajax__baloon_popup .cloud .large .bottom_left {
-	background-position: -468px -300px;
+	background-position: -450px -300px;
 }
 .ajax__baloon_popup .cloud .large .bottom_left .ajax__content {
-	padding: 100px 50px 50px 50px;
+	padding: 50px;
 }
 .ajax__baloon_popup .cloud .large .bottom_left_shadow {
-	background-position: -1338px -300px;
+	background-position: -1400px -300px;
 }
 
 .ajax__baloon_popup .cloud .large .top_right {
-	background-position: -468px -600px;
+	background-position: -450px -600px;
 }
 .ajax__baloon_popup .cloud .large .top_right .ajax__content {
-	padding: 50px 50px 100px 50px;
+	padding: 50px;
 }
 .ajax__baloon_popup .cloud .large .top_right_shadow {
-	background-position: -1338px -600px;
+	background-position: -1400px -600px;
 }
 
 .ajax__baloon_popup .cloud .large .top_left {
-	background-position: -468px -900px;
+	background-position: -450px -900px;
 }
 .ajax__baloon_popup .cloud .large .top_left .ajax__content {
-	padding: 50px 50px 100px 50px;
+	padding: 50px;
 }
 .ajax__baloon_popup .cloud .large .top_left_shadow {
-	background-position: -1338px -900px;
+	background-position: -1400px -900px;
 }
 /* END OF - LARGE SIZE */

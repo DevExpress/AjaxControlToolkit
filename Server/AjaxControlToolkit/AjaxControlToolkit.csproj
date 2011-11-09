@@ -406,9 +406,8 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BalloonPopup\BalloonPopup.ico" />
+    <EmbeddedResource Include="BalloonPopup\BalloonPopup.ico" />
     <Content Include="BalloonPopup\Cloud\BalloonPopup_resource.css" />
-    <Content Include="BalloonPopup\Cloud\sprite.gif" />
     <Content Include="BalloonPopup\Cloud\sprite.png" />
     <Content Include="BalloonPopup\Rectangle\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
@@ -655,7 +654,6 @@
     <EmbeddedResource Include="ValidatorCallout\ValidatorCallout.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BalloonPopup\Cloud\Thumbs.db" />
     <None Include="ExtenderBase\Design\ExternalReferences.t4" />
   </ItemGroup>
   <ItemGroup>
