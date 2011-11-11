@@ -14,16 +14,6 @@
 
         Type.registerNamespace("Sys.Extended.UI");
 
-        Sys.Extended.UI.ScrollBars = function () { }
-        Sys.Extended.UI.ScrollBars.prototype = {
-            None: 0x00,
-            Horizontal: 0x01,
-            Vertical: 0x02,
-            Both: 0x03,
-            Auto: 0x04
-        }
-        Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", true);
-
         Sys.Extended.UI.TabStripPlacement = function () { }
         Sys.Extended.UI.TabStripPlacement.prototype = {
             Top: 0,

@@ -1534,6 +1534,16 @@ if (Sys.CultureInfo && Sys.CultureInfo.prototype._getAbbrMonthIndex) {
     Sys.CultureInfo.InvariantCulture._getAbbrMonthIndex = Sys.CultureInfo.prototype._getAbbrMonthIndex;
 }
 
+Sys.Extended.UI.ScrollBars = function () { throw Error.invalidOperation(); }
+Sys.Extended.UI.ScrollBars.prototype = {
+    None: 0x00,
+    Horizontal: 0x01,
+    Vertical: 0x02,
+    Both: 0x03,
+    Auto: 0x04
+}
+Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", false);
+
 } // execute
 
 if (window.Sys && Sys.loader) {
