@@ -208,7 +208,7 @@
                 }, this._directionElement);
 
                 this._contentElement.appendChild($get(this._balloonPopupControlID));
-                this.disableContents(this._contentElement);
+                //this.disableContents(this._contentElement);
 
                 // set theme/style as per user's setting
                 this.setStyle();
@@ -353,21 +353,21 @@
                 }
             },
 
-            disableContents: function (contentElement) {
-                /// <summary>
-                /// Disable all contents in the balloon popup
-                /// </summary>
-                try {
-                    contentElement.disabled = contentElement.disabled ? false : true;
-                }
-                catch (E) { }
+//            disableContents: function (contentElement) {
+//                /// <summary>
+//                /// Disable all contents in the balloon popup
+//                /// </summary>
+//                try {
+//                    contentElement.disabled = contentElement.disabled ? false : true;
+//                }
+//                catch (E) { }
 
-                if (contentElement.childNodes && contentElement.childNodes.length > 0) {
-                    for (var x = 0; x < contentElement.childNodes.length; x++) {
-                        this.disableContents(contentElement.childNodes[x]);
-                    }
-                }
-            },
+//                if (contentElement.childNodes && contentElement.childNodes.length > 0) {
+//                    for (var x = 0; x < contentElement.childNodes.length; x++) {
+//                        this.disableContents(contentElement.childNodes[x]);
+//                    }
+//                }
+//            },
 
             showPopup: function () {
                 /// <summary>
@@ -1097,15 +1097,15 @@
 
         Sys.Extended.UI.BalloonPopupSize.registerEnum("Sys.Extended.UI.BalloonPopupSize", false);
 
-        Sys.Extended.UI.ScrollBars = function () { throw Error.invalidOperation(); }
-        Sys.Extended.UI.ScrollBars.prototype = {
-            None: 0x00,
-            Horizontal: 0x01,
-            Vertical: 0x02,
-            Both: 0x03,
-            Auto: 0x04
-        }
-        Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", false);
+//        Sys.Extended.UI.ScrollBars = function () { throw Error.invalidOperation(); }
+//        Sys.Extended.UI.ScrollBars.prototype = {
+//            None: 0x00,
+//            Horizontal: 0x01,
+//            Vertical: 0x02,
+//            Both: 0x03,
+//            Auto: 0x04
+//        }
+//        Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", false);
 
     } // execute
 
