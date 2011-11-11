@@ -349,9 +349,9 @@
                     var activeTab = this.get_tabs()[this._activeTabIndex];
                     if (activeTab) {
                         activeTab._wasLoaded = true;
+                        activeTab._setFocus(activeTab);
                     }
                 }
-
                 this._loaded = true;
             }
         }
@@ -383,6 +383,7 @@
             this._dynamicPopulate_onpopulated$delegate = Function.createDelegate(this, this._dynamicPopulate_onpopulated);
             this._oncancel$delegate = Function.createDelegate(this, this._oncancel);
             this._onkeydown$delegate = Function.createDelegate(this, this._onkeydown);
+            this._disabled_onclick$delegate = Function.createDelegate(this, this._disabled_onclick);
         }
         Sys.Extended.UI.TabPanel.prototype = {
 
@@ -626,6 +627,10 @@
                 });
                 if (this._enabled) {
                     this._removeHandlersOnEnabled();
+                } else {
+                    $common.removeHandlers(this._header, {
+                        click: this._disabled_onclick
+                    });
                 }
                 Sys.Extended.UI.TabPanel.callBaseMethod(this, "dispose");
             },
@@ -697,11 +702,18 @@
             },
 
             _makeEnabled: function (enable) {
+                var hyperlinkId = "__tab_" + this.get_element().id;
                 if (enable) {
+                    $common.removeHandlers(this._header, {
+                        click: this._disabled_onclick
+                    });
                     this._addHandlersOnEnabled();
-                    Sys.UI.DomElement.removeCssClass(this._tab, "ajax__tab_disabled");
+                    Sys.UI.DomElement.removeCssClass($get(hyperlinkId), "ajax__tab_disabled");
                 } else {
                     this._removeHandlersOnEnabled();
+                    $addHandlers(this._header, {
+                        click: this._disabled_onclick
+                    });
                     if (this._get_active()) {
                         var next = this._owner.getNearestTab(false);
                         if (!!next) {
@@ -709,7 +721,7 @@
                         }
                     }
                     this._deactivate();
-                    Sys.UI.DomElement.addCssClass(this._tab, "ajax__tab_disabled");
+                    Sys.UI.DomElement.addCssClass($get(hyperlinkId), "ajax__tab_disabled");
                 }
             },
             _setFocus: function (obj) {
@@ -775,6 +787,9 @@
             },
             _dynamicPopulate_onpopulated: function (sender, e) {
                 this.raisePopulated();
+            },
+            _disabled_onclick: function (e) {
+                e.preventDefault();
             }
         }
         Sys.Extended.UI.TabPanel.registerClass("Sys.Extended.UI.TabPanel", Sys.UI.Control);
