@@ -207,6 +207,8 @@
                     cssClasses: ["ajax__content"]
                 }, this._directionElement);
 
+                if ($get(this._balloonPopupControlID) == null)
+                    throw "Referred BalloonPopupControlId did not find.";
                 this._contentElement.appendChild($get(this._balloonPopupControlID));
                 //this.disableContents(this._contentElement);
 
@@ -353,21 +355,21 @@
                 }
             },
 
-//            disableContents: function (contentElement) {
-//                /// <summary>
-//                /// Disable all contents in the balloon popup
-//                /// </summary>
-//                try {
-//                    contentElement.disabled = contentElement.disabled ? false : true;
-//                }
-//                catch (E) { }
+            //            disableContents: function (contentElement) {
+            //                /// <summary>
+            //                /// Disable all contents in the balloon popup
+            //                /// </summary>
+            //                try {
+            //                    contentElement.disabled = contentElement.disabled ? false : true;
+            //                }
+            //                catch (E) { }
 
-//                if (contentElement.childNodes && contentElement.childNodes.length > 0) {
-//                    for (var x = 0; x < contentElement.childNodes.length; x++) {
-//                        this.disableContents(contentElement.childNodes[x]);
-//                    }
-//                }
-//            },
+            //                if (contentElement.childNodes && contentElement.childNodes.length > 0) {
+            //                    for (var x = 0; x < contentElement.childNodes.length; x++) {
+            //                        this.disableContents(contentElement.childNodes[x]);
+            //                    }
+            //                }
+            //            },
 
             showPopup: function () {
                 /// <summary>
@@ -556,7 +558,7 @@
                 var _popBottomPosition = _elementTopPosition + this.get_element().offsetHeight + this._popupHeight;
                 var _popRightPosition = _elementLeftPosition + this.get_element().offsetWidth + this._popupWidth;
 
-                if ((_popTopPosition - _pageTopPosition) > 0 && ((_popTopPosition - _pageTopPosition) > (_pageBottom - _popBottomPosition))) {                    
+                if ((_popTopPosition - _pageTopPosition) > 0 && ((_popTopPosition - _pageTopPosition) > (_pageBottom - _popBottomPosition))) {
                     if (_pageRight < _popRightPosition) {
                         this._autoPosition = Sys.Extended.UI.BalloonPopupPosition.TopLeft;
                     }
@@ -1101,16 +1103,6 @@
         }
 
         Sys.Extended.UI.BalloonPopupSize.registerEnum("Sys.Extended.UI.BalloonPopupSize", false);
-
-//        Sys.Extended.UI.ScrollBars = function () { throw Error.invalidOperation(); }
-//        Sys.Extended.UI.ScrollBars.prototype = {
-//            None: 0x00,
-//            Horizontal: 0x01,
-//            Vertical: 0x02,
-//            Both: 0x03,
-//            Auto: 0x04
-//        }
-//        Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", false);
 
     } // execute
 
