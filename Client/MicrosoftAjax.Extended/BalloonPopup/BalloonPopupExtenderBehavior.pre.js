@@ -398,6 +398,11 @@
 
                 this._popupVisible = true;
                 Sys.Extended.UI.BalloonPopupControlBehavior.__VisiblePopup = this;
+
+                // fix main background position demanded by IE7
+                var bgPosX = $common.getCurrentStyle(this._directionElement, "backgroundPositionX");
+                var bgPosY = $common.getCurrentStyle(this._directionElement, "backgroundPositionY");
+                $common.setStyle(this._styleElement, { backgroundPositionX: bgPosX, backgroundPositionY: bgPosY });
             },
 
             hidePopup: function () {
