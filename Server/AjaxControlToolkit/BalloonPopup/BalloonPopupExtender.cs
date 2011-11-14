@@ -12,8 +12,10 @@ using System.Web.UI.HtmlControls;
 [assembly: System.Web.UI.WebResource("BalloonPopup.BalloonPopupExtenderBehavior.debug.js", "text/javascript")]
 [assembly: WebResource("BalloonPopup.Rectangle.BalloonPopup_resource.css", "text/css", PerformSubstitution = true)]
 [assembly: WebResource("BalloonPopup.Rectangle.sprite.png", "img/png")]
+[assembly: WebResource("BalloonPopup.Rectangle.sprite.gif", "img/gif")]
 [assembly: WebResource("BalloonPopup.Cloud.BalloonPopup_resource.css", "text/css", PerformSubstitution = true)]
 [assembly: WebResource("BalloonPopup.Cloud.sprite.png", "img/png")]
+[assembly: WebResource("BalloonPopup.Cloud.sprite.gif", "img/gif")]
 
 namespace AjaxControlToolkit
 {
