@@ -408,8 +408,10 @@
   <ItemGroup>
     <EmbeddedResource Include="BalloonPopup\BalloonPopup.ico" />
     <Content Include="BalloonPopup\Cloud\BalloonPopup_resource.css" />
+    <Content Include="BalloonPopup\Cloud\sprite.gif" />
     <Content Include="BalloonPopup\Cloud\sprite.png" />
     <Content Include="BalloonPopup\Rectangle\BalloonPopup_resource.css" />
+    <Content Include="BalloonPopup\Rectangle\sprite.gif" />
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
     <Content Include="Twitter\Twitter.ico" />
     <Content Include="Twitter\Twitter24.png" />
