@@ -209,7 +209,8 @@
 
                 if ($get(this._balloonPopupControlID) == null)
                     throw "Referred BalloonPopupControlId did not find.";
-                this._contentElement.appendChild($get(this._balloonPopupControlID));
+                $get(this._balloonPopupControlID).style.display = 'none';
+                                
                 //this.disableContents(this._contentElement);
 
                 // set theme/style as per user's setting
@@ -375,6 +376,10 @@
                 /// <summary>
                 /// Display the ballon popup
                 /// </summary>                
+                                
+                this._contentElement.appendChild($get(this._balloonPopupControlID));
+                $get(this._balloonPopupControlID).style.display = 'block';
+                                
                 if (Sys.Extended.UI.BalloonPopupPosition.Auto == this._position) {
                     this._setAutoPosition();
                     this.setPosition();
