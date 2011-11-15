@@ -220,6 +220,11 @@ namespace AjaxControlToolkit {
 
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_tab");
             writer.AddAttribute(HtmlTextWriterAttribute.Id, "__tab_" + ClientID);
+
+            writer.AddAttribute(HtmlTextWriterAttribute.Href, "#");
+            writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
+            writer.RenderBeginTag(HtmlTextWriterTag.A);
+
             RenderBeginTag(writer);
 
             if (_headerControl != null) {
@@ -229,6 +234,7 @@ namespace AjaxControlToolkit {
             } else {
                 writer.Write(HeaderText);
             }
+            writer.RenderEndTag();
             writer.RenderEndTag();
             writer.RenderEndTag();
             writer.RenderEndTag();
