@@ -28,3 +28,17 @@ Server/SanitizerProviders/SanitizerProviders.VS2008.csproj.user
 Server/Tests/UnitTests/bin/
 Client/MicrosoftAjax.Extended/HtmlEditorExtender/Images/Thumbs.db
 Server/Tests/UnitTests/obj/
+Server/AjaxControlToolkit/AjaxControlToolkit.csproj.user
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/Vertical/WebForm1.aspx.designer.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/Vertical/WebForm1.aspx.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/Vertical/WebForm1.aspx
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/8467/WebForm1.aspx.designer.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/8467/WebForm1.aspx.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/8467/WebForm1.aspx
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/26701/WebForm1.aspx.designer.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/26701/WebForm1.aspx.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/26701/WebForm1.aspx
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/24789/WebForm1.aspx.designer.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/24789/WebForm1.aspx.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/24789/WebForm1.aspx
+Client/MicrosoftAjax.Extended/MicrosoftAjax.Extended.csproj.user

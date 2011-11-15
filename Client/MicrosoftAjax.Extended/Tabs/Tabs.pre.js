@@ -24,6 +24,17 @@
         }
         Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", true);
 
+        Sys.Extended.UI.TabStripPlacement = function () { }
+        Sys.Extended.UI.TabStripPlacement.prototype = {
+            Top: 0,
+            Bottom: 1,
+            TopRight: 2,
+            BottomRight: 3
+        }
+        Sys.Extended.UI.TabStripPlacement.registerEnum("Sys.Extended.UI.TabStripPlacement", true);
+
+        Sys.Extended.UI.UseVerticalStripPlacement = function () { }
+
         Sys.Extended.UI.TabContainer = function (element) {
             Sys.Extended.UI.TabContainer.initializeBase(this, [element]);
             this._cachedActiveTabIndex = -1;
@@ -34,6 +45,8 @@
             this._body = null;
             this._loaded = false;
             this._autoPostBackId = null;
+            this._useVerticalStripPlacement = false;
+            this._tabStripPlacement = Sys.Extended.UI.TabStripPlacement.Top;
             this._app_onload$delegate = Function.createDelegate(this, this._app_onload);
         }
         Sys.Extended.UI.TabContainer.prototype = {
@@ -74,7 +87,7 @@
                     if (value != this._activeTabIndex) {
                         if (this._activeTabIndex != -1) {
                             var oldTab = this.get_tabs()[this._activeTabIndex];
-                            this._body.style.height = this._body.offsetHeight + "px";
+                            /*this._body.style.height = this._body.offsetHeight + "px";*/
                             oldTab._set_active(false);
                         }
 
@@ -85,7 +98,7 @@
                         if (this._activeTabIndex != -1) {
                             this.get_tabs()[this._activeTabIndex]._set_active(true);
                         }
-                        this._body.style.height = "auto";
+                        /*this._body.style.height = "auto";*/
                         if (this._loaded && changed) {
                             this.raiseActiveTabChanged();
                         }
@@ -132,26 +145,47 @@
                 }
             },
 
+            get_tabStripPlacement: function () {
+                return this._tabStripPlacement;
+            },
+            set_tabStripPlacement: function (value) {
+                if (this._tabStripPlacement != value) {
+                    this._tabStripPlacement = value;
+                    this._invalidate();
+                    this.raisePropertyChanged("tabStripPlacement");
+                }
+            },
+
+            get_useVerticalStripPlacement: function () {
+                return this._useVerticalStripPlacement;
+            },
+            set_useVerticalStripPlacement: function (value) {
+                if (this._useVerticalStripPlacement != value) {
+                    this._useVerticalStripPlacement = value;
+                    this._invalidate();
+                    this.raisePropertyChanged("useVerticalStripPlacement");
+                }
+            },
+
             initialize: function () {
                 Sys.Extended.UI.TabContainer.callBaseMethod(this, "initialize");
 
                 var elt = this.get_element();
-                var header = this._header = $get(this.get_id() + "_header");
-                var body = this._body = $get(this.get_id() + "_body");
+                this._header = $get(this.get_id() + "_header");
+                this._body = $get(this.get_id() + "_body");
 
                 // default classes
                 $common.addCssClasses(elt, [
-            "ajax__tab_container",
-            "ajax__tab_default"
-        ]);
-                Sys.UI.DomElement.addCssClass(header, "ajax__tab_header");
-                Sys.UI.DomElement.addCssClass(body, "ajax__tab_body");
+                    "ajax__tab_container",
+                    "ajax__tab_default"
+                ]);
 
                 this._invalidate();
 
                 Sys.Application.add_load(this._app_onload$delegate);
             },
             dispose: function () {
+                $clearHandlers(this.get_element());
                 Sys.Application.remove_load(this._app_onload$delegate);
                 Sys.Extended.UI.TabContainer.callBaseMethod(this, "dispose");
             },
@@ -220,11 +254,12 @@
             _invalidate: function () {
                 if (this.get_isInitialized()) {
                     $common.removeCssClasses(this._body, [
-                "ajax__scroll_horiz",
-                "ajax__scroll_vert",
-                "ajax__scroll_both",
-                "ajax__scroll_auto"
-            ]);
+                        "ajax__scroll_horiz",
+                        "ajax__scroll_vert",
+                        "ajax__scroll_both",
+                        "ajax__scroll_auto",
+                        "ajax__scroll_none"
+                    ]);
                     switch (this._scrollBars) {
                         case Sys.Extended.UI.ScrollBars.Horizontal:
                             Sys.UI.DomElement.addCssClass(this._body, "ajax__scroll_horiz");
@@ -238,6 +273,37 @@
                         case Sys.Extended.UI.ScrollBars.Auto:
                             Sys.UI.DomElement.addCssClass(this._body, "ajax__scroll_auto");
                             break;
+                        case Sys.Extended.UI.ScrollBars.None:
+                            Sys.UI.DomElement.addCssClass(this._body, "ajax__scroll_none");
+                            break;
+                    }
+                    if (this._useVerticalStripPlacement) {
+                        var headBounds = $common.getBounds(this._header);
+                        var bodyBounds = $common.getBounds(this._body);
+                        var spannerHeight = (bodyBounds.height - headBounds.height - 1) + "px";
+                        $get(this.get_id() + "_headerSpannerHeight").style.height = spannerHeight;
+
+                        if (Sys.Browser.agent == Sys.Browser.InternetExplorer && Sys.Browser.version < 7) {
+                            if (this._tabStripPlacement == Sys.Extended.UI.TabStripPlacement.Top ||
+                                this._tabStripPlacement == Sys.Extended.UI.TabStripPlacement.Bottom) {
+                                var newBounds = {
+                                    x: headBounds.x + headBounds.width,
+                                    y: headBounds.y,
+                                    width: bodyBounds.width,
+                                    height: bodyBounds.height
+                                };
+                                $common.setBounds(this._body, newBounds);
+                            } else {
+                                var newBounds = {
+                                    x: bodyBounds.x + bodyBounds.width,
+                                    y: headBounds.y,
+                                    width: headBounds.width,
+                                    height: headBounds.height
+                                };
+                                $common.setBounds(this._header, newBounds);
+                                $common.setBounds(this._body, bodyBounds);
+                            }
+                        }
                     }
                 }
             },
@@ -246,6 +312,7 @@
                     this.set_activeTabIndex(this._cachedActiveTabIndex);
                     this._cachedActiveTabIndex = -1;
                 }
+
                 this._loaded = true;
             }
         }
@@ -268,6 +335,8 @@
             this._dynamicServiceMethod = null;
             this._dynamicPopulateBehavior = null;
             this._scrollBars = Sys.Extended.UI.ScrollBars.None;
+            this._useVerticalStripPlacement = false;
+            this._tabStripPlacement = Sys.Extended.UI.TabStripPlacement.Top;
             this._header_onclick$delegate = Function.createDelegate(this, this._header_onclick);
             this._header_onmouseover$delegate = Function.createDelegate(this, this._header_onmouseover);
             this._header_onmouseout$delegate = Function.createDelegate(this, this._header_onmouseout);
@@ -395,6 +464,28 @@
                 }
             },
 
+            get_tabStripPlacement: function () {
+                return this._tabStripPlacement;
+            },
+            set_tabStripPlacement: function (value) {
+                if (this._tabStripPlacement != value) {
+                    this._tabStripPlacement = value;
+                    this._invalidate();
+                    this.raisePropertyChanged("tabStripPlacement");
+                }
+            },
+
+            get_useVerticalStripPlacement: function () {
+                return this._useVerticalStripPlacement;
+            },
+            set_useVerticalStripPlacement: function (value) {
+                if (this._useVerticalStripPlacement != value) {
+                    this._useVerticalStripPlacement = value;
+                    this._invalidate();
+                    this.raisePropertyChanged("useVerticalStripPlacement");
+                }
+            },
+
             get_tabIndex: function () {
                 return this._tabIndex;
             },
@@ -442,7 +533,6 @@
 
             initialize: function () {
                 var owner = this.get_owner();
-
                 if (!owner) {
                     owner = $find(this.get_ownerID());
                     if (owner) {
@@ -616,7 +706,6 @@
         }
         Sys.Extended.UI.TabPanel.registerClass("Sys.Extended.UI.TabPanel", Sys.UI.Control);
         Sys.registerComponent(Sys.Extended.UI.TabPanel, { name: "tabPanel", parameters: [{ name: "owner", type: "Sys.Extended.UI.TabContainer" }, { name: "headerTab", type: "String"}] });
-
     } // execute
 
     if (window.Sys && Sys.loader) {

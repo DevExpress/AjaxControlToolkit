@@ -59,6 +59,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bugs\Tabs\24789\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\26701\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\8467\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\Vertical\WebForm1.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Scripts\jquery-1.5.min.js" />
     <Content Include="Scripts\jQuery.tmpl.js" />
@@ -97,6 +101,34 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bugs\Tabs\24789\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\24789\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\26701\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\26701\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\8467\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\8467\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\Vertical\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\Vertical\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
