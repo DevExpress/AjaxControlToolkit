@@ -1,3 +1,6 @@
+
+
+
 using System.Web.UI.WebControls;
 using System.Web.UI;
 using System.Web.UI.Design;
@@ -214,7 +217,8 @@ namespace AjaxControlToolkit {
                                         ColorTranslator.ToHtml(SystemColors.ControlDark),
                                         TabContainer.ID,
                                         ColorTranslator.ToHtml(SystemColors.ControlText),
-                                        ColorTranslator.ToHtml(SystemColors.Control),
+                                        ColorTranslator.ToHtml(TabContainer.BackColor),
+                    //ColorTranslator.ToHtml(SystemColors.Control),
                                         clickRegions.ToString(),
                                         contentHtml,
                                         TabContainer.Width,
