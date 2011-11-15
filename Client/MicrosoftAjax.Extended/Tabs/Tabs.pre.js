@@ -34,6 +34,7 @@
         Sys.Extended.UI.TabStripPlacement.registerEnum("Sys.Extended.UI.TabStripPlacement", true);
 
         Sys.Extended.UI.UseVerticalStripPlacement = function () { }
+        Sys.Extended.UI.OnDemand = function () { }
 
         Sys.Extended.UI.TabContainer = function (element) {
             Sys.Extended.UI.TabContainer.initializeBase(this, [element]);
@@ -46,6 +47,8 @@
             this._loaded = false;
             this._autoPostBackId = null;
             this._useVerticalStripPlacement = false;
+            this._onDemand = false;
+            this._pageRequestManager = null;
             this._tabStripPlacement = Sys.Extended.UI.TabStripPlacement.Top;
             this._app_onload$delegate = Function.createDelegate(this, this._app_onload);
         }
@@ -100,6 +103,11 @@
                         }
                         /*this._body.style.height = "auto";*/
                         if (this._loaded && changed) {
+                            if (this._onDemand) {
+                                var activeTabId = this.get_tabs()[this._activeTabIndex]._tab.id;
+                                var updatePanelID = activeTabId.substr(0, activeTabId.length - 4) + "_updatePanel";
+                                this._pageRequestManager.beginAsyncPostBack([updatePanelID], null, null, false, null);
+                            }
                             this.raiseActiveTabChanged();
                         }
                         this.raisePropertyChanged("activeTabIndex");
@@ -167,6 +175,17 @@
                 }
             },
 
+            get_onDemand: function () {
+                return this._onDemand;
+            },
+            set_onDemand: function (value) {
+                if (this._onDemand != value) {
+                    this._onDemand = value;
+                    this._invalidate();
+                    this.raisePropertyChanged("onDemand");
+                }
+            },
+
             initialize: function () {
                 Sys.Extended.UI.TabContainer.callBaseMethod(this, "initialize");
 
@@ -181,7 +200,7 @@
                 ]);
 
                 this._invalidate();
-
+                if (this._onDemand) this._pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
                 Sys.Application.add_load(this._app_onload$delegate);
             },
             dispose: function () {
@@ -312,6 +331,7 @@
                     this.set_activeTabIndex(this._cachedActiveTabIndex);
                     this._cachedActiveTabIndex = -1;
                 }
+
 
                 this._loaded = true;
             }
