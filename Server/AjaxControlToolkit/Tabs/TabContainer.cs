@@ -391,6 +391,7 @@ namespace AjaxControlToolkit {
         }
 
         protected override void RenderContents(HtmlTextWriter writer) {
+            //base.Render(writer);
             Page.VerifyRenderingInServerForm(this);
 
             if (_tabStripPlacement == TabStripPlacement.Top) {
@@ -428,7 +429,7 @@ namespace AjaxControlToolkit {
         protected override bool LoadPostData(string postDataKey, NameValueCollection postCollection) {
             int tabIndex = ActiveTabIndex;
             bool result = base.LoadPostData(postDataKey, postCollection);
-            if (ActiveTabIndex == 0 || tabIndex != ActiveTabIndex) {
+            if (tabIndex != ActiveTabIndex) {
                 return true;
             }
             return result;
@@ -465,7 +466,8 @@ namespace AjaxControlToolkit {
                 base.FillStyleAttributes(attributes, urlResolver);
 
                 attributes.Remove(HtmlTextWriterStyle.Height);
-                attributes.Remove(HtmlTextWriterStyle.BackgroundColor);
+                // commented below line to fix the issue #25821
+                //attributes.Remove(HtmlTextWriterStyle.BackgroundColor);
                 attributes.Remove(HtmlTextWriterStyle.BackgroundImage);
             }
         }
