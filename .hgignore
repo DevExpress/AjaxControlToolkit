@@ -42,3 +42,9 @@ Tests/AjaxControlToolkit.Tests/Bugs/Tabs/24789/WebForm1.aspx.designer.cs
 Tests/AjaxControlToolkit.Tests/Bugs/Tabs/24789/WebForm1.aspx.cs
 Tests/AjaxControlToolkit.Tests/Bugs/Tabs/24789/WebForm1.aspx
 Client/MicrosoftAjax.Extended/MicrosoftAjax.Extended.csproj.user
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/PanelOnDemand/WebForm1.aspx.designer.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/PanelOnDemand/WebForm1.aspx.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/PanelOnDemand/WebForm1.aspx
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/OnDemand/WebForm1.aspx.designer.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/OnDemand/WebForm1.aspx.cs
+Tests/AjaxControlToolkit.Tests/Bugs/Tabs/OnDemand/WebForm1.aspx
