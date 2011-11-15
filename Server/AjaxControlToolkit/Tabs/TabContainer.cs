@@ -100,7 +100,6 @@ namespace AjaxControlToolkit {
                 for (int i = 0; i <= ActiveTabIndex && i < Tabs.Count; i++) {
                     if (!Tabs[i].Visible) counter--;
                 }
-                if (counter < 0) counter = 0;
                 return counter;
             }
         }
@@ -429,7 +428,7 @@ namespace AjaxControlToolkit {
         protected override bool LoadPostData(string postDataKey, NameValueCollection postCollection) {
             int tabIndex = ActiveTabIndex;
             bool result = base.LoadPostData(postDataKey, postCollection);
-            if (tabIndex != ActiveTabIndex) {
+            if (ActiveTabIndex == 0 || tabIndex != ActiveTabIndex) {
                 return true;
             }
             return result;
@@ -483,7 +482,6 @@ namespace AjaxControlToolkit {
                 int parseIndex = eventArgument.IndexOf(":", StringComparison.Ordinal);
                 Debug.Assert(parseIndex != -1, "Expected new active tab index!");
                 if (parseIndex != -1 && Int32.TryParse(eventArgument.Substring(parseIndex + 1), out parseIndex)) {
-                    parseIndex = getServerActiveTabIndex(parseIndex);
                     if (parseIndex != ActiveTabIndex) {
                         ActiveTabIndex = parseIndex;
                         OnActiveTabChanged(EventArgs.Empty);
