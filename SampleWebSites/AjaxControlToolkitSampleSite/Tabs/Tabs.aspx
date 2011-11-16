@@ -114,7 +114,7 @@
         <br />
         <br />
         Vertical Tab layout feature:
-        <ajaxToolkit:TabContainer runat="server" ID="TabContainer2" Height="138px" OnClientActiveTabChanged="ActiveTabChanged"
+        <ajaxToolkit:TabContainer runat="server" ID="TabContainer2" Height="138px"
             ActiveTabIndex="0" Width="402px" UseVerticalStripPlacement="true">
             <ajaxToolkit:TabPanel runat="server" ID="TabPanel5" HeaderText="Signature and Bio">
                 <ContentTemplate>
@@ -181,7 +181,7 @@
             <ajaxToolkit:TabPanel runat="server" HeaderText="TabPanel1" ID="TabPanel1" OnDemandMode="Once">
                 <ContentTemplate>
                     I was rendered at
-                    <%: DateTime.Now.ToString() %>
+                    <%: DateTime.Now.ToString("T") %>
                     <br />
                     My OnDemandMode is &#39;Once&#39;
                 </ContentTemplate>
@@ -189,7 +189,7 @@
             <ajaxToolkit:TabPanel ID="TabPanel2" runat="server" HeaderText="TabPanel2" OnDemandMode="Always">
                 <ContentTemplate>
                     I'm tab 2, I was rendered at
-                    <%: DateTime.Now.ToString() %>
+                    <%: DateTime.Now.ToString("T") %>
                     <br />
                     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                     <asp:CheckBox ID="CheckBox1" runat="server" />
@@ -200,16 +200,16 @@
             <ajaxToolkit:TabPanel ID="TabPanel3" runat="server" HeaderText="TabPanel3" OnDemandMode="None">
                 <ContentTemplate>
                     I'm tab 3, I was rendered at
-                    <%: DateTime.Now.ToString() %>
+                    <%: DateTime.Now.ToString("T") %>
                     <br />
                     My OnDemandMode is &#39;None&#39;
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
             <ajaxToolkit:TabPanel ID="TabPanel4" runat="server" HeaderText="TabPanel4" OnDemandMode="Once">
                 <ContentTemplate>
-                    Hey, I&#39;m should loaded only for once too! as tab1<br />
+                    Hey, I&#39;m loaded only once!<br />
                     I was rendered at
-                    <%: DateTime.Now.ToString() %>
+                    <%: DateTime.Now.ToString("T") %>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
         </ajaxToolkit:TabContainer>
@@ -240,13 +240,13 @@
             rightbottom by setting UseVerticalStripPlacement to true.
             <br />
             <br />
-            Tabs can be loaded all at one time or on demand. Further each tab provides functionality
-            to load tab in three different modes - always, once or none.
+            Tabs can be loaded all at one time or on demand. Each tab provides functionality
+            to load tab in three different modes - always, once or none. 
             <br />
             <br />
-            Tab can be accessed by keyboard. Once focus is set on tab container different tab can be navigated
-            by left and right arrow keys. When tabs are displayed vertically then Up and Down arrow keys can be
-            used to navigate.
+            Tab can be accessed by keyboard. After focus is set on the tab container then you can navigate to different
+            tabs by using the left and right arrow keys. When tabs are displayed vertically then Up and Down arrow keys can be
+            used to navigate from tab to tab.
         </p>
     </asp:Panel>
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
