@@ -106,9 +106,7 @@
                                 if (activeTab._onDemandMode != Sys.Extended.UI.OnDemandMode.None) {
                                     if ((activeTab._onDemandMode == Sys.Extended.UI.OnDemandMode.Once && activeTab._wasLoaded == false)
                                         || activeTab._onDemandMode == Sys.Extended.UI.OnDemandMode.Always) {
-                                        var activeTabId = activeTab._tab.id;
-                                        var updatePanelID = activeTabId.substr(0, activeTabId.length - 4) + "_updatePanel";
-                                        this._pageRequestManager.beginAsyncPostBack([updatePanelID], null, null, false, null);
+                                        this._pageRequestManager.beginAsyncPostBack([activeTab._updatePanelID], null, null, false, null);
                                         activeTab._wasLoaded = true;
                                     }
                                 }
@@ -366,6 +364,7 @@
             this._scrollBars = Sys.Extended.UI.ScrollBars.None;
             this._onDemandMode = Sys.Extended.UI.OnDemandMode.Always;
             this._wasLoaded = false;
+            this._updatePanelID = "";
             this._header_onclick$delegate = Function.createDelegate(this, this._header_onclick);
             this._header_onmouseover$delegate = Function.createDelegate(this, this._header_onmouseover);
             this._header_onmouseout$delegate = Function.createDelegate(this, this._header_onmouseout);
@@ -548,6 +547,16 @@
                     this._activate();
                 else
                     this._deactivate();
+            },
+
+            get_updatePanelID: function () {
+                return this._updatePanelID;
+            },
+            set_updatePanelID: function (value) {
+                if (this._updatePanelID != value) {
+                    this._updatePanelID = value;
+                    this.raisePropertyChanged("updatePanelID");
+                }
             },
 
             initialize: function () {

@@ -156,6 +156,14 @@ namespace AjaxControlToolkit {
             set { _active = value; }
         }
 
+        /// <summary>
+        /// Introduce UpdatePanelID to client side by prototyping it
+        /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [ExtenderControlProperty]
+        [ClientPropertyName("updatePanelID")]
+        public string UpdatePanelID { get; set; }
+
         #endregion
 
         #region [ Methods ]
@@ -189,6 +197,7 @@ namespace AjaxControlToolkit {
                     updatePanel.Load += UpdatePanelOnLoad;
                     updatePanel.ContentTemplateContainer.Controls.Add(invisiblePanel);
                     Controls.Add(updatePanel);
+                    UpdatePanelID = updatePanel.ClientID;
                 } else
                     Controls.Add(c);
             }
