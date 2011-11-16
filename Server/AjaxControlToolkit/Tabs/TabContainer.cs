@@ -73,6 +73,9 @@ using System.Diagnostics;
 
 namespace AjaxControlToolkit
 {
+    /// <summary>
+    /// TabContainer contains functionality to provide container for various TabPanels
+    /// </summary>
     [Designer("AjaxControlToolkit.TabContainerDesigner, AjaxControlToolkit")]
     [ParseChildren(typeof(TabPanel))]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -114,6 +117,9 @@ namespace AjaxControlToolkit
 
         #region [ Events ]
 
+        /// <summary>
+        /// Attach/remove method to the ActiveTabChanged Event Handler
+        /// </summary>
         [Category("Behavior")]
         public event EventHandler ActiveTabChanged
         {
@@ -125,6 +131,9 @@ namespace AjaxControlToolkit
 
         #region [ Properties ]
 
+        /// <summary>
+        /// Gets index of Active Tab at client side
+        /// </summary>
         [DefaultValue(-1)]
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -146,12 +155,19 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Checks if script is rendering.
+        /// </summary>
+        /// <returns>True if script is rendering otherwise false</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShouldSerializeActiveTabIndexForClient()
         {
             return IsRenderingScript;
         }
 
+        /// <summary>
+        /// Index of active tab.
+        /// </summary>
         [DefaultValue(-1)]
         [Category("Behavior")]
         public virtual int ActiveTabIndex
@@ -202,6 +218,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Keeps collection of tabPanels those will be contained by the TabContainer.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TabPanelCollection Tabs
@@ -209,6 +228,9 @@ namespace AjaxControlToolkit
             get { return (TabPanelCollection)Controls; }
         }
 
+        /// <summary>
+        /// Provides object of current active tab panel.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TabPanel ActiveTab
@@ -234,6 +256,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Determine whether to raise ActiveTabChanged from the client side.
+        /// </summary>
         [DefaultValue(false)]
         [Category("Behavior")]
         public bool AutoPostBack
@@ -248,6 +273,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Height of the Tab Container.
+        /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Appearance")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Globalization", "CA1303:DoNotPassLiteralsAsLocalizedParameters", Justification = "Assembly is not localized")]
@@ -264,6 +292,9 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Width of Tab Container.
+        /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Appearance")]
         public override Unit Width
@@ -272,6 +303,9 @@ namespace AjaxControlToolkit
             set { base.Width = value; }
         }
 
+        /// <summary>
+        /// To customize theme of TabContainer.
+        /// </summary>
         [DefaultValue("ajax__tab_xp")]
         [Category("Appearance")]
         public override string CssClass
@@ -280,6 +314,9 @@ namespace AjaxControlToolkit
             set { base.CssClass = value; }
         }
 
+        /// <summary>
+        /// Determine whether to display scrollbars or not when contents are overflowing.
+        /// </summary>
         [DefaultValue(ScrollBars.None)]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -290,6 +327,9 @@ namespace AjaxControlToolkit
             set { ViewState["ScrollBars"] = value; }
         }
 
+        /// <summary>
+        /// Where the tabs should be displayed (Top, TopRight, Bottom, BottomRight).
+        /// </summary>
         [DefaultValue(TabStripPlacement.Top)]
         [Category("Appearance")]
         public TabStripPlacement TabStripPlacement
@@ -298,6 +338,9 @@ namespace AjaxControlToolkit
             set { _tabStripPlacement = value; }
         }
 
+        /// <summary>
+        /// Attaches Client function to handle OnClientActiveTabChanged event handler.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -390,6 +433,10 @@ namespace AjaxControlToolkit
 
         #region [ Methods ]
 
+        /// <summary>
+        /// Fires when pages initializes.
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
@@ -411,6 +458,10 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Fires when Active tab changes.
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnActiveTabChanged(EventArgs e)
         {
             EventHandler eh = Events[EventActiveTabChanged] as EventHandler;
@@ -420,6 +471,10 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// AddParseSubObject checks if object is not null and type of TabPanel.
+        /// </summary>
+        /// <param name="obj">Object to add in the container</param>
         protected override void AddParsedSubObject(object obj)
         {
             TabPanel objTabPanel = obj as TabPanel;
@@ -433,12 +488,22 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Sets TabContainer as owner of control and Addes the control into the base
+        /// at specified index.
+        /// </summary>
+        /// <param name="control">Object of type TabPanel</param>
+        /// <param name="index">Index where to add the control</param>
         protected override void AddedControl(Control control, int index)
         {
             ((TabPanel)control).SetOwner(this);
             base.AddedControl(control, index);
         }
 
+        /// <summary>
+        /// Removed the TabPanel control from the base.
+        /// </summary>
+        /// <param name="control">Object of type TabPanel</param>
         protected override void RemovedControl(Control control)
         {
             TabPanel controlTabPanel = control as TabPanel;
@@ -450,11 +515,19 @@ namespace AjaxControlToolkit
             base.RemovedControl(control);
         }
 
+        /// <summary>
+        /// provides collection of TabPanels.
+        /// </summary>
+        /// <returns>ControlCollection</returns>
         protected override ControlCollection CreateControlCollection()
         {
             return new TabPanelCollection(this);
         }
 
+        /// <summary>
+        /// Creates the theme/style of TabContainer.
+        /// </summary>
+        /// <returns>object of TabContainerStyle type</returns>
         protected override Style CreateControlStyle()
         {
             TabContainerStyle style = new TabContainerStyle(ViewState);
@@ -462,6 +535,11 @@ namespace AjaxControlToolkit
             return style;
         }
 
+        /// <summary>
+        /// Returns server side index of current Active Tab.
+        /// </summary>
+        /// <param name="clientActiveTabIndex">Index of current active tab at client side.</param>
+        /// <returns>Index of server side active tab.</returns>
         private int getServerActiveTabIndex(int clientActiveTabIndex)
         {
             int counter = -1;
@@ -478,6 +556,10 @@ namespace AjaxControlToolkit
             return result;
         }
 
+        /// <summary>
+        /// Loads the client state.
+        /// </summary>
+        /// <param name="clientState">string containing client state values.</param>
         protected override void LoadClientState(string clientState)
         {
             Dictionary<string, object> state = (Dictionary<string, object>)new JavaScriptSerializer().DeserializeObject(clientState);
@@ -495,6 +577,10 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Saves the client states values.
+        /// </summary>
+        /// <returns>string containing client state values.</returns>
         protected override string SaveClientState()
         {
             Dictionary<string, object> state = new Dictionary<string, object>();
@@ -509,6 +595,10 @@ namespace AjaxControlToolkit
             return new JavaScriptSerializer().Serialize(state);
         }
 
+        /// <summary>
+        /// Loads the savedState of TabContainer.
+        /// </summary>
+        /// <param name="savedState">savedState</param>
         protected override void LoadControlState(object savedState)
         {
             Pair p = (Pair)savedState;
@@ -523,6 +613,10 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary>
+        /// Saves the controlState to load next postback.
+        /// </summary>
+        /// <returns>object containing savedstate</returns>
         protected override object SaveControlState()
         {
             Pair p = new Pair();
@@ -537,7 +631,11 @@ namespace AjaxControlToolkit
                 return p;
             }
         }
-
+               
+        /// <summary>
+        /// Customize functionality to Add attributes at the time of rendering.
+        /// </summary>
+        /// <param name="writer">HtmlTextWriter object</param>
         protected override void AddAttributesToRender(HtmlTextWriter writer)
         {
             Style.Remove(HtmlTextWriterStyle.Visibility);
@@ -552,6 +650,10 @@ namespace AjaxControlToolkit
             writer.AddStyleAttribute(HtmlTextWriterStyle.Visibility, "hidden");
         }
 
+        /// <summary>
+        /// Renders contents to the client.
+        /// </summary>
+        /// <param name="writer">HtmlTextWriter object</param>
         protected override void RenderContents(HtmlTextWriter writer)
         {
             //base.Render(writer);
@@ -581,6 +683,10 @@ namespace AjaxControlToolkit
                 RenderHeader(writer);
         }
 
+        /// <summary>
+        /// Render header part of the TabContainer.
+        /// </summary>
+        /// <param name="writer">HtmlTextWriter object</param>
         protected virtual void RenderHeader(HtmlTextWriter writer)
         {            
             writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_header");
@@ -639,7 +745,7 @@ namespace AjaxControlToolkit
 
             writer.RenderEndTag();
         }
-
+                
         private void RenderSpannerForVerticalTabs(HtmlTextWriter writer)
         {
             if (_useVerticalStripPlacement)
@@ -681,6 +787,12 @@ namespace AjaxControlToolkit
             return tabStripPlacementCss;
         }
 
+        /// <summary>
+        /// Loads PostBackData
+        /// </summary>
+        /// <param name="postDataKey">Post Data Key</param>
+        /// <param name="postCollection">Collection of Postback data</param>
+        /// <returns>flag whether data loaded</returns>
         protected override bool LoadPostData(string postDataKey, NameValueCollection postCollection)
         {
             int tabIndex = ActiveTabIndex;
@@ -692,6 +804,9 @@ namespace AjaxControlToolkit
             return result;
         }
 
+        /// <summary>
+        /// Raises event for data changed at postback.
+        /// </summary>
         protected override void RaisePostDataChangedEvent()
         {
             OnActiveTabChanged(EventArgs.Empty);
@@ -723,11 +838,20 @@ namespace AjaxControlToolkit
 
         private sealed class TabContainerStyle : Style
         {
+            /// <summary>
+            /// Constructor for TabContainerStyle
+            /// </summary>
+            /// <param name="state"></param>
             public TabContainerStyle(StateBag state)
                 : base(state)
             {
             }
 
+            /// <summary>
+            /// Fills Style attribute to the base.
+            /// </summary>
+            /// <param name="attributes"></param>
+            /// <param name="urlResolver"></param>
             protected override void FillStyleAttributes(CssStyleCollection attributes, IUrlResolutionService urlResolver)
             {
                 base.FillStyleAttributes(attributes, urlResolver);

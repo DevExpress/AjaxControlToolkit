@@ -1,15 +1,7 @@
-<%@ Page
-    Language="C#"
-    MasterPageFile="~/DefaultMaster.master"
-    AutoEventWireup="true"
-    CodeFile="Tabs.aspx.cs"
-    Inherits="Tabs_Tabs"
-    Title="Tabs Sample"
-    Theme="SampleSiteTheme" %>
-<%@ Register
-    Assembly="AjaxControlToolkit"
-    Namespace="AjaxControlToolkit"
-    TagPrefix="ajaxToolkit" %>
+<%@ Page Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true"
+    CodeFile="Tabs.aspx.cs" Inherits="Tabs_Tabs" Title="Tabs Sample" Theme="SampleSiteTheme" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ContentPlaceHolderID="SampleContent" runat="Server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <script type="text/javascript">
@@ -28,30 +20,32 @@
         function Highlight(el) {
             if (HighlightAnimations[el.uniqueID] == null) {
                 HighlightAnimations[el.uniqueID] = Sys.Extended.UI.Animation.createAnimation({
-                    AnimationName : "color",
-                    duration : 0.5,
-                    property : "style",
-                    propertyKey : "backgroundColor",
-                    startValue : "#FFFF90",
-                    endValue : "#FFFFFF"
+                    AnimationName: "color",
+                    duration: 0.5,
+                    property: "style",
+                    propertyKey: "backgroundColor",
+                    startValue: "#FFFF90",
+                    endValue: "#FFFFFF"
                 }, el);
             }
             HighlightAnimations[el.uniqueID].stop();
             HighlightAnimations[el.uniqueID].play();
         }
-        
+
         function ToggleHidden(value) {
             $find('<%=Tabs.ClientID%>').get_tabs()[2].set_enabled(value);
         }
     </script>
     <div class="demoarea">
-        <div class="demoheading">Tabs Demonstration</div>
+        <div class="demoheading">
+            Tabs Demonstration</div>
         The following user profile is presented in Tab format. You can click on the tab
         and modify specific fields.
-        <br /><br />
-        
+        <br />
+        <br />
         Toolkit User Profile:
-        <ajaxToolkit:TabContainer runat="server" ID="Tabs" Height="138px" OnClientActiveTabChanged="ActiveTabChanged" ActiveTabIndex="0" Width="402px">
+        <ajaxToolkit:TabContainer runat="server" ID="Tabs" Height="138px" OnClientActiveTabChanged="ActiveTabChanged"
+            ActiveTabIndex="0" Width="402px">
             <ajaxToolkit:TabPanel runat="server" ID="Panel1" HeaderText="Signature and Bio">
                 <ContentTemplate>
                     <asp:UpdatePanel ID="updatePanel1" runat="server">
@@ -59,38 +53,45 @@
                             <table>
                                 <tr>
                                     <td>
-                                        Signature:</td>
+                                        Signature:
+                                    </td>
                                     <td>
-                                        <asp:TextBox ID="signatureText" runat="server" /></td>
+                                        <asp:TextBox ID="signatureText" runat="server" />
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Bio:</td>
+                                        Bio:
+                                    </td>
                                     <td>
-                                        <asp:TextBox ID="bioText" runat="server" /></td>
+                                        <asp:TextBox ID="bioText" runat="server" />
+                                    </td>
                                 </tr>
                             </table>
                             <asp:Button ID="Button3" runat="Server" Text="Save" OnClick="SaveProfile" />
-                            <br /><br />
+                            <br />
+                            <br />
                             Hit Save to cause a postback from an update panel inside the tab panel.<br />
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
-            
-            <ajaxToolkit:TabPanel runat="server" ID="Panel3" HeaderText="Email" >
+            <ajaxToolkit:TabPanel runat="server" ID="Panel3" HeaderText="Email">
                 <ContentTemplate>
-                    Email: <asp:TextBox ID="emailText" runat="server" />
-                    <br /><br />
+                    Email:
+                    <asp:TextBox ID="emailText" runat="server" />
+                    <br />
+                    <br />
                     <asp:Button ID="Button1" runat="server" Text="Save" OnClick="SaveProfile" />
-                    <br /><br />
+                    <br />
+                    <br />
                     Hit Save to cause a full postback.
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
-        
             <ajaxToolkit:TabPanel runat="server" ID="Panel2" OnClientClick="PanelClick" HeaderText="Controls">
                 <ContentTemplate>
-                    <div>Controls authored by Toolkit User (read-only - demo purposes):</div>
+                    <div>
+                        Controls authored by Toolkit User (read-only - demo purposes):</div>
                     <ul>
                         <li>Calendar</li>
                         <li>MaskedEdit</li>
@@ -101,24 +102,124 @@
                     <br />
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
-                    &nbsp;
-           
         </ajaxToolkit:TabContainer>
         <br />
-        
-        <asp:CheckBox runat="server" ID="showComponents" Checked="true"
-            Text=" Show Controls Owned" onclick="ToggleHidden(this.checked)" />
-        <br /><br />
-        
+        <asp:CheckBox runat="server" ID="showComponents" Checked="true" Text=" Show Controls Owned"
+            onclick="ToggleHidden(this.checked)" />
+        <br />
+        <br />
         Current Tab:
         <asp:Label runat="server" ID="CurrentTab" /><br />
         <asp:Label runat="server" ID="Messages" />
+        <br />
+        <br />
+        Vertical Tab layout feature:
+        <ajaxToolkit:TabContainer runat="server" ID="TabContainer2" Height="138px" OnClientActiveTabChanged="ActiveTabChanged"
+            ActiveTabIndex="0" Width="402px" UseVerticalStripPlacement="true">
+            <ajaxToolkit:TabPanel runat="server" ID="TabPanel5" HeaderText="Signature and Bio">
+                <ContentTemplate>
+                    <asp:UpdatePanel ID="updatePanel2" runat="server">
+                        <ContentTemplate>
+                            <table>
+                                <tr>
+                                    <td>
+                                        Signature:
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="TextBox2" runat="server" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Bio:
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="TextBox3" runat="server" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <asp:Button ID="Button2" runat="Server" Text="Save" OnClick="SaveProfile" />
+                            <br />
+                            <br />
+                            Hit Save to cause a postback from an update panel inside the tab panel.<br />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+            <ajaxToolkit:TabPanel runat="server" ID="TabPanel6" HeaderText="Email">
+                <ContentTemplate>
+                    Email:
+                    <asp:TextBox ID="TextBox4" runat="server" />
+                    <br />
+                    <br />
+                    <asp:Button ID="Button4" runat="server" Text="Save" OnClick="SaveProfile" />
+                    <br />
+                    <br />
+                    Hit Save to cause a full postback.
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+            <ajaxToolkit:TabPanel runat="server" ID="TabPanel7" OnClientClick="PanelClick" HeaderText="Controls">
+                <ContentTemplate>
+                    <div>
+                        Controls authored by Toolkit User (read-only - demo purposes):</div>
+                    <ul>
+                        <li>Calendar</li>
+                        <li>MaskedEdit</li>
+                        <li>Accordion</li>
+                        <li>Calendar</li>
+                        <li>Calendar</li>
+                    </ul>
+                    <br />
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+        </ajaxToolkit:TabContainer>
+        <br />
+        <br />
+        OnDemand feature:
+        <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="128px"
+            Width="332px" OnDemand="true">
+            <ajaxToolkit:TabPanel runat="server" HeaderText="TabPanel1" ID="TabPanel1" OnDemandMode="Once">
+                <ContentTemplate>
+                    I was rendered at
+                    <%: DateTime.Now.ToString() %>
+                    <br />
+                    My OnDemandMode is &#39;Once&#39;
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+            <ajaxToolkit:TabPanel ID="TabPanel2" runat="server" HeaderText="TabPanel2" OnDemandMode="Always">
+                <ContentTemplate>
+                    I'm tab 2, I was rendered at
+                    <%: DateTime.Now.ToString() %>
+                    <br />
+                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    <asp:CheckBox ID="CheckBox1" runat="server" />
+                    <br />
+                    My OnDemandMode is &#39;Always&#39;
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+            <ajaxToolkit:TabPanel ID="TabPanel3" runat="server" HeaderText="TabPanel3" OnDemandMode="None">
+                <ContentTemplate>
+                    I'm tab 3, I was rendered at
+                    <%: DateTime.Now.ToString() %>
+                    <br />
+                    My OnDemandMode is &#39;None&#39;
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+            <ajaxToolkit:TabPanel ID="TabPanel4" runat="server" HeaderText="TabPanel4" OnDemandMode="Once">
+                <ContentTemplate>
+                    Hey, I&#39;m should loaded only for once too! as tab1<br />
+                    I was rendered at
+                    <%: DateTime.Now.ToString() %>
+                </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+        </ajaxToolkit:TabContainer>
     </div>
-    <div class="demobottom"></div>
-    
+    <div class="demobottom">
+    </div>
     <asp:Panel ID="Description_HeaderPanel" runat="server" Style="cursor: pointer;">
         <div class="heading">
-            <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg" AlternateText="collapse" />
+            <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg"
+                AlternateText="collapse" />
             Tabs Description
         </div>
     </asp:Panel>
@@ -127,26 +228,57 @@
             TabContainer is an ASP.NET AJAX Control which creates a set of Tabs that can be
             used to organize page content. A TabContainer is a host for a number of TabPanel
             controls.
-            <br /><br />
+            <br />
+            <br />
             Each TabPanel defines its HeaderText or HeaderTemplate as well as a ContentTemplate
             that defines its content. The most recent tab should remain selected after a postback,
             and the Enabled state of tabs should remain after a postback as well.
+            <br />
+            <br />
+            TabContainer layout provides option to set TabPanels at top, topright, bottom, bottomright.
+            TabContainer also provides option to set TabPanels at left, leftbottom, right and
+            rightbottom by setting UseVerticalStripPlacement to true.
+            <br />
+            <br />
+            Tabs can be loaded all at one time or on demand. Further each tab provides functionality
+            to load tab in three different modes - always, once or none.
+            <br />
+            <br />
+            Tab can be accessed by keyboard. Once focus is set on tab container different tab can be navigated
+            by left and right arrow keys. When tabs are displayed vertically then Up and Down arrow keys can be
+            used to navigate.
         </p>
     </asp:Panel>
-    
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
         <div class="heading">
-            <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg" AlternateText="expand" />
+            <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
+                AlternateText="expand" />
             Tabs Properties
         </div>
     </asp:Panel>
-    <asp:Panel ID="Properties_ContentPanel" runat="server" Style="overflow: hidden;" Height="0px">
-        <p>The control above is initialized with this code.  The <em>italic</em> properties are optional:</p>
-<pre>&lt;ajaxToolkit:TabContainer runat="server" 
+    <asp:Panel ID="Properties_ContentPanel" runat="server" Style="overflow: hidden;"
+        Height="0px">
+        <p>
+            The control above is initialized with this code. The <em>italic</em> properties
+            are optional:</p>
+        <pre>&lt;ajaxToolkit:TabContainer runat="server" 
         <em>OnClientActiveTabChanged</em>="ClientFunction" 
-        <em>Height</em>="150px"&gt;
+        <em>Height</em>="150px"
+        <em>Width</em>="400px"
+        <em>ActiveTabIndex</em>="1"        
+        <em>OnDemand</em>="true"        
+        <em>AutoPostBack</em>="false"
+        <em>TabStripPlacement</em>="Top"
+        <em>CssClass</em>="ajax__tab_xp"
+        <em>ScrollBars</em>="None"
+        <em>UseVerticalStripPlacement</em>="true"
+        <em>VerticalStripWidth</em>="120px"
+        &gt;
     <strong>&lt;ajaxToolkit:TabPanel</strong> runat="server" 
         <em>HeaderText</em>="Signature and Bio"
+        <em>Enabled</em>="true"
+        <em>ScrollBars</em>="Auto"        
+        <em>OnDemandMode</em>="Once"
         &lt;ContentTemplate&gt;
             ...
         &lt;/ContentTemplate&gt;
@@ -164,10 +296,16 @@
             <li><strong>Height</strong> - sets the height of the body of the tabs (does not include
                 the TabPanel headers)</li>
             <li><strong>Width</strong> - sets the width of the body of the tabs</li>
-            <li><strong>ScrollBars</strong> - Whether to display scrollbars (None, Horizontal,
-                Vertical, Both, Auto) in the body of the TabContainer</li>
-            <li><strong>TabStripPlacement</strong> - Whether to render the tabs on top of the container or below 
-                (Top, Bottom) </li>
+            <li><strong>ScrollBars</strong> - Whether to display scrollbars (None, Horizontal, Vertical,
+                Both, Auto) in the body of the TabContainer</li>
+            <li><strong>TabStripPlacement</strong> - Whether to render the tabs on top of the container
+                or below (Top, Bottom) </li>
+            <li><strong>UseVerticalStripPlacement</strong> - Whether to render the tabs on left or right 
+                of the container</li>
+            <li><strong>VerticalStripWidth</strong> - Width of the tab panels when displaying tabs 
+            vertically</li>
+            <li><strong>AutoPostBack</strong> - Make auto postback from the javascript when tab index changes.</li>
+            <li><strong>OnDemand</strong> - Whether to render/load tabs onDemand or all at page load</li>
         </ul>
         <b>TabPanel Properties</b>
         <ul>
@@ -180,9 +318,13 @@
                 render the header</li>
             <li><strong>ContentTemplate</strong> - A TemplateInstance.Single ITemplate to use to
                 render the body</li>
+            <li><strong>Enabled</strong> - Make tab enable or not</li>
+            <li><strong>ScrollBars</strong> - Whether to display scrollbars (None, Horizontal, Vertical,
+                Both, Auto) in the body of the TabPanel</li>
+            <li><strong>OnDemandMode</strong> - When container's onDemand is true then whether to load tab - 
+            Always, Once, None</li>            
         </ul>
     </asp:Panel>
-    
     <asp:Panel runat="server" ID="TabCSS_HeaderPanel" Style="cursor: pointer;">
         <div class="heading">
             <asp:ImageButton ID="TabCSS_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg"
@@ -211,16 +353,15 @@
         <strong>Tabs Css classes</strong>
         <br />
         <ul>
-            <li><strong>.ajax__tab_header:</strong>
-                A container element that wraps all of the tabs at the top of the TabContainer.
-                Child CSS classes:.ajax__tab_outer. </li>
+            <li><strong>.ajax__tab_header:</strong> A container element that wraps all of the tabs
+                at the top of the TabContainer. Child CSS classes:.ajax__tab_outer. </li>
             <li><strong>.ajax__tab_outer:</strong> An outer element of a tab, often used to set
                 the left-side background image of the tab.Child CSS classes: .ajax__tab_inner.
             </li>
             <li><strong>.ajax__tab_inner:</strong> An inner element of a tab, often used to set
                 the right-side image of the tab. Child CSS classes:.ajax__tab_tab. </li>
-            <li><strong>.ajax__tab_tab:</strong> An element of the tab that
-                contains the text content. Child CSS classes:none.</li>
+            <li><strong>.ajax__tab_tab:</strong> An element of the tab that contains the text content.
+                Child CSS classes:none.</li>
             <li><strong>.ajax__tab_body</strong>: A container element that wraps the area where
                 a TabPanel is displayed. Child CSS classes: none.</li>
             <li><strong>.ajax__tab_hover</strong> . This is applied to a tab when the mouse is hovering

@@ -16,6 +16,9 @@ using System.Collections.Generic;
 
 namespace AjaxControlToolkit
 {
+    /// <summary>
+    /// TabPanels creates a tab strip.
+    /// </summary>
     [ParseChildren(true)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(DynamicPopulateExtender))]
@@ -38,6 +41,9 @@ namespace AjaxControlToolkit
 
         #region [ Constructors ]
 
+        /// <summary>
+        /// Constructor for TabPanel
+        /// </summary>
         public TabPanel()
             : base(false, HtmlTextWriterTag.Div)
         {
@@ -47,6 +53,9 @@ namespace AjaxControlToolkit
 
         #region [ Properties ]
 
+        /// <summary>
+        /// Text of Tab panel's header. 
+        /// </summary>
         [DefaultValue("")]
         [Category("Appearance")]
         public string HeaderText
@@ -55,6 +64,9 @@ namespace AjaxControlToolkit
             set { ViewState["HeaderText"] = value; }
         }
 
+        /// <summary>
+        /// Template of TabPanel's header.
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [TemplateInstance(TemplateInstance.Single)]
         [Browsable(false)]
@@ -65,6 +77,9 @@ namespace AjaxControlToolkit
             set { _headerTemplate = value; }
         }
 
+        /// <summary>
+        /// Template for TabPanel's content/body
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [TemplateInstance(TemplateInstance.Single)]        
         [Browsable(false)]
@@ -75,6 +90,9 @@ namespace AjaxControlToolkit
             set { _contentTemplate = value; }
         }
 
+        /// <summary>
+        /// Make enable or not to the tab panel.
+        /// </summary>
         [DefaultValue(true)]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -85,6 +103,9 @@ namespace AjaxControlToolkit
             set { base.Enabled = value; }
         }
 
+        /// <summary>
+        /// Determine whether to display scrollbar or not when contents are overflowing.
+        /// </summary>
         [DefaultValue(ScrollBars.None)]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -95,6 +116,9 @@ namespace AjaxControlToolkit
             set { ViewState["ScrollBars"] = value; }
         }
 
+        /// <summary>
+        /// ClientFunction for client side on click event.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -105,6 +129,9 @@ namespace AjaxControlToolkit
             set { ViewState["OnClientClick"] = value; }
         }
 
+        /// <summary>
+        /// Dynamic service path
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -116,6 +143,9 @@ namespace AjaxControlToolkit
             set { ViewState["DynamicServicePath"] = value; }
         }
 
+        /// <summary>
+        /// Dynamic service method name
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -126,6 +156,9 @@ namespace AjaxControlToolkit
             set { ViewState["DynamicServiceMethod"] = value; }
         }
 
+        /// <summary>
+        /// Dynamic context key
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -136,6 +169,9 @@ namespace AjaxControlToolkit
             set { ViewState["DynamicContextKey"] = value; }
         }
 
+        /// <summary>
+        /// Determine how to display TabPanel onDemand (Always, Once, None)
+        /// </summary>
         [DefaultValue(OnDemandMode.Always)]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -146,6 +182,9 @@ namespace AjaxControlToolkit
             set { ViewState["OnDemandMode"] = value; }
         }
 
+        /// <summary>
+        /// ClientFunction at the time populating tab panel.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -156,6 +195,9 @@ namespace AjaxControlToolkit
             set { ViewState["OnClientPopulating"] = value; }
         }
 
+        /// <summary>
+        /// Client function after tab panel populated at client.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -175,8 +217,11 @@ namespace AjaxControlToolkit
         #endregion
 
         #region [ Methods ]
-
-
+        
+        /// <summary>
+        /// Event fires at Initialization of control. 
+        /// </summary>
+        /// <param name="e"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope", Justification="Local c is handed off to Controls collection")]
         protected override void OnInit(EventArgs e)
         {
@@ -232,6 +277,10 @@ namespace AjaxControlToolkit
                 invisiblePanel.Visible = true;
         }
 
+        /// <summary>
+        /// Render header part of the tab panel.
+        /// </summary>
+        /// <param name="writer">HtmlTextWriter object</param>
         protected internal virtual void RenderHeader(HtmlTextWriter writer)
         {
             writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_tab");
@@ -270,14 +319,18 @@ namespace AjaxControlToolkit
             writer.RenderEndTag();
             writer.RenderEndTag();
         }
-
+                
         private void RenderBeginTag(HtmlTextWriter writer)
         {
             if (_owner.UseVerticalStripPlacement)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
             writer.RenderBeginTag(HtmlTextWriterTag.Span);
         }
-
+                
+        /// <summary>
+        /// Renders TabPanel to the stream
+        /// </summary>
+        /// <param name="writer">HtmlTextWriter object</param>
         protected override void Render(HtmlTextWriter writer)
         {
             if (_headerControl != null)
@@ -298,6 +351,10 @@ namespace AjaxControlToolkit
             ScriptManager.RegisterScriptDescriptors(this);
         }
 
+        /// <summary>
+        /// Describe settings for the control.
+        /// </summary>
+        /// <param name="descriptor"></param>
         protected override void DescribeComponent(ScriptComponentDescriptor descriptor)
         {
             base.DescribeComponent(descriptor);
