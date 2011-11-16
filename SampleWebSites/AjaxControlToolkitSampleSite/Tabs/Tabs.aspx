@@ -2,7 +2,7 @@
     CodeFile="Tabs.aspx.cs" Inherits="Tabs_Tabs" Title="Tabs Sample" Theme="SampleSiteTheme" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<asp:Content ContentPlaceHolderID="SampleContent" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <script type="text/javascript">
         function PanelClick(sender, e) {
@@ -180,8 +180,8 @@
             Width="332px" OnDemand="true">
             <ajaxToolkit:TabPanel runat="server" HeaderText="TabPanel1" ID="TabPanel1" OnDemandMode="Once">
                 <ContentTemplate>
-                    I was rendered at
-                    <%: DateTime.Now.ToString("T") %>
+                    I'm tab 1, I was rendered at
+                    <%= DateTime.Now.ToString("T") %>
                     <br />
                     My OnDemandMode is &#39;Once&#39;
                 </ContentTemplate>
@@ -189,10 +189,7 @@
             <ajaxToolkit:TabPanel ID="TabPanel2" runat="server" HeaderText="TabPanel2" OnDemandMode="Always">
                 <ContentTemplate>
                     I'm tab 2, I was rendered at
-                    <%: DateTime.Now.ToString("T") %>
-                    <br />
-                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                    <asp:CheckBox ID="CheckBox1" runat="server" />
+                    <%= DateTime.Now.ToString("T") %>
                     <br />
                     My OnDemandMode is &#39;Always&#39;
                 </ContentTemplate>
@@ -200,16 +197,16 @@
             <ajaxToolkit:TabPanel ID="TabPanel3" runat="server" HeaderText="TabPanel3" OnDemandMode="None">
                 <ContentTemplate>
                     I'm tab 3, I was rendered at
-                    <%: DateTime.Now.ToString("T") %>
+                    <%= DateTime.Now.ToString("T") %>
                     <br />
                     My OnDemandMode is &#39;None&#39;
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
             <ajaxToolkit:TabPanel ID="TabPanel4" runat="server" HeaderText="TabPanel4" OnDemandMode="Once">
                 <ContentTemplate>
-                    Hey, I&#39;m loaded only once!<br />
+                    I'm tab 4. Hey, I&#39;m loaded only once!<br />
                     I was rendered at
-                    <%: DateTime.Now.ToString("T") %>
+                    <%= DateTime.Now.ToString("T") %>
                 </ContentTemplate>
             </ajaxToolkit:TabPanel>
         </ajaxToolkit:TabContainer>
