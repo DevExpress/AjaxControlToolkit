@@ -161,18 +161,6 @@
     <Content Include="Slider\Slider.css" />
     <Content Include="Slider\SliderBehavior.pre.js" />
     <Content Include="SlideShow\SlideShowBehavior.pre.js" />
-    <Content Include="Tabs\tab-active-left.gif" />
-    <Content Include="Tabs\tab-active-right.gif" />
-    <Content Include="Tabs\tab-active.gif" />
-    <Content Include="Tabs\tab-hover-left.gif" />
-    <Content Include="Tabs\tab-hover-right.gif" />
-    <Content Include="Tabs\tab-hover.gif" />
-    <Content Include="Tabs\tab-left.gif" />
-    <Content Include="Tabs\tab-line.gif" />
-    <Content Include="Tabs\tab-right.gif" />
-    <Content Include="Tabs\tab.gif" />
-    <Content Include="Tabs\Tabs.css" />
-    <Content Include="Tabs\Tabs.pre.js" />
     <Content Include="TextboxWatermark\TextboxWatermark.pre.js" />
     <Content Include="ToggleButton\ToggleButton.pre.js" />
     <Content Include="UpdatePanelAnimation\UpdatePanelAnimationBehavior.pre.js" />
@@ -183,6 +171,19 @@
     <Content Include="ValidatorCallout\ValidatorCalloutBehavior.pre.js" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BalloonPopup\act_down_left.png" />
+    <Content Include="BalloonPopup\act_down_right.png" />
+    <Content Include="BalloonPopup\act_up_left.png" />
+    <Content Include="BalloonPopup\act_up_right.png" />
+    <Content Include="BalloonPopup\BalloonPopup.css" />
+    <Content Include="BalloonPopup\BalloonPopupExtenderBehavior.pre.js" />
+    <Content Include="BalloonPopup\Cloud\BalloonPopup.css" />
+    <Content Include="BalloonPopup\Cloud\sprite.gif" />
+    <Content Include="BalloonPopup\Cloud\sprite.png" />
+    <Content Include="BalloonPopup\corners-type2.gif" />
+    <Content Include="BalloonPopup\Rectangle\BalloonPopup.css" />
+    <Content Include="BalloonPopup\Rectangle\sprite.gif" />
+    <Content Include="BalloonPopup\Rectangle\sprite.png" />
     <Content Include="ExtenderBase\BaseScriptsResources.ar.resx">
       <SubType>Designer</SubType>
     </Content>
@@ -234,6 +235,45 @@
     <Content Include="ExtenderBase\BaseScriptsResources.zh-CHT.resx">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Tabs\tab-active-left-verticalleft.gif" />
+    <Content Include="Tabs\tab-active-left-verticalright.gif" />
+    <Content Include="Tabs\tab-active-left.gif" />
+    <Content Include="Tabs\tab-active-right-verticalleft.gif" />
+    <Content Include="Tabs\tab-active-right-verticalright.gif" />
+    <Content Include="Tabs\tab-active-right.gif" />
+    <Content Include="Tabs\tab-active-verticalleft.gif" />
+    <Content Include="Tabs\tab-active-verticalright.gif" />
+    <Content Include="Tabs\tab-active.gif" />
+    <Content Include="Tabs\tab-bottom-active-left.gif" />
+    <Content Include="Tabs\tab-bottom-active-right.gif" />
+    <Content Include="Tabs\tab-bottom-active.gif" />
+    <Content Include="Tabs\tab-bottom-hover-left.gif" />
+    <Content Include="Tabs\tab-bottom-hover-right.gif" />
+    <Content Include="Tabs\tab-bottom-hover.gif" />
+    <Content Include="Tabs\tab-bottom-left.gif" />
+    <Content Include="Tabs\tab-bottom-right.gif" />
+    <Content Include="Tabs\tab-bottom.gif" />
+    <Content Include="Tabs\tab-hover-left-verticalleft.gif" />
+    <Content Include="Tabs\tab-hover-left-verticalright.gif" />
+    <Content Include="Tabs\tab-hover-left.gif" />
+    <Content Include="Tabs\tab-hover-right-verticalleft.gif" />
+    <Content Include="Tabs\tab-hover-right-verticalright.gif" />
+    <Content Include="Tabs\tab-hover-right.gif" />
+    <Content Include="Tabs\tab-hover-verticalleft.gif" />
+    <Content Include="Tabs\tab-hover-verticalright.gif" />
+    <Content Include="Tabs\tab-hover.gif" />
+    <Content Include="Tabs\tab-left-verticalleft.gif" />
+    <Content Include="Tabs\tab-left-verticalright.gif" />
+    <Content Include="Tabs\tab-left.gif" />
+    <Content Include="Tabs\tab-line.gif" />
+    <Content Include="Tabs\tab-right-verticalleft.gif" />
+    <Content Include="Tabs\tab-right-verticalright.gif" />
+    <Content Include="Tabs\tab-right.gif" />
+    <Content Include="Tabs\tab-verticalleft.gif" />
+    <Content Include="Tabs\tab-verticalright.gif" />
+    <Content Include="Tabs\tab.gif" />
+    <Content Include="Tabs\Tabs.css" />
+    <Content Include="Tabs\Tabs.pre.js" />
     <EmbeddedResource Include="ScriptResources\ScriptResources.ar.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -318,7 +358,6 @@
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
   <UsingTask TaskName="JSBuild.PrependTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
   <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
-
   <Target Name="BeforeBuild">
     <MakeDir Directories="$(ScriptOutput)" />
     <!-- clean out old files from previous build -->

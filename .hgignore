@@ -48,3 +48,5 @@ Tests/AjaxControlToolkit.Tests/Bugs/Tabs/PanelOnDemand/WebForm1.aspx
 Tests/AjaxControlToolkit.Tests/Bugs/Tabs/OnDemand/WebForm1.aspx.designer.cs
 Tests/AjaxControlToolkit.Tests/Bugs/Tabs/OnDemand/WebForm1.aspx.cs
 Tests/AjaxControlToolkit.Tests/Bugs/Tabs/OnDemand/WebForm1.aspx
+Server/AjaxControlToolkit/AjaxControlToolkit.VS2008.csproj.user
+Client/MicrosoftAjax.Extended/MicrosoftAjax.Extended.VS2008.csproj.user
