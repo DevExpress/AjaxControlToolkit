@@ -199,14 +199,16 @@ namespace AjaxControlToolkit
                     var invisiblePanel = new Panel()
                                              {
                                                  ID = invisiblePanelID,
-                                                 Visible = false
+                                                 Visible = false,
+                                                 ClientIDMode = ClientIDMode.Static
                                              };
                     invisiblePanel.Controls.Add(c);
 
                     var updatePanel = new UpdatePanel()
                     {
                         ID = ClientID + "_updatePanel",
-                        UpdateMode = UpdatePanelUpdateMode.Conditional
+                        UpdateMode = UpdatePanelUpdateMode.Conditional,
+                        ClientIDMode = ClientIDMode.Static
                     };
                     updatePanel.Load += UpdatePanelOnLoad;
                     updatePanel.ContentTemplateContainer.Controls.Add(invisiblePanel);
