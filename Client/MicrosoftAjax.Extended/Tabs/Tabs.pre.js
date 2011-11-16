@@ -349,9 +349,9 @@
                     var activeTab = this.get_tabs()[this._activeTabIndex];
                     if (activeTab) {
                         activeTab._wasLoaded = true;
+                        activeTab._setFocus(activeTab);
                     }
                 }
-
                 this._loaded = true;
             }
         }
