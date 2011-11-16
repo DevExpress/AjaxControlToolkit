@@ -8,28 +8,31 @@
     <div class="demoarea">
         <div class="demoheading">
             BalloonPopupExtender Demonstration</div>
+            <p>
+            Click inside either of the two TextBox controls below or click the link to see
+            a demonstration of the BalloonPopupExtender control.
+            </p>
+
         <asp:TextBox ID="MessageTextBox" runat="server" Width="200" autocomplete="off" />
         <br />
         <br />
         <asp:Panel ID="Panel2" runat="server">
-            some text some text some text some text some text some text some text some text
-            some text some text some text some text
+            This Balloon Popup uses the Cloud style.
         </asp:Panel>
         <ajaxToolkit:BalloonPopupExtender ID="PopupControlExtender2" runat="server" TargetControlID="MessageTextBox"
-            BalloonPopupControlID="Panel2" Position="BottomRight" BalloonStyle="Cloud" BalloonSize="Medium"
+            BalloonPopupControlID="Panel2" Position="BottomRight" BalloonStyle="Cloud" BalloonSize="Small"
             UseShadow="false" DisplayOnClick="true" DisplayOnFocus="true" />
         <br />
         <br />
-        <asp:HyperLink ID="link1" runat="server">Show Balloon popup</asp:HyperLink>
+        <asp:HyperLink ID="link1" runat="server">Click Here to Show the Balloon Popup</asp:HyperLink>
         <br />
         <br />
         <asp:Panel ID="Panel1" runat="server">
-            These are some contents to display for Balloon popup These are some contents to
-            display for Balloon popup These are some contents to display for Balloon popup These
-            are some contents to display for Balloon popup
+            This Balloon Popup appears when you click the link. It uses a Rectangle style and it is set to 
+            appear at the top-right of the link.
         </asp:Panel>
         <ajaxToolkit:BalloonPopupExtender ID="BalloonPopupExtender1" runat="server" TargetControlID="link1"
-            BalloonPopupControlID="Panel1" Position="TopRight" BalloonStyle="Rectangle" BalloonSize="Medium"
+            BalloonPopupControlID="Panel1" Position="TopRight" BalloonStyle="Rectangle" BalloonSize="Small"
             UseShadow="true" />
         <br />
         <br />
@@ -37,11 +40,10 @@
         <br />
         <br />
         <asp:Panel ID="Panel3" runat="server">
-            Contents for custom style Contents for custom style Contents for custom style Contents
-            for custom style
+            This is a custom BalloonPopupExtender style created with a custom Cascading Style Sheet. 
         </asp:Panel>
         <ajaxToolkit:BalloonPopupExtender ID="BalloonPopupExtender2" runat="server" TargetControlID="txtCustom"
-            BalloonPopupControlID="Panel3" Position="BottomRight" BalloonStyle="Custom" CustomCssUrl="http://browsers.superexpert.com/BalloonPopup/CustomTheme/BalloonPopup_resource.css"
+            BalloonPopupControlID="Panel3" Position="BottomRight" BalloonStyle="Custom" CustomCssUrl="CustomStyle/BalloonPopupOvalStyle.css"
             CustomClassName="oval" BalloonSize="Medium" UseShadow="true" />
     </div>
     <div class="demobottom">
@@ -55,13 +57,13 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            The BalloonPopup control displays a popup which can contain any content. For example, you can use 
-            the BalloonPopup control to display help information when you move focus to a TextBox control.
+            The BalloonPopupExtender control displays a popup which can contain any content. For example, you can use 
+            the BalloonPopupExtender to display help information when you move focus to a TextBox control.
         </p>
         <br />
         <p>
-            The BalloonPopup supports three different styles: Balloon, Rectangle, and Custom. You can select 
-            among three different sizes for the popup: small, medium, and large. If you set the BalloonPopup 
+            The BalloonPopupExtender supports three different styles: Balloon, Rectangle, and Custom. You can select 
+            among three different sizes for the popup: Small, Medium, and Large. If you set the BalloonPopup 
             style to the value Custom then you can define a custom appearance for the BalloonPopup. In that 
             case, you also need to set the CustomCssUrl property to point to a custom style sheet.
         </p>
@@ -73,8 +75,8 @@
         </p>
         <br />
         <p>
-            You can set the BalloonPop to be triggered by the MouseOver, Focus or Click events. The control is 
-            hidden automatically when you click outside the BalloonPopup.
+            You can set the BalloonPopExtender to be triggered by the MouseOver, Focus or Click events. The control is 
+            hidden automatically when you click outside the Balloon Popup.
         </p>        
         <br />
     </asp:Panel>
@@ -82,13 +84,13 @@
         <div class="heading">
             <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
                 AlternateText="expand" />
-            BalloonPopup control Properties
+            BalloonPopupExtender Properties
         </div>
     </asp:Panel>
     <asp:Panel ID="Properties_ContentPanel" runat="server" Style="overflow: hidden;"
         Height="0px">
         <p>
-            The Balloon Popup is initialized with this code. The <em>italic</em> properties
+            The BalloonPopupExtender is initialized with this code. The <em>italic</em> properties
             are optional:
         </p>
         <pre>&lt;ajaxToolkit:BalloonPopupExtender ID="PopupControlExtender2" runat="server"
@@ -97,7 +99,7 @@
         <em>Position</em>="BottomRight" 
         <em>BalloonStyle</em>="Cloud"
         <em>BalloonSize</em>="Small"
-        <em>CustomCssUrl</em>="http://browsers.superexpert.com/BalloonPopup/CustomTheme/BalloonPopup_resource.css"
+        <em>CustomCssUrl</em>="CustomStyle/BalloonPopupOvalStyle.css"
         <em>CustomClassName</em>="oval"
         <em>UseShadow</em>="true" 
         <em>ScrollBars</em>="Auto"

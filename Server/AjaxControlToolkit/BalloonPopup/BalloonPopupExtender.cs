@@ -261,7 +261,7 @@ namespace AjaxControlToolkit
                 if (!isLinked)
                 {
                     HtmlLink css = new HtmlLink();
-                    css.Href = ResolveClientUrl(CustomCssUrl);
+                    css.Href = ResolveUrl(CustomCssUrl);
                     css.Attributes["id"] = "customCssUrl";
                     css.Attributes["rel"] = "stylesheet";
                     css.Attributes["type"] = "text/css";

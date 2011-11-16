@@ -163,7 +163,7 @@
                             position: "absolute"
                         }
                     },
-                    cssClasses: ["ajax__baloon_popup"]
+                    cssClasses: ["ajax__balloon_popup"]
                 }, e.parentNode);
 
                 // create element for theme/style
