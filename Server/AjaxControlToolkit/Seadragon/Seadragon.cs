@@ -264,7 +264,7 @@ namespace AjaxControlToolkit
         }
 
         [ExtenderControlEvent]
-        [ClientPropertyName("0pen")]
+        [ClientPropertyName("open")]
         [DefaultValue("")]
         public string OnClientOpen
         {
