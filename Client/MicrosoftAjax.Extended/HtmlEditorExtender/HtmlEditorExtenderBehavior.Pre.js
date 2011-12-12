@@ -151,20 +151,16 @@
                 if (formElement == null)
                     throw 'Missing Form tag';
 
-                // delegates
-                //var formSubmitHandler = Function.createDelegate(this, this._editableDiv_submit);
+                // delegates                
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
-                var delEditableDiv_onchange = Function.createDelegate(this, this._editableDiv_onchange);
                 var delContentView_click = Function.createDelegate(this, this._contentView_click);
                 var delSourceView_click = Function.createDelegate(this, this._sourceView_click);
 
                 // handlers                                
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
                 $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
-                $addHandler(this._editableDiv, 'change', delEditableDiv_onchange, true);
-                //$addHandler(formElement, 'submit', formSubmitHandler, true);
                 $addHandler(this._topButtonContainer, 'click', btnClickHandler);
                 $addHandler(this._contentViewButton, 'click', delContentView_click, true);
                 $addHandler(this._sourceViewButton, 'click', delSourceView_click, true);
@@ -173,8 +169,6 @@
             _dispose: function () {
                 $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
                 $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
-                $removeHandler(this._editableDiv, 'change', delEditableDiv_onchange);
-                //$removeHandler(formElement, 'submit', formSubmitHandler);
                 $removeHandler(_topButtonContainer, 'click', btnClickHandler);
                 $removeHandler(this._contentViewButton, 'click', delContentView_click);
                 $removeHandler(this._sourceViewButton, 'click', delSourceView_click);
@@ -494,10 +488,6 @@
                 }
             },
 
-            _editableDiv_onchange: function () {
-                alert('changed');
-            },
-
             _textBox_onblur: function () {
                 this._editableDiv.innerHTML = this._textbox._element.value;
             },
@@ -505,16 +495,19 @@
             _contentView_click: function () {
                 $common.setVisible(this._topButtonContainer, true);
                 $common.setVisible(this._editableDiv, true);
-                if (this._sourceViewDiv.innerHTML.trim() != "") {
-                    this._textbox._element.value = this._sourceViewDiv.innerHTML;
-                    this._editableDiv.innerHTML = this._textbox._element.value;                    
-                }
+                this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
                 $common.setVisible(this._sourceViewDiv, false);
             },
 
             _sourceView_click: function () {
                 $common.setVisible(this._sourceViewDiv, true);
-                this._sourceViewDiv.innerHTML = this._encodeHtml();
+                
+                if (this._sourceViewDiv.textContent != undefined) {
+                    this._sourceViewDiv.textContent = this._editableDiv.innerHTML;
+                }
+                else {
+                    this._sourceViewDiv.innerText = this._editableDiv.innerHTML;
+                }
                 $common.setVisible(this._editableDiv, false);
                 $common.setVisible(this._topButtonContainer, false);
             },
