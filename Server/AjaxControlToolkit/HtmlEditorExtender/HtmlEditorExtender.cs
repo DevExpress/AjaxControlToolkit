@@ -37,8 +37,7 @@ namespace AjaxControlToolkit
         internal const int ButtonWidthDef = 23;
         internal const int ButtonHeightDef = 21;
         private HtmlEditorExtenderButtonCollection buttonList = null;
-        private SanitizerProvider sanitizerProvider = null; 
-
+        private SanitizerProvider sanitizerProvider = null;        
 
         public HtmlEditorExtender()
         {
@@ -100,6 +99,18 @@ namespace AjaxControlToolkit
                     buttonList = new HtmlEditorExtenderButtonCollection();
                 return buttonList;
             }
+        }
+
+        /// <summary>
+        /// Determines whether to display source view tab/button to see source view of the HtmlEditorExtender.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(false)]
+        [ClientPropertyName("displaySourceTab")]
+        public bool DisplaySourceTab
+        {
+            get { return GetPropertyValue("DisplaySourceTab", false); }
+            set { SetPropertyValue("DisplaySourceTab", value); }
         }
 
         /// <summary>
