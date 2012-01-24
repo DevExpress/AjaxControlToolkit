@@ -199,8 +199,8 @@ namespace AjaxControlToolkit
             buttonList.Add(new JustifyFull());
             buttonList.Add(new InsertOrderedList());
             buttonList.Add(new InsertUnorderedList());
-            //buttonList.Add(new CreateLink());
-            //buttonList.Add(new UnLink());
+            buttonList.Add(new CreateLink());
+            buttonList.Add(new UnLink());
             //buttonList.Add(new FormatBlock());
             buttonList.Add(new RemoveFormat());
             //buttonList.Add(new InsertImage());
