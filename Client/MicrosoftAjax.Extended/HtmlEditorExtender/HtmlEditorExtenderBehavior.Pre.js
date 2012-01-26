@@ -25,8 +25,9 @@
             this._foreColor = null;
             this._commandName = null;
             this.savedRange = null;
-            this.isInFocus = null;
-            _flag = false;
+            this.isInFocus = null;            
+            this._oldContents = null;
+            this._isDirty = false;
 
             this._ButtonWidth = 23;
             this._ButtonHeight = 21;
@@ -130,25 +131,22 @@
                 if (formElement == null)
                     throw 'Missing Form tag';
 
-                // delegates
-                //var formSubmitHandler = Function.createDelegate(this, this._editableDiv_submit);
+                // delegates                
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
 
                 // handlers                                
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
-                $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
-                //$addHandler(formElement, 'submit', formSubmitHandler, true);
+                $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);                
                 $addHandler(this._topButtonContainer, 'click', btnClickHandler);
             },
 
             _dispose: function () {
                 $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
-                $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
-                //$removeHandler(formElement, 'submit', formSubmitHandler);
+                $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);                
                 $removeHandler(_topButtonContainer, 'click', btnClickHandler);
-
+                    
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
             },
 
@@ -445,11 +443,17 @@
             _createEditableDiv: function () {
                 this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
                 this._editableDiv.innerHTML = this._textbox._element.value;
+                this._oldContents = this._editableDiv.innerHTML;
                 $common.setVisible(this._textbox._element, false);
             },
 
             _editableDiv_onblur: function () {
                 this._textbox._element.value = this._encodeHtml();
+                if (this._oldContents != this._editableDiv.innerHTML) {
+                    this._isDirty = true;
+                    this._oldContents = this._editableDiv.innerHTML;
+                    this._raiseEvent('change');
+                }
             },
 
             _textBox_onblur: function () {
@@ -730,6 +734,20 @@
                 }
             },
 
+            _raiseEvent: function (eventName, eventArgs) {
+                // Get handler for event.
+                var handler = this.get_events().getHandler(eventName);
+
+                if (handler) {
+                    if (!eventArgs) {
+                        eventArgs = Sys.EventArgs.Empty;
+                    }
+
+                    // Fire event.                          
+                    handler(this, eventArgs);
+                }
+            },
+
             get_ButtonWidth: function () {
                 return this._ButtonWidth;
             },
@@ -761,8 +779,14 @@
                     this._toolbarButtons = value;
                     this.raisePropertyChanged('ToolbarButtons');
                 }
-            }
+            },
 
+            add_change: function (handler) {
+                this.get_events().addHandler("change", handler);
+            },
+            remove_change: function (handler) {
+                this.get_events().removeHandler("change", handler);
+            }
         };
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
