@@ -85,6 +85,9 @@
     <Content Include="Bugs\AsyncFileUpload\Somefile.txt" />
     <Content Include="Bugs\AsyncFileUpload\Task153\AFU.ascx" />
     <Content Include="Bugs\AsyncFileUpload\Task153\WebForm1.aspx" />
+    <Content Include="Bugs\BalloonPopupTabIssue.aspx" />
+    <Content Include="Bugs\HtmlEditorExtender\26995\WebForm1.aspx" />
+    <Content Include="Bugs\HtmlEditorExtender\27020\WebForm1.aspx" />
     <Content Include="Bugs\ModalPopup\26732\LandingUserControl.ascx" />
     <Content Include="Bugs\ModalPopup\26732\ModalupPopupWithUpdatePanel.aspx" />
     <Content Include="Bugs\ModalPopup\26775\ModalPopupBackground.aspx" />
@@ -105,6 +108,7 @@
     <Content Include="Bugs\Tabs\22933\TodoItems.xml" />
     <Content Include="Bugs\Tabs\22933\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\23169\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\23295\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\23482\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\24789\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\24805\WebForm1.aspx" />
@@ -112,6 +116,7 @@
     <Content Include="Bugs\Tabs\25193\Default.aspx" />
     <Content Include="Bugs\Tabs\25193\PageOne.aspx" />
     <Content Include="Bugs\Tabs\25193\UserControls\Example1.ascx" />
+    <Content Include="Bugs\Tabs\25411\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\25686\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\25762\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\25821\WebForm1.aspx" />
@@ -119,6 +124,7 @@
     <Content Include="Bugs\Tabs\26701\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\26702\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\7564\WebForm1.aspx" />
+    <Content Include="Bugs\Tabs\8457\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\8467\WebForm1.aspx" />
     <Content Include="Bugs\Tabs\9493\WebForm1.aspx" />
     <Content Include="Bugs\TestGit.aspx" />
@@ -347,6 +353,27 @@
     <Compile Include="Bugs\AsyncFileUpload\Task153\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Bugs\BalloonPopupTabIssue.aspx.cs">
+      <DependentUpon>BalloonPopupTabIssue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\BalloonPopupTabIssue.aspx.designer.cs">
+      <DependentUpon>BalloonPopupTabIssue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\HtmlEditorExtender\26995\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\HtmlEditorExtender\26995\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\HtmlEditorExtender\27020\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\HtmlEditorExtender\27020\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Bugs\ModalPopup\26732\LandingUserControl.ascx.cs">
       <DependentUpon>LandingUserControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -460,6 +487,13 @@
     <Compile Include="Bugs\Tabs\23169\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Bugs\Tabs\23295\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\23295\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Bugs\Tabs\23482\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -509,6 +543,13 @@
     <Compile Include="Bugs\Tabs\25193\UserControls\Example1.ascx.designer.cs">
       <DependentUpon>Example1.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Bugs\Tabs\25411\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\25411\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Bugs\Tabs\25686\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -556,6 +597,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Bugs\Tabs\7564\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\Tabs\8457\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\Tabs\8457\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Bugs\Tabs\8467\WebForm1.aspx.cs">
