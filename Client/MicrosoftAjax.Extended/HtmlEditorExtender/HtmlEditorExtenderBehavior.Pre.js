@@ -492,7 +492,7 @@
                 var html = this._editableDiv.innerHTML;
                 if (isIE) {
                     //force attributes to be double quoted
-                    var allTags = /\<[^\>]+\>/g;
+                    var allTags = /\<[^a\>]+\>/g;
                     html = html.replace(allTags, function (tag) {
                         var sQA = /\=\'([^\'])*\'/g; //single quoted attributes
                         var nQA = /\=([^\"][^\s\/\>]*)/g; //non double quoted attributes
