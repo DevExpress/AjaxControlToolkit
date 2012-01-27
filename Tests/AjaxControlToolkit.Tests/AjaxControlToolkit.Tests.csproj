@@ -88,6 +88,7 @@
     <Content Include="Bugs\BalloonPopupTabIssue.aspx" />
     <Content Include="Bugs\HtmlEditorExtender\26995\WebForm1.aspx" />
     <Content Include="Bugs\HtmlEditorExtender\27020\WebForm1.aspx" />
+    <Content Include="Bugs\HtmlEditorExtender\27028\WebForm1.aspx" />
     <Content Include="Bugs\HtmlEditorExtender\27031\WebForm1.aspx" />
     <Content Include="Bugs\ModalPopup\26732\LandingUserControl.ascx" />
     <Content Include="Bugs\ModalPopup\26732\ModalupPopupWithUpdatePanel.aspx" />
@@ -373,6 +374,12 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Bugs\HtmlEditorExtender\27020\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\HtmlEditorExtender\27028\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\HtmlEditorExtender\27028\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Bugs\HtmlEditorExtender\27031\WebForm1.aspx.cs">
