@@ -40,7 +40,7 @@
                 cssClasses: ['unselectable', 'ajax__html_editor_extender_container']
             };
 
-           this._editableTemplate = {
+            this._editableTemplate = {
                 nodeName: 'div',
                 properties: {
                     id: id + '_ExtenderContentEditable',
@@ -156,15 +156,19 @@
                 var e = this.get_element();
                 this._container = $common.createElementFromTemplate(this._containerTemplate, e.parentNode);
 
+                this._elementVisible(this._textbox._element, true);
+
                 var bounds = $common.getBounds(this._textbox._element);
                 $common.setSize(this._container, {
                     width: bounds.width,
                     height: bounds.height
                 });
 
+                this._elementVisible(this._textbox._element, false);
+
                 $common.wrapElement(this._textbox._element, this._container, this._container);
             },
-
+            
             _createTopButtonContainer: function () {
                 this._topButtonContainer = $common.createElementFromTemplate(this._topButtonContainerTemplate, this._container);
             },
@@ -189,7 +193,7 @@
                                     fontSize: '11px'
                                 }
                             },
-                            cssClasses: ['fontnameclass'],                            
+                            cssClasses: ['fontnameclass'],
                             children: [{
                                 nodeName: "span",
                                 properties: {
@@ -257,7 +261,7 @@
                             properties: {
                                 style: {
                                     float: 'left',
-                                    cssFloat:'left',
+                                    cssFloat: 'left',
                                     fontSize: '11px'
                                 }
                             },
@@ -483,18 +487,18 @@
                         element.removeAttribute('width');
                     } catch (ex) { }
                     if (isIE) {
+                    }
                 }
-                        }
                 var html = this._editableDiv.innerHTML;
                 if (isIE) {
                     //force attributes to be double quoted
-                    var allTags = /\<[^\>]+\>/g;
+                    var allTags = /\<[^a\>]+\>/g;
                     html = html.replace(allTags, function (tag) {
                         var sQA = /\=\'([^\'])*\'/g; //single quoted attributes
                         var nQA = /\=([^\"][^\s\/\>]*)/g; //non double quoted attributes
                         return tag.replace(sQA, '="$1"').replace(nQA, '="$1"');
                     });
-                    }
+                }
                 //convert rgb colors to hex
                 var fixRGB = this._rgbToHex;
                 var replaceRGB = function () {
@@ -518,7 +522,12 @@
                 //html encode
                 var char = 3;
                 var sel = null;
-                this._editableDiv.focus();
+                
+                setTimeout(function () {
+                    if (this._editableDiv != null)
+                        this._editableDiv.focus()
+                }, 0)
+
                 if (Sys.Browser.agent != Sys.Browser.Firefox) {
                     if (document.selection) {
                         sel = document.selection.createRange();
@@ -624,7 +633,7 @@
                     this._backColorPicker.show();
                 }
                 else if (command.target.name == 'UnSelect') {
-                    if (isFireFox) {                                                
+                    if (isFireFox) {
                         this._editableDiv.focus();
                         var sel = window.getSelection();
                         sel.collapse(this._editableDiv.firstChild, 0);
@@ -691,6 +700,33 @@
                             }
                         }
                     }
+                }
+            },
+
+            _elementVisible: function (obj, flag) {
+                if (obj.tagName == 'FORM')
+                    return;
+                if (flag) {
+                    if (obj.style.display == 'none') {
+                        obj.style.display = 'block';
+                        obj.setAttribute('displayChanged', true);
+                    }
+                    if (obj.style.visibility == 'hidden') {
+                        obj.style.visibility = 'visible';
+                        obj.setAttribute('visibleChanged', true);
+                    }
+                    this._elementVisible(obj.parentNode, true);
+                }
+                else {
+                    if (obj.getAttribute('displayChanged')) {
+                        obj.style.display = 'none';
+                        obj.removeAttribute('displayChanged');
+                    }
+                    if (obj.getAttribute('visibleChanged')) {
+                        obj.style.display = 'hidden';
+                        obj.removeAttribute('visibleChanged');
+                    }
+                    this._elementVisible(obj.parentNode, false);
                 }
             },
 
