@@ -4,6 +4,16 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ContentPlaceHolderID="SampleContent" runat="Server">
+    <script>
+        function testChange(e) {
+
+        }
+
+        function beforeWindowUnload(e) {
+            alert(Object.getTypeName(e) + '- -' + this._isDirty);
+        }
+
+    </script>
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <div class="demoarea">
         <div class="demoheading">
@@ -12,8 +22,7 @@
             <ContentTemplate>                                
                 <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10"
                     Text="Hello <b>world!</b>" /><br />
-                <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1"
-                    runat="server">
+                <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1" runat="server">
                 </ajaxToolkit:HtmlEditorExtender>
                 <br />
                 <br />
@@ -45,6 +54,23 @@
     </div>
     <div class="demobottom">
     </div>
+    
+    <asp:Panel ID="Samples_HeaderPanel" runat="server" Style="cursor: pointer;">
+        <div class="heading">
+            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/expand.jpg"
+                AlternateText="expand" />
+            Samples
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="Samples_ContentPanel" runat="server" Style="overflow: hidden;"
+        Height="0px">
+        <p>
+            To see how to implement client side onchange event on HtmlEditorExtender
+            please click on this link:
+            <a href="CustomEventsSample.aspx">Samples</a>
+        </p>    
+    </asp:Panel>
+    
     <asp:Panel ID="Description_HeaderPanel" runat="server" Style="cursor: pointer;">
         <div class="heading">
             <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg"
@@ -77,6 +103,7 @@
 
         <br />
     </asp:Panel>
+    
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
         <div class="heading">
             <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
@@ -199,7 +226,10 @@
 
      <ajaxToolkit:CollapsiblePanelExtender ID="cpeDescription" runat="Server" TargetControlID="Description_ContentPanel"
         ExpandControlID="Description_HeaderPanel" CollapseControlID="Description_HeaderPanel"
-        Collapsed="False" ImageControlID="Description_ToggleImage" />    
+        Collapsed="False" ImageControlID="Description_ToggleImage" />
+     <ajaxToolkit:CollapsiblePanelExtender ID="cpeSamples" runat="Server" TargetControlID="Samples_ContentPanel"
+        ExpandControlID="Samples_HeaderPanel" CollapseControlID="Samples_HeaderPanel"
+        Collapsed="False" ImageControlID="Samples_ToggleImage" />
     <ajaxToolkit:CollapsiblePanelExtender ID="cpeProperties" runat="Server" TargetControlID="Properties_ContentPanel"
         ExpandControlID="Properties_HeaderPanel" CollapseControlID="Properties_HeaderPanel"
         Collapsed="False" ImageControlID="Properties_ToggleImage" />    

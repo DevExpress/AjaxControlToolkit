@@ -25,10 +25,8 @@
             this._foreColor = null;
             this._commandName = null;
             this.savedRange = null;
-            this.isInFocus = null;
-            _flag = false;
+            this.isInFocus = null;            
             this._oldContents = null;
-            this._newContents = null;
             this._isDirty = false;
 
             this._ButtonWidth = 23;
@@ -116,7 +114,7 @@
         Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             initialize: function () {
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
-                HtmlEditorExtender_editableDivs[HtmlEditorExtender_editableDivs.length] = this;
+
                 var idx = 0;
                 this._button_list = new Array();
                 this._createContainer();
@@ -133,28 +131,22 @@
                 if (formElement == null)
                     throw 'Missing Form tag';
 
-                // delegates
-                //var formSubmitHandler = Function.createDelegate(this, this._editableDiv_submit);
+                // delegates                
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
-                var delEditableDiv_onchange = Function.createDelegate(this, this._editableDiv_onchange);
 
                 // handlers                                
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
-                $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
-                $addHandler(this._editableDiv, 'change', delEditableDiv_onchange, true);
-                //$addHandler(formElement, 'submit', formSubmitHandler, true);
+                $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);                
                 $addHandler(this._topButtonContainer, 'click', btnClickHandler);
             },
 
             _dispose: function () {
                 $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
-                $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
-                $removeHandler(this._editableDiv, 'change', delEditableDiv_onchange);
-                //$removeHandler(formElement, 'submit', formSubmitHandler);
+                $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);                
                 $removeHandler(_topButtonContainer, 'click', btnClickHandler);
-
+                    
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
             },
 
@@ -457,13 +449,11 @@
 
             _editableDiv_onblur: function () {
                 this._textbox._element.value = this._encodeHtml();
-                if (this.oldContents != this._editableDiv.innerHTML) {
+                if (this._oldContents != this._editableDiv.innerHTML) {
                     this._isDirty = true;
+                    this._oldContents = this._editableDiv.innerHTML;
+                    this._raiseEvent('change');
                 }
-            },
-
-            _editableDiv_onchange: function () {
-                alert('changed');
             },
 
             _textBox_onblur: function () {
@@ -536,7 +526,7 @@
                 //html encode
                 var char = 3;
                 var sel = null;
-
+                
                 setTimeout(function () {
                     if (this._editableDiv != null)
                         this._editableDiv.focus()
@@ -744,6 +734,20 @@
                 }
             },
 
+            _raiseEvent: function (eventName, eventArgs) {
+                // Get handler for event.
+                var handler = this.get_events().getHandler(eventName);
+
+                if (handler) {
+                    if (!eventArgs) {
+                        eventArgs = Sys.EventArgs.Empty;
+                    }
+
+                    // Fire event.                          
+                    handler(this, eventArgs);
+                }
+            },
+
             get_ButtonWidth: function () {
                 return this._ButtonWidth;
             },
@@ -775,23 +779,18 @@
                     this._toolbarButtons = value;
                     this.raisePropertyChanged('ToolbarButtons');
                 }
-            }
+            },
 
+            add_change: function (handler) {
+                this.get_events().addHandler("change", handler);
+            },
+            remove_change: function (handler) {
+                this.get_events().removeHandler("change", handler);
+            }
         };
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
         Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: 'HtmlEditorExtender', parameters: [{ name: 'ToolbarButtons', type: 'HtmlEditorExtenderButton[]'}] });
-
-        var HtmlEditorExtender_editableDivs = new Array();
-
-        function __newDoPostBack(eventTarget, eventArgument) {
-            // supress prompting on postback
-            window.onbeforeunload = null;
-            return __savedDoPostBack(eventTarget, eventArgument);
-        }
-
-        var __savedDoPostBack = __doPostBack;
-        __doPostBack = __newDoPostBack;
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit = function () {
             /// <summary>
@@ -813,25 +812,14 @@
             return result;
         }
 
-        /// Before unload check if there is unsaved data in the form
-        window.onbeforeunload = function () {
-            for (var i in HtmlEditorExtender_editableDivs) {
-                var htmlEditorExtenderBehavior = HtmlEditorExtender_editableDivs[i];
-                if (htmlEditorExtenderBehavior._isDirty) {
-                        return "Unsaved changes, Do you want to continue?";
-                }
-            }
-        }
-
     } // execute
-
 
     if (window.Sys && Sys.loader) {
         Sys.loader.registerScript(scriptName, ['ExtendedBase', 'ExtendedCommon'], execute);
+
     }
     else {
         execute();
     }
 
 })();
-

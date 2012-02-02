@@ -1375,14 +1375,24 @@ $type.prototype = {
                         var anchor = document.createElement("a");
                         anchor.style.display = 'none';
                         // cancel bubble so body.onclick is not raised
-                        anchor.attachEvent("onclick", cancelBubble);
+                        if (anchor.addEventListener) {
+                            anchor.addEventListener("onclick", cancelBubble, false);
+                        }
+                        else {
+                            anchor.attachEvent("onclick", cancelBubble);
+                        }
                         anchor.href = deltaNode.content;
                         // do not append it to the body since that can cause the IE Operation Aborted error.
                         // do not append it to the form since that can have the same problem.
                         // appending it as a sibling _before_ the form is acceptable.
                         this._form.parentNode.insertBefore(anchor, this._form);
                         anchor.click();
-                        anchor.detachEvent("onclick", cancelBubble);
+                        if (anchor.removeEventListener) {
+                            anchor.removeEventListener("onclick", cancelBubble, false);
+                        }
+                        else {
+                            anchor.detachEvent("onclick", cancelBubble);
+                        } 
                         this._form.parentNode.removeChild(anchor);
                         
                         function cancelBubble(e) {
