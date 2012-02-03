@@ -25,7 +25,7 @@
             this._foreColor = null;
             this._commandName = null;
             this.savedRange = null;
-            this.isInFocus = null;            
+            this.isInFocus = null;
             this._oldContents = null;
             this._isDirty = false;
 
@@ -138,15 +138,15 @@
 
                 // handlers                                
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
-                $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);                
+                $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
                 $addHandler(this._topButtonContainer, 'click', btnClickHandler);
             },
 
             _dispose: function () {
                 $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
-                $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);                
+                $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
                 $removeHandler(_topButtonContainer, 'click', btnClickHandler);
-                    
+
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
             },
 
@@ -526,7 +526,7 @@
                 //html encode
                 var char = 3;
                 var sel = null;
-                
+
                 setTimeout(function () {
                     if (this._editableDiv != null)
                         this._editableDiv.focus()
@@ -645,6 +645,13 @@
                     else {
                         document.execCommand(command.target.name, false, null);
                     }
+                }
+                else if (command.target.name == 'InsertImage') {                    
+                    var elt = this.get_element();
+                    this._ajaxFileUpload = new $create(Sys.Extended.UI.AjaxFileUpload,, {}, null, elt); 
+                    var popupBehavior = new $create(Sys.Extended.UI.PopupBehavior, { parentElement: elt }, {}, {}, this._ajaxFileUpload);
+                    popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.BottomLeft);
+                    popupBehavior.show();
                 }
                 else {
                     document.execCommand(command.target.name, false, null);
