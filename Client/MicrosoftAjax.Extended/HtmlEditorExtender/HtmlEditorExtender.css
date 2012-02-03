@@ -8,6 +8,7 @@
 	background-color:#c2c2c2;
 	padding-bottom:2px;	
 }
+
 .ajax__html_editor_extender_button:hover 
 {
    background-color:#3c8aff; 
@@ -16,8 +17,25 @@
 {
     background-color:#F0F0F0;     
     padding: 2px 2px 2px 2px;
-    border: 1px solid #c2c2c2;    
+    border: 1px solid #c2c2c2;
+	border-bottom: none;    
     overflow:auto;
+}
+.ajax__html_editor_extender_buttoncontainer2
+{
+    background-color:#F0F0F0;     
+    padding: 2px 2px 2px 2px;
+    border-left : 1px solid #c2c2c2;    
+    border-right: 1px solid #c2c2c2;
+    border-bottom: 1px solid #c2c2c2;
+    overflow:auto;
+}
+.ajax__html_editor_extender_footercontainer
+{
+    background-color:#F0F0F0;     
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #c2c2c2;
+	height: 10px;
 }
 .ajax__html_editor_extender_texteditor
 {
@@ -25,7 +43,6 @@
     border-color:#c2c2c2;
     border-style:solid;
     padding: 2px 2px 2px 2px;
-    border-top:none;
 }
 .ajax__html_editor_extender_container
 {
@@ -66,10 +83,14 @@
 .ajax__html_editor_extender_Indent{ background-position:-575px 0px;}
 .ajax__html_editor_extender_Outdent{ background-position:-552px 0px;}
 .ajax__html_editor_extender_InsertHorizontalRule{ background-position:-391px 0px;}
+.ajax__html_editor_extender_content{ background-position:-920px 0px;}
+.ajax__html_editor_extender_source{ background-position:-943px 0px;}
+.ajax__html_editor_extender_content:active{ background-position:-920px -21px;}
+.ajax__html_editor_extender_source:active{ background-position:-943px -21px;}
 
 .ajax__html_editor_extender_separator
 {
-    background: url(Images/ed_sep.gif) no-repeat -920px 0;
+    background: url(Images/ed_sep.gif) no-repeat -966px 0;
 	display: block;
 	float: left;
 	border: none;
