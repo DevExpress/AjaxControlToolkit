@@ -646,12 +646,39 @@
                         document.execCommand(command.target.name, false, null);
                     }
                 }
-                else if (command.target.name == 'InsertImage') {                    
-                    var elt = this.get_element();
-                    this._ajaxFileUpload = new $create(Sys.Extended.UI.AjaxFileUpload,, {}, null, elt); 
-                    var popupBehavior = new $create(Sys.Extended.UI.PopupBehavior, { parentElement: elt }, {}, {}, this._ajaxFileUpload);
-                    popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.BottomLeft);
-                    popupBehavior.show();
+                else if (command.target.name == 'InsertImage') {
+                    var e = this.get_element();
+                    this._popElement = $common.createElementFromTemplate({
+                        nodeName: 'div',
+                        properties: {
+                            id: '_popupdiv',
+                            style: {
+                                width: '200px',
+                                height: '100px',
+                                overflow: 'auto',
+                                clear: 'both',
+                                borderStyle: 'solid'
+                            }
+                        }
+                    }, document.body.firstChild);
+
+                    this._popElement.innerHTML = '----------------------------------------------------------';
+                    this._popElement.top = '100px';
+                    this._popElement.left = '100px';
+
+                    if (this._ajaxFileUpload != null) {
+                        this._ajaxFileUpload = $create(Sys.Extended.UI.AsyncFileUpload, { "id": this.get_id() + "_AsyncFileUpload", "parentElement": e }, null, null, this._popElement);
+                    }
+
+                    //alert(this._ajaxFileUpload);
+
+                    if (this._popupBehavior == null) {
+                        this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { "id": this.get_id() + "_ImagePopupBehavior", "parentElement": e }, null, null, this._popElement);
+                    }
+
+                    this._popupBehavior.set_x(100);
+                    this._popupBehavior.set_y(100);
+                    this._popupBehavior.show();
                 }
                 else {
                     document.execCommand(command.target.name, false, null);
