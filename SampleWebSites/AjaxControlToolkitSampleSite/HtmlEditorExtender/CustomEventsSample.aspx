@@ -8,6 +8,17 @@
         function onContentsChange() {
             alert('contents changed');
         }
+
+        function windowUnload() {
+            if (Sys.Extended.UI.HtmlEditorExtenderBehavior.IsDirty()) {
+                alert('unsaved data');
+            }
+            var htmleditorextender = $find('<%=htmlEditorExtender1.ClientID%>');
+            if (htmleditorextender.get_isDirty()) {
+                alert('unsaved data in htmlEditorExtender1.');
+            }
+        }
+
     </script>
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <div class="demoarea">
