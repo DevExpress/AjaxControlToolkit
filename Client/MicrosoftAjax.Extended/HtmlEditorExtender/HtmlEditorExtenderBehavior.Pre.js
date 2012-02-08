@@ -579,8 +579,8 @@
                 }
             },
 
-            _sourceViewDiv_onblur: function () {
-                if (this._oldContents != this._sourceViewDiv.innerText || this._sourceViewDiv.textContent) {
+            _sourceViewDiv_onblur: function () {                
+                if (this._oldContents != (this._sourceViewDiv.innerText || this._sourceViewDiv.textContent)) {
                     this._isDirty = true;
                     this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
                     this._oldContents = this._editableDiv.innerHTML;

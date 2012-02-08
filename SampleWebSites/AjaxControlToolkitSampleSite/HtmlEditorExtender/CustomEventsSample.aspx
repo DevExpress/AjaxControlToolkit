@@ -29,7 +29,7 @@
                 <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10"
                     Text="Hello <b>world!</b>" /><br />
                 <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1"
-                    OnClientChange="onContentsChange" runat="server">
+                    OnClientChange="onContentsChange" runat="server" DisplaySourceTab="true">
                 </ajaxToolkit:HtmlEditorExtender>
                 <br />
                 <br />
