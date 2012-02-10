@@ -103,6 +103,8 @@
             this._requested_buttons = new Array();
             this._colorPicker = null;
             this._txtBoxForColor = null;
+            this._popupDiv = null;
+            this._popupBehavior = null;
 
             // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
@@ -114,6 +116,12 @@
         Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             initialize: function () {
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
+
+                this._popupDiv = $get(this.get_id() + '_popupDiv');
+                if (this._popupDiv != null) {
+                    this._elementVisible(this._popupDiv, false);
+                    this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { "id": this.get_id() + "_ImagePopupBehavior", "parentElement": this.get_element() }, null, null, this._popupDiv);
+                }               
 
                 var idx = 0;
                 this._button_list = new Array();
@@ -647,37 +655,10 @@
                     }
                 }
                 else if (command.target.name == 'InsertImage') {
-                    var e = this.get_element();
-                    this._popElement = $common.createElementFromTemplate({
-                        nodeName: 'div',
-                        properties: {
-                            id: '_popupdiv',
-                            style: {
-                                width: '200px',
-                                height: '100px',
-                                overflow: 'auto',
-                                clear: 'both',
-                                borderStyle: 'solid'
-                            }
-                        }
-                    }, document.body.firstChild);
-
-                    this._popElement.innerHTML = '----------------------------------------------------------';
-                    this._popElement.top = '100px';
-                    this._popElement.left = '100px';
-
-                    if (this._ajaxFileUpload != null) {
-                        this._ajaxFileUpload = $create(Sys.Extended.UI.AsyncFileUpload, { "id": this.get_id() + "_AsyncFileUpload", "parentElement": e }, null, null, this._popElement);
-                    }
-
-                    //alert(this._ajaxFileUpload);
-
-                    if (this._popupBehavior == null) {
-                        this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { "id": this.get_id() + "_ImagePopupBehavior", "parentElement": e }, null, null, this._popElement);
-                    }
 
                     this._popupBehavior.set_x(100);
                     this._popupBehavior.set_y(100);
+                    this._elementVisible(this._popupDiv, true);
                     this._popupBehavior.show();
                 }
                 else {

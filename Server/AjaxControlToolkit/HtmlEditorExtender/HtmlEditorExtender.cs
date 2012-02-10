@@ -11,6 +11,7 @@ using System.Drawing.Design;
 using System.IO;
 using System.Reflection;
 using AjaxControlToolkit.Sanitizer;
+using System.Web.UI.HtmlControls;
 
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.js", "text/javascript")]
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.debug.js", "text/javascript")]
@@ -37,7 +38,7 @@ namespace AjaxControlToolkit
         internal const int ButtonWidthDef = 23;
         internal const int ButtonHeightDef = 21;
         private HtmlEditorExtenderButtonCollection buttonList = null;
-        private SanitizerProvider sanitizerProvider = null; 
+        private SanitizerProvider sanitizerProvider = null;
 
 
         public HtmlEditorExtender()
@@ -46,7 +47,8 @@ namespace AjaxControlToolkit
             sanitizerProvider = Sanitizer.Sanitizer.GetProvider();
         }
 
-        public SanitizerProvider SanitizerProvider {
+        public SanitizerProvider SanitizerProvider
+        {
             get { return this.sanitizerProvider; }
             set { this.sanitizerProvider = value; }
         }
@@ -75,8 +77,10 @@ namespace AjaxControlToolkit
         /// Ensure Toolbar buttons are created. Only creates the buttons
         /// once no matter how many times called
         /// </summary>
-        private void EnsureButtons() {
-            if (buttonList == null || buttonList.Count == 0) {
+        private void EnsureButtons()
+        {
+            if (buttonList == null || buttonList.Count == 0)
+            {
                 CreateButtons();
             }
         }
@@ -130,7 +134,8 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "&apos;", "'", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)((?:" + tags + ")(?:\\s(?:" + attributes + ")=\"[" + attributeCharacters + "]*\")*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             //for decoding a tags
-            if (buttonList.Find(b => b.CommandName == "createLink") != null) {
+            if (buttonList.Find(b => b.CommandName == "createLink") != null)
+            {
                 string hrefCharacters = "^\\\"\\>\\<\\\\";
                 result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             }
@@ -145,7 +150,8 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "<[^>]*javascript\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "<[^>]*position\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
-            if (sanitizerProvider != null) {
+            if (sanitizerProvider != null)
+            {
                 result = sanitizerProvider.GetSafeHtmlFragment(result);
             }
 
@@ -172,6 +178,7 @@ namespace AjaxControlToolkit
             TextBox txtBox = (TextBox)TargetControl;
             if (txtBox != null)
                 txtBox.Text = Decode(txtBox.Text);
+
         }
 
         /// <summary>
@@ -230,6 +237,31 @@ namespace AjaxControlToolkit
             buttonList.Add(new Outdent());
             buttonList.Add(new InsertHorizontalRule());
             buttonList.Add(new HorizontalSeparator());
+        }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+
+            bool hasImageButton = false;
+            foreach (HtmlEditorExtenderButton button in buttonList)
+            {
+                if (button.CommandName == "InsertImage")
+                {
+                    hasImageButton = true;
+                }
+            }
+
+            if (hasImageButton)
+            {
+                HtmlGenericControl popupdiv = new HtmlGenericControl("div");
+                popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
+                popupdiv.Attributes.Add("style", "border-color: black; border-style: solid;");
+                AsyncFileUpload upload1 = new AsyncFileUpload();
+                upload1.Attributes.Add("Id", this.ClientID + "_asyncFileUpload");
+                popupdiv.Controls.Add(upload1);
+                this.Controls.Add(popupdiv);
+            }
         }
 
         public override void RenderControl(HtmlTextWriter output)
