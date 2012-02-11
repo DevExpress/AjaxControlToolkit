@@ -8,6 +8,17 @@
         function onContentsChange() {
             alert('contents changed');
         }
+
+        function windowUnload() {
+            if (Sys.Extended.UI.HtmlEditorExtenderBehavior.IsDirty()) {
+                alert('unsaved data');
+            }
+            var htmleditorextender = $find('<%=htmlEditorExtender1.ClientID%>');
+            if (htmleditorextender.get_isDirty()) {
+                alert('unsaved data in htmlEditorExtender1.');
+            }
+        }
+
     </script>
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <div class="demoarea">
@@ -18,7 +29,7 @@
                 <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10"
                     Text="Hello <b>world!</b>" /><br />
                 <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1"
-                    OnClientChange="onContentsChange" runat="server">
+                    OnClientChange="onContentsChange" runat="server" DisplaySourceTab="true">
                 </ajaxToolkit:HtmlEditorExtender>
                 <br />
                 <br />
