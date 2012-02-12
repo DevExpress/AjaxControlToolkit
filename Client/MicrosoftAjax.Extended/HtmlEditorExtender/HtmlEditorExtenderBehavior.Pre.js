@@ -159,6 +159,7 @@
             this._txtBoxForColor = null;
             this._contentViewButton = null;
             this._sourceViewButton = null;
+            this._popupDiv = null;
 
             // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
@@ -191,6 +192,12 @@
 
                 if (formElement == null)
                     throw 'Missing Form tag';
+
+                this._popupDiv = $get(this.get_id() + '_popupDiv');
+                if (this._popupDiv != null) {
+                    this._elementVisible(this._popupDiv, false);
+                    this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { "id": this.get_id() + "_ImagePopupBehavior", "parentElement": this.get_element() }, null, null, this._popupDiv);
+                }
 
                 // delegates                
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
@@ -579,7 +586,7 @@
                 }
             },
 
-            _sourceViewDiv_onblur: function () {                
+            _sourceViewDiv_onblur: function () {
                 if (this._oldContents != (this._sourceViewDiv.innerText || this._sourceViewDiv.textContent)) {
                     this._isDirty = true;
                     this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
@@ -805,6 +812,13 @@
                     else {
                         document.execCommand(command.target.name, false, null);
                     }
+                }
+                else if (command.target.name == 'InsertImage') {
+
+                    this._popupBehavior.set_x(100);
+                    this._popupBehavior.set_y(100);
+                    this._elementVisible(this._popupDiv, true);
+                    this._popupBehavior.show();
                 }
                 else {
                     document.execCommand(command.target.name, false, null);

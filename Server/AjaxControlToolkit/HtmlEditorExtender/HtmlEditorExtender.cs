@@ -11,6 +11,7 @@ using System.Drawing.Design;
 using System.IO;
 using System.Reflection;
 using AjaxControlToolkit.Sanitizer;
+using System.Web.UI.HtmlControls;
 
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.js", "text/javascript")]
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.debug.js", "text/javascript")]
@@ -185,6 +186,42 @@ namespace AjaxControlToolkit
                 txtBox.Text = Decode(txtBox.Text);
         }
 
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+
+            bool hasImageButton = false;
+            foreach (HtmlEditorExtenderButton button in buttonList)
+            {
+                if (button.CommandName == "InsertImage")
+                {
+                    hasImageButton = true;
+                }
+            }
+
+            if (hasImageButton)
+            {
+                HtmlGenericControl popupdiv = new HtmlGenericControl("div");
+                popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
+                popupdiv.Attributes.Add("style", "border-color: black; border-style: solid;");
+                AsyncFileUpload upload1 = new AsyncFileUpload();
+                upload1.Attributes.Add("Id", this.ClientID + "_asyncFileUpload");
+                popupdiv.Controls.Add(upload1);
+
+                HtmlGenericControl btnDone = new HtmlGenericControl("div");
+                btnDone.Attributes.Add("Id", this.ClientID + "_btnDone");
+                btnDone.Attributes.Add("innerHTML", "Done");
+                popupdiv.Controls.Add(btnDone);
+
+                HtmlGenericControl btnCancel = new HtmlGenericControl("div");
+                btnCancel.Attributes.Add("Id", this.ClientID + "_btnCancel");
+                btnDone.Attributes.Add("innerHTML", "Cancel");
+                popupdiv.Controls.Add(btnCancel);
+
+                this.Controls.Add(popupdiv);
+            }
+        }
+
         /// <summary>
         /// When user defines/customize buttons on design time Toolbar property will accessed twice
         /// so we need to skip the first accessing of this property to avoid buttons created twice
@@ -226,7 +263,7 @@ namespace AjaxControlToolkit
             buttonList.Add(new UnLink());
             //buttonList.Add(new FormatBlock());
             buttonList.Add(new RemoveFormat());
-            //buttonList.Add(new InsertImage());
+            buttonList.Add(new InsertImage());
             buttonList.Add(new SelectAll());
             buttonList.Add(new UnSelect());
             buttonList.Add(new Delete());
