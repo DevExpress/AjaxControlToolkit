@@ -210,12 +210,18 @@ namespace AjaxControlToolkit
 
                 HtmlGenericControl btnDone = new HtmlGenericControl("div");
                 btnDone.Attributes.Add("Id", this.ClientID + "_btnDone");
-                btnDone.Attributes.Add("innerHTML", "Done");
+                btnDone.Attributes.Add("style", "width: 75px; border-color:black;border-style: solid; border-width: 1px;");
+                btnDone.Attributes.Add("float", "left");
+                btnDone.Attributes.Add("unselectable", "on");
+                btnDone.InnerText = "Done";
                 popupdiv.Controls.Add(btnDone);
 
                 HtmlGenericControl btnCancel = new HtmlGenericControl("div");
                 btnCancel.Attributes.Add("Id", this.ClientID + "_btnCancel");
-                btnDone.Attributes.Add("innerHTML", "Cancel");
+                btnCancel.Attributes.Add("style", "width: 75px; border-color:black;border-style: solid; border-width: 1px;");
+                btnCancel.Attributes.Add("float", "right");
+                btnCancel.Attributes.Add("unselectable", "on");
+                btnCancel.InnerText = "Cancel";
                 popupdiv.Controls.Add(btnCancel);
 
                 this.Controls.Add(popupdiv);

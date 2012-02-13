@@ -160,6 +160,8 @@
             this._contentViewButton = null;
             this._sourceViewButton = null;
             this._popupDiv = null;
+            this._btnDone = null;
+            this._btnCancel = null;
 
             // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
@@ -197,16 +199,26 @@
                 if (this._popupDiv != null) {
                     this._elementVisible(this._popupDiv, false);
                     this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { "id": this.get_id() + "_ImagePopupBehavior", "parentElement": this.get_element() }, null, null, this._popupDiv);
+                    this._btnDone = $get(this.get_id() + '_btnDone');
+                    this._btnCancel = $get(this.get_id() + '_btnCancel');
+                    var delImageDone_click = Function.createDelegate(this, this._btnDone_click);
+                    var delImageCancel_click = Function.createDelegate(this, this._btnCancel_click);
+                    $addHandler(this._btnDone, 'click', delImageDone_click, true);
+                    $addHandler(this._btnCancel, 'click', delImageCancel_click, true);
                 }
 
                 // delegates                
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
+                var delContentView_click = null;
+                var delSourceView_click = null;
+                var delSourceViewDiv_onblur = null;
+
                 if (this.get_displaySourceTab()) {
-                    var delContentView_click = Function.createDelegate(this, this._contentView_click);
-                    var delSourceView_click = Function.createDelegate(this, this._sourceView_click);
-                    var delSourceViewDiv_onblur = Function.createDelegate(this, this._sourceViewDiv_onblur);
+                    delContentView_click = Function.createDelegate(this, this._contentView_click);
+                    delSourceView_click = Function.createDelegate(this, this._sourceView_click);
+                    delSourceViewDiv_onblur = Function.createDelegate(this, this._sourceViewDiv_onblur);
                 }
 
                 // handlers                                
@@ -624,6 +636,14 @@
                     $common.setVisible(this._topButtonContainer, false);
                     this._viewMode = 'source';
                 }
+            },
+
+            _btnDone_click: function () {
+                this._popupBehavior.hide();
+            },
+
+            _btnCancel_click: function () {
+                this._popupBehavior.hide();
             },
 
             _attributes: {
