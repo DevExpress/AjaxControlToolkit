@@ -203,9 +203,9 @@ namespace AjaxControlToolkit
             {
                 HtmlGenericControl popupdiv = new HtmlGenericControl("div");
                 popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
-                popupdiv.Attributes.Add("style", "border-color: black; border-style: solid;");
-                AsyncFileUpload upload1 = new AsyncFileUpload();
-                upload1.Attributes.Add("Id", this.ClientID + "_asyncFileUpload");
+                popupdiv.Attributes.Add("style", "border-color: black; border-style: solid;overflow: auto;");
+                AjaxFileUpload upload1 = new AjaxFileUpload();
+                upload1.Attributes.Add("Id", this.ClientID + "_ajaxFileUpload");
                 popupdiv.Controls.Add(upload1);
 
                 HtmlGenericControl btnDone = new HtmlGenericControl("div");
