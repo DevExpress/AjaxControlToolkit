@@ -262,7 +262,7 @@ namespace AjaxControlToolkit
             parent.Attributes.Add("class", "ajax__fileupload");
             Controls.Add(parent);
 
-            var inputFileStyle =
+            var inputFileStyle = 
                 "opacity:0.0; -moz-opacity: 0.0; filter: alpha(opacity=0); position:absolute; z-index:999; top:-9999px; left:-9999px; cursor:pointer;";
 
             HtmlInputFile inputFile = new HtmlInputFile();
@@ -341,7 +341,7 @@ namespace AjaxControlToolkit
         /// <returns></returns>
         private HtmlGenericControl GenerateHtmlSelectFileContainer(Control html5InputFileElement, Control inputFileElement, Control fileStatusContainer)
         {
-            // build select file Container that stays on top 
+            // build select file Container that stays on top
             var htmlSelectFileContainer = new HtmlGenericControl("div");
             htmlSelectFileContainer.Attributes.Add("id", this.ClientID + "_SelectFileContainer");
             htmlSelectFileContainer.Attributes.Add("class", "ajax__fileupload_selectFileContainer");
@@ -357,7 +357,7 @@ namespace AjaxControlToolkit
             htmlTopFileStatus.Style[HtmlTextWriterStyle.Overflow] = "hidden";
             htmlTopFileStatus.Style["float"] = "left";
             htmlTopFileStatus.Controls.Add(fileStatusContainer);
-
+                        
             htmlSelectFileContainer.Controls.Add(inputFileElement);
             htmlSelectFileContainer.Controls.Add(html5InputFileElement);
             htmlSelectFileContainer.Controls.Add(htmlSelectFileButton);

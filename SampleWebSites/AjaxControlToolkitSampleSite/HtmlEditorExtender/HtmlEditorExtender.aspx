@@ -31,9 +31,10 @@
                         <ajaxToolkit:JustifyLeft />
                         <ajaxToolkit:JustifyCenter />
                         <ajaxToolkit:JustifyRight />
-                        <ajaxToolkit:JustifyFull />                                                
+                        <ajaxToolkit:JustifyFull />
                         <ajaxToolkit:CreateLink />
-                        <ajaxToolkit:UnLink />                                                
+                        <ajaxToolkit:UnLink />
+                        <ajaxToolkit:InsertImage />
                     </Toolbar>
                 </ajaxToolkit:HtmlEditorExtender>
                 <br />

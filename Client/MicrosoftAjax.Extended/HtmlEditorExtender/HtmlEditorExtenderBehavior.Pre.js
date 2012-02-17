@@ -162,6 +162,7 @@
             this._popupDiv = null;
             this._btnDone = null;
             this._btnCancel = null;
+            this._isFocusInEditableDiv;
 
             // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
@@ -197,19 +198,18 @@
 
                 this._popupDiv = $get(this.get_id() + '_popupDiv');
                 if (this._popupDiv != null) {
-                    this._elementVisible(this._popupDiv, false);
-                    this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { "id": this.get_id() + "_ImagePopupBehavior", "parentElement": this.get_element() }, null, null, this._popupDiv);
-                    this._btnDone = $get(this.get_id() + '_btnDone');
+                    this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { 'id': this.get_id() + '_ImagePopupBehavior', 'parentElement': this.get_element(), 'unselectable': 'on' }, null, null, this._popupDiv);
                     this._btnCancel = $get(this.get_id() + '_btnCancel');
-                    var delImageDone_click = Function.createDelegate(this, this._btnDone_click);
                     var delImageCancel_click = Function.createDelegate(this, this._btnCancel_click);
-                    $addHandler(this._btnDone, 'click', delImageDone_click, true);
                     $addHandler(this._btnCancel, 'click', delImageCancel_click, true);
+
+                    this._elementVisible(this._popupDiv, false);
                 }
 
-                // delegates                
+                // delegates
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
+                var delEditableDiv_onfocus = Function.createDelegate(this, this._editableDiv_onfocus);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
                 var delContentView_click = null;
                 var delSourceView_click = null;
@@ -224,6 +224,7 @@
                 // handlers                                
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
                 $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
+                $addHandler(this._editableDiv, 'focus', delEditableDiv_onfocus, true);
                 $addHandler(this._topButtonContainer, 'click', btnClickHandler);
                 if (this.get_displaySourceTab()) {
                     $addHandler(this._contentViewButton, 'click', delContentView_click, true);
@@ -235,6 +236,7 @@
             _dispose: function () {
                 $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
                 $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
+                $removeHandler(this._editableDiv, 'focus', delEditableDiv_onfocus);
                 $removeHandler(_topButtonContainer, 'click', btnClickHandler);
                 if (this.get_displaySourceTab()) {
                     $removeHandler(this._contentViewButton, 'click', delContentView_click);
@@ -591,11 +593,16 @@
 
             _editableDiv_onblur: function () {
                 this._textbox._element.value = this._encodeHtml();
+                this._isFocusInEditableDiv = false;
                 if (this._oldContents != this._editableDiv.innerHTML) {
                     this._isDirty = true;
                     this._oldContents = this._editableDiv.innerHTML;
                     this._raiseEvent('change');
                 }
+            },
+
+            _editableDiv_onfocus: function () {
+                this._isFocusInEditableDiv = false;
             },
 
             _sourceViewDiv_onblur: function () {
@@ -636,10 +643,6 @@
                     $common.setVisible(this._topButtonContainer, false);
                     this._viewMode = 'source';
                 }
-            },
-
-            _btnDone_click: function () {
-                this._popupBehavior.hide();
             },
 
             _btnCancel_click: function () {
@@ -834,6 +837,20 @@
                     }
                 }
                 else if (command.target.name == 'InsertImage') {
+                    // if focus in not at editable div then dom error occurs
+                    if (!this._isFocusInEditableDiv) {
+                        this._editableDiv.focus();
+                    }
+                    this.saveSelection();
+
+                    var components = Sys.Application.getComponents();
+                    for (var i = 0; i < components.length; i++) {
+                        var component = components[i];
+                        if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component)) {
+                            if (component._popupBehavior._visible)
+                                return;
+                        }
+                    }
 
                     this._popupBehavior.set_x(100);
                     this._popupBehavior.set_y(100);
@@ -1035,6 +1052,34 @@
                 }
             }
             return false;
+        },
+
+        ajaxClientUploadComplete = function (sender, e) {
+            var htmlEditorExtender = null;
+            var components = Sys.Application.getComponents();
+            for (var i = 0; i < components.length; i++) {
+                var component = components[i];
+                if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component)) {
+                    if (component._popupBehavior._visible) {
+                        htmlEditorExtender = component;
+                        i = component.length;
+                    }
+                }
+            }
+
+            if (htmlEditorExtender != null) {
+                htmlEditorExtender.restoreSelection();
+                if (document.selection && document.selection.createRange) {
+                    htmlEditorExtender.savedRange.pasteHtml('<img src=\'' + e.get_postedUrl() + '\' />');
+                }
+                else {
+                    var node = document.createElement("img");
+                    node.src = e.get_postedUrl();
+                    htmlEditorExtender.savedRange.insertNode(node);
+                }
+                //htmlEditorExtender._editableDiv.innerHTML += '<img src=\'' + e.get_postedUrl() + '\' />';
+                htmlEditorExtender._popupBehavior.hide();
+            }
         }
 
     } // execute
