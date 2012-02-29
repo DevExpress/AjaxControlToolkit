@@ -1054,7 +1054,7 @@
             return false;
         },
 
-        ajaxClientUploadComplete = function (sender, e) {
+        ajaxClientUploadComplete = function (sender, e) {            
             var htmlEditorExtender = null;
             var components = Sys.Application.getComponents();
             for (var i = 0; i < components.length; i++) {
@@ -1077,8 +1077,10 @@
                     node.src = e.get_postedUrl();
                     htmlEditorExtender.savedRange.insertNode(node);
                 }
-                //htmlEditorExtender._editableDiv.innerHTML += '<img src=\'' + e.get_postedUrl() + '\' />';
-                htmlEditorExtender._popupBehavior.hide();
+
+                if (sender._filesInQueue.length == sender._currentQueueIndex + 1) {
+                    htmlEditorExtender._popupBehavior.hide();
+                }
             }
         }
 

@@ -10,7 +10,7 @@ public partial class HTMLEditorExtender : CommonPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        AjaxFileUpload ajaxFileUpload = htmlEditorExtender1.AjaxFileUpload;
+        AjaxFileUpload ajaxFileUpload = htmlEditorExtender2.AjaxFileUpload;
         if (ajaxFileUpload != null)
         {
             ajaxFileUpload.OnUploadComplete += new EventHandler<AjaxControlToolkit.AjaxFileUploadEventArgs>(ajaxFileUpload_OnUploadComplete);

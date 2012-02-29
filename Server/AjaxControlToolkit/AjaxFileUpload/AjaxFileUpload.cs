@@ -262,7 +262,7 @@ namespace AjaxControlToolkit
             parent.Attributes.Add("class", "ajax__fileupload");
             Controls.Add(parent);
 
-            var inputFileStyle = 
+            var inputFileStyle =
                 "opacity:0.0; -moz-opacity: 0.0; filter: alpha(opacity=0); position:absolute; z-index:999; top:-9999px; left:-9999px; cursor:pointer;";
 
             HtmlInputFile inputFile = new HtmlInputFile();

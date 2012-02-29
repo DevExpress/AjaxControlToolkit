@@ -128,7 +128,6 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
                 {
                     'line-height': height, 'height': height
                 });
-
         }
     },
 
@@ -154,10 +153,13 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
     _onSelectFileMouseMoveHandler: function (e) {
         var fileElement = this._isFileApiSupports ? this._html5InputFile : this._inputFileElement;
 
-        var x = e.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
-        var y = e.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+        var x = e.clientX +(document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+        var y = e.clientY +(document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
 
         var bounds = $common.getBounds(this._selectFileButton);
+
+        //alert(e.clientY + '--' + bounds.y);
+
         if (!$common.containsPoint(bounds, x, y)) {
             $common.setLocation(fileElement, { x: -99999, y: -99999 });
             return;
@@ -165,6 +167,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
 
         var left = x - $common.getSize(fileElement).width + 5;
         var top = y - 5;
+
         $common.setLocation(fileElement, { x: left, y: top });
     },
 
@@ -226,7 +229,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
 
     _html5OnRequestCompleted: function (executor, eventArgs) {
         var result = null;
-        if (executor.get_responseAvailable()) {            
+        if (executor.get_responseAvailable()) {
             result = executor.get_responseData();
             result = result.substring(result.indexOf('{'), result.lastIndexOf('}') + 1);
             result = Sys.Serialization.JavaScriptSerializer.deserialize(result);
@@ -238,7 +241,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         setTimeout(function () {
             var uploadedFile = uploader._getCurrentFileItem().get_fileInputElement().file;
             var eventArgs;
-            if (result != null) {                
+            if (result != null) {
                 eventArgs = new Sys.Extended.UI.AjaxFileUploadEventArgs(uploader._guid, "Success", result.FileName,
                 result.FileSize, result.ContentType, result.PostedUrl);
             }
@@ -608,7 +611,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
             fileItem.appendNodeTo(this._queueContainer);
             fileItem.setStatus('pending', Sys.Extended.UI.Resources.AjaxFileUpload_Pending);
         }
-        else {            
+        else {
             if (this._isFileApiSupports) {
                 this._html5DropZone.disabled = 'disabled';
                 this._html5InputFile.disabled = 'disabled';
@@ -667,27 +670,6 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
     },
 
     // properties
-    get_maxSize: function () {
-        return this._maxSize;
-    },
-    set_maxSize: function (value) {
-        this._maxSize = value;
-    },
-
-    get_allowedMimeTypes: function () {
-        return this._allowedMimeTypes;
-    },
-    set_allowedMimeTypes: function (value) {
-        this._allowedMimeTypes = value;
-    },
-
-    get_maximumNumberOfFiles: function () {
-        return this._maximumNumberOfFiles;
-    },
-    set_maximumNumberOfFiles: function (value) {
-        this._maximumNumberOfFiles = value;
-    },
-
     get_contextKey: function () {
         return this._contextKey;
     },

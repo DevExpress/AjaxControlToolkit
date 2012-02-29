@@ -183,7 +183,7 @@ namespace AjaxControlToolkit
 
             HtmlGenericControl popupdiv = new HtmlGenericControl("div");
             popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
-            popupdiv.Attributes.Add("style", "border-color: black; border-style: solid;overflow: auto; background-color: white;width: 500px; height: 300px;");
+            popupdiv.Attributes.Add("style", "border-color: black; border-style: solid;overflow: auto; background-color: white;width: 500px; height: 290px;");
             ajaxFileUpload = new AjaxFileUpload();
             ajaxFileUpload.MaximumNumberOfFiles = 10;
             ajaxFileUpload.AllowedFileTypes = "jpg,jpeg";
@@ -324,7 +324,7 @@ namespace AjaxControlToolkit
             buttonList.Add(new UnLink());
             //buttonList.Add(new FormatBlock());
             buttonList.Add(new RemoveFormat());
-            buttonList.Add(new InsertImage());
+            //buttonList.Add(new InsertImage());
             buttonList.Add(new SelectAll());
             buttonList.Add(new UnSelect());
             buttonList.Add(new Delete());
