@@ -22,7 +22,7 @@
                 <asp:TextBox runat="server" ID="txtBox2" TextMode="MultiLine" Columns="50" Rows="10"
                     Text="Hello <b>world!</b>" /><br />
                 <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender2" TargetControlID="txtBox2"
-                    runat="server">
+                    runat="server" DisplaySourceTab="true">
                     <Toolbar>                        
                         <ajaxToolkit:Bold />
                         <ajaxToolkit:Italic />

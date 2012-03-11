@@ -77,7 +77,8 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
                 type: 'file',
                 style: {
                     zIndex: 999,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    position: 'absolute'
                 }
             }
         };
@@ -151,24 +152,24 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
     },
 
     _onSelectFileMouseMoveHandler: function (e) {
-        var fileElement = this._isFileApiSupports ? this._html5InputFile : this._inputFileElement;
+        //        var fileElement = this._isFileApiSupports ? this._html5InputFile : this._inputFileElement;
 
-        var x = e.clientX +(document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
-        var y = e.clientY +(document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+        //        var x = e.clientX +(document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+        //        var y = e.clientY +(document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
 
-        var bounds = $common.getBounds(this._selectFileButton);
+        //        var bounds = $common.getBounds(this._selectFileButton);
 
-        //alert(e.clientY + '--' + bounds.y);
+        //        //alert(e.clientY + '--' + bounds.y);
 
-        if (!$common.containsPoint(bounds, x, y)) {
-            $common.setLocation(fileElement, { x: -99999, y: -99999 });
-            return;
-        }
+        //        if (!$common.containsPoint(bounds, x, y)) {
+        //            $common.setLocation(fileElement, { x: -99999, y: -99999 });
+        //            return;
+        //        }
 
-        var left = x - $common.getSize(fileElement).width + 5;
-        var top = y - 5;
+        //        var left = x - $common.getSize(fileElement).width + 5;
+        //        var top = y - 5;
 
-        $common.setLocation(fileElement, { x: left, y: top });
+        //        $common.setLocation(fileElement, { x: left, y: top });
     },
 
     dispose: function () {
@@ -324,6 +325,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         this._inputFileElement = $common.createElementFromTemplate(this._inputFileTemplate, this._inputFileElement.parentNode);
         this._inputFileElement.setAttribute('id', id);
         this._inputFileElement.setAttribute('name', id);
+        this._inputFileElement.style.zIndex = 0;
         $common.setElementOpacity(this._inputFileElement, 0);
         this._attachFileInputHandlers(this._inputFileElement, true);
 
@@ -625,7 +627,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
     _removeFromQueue: function (fileItem) {
         Array.remove(this._filesInQueue, fileItem);
         this._showFilesCount();
-    },
+    },   
 
     bind: function (fn, bind) {
         return function () {
@@ -712,12 +714,12 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         this.get_events().removeHandler("uploadComplete", handler);
     },
     _raiseUploadComplete: function (e) {
+
         var fileItem = this._getCurrentFileItem();
         fileItem.setStatus('uploaded', Sys.Extended.UI.Resources.AjaxFileUpload_Uploaded);
         fileItem._isUploaded = true;
         fileItem.hide();
-
-        var eh = this.get_events().getHandler("uploadComplete");
+        var eh = this.get_events().getHandler("uploadComplete");        
         if (eh) {
             eh(this, e);
         }
@@ -882,7 +884,7 @@ Sys.Extended.UI.AjaxFileUploadItem.prototype = {
         // build the line item
         if (Sys.Browser.agent == Sys.Browser.InternetExplorer && Sys.Browser.version <= 8) {
             this._container.appendChild(this._deleteButton);
-            this._container.appendChild(this._fileInfoContainer);            
+            this._container.appendChild(this._fileInfoContainer);
         }
         else {
             this._container.appendChild(this._fileInfoContainer);
@@ -926,6 +928,10 @@ Sys.Extended.UI.AjaxFileUploadItem.prototype = {
     appendNodeTo: function (parent) {
         parent.appendChild(this._ui);
         this.initLayout();
+    },
+
+    removeNodeFrom: function (parent) {
+        parent.removeChild(this._ui);
     }
 };
 

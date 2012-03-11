@@ -13,8 +13,19 @@
     line-height: 24px;
     width: 80px;
     text-align: center;
-    background-color: black;
-    color: white;
+    background-color: #212121;
+    color: #D0D0D0;
+    cursor: pointer;
+    margin-right: 4px;
+}
+
+.ajax__fileupload_selectFileButton:hover {
+    height: 24px;
+    line-height: 24px;
+    width: 80px;
+    text-align: center;
+    background-color: #000000;
+    color: #ffffff;
     cursor: pointer;
     margin-right: 4px;
 }
@@ -118,4 +129,27 @@
 .ajax__fileupload_fileItemInfo .cancelledState {
     color: #900;
     background-color: #fff;
+}
+
+/*Check*/
+.ajax__fileupload_selectFileContainer {
+display: inline-block;
+    overflow: hidden;
+    position: relative;
+    width: 80px;
+}
+
+.ajax__fileupload_selectFileContainer > input[type=file] {
+    border: medium none;
+    cursor: pointer;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.ajax__fileupload_selectFileButton {
+    font-size: 13px;
+    line-height: 24px;
 }

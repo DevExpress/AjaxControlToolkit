@@ -263,7 +263,7 @@ namespace AjaxControlToolkit
             Controls.Add(parent);
 
             var inputFileStyle =
-                "opacity:0.0; -moz-opacity: 0.0; filter: alpha(opacity=0); position:absolute; z-index:999; top:-9999px; left:-9999px; cursor:pointer;";
+                "opacity:0; -moz-opacity: 0.0; filter: alpha(opacity=0);";
 
             HtmlInputFile inputFile = new HtmlInputFile();
             if (!this.Enabled)
@@ -342,12 +342,12 @@ namespace AjaxControlToolkit
         private HtmlGenericControl GenerateHtmlSelectFileContainer(Control html5InputFileElement, Control inputFileElement, Control fileStatusContainer)
         {
             // build select file Container that stays on top
-            var htmlSelectFileContainer = new HtmlGenericControl("div");
+            var htmlSelectFileContainer = new HtmlGenericControl("span");
             htmlSelectFileContainer.Attributes.Add("id", this.ClientID + "_SelectFileContainer");
             htmlSelectFileContainer.Attributes.Add("class", "ajax__fileupload_selectFileContainer");
 
             // build select file button
-            var htmlSelectFileButton = new HtmlGenericControl("div");
+            var htmlSelectFileButton = new HtmlGenericControl("span");
             htmlSelectFileButton.Attributes.Add("id", this.ClientID + "_SelectFileButton");
             htmlSelectFileButton.Attributes.Add("class", "ajax__fileupload_selectFileButton");
             htmlSelectFileButton.Style["float"] = "left";
@@ -357,10 +357,10 @@ namespace AjaxControlToolkit
             htmlTopFileStatus.Style[HtmlTextWriterStyle.Overflow] = "hidden";
             htmlTopFileStatus.Style["float"] = "left";
             htmlTopFileStatus.Controls.Add(fileStatusContainer);
-                        
+
+            htmlSelectFileContainer.Controls.Add(htmlSelectFileButton);
             htmlSelectFileContainer.Controls.Add(inputFileElement);
             htmlSelectFileContainer.Controls.Add(html5InputFileElement);
-            htmlSelectFileContainer.Controls.Add(htmlSelectFileButton);
             htmlSelectFileContainer.Controls.Add(htmlTopFileStatus);
             
 

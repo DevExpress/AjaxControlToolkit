@@ -195,14 +195,14 @@
 
                 if (formElement == null)
                     throw 'Missing Form tag';
-
                 this._popupDiv = $get(this.get_id() + '_popupDiv');
                 if (this._popupDiv != null) {
+                    var elementStyle = this._popupDiv.style;
+                    elementStyle.opacity = "0";
                     this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { 'id': this.get_id() + '_ImagePopupBehavior', 'parentElement': this.get_element(), 'unselectable': 'on' }, null, null, this._popupDiv);
                     this._btnCancel = $get(this.get_id() + '_btnCancel');
                     var delImageCancel_click = Function.createDelegate(this, this._btnCancel_click);
                     $addHandler(this._btnCancel, 'click', delImageCancel_click, true);
-
                     this._elementVisible(this._popupDiv, false);
                 }
 
@@ -838,6 +838,8 @@
                 }
                 else if (command.target.name == 'InsertImage') {
                     // if focus in not at editable div then dom error occurs
+                    var elementStyle = this._popupDiv.style;
+                    elementStyle.opacity = "1";
                     if (!this._isFocusInEditableDiv) {
                         this._editableDiv.focus();
                     }
@@ -852,8 +854,11 @@
                         }
                     }
 
-                    this._popupBehavior.set_x(100);
-                    this._popupBehavior.set_y(100);
+                    this._popupBehavior.set_x(100); //'50%');
+                    this._popupBehavior.set_y(100); // '50%');
+                    this._popupBehavior.position = "fixed";
+                    var elementStyle = this._popupDiv.style;
+                    elementStyle.position = "fixed";
                     this._elementVisible(this._popupDiv, true);
                     this._popupBehavior.show();
                 }
@@ -1054,9 +1059,10 @@
             return false;
         },
 
-        ajaxClientUploadComplete = function (sender, e) {            
+        ajaxClientUploadComplete = function (sender, e) {
             var htmlEditorExtender = null;
             var components = Sys.Application.getComponents();
+
             for (var i = 0; i < components.length; i++) {
                 var component = components[i];
                 if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component)) {
@@ -1067,18 +1073,25 @@
                 }
             }
 
+            var postedUrl = e.get_postedUrl().replace('&amp;', '&');
             if (htmlEditorExtender != null) {
                 htmlEditorExtender.restoreSelection();
                 if (document.selection && document.selection.createRange) {
-                    htmlEditorExtender.savedRange.pasteHtml('<img src=\'' + e.get_postedUrl() + '\' />');
+                    htmlEditorExtender.savedRange.pasteHTML('<img src=\'' + postedUrl + '\' />');
                 }
                 else {
                     var node = document.createElement("img");
-                    node.src = e.get_postedUrl();
+                    node.src = postedUrl;
                     htmlEditorExtender.savedRange.insertNode(node);
                 }
 
                 if (sender._filesInQueue.length == sender._currentQueueIndex + 1) {
+                    while (sender._filesInQueue.length >= 1) {
+                        sender._filesInQueue[0].removeNodeFrom(sender._queueContainer);
+                        Array.removeAt(sender._filesInQueue, 0)
+                    }
+                    sender._showFilesCount()                    
+                    sender._reset();
                     htmlEditorExtender._popupBehavior.hide();
                 }
             }
