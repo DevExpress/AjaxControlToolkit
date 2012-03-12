@@ -1,6 +1,7 @@
 ﻿.ajax__fileupload {
     padding: 4px;
     border: #D3D3D3 1px solid;
+    overflow: auto;
 }
 
 .ajax__fileupload_selectFileContainer {
@@ -65,7 +66,8 @@
     border: #A9A9A9 1px solid;
     border-width: 1px; 
     margin-top:2px; 
-    padding:4px;    
+    padding:4px;
+    clear: both;
 }
 
 .ajax__fileupload_progressBar {
@@ -133,10 +135,11 @@
 
 /*Check*/
 .ajax__fileupload_selectFileContainer {
-display: inline-block;
+	display: inline-block;
     overflow: hidden;
     position: relative;
     width: 80px;
+    float: left;
 }
 
 .ajax__fileupload_selectFileContainer > input[type=file] {

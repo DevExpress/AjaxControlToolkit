@@ -45,7 +45,6 @@ Sys.Extended.UI.AjaxFileUpload = function (element) {
     this._onUploadOrAbort$delegate = Function.createDelegate(this, this._onUploadOrAbort);
     this._html5OnFileDropped$delegate = Function.createDelegate(this, this._html5OnFileDropped);
     this._html5OnDragOver$delegate = Function.createDelegate(this, this._html5OnDragOver);
-    this._onSelectFileMouseMoveHandler$delegate = Function.createDelegate(this, this._onSelectFileMouseMoveHandler);
     this._removeFromQueue$delegate = Function.createDelegate(this, this._removeFromQueue);
 
     // Hook into the ASP.NET WebForm_OnSubmit function to remove/disable input file controls prior to submission
@@ -97,7 +96,6 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         }
 
         this._attachFileInputHandlers(fileElement, true);
-        $addHandlers(this._selectFileButton, { 'mousemove': this._onSelectFileMouseMoveHandler$delegate });
         $addHandlers(this._uploadOrCancelButton, { 'click': this._onUploadOrAbort$delegate });
     },
 
@@ -136,13 +134,11 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         if (on)
             $addHandlers(fileElement,
                 {
-                    'mousemove': this._onSelectFileMouseMoveHandler$delegate,
                     'change': this._onFileSelected$delegate
                 });
         else
             $common.removeHandlers(fileElement,
                 {
-                    'mousemove': this._onSelectFileMouseMoveHandler$delegate,
                     'change': this._onFileSelected$delegate
                 });
     },
@@ -150,28 +146,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
     _setStatusMessage: function (msg) {
         this._fileStatusContainer.innerHTML = msg;
     },
-
-    _onSelectFileMouseMoveHandler: function (e) {
-        //        var fileElement = this._isFileApiSupports ? this._html5InputFile : this._inputFileElement;
-
-        //        var x = e.clientX +(document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
-        //        var y = e.clientY +(document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
-
-        //        var bounds = $common.getBounds(this._selectFileButton);
-
-        //        //alert(e.clientY + '--' + bounds.y);
-
-        //        if (!$common.containsPoint(bounds, x, y)) {
-        //            $common.setLocation(fileElement, { x: -99999, y: -99999 });
-        //            return;
-        //        }
-
-        //        var left = x - $common.getSize(fileElement).width + 5;
-        //        var top = y - 5;
-
-        //        $common.setLocation(fileElement, { x: left, y: top });
-    },
-
+    
     dispose: function () {
         if (this._isFileApiSupports) {
             Sys.Extended.UI.AjaxFileUpload._removeEvent(this._html5DropZone, 'drop', this._html5OnFileDropped$delegate);
@@ -627,7 +602,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
     _removeFromQueue: function (fileItem) {
         Array.remove(this._filesInQueue, fileItem);
         this._showFilesCount();
-    },   
+    },
 
     bind: function (fn, bind) {
         return function () {
@@ -649,11 +624,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         }
         else {
             this._inputFileElement.disabled = value;
-        }
-
-        //        Array.forEach(this._filesInQueue, function (fileItem, i) {
-        //            fileItem.disabled(on);
-        //        });
+        }        
     },
 
     _validateFileType: function (fileType) {
@@ -719,7 +690,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         fileItem.setStatus('uploaded', Sys.Extended.UI.Resources.AjaxFileUpload_Uploaded);
         fileItem._isUploaded = true;
         fileItem.hide();
-        var eh = this.get_events().getHandler("uploadComplete");        
+        var eh = this.get_events().getHandler("uploadComplete");
         if (eh) {
             eh(this, e);
         }
@@ -732,7 +703,6 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         this.get_events().removeHandler("uploadError", handler);
     },
     raiseUploadError: function (e) {
-
         var eh = this.get_events().getHandler("uploadError");
         if (eh) {
             eh(this, e);

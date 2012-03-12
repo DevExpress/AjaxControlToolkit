@@ -113,8 +113,8 @@ namespace AjaxControlToolkit
         /// This will be true when postback will happen from the control.
         /// This can be used to avoid execution of unnecessary code during partial postback.
         /// </summary>
-        [Browsable(false)]        
-        [DefaultValue(false)]        
+        [Browsable(false)]
+        [DefaultValue(false)]
         public bool IsInFileUploadPostBack
         {
             get;
@@ -124,13 +124,13 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Gets or sets the number of maximum file allowed in the queue to upload.
         /// </summary>
-        [ExtenderControlProperty]        
+        [ExtenderControlProperty]
         [DefaultValue(10)]
         [ClientPropertyName("maximumNumberOfFiles")]
         public int MaximumNumberOfFiles
         {
             get;
-            set;            
+            set;
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace AjaxControlToolkit
                 this.IsInFileUploadPostBack = true;
             }
         }
-        
+
         /// <summary>
         /// On load Event 
         /// </summary>
@@ -230,7 +230,7 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="fileName">file name with/without full path at server.</param>
         public void SaveAs(string fileName)
-        {   
+        {
             postedFile.SaveAs(fileName);
         }
 
@@ -319,10 +319,10 @@ namespace AjaxControlToolkit
             HtmlGenericControl uploadOrCancelButton = new HtmlGenericControl("div");
             uploadOrCancelButton.Attributes.Add("id", this.ClientID + "_UploadOrCancelButton");
             uploadOrCancelButton.Attributes.Add("class", "ajax__fileupload_uploadbutton");
-            
+
             HtmlGenericControl progressBarContainer = new HtmlGenericControl("div");
             progressBarContainer.Attributes.Add("id", this.ClientID + "_ProgressBarContainer");
-            progressBarContainer.Attributes["align"] = "left";            
+            progressBarContainer.Attributes["align"] = "left";
             progressBarContainer.Style["float"] = "left";
             progressBarContainer.Controls.Add(progressBar);
 
@@ -362,7 +362,7 @@ namespace AjaxControlToolkit
             htmlSelectFileContainer.Controls.Add(inputFileElement);
             htmlSelectFileContainer.Controls.Add(html5InputFileElement);
             htmlSelectFileContainer.Controls.Add(htmlTopFileStatus);
-            
+
 
             return htmlSelectFileContainer;
         }

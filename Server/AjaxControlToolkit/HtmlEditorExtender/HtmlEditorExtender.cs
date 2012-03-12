@@ -194,7 +194,7 @@ namespace AjaxControlToolkit
 
             HtmlGenericControl btnCancel = new HtmlGenericControl("div");
             btnCancel.Attributes.Add("Id", this.ClientID + "_btnCancel");
-            btnCancel.Attributes.Add("class", "popupCancelButton");
+            btnCancel.Attributes.Add("style", "width: 75px; border-color:black;border-style: solid; border-width: 1px;");
             btnCancel.Attributes.Add("float", "right");
             btnCancel.Attributes.Add("unselectable", "on");
             btnCancel.InnerText = "Cancel";

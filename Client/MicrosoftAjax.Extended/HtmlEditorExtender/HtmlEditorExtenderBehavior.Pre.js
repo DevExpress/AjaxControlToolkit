@@ -195,10 +195,9 @@
 
                 if (formElement == null)
                     throw 'Missing Form tag';
+
                 this._popupDiv = $get(this.get_id() + '_popupDiv');
                 if (this._popupDiv != null) {
-                    var elementStyle = this._popupDiv.style;
-                    elementStyle.opacity = "0";
                     this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { 'id': this.get_id() + '_ImagePopupBehavior', 'parentElement': this.get_element(), 'unselectable': 'on' }, null, null, this._popupDiv);
                     this._btnCancel = $get(this.get_id() + '_btnCancel');
                     var delImageCancel_click = Function.createDelegate(this, this._btnCancel_click);
@@ -837,9 +836,7 @@
                     }
                 }
                 else if (command.target.name == 'InsertImage') {
-                    // if focus in not at editable div then dom error occurs
-                    var elementStyle = this._popupDiv.style;
-                    elementStyle.opacity = "1";
+                    // if focus in not at editable div then dom error occurs                    
                     if (!this._isFocusInEditableDiv) {
                         this._editableDiv.focus();
                     }
@@ -854,13 +851,14 @@
                         }
                     }
 
-                    this._popupBehavior.set_x(100); //'50%');
-                    this._popupBehavior.set_y(100); // '50%');
-                    this._popupBehavior.position = "fixed";
-                    var elementStyle = this._popupDiv.style;
-                    elementStyle.position = "fixed";
                     this._elementVisible(this._popupDiv, true);
                     this._popupBehavior.show();
+                    $common.setStyle(this._popupDiv, {
+                        position: 'fixed',
+                        top: '',
+                        left: '',
+                        opacity: '1'
+                    });
                 }
                 else {
                     document.execCommand(command.target.name, false, null);
