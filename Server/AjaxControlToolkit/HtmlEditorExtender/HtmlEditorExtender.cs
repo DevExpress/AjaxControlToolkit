@@ -145,9 +145,9 @@ namespace AjaxControlToolkit
         {
             EnsureButtons();
 
-            string tags = "font|div|span|br|strong|em|strike|sub|sup|center|blockquote|hr|ol|ul|li|br|s|p|b|i|u";
-            string attributes = "style|size|color|face|align|dir";
-            string attributeCharacters = "\\'\\,\\w\\-#\\s\\:\\;";
+            string tags = "font|div|span|br|strong|em|strike|sub|sup|center|blockquote|hr|ol|ul|li|br|s|p|b|i|u|img";
+            string attributes = "style|size|color|face|align|dir|src";
+            string attributeCharacters = "\\'\\,\\w\\-#\\s\\:\\;\\?\\&\\.\\-\\=";
             var result = Regex.Replace(value, "\\&quot\\;", "\"", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&apos;", "'", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)((?:" + tags + ")(?:\\s(?:" + attributes + ")=\"[" + attributeCharacters + "]*\")*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);

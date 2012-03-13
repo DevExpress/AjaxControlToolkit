@@ -24,8 +24,8 @@
             this._backColor = null;
             this._foreColor = null;
             this._commandName = null;
-            this.savedRange = null;
-            this.isInFocus = null;
+            this._savedRange = null;
+            this._isInFocus = null;
             this._oldContents = null;
             this._newContents = null;
             this._isDirty = false;
@@ -163,6 +163,13 @@
             this._btnDone = null;
             this._btnCancel = null;
             this._isFocusInEditableDiv;
+            this._textBoxOnBlurDelegate = null;
+            this._editableDivOnBlurDelegate = null;
+            this._editableDivOnFocusDelegate = null;
+            this._btnClickDelegate = null;
+            this._contentViewClickDelegate = null;
+            this._sourceViewClickDelegate = null;
+            this._sourceViewDivOnBlurDelegate = null;
 
             // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
@@ -175,8 +182,7 @@
             initialize: function () {
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
                 HtmlEditorExtender_editableDivs[HtmlEditorExtender_editableDivs.length] = this;
-
-                var idx = 0;
+                                
                 this._button_list = new Array();
                 this._createContainer();
                 this._createTopButtonContainer();
@@ -206,41 +212,38 @@
                 }
 
                 // delegates
-                var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
-                var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
-                var delEditableDiv_onfocus = Function.createDelegate(this, this._editableDiv_onfocus);
-                var btnClickHandler = Function.createDelegate(this, this._executeCommand);
-                var delContentView_click = null;
-                var delSourceView_click = null;
-                var delSourceViewDiv_onblur = null;
+                this._textBoxOnBlurDelegate = Function.createDelegate(this, this._textBox_onblur);
+                this._editableDivOnBlurDelegate = Function.createDelegate(this, this._editableDiv_onblur);
+                this._editableDivOnFocusDelegate = Function.createDelegate(this, this._editableDiv_onfocus);
+                this._btnClickDelegate = Function.createDelegate(this, this._executeCommand);                
 
                 if (this.get_displaySourceTab()) {
-                    delContentView_click = Function.createDelegate(this, this._contentView_click);
-                    delSourceView_click = Function.createDelegate(this, this._sourceView_click);
-                    delSourceViewDiv_onblur = Function.createDelegate(this, this._sourceViewDiv_onblur);
+                    this._contentViewClickDelegate = Function.createDelegate(this, this._contentView_click);
+                    this._sourceViewClickDelegate = Function.createDelegate(this, this._sourceView_click);
+                    this._sourceViewDivOnBlurDelegate = Function.createDelegate(this, this._sourceViewDiv_onblur);
                 }
 
                 // handlers                                
-                $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
-                $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
-                $addHandler(this._editableDiv, 'focus', delEditableDiv_onfocus, true);
-                $addHandler(this._topButtonContainer, 'click', btnClickHandler);
+                $addHandler(this._textbox._element, 'blur', this._textBoxOnBlurDelegate, true);
+                $addHandler(this._editableDiv, 'blur', this._editableDivOnBlurDelegate, true);
+                $addHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate, true);
+                $addHandler(this._topButtonContainer, 'click', this._btnClickDelegate, true);
                 if (this.get_displaySourceTab()) {
-                    $addHandler(this._contentViewButton, 'click', delContentView_click, true);
-                    $addHandler(this._sourceViewButton, 'click', delSourceView_click, true);
-                    $addHandler(this._sourceViewDiv, 'blur', delSourceViewDiv_onblur, true);
+                    $addHandler(this._contentViewButton, 'click', this._contentViewClickDelegate, true);
+                    $addHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate, true);
+                    $addHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate, true);
                 }
             },
 
             _dispose: function () {
-                $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
-                $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
-                $removeHandler(this._editableDiv, 'focus', delEditableDiv_onfocus);
-                $removeHandler(_topButtonContainer, 'click', btnClickHandler);
+                $removeHandler(this._textbox._element, 'blur', this._textBoxOnBlurDelegate);
+                $removeHandler(this._editableDiv, 'blur', this._editableDivOnBlurDelegate);
+                $removeHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate);
+                $removeHandler(_topButtonContainer, 'click', this._btnClickDelegate);
                 if (this.get_displaySourceTab()) {
-                    $removeHandler(this._contentViewButton, 'click', delContentView_click);
-                    $removeHandler(this._sourceViewButton, 'click', delSourceView_click);
-                    $removeHandler(this._sourceViewDiv, 'blur', delSourceViewDiv_onblur);
+                    $removeHandler(this._contentViewButton, 'click', this._contentViewClickDelegate);
+                    $removeHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate);
+                    $removeHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate);
                 }
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
@@ -662,11 +665,8 @@
             _encodeHtml: function () {
                 //Encode html tags
                 var isIE = Sys.Browser.agent == Sys.Browser.InternetExplorer;
-                var elements = this._editableDiv.getElementsByTagName('*');
-                var len = elements.length;
-                var element;
-                var key;
-                var value;
+                var elements = this._editableDiv.getElementsByTagName('*');                
+                var element;                                
                 for (var i = 0; element = elements[i]; i++) {
                     try {
                         element.className = '';
@@ -886,35 +886,35 @@
             saveSelection: function () {
                 if (window.getSelection)//non IE Browsers
                 {
-                    this.savedRange = window.getSelection().getRangeAt(0);
+                    this._savedRange = window.getSelection().getRangeAt(0);
                 }
                 else if (document.selection)//IE
                 {
-                    this.savedRange = document.selection.createRange();
+                    this._savedRange = document.selection.createRange();
                 }
             },
 
             //Restore selected text
             restoreSelection: function () {
-                this.isInFocus = true;
+                this._isInFocus = true;
                 //document.getElementById("area").focus();
-                if (this.savedRange != null) {
+                if (this._savedRange != null) {
                     if (window.getSelection)//non IE and there is already a selection
                     {
                         var s = window.getSelection();
                         if (s.rangeCount > 0)
                             s.removeAllRanges();
-                        s.addRange(this.savedRange);
+                        s.addRange(this._savedRange);
                     }
                     else {
                         if (document.createRange)//non IE and no selection
                         {
-                            window.getSelection().addRange(this.savedRange);
+                            window.getSelection().addRange(this._savedRange);
                         }
                         else {
                             if (document.selection)//IE
                             {
-                                this.savedRange.select();
+                                this._savedRange.select();
                             }
                         }
                     }
@@ -1075,12 +1075,12 @@
             if (htmlEditorExtender != null) {
                 htmlEditorExtender.restoreSelection();
                 if (document.selection && document.selection.createRange) {
-                    htmlEditorExtender.savedRange.pasteHTML('<img src=\'' + postedUrl + '\' />');
+                    htmlEditorExtender._savedRange.pasteHTML('<img src=\'' + postedUrl + '\' />');
                 }
                 else {
                     var node = document.createElement("img");
                     node.src = postedUrl;
-                    htmlEditorExtender.savedRange.insertNode(node);
+                    htmlEditorExtender._savedRange.insertNode(node);
                 }
 
                 if (sender._filesInQueue.length == sender._currentQueueIndex + 1) {
@@ -1088,7 +1088,7 @@
                         sender._filesInQueue[0].removeNodeFrom(sender._queueContainer);
                         Array.removeAt(sender._filesInQueue, 0)
                     }
-                    sender._showFilesCount()                    
+                    sender._showFilesCount()
                     sender._reset();
                     htmlEditorExtender._popupBehavior.hide();
                 }
