@@ -176,10 +176,13 @@ namespace AjaxControlToolkit
             return result;
         }
 
+        /// <summary>
+        /// On Init add popup div and ajaxfileupload control to support Add image
+        /// </summary>
+        /// <param name="e">Event Arguments</param>
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-
 
             HtmlGenericControl popupdiv = new HtmlGenericControl("div");
             popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
@@ -237,52 +240,7 @@ namespace AjaxControlToolkit
             {
                 ajaxFileUpload.Visible = false;
             }
-        }
-
-        //protected override void OnPreRender(EventArgs e)
-        //{
-        //    base.OnPreRender(e);
-
-        //    bool hasImageButton = false;
-        //    foreach (HtmlEditorExtenderButton button in buttonList)
-        //    {
-        //        if (button.CommandName == "InsertImage")
-        //        {
-        //            hasImageButton = true;
-        //        }
-        //    }
-
-        //    if (hasImageButton)
-        //    {
-        //        HtmlGenericControl popupdiv = new HtmlGenericControl("div");
-        //        popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
-        //        popupdiv.Attributes.Add("style", "border-color: black; border-style: solid;overflow: auto; background-color: white;width: 500px; height: 300px;");
-        //        ajaxFileUpload = new AjaxFileUpload();
-        //        ajaxFileUpload.MaximumNumberOfFiles = 10;
-        //        ajaxFileUpload.AllowedFileTypes = "jpg,jpeg";
-        //        ajaxFileUpload.Enabled = true;
-        //        ajaxFileUpload.OnClientUploadComplete = "ajaxClientUploadComplete";
-        //        popupdiv.Controls.Add(ajaxFileUpload);
-
-        //        //HtmlGenericControl btnDone = new HtmlGenericControl("div");
-        //        //btnDone.Attributes.Add("Id", this.ClientID + "_btnDone");
-        //        //btnDone.Attributes.Add("style", "width: 75px; border-color:black;border-style: solid; border-width: 1px;");
-        //        //btnDone.Attributes.Add("float", "left");
-        //        //btnDone.Attributes.Add("unselectable", "on");
-        //        //btnDone.InnerText = "Done";
-        //        //popupdiv.Controls.Add(btnDone);
-
-        //        HtmlGenericControl btnCancel = new HtmlGenericControl("div");
-        //        btnCancel.Attributes.Add("Id", this.ClientID + "_btnCancel");
-        //        btnCancel.Attributes.Add("style", "width: 75px; border-color:black;border-style: solid; border-width: 1px;");
-        //        btnCancel.Attributes.Add("float", "right");
-        //        btnCancel.Attributes.Add("unselectable", "on");
-        //        btnCancel.InnerText = "Cancel";
-        //        popupdiv.Controls.Add(btnCancel);
-
-        //        this.Controls.Add(popupdiv);
-        //    }
-        //}
+        }        
 
         /// <summary>
         /// When user defines/customize buttons on design time Toolbar property will accessed twice
@@ -322,10 +280,8 @@ namespace AjaxControlToolkit
             buttonList.Add(new InsertOrderedList());
             buttonList.Add(new InsertUnorderedList());
             buttonList.Add(new CreateLink());
-            buttonList.Add(new UnLink());
-            //buttonList.Add(new FormatBlock());
-            buttonList.Add(new RemoveFormat());
-            //buttonList.Add(new InsertImage());
+            buttonList.Add(new UnLink());            
+            buttonList.Add(new RemoveFormat());            
             buttonList.Add(new SelectAll());
             buttonList.Add(new UnSelect());
             buttonList.Add(new Delete());

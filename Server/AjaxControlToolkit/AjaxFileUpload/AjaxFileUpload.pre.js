@@ -808,9 +808,13 @@ Sys.Extended.UI.AjaxFileUploadItem.prototype = {
         var height = this._lineItemHeight + 'px';
 
         // create line item container
-        this._container = document.createElement('div');
-        this._container.setAttribute('id', this._parentId + '_FileItemContainer_' + id);
-        this._container.setAttribute('class', 'ajax__fileupload_fileItemInfo');
+        this._container = $common.createElementFromTemplate({
+            nodeName: "div",
+            properties: {
+                id: this._parentId + '_FileItemContainer_' + id
+            },
+            cssClasses: ['ajax__fileupload_fileItemInfo']
+        });
 
         //this._container.setAttribute('align', 'right');
 
@@ -833,15 +837,23 @@ Sys.Extended.UI.AjaxFileUploadItem.prototype = {
         this._fileInfoContainer.appendChild(fileInfoSpan);
 
         // init file status
-        this._status = document.createElement('span');
-        this._status.setAttribute('class', 'uploadstatus');
-        this._status.setAttribute('id', this._parentId + '_FileItemStatus_' + id);
+        this._status = $common.createElementFromTemplate({
+            nodeName: "span",
+            properties: {
+                id: this._parentId + '_FileItemStatus_' + id
+            },
+            cssClasses: ['uploadstatus']
+        });
         this._fileInfoContainer.appendChild(this._status);
 
         // init remove button
-        this._deleteButton = document.createElement('div');
-        this._deleteButton.setAttribute('id', this._parentId + '_FileItemDeleteButton_' + id);
-        this._deleteButton.setAttribute('class', 'removeButton');
+        this._deleteButton = $common.createElementFromTemplate({
+            nodeName: "div",
+            properties: {
+                id: this._parentId + '_FileItemDeleteButton_' + id
+            },
+            cssClasses: ['removeButton']
+        });
         $common.setText(this._deleteButton, Sys.Extended.UI.Resources.AjaxFileUpload_Remove);
 
         var me = this;
