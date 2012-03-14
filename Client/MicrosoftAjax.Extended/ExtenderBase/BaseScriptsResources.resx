@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AlwaysVisible_ElementRequired" xml:space="preserve">
     <value>Sys.Extended.UI.AlwaysVisibleControlBehavior must have an element</value>
@@ -600,5 +600,71 @@
   </data>
   <data name="AsyncFileUpload_UploadingProblem" xml:space="preserve">
     <value>The requested file uploading problem.</value>
+  </data>
+  <data name="AjaxFileUpload_DropFiles" xml:space="preserve">
+    <value>Drop files here</value>
+  </data>
+  <data name="AjaxFileUpload_AllFilesUploaded" xml:space="preserve">
+    <value>All Files Uploaded.</value>
+  </data>
+  <data name="AjaxFileUpload_SelectFile" xml:space="preserve">
+    <value>Select File</value>
+  </data>
+  <data name="AjaxFileUpload_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="AjaxFileUpload_Upload" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="AjaxFileUpload_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AjaxFileUpload_FileList" xml:space="preserve">
+    <value>List of Uploaded files:</value>
+  </data>
+  <data name="AjaxFileUpload_SelectFileToUpload" xml:space="preserve">
+    <value>Please select file(s) to upload.</value>
+  </data>
+  <data name="AjaxFileUpload_Pending" xml:space="preserve">
+    <value>pending</value>
+  </data>
+  <data name="AjaxFileUpload_FileInQueue" xml:space="preserve">
+    <value>{0} file(s) in queue.</value>
+  </data>
+  <data name="AjaxFileUpload_UploadingHtml5File" xml:space="preserve">
+    <value>Uploading file: {0} of size {1} bytes.</value>
+  </data>
+  <data name="AjaxFileUpload_UploadingInputFile" xml:space="preserve">
+    <value>Uploading file: {0}.</value>
+  </data>
+  <data name="AjaxFileUpload_UploadError" xml:space="preserve">
+    <value>An Error occured during file upload.</value>
+  </data>
+  <data name="AjaxFileUpload_DefaultError" xml:space="preserve">
+    <value>File upload error.</value>
+  </data>
+  <data name="AjaxFileUpload_UploadedPercentage" xml:space="preserve">
+    <value>uploaded {0} %</value>
+  </data>
+  <data name="AjaxFileUpload_Uploading" xml:space="preserve">
+    <value>Uploading</value>
+  </data>
+  <data name="AjaxFileUpload_Uploaded" xml:space="preserve">
+    <value>Uploaded</value>
+  </data>
+  <data name="AjaxFileUpload_Cancelling" xml:space="preserve">
+    <value>Cancelling...</value>
+  </data>
+  <data name="AjaxFileUpload_CancellingUpload" xml:space="preserve">
+    <value>Cancelling upload...</value>
+  </data>
+  <data name="AjaxFileUpload_UploadCanceled" xml:space="preserve">
+    <value>File upload cancelled.</value>
+  </data>
+  <data name="AjaxFileUpload_Canceled" xml:space="preserve">
+    <value>cancelled</value>
+  </data>
+  <data name="AjaxFileUpload_error" xml:space="preserve">
+    <value>error</value>
   </data>
 </root>

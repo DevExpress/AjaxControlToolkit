@@ -22,7 +22,7 @@
                 <asp:TextBox runat="server" ID="txtBox2" TextMode="MultiLine" Columns="50" Rows="10"
                     Text="Hello <b>world!</b>" /><br />
                 <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender2" TargetControlID="txtBox2"
-                    runat="server">
+                    runat="server" DisplaySourceTab="true">
                     <Toolbar>                        
                         <ajaxToolkit:Bold />
                         <ajaxToolkit:Italic />
@@ -31,9 +31,10 @@
                         <ajaxToolkit:JustifyLeft />
                         <ajaxToolkit:JustifyCenter />
                         <ajaxToolkit:JustifyRight />
-                        <ajaxToolkit:JustifyFull />                                                
+                        <ajaxToolkit:JustifyFull />
                         <ajaxToolkit:CreateLink />
-                        <ajaxToolkit:UnLink />                                                
+                        <ajaxToolkit:UnLink />
+                        <ajaxToolkit:InsertImage />
                     </Toolbar>
                 </ajaxToolkit:HtmlEditorExtender>
                 <br />
@@ -87,8 +88,9 @@
             Furthermore, you can easily customize the
             toolbar buttons displayed by the HtmlEditorExtender. For example, you can customize
             the HtmlEditorExtender so that it displays only bold and italic buttons and no other
-            buttons.
-        </p>
+            buttons. Same way you can display Add image button and take the advantage to upload
+            and insert images from the HtmlEditorExtender.
+        </p>        
         <br />
 
         <br />
