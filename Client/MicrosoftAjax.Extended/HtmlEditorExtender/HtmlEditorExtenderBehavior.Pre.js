@@ -170,6 +170,7 @@
             this._contentViewClickDelegate = null;
             this._sourceViewClickDelegate = null;
             this._sourceViewDivOnBlurDelegate = null;
+            this._imageCancelClickDelegate = null;
 
             // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
@@ -206,8 +207,8 @@
                 if (this._popupDiv != null) {
                     this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { 'id': this.get_id() + '_ImagePopupBehavior', 'parentElement': this.get_element(), 'unselectable': 'on' }, null, null, this._popupDiv);
                     this._btnCancel = $get(this.get_id() + '_btnCancel');
-                    var delImageCancel_click = Function.createDelegate(this, this._btnCancel_click);
-                    $addHandler(this._btnCancel, 'click', delImageCancel_click, true);
+                    this._imageCancelClickDelegate = Function.createDelegate(this, this._btnCancel_click);
+                    $addHandler(this._btnCancel, 'click', this._imageCancelClickDelegate, true);
                     this._elementVisible(this._popupDiv, false);
                 }
 
@@ -244,6 +245,10 @@
                     $removeHandler(this._contentViewButton, 'click', this._contentViewClickDelegate);
                     $removeHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate);
                     $removeHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate);
+                }
+
+                if (this._popupDiv != null) {
+                    $removeHandler(this._btnCancel, 'click', this._imageCancelClickDelegate);
                 }
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
@@ -542,12 +547,16 @@
             _createEditableDiv: function () {
                 var id = this.get_id();
                 var height;
+                // need to make visible to get height if this is hidden under parent element
+                this._elementVisible(this._container, true);
                 if (this.get_displaySourceTab()) {
                     height = this._container.clientHeight - (this._topButtonContainer.clientHeight + 25);
                 }
                 else {
                     height = this._container.clientHeight - this._topButtonContainer.clientHeight;
                 }
+                // make it visible false for its early stage
+                this._elementVisible(this._container, false);
 
                 this._editableDiv = $common.createElementFromTemplate({
                     nodeName: 'div',
@@ -951,7 +960,8 @@
                         obj.removeAttribute('displayChanged');
                     }
                     if (obj.getAttribute('visibleChanged')) {
-                        obj.style.display = 'hidden';
+                        // creating problem in IE8
+                        //obj.style.visibility = 'hidden';
                         obj.removeAttribute('visibleChanged');
                     }
                     this._elementVisible(obj.parentNode, false);

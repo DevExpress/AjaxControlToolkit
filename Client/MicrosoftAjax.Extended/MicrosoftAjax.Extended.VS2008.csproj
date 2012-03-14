@@ -239,6 +239,9 @@
     <Content Include="ExtenderBase\BaseScriptsResources.zh-CHT.resx">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="HtmlEditorExtender\HtmlEditorExtender.css" />
+    <Content Include="HtmlEditorExtender\HtmlEditorExtenderBehavior.Pre.js" />
+    <Content Include="HtmlEditorExtender\Images\html-editor-buttons.png" />
     <EmbeddedResource Include="ScriptResources\ScriptResources.ar.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -290,6 +293,9 @@
     <EmbeddedResource Include="ScriptResources\ScriptResources.zh-CHT.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HtmlEditorExtender\Images\Thumbs.db" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
