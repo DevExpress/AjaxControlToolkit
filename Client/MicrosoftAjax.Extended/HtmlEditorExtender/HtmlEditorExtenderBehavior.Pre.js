@@ -182,7 +182,7 @@
             initialize: function () {
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
                 HtmlEditorExtender_editableDivs[HtmlEditorExtender_editableDivs.length] = this;
-                                
+
                 this._button_list = new Array();
                 this._createContainer();
                 this._createTopButtonContainer();
@@ -215,7 +215,7 @@
                 this._textBoxOnBlurDelegate = Function.createDelegate(this, this._textBox_onblur);
                 this._editableDivOnBlurDelegate = Function.createDelegate(this, this._editableDiv_onblur);
                 this._editableDivOnFocusDelegate = Function.createDelegate(this, this._editableDiv_onfocus);
-                this._btnClickDelegate = Function.createDelegate(this, this._executeCommand);                
+                this._btnClickDelegate = Function.createDelegate(this, this._executeCommand);
 
                 if (this.get_displaySourceTab()) {
                     this._contentViewClickDelegate = Function.createDelegate(this, this._contentView_click);
@@ -239,7 +239,7 @@
                 $removeHandler(this._textbox._element, 'blur', this._textBoxOnBlurDelegate);
                 $removeHandler(this._editableDiv, 'blur', this._editableDivOnBlurDelegate);
                 $removeHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate);
-                $removeHandler(_topButtonContainer, 'click', this._btnClickDelegate);
+                $removeHandler(this._topButtonContainer, 'click', this._btnClickDelegate);
                 if (this.get_displaySourceTab()) {
                     $removeHandler(this._contentViewButton, 'click', this._contentViewClickDelegate);
                     $removeHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate);
@@ -610,7 +610,12 @@
             _sourceViewDiv_onblur: function () {
                 if (this._oldContents != (this._sourceViewDiv.innerText || this._sourceViewDiv.textContent)) {
                     this._isDirty = true;
-                    this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
+                    if (this._sourceViewDiv.textContent != undefined) {
+                        this._editableDiv.innerHTML = this._sourceViewDiv.textContent;
+                    }
+                    else {
+                        this._editableDiv.innerHTML = this._sourceViewDiv.innerText;
+                    }
                     this._oldContents = this._editableDiv.innerHTML;
                     this._raiseEvent('change');
                 }
@@ -624,7 +629,12 @@
                 if (this._viewMode != 'content') {
                     $common.setVisible(this._topButtonContainer, true);
                     $common.setVisible(this._editableDiv, true);
-                    this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
+                    if (this._sourceViewDiv.textContent != undefined) {
+                        this._editableDiv.innerHTML = this._sourceViewDiv.textContent;
+                    }
+                    else {
+                        this._editableDiv.innerHTML = this._sourceViewDiv.innerText;
+                    }
                     this._oldContents = this._editableDiv.innerHTML;
                     $common.setVisible(this._sourceViewDiv, false);
                     this._viewMode = 'content';
@@ -665,8 +675,8 @@
             _encodeHtml: function () {
                 //Encode html tags
                 var isIE = Sys.Browser.agent == Sys.Browser.InternetExplorer;
-                var elements = this._editableDiv.getElementsByTagName('*');                
-                var element;                                
+                var elements = this._editableDiv.getElementsByTagName('*');
+                var element;
                 for (var i = 0; element = elements[i]; i++) {
                     try {
                         element.className = '';

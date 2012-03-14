@@ -183,7 +183,8 @@ namespace AjaxControlToolkit
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-
+            if (DesignMode)
+                return;
             HtmlGenericControl popupdiv = new HtmlGenericControl("div");
             popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
             popupdiv.Attributes.Add("style", "opacity: 0;");
