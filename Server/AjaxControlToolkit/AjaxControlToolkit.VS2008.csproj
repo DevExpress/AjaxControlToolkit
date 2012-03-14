@@ -79,6 +79,9 @@
     <Compile Include="Accordion\AccordionPane.cs" />
     <Compile Include="Accordion\AccordionPaneCollection.cs" />
     <Compile Include="Accordion\AutoSize.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadDesigner.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadEventArgs.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlDesigner.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlExtender.cs" />
     <Compile Include="AlwaysVisibleControl\HorizontalSide.cs" />
@@ -385,6 +388,8 @@
     <EmbeddedResource Include="Accordion\Accordion.ico" />
     <EmbeddedResource Include="AlwaysVisibleControl\AlwaysVisible.ico" />
     <EmbeddedResource Include="Animation\Animation.ico" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.css" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.pre.js" />
     <Content Include="AsyncFileUpload\AsyncFileUpload.pre.js" />
     <Content Include="AsyncFileUpload\images\fileupload.png" />
     <EmbeddedResource Include="AutoComplete\AutoComplete.ico" />
