@@ -580,10 +580,32 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Get tooltip assciated to InsertImage button
+        /// Get tooltip assciated to Horizontal Separator button
         /// </summary>
         public override string Tooltip {
             get { return "Separator"; }
+        }
+    }
+
+    /// <summary>
+    /// InsertImage class represents to Insert Image action
+    /// </summary>
+    public class InsertImage : HtmlEditorExtenderButton
+    {
+        /// <summary>
+        /// get name of command that will be passed to execCommand method 
+        /// </summary>
+        public override string CommandName
+        {
+            get { return "InsertImage"; }
+        }
+
+        /// <summary>
+        /// Get tooltip assciated to InsertImage button
+        /// </summary>
+        public override string Tooltip
+        {
+            get { return "Insert Image"; }
         }
     }
 
