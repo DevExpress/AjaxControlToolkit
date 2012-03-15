@@ -156,9 +156,12 @@ namespace AjaxControlToolkit
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            if (!string.IsNullOrEmpty(this.Page.Request.QueryString["contextkey"]) && this.Page.Request.QueryString["contextkey"] == ContextKey)
+            if (!IsDesignMode)
             {
-                this.IsInFileUploadPostBack = true;
+                if (!string.IsNullOrEmpty(this.Page.Request.QueryString["contextkey"]) && this.Page.Request.QueryString["contextkey"] == ContextKey)
+                {
+                    this.IsInFileUploadPostBack = true;
+                }
             }
         }
 
