@@ -44,7 +44,8 @@ namespace AjaxControlToolkit
                 typeof( Indent),
                 typeof( Outdent),
                 typeof( InsertHorizontalRule),
-                typeof(HorizontalSeparator)
+                typeof(HorizontalSeparator),
+                typeof(InsertImage)
             };
         }
 

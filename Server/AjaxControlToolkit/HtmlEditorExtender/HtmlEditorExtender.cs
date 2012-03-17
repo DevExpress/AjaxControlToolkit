@@ -293,6 +293,7 @@ namespace AjaxControlToolkit
             buttonList.Add(new Outdent());
             buttonList.Add(new InsertHorizontalRule());
             buttonList.Add(new HorizontalSeparator());
+            buttonList.Add(new InsertImage());
         }
     }
 }
