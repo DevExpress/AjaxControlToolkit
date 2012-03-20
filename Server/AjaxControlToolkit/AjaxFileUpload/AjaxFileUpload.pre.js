@@ -146,7 +146,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
     _setStatusMessage: function (msg) {
         this._fileStatusContainer.innerHTML = msg;
     },
-    
+
     dispose: function () {
         if (this._isFileApiSupports) {
             Sys.Extended.UI.AjaxFileUpload._removeEvent(this._html5DropZone, 'drop', this._html5OnFileDropped$delegate);
@@ -510,7 +510,9 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
                 return;
 
             if (!this._isCancelUpload) {
-                var result = Sys.Serialization.JavaScriptSerializer.deserialize(frameDocument.body.innerHTML);
+                var resultString = frameDocument.body.innerHTML;
+                resultString = resultString.substring(resultString.indexOf('{"FileId'));
+                var result = Sys.Serialization.JavaScriptSerializer.deserialize(resultString);
                 var eventArgs = new Sys.Extended.UI.AjaxFileUploadEventArgs(this._guid, result.StatusMessage, result.FileName, result.FileSize, result.ContentType, result.PostedUrl);
                 if (eventArgs.get_statusMessage() == "Success") {
                     this._removeTimer();
@@ -624,7 +626,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         }
         else {
             this._inputFileElement.disabled = value;
-        }        
+        }
     },
 
     _validateFileType: function (fileType) {
@@ -685,11 +687,10 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         this.get_events().removeHandler("uploadComplete", handler);
     },
     _raiseUploadComplete: function (e) {
-
         var fileItem = this._getCurrentFileItem();
         fileItem.setStatus('uploaded', Sys.Extended.UI.Resources.AjaxFileUpload_Uploaded);
         fileItem._isUploaded = true;
-        fileItem.hide();
+        fileItem.hide();        
         var eh = this.get_events().getHandler("uploadComplete");
         if (eh) {
             eh(this, e);
