@@ -202,11 +202,16 @@
 
                 if (formElement == null)
                     throw 'Missing Form tag';
+                var id = this.get_id();
+                this._popupDiv = $get(id + '_popupDiv');
+                if (this._popupDiv == null) {
+                    id = id.substring(id.lastIndexOf('_') + 1);
+                    this._popupDiv = $get(id + '_popupDiv');
+                }
 
-                this._popupDiv = $get(this.get_id() + '_popupDiv');
                 if (this._popupDiv != null) {
-                    this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { 'id': this.get_id() + '_ImagePopupBehavior', 'parentElement': this.get_element(), 'unselectable': 'on' }, null, null, this._popupDiv);
-                    this._btnCancel = $get(this.get_id() + '_btnCancel');
+                    this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { 'id': id + '_ImagePopupBehavior', 'parentElement': this.get_element(), 'unselectable': 'on' }, null, null, this._popupDiv);
+                    this._btnCancel = $get(id + '_btnCancel');
                     this._imageCancelClickDelegate = Function.createDelegate(this, this._btnCancel_click);
                     $addHandler(this._btnCancel, 'click', this._imageCancelClickDelegate, true);
                     this._elementVisible(this._popupDiv, false);
@@ -229,6 +234,7 @@
                 $addHandler(this._editableDiv, 'blur', this._editableDivOnBlurDelegate, true);
                 $addHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate, true);
                 $addHandler(this._topButtonContainer, 'click', this._btnClickDelegate, true);
+
                 if (this.get_displaySourceTab()) {
                     $addHandler(this._contentViewButton, 'click', this._contentViewClickDelegate, true);
                     $addHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate, true);
@@ -855,13 +861,15 @@
                     }
                 }
                 else if (command.target.name == 'InsertImage') {
-                    // if focus in not at editable div then dom error occurs                    
+                    // if focus in not at editable div then dom error occurs                                        
                     if (!this._isFocusInEditableDiv) {
                         this._editableDiv.focus();
                     }
+
                     this.saveSelection();
 
                     var components = Sys.Application.getComponents();
+
                     for (var i = 0; i < components.length; i++) {
                         var component = components[i];
                         if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component)) {
@@ -1095,7 +1103,14 @@
             if (htmlEditorExtender != null) {
                 htmlEditorExtender.restoreSelection();
                 if (document.selection && document.selection.createRange) {
-                    htmlEditorExtender._savedRange.pasteHTML('<img src=\'' + postedUrl + '\' />');
+                    try {
+                        htmlEditorExtender._savedRange.pasteHTML('<img src=\'' + postedUrl + '\' />');
+                    }
+                    catch (Error) {
+                        var node = document.createElement("img");
+                        node.src = postedUrl;
+                        htmlEditorExtender._savedRange.insertNode(node);
+                    }
                 }
                 else {
                     var node = document.createElement("img");

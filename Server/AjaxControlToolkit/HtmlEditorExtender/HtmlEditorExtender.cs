@@ -182,29 +182,30 @@ namespace AjaxControlToolkit
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            if (DesignMode)
-                return;
-            HtmlGenericControl popupdiv = new HtmlGenericControl("div");
-            popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
-            popupdiv.Attributes.Add("style", "opacity: 0;");
-            popupdiv.Attributes.Add("class", "popupDiv");
-            ajaxFileUpload = new AjaxFileUpload();
-            ajaxFileUpload.MaximumNumberOfFiles = 10;
-            ajaxFileUpload.AllowedFileTypes = "jpg,jpeg";
-            ajaxFileUpload.Enabled = true;
-            ajaxFileUpload.OnClientUploadComplete = "ajaxClientUploadComplete";
-            popupdiv.Controls.Add(ajaxFileUpload);
+            if (!DesignMode)
+            {
+                Page.ClientIDMode = System.Web.UI.ClientIDMode.AutoID;
+                HtmlGenericControl popupdiv = new HtmlGenericControl("div");
+                popupdiv.Attributes.Add("Id", this.ID + "_popupDiv");
+                popupdiv.Attributes.Add("style", "opacity: 0;");
+                popupdiv.Attributes.Add("class", "popupDiv");
+                ajaxFileUpload = new AjaxFileUpload();
+                ajaxFileUpload.MaximumNumberOfFiles = 10;
+                ajaxFileUpload.AllowedFileTypes = "jpg,jpeg";
+                ajaxFileUpload.Enabled = true;
+                ajaxFileUpload.OnClientUploadComplete = "ajaxClientUploadComplete";
+                popupdiv.Controls.Add(ajaxFileUpload);
 
-            HtmlGenericControl btnCancel = new HtmlGenericControl("div");
-            btnCancel.Attributes.Add("Id", this.ClientID + "_btnCancel");
-            btnCancel.Attributes.Add("style", "width: 75px; border-color:black;border-style: solid; border-width: 1px;");
-            btnCancel.Attributes.Add("float", "right");
-            btnCancel.Attributes.Add("unselectable", "on");
-            btnCancel.InnerText = "Cancel";
-            popupdiv.Controls.Add(btnCancel);
+                HtmlGenericControl btnCancel = new HtmlGenericControl("div");
+                btnCancel.Attributes.Add("Id", this.ID + "_btnCancel");
+                btnCancel.Attributes.Add("style", "width: 75px; border-color:black;border-style: solid; border-width: 1px;");
+                btnCancel.Attributes.Add("float", "right");
+                btnCancel.Attributes.Add("unselectable", "on");
+                btnCancel.InnerText = "Cancel";
+                popupdiv.Controls.Add(btnCancel);
 
-            this.Controls.Add(popupdiv);
-
+                this.Controls.Add(popupdiv);
+            }
         }
 
         /// <summary>
@@ -293,7 +294,7 @@ namespace AjaxControlToolkit
             buttonList.Add(new Outdent());
             buttonList.Add(new InsertHorizontalRule());
             buttonList.Add(new HorizontalSeparator());
-            buttonList.Add(new InsertImage());
+            //buttonList.Add(new InsertImage());
         }
     }
 }
