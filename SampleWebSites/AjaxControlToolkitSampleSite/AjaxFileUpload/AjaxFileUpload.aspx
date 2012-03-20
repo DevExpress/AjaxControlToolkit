@@ -70,7 +70,7 @@
         <asp:Label runat="server" ID="myThrobber" Style="display: none;"><img align="absmiddle" alt="" src="uploading.gif"/></asp:Label>
         <ajaxToolkit:AjaxFileUpload ID="AjaxFileUpload1" runat="server" Padding-Bottom="4"
             Padding-Left="2" Padding-Right="1" Padding-Top="4" ThrobberID="myThrobber" OnClientUploadComplete="onClientUploadComplete"
-            OnOnUploadComplete="AjaxFileUpload1_OnUploadComplete" MaximumNumberOfFiles="10"
+            OnUploadComplete="AjaxFileUpload1_OnUploadComplete" MaximumNumberOfFiles="10"
             AllowedFileTypes="jpg,jpeg" />
         <br />
         <div id="testuploaded" style="display: none; padding: 4px; border: gray 1px solid;">

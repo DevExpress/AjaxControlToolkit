@@ -582,7 +582,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
     },
 
     _addToQueue: function (element) {
-        if (this._filesInQueue.length < this.get_maximumNumberOfFiles()) {
+        if (this.get_maximumNumberOfFiles() == 0) {
             var fileItem = new Sys.Extended.UI.AjaxFileUploadItem(this.get_id(), element, this._removeFromQueue$delegate);
             this._filesInQueue.push(fileItem);
             this._showFilesCount();
@@ -590,13 +590,23 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
             fileItem.appendNodeTo(this._queueContainer);
             fileItem.setStatus('pending', Sys.Extended.UI.Resources.AjaxFileUpload_Pending);
         }
-        else {
-            if (this._isFileApiSupports) {
-                this._html5DropZone.disabled = 'disabled';
-                this._html5InputFile.disabled = 'disabled';
+        else {            
+            if (this._filesInQueue.length < this.get_maximumNumberOfFiles()) {
+                var fileItem = new Sys.Extended.UI.AjaxFileUploadItem(this.get_id(), element, this._removeFromQueue$delegate);
+                this._filesInQueue.push(fileItem);
+                this._showFilesCount();
+
+                fileItem.appendNodeTo(this._queueContainer);
+                fileItem.setStatus('pending', Sys.Extended.UI.Resources.AjaxFileUpload_Pending);
             }
-            else {
-                this._inputFileElement.disabled = value;
+            if (this._filesInQueue.length == this.get_maximumNumberOfFiles()) {
+                if (this._isFileApiSupports) {
+                    this._html5DropZone.disabled = 'disabled';
+                    this._html5InputFile.disabled = 'disabled';
+                }
+                else {
+                    this._inputFileElement.disabled = value;
+                }
             }
         }
     },
@@ -690,7 +700,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         var fileItem = this._getCurrentFileItem();
         fileItem.setStatus('uploaded', Sys.Extended.UI.Resources.AjaxFileUpload_Uploaded);
         fileItem._isUploaded = true;
-        fileItem.hide();        
+        fileItem.hide();
         var eh = this.get_events().getHandler("uploadComplete");
         if (eh) {
             eh(this, e);

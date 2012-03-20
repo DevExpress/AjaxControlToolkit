@@ -207,8 +207,8 @@ namespace AjaxControlToolkit
                     uploadedFile.ContentLength, uploadedFile.ContentType,
                     stream.ToArray());
 
-                    if (OnUploadComplete != null)
-                        OnUploadComplete(this, eventArgs);
+                    if (UploadComplete != null)
+                        UploadComplete(this, eventArgs);
 
                     jsonResult = serializer.Serialize(eventArgs);
 
@@ -400,7 +400,7 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Event handler for upload complete event.
         /// </summary>
-        public event EventHandler<AjaxFileUploadEventArgs> OnUploadComplete;
+        public event EventHandler<AjaxFileUploadEventArgs> UploadComplete;
 
         /// <summary>
         /// Gets or sets the client script that executes when a file upload completes.
