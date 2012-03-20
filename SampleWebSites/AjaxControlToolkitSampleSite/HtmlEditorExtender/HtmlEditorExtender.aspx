@@ -17,12 +17,12 @@
                 <br />
                 <br />
 
-                <b>Below example with configurable toolbar:</b>
+                <b>HtmlEditorExtender with a custom toolbar which includes support for uploading an image:</b>
                 <br />                
                 <asp:TextBox runat="server" ID="txtBox2" TextMode="MultiLine" Columns="50" Rows="10"
                     Text="Hello <b>world!</b>" /><br />
                 <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender2" TargetControlID="txtBox2"
-                    runat="server" DisplaySourceTab="true">
+                    runat="server" DisplaySourceTab="True">
                     <Toolbar>                        
                         <ajaxToolkit:Bold />
                         <ajaxToolkit:Italic />
@@ -34,7 +34,7 @@
                         <ajaxToolkit:JustifyFull />
                         <ajaxToolkit:CreateLink />
                         <ajaxToolkit:UnLink />
-                        <ajaxToolkit:InsertImage />
+                        <ajaxToolkit:InsertImage />                        
                     </Toolbar>
                 </ajaxToolkit:HtmlEditorExtender>
                 <br />
@@ -109,8 +109,9 @@
             The HtmlEditorExtender is initialized with this code. The <em>italic</em> properties
             are optional:</p>
         <pre>
-        &lt;ajaxToolkit:HtmlEditorExtender ID="HtmlEditorExtender1" 
-            TargetControlID="TextBox1" runat="server"/&gt;<em>
+        &lt;ajaxToolkit:HtmlEditorExtender ID=&quot;HtmlEditorExtender1&quot; 
+            TargetControlID=&quot;TextBox1&quot; DisplaySourceTab=&quot;true&quot; 
+            runat=&quot;server&quot;/&gt;<em>
             &lt;Toolbar&gt; 
                 &lt;ajaxToolkit:Undo /&gt;
                 &lt;ajaxToolkit:Redo /&gt;
@@ -143,6 +144,7 @@
                 &lt;ajaxToolkit:Outdent /&gt;
                 &lt;ajaxToolkit:InsertHorizontalRule /&gt;
                 &lt;ajaxToolkit:HorizontalSeparator /&gt;
+                &lt;ajaxToolkit:InsertImage /&gt;
             &lt;/Toolbar&gt;</em>
         &lt;/ajaxToolkit:HtmlEditorExtender&gt;
             </pre>
@@ -154,6 +156,9 @@
                 toolbar tag. </li>
             <li><strong>SanitizerProvider</strong> - Returns the Sanitizer Provider or null when no
             Sanitizer Provider is configured.</li>
+
+            <li><strong>DisplaySourceTab</strong> - Whether to display source tab to switch to 
+                Source view to see html contents.</li>
 
         </ul>
     </asp:Panel>

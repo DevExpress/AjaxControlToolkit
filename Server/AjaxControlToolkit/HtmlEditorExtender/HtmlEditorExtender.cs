@@ -191,14 +191,19 @@ namespace AjaxControlToolkit
                 popupdiv.Attributes.Add("class", "popupDiv");
                 ajaxFileUpload = new AjaxFileUpload();
                 ajaxFileUpload.MaximumNumberOfFiles = 10;
-                ajaxFileUpload.AllowedFileTypes = "jpg,jpeg";
+                ajaxFileUpload.AllowedFileTypes = "jpg,jpeg,gif,png";
                 ajaxFileUpload.Enabled = true;
                 ajaxFileUpload.OnClientUploadComplete = "ajaxClientUploadComplete";
                 popupdiv.Controls.Add(ajaxFileUpload);
+                
+                HtmlGenericControl spaceDiv = new HtmlGenericControl("div");                
+                spaceDiv.Attributes.Add("style", "height: 10px;");
+                popupdiv.Attributes.Add("float", "right");
+                popupdiv.Controls.Add(spaceDiv);                
 
                 HtmlGenericControl btnCancel = new HtmlGenericControl("div");
                 btnCancel.Attributes.Add("Id", this.ID + "_btnCancel");
-                btnCancel.Attributes.Add("style", "width: 75px; border-color:black;border-style: solid; border-width: 1px;");
+                btnCancel.Attributes.Add("style", "width: 75px; border-color:black;border-style: solid; border-width: 1px;cursor:pointer;");
                 btnCancel.Attributes.Add("float", "right");
                 btnCancel.Attributes.Add("unselectable", "on");
                 btnCancel.InnerText = "Cancel";
