@@ -186,7 +186,7 @@ namespace AjaxControlToolkit
             {
                 Page.ClientIDMode = System.Web.UI.ClientIDMode.AutoID;
                 HtmlGenericControl popupdiv = new HtmlGenericControl("div");
-                popupdiv.Attributes.Add("Id", this.ID + "_popupDiv");
+                popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
                 popupdiv.Attributes.Add("style", "opacity: 0;");
                 popupdiv.Attributes.Add("class", "popupDiv");
                 
@@ -198,7 +198,7 @@ namespace AjaxControlToolkit
                 popupdiv.Controls.Add(ajaxFileUpload);
 
                 HtmlGenericControl btnCancel = new HtmlGenericControl("div");
-                btnCancel.Attributes.Add("Id", this.ID + "_btnCancel");                
+                btnCancel.Attributes.Add("Id", this.ClientID + "_btnCancel");
                 btnCancel.Attributes.Add("style", "float: right; position:relative; padding-left: 20px; top:10px; width: 55px; border-color:black;border-style: solid; border-width: 1px;cursor:pointer;");
                 btnCancel.Attributes.Add("float", "right");
                 btnCancel.Attributes.Add("unselectable", "on");
