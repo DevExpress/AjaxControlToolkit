@@ -205,7 +205,12 @@
                 var id = this.get_id();
                 this._popupDiv = $get(id + '_popupDiv');
                 if (this._popupDiv == null) {
-                    id = id.substring(id.lastIndexOf('_') + 1);
+                    if (id.indexOf('_') != -1) {
+                        id = id.substring(id.lastIndexOf('_') + 1);
+                    }
+                    else {
+                        id = '';
+                    }
                     this._popupDiv = $get(id + '_popupDiv');
                 }
 

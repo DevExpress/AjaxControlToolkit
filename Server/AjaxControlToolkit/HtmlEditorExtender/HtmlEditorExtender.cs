@@ -183,14 +183,14 @@ namespace AjaxControlToolkit
         {
             base.OnInit(e);
             if (!DesignMode)
-            {
-                Page.ClientIDMode = System.Web.UI.ClientIDMode.AutoID;
+            {                
                 HtmlGenericControl popupdiv = new HtmlGenericControl("div");
                 popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
                 popupdiv.Attributes.Add("style", "opacity: 0;");
                 popupdiv.Attributes.Add("class", "popupDiv");
                 
                 ajaxFileUpload = new AjaxFileUpload();
+                ajaxFileUpload.ID = this.ID + "_ajaxFileUpload";
                 ajaxFileUpload.MaximumNumberOfFiles = 10;
                 ajaxFileUpload.AllowedFileTypes = "jpg,jpeg,gif,png";
                 ajaxFileUpload.Enabled = true;
