@@ -13,7 +13,7 @@
 
 Type.registerNamespace('Sys.Extended.UI');
 
-Sys.Extended.UI.ComboBoxAutoCompleteMode = function() { };
+Sys.Extended.UI.ComboBoxAutoCompleteMode = function () { };
 Sys.Extended.UI.ComboBoxAutoCompleteMode.prototype =
 {
     None: 0,
@@ -25,7 +25,7 @@ Sys.Extended.UI.ComboBoxAutoCompleteMode.prototype =
 Sys.Extended.UI.ComboBoxAutoCompleteMode.registerEnum(
     'Sys.Extended.UI.ComboBoxAutoCompleteMode', false);
 
-Sys.Extended.UI.ComboBoxStyle = function() { };
+Sys.Extended.UI.ComboBoxStyle = function () { };
 Sys.Extended.UI.ComboBoxStyle.prototype =
 {
     DropDownList: 0,
@@ -36,7 +36,7 @@ Sys.Extended.UI.ComboBoxStyle.prototype =
 Sys.Extended.UI.ComboBoxStyle.registerEnum(
     'Sys.Extended.UI.ComboBoxStyle', false);
 
-Sys.Extended.UI.ComboBoxTextSelectionStrategy = function() { };
+Sys.Extended.UI.ComboBoxTextSelectionStrategy = function () { };
 Sys.Extended.UI.ComboBoxTextSelectionStrategy.prototype =
 {
     Unknown: 0,
@@ -74,7 +74,7 @@ Sys.Extended.UI.ComboBox = function (element) {
     this._optionListItems = null;
     this._optionListItemHeight = null;
     this._optionListHeight = null;
-    this._optionListWidth = null;    
+    this._optionListWidth = null;
 
     this.clearDelegates();
 
@@ -88,20 +88,17 @@ Sys.Extended.UI.ComboBox.prototype = {
         var hiddenParent = this._findHiddenParent(this.get_comboTableControl());
         var hiddenParentDisplay;
         var hiddenParentVisibility;
-
         if (hiddenParent != null) {
             hiddenParentDisplay = hiddenParent.style.display;
             hiddenParentVisibility = hiddenParent.style.visibility;
             hiddenParent.style.visibility = "visible";
-            hiddenParent.style.display = "block";            
+            hiddenParent.style.display = "block";
         }
-
         this.createDelegates();
         this.initializeTextBox();
         this.initializeButton();
         this.initializeOptionList();
         this.addHandlers();
-
         if (hiddenParent != null) {
             hiddenParent.style.visibility = hiddenParentVisibility;
             hiddenParent.style.display = hiddenParentDisplay;
@@ -277,11 +274,16 @@ Sys.Extended.UI.ComboBox.prototype = {
             this.get_element().appendChild(optionList);
             this.set_optionListControl(optionList);
         }
-        var optionListControl = this.get_optionListControl();
 
+        var optionListControl = this.get_optionListControl();
         // force inline display on Safari by moving the list to the bottom of the form.
         if (Sys.Browser.agent === Sys.Browser.Safari || Sys.Browser.agent === Sys.Browser.WebKit) {
-            this.get_element().removeChild(optionListControl);
+
+            var parentOfOptionList = optionListControl.parentNode;
+            if (parentOfOptionList != null)
+                parentOfOptionList.removeChild(optionListControl);
+            //this.get_element().removeChild(optionListControl);
+
             var parent = this.get_element().parentNode;
             while (typeof (parent) != typeof (document.forms[0])) {
                 parent = parent.parentNode
@@ -302,6 +304,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         // build an array of list items
         this._optionListItems = new Array();
         var children = optionListControl.childNodes;
+
         for (var i = 0; i < children.length; i++) {
 
             // evaluate the current node to see if it should be added to the list items array
@@ -375,10 +378,9 @@ Sys.Extended.UI.ComboBox.prototype = {
         // show and hide the popup behavior to initialize dimensions and overflow
         this._popupShowing();
         optionListControl.style.display = "none";
-
     },
-    initializeOptionListItem: function (liElement) {
 
+    initializeOptionListItem: function (liElement) {
         // ensure empty text appears in the list
         liElement._textIsEmpty = false;
         if (liElement.innerHTML.length < 1) {
