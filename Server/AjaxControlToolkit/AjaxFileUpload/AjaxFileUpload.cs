@@ -327,9 +327,14 @@ namespace AjaxControlToolkit
             progressBarContainer.Attributes.Add("id", this.ClientID + "_ProgressBarContainer");
             progressBarContainer.Attributes["align"] = "left";
             progressBarContainer.Style["float"] = "left";
+            progressBarContainer.Style["width"] = "100%";
             progressBarContainer.Controls.Add(progressBar);
 
-            footerContainer.Controls.Add(progressBarContainer);
+            HtmlGenericControl progressBarHolder = new HtmlGenericControl("div");
+            progressBarHolder.Attributes.Add("class", "ajax__fileupload_ProgressBarHolder");
+            progressBarHolder.Controls.Add(progressBarContainer);
+
+            footerContainer.Controls.Add(progressBarHolder);
             footerContainer.Controls.Add(uploadOrCancelButton);
 
             return footerContainer;
@@ -353,12 +358,12 @@ namespace AjaxControlToolkit
             var htmlSelectFileButton = new HtmlGenericControl("span");
             htmlSelectFileButton.Attributes.Add("id", this.ClientID + "_SelectFileButton");
             htmlSelectFileButton.Attributes.Add("class", "ajax__fileupload_selectFileButton");
-            htmlSelectFileButton.Style["float"] = "left";
+            //htmlSelectFileButton.Style["float"] = "left";
 
             var htmlTopFileStatus = new HtmlGenericControl("div");
             htmlTopFileStatus.Attributes.Add("class", "ajax__fileupload_topFileStatus");
             htmlTopFileStatus.Style[HtmlTextWriterStyle.Overflow] = "hidden";
-            htmlTopFileStatus.Style["float"] = "left";
+            //htmlTopFileStatus.Style["float"] = "left";
             htmlTopFileStatus.Controls.Add(fileStatusContainer);
 
             htmlSelectFileContainer.Controls.Add(htmlSelectFileButton);

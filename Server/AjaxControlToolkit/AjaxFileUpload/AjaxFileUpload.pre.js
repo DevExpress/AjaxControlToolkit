@@ -108,25 +108,9 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
             $common.setVisible(this._html5DropZone, false);
             $common.setVisible(this._html5InputFile, false);
             fileElement = this._inputFileElement;
-
-            var throbber = this.get_throbber();
-            if (throbber) {
-                $common.setSize(throbber, progressBarContainerSize);
-                this._progressBarContainer.appendChild(throbber);
-            }
         }
         else {
             $common.setVisible(this._inputFileElement, false);
-
-            var pad = $common.getPaddingBox(this._progressBar);
-            progressBarContainerSize.width -= pad.left - pad.right;
-            $common.setSize(this._progressBarContainer, progressBarContainerSize);
-
-            var height = footerSize.height + 'px';
-            $common.setStyle(this._progressBar,
-                {
-                    'line-height': height, 'height': height
-                });
         }
     },
 
@@ -832,7 +816,7 @@ Sys.Extended.UI.AjaxFileUploadItem.prototype = {
         // create file info/status container
         this._fileInfoContainer = document.createElement('div');
         this._fileInfoContainer.setAttribute('align', 'left');
-        $common.setStyle(this._fileInfoContainer, { 'float': 'left', 'cssFloat': 'left' });
+        $common.setStyle(this._fileInfoContainer, { 'display': 'inline-block' });
 
         // init file info
         var fileInfoSpan = document.createElement('span');
@@ -886,12 +870,6 @@ Sys.Extended.UI.AjaxFileUploadItem.prototype = {
         return this._container;
     },
 
-    initLayout: function () {
-        var size = $common.getSize(this._container);
-        var buttonSize = $common.getSize(this._deleteButton);
-        $common.setSize(this._fileInfoContainer, { width: size.width - buttonSize.width, height: buttonSize.height });
-    },
-
     setStatus: function (status, text) {
         $common.setText(this._status, ' (' + text + ')');
         this._fileInfoContainer.setAttribute('class', status + 'State');
@@ -920,7 +898,6 @@ Sys.Extended.UI.AjaxFileUploadItem.prototype = {
 
     appendNodeTo: function (parent) {
         parent.appendChild(this._ui);
-        this.initLayout();
     },
 
     removeNodeFrom: function (parent) {
