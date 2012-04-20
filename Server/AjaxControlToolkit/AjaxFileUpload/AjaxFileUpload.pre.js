@@ -589,7 +589,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
                     this._html5InputFile.disabled = 'disabled';
                 }
                 else {
-                    this._inputFileElement.disabled = value;
+                    this._inputFileElement.disabled = 'disabled';
                 }
             }
         }
