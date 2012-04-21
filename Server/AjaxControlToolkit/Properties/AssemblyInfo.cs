@@ -13,7 +13,7 @@ using AjaxControlToolkit;
 [assembly: AssemblyTitle("Ajax Control Toolkit")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyProduct("AjaxControlToolkit")]
-[assembly: AssemblyCopyright("Copyright © CodePlex Foundation 2011")]
+[assembly: AssemblyCopyright("Copyright © CodePlex Foundation 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -36,8 +36,8 @@ using AjaxControlToolkit;
 #if NET4
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 [assembly: System.Web.Script.AjaxFrameworkAssembly]
-[assembly: AssemblyVersion("4.1.51116")]
-[assembly: AssemblyFileVersion("4.1.51116")]
+[assembly: AssemblyVersion("4.1.60422")]
+[assembly: AssemblyFileVersion("4.1.60422")]
 #else
 [assembly: AssemblyVersion("3.5.51116")]
 [assembly: AssemblyFileVersion("3.5.51116")]  
