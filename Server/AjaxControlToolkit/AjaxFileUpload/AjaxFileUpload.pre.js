@@ -274,9 +274,9 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
     _createInputFileElement: function () {
 
         // disfunction current input file element
-        this._attachFileInputHandlers(this._inputFileElement, false);
         this._inputFileElement.style.zIndex = -999;
         $common.setLocation(this._inputFileElement, { x: -99999, y: -99999 });
+        this._attachFileInputHandlers(this._inputFileElement, false);
 
         // create new input file element
         var id = this.get_id() + '_file_' + Sys.Extended.UI.AjaxFileUpload.utils.generateGuid();
@@ -315,7 +315,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         this._reset();
     },
 
-    _reset: function () {
+    _reset: function (clearQueue) {
         this._isCancelUpload = false;
         this._setDisableControls(false);
         this._currentQueueIndex = 0;
@@ -330,6 +330,11 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
             this.setThrobber(false);
             this._removeIframe();
         }
+
+        if (clearQueue) {
+            this._filesInQueue = new Array();
+            this._hideSelectFileButton(false);
+        }
     },
 
     _processNextFile: function () {
@@ -338,7 +343,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
 
         if (fileItem == null) {
             this._setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_AllFilesUploaded);
-            this._reset();
+            this._reset(true);
             return;
         }
 
@@ -390,9 +395,6 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
             if (this._validateFileType(fileType)) {
                 this._addToQueue(this._inputFileElement);
                 this._createInputFileElement();
-                if (this.get_maximumNumberOfFiles() != 0 && this._filesInQueue.length >= this.get_maximumNumberOfFiles()) {                    
-                    this._inputFileElement.disabled = 'disabled';
-                }
             }
         }
         else {
@@ -401,7 +403,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
     },
 
     _showFilesCount: function () {
-        var empty = (!this._filesInQueue || this._filesInQueue.length == 0);
+        var empty = (this._queueContainer.childNodes.length == 0 && this._filesInQueue.length == 0);
 
         $common.setVisible(this._footer, !empty);
         $common.setVisible(this._queueContainer, !empty);
@@ -565,36 +567,34 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         return null;
     },
 
-    _addToQueue: function (element) {
-        if (this.get_maximumNumberOfFiles() == 0) {
-            var fileItem = new Sys.Extended.UI.AjaxFileUploadItem(this.get_id(), element, this._removeFromQueue$delegate);
-            this._filesInQueue.push(fileItem);
-            this._showFilesCount();
+    _hideSelectFileButton: function (val) {
+        if (this._isFileApiSupports) {
+            this._html5DropZone.disabled = val ? 'disabled' : '';
+            this._html5InputFile.disabled = val ? 'disabled' : '';
 
-            fileItem.appendNodeTo(this._queueContainer);
-            fileItem.setStatus('pending', Sys.Extended.UI.Resources.AjaxFileUpload_Pending);
+            $common.setVisible(this._html5DropZone, !val);
         }
-        else {
-            if (this._filesInQueue.length < this.get_maximumNumberOfFiles()) {
-                var fileItem = new Sys.Extended.UI.AjaxFileUploadItem(this.get_id(), element, this._removeFromQueue$delegate);
-                this._filesInQueue.push(fileItem);
-                this._showFilesCount();
+        $common.setVisible(this._selectFileButton.parentNode, !val);
+    },
 
-                fileItem.appendNodeTo(this._queueContainer);
-                fileItem.setStatus('pending', Sys.Extended.UI.Resources.AjaxFileUpload_Pending);
-            }
-            if (this._filesInQueue.length == this.get_maximumNumberOfFiles()) {
-                if (this._isFileApiSupports) {
-                    this._html5DropZone.disabled = 'disabled';
-                    this._html5InputFile.disabled = 'disabled';
-                }                
-            }
+    _addToQueue: function (element) {
+        var fileItem = new Sys.Extended.UI.AjaxFileUploadItem(this.get_id(), element, this._removeFromQueue$delegate);
+        this._filesInQueue.push(fileItem);
+        this._showFilesCount();
+
+        fileItem.appendNodeTo(this._queueContainer);
+        fileItem.setStatus('pending', Sys.Extended.UI.Resources.AjaxFileUpload_Pending);
+
+        if (this.get_maximumNumberOfFiles() > 0 && this._filesInQueue.length >= this.get_maximumNumberOfFiles()) {
+            this._hideSelectFileButton(true);
         }
     },
 
     _removeFromQueue: function (fileItem) {
         Array.remove(this._filesInQueue, fileItem);
         this._showFilesCount();
+
+        this._hideSelectFileButton(false);
     },
 
     bind: function (fn, bind) {
@@ -807,8 +807,6 @@ Sys.Extended.UI.AjaxFileUploadItem.prototype = {
             },
             cssClasses: ['ajax__fileupload_fileItemInfo']
         });
-
-        //this._container.setAttribute('align', 'right');
 
         // create file info/status container
         this._fileInfoContainer = document.createElement('div');
