@@ -190,7 +190,6 @@
     <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollection.cs" />
     <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollectionEditor.cs" />
     <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtons.cs" />
-    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderDesigner.cs" />
     <Compile Include="HTMLEditor\DesignPanel.cs" />
     <Compile Include="HTMLEditor\DesignPanelEventHandler.cs" />
     <Compile Include="HTMLEditor\Editor.cs" />
