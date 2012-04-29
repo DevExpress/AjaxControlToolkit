@@ -55,6 +55,19 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
+        /// Sets a value indicating whether the OnUpdating animation will always be allowed to finish
+        /// before the OnUpdated animation starts playing.
+        /// </summary>
+        [DefaultValue(false)]
+        [Browsable(true)]
+        [ExtenderControlProperty]
+        public bool AlwaysFinishOnUpdatingAnimation
+        {
+            get { return GetPropertyValue<bool>("AlwaysFinishOnUpdatingAnimation", false); }
+            set { SetPropertyValue("AlwaysFinishOnUpdatingAnimation", value); }
+        }
+
+        /// <summary>
         /// Change any AnimationTarget references from server control IDs into the ClientIDs
         /// that the animation scripts are expecting.  We also replace any static AnimationTargets
         /// of the Updated animation with dynamic properties.
