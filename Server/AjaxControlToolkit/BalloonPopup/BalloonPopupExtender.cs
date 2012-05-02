@@ -27,7 +27,7 @@ namespace AjaxControlToolkit
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(Control))]
     [ClientCssResource("BalloonPopup.Rectangle.BalloonPopup_resource.css")]
-    [ClientCssResource("BalloonPopup.Cloud.BalloonPopup_resource.css")]    
+    [ClientCssResource("BalloonPopup.Cloud.BalloonPopup_resource.css")]
     [Designer("AjaxControlToolkit.BalloonPopupDesigner, AjaxControlToolkit")]
     [ToolboxItem(Utility.ToolBoxItemTypeName)]
     [ToolboxBitmap(typeof(BalloonPopupExtender), "BalloonPopup.BalloonPopup.ico")]
@@ -109,7 +109,7 @@ namespace AjaxControlToolkit
             get { return GetPropertyValue("OffsetY", 0); }
             set { SetPropertyValue("OffsetY", value); }
         }
-        
+
         /// <summary>
         /// OnShow animation
         /// </summary>
@@ -233,7 +233,7 @@ namespace AjaxControlToolkit
             get { return GetPropertyValue("CustomClassName", ""); }
             set { SetPropertyValue("CustomClassName", value); }
         }
-        
+
         /// <summary>
         /// This event fires before rendering of control.
         /// </summary>
@@ -243,11 +243,11 @@ namespace AjaxControlToolkit
             base.OnPreRender(e);
 
             if (BalloonStyle == BalloonPopupStyle.Custom)
-            {                
+            {
                 if (CustomCssUrl == "")
                     throw new ArgumentException("Must pass CustomCssUrl value.");
                 if (CustomClassName == "")
-                    throw new ArgumentException("Must pass CustomClassName value.");                
+                    throw new ArgumentException("Must pass CustomClassName value.");
 
                 var isLinked = false;
                 foreach (Control c in Page.Header.Controls)
