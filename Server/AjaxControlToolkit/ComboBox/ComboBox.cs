@@ -192,11 +192,11 @@ namespace AjaxControlToolkit
             get
             {
                 int selectedIndex = base.SelectedIndex;
-                if ((selectedIndex < 0) && (this.Items.Count > 0))
-                {
-                    this.Items[0].Selected = true;
-                    selectedIndex = 0;
-                }
+                //if ((selectedIndex < 0) && (this.Items.Count > 0))
+                //{
+                //    this.Items[0].Selected = true;
+                //    selectedIndex = 0;
+                //}
                 return selectedIndex;
             }
             set { base.SelectedIndex = value; }
