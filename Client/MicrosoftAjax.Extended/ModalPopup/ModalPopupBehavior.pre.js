@@ -102,6 +102,12 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._dragHandleElement = $get(this._PopupDragHandleControlID);
 
         this._popupElement = $get(this._PopupControlID);
+
+        // check if popup element have set any background color
+        if (this._popupElement.style.backgroundColor == undefined || this._popupElement.style.backgroundColor == "") {
+            this._popupElement.style.backgroundColor = "#ffffdd";
+        }
+
         if (this._DropShadow) {
             this._foregroundElement = document.createElement('div');
             this._foregroundElement.id = this.get_id() + '_foregroundElement';
@@ -117,6 +123,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._backgroundElement.style.position = 'fixed';
         this._backgroundElement.style.left = '0px';
         this._backgroundElement.style.top = '0px';
+
         // Want zIndex to big enough that the background sits above everything else
         // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
         this._backgroundElement.style.zIndex = 10000;
@@ -127,7 +134,8 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
         this._foregroundElement.style.display = 'none';
         this._foregroundElement.style.position = 'fixed';
-        this._foregroundElement.style.zIndex = $common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex) + 1;
+        this._foregroundElement.style.zIndex = parseInt($common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex)) + 1;
+        this._popupElement.style.zIndex = parseInt($common.getCurrentStyle(this._foregroundElement, 'zIndex', this._foregroundElement.style.zIndex)) + 1;
 
         this._showHandler = Function.createDelegate(this, this._onShow);
         $addHandler(this.get_element(), 'click', this._showHandler);
@@ -1088,4 +1096,3 @@ Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function (behaviorID, show)
         }
     }
 }
-
