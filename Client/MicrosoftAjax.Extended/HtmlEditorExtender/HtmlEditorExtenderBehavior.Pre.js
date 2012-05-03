@@ -27,11 +27,6 @@
             this.savedRange = null;
             this.isInFocus = null;
             _flag = false;
-            this._oldContents = null;
-            this._newContents = null;
-            this._isDirty = false;
-            this._viewMode = 'content';
-            this._displaySourceTab = false;
 
             this._ButtonWidth = 23;
             this._ButtonHeight = 21;
@@ -51,20 +46,6 @@
                     id: id + '_ExtenderContentEditable',
                     style: {
                         height: '80%',
-                        overflow: 'auto',
-                        clear: 'both'
-                    },
-                    contentEditable: true
-                },
-                cssClasses: ['ajax__html_editor_extender_texteditor']
-            };
-
-            this._sourceViewTemplate = {
-                nodeName: 'div',
-                properties: {
-                    id: id + '_ExtenderSourceView',
-                    style: {
-                        height: '100%',
                         overflow: 'auto',
                         clear: 'both'
                     },
@@ -115,15 +96,12 @@
             this._container = null;
             this._toolbarButtons = null;
             this._editableDiv = null;
-            this._sourceViewDiv = null;
             this._topButtonContainer = null;
             this._buttons = [];
             this._btnClickHandler = null;
             this._requested_buttons = new Array();
             this._colorPicker = null;
             this._txtBoxForColor = null;
-            this._contentViewButton = null;
-            this._sourceViewButton = null;
 
             // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
@@ -135,15 +113,12 @@
         Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             initialize: function () {
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
-                HtmlEditorExtender_editableDivs[HtmlEditorExtender_editableDivs.length] = this;
+
                 var idx = 0;
                 this._button_list = new Array();
                 this._createContainer();
                 this._createTopButtonContainer();
                 this._createEditableDiv();
-                if (this.get_displaySourceTab()) {
-                    this._createSourceViewDiv();
-                }
                 this._createButton();
 
                 // get form that contains textbox
@@ -155,33 +130,24 @@
                 if (formElement == null)
                     throw 'Missing Form tag';
 
-                // delegates                
+                // delegates
+                //var formSubmitHandler = Function.createDelegate(this, this._editableDiv_submit);
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
-                if (this.get_displaySourceTab()) {
-                    var delContentView_click = Function.createDelegate(this, this._contentView_click);
-                    var delSourceView_click = Function.createDelegate(this, this._sourceView_click);
-                }
 
                 // handlers                                
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
                 $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
+                //$addHandler(formElement, 'submit', formSubmitHandler, true);
                 $addHandler(this._topButtonContainer, 'click', btnClickHandler);
-                if (this.get_displaySourceTab()) {
-                    $addHandler(this._contentViewButton, 'click', delContentView_click, true);
-                    $addHandler(this._sourceViewButton, 'click', delSourceView_click, true);
-                }
             },
 
             _dispose: function () {
                 $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
                 $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
+                //$removeHandler(formElement, 'submit', formSubmitHandler);
                 $removeHandler(_topButtonContainer, 'click', btnClickHandler);
-                if (this.get_displaySourceTab()) {
-                    $removeHandler(this._contentViewButton, 'click', delContentView_click);
-                    $removeHandler(this._sourceViewButton, 'click', delSourceView_click);
-                }
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
             },
@@ -199,11 +165,6 @@
                 });
 
                 this._elementVisible(this._textbox._element, false);
-
-                if (this.get_displaySourceTab()) {
-                    this._contentViewButton = $common.createElementFromTemplate(this._buttonTemplate, this._container);
-                    this._sourceViewButton = $common.createElementFromTemplate(this._buttonTemplate, this._container);
-                }
 
                 $common.wrapElement(this._textbox._element, this._container, this._container);
             },
@@ -484,51 +445,16 @@
             _createEditableDiv: function () {
                 this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
                 this._editableDiv.innerHTML = this._textbox._element.value;
-                this._oldContents = this._editableDiv.innerHTML;
                 $common.setVisible(this._textbox._element, false);
-            },
-
-            _createSourceViewDiv: function () {
-                this._sourceViewDiv = $common.createElementFromTemplate(this._sourceViewTemplate, this._container);
-                $common.setVisible(this._sourceViewDiv, false);
             },
 
             _editableDiv_onblur: function () {
                 this._textbox._element.value = this._encodeHtml();
-                if (this.oldContents != this._editableDiv.innerHTML) {
-                    this._isDirty = true;
-                }
             },
 
             _textBox_onblur: function () {
                 this._editableDiv.innerHTML = this._textbox._element.value;
             },
-
-            _contentView_click: function () {
-                if (this._viewMode != 'content') {
-                    $common.setVisible(this._topButtonContainer, true);
-                    $common.setVisible(this._editableDiv, true);
-                    this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
-                    $common.setVisible(this._sourceViewDiv, false);
-                    this._viewMode = 'content';
-                }
-            },
-
-            _sourceView_click: function () {
-                if (this._viewMode != 'source') {
-                    $common.setVisible(this._sourceViewDiv, true);
-                    if (this._sourceViewDiv.textContent != undefined) {
-                        this._sourceViewDiv.textContent = this._editableDiv.innerHTML;
-                    }
-                    else {
-                        this._sourceViewDiv.innerText = this._editableDiv.innerHTML;
-                    }
-                    $common.setVisible(this._editableDiv, false);
-                    $common.setVisible(this._topButtonContainer, false);
-                    this._viewMode = 'source';
-                }
-            },
-
             _attributes: {
                 style: 'st_yle_',
                 size: 'si_ze_',
@@ -566,7 +492,7 @@
                 var html = this._editableDiv.innerHTML;
                 if (isIE) {
                     //force attributes to be double quoted
-                    var allTags = /\<[^a\>]+\>/g;
+                    var allTags = /\<[^\>]+\>/g;
                     html = html.replace(allTags, function (tag) {
                         var sQA = /\=\'([^\'])*\'/g; //single quoted attributes
                         var nQA = /\=([^\"][^\s\/\>]*)/g; //non double quoted attributes
@@ -596,12 +522,7 @@
                 //html encode
                 var char = 3;
                 var sel = null;
-
-                setTimeout(function () {
-                    if (this._editableDiv != null)
-                        this._editableDiv.focus()
-                }, 0)
-
+                this._editableDiv.focus();
                 if (Sys.Browser.agent != Sys.Browser.Firefox) {
                     if (document.selection) {
                         sel = document.selection.createRange();
@@ -835,34 +756,12 @@
                     this._toolbarButtons = value;
                     this.raisePropertyChanged('ToolbarButtons');
                 }
-            },
-
-            get_displaySourceTab: function () {
-                return this._displaySourceTab;
-            },
-
-            set_displaySourceTab: function (value) {
-                if (this._displaySourceTab != value) {
-                    this._displaySourceTab = value;
-                    this.raisePropertyChanged('DisplaySourceTab');
-                }
             }
 
         };
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
         Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: 'HtmlEditorExtender', parameters: [{ name: 'ToolbarButtons', type: 'HtmlEditorExtenderButton[]'}] });
-
-        var HtmlEditorExtender_editableDivs = new Array();
-
-        function __newDoPostBack(eventTarget, eventArgument) {
-            // supress prompting on postback
-            window.onbeforeunload = null;
-            return __savedDoPostBack(eventTarget, eventArgument);
-        }
-
-        var __savedDoPostBack = __doPostBack;
-        __doPostBack = __newDoPostBack;
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit = function () {
             /// <summary>
@@ -884,21 +783,11 @@
             return result;
         }
 
-        /// Before unload check if there is unsaved data in the form
-        window.onbeforeunload = function () {
-            for (var i in HtmlEditorExtender_editableDivs) {
-                var htmlEditorExtenderBehavior = HtmlEditorExtender_editableDivs[i];
-                if (htmlEditorExtenderBehavior._isDirty) {
-                    return "Unsaved changes, Do you want to continue?";
-                }
-            }
-        }
-
     } // execute
-
 
     if (window.Sys && Sys.loader) {
         Sys.loader.registerScript(scriptName, ['ExtendedBase', 'ExtendedCommon'], execute);
+
     }
     else {
         execute();
