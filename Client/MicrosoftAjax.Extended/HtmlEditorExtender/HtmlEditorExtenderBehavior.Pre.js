@@ -522,7 +522,12 @@
                 //html encode
                 var char = 3;
                 var sel = null;
-                this._editableDiv.focus();
+
+                setTimeout(function () {
+                    if (this._editableDiv != null)
+                        this._editableDiv.focus()
+                }, 0)
+
                 if (Sys.Browser.agent != Sys.Browser.Firefox) {
                     if (document.selection) {
                         sel = document.selection.createRange();
