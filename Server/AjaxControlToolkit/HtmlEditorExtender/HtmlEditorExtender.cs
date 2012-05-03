@@ -39,6 +39,7 @@ namespace AjaxControlToolkit
         private HtmlEditorExtenderButtonCollection buttonList = null;
         private SanitizerProvider sanitizerProvider = null;
 
+
         public HtmlEditorExtender()
         {
             EnableClientState = true;
@@ -102,18 +103,6 @@ namespace AjaxControlToolkit
                     buttonList = new HtmlEditorExtenderButtonCollection();
                 return buttonList;
             }
-        }
-
-        /// <summary>
-        /// Determines whether to display source view tab/button to see source view of the HtmlEditorExtender.
-        /// </summary>
-        [ExtenderControlProperty]
-        [DefaultValue(false)]
-        [ClientPropertyName("displaySourceTab")]
-        public bool DisplaySourceTab
-        {
-            get { return GetPropertyValue("DisplaySourceTab", false); }
-            set { SetPropertyValue("DisplaySourceTab", value); }
         }
 
         /// <summary>
@@ -215,8 +204,8 @@ namespace AjaxControlToolkit
             buttonList.Add(new JustifyFull());
             buttonList.Add(new InsertOrderedList());
             buttonList.Add(new InsertUnorderedList());
-            //buttonList.Add(new CreateLink());
-            //buttonList.Add(new UnLink());
+            buttonList.Add(new CreateLink());
+            buttonList.Add(new UnLink());
             //buttonList.Add(new FormatBlock());
             buttonList.Add(new RemoveFormat());
             //buttonList.Add(new InsertImage());
