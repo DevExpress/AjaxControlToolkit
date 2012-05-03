@@ -264,7 +264,7 @@ namespace AjaxControlToolkit
         }
 
         [ExtenderControlEvent]
-        [ClientPropertyName("0pen")]
+        [ClientPropertyName("open")]
         [DefaultValue("")]
         public string OnClientOpen
         {
@@ -404,7 +404,7 @@ namespace AjaxControlToolkit
                 if (ctl is SeadragonFixedOverlay)
                 {
                     SeadragonFixedOverlay fixedOverlay = ctl as SeadragonFixedOverlay;
-                    this._overlaysDescriptor.Add(new { id = fixedOverlay.ClientID, point = fixedOverlay.Point,placement=fixedOverlay.Placement });
+                    this._overlaysDescriptor.Add(new { id = fixedOverlay.ClientID, point = fixedOverlay.Point, placement = fixedOverlay.Placement });
                 }
                 else
                 {
