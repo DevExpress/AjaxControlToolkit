@@ -56,6 +56,8 @@
   <ItemGroup>
     <Content Include="Assemblies\AntiXSSLibrary.dll" />
     <Content Include="Assemblies\HtmlSanitizationLibrary.dll" />
+    <Content Include="Assemblies\NET35\AntiXSSLibrary.dll" />
+    <Content Include="Assemblies\NET40\AntiXSSLibrary.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.csproj">
