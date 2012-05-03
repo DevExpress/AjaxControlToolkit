@@ -30,6 +30,8 @@
             this._oldContents = null;
             this._newContents = null;
             this._isDirty = false;
+            this._viewMode = 'content';
+            this._displaySourceTab = false;
 
             this._ButtonWidth = 23;
             this._ButtonHeight = 21;
@@ -139,7 +141,9 @@
                 this._createContainer();
                 this._createTopButtonContainer();
                 this._createEditableDiv();
-                this._createSourceViewDiv();
+                if (this.get_displaySourceTab()) {
+                    this._createSourceViewDiv();
+                }
                 this._createButton();
 
                 // get form that contains textbox
@@ -155,23 +159,29 @@
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
-                var delContentView_click = Function.createDelegate(this, this._contentView_click);
-                var delSourceView_click = Function.createDelegate(this, this._sourceView_click);
+                if (this.get_displaySourceTab()) {
+                    var delContentView_click = Function.createDelegate(this, this._contentView_click);
+                    var delSourceView_click = Function.createDelegate(this, this._sourceView_click);
+                }
 
                 // handlers                                
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
                 $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
                 $addHandler(this._topButtonContainer, 'click', btnClickHandler);
-                $addHandler(this._contentViewButton, 'click', delContentView_click, true);
-                $addHandler(this._sourceViewButton, 'click', delSourceView_click, true);
+                if (this.get_displaySourceTab()) {
+                    $addHandler(this._contentViewButton, 'click', delContentView_click, true);
+                    $addHandler(this._sourceViewButton, 'click', delSourceView_click, true);
+                }
             },
 
             _dispose: function () {
                 $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
                 $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
                 $removeHandler(_topButtonContainer, 'click', btnClickHandler);
-                $removeHandler(this._contentViewButton, 'click', delContentView_click);
-                $removeHandler(this._sourceViewButton, 'click', delSourceView_click);
+                if (this.get_displaySourceTab()) {
+                    $removeHandler(this._contentViewButton, 'click', delContentView_click);
+                    $removeHandler(this._sourceViewButton, 'click', delSourceView_click);
+                }
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
             },
@@ -190,8 +200,10 @@
 
                 this._elementVisible(this._textbox._element, false);
 
-                this._contentViewButton = $common.createElementFromTemplate(this._buttonTemplate, this._container);
-                this._sourceViewButton = $common.createElementFromTemplate(this._buttonTemplate, this._container);
+                if (this.get_displaySourceTab()) {
+                    this._contentViewButton = $common.createElementFromTemplate(this._buttonTemplate, this._container);
+                    this._sourceViewButton = $common.createElementFromTemplate(this._buttonTemplate, this._container);
+                }
 
                 $common.wrapElement(this._textbox._element, this._container, this._container);
             },
@@ -493,23 +505,28 @@
             },
 
             _contentView_click: function () {
-                $common.setVisible(this._topButtonContainer, true);
-                $common.setVisible(this._editableDiv, true);
-                this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
-                $common.setVisible(this._sourceViewDiv, false);
+                if (this._viewMode != 'content') {
+                    $common.setVisible(this._topButtonContainer, true);
+                    $common.setVisible(this._editableDiv, true);
+                    this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
+                    $common.setVisible(this._sourceViewDiv, false);
+                    this._viewMode = 'content';
+                }
             },
 
             _sourceView_click: function () {
-                $common.setVisible(this._sourceViewDiv, true);
-
-                if (this._sourceViewDiv.textContent != undefined) {
-                    this._sourceViewDiv.textContent = this._editableDiv.innerHTML;
+                if (this._viewMode != 'source') {
+                    $common.setVisible(this._sourceViewDiv, true);
+                    if (this._sourceViewDiv.textContent != undefined) {
+                        this._sourceViewDiv.textContent = this._editableDiv.innerHTML;
+                    }
+                    else {
+                        this._sourceViewDiv.innerText = this._editableDiv.innerHTML;
+                    }
+                    $common.setVisible(this._editableDiv, false);
+                    $common.setVisible(this._topButtonContainer, false);
+                    this._viewMode = 'source';
                 }
-                else {
-                    this._sourceViewDiv.innerText = this._editableDiv.innerHTML;
-                }
-                $common.setVisible(this._editableDiv, false);
-                $common.setVisible(this._topButtonContainer, false);
             },
 
             _attributes: {
@@ -817,6 +834,17 @@
                 if (this._toolbarButtons != value) {
                     this._toolbarButtons = value;
                     this.raisePropertyChanged('ToolbarButtons');
+                }
+            },
+
+            get_displaySourceTab: function () {
+                return this._displaySourceTab;
+            },
+
+            set_displaySourceTab: function (value) {
+                if (this._displaySourceTab != value) {
+                    this._displaySourceTab = value;
+                    this.raisePropertyChanged('DisplaySourceTab');
                 }
             }
 
