@@ -27,6 +27,9 @@
             this.savedRange = null;
             this.isInFocus = null;
             _flag = false;
+            this._oldContents = null;
+            this._newContents = null;
+            this._isDirty = false;
 
             this._ButtonWidth = 23;
             this._ButtonHeight = 21;
@@ -113,7 +116,7 @@
         Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             initialize: function () {
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
-
+                HtmlEditorExtender_editableDivs[HtmlEditorExtender_editableDivs.length] = this;
                 var idx = 0;
                 this._button_list = new Array();
                 this._createContainer();
@@ -135,10 +138,12 @@
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
+                var delEditableDiv_onchange = Function.createDelegate(this, this._editableDiv_onchange);
 
                 // handlers                                
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
                 $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
+                $addHandler(this._editableDiv, 'change', delEditableDiv_onchange, true);
                 //$addHandler(formElement, 'submit', formSubmitHandler, true);
                 $addHandler(this._topButtonContainer, 'click', btnClickHandler);
             },
@@ -146,6 +151,7 @@
             _dispose: function () {
                 $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
                 $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
+                $removeHandler(this._editableDiv, 'change', delEditableDiv_onchange);
                 //$removeHandler(formElement, 'submit', formSubmitHandler);
                 $removeHandler(_topButtonContainer, 'click', btnClickHandler);
 
@@ -445,11 +451,19 @@
             _createEditableDiv: function () {
                 this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
                 this._editableDiv.innerHTML = this._textbox._element.value;
+                this._oldContents = this._editableDiv.innerHTML;
                 $common.setVisible(this._textbox._element, false);
             },
 
             _editableDiv_onblur: function () {
                 this._textbox._element.value = this._encodeHtml();
+                if (this.oldContents != this._editableDiv.innerHTML) {
+                    this._isDirty = true;
+                }
+            },
+
+            _editableDiv_onchange: function () {
+                alert('changed');
             },
 
             _textBox_onblur: function () {
@@ -768,6 +782,17 @@
         Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
         Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: 'HtmlEditorExtender', parameters: [{ name: 'ToolbarButtons', type: 'HtmlEditorExtenderButton[]'}] });
 
+        var HtmlEditorExtender_editableDivs = new Array();
+
+        function __newDoPostBack(eventTarget, eventArgument) {
+            // supress prompting on postback
+            window.onbeforeunload = null;
+            return __savedDoPostBack(eventTarget, eventArgument);
+        }
+
+        var __savedDoPostBack = __doPostBack;
+        __doPostBack = __newDoPostBack;
+
         Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit = function () {
             /// <summary>
             /// Wraps ASP.NET's WebForm_OnSubmit in order to encode tags prior to submission
@@ -788,11 +813,21 @@
             return result;
         }
 
+        /// Before unload check if there is unsaved data in the form
+        window.onbeforeunload = function () {
+            for (var i in HtmlEditorExtender_editableDivs) {
+                var htmlEditorExtenderBehavior = HtmlEditorExtender_editableDivs[i];
+                if (htmlEditorExtenderBehavior._isDirty) {
+                    return "Unsaved changes, Do you want to continue?";
+                }
+            }
+        }
+
     } // execute
+
 
     if (window.Sys && Sys.loader) {
         Sys.loader.registerScript(scriptName, ['ExtendedBase', 'ExtendedCommon'], execute);
-
     }
     else {
         execute();
