@@ -57,6 +57,20 @@
                 cssClasses: ['ajax__html_editor_extender_texteditor']
             };
 
+            this._sourceViewTemplate = {
+                nodeName: 'div',
+                properties: {
+                    id: id + '_ExtenderSourceView',
+                    style: {
+                        height: '100%',
+                        overflow: 'auto',
+                        clear: 'both'
+                    },
+                    contentEditable: true
+                },
+                cssClasses: ['ajax__html_editor_extender_texteditor']
+            };
+
             this._buttonTemplate = {
                 nodeName: 'input',
                 properties: {
@@ -99,12 +113,15 @@
             this._container = null;
             this._toolbarButtons = null;
             this._editableDiv = null;
+            this._sourceViewDiv = null;
             this._topButtonContainer = null;
             this._buttons = [];
             this._btnClickHandler = null;
             this._requested_buttons = new Array();
             this._colorPicker = null;
             this._txtBoxForColor = null;
+            this._contentViewButton = null;
+            this._sourceViewButton = null;
 
             // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
@@ -122,6 +139,7 @@
                 this._createContainer();
                 this._createTopButtonContainer();
                 this._createEditableDiv();
+                this._createSourceViewDiv();
                 this._createButton();
 
                 // get form that contains textbox
@@ -139,6 +157,8 @@
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
                 var delEditableDiv_onchange = Function.createDelegate(this, this._editableDiv_onchange);
+                var delContentView_click = Function.createDelegate(this, this._contentView_click);
+                var delSourceView_click = Function.createDelegate(this, this._sourceView_click);
 
                 // handlers                                
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
@@ -146,6 +166,8 @@
                 $addHandler(this._editableDiv, 'change', delEditableDiv_onchange, true);
                 //$addHandler(formElement, 'submit', formSubmitHandler, true);
                 $addHandler(this._topButtonContainer, 'click', btnClickHandler);
+                $addHandler(this._contentViewButton, 'click', delContentView_click, true);
+                $addHandler(this._sourceViewButton, 'click', delSourceView_click, true);
             },
 
             _dispose: function () {
@@ -154,6 +176,8 @@
                 $removeHandler(this._editableDiv, 'change', delEditableDiv_onchange);
                 //$removeHandler(formElement, 'submit', formSubmitHandler);
                 $removeHandler(_topButtonContainer, 'click', btnClickHandler);
+                $removeHandler(this._contentViewButton, 'click', delContentView_click);
+                $removeHandler(this._sourceViewButton, 'click', delSourceView_click);
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
             },
@@ -171,6 +195,9 @@
                 });
 
                 this._elementVisible(this._textbox._element, false);
+
+                this._contentViewButton = $common.createElementFromTemplate(this._buttonTemplate, this._container);
+                this._sourceViewButton = $common.createElementFromTemplate(this._buttonTemplate, this._container);
 
                 $common.wrapElement(this._textbox._element, this._container, this._container);
             },
@@ -455,6 +482,11 @@
                 $common.setVisible(this._textbox._element, false);
             },
 
+            _createSourceViewDiv: function () {
+                this._sourceViewDiv = $common.createElementFromTemplate(this._sourceViewTemplate, this._container);
+                $common.setVisible(this._sourceViewDiv, false);
+            },
+
             _editableDiv_onblur: function () {
                 this._textbox._element.value = this._encodeHtml();
                 if (this.oldContents != this._editableDiv.innerHTML) {
@@ -469,6 +501,24 @@
             _textBox_onblur: function () {
                 this._editableDiv.innerHTML = this._textbox._element.value;
             },
+
+            _contentView_click: function () {
+                $common.setVisible(this._topButtonContainer, true);
+                $common.setVisible(this._editableDiv, true);
+                if (this._sourceViewDiv.innerHTML.trim() != "") {
+                    this._textbox._element.value = this._sourceViewDiv.innerHTML;
+                    this._editableDiv.innerHTML = this._textbox._element.value;
+                }
+                $common.setVisible(this._sourceViewDiv, false);
+            },
+
+            _sourceView_click: function () {
+                $common.setVisible(this._sourceViewDiv, true);
+                this._sourceViewDiv.innerHTML = this._encodeHtml();
+                $common.setVisible(this._editableDiv, false);
+                $common.setVisible(this._topButtonContainer, false);
+            },
+
             _attributes: {
                 style: 'st_yle_',
                 size: 'si_ze_',
