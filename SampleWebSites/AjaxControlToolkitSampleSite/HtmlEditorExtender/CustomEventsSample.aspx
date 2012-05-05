@@ -13,14 +13,13 @@
     <div class="demoarea">
         <div class="demoheading">
             HTMLEditorExtender Demonstration for Custom Events</div>
-        <asp:UpdatePanel ID="updatePanel1" runat="server">                    
-            <ContentTemplate>                                
+        <asp:UpdatePanel ID="updatePanel1" runat="server">
+            <ContentTemplate>
                 <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10"
                     Text="Hello <b>world!</b>" /><br />
-                <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1" OnClientChange="onContentsChange"
-                    runat="server">
+                <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1"
+                    OnClientChange="onContentsChange" runat="server">
                 </ajaxToolkit:HtmlEditorExtender>
-                
                 <br />
                 <br />
                 <asp:Button runat="server" Text="Submit content" ID="submit" />
@@ -38,11 +37,46 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            The above example shows how to use custom handler to get onChange event. 
+            The above example shows how to use onClientChange handler to get onChange event.
         </p>
         <br />
-
         <br />
-    </asp:Panel>   
+    </asp:Panel>
+    <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
+        <div class="heading">
+            <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
+                AlternateText="expand" />
+            Sample's Properties
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="Properties_ContentPanel" runat="server" Style="overflow: hidden;"
+        Height="0px">
+        <p>
+            The Sample is initialized with this code.</p>
+        <pre>
 
+    &lt;script&gt;
+        function onContentsChange() {
+            alert('contents changed');
+        }
+    &lt;/script&gt;
+
+    &lt;asp:TextBox runat="server"
+        ID="txtBox1" 
+        TextMode="MultiLine" 
+        Columns="50" 
+        Rows="10" 
+        Text="Hello &lt;b&gt;world!&lt;/b&gt;" /&gt;
+    
+    &lt;ajaxToolkit:HtmlEditorExtender 
+        ID="htmlEditorExtender1" 
+        TargetControlID="txtBox1" 
+        OnClientChange="onContentsChange" 
+        runat="server" &gt;            
+    &lt;/ajaxToolkit:HtmlEditorExtender&gt;
+        </pre>
+    </asp:Panel>
+    <ajaxToolkit:CollapsiblePanelExtender ID="cpeProperties" runat="Server" TargetControlID="Properties_ContentPanel"
+        ExpandControlID="Properties_HeaderPanel" CollapseControlID="Properties_HeaderPanel"
+        Collapsed="False" ImageControlID="Properties_ToggleImage" />
 </asp:Content>
