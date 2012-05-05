@@ -220,7 +220,7 @@ namespace AjaxControlToolkit
             buttonList.Add(new UnLink());
             //buttonList.Add(new FormatBlock());
             buttonList.Add(new RemoveFormat());
-            //buttonList.Add(new InsertImage());
+            buttonList.Add(new InsertImage());
             buttonList.Add(new SelectAll());
             buttonList.Add(new UnSelect());
             buttonList.Add(new Delete());

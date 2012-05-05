@@ -646,6 +646,13 @@
                         document.execCommand(command.target.name, false, null);
                     }
                 }
+                else if (command.target.name == 'InsertImage') {                    
+                    var elt = this.get_element();
+                    this._ajaxFileUpload = new $create(Sys.Extended.UI.AjaxFileUpload,, {}, null, elt); 
+                    var popupBehavior = new $create(Sys.Extended.UI.PopupBehavior, { parentElement: elt }, {}, {}, this._ajaxFileUpload);
+                    popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.BottomLeft);
+                    popupBehavior.show();
+                }
                 else {
                     document.execCommand(command.target.name, false, null);
                 }
