@@ -313,7 +313,7 @@ namespace AjaxControlToolkit
                 if (_textBoxControl == null)
                 {
                     _textBoxControl = new TextBox();
-                    _textBoxControl.ID = "TextBox";
+                    _textBoxControl.ID = this.ID + "_TextBox";
                 }
                 return _textBoxControl;
             }
@@ -326,7 +326,7 @@ namespace AjaxControlToolkit
                 if (_buttonControl == null)
                 {
                     _buttonControl = new ComboBoxButton();
-                    _buttonControl.ID = "Button";
+                    _buttonControl.ID = this.ID + "_Button";
                 }
                 return _buttonControl;
             }
@@ -339,7 +339,7 @@ namespace AjaxControlToolkit
                 if (_hiddenFieldControl == null)
                 {
                     _hiddenFieldControl = new HiddenField();
-                    _hiddenFieldControl.ID = "HiddenField";
+                    _hiddenFieldControl.ID = this.ID + "_HiddenField";
                 }
                 return _hiddenFieldControl;
             }
@@ -352,7 +352,7 @@ namespace AjaxControlToolkit
                 if (_optionListControl == null)
                 {
                     _optionListControl = new System.Web.UI.WebControls.BulletedList();
-                    _optionListControl.ID = "OptionList";
+                    _optionListControl.ID = this.ID + "_OptionList";
                 }
                 return _optionListControl;
             }
@@ -365,7 +365,7 @@ namespace AjaxControlToolkit
                 if (_comboTable == null)
                 {
                     _comboTable = new Table();
-                    _comboTable.ID = "Table";
+                    _comboTable.ID = this.ID + "_Table";
                     _comboTable.Rows.Add(ComboTableRow);
                 }
                 return _comboTable;
