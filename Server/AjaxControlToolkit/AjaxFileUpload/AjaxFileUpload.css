@@ -10,6 +10,7 @@
 }
 
 .ajax__fileupload_selectFileButton {
+    display:block;
     height: 24px;
     line-height: 24px;
     width: 80px;
@@ -18,21 +19,22 @@
     color: #D0D0D0;
     cursor: pointer;
     margin-right: 4px;
+    font-size: 13px;
 }
 
 .ajax__fileupload_selectFileButton:hover {
-    height: 24px;
-    line-height: 24px;
-    width: 80px;
-    text-align: center;
     background-color: #000000;
     color: #ffffff;
-    cursor: pointer;
-    margin-right: 4px;
 }
 
 .ajax__fileupload_topFileStatus {
     color: rgb(127, 126, 126);
+}
+
+.ajax__fileupload_ProgressBarHolder 
+{
+    margin-right: 70px;
+    _margin-right: 0;
 }
 
 .ajax__fileupload_uploadbutton {
@@ -57,7 +59,8 @@
     border-style: dotted; 
     border-width: 1px; 
     line-height: 50px; 
-    text-align:center; 
+    text-align:center;
+    _text-align:left; /* IE Only */
     margin-bottom:2px;
 }
 
@@ -139,12 +142,13 @@
     overflow: hidden;
     position: relative;
     width: 80px;
-    float: left;
+    /*float: left;*/
 }
 
-.ajax__fileupload_selectFileContainer > input[type=file] {
+.ajax__fileupload_selectFileContainer input {
     border: medium none;
     cursor: pointer;
+    height: 40px;
     margin: 0;
     opacity: 0;
     position: absolute;
@@ -152,7 +156,20 @@
     top: 0;
 }
 
-.ajax__fileupload_selectFileButton {
-    font-size: 13px;
-    line-height: 24px;
+
+
+.ajax__fileupload_fileItemInfo 
+{
+    position: relative;
+    z-index: 0;
+}
+.ajax__fileupload_fileItemInfo div
+{
+    display: inline-block;
+}
+.ajax__fileupload_fileItemInfo div.removeButton 
+{
+    position: absolute;
+    top: 0;
+    right: 0;
 }
