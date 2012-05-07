@@ -24,8 +24,8 @@
             this._backColor = null;
             this._foreColor = null;
             this._commandName = null;
-            this.savedRange = null;
-            this.isInFocus = null;
+            this._savedRange = null;
+            this._isInFocus = null;
             this._oldContents = null;
             this._newContents = null;
             this._isDirty = false;
@@ -159,6 +159,18 @@
             this._txtBoxForColor = null;
             this._contentViewButton = null;
             this._sourceViewButton = null;
+            this._popupDiv = null;
+            this._btnDone = null;
+            this._btnCancel = null;
+            this._isFocusInEditableDiv;
+            this._textBoxOnBlurDelegate = null;
+            this._editableDivOnBlurDelegate = null;
+            this._editableDivOnFocusDelegate = null;
+            this._btnClickDelegate = null;
+            this._contentViewClickDelegate = null;
+            this._sourceViewClickDelegate = null;
+            this._sourceViewDivOnBlurDelegate = null;
+            this._imageCancelClickDelegate = null;
 
             // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
@@ -172,7 +184,6 @@
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
                 HtmlEditorExtender_editableDivs[HtmlEditorExtender_editableDivs.length] = this;
 
-                var idx = 0;
                 this._button_list = new Array();
                 this._createContainer();
                 this._createTopButtonContainer();
@@ -191,36 +202,64 @@
 
                 if (formElement == null)
                     throw 'Missing Form tag';
+                var id = this.get_id();
+                this._popupDiv = $get(id + '_popupDiv');
+                if (this._popupDiv == null) {
+                    if (id.indexOf('_') != -1) {
+                        id = id.substring(id.lastIndexOf('_') + 1);
+                    }
+                    else {
+                        id = '';
+                    }
+                    this._popupDiv = $get(id + '_popupDiv');
+                }
 
-                // delegates                
-                var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
-                var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
-                var btnClickHandler = Function.createDelegate(this, this._executeCommand);
+                if (this._popupDiv != null) {
+                    this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { 'id': id + '_ImagePopupBehavior', 'parentElement': this.get_element(), 'unselectable': 'on' }, null, null, this._popupDiv);
+                    this._btnCancel = $get(id + '_btnCancel');
+                    this._imageCancelClickDelegate = Function.createDelegate(this, this._btnCancel_click);
+                    $addHandler(this._btnCancel, 'click', this._imageCancelClickDelegate, true);
+                    this._elementVisible(this._popupDiv, false);
+                }
+
+                // delegates
+                this._textBoxOnBlurDelegate = Function.createDelegate(this, this._textBox_onblur);
+                this._editableDivOnBlurDelegate = Function.createDelegate(this, this._editableDiv_onblur);
+                this._editableDivOnFocusDelegate = Function.createDelegate(this, this._editableDiv_onfocus);
+                this._btnClickDelegate = Function.createDelegate(this, this._executeCommand);
+
                 if (this.get_displaySourceTab()) {
-                    var delContentView_click = Function.createDelegate(this, this._contentView_click);
-                    var delSourceView_click = Function.createDelegate(this, this._sourceView_click);
-                    var delSourceViewDiv_onblur = Function.createDelegate(this, this._sourceViewDiv_onblur);
+                    this._contentViewClickDelegate = Function.createDelegate(this, this._contentView_click);
+                    this._sourceViewClickDelegate = Function.createDelegate(this, this._sourceView_click);
+                    this._sourceViewDivOnBlurDelegate = Function.createDelegate(this, this._sourceViewDiv_onblur);
                 }
 
                 // handlers                                
-                $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
-                $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
-                $addHandler(this._topButtonContainer, 'click', btnClickHandler);
+                $addHandler(this._textbox._element, 'blur', this._textBoxOnBlurDelegate, true);
+                $addHandler(this._editableDiv, 'blur', this._editableDivOnBlurDelegate, true);
+                $addHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate, true);
+                $addHandler(this._topButtonContainer, 'click', this._btnClickDelegate, true);
+
                 if (this.get_displaySourceTab()) {
-                    $addHandler(this._contentViewButton, 'click', delContentView_click, true);
-                    $addHandler(this._sourceViewButton, 'click', delSourceView_click, true);
-                    $addHandler(this._sourceViewDiv, 'blur', delSourceViewDiv_onblur, true);
+                    $addHandler(this._contentViewButton, 'click', this._contentViewClickDelegate, true);
+                    $addHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate, true);
+                    $addHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate, true);
                 }
             },
 
             _dispose: function () {
-                $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
-                $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
-                $removeHandler(_topButtonContainer, 'click', btnClickHandler);
+                $removeHandler(this._textbox._element, 'blur', this._textBoxOnBlurDelegate);
+                $removeHandler(this._editableDiv, 'blur', this._editableDivOnBlurDelegate);
+                $removeHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate);
+                $removeHandler(this._topButtonContainer, 'click', this._btnClickDelegate);
                 if (this.get_displaySourceTab()) {
-                    $removeHandler(this._contentViewButton, 'click', delContentView_click);
-                    $removeHandler(this._sourceViewButton, 'click', delSourceView_click);
-                    $removeHandler(this._sourceViewDiv, 'blur', delSourceViewDiv_onblur);
+                    $removeHandler(this._contentViewButton, 'click', this._contentViewClickDelegate);
+                    $removeHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate);
+                    $removeHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate);
+                }
+
+                if (this._popupDiv != null) {
+                    $removeHandler(this._btnCancel, 'click', this._imageCancelClickDelegate);
                 }
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
@@ -519,12 +558,16 @@
             _createEditableDiv: function () {
                 var id = this.get_id();
                 var height;
+                // need to make visible to get height if this is hidden under parent element
+                this._elementVisible(this._container, true);
                 if (this.get_displaySourceTab()) {
                     height = this._container.clientHeight - (this._topButtonContainer.clientHeight + 25);
                 }
                 else {
                     height = this._container.clientHeight - this._topButtonContainer.clientHeight;
                 }
+                // make it visible false for its early stage
+                this._elementVisible(this._container, false);
 
                 this._editableDiv = $common.createElementFromTemplate({
                     nodeName: 'div',
@@ -572,6 +615,7 @@
 
             _editableDiv_onblur: function () {
                 this._textbox._element.value = this._encodeHtml();
+                this._isFocusInEditableDiv = false;
                 if (this._oldContents != this._editableDiv.innerHTML) {
                     this._isDirty = true;
                     this._oldContents = this._editableDiv.innerHTML;
@@ -579,10 +623,19 @@
                 }
             },
 
+            _editableDiv_onfocus: function () {
+                this._isFocusInEditableDiv = false;
+            },
+
             _sourceViewDiv_onblur: function () {
                 if (this._oldContents != (this._sourceViewDiv.innerText || this._sourceViewDiv.textContent)) {
                     this._isDirty = true;
-                    this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
+                    if (this._sourceViewDiv.textContent != undefined) {
+                        this._editableDiv.innerHTML = this._sourceViewDiv.textContent;
+                    }
+                    else {
+                        this._editableDiv.innerHTML = this._sourceViewDiv.innerText;
+                    }
                     this._oldContents = this._editableDiv.innerHTML;
                     this._raiseEvent('change');
                 }
@@ -596,7 +649,12 @@
                 if (this._viewMode != 'content') {
                     $common.setVisible(this._topButtonContainer, true);
                     $common.setVisible(this._editableDiv, true);
-                    this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
+                    if (this._sourceViewDiv.textContent != undefined) {
+                        this._editableDiv.innerHTML = this._sourceViewDiv.textContent;
+                    }
+                    else {
+                        this._editableDiv.innerHTML = this._sourceViewDiv.innerText;
+                    }
                     this._oldContents = this._editableDiv.innerHTML;
                     $common.setVisible(this._sourceViewDiv, false);
                     this._viewMode = 'content';
@@ -619,6 +677,10 @@
                 }
             },
 
+            _btnCancel_click: function () {
+                this._popupBehavior.hide();
+            },
+
             _attributes: {
                 style: 'st_yle_',
                 size: 'si_ze_',
@@ -634,10 +696,7 @@
                 //Encode html tags
                 var isIE = Sys.Browser.agent == Sys.Browser.InternetExplorer;
                 var elements = this._editableDiv.getElementsByTagName('*');
-                var len = elements.length;
                 var element;
-                var key;
-                var value;
                 for (var i = 0; element = elements[i]; i++) {
                     try {
                         element.className = '';
@@ -806,6 +865,33 @@
                         document.execCommand(command.target.name, false, null);
                     }
                 }
+                else if (command.target.name == 'InsertImage') {
+                    // if focus in not at editable div then dom error occurs                                        
+                    if (!this._isFocusInEditableDiv) {
+                        this._editableDiv.focus();
+                    }
+
+                    this.saveSelection();
+
+                    var components = Sys.Application.getComponents();
+
+                    for (var i = 0; i < components.length; i++) {
+                        var component = components[i];
+                        if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component)) {
+                            if (component._popupBehavior._visible)
+                                return;
+                        }
+                    }
+
+                    this._elementVisible(this._popupDiv, true);
+                    this._popupBehavior.show();
+                    $common.setStyle(this._popupDiv, {
+                        position: 'fixed',
+                        top: '',
+                        left: '',
+                        opacity: '1'
+                    });
+                }
                 else {
                     document.execCommand(command.target.name, false, null);
                 }
@@ -832,35 +918,35 @@
             saveSelection: function () {
                 if (window.getSelection)//non IE Browsers
                 {
-                    this.savedRange = window.getSelection().getRangeAt(0);
+                    this._savedRange = window.getSelection().getRangeAt(0);
                 }
                 else if (document.selection)//IE
                 {
-                    this.savedRange = document.selection.createRange();
+                    this._savedRange = document.selection.createRange();
                 }
             },
 
             //Restore selected text
             restoreSelection: function () {
-                this.isInFocus = true;
+                this._isInFocus = true;
                 //document.getElementById("area").focus();
-                if (this.savedRange != null) {
+                if (this._savedRange != null) {
                     if (window.getSelection)//non IE and there is already a selection
                     {
                         var s = window.getSelection();
                         if (s.rangeCount > 0)
                             s.removeAllRanges();
-                        s.addRange(this.savedRange);
+                        s.addRange(this._savedRange);
                     }
                     else {
                         if (document.createRange)//non IE and no selection
                         {
-                            window.getSelection().addRange(this.savedRange);
+                            window.getSelection().addRange(this._savedRange);
                         }
                         else {
                             if (document.selection)//IE
                             {
-                                this.savedRange.select();
+                                this._savedRange.select();
                             }
                         }
                     }
@@ -887,7 +973,8 @@
                         obj.removeAttribute('displayChanged');
                     }
                     if (obj.getAttribute('visibleChanged')) {
-                        obj.style.display = 'hidden';
+                        // creating problem in IE8
+                        //obj.style.visibility = 'hidden';
                         obj.removeAttribute('visibleChanged');
                     }
                     this._elementVisible(obj.parentNode, false);
@@ -1001,6 +1088,51 @@
                 }
             }
             return false;
+        },
+
+        ajaxClientUploadComplete = function (sender, e) {
+            var htmlEditorExtender = null;
+            var components = Sys.Application.getComponents();
+
+            for (var i = 0; i < components.length; i++) {
+                var component = components[i];
+                if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component)) {
+                    if (component._popupBehavior._visible) {
+                        htmlEditorExtender = component;
+                        i = component.length;
+                    }
+                }
+            }
+
+            var postedUrl = e.get_postedUrl().replace('&amp;', '&');
+            if (htmlEditorExtender != null) {
+                htmlEditorExtender.restoreSelection();
+                if (document.selection && document.selection.createRange) {
+                    try {
+                        htmlEditorExtender._savedRange.pasteHTML('<img src=\'' + postedUrl + '\' />');
+                    }
+                    catch (Error) {
+                        var node = document.createElement("img");
+                        node.src = postedUrl;
+                        htmlEditorExtender._savedRange.insertNode(node);
+                    }
+                }
+                else {
+                    var node = document.createElement("img");
+                    node.src = postedUrl;
+                    htmlEditorExtender._savedRange.insertNode(node);
+                }
+
+                if (sender._filesInQueue.length == sender._currentQueueIndex + 1) {
+                    while (sender._filesInQueue.length >= 1) {
+                        sender._filesInQueue[0].removeNodeFrom(sender._queueContainer);
+                        Array.removeAt(sender._filesInQueue, 0)
+                    }
+                    sender._showFilesCount()
+                    sender._reset();
+                    htmlEditorExtender._popupBehavior.hide();
+                }
+            }
         }
 
     } // execute

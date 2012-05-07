@@ -3,6 +3,7 @@
     <siteMapNode>
         <siteMapNode url="~/Default.aspx" title="HOME" />
         <siteMapNode url="~/Accordion/Accordion.aspx" title="Accordion" />
+        <siteMapNode url="~/AjaxFileUpload/AjaxFileUpload.aspx" title="AjaxFileUpload" />
         <siteMapNode url="~/AlwaysVisibleControl/AlwaysVisibleControl.aspx" title="AlwaysVisibleControl" />
         <siteMapNode url="~/Animation/Animation.aspx" title="Animation" />
         <siteMapNode url="~/AsyncFileUpload/AsyncFileUpload.aspx" title="AsyncFileUpload" />

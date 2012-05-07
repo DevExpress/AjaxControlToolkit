@@ -76,3 +76,34 @@
 .ajax__html_editor_extender_content:active{ background-position:-920px -21px;}
 .ajax__html_editor_extender_source:active{ background-position:-943px -21px;}
 .ajax__html_editor_extender_separator{background:url(<%=WebResource("HtmlEditorExtender.Images.html-editor-buttons.png")%>) no-repeat -966px 0;display: block;float: left;border: none;width:13px;height:21px;}
+.popupDiv
+{
+	border-color: black; 
+	border: 1px solid #555555;
+    box-shadow: 0 4px 30px #000000;
+	overflow: auto; 
+	background-color: white;
+	width: 500px; 
+	height: 290px; 
+	position:fixed; 
+	left:50%; 
+	top: 50%; 
+	margin-left:-250px; 
+	margin-top:-145px;
+	padding: 10px;
+}
+.popupCancelButton
+{
+	border: 1px solid #BBBBBB;
+    color: #464646;
+    cursor: pointer;
+    line-height: 24px;
+    margin-top: 10px;
+    text-align: center;
+    width: 75px;
+}
+.popupCancelButton:hover
+{
+	border: 1px solid #666666;
+    color: #000000;
+}

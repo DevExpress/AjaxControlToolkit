@@ -103,6 +103,9 @@
     <Compile Include="Accordion\AccordionPane.cs" />
     <Compile Include="Accordion\AccordionPaneCollection.cs" />
     <Compile Include="Accordion\AutoSize.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadDesigner.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadEventArgs.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlDesigner.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlExtender.cs" />
     <Compile Include="AlwaysVisibleControl\HorizontalSide.cs" />
@@ -210,7 +213,6 @@
     <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollection.cs" />
     <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollectionEditor.cs" />
     <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtons.cs" />
-    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderDesigner.cs" />
     <Compile Include="HTMLEditor\DesignPanel.cs" />
     <Compile Include="HTMLEditor\DesignPanelEventHandler.cs" />
     <Compile Include="HTMLEditor\Editor.cs" />
@@ -406,6 +408,8 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AjaxFileUpload\AjaxFileUpload.css" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.pre.js" />
     <Content Include="BalloonPopup\BalloonPopup.ico" />
     <Content Include="BalloonPopup\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Cloud\BalloonPopup_resource.css" />

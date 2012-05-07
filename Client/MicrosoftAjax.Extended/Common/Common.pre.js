@@ -1267,6 +1267,13 @@
                 } else {
                     document.body.appendChild(element);
                 }
+            },
+
+            setText: function (element, text) {
+                if (document.all)
+                    element.innerText = text;
+                else
+                    element.textContent = text;
             }
         }
 
