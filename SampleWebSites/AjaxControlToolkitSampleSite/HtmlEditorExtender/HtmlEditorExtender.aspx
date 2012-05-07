@@ -3,17 +3,7 @@
     Theme="SampleSiteTheme" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">
-    <script>
-        function testChange(e) {
-
-        }
-
-        function beforeWindowUnload(e) {
-            alert(Object.getTypeName(e) + '- -' + this._isDirty);
-        }
-
-    </script>
+<asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">    
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <div class="demoarea">
         <div class="demoheading">
@@ -22,7 +12,7 @@
             <ContentTemplate>                                
                 <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10"
                     Text="Hello <b>world!</b>" /><br />
-                <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1" runat="server">
+                <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1" runat="server" DisplaySourceTab="true">
                 </ajaxToolkit:HtmlEditorExtender>
                 <br />
                 <br />
