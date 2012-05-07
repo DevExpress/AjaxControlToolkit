@@ -11,7 +11,6 @@ using System.Drawing.Design;
 using System.IO;
 using System.Reflection;
 using AjaxControlToolkit.Sanitizer;
-using System.Web.UI.HtmlControls;
 
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.js", "text/javascript")]
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.debug.js", "text/javascript")]
@@ -39,7 +38,6 @@ namespace AjaxControlToolkit
         internal const int ButtonHeightDef = 21;
         private HtmlEditorExtenderButtonCollection buttonList = null;
         private SanitizerProvider sanitizerProvider = null;
-
 
         public HtmlEditorExtender()
         {
@@ -104,6 +102,18 @@ namespace AjaxControlToolkit
                     buttonList = new HtmlEditorExtenderButtonCollection();
                 return buttonList;
             }
+        }
+
+        /// <summary>
+        /// Determines whether to display source view tab/button to see source view of the HtmlEditorExtender.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(false)]
+        [ClientPropertyName("displaySourceTab")]
+        public bool DisplaySourceTab
+        {
+            get { return GetPropertyValue("DisplaySourceTab", false); }
+            set { SetPropertyValue("DisplaySourceTab", value); }
         }
 
         /// <summary>
@@ -178,7 +188,6 @@ namespace AjaxControlToolkit
             TextBox txtBox = (TextBox)TargetControl;
             if (txtBox != null)
                 txtBox.Text = Decode(txtBox.Text);
-
         }
 
         /// <summary>
@@ -222,7 +231,7 @@ namespace AjaxControlToolkit
             buttonList.Add(new UnLink());
             //buttonList.Add(new FormatBlock());
             buttonList.Add(new RemoveFormat());
-            buttonList.Add(new InsertImage());
+            //buttonList.Add(new InsertImage());
             buttonList.Add(new SelectAll());
             buttonList.Add(new UnSelect());
             buttonList.Add(new Delete());
@@ -237,31 +246,6 @@ namespace AjaxControlToolkit
             buttonList.Add(new Outdent());
             buttonList.Add(new InsertHorizontalRule());
             buttonList.Add(new HorizontalSeparator());
-        }
-
-        protected override void OnPreRender(EventArgs e)
-        {
-            base.OnPreRender(e);
-
-            bool hasImageButton = false;
-            foreach (HtmlEditorExtenderButton button in buttonList)
-            {
-                if (button.CommandName == "InsertImage")
-                {
-                    hasImageButton = true;
-                }
-            }
-
-            if (hasImageButton)
-            {
-                HtmlGenericControl popupdiv = new HtmlGenericControl("div");
-                popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
-                popupdiv.Attributes.Add("style", "border-color: black; border-style: solid;");
-                AsyncFileUpload upload1 = new AsyncFileUpload();
-                upload1.Attributes.Add("Id", this.ClientID + "_asyncFileUpload");
-                popupdiv.Controls.Add(upload1);
-                this.Controls.Add(popupdiv);
-            }
         }
 
         public override void RenderControl(HtmlTextWriter output)

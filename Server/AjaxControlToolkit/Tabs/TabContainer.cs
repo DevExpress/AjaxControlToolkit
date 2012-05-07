@@ -94,7 +94,6 @@ namespace AjaxControlToolkit
 
         private int _activeTabIndex = -1;
         private int _cachedActiveTabIndex = -1;
-        private int _lastActiveTabIndex = -1;
         private bool _initialized;
         private bool _autoPostBack;
         private TabStripPlacement _tabStripPlacement;
@@ -607,7 +606,6 @@ namespace AjaxControlToolkit
             {
                 base.LoadControlState(p.First);
                 ActiveTabIndex = (int)p.Second;
-                _lastActiveTabIndex = ActiveTabIndex;
             }
             else
             {
@@ -812,7 +810,7 @@ namespace AjaxControlToolkit
         /// </summary>
         protected override void RaisePostDataChangedEvent()
         {
-            //OnActiveTabChanged(EventArgs.Empty);
+            OnActiveTabChanged(EventArgs.Empty);
         }
 
         private void EnsureActiveTab()
@@ -882,9 +880,9 @@ namespace AjaxControlToolkit
                 if (parseIndex != -1 && Int32.TryParse(eventArgument.Substring(parseIndex + 1), out parseIndex))
                 {
                     parseIndex = getServerActiveTabIndex(parseIndex);
-                    if (parseIndex != _lastActiveTabIndex)
+                    if (parseIndex != ActiveTabIndex)
                     {
-                        //ActiveTabIndex = parseIndex;
+                        ActiveTabIndex = parseIndex;
                         OnActiveTabChanged(EventArgs.Empty);
                     }
                 }
