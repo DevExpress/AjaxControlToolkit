@@ -11,6 +11,7 @@ using System.Drawing.Design;
 using System.IO;
 using System.Reflection;
 using AjaxControlToolkit.Sanitizer;
+using System.Web.UI.HtmlControls;
 
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.js", "text/javascript")]
 [assembly: WebResource("HtmlEditorExtender.HtmlEditorExtenderBehavior.debug.js", "text/javascript")]
@@ -177,6 +178,7 @@ namespace AjaxControlToolkit
             TextBox txtBox = (TextBox)TargetControl;
             if (txtBox != null)
                 txtBox.Text = Decode(txtBox.Text);
+
         }
 
         /// <summary>
@@ -235,6 +237,31 @@ namespace AjaxControlToolkit
             buttonList.Add(new Outdent());
             buttonList.Add(new InsertHorizontalRule());
             buttonList.Add(new HorizontalSeparator());
+        }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+
+            bool hasImageButton = false;
+            foreach (HtmlEditorExtenderButton button in buttonList)
+            {
+                if (button.CommandName == "InsertImage")
+                {
+                    hasImageButton = true;
+                }
+            }
+
+            if (hasImageButton)
+            {
+                HtmlGenericControl popupdiv = new HtmlGenericControl("div");
+                popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
+                popupdiv.Attributes.Add("style", "border-color: black; border-style: solid;");
+                AsyncFileUpload upload1 = new AsyncFileUpload();
+                upload1.Attributes.Add("Id", this.ClientID + "_asyncFileUpload");
+                popupdiv.Controls.Add(upload1);
+                this.Controls.Add(popupdiv);
+            }
         }
 
         public override void RenderControl(HtmlTextWriter output)

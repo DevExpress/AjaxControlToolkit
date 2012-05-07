@@ -27,10 +27,7 @@
             this.savedRange = null;
             this.isInFocus = null;
             this._oldContents = null;
-            this._newContents = null;
             this._isDirty = false;
-            this._viewMode = 'content';
-            this._displaySourceTab = false;
 
             this._ButtonWidth = 23;
             this._ButtonHeight = 21;
@@ -49,21 +46,7 @@
                 properties: {
                     id: id + '_ExtenderContentEditable',
                     style: {
-                        //height: '60%',
-                        overflow: 'auto',
-                        clear: 'both'
-                    },
-                    contentEditable: true
-                },
-                cssClasses: ['ajax__html_editor_extender_texteditor']
-            };
-
-            this._sourceViewTemplate = {
-                nodeName: 'div',
-                properties: {
-                    id: id + '_ExtenderSourceView',
-                    style: {
-                        height: '90%',
+                        height: '80%',
                         overflow: 'auto',
                         clear: 'both'
                     },
@@ -82,30 +65,6 @@
                     }
                 },
                 cssClasses: ['ajax__html_editor_extender_button']
-            };
-
-            this._buttonContentTemplate = {
-                nodeName: 'input',
-                properties: {
-                    type: 'button',
-                    style: {
-                        width: this._ButtonWidth + 'px',
-                        height: this._ButtonHeight + 'px'
-                    }
-                },
-                cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_content']
-            };
-
-            this._buttonSourceTemplate = {
-                nodeName: 'input',
-                properties: {
-                    type: 'button',
-                    style: {
-                        width: this._ButtonWidth + 'px',
-                        height: this._ButtonHeight + 'px'
-                    }
-                },
-                cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_source']
             };
 
             this._textboxTemplate = {
@@ -134,31 +93,18 @@
                 cssClasses: ['ajax__html_editor_extender_buttoncontainer']
             };
 
-            this._topButtonContainerTemplate2 = {
-                nodeName: 'div',
-                properties: {
-                    id: id + '_ExtenderButtonContainer2',
-                    style: {
-                        clear: 'both'
-                    }
-                },
-                cssClasses: ['ajax__html_editor_extender_buttoncontainer2']
-            };
-
             // variables
             this._container = null;
             this._toolbarButtons = null;
             this._editableDiv = null;
-            this._sourceViewDiv = null;
             this._topButtonContainer = null;
-            this._topButtonContainer2 = null;
             this._buttons = [];
             this._btnClickHandler = null;
             this._requested_buttons = new Array();
             this._colorPicker = null;
             this._txtBoxForColor = null;
-            this._contentViewButton = null;
-            this._sourceViewButton = null;
+            this._popupDiv = null;
+            this._popupBehavior = null;
 
             // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
             if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
@@ -170,18 +116,19 @@
         Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             initialize: function () {
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
-                HtmlEditorExtender_editableDivs[HtmlEditorExtender_editableDivs.length] = this;
+
+                this._popupDiv = $get(this.get_id() + '_popupDiv');
+                if (this._popupDiv != null) {
+                    this._elementVisible(this._popupDiv, false);
+                    this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { "id": this.get_id() + "_ImagePopupBehavior", "parentElement": this.get_element() }, null, null, this._popupDiv);
+                }
 
                 var idx = 0;
                 this._button_list = new Array();
                 this._createContainer();
                 this._createTopButtonContainer();
-                this._createButton();
                 this._createEditableDiv();
-                if (this.get_displaySourceTab()) {
-                    this._createSourceViewDiv();
-                    this._createTopButtonContainer2();
-                }
+                this._createButton();
 
                 // get form that contains textbox
                 var formElement = this._textbox._element.parentNode;
@@ -196,32 +143,17 @@
                 var delTextBox_onblur = Function.createDelegate(this, this._textBox_onblur);
                 var delEditableDiv_onblur = Function.createDelegate(this, this._editableDiv_onblur);
                 var btnClickHandler = Function.createDelegate(this, this._executeCommand);
-                if (this.get_displaySourceTab()) {
-                    var delContentView_click = Function.createDelegate(this, this._contentView_click);
-                    var delSourceView_click = Function.createDelegate(this, this._sourceView_click);
-                    var delSourceViewDiv_onblur = Function.createDelegate(this, this._sourceViewDiv_onblur);
-                }
 
                 // handlers                                
                 $addHandler(this._textbox._element, 'blur', delTextBox_onblur, true);
                 $addHandler(this._editableDiv, 'blur', delEditableDiv_onblur, true);
                 $addHandler(this._topButtonContainer, 'click', btnClickHandler);
-                if (this.get_displaySourceTab()) {
-                    $addHandler(this._contentViewButton, 'click', delContentView_click, true);
-                    $addHandler(this._sourceViewButton, 'click', delSourceView_click, true);
-                    $addHandler(this._sourceViewDiv, 'blur', delSourceViewDiv_onblur, true);
-                }
             },
 
             _dispose: function () {
                 $removeHandler(this._textbox._element, 'blur', delTextBox_onblur);
                 $removeHandler(this._editableDiv, 'blur', delEditableDiv_onblur);
                 $removeHandler(_topButtonContainer, 'click', btnClickHandler);
-                if (this.get_displaySourceTab()) {
-                    $removeHandler(this._contentViewButton, 'click', delContentView_click);
-                    $removeHandler(this._sourceViewButton, 'click', delSourceView_click);
-                    $removeHandler(this._sourceViewDiv, 'blur', delSourceViewDiv_onblur);
-                }
 
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
             },
@@ -517,57 +449,10 @@
             },
 
             _createEditableDiv: function () {
-                var id = this.get_id();
-                var height;
-                if (this.get_displaySourceTab()) {
-                    height = this._container.clientHeight - (this._topButtonContainer.clientHeight + 25);
-                }
-                else {
-                    height = this._container.clientHeight - this._topButtonContainer.clientHeight;
-                }
-
-                this._editableDiv = $common.createElementFromTemplate({
-                    nodeName: 'div',
-                    properties: {
-                        id: id + '_ExtenderContentEditable',
-                        style: {
-                            height: height + 'px',
-                            overflow: 'auto',
-                            clear: 'both'
-                        },
-                        contentEditable: true
-                    },
-                    cssClasses: ['ajax__html_editor_extender_texteditor']
-                }, this._container);
-
+                this._editableDiv = $common.createElementFromTemplate(this._editableTemplate, this._container);
                 this._editableDiv.innerHTML = this._textbox._element.value;
                 this._oldContents = this._editableDiv.innerHTML;
                 $common.setVisible(this._textbox._element, false);
-            },
-
-            _createTopButtonContainer2: function () {
-                this._topButtonContainer2 = $common.createElementFromTemplate(this._topButtonContainerTemplate2, this._container);
-                this._contentViewButton = $common.createElementFromTemplate(this._buttonContentTemplate, this._topButtonContainer2);
-                this._sourceViewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._topButtonContainer2);
-            },
-
-            _createSourceViewDiv: function () {
-                var id = this.get_id();
-                var height = this._container.clientHeight - 25;
-                this._sourceViewDiv = $common.createElementFromTemplate({
-                    nodeName: 'div',
-                    properties: {
-                        id: id + '_ExtenderSourceView',
-                        style: {
-                            height: height + 'px',
-                            overflow: 'auto',
-                            clear: 'both'
-                        },
-                        contentEditable: true
-                    },
-                    cssClasses: ['ajax__html_editor_extender_texteditor']
-                }, this._container);
-                $common.setVisible(this._sourceViewDiv, false);
             },
 
             _editableDiv_onblur: function () {
@@ -579,46 +464,9 @@
                 }
             },
 
-            _sourceViewDiv_onblur: function () {
-                if (this._oldContents != (this._sourceViewDiv.innerText || this._sourceViewDiv.textContent)) {
-                    this._isDirty = true;
-                    this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
-                    this._oldContents = this._editableDiv.innerHTML;
-                    this._raiseEvent('change');
-                }
-            },
-
             _textBox_onblur: function () {
                 this._editableDiv.innerHTML = this._textbox._element.value;
             },
-
-            _contentView_click: function () {
-                if (this._viewMode != 'content') {
-                    $common.setVisible(this._topButtonContainer, true);
-                    $common.setVisible(this._editableDiv, true);
-                    this._editableDiv.innerHTML = this._sourceViewDiv.innerText || this._sourceViewDiv.textContent;
-                    this._oldContents = this._editableDiv.innerHTML;
-                    $common.setVisible(this._sourceViewDiv, false);
-                    this._viewMode = 'content';
-                }
-            },
-
-            _sourceView_click: function () {
-                if (this._viewMode != 'source') {
-                    $common.setVisible(this._sourceViewDiv, true);
-                    if (this._sourceViewDiv.textContent != undefined) {
-                        this._sourceViewDiv.textContent = this._editableDiv.innerHTML;
-                    }
-                    else {
-                        this._sourceViewDiv.innerText = this._editableDiv.innerHTML;
-                    }
-                    this._oldContents = this._editableDiv.innerHTML;
-                    $common.setVisible(this._editableDiv, false);
-                    $common.setVisible(this._topButtonContainer, false);
-                    this._viewMode = 'source';
-                }
-            },
-
             _attributes: {
                 style: 'st_yle_',
                 size: 'si_ze_',
@@ -806,6 +654,13 @@
                         document.execCommand(command.target.name, false, null);
                     }
                 }
+                else if (command.target.name == 'InsertImage') {
+
+                    this._popupBehavior.set_x(100);
+                    this._popupBehavior.set_y(100);
+                    this._elementVisible(this._popupDiv, true);
+                    this._popupBehavior.show();
+                }
                 else {
                     document.execCommand(command.target.name, false, null);
                 }
@@ -941,35 +796,16 @@
                 }
             },
 
-            get_displaySourceTab: function () {
-                return this._displaySourceTab;
-            },
-
-            set_displaySourceTab: function (value) {
-                if (this._displaySourceTab != value) {
-                    this._displaySourceTab = value;
-                    this.raisePropertyChanged('DisplaySourceTab');
-                }
-            },
-
             add_change: function (handler) {
                 this.get_events().addHandler("change", handler);
             },
-
             remove_change: function (handler) {
                 this.get_events().removeHandler("change", handler);
-            },
-
-            get_isDirty: function () {
-                return this._isDirty;
             }
-
         };
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
         Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: 'HtmlEditorExtender', parameters: [{ name: 'ToolbarButtons', type: 'HtmlEditorExtenderButton[]'}] });
-
-        var HtmlEditorExtender_editableDivs = new Array();
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit = function () {
             /// <summary>
@@ -989,18 +825,6 @@
                 }
             }
             return result;
-        },
-
-        Sys.Extended.UI.HtmlEditorExtenderBehavior.IsDirty = function () {
-            var components = Sys.Application.getComponents();
-            for (var i = 0; i < components.length; i++) {
-                var component = components[i];
-                if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component)) {
-                    if (component._isDirty)
-                        return true;
-                }
-            }
-            return false;
         }
 
     } // execute
