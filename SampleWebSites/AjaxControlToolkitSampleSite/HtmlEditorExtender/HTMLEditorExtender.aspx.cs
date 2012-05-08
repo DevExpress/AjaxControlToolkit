@@ -10,11 +10,11 @@ public partial class HTMLEditorExtender : CommonPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        AjaxFileUpload ajaxFileUpload = htmlEditorExtender2.AjaxFileUpload;
-        if (ajaxFileUpload != null)
-        {
-            ajaxFileUpload.UploadComplete += new EventHandler<AjaxControlToolkit.AjaxFileUploadEventArgs>(ajaxFileUpload_OnUploadComplete);
-        }
+        //AjaxFileUpload ajaxFileUpload = htmlEditorExtender2.AjaxFileUpload;
+        //if (ajaxFileUpload != null)
+        //{
+        //    ajaxFileUpload.UploadComplete += new EventHandler<AjaxControlToolkit.AjaxFileUploadEventArgs>(ajaxFileUpload_OnUploadComplete);
+        //}
 
         if (Request.QueryString["preview"] == "1" && !string.IsNullOrEmpty(Request.QueryString["fileId"]))
         {
@@ -32,7 +32,7 @@ public partial class HTMLEditorExtender : CommonPage
         }
     }
 
-    void ajaxFileUpload_OnUploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
+    protected void ajaxFileUpload_OnUploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
     {
         if (e.ContentType.Contains("jpg") || e.ContentType.Contains("gif")
             || e.ContentType.Contains("png") || e.ContentType.Contains("jpeg"))
