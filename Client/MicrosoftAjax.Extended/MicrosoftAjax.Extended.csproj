@@ -26,7 +26,6 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
-    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,16 +83,10 @@
     <Content Include="Animation\AnimationBehavior.pre.js" />
     <Content Include="Animation\Animations.pre.js" />
     <Content Include="AutoComplete\AutoCompleteBehavior.pre.js" />
-    <Content Include="BalloonPopup\act_down_left.png" />
-    <Content Include="BalloonPopup\act_down_right.png" />
-    <Content Include="BalloonPopup\act_up_left.png" />
-    <Content Include="BalloonPopup\act_up_right.png" />
-    <Content Include="BalloonPopup\BalloonPopup.css" />
     <Content Include="BalloonPopup\BalloonPopupExtenderBehavior.pre.js" />
     <Content Include="BalloonPopup\Cloud\BalloonPopup.css" />
     <Content Include="BalloonPopup\Cloud\sprite.gif" />
     <Content Include="BalloonPopup\Cloud\sprite.png" />
-    <Content Include="BalloonPopup\corners-type2.gif" />
     <Content Include="BalloonPopup\Rectangle\BalloonPopup.css" />
     <Content Include="BalloonPopup\Rectangle\sprite.gif" />
     <Content Include="BalloonPopup\Rectangle\sprite.png" />

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AjaxControlToolkit {
+namespace AjaxControlToolkit
+{
     /// <summary>
     /// OnDemand behavior. Used by TabPanel and will only take effect when OnDemand = true on TabContainer
     /// </summary>
-    public enum OnDemandMode {
+    public enum OnDemandMode
+    {
         /// <summary>
         /// Turn off OnDemand feature
         /// </summary>

@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true"
+<%@ Page Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true"
     CodeFile="CustomEventsSample.aspx.cs" Inherits="HTMLEditorExtender" Title="HTMLEditorExtender Sample"
     Theme="SampleSiteTheme" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">
+<asp:Content ContentPlaceHolderID="SampleContent" runat="Server">
     <script>
         function onContentsChange() {
             alert('contents changed');

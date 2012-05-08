@@ -6,8 +6,7 @@ using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.ComponentModel;
 
-namespace AjaxControlToolkit
-{
+namespace AjaxControlToolkit {
     /// <summary>
     /// All toolbar buttons for HtmlEditorExtender will be derived from this class.
     /// </summary>
@@ -30,13 +29,11 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Bold class represents to bold tag
     /// </summary>
-    public class Bold : HtmlEditorExtenderButton
-    {
+    public class Bold : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Bold"; }
         }
     }
@@ -44,13 +41,11 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Italic class represents to italic tag
     /// </summary>
-    public class Italic : HtmlEditorExtenderButton
-    {
+    public class Italic : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Italic"; }
         }
     }
@@ -58,13 +53,11 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Underline class represents to underline tag
     /// </summary>
-    public class Underline : HtmlEditorExtenderButton
-    {
+    public class Underline : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Underline"; }
         }
     }
@@ -72,21 +65,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// StrikeThrough class represents to Strike Through tag
     /// </summary>
-    public class StrikeThrough : HtmlEditorExtenderButton
-    {
+    public class StrikeThrough : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "StrikeThrough"; }
         }
 
         /// <summary>
         /// Get tooltip associated to this button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Strike Through"; }
         }
     }
@@ -94,21 +84,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Subscript class represents to Subscript tag
     /// </summary>
-    public class Subscript : HtmlEditorExtenderButton
-    {
+    public class Subscript : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Subscript"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to Subscript button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Sub Script"; }
         }
     }
@@ -116,21 +103,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Superscript class represents to Superscript tag
     /// </summary>
-    public class Superscript : HtmlEditorExtenderButton
-    {
+    public class Superscript : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Superscript"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to Superscript button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Super Script"; }
         }
     }
@@ -138,21 +122,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// JustifyLeft class represents to JustifyLeft tag
     /// </summary>
-    public class JustifyLeft : HtmlEditorExtenderButton
-    {
+    public class JustifyLeft : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "JustifyLeft"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to JustifyLeft button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Justify Left"; }
         }
     }
@@ -160,21 +141,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// JustifyRight class represents to JustifyRight tag
     /// </summary>
-    public class JustifyRight : HtmlEditorExtenderButton
-    {
+    public class JustifyRight : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "JustifyRight"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to JustifyRight button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Justify Right"; }
         }
     }
@@ -182,21 +160,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// JustifyCenter class represents to JustifyCenter tag
     /// </summary>
-    public class JustifyCenter : HtmlEditorExtenderButton
-    {
+    public class JustifyCenter : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "JustifyCenter"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to JustifyCenter button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Justify Center"; }
         }
     }
@@ -204,21 +179,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// JustifyFull class represents to JustifyFull tag
     /// </summary>
-    public class JustifyFull : HtmlEditorExtenderButton
-    {
+    public class JustifyFull : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "JustifyFull"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to JustifyFull button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Justify Full"; }
         }
     }
@@ -226,21 +198,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// insertOrderedList class represents to OrderedList tag
     /// </summary>
-    public class InsertOrderedList : HtmlEditorExtenderButton
-    {
+    public class InsertOrderedList : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "insertOrderedList"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to OrderedList button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Insert Ordered List"; }
         }
     }
@@ -248,21 +217,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// insertUnOrderedList class represents to UnOrderedList tag
     /// </summary>
-    public class InsertUnorderedList : HtmlEditorExtenderButton
-    {
+    public class InsertUnorderedList : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "insertUnorderedList"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to UnOrderedList button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Insert Unordered List"; }
         }
     }
@@ -270,13 +236,11 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Undo class represents to undo action
     /// </summary>
-    public class Undo : HtmlEditorExtenderButton
-    {
+    public class Undo : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Undo"; }
         }
     }
@@ -284,57 +248,52 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Redo class represents to undo action
     /// </summary>
-    public class Redo : HtmlEditorExtenderButton
-    {
+    public class Redo : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Redo"; }
         }
     }
-
-    /// <summary>
-    /// CreateLink class represents to hyperlink tag
-    /// </summary>
-    public class CreateLink : HtmlEditorExtenderButton
-    {
+    
         /// <summary>
-        /// get name of command that will be passed to execCommand method 
+        /// CreateLink class represents to hyperlink tag
         /// </summary>
-        public override string CommandName
+        public class CreateLink : HtmlEditorExtenderButton
         {
-            get { return "createLink"; }
-        }
+            /// <summary>
+            /// get name of command that will be passed to execCommand method 
+            /// </summary>
+            public override string CommandName
+            {
+                get { return "createLink"; }
+            }
 
-        /// <summary>
-        /// Get tooltip assciated to CreateLink button
-        /// </summary>
-        public override string Tooltip
-        {
-            get { return "Create Link"; }
+            /// <summary>
+            /// Get tooltip assciated to CreateLink button
+            /// </summary>
+            public override string Tooltip
+            {
+                get { return "Create Link"; }
+            }
         }
-    }
-
+    
     /// <summary>
     /// Delete class represents to Delete button
     /// </summary>
-    public class Delete : HtmlEditorExtenderButton
-    {
+    public class Delete : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Delete"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to UnOrderedList button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Delete"; }
         }
     }
@@ -342,21 +301,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// SelectAll class represents to SelectAll action
     /// </summary>
-    public class SelectAll : HtmlEditorExtenderButton
-    {
+    public class SelectAll : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "SelectAll"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to SelectAll button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Select All"; }
         }
     }
@@ -364,65 +320,59 @@ namespace AjaxControlToolkit
     /// <summary>
     /// UnSelect class represents to UnSelect action
     /// </summary>
-    public class UnSelect : HtmlEditorExtenderButton
-    {
+    public class UnSelect : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "UnSelect"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to UnSelect button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "UnSelect"; }
         }
     }
-
-    /// <summary>
-    /// UnLink class represents to UnLink action
-    /// </summary>
-    public class UnLink : HtmlEditorExtenderButton
-    {
+    
         /// <summary>
-        /// get name of command that will be passed to execCommand method 
+        /// UnLink class represents to UnLink action
         /// </summary>
-        public override string CommandName
+        public class UnLink : HtmlEditorExtenderButton
         {
-            get { return "UnLink"; }
-        }
+            /// <summary>
+            /// get name of command that will be passed to execCommand method 
+            /// </summary>
+            public override string CommandName
+            {
+                get { return "UnLink"; }
+            }
 
-        /// <summary>
-        /// Get tooltip assciated to UnSelect button
-        /// </summary>
-        public override string Tooltip
-        {
-            get { return "UnLink"; }
+            /// <summary>
+            /// Get tooltip assciated to UnSelect button
+            /// </summary>
+            public override string Tooltip
+            {
+                get { return "UnLink"; }
+            }
         }
-    }
-
+    
     /// <summary>
     /// BackColor class represents to BackColor action
     /// </summary>
-    public class BackgroundColorSelector : HtmlEditorExtenderButton
-    {
+    public class BackgroundColorSelector : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "BackColor"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to BackColor button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Back Color"; }
         }
     }
@@ -430,21 +380,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Copy class represents to Copy action
     /// </summary>
-    public class Copy : HtmlEditorExtenderButton
-    {
+    public class Copy : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Copy"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to Copy button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Copy"; }
         }
     }
@@ -452,21 +399,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Cut class represents to Cut action
     /// </summary>
-    public class Cut : HtmlEditorExtenderButton
-    {
+    public class Cut : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Cut"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to Cut button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Cut"; }
         }
     }
@@ -474,21 +418,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Paste class represents to Copy action
     /// </summary>
-    public class Paste : HtmlEditorExtenderButton
-    {
+    public class Paste : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Paste"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to Paste button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Paste"; }
         }
     }
@@ -497,21 +438,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// FontName class represents to FontName action
     /// </summary>
-    public class FontNameSelector : HtmlEditorExtenderButton
-    {
+    public class FontNameSelector : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "FontName"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to FontName button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Font Name"; }
         }
     }
@@ -519,21 +457,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// FontSize class represents to FontSize action
     /// </summary>
-    public class FontSizeSelector : HtmlEditorExtenderButton
-    {
+    public class FontSizeSelector : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "FontSize"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to FontSize button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Font Size"; }
         }
     }
@@ -541,21 +476,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// ForeColor class represents to ForeColor action
     /// </summary>
-    public class ForeColorSelector : HtmlEditorExtenderButton
-    {
+    public class ForeColorSelector : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "ForeColor"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to ForeColor button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Fore Color"; }
         }
     }
@@ -563,21 +495,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Indent class represents to Indent action
     /// </summary>
-    public class Indent : HtmlEditorExtenderButton
-    {
+    public class Indent : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Indent"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to Indent button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Indent"; }
         }
     }
@@ -585,21 +514,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// InsertHorizontalRule class represents to InsertHorizontalRule action
     /// </summary>
-    public class InsertHorizontalRule : HtmlEditorExtenderButton
-    {
+    public class InsertHorizontalRule : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "InsertHorizontalRule"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to InsertHorizontalRule button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Insert Horizontal Rule"; }
         }
     }
@@ -607,21 +533,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// Outdent class represents to Outdent action
     /// </summary>
-    public class Outdent : HtmlEditorExtenderButton
-    {
+    public class Outdent : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "Outdent"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to Outdent button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Outdent"; }
         }
     }
@@ -629,21 +552,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// RemoveFormat class represents to RemoveFormat action
     /// </summary>
-    public class RemoveFormat : HtmlEditorExtenderButton
-    {
+    public class RemoveFormat : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "RemoveFormat"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to RemoveFormat button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Remove Format"; }
         }
     }
@@ -651,21 +571,18 @@ namespace AjaxControlToolkit
     /// <summary>
     /// HorizontalSeparator class represents to add HorizontalSeparator
     /// </summary>
-    public class HorizontalSeparator : HtmlEditorExtenderButton
-    {
+    public class HorizontalSeparator : HtmlEditorExtenderButton {
         /// <summary>
         /// get name of command that will be passed to execCommand method 
         /// </summary>
-        public override string CommandName
-        {
+        public override string CommandName {
             get { return "HorizontalSeparator"; }
         }
 
         /// <summary>
         /// Get tooltip assciated to Horizontal Separator button
         /// </summary>
-        public override string Tooltip
-        {
+        public override string Tooltip {
             get { return "Separator"; }
         }
     }

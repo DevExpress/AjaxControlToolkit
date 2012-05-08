@@ -31,7 +31,7 @@ $type = Sys.WebForms.PageRequestManager = function PageRequestManager() {
     this._scrollPosition = null;
     this._processingRequest = false;
     this._scriptDisposes = {};
-
+    
     // DevDiv Bugs 161922, 138251:
     // List of hidden fields that should be removed if an async update does not
     // explictly define it.
@@ -51,14 +51,14 @@ $type.prototype = {
     add_beginRequest: function PageRequestManager$add_beginRequest(handler) {
         /// <summary locid="E:J#Sys.WebForms.PageRequestManager.beginRequest">Adds a beginRequest event handler.</summary>
         //#if DEBUG
-        var e = Function._validateParams(arguments, [{ name: "handler", type: Function}]);
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         //#endif
         Sys.Observer.addEventHandler(this, "beginRequest", handler);
     },
     remove_beginRequest: function PageRequestManager$remove_beginRequest(handler) {
         //#if DEBUG
-        var e = Function._validateParams(arguments, [{ name: "handler", type: Function}]);
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         //#endif
         Sys.Observer.removeEventHandler(this, "beginRequest", handler);
@@ -67,14 +67,14 @@ $type.prototype = {
     add_endRequest: function PageRequestManager$add_endRequest(handler) {
         /// <summary locid="E:J#Sys.WebForms.PageRequestManager.endRequest">Adds a endRequest event handler.</summary>
         //#if DEBUG
-        var e = Function._validateParams(arguments, [{ name: "handler", type: Function}]);
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         //#endif
         Sys.Observer.addEventHandler(this, "endRequest", handler);
     },
     remove_endRequest: function PageRequestManager$remove_endRequest(handler) {
         //#if DEBUG
-        var e = Function._validateParams(arguments, [{ name: "handler", type: Function}]);
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         //#endif
         Sys.Observer.removeEventHandler(this, "endRequest", handler);
@@ -83,14 +83,14 @@ $type.prototype = {
     add_initializeRequest: function PageRequestManager$add_initializeRequest(handler) {
         /// <summary locid="E:J#Sys.WebForms.PageRequestManager.initializeRequest">Adds a initializeRequest event handler.</summary>
         //#if DEBUG
-        var e = Function._validateParams(arguments, [{ name: "handler", type: Function}]);
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         //#endif
         Sys.Observer.addEventHandler(this, "initializeRequest", handler);
     },
     remove_initializeRequest: function PageRequestManager$remove_initializeRequest(handler) {
         //#if DEBUG
-        var e = Function._validateParams(arguments, [{ name: "handler", type: Function}]);
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         //#endif
         Sys.Observer.removeEventHandler(this, "initializeRequest", handler);
@@ -99,14 +99,14 @@ $type.prototype = {
     add_pageLoaded: function PageRequestManager$add_pageLoaded(handler) {
         /// <summary locid="E:J#Sys.WebForms.PageRequestManager.pageLoaded">Adds a pageLoaded event handler.</summary>
         //#if DEBUG
-        var e = Function._validateParams(arguments, [{ name: "handler", type: Function}]);
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         //#endif
         Sys.Observer.addEventHandler(this, "pageLoaded", handler);
     },
     remove_pageLoaded: function PageRequestManager$remove_pageLoaded(handler) {
         //#if DEBUG
-        var e = Function._validateParams(arguments, [{ name: "handler", type: Function}]);
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         //#endif
         Sys.Observer.removeEventHandler(this, "pageLoaded", handler);
@@ -115,14 +115,14 @@ $type.prototype = {
     add_pageLoading: function PageRequestManager$add_pageLoading(handler) {
         /// <summary locid="E:J#Sys.WebForms.PageRequestManager.pageLoading">Adds a pageLoading event handler.</summary>
         //#if DEBUG
-        var e = Function._validateParams(arguments, [{ name: "handler", type: Function}]);
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         //#endif
         Sys.Observer.addEventHandler(this, "pageLoading", handler);
     },
     remove_pageLoading: function PageRequestManager$remove_pageLoading(handler) {
         //#if DEBUG
-        var e = Function._validateParams(arguments, [{ name: "handler", type: Function}]);
+        var e = Function._validateParams(arguments, [{name: "handler", type: Function}]);
         if (e) throw e;
         //#endif
         Sys.Observer.removeEventHandler(this, "pageLoading", handler);
@@ -145,15 +145,15 @@ $type.prototype = {
         /// <param name="validationGroup" type="String" mayBeNull="true" optional="true"></param>
         //#if DEBUG
         var e = Function._validateParams(arguments, [
-            { name: "updatePanelsToUpdate", type: Array, mayBeNull: true, optional: true, elementType: String },
-            { name: "eventTarget", type: String, mayBeNull: true, optional: true },
-            { name: "eventArgument", type: String, mayBeNull: true, optional: true },
-            { name: "causesValidation", type: Boolean, mayBeNull: true, optional: true },
-            { name: "validationGroup", type: String, mayBeNull: true, optional: true }
+            {name: "updatePanelsToUpdate", type: Array, mayBeNull: true, optional: true, elementType: String},
+            {name: "eventTarget", type: String, mayBeNull: true, optional: true},
+            {name: "eventArgument", type: String, mayBeNull: true, optional: true},
+            {name: "causesValidation", type: Boolean, mayBeNull: true, optional: true},
+            {name: "validationGroup", type: String, mayBeNull: true, optional: true}
         ]);
         if (e) throw e;
         //#endif
-        if (causesValidation && (typeof (Page_ClientValidate) === 'function') && !Page_ClientValidate(validationGroup || null)) {
+        if (causesValidation && (typeof(Page_ClientValidate) === 'function') && !Page_ClientValidate(validationGroup || null)) {
             return;
         }
         this._postBackSettings = this._createPostBackSettings(true, updatePanelsToUpdate, eventTarget);
@@ -164,7 +164,7 @@ $type.prototype = {
         this._additionalInput = null;
         this._onFormSubmit();
     },
-
+    
     _cancelPendingCallbacks: function PageRequestManager$_cancelPendingCallbacks() {
         // DevDiv Bugs 125825: To avoid EVENTVALIDATION corruption we must cancel pending callbacks when an async postback begins
         // to cancel callbacks, we run logic similar to WebForm_CallbackComplete,
@@ -187,7 +187,7 @@ $type.prototype = {
             }
         }
     },
-
+    
     _commitControls: function PageRequestManager$_commitControls(updatePanelData, asyncPostBackTimeout) {
         // DevDiv Bugs 154403:
         // commits context data parsed from a delta. This is called after an async response
@@ -204,11 +204,11 @@ $type.prototype = {
             this._postBackControlIDs = updatePanelData.postBackControlIDs;
             this._postBackControlClientIDs = updatePanelData.postBackControlClientIDs;
         }
-        if (typeof (asyncPostBackTimeout) !== 'undefined' && asyncPostBackTimeout !== null) {
+        if (typeof(asyncPostBackTimeout) !== 'undefined' && asyncPostBackTimeout !== null) {
             this._asyncPostBackTimeout = asyncPostBackTimeout * 1000;
         }
     },
-
+    
     _createHiddenField: function PageRequestManager$_createHiddenField(id, value) {
         // DevDiv Bugs 27075: Creates a hidden field via innerHTML to workaround a caching issue.
         var container, field = document.getElementById(id);
@@ -244,7 +244,7 @@ $type.prototype = {
     _createPageRequestManagerTimeoutError: function PageRequestManager$_createPageRequestManagerTimeoutError() {
         // Creates a PageRequestManagerTimeoutException representing a request that timed out.
         var displayMessage = "Sys.WebForms.PageRequestManagerTimeoutException: " + Sys.WebForms.Res.PRM_TimeoutError;
-        var e = Error.create(displayMessage, { name: 'Sys.WebForms.PageRequestManagerTimeoutException' });
+        var e = Error.create(displayMessage, {name: 'Sys.WebForms.PageRequestManagerTimeoutException'});
         e.popStackFrame();
         return e;
     },
@@ -264,7 +264,7 @@ $type.prototype = {
     _createPageRequestManagerParserError: function PageRequestManager$_createPageRequestManagerParserError(parserErrorMessage) {
         // Creates a PageRequestManagerParserErrorException representing a parser error that occurred while processing a response from the server.
         var displayMessage = "Sys.WebForms.PageRequestManagerParserErrorException: " + String.format(Sys.WebForms.Res.PRM_ParserError, parserErrorMessage);
-        var e = Error.create(displayMessage, { name: 'Sys.WebForms.PageRequestManagerParserErrorException' });
+        var e = Error.create(displayMessage, {name: 'Sys.WebForms.PageRequestManagerParserErrorException'});
         e.popStackFrame();
         return e;
     },
@@ -282,14 +282,14 @@ $type.prototype = {
     },
 
     _createPostBackSettings: function PageRequestManager$_createPostBackSettings(async, panelsToUpdate, asyncTarget, sourceElement) {
-        return { async: async, asyncTarget: asyncTarget, panelsToUpdate: panelsToUpdate, sourceElement: sourceElement };
+        return { async:async, asyncTarget: asyncTarget, panelsToUpdate: panelsToUpdate, sourceElement: sourceElement };
     },
 
     _convertToClientIDs: function PageRequestManager$_convertToClientIDs(source, destinationIDs, destinationClientIDs, version4) {
         if (source) {
             for (var i = 0, l = source.length; i < l; i += (version4 ? 2 : 1)) {
                 var uniqueID = source[i],
-                    clientID = (version4 ? source[i + 1] : "") || this._uniqueIDToClientID(uniqueID);
+                    clientID = (version4 ? source[i+1] : "") || this._uniqueIDToClientID(uniqueID);
                 Array.add(destinationIDs, uniqueID);
                 Array.add(destinationClientIDs, clientID);
             }
@@ -332,7 +332,7 @@ $type.prototype = {
         this._asyncPostBackTimeout = null;
         this._scrollPosition = null;
     },
-
+    
     _doCallback: function PageRequestManager$_doCallback(eventTarget, eventArgument, eventCallback, context, errorCallback, useAsync) {
         // DevDiv Bugs 125825: Do not allow callbacks to begin while an async postback is in progress to prevent EVENTVALIDATION corruption
         if (!this.get_isInAsyncPostBack()) {
@@ -345,7 +345,7 @@ $type.prototype = {
         this._additionalInput = null;
 
         var form = this._form;
-        if ((eventTarget === null) || (typeof (eventTarget) === "undefined") || (this._isCrossPost)) {
+        if ((eventTarget === null) || (typeof(eventTarget) === "undefined") || (this._isCrossPost)) {
             // Allow the default form submit to take place. Since it's a cross-page postback.
             // DevDiv 80942: we should fall to a full postback if event target is null or undefined
             this._postBackSettings = this._createPostBackSettings(false);
@@ -509,7 +509,7 @@ $type.prototype = {
         var endIndex = Math.min(text.length, location + 20);
         return text.substring(startIndex, endIndex);
     },
-
+    
     _fireDefaultButton: function PageRequestManager$_fireDefaultButton(event, target) {
         // This is a copy of the function WebForm_FireDefaultButton as defined in WebForms.js.
         // The purpose is to hook into the WebForm_FireDefaultButton call with the code commented in the middle.
@@ -519,10 +519,10 @@ $type.prototype = {
             if (!src || (src.tagName.toLowerCase() !== "textarea")) {
                 var defaultButton = document.getElementById(target);
 
-                if (defaultButton && (typeof (defaultButton.click) !== "undefined")) {
-
+                if (defaultButton && (typeof(defaultButton.click) !== "undefined")) {
+                    
                     // Beginning of new code...
-
+                    
                     // In all but FF this causes the form.onclick event to fire with the button as the event target.
                     // In FF the the form.onclick event has the current focus control as the target, which prevents the
                     // default button's server-side click event from firing. So we ensure the correct control is determined
@@ -539,12 +539,12 @@ $type.prototype = {
                         // form submission may or may not be occuring after this point
                         this._activeDefaultButton = null;
                     }
-
+                    
                     // ...End of new code
-
+                    
                     // cancel submission caused by hitting enter in the input control
                     event.cancelBubble = true;
-                    if (typeof (event.stopPropagation) === "function") {
+                    if (typeof(event.stopPropagation) === "function") {
                         event.stopPropagation();
                     }
                     return false;
@@ -604,7 +604,7 @@ $type.prototype = {
         if (refreshedIDs) {
             for (i = 0, l = refreshedIDs.length; i < l; i += (version4 ? 2 : 1)) {
                 uniqueID = refreshedIDs[i];
-                clientID = (version4 ? refreshedIDs[i + 1] : "") || this._uniqueIDToClientID(uniqueID);
+                clientID = (version4 ? refreshedIDs[i+1] : "") || this._uniqueIDToClientID(uniqueID);
                 Array.add(updated, document.getElementById(clientID));
             }
         }
@@ -652,7 +652,7 @@ $type.prototype = {
         // in panelsToRefresh = updated
         for (i = 0, l = refreshedIDs.length; i < l; i += (version4 ? 2 : 1)) {
             uniqueID = refreshedIDs[i];
-            clientID = (version4 ? refreshedIDs[i + 1] : "") || this._uniqueIDToClientID(uniqueID);
+            clientID = (version4 ? refreshedIDs[i+1] : "") || this._uniqueIDToClientID(uniqueID);
             Array.add(updated, document.getElementById(clientID));
         }
 
@@ -824,7 +824,7 @@ $type.prototype = {
         }
         return false;
     },
-
+    
     _onFormElementActive: function PageRequestManager$_onFormElementActive(element, offsetX, offsetY) {
         // element: the form element that is active
         // offsetX/Y: if the element is an image button, the coordinates of the click
@@ -923,7 +923,7 @@ $type.prototype = {
         for (i = 0; i < count; i++) {
             var element = form.elements[i];
             var name = element.name;
-            if (typeof (name) === "undefined" || (name === null) || (name.length === 0) || (name === this._scriptManagerID)) {
+            if (typeof(name) === "undefined" || (name === null) || (name.length === 0) || (name === this._scriptManagerID)) {
                 continue;
             }
 
@@ -972,7 +972,7 @@ $type.prototype = {
             formBody.append(this._additionalInput);
             this._additionalInput = null;
         }
-
+        
         var request = new Sys.Net.WebRequest();
         var action = form.action;
         if (Sys.Browser.agent === Sys.Browser.InternetExplorer) {
@@ -1017,7 +1017,7 @@ $type.prototype = {
             }
             return;
         }
-
+        
         if (eventArgs && eventArgs._updated) {
             // the initializeRequest event has changed the update panels to update
             panelsToUpdate = eventArgs.get_updatePanelsToUpdate();
@@ -1036,7 +1036,7 @@ $type.prototype = {
         eventArgs = new Sys.WebForms.BeginRequestEventArgs(request, this._postBackSettings.sourceElement,
             panelsToUpdate || this._postBackSettings.panelsToUpdate);
         Sys.Observer.raiseEvent(this, "beginRequest", eventArgs);
-
+        
         // DevDiv Bugs 125825: Cancel any pending callbacks when an async postback begins
         if (this._originalDoCallback) {
             this._cancelPendingCallbacks();
@@ -1086,12 +1086,12 @@ $type.prototype = {
 
         var data = this._parseDelta(sender);
         if (!data) return;
-
+        
         var i, l;
 
         if (data.asyncPostBackControlIDsNode && data.postBackControlIDsNode &&
             data.updatePanelIDsNode && data.panelsToRefreshNode && data.childUpdatePanelIDsNode) {
-
+            
             var oldUpdatePanelIDs = this._updatePanelIDs,
                 oldUpdatePanelClientIDs = this._updatePanelClientIDs;
             var childUpdatePanelIDsString = data.childUpdatePanelIDsNode.content;
@@ -1106,14 +1106,14 @@ $type.prototype = {
             // in the active document. We do this early so that we can later assume that
             // all referenced UpdatePanels exist.
             var v4 = data.version4;
-            for (i = 0, l = panelsToRefreshIDs.length; i < l; i += (v4 ? 2 : 1)) {
-                var panelClientID = (v4 ? panelsToRefreshIDs[i + 1] : "") || this._uniqueIDToClientID(panelsToRefreshIDs[i]);
+            for (i = 0, l = panelsToRefreshIDs.length; i < l; i+= (v4 ? 2 : 1)) {
+                var panelClientID = (v4 ? panelsToRefreshIDs[i+1] : "") || this._uniqueIDToClientID(panelsToRefreshIDs[i]);
                 if (!document.getElementById(panelClientID)) {
                     this._endPostBack(Error.invalidOperation(String.format(Sys.WebForms.Res.PRM_MissingPanel, panelClientID)), sender, data);
                     return;
                 }
             }
-
+            
             var updatePanelData = this._processUpdatePanelArrays(
                 updatePanelIDsArray,
                 asyncPostBackControlIDsArray,
@@ -1182,7 +1182,7 @@ $type.prototype = {
         // originally was, before the fix for 127756, where it was not possible to perform a post before the viewstate
         // update from a previous post was committed. Note that as always, a 2nd post still cancels the 1st if the
         // response from the 1st is not yet received.
-
+        
         // Read existing script elements (user code may have manually inserted a script element, this will ensure we know about those).
         // This is used to detect duplicates so we don't reload scripts that have already loaded.
         Sys._ScriptLoader.readLoadedScripts();
@@ -1195,7 +1195,7 @@ $type.prototype = {
         // First load ClientScriptIncludes
         var scriptLoader = Sys._ScriptLoader.getInstance();
         this._queueScripts(scriptLoader, data.scriptBlockNodes, true, false);
-
+        
         // Save context into a member so that we can later get it from the completion callback
         this._processingRequest = true;
 
@@ -1204,9 +1204,9 @@ $type.prototype = {
         scriptLoader.loadScripts(0,
             Function.createDelegate(this, Function.createCallback(this._scriptIncludesLoadComplete, data)),
             Function.createDelegate(this, Function.createCallback(this._scriptIncludesLoadFailed, data)),
-            null);
+            null);        
     },
-
+    
     _onWindowUnload: function PageRequestManager$_onWindowUnload(evt) {
         this.dispose();
     },
@@ -1223,7 +1223,7 @@ $type.prototype = {
     _pageLoadedInitialLoad: function PageRequestManager$_pageLoadedInitialLoad(evt) {
         this._pageLoaded(true, null);
     },
-
+    
     _parseDelta: function PageRequestManager$_parseDelta(executor) {
         // General format: length|type|id|content|
         var reply = executor.get_responseData();
@@ -1282,7 +1282,7 @@ $type.prototype = {
 
             replyIndex++;
 
-            Array.add(delta, { type: type, id: id, content: content });
+            Array.add(delta, {type: type, id: id, content: content});
         }
 
         // If there was a parser error, go into error mode
@@ -1384,7 +1384,7 @@ $type.prototype = {
                         anchor.click();
                         anchor.detachEvent("onclick", cancelBubble);
                         this._form.parentNode.removeChild(anchor);
-
+                        
                         function cancelBubble(e) {
                             e.cancelBubble = true;
                         }
@@ -1428,10 +1428,9 @@ $type.prototype = {
             asyncPostBackTimeoutNode: asyncPostBackTimeoutNode,
             childUpdatePanelIDsNode: childUpdatePanelIDsNode,
             panelsToRefreshNode: panelsToRefreshNode,
-            formActionNode: formActionNode
-        };
+            formActionNode: formActionNode };
     },
-
+    
     _processUpdatePanelArrays: function PageRequestManager$_processUpdatePanelArrays(updatePanelIDs, asyncPostBackControlIDs, postBackControlIDs, version4) {
         var newUpdatePanelIDs, newUpdatePanelClientIDs, newUpdatePanelHasChildrenAsTriggers;
         // DevDiv Bugs 154403:
@@ -1440,21 +1439,21 @@ $type.prototype = {
         // used in a temporary context before being committed to the PRM's instance
         // variables. _commitControls copies the neccessary arrays when the temporary
         // context can be committed (after all scripts have loaded).
-
+        
         if (updatePanelIDs) {
             // Parse the array that has the UniqueIDs and split the data out.
             // The array contains UniqueIDs with either a 't' or 'f' prefix
             // indicating whether the panel has ChildrenAsTriggers enabled.
             var l = updatePanelIDs.length,
                 m = version4 ? 2 : 1;
-            newUpdatePanelIDs = new Array(l / m);
-            newUpdatePanelClientIDs = new Array(l / m);
-            newUpdatePanelHasChildrenAsTriggers = new Array(l / m);
-
+            newUpdatePanelIDs = new Array(l/m);
+            newUpdatePanelClientIDs = new Array(l/m);
+            newUpdatePanelHasChildrenAsTriggers = new Array(l/m);
+            
             for (var i = 0, j = 0; i < l; i += m, j++) {
                 var ct,
                     uniqueID = updatePanelIDs[i],
-                    clientID = version4 ? updatePanelIDs[i + 1] : "";
+                    clientID = version4 ? updatePanelIDs[i+1] : "";
                 // UpdatePanel's ClientID may be set. If so, both the uniqueID and clientID are given
                 // otherwise only the uniqueID is given, which we can convert to a clientID
                 ct = (uniqueID.charAt(0) === 't');
@@ -1481,7 +1480,7 @@ $type.prototype = {
         var newPostBackControlIDs = [];
         var newPostBackControlClientIDs = [];
         this._convertToClientIDs(postBackControlIDs, newPostBackControlIDs, newPostBackControlClientIDs, version4);
-
+        
         return {
             updatePanelIDs: newUpdatePanelIDs,
             updatePanelClientIDs: newUpdatePanelClientIDs,
@@ -1492,7 +1491,7 @@ $type.prototype = {
             postBackControlClientIDs: newPostBackControlClientIDs
         };
     },
-
+    
     _queueScripts: function PageRequestManager$_queueScripts(scriptLoader, scriptBlockNodes, queueIncludes, queueBlocks) {
         for (var i = 0, l = scriptBlockNodes.length; i < l; i++) {
             var scriptBlockType = scriptBlockNodes[i].id;
@@ -1533,7 +1532,7 @@ $type.prototype = {
                     scriptLoader.queueScriptReference(scriptBlockNodes[i].content);
                     break;
             }
-        }
+        }        
     },
 
     _registerDisposeScript: function PageRequestManager$_registerDisposeScript(panelID, disposeScript) {
@@ -1544,7 +1543,7 @@ $type.prototype = {
             Array.add(this._scriptDisposes[panelID], disposeScript);
         }
     },
-
+    
     _scriptIncludesLoadComplete: function PageRequestManager$_scriptIncludesLoadComplete(scriptLoader, data) {
         // script includes have loaded, completing the asynchronous portion of the update
         // processing. At this point, it is not possible for another async post to begin
@@ -1559,7 +1558,7 @@ $type.prototype = {
         if (data.executor.get_webRequest() !== this._request) {
             return;
         }
-
+        
         // DevDiv Bugs 188564: Update may not have an async postback timeout node.
         this._commitControls(data.updatePanelData,
             data.asyncPostBackTimeoutNode ? data.asyncPostBackTimeoutNode.content : null);
@@ -1568,7 +1567,7 @@ $type.prototype = {
         if (data.formActionNode) {
             this._form.action = data.formActionNode.content;
         }
-
+        
         var i, l, node;
 
         // Update the rendering for each delta panel and dispose all the contents.
@@ -1610,12 +1609,12 @@ $type.prototype = {
             node = data.hiddenFieldNodes[i];
             this._createHiddenField(node.id, node.content);
         }
-
+        
         if (data.scriptsFailed) {
             // the script includes in the first step failed to load. Raise the error now that the DOM is updated.
             throw Sys._ScriptLoader._errorScriptLoadFailed(data.scriptsFailed.src, data.scriptsFailed.multipleCallbacks);
         }
-
+        
         // continue on to loading literal client script blocks, arrays, expandos, startup scripts, and onSubmitStatements (in that order)
 
         // Load literal script blocks
@@ -1645,7 +1644,7 @@ $type.prototype = {
         if (expandoScript.length) {
             scriptLoader.queueScriptBlock(expandoScript);
         }
-
+        
         this._queueScripts(scriptLoader, data.scriptStartupNodes, true, true);
 
         // Update onsubmit statements
@@ -1671,7 +1670,7 @@ $type.prototype = {
         // Do not add code after the call to loadScripts(). If you need to do extra
         // processing after scripts are loaded, do it in _scriptsLoadComplete.
     },
-
+    
     _scriptIncludesLoadFailed: function PageRequestManager$_scriptIncludesLoadFailed(scriptLoader, scriptElement, multipleCallbacks, data) {
         // called when script includes fail to load from _onFormSubmitComplete
         // save error details so we can raise the error later
@@ -1734,7 +1733,7 @@ $type.prototype = {
                 }
                 // If we found the focus target and it supports contentEditable then
                 // turn it off. Otherwise forget we ever tried to disable content editing.
-                if (focusTarget && (typeof (focusTarget.contentEditable) !== "undefined")) {
+                if (focusTarget && (typeof(focusTarget.contentEditable) !== "undefined")) {
                     oldContentEditableSetting = focusTarget.contentEditable;
                     focusTarget.contentEditable = false;
                 }
@@ -1761,13 +1760,13 @@ $type.prototype = {
         // Convert unique IDs to client IDs by replacing all '$' with '_'
         return uniqueID.replace(/\$/g, '_');
     },
-
+    
     _updateControls: function PageRequestManager$_updateControls(updatePanelIDs, asyncPostBackControlIDs, postBackControlIDs, asyncPostBackTimeout, version4) {
         this._commitControls(
             this._processUpdatePanelArrays(updatePanelIDs, asyncPostBackControlIDs, postBackControlIDs, version4),
             asyncPostBackTimeout);
     },
-
+    
     _updatePanel: function PageRequestManager$_updatePanel(updatePanelElement, rendering) {
         for (var updatePanelID in this._scriptDisposes) {
             if (this._elementContains(updatePanelElement, document.getElementById(updatePanelID))) {
@@ -1789,7 +1788,7 @@ $type.prototype = {
     },
 
     _validPosition: function PageRequestManager$_validPosition(position) {
-        return (typeof (position) !== "undefined") && (position !== null) && (position !== 0);
+        return (typeof(position) !== "undefined") && (position !== null) && (position !== 0);
     }
 }
 

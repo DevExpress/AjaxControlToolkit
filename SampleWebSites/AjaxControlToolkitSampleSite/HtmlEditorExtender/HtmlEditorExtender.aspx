@@ -3,7 +3,7 @@
     Theme="SampleSiteTheme" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">    
+<asp:Content ContentPlaceHolderID="SampleContent" runat="Server">    
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <div class="demoarea">
         <div class="demoheading">

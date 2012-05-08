@@ -6,11 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
 
-public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page
+public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page 
 {
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
+    protected void Page_Load(object sender, EventArgs e) {
 
         // check if postback came through AjaxFileUpload control
         if (AjaxFileUpload1.IsInFileUploadPostBack)
@@ -18,7 +17,7 @@ public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page
             // do for ajax file upload partial postback request
         }
         else
-        {
+        { 
             // do for normal page request
         }
 
@@ -51,6 +50,7 @@ public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page
         // Set PostedUrl to preview the uploaded file.         
         file.PostedUrl = string.Format("?preview=1&fileId={0}", file.FileId);
     }
-
+    
 }
+
 

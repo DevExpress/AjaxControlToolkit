@@ -26,7 +26,7 @@ using System.Diagnostics;
 
 [assembly: System.Web.UI.WebResource("Tabs.Tabs.js", "application/x-javascript")]
 [assembly: System.Web.UI.WebResource("Tabs.Tabs.debug.js", "application/x-javascript")]
-[assembly: WebResource("Tabs.Tabs_resource.css", "text/css", PerformSubstitution = true)]
+[assembly: WebResource("Tabs.Tabs_resource.css", "text/css", PerformSubstitution=true)]
 [assembly: WebResource("Tabs.tab-line.gif", "image/gif")]
 // horizontal top (default) images
 [assembly: WebResource("Tabs.tab.gif", "image/gif")]
@@ -239,7 +239,7 @@ namespace AjaxControlToolkit
             {
                 int i = ActiveTabIndex;
                 if (i < 0 || i >= Tabs.Count)
-                {
+                {              
                     return null;
                 }
                 EnsureActiveTab();
@@ -358,8 +358,8 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("autoPostBackId")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", MessageId = "Member", Justification = "Following ASP.NET naming conventions...")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value", Justification = "Required for serialization")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", MessageId = "Member", Justification="Following ASP.NET naming conventions...")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value", Justification="Required for serialization")]
         public new string UniqueID
         {
             get
@@ -388,10 +388,10 @@ namespace AjaxControlToolkit
         [Description("Change tab header placement vertically when value set to true")]
         [DefaultValue(false)]
         [Category("Appearance")]
-        public bool UseVerticalStripPlacement
-        {
-            get { return _useVerticalStripPlacement; }
-            set { _useVerticalStripPlacement = value; }
+        public bool UseVerticalStripPlacement 
+        { 
+            get { return _useVerticalStripPlacement; } 
+            set { _useVerticalStripPlacement=value ; } 
         }
 
         /// <summary>
@@ -403,13 +403,13 @@ namespace AjaxControlToolkit
         public Unit VerticalStripWidth
         {
             get { return _verticalStripWidth; }
-            set
+            set 
             {
                 if (!value.IsEmpty && value.Type != UnitType.Pixel)
                 {
                     throw new ArgumentOutOfRangeException("value", "VerticalStripWidth must be set in pixels only, or Empty.");
                 }
-                _verticalStripWidth = value;
+                _verticalStripWidth = value; 
             }
         }
 
@@ -631,7 +631,7 @@ namespace AjaxControlToolkit
                 return p;
             }
         }
-
+               
         /// <summary>
         /// Customize functionality to Add attributes at the time of rendering.
         /// </summary>
@@ -659,7 +659,7 @@ namespace AjaxControlToolkit
             //base.Render(writer);
             Page.VerifyRenderingInServerForm(this);
 
-            if (_tabStripPlacement == TabStripPlacement.Top
+            if (_tabStripPlacement == TabStripPlacement.Top 
                 || _tabStripPlacement == TabStripPlacement.TopRight
                 || (_tabStripPlacement == TabStripPlacement.Bottom && _useVerticalStripPlacement)
                 || (_tabStripPlacement == TabStripPlacement.BottomRight && _useVerticalStripPlacement)
@@ -688,7 +688,7 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="writer">HtmlTextWriter object</param>
         protected virtual void RenderHeader(HtmlTextWriter writer)
-        {
+        {            
             writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_header");
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_header" + GetSuffixTabStripPlacementCss());
             if (_tabStripPlacement == TabStripPlacement.BottomRight ||
@@ -696,7 +696,7 @@ namespace AjaxControlToolkit
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Direction, "rtl");
 
             if (_useVerticalStripPlacement)
-            {
+            {                
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
                 if (_tabStripPlacement == TabStripPlacement.Bottom || _tabStripPlacement == TabStripPlacement.Top)
                 {
@@ -711,11 +711,11 @@ namespace AjaxControlToolkit
 
             writer.RenderBeginTag(HtmlTextWriterTag.Div);
 
-            if (_tabStripPlacement == TabStripPlacement.Bottom || _tabStripPlacement == TabStripPlacement.BottomRight)
+            if (_tabStripPlacement == TabStripPlacement.Bottom || _tabStripPlacement == TabStripPlacement.BottomRight) 
                 RenderSpannerForVerticalTabs(writer);
 
             if (!_useVerticalStripPlacement &&
-                (_tabStripPlacement == TabStripPlacement.BottomRight
+                (_tabStripPlacement == TabStripPlacement.BottomRight 
                 || _tabStripPlacement == TabStripPlacement.TopRight))
             {
                 // reverse tab order placement
@@ -745,7 +745,7 @@ namespace AjaxControlToolkit
 
             writer.RenderEndTag();
         }
-
+                
         private void RenderSpannerForVerticalTabs(HtmlTextWriter writer)
         {
             if (_useVerticalStripPlacement)
@@ -774,8 +774,7 @@ namespace AjaxControlToolkit
                         tabStripPlacementCss += "right";
                         break;
                 }
-            }
-            else
+            } else
             {
                 switch (_tabStripPlacement)
                 {
@@ -783,7 +782,7 @@ namespace AjaxControlToolkit
                     case TabStripPlacement.BottomRight:
                         tabStripPlacementCss = "_bottom";
                         break;
-                }
+                }                
             }
             return tabStripPlacementCss;
         }
@@ -833,7 +832,7 @@ namespace AjaxControlToolkit
             }
         }
 
-        #endregion
+        #endregion       
 
         #region [ TabContainerStyle ]
 
@@ -868,7 +867,7 @@ namespace AjaxControlToolkit
 
         #region IPostBackEventHandler Members
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification = "Called by ASP.NET infrastructure")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification="Called by ASP.NET infrastructure")]
         void IPostBackEventHandler.RaisePostBackEvent(string eventArgument)
         {
             if (eventArgument.StartsWith("activeTabChanged", StringComparison.Ordinal))
