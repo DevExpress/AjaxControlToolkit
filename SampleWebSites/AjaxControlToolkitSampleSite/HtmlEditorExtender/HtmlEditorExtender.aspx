@@ -148,6 +148,14 @@
             &lt;/Toolbar&gt;</em>
         &lt;/ajaxToolkit:HtmlEditorExtender&gt;
             </pre>
+            <b>Events</b>
+        <ul>
+            <li><strong>ImageUploadComplete</strong> - Raised on the server when an image is uploaded
+                successfully. In this event an instance of AjaxFileUploadEventArgs is passed in the 
+                argument that contains file name, size and content type.</li>
+        </ul>
+        <br />
+        <b>Properties</b>
         <ul>
             <li><strong>TargetControlId</strong> - ID of textbox to extend with htmlEditor.</li>
             <li><strong>Toolbar</strong> - This provides facility to customize toolbar as per requirement.

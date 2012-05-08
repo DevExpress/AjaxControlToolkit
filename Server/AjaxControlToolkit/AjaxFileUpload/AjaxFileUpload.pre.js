@@ -145,7 +145,6 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         Sys.Extended.UI.AjaxFileUpload.callBaseMethod(this, "dispose");
     },
 
-
     // functions related to file upload for modern browsers
     _html5OnFileDropped: function (event) {
         event.stopPropagation();
@@ -287,7 +286,6 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         this._inputFileElement.style.zIndex = 0;
         $common.setElementOpacity(this._inputFileElement, 0);
         this._attachFileInputHandlers(this._inputFileElement, true);
-
     },
 
     _uploadInput_complete: function (eventArgs) {
@@ -384,7 +382,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         }
     },
 
-    // common functions for file upload for modern/older browsers    
+    // common functions for file upload for modern/older browsers
     _onFileSelected: function (evt) {
         if (!this._isFileApiSupports) {
             var fileType = this._inputFileElement.value;
@@ -392,6 +390,9 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
             if (this._validateFileType(fileType)) {
                 this._addToQueue(this._inputFileElement);
                 this._createInputFileElement();
+                if (this.get_maximumNumberOfFiles() != 0 && this._filesInQueue.length >= this.get_maximumNumberOfFiles()) {
+                    this._inputFileElement.disabled = 'disabled';
+                }
             }
         }
         else {
@@ -492,7 +493,6 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
                 || !frameDocument.body || frameDocument.body.innerHTML == null
                 || frameDocument.body.innerHTML == '')
                 return;
-
             if (!this._isCancelUpload) {
                 var resultString = frameDocument.body.innerHTML;
                 resultString = resultString.substring(resultString.indexOf('{"FileId'));
@@ -587,9 +587,6 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
                 if (this._isFileApiSupports) {
                     this._html5DropZone.disabled = 'disabled';
                     this._html5InputFile.disabled = 'disabled';
-                }
-                else {
-                    this._inputFileElement.disabled = 'disabled';
                 }
             }
         }
