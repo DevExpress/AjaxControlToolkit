@@ -98,24 +98,32 @@
             the latest features of HTML5 -- such as Microsoft Internet Explorer 10, Mozilla
             Firefox 9, or Google Chrome 17 -- then the AjaxFileUpload supports displaying file
             upload progress. The control displays a progress bar as the file is being uploaded.
+        </p>   
             <br />
+        <p>
             If a browser does not support the HTML5 File API (for example, Internet Explorer
             9) then upload progress is not displayed and a throbber image is displayed instead.
             In other words, a busy wait image is displayed instead of actual progress.
+        </p>
             <br />
+        <p>
             The AjaxFileUpload control also supports a drag-and-drop interface. You can add
             multiple files to the AjaxFileUpload upload queue by dragging the files onto the
             AjaxFileUpload control on a page. Alternatively, you can select multiple files to
             upload by using the SHIFT key or CTRL key when selecting files with the file upload
             dialog. These features are not supported by older browsers.
+        </p>
             <br />
+        <p>
             By taking advantage of the AllowedFileTypes property, you can restrict the types
             of files which can be uploaded with the AjaxFileUpload control. For example, you
             can prevent any file except image files (files with the extensions jpeg, png, or
             gif) from being uploaded. By taking advantage of the MaximumNumberOfFiles property,
             you can limit the number of files which can be uploaded with the control. For example,
             you can prevent a user from uploading more than 5 files.
+        </p>
             <br />
+        <p>
             When a file is uploaded, the control's UploadComplete event is raised. By creating
             an UploadComplete event handler, you can store the uploaded file anywhere that you
             please including the file system, a database, or session state. Before you can save
