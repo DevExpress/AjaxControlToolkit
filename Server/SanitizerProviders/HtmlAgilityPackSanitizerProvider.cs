@@ -33,12 +33,12 @@ namespace AjaxControlToolkit.Sanitizer
             }
         }
 
-        public override string GetSafeHtmlFragment(string htmlFragment)
+        public override string GetSafeHtmlFragment(string htmlFragment, Dictionary<string, string[]> elementWhiteList, Dictionary<string, string[]> attributeWhiteList)
         {
-            return SanitizeHtml(htmlFragment);
+            return SanitizeHtml(htmlFragment, elementWhiteList, attributeWhiteList);
         }
 
-        private string SanitizeHtml(string htmlText)
+        private string SanitizeHtml(string htmlText, Dictionary<string, string[]> elementWhiteList, Dictionary<string, string[]> attributeWhiteList)
         {
             // Create Html document
             HtmlDocument html = new HtmlDocument();
@@ -50,10 +50,9 @@ namespace AjaxControlToolkit.Sanitizer
             if (html == null)
                 return string.Empty;
 
-            HtmlNode allNodes = html.DocumentNode;
-            WhiteList whiteList = new WhiteList();
-            Dictionary<string, string[]> validHtmlTags = whiteList.TagList;
-            Dictionary<string, string[]> validAttributes = whiteList.AttributeList;
+            HtmlNode allNodes = html.DocumentNode;            
+            Dictionary<string, string[]> validHtmlTags = elementWhiteList;
+            Dictionary<string, string[]> validAttributes = attributeWhiteList;
             string[] tagWhiteList = (from kv in validHtmlTags
                                      select kv.Key).ToArray();
 
@@ -124,252 +123,283 @@ namespace AjaxControlToolkit.Sanitizer
         {
 
             // check attribute value
-            IEnumerable<KeyValuePair<string, string[]>> attKeyValue = (from att in validAttributes
-                                                                       where att.Key == attribute.Name
-                                                                       select att).ToArray();
-
-            var isMatched = false;
+            //IEnumerable<KeyValuePair<string, string[]>> attKeyValue = (from att in validAttributes
+            //                                                           where att.Key == attribute.Name
+            //                                                           select att).ToArray();
+                        
             switch (attribute.Name.ToLower())
             {
                 case "style":
-                    string[] nestedAttributes = attKeyValue.FirstOrDefault().Value;
-                    foreach (string nestedAttribute in nestedAttributes)
-                    {
-                        if (attribute.Value.ToLower().Contains(nestedAttribute.ToLower()))
-                        {
-                            string lastPart;
-                            string firstPart = attribute.Value.Substring(0, attribute.Value.ToLower().IndexOf(nestedAttribute.ToLower()));
-                            string attValue = attribute.Value.Substring(attribute.Value.ToLower().IndexOf(nestedAttribute.ToLower()));
-                            firstPart += attValue.Substring(0, attValue.IndexOf(":"));
-                            attValue = attValue.Substring(attValue.IndexOf(":") + 1).Trim();
-                            
-                            switch (nestedAttribute.ToLower())
-                            {
-                                case "background-color":
-                                    if (attValue.IndexOf(");") > 0)
-                                    {
-                                        lastPart = attValue.Substring(attValue.IndexOf(");"));
-                                        attValue = attValue.Substring(0, attValue.IndexOf(");"));
-                                    }
-                                    else
-                                    {
-                                        lastPart = attValue.Substring(7);
-                                        attValue = attValue.Substring(0, 7);
-                                    }
-
-                                    if (!IsValidColor(attValue))
-                                        attribute.Value = firstPart + lastPart;
-                                    break;
-                                case "margin":
-                                case "margin-right":
-                                case "margin-left":
-                                case "margin-top":
-                                case "margin-bottom":
-                                case "padding":
-                                    lastPart = attValue.Substring(attValue.IndexOf("px"));
-                                    attValue = attValue.Substring(0, attValue.IndexOf("px")).Trim();
-                                    string[] arrValues = attValue.Split(" ".ToCharArray());
-                                    attValue = "";
-                                    foreach (string arrVal in arrValues)
-                                    {
-                                        attValue += arrVal.Trim();
-                                    }
-                                    int marginVal;
-                                    if (!int.TryParse(attValue, out marginVal))
-                                        attribute.Value = firstPart + lastPart;
-                                    break;
-                                case "border":
-                                    lastPart = attValue.Substring(attValue.IndexOf(";"));
-                                    attValue = attValue.Substring(0, attValue.IndexOf(";")).Trim();
-                                    if (attValue.ToLower() != "none")
-                                        attribute.Value = firstPart + lastPart;
-                                    break;
-                                case "text-align":
-                                    lastPart = attValue.Substring(attValue.IndexOf(";"));
-                                    attValue = attValue.Substring(0, attValue.IndexOf(";")).Trim();
-                                    // get possible attribute values
-                                    attKeyValue = (from att in validAttributes
-                                                   where att.Key == "align"
-                                                   select att).ToArray();
-
-                                    isMatched = false;
-                                    foreach (string arrVal in attKeyValue.FirstOrDefault().Value)
-                                    {
-                                        if (attValue == arrVal)
-                                            isMatched = true;
-                                    }
-
-                                    if (!isMatched)
-                                        attribute.Value = firstPart + lastPart;
-                                    break;
-                            }
-                        }
-                    }
+                    attribute.Value = attribute.Value.Replace("script", "");
+                    attribute.Value = attribute.Value.Replace("javascript", "");
+                    attribute.Value = HttpUtility.HtmlEncode(attribute.Value);
                     break;
                 case "align":
                 case "dir":
                 case "size":
-                    attKeyValue = (from att in validAttributes
-                                   where att.Key == attribute.Name
-                                   select att).ToArray();
-
-                    isMatched = false;
-                    foreach (string arrVal in attKeyValue.FirstOrDefault().Value)
-                    {
-                        if (attribute.Value.ToLower() == arrVal.ToLower())
-                            isMatched = true;
-                    }
-                    if (!isMatched)
-                        attribute.Value = "";
-                    break;
                 case "face":
-                    attKeyValue = (from att in validAttributes
-                                   where att.Key == attribute.Name
-                                   select att).ToArray();
-
-                    isMatched = false;
-                    foreach (string arrVal in attKeyValue.FirstOrDefault().Value)
-                    {
-                        if (attribute.Value.ToLower().Contains(arrVal.ToLower()))
-                            isMatched = true;
-                    }
-                    if (!isMatched)
-                        attribute.Value = "";
-                    break;
-                case "color":
-                    if (!IsValidColor(attribute.Value))
-                        attribute.Value = "";
-                    break;
-                case "width":
-                    if (!IsValidWidth(attribute.Value))
-                        attribute.Value = "";
+                case "color":                    
+                        attribute.Value = HttpUtility.HtmlEncode(attribute.Value);
                     break;
                 case "href":
                 case "src":
                     //attribute.Value = HttpUtility.UrlEncode(attribute.Value);
+                    if (!attribute.Value.StartsWith("http://") || attribute.Value.StartsWith("/"))
+                        attribute.Value = "";
                     break;
             }
         }
+
+        //private void CleanAttributeValues(Dictionary<string, string[]> validAttributes, HtmlAttribute attribute)
+        //{
+
+        //    // check attribute value
+        //    IEnumerable<KeyValuePair<string, string[]>> attKeyValue = (from att in validAttributes
+        //                                                               where att.Key == attribute.Name
+        //                                                               select att).ToArray();
+
+        //    var isMatched = false;
+        //    switch (attribute.Name.ToLower())
+        //    {
+        //        case "style":
+        //            string[] nestedAttributes = attKeyValue.FirstOrDefault().Value;
+        //            foreach (string nestedAttribute in nestedAttributes)
+        //            {
+        //                if (attribute.Value.ToLower().Contains(nestedAttribute.ToLower()))
+        //                {
+        //                    string lastPart;
+        //                    string firstPart = attribute.Value.Substring(0, attribute.Value.ToLower().IndexOf(nestedAttribute.ToLower()));
+        //                    string attValue = attribute.Value.Substring(attribute.Value.ToLower().IndexOf(nestedAttribute.ToLower()));
+        //                    firstPart += attValue.Substring(0, attValue.IndexOf(":"));
+        //                    attValue = attValue.Substring(attValue.IndexOf(":") + 1).Trim();
+                            
+        //                    switch (nestedAttribute.ToLower())
+        //                    {
+        //                        case "background-color":
+        //                            if (attValue.IndexOf(");") > 0)
+        //                            {
+        //                                lastPart = attValue.Substring(attValue.IndexOf(");"));
+        //                                attValue = attValue.Substring(0, attValue.IndexOf(");"));
+        //                            }
+        //                            else
+        //                            {
+        //                                lastPart = attValue.Substring(7);
+        //                                attValue = attValue.Substring(0, 7);
+        //                            }
+
+        //                            if (!IsValidColor(attValue))
+        //                                attribute.Value = firstPart + lastPart;
+        //                            break;
+        //                        case "margin":
+        //                        case "margin-right":
+        //                        case "margin-left":
+        //                        case "margin-top":
+        //                        case "margin-bottom":
+        //                        case "padding":
+        //                            lastPart = attValue.Substring(attValue.IndexOf("px"));
+        //                            attValue = attValue.Substring(0, attValue.IndexOf("px")).Trim();
+        //                            string[] arrValues = attValue.Split(" ".ToCharArray());
+        //                            attValue = "";
+        //                            foreach (string arrVal in arrValues)
+        //                            {
+        //                                attValue += arrVal.Trim();
+        //                            }
+        //                            int marginVal;
+        //                            if (!int.TryParse(attValue, out marginVal))
+        //                                attribute.Value = firstPart + lastPart;
+        //                            break;
+        //                        case "border":
+        //                            lastPart = attValue.Substring(attValue.IndexOf(";"));
+        //                            attValue = attValue.Substring(0, attValue.IndexOf(";")).Trim();
+        //                            if (attValue.ToLower() != "none")
+        //                                attribute.Value = firstPart + lastPart;
+        //                            break;
+        //                        case "text-align":
+        //                            lastPart = attValue.Substring(attValue.IndexOf(";"));
+        //                            attValue = attValue.Substring(0, attValue.IndexOf(";")).Trim();
+        //                            // get possible attribute values
+        //                            attKeyValue = (from att in validAttributes
+        //                                           where att.Key == "align"
+        //                                           select att).ToArray();
+
+        //                            isMatched = false;
+        //                            foreach (string arrVal in attKeyValue.FirstOrDefault().Value)
+        //                            {
+        //                                if (attValue == arrVal)
+        //                                    isMatched = true;
+        //                            }
+
+        //                            if (!isMatched)
+        //                                attribute.Value = firstPart + lastPart;
+        //                            break;
+        //                    }
+        //                }
+        //            }
+        //            break;
+        //        case "align":
+        //        case "dir":
+        //        case "size":
+        //            attKeyValue = (from att in validAttributes
+        //                           where att.Key == attribute.Name
+        //                           select att).ToArray();
+
+        //            isMatched = false;
+        //            foreach (string arrVal in attKeyValue.FirstOrDefault().Value)
+        //            {
+        //                if (attribute.Value.ToLower() == arrVal.ToLower())
+        //                    isMatched = true;
+        //            }
+        //            if (!isMatched)
+        //                attribute.Value = "";
+        //            break;
+        //        case "face":
+        //            attKeyValue = (from att in validAttributes
+        //                           where att.Key == attribute.Name
+        //                           select att).ToArray();
+
+        //            isMatched = false;
+        //            foreach (string arrVal in attKeyValue.FirstOrDefault().Value)
+        //            {
+        //                if (attribute.Value.ToLower().Contains(arrVal.ToLower()))
+        //                    isMatched = true;
+        //            }
+        //            if (!isMatched)
+        //                attribute.Value = "";
+        //            break;
+        //        case "color":
+        //            if (!IsValidColor(attribute.Value))
+        //                attribute.Value = "";
+        //            break;
+        //        case "width":
+        //            if (!IsValidWidth(attribute.Value))
+        //                attribute.Value = "";
+        //            break;
+        //        case "href":
+        //        case "src":
+        //            //attribute.Value = HttpUtility.UrlEncode(attribute.Value);
+        //            break;
+        //    }
+        //}
 
         /// <summary>
         /// Checks if agrument value represents to a valid color.
         /// </summary>
         /// <param name="colorValue">#hash or argb value.</param>
         /// <returns>If valid color then true else false.</returns>
-        private bool IsValidColor(string colorValue)
-        {
-            try
-            {
-                if (colorValue.StartsWith("#"))
-                {
-                    Color validColor = ColorTranslator.FromHtml(colorValue);
-                    return true;
-                }
-                else if (colorValue.StartsWith("rgb"))
-                {
-                    colorValue = colorValue.Substring(colorValue.IndexOf("(") + 1);
-                    colorValue = colorValue.Substring(0, colorValue.LastIndexOf(")"));
-                    string[] rgbValues = colorValue.Split(",".ToCharArray());
-                    Color validColor = Color.FromArgb(int.Parse(rgbValues[0]), int.Parse(rgbValues[1]), int.Parse(rgbValues[2]));
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-            return false;
-        }
+        //private bool IsValidColor(string colorValue)
+        //{
+        //    try
+        //    {
+        //        if (colorValue.StartsWith("#"))
+        //        {
+        //            Color validColor = ColorTranslator.FromHtml(colorValue);
+        //            return true;
+        //        }
+        //        else if (colorValue.StartsWith("rgb"))
+        //        {
+        //            colorValue = colorValue.Substring(colorValue.IndexOf("(") + 1);
+        //            colorValue = colorValue.Substring(0, colorValue.LastIndexOf(")"));
+        //            string[] rgbValues = colorValue.Split(",".ToCharArray());
+        //            Color validColor = Color.FromArgb(int.Parse(rgbValues[0]), int.Parse(rgbValues[1]), int.Parse(rgbValues[2]));
+        //            return true;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //    return false;
+        //}
 
         /// <summary>
         /// Checks if agrument value represents to a valid width.
         /// </summary>
         /// <param name="widthVal">width value.</param>
         /// <returns>If valid width then true else false.</returns>
-        private bool IsValidWidth(string widthVal)
-        {
-            widthVal = widthVal.Replace("px", "").Replace("%", "");
-            try
-            {
-                decimal validWidth = decimal.Parse(widthVal.Trim());
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        //private bool IsValidWidth(string widthVal)
+        //{
+        //    widthVal = widthVal.Replace("px", "").Replace("%", "");
+        //    try
+        //    {
+        //        decimal validWidth = decimal.Parse(widthVal.Trim());
+        //        return true;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
     }
 
-    class WhiteList
-    {
-        private Dictionary<string, string[]> _TagList;
-        private Dictionary<string, string[]> _AttributeList;
+    //class WhiteList
+    //{
+    //    private Dictionary<string, string[]> _TagList;
+    //    private Dictionary<string, string[]> _AttributeList;
 
-        public Dictionary<string, string[]> TagList
-        {
-            get
-            {
-                if (_TagList == null)
-                {
-                    CreateWhiteList();
-                }
-                return _TagList;
-            }
-        }
+    //    public Dictionary<string, string[]> TagList
+    //    {
+    //        get
+    //        {
+    //            if (_TagList == null)
+    //            {
+    //                CreateWhiteList();
+    //            }
+    //            return _TagList;
+    //        }
+    //    }
 
-        public Dictionary<string, string[]> AttributeList
-        {
-            get
-            {
-                if (_AttributeList == null)
-                {
-                    CreateWhiteList();
-                }
-                return _AttributeList;
-            }
-        }
+    //    public Dictionary<string, string[]> AttributeList
+    //    {
+    //        get
+    //        {
+    //            if (_AttributeList == null)
+    //            {
+    //                CreateWhiteList();
+    //            }
+    //            return _AttributeList;
+    //        }
+    //    }
 
-        private void CreateWhiteList()
-        {
-            // make list of tags and its relatd attributes
-            _TagList = new Dictionary<string, string[]>();
+    //    private void CreateWhiteList()
+    //    {
+    //        // make list of tags and its relatd attributes
+    //        _TagList = new Dictionary<string, string[]>();
 
-            _TagList.Add("strong", new string[] { "style", "class" });
-            _TagList.Add("b", new string[] { "style", "class" });
-            _TagList.Add("em", new string[] { "style", "class" });
-            _TagList.Add("i", new string[] { "style", "class" });
-            _TagList.Add("u", new string[] { "style", "class" });
-            _TagList.Add("strike", new string[] { "style", "class" });
-            _TagList.Add("sub", new string[] { "style", "class" });
-            _TagList.Add("sup", new string[] { "style", "class" });
-            _TagList.Add("p", new string[] { "style", "class", "align", "dir" });
-            _TagList.Add("ol", new string[] { "style", "class" });
-            _TagList.Add("li", new string[] { "style", "class" });
-            _TagList.Add("ul", new string[] { "style", "class" });
-            _TagList.Add("font", new string[] { "style", "class", "color", "face", "size" });
-            _TagList.Add("blockquote", new string[] { "style", "class", "dir" });
-            _TagList.Add("hr", new string[] { "style", "class", "size", "width" });
-            _TagList.Add("img", new string[] { "style", "class", "src", "height", "width", "alt", "title", "hspace", "vspace", "border" });
-            _TagList.Add("div", new string[] { "style", "class", "align" });
-            _TagList.Add("span", new string[] { "style", "class" });
-            _TagList.Add("br", new string[] { "style", "class" });
-            _TagList.Add("center", new string[] { "style", "class" });
-            _TagList.Add("a", new string[] { "style", "class", "href", "title", "target" });
+    //        _TagList.Add("strong", new string[] { "style", "class" });
+    //        _TagList.Add("b", new string[] { "style", "class" });
+    //        _TagList.Add("em", new string[] { "style", "class" });
+    //        _TagList.Add("i", new string[] { "style", "class" });
+    //        _TagList.Add("u", new string[] { "style", "class" });
+    //        _TagList.Add("strike", new string[] { "style", "class" });
+    //        _TagList.Add("sub", new string[] { "style", "class" });
+    //        _TagList.Add("sup", new string[] { "style", "class" });
+    //        _TagList.Add("p", new string[] { "style", "class", "align", "dir" });
+    //        _TagList.Add("ol", new string[] { "style", "class" });
+    //        _TagList.Add("li", new string[] { "style", "class" });
+    //        _TagList.Add("ul", new string[] { "style", "class" });
+    //        _TagList.Add("font", new string[] { "style", "class", "color", "face", "size" });
+    //        _TagList.Add("blockquote", new string[] { "style", "class", "dir" });
+    //        _TagList.Add("hr", new string[] { "style", "class", "size", "width" });
+    //        _TagList.Add("img", new string[] { "style", "class", "src", "height", "width", "alt", "title", "hspace", "vspace", "border" });
+    //        _TagList.Add("div", new string[] { "style", "class", "align" });
+    //        _TagList.Add("span", new string[] { "style", "class" });
+    //        _TagList.Add("br", new string[] { "style", "class" });
+    //        _TagList.Add("center", new string[] { "style", "class" });
+    //        _TagList.Add("a", new string[] { "style", "class", "href", "title", "target" });
 
-            _AttributeList = new Dictionary<string, string[]>();
-            // create white list of attributes and its values
-            _AttributeList.Add("style", new string[] { "background-color", "margin", "margin-right", "margin-left", "margin-top", "margin-bottom", "padding", "border", "text-align" });
-            _AttributeList.Add("align", new string[] { "left", "right", "center", "justify" });
-            _AttributeList.Add("color", new string[] { });
-            _AttributeList.Add("size", new string[] { "1", "2", "3", "4", "5", "6", "7" });
-            _AttributeList.Add("face", new string[] { "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Verdana", "Impact", "Wingdings", "Sans-seri", "helvetica" });
-            _AttributeList.Add("dir", new string[] { "ltr", "rtl", "Auto" });
-            _AttributeList.Add("width", new string[] { });
-            _AttributeList.Add("src", new string[] { });
-            _AttributeList.Add("href", new string[] { });           
-        }
+    //        _AttributeList = new Dictionary<string, string[]>();
+    //        // create white list of attributes and its values
+    //        _AttributeList.Add("style", new string[] { "background-color", "margin", "margin-right", "margin-left", "margin-top", "margin-bottom", "padding", "border", "text-align" });
+    //        _AttributeList.Add("align", new string[] { "left", "right", "center", "justify" });
+    //        _AttributeList.Add("color", new string[] { });
+    //        _AttributeList.Add("size", new string[] { "1", "2", "3", "4", "5", "6", "7" });
+    //        _AttributeList.Add("face", new string[] { "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Verdana", "Impact", "Wingdings", "Sans-seri", "helvetica" });
+    //        _AttributeList.Add("dir", new string[] { "ltr", "rtl", "Auto" });
+    //        _AttributeList.Add("width", new string[] { });
+    //        _AttributeList.Add("src", new string[] { });
+    //        _AttributeList.Add("href", new string[] { });           
+    //    }
 
-    }
+    //}
 }
