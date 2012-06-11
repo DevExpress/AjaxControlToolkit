@@ -146,6 +146,8 @@ namespace AjaxControlToolkit.Sanitizer
                     //attribute.Value = HttpUtility.UrlEncode(attribute.Value);
                     if (!attribute.Value.StartsWith("http://") || attribute.Value.StartsWith("/"))
                         attribute.Value = "";
+                    else
+                        attribute.Value = HttpUtility.UrlEncode(attribute.Value);
                     break;
             }
         }
