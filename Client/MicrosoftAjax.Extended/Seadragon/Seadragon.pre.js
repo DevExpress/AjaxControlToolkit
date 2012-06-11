@@ -875,9 +875,9 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
                     Seadragon.Utils.createCallback(null, Function.createDelegate(this, this._onOpen), currentTime));
     },
     openTileSource: function(tileSource) {
-        var currentTime = beforeOpen();
+        var currentTime = this._beforeOpen();
         window.setTimeout(Function.createDelegate(this, function() {
-            onOpen(currentTime, tileSource);
+            this._onOpen(currentTime, tileSource);
         }), 1);
     },
     close: function() {
