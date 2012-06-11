@@ -819,6 +819,9 @@ Sys.Extended.UI.ComboBox.prototype = {
         var allText = info.selectionPrefix + info.typedCharacter
             + info.selectionText.substring(1) + info.selectionSuffix;
         var userText = info.selectionPrefix + info.typedCharacter;
+        if (userText.length > this.get_textBoxControl().maxLength) {
+            userText = userText.substring(0, this.get_textBoxControl().maxLength);
+        }
         var suggestedIndex = this._suggestIndex(allText, userText);
 
         // setup suggest behavior
@@ -1326,7 +1329,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     _ensureSelectedIndex: function () {
 
         // server may not always invoke set_selectedIndex(), need to make sure this is always an integer        
-        var selectedIndex = this.get_hiddenFieldControl().value;        
+        var selectedIndex = this.get_hiddenFieldControl().value;
         if (selectedIndex == '') {
             selectedIndex = (this._optionListItems.length > 0) ? 0 : -1;
             this.get_hiddenFieldControl().value = selectedIndex.toString();
