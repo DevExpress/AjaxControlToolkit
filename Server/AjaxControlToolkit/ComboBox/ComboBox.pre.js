@@ -1103,6 +1103,7 @@ Sys.Extended.UI.ComboBox.prototype = {
                 if (this._highlightedIndex >= 0) {
                     this.get_textBoxControl().value = this._optionListItems[this._highlightedIndex].text
                     this.set_selectedIndex(this._highlightedIndex);
+                    __doPostBack(this.get_element().id, '');
                 }
                 this._popupBehavior.hide();
                 e.preventDefault();
