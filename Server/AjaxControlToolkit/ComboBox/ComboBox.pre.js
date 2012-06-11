@@ -13,7 +13,7 @@
 
 Type.registerNamespace('Sys.Extended.UI');
 
-Sys.Extended.UI.ComboBoxAutoCompleteMode = function() { };
+Sys.Extended.UI.ComboBoxAutoCompleteMode = function () { };
 Sys.Extended.UI.ComboBoxAutoCompleteMode.prototype =
 {
     None: 0,
@@ -25,7 +25,7 @@ Sys.Extended.UI.ComboBoxAutoCompleteMode.prototype =
 Sys.Extended.UI.ComboBoxAutoCompleteMode.registerEnum(
     'Sys.Extended.UI.ComboBoxAutoCompleteMode', false);
 
-Sys.Extended.UI.ComboBoxStyle = function() { };
+Sys.Extended.UI.ComboBoxStyle = function () { };
 Sys.Extended.UI.ComboBoxStyle.prototype =
 {
     DropDownList: 0,
@@ -36,7 +36,7 @@ Sys.Extended.UI.ComboBoxStyle.prototype =
 Sys.Extended.UI.ComboBoxStyle.registerEnum(
     'Sys.Extended.UI.ComboBoxStyle', false);
 
-Sys.Extended.UI.ComboBoxTextSelectionStrategy = function() { };
+Sys.Extended.UI.ComboBoxTextSelectionStrategy = function () { };
 Sys.Extended.UI.ComboBoxTextSelectionStrategy.prototype =
 {
     Unknown: 0,
@@ -48,7 +48,7 @@ Sys.Extended.UI.ComboBoxTextSelectionStrategy.registerEnum(
     "Sys.Extended.UI.ComboBoxTextSelectionStrategy", false);
 
 
-Sys.Extended.UI.ComboBox = function(element) {
+Sys.Extended.UI.ComboBox = function (element) {
 
     Sys.Extended.UI.ComboBox.initializeBase(this, [element]);
 
@@ -82,17 +82,30 @@ Sys.Extended.UI.ComboBox = function(element) {
 
 Sys.Extended.UI.ComboBox.prototype = {
 
-    initialize: function() {
+    initialize: function () {
 
         Sys.Extended.UI.ComboBox.callBaseMethod(this, 'initialize');
+        ComboBox_Elements[ComboBox_Elements.length] = this;
+        var hiddenParent = this._findHiddenParent(this.get_comboTableControl());
+        var hiddenParentDisplay;
+        var hiddenParentVisibility;
+        if (hiddenParent != null) {
+            hiddenParentDisplay = hiddenParent.style.display;
+            hiddenParentVisibility = hiddenParent.style.visibility;
+            hiddenParent.style.visibility = "visible";
+            hiddenParent.style.display = "block";
+        }
         this.createDelegates();
         this.initializeTextBox();
         this.initializeButton();
         this.initializeOptionList();
         this.addHandlers();
-
+        if (hiddenParent != null) {
+            hiddenParent.style.visibility = hiddenParentVisibility;
+            hiddenParent.style.display = hiddenParentDisplay;
+        }
     },
-    dispose: function() {
+    dispose: function () {
 
         // dispose of popup extender
         if (this._popupBehavior) {
@@ -109,7 +122,17 @@ Sys.Extended.UI.ComboBox.prototype = {
         Sys.Extended.UI.ComboBox.callBaseMethod(this, 'dispose');
 
     },
-    createDelegates: function() {
+
+    _findHiddenParent: function (element) {
+        var parent = element.parentElement;
+        if (parent == null || parent.style.visibility == "hidden" || parent.style.display == 'none') {
+            return parent;
+        }
+
+        return this._findHiddenParent(parent);
+    },
+
+    createDelegates: function () {
 
         this._listMouseOverHandler = Function.createDelegate(this, this._onListMouseOver);
         this._listMouseOutHandler = Function.createDelegate(this, this._onListMouseOut);
@@ -134,7 +157,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         this._popupHidingHandler = Function.createDelegate(this, this._popupHiding);
 
     },
-    clearDelegates: function() {
+    clearDelegates: function () {
 
         this._listMouseOverHandler = null;
         this._listMouseOutHandler = null;
@@ -159,8 +182,8 @@ Sys.Extended.UI.ComboBox.prototype = {
         this._popupHidingHandler = null;
 
     },
-    addHandlers: function() {
-        
+    addHandlers: function () {
+
         var optionListControl = this.get_optionListControl();
 
         $addHandlers(optionListControl,
@@ -180,7 +203,7 @@ Sys.Extended.UI.ComboBox.prototype = {
             "blur": this._textBoxBlurHandler,
             "keypress": this._textBoxKeyPressHandler
         }, this);
-        
+
         if (Sys.Browser.agent == Sys.Browser.InternetExplorer || Sys.Browser.agent === Sys.Browser.Safari
             || Sys.Browser.agent === Sys.Browser.WebKit) {
             $addHandler(this.get_textBoxControl(), "keydown", this._textBoxKeyDownHandler);
@@ -195,7 +218,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 		}, this);
 
         $addHandler(document, 'click', this._documentClickHandler);
-        
+
         // FF doesn't have an onmousewheel event
         if (typeof (optionListControl.onmousewheel) === 'undefined') {
             $addHandler(optionListControl, 'DOMMouseScroll', this._listMouseWheelHandler);
@@ -206,14 +229,14 @@ Sys.Extended.UI.ComboBox.prototype = {
             $addHandler(document, 'mousewheel', this._documentMouseWheelHandler);
         }
     },
-    clearHandlers: function() {
+    clearHandlers: function () {
 
         $clearHandlers(this.get_optionListControl());
         $clearHandlers(this.get_textBoxControl());
         $clearHandlers(this.get_buttonControl());
         $clearHandlers(document);
     },
-    initializeTextBox: function() {
+    initializeTextBox: function () {
 
         // initialize style
         var style = this.get_textBoxControl().style;
@@ -223,7 +246,7 @@ Sys.Extended.UI.ComboBox.prototype = {
             style.margin = '0px';
 
     },
-    initializeButton: function() {
+    initializeButton: function () {
 
         // initialize style
         var style = this.get_buttonControl().style;
@@ -244,7 +267,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         this._buttonControl.style.visibility = 'visible';
 
     },
-    initializeOptionList: function() {
+    initializeOptionList: function () {
 
         // when there are no option items, server does not render a UL element. 
         if (this.get_optionListControl() == null) {
@@ -256,7 +279,11 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // force inline display on Safari by moving the list to the bottom of the form.
         if (Sys.Browser.agent === Sys.Browser.Safari || Sys.Browser.agent === Sys.Browser.WebKit) {
-            this.get_element().removeChild(optionListControl);
+            //this.get_element().removeChild(optionListControl);
+            var parentOfOptionList = optionListControl.parentNode;
+            if (parentOfOptionList != null)
+                parentOfOptionList.removeChild(optionListControl);
+
             var parent = this.get_element().parentNode;
             while (typeof (parent) != typeof (document.forms[0])) {
                 parent = parent.parentNode
@@ -344,7 +371,8 @@ Sys.Extended.UI.ComboBox.prototype = {
             this.get_textBoxControl().value = this._optionListItems[this.get_selectedIndex()].text;
         }
         else {
-            this.get_textBoxControl().text = '';
+            //this.get_textBoxControl().text = '';
+            this.get_textBoxControl().value = '';
         }
 
         // show and hide the popup behavior to initialize dimensions and overflow
@@ -352,7 +380,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         optionListControl.style.display = "none";
 
     },
-    initializeOptionListItem: function(liElement) {
+    initializeOptionListItem: function (liElement) {
 
         // ensure empty text appears in the list
         liElement._textIsEmpty = false;
@@ -362,7 +390,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _popupShowing: function() {
+    _popupShowing: function () {
 
         // find out what dimensions and positioning we are working with
         var windowBounds = this._getWindowBounds();
@@ -465,11 +493,11 @@ Sys.Extended.UI.ComboBox.prototype = {
             this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.TopLeft);
         else if (compositeAlign == 'TopRight')
             this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.TopRight);
-        
+
         style.visibility = 'hidden';
 
     },
-    _popupShown: function() {
+    _popupShown: function () {
 
         var optionListControl = this.get_optionListControl();
         optionListControl.style.display = 'block';
@@ -500,18 +528,18 @@ Sys.Extended.UI.ComboBox.prototype = {
         optionListControl.style.visibility = 'visible';
 
     },
-    _popupHiding: function() {
+    _popupHiding: function () {
 
         // hide the option list
         this._highlightSuggestedItem = false;
-        
+
         var style = this.get_optionListControl().style;
         style.display = 'none';
         style.visibility = 'hidden';
 
     },
-    _onButtonClick: function(e) {
-
+    _onButtonClick: function (e) {
+        Sys.Extended.UI.ComboBox.IsOpen(this);
         // in Simple mode, always display the list
         if (this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.Simple) {
             this._popupBehavior.show();
@@ -530,7 +558,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return false;
 
     },
-    _onButtonBlur: function(e) {
+    _onButtonBlur: function (e) {
 
         // optionally trigger postback
         if (this.get_autoPostBack() == true && !this._doingPostBack && this._originalSelectedIndex != this.get_selectedIndex()) {
@@ -539,7 +567,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _onButtonKeyDown: function(e) {
+    _onButtonKeyDown: function (e) {
 
         // sometimes user can type while the button has focus
         if (e.keyCode == Sys.UI.Key.tab || e.keyCode == 16) { // 16==SHIFT key
@@ -558,11 +586,11 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // give focus to the text box
         var textBoxID = this.get_textBoxControl().id;
-        setTimeout(function() { document.getElementById(textBoxID).focus(); }, 0);
+        setTimeout(function () { document.getElementById(textBoxID).focus(); }, 0);
         return false;
 
     },
-    _onButtonKeyPress: function(e) {
+    _onButtonKeyPress: function (e) {
 
         // sometimes user can type while the button has focus
         if (e.charCode == Sys.UI.Key.tab || e.charCode == 16) { // 16==SHIFT key
@@ -573,10 +601,10 @@ Sys.Extended.UI.ComboBox.prototype = {
         return false;
 
     },
-    _onListMouseWheel: function(e) {
+    _onListMouseWheel: function (e) {
 
         var direction;
-        
+
         // enforce mousewheel scrolling
         if (typeof (e.rawEvent.wheelDelta) === 'undefined') {
             // firefox
@@ -589,14 +617,14 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // each event scrolls approximately 1 list item up or down
         this.get_optionListControl().scrollTop += this._getOptionListItemHeight() * direction;
-        
+
         // tell parents we have handled this event
         e.stopPropagation();
         e.preventDefault();
         return false;
 
     },
-    _onListMouseOver: function(e) {
+    _onListMouseOver: function (e) {
         var optionListControl = this.get_optionListControl();
         // do not highlight unless an LI is being hovered
         if (e.target !== optionListControl) {
@@ -614,7 +642,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _onListMouseOut: function(e) {
+    _onListMouseOut: function (e) {
 
         // unhighlight the highlighted item if the list is open in suggestappend mode
         // prevents overriding user-typed text when determining the selectedindex
@@ -624,7 +652,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _onListMouseDown: function(e) {
+    _onListMouseDown: function (e) {
         var optionListControl = this.get_optionListControl();
 
         if (e.target == optionListControl || e.target.tagName == 'scrollbar') {
@@ -652,7 +680,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return false;
 
     },
-    _onListClick: function(e) {
+    _onListClick: function (e) {
 
         if (e.target == this.get_optionListControl()) {
             return true;
@@ -664,7 +692,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return false;
 
     },
-    _onListDrag: function(e) {
+    _onListDrag: function (e) {
 
         // prevent selection of ListItem text
         e.preventDefault();
@@ -672,7 +700,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return false;
 
     },
-    _onListSelectStart: function(e) {
+    _onListSelectStart: function (e) {
 
         // prevent selection of ListItem text
         e.preventDefault();
@@ -680,7 +708,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return false;
 
     },
-    _onTextBoxClick: function(e) {
+    _onTextBoxClick: function (e) {
 
         // in Simple mode, always display the list
         if (this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.Simple) {
@@ -693,12 +721,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         return false;
 
     },
-    _onTextBoxFocus: function(e) {
-
+    _onTextBoxFocus: function (e) {
+        Sys.Extended.UI.ComboBox.IsOpen(this);
         this._handleTextBoxFocus(e);
 
     },
-    _onTextBoxBlur: function(e) {
+    _onTextBoxBlur: function (e) {
 
         // select the correct index based on text box value
         var textBoxValue = this.get_textBoxControl().value.trim();
@@ -753,7 +781,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _onTextBoxKeyDown: function(e) {
+    _onTextBoxKeyDown: function (e) {
 
         // keydown is not fired in ff or opera. keypress is fired instead.
         // in ie and safari, keydown is fired before keypress for character keys and the ENTER key.
@@ -777,7 +805,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return true;
 
     },
-    _onTextBoxKeyPress: function(e) {
+    _onTextBoxKeyPress: function (e) {
 
         // user presses ENTER while text box has focus
         var enterResult = this._handleEnterKey(e);
@@ -817,6 +845,9 @@ Sys.Extended.UI.ComboBox.prototype = {
         var allText = info.selectionPrefix + info.typedCharacter
             + info.selectionText.substring(1) + info.selectionSuffix;
         var userText = info.selectionPrefix + info.typedCharacter;
+        if (userText.length > this.get_textBoxControl().maxLength) {
+            userText = userText.substring(0, this.get_textBoxControl().maxLength);
+        }
         var suggestedIndex = this._suggestIndex(allText, userText);
 
         // setup suggest behavior
@@ -845,7 +876,6 @@ Sys.Extended.UI.ComboBox.prototype = {
                 newSelectionEnd = this.get_textBoxControl().value.length;
             }
         }
-
         // when suggestedIndex is -1, there is no match.
         else if (this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.Simple
                 || this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.DropDown) {
@@ -870,7 +900,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return false;
 
     },
-    _onDocumentClick: function(e) {
+    _onDocumentClick: function (e) {
 
         // hide the option list when users click document
         if (this._popupBehavior._visible) {
@@ -878,8 +908,8 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _onDocumentMouseWheel: function(e) {
-        
+    _onDocumentMouseWheel: function (e) {
+
         // hide the option list when user mousewheel scrolls outside of it
         if (this._popupBehavior) {
             this._popupBehavior.hide();
@@ -887,7 +917,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return true;
 
     },
-    _handleTextBoxFocus: function(e) {
+    _handleTextBoxFocus: function (e) {
 
         // hide the option list and optionally trigger postback
         if (!this._supressFocusHide && this._popupBehavior._visible) {
@@ -916,7 +946,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _highlightListItem: function(index, isHighlighted) {
+    _highlightListItem: function (index, isHighlighted) {
 
         // only highlight valid indices
         if (index == undefined || index < 0) {
@@ -973,7 +1003,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _suggestIndex: function(allText, userText) {
+    _suggestIndex: function (allText, userText) {
 
         // suggest closest option list match based on user's typing
         var suggestedIndex = -1;
@@ -1018,7 +1048,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return suggestedIndex;
 
     },
-    _getKeyboardCode: function(e) {
+    _getKeyboardCode: function (e) {
 
         if (e.type == 'keypress') {
             return e.charCode;
@@ -1028,7 +1058,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return undefined;
 
     },
-    _handleArrowKey: function(e) {
+    _handleArrowKey: function (e) {
 
         // when shift key is pressed, ignore arrow codes
         if (e.shiftKey == true) {
@@ -1063,7 +1093,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return null;
 
     },
-    _handleEnterKey: function(e) {
+    _handleEnterKey: function (e) {
 
         var code = this._getKeyboardCode(e);
 
@@ -1073,6 +1103,7 @@ Sys.Extended.UI.ComboBox.prototype = {
                 if (this._highlightedIndex >= 0) {
                     this.get_textBoxControl().value = this._optionListItems[this._highlightedIndex].text
                     this.set_selectedIndex(this._highlightedIndex);
+                    __doPostBack(this.get_element().id, '');
                 }
                 this._popupBehavior.hide();
                 e.preventDefault();
@@ -1098,7 +1129,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return null;
 
     },
-    _handleErasureKeys: function(e) {
+    _handleErasureKeys: function (e) {
 
         var code = this._getKeyboardCode(e);
 
@@ -1153,7 +1184,7 @@ Sys.Extended.UI.ComboBox.prototype = {
                 || this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.DropDown)
                 && (this.get_autoCompleteMode() == Sys.Extended.UI.ComboBoxAutoCompleteMode.Suggest
                 || this.get_autoCompleteMode() == Sys.Extended.UI.ComboBoxAutoCompleteMode.SuggestAppend)
-                && this._highlightedIndex >= 0) {
+                && (this._highlightedIndex != null && this._highlightedIndex >= 0)) {
                 var _isExactMatch = this._isExactMatch(this._optionListItems[this._highlightedIndex].text, this.get_textBoxControl().value);
                 if (!_isExactMatch) {
                     this._highlightListItem(this._highlightedIndex, false);
@@ -1167,18 +1198,17 @@ Sys.Extended.UI.ComboBox.prototype = {
         return null;
 
     },
-    _handleNonCharacterKey: function(e) {
+    _handleNonCharacterKey: function (e) {
 
         var code = this._getKeyboardCode(e);
 
         var isBackspaceKey = (code == Sys.UI.Key.backspace);
         var isDeleteKey = (code == Sys.UI.Key.del);
         if (e.type == 'keypress') {
-            isDeleteKey = (code == 46);
+            isDeleteKey = (e.rawEvent.code == 46);
         }
 
         if (isBackspaceKey || isDeleteKey) {
-
             return null;
         }
 
@@ -1195,7 +1225,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
         return null;
     },
-    _isNonCharacterKey: function(e) {
+    _isNonCharacterKey: function (e) {
 
         // MS Ajax uses following codes for Key enumeration
         // backspace:8,tab:9,enter:13,esc:27,space:32,pageUp:33,pageDown:34,end:35,home:36,left:37,up:38,right:39,down:40,del:127
@@ -1203,7 +1233,6 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // return true if keypress actions should be allowed
         if (code == Sys.UI.Key.enter || code == Sys.UI.Key.esc) { // allow RETURN/ENTER and ESC keys for all browsers
-
             return true;
         }
         else if (Sys.Browser.agent == Sys.Browser.Safari && Sys.Browser.version < 500) {
@@ -1279,7 +1308,6 @@ Sys.Extended.UI.ComboBox.prototype = {
 
                 // allow PAUSE BREAK events triggered by weird combos
                 return true;
-
             }
             else if (Sys.Browser.agent == Sys.Browser.Opera) {
 
@@ -1302,13 +1330,18 @@ Sys.Extended.UI.ComboBox.prototype = {
                 }
             }
         }
+        else if (Sys.Browser.agent == Sys.Browser.InternetExplorer) {
+            // period character for IE
+            if (code == 46)
+                return true;
+        }
         return false;
 
     },
-    _ensureScrollTop: function() {
+    _ensureScrollTop: function () {
 
         var optionListControl = this.get_optionListControl();
-        
+
         // automatically scroll if the highlighted index is not visible. 
         if (this._highlightedIndex >= 0) {
             var itemHeight = this._getOptionListItemHeight(),
@@ -1320,9 +1353,9 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _ensureSelectedIndex: function() {
+    _ensureSelectedIndex: function () {
 
-        // server may not always invoke set_selectedIndex(), need to make sure this is always an integer
+        // server may not always invoke set_selectedIndex(), need to make sure this is always an integer        
         var selectedIndex = this.get_hiddenFieldControl().value;
         if (selectedIndex == '') {
             selectedIndex = (this._optionListItems.length > 0) ? 0 : -1;
@@ -1334,7 +1367,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
 
     },
-    _ensureHighlightedIndex: function() {
+    _ensureHighlightedIndex: function () {
 
         // highlight an index according to textbox value
         var textBoxValue = this.get_textBoxControl().value;
@@ -1369,7 +1402,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _isExactMatch: function(itemText, userText) {
+    _isExactMatch: function (itemText, userText) {
 
         // whether strings match exactly, depending on case sensitivity
         var exactMatch = (itemText == userText);
@@ -1379,13 +1412,13 @@ Sys.Extended.UI.ComboBox.prototype = {
         return exactMatch;
 
     },
-    _isPrefixMatch: function(itemText, userText) {
+    _isPrefixMatch: function (itemText, userText) {
 
         // whether the user-typed text matches as the prefix of an option in the list
         return this._isExactMatch(itemText.substring(0, userText.length), userText);
 
     },
-    _setTextSelectionRange: function(textBox, selectionStart, selectionEnd) {
+    _setTextSelectionRange: function (textBox, selectionStart, selectionEnd) {
 
         // set the selection range on the text box
         var strategy = this._getTextSelectionStrategy();
@@ -1406,7 +1439,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    _getTextSelectionStrategy: function() {
+    _getTextSelectionStrategy: function () {
 
         // different browsers have different API's for selecting text
         if (this._textSelectionStrategy == null) {
@@ -1427,7 +1460,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return this._textSelectionStrategy;
 
     },
-    _getTextSelectionInfo: function(textBox, e) {
+    _getTextSelectionInfo: function (textBox, e) {
 
         // returns a helper object with information about textbox selection
         var info = new Object();
@@ -1469,10 +1502,10 @@ Sys.Extended.UI.ComboBox.prototype = {
         return info;
 
     },
-    _getOptionListItemHeight: function() {
+    _getOptionListItemHeight: function () {
 
         var optionListControl = this.get_optionListControl();
-        
+
         // gets the height of an individual option list item
         if (this._optionListItemHeight == null && optionListControl.scrollHeight > 0) {
             this._optionListItemHeight = Math.round(optionListControl.scrollHeight / this._optionListItems.length);
@@ -1484,7 +1517,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return this._optionListItemHeight;
 
     },
-    _getOptionListBounds: function() {
+    _getOptionListBounds: function () {
 
         var bounds = {
             width: this._getOptionListWidth(),
@@ -1493,7 +1526,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return bounds;
 
     },
-    _getOptionListHeight: function() {
+    _getOptionListHeight: function () {
 
         // gets the total height of the option list
         if (this._optionListHeight == null || (this._getOptionListItemHeight() * this._optionListItems.length) < this._optionListHeight) {
@@ -1509,10 +1542,10 @@ Sys.Extended.UI.ComboBox.prototype = {
         return this._optionListHeight;
 
     },
-    _getOptionListWidth: function() {
+    _getOptionListWidth: function () {
 
         var optionListControl = this.get_optionListControl();
-        
+
         // gets the width of the option list
         if (this._optionListWidth == null) {
             var leftBorder = 1;
@@ -1561,7 +1594,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return this._optionListWidth;
 
     },
-    _getWindowBounds: function() {
+    _getWindowBounds: function () {
 
         var bounds = {
             x: this._getScrollLeft(),
@@ -1572,7 +1605,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return bounds;
 
     },
-    _getWindowHeight: function() {
+    _getWindowHeight: function () {
 
         var windowHeight = 0;
         if (typeof (window.innerHeight) == 'number') {
@@ -1587,7 +1620,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return windowHeight;
 
     },
-    _getWindowWidth: function() {
+    _getWindowWidth: function () {
 
         var windowWidth = 0;
         if (typeof (window.innerWidth) == 'number') {
@@ -1602,7 +1635,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return windowWidth;
 
     },
-    _getScrollTop: function() {
+    _getScrollTop: function () {
 
         var scrollTop = 0;
         if (typeof (window.pageYOffset) == 'number') {
@@ -1617,7 +1650,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return scrollTop;
 
     },
-    _getScrollLeft: function() {
+    _getScrollLeft: function () {
 
         var scrollLeft = 0;
         if (typeof (window.pageXOffset) == 'number') {
@@ -1632,7 +1665,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         return scrollLeft;
 
     },
-    set_comboTableControl: function(value) {
+    set_comboTableControl: function (value) {
 
         if (this._comboTableControl !== value) {
             this._comboTableControl = value;
@@ -1640,12 +1673,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_comboTableControl: function() {
+    get_comboTableControl: function () {
 
         return this._comboTableControl;
 
     },
-    set_textBoxControl: function(value) {
+    set_textBoxControl: function (value) {
 
         if (this._textBoxControl !== value) {
             this._textBoxControl = value;
@@ -1653,12 +1686,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_textBoxControl: function() {
+    get_textBoxControl: function () {
 
         return this._textBoxControl;
 
     },
-    set_buttonControl: function(value) {
+    set_buttonControl: function (value) {
 
         if (this._buttonControl !== value) {
             this._buttonControl = value;
@@ -1666,10 +1699,10 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_buttonControl: function() {
+    get_buttonControl: function () {
         return this._buttonControl;
     },
-    set_optionListControl: function(value) {
+    set_optionListControl: function (value) {
 
         if (this._optionListControl !== value) {
             this._optionListControl = value;
@@ -1677,12 +1710,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_optionListControl: function() {
+    get_optionListControl: function () {
 
         return this._optionListControl;
 
     },
-    set_hiddenFieldControl: function(value) {
+    set_hiddenFieldControl: function (value) {
 
         if (this._hiddenFieldControl !== value) {
             this._hiddenFieldControl = value;
@@ -1690,12 +1723,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_hiddenFieldControl: function() {
+    get_hiddenFieldControl: function () {
 
         return this._hiddenFieldControl;
 
     },
-    set_selectedIndex: function(value) {
+    set_selectedIndex: function (value) {
 
         if (this.get_hiddenFieldControl().value !== value.toString()) {
             this.get_hiddenFieldControl().value = value.toString();
@@ -1704,14 +1737,14 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_selectedIndex: function() {
+    get_selectedIndex: function () {
 
         this._ensureSelectedIndex();
         var selectedIndex = this.get_hiddenFieldControl().value;
         return parseInt(selectedIndex);
 
     },
-    set_autoPostBack: function(value) {
+    set_autoPostBack: function (value) {
 
         if (this._autoPostBack !== value) {
             this._autoPostBack = value;
@@ -1719,12 +1752,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_autoPostBack: function() {
+    get_autoPostBack: function () {
 
         return this._autoPostBack;
 
     },
-    set_autoCompleteMode: function(value) {
+    set_autoCompleteMode: function (value) {
 
         if (this._autoCompleteMode !== value) {
             this._autoCompleteMode = value;
@@ -1732,12 +1765,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_autoCompleteMode: function() {
+    get_autoCompleteMode: function () {
 
         return this._autoCompleteMode;
 
     },
-    set_dropDownStyle: function(value) {
+    set_dropDownStyle: function (value) {
 
         if (this._dropDownStyle !== value) {
             this._dropDownStyle = value;
@@ -1745,12 +1778,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_dropDownStyle: function() {
+    get_dropDownStyle: function () {
 
         return this._dropDownStyle;
 
     },
-    set_caseSensitive: function(value) {
+    set_caseSensitive: function (value) {
 
         if (this._caseSensitive !== value) {
             this._caseSensitive = value;
@@ -1758,12 +1791,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_caseSensitive: function() {
+    get_caseSensitive: function () {
 
         return this._caseSensitive;
 
     },
-    set_listItemHoverCssClass: function(value) {
+    set_listItemHoverCssClass: function (value) {
 
         if (this._listItemHoverCssClass !== value) {
             this._listItemHoverCssClass = value;
@@ -1771,7 +1804,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
     },
-    get_listItemHoverCssClass: function() {
+    get_listItemHoverCssClass: function () {
 
         return this._listItemHoverCssClass;
 
@@ -1783,3 +1816,17 @@ Sys.Extended.UI.ComboBox.registerClass('Sys.Extended.UI.ComboBox', Sys.UI.Contro
 
 //if (typeof (Sys) !== 'undefined') Sys.Application.notifyScriptLoaded();
 
+var ComboBox_Elements = new Array();
+
+Sys.Extended.UI.ComboBox.IsOpen = function (currentInstance) {
+    var components = Sys.Application.getComponents();
+    for (var i = 0; i < components.length; i++) {
+        var component = components[i];
+        if (Sys.Extended.UI.ComboBox.isInstanceOfType(component)) {
+            if (component != currentInstance && component._popupBehavior._visible) {
+                // hide popup of other instance of combobox
+                component._popupBehavior.hide();
+            }
+        }
+    }
+}

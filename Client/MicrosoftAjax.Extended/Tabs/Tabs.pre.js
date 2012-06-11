@@ -365,6 +365,8 @@
             this._onDemandMode = Sys.Extended.UI.OnDemandMode.Always;
             this._wasLoaded = false;
             this._updatePanelID = "";
+            this.isAttachedDisabledEvents = false;
+            this.isAttachedEnabledEvents = false;
             this._header_onclick$delegate = Function.createDelegate(this, this._header_onclick);
             this._header_onmouseover$delegate = Function.createDelegate(this, this._header_onmouseover);
             this._header_onmouseout$delegate = Function.createDelegate(this, this._header_onmouseout);
@@ -624,13 +626,20 @@
                     selectstart: this._oncancel$delegate,
                     select: this._oncancel$delegate
                 });
+
+
                 if (this._enabled) {
-                    this._removeHandlersOnEnabled();
+                    if (this._isAttachedEnabledEvents) {
+                        this._removeHandlersOnEnabled();
+                    }
                 } else {
-                    $common.removeHandlers(this._header, {
-                        click: this._disabled_onclick
-                    });
+                    if (this._isAttachedDisabledEvents) {
+                        $common.removeHandlers(this._header, {
+                            click: this._disabled_onclick
+                        });
+                    }
                 }
+
                 Sys.Extended.UI.TabPanel.callBaseMethod(this, "dispose");
             },
 
@@ -702,17 +711,26 @@
 
             _makeEnabled: function (enable) {
                 var hyperlinkId = "__tab_" + this.get_element().id;
+
                 if (enable) {
-                    $common.removeHandlers(this._header, {
-                        click: this._disabled_onclick
-                    });
+                    if (this.isAttachedDisabledEvents) {
+                        $common.removeHandlers(this._header, {
+                            click: this._disabled_onclick
+                        });
+                        this._isAttachedDisabledEvents = false;
+                    }
                     this._addHandlersOnEnabled();
+                    this._isAttachedEnabledEvents = true;
                     Sys.UI.DomElement.removeCssClass($get(hyperlinkId), "ajax__tab_disabled");
                 } else {
-                    this._removeHandlersOnEnabled();
+                    if (this._isAttachedEnabledEvents) {
+                        this._removeHandlersOnEnabled();
+                        this._isAttachedEnabledEvents = false;
+                    }
                     $addHandlers(this._header, {
                         click: this._disabled_onclick
                     });
+                    this.isAttachedDisabledEvents = true;
                     if (this._get_active()) {
                         var next = this._owner.getNearestTab(false);
                         if (!!next) {
