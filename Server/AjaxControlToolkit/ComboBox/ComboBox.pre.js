@@ -86,12 +86,24 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         Sys.Extended.UI.ComboBox.callBaseMethod(this, 'initialize');
         ComboBox_Elements[ComboBox_Elements.length] = this;
+        var hiddenParent = this._findHiddenParent(this.get_comboTableControl());
+        var hiddenParentDisplay;
+        var hiddenParentVisibility;
+        if (hiddenParent != null) {
+            hiddenParentDisplay = hiddenParent.style.display;
+            hiddenParentVisibility = hiddenParent.style.visibility;
+            hiddenParent.style.visibility = "visible";
+            hiddenParent.style.display = "block";
+        }
         this.createDelegates();
         this.initializeTextBox();
         this.initializeButton();
         this.initializeOptionList();
         this.addHandlers();
-
+        if (hiddenParent != null) {
+            hiddenParent.style.visibility = hiddenParentVisibility;
+            hiddenParent.style.display = hiddenParentDisplay;
+        }
     },
     dispose: function () {
 
@@ -110,6 +122,16 @@ Sys.Extended.UI.ComboBox.prototype = {
         Sys.Extended.UI.ComboBox.callBaseMethod(this, 'dispose');
 
     },
+
+    _findHiddenParent: function (element) {
+        var parent = element.parentElement;
+        if (parent == null || parent.style.visibility == "hidden" || parent.style.display == 'none') {
+            return parent;
+        }
+
+        return this._findHiddenParent(parent);
+    },
+
     createDelegates: function () {
 
         this._listMouseOverHandler = Function.createDelegate(this, this._onListMouseOver);
@@ -257,7 +279,11 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // force inline display on Safari by moving the list to the bottom of the form.
         if (Sys.Browser.agent === Sys.Browser.Safari || Sys.Browser.agent === Sys.Browser.WebKit) {
-            this.get_element().removeChild(optionListControl);
+            //this.get_element().removeChild(optionListControl);
+            var parentOfOptionList = optionListControl.parentNode;
+            if (parentOfOptionList != null)
+                parentOfOptionList.removeChild(optionListControl);
+
             var parent = this.get_element().parentNode;
             while (typeof (parent) != typeof (document.forms[0])) {
                 parent = parent.parentNode
