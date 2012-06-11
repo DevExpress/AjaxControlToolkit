@@ -85,6 +85,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     initialize: function () {
 
         Sys.Extended.UI.ComboBox.callBaseMethod(this, 'initialize');
+        ComboBox_Elements[ComboBox_Elements.length] = this;
         this.createDelegates();
         this.initializeTextBox();
         this.initializeButton();
@@ -512,7 +513,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     },
     _onButtonClick: function (e) {
-
+        Sys.Extended.UI.ComboBox.IsOpen(this);
         // in Simple mode, always display the list
         if (this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.Simple) {
             this._popupBehavior.show();
@@ -695,7 +696,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     },
     _onTextBoxFocus: function (e) {
-
+        Sys.Extended.UI.ComboBox.IsOpen(this);
         this._handleTextBoxFocus(e);
 
     },
@@ -1785,3 +1786,17 @@ Sys.Extended.UI.ComboBox.registerClass('Sys.Extended.UI.ComboBox', Sys.UI.Contro
 
 //if (typeof (Sys) !== 'undefined') Sys.Application.notifyScriptLoaded();
 
+var ComboBox_Elements = new Array();
+
+Sys.Extended.UI.ComboBox.IsOpen = function (currentInstance) {
+    var components = Sys.Application.getComponents();
+    for (var i = 0; i < components.length; i++) {
+        var component = components[i];
+        if (Sys.Extended.UI.ComboBox.isInstanceOfType(component)) {
+            if (component != currentInstance && component._popupBehavior._visible) {
+                // hide popup of other instance of combobox
+                component._popupBehavior.hide();
+            }
+        }
+    }
+}
