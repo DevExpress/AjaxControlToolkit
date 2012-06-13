@@ -50,7 +50,7 @@ namespace AjaxControlToolkit.Sanitizer
             if (html == null)
                 return string.Empty;
 
-            HtmlNode allNodes = html.DocumentNode;            
+            HtmlNode allNodes = html.DocumentNode;
             Dictionary<string, string[]> validHtmlTags = elementWhiteList;
             Dictionary<string, string[]> validAttributes = attributeWhiteList;
             string[] tagWhiteList = (from kv in validHtmlTags
@@ -122,34 +122,22 @@ namespace AjaxControlToolkit.Sanitizer
         private void CleanAttributeValues(Dictionary<string, string[]> validAttributes, HtmlAttribute attribute)
         {
 
-            // check attribute value
-            //IEnumerable<KeyValuePair<string, string[]>> attKeyValue = (from att in validAttributes
-            //                                                           where att.Key == attribute.Name
-            //                                                           select att).ToArray();
-                        
-            switch (attribute.Name.ToLower())
-            {
-                case "style":
-                    attribute.Value = attribute.Value.Replace("script", "");
-                    attribute.Value = attribute.Value.Replace("javascript", "");
-                    attribute.Value = HttpUtility.HtmlEncode(attribute.Value);
-                    break;
-                case "align":
-                case "dir":
-                case "size":
-                case "face":
-                case "color":                    
-                        attribute.Value = HttpUtility.HtmlEncode(attribute.Value);
-                    break;
-                case "href":
-                case "src":
-                    //attribute.Value = HttpUtility.UrlEncode(attribute.Value);
-                    if (!attribute.Value.StartsWith("http://") || attribute.Value.StartsWith("/"))
-                        attribute.Value = "";
-                    else
-                        attribute.Value = HttpUtility.UrlEncode(attribute.Value);
-                    break;
+            attribute.Value = HttpUtility.HtmlEncode(attribute.Value);
+
+            attribute.Value = attribute.Value.Replace("script", "");
+            attribute.Value = attribute.Value.Replace("javascript", "");
+
+            if (attribute.Name.ToLower() == "style")
+            {                
+                attribute.Value = attribute.Value.Replace("expression", "");
             }
+
+            if (attribute.Name.ToLower() == "href" || attribute.Name.ToLower() == "src")
+            {
+                //if (!attribute.Value.StartsWith("http://") || attribute.Value.StartsWith("/"))
+                //    attribute.Value = "";
+            }
+
         }
 
         //private void CleanAttributeValues(Dictionary<string, string[]> validAttributes, HtmlAttribute attribute)
@@ -174,7 +162,7 @@ namespace AjaxControlToolkit.Sanitizer
         //                    string attValue = attribute.Value.Substring(attribute.Value.ToLower().IndexOf(nestedAttribute.ToLower()));
         //                    firstPart += attValue.Substring(0, attValue.IndexOf(":"));
         //                    attValue = attValue.Substring(attValue.IndexOf(":") + 1).Trim();
-                            
+
         //                    switch (nestedAttribute.ToLower())
         //                    {
         //                        case "background-color":
