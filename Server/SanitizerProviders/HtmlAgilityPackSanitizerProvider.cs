@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Text;
 using System.Linq;
 using System.Web;
+using System.Text.RegularExpressions;
 namespace AjaxControlToolkit.Sanitizer
 {
     class HtmlAgilityPackSanitizerProvider : SanitizerProvider
@@ -124,12 +125,12 @@ namespace AjaxControlToolkit.Sanitizer
 
             attribute.Value = HttpUtility.HtmlEncode(attribute.Value);
 
-            attribute.Value = attribute.Value.Replace("script", "");
-            attribute.Value = attribute.Value.Replace("javascript", "");
+            attribute.Value = Regex.Replace(attribute.Value, @"\s*j\s*a\s*v\s*a\s*s\s*c\s*r\s*i\s*p\s*t\s*", "", RegexOptions.IgnoreCase);
+            attribute.Value = Regex.Replace(attribute.Value, @"\s*s\s*c\s*r\s*i\s*p\s*t\s*", "", RegexOptions.IgnoreCase);
 
             if (attribute.Name.ToLower() == "style")
-            {                
-                attribute.Value = attribute.Value.Replace("expression", "");
+            {
+                attribute.Value = Regex.Replace(attribute.Value, @"\s*e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*", "", RegexOptions.IgnoreCase);
             }
 
             if (attribute.Name.ToLower() == "href" || attribute.Name.ToLower() == "src")
