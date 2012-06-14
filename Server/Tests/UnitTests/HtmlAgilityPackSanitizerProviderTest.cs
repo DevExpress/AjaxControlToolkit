@@ -1,4 +1,10 @@
-﻿using AjaxControlToolkit.Sanitizer;
+﻿// To create unit tests in this class reference is taken from
+// https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.232_-_Attribute_Escape_Before_Inserting_Untrusted_Data_into_HTML_Common_Attributes
+// and http://ha.ckers.org/xss.html
+
+
+
+using AjaxControlToolkit.Sanitizer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -66,225 +72,1433 @@ namespace UnitTests
         #endregion
         
         /// <summary>
-        ///A test for Xss locator
-        ///</summary>
+        /// A test for Xss locator
+        /// Example <!-- <a href="'';!--\"<XSS>=&{()}"> --> 
+        /// </summary>
         [TestMethod()]
         public void XSSLocatorTest()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "'';!--\"<XSS>=&{()}";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
-            string expected = "'';!--\"<XSS>=&{()}";
-            string actual = "'';!--\"<XSS>=&{()}";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+            
+            // Act
+            string htmlFragment = "<a href=\"'';!--\"<XSS>=&{()}\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+            
+            // Assert
+            string expected = "<a href=\"&#39;&#39;;!--\"<XSS>=&amp;{()}\">";
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector
-        ///</summary>
+        /// A test for Image Xss vector
+        /// Example <!-- <IMG SRC="javascript:alert('XSS');"> -->
+        /// </summary>
         [TestMethod()]
         public void ImageXSS1Test()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=\"javascript:alert('XSS');\">";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Action
+            string htmlFragment = "<IMG SRC=\"javascript:alert('XSS');\">";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG SRC=\":alert(&#39;XSS&#39;);\">";
-            string actual = "<IMG SRC=\"javascript:alert('XSS');\">";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector without quotes and semicolon.
-        ///</summary>
+        /// A test for Image Xss vector without quotes and semicolon.
+        /// Example <!-- <IMG SRC=javascript:alert('XSS')> -->
+        /// </summary>
         [TestMethod()]
         public void ImageXSS2Test()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=javascript:alert('XSS')>";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=javascript:alert('XSS')>";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG SRC=\":alert(&#39;XSS&#39;)\">";
-            string actual = "<IMG SRC=javascript:alert('XSS')>";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image xss vector with case insensitive.
-        ///</summary>
+        /// A test for Image xss vector with case insensitive.
+        /// Example <!-- <IMG SRC=JaVaScRiPt:alert('XSS')> -->
+        /// </summary>
         [TestMethod()]
         public void ImageCaseInsensitiveXSSTest()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=JaVaScRiPt:alert('XSS')>";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=JaVaScRiPt:alert('XSS')>";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG SRC=\":alert(&#39;XSS&#39;)\">";
-            string actual = "<IMG SRC=JaVaScRiPt:alert('XSS')>";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector with Html entities
-        ///</summary>
+        /// A test for Image Xss vector with Html entities
+        /// Example <!-- <IMG SRC=javascript:alert(&quot;XSS&quot;)> -->
+        /// </summary>
         [TestMethod()]
         public void ImageHtmlEntitiesXSSTest()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=javascript:alert(&quot;XSS&quot;)>";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=javascript:alert(&quot;XSS&quot;)>";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG SRC=\":alert(&amp;quot;XSS&amp;quot;)\">";
-            string actual = "<IMG SRC=javascript:alert(&quot;XSS&quot;)>";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector with grave accent
-        ///</summary>
+        /// A test for Image Xss vector with grave accent
+        /// Example <!-- <IMG SRC=`javascript:alert("RSnake says, 'XSS'")`> -->
+        /// </summary>
         [TestMethod()]
         public void ImageGraveAccentXSSTest()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=`javascript:alert(\"RSnake says, 'XSS'\")`>";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=`javascript:alert(\"RSnake says, 'XSS'\")`>";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG SRC=`:alert(&quot;RSnake says, 'XSS'&quot;)`>";
-            string actual = "<IMG SRC=`javascript:alert(\"RSnake says, 'XSS'\")`>";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector with malformed
-        ///</summary>
+        /// A test for Image Xss vector with malformed
+        /// Example <!-- <IMG \"\"\"><SCRIPT>alert(\"XSS\")</SCRIPT>\"> -->
+        /// </summary>
         [TestMethod()]
         public void ImageMalformedXSSTest()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG \"\"\"><SCRIPT>alert(\"XSS\")</SCRIPT>\">";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG \"\"\"><SCRIPT>alert(\"XSS\")</SCRIPT>\">";           
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG>\">";
-            string actual = "<IMG \"\"\"><SCRIPT>alert(\"XSS\")</SCRIPT>\">";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector with ImageFromCharCode
-        ///</summary>
+        /// A test for Image Xss vector with ImageFromCharCode
+        /// Example <!-- <IMG SRC=javascript:alert(String.fromCharCode(88,83,83))> -->
+        /// </summary>
         [TestMethod()]
         public void ImageFromCharCodeXSSTest()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=javascript:alert(String.fromCharCode(88,83,83))>";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=javascript:alert(String.fromCharCode(88,83,83))>";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG SRC=\":alert(String.fromCharCode(88,83,83))\">";
-            string actual = "<IMG SRC=javascript:alert(String.fromCharCode(88,83,83))>";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector with Hex encoding without semicolon
-        ///</summary>   
+        /// A test for Image Xss vector with UTF-8 Unicode
+        /// Example <!-- <IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;> -->
+        /// </summary>
+        [TestMethod()]
+        public void ImageUTF8UnicodeXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<IMG SRC=\"&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#39;&amp;#88;&amp;#83;&amp;#83;&amp;#39;&amp;#41;\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Xss vector with Long UTF-8 Unicode
+        /// Example <!-- <IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041> --> 
+        /// </summary>
+        [TestMethod()]
+        public void ImageLongUTF8UnicodeXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+            
+            // Act
+            string htmlFragment = "<IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+            
+            // Assert
+            string expected = "<IMG SRC=\"&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Xss vector with Hex encoding without semicolon
+        /// Example <!-- <IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29> -->
+        /// </summary>   
         [TestMethod()]
         public void ImageHexEncodeXSSTest()
         {
+            // Arrange
             HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>";
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+            
+            // Assert
             string expected = "<IMG SRC=\"&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29\">";
-            string actual = "<IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector with embedded tab
-        ///</summary>   
+        /// A test for Image Xss vector with embedded tab
+        /// Example <!-- <IMG SRC=\"jav	ascript:alert('XSS');\"> -->
+        /// </summary>   
         [TestMethod()]
         public void ImageEmbeddedTabXSSTest()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=\"jav	ascript:alert('XSS');\">";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=\"jav	ascript:alert('XSS');\">";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG SRC=\":alert(&#39;XSS&#39;);\">";
-            string actual = "<IMG SRC=\"jav	ascript:alert('XSS');\">";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector with embedded encoded tab
-        ///</summary>   
+        /// A test for Image Xss vector with embedded encoded tab
+        /// Example <!-- <IMG SRC="jav&#x09;ascript:alert('XSS');"> -->
+        /// </summary>   
         [TestMethod()]
         public void ImageEmbeddedEncodedTabXSSTest()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=\"jav&#x09;ascript:alert('XSS');\">";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=\"jav&#x09;ascript:alert('XSS');\">";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG SRC=\"jav&amp;#x09;a:alert(&#39;XSS&#39;);\">";
-            string actual = "<IMG SRC=\"jav&#x09;ascript:alert('XSS');\">";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector with embedded new line
-        ///</summary>   
+        /// A test for Image Xss vector with embedded new line
+        /// Example <!-- <IMG SRC="jav&#x0A;ascript:alert('XSS');"> -->
+        /// </summary>   
         [TestMethod()]
         public void ImageEmbeddedNewLineXSSTest()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=\"jav&#x0A;ascript:alert('XSS');\">";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=\"jav&#x0A;ascript:alert('XSS');\">";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG SRC=\"jav&amp;#x0A;a:alert(&#39;XSS&#39;);\">";
-            string actual = "<IMG SRC=\"jav&#x0A;a:alert('XSS');\">";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
-        ///A test for Image Xss vector with embedded carriage return
-        ///</summary>   
+        /// A test for Image Xss vector with embedded carriage return
+        /// Example <!-- <IMG SRC=\"jav&#x0D;ascript:alert('XSS');\"> -->
+        /// </summary>   
         [TestMethod()]
         public void ImageEmbeddedCarriageReturnXSSTest()
         {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
-            string htmlFragment = "<IMG SRC=\"jav&#x0D;ascript:alert('XSS');\">";
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=\"jav&#x0D;ascript:alert('XSS');\">";            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
             string expected = "<IMG SRC=\"jav&amp;#x0D;a:alert(&#39;XSS&#39;);\">";
-            string actual = "<IMG SRC=\"jav&#x0D;ascript:alert('XSS');\">";
-            actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             Assert.AreEqual(expected, actual, true);
-            //Assert.Inconclusive("Verify the correctness of this test method.");
         }
+
+        /// <summary>
+        /// A test for Image Xss vector with Multiline using ASCII carriage return
+        /// Example <!-- <IMG
+        /// SRC
+        /// =
+        /// " 
+        /// j
+        /// a
+        /// v
+        /// a
+        /// s
+        /// c
+        /// r
+        /// i
+        /// p
+        /// t
+        /// :
+        /// a
+        /// l
+        /// e
+        /// r
+        /// t
+        /// (
+        /// '
+        /// X
+        /// S
+        /// S
+        /// '
+        /// )
+        /// "
+        ///> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageMultilineInjectedXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = @"<IMG
+SRC
+=
+"" 
+j
+a
+v
+a
+s
+c
+r
+i
+p
+t
+:
+a
+l
+e
+r
+t
+(
+'
+X
+S
+S
+'
+)
+""
+>
+";
+            
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+            
+            // Assert
+            string expected = "<IMG SRC=\":\r\na\r\nl\r\ne\r\nr\r\nt\r\n(\r\n&#39;\r\nX\r\nS\r\nS\r\n&#39;\r\n)\r\n\">\r\n";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Xss vector with Null breaks up Javascript directive 
+        /// Example <!-- perl -e 'print "<IMG SRC=java\0script:alert(\"XSS\")>";' > out -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageNullBreaksUpXSSTest1()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "perl -e 'print \"<IMG SRC=java\0script:alert(\"XSS\")>\";' > out";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "perl -e 'print \"<IMG SRC=\"java\0:alert(&quot;XSS&quot;)\">\";' > out";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Xss vector with Null breaks up cross site scripting vector 
+        /// Example <!-- <image src=" perl -e 'print "<SCR\0IPT>alert(\"XSS\")</SCR\0IPT>";' > out "> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageNullBreaksUpXSSTest2()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<image src=\" perl -e 'print \"<SCR\0IPT>alert(\"XSS\")</SCR\0IPT>\";' > out \">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "\";' > out \">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Xss vector with spaces and Meta characters 
+        /// Example <!-- <IMG SRC=" &#14;  javascript:alert('XSS');"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageSpaceAndMetaCharXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=\" &#14;  javascript:alert('XSS');\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<IMG SRC=\" &amp;#14;:alert(&#39;XSS&#39;);\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Xss vector with half open html
+        /// Example <!-- <IMG SRC="javascript:alert('XSS')" -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageHalfOpenHtmlXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=\"javascript:alert('XSS')\"";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Xss vector with double open angle bracket
+        /// Example <!-- <image src=http://ha.ckers.org/scriptlet.html < -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageDoubleOpenAngleBracketXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<image src=http://ha.ckers.org/scriptlet.html <";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Dic Xss vector with Javascript escaping
+        /// Example <!-- <div style="\";alert('XSS');//"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivJavascriptEscapingXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"\";alert('XSS');//\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Xss vector with input image
+        /// Example <!-- <INPUT TYPE="IMAGE" SRC="javascript:alert('XSS');"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageInputXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<INPUT TYPE=\"IMAGE\" SRC=\"javascript:alert('XSS');\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Xss vector with Dynsrc
+        /// Example <!-- <IMG DYNSRC="javascript:alert('XSS')"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageDynsrcXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG DYNSRC=\"javascript:alert('XSS')\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<IMG>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Xss vector with Lowsrc
+        /// Example <!-- <IMG LOWSRC="javascript:alert('XSS')"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageLowsrcXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG LOWSRC=\"javascript:alert('XSS')\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<IMG>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Xss vector with BGSound
+        /// Example <!-- <BGSOUND SRC="javascript:alert('XSS');"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void BGSoundXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<BGSOUND SRC=\"javascript:alert('XSS');\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for BR with Javascript Include
+        /// Example <!-- <BR SIZE="&{alert('XSS')}"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void BRJavascriptIncludeXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<BR SIZE=\"&{alert('XSS')}\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<BR>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for P with url in style
+        /// Example <!-- <p STYLE="behavior: url(www.ha.ckers.org);"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void PWithUrlInStyleXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<p STYLE=\"behavior: url(www.ha.ckers.org);\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            // intentionally keep it failing to get notice when reviewing unit tests so can disucss
+            string expected = "<p>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image with vbscript
+        /// Example <!-- <IMG SRC='vbscript:msgbox("XSS")'> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageWithVBScriptXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC='vbscript:msgbox(\"XSS\")'>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<IMG SRC='vb:msgbox(&quot;XSS&quot;)'>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image with Mocha
+        /// Example <!-- <IMG SRC="mocha:[code]"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageWithMochaXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=\"mocha:[code]\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<IMG SRC=\"mocha:[code]\">";
+            Assert.AreNotEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image with Livescript
+        /// Example <!-- <IMG SRC="Livescript:[code]"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageWithLivescriptXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=\"Livescript:[code]\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<IMG SRC=\"Live:[code]\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Iframe
+        /// Example <!-- <IFRAME SRC="javascript:alert('XSS');"></IFRAME> -->
+        /// </summary>   
+        [TestMethod()]
+        public void IframeXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IFRAME SRC=\"javascript:alert('XSS');\"></IFRAME>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Frame
+        /// Example <!-- <FRAMESET><FRAME SRC="javascript:alert('XSS');"></FRAMESET> -->
+        /// </summary>   
+        [TestMethod()]
+        public void FrameXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<FRAMESET><FRAME SRC=\"javascript:alert('XSS');\"></FRAMESET>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Table
+        /// Example <!-- <TABLE BACKGROUND="javascript:alert('XSS')"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void TableXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<TABLE BACKGROUND=\"javascript:alert('XSS')\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for TD
+        /// Example <!-- <TABLE><TD BACKGROUND="javascript:alert('XSS')"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void TDXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<TABLE><TD BACKGROUND=\"javascript:alert('XSS')\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div Background Image
+        /// Example <!-- <DIV STYLE="background-image: url(javascript:alert('XSS'))"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivBackgroundImageXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<DIV STYLE=\"background-image: url(javascript:alert('XSS'))\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<DIV STYLE=\"background-image: url(:alert(&#39;XSS&#39;))\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div Background Image  with unicoded XSS
+        /// Example <!-- <DIV STYLE="background-image:\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029'\0029"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivBackgroundImageWithUnicodedXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<DIV STYLE=\"background-image:\0075\0072\006C\0028'\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029'\0029\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<DIV STYLE=\"background-image:\0075\0072\006C\0028&#39;\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029&#39;\0029\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div Background Image  with extra characters
+        /// Example <!-- <DIV STYLE="background-image: url(&#1;javascript:alert('XSS'))"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivBackgroundImageWithExtraCharactersXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<DIV STYLE=\"background-image: url(&#1;javascript:alert('XSS'))\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<DIV STYLE=\"background-image: url(&amp;#1;:alert(&#39;XSS&#39;))\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for DIV expression
+        /// Example <!-- <DIV STYLE="width: expression(alert('XSS'));"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivExpressionXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<DIV STYLE=\"width: expression(alert('XSS'));\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<DIV STYLE=\"width:(alert(&#39;XSS&#39;));\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image with break up expression
+        /// Example <!-- <IMG STYLE="xss:expr/*XSS*/ession(alert('XSS'))"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageStyleExpressionXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG STYLE=\"xss:expr/*XSS*/ession(alert('XSS'))\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<IMG>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with break up expression
+        /// Example <!-- exp/*<A STYLE='no\xss:noxss("*//*");xss:&#101;x&#x2F;*XSS*//*/*/pression(alert("XSS"))'> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagStyleExpressionXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "exp/*<A STYLE='no\\xss:noxss(\"*//*\");xss:&#101;x&#x2F;*XSS*//*/*/pression(alert(\"XSS\"))'>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "exp/*<a></a>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for BaseTag
+        /// Example <!-- <BASE HREF="javascript:alert('XSS');//"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void BaseTagXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<BASE HREF=\"javascript:alert('XSS');//\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for EMBEDTag
+        /// Example <!-- <EMBED SRC="http://ha.ckers.org/xss.swf" AllowScriptAccess="always"></EMBED> -->
+        /// </summary>   
+        [TestMethod()]
+        public void EmbedTagXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<EMBED SRC=\"http://ha.ckers.org/xss.swf\" AllowScriptAccess=\"always\"></EMBED>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for EMBEDSVG
+        /// Example <!-- <EMBED SRC="data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==" type="image/svg+xml" AllowScriptAccess="always"></EMBED> -->
+        /// </summary>   
+        [TestMethod()]
+        public void EmbedSVGXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<EMBED SRC=\"data:image/svg+xml;base64,PHN2ZyB4bWxuczpzdmc9Imh0dH A6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hs aW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjAiIHk9IjAiIHdpZHRoPSIxOTQiIGhlaWdodD0iMjAw IiBpZD0ieHNzIj48c2NyaXB0IHR5cGU9InRleHQvZWNtYXNjcmlwdCI+YWxlcnQoIlh TUyIpOzwvc2NyaXB0Pjwvc3ZnPg==\" type=\"image/svg+xml\" AllowScriptAccess=\"always\"></EMBED>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for XML namespace
+        /// Example <!-- <HTML xmlns:xss>  <?import namespace="xss" implementation="http://ha.ckers.org/xss.htc">  <xss:xss>XSS</xss:xss></HTML> -->
+        /// </summary>   
+        [TestMethod()]
+        public void XmlNamespaceXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<HTML xmlns:xss>  <?import namespace=\"xss\" implementation=\"http://ha.ckers.org/xss.htc\">  <xss:xss>XSS</xss:xss></HTML>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for XML with CData
+        /// Example <!-- <XML ID=I><X><C><![CDATA[<IMG SRC="javas]]><![CDATA[cript:alert('XSS');">]]></C></X></xml><SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML></SPAN> -->
+        /// </summary>   
+        [TestMethod()]
+        public void XmlWithCDataXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<XML ID=I><X><C><![CDATA[<IMG SRC=\"javas]]><![CDATA[cript:alert('XSS');\">]]></C></X></xml><SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML></SPAN>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<SPAN></SPAN>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for XML with Comment obfuscation
+        /// Example <!-- <XML ID="xss"><I><B>&lt;IMG SRC="javas<!-- -->cript:alert('XSS')"&gt;</B></I></XML><SPAN DATASRC="#xss" DATAFLD="B" DATAFORMATAS="HTML"></SPAN> -->
+        /// </summary>   
+        [TestMethod()]
+        public void XmlWithCommentObfuscationXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<XML ID=\"xss\"><I><B>&lt;IMG SRC=\"javas<!-- -->cript:alert('XSS')\"&gt;</B></I></XML><SPAN DATASRC=\"#xss\" DATAFLD=\"B\" DATAFORMATAS=\"HTML\"></SPAN>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<SPAN></SPAN>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for XML with Embedded script
+        /// Example <!-- <XML SRC="xsstest.xml" ID=I></XML><SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML></SPAN> -->
+        /// </summary>   
+        [TestMethod()]
+        public void XmlWithEmbeddedScriptXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<XML SRC=\"xsstest.xml\" ID=I></XML><SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML></SPAN>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<SPAN></SPAN>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Html + Time
+        /// Example <!-- <HTML><BODY><?xml:namespace prefix="t" ns="urn:schemas-microsoft-com:time"><?import namespace="t" implementation="#default#time2"><t:set attributeName="innerHTML" to="XSS&lt;SCRIPT DEFER&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;"></BODY></HTML> -->
+        /// </summary>   
+        [TestMethod()]
+        public void HtmlPlusTimeXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<HTML><BODY><?xml:namespace prefix=\"t\" ns=\"urn:schemas-microsoft-com:time\"><?import namespace=\"t\" implementation=\"#default#time2\"><t:set attributeName=\"innerHTML\" to=\"XSS&lt;SCRIPT DEFER&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;\"></BODY></HTML>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Embedded commands
+        /// Example <!-- <IMG SRC="http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageWithEmbeddedCommandXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=\"http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<IMG SRC=\"http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Image Embedded commands part 2
+        /// Example <!-- <IMG SRC="Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageWithEmbeddedCommand2XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG SRC=\"Redirect 302 /a.jpg http://victimsite.com/admin.asp&deleteuser\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<IMG SRC=\"Redirect 302 /a.jpg http://victimsite.com/admin.asp&amp;deleteuser\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag IP verses hostname
+        /// Example <!-- <A HREF="http://66.102.7.147/">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagIPVersesHostnameXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://66.102.7.147/\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://66.102.7.147/\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Url encoding
+        /// Example <!-- <A HREF="http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagUrlEncodingXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Dword encoding
+        /// Example <!-- <A HREF="http://1113982867/">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagDwordEncodingXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://1113982867/\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://1113982867/\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Hex encoding
+        /// Example <!-- <A HREF="http://0x42.0x0000066.0x7.0x93/">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagHexEncodingXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://0x42.0x0000066.0x7.0x93/\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://0x42.0x0000066.0x7.0x93/\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Octal encoding
+        /// Example <!-- <A HREF="http://0102.0146.0007.00000223/">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagOctalEncodingXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://0102.0146.0007.00000223/\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://0102.0146.0007.00000223/\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Mixed encoding
+        /// Example <!-- <A HREF="h tt	p://6&#9;6.000146.0x7.147/">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagMixedEncodingXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = @"<A HREF=""h
+tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = @"<A HREF=""h
+tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Protocol resolution
+        /// Example <!-- <A HREF="//www.google.com/">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagProtocolResolutionXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"//www.google.com/\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"//www.google.com/\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Google feeling lucky part1
+        /// Example <!-- <A HREF="//google">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagGoogleFeelingLucky1XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"//google\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"//google\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Google feeling lucky part2
+        /// Example <!-- <A HREF="http://ha.ckers.org@google">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagGoogleFeelingLucky2XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://ha.ckers.org@google\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://ha.ckers.org@google\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Google feeling lucky part3
+        /// Example <!-- <A HREF="http://google:ha.ckers.org">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagGoogleFeelingLucky3XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://google:ha.ckers.org\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://google:ha.ckers.org\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with removing cnames
+        /// Example <!-- <A HREF="http://google.com/">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagRemovingCNamesXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://google.com/\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://google.com/\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with extra dot for absolute dns
+        /// Example <!-- <A HREF="http://www.google.com./">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagAbsoluteDNSXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.google.com./\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.google.com./\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with javascript link location
+        /// Example <!-- <A HREF="javascript:document.location='http://www.google.com/'">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagJavascriptLinkLocationXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"javascript:document.location='http://www.google.com/'\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\":document.location=&#39;http://www.google.com/&#39;\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with content replace
+        /// Example <!-- <A HREF="http://www.gohttp://www.google.com/ogle.com/">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagContentReplaceXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.gohttp://www.google.com/ogle.com/\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.gohttp://www.google.com/ogle.com/\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+
+        #region private methods
 
         private Dictionary<string, string[]> CreateElementWhiteList()
         {
@@ -331,6 +1545,8 @@ namespace UnitTests
             AttributeList.Add("href", new string[] { });
 
             return AttributeList;
-        } 
+        }
+
+        #endregion
     }
 }
