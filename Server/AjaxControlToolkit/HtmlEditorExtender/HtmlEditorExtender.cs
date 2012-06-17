@@ -40,6 +40,7 @@ namespace AjaxControlToolkit
         private HtmlEditorExtenderButtonCollection buttonList = null;
         private SanitizerProvider sanitizerProvider = null;
         private AjaxFileUpload ajaxFileUpload = null;
+        private bool enableSanitization = true;
 
         public HtmlEditorExtender()
         {
@@ -136,6 +137,14 @@ namespace AjaxControlToolkit
             get { return ajaxFileUpload; }
         }
 
+        [Browsable(true)]
+        [DefaultValue(true)]
+        public bool EnableSanitization
+        {
+            get { return enableSanitization; }
+            set { enableSanitization = value; }
+        }
+
         /// <summary>
         /// Event handler for Ajax Image upload complete event.
         /// </summary>
@@ -159,8 +168,8 @@ namespace AjaxControlToolkit
             //for decoding a tags
             //if (buttonList.Find(b => b.CommandName == "createLink") != null)
             //{
-                string hrefCharacters = "^\\\"\\>\\<\\\\";
-                result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            string hrefCharacters = "^\\\"\\>\\<\\\\";
+            result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             //}
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
@@ -172,12 +181,20 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "<[^>]*url[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "<[^>]*javascript\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "<[^>]*position\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-
-            if (sanitizerProvider != null)
-            {
-                Dictionary<string, string[]> elementWhiteList = MakeCombinedElementList();
-                Dictionary<string, string[]> attributeWhiteList = MakeCombinedAttributeList();
-                result = sanitizerProvider.GetSafeHtmlFragment(result, elementWhiteList, attributeWhiteList);
+            
+            // Check Whether EnableSanitization is disabled or not.
+            if (EnableSanitization)
+            {                
+                if (sanitizerProvider == null) 
+                {
+                    throw new Exception("Sanitizer provider is not configured in the web.config file.");
+                }
+                else
+                {
+                    Dictionary<string, string[]> elementWhiteList = MakeCombinedElementList();
+                    Dictionary<string, string[]> attributeWhiteList = MakeCombinedAttributeList();
+                    result = sanitizerProvider.GetSafeHtmlFragment(result, elementWhiteList, attributeWhiteList);
+                }
             }
 
             return result;
@@ -330,7 +347,7 @@ namespace AjaxControlToolkit
                             string[] combineAtt;
                             List<string> listCombineAtt;
                             bool isChanged = false;
-                            
+
                             // check if attribute value is already exist in the element
                             if (elementCombineWhiteList.TryGetValue(keyvalue.Key, out combineAtt))
                             {
@@ -343,7 +360,7 @@ namespace AjaxControlToolkit
                                         isChanged = true;
                                     }
                                 }
-                                
+
                                 if (isChanged)
                                 {
                                     // associate updated attribute list with the element
