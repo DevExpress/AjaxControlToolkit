@@ -131,6 +131,7 @@ namespace AjaxControlToolkit.Sanitizer
             if (attribute.Name.ToLower() == "style")
             {
                 attribute.Value = Regex.Replace(attribute.Value, @"\s*e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*", "", RegexOptions.IgnoreCase);
+                attribute.Value = Regex.Replace(attribute.Value, @"\s*b\s*e\s*h\s*a\s*v\s*i\s*o\s*r\s*", "", RegexOptions.IgnoreCase);
             }
 
             if (attribute.Name.ToLower() == "href" || attribute.Name.ToLower() == "src")

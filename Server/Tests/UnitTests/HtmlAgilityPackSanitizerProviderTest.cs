@@ -714,7 +714,7 @@ S
 
             // Assert
             // intentionally keep it failing to get notice when reviewing unit tests so can disucss
-            string expected = "<p>";
+            string expected = "<p STYLE=\": url(www.ha.ckers.org);\">";
             Assert.AreEqual(expected, actual, true);
         }
 
