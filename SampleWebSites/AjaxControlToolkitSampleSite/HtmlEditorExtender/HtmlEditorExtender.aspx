@@ -195,11 +195,9 @@
         </p>
         <br />
         <p>
-        The AntiXSS and HtmlAgilityPack Sanitizer Provider are included in the SanitizerProviders folder with the 
-        CodePlex release of the Ajax Control Toolkit. You need to add a reference to all three
-        assemblies contained in the folder: SanitizerProviders.dll, AntiXSSLibrary.dll, and 
-        HtmlSanitizationLibrary.dll to use Antixss. To use HtmlAgilityPack you need SanitizerProviders.dll 
-        and HtmlAgilityPack.dll.
+        The HtmlAgilityPack Sanitizer Provider is included in the SanitizerProviders folder with the 
+        CodePlex release of the Ajax Control Toolkit. You need to add a reference to assemblies contained 
+        in the folder: SanitizerProviders.dll and HtmlAgilityPack.dll.
         </p>
         <br />
         <p>
@@ -220,10 +218,7 @@
 &lt;system.web&gt;
 	&lt;compilation targetFramework="4.0" debug="true"/&gt;
 	&lt;sanitizer defaultProvider="HtmlAgilityPackSanitizerProvider"&gt;
-		&lt;providers&gt;
-			&lt;add name="AntiXssSanitizerProvider" 
-            type="AjaxControlToolkit.Sanitizer.
-              AntiXssSanitizerProvider"&gt;&lt;/add&gt;
+		&lt;providers&gt;			
             &lt;add name="HtmlAgilityPackSanitizerProvider" 
             type="AjaxControlToolkit.Sanitizer.
             HtmlAgilityPackSanitizerProvider"&gt;&lt;/add&gt;

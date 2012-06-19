@@ -181,20 +181,13 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "<[^>]*url[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "<[^>]*javascript\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "<[^>]*position\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            
+
             // Check Whether EnableSanitization is disabled or not.
-            if (EnableSanitization)
-            {                
-                if (sanitizerProvider == null) 
-                {
-                    throw new Exception("Sanitizer provider is not configured in the web.config file.");
-                }
-                else
-                {
-                    Dictionary<string, string[]> elementWhiteList = MakeCombinedElementList();
-                    Dictionary<string, string[]> attributeWhiteList = MakeCombinedAttributeList();
-                    result = sanitizerProvider.GetSafeHtmlFragment(result, elementWhiteList, attributeWhiteList);
-                }
+            if (EnableSanitization && sanitizerProvider != null)
+            {
+                Dictionary<string, string[]> elementWhiteList = MakeCombinedElementList();
+                Dictionary<string, string[]> attributeWhiteList = MakeCombinedAttributeList();
+                result = sanitizerProvider.GetSafeHtmlFragment(result, elementWhiteList, attributeWhiteList);
             }
 
             return result;
@@ -209,6 +202,12 @@ namespace AjaxControlToolkit
             base.OnInit(e);
             if (!DesignMode)
             {
+                // Check if EnableSanitization is enabled and sanitizer provider is not configured.
+                if (EnableSanitization && sanitizerProvider == null)
+                {
+                    throw new Exception("Sanitizer provider is not configured in the web.config file. If you are using the HtmlEditorExtender with a public website then please configure a Sanitizer provider. Otherwise, set the EnableSanitization property to false.");
+                }
+
                 HtmlGenericControl popupdiv = new HtmlGenericControl("div");
                 popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
                 popupdiv.Attributes.Add("style", "opacity: 0;");
