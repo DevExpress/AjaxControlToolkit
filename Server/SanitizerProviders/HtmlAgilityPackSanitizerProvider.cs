@@ -138,10 +138,11 @@ namespace AjaxControlToolkit.Sanitizer
             {
                 //if (!attribute.Value.StartsWith("http://") || attribute.Value.StartsWith("/"))
                 //    attribute.Value = "";
+                attribute.Value = Regex.Replace(attribute.Value, @"\s*m\s*o\s*c\s*h\s*a\s*", "", RegexOptions.IgnoreCase);
             }
-
         }
 
+        
         //private void CleanAttributeValues(Dictionary<string, string[]> validAttributes, HtmlAttribute attribute)
         //{
 
