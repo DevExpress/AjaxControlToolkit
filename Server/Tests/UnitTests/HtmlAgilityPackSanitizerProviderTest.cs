@@ -12,8 +12,8 @@ using HtmlAgilityPack;
 
 namespace UnitTests
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for HtmlAgilityPackSanitizerProviderTest and is intended
     ///to contain all HtmlAgilityPackSanitizerProviderTest Unit Tests
@@ -70,7 +70,7 @@ namespace UnitTests
         //}
         //
         #endregion
-        
+
         /// <summary>
         /// A test for Xss locator
         /// Example <!-- <a href="'';!--\"<XSS>=&{()}"> --> 
@@ -79,16 +79,16 @@ namespace UnitTests
         public void XSSLocatorTest()
         {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
-            
+
             // Act
             string htmlFragment = "<a href=\"'';!--\"<XSS>=&{()}\">";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
-            
+
             // Assert
-            string expected = "<a href=\"&#39;&#39;;!--\"></a>";
+            string expected = "<a href=\"&#x26;&#x23;39&#x3B;&#x26;&#x23;39&#x3B;&#x3B;&#x21;&#x2D;&#x2D;\"></a>";
             Assert.AreEqual(expected, actual);
         }
 
@@ -109,7 +109,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\":alert(&#39;XSS&#39;);\">";
+            string expected = "<IMG SRC=\"&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -130,7 +130,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\":alert(&#39;XSS&#39;)\">";
+            string expected = "<IMG SRC=\"&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -151,7 +151,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\":alert(&#39;XSS&#39;)\">";
+            string expected = "<IMG SRC=\"&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -172,7 +172,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\":alert(&amp;quot;XSS&amp;quot;)\">";
+            string expected = "<IMG SRC=\"&#x3A;alert&#x28;&#x26;amp&#x3B;quot&#x3B;XSS&#x26;amp&#x3B;quot&#x3B;&#x29;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -193,7 +193,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"`:alert(&quot;RSnake\">";
+            string expected = "<IMG SRC=\"&#x60;&#x3A;alert&#x28;&#x26;quot&#x3B;RSnake\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -235,7 +235,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\":alert(String.fromCharCode(88,83,83))\">";
+            string expected = "<IMG SRC=\"&#x3A;alert&#x28;String&#x2E;fromCharCode&#x28;88&#x2C;83&#x2C;83&#x29;&#x29;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -256,7 +256,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#39;&amp;#88;&amp;#83;&amp;#83;&amp;#39;&amp;#41;\">";
+            string expected = "<IMG SRC=\"&#x26;amp&#x3B;&#x23;106&#x3B;&#x26;amp&#x3B;&#x23;97&#x3B;&#x26;amp&#x3B;&#x23;118&#x3B;&#x26;amp&#x3B;&#x23;97&#x3B;&#x26;amp&#x3B;&#x23;115&#x3B;&#x26;amp&#x3B;&#x23;99&#x3B;&#x26;amp&#x3B;&#x23;114&#x3B;&#x26;amp&#x3B;&#x23;105&#x3B;&#x26;amp&#x3B;&#x23;112&#x3B;&#x26;amp&#x3B;&#x23;116&#x3B;&#x26;amp&#x3B;&#x23;58&#x3B;&#x26;amp&#x3B;&#x23;97&#x3B;&#x26;amp&#x3B;&#x23;108&#x3B;&#x26;amp&#x3B;&#x23;101&#x3B;&#x26;amp&#x3B;&#x23;114&#x3B;&#x26;amp&#x3B;&#x23;116&#x3B;&#x26;amp&#x3B;&#x23;40&#x3B;&#x26;amp&#x3B;&#x23;39&#x3B;&#x26;amp&#x3B;&#x23;88&#x3B;&#x26;amp&#x3B;&#x23;83&#x3B;&#x26;amp&#x3B;&#x23;83&#x3B;&#x26;amp&#x3B;&#x23;39&#x3B;&#x26;amp&#x3B;&#x23;41&#x3B;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -271,13 +271,13 @@ namespace UnitTests
             HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
-            
+
             // Act
             string htmlFragment = "<IMG SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
-            
+
             // Assert
-            string expected = "<IMG SRC=\"&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041\">";
+            string expected = "<IMG SRC=\"&#x26;amp&#x3B;&#x23;0000106&#x26;amp&#x3B;&#x23;0000097&#x26;amp&#x3B;&#x23;0000118&#x26;amp&#x3B;&#x23;0000097&#x26;amp&#x3B;&#x23;0000115&#x26;amp&#x3B;&#x23;0000099&#x26;amp&#x3B;&#x23;0000114&#x26;amp&#x3B;&#x23;0000105&#x26;amp&#x3B;&#x23;0000112&#x26;amp&#x3B;&#x23;0000116&#x26;amp&#x3B;&#x23;0000058&#x26;amp&#x3B;&#x23;0000097&#x26;amp&#x3B;&#x23;0000108&#x26;amp&#x3B;&#x23;0000101&#x26;amp&#x3B;&#x23;0000114&#x26;amp&#x3B;&#x23;0000116&#x26;amp&#x3B;&#x23;0000040&#x26;amp&#x3B;&#x23;0000039&#x26;amp&#x3B;&#x23;0000088&#x26;amp&#x3B;&#x23;0000083&#x26;amp&#x3B;&#x23;0000083&#x26;amp&#x3B;&#x23;0000039&#x26;amp&#x3B;&#x23;0000041\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -296,9 +296,9 @@ namespace UnitTests
             // Act
             string htmlFragment = "<IMG SRC=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
-            
+
             // Assert
-            string expected = "<IMG SRC=\"&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29\">";
+            string expected = "<IMG SRC=\"&#x26;amp&#x3B;&#x23;x6A&#x26;amp&#x3B;&#x23;x61&#x26;amp&#x3B;&#x23;x76&#x26;amp&#x3B;&#x23;x61&#x26;amp&#x3B;&#x23;x73&#x26;amp&#x3B;&#x23;x63&#x26;amp&#x3B;&#x23;x72&#x26;amp&#x3B;&#x23;x69&#x26;amp&#x3B;&#x23;x70&#x26;amp&#x3B;&#x23;x74&#x26;amp&#x3B;&#x23;x3A&#x26;amp&#x3B;&#x23;x61&#x26;amp&#x3B;&#x23;x6C&#x26;amp&#x3B;&#x23;x65&#x26;amp&#x3B;&#x23;x72&#x26;amp&#x3B;&#x23;x74&#x26;amp&#x3B;&#x23;x28&#x26;amp&#x3B;&#x23;x27&#x26;amp&#x3B;&#x23;x58&#x26;amp&#x3B;&#x23;x53&#x26;amp&#x3B;&#x23;x53&#x26;amp&#x3B;&#x23;x27&#x26;amp&#x3B;&#x23;x29\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -319,7 +319,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\":alert(&#39;XSS&#39;);\">";
+            string expected = "<IMG SRC=\"&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -340,7 +340,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"jav&amp;#x09;a:alert(&#39;XSS&#39;);\">";
+            string expected = "<IMG SRC=\"jav&#x26;amp&#x3B;&#x23;x09&#x3B;a&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -352,16 +352,16 @@ namespace UnitTests
         public void ImageEmbeddedNewLineXSSTest()
         {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();            
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
 
             // Act
-            string htmlFragment = "<IMG SRC=\"jav&#x0A;ascript:alert('XSS');\">";            
+            string htmlFragment = "<IMG SRC=\"jav&#x0A;ascript:alert('XSS');\">";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"jav&amp;#x0A;a:alert(&#39;XSS&#39;);\">";
+            string expected = "<IMG SRC=\"jav&#x26;amp&#x3B;&#x23;x0A&#x3B;a&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -382,7 +382,7 @@ namespace UnitTests
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"jav&amp;#x0D;a:alert(&#39;XSS&#39;);\">";
+            string expected = "<IMG SRC=\"jav&#x26;amp&#x3B;&#x23;x0D&#x3B;a&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -457,11 +457,11 @@ S
 ""
 >
 ";
-            
+
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
-            
+
             // Assert
-            string expected = "<IMG SRC=\":\r\na\r\nl\r\ne\r\nr\r\nt\r\n(\r\n&#39;\r\nX\r\nS\r\nS\r\n&#39;\r\n)\r\n\">\r\n";
+            string expected = "<img src=\"&#x3A;&#x0D;&#x0A;a&#x0D;&#x0A;l&#x0D;&#x0A;e&#x0D;&#x0A;r&#x0D;&#x0A;t&#x0D;&#x0A;&#x28;&#x0D;&#x0A;&#x26;&#x23;39&#x3B;&#x0D;&#x0A;X&#x0D;&#x0A;S&#x0D;&#x0A;S&#x0D;&#x0A;&#x26;&#x23;39&#x3B;&#x0D;&#x0A;&#x29;&#x0D;&#x0A;\">\r\n";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -482,7 +482,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "perl -e 'print \"<IMG SRC=\"java\0:alert(&quot;XSS&quot;)\">\";' > out";
+            string expected = "perl -e 'print \"<img src=\"java&#xfffd;&#x3A;alert&#x28;&#x26;quot&#x3B;XSS&#x26;quot&#x3B;&#x29;\">\";' > out";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -524,7 +524,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\" &amp;#14;:alert(&#39;XSS&#39;);\">";
+            string expected = "<IMG SRC=\"&#x20;&#x26;amp&#x3B;&#x23;14&#x3B;&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -714,7 +714,7 @@ S
 
             // Assert
             // intentionally keep it failing to get notice when reviewing unit tests so can disucss
-            string expected = "<p STYLE=\": url(www.ha.ckers.org);\">";
+            string expected = "<p STYLE=\"&#x3A;&#x20;url&#x28;www&#x2E;ha&#x2E;ckers&#x2E;org&#x29;&#x3B;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -735,7 +735,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC='vb:msgbox(&quot;XSS&quot;)'>";
+            string expected = "<IMG SRC='vb&#x3A;msgbox&#x28;&#x26;quot&#x3B;XSS&#x26;quot&#x3B;&#x29;'>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -756,7 +756,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\":[code]\">";
+            string expected = "<IMG SRC=\"&#x3A;&#x5B;code&#x5D;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -777,7 +777,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"Live:[code]\">";
+            string expected = "<IMG SRC=\"Live&#x3A;&#x5B;code&#x5D;\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -882,7 +882,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<DIV STYLE=\"background-image: url(:alert(&#39;XSS&#39;))\"></div>";
+            string expected = "<DIV STYLE=\"background&#x2D;image&#x3A;&#x20;url&#x28;&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x29;\"></div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -903,7 +903,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<DIV STYLE=\"background-image:\0075\0072\006C\0028&#39;\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029&#39;\0029\"></div>";
+            string expected = "<DIV STYLE=\"background&#x2D;image&#x3A;&#xfffd;075&#xfffd;072&#xfffd;06C&#xfffd;028&#x26;&#x23;39&#x3B;&#xfffd;06a&#xfffd;061&#xfffd;076&#xfffd;061&#xfffd;073&#xfffd;063&#xfffd;072&#xfffd;069&#xfffd;070&#xfffd;074&#xfffd;03a&#xfffd;061&#xfffd;06c&#xfffd;065&#xfffd;072&#xfffd;074&#xfffd;028&#x2E;1027&#xfffd;058&#x2E;1053&#xfffd;053&#xfffd;027&#xfffd;029&#x26;&#x23;39&#x3B;&#xfffd;029\"></div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -924,7 +924,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<DIV STYLE=\"background-image: url(&amp;#1;:alert(&#39;XSS&#39;))\"></Div>";
+            string expected = "<DIV STYLE=\"background&#x2D;image&#x3A;&#x20;url&#x28;&#x26;amp&#x3B;&#x23;1&#x3B;&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x29;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -945,7 +945,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<DIV STYLE=\"width:(alert(&#39;XSS&#39;));\"></Div>";
+            string expected = "<DIV STYLE=\"width&#x3A;&#x28;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x29;&#x3B;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1176,7 +1176,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode\">";
+            string expected = "<IMG SRC=\"http&#x3A;&#x2F;&#x2F;www&#x2E;thesiteyouareon&#x2E;com&#x2F;somecommand&#x2E;php&#x3F;somevariables&#x3D;maliciouscode\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1197,7 +1197,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"Redirect 302 /a.jpg http://victimsite.com/admin.asp&amp;deleteuser\">";
+            string expected = "<IMG SRC=\"Redirect&#x20;302&#x20;&#x2F;a&#x2E;jpg&#x20;http&#x3A;&#x2F;&#x2F;victimsite&#x2E;com&#x2F;admin&#x2E;asp&#x26;amp&#x3B;deleteuser\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1218,7 +1218,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://66.102.7.147/\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;66&#x2E;102&#x2E;7&#x2E;147&#x2F;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1239,7 +1239,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;&#x25;77&#x25;77&#x25;77&#x25;2E&#x25;67&#x25;6F&#x25;6F&#x25;67&#x25;6C&#x25;65&#x25;2E&#x25;63&#x25;6F&#x25;6D\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1260,7 +1260,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://1113982867/\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;1113982867&#x2F;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1281,7 +1281,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://0x42.0x0000066.0x7.0x93/\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;0x42&#x2E;0x0000066&#x2E;0x7&#x2E;0x93&#x2F;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1302,7 +1302,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://0102.0146.0007.00000223/\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;0102&#x2E;0146&#x2E;0007&#x2E;00000223&#x2F;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1324,8 +1324,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = @"<A HREF=""h
-tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
+            string expected = "<A HREF=\"h&#x0D;&#x0A;tt&#x09;p&#x3A;&#x2F;&#x2F;6&#x26;amp&#x3B;&#x23;9&#x3B;6&#x2E;000146&#x2E;0x7&#x2E;147&#x2F;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1346,7 +1345,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"//www.google.com/\">XSS</A>";
+            string expected = "<A HREF=\"&#x2F;&#x2F;www&#x2E;google&#x2E;com&#x2F;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1367,7 +1366,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"//google\">XSS</A>";
+            string expected = "<A HREF=\"&#x2F;&#x2F;google\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1388,7 +1387,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://ha.ckers.org@google\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x40;google\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1409,7 +1408,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://google:ha.ckers.org\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;google&#x3A;ha&#x2E;ckers&#x2E;org\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1430,7 +1429,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://google.com/\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;google&#x2E;com&#x2F;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1451,7 +1450,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.google.com./\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;google&#x2E;com&#x2E;&#x2F;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1472,7 +1471,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\":document.location=&#39;http://www.google.com/&#39;\">XSS</A>";
+            string expected = "<A HREF=\"&#x3A;document&#x2E;location&#x3D;&#x26;&#x23;39&#x3B;http&#x3A;&#x2F;&#x2F;www&#x2E;google&#x2E;com&#x2F;&#x26;&#x23;39&#x3B;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1493,7 +1492,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.gohttp://www.google.com/ogle.com/\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;gohttp&#x3A;&#x2F;&#x2F;www&#x2E;google&#x2E;com&#x2F;ogle&#x2E;com&#x2F;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1514,7 +1513,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;SRC=http://ha.ckers.org/xss.js&gt;&lt;/&gt;\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x26;gt&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1535,7 +1534,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;SRC=http://ha.ckers.org/xss.js&gt;&lt;/&gt;\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x26;gt&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1556,7 +1555,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;SRC=http://ha.ckers.org/xss.js&gt;&lt;/&gt;)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x26;gt&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;&#x29;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1577,7 +1576,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;/XSS SRC=\">\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x2F;XSS&#x20;SRC&#x3D;\">\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1598,7 +1597,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;/XSS SRC=\">\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x2F;XSS&#x20;SRC&#x3D;\">\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1619,7 +1618,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;/XSS SRC=\">)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x2F;XSS&#x20;SRC&#x3D;\">)\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1640,7 +1639,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;/SRC=\">\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x2F;SRC&#x3D;\">\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1661,7 +1660,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;/SRC=\">\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x2F;SRC&#x3D;\">\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1682,7 +1681,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;/SRC=\">)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x2F;SRC&#x3D;\">)\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1703,7 +1702,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;&lt;&gt;alert(\"></A>\">XSS";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;\"></A>\">XSS";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1724,7 +1723,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;&lt;&gt;alert(\"></Div>\">";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;\"></Div>\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1745,7 +1744,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;&lt;&gt;alert(\"></Div>)\">";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;\"></div>)\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1766,7 +1765,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;src=http://ha.ckers.org/xss.js?&lt;B&gt;\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x3F;&#x26;lt&#x3B;B&#x26;gt&#x3B;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1787,7 +1786,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;src=http://ha.ckers.org/xss.js?&lt;B&gt;\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x3F;&#x26;lt&#x3B;B&#x26;gt&#x3B;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1808,7 +1807,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;SRC=http://ha.ckers.org/xss.js?&lt;B&gt;)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x3F;&#x26;lt&#x3B;B&#x26;gt&#x3B;&#x29;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1829,7 +1828,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;SRC=//ha.ckers.org/.j&gt;\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;&#x2E;j&#x26;gt&#x3B;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1850,7 +1849,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;src=//ha.ckers.org/.j&gt;\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;&#x2E;j&#x26;gt&#x3B;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1871,7 +1870,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;SRC=//ha.ckers.org/.j&gt;)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;SRC&#x3D;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;&#x2E;j&#x26;gt&#x3B;&#x29;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1892,7 +1891,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;&gt;a=/XSS/alert(a.source)&lt;/&gt;\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;gt&#x3B;a&#x3D;&#x2F;XSS&#x2F;alert&#x28;a&#x2E;source&#x29;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1913,7 +1912,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;&gt;a=/XSS/alert(a.source)&lt;/&gt;\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;gt&#x3B;a&#x3D;&#x2F;XSS&#x2F;alert&#x28;a&#x2E;source&#x29;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1934,7 +1933,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;&gt;a=/XSS/alert(a.source)&lt;/&gt;)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x26;gt&#x3B;a&#x3D;&#x2F;XSS&#x2F;alert&#x28;a&#x2E;source&#x29;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;&#x29;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1955,7 +1954,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&#188;&#190;alert(&#162;XSS&#162;)&#188;/&#190;\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;&#x23;188&#x3B;&#x26;&#x23;190&#x3B;alert&#x28;&#x26;&#x23;162&#x3B;XSS&#x26;&#x23;162&#x3B;&#x29;&#x26;&#x23;188&#x3B;&#x2F;&#x26;&#x23;190&#x3B;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1976,7 +1975,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&#188;&#190;alert(&#162;XSS&#162;)&#188;/&#190;\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;&#x23;188&#x3B;&#x26;&#x23;190&#x3B;alert&#x28;&#x26;&#x23;162&#x3B;XSS&#x26;&#x23;162&#x3B;&#x29;&#x26;&#x23;188&#x3B;&#x2F;&#x26;&#x23;190&#x3B;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -1997,7 +1996,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&#188;&#190;alert(&#162;XSS&#162;)&#188;/&#190;)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;&#x23;188&#x3B;&#x26;&#x23;190&#x3B;alert&#x28;&#x26;&#x23;162&#x3B;XSS&#x26;&#x23;162&#x3B;&#x29;&#x26;&#x23;188&#x3B;&#x2F;&#x26;&#x23;190&#x3B;&#x29;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2018,7 +2017,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;!--[if gte IE 4]&gt;&lt;&gt;alert(&#39;XSS&#39;);&lt;/&gt;&lt;![endif]--&gt;\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x21;&#x2D;&#x2D;&#x5B;if&#x20;gte&#x20;IE&#x20;4&#x5D;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x21;&#x5B;endif&#x5D;&#x2D;&#x2D;&#x26;gt&#x3B;\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2039,7 +2038,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;!--[if gte IE 4]&gt;&lt;&gt;alert(&#39;XSS&#39;);&lt;/&gt;&lt;![endif]--&gt;\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x21;&#x2D;&#x2D;&#x5B;if&#x20;gte&#x20;IE&#x20;4&#x5D;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x21;&#x5B;endif&#x5D;&#x2D;&#x2D;&#x26;gt&#x3B;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2060,7 +2059,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;!--[if gte IE 4]&gt;&lt;&gt;alert(&#39;XSS&#39;);&lt;/&gt;&lt;![endif]--&gt;)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x21;&#x2D;&#x2D;&#x5B;if&#x20;gte&#x20;IE&#x20;4&#x5D;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x21;&#x5B;endif&#x5D;&#x2D;&#x2D;&#x26;gt&#x3B;&#x29;\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2081,7 +2080,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;a=\">\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2102,7 +2101,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;a=\">\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2123,7 +2122,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;a=\">\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;a&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2144,7 +2143,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;=\">\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2165,7 +2164,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;=\">\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2186,7 +2185,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;=\">\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2207,7 +2206,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;a=\">\" '' SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\">\" '' SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2228,7 +2227,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;a=\"> \" '' SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\"> \" '' SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2249,7 +2248,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;a=\"> \" '' SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;a&#x3D;\"> \" '' SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2270,7 +2269,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;\">\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;\">\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2291,7 +2290,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;\">\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;\">\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2312,7 +2311,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;\">)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;\">)\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2333,7 +2332,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;a=`&gt;` SRC=\">\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;&#x60;&#x26;gt&#x3B;&#x60;&#x20;SRC&#x3D;\">\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2354,7 +2353,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;a=`&gt;` SRC=\">\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;&#x60;&#x26;gt&#x3B;&#x60;&#x20;SRC&#x3D;\">\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2375,7 +2374,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;a=`&gt;` SRC=\">)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;a&#x3D;&#x60;&#x26;gt&#x3B;&#x60;&#x20;SRC&#x3D;\">)\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2396,7 +2395,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\">'>\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2417,7 +2416,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\">'>\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2438,7 +2437,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;a&#x3D;\">'>\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2459,7 +2458,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http://www.codeplex.com?url=&lt;&gt;document.write(\"></a>PT SRC=\"http://ha.ckers.org/xss.js\">\">XSS";
+            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;gt&#x3B;document&#x2E;write&#x28;\"></a>PT SRC=\"http://ha.ckers.org/xss.js\">\">XSS";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2480,7 +2479,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color: http://www.codeplex.com?url=&lt;&gt;document.write(\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">\">";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;gt&#x3B;document&#x2E;write&#x28;\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2501,7 +2500,23 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background-color:(&lt;&gt;document.write(\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">)\">";
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x26;gt&#x3B;document&#x2E;write&#x28;\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">)\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        [TestMethod]
+        public void HtmlEncode()
+        {
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"background-color: test\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"background&#x2D;color&#x3A;&#x20;test\"></div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2533,7 +2548,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             TagList.Add("br", new string[] { "style" });
             TagList.Add("center", new string[] { "style" });
             TagList.Add("a", new string[] { "href" });
-            
+
             return TagList;
         }
 
@@ -2544,7 +2559,7 @@ tt	p://6&amp;#9;6.000146.0x7.147/"">XSS</A>";
             AttributeList.Add("style", new string[] { "background-color", "margin", "margin-right", "padding", "border", "text-align" });
             AttributeList.Add("align", new string[] { "left", "right", "center", "justify" });
             AttributeList.Add("color", new string[] { });
-            AttributeList.Add("size", new string[] {  });
+            AttributeList.Add("size", new string[] { });
             AttributeList.Add("face", new string[] { });
             AttributeList.Add("dir", new string[] { "ltr", "rtl", "Auto" });
             AttributeList.Add("width", new string[] { });

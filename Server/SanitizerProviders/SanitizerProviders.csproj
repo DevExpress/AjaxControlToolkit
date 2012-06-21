@@ -55,7 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AntiXssSanitizerProvider.cs" />
-    <Compile Include="HtmlAgilityPackSanitizerProvider.cs" />
+    <Compile Include="HtmlAgilityPackSanitizerProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

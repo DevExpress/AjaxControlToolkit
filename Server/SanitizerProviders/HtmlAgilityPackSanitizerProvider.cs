@@ -8,11 +8,40 @@ using System.Web;
 using System.Text.RegularExpressions;
 namespace AjaxControlToolkit.Sanitizer
 {
+    /// <summary>
+    /// Sanitizer class that allows tag and attributes those are in whitelist and removes
+    /// other tags and attributes. This also cleans attribute values to remove vulnerable
+    /// words and characters
+    /// </summary>
     class HtmlAgilityPackSanitizerProvider : SanitizerProvider
     {
 
         private string _applicationName;
+        // declare an array to mark which characters are to be encoded.
+        string[] encodedCharacters = new string[256];
 
+        /// <summary>
+        /// Constructor to initialize array of encoded values.
+        /// </summary>
+        public HtmlAgilityPackSanitizerProvider()
+        {
+            // Intialize array
+            for (int i = 0; i < 0xFF; i++)
+            {
+                if (i >= 0x30 && i <= 0x39 || i >= 0x41 && i <= 0x5A || i >= 0x61 && i <= 0x7A)
+                {
+                    encodedCharacters[i] = null;
+                }
+                else
+                {
+                    encodedCharacters[i] = i.ToString("X2");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Property to provide name of Application.
+        /// </summary>
         public override string ApplicationName
         {
             get
@@ -26,6 +55,9 @@ namespace AjaxControlToolkit.Sanitizer
 
         }
 
+        /// <summary>
+        /// Property that indicates that RequiresFullTrust is not necessary for this sanitizer. 
+        /// </summary>
         public override bool RequiresFullTrust
         {
             get
@@ -34,11 +66,26 @@ namespace AjaxControlToolkit.Sanitizer
             }
         }
 
+        /// <summary>
+        /// This accepts html text and white list for tags and attributes and 
+        /// returns safe html text.
+        /// </summary>
+        /// <param name="htmlFragment">Html Content which need to sanitze.</param>
+        /// <param name="elementWhiteList">Whitelist of tags.</param>
+        /// <param name="attributeWhiteList">WhiteList of attributes.</param>
+        /// <returns>Html text after sanitize.</returns>
         public override string GetSafeHtmlFragment(string htmlFragment, Dictionary<string, string[]> elementWhiteList, Dictionary<string, string[]> attributeWhiteList)
         {
             return SanitizeHtml(htmlFragment, elementWhiteList, attributeWhiteList);
         }
 
+        /// <summary>
+        /// This method actually do the process of sanitization.
+        /// </summary>
+        /// <param name="htmlText">Html Content which need to sanitze.</param>
+        /// <param name="elementWhiteList">Whitelist of tags.</param>
+        /// <param name="attributeWhiteList">WhiteList of attributes.</param>
+        /// <returns>Html text after sanitize.</returns>
         private string SanitizeHtml(string htmlText, Dictionary<string, string[]> elementWhiteList, Dictionary<string, string[]> attributeWhiteList)
         {
             // Create Html document
@@ -82,10 +129,7 @@ namespace AjaxControlToolkit.Sanitizer
                         }
                         else
                         {
-                            CleanAttributeValues(validAttributes, a);
-                            // AntiXss
-                            //a.Value =
-                            //    Microsoft.Security.Application.Encoder.UrlEncode(a.Value);
+                            CleanAttributeValues(a);
                         }
                     }
                 }
@@ -94,6 +138,11 @@ namespace AjaxControlToolkit.Sanitizer
             return allNodes.InnerHtml;
         }
 
+        /// <summary>
+        /// This removes the current node tags and its child nodes if these are not in whitelist.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="tagWhiteList"></param>
         private void CleanNodes(HtmlNode node, string[] tagWhiteList)
         {
             // remove node that is not in the whitelist.
@@ -120,18 +169,22 @@ namespace AjaxControlToolkit.Sanitizer
                 CleanNodes(parent.ChildNodes[i], tagWhiteList);
         }
 
-        private void CleanAttributeValues(Dictionary<string, string[]> validAttributes, HtmlAttribute attribute)
+        /// <summary>
+        /// This removes the vulnerable keywords and make values safe by html encoding and html character escaping.
+        /// </summary>        
+        /// <param name="attribute">Attribute that contain values that need to check and clean.</param>
+        private void CleanAttributeValues(HtmlAttribute attribute)
         {
 
             attribute.Value = HttpUtility.HtmlEncode(attribute.Value);
-
+            
             attribute.Value = Regex.Replace(attribute.Value, @"\s*j\s*a\s*v\s*a\s*s\s*c\s*r\s*i\s*p\s*t\s*", "", RegexOptions.IgnoreCase);
             attribute.Value = Regex.Replace(attribute.Value, @"\s*s\s*c\s*r\s*i\s*p\s*t\s*", "", RegexOptions.IgnoreCase);
 
             if (attribute.Name.ToLower() == "style")
             {
                 attribute.Value = Regex.Replace(attribute.Value, @"\s*e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*", "", RegexOptions.IgnoreCase);
-                attribute.Value = Regex.Replace(attribute.Value, @"\s*b\s*e\s*h\s*a\s*v\s*i\s*o\s*r\s*", "", RegexOptions.IgnoreCase);
+                attribute.Value = Regex.Replace(attribute.Value, @"\s*b\s*e\s*h\s*a\s*v\s*i\s*o\s*r\s*", "", RegexOptions.IgnoreCase);             
             }
 
             if (attribute.Name.ToLower() == "href" || attribute.Name.ToLower() == "src")
@@ -140,259 +193,43 @@ namespace AjaxControlToolkit.Sanitizer
                 //    attribute.Value = "";
                 attribute.Value = Regex.Replace(attribute.Value, @"\s*m\s*o\s*c\s*h\s*a\s*", "", RegexOptions.IgnoreCase);
             }
+
+            // HtmlEntity Escape
+            StringBuilder sbAttriuteValue = new StringBuilder();
+            foreach (char c in attribute.Value.ToCharArray())
+            {
+                sbAttriuteValue.Append(EncodeCharacterToHtmlEntityEscape(c));
+            }
+
+            attribute.Value = sbAttriuteValue.ToString();
+
         }
 
-        
-        //private void CleanAttributeValues(Dictionary<string, string[]> validAttributes, HtmlAttribute attribute)
-        //{
-
-        //    // check attribute value
-        //    IEnumerable<KeyValuePair<string, string[]>> attKeyValue = (from att in validAttributes
-        //                                                               where att.Key == attribute.Name
-        //                                                               select att).ToArray();
-
-        //    var isMatched = false;
-        //    switch (attribute.Name.ToLower())
-        //    {
-        //        case "style":
-        //            string[] nestedAttributes = attKeyValue.FirstOrDefault().Value;
-        //            foreach (string nestedAttribute in nestedAttributes)
-        //            {
-        //                if (attribute.Value.ToLower().Contains(nestedAttribute.ToLower()))
-        //                {
-        //                    string lastPart;
-        //                    string firstPart = attribute.Value.Substring(0, attribute.Value.ToLower().IndexOf(nestedAttribute.ToLower()));
-        //                    string attValue = attribute.Value.Substring(attribute.Value.ToLower().IndexOf(nestedAttribute.ToLower()));
-        //                    firstPart += attValue.Substring(0, attValue.IndexOf(":"));
-        //                    attValue = attValue.Substring(attValue.IndexOf(":") + 1).Trim();
-
-        //                    switch (nestedAttribute.ToLower())
-        //                    {
-        //                        case "background-color":
-        //                            if (attValue.IndexOf(");") > 0)
-        //                            {
-        //                                lastPart = attValue.Substring(attValue.IndexOf(");"));
-        //                                attValue = attValue.Substring(0, attValue.IndexOf(");"));
-        //                            }
-        //                            else
-        //                            {
-        //                                lastPart = attValue.Substring(7);
-        //                                attValue = attValue.Substring(0, 7);
-        //                            }
-
-        //                            if (!IsValidColor(attValue))
-        //                                attribute.Value = firstPart + lastPart;
-        //                            break;
-        //                        case "margin":
-        //                        case "margin-right":
-        //                        case "margin-left":
-        //                        case "margin-top":
-        //                        case "margin-bottom":
-        //                        case "padding":
-        //                            lastPart = attValue.Substring(attValue.IndexOf("px"));
-        //                            attValue = attValue.Substring(0, attValue.IndexOf("px")).Trim();
-        //                            string[] arrValues = attValue.Split(" ".ToCharArray());
-        //                            attValue = "";
-        //                            foreach (string arrVal in arrValues)
-        //                            {
-        //                                attValue += arrVal.Trim();
-        //                            }
-        //                            int marginVal;
-        //                            if (!int.TryParse(attValue, out marginVal))
-        //                                attribute.Value = firstPart + lastPart;
-        //                            break;
-        //                        case "border":
-        //                            lastPart = attValue.Substring(attValue.IndexOf(";"));
-        //                            attValue = attValue.Substring(0, attValue.IndexOf(";")).Trim();
-        //                            if (attValue.ToLower() != "none")
-        //                                attribute.Value = firstPart + lastPart;
-        //                            break;
-        //                        case "text-align":
-        //                            lastPart = attValue.Substring(attValue.IndexOf(";"));
-        //                            attValue = attValue.Substring(0, attValue.IndexOf(";")).Trim();
-        //                            // get possible attribute values
-        //                            attKeyValue = (from att in validAttributes
-        //                                           where att.Key == "align"
-        //                                           select att).ToArray();
-
-        //                            isMatched = false;
-        //                            foreach (string arrVal in attKeyValue.FirstOrDefault().Value)
-        //                            {
-        //                                if (attValue == arrVal)
-        //                                    isMatched = true;
-        //                            }
-
-        //                            if (!isMatched)
-        //                                attribute.Value = firstPart + lastPart;
-        //                            break;
-        //                    }
-        //                }
-        //            }
-        //            break;
-        //        case "align":
-        //        case "dir":
-        //        case "size":
-        //            attKeyValue = (from att in validAttributes
-        //                           where att.Key == attribute.Name
-        //                           select att).ToArray();
-
-        //            isMatched = false;
-        //            foreach (string arrVal in attKeyValue.FirstOrDefault().Value)
-        //            {
-        //                if (attribute.Value.ToLower() == arrVal.ToLower())
-        //                    isMatched = true;
-        //            }
-        //            if (!isMatched)
-        //                attribute.Value = "";
-        //            break;
-        //        case "face":
-        //            attKeyValue = (from att in validAttributes
-        //                           where att.Key == attribute.Name
-        //                           select att).ToArray();
-
-        //            isMatched = false;
-        //            foreach (string arrVal in attKeyValue.FirstOrDefault().Value)
-        //            {
-        //                if (attribute.Value.ToLower().Contains(arrVal.ToLower()))
-        //                    isMatched = true;
-        //            }
-        //            if (!isMatched)
-        //                attribute.Value = "";
-        //            break;
-        //        case "color":
-        //            if (!IsValidColor(attribute.Value))
-        //                attribute.Value = "";
-        //            break;
-        //        case "width":
-        //            if (!IsValidWidth(attribute.Value))
-        //                attribute.Value = "";
-        //            break;
-        //        case "href":
-        //        case "src":
-        //            //attribute.Value = HttpUtility.UrlEncode(attribute.Value);
-        //            break;
-        //    }
-        //}
-
         /// <summary>
-        /// Checks if agrument value represents to a valid color.
+        /// To encode html attribute characters to hex format except alphanumeric characters. 
         /// </summary>
-        /// <param name="colorValue">#hash or argb value.</param>
-        /// <returns>If valid color then true else false.</returns>
-        //private bool IsValidColor(string colorValue)
-        //{
-        //    try
-        //    {
-        //        if (colorValue.StartsWith("#"))
-        //        {
-        //            Color validColor = ColorTranslator.FromHtml(colorValue);
-        //            return true;
-        //        }
-        //        else if (colorValue.StartsWith("rgb"))
-        //        {
-        //            colorValue = colorValue.Substring(colorValue.IndexOf("(") + 1);
-        //            colorValue = colorValue.Substring(0, colorValue.LastIndexOf(")"));
-        //            string[] rgbValues = colorValue.Split(",".ToCharArray());
-        //            Color validColor = Color.FromArgb(int.Parse(rgbValues[0]), int.Parse(rgbValues[1]), int.Parse(rgbValues[2]));
-        //            return true;
-        //        }
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //    return false;
-        //}
+        /// <param name="c">Character from the attribute value</param>
+        /// <returns>Hex formatted string.</returns>
+        private string EncodeCharacterToHtmlEntityEscape(char c)
+        {   
+            string hex; 
+            // check for alphnumeric characters
+            if (c < 0xFF)
+            {
+                hex = encodedCharacters[c];
+                if (hex == null)
+                    return "" + c;
+            }
+            else
+                hex = ((int)(c)).ToString("X2");
+            
+            // check for illegal characters
+            if ((c <= 0x1f && c != '\t' && c != '\n' && c != '\r') || (c >= 0x7f && c <= 0x9f))
+            {
+                hex = "fffd"; // Let's entity encode this instead of returning it
+            }
 
-        /// <summary>
-        /// Checks if agrument value represents to a valid width.
-        /// </summary>
-        /// <param name="widthVal">width value.</param>
-        /// <returns>If valid width then true else false.</returns>
-        //private bool IsValidWidth(string widthVal)
-        //{
-        //    widthVal = widthVal.Replace("px", "").Replace("%", "");
-        //    try
-        //    {
-        //        decimal validWidth = decimal.Parse(widthVal.Trim());
-        //        return true;
-        //    }
-        //    catch
-        //    {
-        //        return false;
-        //    }
-        //}
-
+            return "&#x" + hex + ";";
+        }
     }
-
-    //class WhiteList
-    //{
-    //    private Dictionary<string, string[]> _TagList;
-    //    private Dictionary<string, string[]> _AttributeList;
-
-    //    public Dictionary<string, string[]> TagList
-    //    {
-    //        get
-    //        {
-    //            if (_TagList == null)
-    //            {
-    //                CreateWhiteList();
-    //            }
-    //            return _TagList;
-    //        }
-    //    }
-
-    //    public Dictionary<string, string[]> AttributeList
-    //    {
-    //        get
-    //        {
-    //            if (_AttributeList == null)
-    //            {
-    //                CreateWhiteList();
-    //            }
-    //            return _AttributeList;
-    //        }
-    //    }
-
-    //    private void CreateWhiteList()
-    //    {
-    //        // make list of tags and its relatd attributes
-    //        _TagList = new Dictionary<string, string[]>();
-
-    //        _TagList.Add("strong", new string[] { "style", "class" });
-    //        _TagList.Add("b", new string[] { "style", "class" });
-    //        _TagList.Add("em", new string[] { "style", "class" });
-    //        _TagList.Add("i", new string[] { "style", "class" });
-    //        _TagList.Add("u", new string[] { "style", "class" });
-    //        _TagList.Add("strike", new string[] { "style", "class" });
-    //        _TagList.Add("sub", new string[] { "style", "class" });
-    //        _TagList.Add("sup", new string[] { "style", "class" });
-    //        _TagList.Add("p", new string[] { "style", "class", "align", "dir" });
-    //        _TagList.Add("ol", new string[] { "style", "class" });
-    //        _TagList.Add("li", new string[] { "style", "class" });
-    //        _TagList.Add("ul", new string[] { "style", "class" });
-    //        _TagList.Add("font", new string[] { "style", "class", "color", "face", "size" });
-    //        _TagList.Add("blockquote", new string[] { "style", "class", "dir" });
-    //        _TagList.Add("hr", new string[] { "style", "class", "size", "width" });
-    //        _TagList.Add("img", new string[] { "style", "class", "src", "height", "width", "alt", "title", "hspace", "vspace", "border" });
-    //        _TagList.Add("div", new string[] { "style", "class", "align" });
-    //        _TagList.Add("span", new string[] { "style", "class" });
-    //        _TagList.Add("br", new string[] { "style", "class" });
-    //        _TagList.Add("center", new string[] { "style", "class" });
-    //        _TagList.Add("a", new string[] { "style", "class", "href", "title", "target" });
-
-    //        _AttributeList = new Dictionary<string, string[]>();
-    //        // create white list of attributes and its values
-    //        _AttributeList.Add("style", new string[] { "background-color", "margin", "margin-right", "margin-left", "margin-top", "margin-bottom", "padding", "border", "text-align" });
-    //        _AttributeList.Add("align", new string[] { "left", "right", "center", "justify" });
-    //        _AttributeList.Add("color", new string[] { });
-    //        _AttributeList.Add("size", new string[] { "1", "2", "3", "4", "5", "6", "7" });
-    //        _AttributeList.Add("face", new string[] { "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Verdana", "Impact", "Wingdings", "Sans-seri", "helvetica" });
-    //        _AttributeList.Add("dir", new string[] { "ltr", "rtl", "Auto" });
-    //        _AttributeList.Add("width", new string[] { });
-    //        _AttributeList.Add("src", new string[] { });
-    //        _AttributeList.Add("href", new string[] { });           
-    //    }
-
-    //}
 }
