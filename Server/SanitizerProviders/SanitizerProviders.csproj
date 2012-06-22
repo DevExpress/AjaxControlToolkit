@@ -35,13 +35,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Assemblies\AntiXSSLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlSanitizationLibrary, Version=4.0.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>Assemblies\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.2.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Assemblies\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,13 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AntiXssSanitizerProvider.cs" />
+    <Compile Include="HtmlAgilityPackSanitizerProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assemblies\AntiXSSLibrary.dll" />
     <Content Include="Assemblies\HtmlSanitizationLibrary.dll" />
-    <Content Include="Assemblies\NET35\AntiXSSLibrary.dll" />
-    <Content Include="Assemblies\NET40\AntiXSSLibrary.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.csproj">

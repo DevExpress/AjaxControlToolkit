@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 namespace AjaxControlToolkit.Sanitizer {
     class AntiXssSanitizerProvider: SanitizerProvider {
 
@@ -23,7 +24,8 @@ namespace AjaxControlToolkit.Sanitizer {
             }
         }
 
-        public override string GetSafeHtmlFragment(string htmlFragment) {
+        public override string GetSafeHtmlFragment(string htmlFragment, Dictionary<string, string[]> elementWhiteList, Dictionary<string, string[]> attributeWhiteList)
+        {
             return Microsoft.Security.Application.Sanitizer.GetSafeHtmlFragment(htmlFragment);
         }
 
