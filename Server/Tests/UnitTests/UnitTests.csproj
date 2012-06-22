@@ -59,7 +59,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HtmlAgilityPackSanitizerProviderTest.cs" />
+    <Compile Include="ha.ckers.org\HaCkerOrgXMLTest.cs" />
+    <Compile Include="HtmlAgilityPackSanitizerTests\HtmlAgilityPackSanitizerProviderTest.cs" />
     <Compile Include="HtmlEditorExtenderTests\DecodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,8 +78,9 @@
     <None Include="HtmlEditorExtenderTests\Inputs.csv" />
     <Shadow Include="Test References\SanitizerProviders.accessor" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="HtmlAgilityPackSanitizerTests\" />
+    <Content Include="ha.ckers.org\XssAttacks.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
