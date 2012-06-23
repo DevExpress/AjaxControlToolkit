@@ -2013,7 +2013,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
 
             // Act
-            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<!--[if gte IE 4]><SCRIPT>alert('XSS');</SCRIPT><![endif]-->\">XSS</A>";
+            string htmlFragment = "<A HREF=\"http://www.codeplex.com?url=<!--[if gte IE 4]><SCRIPT>alert('XSS');</SCRIPT><![endif]-->\">XSS</A>";            
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
