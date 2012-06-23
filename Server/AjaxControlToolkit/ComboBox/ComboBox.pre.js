@@ -85,7 +85,6 @@ Sys.Extended.UI.ComboBox.prototype = {
     initialize: function () {
 
         Sys.Extended.UI.ComboBox.callBaseMethod(this, 'initialize');
-        ComboBox_Elements[ComboBox_Elements.length] = this;
         this.createDelegates();
         this.initializeTextBox();
         this.initializeButton();
@@ -512,7 +511,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     },
     _onButtonClick: function (e) {
-        Sys.Extended.UI.ComboBox.IsOpen(this);
+
         // in Simple mode, always display the list
         if (this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.Simple) {
             this._popupBehavior.show();
@@ -695,7 +694,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     },
     _onTextBoxFocus: function (e) {
-        Sys.Extended.UI.ComboBox.IsOpen(this);
+
         this._handleTextBoxFocus(e);
 
     },
@@ -872,6 +871,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     },
     _onDocumentClick: function (e) {
+
         // hide the option list when users click document
         if (this._popupBehavior._visible) {
             this._popupBehavior.hide();
@@ -879,6 +879,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     },
     _onDocumentMouseWheel: function (e) {
+
         // hide the option list when user mousewheel scrolls outside of it
         if (this._popupBehavior) {
             this._popupBehavior.hide();
@@ -887,6 +888,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     },
     _handleTextBoxFocus: function (e) {
+
         // hide the option list and optionally trigger postback
         if (!this._supressFocusHide && this._popupBehavior._visible) {
             this._popupBehavior.hide();
@@ -1151,7 +1153,7 @@ Sys.Extended.UI.ComboBox.prototype = {
                 || this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.DropDown)
                 && (this.get_autoCompleteMode() == Sys.Extended.UI.ComboBoxAutoCompleteMode.Suggest
                 || this.get_autoCompleteMode() == Sys.Extended.UI.ComboBoxAutoCompleteMode.SuggestAppend)
-                && this._highlightedIndex >= 0) {
+                && (this._highlightedIndex != null && this._highlightedIndex >= 0)) {
                 var _isExactMatch = this._isExactMatch(this._optionListItems[this._highlightedIndex].text, this.get_textBoxControl().value);
                 if (!_isExactMatch) {
                     this._highlightListItem(this._highlightedIndex, false);
@@ -1780,18 +1782,3 @@ Sys.Extended.UI.ComboBox.prototype = {
 Sys.Extended.UI.ComboBox.registerClass('Sys.Extended.UI.ComboBox', Sys.UI.Control);
 
 //if (typeof (Sys) !== 'undefined') Sys.Application.notifyScriptLoaded();
-
-var ComboBox_Elements = new Array();
-
-Sys.Extended.UI.ComboBox.IsOpen = function (currentInstance) {
-    var components = Sys.Application.getComponents();
-    for (var i = 0; i < components.length; i++) {
-        var component = components[i];
-        if (Sys.Extended.UI.ComboBox.isInstanceOfType(component)) {
-            if (component != currentInstance && component._popupBehavior._visible) {
-                // hide popup of other instance of combobox
-                component._popupBehavior.hide();
-            }
-        }
-    }
-}
