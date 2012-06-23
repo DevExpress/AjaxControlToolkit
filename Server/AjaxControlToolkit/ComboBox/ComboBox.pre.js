@@ -845,7 +845,6 @@ Sys.Extended.UI.ComboBox.prototype = {
                 newSelectionEnd = this.get_textBoxControl().value.length;
             }
         }
-
         // when suggestedIndex is -1, there is no match.
         else if (this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.Simple
                 || this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.DropDown) {
@@ -1174,11 +1173,10 @@ Sys.Extended.UI.ComboBox.prototype = {
         var isBackspaceKey = (code == Sys.UI.Key.backspace);
         var isDeleteKey = (code == Sys.UI.Key.del);
         if (e.type == 'keypress') {
-            isDeleteKey = (code == 46);
+            isDeleteKey = (e.rawEvent.code == 46);
         }
 
         if (isBackspaceKey || isDeleteKey) {
-
             return null;
         }
 
@@ -1203,7 +1201,6 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // return true if keypress actions should be allowed
         if (code == Sys.UI.Key.enter || code == Sys.UI.Key.esc) { // allow RETURN/ENTER and ESC keys for all browsers
-
             return true;
         }
         else if (Sys.Browser.agent == Sys.Browser.Safari && Sys.Browser.version < 500) {
@@ -1279,7 +1276,6 @@ Sys.Extended.UI.ComboBox.prototype = {
 
                 // allow PAUSE BREAK events triggered by weird combos
                 return true;
-
             }
             else if (Sys.Browser.agent == Sys.Browser.Opera) {
 
@@ -1301,6 +1297,11 @@ Sys.Extended.UI.ComboBox.prototype = {
                     return true;
                 }
             }
+        }
+        else if (Sys.Browser.agent == Sys.Browser.InternetExplorer) {
+            // period character for IE
+            if (code == 46)
+                return true;
         }
         return false;
 
