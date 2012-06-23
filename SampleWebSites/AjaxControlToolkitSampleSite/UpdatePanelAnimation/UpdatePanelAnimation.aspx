@@ -10,7 +10,7 @@
     Assembly="AjaxControlToolkit"
     Namespace="AjaxControlToolkit"
     TagPrefix="ajaxToolkit" %>
-<asp:Content ContentPlaceHolderID="SampleContent" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" Runat="Server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <div class="demoarea">
         <div class="demoheading">UpdatePanelAnimation Demonstration</div>
@@ -39,7 +39,7 @@
         <input type="checkbox" id="effect_color" checked="checked" /><label for="effect_color">Color Background</label><br />
         <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
         
-        <ajaxToolkit:UpdatePanelAnimationExtender ID="upae" BehaviorID="animation" runat="server" TargetControlID="update">
+        <ajaxToolkit:UpdatePanelAnimationExtender ID="upae" BehaviorID="animation" runat="server" TargetControlID="update" AlwaysFinishOnUpdatingAnimation="true">
             <Animations>
                 <OnUpdating>
                     <Sequence>
@@ -145,8 +145,9 @@
         The <span class="codeReference">UpdatePanel</span> animation behavior can be applied
         with the following extender (the <em>italic</em> properties are optional, and the
         ellipses represent a generic animation description):
-<pre>&lt;ajaxToolkit:UpdatePanelAnimationExtender ID="ae"
-  runat="server" TargetControlID="up"&gt;
+<pre>&lt;ajaxToolkit:UpdatePanelAnimationExtender ID=&quot;ae&quot;
+  runat=&quot;server&quot; TargetControlID=&quot;up&quot; 
+  AlwaysFinishOnUpdatingAnimation=&quot;true&quot; &gt;
      <em>&lt;Animations&gt;
         &lt;OnUpdating&gt; ... &lt;/OnUpdating&gt;
         &lt;OnUpdated&gt; ... &lt;/OnUpdated&gt;
@@ -160,6 +161,9 @@
             <li><strong>OnUpdated</strong> - Generic animation played after the
                 <span class="codeReference">UpdatePanel</span> has finished updating (but only if the
                 <span class="codeReference">UpdatePanel</span> was changed)</li>
+            <li><b>AlwaysFinishOnUpdatingAnimation </b>- Optional property which makes sure 
+                Onupdated event will fire only after completion of onUpdating event.
+                </li>
         </ul>
     </asp:Panel>
 

@@ -14,7 +14,7 @@ public partial class UpdatePanelAnimation_UpdatePanelAnimation : CommonPage
     /// </summary>
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
-        Thread.Sleep(2000);
+        //Thread.Sleep(2000);
         lblUpdate.Text = DateTime.Now.ToString();
     }
 }
