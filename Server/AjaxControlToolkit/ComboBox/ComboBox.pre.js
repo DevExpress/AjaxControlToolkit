@@ -344,7 +344,8 @@ Sys.Extended.UI.ComboBox.prototype = {
             this.get_textBoxControl().value = this._optionListItems[this.get_selectedIndex()].text;
         }
         else {
-            this.get_textBoxControl().text = '';
+            //this.get_textBoxControl().text = '';
+            this.get_textBoxControl().value = '';
         }
 
         // show and hide the popup behavior to initialize dimensions and overflow
@@ -1323,7 +1324,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     _ensureSelectedIndex: function () {
 
-        // server may not always invoke set_selectedIndex(), need to make sure this is always an integer
+        // server may not always invoke set_selectedIndex(), need to make sure this is always an integer        
         var selectedIndex = this.get_hiddenFieldControl().value;
         if (selectedIndex == '') {
             selectedIndex = (this._optionListItems.length > 0) ? 0 : -1;
