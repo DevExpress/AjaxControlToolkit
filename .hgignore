@@ -51,3 +51,4 @@ Tests/AjaxControlToolkit.Tests/Bugs/Tabs/OnDemand/WebForm1.aspx
 Server/AjaxControlToolkit/AjaxControlToolkit.VS2008.csproj.user
 Client/MicrosoftAjax.Extended/MicrosoftAjax.Extended.VS2008.csproj.user
 Server/SanitizerProviders/SanitizerProviders.csproj.user
+TestResults/*

@@ -36,11 +36,11 @@ using AjaxControlToolkit;
 #if NET4
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 [assembly: System.Web.Script.AjaxFrameworkAssembly]
-[assembly: AssemblyVersion("4.1.60501")]
-[assembly: AssemblyFileVersion("4.1.60501")]
+[assembly: AssemblyVersion("4.1.60623")]
+[assembly: AssemblyFileVersion("4.1.60623")]
 #else
-[assembly: AssemblyVersion("3.5.60501")]
-[assembly: AssemblyFileVersion("3.5.60501")]  
+[assembly: AssemblyVersion("3.5.60623")]
+[assembly: AssemblyFileVersion("3.5.60623")]  
 #endif
 [assembly: NeutralResourcesLanguage("en-US")]
 
@@ -101,3 +101,4 @@ using AjaxControlToolkit;
 [assembly: ScriptResource("MicrosoftAjaxCore.debug.js", "ScriptResources.Res.debug", "Sys.Res")]
 [assembly: ScriptResource("MicrosoftAjaxWebForms.js", "ScriptResources.WebForms.Res", "Sys.WebForms.Res")]
 [assembly: ScriptResource("MicrosoftAjaxWebForms.debug.js", "ScriptResources.WebForms.Res.debug", "Sys.WebForms.Res")]
+

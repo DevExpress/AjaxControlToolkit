@@ -3,7 +3,7 @@
 <head><title>AJAX Control Toolkit Read Me</title> 
 <style type="text/css"> 
   body {
-    font-family: Verdana;
+    font-family: Arial;
   }
  
   li {
@@ -12,7 +12,7 @@
   
   #main {
     margin:auto;
-    width: 600px;   
+    width: 800px;   
   }
 </style> 
 </head>
@@ -21,40 +21,32 @@
 
 <div id="main">
 
-<h1>AJAX Control Toolkit &mdash; May 2012 Release</h1> 
+<h1>AJAX Control Toolkit &mdash; June 2012 Release</h1> 
 <p> 
-This release of the Ajax Control Toolkit introduces a new AjaxFileUpload control. This control supports 
-several highly requested features including:
+This release of the Ajax Control Toolkit includes important bug fixes 
+and feature enhancements for the following controls:
 </p>
 <ul>
     <li>
-    File Upload Progress - A progress bar is displayed while a file is being uploaded.
+    HtmlEditorExtender - Important security fixes have been made to the HtmlEditorExtender control.
+       Because of changes in the Microsoft Anti-Cross Site Script Library, the sanitizer provider 
+       built with this library has been removed and
+       replaced with a provider built with the HTML Agility Pack. 
     </li>
     <li>
-    Multiple File Upload - Upload multiple files at a time.
+    ComboBox - This release includes fixes for issues 22930, 23140, 23142, 24440, 25295, 25469, 
+    26686, 27148.
     </li>
     <li>
-    Drag-and-Drop Interface - Drag files onto the control to upload the files.
+    UpdatePanelAnimation - This release includes a fix for issue 21310.
+    </li>
+    <li>
+    Tabs - This release fixes an issue which could cause InvalidOperation exceptions.
+    </li>
+    <li>
+    Seadragon - This release includes a fix for issue 26690.
     </li>
 </ul>
-<p>
-This release of the Ajax Control Toolkit also includes important bug fixes and feature enhancements 
-for the HtmlEditorExtender control including:
-</p>
-<ul>
-    <li>
-    Source View - Enter HTML content by switching between Source and Design view.
-    </li>
-    <li>
-    Image Upload - Upload images by using the Insert Image button.
-    </li>
-</ul>
-<p>
-This release has been updated to use the latest version of the Microsoft Anti-Cross Site
-Scripting Library (version v4.2).
-</p>
-
-
 
 
  
