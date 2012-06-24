@@ -614,7 +614,7 @@ namespace AjaxControlToolkit
         {
             if (!DesignMode)
             {
-                ButtonControl.Style.Add(HtmlTextWriterStyle.Visibility, "hidden");
+                //ButtonControl.Style.Add(HtmlTextWriterStyle.Visibility, "hidden");
             }
             else
             {
