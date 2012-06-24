@@ -62,10 +62,10 @@ namespace UnitTests.HtmlEditorExtenderTests {
             var editor = new HtmlEditorExtender();
             
             // Act
-            editor.SanitizerProvider = new AntiXssSanitizerProvider();
+            editor.SanitizerProvider = new HtmlAgilityPackSanitizerProvider();
 
             // Assert
-            Assert.AreEqual("AjaxControlToolkit.Sanitizer.AntiXssSanitizerProvider", editor.SanitizerProvider.ToString());
+            Assert.AreEqual("AjaxControlToolkit.Sanitizer.HtmlAgilityPackSanitizerProvider", editor.SanitizerProvider.ToString());
         }
 
         [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "Inputs.csv", "Inputs#csv", DataAccessMethod.Sequential)]
@@ -74,7 +74,7 @@ namespace UnitTests.HtmlEditorExtenderTests {
         public void TestDecode() {
             // Arrange
             var editor = new HtmlEditorExtender();
-            editor.SanitizerProvider = new AntiXssSanitizerProvider();
+            editor.SanitizerProvider = new HtmlAgilityPackSanitizerProvider();
             var input = TestContext.DataRow["Input"] as string;
             var output = TestContext.DataRow["Output"] as string;
 

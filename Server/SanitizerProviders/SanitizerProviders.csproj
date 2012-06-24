@@ -50,14 +50,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assemblies\AntiXSSLibrary.dll" />
-    <Content Include="Assemblies\HtmlSanitizationLibrary.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.csproj">
       <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
       <Name>AjaxControlToolkit</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assemblies\HtmlAgilityPack.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

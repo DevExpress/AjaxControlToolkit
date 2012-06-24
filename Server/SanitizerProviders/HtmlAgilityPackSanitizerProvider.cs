@@ -1,7 +1,6 @@
 ﻿
 using System.Collections.Generic;
 using HtmlAgilityPack;
-using System.Drawing;
 using System.Text;
 using System.Linq;
 using System.Web;

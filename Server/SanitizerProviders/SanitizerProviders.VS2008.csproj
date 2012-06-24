@@ -31,13 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AntiXSSLibrary, Version=4.2.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL" />
-    <Reference Include="HtmlSanitizationLibrary, Version=4.2.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL" />
+    <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -48,18 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AntiXssSanitizerProvider.cs" />
+    <Compile Include="HtmlAgilityPackSanitizerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assemblies\AntiXSSLibrary.dll" />
-    <Content Include="Assemblies\HtmlSanitizationLibrary.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.VS2008.csproj">
       <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
       <Name>AjaxControlToolkit.VS2008</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assemblies\HtmlAgilityPack.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
