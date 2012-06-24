@@ -74,3 +74,4 @@ PackageForNET4/
 PackageForNET35/
 Server/AjaxControlToolkit/ScriptOutput/HtmlEditorExtender/HtmlEditorExtenderBehavior.debug.js
 Server/AjaxControlToolkit/ScriptOutput/HtmlEditorExtender/HtmlEditorExtenderBehavior.js
+PrecompiledWeb/*
