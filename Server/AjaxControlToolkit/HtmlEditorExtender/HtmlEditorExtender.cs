@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Drawing.Design;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using AjaxControlToolkit.Sanitizer;
 using System.Web.UI.HtmlControls;
@@ -39,6 +40,7 @@ namespace AjaxControlToolkit
         private HtmlEditorExtenderButtonCollection buttonList = null;
         private SanitizerProvider sanitizerProvider = null;
         private AjaxFileUpload ajaxFileUpload = null;
+        private bool enableSanitization = true;
 
         public HtmlEditorExtender()
         {
@@ -135,6 +137,14 @@ namespace AjaxControlToolkit
             get { return ajaxFileUpload; }
         }
 
+        [Browsable(true)]
+        [DefaultValue(true)]
+        public bool EnableSanitization
+        {
+            get { return enableSanitization; }
+            set { enableSanitization = value; }
+        }
+
         /// <summary>
         /// Event handler for Ajax Image upload complete event.
         /// </summary>
@@ -156,11 +166,11 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "&apos;", "'", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)((?:" + tags + ")(?:\\s(?:" + attributes + ")=\"[" + attributeCharacters + "]*\")*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             //for decoding a tags
-            if (buttonList.Find(b => b.CommandName == "createLink") != null)
-            {
-                string hrefCharacters = "^\\\"\\>\\<\\\\";
-                result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            }
+            //if (buttonList.Find(b => b.CommandName == "createLink") != null)
+            //{
+            string hrefCharacters = "^\\\"\\>\\<\\\\";
+            result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            //}
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "<[^>]*expression[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
@@ -172,9 +182,12 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "<[^>]*javascript\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "<[^>]*position\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
-            if (sanitizerProvider != null)
+            // Check Whether EnableSanitization is disabled or not.
+            if (EnableSanitization && sanitizerProvider != null)
             {
-                result = sanitizerProvider.GetSafeHtmlFragment(result);
+                Dictionary<string, string[]> elementWhiteList = MakeCombinedElementList();
+                Dictionary<string, string[]> attributeWhiteList = MakeCombinedAttributeList();
+                result = sanitizerProvider.GetSafeHtmlFragment(result, elementWhiteList, attributeWhiteList);
             }
 
             return result;
@@ -189,6 +202,12 @@ namespace AjaxControlToolkit
             base.OnInit(e);
             if (!DesignMode)
             {
+                // Check if EnableSanitization is enabled and sanitizer provider is not configured.
+                if (EnableSanitization && sanitizerProvider == null)
+                {
+                    throw new Exception("Sanitizer provider is not configured in the web.config file. If you are using the HtmlEditorExtender with a public website then please configure a Sanitizer provider. Otherwise, set the EnableSanitization property to false.");
+                }
+
                 HtmlGenericControl popupdiv = new HtmlGenericControl("div");
                 popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
                 popupdiv.Attributes.Add("style", "opacity: 0;");
@@ -306,5 +325,108 @@ namespace AjaxControlToolkit
             buttonList.Add(new HorizontalSeparator());
             //buttonList.Add(new InsertImage());
         }
+
+        /// <summary>
+        /// Combine Element list from all toolbar buttons.
+        /// </summary>
+        /// <returns>dictionary object containing keys and related attributes.</returns>
+        private Dictionary<string, string[]> MakeCombinedElementList()
+        {
+            Dictionary<string, string[]> elementCombineWhiteList = new Dictionary<string, string[]>();
+            foreach (HtmlEditorExtenderButton button in ToolbarButtons)
+            {
+                if (button.ElementWhiteList != null)
+                {
+                    // loop through each element for the button
+                    foreach (KeyValuePair<string, string[]> keyvalue in button.ElementWhiteList)
+                    {
+                        // check if key contains in the combine elementWhiteList
+                        if (elementCombineWhiteList.ContainsKey(keyvalue.Key))
+                        {
+                            string[] combineAtt;
+                            List<string> listCombineAtt;
+                            bool isChanged = false;
+
+                            // check if attribute value is already exist in the element
+                            if (elementCombineWhiteList.TryGetValue(keyvalue.Key, out combineAtt))
+                            {
+                                listCombineAtt = combineAtt.ToList();
+                                foreach (string value in keyvalue.Value)
+                                {
+                                    if (!combineAtt.Contains(value))
+                                    {
+                                        listCombineAtt.Add(value);
+                                        isChanged = true;
+                                    }
+                                }
+
+                                if (isChanged)
+                                {
+                                    // associate updated attribute list with the element
+                                    elementCombineWhiteList[keyvalue.Key] = listCombineAtt.ToArray();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //add element and its related attributes
+                            elementCombineWhiteList.Add(keyvalue.Key, keyvalue.Value);
+                        }
+                    }
+                }
+            }
+            return elementCombineWhiteList;
+
+        }
+
+        private Dictionary<string, string[]> MakeCombinedAttributeList()
+        {
+            Dictionary<string, string[]> attributeCombineWhiteList = new Dictionary<string, string[]>();
+            foreach (HtmlEditorExtenderButton button in ToolbarButtons)
+            {
+                if (button.AttributeWhiteList != null)
+                {
+                    // loop through each element for the button
+                    foreach (KeyValuePair<string, string[]> keyvalue in button.AttributeWhiteList)
+                    {
+                        // check if key contains in the combine elementWhiteList
+                        if (attributeCombineWhiteList.ContainsKey(keyvalue.Key))
+                        {
+                            string[] combineAttVal;
+                            List<string> listCombineAttVal;
+                            bool isChanged = false;
+
+                            // check if attribute value is already exist in the element
+                            if (attributeCombineWhiteList.TryGetValue(keyvalue.Key, out combineAttVal))
+                            {
+                                listCombineAttVal = combineAttVal.ToList();
+                                foreach (string value in keyvalue.Value)
+                                {
+                                    if (!combineAttVal.Contains(value))
+                                    {
+                                        listCombineAttVal.Add(value);
+                                        isChanged = true;
+                                    }
+                                }
+
+                                if (isChanged)
+                                {
+                                    // associate updated attribute list with the element
+                                    attributeCombineWhiteList[keyvalue.Key] = listCombineAttVal.ToArray();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //add element and its related attributes
+                            attributeCombineWhiteList.Add(keyvalue.Key, keyvalue.Value);
+                        }
+                    }
+                }
+            }
+
+            return attributeCombineWhiteList;
+        }
     }
+
 }

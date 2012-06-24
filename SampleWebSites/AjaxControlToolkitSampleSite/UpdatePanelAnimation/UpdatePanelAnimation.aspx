@@ -10,7 +10,7 @@
     Assembly="AjaxControlToolkit"
     Namespace="AjaxControlToolkit"
     TagPrefix="ajaxToolkit" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" Runat="Server">
+<asp:Content ContentPlaceHolderID="SampleContent" Runat="Server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <div class="demoarea">
         <div class="demoheading">UpdatePanelAnimation Demonstration</div>

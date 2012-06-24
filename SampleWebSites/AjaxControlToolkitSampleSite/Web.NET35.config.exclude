@@ -38,14 +38,14 @@
       <trust level="Full"/>
 
 
-      <sanitizer defaultProvider="AntiXssSanitizerProvider">
-        <providers>
-          <add name="AntiXssSanitizerProvider" type="AjaxControlToolkit.Sanitizer.AntiXssSanitizerProvider"></add>
-        </providers>
-      </sanitizer>
+        <sanitizer defaultProvider="HtmlAgilityPackSanitizerProvider">
+            <providers>
+                <add name="HtmlAgilityPackSanitizerProvider" type="AjaxControlToolkit.Sanitizer.HtmlAgilityPackSanitizerProvider"></add>
+            </providers>
+        </sanitizer>
 
 
-      <!-- 
+        <!-- 
             Set compilation debug="true" to insert debugging 
             symbols into the compiled page. Because this 
             affects performance, set this value to true only 
