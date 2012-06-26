@@ -197,6 +197,18 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
+        /// Determines whether to use HttpGet or HttpPost method for the postback to the server.
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("useHttpGet")]
+        [DefaultValue(false)]
+        public bool UseHttpGet
+        {
+            get { return GetPropertyValue<bool>("UseHttpGet", false); }
+            set { SetPropertyValue<bool>("UseHttpGet", value); }
+        }
+
+        /// <summary>
         /// Populate DropDownLists with their SelectedValues
         /// </summary>
         private void CascadingDropDown_ClientStateValuesLoaded(object sender, EventArgs e)
