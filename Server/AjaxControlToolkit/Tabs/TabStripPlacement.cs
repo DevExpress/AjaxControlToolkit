@@ -1,8 +1,4 @@
-﻿
-
-using System;
-
-namespace AjaxControlToolkit
+﻿namespace AjaxControlToolkit
 {
     /// <summary>
     /// Display the tabs on top of the panel or below (default is top)
