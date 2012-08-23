@@ -1,5 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true"
     CodeFile="AjaxFileUpload.aspx.cs" Inherits="AjaxFileUpload_AjaxFileUpload" Title="AjaxFileUpload Sample"
+    Culture="auto" UICulture="auto" 
     Theme="SampleSiteTheme" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
