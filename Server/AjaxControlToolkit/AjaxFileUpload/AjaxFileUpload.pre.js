@@ -171,9 +171,15 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         this._html5SetPercent(0);
         this._setStatusMessage(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_UploadingHtml5File, uploadableFile.file.name, Sys.Extended.UI.AjaxFileUpload.utils.sizeToString(uploadableFile.file.size)));
 
+        var url = this._postBackUrl;
+        if (url.indexOf("?") != -1)
+            url += "&";
+        else
+            url += "?";
+
         this._webRequest = new Sys.Net.WebRequest();
         this._executor = new Sys.Net.XMLHttpExecutor();
-        this._webRequest.set_url(this._postBackUrl + '?contextkey=' + this._contextKey + '&guid=' + this._guid);
+        this._webRequest.set_url(url + 'contextkey=' + this._contextKey + '&guid=' + this._guid);
         this._webRequest.set_httpVerb("POST");
         this._webRequest.add_completed(this.bind(this._html5OnRequestCompleted, this));
 
@@ -202,11 +208,11 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
             var eventArgs;
             if (result != null) {
                 eventArgs = new Sys.Extended.UI.AjaxFileUploadEventArgs(uploader._guid, "Success", result.FileName,
-                result.FileSize, result.ContentType, result.PostedUrl);
+                result.FileSize, result.ContentType, result.PostedUrl, uploader._currentQueueIndex, uploader._filesInQueue.length);
             }
             else {
                 eventArgs = new Sys.Extended.UI.AjaxFileUploadEventArgs(uploader._guid, "Success", uploadedFile.fileName,
-                uploadedFile.fileSize, uploadedFile.type, '');
+                uploadedFile.fileSize, uploadedFile.type, '', uploader._currentQueueIndex, uploader._filesInQueue.length);
             }
 
             uploader._raiseUploadComplete(eventArgs);
@@ -370,9 +376,15 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
             uploader.setThrobber(true);
         }, 0);
 
+        var url = uploader._postBackUrl;
+        if (url.indexOf("?") != -1)
+            url += "&";
+        else
+            url += "?";
+
         uploader._createVForm();
         uploader._vForm.appendChild(inputElement);
-        uploader._vForm.action = uploader._postBackUrl + '?contextkey=' + this._contextKey + '&guid=' + this._guid;
+        uploader._vForm.action = url + 'contextkey=' + this._contextKey + '&guid=' + this._guid;
         uploader._vForm.target = uploader._iframeName;
 
         setTimeout(function () {
@@ -499,7 +511,7 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
                 var resultString = frameDocument.body.innerHTML;
                 resultString = resultString.substring(resultString.indexOf('{"FileId'));
                 var result = Sys.Serialization.JavaScriptSerializer.deserialize(resultString);
-                var eventArgs = new Sys.Extended.UI.AjaxFileUploadEventArgs(this._guid, result.StatusMessage, result.FileName, result.FileSize, result.ContentType, result.PostedUrl);
+                var eventArgs = new Sys.Extended.UI.AjaxFileUploadEventArgs(this._guid, result.StatusMessage, result.FileName, result.FileSize, result.ContentType, result.PostedUrl, this._currentQueueIndex, this._filesInQueue.length);
                 if (eventArgs.get_statusMessage() == "Success") {
                     this._removeTimer();
                     this._uploadInput_complete(eventArgs);
@@ -900,8 +912,8 @@ Sys.Extended.UI.AjaxFileUploadItem.prototype = {
     }
 };
 
-Sys.Extended.UI.AjaxFileUploadEventArgs = function (fileId, statusMessage, fileName, fileSize, contentType, postedUrl) {
-    if (arguments.length != 6) throw Error.parameterCount();
+Sys.Extended.UI.AjaxFileUploadEventArgs = function (fileId, statusMessage, fileName, fileSize, contentType, postedUrl, fileIndex, fileQueueLength) {
+    if (arguments.length != 8) throw Error.parameterCount();
 
     //Calling the base class constructor
     Sys.Extended.UI.AjaxFileUploadEventArgs.initializeBase(this);
@@ -911,6 +923,8 @@ Sys.Extended.UI.AjaxFileUploadEventArgs = function (fileId, statusMessage, fileN
     this._fileSize = fileSize;
     this._contentType = contentType;
     this._postedUrl = postedUrl;
+    this._fileIndex = fileIndex;
+    this._fileQueueLength = fileQueueLength;
 };
 
 Sys.Extended.UI.AjaxFileUploadEventArgs.prototype =
@@ -935,6 +949,12 @@ Sys.Extended.UI.AjaxFileUploadEventArgs.prototype =
     },
     set_postedUrl: function () {
         return this._postedUrl = value;
+    },
+    get_fileIndex: function () {
+        return this._fileIndex;
+    },
+    get_fileQueueLength: function () {
+        return this._fileQueueLength;
     }
 };
 
