@@ -233,7 +233,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             defaultIndex = -1;
 
         if (list) {
-            for (i = 0 ; i < list.length ; i++) {
+            for (var i = 0 ; i < list.length ; i++) {
                 var item = list[i], 
                     listItemName = item.name,
                     listItemValue = item.value,
@@ -282,7 +282,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         }
 
         if (e.childDropDown && !gettingList) {
-            for(i = 0; i < e.childDropDown.length; i++) {
+            for(var i = 0; i < e.childDropDown.length; i++) {
                 e.childDropDown[i]._onParentChange();
             }
         }
