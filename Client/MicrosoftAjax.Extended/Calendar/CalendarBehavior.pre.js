@@ -1776,7 +1776,7 @@
                         }
                         break;
                     case "month":
-                        if (target.month == visibleDate.getMonth()) {
+                        if (target.month == visibleDate.getUTCMonth()) {
                             this._switchMode("days");
                         } else {
                             this._visibleDate = target.date;
