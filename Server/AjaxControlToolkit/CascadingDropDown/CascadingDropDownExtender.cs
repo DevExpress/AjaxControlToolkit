@@ -208,6 +208,19 @@ namespace AjaxControlToolkit
             set { SetPropertyValue<bool>("UseHttpGet", value); }
         }
 
+        /// Whether or not disable the dropdownlist control when this is waiting to 
+        /// get data from the service so at the time of loading user can use keyboard 
+        /// to navigate to the dropdown control.        
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("enableAtLoading")]
+        [DefaultValue(false)]
+        public bool EnableAtLoading
+        {
+            get { return GetPropertyValue<bool>("EnableAtLoading", false); }
+            set { SetPropertyValue<bool>("EnableAtLoading", value); }
+        }
+
         /// <summary>
         /// Populate DropDownLists with their SelectedValues
         /// </summary>
