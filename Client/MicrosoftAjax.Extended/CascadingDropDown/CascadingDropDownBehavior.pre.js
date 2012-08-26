@@ -164,8 +164,10 @@
                 /// <returns />
 
                 var e = this.get_element();
-                while (0 < e.options.length) {
-                    e.remove(0);
+                if (e != null && e.options != null) {
+                    while (0 < e.options.length) {
+                        e.remove(0);
+                    }
                 }
             },
 
