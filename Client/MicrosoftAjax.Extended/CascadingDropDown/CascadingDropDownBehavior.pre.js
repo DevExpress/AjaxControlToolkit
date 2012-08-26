@@ -246,6 +246,7 @@
                     listItemOptionTitle = item.optionTitle;
 
                         if (item.isDefaultValue) {
+                            this.set_SelectedValue(listItemValue, listItemName, listItemOptionTitle);
                             defaultIndex = i;
                             if (this._promptText) {
                                 // bump the index if there's a prompt item in the list.

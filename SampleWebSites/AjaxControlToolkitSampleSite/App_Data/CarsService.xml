@@ -33,7 +33,7 @@
     <model name="3 series" value="3 series (value)" optionTitle="Introduced: 1975">
       <color name="Blue" value="Blue (value)" />
       <color name="Sky Blue" value="Sky Blue (value)" />
-      <color name="Racing Blue" value="Racing Blue (value)" />
+      <color name="Racing Blue" value="Racing Blue (value)" default="true" />
     </model>
     <model name="5 series" value="5 series (value)" optionTitle="Introduced: 1972">
       <color name="Yellow" value="Yellow (value)" />
