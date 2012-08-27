@@ -86,6 +86,7 @@
             this._parentChangeHandler = null;
             this._lastParentValues = null;
             this._selectedValue = null;
+            this._actualDisabledStatus = false;
         }
         Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             initialize: function () {
@@ -97,7 +98,7 @@
                 $common.prepareHiddenElementForATDeviceUpdate();
 
                 var e = this.get_element();
-
+                this._actualDisabledStatus = e.disabled;
                 // Clear any items that may have been put there for server side convenience
                 this._clearItems();
 
@@ -130,6 +131,13 @@
 
                 // Simulate parent change to populate self, even if no parent exists.
                 this._onParentChange(null, true);
+                
+                // Revert disable status to the actual.
+                var me = this;
+                setTimeout(function () {
+                    if (me._actualDisabledStatus)
+                        e.disabled = me._actualDisabledStatus;
+                }, 50);
             },
 
             dispose: function () {
