@@ -316,7 +316,9 @@
                     }
                 }
 
-                this.raisePopulated(Sys.EventArgs.Empty);
+                if (gettingList) {
+                    this.raisePopulated(Sys.EventArgs.Empty);
+                }
             },
 
             _onChange: function () {
