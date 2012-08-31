@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3163BBDB-0D46-4598-BC45-AF45871E0DE0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>ClassLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>MicrosoftAjax.Extended</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Accordion\AccordionBehavior.pre.js" />
+    <Content Include="AlwaysVisibleControl\AlwaysVisibleControlBehavior.pre.js" />
+    <Content Include="Animation\AnimationBehavior.pre.js" />
+    <Content Include="Animation\Animations.pre.js" />
+    <Content Include="AutoComplete\AutoCompleteBehavior.pre.js" />
+    <Content Include="BalloonPopup\act_down_left.png" />
+    <Content Include="BalloonPopup\act_down_right.png" />
+    <Content Include="BalloonPopup\act_up_left.png" />
+    <Content Include="BalloonPopup\act_up_right.png" />
+    <Content Include="BalloonPopup\BalloonPopup.css" />
+    <Content Include="BalloonPopup\BalloonPopupExtenderBehavior.pre.js" />
+    <Content Include="BalloonPopup\Cloud\BalloonPopup.css" />
+    <Content Include="BalloonPopup\Cloud\sprite.gif" />
+    <Content Include="BalloonPopup\Cloud\sprite.png" />
+    <Content Include="BalloonPopup\corners-type2.gif" />
+    <Content Include="BalloonPopup\Rectangle\BalloonPopup.css" />
+    <Content Include="BalloonPopup\Rectangle\sprite.gif" />
+    <Content Include="BalloonPopup\Rectangle\sprite.png" />
+    <Content Include="Calendar\arrow-left.gif" />
+    <Content Include="Calendar\arrow-right.gif" />
+    <Content Include="Calendar\Calendar.css" />
+    <Content Include="Calendar\CalendarBehavior.pre.js" />
+    <Content Include="CascadingDropDown\CascadingDropDownBehavior.pre.js" />
+    <Content Include="CollapsiblePanel\CollapsiblePanelBehavior.pre.js" />
+    <Content Include="ColorPicker\ColorPicker.css" />
+    <Content Include="ColorPicker\ColorPickerBehavior.pre.js" />
+    <Content Include="Common\Common.pre.js" />
+    <Content Include="Common\DateTime.pre.js" />
+    <Content Include="Common\Threading.pre.js" />
+    <Content Include="Compat\DragDrop\DragDropScripts.pre.js" />
+    <Content Include="Compat\Timer\Timer.pre.js" />
+    <Content Include="ConfirmButton\confirmButtonBehavior.pre.js" />
+    <Content Include="DragPanel\FloatingBehavior.pre.js" />
+    <Content Include="DropDown\drop-arrow.gif" />
+    <Content Include="DropDown\DropDown.css" />
+    <Content Include="DropDown\DropDownBehavior.pre.js" />
+    <Content Include="DropShadow\DropShadowBehavior.pre.js" />
+    <Content Include="DynamicPopulate\DynamicPopulateBehavior.pre.js" />
+    <Content Include="ExtendedControls.pre.js" />
+    <Content Include="ExtenderBase\BaseScripts.pre.js" />
+    <Content Include="FilteredTextBox\FilteredTextBoxBehavior.pre.js" />
+    <Content Include="HoverExtender\HoverBehavior.pre.js" />
+    <Content Include="HoverMenu\HoverMenuBehavior.pre.js" />
+    <Content Include="HtmlEditorExtender\HtmlEditorExtender.css" />
+    <Content Include="HtmlEditorExtender\HtmlEditorExtenderBehavior.Pre.js" />
+    <Content Include="HtmlEditorExtender\Images\html-editor-buttons.png" />
+    <Content Include="ListSearch\ListSearchBehavior.pre.js" />
+    <Content Include="MaskedEdit\MaskedEditBehavior.pre.js" />
+    <Content Include="MaskedEdit\MaskedEditValidator.pre.js" />
+    <Content Include="ModalPopup\ModalPopupBehavior.pre.js" />
+    <Content Include="MultiHandleSlider\Images\slider_h_handle.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_h_handle_down.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_h_handle_hover.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_h_rail.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_h_rail_outer.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_v_handle.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_v_handle_down.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_v_handle_hover.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_v_rail.gif" />
+    <Content Include="MultiHandleSlider\Images\slider_v_rail_outer.gif" />
+    <Content Include="MultiHandleSlider\MultiHandleSlider.css" />
+    <Content Include="MultiHandleSlider\MultiHandleSliderBehavior.pre.js" />
+    <Content Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxBehavior.pre.js" />
+    <Content Include="NumericUpDown\NumericUpDownBehavior.pre.js" />
+    <Content Include="PagingBulletedList\PagingBulletedListBehavior.pre.js" />
+    <Content Include="PasswordStrength\PasswordStrengthExtenderBehavior.pre.js" />
+    <Content Include="PopupControl\PopupControlBehavior.pre.js" />
+    <Content Include="PopupExtender\PopupBehavior.pre.js" />
+    <Content Include="Rating\RatingBehavior.pre.js" />
+    <Content Include="ResizableControl\ResizableControlBehavior.pre.js" />
+    <Content Include="RoundedCorners\RoundedCornersBehavior.pre.js" />
+    <Content Include="Seadragon\images\fullpage_grouphover.png" />
+    <Content Include="Seadragon\images\fullpage_hover.png" />
+    <Content Include="Seadragon\images\fullpage_pressed.png" />
+    <Content Include="Seadragon\images\fullpage_rest.png" />
+    <Content Include="Seadragon\images\home_grouphover.png" />
+    <Content Include="Seadragon\images\home_hover.png" />
+    <Content Include="Seadragon\images\home_pressed.png" />
+    <Content Include="Seadragon\images\home_rest.png" />
+    <Content Include="Seadragon\images\zoomin_grouphover.png" />
+    <Content Include="Seadragon\images\zoomin_hover.png" />
+    <Content Include="Seadragon\images\zoomin_pressed.png" />
+    <Content Include="Seadragon\images\zoomin_rest.png" />
+    <Content Include="Seadragon\images\zoomout_grouphover.png" />
+    <Content Include="Seadragon\images\zoomout_hover.png" />
+    <Content Include="Seadragon\images\zoomout_pressed.png" />
+    <Content Include="Seadragon\images\zoomout_rest.png" />
+    <Content Include="Seadragon\Seadragon.Buttons.pre.js" />
+    <Content Include="Seadragon\Seadragon.Config.pre.js" />
+    <Content Include="Seadragon\Seadragon.DeepZoom.pre.js" />
+    <Content Include="Seadragon\Seadragon.DisplayRect.pre.js" />
+    <Content Include="Seadragon\Seadragon.Drawer.pre.js" />
+    <Content Include="Seadragon\Seadragon.ImageLoader.pre.js" />
+    <Content Include="Seadragon\Seadragon.MouseTracker.pre.js" />
+    <Content Include="Seadragon\Seadragon.Point.pre.js" />
+    <Content Include="Seadragon\Seadragon.pre.js" />
+    <Content Include="Seadragon\Seadragon.Profiler.pre.js" />
+    <Content Include="Seadragon\Seadragon.Rect.pre.js" />
+    <Content Include="Seadragon\Seadragon.Spring.pre.js" />
+    <Content Include="Seadragon\Seadragon.Strings.pre.js" />
+    <Content Include="Seadragon\Seadragon.TileSource.pre.js" />
+    <Content Include="Seadragon\Seadragon.Utils.pre.js" />
+    <Content Include="Seadragon\Seadragon.Viewport.pre.js" />
+    <Content Include="Slider\Images\slider_h_handle.gif" />
+    <Content Include="Slider\Images\slider_h_rail.gif" />
+    <Content Include="Slider\Images\slider_v_handle.gif" />
+    <Content Include="Slider\Images\slider_v_rail.gif" />
+    <Content Include="Slider\Slider.css" />
+    <Content Include="Slider\SliderBehavior.pre.js" />
+    <Content Include="SlideShow\SlideShowBehavior.pre.js" />
+    <Content Include="Tabs\tab-active-left-verticalleft.gif" />
+    <Content Include="Tabs\tab-active-left-verticalright.gif" />
+    <Content Include="Tabs\tab-active-left.gif" />
+    <Content Include="Tabs\tab-active-right-verticalleft.gif" />
+    <Content Include="Tabs\tab-active-right-verticalright.gif" />
+    <Content Include="Tabs\tab-active-right.gif" />
+    <Content Include="Tabs\tab-active-verticalleft.gif" />
+    <Content Include="Tabs\tab-active-verticalright.gif" />
+    <Content Include="Tabs\tab-active.gif" />
+    <Content Include="Tabs\tab-bottom-active-left.gif" />
+    <Content Include="Tabs\tab-bottom-active-right.gif" />
+    <Content Include="Tabs\tab-bottom-active.gif" />
+    <Content Include="Tabs\tab-bottom-hover-left.gif" />
+    <Content Include="Tabs\tab-bottom-hover-right.gif" />
+    <Content Include="Tabs\tab-bottom-hover.gif" />
+    <Content Include="Tabs\tab-bottom-left.gif" />
+    <Content Include="Tabs\tab-bottom-right.gif" />
+    <Content Include="Tabs\tab-bottom.gif" />
+    <Content Include="Tabs\tab-hover-left-verticalleft.gif" />
+    <Content Include="Tabs\tab-hover-left-verticalright.gif" />
+    <Content Include="Tabs\tab-hover-left.gif" />
+    <Content Include="Tabs\tab-hover-right-verticalleft.gif" />
+    <Content Include="Tabs\tab-hover-right-verticalright.gif" />
+    <Content Include="Tabs\tab-hover-right.gif" />
+    <Content Include="Tabs\tab-hover-verticalleft.gif" />
+    <Content Include="Tabs\tab-hover-verticalright.gif" />
+    <Content Include="Tabs\tab-hover.gif" />
+    <Content Include="Tabs\tab-left-verticalleft.gif" />
+    <Content Include="Tabs\tab-left-verticalright.gif" />
+    <Content Include="Tabs\tab-left.gif" />
+    <Content Include="Tabs\tab-line.gif" />
+    <Content Include="Tabs\tab-right-verticalleft.gif" />
+    <Content Include="Tabs\tab-right-verticalright.gif" />
+    <Content Include="Tabs\tab-right.gif" />
+    <Content Include="Tabs\tab-verticalleft.gif" />
+    <Content Include="Tabs\tab-verticalright.gif" />
+    <Content Include="Tabs\tab.gif" />
+    <Content Include="Tabs\Tabs.css" />
+    <Content Include="Tabs\Tabs.pre.js" />
+    <Content Include="TextboxWatermark\TextboxWatermark.pre.js" />
+    <Content Include="ToggleButton\ToggleButton.pre.js" />
+    <Content Include="UpdatePanelAnimation\UpdatePanelAnimationBehavior.pre.js" />
+    <Content Include="ValidatorCallout\alert-large.gif" />
+    <Content Include="ValidatorCallout\alert-small.gif" />
+    <Content Include="ValidatorCallout\close.gif" />
+    <Content Include="ValidatorCallout\ValidatorCallout.css" />
+    <Content Include="ValidatorCallout\ValidatorCalloutBehavior.pre.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CascadingDropDown\CascadingDropDownBehavior.pre.js.BASE" />
+    <None Include="CascadingDropDown\CascadingDropDownBehavior.pre.js.LOCAL" />
+    <None Include="CascadingDropDown\CascadingDropDownBehavior.pre.js.orig" />
+    <None Include="CascadingDropDown\CascadingDropDownBehavior.pre.js.REMOTE" />
+    <None Include="HtmlEditorExtender\Images\Thumbs.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.ar.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.cs.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.de.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.es.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.fr.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.he.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.hi.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.it.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.ja.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.ko.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.nl.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.pt.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.ru.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.tr-TR.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.zh-CHS.resx" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.zh-CHT.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ar.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.cs.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.de.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.es.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.fr.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.he.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.hi.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.it.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ja.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ko.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.nl.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.pt.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ru.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.tr-TR.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.zh-CHS.resx" />
+    <EmbeddedResource Include="ScriptResources\ScriptResources.zh-CHT.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
