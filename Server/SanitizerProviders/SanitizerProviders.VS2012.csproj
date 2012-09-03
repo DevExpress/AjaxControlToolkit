@@ -34,6 +34,10 @@
     <RootNamespace>SanitizerProviders</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.60623.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\AjaxControlToolkit\bin\Debug\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Assemblies\HtmlAgilityPack.dll</HintPath>
@@ -60,12 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.VS2012.csproj">
-      <Project>{47ccfe55-0f75-4103-b535-86049ead23b3}</Project>
-      <Name>AjaxControlToolkit.VS2012</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>

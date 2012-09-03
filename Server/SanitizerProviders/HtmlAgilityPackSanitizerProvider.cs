@@ -12,7 +12,7 @@ namespace AjaxControlToolkit.Sanitizer
     /// other tags and attributes. This also cleans attribute values to remove vulnerable
     /// words and characters
     /// </summary>
-    class HtmlAgilityPackSanitizerProvider : SanitizerProvider
+    public class HtmlAgilityPackSanitizerProvider : SanitizerProvider
     {
 
         private string _applicationName;
