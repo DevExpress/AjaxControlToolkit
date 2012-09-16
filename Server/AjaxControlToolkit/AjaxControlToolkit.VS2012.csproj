@@ -3,12 +3,45 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{47CCFE55-0F75-4103-B535-86049EAD23B3}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>ClassLibrary</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AjaxControlToolkit</RootNamespace>
+    <AssemblyName>AjaxControlToolkit</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../AjaxKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -16,39 +49,49 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DocumentationFile>bin\Debug\Server.XML</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET4</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup>
-    <RootNamespace>AjaxControlToolkit</RootNamespace>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Extensions.Design" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions.Design">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accordion\Accordion.cs" />
@@ -83,8 +126,8 @@
     <Compile Include="BalloonPopup\BalloonPopupDesigner.cs" />
     <Compile Include="BalloonPopup\BalloonPopupExtender.cs" />
     <Compile Include="BalloonPopup\BalloonPopupPosition.cs" />
-    <Compile Include="BalloonPopup\BalloonPopupSize.cs" />
     <Compile Include="BalloonPopup\BalloonPopupStyle.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupSize.cs" />
     <Compile Include="Calendar\CalendarDefaultView.cs" />
     <Compile Include="Calendar\CalendarDesigner.cs" />
     <Compile Include="Calendar\CalendarExtender.cs" />
@@ -169,7 +212,6 @@
     <Compile Include="HoverMenu\HoverMenuDesigner.cs" />
     <Compile Include="HoverMenu\HoverMenuExtender.cs" />
     <Compile Include="HoverMenu\HoverMenuPopupPosition.cs" />
-    <Compile Include="HtmlEditorExtender\HtmlEditorExtender.cs" />
     <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollection.cs" />
     <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollectionEditor.cs" />
     <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtons.cs" />
@@ -255,6 +297,7 @@
     <Compile Include="HTMLEditor\Toolbar_buttons\SuperScript.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Underline.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Undo.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtender.cs" />
     <Compile Include="ListSearch\ListSearchDesigner.cs" />
     <Compile Include="ListSearch\ListSearchExtender.cs" />
     <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
@@ -297,8 +340,11 @@
     <Compile Include="PopupExtender\PopupExtenderDesigner.cs" />
     <Compile Include="PopupExtender\PositioningMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs" />
-    <Compile Include="Properties\Resources.NET4.Designer.cs" />
+    <Compile Include="Properties\Resources.NET4.Designer.cs">
+      <DependentUpon>Resources.NET4.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Rating\Rating.cs" />
     <Compile Include="Rating\RatingDesigner.cs" />
     <Compile Include="Rating\RatingExtender.cs" />
@@ -318,7 +364,9 @@
     <Compile Include="ResizableControl\ResizableControlDesigner.cs" />
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
     <Compile Include="RoundedCorners\BoxCorners.cs" />
-    <Compile Include="RoundedCorners\RoundedCornersDesigner.cs" />
+    <Compile Include="RoundedCorners\RoundedCornersDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
     <Compile Include="Sanitizer\ProviderSanitizerSection.cs" />
     <Compile Include="Sanitizer\Sanitizer.cs" />
@@ -349,11 +397,11 @@
     <Compile Include="ToggleButton\ToggleButtonExtenderDesigner.cs" />
     <Compile Include="ToolkitScriptManager\ScriptCombineAttribute.cs" />
     <Compile Include="ToolkitScriptManager\ToolkitScriptManager.cs" />
+    <Compile Include="Twitter\TwitterDesigner.cs" />
+    <Compile Include="Twitter\TwitterStatus.cs" />
     <Compile Include="Twitter\Twitter.cs" />
     <Compile Include="Twitter\TwitterAPI.cs" />
-    <Compile Include="Twitter\TwitterDesigner.cs" />
     <Compile Include="Twitter\TwitterMode.cs" />
-    <Compile Include="Twitter\TwitterStatus.cs" />
     <Compile Include="Twitter\TwitterUser.cs" />
     <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationDesigner.cs" />
     <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationExtender.cs" />
@@ -362,58 +410,56 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Accordion\Accordion.ico" />
+    <EmbeddedResource Include="BalloonPopup\BalloonPopup.ico" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.css" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.pre.js" />
-    <Content Include="AlwaysVisibleControl\AlwaysVisible.ico" />
-    <Content Include="Animation\Animation.ico" />
-    <Content Include="AsyncFileUpload\AsyncFileUpload.pre.js" />
-    <Content Include="AsyncFileUpload\images\fileupload.png" />
-    <Content Include="AutoComplete\AutoComplete.ico" />
-    <Content Include="BalloonPopup\BalloonPopup.ico" />
-    <Content Include="BalloonPopup\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Cloud\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Cloud\sprite.gif" />
     <Content Include="BalloonPopup\Cloud\sprite.png" />
     <Content Include="BalloonPopup\Rectangle\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Rectangle\sprite.gif" />
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
-    <Content Include="Calendar\Calendar.ico" />
+    <Content Include="Twitter\Twitter.ico" />
+    <Content Include="Twitter\Twitter24.png" />
+    <Content Include="Twitter\Twitter32.png" />
+    <Content Include="Twitter\Twitter_resource.css" />
+    <EmbeddedResource Include="Accordion\Accordion.ico" />
+    <EmbeddedResource Include="AlwaysVisibleControl\AlwaysVisible.ico" />
+    <EmbeddedResource Include="Animation\Animation.ico" />
+    <Content Include="AsyncFileUpload\AsyncFileUpload.pre.js" />
+    <Content Include="AsyncFileUpload\images\fileupload.png" />
+    <EmbeddedResource Include="AutoComplete\AutoComplete.ico" />
+    <EmbeddedResource Include="Calendar\Calendar.ico" />
     <Content Include="Calendar\Calendar_resource.css" />
-    <Content Include="CascadingDropDown\CascadingDropDown.ico" />
-    <Content Include="CollapsiblePanel\CollapsiblePanel.ico" />
-    <Content Include="ColorPicker\ColorPicker.ico" />
+    <EmbeddedResource Include="CascadingDropDown\CascadingDropDown.ico" />
+    <EmbeddedResource Include="CollapsiblePanel\CollapsiblePanel.ico" />
+    <EmbeddedResource Include="ColorPicker\ColorPicker.ico" />
     <Content Include="ComboBox\arrow-down.gif" />
     <Content Include="ComboBox\ComboBox.css" />
-    <Content Include="ComboBox\ComboBox.ico" />
+    <EmbeddedResource Include="ComboBox\ComboBox.ico" />
     <Content Include="ComboBox\ComboBox.pre.js" />
-    <Content Include="ComboBox\ComboBox.pre.js.BACKUP.2904.js" />
-    <Content Include="ComboBox\ComboBox.pre.js.BASE.2904.js" />
-    <Content Include="ComboBox\ComboBox.pre.js.LOCAL.2904.js" />
-    <Content Include="ComboBox\ComboBox.pre.js.REMOTE.2904.js" />
-    <Content Include="ConfirmButton\ConfirmButton.ico" />
-    <Content Include="DragPanel\DragPanel.ico" />
-    <Content Include="DropDown\DropDown.ico" />
+    <EmbeddedResource Include="ConfirmButton\ConfirmButton.ico" />
+    <EmbeddedResource Include="DragPanel\DragPanel.ico" />
+    <EmbeddedResource Include="DropDown\DropDown.ico" />
+    <EmbeddedResource Include="DropShadow\DropShadow.ico" />
+    <EmbeddedResource Include="DynamicPopulate\DynamicPopulate.ico" />
+    <EmbeddedResource Include="FilteredTextBox\FilteredTextBox.ico" />
+    <EmbeddedResource Include="HoverMenu\HoverMenu.ico" />
     <Content Include="DropDown\DropDown_resource.css" />
-    <Content Include="DropShadow\DropShadow.ico" />
-    <Content Include="DynamicPopulate\DynamicPopulate.ico" />
-    <Content Include="FilteredTextBox\FilteredTextBox.ico" />
     <Content Include="Gravatar\Gravatar.ico" />
     <Content Include="Gravatar\Images\gravatar-anonymous.jpg" />
     <Content Include="Gravatar\Images\gravatar-G.jpg" />
     <Content Include="Gravatar\Images\gravatar-PG.jpg" />
     <Content Include="Gravatar\Images\gravatar-R.jpg" />
     <Content Include="Gravatar\Images\gravatar-X.jpg" />
-    <Content Include="HoverMenu\HoverMenu.ico" />
-    <Content Include="HtmlEditorExtender\html-editor-buttons_Designer.png" />
     <Content Include="HtmlEditorExtender\HtmlEditorExtender_resource.css" />
-    <Content Include="HtmlEditorExtender\html_editor_extender.ico" />
+    <EmbeddedResource Include="HtmlEditorExtender\html_editor_extender.ico" />
     <Content Include="HTMLEditor\DesignPanel.css" />
     <Content Include="HTMLEditor\DesignPanel.pre.js" />
     <Content Include="HTMLEditor\DesignPanelEventHandler.pre.js" />
     <Content Include="HTMLEditor\Document.css" />
     <Content Include="HTMLEditor\Editor.css" />
-    <Content Include="HTMLEditor\Editor.ico" />
+    <EmbeddedResource Include="HTMLEditor\Editor.ico" />
     <Content Include="HTMLEditor\Editor.pre.js" />
     <Content Include="HTMLEditor\EditPanel.pre.js" />
     <Content Include="HTMLEditor\Enums.pre.js" />
@@ -581,594 +627,257 @@
     <Content Include="HTMLEditor\Toolbar_buttons\SuperScript.pre.js" />
     <Content Include="HTMLEditor\Toolbar_buttons\Underline.pre.js" />
     <Content Include="HTMLEditor\Toolbar_buttons\Undo.pre.js" />
-    <Content Include="ListSearch\ListSearch.ico" />
-    <Content Include="MaskedEdit\MaskedEdit.ico" />
-    <Content Include="ModalPopup\ModalPopup.ico" />
-    <Content Include="MultiHandleSlider\MultiHandleSlider.ico" />
+    <EmbeddedResource Include="ListSearch\ListSearch.ico" />
+    <EmbeddedResource Include="MaskedEdit\MaskedEdit.ico" />
+    <EmbeddedResource Include="ModalPopup\ModalPopup.ico" />
     <Content Include="MultiHandleSlider\MultiHandleSlider_resource.css" />
-    <Content Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBox.ico" />
-    <Content Include="NoBot\NoBot.ico" />
+    <EmbeddedResource Include="MultiHandleSlider\MultiHandleSlider.ico" />
+    <EmbeddedResource Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBox.ico" />
+    <EmbeddedResource Include="NoBot\NoBot.ico" />
     <Content Include="NoBot\NoBotBehavior.pre.js" />
-    <Content Include="NumericUpDown\NumericUpDown.ico" />
-    <Content Include="PagingBulletedList\PagingBulletedList.ico" />
-    <Content Include="PasswordStrength\PasswordStrength.ico" />
-    <Content Include="PopupControl\PopupControl.ico" />
-    <Content Include="Rating\Rating.ico" />
+    <EmbeddedResource Include="NumericUpDown\NumericUpDown.ico" />
+    <EmbeddedResource Include="PagingBulletedList\PagingBulletedList.ico" />
+    <EmbeddedResource Include="PasswordStrength\PasswordStrength.ico" />
+    <EmbeddedResource Include="PopupControl\PopupControl.ico" />
+    <EmbeddedResource Include="Properties\Resources.NET4.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.NET4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rating\Rating.ico" />
     <Content Include="ReorderList\DraggableListItemBehavior.pre.js" />
     <Content Include="ReorderList\DropWatcherBehavior.pre.js" />
-    <Content Include="ReorderList\ReorderList.ico" />
-    <Content Include="ResizableControl\ResizableControl.ico" />
-    <Content Include="RoundedCorners\RoundedCorners.ico" />
-    <Content Include="ScriptOutput\Accordion\AccordionBehavior.debug.js" />
-    <Content Include="ScriptOutput\Accordion\AccordionBehavior.js" />
-    <Content Include="ScriptOutput\AjaxFileUpload\AjaxFileUpload.css" />
-    <Content Include="ScriptOutput\AjaxFileUpload\AjaxFileUpload.debug.js" />
-    <Content Include="ScriptOutput\AjaxFileUpload\AjaxFileUpload.js" />
-    <Content Include="ScriptOutput\AlwaysVisibleControl\AlwaysVisibleControlBehavior.debug.js" />
-    <Content Include="ScriptOutput\AlwaysVisibleControl\AlwaysVisibleControlBehavior.js" />
-    <Content Include="ScriptOutput\Animation\AnimationBehavior.debug.js" />
-    <Content Include="ScriptOutput\Animation\AnimationBehavior.js" />
-    <Content Include="ScriptOutput\Animation\Animations.debug.js" />
-    <Content Include="ScriptOutput\Animation\Animations.js" />
-    <Content Include="ScriptOutput\AsyncFileUpload\AsyncFileUpload.debug.js" />
-    <Content Include="ScriptOutput\AsyncFileUpload\AsyncFileUpload.js" />
-    <Content Include="ScriptOutput\AsyncFileUpload\images\fileupload.png" />
-    <Content Include="ScriptOutput\AutoComplete\AutoCompleteBehavior.debug.js" />
-    <Content Include="ScriptOutput\AutoComplete\AutoCompleteBehavior.js" />
-    <Content Include="ScriptOutput\BalloonPopup\act_down_left.png" />
-    <Content Include="ScriptOutput\BalloonPopup\act_down_right.png" />
-    <Content Include="ScriptOutput\BalloonPopup\act_up_left.png" />
-    <Content Include="ScriptOutput\BalloonPopup\act_up_right.png" />
-    <Content Include="ScriptOutput\BalloonPopup\BalloonPopup.css" />
-    <Content Include="ScriptOutput\BalloonPopup\BalloonPopupExtenderBehavior.debug.js" />
-    <Content Include="ScriptOutput\BalloonPopup\BalloonPopupExtenderBehavior.js" />
-    <Content Include="ScriptOutput\BalloonPopup\BalloonPopup_resource.css" />
-    <Content Include="ScriptOutput\BalloonPopup\Cloud\BalloonPopup.css" />
-    <Content Include="ScriptOutput\BalloonPopup\Cloud\BalloonPopup_resource.css" />
-    <Content Include="ScriptOutput\BalloonPopup\Cloud\sprite.gif" />
-    <Content Include="ScriptOutput\BalloonPopup\Cloud\sprite.png" />
-    <Content Include="ScriptOutput\BalloonPopup\corners-type2.gif" />
-    <Content Include="ScriptOutput\BalloonPopup\Rectangle\BalloonPopup.css" />
-    <Content Include="ScriptOutput\BalloonPopup\Rectangle\BalloonPopup_resource.css" />
-    <Content Include="ScriptOutput\BalloonPopup\Rectangle\sprite.gif" />
-    <Content Include="ScriptOutput\BalloonPopup\Rectangle\sprite.png" />
-    <Content Include="ScriptOutput\Calendar\arrow-left.gif" />
-    <Content Include="ScriptOutput\Calendar\arrow-right.gif" />
-    <Content Include="ScriptOutput\Calendar\Calendar.css" />
-    <Content Include="ScriptOutput\Calendar\CalendarBehavior.debug.js" />
-    <Content Include="ScriptOutput\Calendar\CalendarBehavior.js" />
-    <Content Include="ScriptOutput\Calendar\Calendar_resource.css" />
-    <Content Include="ScriptOutput\CascadingDropDown\CascadingDropDownBehavior.debug.js" />
-    <Content Include="ScriptOutput\CascadingDropDown\CascadingDropDownBehavior.js" />
-    <Content Include="ScriptOutput\CollapsiblePanel\CollapsiblePanelBehavior.debug.js" />
-    <Content Include="ScriptOutput\CollapsiblePanel\CollapsiblePanelBehavior.js" />
-    <Content Include="ScriptOutput\ColorPicker\ColorPicker.css" />
-    <Content Include="ScriptOutput\ColorPicker\ColorPickerBehavior.debug.js" />
-    <Content Include="ScriptOutput\ColorPicker\ColorPickerBehavior.js" />
-    <Content Include="ScriptOutput\ComboBox\arrow-down.gif" />
-    <Content Include="ScriptOutput\ComboBox\ComboBox.css" />
-    <Content Include="ScriptOutput\ComboBox\ComboBox.debug.js" />
-    <Content Include="ScriptOutput\ComboBox\ComboBox.js" />
-    <Content Include="ScriptOutput\Common\Common.debug.js" />
-    <Content Include="ScriptOutput\Common\Common.js" />
-    <Content Include="ScriptOutput\Common\DateTime.debug.js" />
-    <Content Include="ScriptOutput\Common\DateTime.js" />
-    <Content Include="ScriptOutput\Common\Threading.debug.js" />
-    <Content Include="ScriptOutput\Common\Threading.js" />
-    <Content Include="ScriptOutput\Compat\DragDrop\DragDropScripts.debug.js" />
-    <Content Include="ScriptOutput\Compat\DragDrop\DragDropScripts.js" />
-    <Content Include="ScriptOutput\Compat\Timer\Timer.debug.js" />
-    <Content Include="ScriptOutput\Compat\Timer\Timer.js" />
-    <Content Include="ScriptOutput\ConfirmButton\confirmButtonBehavior.debug.js" />
-    <Content Include="ScriptOutput\ConfirmButton\confirmButtonBehavior.js" />
-    <Content Include="ScriptOutput\Date.HijriCalendar.debug.js" />
-    <Content Include="ScriptOutput\Date.HijriCalendar.js" />
-    <Content Include="ScriptOutput\Date.UmAlQuraCalendar.debug.js" />
-    <Content Include="ScriptOutput\Date.UmAlQuraCalendar.js" />
-    <Content Include="ScriptOutput\DragPanel\FloatingBehavior.debug.js" />
-    <Content Include="ScriptOutput\DragPanel\FloatingBehavior.js" />
-    <Content Include="ScriptOutput\DropDown\drop-arrow.gif" />
-    <Content Include="ScriptOutput\DropDown\DropDown.css" />
-    <Content Include="ScriptOutput\DropDown\DropDownBehavior.debug.js" />
-    <Content Include="ScriptOutput\DropDown\DropDownBehavior.js" />
-    <Content Include="ScriptOutput\DropDown\DropDown_resource.css" />
-    <Content Include="ScriptOutput\DropShadow\DropShadowBehavior.debug.js" />
-    <Content Include="ScriptOutput\DropShadow\DropShadowBehavior.js" />
-    <Content Include="ScriptOutput\DynamicPopulate\DynamicPopulateBehavior.debug.js" />
-    <Content Include="ScriptOutput\DynamicPopulate\DynamicPopulateBehavior.js" />
-    <Content Include="ScriptOutput\ExtendedControls.debug.js" />
-    <Content Include="ScriptOutput\ExtendedControls.js" />
-    <Content Include="ScriptOutput\ExtenderBase\BaseScripts.debug.js" />
-    <Content Include="ScriptOutput\ExtenderBase\BaseScripts.js" />
-    <Content Include="ScriptOutput\FilteredTextBox\FilteredTextBoxBehavior.debug.js" />
-    <Content Include="ScriptOutput\FilteredTextBox\FilteredTextBoxBehavior.js" />
-    <Content Include="ScriptOutput\Gravatar\Images\gravatar-anonymous.jpg" />
-    <Content Include="ScriptOutput\Gravatar\Images\gravatar-G.jpg" />
-    <Content Include="ScriptOutput\Gravatar\Images\gravatar-PG.jpg" />
-    <Content Include="ScriptOutput\Gravatar\Images\gravatar-R.jpg" />
-    <Content Include="ScriptOutput\Gravatar\Images\gravatar-X.jpg" />
-    <Content Include="ScriptOutput\HoverExtender\HoverBehavior.debug.js" />
-    <Content Include="ScriptOutput\HoverExtender\HoverBehavior.js" />
-    <Content Include="ScriptOutput\HoverMenu\HoverMenuBehavior.debug.js" />
-    <Content Include="ScriptOutput\HoverMenu\HoverMenuBehavior.js" />
-    <Content Include="ScriptOutput\HtmlEditorExtender\html-editor-buttons_Designer.png" />
-    <Content Include="ScriptOutput\HtmlEditorExtender\HtmlEditorExtender.css" />
-    <Content Include="ScriptOutput\HtmlEditorExtender\HtmlEditorExtenderBehavior.debug.js" />
-    <Content Include="ScriptOutput\HtmlEditorExtender\HtmlEditorExtenderBehavior.js" />
-    <Content Include="ScriptOutput\HtmlEditorExtender\HtmlEditorExtender_resource.css" />
-    <Content Include="ScriptOutput\HtmlEditorExtender\Images\html-editor-buttons.png" />
-    <Content Include="ScriptOutput\HTMLEditor\DesignPanel.css" />
-    <Content Include="ScriptOutput\HTMLEditor\DesignPanel.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\DesignPanel.js" />
-    <Content Include="ScriptOutput\HTMLEditor\DesignPanelEventHandler.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\DesignPanelEventHandler.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Document.css" />
-    <Content Include="ScriptOutput\HTMLEditor\Editor.css" />
-    <Content Include="ScriptOutput\HTMLEditor\Editor.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Editor.js" />
-    <Content Include="ScriptOutput\HTMLEditor\EditPanel.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\EditPanel.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Enums.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Enums.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Events.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Events.js" />
-    <Content Include="ScriptOutput\HTMLEditor\ExecCommandEmulation.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\ExecCommandEmulation.js" />
-    <Content Include="ScriptOutput\HTMLEditor\HTMLEditor.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\HTMLEditor.js" />
-    <Content Include="ScriptOutput\HTMLEditor\HtmlPanel.css" />
-    <Content Include="ScriptOutput\HTMLEditor\HtmlPanel.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\HtmlPanel.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\BgiButton.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\design.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_1x1.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_align_center_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_align_center_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_align_justify_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_align_justify_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_align_left_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_align_left_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_align_right_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_align_right_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_anchor.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_backcolor_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_backcolor_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_color_bg_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_color_bg_clear_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_color_bg_clear_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_color_bg_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_color_fg_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_color_fg_clear_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_color_fg_clear_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_color_fg_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_copy_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_copy_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_cut_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_cut_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_design_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_design_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_flash.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_forecolor_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_forecolor_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_bold_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_bold_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_italic_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_italic_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_ltr_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_ltr_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_paragraph_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_paragraph_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_rtl_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_rtl_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_strike_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_strike_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_sub_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_sub_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_sup_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_sup_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_underline_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_format_underline_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_html_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_html_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_indent_less_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_indent_less_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_indent_more_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_indent_more_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_link_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_link_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_list_bullet_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_list_bullet_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_list_num_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_list_num_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_media.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_pasteText_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_pasteText_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_pasteWord_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_pasteWord_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_paste_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_paste_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_placeHolder.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_preview_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_preview_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_redo_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_redo_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_removealign_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_removealign_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_rule_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_rule_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_selector_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_selector_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_sep.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_undo_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_undo_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_unformat_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_unformat_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_unlink_a.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\ed_unlink_n.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\html.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\Images\preview.gif" />
-    <Content Include="ScriptOutput\HTMLEditor\ModePanel.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\ModePanel.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\AttachedPopup.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\AttachedPopup.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\AttachedTemplatePopup.css" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\AttachedTemplatePopup.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\AttachedTemplatePopup.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\BaseColorsPopup.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\BaseColorsPopup.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\LinkProperties.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\LinkProperties.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\OkCancelAttachedTemplatePopup.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\OkCancelAttachedTemplatePopup.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\Popup.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\Popup.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\PopupBGIButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\PopupBGIButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\PopupBoxButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\PopupBoxButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\PopupCommonButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Popups\PopupCommonButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\PreviewPanel.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\PreviewPanel.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\BackColorClear.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\BackColorClear.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\BackColorSelector.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\BackColorSelector.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Bold.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Bold.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\BoxButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\BoxButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\BulletedList.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\BulletedList.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ColorButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ColorButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ColorSelector.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ColorSelector.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\CommonButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\CommonButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Copy.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Copy.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Cut.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Cut.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DecreaseIndent.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DecreaseIndent.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DesignMode.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DesignMode.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DesignModeBoxButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DesignModeBoxButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DesignModeImageButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DesignModeImageButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DesignModePopupImageButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DesignModePopupImageButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DesignModeSelectButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\DesignModeSelectButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\EditorToggleButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\EditorToggleButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\FixedBackColor.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\FixedBackColor.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\FixedColorButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\FixedColorButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\FixedForeColor.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\FixedForeColor.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\FontName.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\FontName.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\FontSize.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\FontSize.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ForeColor.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ForeColor.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ForeColorClear.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ForeColorClear.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ForeColorSelector.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ForeColorSelector.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\HorizontalSeparator.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\HorizontalSeparator.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\HtmlMode.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\HtmlMode.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ImageButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ImageButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\IncreaseIndent.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\IncreaseIndent.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\InsertHR.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\InsertHR.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\InsertLink.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\InsertLink.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Italic.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Italic.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\JustifyCenter.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\JustifyCenter.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\JustifyFull.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\JustifyFull.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\JustifyLeft.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\JustifyLeft.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\JustifyRight.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\JustifyRight.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Ltr.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Ltr.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\MethodButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\MethodButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ModeButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\ModeButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\OkCancelPopupButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\OkCancelPopupButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\OrderedList.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\OrderedList.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Paragraph.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Paragraph.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Paste.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Paste.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\PasteText.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\PasteText.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\PasteWord.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\PasteWord.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\PreviewMode.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\PreviewMode.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Redo.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Redo.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\RemoveAlignment.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\RemoveAlignment.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\RemoveLink.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\RemoveLink.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\RemoveStyles.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\RemoveStyles.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Rtl.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Rtl.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\SelectButton.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\SelectButton.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Selector.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Selector.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\StrikeThrough.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\StrikeThrough.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\SubScript.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\SubScript.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\SuperScript.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\SuperScript.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Underline.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Underline.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Undo.debug.js" />
-    <Content Include="ScriptOutput\HTMLEditor\Toolbar_buttons\Undo.js" />
-    <Content Include="ScriptOutput\ListSearch\ListSearchBehavior.debug.js" />
-    <Content Include="ScriptOutput\ListSearch\ListSearchBehavior.js" />
-    <Content Include="ScriptOutput\MaskedEdit\MaskedEditBehavior.debug.js" />
-    <Content Include="ScriptOutput\MaskedEdit\MaskedEditBehavior.js" />
-    <Content Include="ScriptOutput\MaskedEdit\MaskedEditValidator.debug.js" />
-    <Content Include="ScriptOutput\MaskedEdit\MaskedEditValidator.js" />
-    <Content Include="ScriptOutput\MicrosoftAjax.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjax.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxApplicationServices.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxApplicationServices.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxComponentModel.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxComponentModel.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxCore.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxCore.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxDataContext.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxDataContext.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxGlobalization.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxGlobalization.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxHistory.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxHistory.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxNetwork.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxNetwork.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxOpenData.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxOpenData.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxSerialization.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxSerialization.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxTemplates.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxTemplates.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxTimer.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxTimer.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxWebForms.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxWebForms.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxWebServices.debug.js" />
-    <Content Include="ScriptOutput\MicrosoftAjaxWebServices.js" />
-    <Content Include="ScriptOutput\ModalPopup\ModalPopupBehavior.debug.js" />
-    <Content Include="ScriptOutput\ModalPopup\ModalPopupBehavior.js" />
-    <Content Include="ScriptOutput\MultiHandleSlider\Images\slider_h_handle.gif" />
-    <Content Include="ScriptOutput\MultiHandleSlider\Images\slider_h_handle_down.gif" />
-    <Content Include="ScriptOutput\MultiHandleSlider\Images\slider_h_handle_hover.gif" />
-    <Content Include="ScriptOutput\MultiHandleSlider\Images\slider_h_rail.gif" />
-    <Content Include="ScriptOutput\MultiHandleSlider\Images\slider_h_rail_outer.gif" />
-    <Content Include="ScriptOutput\MultiHandleSlider\Images\slider_v_handle.gif" />
-    <Content Include="ScriptOutput\MultiHandleSlider\Images\slider_v_handle_down.gif" />
-    <Content Include="ScriptOutput\MultiHandleSlider\Images\slider_v_handle_hover.gif" />
-    <Content Include="ScriptOutput\MultiHandleSlider\Images\slider_v_rail.gif" />
-    <Content Include="ScriptOutput\MultiHandleSlider\Images\slider_v_rail_outer.gif" />
-    <Content Include="ScriptOutput\MultiHandleSlider\MultiHandleSlider.css" />
-    <Content Include="ScriptOutput\MultiHandleSlider\MultiHandleSliderBehavior.debug.js" />
-    <Content Include="ScriptOutput\MultiHandleSlider\MultiHandleSliderBehavior.js" />
-    <Content Include="ScriptOutput\MultiHandleSlider\MultiHandleSlider_resource.css" />
-    <Content Include="ScriptOutput\MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxBehavior.debug.js" />
-    <Content Include="ScriptOutput\MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxBehavior.js" />
-    <Content Include="ScriptOutput\NoBot\NoBotBehavior.debug.js" />
-    <Content Include="ScriptOutput\NoBot\NoBotBehavior.js" />
-    <Content Include="ScriptOutput\NumericUpDown\NumericUpDownBehavior.debug.js" />
-    <Content Include="ScriptOutput\NumericUpDown\NumericUpDownBehavior.js" />
-    <Content Include="ScriptOutput\PagingBulletedList\PagingBulletedListBehavior.debug.js" />
-    <Content Include="ScriptOutput\PagingBulletedList\PagingBulletedListBehavior.js" />
-    <Content Include="ScriptOutput\PasswordStrength\PasswordStrengthExtenderBehavior.debug.js" />
-    <Content Include="ScriptOutput\PasswordStrength\PasswordStrengthExtenderBehavior.js" />
-    <Content Include="ScriptOutput\PopupControl\PopupControlBehavior.debug.js" />
-    <Content Include="ScriptOutput\PopupControl\PopupControlBehavior.js" />
-    <Content Include="ScriptOutput\PopupExtender\PopupBehavior.debug.js" />
-    <Content Include="ScriptOutput\PopupExtender\PopupBehavior.js" />
-    <Content Include="ScriptOutput\Rating\RatingBehavior.debug.js" />
-    <Content Include="ScriptOutput\Rating\RatingBehavior.js" />
-    <Content Include="ScriptOutput\ReorderList\DraggableListItemBehavior.debug.js" />
-    <Content Include="ScriptOutput\ReorderList\DraggableListItemBehavior.js" />
-    <Content Include="ScriptOutput\ReorderList\DropWatcherBehavior.debug.js" />
-    <Content Include="ScriptOutput\ReorderList\DropWatcherBehavior.js" />
-    <Content Include="ScriptOutput\ResizableControl\ResizableControlBehavior.debug.js" />
-    <Content Include="ScriptOutput\ResizableControl\ResizableControlBehavior.js" />
-    <Content Include="ScriptOutput\RoundedCorners\RoundedCornersBehavior.debug.js" />
-    <Content Include="ScriptOutput\RoundedCorners\RoundedCornersBehavior.js" />
-    <Content Include="ScriptOutput\Seadragon\images\fullpage_grouphover.png" />
-    <Content Include="ScriptOutput\Seadragon\images\fullpage_hover.png" />
-    <Content Include="ScriptOutput\Seadragon\images\fullpage_pressed.png" />
-    <Content Include="ScriptOutput\Seadragon\images\fullpage_rest.png" />
-    <Content Include="ScriptOutput\Seadragon\images\home_grouphover.png" />
-    <Content Include="ScriptOutput\Seadragon\images\home_hover.png" />
-    <Content Include="ScriptOutput\Seadragon\images\home_pressed.png" />
-    <Content Include="ScriptOutput\Seadragon\images\home_rest.png" />
-    <Content Include="ScriptOutput\Seadragon\images\zoomin_grouphover.png" />
-    <Content Include="ScriptOutput\Seadragon\images\zoomin_hover.png" />
-    <Content Include="ScriptOutput\Seadragon\images\zoomin_pressed.png" />
-    <Content Include="ScriptOutput\Seadragon\images\zoomin_rest.png" />
-    <Content Include="ScriptOutput\Seadragon\images\zoomout_grouphover.png" />
-    <Content Include="ScriptOutput\Seadragon\images\zoomout_hover.png" />
-    <Content Include="ScriptOutput\Seadragon\images\zoomout_pressed.png" />
-    <Content Include="ScriptOutput\Seadragon\images\zoomout_rest.png" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Buttons.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Buttons.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Config.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Config.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.DeepZoom.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.DeepZoom.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.DisplayRect.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.DisplayRect.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Drawer.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Drawer.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.ImageLoader.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.ImageLoader.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.MouseTracker.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.MouseTracker.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Point.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Point.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Profiler.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Profiler.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Rect.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Rect.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Spring.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Spring.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Strings.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Strings.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.TileSource.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.TileSource.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Utils.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Utils.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Viewport.debug.js" />
-    <Content Include="ScriptOutput\Seadragon\Seadragon.Viewport.js" />
-    <Content Include="ScriptOutput\Slider\Images\slider_h_handle.gif" />
-    <Content Include="ScriptOutput\Slider\Images\slider_h_rail.gif" />
-    <Content Include="ScriptOutput\Slider\Images\slider_v_handle.gif" />
-    <Content Include="ScriptOutput\Slider\Images\slider_v_rail.gif" />
-    <Content Include="ScriptOutput\Slider\Slider.css" />
-    <Content Include="ScriptOutput\Slider\SliderBehavior.debug.js" />
-    <Content Include="ScriptOutput\Slider\SliderBehavior.js" />
-    <Content Include="ScriptOutput\Slider\SliderBehavior_resource.debug.js" />
-    <Content Include="ScriptOutput\Slider\SliderBehavior_resource.js" />
-    <Content Include="ScriptOutput\Slider\Slider_resource.css" />
-    <Content Include="ScriptOutput\SlideShow\SlideShowBehavior.debug.js" />
-    <Content Include="ScriptOutput\SlideShow\SlideShowBehavior.js" />
-    <Content Include="ScriptOutput\Start.debug.js" />
-    <Content Include="ScriptOutput\Start.js" />
-    <Content Include="ScriptOutput\Tabs\tab-active-left-verticalleft.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-active-left-verticalright.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-active-left.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-active-right-verticalleft.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-active-right-verticalright.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-active-right.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-active-verticalleft.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-active-verticalright.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-active.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-bottom-active-left.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-bottom-active-right.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-bottom-active.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-bottom-hover-left.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-bottom-hover-right.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-bottom-hover.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-bottom-left.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-bottom-right.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-bottom.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-hover-left-verticalleft.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-hover-left-verticalright.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-hover-left.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-hover-right-verticalleft.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-hover-right-verticalright.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-hover-right.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-hover-verticalleft.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-hover-verticalright.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-hover.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-left-verticalleft.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-left-verticalright.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-left.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-line.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-right-verticalleft.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-right-verticalright.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-right.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-verticalleft.gif" />
-    <Content Include="ScriptOutput\Tabs\tab-verticalright.gif" />
-    <Content Include="ScriptOutput\Tabs\tab.gif" />
-    <Content Include="ScriptOutput\Tabs\Tabs.css" />
-    <Content Include="ScriptOutput\Tabs\Tabs.debug.js" />
-    <Content Include="ScriptOutput\Tabs\Tabs.js" />
-    <Content Include="ScriptOutput\Tabs\Tabs_resource.css" />
-    <Content Include="ScriptOutput\TextboxWatermark\TextboxWatermark.debug.js" />
-    <Content Include="ScriptOutput\TextboxWatermark\TextboxWatermark.js" />
-    <Content Include="ScriptOutput\ToggleButton\ToggleButton.debug.js" />
-    <Content Include="ScriptOutput\ToggleButton\ToggleButton.js" />
-    <Content Include="ScriptOutput\Twitter\Twitter24.png" />
-    <Content Include="ScriptOutput\Twitter\Twitter32.png" />
-    <Content Include="ScriptOutput\Twitter\Twitter_resource.css" />
-    <Content Include="ScriptOutput\UpdatePanelAnimation\UpdatePanelAnimationBehavior.debug.js" />
-    <Content Include="ScriptOutput\UpdatePanelAnimation\UpdatePanelAnimationBehavior.js" />
-    <Content Include="ScriptOutput\ValidatorCallout\alert-large.gif" />
-    <Content Include="ScriptOutput\ValidatorCallout\alert-small.gif" />
-    <Content Include="ScriptOutput\ValidatorCallout\close.gif" />
-    <Content Include="ScriptOutput\ValidatorCallout\ValidatorCallout.css" />
-    <Content Include="ScriptOutput\ValidatorCallout\ValidatorCalloutBehavior.debug.js" />
-    <Content Include="ScriptOutput\ValidatorCallout\ValidatorCalloutBehavior.js" />
-    <Content Include="Slider\Slider.ico" />
+    <EmbeddedResource Include="ReorderList\ReorderList.ico" />
+    <EmbeddedResource Include="ResizableControl\ResizableControl.ico" />
+    <EmbeddedResource Include="RoundedCorners\RoundedCorners.ico" />
     <Content Include="Slider\SliderBehavior_resource.pre.js" />
     <Content Include="Slider\Slider_resource.css" />
-    <Content Include="SlideShow\SlideShow.ico" />
-    <Content Include="Tabs\Tabs.ico" />
+    <EmbeddedResource Include="Slider\Slider.ico" />
+    <EmbeddedResource Include="SlideShow\SlideShow.ico" />
     <Content Include="Tabs\Tabs_resource.css" />
-    <Content Include="TextboxWatermark\TextboxWatermark.ico" />
-    <Content Include="ToggleButton\ToggleButton.ico" />
-    <Content Include="Twitter\Twitter.ico" />
-    <Content Include="Twitter\Twitter24.png" />
-    <Content Include="Twitter\Twitter32.png" />
-    <Content Include="Twitter\Twitter_resource.css" />
-    <Content Include="UpdatePanelAnimation\UpdatePanelAnimation.ico" />
-    <Content Include="ValidatorCallout\ValidatorCallout.ico" />
+    <EmbeddedResource Include="Tabs\Tabs.ico" />
+    <EmbeddedResource Include="TextboxWatermark\TextboxWatermark.ico" />
+    <EmbeddedResource Include="ToggleButton\ToggleButton.ico" />
+    <EmbeddedResource Include="UpdatePanelAnimation\UpdatePanelAnimation.ico" />
+    <EmbeddedResource Include="ValidatorCallout\ValidatorCallout.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CascadingDropDown\CascadingDropDownExtender.cs.orig" />
-    <None Include="ComboBox\ComboBox.pre.js.orig" />
     <None Include="ExtenderBase\Design\ExternalReferences.t4" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.NET4.resx" />
-    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\DataContext.Res.resx">
+      <Link>ScriptResources\DataContext.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\DataContext.Res.debug.resx">
+      <Link>ScriptResources\DataContext.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\OpenData.Res.resx">
+      <Link>ScriptResources\OpenData.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\OpenData.Res.debug.resx">
+      <Link>ScriptResources\OpenData.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Res.resx">
+      <Link>ScriptResources\Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Res.debug.resx">
+      <Link>ScriptResources\Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Templates.Res.resx">
+      <Link>ScriptResources\Templates.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Templates.Res.debug.resx">
+      <Link>ScriptResources\Templates.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\WebForms.Res.resx">
+      <Link>ScriptResources\WebForms.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\WebForms.Res.debug.resx">
+      <Link>ScriptResources\WebForms.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.ar.resx">
+      <Link>ScriptResources\BaseScriptsResources.ar.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.cs.resx">
+      <Link>ScriptResources\BaseScriptsResources.cs.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.de.resx">
+      <Link>ScriptResources\BaseScriptsResources.de.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.es.resx">
+      <Link>ScriptResources\BaseScriptsResources.es.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.fr.resx">
+      <Link>ScriptResources\BaseScriptsResources.fr.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.he.resx">
+      <Link>ScriptResources\BaseScriptsResources.he.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.hi.resx">
+      <Link>ScriptResources\BaseScriptsResources.hi.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.it.resx">
+      <Link>ScriptResources\BaseScriptsResources.it.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.ja.resx">
+      <Link>ScriptResources\BaseScriptsResources.ja.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.ko.resx">
+      <Link>ScriptResources\BaseScriptsResources.ko.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.nl.resx">
+      <Link>ScriptResources\BaseScriptsResources.nl.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.pt.resx">
+      <Link>ScriptResources\BaseScriptsResources.pt.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.resx">
+      <Link>ScriptResources\BaseScriptsResources.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.ru.resx">
+      <Link>ScriptResources\BaseScriptsResources.ru.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.tr-TR.resx">
+      <Link>ScriptResources\BaseScriptsResources.tr-TR.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.zh-CHS.resx">
+      <Link>ScriptResources\BaseScriptsResources.zh-CHS.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.zh-CHT.resx">
+      <Link>ScriptResources\BaseScriptsResources.zh-CHT.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ScriptResources\" />
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.VisualBasic.PowerPacks.10.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Visual Basic PowerPacks 10.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
-  <ProjectExtensions>
-    <VisualStudio AllowExistingFolder="true" />
-  </ProjectExtensions>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
+  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
+  <Target Name="BeforeBuild">
+    <MakeDir Directories="ScriptOutput" />
+    <!-- clean out old files from previous build -->
+    <ItemGroup>
+      <ToDelete Include="ScriptOutput\**\*" />
+    </ItemGroup>
+    <Delete Files="@(ToDelete)" />
+    <!--
+    Delete all the directories. No built-in msbuild task can do this.
+    See the following for explaination:
+    http://social.msdn.microsoft.com/forums/en-US/msbuild/thread/d2833d1e-2d56-4fc4-98a4-e321b976b9ac
+    -->
+    <Exec Command="for /f %%d in ('dir /ad /b') do rd /s /q %%d" WorkingDirectory="ScriptOutput" />
+    <!-- Build pre.js files that are in the server project -->
+    <Message Text="JSBuild: Executing JavaScript Preprocessor." />
+    <ItemGroup>
+      <PreJS Include="**\*.pre.js">
+        <InProject>False</InProject>
+      </PreJS>
+    </ItemGroup>
+    <JSBuildTask SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="ScriptOutput" />
+    <!-- minify the release scripts (overwrite them) -->
+    <ItemGroup>
+      <JS Include="ScriptOutput\**\*.js" Exclude="ScriptOutput\**\*.debug.*" />
+    </ItemGroup>
+    <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
+    <!-- Copy Server project Images and CSS into the Scripts Folder -->
+    <ItemGroup>
+      <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css;" />
+    </ItemGroup>
+    <Copy SourceFiles="@(StaticResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
+    <!-- Copy client project script output into the server output folder -->
+    <ItemGroup>
+      <BaseScriptResources Include="..\..\Client\ScriptOutput\**\*" Exclude="..\..\Client\ScriptOutput\**\embed\*;..\..\Client\ScriptOutput\**\loc\*;..\..\Client\ScriptOutput\extended\**\*" />
+      <ExtendedScriptResources Include="..\..\Client\ScriptOutput\extended\**\*" Exclude="..\..\Client\ScriptOutput\extended\**\embed\*;..\..\Client\ScriptOutput\extended\**\loc\*" />
+      <BaseEmbedScriptResources Include="..\..\Client\ScriptOutput\**\embed\*" Exclude="..\..\Client\ScriptOutput\extended\**\embed\*" />
+      <ExtendedEmbedScriptResources Include="..\..\Client\ScriptOutput\extended\**\embed\*" />
+    </ItemGroup>
+    <Message Text="======== Copying script resources from client project ========" />
+    <Copy SourceFiles="@(BaseScriptResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
+    <Copy SourceFiles="@(ExtendedScriptResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
+    <!--
+    Some scripts have a special version that is meant for embedding into the assembly.
+    This is because of the localization feature of ScriptResourceHandler, where each localized
+    script is not in the assembly - rather, the script is embedded without the resources, and
+    then the resources are built dynamically from an embedded strings resource file.
+    The embed versions are all in an 'embed' folder within the folder they were meant to be within,
+    so copy each to it's parent directory, overwriting the existing files.
+    -->
+    <Message Text="======== Copying embed script resources from client project ========" />
+    <Copy SourceFiles="@(BaseEmbedScriptResources)" DestinationFiles="@(BaseEmbedScriptResources -> 'ScriptOutput\%(RecursiveDir)..\%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="@(ExtendedEmbedScriptResources)" DestinationFiles="@(ExtendedEmbedScriptResources -> 'ScriptOutput\%(RecursiveDir)..\%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" />
+    <!-- Mark everything under the ScriptOutput folder as embedded resource -->
+    <ItemGroup>
+      <EmbeddedResource Include="ScriptOutput\**\*" />
+    </ItemGroup>
+  </Target>
+  <UsingTask TaskName="JSBuild.CreateJSManifestResourceName" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
+  <Target Name="CreateManifestResourceNames" Condition="'@(EmbeddedResource)' != ''" DependsOnTargets="$(CreateManifestResourceNamesDependsOn)">
+    <ItemGroup>
+      <_Temporary Remove="@(_Temporary)" />
+    </ItemGroup>
+    <!-- Create manifest names for ICOs -->
+    <CreateJSManifestResourceName BaseDirectory="\" ResourceFiles="@(EmbeddedResource)" RootNamespace="AjaxControlToolkit" Condition="'%(Extension)' == '.ico'">
+      <Output TaskParameter="ResourceFilesWithManifestResourceNames" ItemName="_Temporary" />
+    </CreateJSManifestResourceName>
+    <!-- Create manifest names for culture and non-culture Resx files, and for non-culture Non-Resx resources -->
+    <CreateJSManifestResourceName BaseDirectory="ScriptOutput\" ResourceFiles="@(EmbeddedResource)" RootNamespace="" Condition="'%(Extension)' != '.ico' and '%(EmbeddedResource.ManifestResourceName)' == '' and ('%(EmbeddedResource.WithCulture)' == 'false' or '%(EmbeddedResource.Type)' == 'Resx')">
+      <Output TaskParameter="ResourceFilesWithManifestResourceNames" ItemName="_Temporary" />
+    </CreateJSManifestResourceName>
+    <!-- Create manifest names for all culture non-resx resources -->
+    <CreateJSManifestResourceName BaseDirectory="ScriptOutput\" ResourceFiles="@(EmbeddedResource)" RootNamespace="" PrependCultureAsDirectory="false" Condition="'%(Extension)' != '.ico' and '%(EmbeddedResource.ManifestResourceName)' == '' and '%(EmbeddedResource.WithCulture)' == 'true' and '%(EmbeddedResource.Type)' == 'Non-Resx'">
+      <Output TaskParameter="ResourceFilesWithManifestResourceNames" ItemName="_Temporary" />
+    </CreateJSManifestResourceName>
+    <ItemGroup>
+      <EmbeddedResource Remove="@(EmbeddedResource)" Condition="'%(EmbeddedResource.ManifestResourceName)' == ''" />
+      <EmbeddedResource Include="@(_Temporary)" />
+      <_Temporary Remove="@(_Temporary)" />
+    </ItemGroup>
+  </Target>
 </Project>
