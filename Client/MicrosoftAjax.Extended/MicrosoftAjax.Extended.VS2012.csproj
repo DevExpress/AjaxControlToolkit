@@ -1,46 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3163BBDB-0D46-4598-BC45-AF45871E0DE0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>ClassLibrary</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MicrosoftAjax.Extended</RootNamespace>
+    <AssemblyName>MicrosoftAjax.Extended</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput\extended</ScriptOutput>
+    <FileUpgradeFlags>0</FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
     <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput\extended</ScriptOutput>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ScriptOutput>$(MSBuildProjectDirectory)\..\ScriptOutput\extended</ScriptOutput>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup>
-    <RootNamespace>MicrosoftAjax.Extended</RootNamespace>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Accordion\AccordionBehavior.pre.js" />
@@ -48,16 +81,10 @@
     <Content Include="Animation\AnimationBehavior.pre.js" />
     <Content Include="Animation\Animations.pre.js" />
     <Content Include="AutoComplete\AutoCompleteBehavior.pre.js" />
-    <Content Include="BalloonPopup\act_down_left.png" />
-    <Content Include="BalloonPopup\act_down_right.png" />
-    <Content Include="BalloonPopup\act_up_left.png" />
-    <Content Include="BalloonPopup\act_up_right.png" />
-    <Content Include="BalloonPopup\BalloonPopup.css" />
     <Content Include="BalloonPopup\BalloonPopupExtenderBehavior.pre.js" />
     <Content Include="BalloonPopup\Cloud\BalloonPopup.css" />
     <Content Include="BalloonPopup\Cloud\sprite.gif" />
     <Content Include="BalloonPopup\Cloud\sprite.png" />
-    <Content Include="BalloonPopup\corners-type2.gif" />
     <Content Include="BalloonPopup\Rectangle\BalloonPopup.css" />
     <Content Include="BalloonPopup\Rectangle\sprite.gif" />
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
@@ -69,6 +96,7 @@
     <Content Include="CollapsiblePanel\CollapsiblePanelBehavior.pre.js" />
     <Content Include="ColorPicker\ColorPicker.css" />
     <Content Include="ColorPicker\ColorPickerBehavior.pre.js" />
+    <Content Include="ExtendedControls.pre.js" />
     <Content Include="Common\Common.pre.js" />
     <Content Include="Common\DateTime.pre.js" />
     <Content Include="Common\Threading.pre.js" />
@@ -81,7 +109,6 @@
     <Content Include="DropDown\DropDownBehavior.pre.js" />
     <Content Include="DropShadow\DropShadowBehavior.pre.js" />
     <Content Include="DynamicPopulate\DynamicPopulateBehavior.pre.js" />
-    <Content Include="ExtendedControls.pre.js" />
     <Content Include="ExtenderBase\BaseScripts.pre.js" />
     <Content Include="FilteredTextBox\FilteredTextBoxBehavior.pre.js" />
     <Content Include="HoverExtender\HoverBehavior.pre.js" />
@@ -136,9 +163,9 @@
     <Content Include="Seadragon\Seadragon.DisplayRect.pre.js" />
     <Content Include="Seadragon\Seadragon.Drawer.pre.js" />
     <Content Include="Seadragon\Seadragon.ImageLoader.pre.js" />
+    <Content Include="Seadragon\Seadragon.pre.js" />
     <Content Include="Seadragon\Seadragon.MouseTracker.pre.js" />
     <Content Include="Seadragon\Seadragon.Point.pre.js" />
-    <Content Include="Seadragon\Seadragon.pre.js" />
     <Content Include="Seadragon\Seadragon.Profiler.pre.js" />
     <Content Include="Seadragon\Seadragon.Rect.pre.js" />
     <Content Include="Seadragon\Seadragon.Spring.pre.js" />
@@ -202,53 +229,192 @@
     <Content Include="ValidatorCallout\ValidatorCalloutBehavior.pre.js" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CascadingDropDown\CascadingDropDownBehavior.pre.js.BASE" />
-    <None Include="CascadingDropDown\CascadingDropDownBehavior.pre.js.LOCAL" />
-    <None Include="CascadingDropDown\CascadingDropDownBehavior.pre.js.orig" />
-    <None Include="CascadingDropDown\CascadingDropDownBehavior.pre.js.REMOTE" />
-    <None Include="HtmlEditorExtender\Images\Thumbs.db" />
+    <Content Include="ExtenderBase\BaseScriptsResources.ar.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.cs.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.de.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.es.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.fr.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.he.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.hi.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.it.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.ja.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.ko.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.nl.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.pt.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.ru.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.tr-TR.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.zh-CHS.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ExtenderBase\BaseScriptsResources.zh-CHT.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ar.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.cs.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.es.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.fr.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.he.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.hi.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.it.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ja.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ko.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.nl.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.pt.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.tr-TR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.zh-CHS.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.zh-CHT.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.ar.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.cs.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.de.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.es.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.fr.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.he.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.hi.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.it.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.ja.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.ko.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.nl.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.pt.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.ru.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.tr-TR.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.zh-CHS.resx" />
-    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.zh-CHT.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.ar.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.cs.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.de.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.es.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.fr.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.he.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.hi.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.it.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.ja.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.ko.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.nl.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.pt.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.ru.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.tr-TR.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.zh-CHS.resx" />
-    <EmbeddedResource Include="ScriptResources\ScriptResources.zh-CHT.resx" />
+    <Content Include="web.config" />
+    <Content Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
+    <Content Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
   <ProjectExtensions>
-    <VisualStudio AllowExistingFolder="true" />
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>22769</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
   </ProjectExtensions>
+  <!-- JSBuild outputs the results of a build to the Scripts folder -->
+  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
+  <UsingTask TaskName="JSBuild.PrependTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
+  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
+  <Target Name="BeforeBuild">
+    <MakeDir Directories="$(ScriptOutput)" />
+    <!-- clean out old files from previous build -->
+    <ItemGroup>
+      <ToDelete Include="$(ScriptOutput)\**\*" />
+    </ItemGroup>
+    <Delete Files="@(ToDelete)" />
+    <!--
+    Delete all the directories. No built-in msbuild task can do this.
+    See the following for explaination:
+    http://social.msdn.microsoft.com/forums/en-US/msbuild/thread/d2833d1e-2d56-4fc4-98a4-e321b976b9ac
+    -->
+    <Exec Command="for /f %%d in ('dir /ad /b') do rd /s /q %%d" WorkingDirectory="$(ScriptOutput)" />
+    <!-- build pre.js files with the JSBuildTask preprocessor, which generates debug and release scripts -->
+    <ItemGroup>
+      <PreJS Include="**\*.pre.js">
+        <InProject>False</InProject>
+      </PreJS>
+    </ItemGroup>
+    <JSBuildTask IncludePathInOutput="true" SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(ScriptOutput)" DebugHeader="// (c) 2010 CodePlex Foundation" />
+    <!-- minify the release scripts (overwrite them) -->
+    <ItemGroup>
+      <JS Include="$(ScriptOutput)\**\*.js" Exclude="$(ScriptOutput)\**\*.debug.*" />
+    </ItemGroup>
+    <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
+    <!-- Write the copyright header to the now minified scripts -->
+    <PrependTask Text="// (c) 2010 CodePlex Foundation" SourceFiles="@(JS)" />
+    <!-- Copy Images and CSS directly into script output -->
+    <ItemGroup>
+      <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css">
+        <InProject>False</InProject>
+      </StaticResources>
+    </ItemGroup>
+    <Copy SourceFiles="@(StaticResources)" DestinationFolder="$(ScriptOutput)\%(RecursiveDir)" />
+  </Target>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
 </Project>
