@@ -131,7 +131,7 @@
 
                 // Simulate parent change to populate self, even if no parent exists.
                 this._onParentChange(null, true);
-                
+
                 // Revert disable status to the actual.
                 var me = this;
                 setTimeout(function () {
@@ -318,10 +318,12 @@
 
                 // check whether to disable or not at loading.
                 if (!this._enableAtLoading) {
-                    // Disable the control if loading/prompt text is present and an empty list was populated
+                    // Disable the control if loading/prompt text is present and an empty list was populated                    
                     if (this._loadingText || this._promptText || this._emptyText) {
                         e.disabled = !list || (0 == list.length);
                     }
+                    if (this._actualDisabledStatus)
+                        e.disabled = this._actualDisabledStatus;
                 }
 
                 if (gettingList) {
