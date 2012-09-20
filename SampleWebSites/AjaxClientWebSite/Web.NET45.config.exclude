@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+
+<configuration>
+
+    <appSettings>
+      <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
+      <add key="ValidationSettings:UnobtrusiveValidationMode" value="WebForms" />
+    </appSettings>
+    <system.web>
+      <compilation debug="false" targetFramework="4.5" />
+      <httpRuntime requestValidationMode="4.5" targetFramework="4.5" encoderType="System.Web.Security.AntiXss.AntiXssEncoder, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+      <pages controlRenderingCompatibilityVersion="4.5">
+        <controls>
+            <add tagPrefix="act" namespace="AjaxControlToolkit" assembly="AjaxControlToolkit"/>          
+        </controls>
+      </pages>
+      <machineKey compatibilityMode="Framework45" />
+    </system.web>
+
+</configuration>
