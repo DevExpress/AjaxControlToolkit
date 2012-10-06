@@ -312,8 +312,10 @@
                         e.disabled = !list || (0 == list.length);
                     }
                 }
-
-                this.raisePopulated(Sys.EventArgs.Empty);
+                
+                if (gettingList) {
+                    this.raisePopulated(Sys.EventArgs.Empty);
+                }
             },
 
             _onChange: function () {
