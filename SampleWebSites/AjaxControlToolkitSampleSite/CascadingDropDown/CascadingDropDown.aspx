@@ -69,15 +69,26 @@
         </p>
         <br />
         <p>
-            CascadingDropDown enables a common scenario in which the contents of one list depends on the
-            selection of another list and does so without having to embed the entire data set in the page or
-            transfer it to the client at all.  All the logic about the contents of the set of DropDownList
-            controls lives on the server in a web service.  This web service can use any suitable method for
-            storing and looking up the relevant data.  The sample web service used here reads the data set
-            from a simple hierarchical XML data file.  The sample data file shows that the DropDownList items
-            can have distinct names and value (values are optional in the sample).  It also demonstrates that
-            items can have an optional optionTitle attribute which will be displayed as a tooltip over the
-            item in some modern browsers.  There is also a walkthrough showing how to use a 
+            CascadingDropDown enables a common scenario in which the contents of one list depends on the selection 
+            of another list and does so without having to embed the entire data set in the page or transfer it to 
+            the client at all.
+        </p>
+        <br />
+        <p>    
+            All the logic about the contents of the set of DropDownList controls lives on the server in a web service. 
+            This web service can use any suitable method for storing and looking up the relevant data.
+        </p>
+        <br />
+        <p>    
+            The sample web service used here reads the data set from a simple hierarchical XML data file. The 
+            sample data file shows that the DropDownList items can have distinct names and value (values are 
+            optional in the sample). It also demonstrates that items can have an optional optionTitle attribute 
+            which will be displayed as a tooltip over the item in some modern browsers. Finally, an item can be 
+            selected by default. In the XML file, the Racing Blue option for the BMW is selected by default.  
+        </p>
+        <br />
+        <p>    
+        There is also a walkthrough showing how to use a 
             <a href="../Walkthrough/CCDWithDB.aspx">CascadingDropDown with a database</a>.        
         </p>
     </asp:Panel>
