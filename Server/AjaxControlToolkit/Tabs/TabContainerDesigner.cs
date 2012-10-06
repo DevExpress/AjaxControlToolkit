@@ -1,22 +1,13 @@
-
-
-
-using System.Web.UI.WebControls;
-using System.Web.UI;
-using System.Web.UI.Design;
-using AjaxControlToolkit;
-using AjaxControlToolkit.Design;
-using System.ComponentModel;
-using System.Collections.Generic;
 using System;
+using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.Windows.Forms.Design;
-using System.Windows.Forms;
-using System.Text;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using System.ComponentModel.Design.Serialization;
+using System.Text;
+using System.Web.UI;
+using System.Web.UI.Design;
+using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit
 {

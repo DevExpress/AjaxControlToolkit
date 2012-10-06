@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Web.UI.Design;
 using System.ComponentModel;
 using System.Web.UI;
+using System.Web.UI.Design;
 
 namespace AjaxControlToolkit
 {

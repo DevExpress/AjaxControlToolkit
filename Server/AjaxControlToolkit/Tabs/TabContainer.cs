@@ -1,32 +1,19 @@
-
-
-
 using System;
-using System.Data;
-using System.Configuration;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using System.Web.Script;
-using System.ComponentModel;
-using System.Xml;
-using System.IO;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Globalization;
-using AjaxControlToolkit;
-using System.Text;
-using System.Web.Script.Serialization;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
+using System.Web;
+using System.Web.Script.Serialization;
+using System.Web.UI; 	 	
+using System.Web.UI.WebControls;
 
 #region [ Resources ]
 
 [assembly: System.Web.UI.WebResource("Tabs.Tabs.js", "application/x-javascript")]
 [assembly: System.Web.UI.WebResource("Tabs.Tabs.debug.js", "application/x-javascript")]
-[assembly: WebResource("Tabs.Tabs_resource.css", "text/css", PerformSubstitution=true)]
+[assembly: WebResource("Tabs.Tabs_resource.css", "text/css", PerformSubstitution = true)]
 [assembly: WebResource("Tabs.tab-line.gif", "image/gif")]
 // horizontal top (default) images
 [assembly: WebResource("Tabs.tab.gif", "image/gif")]
@@ -218,6 +205,15 @@ namespace AjaxControlToolkit
             }
         }
 
+        /// <summary> 	 
+        /// Index of last active tab
+        /// </summary>
+        private int LastActiveTabIndex
+        {
+          get { return (int)(ViewState["LastActiveTabIndex"] ?? -1); }
+          set { ViewState["LastActiveTabIndex"] = value; }
+        }
+
         /// <summary>
         /// Keeps collection of tabPanels those will be contained by the TabContainer.
         /// </summary>
@@ -358,8 +354,8 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("autoPostBackId")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", MessageId = "Member", Justification="Following ASP.NET naming conventions...")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value", Justification="Required for serialization")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", MessageId = "Member", Justification = "Following ASP.NET naming conventions...")] 	 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value", Justification = "Required for serialization")]
         public new string UniqueID
         {
             get
@@ -389,9 +385,9 @@ namespace AjaxControlToolkit
         [DefaultValue(false)]
         [Category("Appearance")]
         public bool UseVerticalStripPlacement 
-        { 
-            get { return _useVerticalStripPlacement; } 
-            set { _useVerticalStripPlacement=value ; } 
+        {
+            get { return _useVerticalStripPlacement; }
+            set { _useVerticalStripPlacement = value; }
         }
 
         /// <summary>
@@ -540,7 +536,7 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="clientActiveTabIndex">Index of current active tab at client side.</param>
         /// <returns>Index of server side active tab.</returns>
-        private int getServerActiveTabIndex(int clientActiveTabIndex)
+        private int GetServerActiveTabIndex(int clientActiveTabIndex)
         {
             int counter = -1;
             int result = clientActiveTabIndex;
@@ -566,13 +562,18 @@ namespace AjaxControlToolkit
             if (state != null)
             {
                 ActiveTabIndex = (int)state["ActiveTabIndex"];
-                ActiveTabIndex = getServerActiveTabIndex(ActiveTabIndex);
+                ActiveTabIndex = GetServerActiveTabIndex(ActiveTabIndex);
 
-                object[] tabState = (object[])state["TabState"];
-                for (int i = 0; i < tabState.Length; i++)
+                object[] tabEnabledState = (object[])state["TabEnabledState"]; 	 
+                object[] tabWasLoadedOnceState = (object[])state["TabWasLoadedOnceState"];
+                for (int i = 0; i < tabEnabledState.Length; i++)
                 {
-                    int j = getServerActiveTabIndex(i);
-                    if (j < Tabs.Count) Tabs[j].Enabled = (bool)tabState[i];
+                    int j = GetServerActiveTabIndex(i); 	 
+                    if (j < Tabs.Count)
+                    {
+                        Tabs[j].Enabled = (bool)tabEnabledState[i];
+                        Tabs[j].WasLoadedOnce = (bool)tabWasLoadedOnceState[i];
+                    }
                 }
             }
         }
@@ -586,12 +587,16 @@ namespace AjaxControlToolkit
             Dictionary<string, object> state = new Dictionary<string, object>();
             state["ActiveTabIndex"] = ActiveTabIndex;
 
-            List<object> tabState = new List<object>();
-            foreach (TabPanel panel in Tabs)
+            List<object> tabEnabledState = new List<object>();
+            List<object> tabWasLoadedOnceState = new List<object>();
+
+            foreach (TabPanel tab in Tabs)
             {
-                tabState.Add(panel.Enabled);
+                tabEnabledState.Add(tab.Enabled);                
+                tabWasLoadedOnceState.Add(tab.WasLoadedOnce);
             }
-            state["TabState"] = tabState;
+            state["TabEnabledState"] = tabEnabledState;
+            state["TabWasLoadedOnceState"] = tabWasLoadedOnceState;
             return new JavaScriptSerializer().Serialize(state);
         }
 
@@ -619,6 +624,9 @@ namespace AjaxControlToolkit
         /// <returns>object containing savedstate</returns>
         protected override object SaveControlState()
         {
+            // Saving last active tab index            
+            this.LastActiveTabIndex = this.ActiveTabIndex;
+
             Pair p = new Pair();
             p.First = base.SaveControlState();
             p.Second = ActiveTabIndex;
@@ -774,7 +782,8 @@ namespace AjaxControlToolkit
                         tabStripPlacementCss += "right";
                         break;
                 }
-            } else
+            } 
+            else
             {
                 switch (_tabStripPlacement)
                 {
@@ -809,7 +818,19 @@ namespace AjaxControlToolkit
         /// </summary>
         protected override void RaisePostDataChangedEvent()
         {
-            OnActiveTabChanged(EventArgs.Empty);
+            // If the tab index changed 	 
+            if (this.LastActiveTabIndex != this.ActiveTabIndex)
+            {
+                // Saving last active tab index
+                this.LastActiveTabIndex = this.ActiveTabIndex;
+
+                // The event fires only when the new active tab exists and has OnDemandMode = Always or
+                // when OnDemandMode = Once and tab wasn't loaded yet
+                TabPanel activeTab = this.ActiveTab;
+                if (activeTab != null && (activeTab.OnDemandMode == OnDemandMode.Always ||
+                                          activeTab.OnDemandMode == OnDemandMode.Once && !activeTab.WasLoadedOnce))
+                    OnActiveTabChanged(EventArgs.Empty);
+            }
         }
 
         private void EnsureActiveTab()
@@ -829,6 +850,18 @@ namespace AjaxControlToolkit
                 {
                     Tabs[i].Active = false;
                 }
+            }
+        }
+
+        /// <summary> 	 
+        /// Reset the loaded status of tab panels with once demand mode
+        /// </summary>
+        public void ResetLoadedOnceTabs()
+        {
+            foreach (TabPanel tab in this.Tabs)
+            {
+                if (tab.OnDemandMode == OnDemandMode.Once && tab.WasLoadedOnce)
+                    tab.WasLoadedOnce = false;
             }
         }
 
@@ -867,7 +900,7 @@ namespace AjaxControlToolkit
 
         #region IPostBackEventHandler Members
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification="Called by ASP.NET infrastructure")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification = "Called by ASP.NET infrastructure")]
         void IPostBackEventHandler.RaisePostBackEvent(string eventArgument)
         {
             if (eventArgument.StartsWith("activeTabChanged", StringComparison.Ordinal))
@@ -878,7 +911,7 @@ namespace AjaxControlToolkit
                 Debug.Assert(parseIndex != -1, "Expected new active tab index!");
                 if (parseIndex != -1 && Int32.TryParse(eventArgument.Substring(parseIndex + 1), out parseIndex))
                 {
-                    parseIndex = getServerActiveTabIndex(parseIndex);
+                    parseIndex = GetServerActiveTabIndex(parseIndex);
                     if (parseIndex != ActiveTabIndex)
                     {
                         ActiveTabIndex = parseIndex;
