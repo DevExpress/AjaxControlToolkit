@@ -36,6 +36,7 @@ $type = Sys.WebForms.PageRequestManager = function PageRequestManager() {
     // List of hidden fields that should be removed if an async update does not
     // explictly define it.
     this._transientFields = ["__VIEWSTATEENCRYPTED", "__VIEWSTATEFIELDCOUNT"];
+    this._textTypes = /^(text|password|hidden|search|tel|url|email|number|range|color|datetime|date|month|week|time|datetime-local)$/i;
 }
 
 $type.prototype = {
@@ -932,9 +933,7 @@ $type.prototype = {
 
             if (tagName === 'INPUT') {
                 var type = element.type;
-                if ((type === 'text') ||
-                    (type === 'password') ||
-                    (type === 'hidden') ||
+                if (this._textTypes.test(type) ||
                     (((type === 'checkbox') || (type === 'radio')) && element.checked)) {
                     // DevDiv Bugs 109456: Encode the name as well as the value
                     formBody.append(encodeURIComponent(name));
