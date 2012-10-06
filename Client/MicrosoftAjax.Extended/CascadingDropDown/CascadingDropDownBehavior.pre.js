@@ -74,6 +74,9 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     // Whether or not the the user/page specific context should be used
     this._useContextKey = false;
 
+    // whether to use get or post 	 	
+    this._useHttpGet = false;
+
     // Variables
     this._parentElement = null;
     this._changeHandler = null;
@@ -392,7 +395,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             }
         
             // Call the helper web service
-            Sys.Net.WebServiceProxy.invoke(this._servicePath, this._serviceMethod, false, params,
+            Sys.Net.WebServiceProxy.invoke(this._servicePath, this._serviceMethod, this._useHttpGet, params,
                 Function.createDelegate(this, this._onMethodComplete), Function.createDelegate(this, this._onMethodError));
             $common.updateFormToRefreshATDeviceBuffer();
         }
@@ -605,6 +608,19 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             this._useContextKey = value;
             this.raisePropertyChanged('useContextKey');
         }
+    },
+
+    get_useHttpGet: function () { 	 
+        /// <value type="Boolean"> 	 	
+        /// Whether or not the get method should be used instead of post.  	 	
+        /// </value> 	 	
+        return this._useHttpGet; 	 	
+    }, 	 
+    set_useHttpGet: function (value) { 	 
+        if (this._useHttpGet != value) { 	 
+            this._useHttpGet = value;	 
+            this.raisePropertyChanged('useHttpGet'); 	 
+        } 	 
     },
     
     add_selectionChanged : function(handler) {
