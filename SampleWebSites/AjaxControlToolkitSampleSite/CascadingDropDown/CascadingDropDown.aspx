@@ -141,6 +141,8 @@ public CascadingDropDownNameValue[] GetDropDownContents(
                 contents of this DropDownList.</li>
             <li><strong>SelectedValue</strong> - Optional value to select by default.  This needs to exactly
                 match the string representation of a value in the DropDownList.</li>
+            <li><strong>UseHttpGet</strong> - Optional value to deternine whether to use HttpGet or HttpPost
+                method for the postback to the server.</li>
         </ul>
     </asp:Panel>
     
