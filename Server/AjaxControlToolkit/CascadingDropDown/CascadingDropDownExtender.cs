@@ -214,6 +214,11 @@ namespace AjaxControlToolkit
         private void CascadingDropDown_ClientStateValuesLoaded(object sender, EventArgs e)
         {
             DropDownList dropDownList = (DropDownList)TargetControl;
+            if (null == dropDownList) 	 
+            { 	 
+                throw new ArgumentNullException("No target control is set for the CascadingDropDown extender."); 	 
+            }
+
             dropDownList.Items.Clear();
             string separator = ":::";
             string clientState = base.ClientState;
