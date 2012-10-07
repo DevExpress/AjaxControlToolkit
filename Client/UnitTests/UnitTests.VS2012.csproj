@@ -1,73 +1,153 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{392073F1-6DB8-4778-9225-D60735C249AA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <NoStandardLibraries>false</NoStandardLibraries>
-    <AssemblyName>ClassLibrary</AssemblyName>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UnitTests</RootNamespace>
+    <AssemblyName>UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>0</FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
     <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup>
-    <RootNamespace>UnitTests</RootNamespace>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="core\array.js" />
-    <Content Include="logs\placeholder.txt" />
     <Content Include="qunit\qunit-automation.css" />
+    <Content Include="qunit\qunit_automation.js" />
     <Content Include="qunit\qunit-report.js" />
     <Content Include="qunit\qunit.css" />
     <Content Include="qunit\qunit.js" />
     <Content Include="qunit\qunit_asserts.js" />
-    <Content Include="qunit\qunit_automation.js" />
-    <Content Include="RunTests-Automation.aspx" />
     <Content Include="RunTests.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="TestResults.cs" />
+    <Content Include="RunTests-Automation.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ajaxlib\" />
     <Folder Include="App_Data\" />
+    <Folder Include="logs\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web.config" />
+    <Compile Include="TestResults.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <UsingTask TaskName="JSBuild.QUnit" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
+  <Target Name="UpdateAjaxLib">
+    <ItemGroup>
+      <ScriptOutput Include="$(ProjectDir)..\scriptoutput\**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ScriptOutput)" DestinationFolder="$(ProjectDir)ajaxlib\%(RecursiveDir)" />
+  </Target>
+  <Target Name="QUnit-CI" DependsOnTargets="UpdateAjaxLib">
+    <ItemGroup>
+      <!-- Define a 'Browser' element for each browser to test with -->
+      <Browser Include="C:\Program Files (x86)\Internet Explorer\iexplore.exe">
+        <Name>IE8</Name>
+        <Arguments>(none)</Arguments>
+        <Concurrency>0</Concurrency>
+      </Browser>
+      <Browser Include="C:\Program Files (x86)\Mozilla Firefox\firefox.exe">
+        <Name>Firefox36</Name>
+        <Arguments>(none)</Arguments>
+        <Concurrency>0</Concurrency>
+      </Browser>
+      <Browser Include="C:\Program Files (x86)\Google\Chrome\Application\chrome.exe">
+        <Name>Chrome41</Name>
+        <Arguments>(none)</Arguments>
+        <Concurrency>0</Concurrency>
+      </Browser>
+    </ItemGroup>
+    <QUnit LogDirectory="$(MSBuildProjectDirectory)\logs" TimeOut="60" Browsers="@(Browser)" BrowserNames="@(Browser -> '%(Name)')" BrowserArguments="@(Browser -> '%(Arguments)')" BrowserConcurrencies="@(Browser -> '%(Concurrency)')" TestPath="http://127.0.0.1:8888/qunittests/runtests-automation.aspx" />
+  </Target>
+  <Target Name="AfterBuild" DependsOnTargets="UpdateAjaxLib">
+  </Target>
   <ProjectExtensions>
-    <VisualStudio AllowExistingFolder="true" />
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>22770</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
   </ProjectExtensions>
 </Project>
