@@ -14,7 +14,7 @@ REM Prep for 45
 call Prep45.bat
 
 REM Build the Solution
-%MSBuildFolder%msbuild AjaxControlToolkit.sln  /p:Configuration=Release /t:Clean;Build
+%MSBuildFolder%msbuild AjaxControlToolkit.VS2012.sln  /p:Configuration=Release /t:Clean;Build
 
 REM Create the package folder
 md %PackageFolder%
