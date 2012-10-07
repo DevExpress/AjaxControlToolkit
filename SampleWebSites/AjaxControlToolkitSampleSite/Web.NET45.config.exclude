@@ -11,6 +11,12 @@
     <httpRuntime requestValidationMode="4.5" targetFramework="4.5" encoderType="System.Web.Security.AntiXss.AntiXssEncoder, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <pages controlRenderingCompatibilityVersion="4.5" />
     <machineKey compatibilityMode="Framework45" />
+    <siteMap defaultProvider="SamplesSiteMap">
+      <providers>
+        <add name="SamplesSiteMap" type="System.Web.XmlSiteMapProvider" siteMapFile="~/Samples.sitemap"/>
+        <add name="WalkthroughsSiteMap" type="System.Web.XmlSiteMapProvider" siteMapFile="~/Walkthroughs.sitemap"/>
+      </providers>
+    </siteMap>
   </system.web>
 
 </configuration>
