@@ -510,7 +510,7 @@ $type.prototype = {
                 handler(sender, eventArgs);
             }
         }
-        raise(this, this, "progress");
+        raise(this, this, "progress");        
     },
 
     add_error: function XMLHttpExecutor$add_error(handler) {

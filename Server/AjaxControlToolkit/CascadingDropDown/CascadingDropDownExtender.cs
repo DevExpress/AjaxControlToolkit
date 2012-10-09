@@ -196,16 +196,16 @@ namespace AjaxControlToolkit
             set { SetPropertyValue<bool>("UseContextKey", value); }
         }
 
-        /// <summary> 	 
-        /// Determines whether to use HttpGet or HttpPost method for the postback to the server. 
-        /// </summary> 	 
-        [ExtenderControlProperty] 	 
-        [ClientPropertyName("useHttpGet")] 	 
-        [DefaultValue(false)] 	 
-        public bool UseHttpGet 	 
-        { 	 
-            get { return GetPropertyValue<bool>("UseHttpGet", false); } 	 
-            set { SetPropertyValue<bool>("UseHttpGet", value); } 	 
+        /// <summary>
+        /// Determines whether to use HttpGet or HttpPost method for the postback to the server.
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("useHttpGet")]
+        [DefaultValue(false)]
+        public bool UseHttpGet
+        {
+            get { return GetPropertyValue<bool>("UseHttpGet", false); }
+            set { SetPropertyValue<bool>("UseHttpGet", value); }
         }
 
         /// Whether or not disable the dropdownlist control when this is waiting to 
@@ -220,16 +220,16 @@ namespace AjaxControlToolkit
             get { return GetPropertyValue<bool>("EnableAtLoading", false); }
             set { SetPropertyValue<bool>("EnableAtLoading", value); }
         }
-        
+
         /// <summary>
         /// Populate DropDownLists with their SelectedValues
         /// </summary>
         private void CascadingDropDown_ClientStateValuesLoaded(object sender, EventArgs e)
         {
             DropDownList dropDownList = (DropDownList)TargetControl;
-            if (null == dropDownList) 	 
-            { 	 
-                throw new ArgumentNullException("No target control is set for the CascadingDropDown extender."); 	 
+            if (null == dropDownList)
+            {
+                throw new ArgumentNullException("No target control is set for the CascadingDropDown extender.");
             }
 
             dropDownList.Items.Clear();

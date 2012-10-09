@@ -5,12 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AjaxControlToolkit.Tests.Tests.Tabs
-{
-    public partial class Tabs_TestPage : System.Web.UI.Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+namespace AjaxControlToolkit.Tests.Tests.Tabs {
+    public partial class Tabs_TestPage : System.Web.UI.Page {
+        protected void Page_Load(object sender, EventArgs e) {
 
         }
     }

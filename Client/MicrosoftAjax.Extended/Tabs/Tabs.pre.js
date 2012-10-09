@@ -103,7 +103,7 @@
                         if (this._loaded && changed) {
                             if (this._onDemand) {
                                 var activeTab = this.get_tabs()[this._activeTabIndex];
-                                if (activeTab._onDemandMode != Sys.Extended.UI.OnDemandMode.None) {
+                                if (activeTab._onDemandMode != Sys.Extended.UI.OnDemandMode.None) {                                    
                                     if ((activeTab._onDemandMode == Sys.Extended.UI.OnDemandMode.Once && activeTab._wasLoadedOnce == false)
                                         || activeTab._onDemandMode == Sys.Extended.UI.OnDemandMode.Always) {
                                         this._pageRequestManager.beginAsyncPostBack([activeTab._updatePanelID], null, null, false, null);                                        
@@ -267,8 +267,8 @@
                 var tabEnabledState = [];
                 var tabWasLoadedOnceState = [];
                 for (var i = 0; i < tabs.length; i++) {
-                    //Array.add(tabState, tabs[i].get_enabled());                    
-                    Array.add(tabEnabledState, tabs[i].get_enabled());                    
+                    //Array.add(tabState, tabs[i].get_enabled());
+                    Array.add(tabEnabledState, tabs[i].get_enabled());
                     Array.add(tabWasLoadedOnceState, tabs[i].get_wasLoadedOnce());
                 }
                 var state = {
@@ -369,7 +369,7 @@
             this._dynamicServiceMethod = null;
             this._dynamicPopulateBehavior = null;
             this._scrollBars = Sys.Extended.UI.ScrollBars.None;
-            this._onDemandMode = Sys.Extended.UI.OnDemandMode.Always;
+            this._onDemandMode = Sys.Extended.UI.OnDemandMode.Always;            
             this._wasLoadedOnce = false;
             this._updatePanelID = "";
             this.isAttachedDisabledEvents = false;
@@ -568,15 +568,15 @@
                 }
             },
 
-            get_wasLoadedOnce: function() { 	 
-                return this._wasLoadedOnce;
-            },
-            set_wasLoadedOnce: function(value) {
-                if (value != this._wasLoadedOnce) {
-                  this._wasLoadedOnce = value;
-                  this.raisePropertyChanged("wasLoadedOnce");
-                }
-            },
+            get_wasLoadedOnce: function() {
+	                 return this._wasLoadedOnce;
+	        },
+	        set_wasLoadedOnce: function(value) {
+	        if (value != this._wasLoadedOnce) {
+	                this._wasLoadedOnce = value;
+	                this.raisePropertyChanged("wasLoadedOnce");
+	            }
+	        },
 
             initialize: function () {
                 var owner = this.get_owner();

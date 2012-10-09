@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Web;
 using System.Web.Script.Serialization;
-using System.Web.UI; 	 	
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 #region [ Resources ]
@@ -205,14 +205,14 @@ namespace AjaxControlToolkit
             }
         }
 
-        /// <summary> 	 
-        /// Index of last active tab
-        /// </summary>
-        private int LastActiveTabIndex
-        {
-          get { return (int)(ViewState["LastActiveTabIndex"] ?? -1); }
-          set { ViewState["LastActiveTabIndex"] = value; }
-        }
+        /// <summary>
+	    /// Index of last active tab
+	    /// </summary>
+	    private int LastActiveTabIndex
+	    {
+	        get { return (int)(ViewState["LastActiveTabIndex"] ?? -1); }
+	        set { ViewState["LastActiveTabIndex"] = value; }
+	    }
 
         /// <summary>
         /// Keeps collection of tabPanels those will be contained by the TabContainer.
@@ -354,7 +354,7 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("autoPostBackId")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", MessageId = "Member", Justification = "Following ASP.NET naming conventions...")] 	 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1706:ShortAcronymsShouldBeUppercase", MessageId = "Member", Justification = "Following ASP.NET naming conventions...")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "value", Justification = "Required for serialization")]
         public new string UniqueID
         {
@@ -385,7 +385,7 @@ namespace AjaxControlToolkit
         [DefaultValue(false)]
         [Category("Appearance")]
         public bool UseVerticalStripPlacement 
-        {
+        { 
             get { return _useVerticalStripPlacement; }
             set { _useVerticalStripPlacement = value; }
         }
@@ -564,11 +564,11 @@ namespace AjaxControlToolkit
                 ActiveTabIndex = (int)state["ActiveTabIndex"];
                 ActiveTabIndex = GetServerActiveTabIndex(ActiveTabIndex);
 
-                object[] tabEnabledState = (object[])state["TabEnabledState"]; 	 
+                object[] tabEnabledState = (object[])state["TabEnabledState"];
                 object[] tabWasLoadedOnceState = (object[])state["TabWasLoadedOnceState"];
                 for (int i = 0; i < tabEnabledState.Length; i++)
                 {
-                    int j = GetServerActiveTabIndex(i); 	 
+                    int j = GetServerActiveTabIndex(i);
                     if (j < Tabs.Count)
                     {
                         Tabs[j].Enabled = (bool)tabEnabledState[i];
@@ -592,7 +592,7 @@ namespace AjaxControlToolkit
 
             foreach (TabPanel tab in Tabs)
             {
-                tabEnabledState.Add(tab.Enabled);                
+                tabEnabledState.Add(tab.Enabled);
                 tabWasLoadedOnceState.Add(tab.WasLoadedOnce);
             }
             state["TabEnabledState"] = tabEnabledState;
@@ -624,7 +624,7 @@ namespace AjaxControlToolkit
         /// <returns>object containing savedstate</returns>
         protected override object SaveControlState()
         {
-            // Saving last active tab index            
+            // Saving last active tab index
             this.LastActiveTabIndex = this.ActiveTabIndex;
 
             Pair p = new Pair();
@@ -818,7 +818,7 @@ namespace AjaxControlToolkit
         /// </summary>
         protected override void RaisePostDataChangedEvent()
         {
-            // If the tab index changed 	 
+            // If the tab index changed
             if (this.LastActiveTabIndex != this.ActiveTabIndex)
             {
                 // Saving last active tab index
@@ -853,17 +853,17 @@ namespace AjaxControlToolkit
             }
         }
 
-        /// <summary> 	 
-        /// Reset the loaded status of tab panels with once demand mode
-        /// </summary>
-        public void ResetLoadedOnceTabs()
-        {
-            foreach (TabPanel tab in this.Tabs)
-            {
-                if (tab.OnDemandMode == OnDemandMode.Once && tab.WasLoadedOnce)
-                    tab.WasLoadedOnce = false;
-            }
-        }
+        /// <summary>
+	    /// Reset the loaded status of tab panels with once demand mode
+	    /// </summary>
+	    public void ResetLoadedOnceTabs()
+	    {
+	        foreach (TabPanel tab in this.Tabs)
+	        {
+	            if (tab.OnDemandMode == OnDemandMode.Once && tab.WasLoadedOnce)
+	                tab.WasLoadedOnce = false;
+	        }
+	    }
 
         #endregion       
 

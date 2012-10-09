@@ -3,12 +3,12 @@
 
     <script type="text/javascript">
 
-//        module("Initial State");
-//        asyncTest("Initial State", function () {
-//            resetTestFrame(function () {
-//                start();
-//            });
-//        });
+        //        module("Initial State");
+        //        asyncTest("Initial State", function () {
+        //            resetTestFrame(function () {
+        //                start();
+        //            });
+        //        });
 
         module("Scrolling");
         test("Scroll position in Chrome", function () {

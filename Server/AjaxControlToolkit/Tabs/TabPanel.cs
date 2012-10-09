@@ -154,12 +154,12 @@ namespace AjaxControlToolkit {
         public string UpdatePanelID { get; set; }
 
         /// <summary>
-        /// Loading status of the tab if in Once demand mode
-        /// </summary>
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [ExtenderControlProperty]
-        [ClientPropertyName("wasLoadedOnce")]
-        public bool WasLoadedOnce { get; set; }
+	    /// Loading status of the tab if in Once demand mode
+	    /// </summary>
+	    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+	    [ExtenderControlProperty]
+	    [ClientPropertyName("wasLoadedOnce")]
+	    public bool WasLoadedOnce { get; set; }
 
         #endregion
 

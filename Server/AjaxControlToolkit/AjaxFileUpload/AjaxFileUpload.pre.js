@@ -923,7 +923,7 @@ Sys.Extended.UI.AjaxFileUploadEventArgs = function (fileId, statusMessage, fileN
     this._fileSize = fileSize;
     this._contentType = contentType;
     this._postedUrl = postedUrl;
-    this._fileIndex = fileIndex; 	
+    this._fileIndex = fileIndex;
     this._fileQueueLength = fileQueueLength;
 };
 
@@ -950,7 +950,7 @@ Sys.Extended.UI.AjaxFileUploadEventArgs.prototype =
     set_postedUrl: function () {
         return this._postedUrl = value;
     },
- 	get_fileIndex: function () {
+    get_fileIndex: function () {
         return this._fileIndex;
     },
     get_fileQueueLength: function () {

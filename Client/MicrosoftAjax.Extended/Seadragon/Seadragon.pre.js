@@ -4,7 +4,7 @@ if (!window.SIGNAL)
 Type.registerNamespace('Sys.Extended.UI.Seadragon');
 Type.registerNamespace('Seadragon');
 
-Sys.Extended.UI.Seadragon.ControlAnchor = function () {
+Sys.Extended.UI.Seadragon.ControlAnchor = function() {
     throw Error.invalidOperation();
 }
 Sys.Extended.UI.Seadragon.ControlAnchor.prototype = {
@@ -18,7 +18,7 @@ Sys.Extended.UI.Seadragon.ControlAnchor.registerEnum("Sys.Extended.UI.Seadragon.
 
 Seadragon.ControlAnchor = Sys.Extended.UI.Seadragon.ControlAnchor;
 
-Sys.Extended.UI.Seadragon.OverlayPlacement = function () {
+Sys.Extended.UI.Seadragon.OverlayPlacement = function() {
     throw Error.invalidOperation();
 }
 Sys.Extended.UI.Seadragon.OverlayPlacement.prototype = {
@@ -35,7 +35,7 @@ Sys.Extended.UI.Seadragon.OverlayPlacement.prototype = {
 Sys.Extended.UI.Seadragon.OverlayPlacement.registerEnum("Sys.Extended.UI.Seadragon.OverlayPlacement", false);
 Seadragon.OverlayPlacement = Sys.Extended.UI.Seadragon.OverlayPlacement;
 
-Sys.Extended.UI.Seadragon.NavControl = function (viewer) {
+Sys.Extended.UI.Seadragon.NavControl = function(viewer) {
     this._group = null;
     this._zooming = false;    // whether we should be continuously zooming
     this._zoomFactor = null;  // how much we should be continuously zooming by
@@ -47,7 +47,7 @@ Sys.Extended.UI.Seadragon.NavControl = function (viewer) {
     this.initialize();
 }
 Sys.Extended.UI.Seadragon.NavControl.prototype = {
-    initialize: function () {
+    initialize: function() {
         var beginZoomingInHandler = Function.createDelegate(this, this._beginZoomingIn);
         var endZoomingHandler = Function.createDelegate(this, this._endZooming);
         var doSingleZoomInHandler = Function.createDelegate(this, this._doSingleZoomIn);
@@ -76,31 +76,31 @@ Sys.Extended.UI.Seadragon.NavControl.prototype = {
         this.elmt[SIGNAL] = true;   // hack to get our controls to fade
         this._viewer.add_open(Function.createDelegate(this, this._lightUp));
     },
-    dispose: function () {
+    dispose: function() {
     },
-    _resolveUrl: function (url) {
+    _resolveUrl: function(url) {
         return String.format("{1}", this._viewer.get_prefixUrl(), url);
     },
-    _beginZoomingIn: function () {
+    _beginZoomingIn: function() {
         this._lastZoomTime = new Date().getTime();
         this._zoomFactor = this.config.zoomPerSecond;
         this._zooming = true;
         this._scheduleZoom();
     },
-    _beginZoomingOut: function () {
+    _beginZoomingOut: function() {
         this._lastZoomTime = new Date().getTime();
         this._zoomFactor = 1.0 / this.config.zoomPerSecond;
         this._zooming = true;
         this._scheduleZoom();
     },
 
-    _endZooming: function () {
+    _endZooming: function() {
         this._zooming = false;
     },
-    _scheduleZoom: function () {
+    _scheduleZoom: function() {
         window.setTimeout(Function.createDelegate(this, this._doZoom), 10);
     },
-    _doZoom: function () {
+    _doZoom: function() {
         if (this._zooming && this._viewer.viewport) {
             var currentTime = new Date().getTime();
             var deltaTime = currentTime - this._lastZoomTime;
@@ -112,30 +112,30 @@ Sys.Extended.UI.Seadragon.NavControl.prototype = {
             this._scheduleZoom();
         }
     },
-    _doSingleZoomIn: function () {
+    _doSingleZoomIn: function() {
         if (this._viewer.viewport) {
             this._zooming = false;
             this._viewer.viewport.zoomBy(this.config.zoomPerClick / 1.0);
             this._viewer.viewport.applyConstraints();
         }
     },
-    _doSingleZoomOut: function () {
+    _doSingleZoomOut: function() {
         if (this._viewer.viewport) {
             this._zooming = false;
             this._viewer.viewport.zoomBy(1.0 / this.config.zoomPerClick);
             this._viewer.viewport.applyConstraints();
         }
     },
-    _lightUp: function () {
+    _lightUp: function() {
         this._group.emulateEnter();
         this._group.emulateExit();
     },
-    _onHome: function () {
+    _onHome: function() {
         if (this._viewer.viewport) {
             this._viewer.viewport.goHome();
         }
     },
-    _onFullPage: function () {
+    _onFullPage: function() {
         this._viewer.setFullPage(!this._viewer.isFullPage());
         this._group.emulateExit();  // correct for no mouseout event on change
 
@@ -146,7 +146,7 @@ Sys.Extended.UI.Seadragon.NavControl.prototype = {
 }
 Sys.Extended.UI.Seadragon.NavControl.registerClass('Sys.Extended.UI.Seadragon.NavControl', null, Sys.IDisposable);
 
-Sys.Extended.UI.Seadragon.Control = function (elmt, anchor, container) {
+Sys.Extended.UI.Seadragon.Control = function(elmt, anchor, container) {
     // Properties
     this.elmt = elmt;
     this.anchor = anchor;
@@ -155,7 +155,7 @@ Sys.Extended.UI.Seadragon.Control = function (elmt, anchor, container) {
     this.initialize();
 }
 Sys.Extended.UI.Seadragon.Control.prototype = {
-    initialize: function () {
+    initialize: function() {
         this.wrapper = Seadragon.Utils.makeNeutralElement("span");
         // Constructor
         this.wrapper.style.display = "inline-block";
@@ -165,27 +165,27 @@ Sys.Extended.UI.Seadragon.Control.prototype = {
         }
         this.addToAnchor();
     },
-    addToAnchor: function () {
+    addToAnchor: function() {
         if (this.anchor == Seadragon.ControlAnchor.TOP_RIGHT || this.anchor == Seadragon.ControlAnchor.BOTTOM_RIGHT) {
             this.container.insertBefore(this.elmt, this.container.firstChild);
         } else {
             this.container.appendChild(this.elmt);
         }
     },
-    destroy: function () {
+    destroy: function() {
         this.wrapper.removeChild(this.elmt);
         this.container.removeChild(this.wrapper);
     },
-    isVisible: function () {
+    isVisible: function() {
         // see note in setVisible() below about using "display: none"
         return this.wrapper.style.display != "none";
     },
-    setVisible: function (visible) {
+    setVisible: function(visible) {
         // using "display: none" instead of "visibility: hidden" so that mouse
         // events are no longer blocked by this invisible control.
         this.wrapper.style.display = visible ? "inline-block" : "none";
     },
-    setOpacity: function (opacity) {
+    setOpacity: function(opacity) {
         // like with setVisible() above, we really should be working with the
         // wrapper element and not the passed in element directly, so that we
         // don't conflict with the developer's own opacity settings. but this
@@ -199,7 +199,7 @@ Sys.Extended.UI.Seadragon.Control.prototype = {
 }
 Sys.Extended.UI.Seadragon.Control.registerClass('Sys.Extended.UI.Seadragon.Control', null, Sys.IDisposable);
 
-Sys.Extended.UI.Seadragon.Viewer = function (element) {
+Sys.Extended.UI.Seadragon.Viewer = function(element) {
     Sys.Extended.UI.Seadragon.Viewer.initializeBase(this, [element]);
     //Fields
 
@@ -237,7 +237,7 @@ Sys.Extended.UI.Seadragon.Viewer = function (element) {
 
 }
 Sys.Extended.UI.Seadragon.Viewer.prototype = {
-    initialize: function () {
+    initialize: function() {
         Sys.Extended.UI.Seadragon.Viewer.callBaseMethod(this, 'initialize');
 
         this._container = Seadragon.Utils.makeNeutralElement("div");
@@ -325,7 +325,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         if (this._xmlPath)
             this.openDzi(this._xmlPath);
     },
-    _raiseEvent: function (eventName, eventArgs) {
+    _raiseEvent: function(eventName, eventArgs) {
         // Get handler for event.
         var handler = this.get_events().getHandler(eventName);
 
@@ -338,7 +338,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             handler(this, eventArgs);
         }
     },
-    _beginControlsAutoHide: function () {
+    _beginControlsAutoHide: function() {
         if (!this.config.autoHideControls) {
             return;
         }
@@ -347,10 +347,10 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         this._controlsFadeBeginTime = new Date().getTime() + this._controlsFadeDelay;
         window.setTimeout(Function.createDelegate(this, this._scheduleControlsFade), this._controlsFadeDelay);
     },
-    _scheduleControlsFade: function () {
+    _scheduleControlsFade: function() {
         window.setTimeout(Function.createDelegate(this, this._updateControlsFade), 20);
     },
-    _updateControlsFade: function () {
+    _updateControlsFade: function() {
         if (this._controlsShouldFade) {
             var currentTime = new Date().getTime();
             var deltaTime = currentTime - this._controlsFadeBeginTime;
@@ -368,7 +368,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             }
         }
     },
-    _onCanvasClick: function (tracker, position, quick, shift) {
+    _onCanvasClick: function(tracker, position, quick, shift) {
         if (this.viewport && quick) {    // ignore clicks where mouse moved			
             var zoomPerClick = this.config.zoomPerClick;
             var factor = shift ? 1.0 / zoomPerClick : zoomPerClick;
@@ -376,19 +376,19 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             this.viewport.applyConstraints();
         }
     },
-    _onCanvasDrag: function (tracker, position, delta, shift) {
+    _onCanvasDrag: function(tracker, position, delta, shift) {
         if (this.viewport) {
             // negate since dragging is opposite of panning.
             // analogy: in adobe pdf, dragging vs using scrollbars.
             this.viewport.panBy(this.viewport.deltaPointsFromPixels(delta.negate()));
         }
     },
-    _onCanvasRelease: function (tracker, position, insideElmtPress, insideElmtRelease) {
+    _onCanvasRelease: function(tracker, position, insideElmtPress, insideElmtRelease) {
         if (insideElmtPress && this.viewport) {
             this.viewport.applyConstraints();
         }
     },
-    _onContainerExit: function (tracker, position, buttonDownElmt, buttonDownAny) {
+    _onContainerExit: function(tracker, position, buttonDownElmt, buttonDownAny) {
         // fade controls out over time, only if the mouse isn't down from
         // within the container (e.g. panning, or using a control)
         if (!buttonDownElmt) {
@@ -398,7 +398,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             }
         }
     },
-    _onContainerRelease: function (tracker, position, insideElmtPress, insideElmtRelease) {
+    _onContainerRelease: function(tracker, position, insideElmtPress, insideElmtRelease) {
         // the mouse may have exited the container and we ignored it if the
         // mouse was down from within the container. now when the mouse is
         // released, we should fade the controls out now.
@@ -409,7 +409,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             }
         }
     },
-    _getControlIndex: function (elmt) {
+    _getControlIndex: function(elmt) {
         for (var i = this._controls.length - 1; i >= 0; i--) {
             if (this._controls[i].elmt == elmt) {
                 return i;
@@ -418,17 +418,17 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
 
         return -1;
     },
-    _abortControlsAutoHide: function () {
+    _abortControlsAutoHide: function() {
         this._controlsShouldFade = false;
         for (var i = this._controls.length - 1; i >= 0; i--) {
             this._controls[i].setOpacity(1.0);
         }
     },
-    _onContainerEnter: function (tracker, position, buttonDownElmt, buttonDownAny) {
+    _onContainerEnter: function(tracker, position, buttonDownElmt, buttonDownAny) {
         this._mouseInside = true;
         this._abortControlsAutoHide();
     },
-    _updateOnce: function () {
+    _updateOnce: function() {
         if (!this.source) {
             return;
         }
@@ -478,7 +478,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
 
         this.profiler.endUpdate();
     },
-    _onClose: function () {
+    _onClose: function() {
         // TODO need destroy() methods to prevent leaks? check for null if so.
 
         // nullify fields and properties
@@ -490,7 +490,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         // clear all tiles and any message
         this._canvas.innerHTML = "";
     },
-    _beforeOpen: function () {
+    _beforeOpen: function() {
         if (this.source) {
             this._onClose();
         }
@@ -498,7 +498,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         this._lastOpenStartTime = new Date().getTime();   // to ignore earlier opens
 
         // show loading message after a delay if it still hasn't loaded
-        window.setTimeout(Function.createDelegate(this, function () {
+        window.setTimeout(Function.createDelegate(this, function() {
             if (this._lastOpenStartTime > this._lastOpenEndTime) {
                 this._setMessage(Seadragon.Strings.getString("Messages.Loading"));
             }
@@ -506,7 +506,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
 
         return this._lastOpenStartTime;
     },
-    _setMessage: function (message) {
+    _setMessage: function(message) {
         var textNode = document.createTextNode(message);
 
         this._canvas.innerHTML = "";
@@ -527,7 +527,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         textStyle.textAlign = "center";
         textStyle.textDecoration = "none";
     },
-    _onOpen: function (time, _source, error) {
+    _onOpen: function(time, _source, error) {
         this._lastOpenEndTime = new Date().getTime();
 
         if (time < this._lastOpenStartTime) {
@@ -566,7 +566,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         }
         this._raiseEvent("open");
     },
-    _scheduleUpdate: function (updateFunc, prevUpdateTime) {
+    _scheduleUpdate: function(updateFunc, prevUpdateTime) {
         // if we're animating, update as fast as possible to stay smooth
         if (this._animating) {
             return window.setTimeout(Function.createDelegate(this, updateFunc), 1);
@@ -581,7 +581,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         var deltaTime = Math.max(1, targetTime - currentTime);
         return window.setTimeout(Function.createDelegate(this, updateFunc), deltaTime);
     },
-    _updateMulti: function () {
+    _updateMulti: function() {
         if (!this.source) {
             return;
         }
@@ -591,7 +591,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         this._updateOnce();
         this._scheduleUpdate(arguments.callee, beginTime);
     },
-    _updateOnce: function () {
+    _updateOnce: function() {
         if (!this.source) {
             return;
         }
@@ -642,196 +642,196 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         this.profiler.endUpdate();
     },
 
-    getNavControl: function () {
+    getNavControl: function() {
         return this._navControl;
     },
-    get_xmlPath: function () {
+    get_xmlPath: function() {
         return this._xmlPath;
     },
-    set_xmlPath: function (value) {
+    set_xmlPath: function(value) {
         this._xmlPath = value;
     },
-    get_debugMode: function () {
+    get_debugMode: function() {
         return this.config.debugMode;
     },
-    set_debugMode: function (value) {
+    set_debugMode: function(value) {
         this.config.debugMode = value;
     },
-    get_animationTime: function () {
+    get_animationTime: function() {
         return this.config.animationTime;
     },
-    set_animationTime: function (value) {
+    set_animationTime: function(value) {
         this.config.animationTime = value;
     },
-    get_blendTime: function () {
+    get_blendTime: function() {
         return this.config.blendTime;
     },
-    set_blendTime: function (value) {
+    set_blendTime: function(value) {
         this.config.blendTime = value;
     },
-    get_alwaysBlend: function () {
+    get_alwaysBlend: function() {
         return this.config.alwaysBlend;
     },
-    set_alwaysBlend: function (value) {
+    set_alwaysBlend: function(value) {
         this.config.alwaysBlend = value;
     },
-    get_autoHideControls: function () {
+    get_autoHideControls: function() {
         return this.config.autoHideControls;
     },
-    set_autoHideControls: function (value) {
+    set_autoHideControls: function(value) {
         this.config.autoHideControls = value;
     },
-    get_immediateRender: function () {
+    get_immediateRender: function() {
         return this.config.immediateRender;
     },
-    set_immediateRender: function (value) {
+    set_immediateRender: function(value) {
         this.config.immediateRender = value;
     },
-    get_wrapHorizontal: function () {
+    get_wrapHorizontal: function() {
         return this.config.wrapHorizontal;
     },
-    set_wrapHorizontal: function (value) {
+    set_wrapHorizontal: function(value) {
         this.config.wrapHorizontal = value;
     },
-    get_wrapVertical: function () {
+    get_wrapVertical: function() {
         return this.config.wrapVertical;
     },
-    set_wrapVertical: function (value) {
+    set_wrapVertical: function(value) {
         this.config.wrapVertical = value;
     },
-    get_minZoomDimension: function () {
+    get_minZoomDimension: function() {
         return this.config.minZoomDimension;
     },
-    set_minZoomDimension: function (value) {
+    set_minZoomDimension: function(value) {
         this.config.minZoomDimension = value;
     },
-    get_maxZoomPixelRatio: function () {
+    get_maxZoomPixelRatio: function() {
         return this.config.maxZoomPixelRatio;
     },
-    set_maxZoomPixelRatio: function (value) {
+    set_maxZoomPixelRatio: function(value) {
         this.config.maxZoomPixelRatio = value;
     },
-    get_visibilityRatio: function () {
+    get_visibilityRatio: function() {
         return this.config.visibilityRatio;
     },
-    set_visibilityRatio: function (value) {
+    set_visibilityRatio: function(value) {
         this.config.visibilityRatio = value;
     },
-    get_springStiffness: function () {
+    get_springStiffness: function() {
         return this.config.springStiffness;
     },
-    set_springStiffness: function (value) {
+    set_springStiffness: function(value) {
         this.config.springStiffness = value;
     },
-    get_imageLoaderLimit: function () {
+    get_imageLoaderLimit: function() {
         return this.config.imageLoaderLimit;
     },
-    set_imageLoaderLimit: function (value) {
+    set_imageLoaderLimit: function(value) {
         this.config.imageLoaderLimit = value;
     },
-    get_clickTimeThreshold: function () {
+    get_clickTimeThreshold: function() {
         return this.config.clickTimeThreshold;
     },
-    set_clickTimeThreshold: function (value) {
+    set_clickTimeThreshold: function(value) {
         this.config.clickTimeThreshold = value;
     },
-    get_clickDistThreshold: function () {
+    get_clickDistThreshold: function() {
         return this.config.clickDistThreshold;
     },
-    set_clickDistThreshold: function (value) {
+    set_clickDistThreshold: function(value) {
         this.config.clickDistThreshold = value;
     },
-    get_zoomPerClick: function () {
+    get_zoomPerClick: function() {
         return this.config.zoomPerClick;
     },
-    set_zoomPerClick: function (value) {
+    set_zoomPerClick: function(value) {
         this.config.zoomPerClick = value;
     },
-    get_zoomPerSecond: function () {
+    get_zoomPerSecond: function() {
         return this.config.zoomPerSecond;
     },
-    set_zoomPerSecond: function (value) {
+    set_zoomPerSecond: function(value) {
         this.config.zoomPerSecond = value;
     },
-    get_maxImageCacheCount: function () {
+    get_maxImageCacheCount: function() {
         return this.config.maxImageCacheCount;
     },
-    set_maxImageCacheCount: function (value) {
+    set_maxImageCacheCount: function(value) {
         this.config.maxImageCacheCount = value;
     },
-    get_showNavigationControl: function () {
+    get_showNavigationControl: function() {
         return this.config.showNavigationControl;
     },
-    set_showNavigationControl: function (value) {
+    set_showNavigationControl: function(value) {
         this.config.showNavigationControl = value;
     },
-    get_minPixelRatio: function () {
+    get_minPixelRatio: function() {
         return this.config.minPixelRatio;
     },
-    set_minPixelRatio: function (value) {
+    set_minPixelRatio: function(value) {
         this.config.minPixelRatio = value;
     },
-    get_mouseNavEnabled: function () {
+    get_mouseNavEnabled: function() {
         return this.config.mouseNavEnabled;
     },
-    set_mouseNavEnabled: function (value) {
+    set_mouseNavEnabled: function(value) {
         this.config.mouseNavEnabled = value;
     },
-    get_controls: function () {
+    get_controls: function() {
         return this._customControls;
     },
-    set_controls: function (value) {
+    set_controls: function(value) {
         this._customControls = value;
     },
-    get_overlays: function () {
+    get_overlays: function() {
         return this._overlayControls;
     },
-    set_overlays: function (value) {
+    set_overlays: function(value) {
         this._overlayControls = value;
     },
-    get_prefixUrl: function () {
+    get_prefixUrl: function() {
         return this._prefixUrl;
     },
-    set_prefixUrl: function (value) {
+    set_prefixUrl: function(value) {
         this._prefixUrl = value;
     },
-    add_open: function (handler) {
+    add_open: function(handler) {
         this.get_events().addHandler("open", handler);
     },
-    remove_open: function (handler) {
+    remove_open: function(handler) {
         this.get_events().removeHandler("open", handler);
     },
-    add_error: function (handler) {
+    add_error: function(handler) {
         this.get_events().addHandler("error", handler);
     },
-    remove_error: function (handler) {
+    remove_error: function(handler) {
         this.get_events().removeHandler("error", handler);
     },
-    add_ignore: function (handler) {
+    add_ignore: function(handler) {
         this.get_events().addHandler("ignore", handler);
     },
-    remove_ignore: function (handler) {
+    remove_ignore: function(handler) {
         this.get_events().removeHandler("ignore", handler);
     },
-    add_resize: function (handler) {
+    add_resize: function(handler) {
         this.get_events().addHandler("resize", handler);
     },
-    remove_resize: function (handler) {
+    remove_resize: function(handler) {
         this.get_events().removeHandler("resize", handler);
     },
-    add_animationstart: function (handler) {
+    add_animationstart: function(handler) {
         this.get_events().addHandler("animationstart", handler);
     },
-    remove_animationstart: function (handler) {
+    remove_animationstart: function(handler) {
         this.get_events().removeHandler("animationstart", handler);
     },
-    add_animationend: function (handler) {
+    add_animationend: function(handler) {
         this.get_events().addHandler("animationend", handler);
     },
-    remove_animationend: function (handler) {
+    remove_animationend: function(handler) {
         this.get_events().removeHandler("animationend", handler);
     },
-    addControl: function (elmt, anchor) {
+    addControl: function(elmt, anchor) {
         var elmt = Seadragon.Utils.getElement(elmt);
 
         if (this._getControlIndex(elmt) >= 0) {
@@ -866,28 +866,28 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
 
         this._controls.push(new Sys.Extended.UI.Seadragon.Control(elmt, anchor, div));
     },
-    isOpen: function () {
+    isOpen: function() {
         return !!this.source;
     },
-    openDzi: function (xmlUrl, xmlString) {
+    openDzi: function(xmlUrl, xmlString) {
         var currentTime = this._beforeOpen();
         Sys.Extended.UI.Seadragon.DziTileSourceHelper.createFromXml(xmlUrl, xmlString,
                     Seadragon.Utils.createCallback(null, Function.createDelegate(this, this._onOpen), currentTime));
     },
-    openTileSource: function (tileSource) {
+    openTileSource: function(tileSource) {
         var currentTime = this._beforeOpen();
-        window.setTimeout(Function.createDelegate(this, function () {
+        window.setTimeout(Function.createDelegate(this, function() {
             this._onOpen(currentTime, tileSource);
         }), 1);
     },
-    close: function () {
+    close: function() {
         if (!this.source) {
             return;
         }
 
         this._onClose();
     },
-    removeControl: function (elmt) {
+    removeControl: function(elmt) {
         var elmt = Seadragon.Utils.getElement(elmt);
         var i = this._getControlIndex(elmt);
 
@@ -896,12 +896,12 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             this._controls.splice(i, 1);
         }
     },
-    clearControls: function () {
+    clearControls: function() {
         while (this._controls.length > 0) {
             this._controls.pop().destroy();
         }
     },
-    isDashboardEnabled: function () {
+    isDashboardEnabled: function() {
         for (var i = this._controls.length - 1; i >= 0; i--) {
             if (this._controls[i].isVisible()) {
                 return true;
@@ -911,25 +911,25 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         return false;
     },
 
-    isFullPage: function () {
+    isFullPage: function() {
         return this._container.parentNode == document.body;
     },
 
-    isMouseNavEnabled: function () {
+    isMouseNavEnabled: function() {
         return this._innerTracker.isTracking();
     },
 
-    isVisible: function () {
+    isVisible: function() {
         return this._container.style.visibility != "hidden";
     },
 
-    setDashboardEnabled: function (enabled) {
+    setDashboardEnabled: function(enabled) {
         for (var i = this._controls.length - 1; i >= 0; i--) {
             this._controls[i].setVisible(enabled);
         }
     },
 
-    setFullPage: function (fullPage) {
+    setFullPage: function(fullPage) {
         if (fullPage == this.isFullPage()) {
             return;
         }
@@ -1015,11 +1015,11 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         }
     },
 
-    setMouseNavEnabled: function (enabled) {
+    setMouseNavEnabled: function(enabled) {
         this._innerTracker.setTracking(enabled);
     },
 
-    setVisible: function (visible) {
+    setVisible: function(visible) {
         // important: don't explicitly say "visibility: visible", because
         // the W3C spec actually says children of hidden elements that have
         // "visibility: visible" should still be rendered. that's usually

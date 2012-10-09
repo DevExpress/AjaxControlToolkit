@@ -12,14 +12,14 @@
 /// <reference path="../Animation/AnimationBehavior.js" />
 /// <reference path="../PopupExtender/PopupBehavior.js" />
 
-(function() {
+(function () {
     var scriptName = "ExtendedCalendar";
 
     function execute() {
 
         Type.registerNamespace("Sys.Extended.UI");
 
-        Sys.Extended.UI.CalendarBehavior = function(element) {
+        Sys.Extended.UI.CalendarBehavior = function (element) {
             /// <summary>
             /// A behavior that attaches a calendar date selector to a textbox
             /// </summmary>
@@ -111,7 +111,7 @@
         }
         Sys.Extended.UI.CalendarBehavior.prototype = {
 
-            get_clearTime: function() {
+            get_clearTime: function () {
                 /// <summary>
                 /// Whether time should be cleared in edited date/time
                 /// </summary>
@@ -119,14 +119,14 @@
 
                 return this._clearTime;
             },
-            set_clearTime: function(value) {
+            set_clearTime: function (value) {
                 if (this._clearTime != value) {
                     this._clearTime = value;
                     this.raisePropertyChanged("_clearTime");
                 }
             },
 
-            get_animated: function() {
+            get_animated: function () {
                 /// <summary>
                 /// Whether changing modes is animated
                 /// </summary>
@@ -134,35 +134,35 @@
 
                 return this._animated;
             },
-            set_animated: function(value) {
+            set_animated: function (value) {
                 if (this._animated != value) {
                     this._animated = value;
                     this.raisePropertyChanged("animated");
                 }
             },
 
-            get_enabled: function() {
+            get_enabled: function () {
                 /// <value type="Boolean">
                 /// Whether this behavior is available for the current element
                 /// </value>
 
                 return this._enabled;
             },
-            set_enabled: function(value) {
+            set_enabled: function (value) {
                 if (this._enabled != value) {
                     this._enabled = value;
                     this.raisePropertyChanged("enabled");
                 }
             },
 
-            get_button: function() {
+            get_button: function () {
                 /// <value type="Sys.UI.DomElement">
                 /// The button to use to show the calendar (optional)
                 /// </value>
 
                 return this._button;
             },
-            set_button: function(value) {
+            set_button: function (value) {
                 if (this._button != value) {
                     if (this._button && this.get_isInitialized()) {
                         $common.removeHandlers(this._button, this._button$delegates);
@@ -175,7 +175,7 @@
                 }
             },
 
-            get_popupPosition: function() {
+            get_popupPosition: function () {
                 /// <value type="Sys.Extended.UI.CalendarPosition">
                 /// Where the popup should be positioned relative to the target control.
                 /// Can be BottomLeft (Default), BottomRight, TopLeft, TopRight.
@@ -183,14 +183,14 @@
 
                 return this._popupPosition;
             },
-            set_popupPosition: function(value) {
+            set_popupPosition: function (value) {
                 if (this._popupPosition != value) {
                     this._popupPosition = value;
                     this.raisePropertyChanged('popupPosition');
                 }
             },
 
-            set_startDate: function(value) {
+            set_startDate: function (value) {
                 /// <value type="Date">
                 /// The property of the start date for range
                 /// </value>
@@ -200,14 +200,14 @@
                 }
             },
 
-            get_startDate: function() {
+            get_startDate: function () {
                 /// <value type="Date">
                 /// The property of the start date for range
                 /// </value>
                 return this._startDate;
             },
 
-            set_endDate: function(value) {
+            set_endDate: function (value) {
                 /// <value type="Date">
                 /// The property of the end date for range
                 /// </value>
@@ -217,56 +217,56 @@
                 }
             },
 
-            get_endDate: function() {
+            get_endDate: function () {
                 /// <value type="Date">
                 /// The property of the end date for range
                 /// </value>
                 return this._endDate;
             },
 
-            get_format: function() {
+            get_format: function () {
                 /// <value type="String">
                 /// The format to use for the date value
                 /// </value>
 
                 return this._format;
             },
-            set_format: function(value) {
+            set_format: function (value) {
                 if (this._format != value) {
                     this._format = value;
                     this.raisePropertyChanged("format");
                 }
             },
 
-            get_todaysDateFormat: function() {
+            get_todaysDateFormat: function () {
                 /// <value type="String">
                 /// The format to use for the todays date
                 /// </value>
 
                 return this._todaysDateFormat;
             },
-            set_todaysDateFormat: function(value) {
+            set_todaysDateFormat: function (value) {
                 if (this._todaysDateFormat != value) {
                     this._todaysDateFormat = value;
                     this.raisePropertyChanged("todaysDateFormat");
                 }
             },
 
-            get_daysModeTitleFormat: function() {
+            get_daysModeTitleFormat: function () {
                 /// <value type="String">
                 /// The format to use for the title when in days mode
                 /// </value>
 
                 return this._daysModeTitleFormat;
             },
-            set_daysModeTitleFormat: function(value) {
+            set_daysModeTitleFormat: function (value) {
                 if (this._daysModeTitleFormat != value) {
                     this._daysModeTitleFormat = value;
                     this.raisePropertyChanged("daysModeTitleFormat");
                 }
             },
 
-            get_selectedDate: function() {
+            get_selectedDate: function () {
                 /// <value type="Date">
                 /// The date value represented by the text box
                 /// </value>
@@ -281,7 +281,7 @@
                 }
                 return this._selectedDate;
             },
-            set_selectedDate: function(value) {
+            set_selectedDate: function (value) {
                 if (value && (String.isInstanceOfType(value)) && (value.length != 0)) {
                     value = new Date(value);
                 }
@@ -323,21 +323,21 @@
                 }
             },
 
-            get_defaultView: function() {
+            get_defaultView: function () {
                 /// <value type="Sys.Extended.UI.CalendarDefaultView">
                 /// The default view of the calendar when it first pops up.
                 /// </value>
 
                 return this._defaultView;
             },
-            set_defaultView: function(value) {
+            set_defaultView: function (value) {
                 if (this._defaultView != value) {
                     this._defaultView = value;
                     this.raisePropertyChanged("defaultView");
                 }
             },
 
-            get_visibleDate: function() {
+            get_visibleDate: function () {
                 /// <summary>
                 /// The date currently visible in the calendar
                 /// </summary>
@@ -345,7 +345,7 @@
 
                 return this._visibleDate;
             },
-            set_visibleDate: function(value) {
+            set_visibleDate: function (value) {
                 if (value && (String.isInstanceOfType(value)) && (value.length != 0)) {
                     value = new Date(value);
                 }
@@ -356,14 +356,14 @@
                 }
             },
 
-            get_isOpen: function() {
+            get_isOpen: function () {
                 /// <value type="Boolean">
                 /// Whether the calendar is open
                 /// </value>
                 return this._isOpen;
             },
 
-            get_todaysDate: function() {
+            get_todaysDate: function () {
                 /// <value type="Date">
                 /// The date to use for "Today"
                 /// </value>
@@ -372,7 +372,7 @@
                 }
                 return new Date();
             },
-            set_todaysDate: function(value) {
+            set_todaysDate: function (value) {
                 if (this._todaysDate != value) {
                     this._todaysDate = value;
 
@@ -381,14 +381,14 @@
                 }
             },
 
-            get_firstDayOfWeek: function() {
+            get_firstDayOfWeek: function () {
                 /// <value type="Sys.Extended.UI.FirstDayOfWeek">
                 /// The day of the week to appear as the first day in the calendar
                 /// </value>
 
                 return this._firstDayOfWeek;
             },
-            set_firstDayOfWeek: function(value) {
+            set_firstDayOfWeek: function (value) {
                 if (this._firstDayOfWeek != value) {
                     this._firstDayOfWeek = value;
                     this.invalidate();
@@ -396,14 +396,14 @@
                 }
             },
 
-            get_cssClass: function() {
+            get_cssClass: function () {
                 /// <value type="String">
                 /// The CSS class selector to use to change the calendar's appearance
                 /// </value>
 
                 return this._cssClass;
             },
-            set_cssClass: function(value) {
+            set_cssClass: function (value) {
                 if (this._cssClass != value) {
                     if (this._cssClass && this.get_isInitialized()) {
                         Sys.UI.DomElement.removeCssClass(this._container, this._cssClass);
@@ -416,7 +416,7 @@
                 }
             },
 
-            get_todayButton: function() {
+            get_todayButton: function () {
                 /// <value type="Sys.UI.DomElement">
                 /// The button used to select todays date
                 /// </value>
@@ -424,7 +424,7 @@
                 return this._today;
             },
 
-            get_dayCell: function(row, col) {
+            get_dayCell: function (row, col) {
                 /// <value type="Sys.UI.DomElement">
                 /// Gets the day cell at the specified row or column
                 /// </value>
@@ -434,7 +434,7 @@
                 return null;
             },
 
-            add_showing: function(handler) {
+            add_showing: function (handler) {
                 /// <summary>
                 /// Adds an event handler for the <code>showiwng</code> event.
                 /// </summary>
@@ -445,7 +445,7 @@
 
                 this.get_events().addHandler("showing", handler);
             },
-            remove_showing: function(handler) {
+            remove_showing: function (handler) {
                 /// <summary>
                 /// Removes an event handler for the <code>showing</code> event.
                 /// </summary>
@@ -456,7 +456,7 @@
 
                 this.get_events().removeHandler("showing", handler);
             },
-            raiseShowing: function(eventArgs) {
+            raiseShowing: function (eventArgs) {
                 /// <summary>
                 /// Raise the showing event
                 /// </summary>
@@ -471,7 +471,7 @@
                 }
             },
 
-            add_shown: function(handler) {
+            add_shown: function (handler) {
                 /// <summary>
                 /// Adds an event handler for the <code>shown</code> event.
                 /// </summary>
@@ -482,7 +482,7 @@
 
                 this.get_events().addHandler("shown", handler);
             },
-            remove_shown: function(handler) {
+            remove_shown: function (handler) {
                 /// <summary>
                 /// Removes an event handler for the <code>shown</code> event.
                 /// </summary>
@@ -493,7 +493,7 @@
 
                 this.get_events().removeHandler("shown", handler);
             },
-            raiseShown: function() {
+            raiseShown: function () {
                 /// <summary>
                 /// Raise the <code>shown</code> event
                 /// </summary>
@@ -505,7 +505,7 @@
                 }
             },
 
-            add_hiding: function(handler) {
+            add_hiding: function (handler) {
                 /// <summary>
                 /// Adds an event handler for the <code>hiding</code> event.
                 /// </summary>
@@ -516,7 +516,7 @@
 
                 this.get_events().addHandler("hiding", handler);
             },
-            remove_hiding: function(handler) {
+            remove_hiding: function (handler) {
                 /// <summary>
                 /// Removes an event handler for the <code>hiding</code> event.
                 /// </summary>
@@ -527,7 +527,7 @@
 
                 this.get_events().removeHandler("hiding", handler);
             },
-            raiseHiding: function(eventArgs) {
+            raiseHiding: function (eventArgs) {
                 /// <summary>
                 /// Raise the hiding event
                 /// </summary>
@@ -542,7 +542,7 @@
                 }
             },
 
-            add_hidden: function(handler) {
+            add_hidden: function (handler) {
                 /// <summary>
                 /// Adds an event handler for the <code>hidden</code> event.
                 /// </summary>
@@ -553,7 +553,7 @@
 
                 this.get_events().addHandler("hidden", handler);
             },
-            remove_hidden: function(handler) {
+            remove_hidden: function (handler) {
                 /// <summary>
                 /// Removes an event handler for the <code>hidden</code> event.
                 /// </summary>
@@ -564,7 +564,7 @@
 
                 this.get_events().removeHandler("hidden", handler);
             },
-            raiseHidden: function() {
+            raiseHidden: function () {
                 /// <summary>
                 /// Raise the <code>hidden</code> event
                 /// </summary>
@@ -576,7 +576,7 @@
                 }
             },
 
-            add_dateSelectionChanged: function(handler) {
+            add_dateSelectionChanged: function (handler) {
                 /// <summary>
                 /// Adds an event handler for the <code>dateSelectionChanged</code> event.
                 /// </summary>
@@ -587,7 +587,7 @@
 
                 this.get_events().addHandler("dateSelectionChanged", handler);
             },
-            remove_dateSelectionChanged: function(handler) {
+            remove_dateSelectionChanged: function (handler) {
                 /// <summary>
                 /// Removes an event handler for the <code>dateSelectionChanged</code> event.
                 /// </summary>
@@ -598,7 +598,7 @@
 
                 this.get_events().removeHandler("dateSelectionChanged", handler);
             },
-            raiseDateSelectionChanged: function() {
+            raiseDateSelectionChanged: function () {
                 /// <summary>
                 /// Raise the <code>dateSelectionChanged</code> event
                 /// </summary>
@@ -610,7 +610,7 @@
                 }
             },
 
-            initialize: function() {
+            initialize: function () {
                 /// <summary>
                 /// Initializes the components and parameters for this behavior
                 /// </summary>
@@ -632,7 +632,7 @@
                     this.set_selectedDate(value);
                 }
             },
-            dispose: function() {
+            dispose: function () {
                 /// <summary>
                 /// Disposes this behavior's resources
                 /// </summary>
@@ -717,7 +717,7 @@
                 Sys.Extended.UI.CalendarBehavior.callBaseMethod(this, "dispose");
             },
 
-            show: function() {
+            show: function () {
                 /// <summary>
                 /// Shows the calendar
                 /// </summary>
@@ -752,7 +752,7 @@
                     this.raiseShown();
                 }
             },
-            hide: function() {
+            hide: function () {
                 /// <summary>
                 /// Hides the calendar
                 /// </summary>
@@ -774,14 +774,14 @@
                     this._popupMouseDown = false;
                 }
             },
-            focus: function() {
+            focus: function () {
                 if (this._button) {
                     this._button.focus();
                 } else {
                     this.get_element().focus();
                 }
             },
-            blur: function(force) {
+            blur: function (force) {
                 if (!force && Sys.Browser.agent === Sys.Browser.Opera) {
                     this._blur.post(true);
                 } else {
@@ -793,14 +793,14 @@
                 }
             },
 
-            suspendLayout: function() {
+            suspendLayout: function () {
                 /// <summary>
                 /// Suspends layout of the behavior while setting properties
                 /// </summary>
 
                 this._layoutSuspended++;
             },
-            resumeLayout: function() {
+            resumeLayout: function () {
                 /// <summary>
                 /// Resumes layout of the behavior and performs any pending layout requests
                 /// </summary>
@@ -813,7 +813,7 @@
                     }
                 }
             },
-            invalidate: function() {
+            invalidate: function () {
                 /// <summary>
                 /// Performs layout of the behavior unless layout is suspended
                 /// </summary>
@@ -825,7 +825,7 @@
                 }
             },
 
-            _buildCalendar: function() {
+            _buildCalendar: function () {
                 /// <summary>
                 /// Builds the calendar's layout
                 /// </summary>
@@ -849,7 +849,7 @@
                     cssClasses: ["ajax__calendar_container"]
                 }, this._container);
             },
-            _buildHeader: function() {
+            _buildHeader: function () {
                 /// <summary>
                 /// Builds the header for the calendar
                 /// </summary>
@@ -896,7 +896,7 @@
                     cssClasses: ["ajax__calendar_title"]
                 }, titleWrapper);
             },
-            _buildBody: function() {
+            _buildBody: function () {
                 /// <summary>
                 /// Builds the body region for the calendar
                 /// </summary>
@@ -911,7 +911,7 @@
                 this._buildMonths();
                 this._buildYears();
             },
-            _buildFooter: function() {
+            _buildFooter: function () {
                 /// <summary>
                 /// Builds the footer for the calendar
                 /// </summary>
@@ -927,7 +927,7 @@
                     cssClasses: ["ajax__calendar_footer", "ajax__calendar_today"]
                 }, todayWrapper);
             },
-            _buildDays: function() {
+            _buildDays: function () {
                 /// <summary>
                 /// Builds a "days of the month" view for the calendar
                 /// </summary>
@@ -981,7 +981,7 @@
                     }
                 }
             },
-            _buildMonths: function() {
+            _buildMonths: function () {
                 /// <summary>
                 /// Builds a "months of the year" view for the calendar
                 /// </summary>
@@ -1027,7 +1027,7 @@
                     }
                 }
             },
-            _buildYears: function() {
+            _buildYears: function () {
                 /// <summary>
                 /// Builds a "years in this decade" view for the calendar
                 /// </summary>
@@ -1073,7 +1073,7 @@
             },
 
 
-            _isInDateRange: function(date, part) {
+            _isInDateRange: function (date, part) {
                 switch (part) {
                     case "d":
                         if ((this._startDate) && (this._getDateOnly(date) < this._getDateOnly(this._startDate))) { return false; }
@@ -1092,18 +1092,18 @@
             },
 
 
-            _getDateOnly: function(date) {
+            _getDateOnly: function (date) {
                 return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
             },
 
 
-            _getMonthOnly: function(date) {
+            _getMonthOnly: function (date) {
                 return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1));
             },
 
 
 
-            _convertToUTC: function(value) {
+            _convertToUTC: function (value) {
                 /// <summary>Converts a local date such as 1/1/2007 into 1/1/2007 GMT 
                 /// without adjusting for time zone</summary>
                 if (value) {
@@ -1113,7 +1113,7 @@
             },
 
 
-            _convertToLocal: function(value) {
+            _convertToLocal: function (value) {
                 /// <summary>Converts a UTC date such as 1/1/2007 GMT into 1/1/2007 without adjusting for time zone</summary>
                 /// <param name="value" type="Date">The date to convert</param>
 
@@ -1129,7 +1129,7 @@
 
 
 
-            _performLayout: function() {
+            _performLayout: function () {
                 /// <summmary>
                 /// Updates the various views of the calendar to match the current selected and visible dates
                 /// </summary>
@@ -1277,7 +1277,7 @@
                 this._today.date = this._convertToUTC(todaysDate);
             },
 
-            _ensureCalendar: function() {
+            _ensureCalendar: function () {
 
                 if (!this._container) {
 
@@ -1305,7 +1305,7 @@
                 }
             },
 
-            _fireChanged: function() {
+            _fireChanged: function () {
                 /// <summary>
                 /// Attempts to fire the change event on the attached textbox
                 /// </summary>
@@ -1319,7 +1319,7 @@
                     elt.dispatchEvent(e);
                 }
             },
-            _switchMonth: function(date, dontAnimate) {
+            _switchMonth: function (date, dontAnimate) {
                 /// <summary>
                 /// Switches the visible month in the days view
                 /// </summary>
@@ -1394,7 +1394,7 @@
                     this._visibleDate = date;
                     this.invalidate();
 
-                    var endHandler = Function.createDelegate(this, function() {
+                    var endHandler = Function.createDelegate(this, function () {
                         this._body.removeChild(oldElement);
                         oldElement = null;
                         this._isAnimating = false;
@@ -1408,7 +1408,7 @@
                 }
             },
 
-            _canSwitchMonth: function(date) {
+            _canSwitchMonth: function (date) {
                 switch (this._mode) {
                     case "days":
                         if (!this._isInDateRange(date, "M")) {
@@ -1429,7 +1429,7 @@
                 return true;
             },
 
-            _switchMode: function(mode, dontAnimate) {
+            _switchMode: function (mode, dontAnimate) {
                 /// <summary>
                 /// Switches the visible view from "days" to "months" to "years"
                 /// </summary>
@@ -1494,7 +1494,7 @@
                         this._modeChangeMoveBottomOrRightAnimation.set_endValue(0);
                         this._modeChangeMoveBottomOrRightAnimation.set_startValue(this._height);
                     }
-                    var endHandler = Function.createDelegate(this, function() {
+                    var endHandler = Function.createDelegate(this, function () {
                         this._isAnimating = false;
                         this._modeChangeAnimation.remove_ended(endHandler);
                     });
@@ -1508,7 +1508,7 @@
                     $common.setLocation(newElement, { x: 0, y: 0 });
                 }
             },
-            _isSelected: function(date, part) {
+            _isSelected: function (date, part) {
                 /// <summary>
                 /// Gets whether the supplied date is the currently selected date
                 /// </summary>
@@ -1535,7 +1535,7 @@
 
 
 
-            _isOther: function(date, part) {
+            _isOther: function (date, part) {
                 /// <summary>
                 /// Gets whether the supplied date is in a different view from the current visible month
                 /// </summary>
@@ -1556,11 +1556,11 @@
                 return false;
             },
 
-            _isTodaysDate: function(date) {
+            _isTodaysDate: function (date) {
                 return this._getDateOnly(this._convertToUTC(this.get_todaysDate())).valueOf() === this._getDateOnly(date).valueOf();
             },
 
-            _getCssClass: function(date, part) {
+            _getCssClass: function (date, part) {
                 /// <summary>
                 /// Gets the cssClass to apply to a cell based on a supplied date
                 /// </summary>
@@ -1579,7 +1579,7 @@
                     return "";
                 }
             },
-            _getEffectiveVisibleDate: function() {
+            _getEffectiveVisibleDate: function () {
                 var value = this.get_visibleDate();
                 if (value == null)
                     value = this.get_selectedDate();
@@ -1593,7 +1593,7 @@
             },
 
 
-            _getFirstDayOfWeek: function() {
+            _getFirstDayOfWeek: function () {
                 /// <summary>
                 /// Gets the first day of the week
                 /// </summary>
@@ -1603,7 +1603,7 @@
                 }
                 return Sys.CultureInfo.CurrentCulture.dateTimeFormat.FirstDayOfWeek;
             },
-            _parseTextValue: function(text) {
+            _parseTextValue: function (text) {
                 /// <summary>
                 /// Converts a text value from the textbox into a date
                 /// </summary>
@@ -1620,7 +1620,7 @@
                 return value;
             },
 
-            _element_onfocus: function(e) {
+            _element_onfocus: function (e) {
                 /// <summary> 
                 /// Handles the focus event of the element
                 /// </summary>
@@ -1632,7 +1632,7 @@
                     this._popupMouseDown = false;
                 }
             },
-            _element_onblur: function(e) {
+            _element_onblur: function (e) {
                 /// <summary> 
                 /// Handles the blur event of the element
                 /// </summary>
@@ -1642,7 +1642,7 @@
                     this.blur();
                 }
             },
-            _element_onchange: function(e) {
+            _element_onchange: function (e) {
                 /// <summary> 
                 /// Handles the change event of the element
                 /// </summary>
@@ -1655,7 +1655,7 @@
                     }
                 }
             },
-            _element_onkeypress: function(e) {
+            _element_onkeypress: function (e) {
                 /// <summary>
                 /// Handles the keypress event of the element
                 /// </summary>
@@ -1667,7 +1667,7 @@
                     this.hide();
                 }
             },
-            _element_onclick: function(e) {
+            _element_onclick: function (e) {
                 /// <summary>
                 /// Handles the click event of the element
                 /// </summary>
@@ -1680,7 +1680,7 @@
                 }
             },
 
-            _popup_onevent: function(e) {
+            _popup_onevent: function (e) {
                 /// <summary> 
                 /// Handles the drag-start event of the popup calendar
                 /// </summary>
@@ -1688,7 +1688,7 @@
                 e.stopPropagation();
                 e.preventDefault();
             },
-            _popup_onmousedown: function(e) {
+            _popup_onmousedown: function (e) {
                 /// <summary> 
                 /// Handles the mousedown event of the popup
                 /// </summary>
@@ -1698,7 +1698,7 @@
                 // onblur issues on browsers like FF, OP, and SF
                 this._popupMouseDown = true;
             },
-            _popup_onmouseup: function(e) {
+            _popup_onmouseup: function (e) {
                 /// <summary> 
                 /// Handles the mouseup event of the popup
                 /// </summary>
@@ -1713,7 +1713,7 @@
                 this.focus();
             },
 
-            _cell_onmouseover: function(e) {
+            _cell_onmouseover: function (e) {
                 /// <summary> 
                 /// Handles the mouseover event of a cell
                 /// </summary>
@@ -1735,7 +1735,7 @@
 
                 Sys.UI.DomElement.addCssClass(target.parentNode, "ajax__calendar_hover");
             },
-            _cell_onmouseout: function(e) {
+            _cell_onmouseout: function (e) {
                 /// <summary> 
                 /// Handles the mouseout event of a cell
                 /// </summary>
@@ -1747,7 +1747,7 @@
 
                 Sys.UI.DomElement.removeCssClass(target.parentNode, "ajax__calendar_hover");
             },
-            _cell_onclick: function(e) {
+            _cell_onclick: function (e) {
                 /// <summary> 
                 /// Handles the click event of a cell
                 /// </summary>
@@ -1806,7 +1806,7 @@
                 }
             },
 
-            _button_onclick: function(e) {
+            _button_onclick: function (e) {
                 /// <summary> 
                 /// Handles the click event of the asociated button
                 /// </summary>
@@ -1833,7 +1833,7 @@
                     this.invalidate();
                 }
             },
-            _button_onblur: function(e) {
+            _button_onblur: function (e) {
                 /// <summary> 
                 /// Handles the blur event of the button
                 /// </summary>
@@ -1845,7 +1845,7 @@
                 // make sure we clean up the flag due to issues with alert/alt-tab/etc
                 this._popupMouseDown = false;
             },
-            _button_onkeypress: function(e) {
+            _button_onkeypress: function (e) {
                 /// <summary>
                 /// Handles the keypress event of the element
                 /// </summary>
@@ -1863,7 +1863,7 @@
         Sys.Extended.UI.CalendarBehavior.registerClass("Sys.Extended.UI.CalendarBehavior", Sys.Extended.UI.BehaviorBase);
         Sys.registerComponent(Sys.Extended.UI.CalendarBehavior, { name: "calendar" });
 
-        Sys.Extended.UI.CalendarPosition = function() {
+        Sys.Extended.UI.CalendarPosition = function () {
             /// <summary>
             /// Position of the popup relative to the target control
             /// </summary>
@@ -1885,7 +1885,7 @@
         }
         Sys.Extended.UI.CalendarPosition.registerEnum('Sys.Extended.UI.CalendarPosition');
 
-        Sys.Extended.UI.CalendarDefaultView = function() {
+        Sys.Extended.UI.CalendarDefaultView = function () {
             /// <summary>
             /// Choices for default view of the calendar when it first pops up.
             /// </summary>

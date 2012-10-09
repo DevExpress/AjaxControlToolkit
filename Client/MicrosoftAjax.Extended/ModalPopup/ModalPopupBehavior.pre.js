@@ -1088,3 +1088,4 @@ Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function (behaviorID, show)
         }
     }
 }
+
