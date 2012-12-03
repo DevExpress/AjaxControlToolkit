@@ -702,11 +702,18 @@
                 }
                 var html = this._editableDiv.innerHTML;
                 if (isIE) {
-                    var allTags = /\<[^a\>]+\>/g;
+                    var allTags = /\<[^\>]+\>/g;
                     html = html.replace(allTags, function (tag) {
-                        var sQA = /\=\'([^\'])*\'/g; //single quoted attributes
-                        var nQA = /\=([^\"][^\s\/\>]*)/g; //non double quoted attributes
-                        return tag.replace(sQA, '="$1"').replace(nQA, '="$1"');
+                        var sQA = '';
+                        var nQA = '';
+                        if (tag.toLowerCase().substring(0, 2) != '<a') {
+                            sQA = /\=\'([^\'])*\'/g; //single quoted attributes
+                            nQA = /\=([^\"][^\s\/\>]*)/g; //non double quoted attributes
+                            return tag.replace(sQA, '="$1"').replace(nQA, '="$1"');
+                        }
+                        else {                            
+                            return tag;
+                        }
                     });
                 }
                 var fixRGB = this._rgbToHex;
