@@ -56,29 +56,44 @@ namespace AjaxControlToolkit
             _scripts.Add("MicrosoftAjaxTimer.debug.js", true);
         }
 #endif
-        private static WebResourceAttribute[] GetWebResourceAttributes(Assembly assembly) {
+        private static WebResourceAttribute[] GetWebResourceAttributes(Assembly assembly)
+        {
             WebResourceAttribute[] attributes;
-            if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes)) {
-                attributes = (WebResourceAttribute[])assembly.GetCustomAttributes(typeof(WebResourceAttribute), false);
-                _webResourceAttributeCache[assembly] = attributes;
+            lock (_webResourceAttributeCache)
+            {
+                if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes))
+                {
+                    attributes = (WebResourceAttribute[])assembly.GetCustomAttributes(typeof(WebResourceAttribute), false);
+                    _webResourceAttributeCache[assembly] = attributes;
+                }
             }
             return attributes;
         }
 
-        private static ScriptResourceAttribute[] GetScriptResourceAttributes(Assembly assembly) {
+        private static ScriptResourceAttribute[] GetScriptResourceAttributes(Assembly assembly)
+        {
             ScriptResourceAttribute[] attributes;
-            if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes)) {
-                attributes = (ScriptResourceAttribute[])assembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false);
-                _scriptResourceAttributeCache[assembly] = attributes;
+            lock (_scriptResourceAttributeCache)
+            {
+                if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes))
+                {
+                    attributes = (ScriptResourceAttribute[])assembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false);
+                    _scriptResourceAttributeCache[assembly] = attributes;
+                }
             }
             return attributes;
         }
 
-        private static ScriptCombineAttribute[] GetScriptCombineAttributes(Assembly assembly) {
+        private static ScriptCombineAttribute[] GetScriptCombineAttributes(Assembly assembly)
+        {
             ScriptCombineAttribute[] attributes;
-            if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes)) {
-                attributes = (ScriptCombineAttribute[])assembly.GetCustomAttributes(typeof(ScriptCombineAttribute), false);
-                _scriptCombineAttributeCache[assembly] = attributes;
+            lock (_scriptCombineAttributeCache)
+            {
+                if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes))
+                {
+                    attributes = (ScriptCombineAttribute[])assembly.GetCustomAttributes(typeof(ScriptCombineAttribute), false);
+                    _scriptCombineAttributeCache[assembly] = attributes;
+                }
             }
             return attributes;
         }
@@ -357,7 +372,7 @@ namespace AjaxControlToolkit
                     outputWriter.WriteLine("if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
 
                     // Write a handler to run on page load and update the hidden field tracking scripts loaded in the browser
-                    outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture, 
+                    outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture,
                         "(function() {{" +
                             "var fn = function() {{" +
                                 "$get(\"{0}\").value += '{1}';" +
@@ -418,7 +433,8 @@ namespace AjaxControlToolkit
                         Assembly scriptAssembly = scriptEntry.LoadAssembly();
                         foreach (ScriptResourceAttribute scriptResourceAttribute in GetScriptResourceAttributes(scriptAssembly))
                         {
-                            if (scriptResourceAttribute.ScriptName == scriptEntry.Name) {
+                            if (scriptResourceAttribute.ScriptName == scriptEntry.Name)
+                            {
 #pragma warning disable 0618 // obsolete members of ScriptResourceAttribute are used but necessary in the 3.5 build
                                 // Found a matching script resource; write it out
                                 outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0}={{", scriptResourceAttribute.TypeName));
@@ -863,13 +879,16 @@ namespace AjaxControlToolkit
             builder.AppendFormat(CultureInfo.InvariantCulture, "{0:x4}", new object[] { (int)c });
         }
 
-        private class RedirectScriptReference : ScriptReference {
-            public RedirectScriptReference(string name) {
+        private class RedirectScriptReference : ScriptReference
+        {
+            public RedirectScriptReference(string name)
+            {
                 Name = name;
                 Assembly = typeof(ToolkitScriptManager).Assembly.FullName;
             }
 
-            public string GetBaseUrl(ScriptManager sm) {
+            public string GetBaseUrl(ScriptManager sm)
+            {
                 return base.GetUrl(sm, true);
             }
         }
