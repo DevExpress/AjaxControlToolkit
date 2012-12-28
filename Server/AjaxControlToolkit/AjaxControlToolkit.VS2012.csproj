@@ -49,7 +49,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET4</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -340,6 +340,7 @@
     <Compile Include="PopupExtender\PopupExtenderDesigner.cs" />
     <Compile Include="PopupExtender\PositioningMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
     <Compile Include="Properties\Resources.NET4.Designer.cs">
       <DependentUpon>Resources.NET4.resx</DependentUpon>
       <AutoGen>True</AutoGen>
