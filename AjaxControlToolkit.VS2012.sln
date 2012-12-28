@@ -47,6 +47,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxClientWebSite", "Sample
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxClientWebSite\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.VirtualPath = "/AjaxClientWebSite"
+		ProjectReferences = "{47ccfe55-0f75-4103-b535-86049ead23b3}|AjaxControlToolkit.dll;"
 		Release.AspNetCompiler.Debug = "False"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.ForceOverwrite = "true"
@@ -54,9 +55,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxClientWebSite", "Sample
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxClientWebSite\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.VirtualPath = "/AjaxClientWebSite"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
 		VWDPort = "45879"
-	EndProjectSection
+	EndProjectSection	
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSite", "SampleWebSites\AjaxControlToolkitSampleSite\", "{798D9160-5CAA-453A-94BA-99186169DA75}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -67,6 +68,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSit
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkitSampleSite\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.VirtualPath = "/AjaxControlToolkitSampleSite"
+		ProjectReferences = "{47ccfe55-0f75-4103-b535-86049ead23b3}|AjaxControlToolkit.dll;"
 		Release.AspNetCompiler.Debug = "False"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.ForceOverwrite = "true"
@@ -74,9 +76,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSit
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkitSampleSite\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.VirtualPath = "/AjaxControlToolkitSampleSite"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
 		VWDPort = "45882"
-	EndProjectSection
+	EndProjectSection	
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.VS2012", "Server\Tests\UnitTests\UnitTests.VS2012.csproj", "{84EEC471-6141-461A-A1A8-DD57343A2C56}"
 EndProject
@@ -89,6 +91,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FunctionalTests", "Server\T
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\FunctionalTests\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.VirtualPath = "/FunctionalTests"
+		ProjectReferences = "{47ccfe55-0f75-4103-b535-86049ead23b3}|AjaxControlToolkit.dll;"
 		Release.AspNetCompiler.Debug = "False"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.ForceOverwrite = "true"
@@ -100,9 +103,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "FunctionalTests", "Server\T
 		SccLocalPath = ""
 		SccProjectName = ""
 		SccProvider = ""
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
 		VWDPort = "45876"
-	EndProjectSection
+	EndProjectSection	
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.VS2012", "Server\AjaxControlToolkit\AjaxControlToolkit.VS2012.csproj", "{47CCFE55-0F75-4103-B535-86049EAD23B3}"
 EndProject
