@@ -340,6 +340,7 @@
     <Compile Include="PopupExtender\PopupExtenderDesigner.cs" />
     <Compile Include="PopupExtender\PositioningMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
     <Compile Include="Properties\Resources.NET4.Designer.cs">
       <DependentUpon>Resources.NET4.resx</DependentUpon>
       <AutoGen>True</AutoGen>
