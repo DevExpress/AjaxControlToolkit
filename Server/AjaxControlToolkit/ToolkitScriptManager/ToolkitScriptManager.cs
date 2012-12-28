@@ -43,7 +43,7 @@ namespace AjaxControlToolkit
         /// </summary>
         protected static readonly Regex WebResourceRegex = new Regex("<%\\s*=\\s*(?<resourceType>WebResource|ScriptResource)\\(\"(?<resourceName>[^\"]*)\"\\)\\s*%>", RegexOptions.Singleline | RegexOptions.Multiline);
 
-#if !NET4
+#if !NET4 && !NET45
         private static Dictionary<String, bool> _scripts;
 
         static ToolkitScriptManager() {
@@ -127,7 +127,7 @@ namespace AjaxControlToolkit
         /// </summary>
         private List<ScriptReference> _uncombinableScriptReferences;
 
-#if !NET4
+#if !NET4 && !NET45
         private void ApplyAssembly(ScriptReference script, bool isComposite) {
             // if the script has a name and no path, and no assembly or the assembly is set to SWE,
             // set the path to the resource in ACT. We set the path instead of just changing the assembly
@@ -188,8 +188,9 @@ namespace AjaxControlToolkit
             base.OnLoad(e);
         }
 
-        protected override void OnResolveCompositeScriptReference(CompositeScriptReferenceEventArgs e) {
-#if !NET4
+        protected override void OnResolveCompositeScriptReference(CompositeScriptReferenceEventArgs e)
+        {
+#if !NET4 && !NET45
             foreach (ScriptReference sr in e.CompositeScript.Scripts) {
                 ApplyAssembly(sr, true);
             }
@@ -204,7 +205,7 @@ namespace AjaxControlToolkit
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Portability", "CA1903:UseOnlyApiFromTargetedFramework", MessageId = "System.Web.UI.ScriptReferenceBase")]
         protected override void OnResolveScriptReference(ScriptReferenceEventArgs e)
         {
-#if !NET4
+#if !NET4 && !NET45
             ApplyAssembly(e.Script, false);
 #endif
             base.OnResolveScriptReference(e);
