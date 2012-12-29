@@ -315,9 +315,15 @@ namespace AjaxControlToolkit
             // Initialize
             bool output = false;
             HttpRequest request = context.Request;
-            string hiddenFieldName = request.Params[HiddenFieldParamName];
-            string combinedScripts = request.Params[CombinedScriptsParamName];
-
+            string hiddenFieldName;
+            string combinedScripts;
+#if NET45
+            hiddenFieldName = request.Form[HiddenFieldParamName];
+            combinedScripts = request.Form[CombinedScriptsParamName];
+#else
+            hiddenFieldName = request.Params[HiddenFieldParamName];
+            combinedScripts = request.Params[CombinedScriptsParamName];
+#endif
             if (!string.IsNullOrEmpty(hiddenFieldName) && !string.IsNullOrEmpty(combinedScripts))
             {
                 // This is a request for a combined script file
