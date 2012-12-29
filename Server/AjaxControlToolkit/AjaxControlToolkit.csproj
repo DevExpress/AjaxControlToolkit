@@ -126,13 +126,13 @@
     <Compile Include="BalloonPopup\BalloonPopupPosition.cs" />
     <Compile Include="BalloonPopup\BalloonPopupStyle.cs" />
     <Compile Include="BalloonPopup\BalloonPopupSize.cs" />
+    <Compile Include="BarChart\ArrayConverter.cs" />
     <Compile Include="BarChart\BarChart.cs" />
     <Compile Include="BarChart\BarChartDesigner.cs" />
     <Compile Include="BarChart\BarChartSeries.cs" />
     <Compile Include="BarChart\BarChartSeriesCollection.cs" />
     <Compile Include="BarChart\BarChartSeriesCollectionEditor.cs" />
     <Compile Include="BarChart\ChartType.cs" />
-    <Compile Include="BarChart\DataValueCollectionEditor.cs" />
     <Compile Include="Calendar\CalendarDefaultView.cs" />
     <Compile Include="Calendar\CalendarDesigner.cs" />
     <Compile Include="Calendar\CalendarExtender.cs" />

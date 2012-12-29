@@ -35,7 +35,7 @@ Sys.Extended.UI.BarChart = function (element) {
     this.arrXAxisLength = 0;
     this.arrYAxis;
     this.arrYAxisLength = 0;
-    this.charLength = 4;
+    this.charLength = 3.5;
     this.arrCombinedData = null;
 }
 
@@ -103,10 +103,11 @@ Sys.Extended.UI.BarChart.prototype = {
 
         if (this._chartType == Sys.Extended.UI.ChartType.Column) {
             for (var i = 0; i < this._series.length; i++) {
-                arrData = new Array();
-                for (var j = 0; j < this._series[i].DataValues.length; j++) {
-                    arrData[j] = this._series[i].DataValues[j].Data;
-                }
+                //                arrData = new Array();
+                //                for (var j = 0; j < this._series[i].DataValues.length; j++) {
+                //                    arrData[j] = this._series[i].DataValues[j].Data;
+                //                }
+                arrData = this._series[i].Data;
                 seriesMax = Math.max.apply(null, arrData);
                 seriesMin = Math.min.apply(null, arrData);
 
@@ -126,24 +127,25 @@ Sys.Extended.UI.BarChart.prototype = {
             this.arrCombinedData = null;
             for (var i = 0; i < this._series.length; i++) {
                 arrData = new Array();
-                for (var j = 0; j < this._series[i].DataValues.length; j++) {
-                    arrData[j] = this._series[i].DataValues[j].Data;
+                for (var j = 0; j < this._series[i].Data.length; j++) {
+                    arrData[j] = this._series[i].Data[j];
                 }
                 if (this.arrCombinedData == null)
                     this.arrCombinedData = arrData;
                 else {
-                    for (j = 0; j < this._series[i].DataValues.length; j++) {
+                    for (var j = 0; j < arrData.length; j++) {
                         this.arrCombinedData[j] = parseFloat(this.arrCombinedData[j]) + parseFloat(arrData[j]);
                     }
                 }
             }
 
             for (var i = 0; i < this._series.length; i++) {
-                seriesMin = Math.min.apply(null, this.arrCombinedData);
+                seriesMin = Math.min.apply(null, this._series[i].Data);
                 if (i == 0) {
                     this.yMin = seriesMin;
                 }
                 else {
+
                     if (seriesMin < this.yMin)
                         this.yMin = seriesMin;
                 }
@@ -279,7 +281,8 @@ Sys.Extended.UI.BarChart.prototype = {
             barContents = barContents + '<g>';
             if (this._chartType == Sys.Extended.UI.ChartType.Column) {
                 for (var j = 0; j < this._series.length; j++) {
-                    this.yVal = this._series[j].DataValues[i].Data;
+                    //this.yVal = this._series[j].DataValues[i].Data;
+                    this.yVal = parseFloat(this._series[j].Data[i]);
                     if (i == 0) {
                         barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 15 / 100) + ((widthBetweenBars + barWidth) * j), this.startX + (this.xInterval * i) + (this.xInterval * 15 / 100) + ((widthBetweenBars + barWidth) * j) + barWidth, this.startY, this.startY - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
                     }
@@ -293,20 +296,32 @@ Sys.Extended.UI.BarChart.prototype = {
                 }
             }
             else {
-                var lastStartY = this.startY;
+                var lastStartYPositive = this.startY;
+                var lastStartYNegative = this.startY;
                 for (var j = 0; j < this._series.length; j++) {
-                    this.yVal = this._series[j].DataValues[i].Data;
+                    //this.yVal = this._series[j].DataValues[i].Data;
+                    this.yVal = parseFloat(this._series[j].Data[i]);
                     if (i == 0) {
-                        barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 7.5 / 100), this.startX + (this.xInterval * i) + (this.xInterval * 7.5 / 100) + barWidth, lastStartY, lastStartY - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
+                        if (this.yVal > 0)
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 7.5 / 100), this.startX + (this.xInterval * i) + (this.xInterval * 7.5 / 100) + barWidth, lastStartYPositive, lastStartYPositive - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
+                        else
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 7.5 / 100), this.startX + (this.xInterval * i) + (this.xInterval * 7.5 / 100) + barWidth, lastStartYNegative, lastStartYNegative - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
                     }
                     else {
-                        barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 5 / 100), this.startX + (this.xInterval * i) + (this.xInterval * 5 / 100) + barWidth, lastStartY, lastStartY - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
+                        if (this.yVal > 0)
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 5 / 100), this.startX + (this.xInterval * i) + (this.xInterval * 5 / 100) + barWidth, lastStartYPositive, lastStartYPositive - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
+                        else
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 5 / 100), this.startX + (this.xInterval * i) + (this.xInterval * 5 / 100) + barWidth, lastStartYNegative, lastStartYNegative - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
                     }
-                    if (this.arrCombinedData[i] > 0)
-                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * i) + (this.xInterval * 30 / 100) + (barWidth * 10 / 100), lastStartY - Math.round((this.yVal * (this.yInterval / this.roundedTickRange)) / 2), this.yVal);
-                    else
-                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * i) + (this.xInterval * 30 / 100) + (barWidth * 10 / 100), lastStartY + Math.round((Math.abs(this.yVal) * (this.yInterval / this.roundedTickRange)) / 2), this.yVal);
-                    lastStartY = lastStartY - Math.round(this.yVal * (this.yInterval / this.roundedTickRange));
+
+                    if (this.yVal > 0) {
+                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * i) + (this.xInterval * 30 / 100) + (barWidth * 10 / 100), lastStartYPositive - Math.round((this.yVal * (this.yInterval / this.roundedTickRange)) / 2), this.yVal);
+                        lastStartYPositive = lastStartYPositive - Math.round(this.yVal * (this.yInterval / this.roundedTickRange));
+                    }
+                    else {
+                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * i) + (this.xInterval * 30 / 100) + (barWidth * 10 / 100), lastStartYNegative + Math.round((Math.abs(this.yVal) * (this.yInterval / this.roundedTickRange)) / 2), this.yVal);
+                        lastStartYNegative = lastStartYNegative - Math.round(this.yVal * (this.yInterval / this.roundedTickRange));
+                    }
                 }
             }
             barContents = barContents + '</g>';
@@ -422,10 +437,11 @@ Sys.Extended.UI.BarChart.prototype = {
         var arrData;
         if (this._chartType == Sys.Extended.UI.ChartType.Bar) {
             for (var i = 0; i < this._series.length; i++) {
-                arrData = new Array();
-                for (var j = 0; j < this._series[i].DataValues.length; j++) {
-                    arrData[j] = this._series[i].DataValues[j].Data;
-                }
+                //                arrData = new Array();
+                //                for (var j = 0; j < this._series[i].DataValues.length; j++) {
+                //                    arrData[j] = this._series[i].DataValues[j].Data;
+                //                }
+                arrData = this._series[i].Data;
                 seriesMax = Math.max.apply(null, arrData);
                 seriesMin = Math.min.apply(null, arrData);
                 if (i == 0) {
@@ -444,8 +460,8 @@ Sys.Extended.UI.BarChart.prototype = {
             this.arrCombinedData = null;
             for (var i = 0; i < this._series.length; i++) {
                 arrData = new Array();
-                for (var j = 0; j < this._series[i].DataValues.length; j++) {
-                    arrData[j] = this._series[i].DataValues[j].Data;
+                for (var j = 0; j < this._series[i].Data.length; j++) {
+                    arrData[j] = this._series[i].Data[j];
                 }
                 if (this.arrCombinedData == null)
                     this.arrCombinedData = arrData;
@@ -457,7 +473,7 @@ Sys.Extended.UI.BarChart.prototype = {
             }
 
             for (var i = 0; i < this._series.length; i++) {
-                seriesMin = Math.min.apply(null, this.arrCombinedData);
+                seriesMin = Math.min.apply(null, this._series[i].Data);
                 if (i == 0) {
                     this.xMin = seriesMin;
                 }
@@ -468,9 +484,10 @@ Sys.Extended.UI.BarChart.prototype = {
             }
 
             this.xMax = Math.max.apply(null, this.arrCombinedData);
-            if (this.xMin < 0) {
-                this._valueAxisLines = Math.round(this._valueAxisLines / 2);
-            }
+        }
+
+        if (this.xMin < 0) {
+            this._valueAxisLines = Math.round(this._valueAxisLines / 2);
         }
     },
 
@@ -588,7 +605,8 @@ Sys.Extended.UI.BarChart.prototype = {
             barContents = barContents + '<g>';
             if (this._chartType == Sys.Extended.UI.ChartType.Bar) {
                 for (var j = 0; j < this._series.length; j++) {
-                    this.xVal = this._series[j].DataValues[i].Data;
+                    //this.xVal = this._series[j].DataValues[i].Data;
+                    this.xVal = this._series[j].Data[i];
                     if (i == 0) {
                         barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX, this.startX + Math.round(this.xVal * (this.xInterval / this.roundedTickRange)), this.startY - (this.yInterval * i) - (this.yInterval * 15 / 100) - ((widthBetweenBars + barWidth) * j), this.startY - (this.yInterval * i) - (this.yInterval * 15 / 100) - ((widthBetweenBars + barWidth) * j) - barWidth, j + 1, this._series[j].BarColor);
                     }
@@ -603,22 +621,32 @@ Sys.Extended.UI.BarChart.prototype = {
                 }
             }
             else {
-                var lastStartX = this.startX;
+                var lastStartXPositive = this.startX;
+                var lastStartXNegative = this.startX;
                 for (var j = 0; j < this._series.length; j++) {
-                    this.xVal = this._series[j].DataValues[i].Data;
+                    //this.xVal = this._series[j].DataValues[i].Data;
+                    this.xVal = this._series[j].Data[i];
                     if (i == 0) {
-                        barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', lastStartX, lastStartX + Math.round(this.xVal * (this.xInterval / this.roundedTickRange)), this.startY - (this.yInterval * i) - (this.yInterval * 10 / 100), this.startY - (this.yInterval * i) - (this.xInterval * 10 / 100) - barWidth, j + 1, this._series[j].BarColor);
+                        if (this.xVal > 0)
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', lastStartXPositive, lastStartXPositive + Math.round(this.xVal * (this.xInterval / this.roundedTickRange)), this.startY - (this.yInterval * i) - (this.yInterval * 10 / 100), this.startY - (this.yInterval * i) - (this.xInterval * 10 / 100) - barWidth, j + 1, this._series[j].BarColor);
+                        else
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', lastStartXNegative, lastStartXNegative + Math.round(this.xVal * (this.xInterval / this.roundedTickRange)), this.startY - (this.yInterval * i) - (this.yInterval * 10 / 100), this.startY - (this.yInterval * i) - (this.xInterval * 10 / 100) - barWidth, j + 1, this._series[j].BarColor);
                     }
                     else {
-                        barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', lastStartX, lastStartX + Math.round(this.xVal * (this.xInterval / this.roundedTickRange)), this.startY - (this.yInterval * i) - (this.yInterval * 7.55 / 100), this.startY - (this.yInterval * i) - (this.xInterval * 7.5 / 100) - barWidth, j + 1, this._series[j].BarColor);
+                        if (this.xVal > 0)
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', lastStartXPositive, lastStartXPositive + Math.round(this.xVal * (this.xInterval / this.roundedTickRange)), this.startY - (this.yInterval * i) - (this.yInterval * 7.55 / 100), this.startY - (this.yInterval * i) - (this.xInterval * 7.5 / 100) - barWidth, j + 1, this._series[j].BarColor);
+                        else
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', lastStartXNegative, lastStartXNegative + Math.round(this.xVal * (this.xInterval / this.roundedTickRange)), this.startY - (this.yInterval * i) - (this.yInterval * 7.55 / 100), this.startY - (this.yInterval * i) - (this.xInterval * 7.5 / 100) - barWidth, j + 1, this._series[j].BarColor);
                     }
 
-                    if (this.arrCombinedData[i] > 0)
-                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', lastStartX + Math.round((this.xVal * (this.xInterval / this.roundedTickRange)) / 2), this.startY - (this.yInterval * i) - (this.yInterval * 30 / 100) - (barWidth * 10 / 100), this.xVal);
-                    else
-                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', lastStartX + Math.round((this.xVal * (this.xInterval / this.roundedTickRange)) / 2), this.startY - (this.yInterval * i) - (this.yInterval * 30 / 100) - (barWidth * 10 / 100), this.xVal);
-
-                    lastStartX = lastStartX + Math.round(this.xVal * (this.xInterval / this.roundedTickRange));
+                    if (this.xVal > 0) {
+                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', lastStartXPositive + Math.round((this.xVal * (this.xInterval / this.roundedTickRange)) / 2), this.startY - (this.yInterval * i) - (this.yInterval * 30 / 100) - (barWidth * 10 / 100), this.xVal);
+                        lastStartXPositive = lastStartXPositive + Math.round(this.xVal * (this.xInterval / this.roundedTickRange));
+                    }
+                    else {
+                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', lastStartXNegative + Math.round((this.xVal * (this.xInterval / this.roundedTickRange)) / 2), this.startY - (this.yInterval * i) - (this.yInterval * 30 / 100) - (barWidth * 10 / 100), this.xVal);
+                        lastStartXNegative = lastStartXNegative + Math.round(this.xVal * (this.xInterval / this.roundedTickRange));
+                    }
                 }
             }
             barContents = barContents + '</g>';
