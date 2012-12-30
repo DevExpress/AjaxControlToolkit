@@ -108,7 +108,6 @@
     <Compile Include="BarChart\BarChartSeriesCollection.cs" />
     <Compile Include="BarChart\BarChartSeriesCollectionEditor.cs" />
     <Compile Include="BarChart\ChartType.cs" />
-    <Compile Include="BarChart\DataConverter.cs" />
     <Compile Include="Calendar\CalendarDefaultView.cs" />
     <Compile Include="Calendar\CalendarDesigner.cs" />
     <Compile Include="Calendar\CalendarExtender.cs" />
@@ -132,6 +131,7 @@
     <Compile Include="ComboBox\ComboBoxRenderMode.cs" />
     <Compile Include="Common\BoxSide.cs" />
     <Compile Include="Common\CommonToolkitScripts.cs" />
+    <Compile Include="Common\DataConverter.cs" />
     <Compile Include="Common\DateTimeScripts.cs" />
     <Compile Include="Common\ThreadingScripts.cs" />
     <Compile Include="Common\Utility.cs" />

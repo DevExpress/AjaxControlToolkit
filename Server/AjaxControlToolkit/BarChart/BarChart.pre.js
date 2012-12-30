@@ -14,7 +14,7 @@ Sys.Extended.UI.BarChart = function (element) {
     this._chartType = Sys.Extended.UI.ChartType.Column;
     this._theme = 'BarChart';
     this._valueAxisLines = 9;
-    this._titleColor = '';
+    this._chartTitleColor = '';
     this._valueAxisLineColor = '';
     this._categoryAxisLineColor = '';
     this._baseLineColor = '';
@@ -47,7 +47,7 @@ Sys.Extended.UI.BarChart.prototype = {
         if (this._valueAxisLines == 0) {
             this._valueAxisLines = 9;
         }
-
+        
         if (this._chartType == Sys.Extended.UI.ChartType.Column || this._chartType == Sys.Extended.UI.ChartType.StackedColumn)
             this.generateColumnChart();
         else if (this._chartType == Sys.Extended.UI.ChartType.Bar || this._chartType == Sys.Extended.UI.ChartType.StackedBar)
@@ -67,7 +67,8 @@ Sys.Extended.UI.BarChart.prototype = {
         this.calculateValueAxisForColumnType();
 
         var svgContents = this.initializeSVG();
-        svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="ChartTitle" style="fill:{3}">{2}</text>', parseInt(this._chartWidth) / 2 - (this._chartTitle.length * this.charLength), parseInt(this._chartHeight) * 5 / 100, this._chartTitle, this._titleColor);
+
+        svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="ChartTitle" style="fill:{3}">{2}</text>', parseInt(this._chartWidth) / 2 - (this._chartTitle.length * this.charLength), parseInt(this._chartHeight) * 5 / 100, this._chartTitle, this._chartTitleColor);
 
         svgContents = svgContents + this.drawBackgroundHorizontalLinesForColumnType();
         svgContents = svgContents + this.drawBackgroundVerticalLinesForColumnType();
@@ -399,7 +400,8 @@ Sys.Extended.UI.BarChart.prototype = {
         this.calculateValueAxisForBarType();
 
         var svgContents = this.initializeSVG();
-        svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="ChartTitle" style="fill:{3}">{2}</text>', parseInt(this._chartWidth) / 2 - (this._chartTitle.length * this.charLength), parseInt(this._chartHeight) * 5 / 100, this._chartTitle, this._titleColor);
+
+        svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="ChartTitle" style="fill:{3}">{2}</text>', parseInt(this._chartWidth) / 2 - (this._chartTitle.length * this.charLength), parseInt(this._chartHeight) * 5 / 100, this._chartTitle, this._chartTitleColor);
         svgContents = svgContents + this.drawBackgroundHorizontalLinesForBarType();
         svgContents = svgContents + this.drawBackgroundVerticalLinesForBarType();
         svgContents = svgContents + this.drawBaseLinesForBarType();
@@ -683,10 +685,10 @@ Sys.Extended.UI.BarChart.prototype = {
         this._categoriesAxis = value;
     },
 
-    get_SeriesList: function () {
+    get_ClientSeries: function () {
         return this._series;
     },
-    set_SeriesList: function (value) {
+    set_ClientSeries: function (value) {
         this._series = value;
     },
 
@@ -711,11 +713,11 @@ Sys.Extended.UI.BarChart.prototype = {
         this._valueAxisLines = value;
     },
 
-    get_titleColor: function () {
-        return this._titleColor;
+    get_chartTitleColor: function () {
+        return this._chartTitleColor;
     },
-    set_titleColor: function (value) {
-        this._titleColor = value;
+    set_chartTitleColor: function (value) {
+        this._chartTitleColor = value;
     },
 
     get_valueAxisLineColor: function () {
@@ -741,7 +743,7 @@ Sys.Extended.UI.BarChart.prototype = {
 };
 
 Sys.Extended.UI.BarChart.registerClass("Sys.Extended.UI.BarChart", Sys.Extended.UI.ControlBase);
-Sys.registerComponent(Sys.Extended.UI.BarChart, { name: 'BarChart', parameters: [{ name: 'SeriesList', type: 'BarChartSeries[]'}] });
+Sys.registerComponent(Sys.Extended.UI.BarChart, { name: 'BarChart', parameters: [{ name: 'ClientSeries', type: 'BarChartSeries[]'}] });
 
 Sys.Extended.UI.ChartType = function () {
     /// <summary>

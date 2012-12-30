@@ -5,37 +5,51 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">
-    <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />    
+    `<ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />    
     <div class="demoarea">
         <div class="demoheading">
             BarChart Demonstration</div>        
+        <br />
+        Column Chart:
         <br />        
-        <ajaxToolkit:BarChart ID="Chart1" runat="server" ChartHeight="300" ChartWidth="450" ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
-        ChartType="StackedColumn" TitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB">
+        <ajaxToolkit:BarChart ID="BarChart1" runat="server" ChartHeight="300" ChartWidth="450" ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
+        ChartType="Column" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB">
         <Series>
-            <ajaxToolkit:BarChartSeries Name="United States" BarColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" >
-                <%--<DataValues>
-                    <ajaxToolkit:DataValue Data="110" />
-                    <ajaxToolkit:DataValue Data="189" />
-                    <ajaxToolkit:DataValue Data="255" />
-                    <ajaxToolkit:DataValue Data="95" />
-                    <ajaxToolkit:DataValue Data="107" />
-                    <ajaxToolkit:DataValue Data="140" />
-                </DataValues>--%>
-            </ajaxToolkit:BarChartSeries>
-            <ajaxToolkit:BarChartSeries Name="Europe"  BarColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" >
-                <%--<DataValues>
-                    <ajaxToolkit:DataValue Data="49" />
-                    <ajaxToolkit:DataValue Data="77" />
-                    <ajaxToolkit:DataValue Data="95" />
-                    <ajaxToolkit:DataValue Data="68" />
-                    <ajaxToolkit:DataValue Data="70" />
-                    <ajaxToolkit:DataValue Data="79" />
-                </DataValues>--%>
-            </ajaxToolkit:BarChartSeries>
+            <ajaxToolkit:BarChartSeries Name="United States" BarColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
+            <ajaxToolkit:BarChartSeries Name="Europe"  BarColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />
         </Series>
         </ajaxToolkit:BarChart>
+        <br />
+        StackedColumn Chart:
         <br />        
+        <ajaxToolkit:BarChart ID="BarChart2" runat="server" ChartHeight="300" ChartWidth="450" ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
+        ChartType="StackedColumn" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB">
+        <Series>
+            <ajaxToolkit:BarChartSeries Name="United States" BarColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
+            <ajaxToolkit:BarChartSeries Name="Europe"  BarColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />
+        </Series>
+        </ajaxToolkit:BarChart>
+        <br /> 
+        Bar Chart:
+        <br />        
+        <ajaxToolkit:BarChart ID="BarChart3" runat="server" ChartHeight="300" ChartWidth="450" ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
+        ChartType="Bar" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB">
+        <Series>
+            <ajaxToolkit:BarChartSeries Name="United States" BarColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
+            <ajaxToolkit:BarChartSeries Name="Europe"  BarColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />
+        </Series>
+        </ajaxToolkit:BarChart>
+        <br />
+        StackedBar Chart:
+        <br />        
+        <ajaxToolkit:BarChart ID="BarChart4" runat="server" ChartHeight="300" ChartWidth="450" ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
+        ChartType="StackedBar" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB">
+        <Series>
+            <ajaxToolkit:BarChartSeries Name="United States" BarColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
+            <ajaxToolkit:BarChartSeries Name="Europe"  BarColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />
+        </Series>
+        </ajaxToolkit:BarChart>
+        <br />       
     </div>
     <div class="demobottom">
     </div>
@@ -74,34 +88,18 @@
 &lt;ajaxToolkit:BarChart ID="Chart1" runat="server" 
 <em>ChartHeight</em>="300" <em>
 ChartWidth</em>="450" <em>
-ChartTitle</em>=&quot;Test Title&quot; 
+ChartTitle</em>=&quot;United States versus European Widget Production&quot; 
 CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot;
 ChartType=&quot;Column&quot; <em>
-TitleColor</em>="red" <em>
-CategoryAxisLineColor</em>="red" <em>
-ValueAxisLineColor</em>="blue" <em>
-BaseLineColor</em>=&quot;green&quot; &gt;
+ChartTitleColor</em>="#0E426C" <em>
+CategoryAxisLineColor</em>="#D08AD9" <em>
+ValueAxisLineColor</em>="#D08AD9" <em>
+BaseLineColor</em>=&quot;#A156AB&quot; &gt;
 &lt;Series&gt;
-&lt;ajaxToolkit:BarChartSeries Name=&quot;World&quot; <em>BarColor</em>=&quot;pink&quot; &gt;
-&lt;DataValues&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;110&quot; /&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;189&quot; /&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;255&quot; /&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;95&quot; /&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;107&quot; /&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;140&quot; /&gt;
-&lt;/DataValues&gt;
-&lt;/ajaxToolkit:BarChartSeries&gt;
-&lt;ajaxToolkit:BarChartSeries Name=&quot;United States&quot;  <em>BarColor</em>="yellow" &gt;
-&lt;DataValues&gt;
-    &lt;ajaxToolkit:DataValue Data="49" /&gt;
-    &lt;ajaxToolkit:DataValue Data="77" /&gt;
-    &lt;ajaxToolkit:DataValue Data="95" /&gt;
-    &lt;ajaxToolkit:DataValue Data="68" /&gt;
-    &lt;ajaxToolkit:DataValue Data="70" /&gt;
-    &lt;ajaxToolkit:DataValue Data="79" /&gt;
-&lt;/DataValues&gt;
-&lt;/ajaxToolkit:BarChartSeries&gt;
+&lt;ajaxToolkit:BarChartSeries Name=&quot;United States&quot; <em>BarColor</em>=&quot;="#6C1E83&quot; 
+Data="110, 189, 255, 95, 107, 140" /&gt;
+&lt;ajaxToolkit:BarChartSeries Name=&quot;Europe&quot;  <em>BarColor</em>="#D08AD9" 
+Data="49, 77, 95, 68, 70, 79" /&gt;
 &lt;/Series&gt;
 &lt;/ajaxToolkit:BarChart&gt;
     </pre>
@@ -119,7 +117,7 @@ BaseLineColor</em>=&quot;green&quot; &gt;
             with a Cascading Style Sheet file.</li>
             <li><strong>ValueAxisLines</strong> - This property enables you to set the interval size for the 
             value axis line.</li>
-            <li><strong>TitleColor</strong> - This property enables you to set the font color of the 
+            <li><strong>ChartTitleColor</strong> - This property enables you to set the font color of the 
             chart title.</li>
             <li><strong>CategoryAxisLineColor</strong> - This property enables you to set the color of the 
             category axis lines.</li>
@@ -127,8 +125,10 @@ BaseLineColor</em>=&quot;green&quot; &gt;
             value axis lines.</li>                
             <li><strong>BaseLineColor</strong> - This property enables you to set the color of the base lines
             of the chart.</li>
+            
             BarChart Series Properties:
-                <li><strong>Name</strong> - This property is required.</li>
+            <li><strong>Name</strong> - This property is required.</li>
+            <li><strong>Data</strong> - This property is required and provides data for a particular series.</li>   
             <li><strong>BarColor</strong> - This property enables you to set the color of bar for a particular 
             series.</li>            
         </ul>

@@ -126,7 +126,6 @@
     <Compile Include="BalloonPopup\BalloonPopupPosition.cs" />
     <Compile Include="BalloonPopup\BalloonPopupStyle.cs" />
     <Compile Include="BalloonPopup\BalloonPopupSize.cs" />
-    <Compile Include="BarChart\ArrayConverter.cs" />
     <Compile Include="BarChart\BarChart.cs" />
     <Compile Include="BarChart\BarChartDesigner.cs" />
     <Compile Include="BarChart\BarChartSeries.cs" />
@@ -156,6 +155,9 @@
     <Compile Include="ComboBox\ComboBoxRenderMode.cs" />
     <Compile Include="Common\BoxSide.cs" />
     <Compile Include="Common\CommonToolkitScripts.cs" />
+    <Compile Include="Common\DataConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Common\DateTimeScripts.cs" />
     <Compile Include="Common\ThreadingScripts.cs" />
     <Compile Include="Common\Utility.cs" />
