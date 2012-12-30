@@ -125,6 +125,7 @@
     <Compile Include="ComboBox\ComboBoxRenderMode.cs" />
     <Compile Include="Common\BoxSide.cs" />
     <Compile Include="Common\CommonToolkitScripts.cs" />
+    <Compile Include="Common\DataConverter.cs" />
     <Compile Include="Common\DateTimeScripts.cs" />
     <Compile Include="Common\ThreadingScripts.cs" />
     <Compile Include="Common\Utility.cs" />
@@ -272,6 +273,12 @@
     <Compile Include="HTMLEditor\Toolbar_buttons\SuperScript.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Underline.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Undo.cs" />
+    <Compile Include="LineChart\LineChart.cs" />
+    <Compile Include="LineChart\LineChartDesigner.cs" />
+    <Compile Include="LineChart\LineChartSeries.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollection.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollectionEditor.cs" />
+    <Compile Include="LineChart\LineChartType.cs" />
     <Compile Include="ListSearch\ListSearchDesigner.cs" />
     <Compile Include="ListSearch\ListSearchExtender.cs" />
     <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
@@ -598,6 +605,8 @@
     <EmbeddedResource Include="ListSearch\ListSearch.ico" />
     <EmbeddedResource Include="MaskedEdit\MaskedEdit.ico" />
     <EmbeddedResource Include="ModalPopup\ModalPopup.ico" />
+    <Content Include="LineChart\LineChart.css" />
+    <Content Include="LineChart\LineChart.pre.js" />
     <Content Include="MultiHandleSlider\MultiHandleSlider_resource.css" />
     <EmbeddedResource Include="MultiHandleSlider\MultiHandleSlider.ico" />
     <EmbeddedResource Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBox.ico" />
