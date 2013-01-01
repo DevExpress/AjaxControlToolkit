@@ -36,8 +36,7 @@ namespace AjaxControlToolkit
 {
 
     /// <summary>
-    /// AjaxFileUpload enables you to upload multiple files to a server. Url of uploaded file can be passed
-    /// back to client to use e.g. to display preview of image.
+    /// LineChart creates linechart with the specified values.    
     /// </summary>
     [Designer("AjaxControlToolkit.LineChartDesigner, AjaxControlToolkit")]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -196,7 +195,7 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// Title's text color of Bar Chart. 
+        /// Title's text color of Line Chart. 
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -208,7 +207,7 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// Color of background lines of Value Axis of Bar Chart. 
+        /// Color of background lines of Value Axis of Line Chart. 
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -220,7 +219,7 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// Color of background lines of Catgory Axis of Bar Chart. 
+        /// Color of background lines of Catgory Axis of Line Chart. 
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -232,7 +231,7 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// Color of Base Lines of Bar Chart. 
+        /// Color of Base Lines of Line Chart. 
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]

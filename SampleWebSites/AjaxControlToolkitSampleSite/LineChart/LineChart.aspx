@@ -1,23 +1,36 @@
 <%@ Page Language="C#" MasterPageFile="~/DefaultMaster.master" AutoEventWireup="true"
     CodeFile="LineChart.aspx.cs" Inherits="LineChart_LineChart" Title="LineChart Sample"
-    Culture="auto" UICulture="auto" 
-    Theme="SampleSiteTheme" %>
+    Culture="auto" UICulture="auto" Theme="SampleSiteTheme" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">
-    <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />    
+    <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <div class="demoarea">
         <div class="demoheading">
             LineChart Demonstration</div>
-        <br />        
-        <ajaxToolkit:LineChart ID="LineChart1" runat="server" ChartHeight="300" ChartWidth="450" ChartTitle="Test Title" CategoriesAxis="1999,2000,2001,2002,2003,2004" ChartType="Stacked"
-         ChartTitleColor="red" CategoryAxisLineColor="red" ValueAxisLineColor="blue" BaseLineColor="green">
-        <Series>
-            <ajaxToolkit:LineChartSeries Name="World" LineColor="purple" Data="90, 235, 75, 115, 84, 101" />                
-            <ajaxToolkit:LineChartSeries Name="United States"  LineColor="green" Data="50.45, 15.15, -11.12, 13.5, 10.05, 11.0" />                
-        </Series>
+        <br />
+        <strong>Basic Type:</strong>
+        <ajaxToolkit:LineChart ID="LineChart1" runat="server" ChartHeight="300" ChartWidth="450"
+            ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
+            ChartType="Basic" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9"
+            BaseLineColor="#A156AB">
+            <Series>
+                <ajaxToolkit:LineChartSeries Name="United States" LineColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
+                <ajaxToolkit:LineChartSeries Name="Europe" LineColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />
+            </Series>
         </ajaxToolkit:LineChart>
-        <br />        
+        <br />
+        <strong>Stacked Type:</strong>
+        <ajaxToolkit:LineChart ID="LineChart2" runat="server" ChartHeight="300" ChartWidth="450"
+            ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
+            ChartType="Stacked" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9"
+            ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB">
+            <Series>
+                <ajaxToolkit:LineChartSeries Name="United States" LineColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
+                <ajaxToolkit:LineChartSeries Name="Europe" LineColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />
+            </Series>
+        </ajaxToolkit:LineChart>
+        <br />
     </div>
     <div class="demobottom">
     </div>
@@ -30,14 +43,13 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            LineChart control creates the line charts with the specified values. Chart control 
-            uses SVG to draw the charts so these are compatible with all latest browsers and 
-            multiple plateforms. User can take the advantage of LineChart control to display 
-            information in more representative way.
+            The LineChart control enables you to render a line chart from one or more series
+            of values. This control is compatible with any browser which supports SVG including
+            Internet Explorer 9 and above.
         </p>
-            <br />
+        <br />
         <p>
-            LineCharts are of two types - Basic, Stacked.
+            This control can display four types of LineCharts: Basic and Stacked.
         </p>
     </asp:Panel>
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
@@ -53,65 +65,63 @@
             The control above is initialized with this code. The <em>italic</em> properties
             are optional:</p>
         <pre>
-&lt;ajaxToolkit:LineChart ID="Chart1" runat="server" 
-<em>ChartHeight</em>="300" <em>
-ChartWidth</em>="450" <em>
-ChartTitle</em>=&quot;Test Title&quot; 
-CategoriesAxis=&quot;1999,2000,2001,2002,2003,2004&quot;
-ChartType=&quot;Stacked&quot; <em>
-TitleColor</em>="red" <em>
-CategoryAxisLineColor</em>="red" <em>
-ValueAxisLineColor</em>="blue" <em>
-BaseLineColor</em>=&quot;green&quot; &gt;
+&lt;ajaxToolkit:LineChart ID="LineChart1" runat="server" 
+<em>ChartHeight</em>="300" 
+<em>ChartWidth</em>="450" 
+<em>ChartTitle</em>=&quot;United States versus European Widget Production&quot; 
+CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot;
+ChartType=&quot;Basic&quot; 
+<em>ChartTitleColor</em>=&quot;#0E426C&quot; 
+<em>CategoryAxisLineColor</em>=&quot;#D08AD9&quot; 
+<em>ValueAxisLineColor</em>=&quot;#D08AD9&quot; 
+<em>BaseLineColor</em>=&quot;#A156AB&quot;&gt;
 &lt;Series&gt;
-&lt;ajaxToolkit:LineChartSeries Name=&quot;World&quot; <em>LineColor</em>=&quot;purple&quot; &gt;
-&lt;DataValues&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;90&quot; /&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;235&quot; /&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;75&quot; /&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;115&quot; /&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;84&quot; /&gt;
-    &lt;ajaxToolkit:DataValue Data=&quot;-101&quot; /&gt;
-&lt;/DataValues&gt;
-&lt;/ajaxToolkit:LineChartSeries&gt;
-&lt;ajaxToolkit:LineChartSeries Name=&quot;United States&quot;  <em>LineColor</em>="green" &gt;
-&lt;DataValues&gt;
-    &lt;ajaxToolkit:DataValue Data="50.45" /&gt;
-    &lt;ajaxToolkit:DataValue Data="15.15" /&gt;
-    &lt;ajaxToolkit:DataValue Data="11.12" /&gt;
-    &lt;ajaxToolkit:DataValue Data="13.5" /&gt;
-    &lt;ajaxToolkit:DataValue Data="10.05" /&gt;
-    &lt;ajaxToolkit:DataValue Data="11.0" /&gt;
-&lt;/DataValues&gt;
-&lt;/ajaxToolkit:LineChartSeries&gt;
+&lt;ajaxToolkit:LineChartSeries 
+Name=&quot;United States&quot; 
+<em>LineColor</em>=&quot;#6C1E83&quot; 
+Data=&quot;110, 189, 255, 95, 107, 140&quot; /&gt;
+&lt;ajaxToolkit:LineChartSeries 
+Name=&quot;Europe&quot;  
+<em>LineColor</em>=&quot;#D08AD9&quot; 
+Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
 &lt;/Series&gt;
 &lt;/ajaxToolkit:LineChart&gt;
-    </pre>                
+    </pre>
         <b>Properties</b>
         <ul>
-            <li><strong>ChartHeight</strong> - This property enables you to customize the height of chart.</li>
-            <li><strong>ChartWidth</strong> - This property enables you to customize the width of chart.</li>
-            <li><strong>ChartTitle</strong> - This property enables you to set the title of chart.</li>
-            <li><strong>CategoryAxis</strong> - This is required property and you need to set the values
-            for category axis to create the line chart.</li>
-            <li><strong>ChartType</strong> - This property enables you to create type of linechart. 
-            You can set two types of ChartTypes - 1. Basic 2. Stacked.</li>
-            <li><strong>TitleColor</strong> - This enables you to set the font color of title of
-            chart.</li>
-            <li><strong>CategoryAxisLineColor</strong> - This enables you to set the color of background lines 
-            of category axis of chart.</li>
-            <li><strong>ValueAxisLineColor</strong> - This enables you to set the color of background lines 
-            of value axis of chart.</li>            
-            <li><strong>BaseLineColor</strong> - This enables you to set the color of base lines of chart.</li>
-            <li><strong>Name</strong> - This is required and you need to provide the name of series.</li>
-            <li><strong>LineColor</strong> - This enables you to set the color of line and dot for 
-            the series.</li>
-            <li><strong>Theme</strong> - This enables you to set the theme of the chart. By default a theme
-            is provided with control and default value is set from the theme if you does not set a 
-            property provided for formatting.
-            </li>
+            <li><strong>ChartHeight</strong> - This property enables you to customize the height
+                of the chart.</li>
+            <li><strong>ChartWidth</strong> - This property enables you to customize the width of
+                the chart.</li>
+            <li><strong>ChartTitle</strong> - This property enables you to set the title of the
+                chart.</li>
+            <li><strong>CategoryAxis</strong> - This is a required property. You need to provide
+                a set of values for the category axis to create a line chart.</li>
+            <li><strong>ChartType</strong> - This property enables you to render different types
+                of line charts including Column and Stacked.</li>
+            <li><strong>Theme</strong> - This property enables you to control the appearance of
+                the line chart with a Cascading Style Sheet file.</li>
+            <li><strong>ValueAxisLines</strong> - This property enables you to set the interval
+                size for the value axis line.</li>
+            <li><strong>ChartTitleColor</strong> - This property enables you to set the font color
+                of the chart title.</li>
+            <li><strong>CategoryAxisLineColor</strong> - This property enables you to set the color
+                of the category axis lines.</li>
+            <li><strong>ValueAxisLineColor</strong> - This property enables you to set the the color
+                of the value axis lines.</li>
+            <li><strong>BaseLineColor</strong> - This property enables you to set the color of the
+                base lines of the chart.</li>
         </ul>
-        <br />        
+        <br />
+        <strong>LineChart Series Properties:</strong>
+        <ul>
+            <li><strong>Name</strong> - This property is required.</li>
+            <li><strong>Data</strong> - This property is required and provides data for a particular
+                series.</li>
+            <li><strong>LineColor</strong> - This property enables you to set the color of line
+                for a particular series.</li>
+        </ul>
+        <br />
     </asp:Panel>
     <ajaxToolkit:CollapsiblePanelExtender ID="cpeDescription" runat="Server" TargetControlID="Description_ContentPanel"
         ExpandControlID="Description_HeaderPanel" CollapseControlID="Description_HeaderPanel"

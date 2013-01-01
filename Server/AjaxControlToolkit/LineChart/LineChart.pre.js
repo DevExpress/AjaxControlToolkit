@@ -21,7 +21,7 @@ Sys.Extended.UI.LineChart = function (element) {
 
     // variables
     this.yMax = 0;
-    this.yMin = 0;    
+    this.yMin = 0;
     this.roundedTickRange = 0;
     this.startX = 0;
     this.startY = 0;
@@ -33,12 +33,17 @@ Sys.Extended.UI.LineChart = function (element) {
     this.arrXAxisLength = 0;
     this.charLength = 3.5;
     this.arrCombinedData = null;
+    this._toolTipDiv;
 }
 
 Sys.Extended.UI.LineChart.prototype = {
 
     initialize: function () {
         Sys.Extended.UI.LineChart.callBaseMethod(this, "initialize");
+
+        if (!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1")) {
+            throw 'Browser does not support SVG.';
+        }
 
         if (this._valueAxisLines == 0) {
             this._valueAxisLines = 9;
@@ -52,12 +57,14 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     generateLineChart: function () {
+        //this.createTooltipArea();
+
         this.arrXAxis = this._categoriesAxis.split(',');
         this.arrXAxisLength = this.arrXAxis.length;
-                
-        this.calculateMinMaxValues();        
-        this.calculateInterval();        
-        this.calculateValueAxis();        
+
+        this.calculateMinMaxValues();
+        this.calculateInterval();
+        this.calculateValueAxis();
         var svgContents = this.initializeSVG();
         svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="ChartTitle" style="fill:{3}">{2}</text>', parseInt(this._chartWidth) / 2 - (this._chartTitle.length * this.charLength), parseInt(this._chartHeight) * 5 / 100, this._chartTitle, this._chartTitleColor);
 
@@ -66,7 +73,7 @@ Sys.Extended.UI.LineChart.prototype = {
         svgContents = svgContents + this.drawBaseLines();
         svgContents = svgContents + this.drawLegendArea();
         svgContents = svgContents + this.drawAxisValues();
-        this._parentDiv.innerHTML = svgContents;
+        this._parentDiv.innerHTML = this._parentDiv.innerHTML + svgContents;
         this.drawLines();
     },
 
@@ -250,7 +257,7 @@ Sys.Extended.UI.LineChart.prototype = {
         for (var i = 0; i < this._series.length; i++) {
             startLegend = nextStartLegend;
             startText = nextStartText;
-            legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="Legend{4}" style="fill:{5}"></path>', startLegend, legendAreaStartHeight + legendBoxHeight, startLegend + legendBoxWidth, legendAreaStartHeight + 15, i + 1, this._series[i].BarColor);
+            legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="Legend{4}" style="fill:{5}"></path>', startLegend, legendAreaStartHeight + legendBoxHeight, startLegend + legendBoxWidth, legendAreaStartHeight + 15, i + 1, this._series[i].LineColor);
             legendContents = legendContents + String.format('<text x="{0}" y="{1}" id="LegendText">{2}</text>', startText, legendAreaStartHeight + 15, this._series[i].Name);
             if (this._series[i].Name.length > 10) {
                 nextStartLegend = startLegend + (this._series[i].Name.length * 5) + legendBoxWidth + (spaceInLegendContents * 2);
@@ -323,58 +330,86 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     animateLines: function (me, lastStartX, lastStartY, yVal, index) {
-        for (var j = 0; j < this._series.length; j++) {
+        for (var j = 0; j < me._series.length; j++) {
             yVal = 0;
-            if (this._chartType == Sys.Extended.UI.ChartType.Stacked) {
+            if (me._chartType == Sys.Extended.UI.ChartType.Stacked) {
                 for (k = 0; k <= j; k++) {
-                    yVal = parseFloat(yVal) + parseFloat(this._series[k].Data[index]);
+                    yVal = parseFloat(yVal) + parseFloat(me._series[k].Data[index]);
                 }
             }
             else {
-                yVal = this._series[j].Data[index];
+                yVal = me._series[j].Data[index];
             }
 
-            if (this._chartType == Sys.Extended.UI.ChartType.Stacked) {
-                if (this.arrCombinedData[index] > 0) {
+            if (me._chartType == Sys.Extended.UI.ChartType.Stacked) {
+                if (me.arrCombinedData[index] > 0) {
                     if (index > 0)
-                        this._parentDiv.innerHTML = this._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * index) + (this.xInterval * 20 / 100), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)) - 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
                     else
-                        this._parentDiv.innerHTML = this._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * index) + (this.xInterval * 20 / 100), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)) - 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
                 }
                 else {
                     if (index > 0)
-                        this._parentDiv.innerHTML = this._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * index) + (this.xInterval * 20 / 100), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)) + 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
                     else
-                        this._parentDiv.innerHTML = this._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * index) + (this.xInterval * 20 / 100), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)) + 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
                 }
             }
             else {
                 if (yVal > 0) {
                     if (index > 0)
-                        this._parentDiv.innerHTML = this._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * index) + (this.xInterval * 20 / 100), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)) - 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
                     else
-                        this._parentDiv.innerHTML = this._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * index) + (this.xInterval * 20 / 100), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)) - 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
                 }
                 else {
                     if (index > 0)
-                        this._parentDiv.innerHTML = this._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * index) + (this.xInterval * 20 / 100), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)) + 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
                     else
-                        this._parentDiv.innerHTML = this._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', this.startX + (this.xInterval * index) + (this.xInterval / 2), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * index) + (this.xInterval * 20 / 100), this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange)) + 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
                 }
             }
 
-            lastStartX[j] = this.startX + (this.xInterval * index) + (this.xInterval / 2) + 3;
-            lastStartY[j] = this.startY - Math.round(yVal * (this.yInterval / this.roundedTickRange));
+            lastStartX[j] = me.startX + (me.xInterval * index) + (me.xInterval / 2) + 3;
+            lastStartY[j] = me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange));
         }
 
         index++;
 
-        if (index < this.arrXAxisLength) {
+        if (index < me.arrXAxisLength) {
             setTimeout(function () {
                 me.animateLines(me, lastStartX, lastStartY, 0, index);
             }, 400);
         }
     },
+
+    //    createTooltipArea: function () {
+    //        this._toolTipDiv = $common.createElementFromTemplate({
+    //            nodeName: "div",
+    //            properties: {
+    //                id: this.get_id() + '_toolTipDiv',
+    //                style: {
+    //                    position: 'absolute',
+    //                    fontSize: '11px',
+    //                    fontFamily: 'Arial',
+    //                    display: 'none',
+    //                    bgcolor: 'yellow'
+    //                }
+    //            }
+    //        }, this._parentDiv);
+    //    },
+
+    //    displayTooltip: function (text, positionX, positionY) {
+    //        this._toolTipDiv.innerHTML = text;
+    //        this._toolTipDiv.style.display = 'block';
+    //        this._toolTipDiv.style.left = positionX + 'px';
+    //        this._toolTipDiv.style.top = positionY + 'px';
+    //    },
+
+    //    hideTooltip: function () {
+    //        this._toolTipDiv.innerHTML = '';
+    //        this._toolTipDiv.style.display = 'none';
+    //    },
 
     get_chartWidth: function () {
         return this._chartWidth;
