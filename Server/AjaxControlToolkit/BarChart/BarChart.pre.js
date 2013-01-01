@@ -44,6 +44,10 @@ Sys.Extended.UI.BarChart.prototype = {
     initialize: function () {
         Sys.Extended.UI.BarChart.callBaseMethod(this, "initialize");
 
+        if (!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1")) {
+            throw 'Browser does not support SVG.';
+        }
+
         if (this._valueAxisLines == 0) {
             this._valueAxisLines = 9;
         }
@@ -103,11 +107,7 @@ Sys.Extended.UI.BarChart.prototype = {
         var arrData;
 
         if (this._chartType == Sys.Extended.UI.ChartType.Column) {
-            for (var i = 0; i < this._series.length; i++) {
-                //                arrData = new Array();
-                //                for (var j = 0; j < this._series[i].DataValues.length; j++) {
-                //                    arrData[j] = this._series[i].DataValues[j].Data;
-                //                }
+            for (var i = 0; i < this._series.length; i++) {                
                 arrData = this._series[i].Data;
                 seriesMax = Math.max.apply(null, arrData);
                 seriesMin = Math.min.apply(null, arrData);
@@ -281,8 +281,7 @@ Sys.Extended.UI.BarChart.prototype = {
         for (var i = 0; i < this.arrXAxisLength; i++) {
             barContents = barContents + '<g>';
             if (this._chartType == Sys.Extended.UI.ChartType.Column) {
-                for (var j = 0; j < this._series.length; j++) {
-                    //this.yVal = this._series[j].DataValues[i].Data;
+                for (var j = 0; j < this._series.length; j++) {                    
                     this.yVal = parseFloat(this._series[j].Data[i]);
                     if (i == 0) {
                         barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 15 / 100) + ((widthBetweenBars + barWidth) * j), this.startX + (this.xInterval * i) + (this.xInterval * 15 / 100) + ((widthBetweenBars + barWidth) * j) + barWidth, this.startY, this.startY - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
@@ -299,8 +298,7 @@ Sys.Extended.UI.BarChart.prototype = {
             else {
                 var lastStartYPositive = this.startY;
                 var lastStartYNegative = this.startY;
-                for (var j = 0; j < this._series.length; j++) {
-                    //this.yVal = this._series[j].DataValues[i].Data;
+                for (var j = 0; j < this._series.length; j++) {                    
                     this.yVal = parseFloat(this._series[j].Data[i]);
                     if (i == 0) {
                         if (this.yVal > 0)
@@ -438,11 +436,7 @@ Sys.Extended.UI.BarChart.prototype = {
         var seriesMin;
         var arrData;
         if (this._chartType == Sys.Extended.UI.ChartType.Bar) {
-            for (var i = 0; i < this._series.length; i++) {
-                //                arrData = new Array();
-                //                for (var j = 0; j < this._series[i].DataValues.length; j++) {
-                //                    arrData[j] = this._series[i].DataValues[j].Data;
-                //                }
+            for (var i = 0; i < this._series.length; i++) {                
                 arrData = this._series[i].Data;
                 seriesMax = Math.max.apply(null, arrData);
                 seriesMin = Math.min.apply(null, arrData);
@@ -606,8 +600,7 @@ Sys.Extended.UI.BarChart.prototype = {
         for (var i = 0; i < this.arrYAxisLength; i++) {
             barContents = barContents + '<g>';
             if (this._chartType == Sys.Extended.UI.ChartType.Bar) {
-                for (var j = 0; j < this._series.length; j++) {
-                    //this.xVal = this._series[j].DataValues[i].Data;
+                for (var j = 0; j < this._series.length; j++) {                    
                     this.xVal = this._series[j].Data[i];
                     if (i == 0) {
                         barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX, this.startX + Math.round(this.xVal * (this.xInterval / this.roundedTickRange)), this.startY - (this.yInterval * i) - (this.yInterval * 15 / 100) - ((widthBetweenBars + barWidth) * j), this.startY - (this.yInterval * i) - (this.yInterval * 15 / 100) - ((widthBetweenBars + barWidth) * j) - barWidth, j + 1, this._series[j].BarColor);
@@ -625,8 +618,7 @@ Sys.Extended.UI.BarChart.prototype = {
             else {
                 var lastStartXPositive = this.startX;
                 var lastStartXNegative = this.startX;
-                for (var j = 0; j < this._series.length; j++) {
-                    //this.xVal = this._series[j].DataValues[i].Data;
+                for (var j = 0; j < this._series.length; j++) {                    
                     this.xVal = this._series[j].Data[i];
                     if (i == 0) {
                         if (this.xVal > 0)
