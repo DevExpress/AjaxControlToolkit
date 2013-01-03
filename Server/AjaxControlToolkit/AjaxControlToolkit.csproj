@@ -126,6 +126,11 @@
     <Compile Include="BalloonPopup\BalloonPopupPosition.cs" />
     <Compile Include="BalloonPopup\BalloonPopupStyle.cs" />
     <Compile Include="BalloonPopup\BalloonPopupSize.cs" />
+    <Compile Include="BubbleChart\BubbleChart.cs" />
+    <Compile Include="BubbleChart\BubbleChartDesigner.cs" />
+    <Compile Include="BubbleChart\BubbleChartValue.cs" />
+    <Compile Include="BubbleChart\BubbleChartValueCollection.cs" />
+    <Compile Include="BubbleChart\BubbleChartValueCollectionEditor.cs" />
     <Compile Include="Calendar\CalendarDefaultView.cs" />
     <Compile Include="Calendar\CalendarDesigner.cs" />
     <Compile Include="Calendar\CalendarExtender.cs" />
@@ -417,6 +422,8 @@
     <Content Include="BalloonPopup\Rectangle\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Rectangle\sprite.gif" />
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
+    <Content Include="BubbleChart\BubbleChart.css" />
+    <Content Include="BubbleChart\BubbleChart.pre.js" />
     <Content Include="Twitter\Twitter.ico" />
     <Content Include="Twitter\Twitter24.png" />
     <Content Include="Twitter\Twitter32.png" />
