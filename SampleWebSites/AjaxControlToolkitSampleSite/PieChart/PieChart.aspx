@@ -11,12 +11,12 @@
         <br />
         <ajaxToolkit:PieChart ID="pieChart1" runat="server" ChartHeight="300" ChartWidth="450"
             ChartTitle="Widget Production in the world" ChartTitleColor="#0E426C">
-            <Series>
-                <ajaxToolkit:PieChartSeries Category="United States" Data="45" SeriesColor="#6C1E83" />
-                <ajaxToolkit:PieChartSeries Category="Europe" Data="25" SeriesColor="#D08AD9" />
-                <ajaxToolkit:PieChartSeries Category="Asia" Data="17" SeriesColor="#6586A7" />
-                <ajaxToolkit:PieChartSeries Category="Australia" Data="13" SeriesColor="#0E426C" />
-            </Series>
+            <PieChartValues>
+                <ajaxToolkit:PieChartValue Category="United States" Data="45" PieChartValueColor="#6C1E83" />
+                <ajaxToolkit:PieChartValue Category="Europe" Data="25" PieChartValueColor="#D08AD9" />
+                <ajaxToolkit:PieChartValue Category="Asia" Data="17" PieChartValueColor="#6586A7" />
+                <ajaxToolkit:PieChartValue Category="Australia" Data="13" PieChartValueColor="#0E426C" />
+            </PieChartValues>
         </ajaxToolkit:PieChart>
         <br />
     </div>
@@ -31,8 +31,8 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            The PieChart control enables you to render a pie chart from one or more series of
-            values. This control is compatible with any browser which supports SVG including
+            The PieChart control enables you to render a pie chart from one or more PieChartValues. 
+            This control is compatible with any browser which supports SVG including
             Internet Explorer 9 and above.
         </p>
     </asp:Panel>
@@ -49,34 +49,22 @@
             The control above is initialized with this code. The <em>italic</em> properties
             are optional:</p>
         <pre>
-&lt;ajaxToolkit:PieChart 
-ID=&quot;pieChart1&quot; 
-runat=&quot;server&quot; 
-<em>ChartHeight</em>=&quot;300&quot; 
-<em>ChartWidth</em>=&quot;450&quot; 
-<em>ChartTitle</em>=&quot;Widget Production in the world&quot; 
-<em>ChartTitleColor</em>=&quot;#0E426C&quot;&gt;
-&lt;Series&gt;
-&lt;ajaxToolkit:PieChartSeries 
-Category=&quot;United States&quot; 
-Data=&quot;45&quot; 
-<em>SeriesColor</em>=&quot;#6C1E83&quot; /&gt;
-&lt;ajaxToolkit:PieChartSeries 
-Category=&quot;Europe&quot; 
-Data=&quot;25&quot; 
-<em>SeriesColor</em>=&quot;#D08AD9&quot; /&gt;
-&lt;ajaxToolkit:PieChartSeries 
-Category=&quot;Asia&quot; 
-Data=&quot;17&quot; 
-<em>SeriesColor</em>=&quot;#6586A7&quot; /&gt;
-&lt;ajaxToolkit:PieChartSeries 
-Category=&quot;Australia&quot; 
-Data=&quot;13&quot; 
-<em>SeriesColor</em>=&quot;#0E426C&quot; /&gt;
-&lt;/Series&gt;
+&lt;ajaxToolkit:PieChart ID=&quot;pieChart1&quot; runat=&quot;server&quot; <em>ChartHeight</em>=&quot;300&quot; 
+<em>ChartWidth</em>=&quot;450&quot; <em>ChartTitle</em>=&quot;Widget Production in the world&quot; 
+<em>ChartTitleColor</em>=&quot;#0E426C&quot;&gt; 
+&lt;PieChartValues&gt;
+    &lt;ajaxToolkit:PieChartValue Category=&quot;United States&quot; Data=&quot;45&quot; 
+    <em>SeriesColor</em>=&quot;#6C1E83&quot; /&gt;
+    &lt;ajaxToolkit:PieChartValue Category=&quot;Europe&quot; Data=&quot;25&quot; 
+    <em>SeriesColor</em>=&quot;#D08AD9&quot; /&gt;
+    &lt;ajaxToolkit:PieChartValue Category=&quot;Asia&quot; Data=&quot;17&quot; 
+    <em>SeriesColor</em>=&quot;#6586A7&quot; /&gt;
+    &lt;ajaxToolkit:PieChartValue Category=&quot;Australia&quot; Data=&quot;13&quot; 
+    <em>SeriesColor</em>=&quot;#0E426C&quot; /&gt;
+&lt;/PieChartValues&gt;
 &lt;/ajaxToolkit:PieChart &gt;
     </pre>
-        <b>Properties</b>
+        <strong>PieChart Properties</strong>
         <ul>
             <li><strong>ChartHeight</strong> - This property enables you to customize the height
                 of the chart.</li>
@@ -88,14 +76,14 @@ Data=&quot;13&quot;
                 of the chart title.</li>
         </ul>
         <br />
-        <strong>PieChart Series Properties:</strong>
+        <strong>PieChartValue Properties:</strong>
         <ul>
-            <li><strong>Category</strong> - This property is required and provides name for a particular
-                series.</li>
-            <li><strong>Data</strong> - This property is required and provides Data for a particular
-                series.</li>
-            <li><strong>SeriesColor</strong> - This property enables you to set the color of segment
-                for a particular series.</li>
+            <li><strong>Category</strong> - This property is required and provides name for a 
+                particular PieChartValue.</li>
+            <li><strong>Data</strong> - This property is required and provides Data for a 
+                particular PieChartValue.</li>
+            <li><strong>PieChartValueColor</strong> - This property enables you to set the color 
+                of segment for a particular PieChartValue.</li>
         </ul>
     </asp:Panel>
     <ajaxToolkit:CollapsiblePanelExtender ID="cpeDescription" runat="Server" TargetControlID="Description_ContentPanel"

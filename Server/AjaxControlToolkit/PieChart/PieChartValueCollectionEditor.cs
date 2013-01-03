@@ -6,16 +6,16 @@ namespace AjaxControlToolkit
     /// <summary>
     /// 
     /// </summary>
-    public class PieChartSeriesCollectionEditor : CollectionEditor
+    public class PieChartValueCollectionEditor : CollectionEditor
     {
-        public PieChartSeriesCollectionEditor(Type type)
+        public PieChartValueCollectionEditor(Type type)
             : base(type)
         {
         }
 
         protected override Type[] CreateNewItemTypes()
         {
-            return new Type[] { typeof(PieChartSeries) };
+            return new Type[] { typeof(PieChartValue) };
         }
 
         protected override bool CanSelectMultipleInstances()

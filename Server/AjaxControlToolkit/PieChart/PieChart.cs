@@ -44,7 +44,7 @@ namespace AjaxControlToolkit
     [ClientScriptResource("Sys.Extended.UI.PieChart", "PieChart.PieChart.js")]
     public class PieChart : ScriptControlBase
     {
-        private PieChartSeriesCollection pieChartSeriesList = null;
+        private PieChartValueCollection pieChartValueList = null;
 
         #region [ Constructors ]
 
@@ -111,7 +111,7 @@ namespace AjaxControlToolkit
         }
                 
         /// <summary>
-        /// Provide list of series to client side. Need help from Series property 
+        /// Provide list of PieChartValue to client side. Need help from PieChartValues property 
         /// for designer experience support, cause Editor always blocks the property
         /// ability to provide values to client side as ExtenderControlProperty on run time.
         /// </summary>
@@ -120,11 +120,11 @@ namespace AjaxControlToolkit
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
-        public PieChartSeriesCollection ClientSeries
+        public PieChartValueCollection PieChartClientValues
         {
             get
             {
-                return pieChartSeriesList;
+                return pieChartValueList;
             }
         }
 
@@ -135,14 +135,14 @@ namespace AjaxControlToolkit
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
-        [Editor(typeof(PieChartSeriesCollectionEditor), typeof(UITypeEditor))]
-        public PieChartSeriesCollection Series
+        [Editor(typeof(PieChartValueCollectionEditor), typeof(UITypeEditor))]
+        public PieChartValueCollection PieChartValues
         {
             get
             {
-                if (pieChartSeriesList == null)
-                    pieChartSeriesList = new PieChartSeriesCollection();
-                return pieChartSeriesList;
+                if (pieChartValueList == null)
+                    pieChartValueList = new PieChartValueCollection();
+                return pieChartValueList;
             }
         }        
 
@@ -183,16 +183,16 @@ namespace AjaxControlToolkit
             base.OnInit(e);
             if (!IsDesignMode)
             {
-                foreach (PieChartSeries pieChartSeries in Series)
+                foreach (PieChartValue pieChartValue in PieChartValues)
                 {
-                    if (pieChartSeries.Category == null || pieChartSeries.Category.Trim() == "")
+                    if (pieChartValue.Category == null || pieChartValue.Category.Trim() == "")
                     {
-                        throw new Exception("Category is missing in the PieChartSeries. Please provide a Category in the PieChartSeries.");
+                        throw new Exception("Category is missing in the PieChartValue. Please provide a Category in the PieChartValue.");
                     }
 
-                    if (pieChartSeries.Data == null)
+                    if (pieChartValue.Data == null)
                     {
-                        throw new Exception("Data is missing in the PieChartSeries. Please provide a Data in the PieChartSeries.");
+                        throw new Exception("Data is missing in the PieChartValue. Please provide a Data in the PieChartValue.");
                     }
                 }
             }

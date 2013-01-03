@@ -7,16 +7,16 @@ using System.ComponentModel;
 namespace AjaxControlToolkit
 {
     /// <summary>
-    /// PieChartSeries holds information of category and data related to a series of chart.    
+    /// PieChartValue holds information of category and data related to a PieChartValue.    
     /// </summary>
-    public class PieChartSeries 
+    public class PieChartValue 
     {
         private string _category = String.Empty;
         private decimal _data;
-        private string _seriesColor = string.Empty;        
+        private string _pieChartValueColor = string.Empty;
 
         /// <summary>
-        /// To get category of series.
+        /// To get category of PieChartValue.
         /// </summary>        
         public string Category
         {
@@ -25,7 +25,7 @@ namespace AjaxControlToolkit
         }        
 
         /// <summary>
-        /// To get data related to series.
+        /// To get data related to PieChartValue.
         /// </summary>        
         public decimal Data
         {
@@ -34,12 +34,12 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// To get category of series.
+        /// To get category of PieChartValue.
         /// </summary>        
-        public string SeriesColor
+        public string PieChartValueColor
         {
-            get { return _seriesColor; }
-            set { _seriesColor = value; }
+            get { return _pieChartValueColor; }
+            set { _pieChartValueColor = value; }
         }
     }
 }
