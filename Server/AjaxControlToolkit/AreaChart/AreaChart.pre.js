@@ -385,13 +385,13 @@ Sys.Extended.UI.AreaChart.prototype = {
     },
 
     drawArea: function (me, areaPath, seriesIndex) {
-        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<g><path id="AreaPath{1}" d="M{0} z" style="fill:{2};stroke:{2}"></path></g>', areaPath[seriesIndex], seriesIndex + 1, me._series[seriesIndex].AreaColor);
+        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<g><path id="AreaPath{1}" d="M{0} z" style="fill:{2};stroke:{2}"></path></g></svg>', areaPath[seriesIndex], seriesIndex + 1, me._series[seriesIndex].AreaColor);
 
         seriesIndex++;
         if (seriesIndex < me._series.length) {
             setTimeout(function () {
                 me.drawArea(me, areaPath, seriesIndex);
-            }, 600);
+            }, 400);
         }
     },
 
