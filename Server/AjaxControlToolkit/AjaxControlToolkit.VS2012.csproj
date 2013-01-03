@@ -128,6 +128,12 @@
     <Compile Include="BalloonPopup\BalloonPopupPosition.cs" />
     <Compile Include="BalloonPopup\BalloonPopupStyle.cs" />
     <Compile Include="BalloonPopup\BalloonPopupSize.cs" />
+    <Compile Include="BarChart\BarChart.cs" />
+    <Compile Include="BarChart\BarChartDesigner.cs" />
+    <Compile Include="BarChart\BarChartSeries.cs" />
+    <Compile Include="BarChart\BarChartSeriesCollection.cs" />
+    <Compile Include="BarChart\BarChartSeriesCollectionEditor.cs" />
+    <Compile Include="BarChart\ChartType.cs" />
     <Compile Include="Calendar\CalendarDefaultView.cs" />
     <Compile Include="Calendar\CalendarDesigner.cs" />
     <Compile Include="Calendar\CalendarExtender.cs" />
@@ -151,6 +157,7 @@
     <Compile Include="ComboBox\ComboBoxRenderMode.cs" />
     <Compile Include="Common\BoxSide.cs" />
     <Compile Include="Common\CommonToolkitScripts.cs" />
+    <Compile Include="Common\DataConverter.cs" />
     <Compile Include="Common\DateTimeScripts.cs" />
     <Compile Include="Common\ThreadingScripts.cs" />
     <Compile Include="Common\Utility.cs" />
@@ -420,6 +427,8 @@
     <Content Include="BalloonPopup\Rectangle\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Rectangle\sprite.gif" />
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
+    <Content Include="BarChart\BarChart.css" />
+    <Content Include="BarChart\BarChart.pre.js" />
     <Content Include="Twitter\Twitter.ico" />
     <Content Include="Twitter\Twitter24.png" />
     <Content Include="Twitter\Twitter32.png" />
