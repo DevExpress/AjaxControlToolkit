@@ -2520,6 +2520,27 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
+        /// <summary>
+        /// A test for Div with double suspicious word and Html Quotes Encapsulation 7 xss
+        /// Example <!-- <Div style="background-color: expexpressionression(<SCRIPT>document.write("<SCRI");</SCRIPT>PT SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivDoubleSuspiciousWordHtmlQuotesEncapsulation7XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expexpressionression(<SCRIPT>document.write(\"<SCRI\");</SCRIPT>PT SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x26;gt&#x3B;document&#x2E;write&#x28;\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">)\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
         #region private methods
 
         private Dictionary<string, string[]> CreateElementWhiteList()
