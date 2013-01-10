@@ -72,7 +72,7 @@
 	stroke-linecap: square;
 	stroke-linejoin: round;
 	fill-opacity: 1;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill: #6C1E83;
 }
 
@@ -82,7 +82,7 @@
 	stroke-linecap: square;
 	stroke-linejoin: round;
 	fill-opacity: 1;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill: #D08AD9;
 }
 
@@ -92,7 +92,7 @@
 	stroke-linecap: square;
 	stroke-linejoin: round;
 	fill-opacity: 1;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill: #6586A7;
 }
 
@@ -102,7 +102,7 @@
 	stroke-linecap: square;
 	stroke-linejoin: round;
 	fill-opacity: 1;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill: #0E426C;
 }
 
@@ -112,7 +112,7 @@
 	stroke-linecap: square;
 	stroke-linejoin: round;
 	fill-opacity: 1;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill: #A156AB;
 }
 
@@ -122,7 +122,7 @@
 	stroke-linecap: square;
 	stroke-linejoin: round;
 	fill-opacity: 1;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill: #990033;
 }
 
@@ -132,7 +132,7 @@
 	stroke-linecap: square;
 	stroke-linejoin: round;
 	fill-opacity: 1;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill: #669900;
 }
 
@@ -142,7 +142,7 @@
 	stroke-linecap: square;
 	stroke-linejoin: round;
 	fill-opacity: 1;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill: #B85B3E;
 }
 
@@ -152,7 +152,7 @@
 	stroke-linecap: square;
 	stroke-linejoin: round;
 	fill-opacity: 1;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill: #FFC652;
 }
 
@@ -162,14 +162,14 @@
 	stroke-linecap: square;
 	stroke-linejoin: round;
 	fill-opacity: 1;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill: #4508A2;
 }
 
 #Segment1
 {
 	fill: #6C1E83;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill-opacity: 1;
 	stroke-linejoin: round;
 	stroke-linecap: square;
@@ -180,7 +180,7 @@
 #Segment2
 {
 	fill: #D08AD9;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill-opacity: 1;
 	stroke-linejoin: round;
 	stroke-linecap: square;
@@ -191,7 +191,7 @@
 #Segment3
 {
 	fill: #6586A7;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill-opacity: 1;
 	stroke-linejoin: round;
 	stroke-linecap: square;
@@ -202,7 +202,7 @@
 #Segment4
 {
 	fill: #0E426C;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill-opacity: 1;
 	stroke-linejoin: round;
 	stroke-linecap: square;
@@ -213,7 +213,7 @@
 #Segment5
 {
 	fill: #A156AB;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill-opacity: 1;
 	stroke-linejoin: round;
 	stroke-linecap: square;
@@ -224,7 +224,7 @@
 #Segment6
 {
 	fill: #990033;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill-opacity: 1;
 	stroke-linejoin: round;
 	stroke-linecap: square;
@@ -235,7 +235,7 @@
 #Segment7
 {
 	fill: #669900;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill-opacity: 1;
 	stroke-linejoin: round;
 	stroke-linecap: square;
@@ -246,7 +246,7 @@
 #Segment8
 {
 	fill: #B85B3E;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill-opacity: 1;
 	stroke-linejoin: round;
 	stroke-linecap: square;
@@ -257,7 +257,7 @@
 #Segment9
 {
 	fill: #FFC652;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill-opacity: 1;
 	stroke-linejoin: round;
 	stroke-linecap: square;
@@ -268,7 +268,7 @@
 #Segment10
 {
 	fill: #4508A2;
-	stroke-opacity: 1;
+	stroke-opacity: 0.5;
 	fill-opacity: 1;
 	stroke-linejoin: round;
 	stroke-linecap: square;

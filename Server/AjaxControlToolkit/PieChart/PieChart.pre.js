@@ -48,7 +48,7 @@ Sys.Extended.UI.PieChart.prototype = {
         svgContents = svgContents + '</defs>';
         svgContents = svgContents + String.format('<path fill="none" stroke-opacity="1" fill-opacity="1" stroke-linejoin="round" stroke-linecap="square" d="M5 {0} {1} {0} {1} {2} 5 {2} z"/>', parseInt(this._chartHeight) * 1 / 10 + 5, parseInt(this._chartWidth) - 5, parseInt(this._chartHeight) - parseInt(this._chartHeight) * 1 / 10);
         svgContents = svgContents + String.format('<path id="ChartBackGround" stroke="" d="M0 0 {0} 0 {0} {1} 0 {1} z"/>', this._chartWidth, this._chartHeight);
-        svgContents = svgContents + String.format('<path fill="#fff" stroke-opacity="1" fill-opacity="0" stroke-linejoin="round" stroke-linecap="square" stroke="" d="M5 {0} {1} {0} {1} {2} 5 {2} z" />', parseInt(this._chartHeight) * 1 / 10 + 5, parseInt(this._chartWidth) - 5, parseInt(this._chartHeight) - parseInt(this._chartHeight) * 1 / 10);
+        svgContents = svgContents + String.format('<path fill="#ffffff" stroke-opacity="1" fill-opacity="0" stroke-linejoin="round" stroke-linecap="square" stroke="" d="M5 {0} {1} {0} {1} {2} 5 {2} z" />', parseInt(this._chartHeight) * 1 / 10 + 5, parseInt(this._chartWidth) - 5, parseInt(this._chartHeight) - parseInt(this._chartHeight) * 1 / 10);
         // Set Title of Chart
         svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="ChartTitle" style="fill:{3}">{2}</text>', parseInt(this._chartWidth) / 2 - (this._chartTitle.length * this.charLength), parseInt(this._chartHeight) * 5 / 100, this._chartTitle, this._chartTitleColor);
 
@@ -75,7 +75,7 @@ Sys.Extended.UI.PieChart.prototype = {
         for (var i = 0; i < this._pieChartClientValues.length; i++) {
             startLegend = nextStartLegend;
             startText = nextStartText;
-            svgContents = svgContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="Legend{4}" style="stroke:{5};fill:{5}"></path>', startLegend, legendAreaStartHeight + legendBoxHeight, startLegend + legendBoxWidth, legendAreaStartHeight + 15, i + 1, this._pieChartClientValues[i].SeriesColor);
+            svgContents = svgContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="Legend{4}" style="stroke:{6};fill:{5}"></path>', startLegend, legendAreaStartHeight + legendBoxHeight, startLegend + legendBoxWidth, legendAreaStartHeight + 15, i + 1, this._pieChartClientValues[i].PieChartValueColor, this._pieChartClientValues[i].PieChartValueStrokeColor);
             svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="LegendText">{2}</text>', startText, legendAreaStartHeight + 15, this._pieChartClientValues[i].Category);
             if (this._pieChartClientValues[i].Category.length > 10) {
                 nextStartLegend = startLegend + (this._pieChartClientValues[i].Category.length * 5) + legendBoxWidth + (spaceInLegendContents * 2);
@@ -102,7 +102,7 @@ Sys.Extended.UI.PieChart.prototype = {
         var textX = startX;
         var textY = startY - radius;
         for (var i = 0; i < this._pieChartClientValues.length; i++) {
-            totalValue = totalValue + parseFloat(this._pieChartClientValues[i].Data);
+            totalValue = totalValue + Math.abs(parseFloat(this._pieChartClientValues[i].Data));
         }
 
         this._parentDiv.innerHTML = svgContents;
@@ -111,10 +111,10 @@ Sys.Extended.UI.PieChart.prototype = {
     },
 
     drawSegments: function (me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc) {
-        categoryValue = categoryValue + parseFloat(me._pieChartClientValues[index].Data);
+        categoryValue = categoryValue + Math.abs(parseFloat(me._pieChartClientValues[index].Data));
         angle = (categoryValue / totalValue) * 360;
         radAngle = angle * (Math.PI / 180);
-        textRadAngle = (categoryValue - parseFloat(me._pieChartClientValues[index].Data) + parseFloat(me._pieChartClientValues[index].Data) / 2) / totalValue * 360;
+        textRadAngle = (categoryValue - Math.abs(parseFloat(me._pieChartClientValues[index].Data)) + Math.abs(parseFloat(me._pieChartClientValues[index].Data)) / 2) / totalValue * 360;
         textRadAngle = textRadAngle * (Math.PI / 180);
         endX = parseFloat(Math.sin(radAngle) * radius);
         endY = parseFloat(Math.cos(radAngle) * radius);
@@ -122,8 +122,8 @@ Sys.Extended.UI.PieChart.prototype = {
         textY = parseFloat(Math.cos(textRadAngle) * (radius + 10));
         
         textX = (startX + textX) > startX ? startX + textX : (startX + textX) - (me._pieChartClientValues[index].Data.toString().length * this.charLength);
-        textY = (startY + (-1 * textY)) < startY ? startY + (-1 * textY) : startY + (-1 * textY) + 10;        
-        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<g><path id="Segment{8}" d="M{0} {1} A {2} {2} 0 {3},1 {4} {5} L {6} {7} z" style="stroke:{9};fill:{9};"></path>', lastEndX, lastEndY, radius, arc, startX + endX, startY + (-1 * endY), startX, startY, index + 1, me._pieChartClientValues[index].SeriesColor) + String.format('<text fill="#000000" style="font: 11px Arial,Helvetica,sans-serif" fill-opacity="1" y="{1}" x="{0}">{2}</text></g>', textX, textY, me._pieChartClientValues[index].Data) + '</svg>';
+        textY = (startY + (-1 * textY)) < startY ? startY + (-1 * textY) : startY + (-1 * textY) + 10;
+        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<g><path id="Segment{8}" d="M{0} {1} A {2} {2} 0 {3},1 {4} {5} L {6} {7} z" style="stroke:{10};fill:{9};"></path>', lastEndX, lastEndY, radius, arc, startX + endX, startY + (-1 * endY), startX, startY, index + 1, me._pieChartClientValues[index].PieChartValueColor, me._pieChartClientValues[index].PieChartValueStrokeColor) + String.format('<text fill="#000000" style="font: 11px Arial,Helvetica,sans-serif" fill-opacity="1" y="{1}" x="{0}">{2}</text></g>', textX, textY, me._pieChartClientValues[index].Data) + '</svg>';
         
         lastEndX = startX + endX;
         lastEndY = startY + (-1 * endY);
@@ -132,7 +132,6 @@ Sys.Extended.UI.PieChart.prototype = {
         if (index < me._pieChartClientValues.length) {            //  if the counter < series length, call the loop function
             setTimeout(function () {
                 me.drawSegments(me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc);
-
             }, 400);
         }
     },
