@@ -290,3 +290,17 @@
 	stroke-width:0;	
 }
 
+#DotTooltip
+{
+	position: absolute;
+    background-color: #FFC652;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #B85B3E;
+    left: 0px;
+    top: 0px;
+    color: #0E426C;
+    visibility: hidden;
+    z-index: 10000;                    
+    opacity: 0.75	
+}

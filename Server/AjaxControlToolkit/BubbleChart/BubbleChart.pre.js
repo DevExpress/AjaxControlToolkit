@@ -18,6 +18,9 @@ Sys.Extended.UI.BubbleChart = function (element) {
     this._yAxisLineColor = '';
     this._xAxisLineColor = '';
     this._baseLineColor = '';
+    this._tooltipBackgroundColor = '#FFC652';
+    this._tooltipFontColor = '#0E426C';
+    this._tooltipBorderColor = '#B85B3E';
 
     // variables
     this.yMax = 0;
@@ -36,6 +39,7 @@ Sys.Extended.UI.BubbleChart = function (element) {
     this.xInterval = 0;
     this.yInterval = 0;
     this.charLength = 3.5;
+    this._divTooltip = null;
 }
 
 Sys.Extended.UI.BubbleChart.prototype = {
@@ -59,6 +63,7 @@ Sys.Extended.UI.BubbleChart.prototype = {
             this._bubbleSizes = 5;
         }
 
+        this.generateTooltipDiv();
         this.generateBubbleChart();
     },
 
@@ -66,10 +71,33 @@ Sys.Extended.UI.BubbleChart.prototype = {
         Sys.Extended.UI.BubbleChart.callBaseMethod(this, "dispose");
     },
 
+    generateTooltipDiv: function () {
+        this._divTooltip = $common.createElementFromTemplate({
+            nodeName: 'div',
+            properties: {
+                id: this.get_id() + '_tooltipDiv',
+                style: {
+                    position: 'absolute',
+                    backgroundColor: this._tooltipBackgroundColor,
+                    borderstyle: 'block',
+                    borderwidth: '2px',
+                    bordercolor: this._tooltipBorderColor,
+                    left: '0px',
+                    top: '0px',
+                    color: this._tooltipFontColor,
+                    visibility: 'hidden',
+                    zIndex: '10000',
+                    opacity: '0.75'
+                }
+            }
+        }, this._parentDiv);
+    },
+
     generateBubbleChart: function () {
         this.calculateMinMaxValues();
         this.calculateBubbleSize();
         this.calculateAxisValues();
+
         var svgContents = this.intializeSVG();
 
         // Title Text
@@ -85,7 +113,7 @@ Sys.Extended.UI.BubbleChart.prototype = {
         // draw X and Y axis values
         svgContents = svgContents + this.drawAxisValues();
 
-        this._parentDiv.innerHTML = svgContents;
+        this._parentDiv.innerHTML = this._parentDiv.innerHTML + svgContents;
 
         // Bubble section
         this.drawBubbles(this, 0);
@@ -93,7 +121,8 @@ Sys.Extended.UI.BubbleChart.prototype = {
 
     intializeSVG: function () {
         var svgContents = String.format('<?xml-stylesheet type="text/css" href="{0}.css"?>', this._theme);
-        svgContents = String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" preserveAspectRatio="xMidYMid meet" viewbox="0 0 {2} {3}" style="position: relative; display: block;">', this._chartWidth, this._chartHeight, parseFloat(this._chartWidth) * 0.99, parseFloat(this._chartHeight) * 0.99);
+        svgContents = String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" preserveAspectRatio="xMidYMid meet" viewbox="0 0 {2} {3}" style="position: relative; display: block;" onload="init(evt)">', this._chartWidth, this._chartHeight, parseFloat(this._chartWidth) * 0.99, parseFloat(this._chartHeight) * 0.99);
+        //svgContents = svgContents + "<script type=\"text/ecmascript\"> function init(evt) { if ( window.svgDocument == null ) { gDocument = evt.target.ownerDocument;   } } function ShowTooltip(evt) {        alert('called');    } </script>";
         svgContents = svgContents + String.format('<path fill="none" stroke-opacity="1" fill-opacity="1" stroke-linejoin="round" stroke-linecap="square" d="M5 {0} {1} {0} {1} {2} 5 {2} z"/>', parseInt(this._chartHeight) * 1 / 10 + 5, parseInt(this._chartWidth) - 5, parseInt(this._chartHeight) - parseInt(this._chartHeight) * 1 / 10);
         svgContents = svgContents + String.format('<path id="ChartBackGround" stroke="" d="M0 0 {0} 0 {0} {1} 0 {1} z"/>', this._chartWidth, this._chartHeight);
         svgContents = svgContents + String.format('<path fill="#ffffff" stroke-opacity="1" fill-opacity="0" stroke-linejoin="round" stroke-linecap="square" stroke="" d="M5 {0} {1} {0} {1} {2} 5 {2} z" />', parseInt(this._chartHeight) * 1 / 10 + 5, parseInt(this._chartWidth) - 5, parseInt(this._chartHeight) - parseInt(this._chartHeight) * 1 / 10);
@@ -101,12 +130,11 @@ Sys.Extended.UI.BubbleChart.prototype = {
     },
 
     drawBubbles: function (me, index) {
-        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{4}" cx="{0}" cy="{1}" r="{2}" style="fill:{3};stroke:{3}"></circle></svg>', me.startX + Math.round((parseFloat(me._bubbleChartClientValues[index].X) / me.xRoundedIntervalLabelSize) * me.xInterval), me.startY + Math.round(((-1 * parseFloat(me._bubbleChartClientValues[index].Y)) / me.yRoundedIntervalLabelSize) * me.yInterval), Math.round((parseFloat(me._bubbleChartClientValues[index].Data) / me.roundedBubbleSize) * me._bubbleSizes), me._bubbleChartClientValues[index].BubbleColor, index + 1);
+        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{4}" cx="{0}" cy="{1}" r="{2}" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt,\'{5}\',{6},{7},{8})" onmouseout="HideTooltip(this, evt)"></circle></svg>', me.startX + Math.round((parseFloat(me._bubbleChartClientValues[index].X) / me.xRoundedIntervalLabelSize) * me.xInterval), me.startY + Math.round(((-1 * parseFloat(me._bubbleChartClientValues[index].Y)) / me.yRoundedIntervalLabelSize) * me.yInterval), Math.round((parseFloat(me._bubbleChartClientValues[index].Data) / me.roundedBubbleSize) * me._bubbleSizes), me._bubbleChartClientValues[index].BubbleColor, index + 1, me._bubbleChartClientValues[index].Category, me._bubbleChartClientValues[index].Data, me._bubbleChartClientValues[index].X, me._bubbleChartClientValues[index].Y);
         index++;
         if (index < me._bubbleChartClientValues.length) {            //  if the counter < series length, call the loop function
             setTimeout(function () {
                 me.drawBubbles(me, index);
-
             }, 400);
         }
     },
@@ -177,7 +205,7 @@ Sys.Extended.UI.BubbleChart.prototype = {
         var valueRange;
         var unroundedValueSize;
 
-        if (this.yMin > 0) {
+        if (this.yMin > -1) {
             valueRange = this.yMax;
         }
         else {
@@ -193,7 +221,7 @@ Sys.Extended.UI.BubbleChart.prototype = {
         var xRange;
         var unroundedXSize;
 
-        if (this.yMin > 0) {
+        if (this.xMin > -1) {
             xRange = this.xMax;
         }
         else {
@@ -278,14 +306,14 @@ Sys.Extended.UI.BubbleChart.prototype = {
         if (this.yMin < 0) {
             // background grid's vertical lines for negative values
             for (var i = 1; i <= this._xAxisLines; i++) {
-                verticalLineContents = verticalLineContents + String.format('<path id="VerticalLine" d="M{0} {1} {0} {2}" style="stroke:{3}"></path>', this.startX + (this.xInterval * i), this.startY, this.startY + (this.yInterval * this._yAxisLines), this.yAxisLineColor);
+                verticalLineContents = verticalLineContents + String.format('<path id="VerticalLine" d="M{0} {1} {0} {2}" style="stroke:{3}"></path>', this.startX + (this.xInterval * i), this.startY, this.startY + (this.yInterval * this._yAxisLines), this._yAxisLineColor);
             }
         }
 
         if (this.xMin < 0 && this.yMin < 0) {
             // background grid's vertical lines for negative values
             for (var i = 1; i <= this._xAxisLines; i++) {
-                verticalLineContents = verticalLineContents + String.format('<path id="VerticalLine" d="M{0} {1} {0} {2} style="stroke:{3}""></path>', this.startX - (this.xInterval * i), this.startY, this.startY + (this.yInterval * this._yAxisLines), this.yAxisLineColor);
+                verticalLineContents = verticalLineContents + String.format('<path id="VerticalLine" d="M{0} {1} {0} {2}" style="stroke:{3}"></path>', this.startX - (this.xInterval * i), this.startY, this.startY + (this.yInterval * this._yAxisLines), this._yAxisLineColor);
             }
         }
 
@@ -322,7 +350,6 @@ Sys.Extended.UI.BubbleChart.prototype = {
             for (var i = 1; i <= this._xAxisLines; i++) {
                 baseLineContents = baseLineContents + String.format('<path d="M{0} {1} {0} {2}" id="BaseLine" style="stroke:{3}"></path>', this.startX - (this.xInterval * i), this.startY, this.startY + 4, this._baseLineColor);
             }
-            baseLineContents = baseLineContents + String.format('<path d="M{0} {2} {1} {2}" id="BaseLine" style="stroke:{3}"></path>', this.startX, (this.startX - (this.xInterval * this._xAxisLines)), this.startY, this._baseLineColor);
             baseLineContents = baseLineContents + String.format('<path d="M{0} {2} {1} {2}" id="BaseLine" style="stroke:{3}"></path>', this.startX, (this.startX - (this.xInterval * this._xAxisLines)), this.startY, this._baseLineColor);
         }
         return baseLineContents;
@@ -439,6 +466,27 @@ Sys.Extended.UI.BubbleChart.prototype = {
     },
     set_baseLineColor: function (value) {
         this._baseLineColor = value;
+    },
+
+    get_tooltipBackgroundColor: function () {
+        return this.tooltipBackgroundColor;
+    },
+    set_tooltipBackgroundColor: function (value) {
+        this.tooltipBackgroundColor = value;
+    },
+
+    get_tooltipFontColor: function () {
+        return this._tooltipFontColor;
+    },
+    set_tooltipFontColor: function (value) {
+        this._tooltipFontColor = value;
+    },
+
+    get_tooltipBorderColor: function () {
+        return this._tooltipBorderColor;
+    },
+    set_tooltipBorderColor: function (value) {
+        this._tooltipBorderColor = value;
     }
 };
 
