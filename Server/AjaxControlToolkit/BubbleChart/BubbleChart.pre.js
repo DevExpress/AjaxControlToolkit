@@ -18,9 +18,13 @@ Sys.Extended.UI.BubbleChart = function (element) {
     this._yAxisLineColor = '';
     this._xAxisLineColor = '';
     this._baseLineColor = '';
-    this._tooltipBackgroundColor = '#FFC652';
+    this._tooltipBackgroundColor = '#ffffff';
     this._tooltipFontColor = '#0E426C';
     this._tooltipBorderColor = '#B85B3E';
+    this._xAxisLabel = '';
+    this._yAxisLabel = '';
+    this._bubbleLabel = '';
+    this._axislabelFontColor = '#000000';
 
     // variables
     this.yMax = 0;
@@ -79,15 +83,15 @@ Sys.Extended.UI.BubbleChart.prototype = {
                 style: {
                     position: 'absolute',
                     backgroundColor: this._tooltipBackgroundColor,
-                    borderstyle: 'block',
-                    borderwidth: '2px',
-                    bordercolor: this._tooltipBorderColor,
+                    borderStyle: 'solid',
+                    borderWidth: '5px',
+                    borderColor: this._tooltipBorderColor,
                     left: '0px',
                     top: '0px',
                     color: this._tooltipFontColor,
                     visibility: 'hidden',
                     zIndex: '10000',
-                    opacity: '0.75'
+                    padding: '10px'
                 }
             }
         }, this._parentDiv);
@@ -130,7 +134,7 @@ Sys.Extended.UI.BubbleChart.prototype = {
     },
 
     drawBubbles: function (me, index) {
-        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{4}" cx="{0}" cy="{1}" r="{2}" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt,\'{5}\',{6},{7},{8})" onmouseout="HideTooltip(this, evt)"></circle></svg>', me.startX + Math.round((parseFloat(me._bubbleChartClientValues[index].X) / me.xRoundedIntervalLabelSize) * me.xInterval), me.startY + Math.round(((-1 * parseFloat(me._bubbleChartClientValues[index].Y)) / me.yRoundedIntervalLabelSize) * me.yInterval), Math.round((parseFloat(me._bubbleChartClientValues[index].Data) / me.roundedBubbleSize) * me._bubbleSizes), me._bubbleChartClientValues[index].BubbleColor, index + 1, me._bubbleChartClientValues[index].Category, me._bubbleChartClientValues[index].Data, me._bubbleChartClientValues[index].X, me._bubbleChartClientValues[index].Y);
+        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{4}" cx="{0}" cy="{1}" r="{2}" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt,\'{5}\',{6}, \'{7}\')" onmouseout="HideTooltip(this, evt)"></circle></svg>', me.startX + Math.round((parseFloat(me._bubbleChartClientValues[index].X) / me.xRoundedIntervalLabelSize) * me.xInterval), me.startY + Math.round(((-1 * parseFloat(me._bubbleChartClientValues[index].Y)) / me.yRoundedIntervalLabelSize) * me.yInterval), Math.round((parseFloat(me._bubbleChartClientValues[index].Data) / me.roundedBubbleSize) * me._bubbleSizes), me._bubbleChartClientValues[index].BubbleColor, index + 1, me._bubbleChartClientValues[index].Category, me._bubbleChartClientValues[index].Data, me._bubbleLabel);
         index++;
         if (index < me._bubbleChartClientValues.length) {            //  if the counter < series length, call the loop function
             setTimeout(function () {
@@ -182,6 +186,7 @@ Sys.Extended.UI.BubbleChart.prototype = {
 
         if (this.yMin < 0)
             this._yAxisLines = Math.round(this._yAxisLines / 2);
+
     },
 
     calculateBubbleSize: function () {
@@ -205,53 +210,64 @@ Sys.Extended.UI.BubbleChart.prototype = {
         var valueRange;
         var unroundedValueSize;
 
-        if (this.yMin > -1) {
-            valueRange = this.yMax;
+        if (this.yMin < 0) {
+            valueRange = this.yMax > Math.abs(this.yMin) ? this.yMax : Math.abs(this.yMin);
         }
         else {
-            valueRange = this.yMax > Math.abs(this.yMin) ? this.yMax : Math.abs(this.yMin);
+            valueRange = this.yMax;
         }
 
         unroundedValueSize = valueRange / (this._yAxisLines - 1);
-        x = Math.ceil((Math.log(unroundedValueSize) / Math.log(10)) - 1);
-        pow10x = Math.pow(10, x);
-        this.yRoundedIntervalLabelSize = Math.ceil(unroundedValueSize / pow10x) * pow10x;
+        if (unroundedValueSize < 1) {
+            this.yRoundedIntervalLabelSize = unroundedValueSize.toFixed(1);
+        }
+        else {
+            x = Math.ceil((Math.log(unroundedValueSize) / Math.log(10)) - 1);
+            pow10x = Math.pow(10, x);
+            this.yRoundedIntervalLabelSize = Math.ceil(unroundedValueSize / pow10x) * pow10x;
+        }
 
         // calculate X axis labels
         var xRange;
         var unroundedXSize;
 
-        if (this.xMin > -1) {
-            xRange = this.xMax;
-        }
-        else {
+        if (this.xMin < 0) {
             xRange = this.xMax > Math.abs(this.xMin) ? this.xMax : Math.abs(this.xMin);
         }
-        unroundedXSize = xRange / (this._xAxisLines - 1);
-        x = Math.ceil((Math.log(unroundedXSize) / Math.log(10)) - 1);
-        pow10x = Math.pow(10, x);
-        this.xRoundedIntervalLabelSize = Math.ceil(unroundedXSize / pow10x) * pow10x;
+        else {
+            xRange = this.xMax;
+        }
+
+        unroundedXSize = xRange / (this._xAxisLines - 1);        
+        if (unroundedValueSize < 1) {
+            this.xRoundedIntervalLabelSize = unroundedXSize.toFixed(1);
+        }
+        else {
+            x = Math.ceil((Math.log(unroundedXSize) / Math.log(10)) - 1);
+            pow10x = Math.pow(10, x);
+            this.xRoundedIntervalLabelSize = Math.ceil(unroundedXSize / pow10x) * pow10x;
+        }
     },
 
     // This calculates distance interval for the value axis.
     calculateIntervals: function () {
         this.endX = parseFloat(this._chartWidth) - (parseFloat(this._chartWidth) * 5 / 100);
-        if (this.xMin > 0) {
-            this.startX = (parseFloat(this._chartWidth) * 10 / 100) + 0.5;
+        if (this.xMin < 0) {
+            this.startX = Math.round(parseFloat(this._chartWidth) + (parseFloat(this._chartWidth) * 10 / 100)) / 2 + 0.5;
         }
         else {
-            this.startX = Math.round(parseFloat(this._chartWidth) - (parseFloat(this._chartWidth) * 5 / 100)) / 2 + 0.5;
+            this.startX = (parseFloat(this._chartWidth) * 20 / 100) + 0.5;
         }
 
-        if (this.xMin > 0)
-            this.xInterval = Math.round((this.endX - this.startX) / (this._xAxisLines));
-        else
+        if (this.xMin < 0)
             this.xInterval = (this.endX - this.startX) / (this._xAxisLines);
-
-        if (this.yMin > 0)
-            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 15 / 100)) + 0.5;
         else
+            this.xInterval = Math.round((this.endX - this.startX) / (this._xAxisLines));
+
+        if (this.yMin < 0)
             this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 5 / 100)) / 2 + 0.5;
+        else
+            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 20 / 100)) + 0.5;
 
         this.yInterval = this.startY / (this._yAxisLines + 1);
         this.endY = this.startY - (this.yInterval * this._yAxisLines);
@@ -359,28 +375,37 @@ Sys.Extended.UI.BubbleChart.prototype = {
         var axisValueContents = '';
         var textLength = 0;
         for (var i = 1; i <= this._yAxisLines; i++) {
-            textLength = (this.yRoundedIntervalLabelSize * i).toString().length * 7.5;
-            axisValueContents = axisValueContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">{2}</text>', this.startX - textLength, this.startY - (this.yInterval * i) + 4, this.yRoundedIntervalLabelSize * i);
+            textLength = (this.yRoundedIntervalLabelSize * 10 * i / 10).toString().length * 5.5;
+            axisValueContents = axisValueContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">{2}</text>', this.startX - textLength - 10, this.startY - (this.yInterval * i) + 4, this.yRoundedIntervalLabelSize * 10 * i / 10);
         }
 
         if (this.yMin < 0) {
             for (var i = 1; i <= this._yAxisLines; i++) {
-                textLength = (this.yRoundedIntervalLabelSize * i).toString().length * 7.5 + 7.5; // add length for -ve character 
-                axisValueContents = axisValueContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">-{2}</text>', this.startX - textLength, this.startY + (this.yInterval * i) + 4, this.yRoundedIntervalLabelSize * i);
+                textLength = (this.yRoundedIntervalLabelSize * 10 * i / 10).toString().length * 5.5 + 5.5; // add length for -ve character 
+                axisValueContents = axisValueContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">-{2}</text>', this.startX - textLength - 10, this.startY + (this.yInterval * i) + 4, this.yRoundedIntervalLabelSize * 10 * i / 10);
             }
         }
-        
+
         for (var i = 1; i <= this._xAxisLines; i++) {
-            textLength = (this.xRoundedIntervalLabelSize * i).toString().length * 7.5;
-            axisValueContents = axisValueContents + String.format('<text id="SeriesAxis" x="{0}" y="{1}">{2}</text>', Math.round(this.startX + (this.xInterval * i) - (textLength / 2)), this.startY + Math.round(this.yInterval * 25 / 100) + 5, this.xRoundedIntervalLabelSize * i);
+            textLength = (this.xRoundedIntervalLabelSize * 10 * i / 10).toString().length * 5.5;
+            axisValueContents = axisValueContents + String.format('<text id="SeriesAxis" x="{0}" y="{1}">{2}</text>', Math.round(this.startX + (this.xInterval * i) - (textLength / 2)), this.startY + Math.round(this.yInterval * 25 / 100) + 5, this.xRoundedIntervalLabelSize * 10 * i / 10);
         }
 
         if (this.xMin < 0) {
             for (var i = 1; i <= this._xAxisLines; i++) {
-                textLength = (this.xRoundedIntervalLabelSize * i).toString().length * 7.5 + 7.5; // add length for -ve character
-                axisValueContents = axisValueContents + String.format('<text id="SeriesAxis" x="{0}" y="{1}">-{2}</text>', Math.round(this.startX - (this.xInterval * i) - (textLength / 2)), this.startY + Math.round(this.yInterval * 25 / 100) + 5, this.xRoundedIntervalLabelSize * i);
+                textLength = (this.xRoundedIntervalLabelSize * 10 * i / 10).toString().length * 5.5 + 5.5; // add length for -ve character
+                axisValueContents = axisValueContents + String.format('<text id="SeriesAxis" x="{0}" y="{1}">-{2}</text>', Math.round(this.startX - (this.xInterval * i) - (textLength / 2)), this.startY + Math.round(this.yInterval * 25 / 100) + 5, this.xRoundedIntervalLabelSize * 10 * i / 10);
             }
         }
+
+        axisValueContents = axisValueContents + String.format('<text id="AxisLabels"  x="{0}" y="{1}" style="fill:{3};" transform="rotate(-90, 60, 140)">{2}</text>', Math.round(parseFloat(this._chartWidth) * 5 / 100), ((this.startY - this.endY) / 2 + (this._yAxisLabel.toString().length * this.charLength)), this._yAxisLabel, this._axislabelFontColor);
+        var xLabelStart;
+        if (this.xMin > 0)
+            xLabelStart = Math.round((this.endX - this.startX) / 2);
+        else
+            xLabelStart = this.startX;
+
+        axisValueContents = axisValueContents + String.format('<text id="AxisLabels" x="{0}" y="{1}" style="fill:{3};">{2}</text>', Math.round(parseInt(this._chartWidth) / 2 - (this._xAxisLabel.toString().length * this.charLength) / 2), Math.round(parseInt(this._chartHeight) * 90 / 100 + 5), this._xAxisLabel, this._axislabelFontColor);
         return axisValueContents;
     },
 
@@ -487,6 +512,34 @@ Sys.Extended.UI.BubbleChart.prototype = {
     },
     set_tooltipBorderColor: function (value) {
         this._tooltipBorderColor = value;
+    },
+
+    get_xAxisLabel: function () {
+        return this._xAxisLabel;
+    },
+    set_xAxisLabel: function (value) {
+        this._xAxisLabel = value;
+    },
+
+    get_yAxisLabel: function () {
+        return this._yAxisLabel;
+    },
+    set_yAxisLabel: function (value) {
+        this._yAxisLabel = value;
+    },
+
+    get_bubbleLabel: function () {
+        return this._bubbleLabel;
+    },
+    set_bubbleLabel: function (value) {
+        this._bubbleLabel = value;
+    },
+
+    get_axislabelFontColor: function () {
+        return this._axislabelFontColor;
+    },
+    set_axislabelFontColor: function (value) {
+        this._axislabelFontColor = value;
     }
 };
 
