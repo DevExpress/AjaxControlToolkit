@@ -1,12 +1,24 @@
 ﻿<?xml version="1.0"?>
 
 <configuration>
-
+  <configSections>
+    <sectionGroup name="system.web">
+      <section name="sanitizer" requirePermission="false"
+               type="AjaxControlToolkit.Sanitizer.ProviderSanitizerSection, AjaxControlToolkit" />
+    </sectionGroup>
+  </configSections>
+  
     <appSettings>
       <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
       <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
     </appSettings>
     <system.web>
+      <sanitizer defaultProvider="HtmlAgilityPackSanitizerProvider">
+        <providers>
+          <add name="HtmlAgilityPackSanitizerProvider" type="AjaxControlToolkit.Sanitizer.HtmlAgilityPackSanitizerProvider"></add>
+        </providers>
+      </sanitizer>
+      
       <compilation debug="false" targetFramework="4.5" />
       <httpRuntime requestValidationMode="4.5" targetFramework="4.5" encoderType="System.Web.Security.AntiXss.AntiXssEncoder, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       <pages controlRenderingCompatibilityVersion="4.5" />
