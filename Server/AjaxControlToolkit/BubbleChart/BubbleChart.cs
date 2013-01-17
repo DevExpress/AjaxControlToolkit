@@ -416,8 +416,8 @@ namespace AjaxControlToolkit
             sbScript.Append("    tooltipDiv.innerHTML = '';");
             sbScript.Append("    tooltipDiv.style.visibility = 'hidden';");
             sbScript.Append("    me.style.strokeWidth = '0';");
-            sbScript.Append("    me.style.fillOpacity = '0.5';");
-            sbScript.Append("    me.style.strokeOpacity = '0.5';");
+            sbScript.Append("    me.style.fillOpacity = '0.7';");
+            sbScript.Append("    me.style.strokeOpacity = '0.7';");
             sbScript.Append("} ");
 
             sbScript.Append("</script>");

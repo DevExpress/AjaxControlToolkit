@@ -238,7 +238,7 @@ Sys.Extended.UI.BubbleChart.prototype = {
             xRange = this.xMax;
         }
 
-        unroundedXSize = xRange / (this._xAxisLines - 1);        
+        unroundedXSize = xRange / (this._xAxisLines - 1);
         if (unroundedValueSize < 1) {
             this.xRoundedIntervalLabelSize = unroundedXSize.toFixed(1);
         }
@@ -398,13 +398,13 @@ Sys.Extended.UI.BubbleChart.prototype = {
             }
         }
 
-        axisValueContents = axisValueContents + String.format('<text id="AxisLabels"  x="{0}" y="{1}" style="fill:{3};" transform="rotate(-90, 60, 140)">{2}</text>', Math.round(parseFloat(this._chartWidth) * 5 / 100), ((this.startY - this.endY) / 2 + (this._yAxisLabel.toString().length * this.charLength)), this._yAxisLabel, this._axislabelFontColor);
-        var xLabelStart;
-        if (this.xMin > 0)
-            xLabelStart = Math.round((this.endX - this.startX) / 2);
+        var yLabelStart;
+        if (this.yMin < 0)
+            yLabelStart = Math.round((this.startY + (this.yInterval * this._yAxisLines)) - (this.startY - (this.yInterval * this._yAxisLines))) / 2;
         else
-            xLabelStart = this.startX;
+            yLabelStart = Math.round((this.startY - this.endY) / 2);
 
+        axisValueContents = axisValueContents + String.format('<text id="AxisLabels"  x="{0}" y="{1}" style="fill:{3};" transform="rotate(-90, {0}, {1})">{2}</text>', Math.round(parseFloat(this._chartWidth) * 5 / 100), yLabelStart + (this._yAxisLabel.toString().length * this.charLength), this._yAxisLabel, this._axislabelFontColor);
         axisValueContents = axisValueContents + String.format('<text id="AxisLabels" x="{0}" y="{1}" style="fill:{3};">{2}</text>', Math.round(parseInt(this._chartWidth) / 2 - (this._xAxisLabel.toString().length * this.charLength) / 2), Math.round(parseInt(this._chartHeight) * 90 / 100 + 5), this._xAxisLabel, this._axislabelFontColor);
         return axisValueContents;
     },
