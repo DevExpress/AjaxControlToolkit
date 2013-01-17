@@ -36,7 +36,7 @@ REM Copy the SanitizerProviders.dll to the Sample Site
 copy Server\SanitizerProviders\bin\Release\SanitizerProviders.dll .\SampleWebSites\AjaxControlToolkitSampleSite\bin\ 
 
 REM Add the Sample Site
-zip\7za.exe a %BinaryFolder%\AjaxControlToolkitSampleSite.zip .\SampleWebSites\AjaxControlToolkitSampleSite\*  
+c:\zip\7za.exe a %BinaryFolder%\AjaxControlToolkitSampleSite.zip .\SampleWebSites\AjaxControlToolkitSampleSite\*  
 
 REM zip the results
-zip\7za.exe a %BinaryFolder%.zip .\%BinaryFolder%\* 
+c:\zip\7za.exe a %BinaryFolder%.zip .\%BinaryFolder%\* 
