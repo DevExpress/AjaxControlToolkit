@@ -2600,7 +2600,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<div style=\"color&#x3A;&#x20;red&#x3B;&#x2D;binding&#x3A;&#x20;url&#x28;https&#x3A;&#x2F;&#x2F;bugzilla&#x2E;mozilla&#x2E;org&#x2F;attachment&#x2E;cgi&#x3F;id&#x3D;209238&#x23;exploit&#x29;&#x3B;&#x20;\">  This is a paragraph with inline exploit CSS. </div>";
+            string expected = "<div style=\"color&#x3A;&#x20;red&#x3B;&#x20;binding&#x3A;&#x20;url&#x28;https&#x3A;&#x2F;&#x2F;bugzilla&#x2E;mozilla&#x2E;org&#x2F;attachment&#x2E;cgi&#x3F;id&#x3D;209238&#x23;exploit&#x29;&#x3B;&#x20;\">  This is a paragraph with inline exploit CSS. </div>";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2621,7 +2621,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<link rel=\"stylesheet\" media=\"screen&#x20;and&#x2D;min&#x2D;device&#x2D;pixel&#x2D;ratio&#x3A;&#x20;0\" href=\"webkit&#x2E;css\">";
+            string expected = "<link rel=\"stylesheet\" media=\"screen&#x20;and&#x20;minpixel&#x2D;ratio&#x3A;&#x20;0\" href=\"webkit&#x2E;css\">";
             Assert.AreEqual(expected, actual, true);
         }
 
@@ -2642,9 +2642,94 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
 
             // Assert
-            string expected = "<div style=\"&#x2D;transform&#x3A;&#x20;rotate&#x28;45deg&#x29;&#x3B;\"></div>";
+            string expected = "<div style=\"transform&#x3A;&#x20;rotate&#x28;45deg&#x29;&#x3B;\"></div>";
             Assert.AreEqual(expected, actual, true);
         }
+
+
+        /// <summary>
+        /// A test for Div tag with custom ms extenstion in style attribute.
+        /// Example <!-- <table style="-ms-writing-mode: tb-rl">  -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivWithMSExtension()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"-ms-writing-mode: tb-rl\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"writing&#x2D;mode&#x3A;&#x20;tb&#x2D;rl\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div tag with custom KHtml extenstion in style attribute.
+        /// Example <!-- <div style="-khtml-opacity: 0.5;">  -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivWithKHtmlExtension()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"-khtml-opacity: 0.5;\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"opacity&#x3A;&#x20;0&#x2E;5&#x3B;\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div tag with custom O extenstion in style attribute.
+        /// Example <!-- <div style="-o-text-overflow: clip;">  -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivWithOExtension()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"-o-text-overflow: clip;\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"text&#x2D;overflow&#x3A;&#x20;clip&#x3B;\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for P tag with custom Wap extenstion in style attribute.
+        /// Example <!-- <p style="display: -wap-marquee; -wap-marquee-dir: ltr">Hello, welcome to our WCSS Tutorial.</p>  -->
+        /// </summary>   
+        [TestMethod()]
+        public void PWithWapExtension()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<p style=\"display: -wap-marquee; -wap-marquee-dir: ltr\">Hello, welcome to our WCSS Tutorial.</p>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<p style=\"display&#x3A;&#x20;marquee&#x3B;&#x20;marquee&#x2D;dir&#x3A;&#x20;ltr\">Hello, welcome to our WCSS Tutorial.</p>";
+            Assert.AreEqual(expected, actual, true);
+        }        
 
         #region private methods
 
