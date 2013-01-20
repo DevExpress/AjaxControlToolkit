@@ -18,6 +18,10 @@ Sys.Extended.UI.LineChart = function (element) {
     this._valueAxisLineColor = '';
     this._categoryAxisLineColor = '';
     this._baseLineColor = '';
+    this._tooltipBackgroundColor = '#ffffff';
+    this._tooltipFontColor = '#0E426C';
+    this._tooltipBorderColor = '#B85B3E';
+    this._areaDataLabel = '';
 
     // variables
     this.yMax = 0;
@@ -49,11 +53,34 @@ Sys.Extended.UI.LineChart.prototype = {
             this._valueAxisLines = 9;
         }
 
+        this.generateTooltipDiv();
         this.generateLineChart();
     },
 
     dispose: function () {
         Sys.Extended.UI.LineChart.callBaseMethod(this, "dispose");
+    },
+
+    generateTooltipDiv: function () {
+        this._divTooltip = $common.createElementFromTemplate({
+            nodeName: 'div',
+            properties: {
+                id: this.get_id() + '_tooltipDiv',
+                style: {
+                    position: 'absolute',
+                    backgroundColor: this._tooltipBackgroundColor,
+                    borderStyle: 'solid',
+                    borderWidth: '5px',
+                    borderColor: this._tooltipBorderColor,
+                    left: '0px',
+                    top: '0px',
+                    color: this._tooltipFontColor,
+                    visibility: 'hidden',
+                    zIndex: '10000',
+                    padding: '10px'
+                }
+            }
+        }, this._parentDiv);
     },
 
     generateLineChart: function () {
@@ -82,10 +109,10 @@ Sys.Extended.UI.LineChart.prototype = {
         this.startX = (this._chartWidth * 10 / 100) + 0.5;
         this.endX = parseInt(this._chartWidth) - 4.5;
 
-        if (this.yMin > 0)
-            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 15 / 100)) + 0.5;
+        if (this.yMin >= 0)
+            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 24 / 100)) + 0.5;
         else
-            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 5 / 100)) / 2 + 0.5;
+            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 12 / 100)) / 2 + 0.5;
 
         this.yInterval = this.startY / (this._valueAxisLines + 1);
     },
@@ -159,7 +186,7 @@ Sys.Extended.UI.LineChart.prototype = {
         var x;
         var pow10x;
 
-        if (this.yMin > 0) {
+        if (this.yMin >= 0) {
             range = this.yMax;
         }
         else {
@@ -242,8 +269,7 @@ Sys.Extended.UI.LineChart.prototype = {
     drawLegendArea: function () {
         var legendContents = '';
         // Legend Area
-        var legendAreaStartHeight = (parseInt(this._chartHeight) * 90 / 100) + 5;
-        var legendAreaStartWidth = parseInt(this._chartWidth) * 40 / 100;
+        var legendAreaStartHeight = (parseInt(this._chartHeight) * 82 / 100) + 5;        
         var legendBoxWidth = 7.5;
         var legendBoxHeight = 7.5;
         var spaceInLegendContents = 5;
@@ -253,15 +279,29 @@ Sys.Extended.UI.LineChart.prototype = {
         for (var i = 0; i < this._series.length; i++) {
             legendCharLength = legendCharLength + this._series[i].Name.length;
         }
+        var legendAreaWidth = Math.round((legendCharLength * 5) / 2) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._series.length);
+        var isLegendNextLine = false;        
+        if (legendAreaWidth > parseInt(this._chartWidth) /2) {
+            legendAreaWidth = legendAreaWidth / 2;
+            isLegendNextLine = true;
+        }
+
         legendContents = legendContents + '<g>';
-        legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="LegendArea" stroke=""></path>', legendAreaStartWidth, legendAreaStartHeight, Math.round(legendAreaStartWidth + (legendCharLength * this.charLength)) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._series.length), Math.round(parseInt(this._chartHeight) * 97.5 / 100));
+        legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="LegendArea" stroke=""></path>', parseInt(this._chartWidth) * 50 / 100 - (legendAreaWidth / 2), legendAreaStartHeight, Math.round(parseInt(this._chartWidth) * 50 / 100 + (legendCharLength * 5)) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._series.length), Math.round(parseInt(this._chartHeight) * 97.5 / 100));
 
-        var startText = legendAreaStartWidth + 5 + legendBoxWidth + spaceInLegendContents;
+        var startText = parseInt(this._chartWidth) * 50 / 100 - (legendAreaWidth / 2) + 5 + legendBoxWidth + spaceInLegendContents;
         var nextStartText = startText;
-        var startLegend = legendAreaStartWidth + 5;
+        var startLegend = parseInt(this._chartWidth) * 50 / 100 - (legendAreaWidth / 2) + 5;
         var nextStartLegend = startLegend;
-
         for (var i = 0; i < this._series.length; i++) {
+            if (isLegendNextLine && i == Math.round(this._series.length / 2)) {
+                startText = parseInt(this._chartWidth) * 50 / 100 - (legendAreaWidth / 2) + 5 + legendBoxWidth + spaceInLegendContents;
+                nextStartText = startText;
+                startLegend = parseInt(this._chartWidth) * 50 / 100 - (legendAreaWidth / 2) + 5;
+                nextStartLegend = startLegend;
+                legendAreaStartHeight = (parseInt(this._chartHeight) * 89 / 100) + 5;
+                isLegendNextLine = false;
+            }
             startLegend = nextStartLegend;
             startText = nextStartText;
             legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="Legend{4}" style="fill:{5}"></path>', startLegend, legendAreaStartHeight + legendBoxHeight, startLegend + legendBoxWidth, legendAreaStartHeight + 15, i + 1, this._series[i].LineColor);
@@ -288,7 +328,7 @@ Sys.Extended.UI.LineChart.prototype = {
             axisContents = axisContents + String.format('<text id="SeriesAxis" x="{0}" y="{1}" fill-opacity="1">{2}</text>', Math.round(this.startX + (this.xInterval * i) + (this.xInterval * 50 / 100) - (textLength)), this.startY + Math.round(this.yInterval * 65 / 100), this.arrXAxis[i]);
         }
 
-        for (var i = 0; i <= this._valueAxisLines; i++) {            
+        for (var i = 0; i <= this._valueAxisLines; i++) {
             axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">{2}</text>', this.startX - ((this.roundedTickRange * 10 * i / 10).toString().length * 5.5) - 10, this.startY - (this.yInterval * i) + 3.5, this.roundedTickRange * 10 * i / 10);
         }
 
@@ -351,29 +391,29 @@ Sys.Extended.UI.LineChart.prototype = {
             if (me._chartType == Sys.Extended.UI.ChartType.Stacked) {
                 if (me.arrCombinedData[index] > 0) {
                     if (index > 0)
-                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt, {4}, \'{5}\')" onmouseout="HideTooltip(this, evt)"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor, yVal, me._areaDataLabel) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
                     else
-                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt, {4}, \'{5}\')" onmouseout="HideTooltip(this, evt)"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor, yVal, me._areaDataLabel) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
                 }
                 else {
                     if (index > 0)
-                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt, {4}, \'{5}\')" onmouseout="HideTooltip(this, evt)"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor, yVal, me._areaDataLabel) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
                     else
-                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt, {4}, \'{5}\')" onmouseout="HideTooltip(this, evt)"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor, yVal, me._areaDataLabel) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
                 }
             }
             else {
                 if (yVal > 0) {
                     if (index > 0)
-                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt, {4}, \'{5}\')" onmouseout="HideTooltip(this, evt)"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor, yVal, me._areaDataLabel) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
                     else
-                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt, {4}, \'{5}\')" onmouseout="HideTooltip(this, evt)"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor, yVal, me._areaDataLabel) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
                 }
                 else {
                     if (index > 0)
-                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt, {4}, \'{5}\')" onmouseout="HideTooltip(this, evt)"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor, yVal, me._areaDataLabel) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
                     else
-                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
+                        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt, {4}, \'{5}\')" onmouseout="HideTooltip(this, evt)"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor, yVal, me._areaDataLabel) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) + 7.5, yVal);
                 }
             }
 
@@ -389,34 +429,6 @@ Sys.Extended.UI.LineChart.prototype = {
             }, 400);
         }
     },
-
-    //    createTooltipArea: function () {
-    //        this._toolTipDiv = $common.createElementFromTemplate({
-    //            nodeName: "div",
-    //            properties: {
-    //                id: this.get_id() + '_toolTipDiv',
-    //                style: {
-    //                    position: 'absolute',
-    //                    fontSize: '11px',
-    //                    fontFamily: 'Arial',
-    //                    display: 'none',
-    //                    bgcolor: 'yellow'
-    //                }
-    //            }
-    //        }, this._parentDiv);
-    //    },
-
-    //    displayTooltip: function (text, positionX, positionY) {
-    //        this._toolTipDiv.innerHTML = text;
-    //        this._toolTipDiv.style.display = 'block';
-    //        this._toolTipDiv.style.left = positionX + 'px';
-    //        this._toolTipDiv.style.top = positionY + 'px';
-    //    },
-
-    //    hideTooltip: function () {
-    //        this._toolTipDiv.innerHTML = '';
-    //        this._toolTipDiv.style.display = 'none';
-    //    },
 
     get_chartWidth: function () {
         return this._chartWidth;
@@ -500,7 +512,36 @@ Sys.Extended.UI.LineChart.prototype = {
     },
     set_baseLineColor: function (value) {
         this._baseLineColor = value;
+    },
+
+    get_tooltipBackgroundColor: function () {
+        return this.tooltipBackgroundColor;
+    },
+    set_tooltipBackgroundColor: function (value) {
+        this.tooltipBackgroundColor = value;
+    },
+
+    get_tooltipFontColor: function () {
+        return this._tooltipFontColor;
+    },
+    set_tooltipFontColor: function (value) {
+        this._tooltipFontColor = value;
+    },
+
+    get_tooltipBorderColor: function () {
+        return this._tooltipBorderColor;
+    },
+    set_tooltipBorderColor: function (value) {
+        this._tooltipBorderColor = value;
+    },
+
+    get_areaDataLabel: function () {
+        return this._areaDataLabel;
+    },
+    set_areaDataLabel: function (value) {
+        this._areaDataLabel = value;
     }
+
 };
 
 Sys.Extended.UI.LineChart.registerClass("Sys.Extended.UI.LineChart", Sys.Extended.UI.ControlBase);
