@@ -91,6 +91,12 @@
     <Compile Include="Animation\AnimationExtenderDesigner.cs" />
     <Compile Include="Animation\AnimationJavaScriptConverter.cs" />
     <Compile Include="Animation\AnimationScripts.cs" />
+    <Compile Include="AreaChart\AreaChart.cs" />
+    <Compile Include="AreaChart\AreaChartDesigner.cs" />
+    <Compile Include="AreaChart\AreaChartSeries.cs" />
+    <Compile Include="AreaChart\AreaChartSeriesCollection.cs" />
+    <Compile Include="AreaChart\AreaChartSeriesCollectionEditor.cs" />
+    <Compile Include="AreaChart\AreaChartType.cs" />
     <Compile Include="AsyncFileUpload\AsyncFileUpload.cs" />
     <Compile Include="AsyncFileUpload\AsyncFileUploadDesigner.cs" />
     <Compile Include="AsyncFileUpload\FileUploadEventArgs.cs" />
@@ -102,6 +108,12 @@
     <Compile Include="BalloonPopup\BalloonPopupPosition.cs" />
     <Compile Include="BalloonPopup\BalloonPopupSize.cs" />
     <Compile Include="BalloonPopup\BalloonPopupStyle.cs" />
+    <Compile Include="BarChart\BarChart.cs" />
+    <Compile Include="BarChart\BarChartDesigner.cs" />
+    <Compile Include="BarChart\BarChartSeries.cs" />
+    <Compile Include="BarChart\BarChartSeriesCollection.cs" />
+    <Compile Include="BarChart\BarChartSeriesCollectionEditor.cs" />
+    <Compile Include="BarChart\ChartType.cs" />
     <Compile Include="BubbleChart\BubbleChart.cs" />
     <Compile Include="BubbleChart\BubbleChartDesigner.cs" />
     <Compile Include="BubbleChart\BubbleChartValue.cs" />
@@ -130,6 +142,7 @@
     <Compile Include="ComboBox\ComboBoxRenderMode.cs" />
     <Compile Include="Common\BoxSide.cs" />
     <Compile Include="Common\CommonToolkitScripts.cs" />
+    <Compile Include="Common\DataConverter.cs" />
     <Compile Include="Common\DateTimeScripts.cs" />
     <Compile Include="Common\ThreadingScripts.cs" />
     <Compile Include="Common\Utility.cs" />
@@ -277,6 +290,12 @@
     <Compile Include="HTMLEditor\Toolbar_buttons\SuperScript.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Underline.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Undo.cs" />
+    <Compile Include="LineChart\LineChart.cs" />
+    <Compile Include="LineChart\LineChartDesigner.cs" />
+    <Compile Include="LineChart\LineChartSeries.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollection.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollectionEditor.cs" />
+    <Compile Include="LineChart\LineChartType.cs" />
     <Compile Include="ListSearch\ListSearchDesigner.cs" />
     <Compile Include="ListSearch\ListSearchExtender.cs" />
     <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
@@ -313,6 +332,11 @@
     <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
     <Compile Include="PasswordStrength\PasswordStrengthExtenderExtender.cs" />
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
+    <Compile Include="PieChart\PieChart.cs" />
+    <Compile Include="PieChart\PieChartDesigner.cs" />
+    <Compile Include="PieChart\PieChartValue.cs" />
+    <Compile Include="PieChart\PieChartValueCollection.cs" />
+    <Compile Include="PieChart\PieChartValueCollectionEditor.cs" />
     <Compile Include="PopupControl\PopupControlDesigner.cs" />
     <Compile Include="PopupControl\PopupControlExtender.cs" />
     <Compile Include="PopupExtender\PopupExtender.cs" />
@@ -394,6 +418,8 @@
     <EmbeddedResource Include="Animation\Animation.ico" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.css" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.pre.js" />
+    <Content Include="AreaChart\AreaChart.css" />
+    <Content Include="AreaChart\AreaChart.pre.js" />
     <Content Include="AsyncFileUpload\AsyncFileUpload.pre.js" />
     <Content Include="AsyncFileUpload\images\fileupload.png" />
     <EmbeddedResource Include="AutoComplete\AutoComplete.ico" />
@@ -403,6 +429,8 @@
     <Content Include="BalloonPopup\Cloud\sprite.png" />
     <Content Include="BalloonPopup\Rectangle\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
+    <Content Include="BarChart\BarChart.css" />
+    <Content Include="BarChart\BarChart.pre.js" />
     <Content Include="BubbleChart\BubbleChart.css" />
     <Content Include="BubbleChart\BubbleChart.pre.js" />
     <Content Include="Calendar\Calendar_resource.css" />
@@ -605,6 +633,8 @@
     <EmbeddedResource Include="ListSearch\ListSearch.ico" />
     <EmbeddedResource Include="MaskedEdit\MaskedEdit.ico" />
     <EmbeddedResource Include="ModalPopup\ModalPopup.ico" />
+    <Content Include="LineChart\LineChart.css" />
+    <Content Include="LineChart\LineChart.pre.js" />
     <Content Include="MultiHandleSlider\MultiHandleSlider_resource.css" />
     <EmbeddedResource Include="MultiHandleSlider\MultiHandleSlider.ico" />
     <EmbeddedResource Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBox.ico" />
@@ -615,6 +645,8 @@
     <EmbeddedResource Include="PasswordStrength\PasswordStrength.ico" />
     <EmbeddedResource Include="PopupControl\PopupControl.ico" />
     <EmbeddedResource Include="Rating\Rating.ico" />
+    <Content Include="PieChart\PieChart.css" />
+    <Content Include="PieChart\PieChart.pre.js" />
     <Content Include="ReorderList\DraggableListItemBehavior.pre.js" />
     <Content Include="ReorderList\DropWatcherBehavior.pre.js" />
     <EmbeddedResource Include="ReorderList\ReorderList.ico" />
