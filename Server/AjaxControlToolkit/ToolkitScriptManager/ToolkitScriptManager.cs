@@ -43,11 +43,10 @@ namespace AjaxControlToolkit
         /// </summary>
         protected static readonly Regex WebResourceRegex = new Regex("<%\\s*=\\s*(?<resourceType>WebResource|ScriptResource)\\(\"(?<resourceName>[^\"]*)\"\\)\\s*%>", RegexOptions.Singleline | RegexOptions.Multiline);
 
-#if !NET4 || NET45
+#if !NET4 && !NET45
         private static Dictionary<String, bool> _scripts;
 
-        static ToolkitScriptManager()
-        {
+        static ToolkitScriptManager() {
             _scripts = new Dictionary<string, bool>();
             _scripts.Add("MicrosoftAjax.js", true);
             _scripts.Add("MicrosoftAjaxWebForms.js", true);
@@ -60,10 +59,13 @@ namespace AjaxControlToolkit
         private static WebResourceAttribute[] GetWebResourceAttributes(Assembly assembly)
         {
             WebResourceAttribute[] attributes;
-            if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes))
+            lock (_webResourceAttributeCache)
             {
-                attributes = (WebResourceAttribute[])assembly.GetCustomAttributes(typeof(WebResourceAttribute), false);
-                _webResourceAttributeCache[assembly] = attributes;
+                if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes))
+                {
+                    attributes = (WebResourceAttribute[])assembly.GetCustomAttributes(typeof(WebResourceAttribute), false);
+                    _webResourceAttributeCache[assembly] = attributes;
+                }
             }
             return attributes;
         }
@@ -71,10 +73,13 @@ namespace AjaxControlToolkit
         private static ScriptResourceAttribute[] GetScriptResourceAttributes(Assembly assembly)
         {
             ScriptResourceAttribute[] attributes;
-            if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes))
+            lock (_scriptResourceAttributeCache)
             {
-                attributes = (ScriptResourceAttribute[])assembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false);
-                _scriptResourceAttributeCache[assembly] = attributes;
+                if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes))
+                {
+                    attributes = (ScriptResourceAttribute[])assembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false);
+                    _scriptResourceAttributeCache[assembly] = attributes;
+                }
             }
             return attributes;
         }
@@ -82,10 +87,13 @@ namespace AjaxControlToolkit
         private static ScriptCombineAttribute[] GetScriptCombineAttributes(Assembly assembly)
         {
             ScriptCombineAttribute[] attributes;
-            if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes))
+            lock (_scriptCombineAttributeCache)
             {
-                attributes = (ScriptCombineAttribute[])assembly.GetCustomAttributes(typeof(ScriptCombineAttribute), false);
-                _scriptCombineAttributeCache[assembly] = attributes;
+                if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes))
+                {
+                    attributes = (ScriptCombineAttribute[])assembly.GetCustomAttributes(typeof(ScriptCombineAttribute), false);
+                    _scriptCombineAttributeCache[assembly] = attributes;
+                }
             }
             return attributes;
         }
@@ -134,24 +142,20 @@ namespace AjaxControlToolkit
         /// </summary>
         private List<ScriptReference> _uncombinableScriptReferences;
 
-#if !NET4 || NET45
-        private void ApplyAssembly(ScriptReference script, bool isComposite)
-        {
+#if !NET4 && !NET45
+        private void ApplyAssembly(ScriptReference script, bool isComposite) {
             // if the script has a name and no path, and no assembly or the assembly is set to SWE,
             // set the path to the resource in ACT. We set the path instead of just changing the assembly
             // so that ScriptManager still considers the scripts Microsoft Ajax scripts, which allows it to emit
             // inline script.
             if (!String.IsNullOrEmpty(script.Name) && String.IsNullOrEmpty(script.Path) &&
-                (String.IsNullOrEmpty(script.Assembly) || Assembly.Load(script.Assembly) == typeof(ScriptManager).Assembly))
-            {
-                if (!isComposite && _scripts.ContainsKey(script.Name))
-                {
+                (String.IsNullOrEmpty(script.Assembly) || Assembly.Load(script.Assembly) == typeof(ScriptManager).Assembly)) {
+                if (!isComposite && _scripts.ContainsKey(script.Name)) {
                     RedirectScriptReference sr = new RedirectScriptReference(script.Name);
                     script.Path = sr.GetBaseUrl(ScriptManager.GetCurrent(Page));
                     script.ScriptMode = ScriptMode.Release;
                 }
-                else
-                {
+                else {
                     script.Assembly = typeof(ToolkitScriptManager).Assembly.FullName;
                 }
             }
@@ -201,9 +205,8 @@ namespace AjaxControlToolkit
 
         protected override void OnResolveCompositeScriptReference(CompositeScriptReferenceEventArgs e)
         {
-#if !NET4 || NET45
-            foreach (ScriptReference sr in e.CompositeScript.Scripts)
-            {
+#if !NET4 && !NET45
+            foreach (ScriptReference sr in e.CompositeScript.Scripts) {
                 ApplyAssembly(sr, true);
             }
             base.OnResolveCompositeScriptReference(e);
@@ -217,7 +220,7 @@ namespace AjaxControlToolkit
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Portability", "CA1903:UseOnlyApiFromTargetedFramework", MessageId = "System.Web.UI.ScriptReferenceBase")]
         protected override void OnResolveScriptReference(ScriptReferenceEventArgs e)
         {
-#if !NET4 || NET45
+#if !NET4 && !NET45
             ApplyAssembly(e.Script, false);
 #endif
             base.OnResolveScriptReference(e);
@@ -314,22 +317,13 @@ namespace AjaxControlToolkit
             HttpRequest request = context.Request;
             string hiddenFieldName;
             string combinedScripts;
-            if (request.RequestType.ToUpper() == "GET")
-            {
-                hiddenFieldName = request.Params[HiddenFieldParamName];
-                combinedScripts = request.Params[CombinedScriptsParamName];
-            }
-            else
-            {
-#if  NET45
-                hiddenFieldName = request.Form[HiddenFieldParamName];
-                combinedScripts = request.Form[CombinedScriptsParamName];
+#if NET45
+            hiddenFieldName = request.Form[HiddenFieldParamName];
+            combinedScripts = request.Form[CombinedScriptsParamName];
 #else
             hiddenFieldName = request.Params[HiddenFieldParamName];
             combinedScripts = request.Params[CombinedScriptsParamName];
 #endif
-            }
-
             if (!string.IsNullOrEmpty(hiddenFieldName) && !string.IsNullOrEmpty(combinedScripts))
             {
                 // This is a request for a combined script file
