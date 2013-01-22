@@ -327,6 +327,11 @@
     <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
     <Compile Include="PasswordStrength\PasswordStrengthExtenderExtender.cs" />
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
+    <Compile Include="PieChart\PieChart.cs" />
+    <Compile Include="PieChart\PieChartDesigner.cs" />
+    <Compile Include="PieChart\PieChartValue.cs" />
+    <Compile Include="PieChart\PieChartValueCollection.cs" />
+    <Compile Include="PieChart\PieChartValueCollectionEditor.cs" />
     <Compile Include="PopupControl\PopupControlDesigner.cs" />
     <Compile Include="PopupControl\PopupControlExtender.cs" />
     <Compile Include="PopupExtender\PopupExtender.cs" />
@@ -633,6 +638,8 @@
     <EmbeddedResource Include="PasswordStrength\PasswordStrength.ico" />
     <EmbeddedResource Include="PopupControl\PopupControl.ico" />
     <EmbeddedResource Include="Rating\Rating.ico" />
+    <Content Include="PieChart\PieChart.css" />
+    <Content Include="PieChart\PieChart.pre.js" />
     <Content Include="ReorderList\DraggableListItemBehavior.pre.js" />
     <Content Include="ReorderList\DropWatcherBehavior.pre.js" />
     <EmbeddedResource Include="ReorderList\ReorderList.ico" />
