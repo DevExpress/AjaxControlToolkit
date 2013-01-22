@@ -2520,6 +2520,217 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
+        /// <summary>
+        /// A test for Div with double suspicious word and Html Quotes Encapsulation 7 xss
+        /// Example <!-- <Div style="background-color: expexpressionression(<SCRIPT>document.write("<SCRI");</SCRIPT>PT SRC="http://ha.ckers.org/xss.js"></SCRIPT>)"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivDoubleSuspiciousWordHtmlQuotesEncapsulation7XSSTest()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<Div style=\"background-color: expexpressionression(<SCRIPT>document.write(\"<SCRI\");</SCRIPT>PT SRC=\"http://ha.ckers.org/xss.js\"></SCRIPT>)\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x26;gt&#x3B;document&#x2E;write&#x28;\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">)\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for image with style attribute
+        /// Example <!-- <IMG style="border:5px solid red"> sanitizes to <img> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageWithStyleAttribute()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG style=\"border:5px solid red\"> sanitizes to <img>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<img> sanitizes to <img>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div tag for broken expression embedded in style attribute.
+        /// Example <!-- <div STYLE=\"background-color:expre/* x*/ssion(alert(window.location))\"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleWithBrokenExpression()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div STYLE=\"background-color:expre/* x*/ssion(alert(window.location))\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div STYLE=\"background&#x2D;color&#x3A;&#x28;alert&#x28;window&#x2E;location&#x29;&#x29;\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }        
+
+        /// <summary>
+        /// A test for Div tag for -moz-binding in style attribute.
+        /// Example <!-- <div style="color: red; -moz-binding: url(https://bugzilla.mozilla.org/attachment.cgi?id=209238#exploit); ">  This is a paragraph with inline exploit CSS. </div> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleWithMozBinding()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"color: red; -moz-binding: url(https://bugzilla.mozilla.org/attachment.cgi?id=209238#exploit); \">  This is a paragraph with inline exploit CSS. </div>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"color&#x3A;&#x20;red&#x3B;&#x20;binding&#x3A;&#x20;url&#x28;https&#x3A;&#x2F;&#x2F;bugzilla&#x2E;mozilla&#x2E;org&#x2F;attachment&#x2E;cgi&#x3F;id&#x3D;209238&#x23;exploit&#x29;&#x3B;&#x20;\">  This is a paragraph with inline exploit CSS. </div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Link tag for webkit external css.
+        /// Example <!-- <link rel="stylesheet" media="screen and -webkit-min-device-pixel-ratio: 0" href="webkit.css"/>  -->
+        /// </summary>   
+        [TestMethod()]
+        public void LinkWithWebKitCSS()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<link rel=\"stylesheet\" media=\"screen and -webkit-min-device-pixel-ratio: 0\" href=\"webkit.css\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<link rel=\"stylesheet\" media=\"screen&#x20;and&#x20;minpixel&#x2D;ratio&#x3A;&#x20;0\" href=\"webkit&#x2E;css\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div tag for webkit css in style attribute.
+        /// Example <!-- <div style="-webkit-transform: rotate(45deg);">  -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivWithWebKitStyle()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"-webkit-transform: rotate(45deg);\"></div>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"transform&#x3A;&#x20;rotate&#x28;45deg&#x29;&#x3B;\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+
+        /// <summary>
+        /// A test for Div tag with custom ms extenstion in style attribute.
+        /// Example <!-- <table style="-ms-writing-mode: tb-rl">  -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivWithMSExtension()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"-ms-writing-mode: tb-rl\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"writing&#x2D;mode&#x3A;&#x20;tb&#x2D;rl\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div tag with custom KHtml extenstion in style attribute.
+        /// Example <!-- <div style="-khtml-opacity: 0.5;">  -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivWithKHtmlExtension()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"-khtml-opacity: 0.5;\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"opacity&#x3A;&#x20;0&#x2E;5&#x3B;\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div tag with custom O extenstion in style attribute.
+        /// Example <!-- <div style="-o-text-overflow: clip;">  -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivWithOExtension()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"-o-text-overflow: clip;\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"text&#x2D;overflow&#x3A;&#x20;clip&#x3B;\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for P tag with custom Wap extenstion in style attribute.
+        /// Example <!-- <p style="display: -wap-marquee; -wap-marquee-dir: ltr">Hello, welcome to our WCSS Tutorial.</p>  -->
+        /// </summary>   
+        [TestMethod()]
+        public void PWithWapExtension()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<p style=\"display: -wap-marquee; -wap-marquee-dir: ltr\">Hello, welcome to our WCSS Tutorial.</p>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<p style=\"display&#x3A;&#x20;marquee&#x3B;&#x20;marquee&#x2D;dir&#x3A;&#x20;ltr\">Hello, welcome to our WCSS Tutorial.</p>";
+            Assert.AreEqual(expected, actual, true);
+        }        
+
         #region private methods
 
         private Dictionary<string, string[]> CreateElementWhiteList()
@@ -2548,6 +2759,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             TagList.Add("br", new string[] { "style" });
             TagList.Add("center", new string[] { "style" });
             TagList.Add("a", new string[] { "href" });
+            TagList.Add("link", new string[] { "rel", "media", "href" });
 
             return TagList;
         }
@@ -2565,6 +2777,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             AttributeList.Add("width", new string[] { });
             AttributeList.Add("src", new string[] { });
             AttributeList.Add("href", new string[] { });
+            AttributeList.Add("rel", new string[] { });
 
             return AttributeList;
         }
