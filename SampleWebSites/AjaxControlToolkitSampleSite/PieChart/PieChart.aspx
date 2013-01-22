@@ -10,12 +10,15 @@
             PieChart Demonstration</div>
         <br />
         <ajaxToolkit:PieChart ID="pieChart1" runat="server" ChartHeight="300" ChartWidth="450"
-            ChartTitle="Widget Production in the world" ChartTitleColor="#0E426C">
+            ChartTitle="Widget Production in the world %" ChartTitleColor="#0E426C">
             <PieChartValues>
-                <ajaxToolkit:PieChartValue Category="United States" Data="45" PieChartValueColor="#6C1E83" PieChartValueStrokeColor="black" />
-                <ajaxToolkit:PieChartValue Category="Europe" Data="25" PieChartValueColor="#D08AD9" PieChartValueStrokeColor="black" />
-                <ajaxToolkit:PieChartValue Category="Asia" Data="17" PieChartValueColor="#6586A7" PieChartValueStrokeColor="black" />
-                <ajaxToolkit:PieChartValue Category="Australia" Data="13" PieChartValueColor="#0E426C" PieChartValueStrokeColor="black" />
+                <ajaxToolkit:PieChartValue Category="United States" Data="30" PieChartValueColor="#0E426C" />
+                <ajaxToolkit:PieChartValue Category="India" Data="5" PieChartValueColor="#D08AD9" />                
+                <ajaxToolkit:PieChartValue Category="France" Data="8" PieChartValueColor="#B85B3E" />
+                <ajaxToolkit:PieChartValue Category="Germany" Data="9" PieChartValueColor="#FFC652" />                
+                <ajaxToolkit:PieChartValue Category="United Kingdom" Data="22" PieChartValueColor="#6586A7" />
+                <ajaxToolkit:PieChartValue Category="Australia" Data="18" PieChartValueColor="#669900" />
+                <ajaxToolkit:PieChartValue Category="Rusia" Data="8" PieChartValueColor="#4508A2" />
             </PieChartValues>
         </ajaxToolkit:PieChart>
         <br />
@@ -31,9 +34,9 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            The PieChart control enables you to render a pie chart from one or more PieChartValues. 
-            This control is compatible with any browser which supports SVG including
-            Internet Explorer 9 and above.
+            The PieChart control enables you to render a pie chart from one or more PieChartValues.
+            This control is compatible with any browser which supports SVG including Internet
+            Explorer 9 and above.
         </p>
     </asp:Panel>
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
@@ -78,14 +81,14 @@
         <br />
         <strong>PieChartValue Properties:</strong>
         <ul>
-            <li><strong>Category</strong> - This property is required and provides name for a 
-                particular PieChartValue.</li>
-            <li><strong>Data</strong> - This property is required and provides Data for a 
-                particular PieChartValue.</li>
-            <li><strong>PieChartValueColor</strong> - This property enables you to set the color 
+            <li><strong>Category</strong> - This property is required and provides name for a particular
+                PieChartValue.</li>
+            <li><strong>Data</strong> - This property is required and provides Data for a particular
+                PieChartValue.</li>
+            <li><strong>PieChartValueColor</strong> - This property enables you to set the color
                 of segment for a particular PieChartValue.</li>
-            <li><strong>PieChartValueStrokeColor</strong> - This property enables you to set the stroke color 
-                of segment for a particular PieChartValue.</li>
+            <li><strong>PieChartValueStrokeColor</strong> - This property enables you to set the
+                stroke color of segment for a particular PieChartValue.</li>
         </ul>
     </asp:Panel>
     <ajaxToolkit:CollapsiblePanelExtender ID="cpeDescription" runat="Server" TargetControlID="Description_ContentPanel"
