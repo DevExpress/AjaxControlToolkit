@@ -114,6 +114,11 @@
     <Compile Include="BarChart\BarChartSeriesCollection.cs" />
     <Compile Include="BarChart\BarChartSeriesCollectionEditor.cs" />
     <Compile Include="BarChart\ChartType.cs" />
+    <Compile Include="BubbleChart\BubbleChart.cs" />
+    <Compile Include="BubbleChart\BubbleChartDesigner.cs" />
+    <Compile Include="BubbleChart\BubbleChartValue.cs" />
+    <Compile Include="BubbleChart\BubbleChartValueCollection.cs" />
+    <Compile Include="BubbleChart\BubbleChartValueCollectionEditor.cs" />
     <Compile Include="Calendar\CalendarDefaultView.cs" />
     <Compile Include="Calendar\CalendarDesigner.cs" />
     <Compile Include="Calendar\CalendarExtender.cs" />
@@ -426,6 +431,8 @@
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
     <Content Include="BarChart\BarChart.css" />
     <Content Include="BarChart\BarChart.pre.js" />
+    <Content Include="BubbleChart\BubbleChart.css" />
+    <Content Include="BubbleChart\BubbleChart.pre.js" />
     <Content Include="Calendar\Calendar_resource.css" />
     <EmbeddedResource Include="CascadingDropDown\CascadingDropDown.ico" />
     <EmbeddedResource Include="CollapsiblePanel\CollapsiblePanel.ico" />
