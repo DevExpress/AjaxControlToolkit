@@ -6,9 +6,11 @@
     <siteMapNode url="~/AjaxFileUpload/AjaxFileUpload.aspx" title="AjaxFileUpload" />
     <siteMapNode url="~/AlwaysVisibleControl/AlwaysVisibleControl.aspx" title="AlwaysVisibleControl" />
     <siteMapNode url="~/Animation/Animation.aspx" title="Animation" />
+    <siteMapNode url="~/AreaChart/AreaChart.aspx" title="AreaChart" />
     <siteMapNode url="~/AsyncFileUpload/AsyncFileUpload.aspx" title="AsyncFileUpload" />
     <siteMapNode url="~/AutoComplete/AutoComplete.aspx" title="AutoComplete" />
     <siteMapNode url="~/BalloonPopup/BalloonPopupExtender.aspx" title="BalloonPopup" />
+    <siteMapNode url="~/BarChart/BarChart.aspx" title="BarChart" />
     <siteMapNode url="~/Calendar/Calendar.aspx" title="Calendar" />
     <siteMapNode url="~/CascadingDropDown/CascadingDropDown.aspx" title="CascadingDropDown" />
     <siteMapNode url="~/CollapsiblePanel/CollapsiblePanel.aspx" title="CollapsiblePanel" />
@@ -24,6 +26,7 @@
     <siteMapNode url="~/HoverMenu/HoverMenu.aspx" title="HoverMenu" />
     <siteMapNode url="~/HTMLEditor/HTMLEditor.aspx" title="HTMLEditor" />
     <siteMapNode url="~/HTMLEditorExtender/HTMLEditorExtender.aspx" title="HTMLEditorExtender" />
+    <siteMapNode url="~/LineChart/LineChart.aspx" title="LineChart" />
     <siteMapNode url="~/ListSearch/ListSearch.aspx" title="ListSearch" />
     <siteMapNode url="~/MaskedEdit/MaskedEdit.aspx" title="MaskedEdit" />
     <siteMapNode url="~/ModalPopup/ModalPopup.aspx" title="ModalPopup" />
