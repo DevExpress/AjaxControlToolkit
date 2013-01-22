@@ -11,9 +11,6 @@ SET zipper=%c:\zip\7za.exe
 REM Remove PackageFolder
 rd %PackageFolder% /s /q
 
-REM Prep for 3.5
-call Prep35.bat
-
 REM Build the Solution
 %MSBuildFolder%msbuild AjaxControlToolkit.VS2008.sln  /p:Configuration=Release /t:Clean;Build
 
@@ -39,8 +36,7 @@ REM Copy the SanitizerProviders.dll to the Sample Site
 copy Server\SanitizerProviders\bin\Release\SanitizerProviders.dll .\SampleWebSites\AjaxControlToolkitSampleSite\bin\ 
 
 REM Add the Sample Site
-%zipper% a %BinaryFolder%\AjaxControlToolkitSampleSite.zip .\SampleWebSites\AjaxControlToolkitSampleSite\*  
-
+c:\zip\7za.exe a %BinaryFolder%\AjaxControlToolkitSampleSite.zip .\SampleWebSites\AjaxControlToolkitSampleSite\*  
 
 REM zip the results
-%zipper% a %BinaryFolder%.zip .\%BinaryFolder%\* 
+c:\zip\7za.exe a %BinaryFolder%.zip .\%BinaryFolder%\* 

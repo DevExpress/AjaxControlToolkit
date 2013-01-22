@@ -317,13 +317,22 @@ namespace AjaxControlToolkit
             HttpRequest request = context.Request;
             string hiddenFieldName;
             string combinedScripts;
+            if (request.RequestType.ToUpper() == "GET")
+            {
+                hiddenFieldName = request.Params[HiddenFieldParamName];
+                combinedScripts = request.Params[CombinedScriptsParamName];
+            }
+            else
+            {
 #if NET45
-            hiddenFieldName = request.Form[HiddenFieldParamName];
-            combinedScripts = request.Form[CombinedScriptsParamName];
+                hiddenFieldName = request.Form[HiddenFieldParamName];
+                combinedScripts = request.Form[CombinedScriptsParamName];
 #else
             hiddenFieldName = request.Params[HiddenFieldParamName];
             combinedScripts = request.Params[CombinedScriptsParamName];
 #endif
+            }
+
             if (!string.IsNullOrEmpty(hiddenFieldName) && !string.IsNullOrEmpty(combinedScripts))
             {
                 // This is a request for a combined script file
