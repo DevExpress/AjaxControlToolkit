@@ -15,14 +15,8 @@
             ChartType="Basic" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9"
             BaseLineColor="#A156AB" AreaDataLabel=" thousands">
             <Series>
-                <ajaxToolkit:LineChartSeries Name="United States" LineColor="#6C1E83" Data="150, 209, 255, 115, 127, 160" />
-                <ajaxToolkit:LineChartSeries Name="Europe" LineColor="#D08AD9" Data="130, 137, 155, 128, 130, 139" />
-                <ajaxToolkit:LineChartSeries Name="Australia" LineColor="green" Data="10, 18, 16, 9, 5, 11" />
-                <ajaxToolkit:LineChartSeries Name="China" LineColor="brown" Data="95, 106, 109, 103, 100, 106" />
-                <ajaxToolkit:LineChartSeries Name="India" LineColor="red" Data="82, 75, 88, 74, 85, 89" />
-                <ajaxToolkit:LineChartSeries Name="England" LineColor="blue" Data="40, 48, 46, 39, 35, 41" />
-                <ajaxToolkit:LineChartSeries Name="Japan" LineColor="black" Data="115, 112, 116, 113, 115, 126" />
-                <ajaxToolkit:LineChartSeries Name="Canada" LineColor="gray" Data="65, 62, 69, 63, 61, 66" />                
+                <ajaxToolkit:LineChartSeries Name="United States" LineColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
+                <ajaxToolkit:LineChartSeries Name="Europe" LineColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />                
             </Series>
         </ajaxToolkit:LineChart>
         <br />
