@@ -39,7 +39,7 @@
                 </ajaxToolkit:HtmlEditorExtender>
                 <br />
                 <br />
-                <asp:Button runat="server" Text="Submit content" ID="submit" />
+                <asp:Button runat="server" Text="Submit content" ID="submit" OnClick="btnsubmit_click" />
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>

@@ -10,12 +10,6 @@ public partial class HTMLEditorExtender : CommonPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //AjaxFileUpload ajaxFileUpload = htmlEditorExtender2.AjaxFileUpload;
-        //if (ajaxFileUpload != null)
-        //{
-        //    ajaxFileUpload.UploadComplete += new EventHandler<AjaxControlToolkit.AjaxFileUploadEventArgs>(ajaxFileUpload_OnUploadComplete);
-        //}
-
         if (Request.QueryString["preview"] == "1" && !string.IsNullOrEmpty(Request.QueryString["fileId"]))
         {
             var fileId = Request.QueryString["fileId"];
@@ -43,5 +37,17 @@ public partial class HTMLEditorExtender : CommonPage
 
         // Set PostedUrl to preview the uploaded file.         
         e.PostedUrl = string.Format("?preview=1&fileId={0}", e.FileId);
-    }    
+    }
+
+    /// <summary>
+    /// Submit buttons gets the contents of HtmlEditorExtender1.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void btnsubmit_click(object sender, EventArgs e)
+    {
+        // Retrieve the html contents from htmleditor extender
+        string htmlContents = System.Web.HttpUtility.HtmlDecode(txtBox1.Text);
+    }
+
 }
