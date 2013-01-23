@@ -21,43 +21,39 @@
 
 <div id="main">
 
-<h1>AJAX Control Toolkit &mdash; September 2012 Release</h1> 
-<p>
-This release of the Ajax Control Toolkit is the first release to support ASP.NET 4.5. We continue to support ASP.NET 3.5 
-and ASP.NET 4.0.
-</p>
+<h1>AJAX Control Toolkit &mdash; January 2013 Release</h1> 
 <p> 
-This release of the Ajax Control Toolkit includes important bug fixes 
-and feature enhancements for the CascadingDropDown control including the following bug fixes:
+This release of the Ajax Control Toolkit introduces a new set of chart controls and several important
+security and bug fixes.
 </p>
 <ul>
-<li>9490 - Don't disable dropdowns in CascadingDropDown</li>
-<li>14223 - CascadingDropDown Reset or Setting SelectedValue from WebMethod</li> 
-<li>12189 - CascadingDropDown not obeying disabled state of DropDownList</li>
-<li>22942 - CascadingDropDown infinite loop (with solution)</li>
-<li>8671 - CascadingDropdown options is null or undefined</li>
-<li>14407 - CascadingDropDown: populated client event happens too often</li>
-<li>17148 - CascadingDropDown - Add "UseHttpGet" property</li>
-<li>10221 - No NotNull check in CascadingDropDown</li>
-<li>12228 - Provide property for case-insensitive DefaultValue lookup in CascadingDropdown</li>
-</ul>
-<p>
-    We also fixed the following two issues which are not directly related to the CascadingDropDown control:
-</p>
-<ul>
-<li>27108 - CalendarExtender: Bug when selecting December shifts to January. </li>
-<li>27041 - Input controls with HTML5 types do not post back in Firefox, Chrome, Safari </li>
-</ul>
-<p>
-    Finally, we integrated several Pull Requests contributed by the community:
-</p>
-<ul>
-<li>Added French localized resources for the AjaxFileUpload</li>
-<li>Resolved an issue which prevented the AjaxFileUpload control from working with pages that require query string variables.</li> 
-<li>Extended the AjaxFileUploadEventArgs class to include the current file index in the queue and the total number of files in the queue.</li>
-<li>Fixed an issue with TabContainer and TabPanel which caused the OnActiveTabChanged event to fire too often.</li>
+<li>
+    New Chart Controls - This release includes 5 new chart controls: AreaChart, BarChart, BubbleChart, LineChart, and PieChart. 
+    All of these controls work with IE9 and newer and recent versions of Mozilla Firefox, Google Chrome, and Apple Safari. 
+</li>
+<li>HTML Sanitizer - The HTML Sanitizer used by the HtmlEditorExtender has been updated with this release to block 
+additional types of Cross-Site Scripting (XSS) attacks described by OWASP. The Ajax Control Toolkit now contains
+over 120 unit tests for Cross-Site Scripting (XSS) attacks.</li> 
+<li>
+  Request Validation - This release includes an important bug fix concerning a compatibility issue with ASP.NET 4.5
+  Request Validation. 
+</li>
 </ul>
  
+<h2>Ajax Control Toolkit Version</h2>
+<p>
+The version number of this release of the Ajax Control Toolkit follows a different format than previous versions. For example, the previous
+version of the .NET 3.5 version of the Ajax Control Toolkit was version "3.5.60919" where the number 6 represents the number of years 
+that the Ajax Control Toolkit has been released and 0919 represents the date of the release (September 19). 
+</p>
+<p>
+We have reached the 7th year of the Ajax Control Toolkit. Unfortunately, the value "3.5.70123" is incompatible with the
+AssemblyVersion attribute because the number 70123 is too large (bigger than a UInt16). Therefore, we switched to using the version format "3.5.7.0123". 
+Unlike the previous version format, which worked for 7 years, this new version format should work for 65,534 years.
+</p>
+
+
+
 <h2>What's in the Download</h2> 
  
 <p> 
