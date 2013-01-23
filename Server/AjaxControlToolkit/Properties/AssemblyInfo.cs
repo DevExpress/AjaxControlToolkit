@@ -41,8 +41,8 @@ using AjaxControlToolkit;
 #elif NET45
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 [assembly: System.Web.Script.AjaxFrameworkAssembly]
-[assembly: AssemblyVersion("4.5.50501")]
-[assembly: AssemblyFileVersion("4.5.50501")]
+[assembly: AssemblyVersion("4.1.60623")]
+[assembly: AssemblyFileVersion("4.1.60623")]
 #else
 [assembly: AssemblyVersion("3.5.60623")]
 [assembly: AssemblyFileVersion("3.5.60623")]  
