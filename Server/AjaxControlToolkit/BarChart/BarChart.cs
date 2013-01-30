@@ -132,7 +132,7 @@ namespace AjaxControlToolkit
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
-        public BarChartSeriesCollection SeriesList
+        public BarChartSeriesCollection ClientSeries
         {
             get
             {
@@ -199,8 +199,8 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
-        [ClientPropertyName("titleColor")]
-        public string TitleColor
+        [ClientPropertyName("chartTitleColor")]
+        public string ChartTitleColor
         {
             get;
             set;
@@ -247,6 +247,25 @@ namespace AjaxControlToolkit
         #region [ Members ]
 
         /// <summary>
+        /// On Init to validate data.
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            if (!IsDesignMode)
+            {
+                foreach (BarChartSeries barChartSeries in Series)
+                {
+                    if (barChartSeries.Name == null || barChartSeries.Name.Trim() == "")
+                    {
+                        throw new Exception("Name is missing the BarChartSeries. Please provide a name in the BarChartSeries.");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// CreateChilds call to create child controls for BarChart.
         /// </summary>
         internal void CreateChilds()
@@ -262,7 +281,6 @@ namespace AjaxControlToolkit
         {
             GenerateHtmlInputControls();
         }
-
 
         /// <summary>
         /// GenerateHtmlInputControls creates parent div for BarChart control.
