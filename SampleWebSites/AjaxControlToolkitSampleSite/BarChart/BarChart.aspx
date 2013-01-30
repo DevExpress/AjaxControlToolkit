@@ -93,31 +93,22 @@
             The control above is initialized with this code. The <em>italic</em> properties
             are optional:</p>
         <pre>
-&lt;ajaxToolkit:BarChart 
-ID=&quot;BarChart1&quot; 
-runat=&quot;server&quot; 
-<em>ChartHeight</em>=&quot;300&quot; 
-<em>ChartWidth</em>=&quot;450&quot; 
+&lt;ajaxToolkit:BarChart ID=&quot;BarChart1&quot; runat=&quot;server&quot; 
+<em>ChartHeight</em>=&quot;300&quot; <em>ChartWidth</em>=&quot;450&quot; ChartType=&quot;Column&quot;
 <em>ChartTitle</em>=&quot;United States versus European Widget Production&quot; 
-CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot;
-ChartType=&quot;Column&quot;
-<em>ChartTitleColor</em>=&quot;#0E426C&quot; 
-<em>CategoryAxisLineColor</em>=&quot;#D08AD9&quot; 
-<em>ValueAxisLineColor</em>=&quot;#D08AD9&quot; 
-<em>BaseLineColor</em>=&quot;#A156AB&quot; &gt;
+CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot;  
+<em>ChartTitleColor</em>=&quot;#0E426C&quot; <em>CategoryAxisLineColor</em>=&quot;#D08AD9&quot; 
+<em>ValueAxisLineColor</em>=&quot;#D08AD9&quot; <em>BaseLineColor</em>=&quot;#A156AB&quot; &gt;
 &lt;Series&gt;
-&lt;ajaxToolkit:BarChartSeries 
-Name=&quot;United States&quot; 
-<em>BarColor</em>=&quot;#6C1E83&quot; 
-Data=&quot;110, 189, 255, 95, 107, 140&quot; /&gt;
-&lt;ajaxToolkit:BarChartSeries Name=&quot;Europe&quot;  
-<em>BarColor</em>=&quot;#D08AD9&quot; 
-Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
+    &lt;ajaxToolkit:BarChartSeries Name=&quot;United States&quot; <em>BarColor</em>=&quot;#6C1E83&quot; 
+    Data=&quot;110, 189, 255, 95, 107, 140&quot; /&gt;
+    &lt;ajaxToolkit:BarChartSeries Name=&quot;Europe&quot; <em>BarColor</em>=&quot;#D08AD9&quot; 
+    Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
 &lt;/Series&gt;
 &lt;/ajaxToolkit:BarChart&gt;
     </pre>
         <br />
-        <b>Properties</b>
+        <strong>BarChart Properties</strong>
         <ul>
             <li><strong>ChartHeight</strong> - This property enables you to customize the height
                 of the chart.</li>
@@ -143,7 +134,7 @@ Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
                 base lines of the chart.</li>
         </ul>
         <br />
-        BarChart Series Properties:
+        <strong>BarChartSeries Properties:</strong>
         <ul>
             <li><strong>Name</strong> - This property is required.</li>
             <li><strong>Data</strong> - This property is required and provides data for a particular
