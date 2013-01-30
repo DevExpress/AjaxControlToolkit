@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 using System.Collections.Generic;
 using HtmlAgilityPack;
 using System.Text;
@@ -176,21 +176,37 @@ namespace AjaxControlToolkit.Sanitizer
         {
 
             attribute.Value = HttpUtility.HtmlEncode(attribute.Value);
-            
-            attribute.Value = Regex.Replace(attribute.Value, @"\s*j\s*a\s*v\s*a\s*s\s*c\s*r\s*i\s*p\s*t\s*", "", RegexOptions.IgnoreCase);
-            attribute.Value = Regex.Replace(attribute.Value, @"\s*s\s*c\s*r\s*i\s*p\s*t\s*", "", RegexOptions.IgnoreCase);
-
-            if (attribute.Name.ToLower() == "style")
+            bool hasMatching = true;
+            while (hasMatching)
             {
-                attribute.Value = Regex.Replace(attribute.Value, @"\s*e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*", "", RegexOptions.IgnoreCase);
-                attribute.Value = Regex.Replace(attribute.Value, @"\s*b\s*e\s*h\s*a\s*v\s*i\s*o\s*r\s*", "", RegexOptions.IgnoreCase);             
-            }
+                hasMatching = false;
+                if (Regex.IsMatch(attribute.Value, @"\s*j\s*a\s*v\s*a\s*s\s*c\s*r\s*i\s*p\s*t\s*", RegexOptions.IgnoreCase))
+                    hasMatching = true;
+                attribute.Value = Regex.Replace(attribute.Value, @"\s*j\s*a\s*v\s*a\s*s\s*c\s*r\s*i\s*p\s*t\s*", "", RegexOptions.IgnoreCase);
 
-            if (attribute.Name.ToLower() == "href" || attribute.Name.ToLower() == "src")
-            {
-                //if (!attribute.Value.StartsWith("http://") || attribute.Value.StartsWith("/"))
-                //    attribute.Value = "";
-                attribute.Value = Regex.Replace(attribute.Value, @"\s*m\s*o\s*c\s*h\s*a\s*", "", RegexOptions.IgnoreCase);
+                if (Regex.IsMatch(attribute.Value, @"\s*s\s*c\s*r\s*i\s*p\s*t\s*", RegexOptions.IgnoreCase))
+                    hasMatching = true;
+                attribute.Value = Regex.Replace(attribute.Value, @"\s*s\s*c\s*r\s*i\s*p\s*t\s*", "", RegexOptions.IgnoreCase);
+
+                if (attribute.Name.ToLower() == "style")
+                {
+                    if (Regex.IsMatch(attribute.Value, @"\s*e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*", RegexOptions.IgnoreCase))
+                        hasMatching = true;
+                    attribute.Value = Regex.Replace(attribute.Value, @"\s*e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*", "", RegexOptions.IgnoreCase);
+
+                    if (Regex.IsMatch(attribute.Value, @"\s*b\s*e\s*h\s*a\s*v\s*i\s*o\s*r\s*", RegexOptions.IgnoreCase))
+                        hasMatching = true;
+                    attribute.Value = Regex.Replace(attribute.Value, @"\s*b\s*e\s*h\s*a\s*v\s*i\s*o\s*r\s*", "", RegexOptions.IgnoreCase);
+                }
+
+                if (attribute.Name.ToLower() == "href" || attribute.Name.ToLower() == "src")
+                {
+                    //if (!attribute.Value.StartsWith("http://") || attribute.Value.StartsWith("/"))
+                    //    attribute.Value = "";
+                    if (Regex.IsMatch(attribute.Value, @"\s*m\s*o\s*c\s*h\s*a\s*", RegexOptions.IgnoreCase))
+                        hasMatching = true;
+                    attribute.Value = Regex.Replace(attribute.Value, @"\s*m\s*o\s*c\s*h\s*a\s*", "", RegexOptions.IgnoreCase);
+                }
             }
 
             // HtmlEntity Escape
@@ -210,8 +226,8 @@ namespace AjaxControlToolkit.Sanitizer
         /// <param name="c">Character from the attribute value</param>
         /// <returns>Hex formatted string.</returns>
         private string EncodeCharacterToHtmlEntityEscape(char c)
-        {   
-            string hex; 
+        {
+            string hex;
             // check for alphnumeric characters
             if (c < 0xFF)
             {
@@ -221,7 +237,7 @@ namespace AjaxControlToolkit.Sanitizer
             }
             else
                 hex = ((int)(c)).ToString("X2");
-            
+
             // check for illegal characters
             if ((c <= 0x1f && c != '\t' && c != '\n' && c != '\r') || (c >= 0x7f && c <= 0x9f))
             {
