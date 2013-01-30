@@ -360,9 +360,9 @@
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
     <Compile Include="PieChart\PieChart.cs" />
     <Compile Include="PieChart\PieChartDesigner.cs" />
-    <Compile Include="PieChart\PieChartSeries.cs" />
-    <Compile Include="PieChart\PieChartSeriesCollection.cs" />
-    <Compile Include="PieChart\PieChartSeriesCollectionEditor.cs" />
+    <Compile Include="PieChart\PieChartValue.cs" />
+    <Compile Include="PieChart\PieChartValueCollection.cs" />
+    <Compile Include="PieChart\PieChartValueCollectionEditor.cs" />
     <Compile Include="PopupControl\PopupControlDesigner.cs" />
     <Compile Include="PopupControl\PopupControlExtender.cs" />
     <Compile Include="PopupExtender\PopupExtender.cs" />

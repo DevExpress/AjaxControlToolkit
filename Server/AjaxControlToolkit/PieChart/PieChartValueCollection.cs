@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 
 using System;
 using System.Collections;
@@ -11,9 +11,9 @@ using System.Web.UI;
 namespace AjaxControlToolkit
 {
     /// <summary>
-    /// Holds Area Pie Series
+    /// Holds collection of PieChartValue
     /// </summary>
-    public sealed class PieChartSeriesCollection : List<PieChartSeries>
+    public sealed class PieChartValueCollection : List<PieChartValue>
     {
 
     }
