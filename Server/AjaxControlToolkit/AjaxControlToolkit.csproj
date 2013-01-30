@@ -169,6 +169,11 @@
     <Compile Include="Compat\Timer\TimerScript.cs" />
     <Compile Include="ConfirmButton\confirmButtonDesigner.cs" />
     <Compile Include="ConfirmButton\confirmButtonExtender.cs" />
+    <Compile Include="BubbleChart\BubbleChart.cs" />
+    <Compile Include="BubbleChart\BubbleChartDesigner.cs" />
+    <Compile Include="BubbleChart\BubbleChartValue.cs" />
+    <Compile Include="BubbleChart\BubbleChartValueCollection.cs" />
+    <Compile Include="BubbleChart\BubbleChartValueCollectionEditor.cs" />
     <Compile Include="DragPanel\DragPanelDesigner.cs" />
     <Compile Include="DragPanel\DragPanelExtender.cs" />
     <Compile Include="DropDown\DropDownDesigner.cs" />
@@ -445,6 +450,8 @@
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
     <Content Include="BarChart\BarChart.css" />
     <Content Include="BarChart\BarChart.pre.js" />
+    <Content Include="BubbleChart\BubbleChart.css" />
+    <Content Include="BubbleChart\BubbleChart.pre.js" />
     <Content Include="LineChart\LineChart.css" />
     <Content Include="LineChart\LineChart.pre.js" />
     <Content Include="PieChart\PieChart.css" />
