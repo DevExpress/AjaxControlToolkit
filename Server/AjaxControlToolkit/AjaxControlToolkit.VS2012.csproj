@@ -117,6 +117,12 @@
     <Compile Include="Animation\AnimationExtenderDesigner.cs" />
     <Compile Include="Animation\AnimationJavaScriptConverter.cs" />
     <Compile Include="Animation\AnimationScripts.cs" />
+    <Compile Include="AreaChart\AreaChart.cs" />
+    <Compile Include="AreaChart\AreaChartDesigner.cs" />
+    <Compile Include="AreaChart\AreaChartSeries.cs" />
+    <Compile Include="AreaChart\AreaChartSeriesCollection.cs" />
+    <Compile Include="AreaChart\AreaChartSeriesCollectionEditor.cs" />
+    <Compile Include="AreaChart\AreaChartType.cs" />
     <Compile Include="AsyncFileUpload\AsyncFileUpload.cs" />
     <Compile Include="AsyncFileUpload\AsyncFileUploadDesigner.cs" />
     <Compile Include="AsyncFileUpload\FileUploadEventArgs.cs" />
@@ -432,6 +438,8 @@
     <EmbeddedResource Include="BalloonPopup\BalloonPopup.ico" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.css" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.pre.js" />
+    <Content Include="AreaChart\AreaChart.css" />
+    <Content Include="AreaChart\AreaChart.pre.js" />
     <Content Include="BalloonPopup\Cloud\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Cloud\sprite.gif" />
     <Content Include="BalloonPopup\Cloud\sprite.png" />
