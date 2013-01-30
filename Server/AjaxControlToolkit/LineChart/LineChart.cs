@@ -49,7 +49,7 @@ namespace AjaxControlToolkit
         #region [ Constructors ]
 
         /// <summary>
-        /// Initializes a new AjaxFileUpload.
+        /// Initializes a new LineChart control.
         /// </summary>
         public LineChart()
             : base(true, HtmlTextWriterTag.Div)

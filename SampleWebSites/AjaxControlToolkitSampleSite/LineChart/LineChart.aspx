@@ -65,29 +65,21 @@
             The control above is initialized with this code. The <em>italic</em> properties
             are optional:</p>
         <pre>
-&lt;ajaxToolkit:LineChart ID="LineChart1" runat="server" 
-<em>ChartHeight</em>="300" 
-<em>ChartWidth</em>="450" 
+&lt;ajaxToolkit:LineChart ID=&quot;LineChart1&quot; runat=&quot;server&quot; 
+<em>ChartWidth</em>=&quot;450&quot; <em>ChartHeight</em>=&quot;300&quot; ChartType=&quot;Basic&quot; 
 <em>ChartTitle</em>=&quot;United States versus European Widget Production&quot; 
-CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot;
-ChartType=&quot;Basic&quot; 
-<em>ChartTitleColor</em>=&quot;#0E426C&quot; 
-<em>CategoryAxisLineColor</em>=&quot;#D08AD9&quot; 
-<em>ValueAxisLineColor</em>=&quot;#D08AD9&quot; 
-<em>BaseLineColor</em>=&quot;#A156AB&quot;&gt;
+CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot; 
+<em>ChartTitleColor</em>=&quot;#0E426C&quot; <em>CategoryAxisLineColor</em>=&quot;#D08AD9&quot; 
+<em>ValueAxisLineColor</em>=&quot;#D08AD9&quot; <em>BaseLineColor</em>=&quot;#A156AB&quot;&gt;
 &lt;Series&gt;
-&lt;ajaxToolkit:LineChartSeries 
-Name=&quot;United States&quot; 
-<em>LineColor</em>=&quot;#6C1E83&quot; 
-Data=&quot;110, 189, 255, 95, 107, 140&quot; /&gt;
-&lt;ajaxToolkit:LineChartSeries 
-Name=&quot;Europe&quot;  
-<em>LineColor</em>=&quot;#D08AD9&quot; 
-Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
+    &lt;ajaxToolkit:LineChartSeries Name=&quot;United States&quot; 
+    <em>LineColor</em>=&quot;#6C1E83&quot; Data=&quot;110, 189, 255, 95, 107, 140&quot; /&gt;
+    &lt;ajaxToolkit:LineChartSeries Name=&quot;Europe&quot;  
+    <em>LineColor</em>=&quot;#D08AD9&quot; Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
 &lt;/Series&gt;
 &lt;/ajaxToolkit:LineChart&gt;
     </pre>
-        <b>Properties</b>
+        <strong>LineChart Properties</strong>
         <ul>
             <li><strong>ChartHeight</strong> - This property enables you to customize the height
                 of the chart.</li>
@@ -97,8 +89,8 @@ Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
                 chart.</li>
             <li><strong>CategoryAxis</strong> - This is a required property. You need to provide
                 a set of values for the category axis to create a line chart.</li>
-            <li><strong>ChartType</strong> - This property enables you to render different types
-                of line charts including Column and Stacked.</li>
+            <li><strong>ChartType</strong> - This property enables you to render two types of line 
+            charts 1. Basic 2. Stacked.</li>
             <li><strong>Theme</strong> - This property enables you to control the appearance of
                 the line chart with a Cascading Style Sheet file.</li>
             <li><strong>ValueAxisLines</strong> - This property enables you to set the interval
@@ -113,7 +105,7 @@ Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
                 base lines of the chart.</li>
         </ul>
         <br />
-        <strong>LineChart Series Properties:</strong>
+        <strong>LineChartSeries Properties:</strong>
         <ul>
             <li><strong>Name</strong> - This property is required.</li>
             <li><strong>Data</strong> - This property is required and provides data for a particular
