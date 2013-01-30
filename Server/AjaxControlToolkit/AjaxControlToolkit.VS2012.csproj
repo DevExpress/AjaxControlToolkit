@@ -305,6 +305,12 @@
     <Compile Include="HTMLEditor\Toolbar_buttons\Underline.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Undo.cs" />
     <Compile Include="HtmlEditorExtender\HtmlEditorExtender.cs" />
+    <Compile Include="LineChart\LineChart.cs" />
+    <Compile Include="LineChart\LineChartDesigner.cs" />
+    <Compile Include="LineChart\LineChartSeries.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollection.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollectionEditor.cs" />
+    <Compile Include="LineChart\LineChartType.cs" />
     <Compile Include="ListSearch\ListSearchDesigner.cs" />
     <Compile Include="ListSearch\ListSearchExtender.cs" />
     <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
@@ -429,6 +435,8 @@
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
     <Content Include="BarChart\BarChart.css" />
     <Content Include="BarChart\BarChart.pre.js" />
+    <Content Include="LineChart\LineChart.css" />
+    <Content Include="LineChart\LineChart.pre.js" />
     <Content Include="Twitter\Twitter.ico" />
     <Content Include="Twitter\Twitter24.png" />
     <Content Include="Twitter\Twitter32.png" />

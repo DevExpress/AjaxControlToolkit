@@ -279,6 +279,12 @@
     <Compile Include="HTMLEditor\Toolbar_buttons\SuperScript.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Underline.cs" />
     <Compile Include="HTMLEditor\Toolbar_buttons\Undo.cs" />
+    <Compile Include="LineChart\LineChart.cs" />
+    <Compile Include="LineChart\LineChartDesigner.cs" />
+    <Compile Include="LineChart\LineChartSeries.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollection.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollectionEditor.cs" />
+    <Compile Include="LineChart\LineChartType.cs" />
     <Compile Include="ListSearch\ListSearchDesigner.cs" />
     <Compile Include="ListSearch\ListSearchExtender.cs" />
     <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
@@ -405,7 +411,7 @@
     <Content Include="BalloonPopup\Cloud\sprite.png" />
     <Content Include="BalloonPopup\Rectangle\BalloonPopup_resource.css" />
     <Content Include="BalloonPopup\Rectangle\sprite.png" />
-    <Content Include="BarChart\BarChart.css" /> 
+    <Content Include="BarChart\BarChart.css" />
     <Content Include="BarChart\BarChart.pre.js" />
     <Content Include="Calendar\Calendar_resource.css" />
     <EmbeddedResource Include="CascadingDropDown\CascadingDropDown.ico" />
@@ -607,6 +613,8 @@
     <EmbeddedResource Include="ListSearch\ListSearch.ico" />
     <EmbeddedResource Include="MaskedEdit\MaskedEdit.ico" />
     <EmbeddedResource Include="ModalPopup\ModalPopup.ico" />
+    <Content Include="LineChart\LineChart.css" />
+    <Content Include="LineChart\LineChart.pre.js" />
     <Content Include="MultiHandleSlider\MultiHandleSlider_resource.css" />
     <EmbeddedResource Include="MultiHandleSlider\MultiHandleSlider.ico" />
     <EmbeddedResource Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBox.ico" />
