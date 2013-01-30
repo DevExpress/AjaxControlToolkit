@@ -43,7 +43,7 @@ namespace AjaxControlToolkit
         /// </summary>
         protected static readonly Regex WebResourceRegex = new Regex("<%\\s*=\\s*(?<resourceType>WebResource|ScriptResource)\\(\"(?<resourceName>[^\"]*)\"\\)\\s*%>", RegexOptions.Singleline | RegexOptions.Multiline);
 
-#if !NET4
+#if !NET4 && !NET45
         private static Dictionary<String, bool> _scripts;
 
         static ToolkitScriptManager() {
@@ -56,27 +56,33 @@ namespace AjaxControlToolkit
             _scripts.Add("MicrosoftAjaxTimer.debug.js", true);
         }
 #endif
-        private static WebResourceAttribute[] GetWebResourceAttributes(Assembly assembly) {
+        private static WebResourceAttribute[] GetWebResourceAttributes(Assembly assembly)
+        {
             WebResourceAttribute[] attributes;
-            if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes)) {
+            if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes))
+            {
                 attributes = (WebResourceAttribute[])assembly.GetCustomAttributes(typeof(WebResourceAttribute), false);
                 _webResourceAttributeCache[assembly] = attributes;
             }
             return attributes;
         }
 
-        private static ScriptResourceAttribute[] GetScriptResourceAttributes(Assembly assembly) {
+        private static ScriptResourceAttribute[] GetScriptResourceAttributes(Assembly assembly)
+        {
             ScriptResourceAttribute[] attributes;
-            if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes)) {
+            if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes))
+            {
                 attributes = (ScriptResourceAttribute[])assembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false);
                 _scriptResourceAttributeCache[assembly] = attributes;
             }
             return attributes;
         }
 
-        private static ScriptCombineAttribute[] GetScriptCombineAttributes(Assembly assembly) {
+        private static ScriptCombineAttribute[] GetScriptCombineAttributes(Assembly assembly)
+        {
             ScriptCombineAttribute[] attributes;
-            if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes)) {
+            if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes))
+            {
                 attributes = (ScriptCombineAttribute[])assembly.GetCustomAttributes(typeof(ScriptCombineAttribute), false);
                 _scriptCombineAttributeCache[assembly] = attributes;
             }
@@ -127,7 +133,7 @@ namespace AjaxControlToolkit
         /// </summary>
         private List<ScriptReference> _uncombinableScriptReferences;
 
-#if !NET4
+#if !NET4 && !NET45
         private void ApplyAssembly(ScriptReference script, bool isComposite) {
             // if the script has a name and no path, and no assembly or the assembly is set to SWE,
             // set the path to the resource in ACT. We set the path instead of just changing the assembly
@@ -188,8 +194,9 @@ namespace AjaxControlToolkit
             base.OnLoad(e);
         }
 
-        protected override void OnResolveCompositeScriptReference(CompositeScriptReferenceEventArgs e) {
-#if !NET4
+        protected override void OnResolveCompositeScriptReference(CompositeScriptReferenceEventArgs e)
+        {
+#if !NET4 && !NET45
             foreach (ScriptReference sr in e.CompositeScript.Scripts) {
                 ApplyAssembly(sr, true);
             }
@@ -204,7 +211,7 @@ namespace AjaxControlToolkit
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Portability", "CA1903:UseOnlyApiFromTargetedFramework", MessageId = "System.Web.UI.ScriptReferenceBase")]
         protected override void OnResolveScriptReference(ScriptReferenceEventArgs e)
         {
-#if !NET4
+#if !NET4 && !NET45
             ApplyAssembly(e.Script, false);
 #endif
             base.OnResolveScriptReference(e);
@@ -356,7 +363,7 @@ namespace AjaxControlToolkit
                     outputWriter.WriteLine("if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
 
                     // Write a handler to run on page load and update the hidden field tracking scripts loaded in the browser
-                    outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture, 
+                    outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture,
                         "(function() {{" +
                             "var fn = function() {{" +
                                 "$get(\"{0}\").value += '{1}';" +
@@ -417,7 +424,8 @@ namespace AjaxControlToolkit
                         Assembly scriptAssembly = scriptEntry.LoadAssembly();
                         foreach (ScriptResourceAttribute scriptResourceAttribute in GetScriptResourceAttributes(scriptAssembly))
                         {
-                            if (scriptResourceAttribute.ScriptName == scriptEntry.Name) {
+                            if (scriptResourceAttribute.ScriptName == scriptEntry.Name)
+                            {
 #pragma warning disable 0618 // obsolete members of ScriptResourceAttribute are used but necessary in the 3.5 build
                                 // Found a matching script resource; write it out
                                 outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0}={{", scriptResourceAttribute.TypeName));
@@ -862,13 +870,16 @@ namespace AjaxControlToolkit
             builder.AppendFormat(CultureInfo.InvariantCulture, "{0:x4}", new object[] { (int)c });
         }
 
-        private class RedirectScriptReference : ScriptReference {
-            public RedirectScriptReference(string name) {
+        private class RedirectScriptReference : ScriptReference
+        {
+            public RedirectScriptReference(string name)
+            {
                 Name = name;
                 Assembly = typeof(ToolkitScriptManager).Assembly.FullName;
             }
 
-            public string GetBaseUrl(ScriptManager sm) {
+            public string GetBaseUrl(ScriptManager sm)
+            {
                 return base.GetUrl(sm, true);
             }
         }
