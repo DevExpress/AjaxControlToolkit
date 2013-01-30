@@ -10,7 +10,7 @@
         <div class="demoheading">
             BarChart Demonstration</div>        
         <br />        
-        <ajaxToolkit:BarChart ID="Chart1" runat="server" ChartHeight="300" ChartWidth="450" ChartTitle="Test Title" CategoriesAxis="2007,2008,2009,20010,20011,20012"
+        <ajaxToolkit:BarChart ID="Chart1" runat="server" ChartHeight="300" ChartWidth="450" ChartTitle="Test Title" CategoriesAxis="2007,2008,2009,2010,2011,2012"
         ChartType="Column" TitleColor="red" CategoryAxisLineColor="red" ValueAxisLineColor="blue" BaseLineColor="green">
         <Series>
             <ajaxToolkit:BarChartSeries Name="World" BarColor="Pink" >
@@ -23,7 +23,7 @@
                     <ajaxToolkit:DataValue Data="140" />
                 </DataValues>
             </ajaxToolkit:BarChartSeries>
-            <ajaxToolkit:BarChartSeries Name="United States"  BarColor="Yellow" >
+            <ajaxToolkit:BarChartSeries Name="Europe"  BarColor="Yellow" >
                 <DataValues>
                     <ajaxToolkit:DataValue Data="49" />
                     <ajaxToolkit:DataValue Data="77" />
@@ -48,7 +48,7 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            BarChart control creates the bar charts with the specified values. Chart control 
+            BarChart control creates the bar chart with the specified values. Chart control 
             uses SVG to draw the charts so these are compatible with all latest browsers and 
             multiple plateforms. User can take the advantage of BarChart control to display 
             information in more representative way.
@@ -76,8 +76,8 @@
 <em>ChartHeight</em>="300" <em>
 ChartWidth</em>="450" <em>
 ChartTitle</em>=&quot;Test Title&quot; 
-CategoriesAxis=&quot;2007,2008,2009,20010,20011,20012&quot;
-ChartType=&quot;StackedBar&quot; <em>
+CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot;
+ChartType=&quot;Column&quot; <em>
 TitleColor</em>="red" <em>
 CategoryAxisLineColor</em>="red" <em>
 ValueAxisLineColor</em>="blue" <em>

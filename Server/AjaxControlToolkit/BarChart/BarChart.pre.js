@@ -166,7 +166,7 @@ Sys.Extended.UI.BarChart.prototype = {
         var pow10x;
 
         if (this.yMin > 0) {
-            range = this.yMax - this.yMin;
+            range = this.yMax;
         }
         else {
             range = this.yMax > Math.abs(this.yMin) ? this.yMax : Math.abs(this.yMin);
@@ -483,7 +483,7 @@ Sys.Extended.UI.BarChart.prototype = {
         var pow10x;
 
         if (this.xMin > 0) {
-            range = this.xMax - this.xMin;
+            range = this.xMax;
         }
         else {
             range = this.xMax > Math.abs(this.xMin) ? this.xMax : Math.abs(this.xMin);
