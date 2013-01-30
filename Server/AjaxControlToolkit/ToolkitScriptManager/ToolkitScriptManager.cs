@@ -59,10 +59,13 @@ namespace AjaxControlToolkit
         private static WebResourceAttribute[] GetWebResourceAttributes(Assembly assembly)
         {
             WebResourceAttribute[] attributes;
-            if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes))
+            lock (_webResourceAttributeCache)
             {
-                attributes = (WebResourceAttribute[])assembly.GetCustomAttributes(typeof(WebResourceAttribute), false);
-                _webResourceAttributeCache[assembly] = attributes;
+                if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes))
+                {
+                    attributes = (WebResourceAttribute[])assembly.GetCustomAttributes(typeof(WebResourceAttribute), false);
+                    _webResourceAttributeCache[assembly] = attributes;
+                }
             }
             return attributes;
         }
@@ -70,10 +73,13 @@ namespace AjaxControlToolkit
         private static ScriptResourceAttribute[] GetScriptResourceAttributes(Assembly assembly)
         {
             ScriptResourceAttribute[] attributes;
-            if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes))
+            lock (_scriptResourceAttributeCache)
             {
-                attributes = (ScriptResourceAttribute[])assembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false);
-                _scriptResourceAttributeCache[assembly] = attributes;
+                if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes))
+                {
+                    attributes = (ScriptResourceAttribute[])assembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false);
+                    _scriptResourceAttributeCache[assembly] = attributes;
+                }
             }
             return attributes;
         }
@@ -81,10 +87,13 @@ namespace AjaxControlToolkit
         private static ScriptCombineAttribute[] GetScriptCombineAttributes(Assembly assembly)
         {
             ScriptCombineAttribute[] attributes;
-            if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes))
+            lock (_scriptCombineAttributeCache)
             {
-                attributes = (ScriptCombineAttribute[])assembly.GetCustomAttributes(typeof(ScriptCombineAttribute), false);
-                _scriptCombineAttributeCache[assembly] = attributes;
+                if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes))
+                {
+                    attributes = (ScriptCombineAttribute[])assembly.GetCustomAttributes(typeof(ScriptCombineAttribute), false);
+                    _scriptCombineAttributeCache[assembly] = attributes;
+                }
             }
             return attributes;
         }
