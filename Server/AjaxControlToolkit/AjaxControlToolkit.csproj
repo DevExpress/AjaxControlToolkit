@@ -132,7 +132,7 @@
     <Compile Include="BarChart\BarChartSeriesCollection.cs" />
     <Compile Include="BarChart\BarChartSeriesCollectionEditor.cs" />
     <Compile Include="BarChart\ChartType.cs" />
-    <Compile Include="BarChart\DataValueCollectionEditor.cs" />
+    <Compile Include="BarChart\DataConverter.cs" />
     <Compile Include="Calendar\CalendarDefaultView.cs" />
     <Compile Include="Calendar\CalendarDesigner.cs" />
     <Compile Include="Calendar\CalendarExtender.cs" />

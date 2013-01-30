@@ -10,28 +10,28 @@
         <div class="demoheading">
             BarChart Demonstration</div>        
         <br />        
-        <ajaxToolkit:BarChart ID="Chart1" runat="server" ChartHeight="300" ChartWidth="450" ChartTitle="Test Title" CategoriesAxis="2007,2008,2009,2010,2011,2012"
-        ChartType="Column" TitleColor="red" CategoryAxisLineColor="red" ValueAxisLineColor="blue" BaseLineColor="green">
+        <ajaxToolkit:BarChart ID="Chart1" runat="server" ChartHeight="300" ChartWidth="450" ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
+        ChartType="StackedColumn" TitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB">
         <Series>
-            <ajaxToolkit:BarChartSeries Name="World" BarColor="Pink" >
-                <DataValues>
+            <ajaxToolkit:BarChartSeries Name="United States" BarColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" >
+                <%--<DataValues>
                     <ajaxToolkit:DataValue Data="110" />
                     <ajaxToolkit:DataValue Data="189" />
                     <ajaxToolkit:DataValue Data="255" />
                     <ajaxToolkit:DataValue Data="95" />
                     <ajaxToolkit:DataValue Data="107" />
                     <ajaxToolkit:DataValue Data="140" />
-                </DataValues>
+                </DataValues>--%>
             </ajaxToolkit:BarChartSeries>
-            <ajaxToolkit:BarChartSeries Name="Europe"  BarColor="Yellow" >
-                <DataValues>
+            <ajaxToolkit:BarChartSeries Name="Europe"  BarColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" >
+                <%--<DataValues>
                     <ajaxToolkit:DataValue Data="49" />
                     <ajaxToolkit:DataValue Data="77" />
                     <ajaxToolkit:DataValue Data="95" />
                     <ajaxToolkit:DataValue Data="68" />
                     <ajaxToolkit:DataValue Data="70" />
                     <ajaxToolkit:DataValue Data="79" />
-                </DataValues>
+                </DataValues>--%>
             </ajaxToolkit:BarChartSeries>
         </Series>
         </ajaxToolkit:BarChart>
@@ -48,14 +48,13 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            BarChart control creates the bar chart with the specified values. Chart control 
-            uses SVG to draw the charts so these are compatible with all latest browsers and 
-            multiple plateforms. User can take the advantage of BarChart control to display 
-            information in more representative way.
+            The BarChart control enables you to render a bar chart from one or more series of values. 
+            This control is compatible with any browser which supports SVG including Internet Explorer 9 
+            and above.             
         </p>   
             <br />
         <p>
-            BarCharts are of four types - Column, StackedColumn, Bar and StackedBar.
+            This control can display four types of BarCharts: Column, StackedColumn, Bar and StackedBar.
         </p>
             <br />        
     </asp:Panel>
@@ -112,24 +111,26 @@ BaseLineColor</em>=&quot;green&quot; &gt;
             <li><strong>ChartHeight</strong> - This property enables you to customize the height of the chart.</li>
             <li><strong>ChartWidth</strong> - This property enables you to customize the width of the chart.</li>
             <li><strong>ChartTitle</strong> - This property enables you to set the title of the chart.</li>
-            <li><strong>CategoryAxis</strong> - This is required property and you need to set the values
-            for category axis to create the bar chart.</li>
-            <li><strong>ChartType</strong> - This property enables you to create type of the barchart.</li>
-            <li><strong>Theme</strong> - This property enables you to set formatting of the chart through
-            the css file.</li>
-            <li><strong>ValueAxisLines</strong> - This property enables you to set number of intervals on
+            <li><strong>CategoryAxis</strong> - This is a required property. You need to provide a set of 
+            values for the category axis to create a bar chart.</li>
+            <li><strong>ChartType</strong> - This property enables you to render different types of bar charts 
+            including Column, StackedColumn, Bar, and StackedBar.</li>
+            <li><strong>Theme</strong> - This property enables you to control the appearance of the bar chart 
+            with a Cascading Style Sheet file.</li>
+            <li><strong>ValueAxisLines</strong> - This property enables you to set the interval size for the 
             value axis line.</li>
-            <li><strong>TitleColor</strong> - This enables you to set the font color of title of the
-            chart.</li>
-            <li><strong>CategoryAxisLineColor</strong> - This enables you to set the color of background lines 
-            of category axis of the chart.</li>
-            <li><strong>ValueAxisLineColor</strong> - This enables you to set the color of background lines 
-            of value axis of the chart.</li>
-            <li><strong>CategoryAxisLineColor</strong> - This enables you to set the color of background lines 
-            of category axis of the chart.</li>
-            <li><strong>BaseLineColor</strong> - This enables you to set the color of base lines of the chart.</li>
-            <li><strong>Name</strong> - This is required and you need to provide the name of series.</li>
-            <li><strong>BarColor</strong> - This enables you to set the color of bar for the series.</li>            
+            <li><strong>TitleColor</strong> - This property enables you to set the font color of the 
+            chart title.</li>
+            <li><strong>CategoryAxisLineColor</strong> - This property enables you to set the color of the 
+            category axis lines.</li>
+            <li><strong>ValueAxisLineColor</strong> - This property enables you to set the the color of the 
+            value axis lines.</li>                
+            <li><strong>BaseLineColor</strong> - This property enables you to set the color of the base lines
+            of the chart.</li>
+            BarChart Series Properties:
+                <li><strong>Name</strong> - This property is required.</li>
+            <li><strong>BarColor</strong> - This property enables you to set the color of bar for a particular 
+            series.</li>            
         </ul>
         <br />        
     </asp:Panel>
