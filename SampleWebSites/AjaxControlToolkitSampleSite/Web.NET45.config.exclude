@@ -4,7 +4,7 @@
 
     <appSettings>
       <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
-      <add key="ValidationSettings:UnobtrusiveValidationMode" value="WebForms" />
+      <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
     </appSettings>
     <system.web>
       <compilation debug="false" targetFramework="4.5" />
