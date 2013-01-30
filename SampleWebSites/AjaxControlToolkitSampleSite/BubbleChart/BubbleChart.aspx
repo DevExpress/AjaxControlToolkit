@@ -5,6 +5,8 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
+    <script type="text/ecmascript">
+    </script>
     <div class="demoarea">
         <div class="demoheading">
             BubbleChart Demonstration</div>
@@ -103,6 +105,12 @@
                 for the X axis line of the chart.</li>
             <li><strong>BubbleSizes</strong> - This property enables you to set the number of different
                 sizes of the bubbles.</li>
+            <li><strong>TooltipBackgroundColor</strong> - This property enables you to set the background 
+                color of the tooltip box.</li>
+            <li><strong>TooltipFontColor</strong> - This property enables you to set the font 
+                color of the tooltip box.</li>
+            <li><strong>TooltipBorderColor</strong> - This property enables you to set the border 
+                color of the tooltip box.</li>
         </ul>
         <br />
         <strong>BubbleChartValue properties:</strong>
