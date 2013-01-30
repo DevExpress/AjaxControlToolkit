@@ -347,6 +347,11 @@
     <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
     <Compile Include="PasswordStrength\PasswordStrengthExtenderExtender.cs" />
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
+    <Compile Include="PieChart\PieChart.cs" />
+    <Compile Include="PieChart\PieChartDesigner.cs" />
+    <Compile Include="PieChart\PieChartSeries.cs" />
+    <Compile Include="PieChart\PieChartSeriesCollection.cs" />
+    <Compile Include="PieChart\PieChartSeriesCollectionEditor.cs" />
     <Compile Include="PopupControl\PopupControlDesigner.cs" />
     <Compile Include="PopupControl\PopupControlExtender.cs" />
     <Compile Include="PopupExtender\PopupExtender.cs" />
@@ -437,6 +442,8 @@
     <Content Include="BarChart\BarChart.pre.js" />
     <Content Include="LineChart\LineChart.css" />
     <Content Include="LineChart\LineChart.pre.js" />
+    <Content Include="PieChart\PieChart.css" />
+    <Content Include="PieChart\PieChart.pre.js" />
     <Content Include="Twitter\Twitter.ico" />
     <Content Include="Twitter\Twitter24.png" />
     <Content Include="Twitter\Twitter32.png" />
