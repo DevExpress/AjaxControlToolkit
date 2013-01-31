@@ -12,14 +12,14 @@
             BubbleChart Demonstration</div>
         <br />
         <ajaxToolkit:BubbleChart ID="BubbleChart1" runat="server" ChartHeight="300" ChartWidth="450"
-            ChartTitle="Industry share in Market and growth" ChartTitleColor="#0E426C" XAxisLineColor="#D08AD9"
+            ChartTitle="Industry Share in Market and Growth" ChartTitleColor="#0E426C" XAxisLineColor="#D08AD9"
             YAxisLineColor="#D08AD9" BaseLineColor="#A156AB" YAxisLines="6" XAxisLines="6"
-            BubbleSizes="5" XAxisLabel="Market share of Industry" YAxisLabel="Revenue of Industry">
+            BubbleSizes="5" XAxisLabel="Market share of Industry" YAxisLabel="Revenue of Industry" BubbleLabel=" (Growth in %)">
             <BubbleChartValues>
-                <ajaxToolkit:BubbleChartValue Category="Software" X="25" Y="90000" Data="7" BubbleColor="#6C1E83" />
+                <ajaxToolkit:BubbleChartValue Category="Software" X="0" Y="90000" Data="7" BubbleColor="#6C1E83" />
                 <ajaxToolkit:BubbleChartValue Category="Foods" X="35" Y="150000" Data="5" BubbleColor="#D08AD9" />
                 <ajaxToolkit:BubbleChartValue Category="Health" X="32" Y="140000" Data="6" BubbleColor="#6586A7" />
-                <ajaxToolkit:BubbleChartValue Category="Manufacuring" X="22" Y="84000" Data="4" BubbleColor="#0E426C" />
+                <ajaxToolkit:BubbleChartValue Category="Manufacturing" X="22" Y="84000" Data="4" BubbleColor="#0E426C" />
                 <ajaxToolkit:BubbleChartValue Category="Travel" X="8" Y="26000" Data="7" BubbleColor="#A156AB" />
                 <ajaxToolkit:BubbleChartValue Category="Entertainment" X="28" Y="97000" Data="9"
                     BubbleColor="#990033" />
@@ -62,7 +62,9 @@
 <em>ChartTitle</em>=&quot;Industry share in Market&quot; 
 <em>ChartTitleColor</em>=&quot;#0E426C&quot; <em>XAxisLineColor</em>=&quot;#D08AD9&quot; 
 <em>YAxisLineColor</em>=&quot;#D08AD9&quot; <em>BaseLineColor</em>=&quot;#A156AB&quot; 
-<em>YAxisLines</em>=&quot;6&quot; <em>XAxisLines</em>=&quot;6&quot; <em>BubbleSizes</em>=&quot;5&quot;&gt;
+<em>YAxisLines</em>=&quot;6&quot; <em>XAxisLines</em>=&quot;6&quot; <em>BubbleSizes</em>=&quot;5&quot;
+<em>XAxisLabel</em>=&quot;Market share of Industry&quot; 
+<em>YAxisLabel</em>=&quot;Revenue of Industry&quot; <em>BubbleLabel</em>=&quot; (Growth in %)&quot;&gt;
 &lt;BubbleChartValues&gt;
     &lt;ajaxToolkit:BubbleChartValue Category=&quot;Software&quot; 
     X=&quot;25&quot; Y=&quot;90000&quot; Data=&quot;7&quot; <em>BubbleColor</em>=&quot;#6C1E83&quot; /&gt;
@@ -111,6 +113,12 @@
                 color of the tooltip box.</li>
             <li><strong>TooltipBorderColor</strong> - This property enables you to set the border 
                 color of the tooltip box.</li>
+            <li><strong>XAxisLabel</strong> - This property enables you to set the text/label to describe 
+            what data is at XAxis.</li>
+            <li><strong>YAxisLabel</strong> - This property enables you to set the text/label to describe 
+            what data is at YAxis.</li>
+            <li><strong>BubbleLabel</strong> - This property enables you to set the text/label that will be shown
+            in the tooltip and describe about bubble value.</li>
         </ul>
         <br />
         <strong>BubbleChartValue properties:</strong>
