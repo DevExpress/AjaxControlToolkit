@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections;
 using System.ComponentModel.Design.Serialization;
 using System.Data;
@@ -242,6 +242,54 @@ namespace AjaxControlToolkit
             set;
         }
 
+        /// <summary>
+        /// Background Color of Tooltip. 
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue("#FFC652")]
+        [ClientPropertyName("tooltipBackgroundColor")]
+        public string TooltipBackgroundColor
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Font Color of Tooltip. 
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue("#0E426C")]
+        [ClientPropertyName("tooltipFontColor")]
+        public string TooltipFontColor
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Border Color of Tooltip. 
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue("#B85B3E")]
+        [ClientPropertyName("tooltipBorderColor")]
+        public string TooltipBorderColor
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Text/Label to which area values representing to.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue("")]
+        [ClientPropertyName("areaDataLabel")]
+        public string AreaDataLabel
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region [ Members ]
@@ -292,6 +340,37 @@ namespace AjaxControlToolkit
             HtmlGenericControl parent = new HtmlGenericControl("div");
             parent.ID = "_ParentDiv";
             parent.Attributes.Add("style", "border-style:solid; border-width:1px;");
+            StringBuilder sbScript = new StringBuilder();
+            sbScript.Append("<script>");
+
+            sbScript.Append("function init(evt) { ");
+            sbScript.Append("    if ( window.svgDocument == null ) { ");
+            sbScript.Append("        gDocument = evt.target.ownerDocument;");
+            sbScript.Append("    } ");
+            sbScript.Append("} ");
+
+            sbScript.Append("function ShowTooltip(me, evt, data, areaDataLabel) { ");
+            sbScript.Append(string.Format("    var tooltipDiv = document.getElementById('{0}_tooltipDiv');", this.ClientID));
+            sbScript.Append("    tooltipDiv.innerHTML = String.format('{0}{1}', data, areaDataLabel) ;");
+            sbScript.Append("    tooltipDiv.style.top = evt.pageY - 25 + 'px';");
+            sbScript.Append("    tooltipDiv.style.left = evt.pageX + 20 + 'px';");
+            sbScript.Append("    tooltipDiv.style.visibility = 'visible';");
+            sbScript.Append("    me.style.strokeWidth = '5';");
+            //sbScript.Append("    me.style.fillOpacity = '1';");
+            //sbScript.Append("    me.style.strokeOpacity = '1';");
+            sbScript.Append("} ");
+
+            sbScript.Append("function HideTooltip(me, evt) { ");
+            sbScript.Append(string.Format("    var tooltipDiv = document.getElementById('{0}_tooltipDiv');", this.ClientID));
+            sbScript.Append("    tooltipDiv.innerHTML = '';");
+            sbScript.Append("    tooltipDiv.style.visibility = 'hidden';");
+            sbScript.Append("    me.style.strokeWidth = '2';");
+            //sbScript.Append("    me.style.fillOpacity = '0.7';");
+            //sbScript.Append("    me.style.strokeOpacity = '0.7';");
+            sbScript.Append("} ");
+
+            sbScript.Append("</script>");
+            parent.InnerHtml = sbScript.ToString();
             Controls.Add(parent);
 
             return parent.InnerHtml;

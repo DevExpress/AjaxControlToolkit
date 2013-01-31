@@ -13,10 +13,18 @@
         <ajaxToolkit:LineChart ID="LineChart1" runat="server" ChartHeight="300" ChartWidth="450"
             ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
             ChartType="Basic" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9"
-            BaseLineColor="#A156AB">
+            BaseLineColor="#A156AB" AreaDataLabel=" thousands">
             <Series>
                 <ajaxToolkit:LineChartSeries Name="United States" LineColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
                 <ajaxToolkit:LineChartSeries Name="Europe" LineColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />
+                <ajaxToolkit:LineChartSeries Name="United States" LineColor="#6C1E83" Data="150, 209, 255, 115, 127, 160" />
+                <ajaxToolkit:LineChartSeries Name="Europe" LineColor="#D08AD9" Data="130, 137, 155, 128, 130, 139" />
+                <ajaxToolkit:LineChartSeries Name="Australia" LineColor="green" Data="10, 18, 16, 9, 5, 11" />
+                <ajaxToolkit:LineChartSeries Name="China" LineColor="brown" Data="95, 106, 109, 103, 100, 106" />
+                <ajaxToolkit:LineChartSeries Name="India" LineColor="red" Data="82, 75, 88, 74, 85, 89" />
+                <ajaxToolkit:LineChartSeries Name="England" LineColor="blue" Data="40, 48, 46, 39, 35, 41" />
+                <ajaxToolkit:LineChartSeries Name="Japan" LineColor="black" Data="115, 112, 116, 113, 115, 126" />
+                <ajaxToolkit:LineChartSeries Name="Canada" LineColor="gray" Data="65, 62, 69, 63, 61, 66" />
             </Series>
         </ajaxToolkit:LineChart>
         <br />
@@ -24,7 +32,7 @@
         <ajaxToolkit:LineChart ID="LineChart2" runat="server" ChartHeight="300" ChartWidth="450"
             ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
             ChartType="Stacked" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9"
-            ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB">
+            ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB" AreaDataLabel=" thousands">
             <Series>
                 <ajaxToolkit:LineChartSeries Name="United States" LineColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
                 <ajaxToolkit:LineChartSeries Name="Europe" LineColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />
@@ -103,6 +111,14 @@ CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot;
                 of the value axis lines.</li>
             <li><strong>BaseLineColor</strong> - This property enables you to set the color of the
                 base lines of the chart.</li>
+            <li><strong>TooltipBackgroundColor</strong> - This property enables you to set the background 
+                color of the tooltip box.</li>
+            <li><strong>TooltipFontColor</strong> - This property enables you to set the font 
+                color of the tooltip box.</li>
+            <li><strong>TooltipBorderColor</strong> - This property enables you to set the border 
+                color of the tooltip box.</li>            
+            <li><strong>AreaDataLabel</strong> - This property enables you to set the text/label that will be shown
+                in the tooltip and describe about area data value.</li>
         </ul>
         <br />
         <strong>LineChartSeries Properties:</strong>
