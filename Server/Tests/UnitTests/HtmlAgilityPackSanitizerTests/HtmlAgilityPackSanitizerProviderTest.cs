@@ -2583,6 +2583,69 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             Assert.AreEqual(expected, actual, true);
         }
 
+        /// <summary>
+        /// A test for Div tag for -moz-binding in style attribute.
+        /// Example <!-- <div style="color: red; -moz-binding: url(https://bugzilla.mozilla.org/attachment.cgi?id=209238#exploit); ">  This is a paragraph with inline exploit CSS. </div> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleWithMozBinding()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"color: red; -moz-binding: url(https://bugzilla.mozilla.org/attachment.cgi?id=209238#exploit); \">  This is a paragraph with inline exploit CSS. </div>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"color&#x3A;&#x20;red&#x3B;&#x2D;binding&#x3A;&#x20;url&#x28;https&#x3A;&#x2F;&#x2F;bugzilla&#x2E;mozilla&#x2E;org&#x2F;attachment&#x2E;cgi&#x3F;id&#x3D;209238&#x23;exploit&#x29;&#x3B;&#x20;\">  This is a paragraph with inline exploit CSS. </div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Link tag for webkit external css.
+        /// Example <!-- <link rel="stylesheet" media="screen and -webkit-min-device-pixel-ratio: 0" href="webkit.css"/>  -->
+        /// </summary>   
+        [TestMethod()]
+        public void LinkWithWebKitCSS()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<link rel=\"stylesheet\" media=\"screen and -webkit-min-device-pixel-ratio: 0\" href=\"webkit.css\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<link rel=\"stylesheet\" media=\"screen&#x20;and&#x2D;min&#x2D;device&#x2D;pixel&#x2D;ratio&#x3A;&#x20;0\" href=\"webkit&#x2E;css\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div tag for webkit css in style attribute.
+        /// Example <!-- <div style="-webkit-transform: rotate(45deg);">  -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivWithWebKitStyle()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div style=\"-webkit-transform: rotate(45deg);\"></div>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div style=\"&#x2D;transform&#x3A;&#x20;rotate&#x28;45deg&#x29;&#x3B;\"></div>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
         #region private methods
 
         private Dictionary<string, string[]> CreateElementWhiteList()
@@ -2611,6 +2674,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             TagList.Add("br", new string[] { "style" });
             TagList.Add("center", new string[] { "style" });
             TagList.Add("a", new string[] { "href" });
+            TagList.Add("link", new string[] { "rel", "media", "href" });
 
             return TagList;
         }
@@ -2628,6 +2692,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             AttributeList.Add("width", new string[] { });
             AttributeList.Add("src", new string[] { });
             AttributeList.Add("href", new string[] { });
+            AttributeList.Add("rel", new string[] { });
 
             return AttributeList;
         }

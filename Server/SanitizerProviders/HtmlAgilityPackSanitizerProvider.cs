@@ -185,6 +185,12 @@ namespace AjaxControlToolkit.Sanitizer
                 {
                     attribute.Value = Regex.Replace(attribute.Value, @"\s*e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*", "", RegexOptions.IgnoreCase);
                     attribute.Value = Regex.Replace(attribute.Value, @"\s*b\s*e\s*h\s*a\s*v\s*i\s*o\s*r\s*", "", RegexOptions.IgnoreCase);
+                    attribute.Value = Regex.Replace(attribute.Value, @"\s*-\s*m\s*o\s*z", "", RegexOptions.IgnoreCase);
+                    attribute.Value = Regex.Replace(attribute.Value, @"\s*-\s*w\s*e\s*b\s*k\s*i\s*t\s*", "", RegexOptions.IgnoreCase);
+                }
+                if (attribute.Name.ToLower() == "media")
+                {
+                    attribute.Value = Regex.Replace(attribute.Value, @"\s*-\s*w\s*e\s*b\s*k\s*i\s*t\s*", "", RegexOptions.IgnoreCase);
                 }
 
                 if (attribute.Name.ToLower() == "href" || attribute.Name.ToLower() == "src")
@@ -199,6 +205,9 @@ namespace AjaxControlToolkit.Sanitizer
                 Regex.IsMatch(attribute.Value, @"\s*s\s*c\s*r\s*i\s*p\s*t\s*", RegexOptions.IgnoreCase) ||
                 (attribute.Name.ToLower() == "style" && Regex.IsMatch(attribute.Value, @"\s*e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*", RegexOptions.IgnoreCase)) ||
                 (attribute.Name.ToLower() == "style" && Regex.IsMatch(attribute.Value, @"\s*b\s*e\s*h\s*a\s*v\s*i\s*o\s*r\s*", RegexOptions.IgnoreCase)) ||
+                (attribute.Name.ToLower() == "style" && Regex.IsMatch(attribute.Value, @"\s*-\s*m\s*o\s*z", RegexOptions.IgnoreCase)) ||
+                (attribute.Name.ToLower() == "style" && Regex.IsMatch(attribute.Value, @"\s*-\s*w\s*e\s*b\s*k\s*i\s*t\s*", RegexOptions.IgnoreCase)) ||
+                (attribute.Name.ToLower() == "media" && Regex.IsMatch(attribute.Value, @"\s*-\s*w\s*e\s*b\s*k\s*i\s*t\s*", RegexOptions.IgnoreCase)) ||
                 ((attribute.Name.ToLower() == "href" || attribute.Name.ToLower() == "src") && Regex.IsMatch(attribute.Value, @"\s*m\s*o\s*c\s*h\s*a\s*", RegexOptions.IgnoreCase)) ||
                 Regex.IsMatch(attribute.Value, @"/\*([a]*|[^a]*)\*/", RegexOptions.IgnoreCase));
 
