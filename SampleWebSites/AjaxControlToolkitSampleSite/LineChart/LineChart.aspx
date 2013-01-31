@@ -57,7 +57,7 @@
         </p>
         <br />
         <p>
-            This control can display four types of LineCharts: Basic and Stacked.
+            This control can display two types of LineCharts: Basic and Stacked.
         </p>
     </asp:Panel>
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
