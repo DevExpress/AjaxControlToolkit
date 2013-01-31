@@ -90,10 +90,10 @@ Sys.Extended.UI.BarChart.prototype = {
         this.startX = (this._chartWidth * 10 / 100) + 0.5;
         this.endX = parseInt(this._chartWidth) - 4.5;
 
-        if (this.yMin > 0)
-            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 15 / 100)) + 0.5;
+        if (this.yMin >= 0)
+            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 24 / 100)) + 0.5;
         else
-            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 5 / 100)) / 2 + 0.5;
+            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 12 / 100)) / 2 + 0.5;
 
         this.yInterval = this.startY / (this._valueAxisLines + 1);
 
@@ -168,7 +168,7 @@ Sys.Extended.UI.BarChart.prototype = {
         var x;
         var pow10x;
 
-        if (this.yMin > 0) {
+        if (this.yMin >= 0) {
             range = this.yMax;
         }
         else {
@@ -176,9 +176,16 @@ Sys.Extended.UI.BarChart.prototype = {
         }
 
         unroundedTickSize = range / (this._valueAxisLines - 1);
-        x = Math.ceil((Math.log(unroundedTickSize) / Math.log(10)) - 1);
-        pow10x = Math.pow(10, x);
-        this.roundedTickRange = Math.ceil(unroundedTickSize / pow10x) * pow10x;
+        if (unroundedTickSize < 1) {
+            this.roundedTickRange = unroundedTickSize.toFixed(1);
+        }
+        else {
+            x = Math.ceil((Math.log(unroundedTickSize) / Math.log(10)) - 1);
+            pow10x = Math.pow(10, x);
+            this.roundedTickRange = Math.ceil(unroundedTickSize / pow10x) * pow10x;
+        }
+
+        this.startX = this.startX + (this.roundedTickRange * 10 * this._valueAxisLines / 10).toString().length * this.charLength;
     },
 
     // This draws background horizontal lines of the chart.
@@ -246,17 +253,19 @@ Sys.Extended.UI.BarChart.prototype = {
         var axisContents = '';
         var textLength = 0;
         for (var i = 0; i < this.arrXAxisLength; i++) {
-            textLength = this.arrXAxis[i].toString().length * this.charLength;
-            axisContents = axisContents + String.format('<text id="SeriesAxis" x="{0}" y="{1}" fill-opacity="1">{2}</text>', Math.round(this.startX + (this.xInterval * i) + (this.xInterval * 50 / 100) - (textLength)), this.startY + Math.round(this.yInterval * 65 / 100), this.arrXAxis[i]);
+            textLength = this.arrXAxis[i].toString().length * 5.5;
+            axisContents = axisContents + String.format('<text id="SeriesAxis" x="{0}" y="{1}" fill-opacity="1">{2}</text>', Math.round(this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 50 / 100) - (textLength)), this.startY + Math.round(this.yInterval * 65 / 100), this.arrXAxis[i]);
         }
 
         for (var i = 0; i <= this._valueAxisLines; i++) {
-            axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">{2}</text>', this.startX - ((this.roundedTickRange * i).toString().length * this.charLength) - 15, this.startY - (this.yInterval * i) + 3.5, this.roundedTickRange * i);
+            textLength = (this.roundedTickRange * 10 * i / 10).toString().length * 5.5;
+            axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">{2}</text>', this.startX - textLength - 15, this.startY - (this.yInterval * 10 * i / 10) + 3.5, this.roundedTickRange * 10 * i / 10);
         }
 
         if (this.yMin < 0) {
             for (var i = 1; i <= this._valueAxisLines; i++) {
-                axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">-{2}</text>', this.startX - ((this.roundedTickRange * i).toString().length * this.charLength) - 19, this.startY + (this.yInterval * i), this.roundedTickRange * i);
+                textLength = (this.roundedTickRange * 10 * i / 10).toString().length * 5.5;
+                axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">-{2}</text>', this.startX - textLength - 19, this.startY + (this.yInterval * 10 * i / 10), this.roundedTickRange * 10 * i / 10);
             }
         }
 
@@ -302,23 +311,23 @@ Sys.Extended.UI.BarChart.prototype = {
                     this.yVal = parseFloat(this._series[j].Data[i]);
                     if (i == 0) {
                         if (this.yVal > 0)
-                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 7.5 / 100), this.startX + (this.xInterval * i) + (this.xInterval * 7.5 / 100) + barWidth, lastStartYPositive, lastStartYPositive - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 7.5 / 100), this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 7.5 / 100) + barWidth, lastStartYPositive, lastStartYPositive - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
                         else
-                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 7.5 / 100), this.startX + (this.xInterval * i) + (this.xInterval * 7.5 / 100) + barWidth, lastStartYNegative, lastStartYNegative - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 7.5 / 100), this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 7.5 / 100) + barWidth, lastStartYNegative, lastStartYNegative - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
                     }
                     else {
                         if (this.yVal > 0)
-                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 5 / 100), this.startX + (this.xInterval * i) + (this.xInterval * 5 / 100) + barWidth, lastStartYPositive, lastStartYPositive - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 5 / 100), this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 5 / 100) + barWidth, lastStartYPositive, lastStartYPositive - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
                         else
-                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * i) + (this.xInterval * 5 / 100), this.startX + (this.xInterval * i) + (this.xInterval * 5 / 100) + barWidth, lastStartYNegative, lastStartYNegative - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
+                            barContents = barContents + String.format('<path id="Bar{4}" style="fill:{5}" d="M{0} {2} {1} {2} {1} {3} {0} {3} z" />', this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 5 / 100), this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 5 / 100) + barWidth, lastStartYNegative, lastStartYNegative - Math.round(this.yVal * (this.yInterval / this.roundedTickRange)), j + 1, this._series[j].BarColor);
                     }
 
                     if (this.yVal > 0) {
-                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * i) + (this.xInterval * 30 / 100) + (barWidth * 10 / 100), lastStartYPositive - Math.round((this.yVal * (this.yInterval / this.roundedTickRange)) / 2), this.yVal);
+                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 30 / 100) + (barWidth * 10 / 100), lastStartYPositive - Math.round((this.yVal * (this.yInterval / this.roundedTickRange)) / 2), this.yVal);
                         lastStartYPositive = lastStartYPositive - Math.round(this.yVal * (this.yInterval / this.roundedTickRange));
                     }
                     else {
-                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * i) + (this.xInterval * 30 / 100) + (barWidth * 10 / 100), lastStartYNegative + Math.round((Math.abs(this.yVal) * (this.yInterval / this.roundedTickRange)) / 2), this.yVal);
+                        barContents = barContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 30 / 100) + (barWidth * 10 / 100), lastStartYNegative + Math.round((Math.abs(this.yVal) * (this.yInterval / this.roundedTickRange)) / 2), this.yVal);
                         lastStartYNegative = lastStartYNegative - Math.round(this.yVal * (this.yInterval / this.roundedTickRange));
                     }
                 }
@@ -351,8 +360,7 @@ Sys.Extended.UI.BarChart.prototype = {
     drawLegendArea: function () {
         var legendContents = '';
         // Legend Area
-        var legendAreaStartHeight = (parseInt(this._chartHeight) * 90 / 100) + 5;
-        var legendAreaStartWidth = parseInt(this._chartWidth) * 40 / 100;
+        var legendAreaStartHeight = (parseInt(this._chartHeight) * 84 / 100) + 5;
         var legendBoxWidth = 7.5;
         var legendBoxHeight = 7.5;
         var spaceInLegendContents = 5;
@@ -362,15 +370,31 @@ Sys.Extended.UI.BarChart.prototype = {
         for (var i = 0; i < this._series.length; i++) {
             legendCharLength = legendCharLength + this._series[i].Name.length;
         }
-        legendContents = legendContents + '<g>';
-        legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="LegendArea" stroke=""></path>', legendAreaStartWidth, legendAreaStartHeight, Math.round(legendAreaStartWidth + (legendCharLength * this.charLength)) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._series.length), Math.round(parseInt(this._chartHeight) * 97.5 / 100));
 
-        var startText = legendAreaStartWidth + 5 + legendBoxWidth + spaceInLegendContents;
+        var legendAreaWidth = Math.round((legendCharLength * 5) / 2) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._series.length);
+        var isLegendNextLine = false;
+        if (legendAreaWidth > parseInt(this._chartWidth) / 2) {
+            legendAreaWidth = legendAreaWidth / 2;
+            isLegendNextLine = true;
+        }
+
+        legendContents = legendContents + '<g>';
+        legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="LegendArea" stroke=""></path>', Math.round(parseInt(this._chartWidth) / 2 - legendAreaWidth / 2), legendAreaStartHeight, Math.round(parseInt(this._chartWidth) / 2 + legendAreaWidth / 2), Math.round(parseInt(this._chartHeight) * 97.5 / 100));
+
+        var startText = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + legendBoxWidth + spaceInLegendContents;
         var nextStartText = startText;
-        var startLegend = legendAreaStartWidth + 5;
+        var startLegend = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2);
         var nextStartLegend = startLegend;
 
         for (var i = 0; i < this._series.length; i++) {
+            if (isLegendNextLine && i == Math.round(this._series.length / 2)) {
+                startText = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + legendBoxWidth + spaceInLegendContents;
+                nextStartText = startText;
+                startLegend = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2);
+                nextStartLegend = startLegend;
+                legendAreaStartHeight = (parseInt(this._chartHeight) * 91 / 100) + 5;
+                isLegendNextLine = false;
+            }
             startLegend = nextStartLegend;
             startText = nextStartText;
             legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="Legend{4}" style="fill:{5}"></path>', startLegend, legendAreaStartHeight + legendBoxHeight, startLegend + legendBoxWidth, legendAreaStartHeight + 15, i + 1, this._series[i].BarColor);
@@ -413,20 +437,18 @@ Sys.Extended.UI.BarChart.prototype = {
 
     // This calculates distance interval for the value axis.
     calculateIntervalForBarType: function () {
-        this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 15 / 100)) + 0.5;
-        this.endY = (parseInt(this._chartHeight) * 10 / 100) + 5;
+        this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 20 / 100)) + 0.5;
+        this.endY = (parseInt(this._chartHeight) * 8 / 100) + 5;
         this.endX = parseInt(this._chartWidth) - 10 + 0.5;
-        if (this.xMin > 0) {
-            this.startX = (this._chartWidth * 10 / 100) + 0.5;
+
+        if (this.xMin >= 0) {
+            this.startX = (this._chartWidth * 15 / 100) + 0.5;
         }
         else {
-            this.startX = Math.round(parseInt(this._chartWidth) - 4.5) / 2 + 0.5;
+            this.startX = Math.round(parseInt(this._chartWidth) / 2) + 0.5;
         }
 
-        if (this.xMin > 0)
-            this.xInterval = Math.round((this.endX - this.startX) / (this._valueAxisLines));
-        else
-            this.xInterval = (this.endX - this.startX) / (this._valueAxisLines);
+        this.xInterval = Math.round((this.endX - this.startX) / (this._valueAxisLines));
     },
 
     // This calculates minimum and maximum values of the specified data.
@@ -495,16 +517,22 @@ Sys.Extended.UI.BarChart.prototype = {
         var x;
         var pow10x;
 
-        if (this.xMin > 0) {
+        if (this.xMin >= 0) {
             range = this.xMax;
         }
         else {
             range = this.xMax > Math.abs(this.xMin) ? this.xMax : Math.abs(this.xMin);
         }
+
         unroundedTickSize = range / (this._valueAxisLines - 1);
-        x = Math.ceil((Math.log(unroundedTickSize) / Math.log(10)) - 1);
-        pow10x = Math.pow(10, x);
-        this.roundedTickRange = Math.ceil(unroundedTickSize / pow10x) * pow10x;
+        if (unroundedTickSize < 1) {
+            this.roundedTickRange = unroundedTickSize.toFixed(1);
+        }
+        else {
+            x = Math.ceil((Math.log(unroundedTickSize) / Math.log(10)) - 1);
+            pow10x = Math.pow(10, x);
+            this.roundedTickRange = Math.ceil(unroundedTickSize / pow10x) * pow10x;
+        }
     },
 
     // This draws background Vertical lines of the chart.
@@ -512,13 +540,13 @@ Sys.Extended.UI.BarChart.prototype = {
         // background grid's vertical lines
         var verticalLineContents = '';
         for (var i = 1; i <= this._valueAxisLines; i++) {
-            verticalLineContents = verticalLineContents + String.format('<path id="VerticalLine" d="M{0} {1} {0} {2}" style="stroke:{3}"></path>', this.startX + (this.xInterval * i), this.startY, this.endY, this._categoryAxisLineColor);
+            verticalLineContents = verticalLineContents + String.format('<path id="VerticalLine" d="M{0} {1} {0} {2}" style="stroke:{3}"></path>', this.startX + (this.xInterval * i), this.startY, this.startY - (this.yInterval * this.arrYAxisLength), this._categoryAxisLineColor);
         }
 
         if (this.xMin < 0) {
             // background grid's vertical lines for negative values
             for (var i = 1; i <= this._valueAxisLines; i++) {
-                verticalLineContents = verticalLineContents + String.format('<path id="VerticalLine" d="M{0} {1} {0} {2}" style="stroke:{3}"></path>', this.startX - (this.xInterval * i), this.startY, this.endY, this._categoryAxisLineColor);
+                verticalLineContents = verticalLineContents + String.format('<path id="VerticalLine" d="M{0} {1} {0} {2}" style="stroke:{3}"></path>', this.startX - (this.xInterval * i), this.startY, this.startY - (this.yInterval * this.arrYAxisLength), this._categoryAxisLineColor);
             }
         }
         return verticalLineContents;
@@ -530,12 +558,12 @@ Sys.Extended.UI.BarChart.prototype = {
         var horizontalLineContents = '';
         this.yInterval = Math.round((this.startY - this.endY) / this.arrYAxisLength);
         for (var i = 0; i <= this.arrYAxisLength; i++) {
-            horizontalLineContents = horizontalLineContents + String.format('<path id="HorizontalLine" d="M{0} {2} {1} {2}" style="stroke:{3}"></path>', this.startX, this.endX, (this.startY - (this.yInterval * i)), this._valueAxisLineColor);
+            horizontalLineContents = horizontalLineContents + String.format('<path id="HorizontalLine" d="M{0} {2} {1} {2}" style="stroke:{3}"></path>', this.startX, this.startX + (this.xInterval * this._valueAxisLines), (this.startY - (this.yInterval * i)), this._valueAxisLineColor);
         }
 
         if (this.xMin < 0) {
             for (var i = 0; i <= this.arrYAxisLength; i++) {
-                horizontalLineContents = horizontalLineContents + String.format('<path id="HorizontalLine" d="M{0} {2} {1} {2}" style="stroke:{3}"></path>', this.startX, this.startX - Math.round(this.endX / 2) + 3, (this.startY - (this.yInterval * i)), this._valueAxisLineColor);
+                horizontalLineContents = horizontalLineContents + String.format('<path id="HorizontalLine" d="M{0} {2} {1} {2}" style="stroke:{3}"></path>', this.startX, this.startX - (this.xInterval * this._valueAxisLines), (this.startY - (this.yInterval * i)), this._valueAxisLineColor);
             }
         }
 
