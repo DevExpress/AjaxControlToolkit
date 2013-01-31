@@ -1,4 +1,4 @@
-﻿﻿// To create unit tests in this class reference is taken from
+﻿// To create unit tests in this class reference is taken from
 // https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.232_-_Attribute_Escape_Before_Inserting_Untrusted_Data_into_HTML_Common_Attributes
 // and http://ha.ckers.org/xss.html
 
@@ -2538,6 +2538,48 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
 
             // Assert
             string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x26;gt&#x3B;document&#x2E;write&#x28;\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">)\">";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for image with style attribute
+        /// Example <!-- <IMG style="border:5px solid red"> sanitizes to <img> -->
+        /// </summary>   
+        [TestMethod()]
+        public void ImageWithStyleAttribute()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<IMG style=\"border:5px solid red\"> sanitizes to <img>";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<img> sanitizes to <img>";
+            Assert.AreEqual(expected, actual, true);
+        }
+
+        /// <summary>
+        /// A test for Div tag for broken expression embedded in style attribute.
+        /// Example <!-- <div STYLE=\"background-color:expre/* x*/ssion(alert(window.location))\"> -->
+        /// </summary>   
+        [TestMethod()]
+        public void DivStyleWithBrokenExpression()
+        {
+            // Arrange
+            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
+            Dictionary<string, string[]> attributeWhiteList = CreateAttributeWhiteList();
+
+            // Act
+            string htmlFragment = "<div STYLE=\"background-color:expre/* x*/ssion(alert(window.location))\">";
+            string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList, attributeWhiteList);
+
+            // Assert
+            string expected = "<div STYLE=\"background&#x2D;color&#x3A;&#x28;alert&#x28;window&#x2E;location&#x29;&#x29;\"></div>";
             Assert.AreEqual(expected, actual, true);
         }
 
