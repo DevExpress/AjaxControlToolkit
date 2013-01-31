@@ -30,8 +30,8 @@
 	stroke-width: 1;
 	stroke-linecap: square; 
 	stroke-linejoin: round;
-	fill-opacity: 1;
-	stroke-opacity: 1;
+	fill-opacity: 0.5;
+	stroke-opacity: 0.5;
 }
 
 #HorizontalLine
@@ -40,8 +40,8 @@
 	stroke-width: 1; 
 	stroke-linecap: square; 
 	stroke-linejoin: round; 
-	fill-opacity: 1; 
-	stroke-opacity: 1;
+	fill-opacity: 0.5; 
+	stroke-opacity: 0.5;
 	fill: none;	
 }
 
@@ -169,8 +169,8 @@
 #Dot1
 {
 	fill: #6C1E83;
-	stroke-opacity: 0.5;
-	fill-opacity: 0.5;
+	stroke-opacity: 0.7;
+	fill-opacity: 0.7;
 	stroke-width: 0;
 	stroke: #6C1E83;
 }
@@ -178,8 +178,8 @@
 #Dot2
 {
 	fill: #D08AD9;
-	stroke-opacity: 0.5;
-	fill-opacity: 0.5;
+	stroke-opacity: 0.7;
+	fill-opacity: 0.7;
 	stroke-width: 0;
 	stroke: #D08AD9;
 }
@@ -187,8 +187,8 @@
 #Dot3
 {
 	fill: #6586A7;
-	stroke-opacity: 0.5;
-	fill-opacity: 0.5;
+	stroke-opacity: 0.7;
+	fill-opacity: 0.7;
 	stroke-width: 0;
 	stroke: #6586A7;
 }
@@ -196,8 +196,8 @@
 #Dot4
 {
 	fill: #0E426C;
-	stroke-opacity: 0.5;
-	fill-opacity: 0.5;
+	stroke-opacity: 0.7;
+	fill-opacity: 0.7;
 	stroke-width: 0;
 	stroke: #0E426C;
 }
@@ -205,8 +205,8 @@
 #Dot5
 {
 	fill: #A156AB;
-	stroke-opacity: 0.5;
-	fill-opacity: 0.5;
+	stroke-opacity: 0.7;
+	fill-opacity: 0.7;
 	stroke-width: 0;
 	stroke: #A156AB;
 }
@@ -214,8 +214,8 @@
 #Dot6
 {
 	fill: #990033;
-	stroke-opacity: 0.5;
-	fill-opacity: 0.5;
+	stroke-opacity: 0.7;
+	fill-opacity: 0.7;
 	stroke-width: 0;
 	stroke: #990033;
 }
@@ -223,8 +223,8 @@
 #Dot7
 {
 	fill: #669900;
-	stroke-opacity: 0.5;
-	fill-opacity: 0.5;
+	stroke-opacity: 0.7;
+	fill-opacity: 0.7;
 	stroke-width: 0;
 	stroke: #669900;
 }
@@ -232,8 +232,8 @@
 #Dot8
 {
 	fill: #B85B3E;
-	stroke-opacity: 0.5;
-	fill-opacity: 0.5;
+	stroke-opacity: 0.7;
+	fill-opacity: 0.7;
 	stroke-width: 0;
 	stroke: #B85B3E;
 }
@@ -241,8 +241,8 @@
 #Dot9
 {
 	fill: #FFC652;
-	stroke-opacity: 0.5;
-	fill-opacity: 0.5;
+	stroke-opacity: 0.7;
+	fill-opacity: 0.7;
 	stroke-width: 0;
 	stroke: #FFC652;
 }
@@ -250,8 +250,8 @@
 #Dot10
 {
 	fill: #4508A2;
-	stroke-opacity: 0.5;
-	fill-opacity: 0.5;
+	stroke-opacity: 0.7;
+	fill-opacity: 0.7;
 	stroke-width: 0;
 	stroke: #4508A2;
 }
