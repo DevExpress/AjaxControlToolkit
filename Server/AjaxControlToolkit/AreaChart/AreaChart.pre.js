@@ -82,10 +82,10 @@ Sys.Extended.UI.AreaChart.prototype = {
         this.startX = (this._chartWidth * 10 / 100) + 0.5;
         this.endX = parseInt(this._chartWidth) - 4.5;
 
-        if (this.yMin > 0)
-            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 15 / 100)) + 0.5;
+        if (this.yMin >= 0)
+            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 24 / 100)) + 0.5;
         else
-            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 5 / 100)) / 2 + 0.5;
+            this.startY = Math.round(parseInt(this._chartHeight) - (parseInt(this._chartHeight) * 12 / 100)) / 2 + 0.5;
 
         this.yInterval = this.startY / (this._valueAxisLines + 1);
     },
@@ -155,7 +155,7 @@ Sys.Extended.UI.AreaChart.prototype = {
         var x;
         var pow10x;
 
-        if (this.yMin > 0) {
+        if (this.yMin >= 0) {
             range = this.yMax;
         }
         else {
@@ -163,9 +163,15 @@ Sys.Extended.UI.AreaChart.prototype = {
         }
 
         unroundedTickSize = range / (this._valueAxisLines - 1);
-        x = Math.ceil((Math.log(unroundedTickSize) / Math.log(10)) - 1);
-        pow10x = Math.pow(10, x);
-        this.roundedTickRange = Math.ceil(unroundedTickSize / pow10x) * pow10x;
+        if (unroundedTickSize < 1) {
+            this.roundedTickRange = unroundedTickSize.toFixed(1);
+        }
+        else {
+            x = Math.ceil((Math.log(unroundedTickSize) / Math.log(10)) - 1);
+            pow10x = Math.pow(10, x);
+            this.roundedTickRange = Math.ceil(unroundedTickSize / pow10x) * pow10x;
+        }
+        this.startX = this.startX + (this.roundedTickRange * 10 * this._valueAxisLines / 10).toString().length * this.charLength;
     },
 
     // This draws background horizontal lines of the chart.
@@ -232,8 +238,7 @@ Sys.Extended.UI.AreaChart.prototype = {
     drawLegendArea: function () {
         var legendContents = '';
         // Legend Area
-        var legendAreaStartHeight = (parseInt(this._chartHeight) * 90 / 100) + 5;
-        var legendAreaStartWidth = parseInt(this._chartWidth) * 40 / 100;
+        var legendAreaStartHeight = (parseInt(this._chartHeight) * 82 / 100) + 5;
         var legendBoxWidth = 7.5;
         var legendBoxHeight = 7.5;
         var spaceInLegendContents = 5;
@@ -243,15 +248,30 @@ Sys.Extended.UI.AreaChart.prototype = {
         for (var i = 0; i < this._series.length; i++) {
             legendCharLength = legendCharLength + this._series[i].Name.length;
         }
-        legendContents = legendContents + '<g>';
-        legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="LegendArea" stroke=""></path>', legendAreaStartWidth, legendAreaStartHeight, Math.round(legendAreaStartWidth + (legendCharLength * this.charLength)) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._series.length), Math.round(parseInt(this._chartHeight) * 97.5 / 100));
+        var legendAreaWidth = Math.round((legendCharLength * 5) / 2) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._series.length);
+        var isLegendNextLine = false;
+        if (legendAreaWidth > parseInt(this._chartWidth) / 2) {
+            legendAreaWidth = legendAreaWidth / 2;
+            isLegendNextLine = true;
+        }
 
-        var startText = legendAreaStartWidth + 5 + legendBoxWidth + spaceInLegendContents;
+        legendContents = legendContents + '<g>';
+        legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="LegendArea" stroke=""></path>', parseInt(this._chartWidth) * 50 / 100 - (legendAreaWidth / 2), legendAreaStartHeight, Math.round(parseInt(this._chartWidth) * 50 / 100 + (legendCharLength * 5)) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._series.length), Math.round(parseInt(this._chartHeight) * 97.5 / 100));
+
+        var startText = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + legendBoxWidth + spaceInLegendContents;
         var nextStartText = startText;
-        var startLegend = legendAreaStartWidth + 5;
+        var startLegend = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2);
         var nextStartLegend = startLegend;
 
         for (var i = 0; i < this._series.length; i++) {
+            if (isLegendNextLine && i == Math.round(this._series.length / 2)) {
+                startText = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + legendBoxWidth + spaceInLegendContents;
+                nextStartText = startText;
+                startLegend = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2);
+                nextStartLegend = startLegend;
+                legendAreaStartHeight = (parseInt(this._chartHeight) * 89 / 100) + 5;
+                isLegendNextLine = false;
+            }
             startLegend = nextStartLegend;
             startText = nextStartText;
             legendContents = legendContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="Legend{4}" style="fill:{5}"></path>', startLegend, legendAreaStartHeight + legendBoxHeight, startLegend + legendBoxWidth, legendAreaStartHeight + 15, i + 1, this._series[i].AreaColor);
@@ -274,17 +294,19 @@ Sys.Extended.UI.AreaChart.prototype = {
         var axisContents = '';
         var textLength = 0;
         for (var i = 0; i < this.arrXAxisLength; i++) {
-            textLength = this.arrXAxis[i].toString().length * this.charLength;
-            axisContents = axisContents + String.format('<text id="SeriesAxis" x="{0}" y="{1}" fill-opacity="1">{2}</text>', Math.round(this.startX + (this.xInterval * i) + (this.xInterval * 50 / 100) - (textLength)), this.startY + Math.round(this.yInterval * 65 / 100), this.arrXAxis[i]);
+            textLength = (this.arrXAxis[i].toString().length * 10 * i / 10).toString().length * 5.5;
+            axisContents = axisContents + String.format('<text id="SeriesAxis" x="{0}" y="{1}" fill-opacity="1">{2}</text>', Math.round(this.startX + (this.xInterval * 10 * i / 10) + (this.xInterval * 50 / 100) - textLength), this.startY + Math.round(this.yInterval * 65 / 100), this.arrXAxis[i]);
         }
 
         for (var i = 0; i <= this._valueAxisLines; i++) {
-            axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">{2}</text>', this.startX - ((this.roundedTickRange * i).toString().length * this.charLength) - 15, this.startY - (this.yInterval * i) + 3.5, this.roundedTickRange * i);
+            textLength = (this.roundedTickRange * 10 * i / 10).toString().length * 5.5;
+            axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">{2}</text>', this.startX - textLength - 15, this.startY - (this.yInterval * 10 * i / 10) + 3.5, this.roundedTickRange * 10 * i / 10);
         }
 
         if (this.yMin < 0) {
             for (var i = 1; i <= this._valueAxisLines; i++) {
-                axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">-{2}</text>', this.startX - ((this.roundedTickRange * i).toString().length * this.charLength) - 19, this.startY + (this.yInterval * i), this.roundedTickRange * i);
+                textLength = (this.roundedTickRange * 10 * i / 10).toString().length * 5.5;
+                axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">-{2}</text>', this.startX - textLength - 19, this.startY + (this.yInterval * 10 * i / 10), this.roundedTickRange * 10 * i / 10);
             }
         }
 
