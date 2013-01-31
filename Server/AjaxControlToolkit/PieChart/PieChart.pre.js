@@ -35,7 +35,7 @@ Sys.Extended.UI.PieChart.prototype = {
 
         var radius = parseInt(this._chartWidth) > parseInt(this._chartHeight) ? (parseInt(this._chartHeight) - 10) / 3 : (parseInt(this._chartWidth) - 10) / 3;
         var startX = parseInt(this._chartWidth) / 2;
-        var startY = parseInt(this._chartHeight) / 2;
+        var startY = parseInt(this._chartHeight) / 2.25;
 
         // initialize SVG
         var svgContents = String.format('<?xml-stylesheet type="text/css" href="{0}.css"?>', this._theme);
@@ -53,8 +53,7 @@ Sys.Extended.UI.PieChart.prototype = {
         svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="ChartTitle" style="fill:{3}">{2}</text>', parseInt(this._chartWidth) / 2 - (this._chartTitle.length * this.charLength), parseInt(this._chartHeight) * 5 / 100, this._chartTitle, this._chartTitleColor);
 
         // Legend Area
-        var legendAreaStartHeight = (parseInt(this._chartHeight) * 90 / 100) + 5;
-        var legendAreaStartWidth = parseInt(this._chartWidth) * 30 / 100;
+        var legendAreaStartHeight = (parseInt(this._chartHeight) * 82 / 100) + 5;
         var legendBoxWidth = 7.5;
         var legendBoxHeight = 7.5;
         var spaceInLegendContents = 5;
@@ -64,22 +63,38 @@ Sys.Extended.UI.PieChart.prototype = {
         for (var i = 0; i < this._pieChartClientValues.length; i++) {
             legendCharLength = legendCharLength + this._pieChartClientValues[i].Category.length;
         }
-        svgContents = svgContents + '<g>';
-        svgContents = svgContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="LegendArea" stroke=""></path>', legendAreaStartWidth, legendAreaStartHeight, Math.round(legendAreaStartWidth + (legendCharLength * this.charLength)) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._pieChartClientValues.length), Math.round(parseInt(this._chartHeight) * 97.5 / 100));
 
-        var startText = legendAreaStartWidth + 5 + legendBoxWidth + spaceInLegendContents;
+        var legendAreaWidth = Math.round((legendCharLength * 5) / 2) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._pieChartClientValues.length);
+        var isLegendNextLine = false;
+        if (legendAreaWidth > parseInt(this._chartWidth) / 2) {
+            legendAreaWidth = legendAreaWidth / 2;
+            isLegendNextLine = true;
+        }
+
+        svgContents = svgContents + '<g>';
+        svgContents = svgContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="LegendArea" stroke=""></path>', parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2), legendAreaStartHeight, parseInt(this._chartWidth) * 40 / 100 + (legendAreaWidth / 2), Math.round(parseInt(this._chartHeight) * 97.5 / 100));
+
+        var startText = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + 5 + legendBoxWidth + spaceInLegendContents;
         var nextStartText = startText;
-        var startLegend = legendAreaStartWidth + 5;
+        var startLegend = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + 5;
         var nextStartLegend = startLegend;
 
         for (var i = 0; i < this._pieChartClientValues.length; i++) {
+            if (isLegendNextLine && i == Math.round(this._pieChartClientValues.length / 2)) {
+                startText = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + 5 + legendBoxWidth + spaceInLegendContents;
+                nextStartText = startText;
+                startLegend = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + 5;
+                nextStartLegend = startLegend;
+                legendAreaStartHeight = (parseInt(this._chartHeight) * 89 / 100) + 5;
+                isLegendNextLine = false;
+            }
             startLegend = nextStartLegend;
             startText = nextStartText;
             svgContents = svgContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="Legend{4}" style="stroke:{6};fill:{5}"></path>', startLegend, legendAreaStartHeight + legendBoxHeight, startLegend + legendBoxWidth, legendAreaStartHeight + 15, i + 1, this._pieChartClientValues[i].PieChartValueColor, this._pieChartClientValues[i].PieChartValueStrokeColor);
             svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="LegendText">{2}</text>', startText, legendAreaStartHeight + 15, this._pieChartClientValues[i].Category);
             if (this._pieChartClientValues[i].Category.length > 10) {
-                nextStartLegend = startLegend + (this._pieChartClientValues[i].Category.length * 5) + legendBoxWidth + (spaceInLegendContents * 2);
-                nextStartText = startText + (this._pieChartClientValues[i].Category.length * 5) + legendBoxWidth + (spaceInLegendContents * 2);
+                nextStartLegend = startLegend + (this._pieChartClientValues[i].Category.length * 5.5) + legendBoxWidth + (spaceInLegendContents * 2);
+                nextStartText = startText + (this._pieChartClientValues[i].Category.length * 5.5) + legendBoxWidth + (spaceInLegendContents * 2);
             }
             else {
                 nextStartLegend = nextStartLegend + (this._pieChartClientValues[i].Category.length * 6) + legendBoxWidth + (spaceInLegendContents * 2);
