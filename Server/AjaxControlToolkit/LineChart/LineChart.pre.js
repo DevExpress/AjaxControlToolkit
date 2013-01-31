@@ -95,7 +95,8 @@ Sys.Extended.UI.LineChart.prototype = {
         var seriesMax;
         var seriesMin;
         var arrData;
-        if (chartType == Sys.Extended.UI.ChartType.Basic) {
+
+        if (this._chartType == Sys.Extended.UI.ChartType.Basic) {
             for (var i = 0; i < this._series.length; i++) {
                 arrData = new Array();
                 for (var j = 0; j < this._series[i].Data.length; j++) {
@@ -166,9 +167,15 @@ Sys.Extended.UI.LineChart.prototype = {
         }
 
         unroundedTickSize = range / (this._valueAxisLines - 1);
-        x = Math.ceil((Math.log(unroundedTickSize) / Math.log(10)) - 1);
-        pow10x = Math.pow(10, x);
-        this.roundedTickRange = Math.ceil(unroundedTickSize / pow10x) * pow10x;
+        if (unroundedTickSize < 1) {
+            this.roundedTickRange = unroundedTickSize.toFixed(1);
+        }
+        else {
+            x = Math.ceil((Math.log(unroundedTickSize) / Math.log(10)) - 1);
+            pow10x = Math.pow(10, x);
+            this.roundedTickRange = Math.ceil(unroundedTickSize / pow10x) * pow10x;
+        }
+        this.startX = this.startX + (this.roundedTickRange * 10 * this._valueAxisLines / 10).toString().length * this.charLength;
     },
 
     // This draws background horizontal lines of the chart.
@@ -282,12 +289,12 @@ Sys.Extended.UI.LineChart.prototype = {
         }
 
         for (var i = 0; i <= this._valueAxisLines; i++) {
-            axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">{2}</text>', this.startX - ((this.roundedTickRange * i).toString().length * this.charLength) - 15, this.startY - (this.yInterval * i) + 3.5, this.roundedTickRange * i);
+            axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">{2}</text>', this.startX - ((this.roundedTickRange * 10 * i / 10).toString().length * 5.5) - 10, this.startY - (this.yInterval * i) + 3.5, this.roundedTickRange * 10 * i / 10);
         }
 
         if (this.yMin < 0) {
             for (var i = 1; i <= this._valueAxisLines; i++) {
-                axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">-{2}</text>', this.startX - ((this.roundedTickRange * i).toString().length * this.charLength) - 19, this.startY + (this.yInterval * i), this.roundedTickRange * i);
+                axisContents = axisContents + String.format('<text id="ValueAxis" x="{0}" y="{1}">-{2}</text>', this.startX - ((this.roundedTickRange * 10 * i / 10).toString().length * 5.5) - 15, this.startY + (this.yInterval * i), this.roundedTickRange * 10 * i / 10);
             }
         }
 
