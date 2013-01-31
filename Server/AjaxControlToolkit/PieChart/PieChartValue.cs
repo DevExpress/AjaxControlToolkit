@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +14,7 @@ namespace AjaxControlToolkit
         private string _category = String.Empty;
         private decimal _data;
         private string _pieChartValueColor = string.Empty;
+        private string _pieChartValueStrokeColor = string.Empty;
 
         /// <summary>
         /// To get category of PieChartValue.
@@ -34,12 +35,21 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// To get category of PieChartValue.
+        /// To get fill color of PieChartValue.
         /// </summary>        
         public string PieChartValueColor
         {
             get { return _pieChartValueColor; }
             set { _pieChartValueColor = value; }
+        }
+
+        /// <summary>
+        /// To get stroke color of PieChartValue.
+        /// </summary>        
+        public string PieChartValueStrokeColor
+        {
+            get { return _pieChartValueStrokeColor; }
+            set { _pieChartValueStrokeColor = value; }
         }
     }
 }

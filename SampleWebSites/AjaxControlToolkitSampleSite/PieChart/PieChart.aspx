@@ -12,10 +12,10 @@
         <ajaxToolkit:PieChart ID="pieChart1" runat="server" ChartHeight="300" ChartWidth="450"
             ChartTitle="Widget Production in the world" ChartTitleColor="#0E426C">
             <PieChartValues>
-                <ajaxToolkit:PieChartValue Category="United States" Data="45" PieChartValueColor="#6C1E83" />
-                <ajaxToolkit:PieChartValue Category="Europe" Data="25" PieChartValueColor="#D08AD9" />
-                <ajaxToolkit:PieChartValue Category="Asia" Data="17" PieChartValueColor="#6586A7" />
-                <ajaxToolkit:PieChartValue Category="Australia" Data="13" PieChartValueColor="#0E426C" />
+                <ajaxToolkit:PieChartValue Category="United States" Data="45" PieChartValueColor="#6C1E83" PieChartValueStrokeColor="black" />
+                <ajaxToolkit:PieChartValue Category="Europe" Data="25" PieChartValueColor="#D08AD9" PieChartValueStrokeColor="black" />
+                <ajaxToolkit:PieChartValue Category="Asia" Data="17" PieChartValueColor="#6586A7" PieChartValueStrokeColor="black" />
+                <ajaxToolkit:PieChartValue Category="Australia" Data="13" PieChartValueColor="#0E426C" PieChartValueStrokeColor="black" />
             </PieChartValues>
         </ajaxToolkit:PieChart>
         <br />
@@ -54,13 +54,13 @@
 <em>ChartTitleColor</em>=&quot;#0E426C&quot;&gt; 
 &lt;PieChartValues&gt;
     &lt;ajaxToolkit:PieChartValue Category=&quot;United States&quot; Data=&quot;45&quot; 
-    <em>SeriesColor</em>=&quot;#6C1E83&quot; /&gt;
+    <em>PieChartValueColor</em>=&quot;#6C1E83&quot; <em>PieChartValueStrokeColor</em>=&quot;black&quot; /&gt;
     &lt;ajaxToolkit:PieChartValue Category=&quot;Europe&quot; Data=&quot;25&quot; 
-    <em>SeriesColor</em>=&quot;#D08AD9&quot; /&gt;
+    <em>PieChartValueColor</em>=&quot;#D08AD9&quot; <em>PieChartValueStrokeColor</em>=&quot;black&quot; /&gt;
     &lt;ajaxToolkit:PieChartValue Category=&quot;Asia&quot; Data=&quot;17&quot; 
-    <em>SeriesColor</em>=&quot;#6586A7&quot; /&gt;
+    <em>PieChartValueColor</em>=&quot;#6586A7&quot; <em>PieChartValueStrokeColor</em>=&quot;black&quot; /&gt;
     &lt;ajaxToolkit:PieChartValue Category=&quot;Australia&quot; Data=&quot;13&quot; 
-    <em>SeriesColor</em>=&quot;#0E426C&quot; /&gt;
+    <em>PieChartValueColor</em>=&quot;#0E426C&quot; <em>PieChartValueStrokeColor</em>=&quot;black&quot; /&gt;
 &lt;/PieChartValues&gt;
 &lt;/ajaxToolkit:PieChart &gt;
     </pre>
@@ -83,6 +83,8 @@
             <li><strong>Data</strong> - This property is required and provides Data for a 
                 particular PieChartValue.</li>
             <li><strong>PieChartValueColor</strong> - This property enables you to set the color 
+                of segment for a particular PieChartValue.</li>
+            <li><strong>PieChartValueStrokeColor</strong> - This property enables you to set the stroke color 
                 of segment for a particular PieChartValue.</li>
         </ul>
     </asp:Panel>
