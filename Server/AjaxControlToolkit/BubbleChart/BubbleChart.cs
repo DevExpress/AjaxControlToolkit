@@ -278,6 +278,54 @@ namespace AjaxControlToolkit
             set;
         }
 
+        /// <summary>
+        /// Text/Label to which X axis's values representing to.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue("")]
+        [ClientPropertyName("xAxisLabel")]
+        public string XAxisLabel
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Text/Label to which Y axis's values representing to.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue("")]
+        [ClientPropertyName("yAxisLabel")]
+        public string YAxisLabel
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Text/Label to which Bubble values representing to.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue("")]
+        [ClientPropertyName("bubbleLabel")]
+        public string BubbleLabel
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Font color of Axis labels to which axis values are representing. 
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue("")]
+        [ClientPropertyName("axislabelFontColor")]
+        public string AxislabelFontColor
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region [ Members ]
@@ -352,20 +400,24 @@ namespace AjaxControlToolkit
             sbScript.Append("    } ");
             sbScript.Append("} ");
 
-            sbScript.Append("function ShowTooltip(me, evt, category, data, xVal, yVal) { ");
+            sbScript.Append("function ShowTooltip(me, evt, category, data, bubbleLabel) { ");
             sbScript.Append(string.Format("    var tooltipDiv = document.getElementById('{0}_tooltipDiv');", this.ClientID));
-            sbScript.Append("    tooltipDiv.innerHTML = String.format('Category: {0}, Data: {1}<br />Horizontal Axis: {2}, Vertical Axis: {3}', category, data, xVal, yVal) ;");
-            sbScript.Append("    tooltipDiv.style.top = evt.pageY - 15 + 'px';");
-            sbScript.Append("    tooltipDiv.style.left = evt.pageX + 10 + 'px';");
+            sbScript.Append("    tooltipDiv.innerHTML = String.format('{0}: {1} {2}', category, data, bubbleLabel) ;");
+            sbScript.Append("    tooltipDiv.style.top = evt.pageY - 25 + 'px';");
+            sbScript.Append("    tooltipDiv.style.left = evt.pageX + 20 + 'px';");
             sbScript.Append("    tooltipDiv.style.visibility = 'visible';");
-            sbScript.Append("    me.style.strokeWidth = '7';");
+            sbScript.Append("    me.style.strokeWidth = '4';");
+            sbScript.Append("    me.style.fillOpacity = '1';");
+            sbScript.Append("    me.style.strokeOpacity = '1';");
             sbScript.Append("} ");
 
             sbScript.Append("function HideTooltip(me, evt) { ");
             sbScript.Append(string.Format("    var tooltipDiv = document.getElementById('{0}_tooltipDiv');", this.ClientID));
             sbScript.Append("    tooltipDiv.innerHTML = '';");
             sbScript.Append("    tooltipDiv.style.visibility = 'hidden';");
-            sbScript.Append("    me.style.strokeWidth = '2';");
+            sbScript.Append("    me.style.strokeWidth = '0';");
+            sbScript.Append("    me.style.fillOpacity = '0.5';");
+            sbScript.Append("    me.style.strokeOpacity = '0.5';");
             sbScript.Append("} ");
 
             sbScript.Append("</script>");

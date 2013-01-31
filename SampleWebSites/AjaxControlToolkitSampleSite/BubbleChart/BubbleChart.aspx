@@ -14,7 +14,7 @@
         <ajaxToolkit:BubbleChart ID="BubbleChart1" runat="server" ChartHeight="300" ChartWidth="450"
             ChartTitle="Industry share in Market and growth" ChartTitleColor="#0E426C" XAxisLineColor="#D08AD9"
             YAxisLineColor="#D08AD9" BaseLineColor="#A156AB" YAxisLines="6" XAxisLines="6"
-            BubbleSizes="5">
+            BubbleSizes="5" XAxisLabel="Market share of Industry" YAxisLabel="Revenue of Industry">
             <BubbleChartValues>
                 <ajaxToolkit:BubbleChartValue Category="Software" X="25" Y="90000" Data="7" BubbleColor="#6C1E83" />
                 <ajaxToolkit:BubbleChartValue Category="Foods" X="35" Y="150000" Data="5" BubbleColor="#D08AD9" />
