@@ -2770,16 +2770,13 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             }
             Mcur = (CurDate.getUTCMonth()+1).toString();
             if (Mcur.length < 2)
-            {
+            {-
                 Mcur = "0" + Mcur;
             }
-            if (Y4)
+            Ycur = CurDate.getUTCFullYear().toString();
+            if (!Y4)            
             {
-                Ycur = CurDate.getUTCFullYear().toString();
-            }
-            else
-            {
-                Ycur = Ycur.substring(2);
+                Ycur = CurDate.getUTCFullYear().toString().substring(2);
             }
         }
         else
