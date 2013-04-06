@@ -257,12 +257,12 @@ Sys.Extended.UI.AjaxFileUpload.prototype = {
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
             var fileType;
-            if (file.type != '') {
-                fileType = file.type.substring(file.type.lastIndexOf('/') + 1);
-            }
-            else {
-                fileType = file.name.substring(file.name.lastIndexOf('.') + 1);
-            }
+            //            if (file.type != '') {
+            //                fileType = file.type.substring(file.type.lastIndexOf('/') + 1);
+            //            }
+            //            else {
+            fileType = file.name.substring(file.name.lastIndexOf('.') + 1);
+            //            }
             if (this._validateFileType(fileType)) {
                 var uploadableFile = new Object();
                 uploadableFile.file = file;
