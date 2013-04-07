@@ -263,7 +263,7 @@ function MaskedEditValidatorPartTime(value,mask,MinVl,MaxVl)
     return ret;
 }
 function MaskedEditValidatorPartDate(value,mask,MinVl,MaxVl)
-{
+{    
     var ret = true;
     var AttibDtFmt = value.DateFormat;
     var AttibDtSep = value.DateSeparator;
@@ -285,18 +285,10 @@ function MaskedEditValidatorPartDate(value,mask,MinVl,MaxVl)
     var Y = -1;
     if (ret)
     {
-        D = parseInt(m_arrDate[AttibDtFmt.indexOf("D")],10);
-        M = parseInt(m_arrDate[AttibDtFmt.indexOf("M")],10);
-        Y = parseInt(m_arrDate[AttibDtFmt.indexOf("Y")],10)
-        if (Y < 100)
-        {
-            Y = parseInt(Y + value.Century,10);
-        }
-        else if (Y < 999)
-        {
-            Y += parseInt(value.Century.substring(0,1) + Y,10)
-        }
-        ret = (D>0 && M>0 && Y>0 && (D<=[,31,28,31,30,31,30,31,31,30,31,30,31][M] || D==29 && M==2 && Y%4==0 && (Y%100>0 || Y%400==0)));
+        D = parseInt(m_arrDate[AttibDtFmt.indexOf("D")], 10);
+        M = parseInt(m_arrDate[AttibDtFmt.indexOf("M")], 10);
+        Y = parseInt(m_arrDate[AttibDtFmt.indexOf("Y")], 10)        
+        ret = (D > 0 && M > 0 && Y > 0 && (D <= [, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][M] || D == 29 && M == 2 && Y % 4 == 0 && (Y % 100 > 0 || Y % 400 == 0)));        
     }
     if (!ret)
     {
@@ -315,14 +307,6 @@ function MaskedEditValidatorPartDate(value,mask,MinVl,MaxVl)
             Dr = parseInt(m_arr[AttibDtFmt.indexOf("D")],10);
             Mr = parseInt(m_arr[AttibDtFmt.indexOf("M")],10);
             Yr = parseInt(m_arr[AttibDtFmt.indexOf("Y")],10);
-            if (Yr < 100)
-            {
-                Yr = parseInt(Yr + value.Century,10);
-            }
-            else if (Yr < 999)
-            {
-                Yr += parseInt(value.Century.substring(0,1) + Yr,10)
-            }
             ret = (Dr>0 && Mr>0 && Yr>0 && Y > Yr || (Y == Yr && M > Mr) || (Y == Yr && M == Mr && D >= Dr));
             if (!ret)
             {
@@ -336,14 +320,6 @@ function MaskedEditValidatorPartDate(value,mask,MinVl,MaxVl)
             Dr = parseInt(m_arr[AttibDtFmt.indexOf("D")],10);
             Mr = parseInt(m_arr[AttibDtFmt.indexOf("M")],10);
             Yr = parseInt(m_arr[AttibDtFmt.indexOf("Y")],10);
-            if (Yr < 100)
-            {
-                Yr = parseInt(Yr + value.Century,10);
-            }
-            else if (Yr < 999)
-            {
-                Yr += parseInt(value.Century.substring(0,1) + Yr,10)
-            }
             ret = (Dr>0 && Mr>0 && Yr>0 && Y < Yr || (Y == Yr && M < Mr) || (Y == Yr && M == Mr && D <= Dr));
             if (!ret)
             {
