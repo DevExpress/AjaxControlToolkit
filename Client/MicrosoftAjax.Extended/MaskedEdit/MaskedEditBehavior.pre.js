@@ -2024,10 +2024,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         {
             if (aux !="" && aux.length < 4)
             {
-                while (aux.length < 4)
-                {
-                    aux = "0" + aux;
-                }
+                aux = this._Century.toString().substr(0, aux.length) + aux;
                 m_arrDate[this.get_CultureDateFormat().indexOf("Y")] = aux;
             }
         }
