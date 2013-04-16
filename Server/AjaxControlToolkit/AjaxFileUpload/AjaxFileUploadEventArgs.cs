@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web;
 
 namespace AjaxControlToolkit
 {
@@ -65,7 +67,15 @@ namespace AjaxControlToolkit
         /// <returns></returns>
         public byte[] GetContents()
         {
-            return _contents;
+            // TODO: initialize _contents at constructor will consume amount of resource, that's inefficient, consider to remove it.
+            if (_contents != null)
+                return _contents;
+
+            var dir = Path.Combine(HttpContext.Current.Server.MapPath(AjaxFileUploadHelper.TempDirectory), this._fileId);
+            var stream = File.OpenRead(Path.Combine(dir, this._fileName));
+            var buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, buffer.Length);
+            return buffer;
         }
 
         /// <summary>
