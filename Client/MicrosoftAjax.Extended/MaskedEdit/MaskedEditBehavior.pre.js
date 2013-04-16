@@ -882,8 +882,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             }
         }
         var curpos;
-        if (Sys.Browser.agent == Sys.Browser.InternetExplorer || evt.type == "keypress") 
-        {
+        if (Sys.Browser.agent == Sys.Browser.InternetExplorer || evt.type == "keypress" || (Sys.Browser.agent != Sys.Browser.Firefox && evt.type == "keydown")) {
             if (scanCode == 8) // BackSpace
             {
                 this._SetCancelEvent(evt);
@@ -2773,13 +2772,10 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             {
                 Mcur = "0" + Mcur;
             }
-            if (Y4)
+            Ycur = CurDate.getUTCFullYear().toString();
+            if (!Y4)            
             {
-                Ycur = CurDate.getUTCFullYear().toString();
-            }
-            else
-            {
-                Ycur = Ycur.substring(2);
+                Ycur = CurDate.getUTCFullYear().toString().substring(2);
             }
         }
         else
