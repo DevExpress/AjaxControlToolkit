@@ -95,6 +95,32 @@ namespace AjaxControlToolkit
             ResourcePath = fullResourceName;
         }
 
+        /// <summary>
+        /// Associates a client script resource with the class.
+        /// </summary>
+        /// <param name="componentType">The name given to the class in the Web.TypeDescriptor.addType call</param>
+        /// <param name="fullResourceName">The name of the script resource, e.g. 'ControlLibrary1.FooExtender.Foo.js'</param>
+        /// <param name="useUnMinifiedVersionForDebugMode">If set to true then resource path will goes to *.debug.js file instead on DEBUG mode. You must provide *.debug.js version of your script to enable this mode.</param>
+        public ClientScriptResourceAttribute(string componentType, string fullResourceName, bool useUnMinifiedVersionForDebugMode)
+            : this(componentType)
+        {
+            if (fullResourceName == null) throw new ArgumentNullException("fullResourceName");
+#if(DEBUG)
+            ResourcePath = fullResourceName;
+            var lastDot = fullResourceName.LastIndexOf(".js");
+            if (useUnMinifiedVersionForDebugMode && lastDot > 0)
+            {
+                ResourcePath = fullResourceName.Substring(0, lastDot) + ".debug.js";
+            }
+            else
+            {
+                ResourcePath = fullResourceName;
+            }
+#else
+            ResourcePath = fullResourceName;
+#endif
+        }
+
         public override bool IsDefaultAttribute()
         {
             return ComponentType == null && ResourcePath == null;
