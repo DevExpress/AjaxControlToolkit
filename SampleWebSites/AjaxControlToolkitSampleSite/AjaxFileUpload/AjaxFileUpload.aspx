@@ -83,8 +83,9 @@
         </div>
         <asp:Button ID="btnSubmit" runat="server" Text="Submit" />
     </div>
-    <div class="demobottom">
-    </div>
+
+    <div class="demobottom"></div>
+
     <asp:Panel ID="Description_HeaderPanel" runat="server" Style="cursor: pointer;">
         <div class="heading">
             <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg"
@@ -131,7 +132,70 @@
             the file to the file system, your ASP.NET application must have the necessary Write
             permissions.
         </p>
+        <br/>
+        
     </asp:Panel>
+    
+    <asp:Panel ID="TemporaryData_HeaderPanel" runat="server" Style="cursor: pointer;">
+            <div class="heading">
+            <asp:ImageButton ID="TemporaryData_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
+                AlternateText="expand" />
+            AjaxFileUpload Temporary Data
+        </div>
+        </asp:Panel>
+    <asp:Panel ID="TemporaryData_ContentPanel" runat="server" Style="overflow: hidden;" Height="0px">
+        <p>
+            The AjaxFileUpload using physical drive to store temporary data. Once file upload is started, 
+            it creates temporary folder under App_Data folder to store uploaded file chunk by chunk. 
+            This improvements allowed us to able uploading file in large size. 
+            You must be aware that Write permissions in App_Data folder is granted for ASP.Net application. 
+            In order to keep your temporary folder always kept away from junk data, you may want to call 
+            <b>DeleteTemporaryData()</b> or <b>CleanAllTemporaryData()</b> method.
+        </p>
+        <br/>        
+        </asp:Panel>
+
+    <asp:Panel ID="Handler_HeaderPanel" runat="server" Style="cursor: pointer;">
+            <div class="heading">
+            <asp:ImageButton ID="Handler_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
+                AlternateText="expand" />
+            AjaxFileUpload Handler
+        </div>
+        </asp:Panel>
+    <asp:Panel ID="Handler_ContentPanel" runat="server" Style="overflow: hidden;" Height="0px">
+        <p>
+            Uploaded file addresed to handler named <b>AjaxFileUploadHandler.axd</b>, 
+            this handler has a type <b>AjaxControlToolkit.AjaxFileUploadHandler</b>.
+            You have to add this handler to your Web.Config to make it work. 
+            
+        </p>
+        <br/>
+
+        <b>Here's the example Web.Config configuration that you must add:</b><br/>
+
+<pre>&lt;system.web&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;....
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;httpHandlers&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&ltadd verb="*" path="AjaxFileUploadHandler.axd"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type="AjaxControlToolkit.AjaxFileUploadHandler, 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AjaxControlToolkit"/&gt
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/httpHandlers&gt;
+&lt;/system.web&gt;</pre>
+
+        <b>For IIS7:</b><br/>
+
+<pre>&lt;system.webServer&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;....
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;validation validateIntegratedModeConfiguration="false" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;handlers&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;add name="AjaxFileUploadHandler" verb="*" 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path="AjaxFileUploadHandler.axd"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type="AjaxControlToolkit.AjaxFileUploadHandler, 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AjaxControlToolkit"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/handlers&gt;
+&lt;/system.webServer&gt;</pre>
+        </asp:Panel>
+
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
         <div class="heading">
             <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
@@ -144,14 +208,13 @@
         <p>
             The control above is initialized with this code. The <em>italic</em> properties
             are optional:</p>
-        <pre>
-&lt;ajaxToolkit:AjaxFileUpload ID="AjaxFileUpload1"
+        
+<pre>&lt;ajaxToolkit:AjaxFileUpload ID="AjaxFileUpload1"
     <em>ThrobberID=&quot;myThrobber&quot;</em>
     <em>ContextKeys=&quot;fred&quot;</em>
     <em>AllowedFileTypes=&quot;jpg,jpeg&quot;</em>
     <em>MaximumNumberOfFiles=10</em>
-    runat="server"/&gt;                    
-    </pre>
+    runat="server"/&gt;</pre>
         <b>Events</b>
         <ul>
             <li><strong>UploadedComplete</strong> - Raised on the server when a file is uploaded
@@ -183,11 +246,20 @@
         <ul>
             <li><strong>SaveAs(<span style="color: #2b91af">string</span> filename)</strong> - Saves the contents of an 
             uploaded file to the file system. Your application must have the required Write permissions.</li>
+            <li><strong>DeleteTemporaryData()</strong> - Delete temporary uploaded file data from temporary folder.</li>
+            <li><strong>CleanAllTemporaryData()</strong> - Delete all temporary uploaded files from temporary folder.</li>
         </ul>
     </asp:Panel>
+
     <ajaxToolkit:CollapsiblePanelExtender ID="cpeDescription" runat="Server" TargetControlID="Description_ContentPanel"
         ExpandControlID="Description_HeaderPanel" CollapseControlID="Description_HeaderPanel"
         Collapsed="False" ImageControlID="Description_ToggleImage" />
+    <ajaxToolkit:CollapsiblePanelExtender ID="cpeTemporaryData" runat="Server" TargetControlID="TemporaryData_ContentPanel"
+        ExpandControlID="TemporaryData_HeaderPanel" CollapseControlID="TemporaryData_HeaderPanel"
+        Collapsed="True" ImageControlID="TemporaryData_ToggleImage" />
+    <ajaxToolkit:CollapsiblePanelExtender ID="cpeHandler" runat="Server" TargetControlID="Handler_ContentPanel"
+        ExpandControlID="Handler_HeaderPanel" CollapseControlID="Handler_HeaderPanel"
+        Collapsed="True" ImageControlID="Handler_ToggleImage" />
     <ajaxToolkit:CollapsiblePanelExtender ID="cpeProperties" runat="Server" TargetControlID="Properties_ContentPanel"
         ExpandControlID="Properties_HeaderPanel" CollapseControlID="Properties_HeaderPanel"
         Collapsed="True" ImageControlID="Properties_ToggleImage" />
