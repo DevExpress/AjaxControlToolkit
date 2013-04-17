@@ -43,12 +43,25 @@ public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page
         if (file.ContentType.Contains("jpg") || file.ContentType.Contains("gif")
             || file.ContentType.Contains("png") || file.ContentType.Contains("jpeg"))
         {
-            Session["fileContentType_" + file.FileId] = file.ContentType;
-            Session["fileContents_" + file.FileId] = file.GetContents();
+            // Limitize preview file for file equal or under 4MB only, otherwise when GetContents invoked
+            // System.OutOfMemoryException will thrown if file is to big to be read.
+            if (file.FileSize <= 1024 * 1024 * 4)
+            {
+                Session["fileContentType_" + file.FileId] = file.ContentType;
+                Session["fileContents_" + file.FileId] = file.GetContents();
+
+                // Set PostedUrl to preview the uploaded file.         
+                file.PostedUrl = string.Format("?preview=1&fileId={0}", file.FileId);
+            }
+            else
+            {
+                file.PostedUrl = "fileTooBig.gif";
+            }
         }
 
-        // Set PostedUrl to preview the uploaded file.         
-        file.PostedUrl = string.Format("?preview=1&fileId={0}", file.FileId);
+        // Since we never SaveAs method, the temporary data still remains on App_Data folder.
+        // We need to delete it manually from here.
+        AjaxFileUpload1.DeleteTemporaryData();
     }
     
 }

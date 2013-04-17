@@ -45,9 +45,6 @@ using System.Drawing.Design;
 namespace AjaxControlToolkit
 {
 
-    public delegate void EventAjaxFileUploadOnComplete(object sender, HttpPostedFile file);
-
-
     /// <summary>
     /// AjaxFileUpload enables you to upload multiple files to a server. Url of uploaded file can be passed
     /// back to client to use e.g. to display preview of image.
@@ -65,7 +62,6 @@ namespace AjaxControlToolkit
     {
         internal const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";
         private const string TempDirectory = "~/App_Data";
-        private HttpPostedFile _postedFile;
 
         private string _uploadedFilePath = null;
 
@@ -82,7 +78,7 @@ namespace AjaxControlToolkit
 
         #endregion
 
-        #region [Private Properties]
+        #region [ Private Properties ]
         /// <summary>
         /// Gets whether control is in design mode or not.
         /// </summary>
@@ -96,7 +92,7 @@ namespace AjaxControlToolkit
 
         #endregion
 
-        #region Public Properties
+        #region [ Public Properties ]
 
         /// <summary>
         /// Any value/Id that can be used when storing file. 
@@ -166,7 +162,7 @@ namespace AjaxControlToolkit
 
         #endregion
 
-        #region Members
+        #region [ Members ]
 
         /// <summary>
         /// Init event of control.
@@ -204,10 +200,10 @@ namespace AjaxControlToolkit
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
-
-            var fileId = this.Page.Request.QueryString["guid"];
-            if (this.Page.Request.QueryString["contextkey"] == ContextKey)
+            
+            if (Page.Request.QueryString["contextkey"] == ContextKey)
             {
+                var fileId = this.Page.Request.QueryString["guid"];
                 Page.Response.ClearContent();
 
                 if (this.Page.Request.QueryString["cancel"] == "1" && !string.IsNullOrEmpty(fileId))
@@ -251,9 +247,30 @@ namespace AjaxControlToolkit
             Directory.Delete(dir);
         }
 
+        /// <summary>
+        /// Delete temporary uploaded file data from temporary folder.
+        /// </summary>
+        public void DeleteTemporaryData()
+        {
+            var dirInfo = new DirectoryInfo(Path.GetDirectoryName(_uploadedFilePath));
+            dirInfo.Delete(true);
+        }
+
+        /// <summary>
+        /// Delete all temporary uploaded files from temporary folder.
+        /// </summary>
+        public void CleanAllTemporaryData()
+        {
+            var dirInfo = new DirectoryInfo(Path.GetDirectoryName(_uploadedFilePath));
+            foreach (var dir in dirInfo.GetDirectories())
+            {
+                dir.Delete(true);
+            }
+        }
+
         #endregion
 
-        #region Controls
+        #region [ Controls ]
 
         /// <summary>
         /// CreateChilds call to create child controls for ajaxfileupload.
@@ -433,7 +450,7 @@ namespace AjaxControlToolkit
 
         #endregion
 
-        #region Client Events
+        #region [ Client Events ]
 
         /// <summary>
         /// Event handler for upload complete event.
