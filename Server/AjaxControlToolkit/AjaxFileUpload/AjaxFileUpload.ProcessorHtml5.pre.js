@@ -245,6 +245,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function (control, elements) {
         var fileItem = control.getFileItem(id);
         fileItem._isUploading = false;
         control.setFileStatus(id, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
+        control.raiseUploadError(xhr);
     };
 
     this.onUploadCanceledHandler = function (id, xhr) {
