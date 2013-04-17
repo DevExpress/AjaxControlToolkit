@@ -62,7 +62,8 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// To get contents of uploaded file.
+        /// To get contents of uploaded file. 
+        /// Do not call this method when uploaded file size is too big to avoid System.OutOfMemoryException exception.
         /// </summary>
         /// <returns></returns>
         public byte[] GetContents()
@@ -72,10 +73,12 @@ namespace AjaxControlToolkit
                 return _contents;
 
             var dir = Path.Combine(HttpContext.Current.Server.MapPath(AjaxFileUploadHelper.TempDirectory), this._fileId);
-            var stream = File.OpenRead(Path.Combine(dir, this._fileName));
-            var buffer = new byte[stream.Length];
-            stream.Read(buffer, 0, buffer.Length);
-            return buffer;
+            using (var stream = File.OpenRead(Path.Combine(dir, this._fileName)))
+            {
+                var buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+                return buffer;
+            }
         }
 
         /// <summary>
