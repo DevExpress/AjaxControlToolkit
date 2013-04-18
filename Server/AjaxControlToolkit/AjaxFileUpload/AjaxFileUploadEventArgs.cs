@@ -29,7 +29,6 @@ namespace AjaxControlToolkit
         private int _fileSize = 0;
         private string _contentType = String.Empty;
         private AjaxFileUploadState _state = AjaxFileUploadState.Unknown;
-        private byte[] _contents;
         private string _postedUrl = string.Empty;
 
         /// <summary>
@@ -41,8 +40,7 @@ namespace AjaxControlToolkit
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileSize">Size of the file.</param>
         /// <param name="contentType">Content type of the file.</param>
-        /// <param name="contents">Contents of file.</param>
-        public AjaxFileUploadEventArgs(string fileId, AjaxFileUploadState state, string statusMessage, string fileName, int fileSize, string contentType, byte[] contents)
+        public AjaxFileUploadEventArgs(string fileId, AjaxFileUploadState state, string statusMessage, string fileName, int fileSize, string contentType)
         {
             _fileId = fileId;
             _state = state;
@@ -50,7 +48,6 @@ namespace AjaxControlToolkit
             _fileName = fileName;
             _fileSize = fileSize;
             _contentType = contentType;
-            _contents = contents;
         }
 
         /// <summary>
@@ -62,23 +59,28 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// To get contents of uploaded file. 
-        /// Do not call this method when uploaded file size is too big to avoid System.OutOfMemoryException exception.
+        /// Get contents of uploaded file in byte array.
+        /// Use <code>GetStreamContents()</code> instead when uploaded file size is too big to avoid System.OutOfMemoryException exception.
         /// </summary>
         /// <returns></returns>
         public byte[] GetContents()
         {
-            // TODO: initialize _contents at constructor will consume amount of resource, that's inefficient, consider to remove it.
-            if (_contents != null)
-                return _contents;
-
-            var dir = Path.Combine(HttpContext.Current.Server.MapPath(AjaxFileUploadHelper.TempDirectory), this._fileId);
-            using (var stream = File.OpenRead(Path.Combine(dir, this._fileName)))
+            using (var stream = GetStreamContents())
             {
                 var buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, buffer.Length);
                 return buffer;
             }
+        }
+
+        /// <summary>
+        /// Get contents of uploaded file in stream.
+        /// </summary>
+        /// <returns></returns>
+        public Stream GetStreamContents()
+        {
+            var dir = Path.Combine(HttpContext.Current.Server.MapPath(AjaxFileUploadHelper.TempDirectory), this._fileId);
+            return File.OpenRead(Path.Combine(dir, this._fileName));
         }
 
         /// <summary>
