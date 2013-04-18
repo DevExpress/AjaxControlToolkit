@@ -160,6 +160,18 @@ namespace AjaxControlToolkit
             set;
         }
 
+        /// <summary>
+        /// Size of chunk used by HTML5 to upload large file in Mega Bytes.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(4096)]
+        [ClientPropertyName("chunkSize")]
+        public int ChunkSize
+        {
+            get { return int.Parse((string)ViewState["ChunkSize"] ?? "4096"); }
+            set { ViewState["ChunkSize"] = value.ToString(); }
+        }
+
         #endregion
 
         #region [ Members ]
