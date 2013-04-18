@@ -16,12 +16,11 @@
 
 
         function onClientUploadComplete(sender, e) {
-            var id = e.get_fileId();
             onImageValidated("TRUE", e);
         }
 
         function onImageValidated(arg, context) {
-
+            
             var test = document.getElementById("testuploaded");
             test.style.display = 'block';
 
@@ -38,7 +37,6 @@
             }
 
             fileList.appendChild(item);
-
         }
 
         function createFileInfo(e) {
