@@ -81,7 +81,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this._processor = processor;
         Sys.Extended.UI.AjaxFileUpload.Control.callBaseMethod(this, "initialize");
 
-        $common.setVisible(this._elements.fileStatusContainer, true);
+        
     },
 
     dispose: function () {
@@ -91,9 +91,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     setDefaultElementsLayout: function (elements) {
         
         $common.setVisible(elements.inputFile, true);
+        $common.setVisible(elements.uploadOrCancelButton, false);
+        $common.setVisible(elements.fileStatusContainer, true);
         
         elements.selectFileButton.innerHTML = Sys.Extended.UI.Resources.AjaxFileUpload_SelectFile;
         elements.uploadOrCancelButton.innerHTML = Sys.Extended.UI.Resources.AjaxFileUpload_Upload;
+
+        this.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_SelectFileToUpload);
     },
     
     attachEvents: function (elements) {
@@ -110,7 +114,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         
         var files = this._filesInQueue;
         if (!files.length) {
-            alert("No file in queue.");
+            alert(Sys.Extended.UI.Resources.AjaxFileUpload_SelectFileToUpload);
             return;
         }
 
@@ -121,7 +125,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         }
         
         if (uploaded == files.length) {
-            alert("All files has been uploaded.");
+            alert(Sys.Extended.UI.Resources.AjaxFileUpload_AllFilesUploaded);
             return;
         }
             
@@ -172,6 +176,11 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         
         this._isUploading = false;
         this.enableControls(true);
+        this.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_AllFilesUploaded + " " + Sys.Extended.UI.Resources.AjaxFileUpload_SelectFileToUpload);
+        $common.setVisible(this._elements.uploadOrCancelButton, false);
+        
+        // Reset queue
+        this._filesInQueue = [];
     },
     
     removeFileFromQueueHandler: function (e) {
@@ -191,9 +200,11 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         e.removeNodeFrom(this._elements.queueContainer);
         
         // hide container if queue is empty.
-        if (!this._elements.queueContainer.hasChildNodes())
+        if (!this._elements.queueContainer.hasChildNodes()) {
             $common.setVisible(this._elements.queueContainer, false);
-        
+            $common.setVisible(this._elements.uploadOrCancelButton, false);
+        }
+
         // update files count information.
         this._showFilesCount();
     },
@@ -207,7 +218,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
 
         var max = this.get_maximumNumberOfFiles();
         if (max > 0 && this._filesInQueue.length >= max) {
-            alert("Maximum "+max+" upload files has been exceeded.");
+            alert(Sys.Extended.UI.Resources.AjaxFileUpload_MaxNumberOfFilesExceeded);
             return false;
         }
 
@@ -223,6 +234,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
 
         // Ensure the queue container is visible
         $common.setVisible(this._elements.queueContainer, true);
+        $common.setVisible(this._elements.uploadOrCancelButton, true);
 
         // add into queue.
         this._filesInQueue.push(fileItem);
@@ -274,7 +286,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         /// <param name="fileItem"></param>
         
         var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
-        alert("Can't add file '" + utils.getFileName(fileItem.value) + "' to upload list. File with type '" + fileItem.type + "' is not allowed.");
+        alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_WrongFileType, utils.getFileName(fileItem.value), fileItem.type));
     },
     
     doneAndUploadNextFile: function (fileItem) {
@@ -313,7 +325,8 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         
         fileItem._isUploading = true;
         fileItem._isUploaded = false;
-        fileItem.setStatus('uploading', Sys.Extended.UI.Resources.AjaxFileUpload_Uploading);
+        this.setFileStatus(fileItem, 'uploading', Sys.Extended.UI.Resources.AjaxFileUpload_Uploading);
+        this.setStatusMessage('Uploading ' + (Array.indexOf(this._filesInQueue, fileItem)+1) + ' of ' + this._filesInQueue.length + ' file(s)');
     },
     
     setFileStatus: function (fileItem, fileStatusText, text) {
@@ -330,7 +343,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     
     setStatusMessage: function (msg) {
         /// <summary>
-        /// TODO: not working due to CSS issue, consider to remove this.
+        /// Set status message.
         /// </summary>
         /// <param name="msg"></param>
         this._elements.fileStatusContainer.innerHTML = msg;
@@ -398,7 +411,9 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             throw "Invalid finalizing upload server response.";
 
         // Mark and reset state that current file is uploaded
-        fileItem.setStatus('uploaded', Sys.Extended.UI.Resources.AjaxFileUpload_Uploaded);
+        this.setFileStatus(fileItem, 'uploaded', Sys.Extended.UI.Resources.AjaxFileUpload_Uploaded);
+        this.setStatusMessage('Uploaded ' + (Array.indexOf(this._filesInQueue, fileItem) + 1) + ' of ' + this._filesInQueue.length + ' file(s)');
+        
         fileItem._isUploaded = true;
         fileItem._isUploading = false;
         fileItem.hide();

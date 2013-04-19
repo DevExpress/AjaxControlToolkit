@@ -667,4 +667,10 @@
   <data name="AjaxFileUpload_error" xml:space="preserve">
     <value>error</value>
   </data>
+  <data name="AjaxFileUpload_MaxNumberOfFilesExceeded" xml:space="preserve">
+    <value>Maximum number of files exceeded</value>
+  </data>
+  <data name="AjaxFileUpload_WrongFileType" xml:space="preserve">
+    <value>Can't add file '{0}' to upload list. File with type '{1}' is not allowed</value>
+  </data>
 </root>
