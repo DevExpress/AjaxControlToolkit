@@ -451,6 +451,7 @@ function MaskedEditValidatorTime(value)
 //  Validator Number
 function MaskedEditValidatorNumber(value)
 {
+    debugger;
     MaskedEditSetMessage(value,"","");
     MaskedEditSetCssClass(value,"");
     MaskedEditMessageShow(value,true);
@@ -458,10 +459,11 @@ function MaskedEditValidatorNumber(value)
     {
         return true;
     }
-    var target = $get(value.TargetValidator); 
+    var target = $get(value.TargetValidator);
+    var numVal = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(target).get_Value().replace(new RegExp("(\[\w_.,\s\$ ])", "g"), "");
     if (value.ValidEmpty  == "false")
     {
-        if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(target).get_Value() == value.InitialValue)
+        if (numVal == value.InitialValue)
         {
             MaskedEditSetMessage(value,value.EmptyValueMessage,value.EmptyValueText);
             MaskedEditSetCssClass(value,value.InvalidValueCssClass);
@@ -469,7 +471,7 @@ function MaskedEditValidatorNumber(value)
             return false;
         }
     }
-    if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(target).get_Value() == "")
+    if (numVal == "")
     {
         return true;
     }
