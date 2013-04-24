@@ -120,6 +120,7 @@ Sys.Extended.UI.MaskedEditBehavior = function(element)
     this._CurrentMessageError = ""; // Save local Current MessageError
     this._FiringOnChange = false;  // true when OnChange is being fired
     this._ErroOnEnter = false; // Flag Erro validate with Enter
+    this._beforeClearMaskText = '';
     // **************************************************
     // local chars ANSI
     // **************************************************
@@ -443,8 +444,9 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             this.AutoFormatNumber();
         }
         // clear mask and set CSS
-        if ((this._ClearMaskOnLostfocus && ClearText != "") || (isblur && this._ClearMaskOnLostfocus) )
+        if (ClearText != "" || isblur)
         {
+            this._beforeClearMaskText = wrapper.get_Value();
             wrapper.set_Value(this._getClearMask(wrapper.get_Value()));
         }
         this.AddCssClassMaskedEdit("");
@@ -474,14 +476,16 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     {
         this._InLostfocus = true;
         var IsValid = this._PeforformValidLostFocus(true);
+        var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
         if (IsValid)
         {
-            // trigger TextChanged with postback
-            var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
+            // trigger TextChanged with postback            
             if (!this.get_element().readOnly && (this._initialvalue != wrapper.get_Value()) && evt) {
                 this._fireChanged();
             }
         }
+        if (this._beforeClearMaskText != '')
+            wrapper.set_Value(this._beforeClearMaskText);
     }
 
     , _fireChanged : function() {
@@ -2515,9 +2519,6 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                     var c = value.substring(i-1,i);  
                     if (this._MaskType == Sys.Extended.UI.MaskedEditType.Number && this._AcceptNegative != Sys.Extended.UI.MaskedEditShowSymbol.None && "+-".indexOf(c) != -1)
                     {
-                        if (this._LogicSymbol == '-')
-                            this._LogicSymbol = ' ';
-
                         this.InsertSignal(c);
                     }
                     if (this._processKey(logicPosition,c)) 

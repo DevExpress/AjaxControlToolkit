@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.Tests.Bugs
 {
-    public partial class Issue16109 : System.Web.UI.Page
+    public partial class Issue15492 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

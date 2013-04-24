@@ -10,7 +10,7 @@
 namespace AjaxControlToolkit.Tests.Bugs {
     
     
-    public partial class Issue16109 {
+    public partial class Issue15492 {
         
         /// <summary>
         /// form1 control.
@@ -31,30 +31,30 @@ namespace AjaxControlToolkit.Tests.Bugs {
         protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
         
         /// <summary>
-        /// TextBox1 control.
+        /// TextBox2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox TextBox2;
         
         /// <summary>
-        /// MaskedEditExtender1 control.
+        /// MaskedEditExtender2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender1;
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender2;
         
         /// <summary>
-        /// MaskedEditValidator1 control.
+        /// MaskedEditValidator2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditValidator MaskedEditValidator1;
+        protected global::AjaxControlToolkit.MaskedEditValidator MaskedEditValidator2;
     }
 }

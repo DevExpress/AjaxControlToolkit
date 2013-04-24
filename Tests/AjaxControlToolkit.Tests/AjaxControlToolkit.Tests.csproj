@@ -90,7 +90,7 @@
     <Content Include="Bugs\HtmlEditorExtender\27020\WebForm1.aspx" />
     <Content Include="Bugs\HtmlEditorExtender\27028\WebForm1.aspx" />
     <Content Include="Bugs\HtmlEditorExtender\27031\WebForm1.aspx" />
-    <Content Include="Bugs\MaskedEdit\16109.aspx" />
+    <Content Include="Bugs\MaskedEdit\15492.aspx" />
     <Content Include="Bugs\ModalPopup\26732\LandingUserControl.ascx" />
     <Content Include="Bugs\ModalPopup\26732\ModalupPopupWithUpdatePanel.aspx" />
     <Content Include="Bugs\ModalPopup\26775\ModalPopupBackground.aspx" />
@@ -393,12 +393,12 @@
     <Compile Include="Bugs\HtmlEditorExtender\27031\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Bugs\MaskedEdit\16109.aspx.cs">
-      <DependentUpon>16109.aspx</DependentUpon>
+    <Compile Include="Bugs\MaskedEdit\15492.aspx.cs">
+      <DependentUpon>15492.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Bugs\MaskedEdit\16109.aspx.designer.cs">
-      <DependentUpon>16109.aspx</DependentUpon>
+    <Compile Include="Bugs\MaskedEdit\15492.aspx.designer.cs">
+      <DependentUpon>15492.aspx</DependentUpon>
     </Compile>
     <Compile Include="Bugs\ModalPopup\26732\LandingUserControl.ascx.cs">
       <DependentUpon>LandingUserControl.ascx</DependentUpon>
