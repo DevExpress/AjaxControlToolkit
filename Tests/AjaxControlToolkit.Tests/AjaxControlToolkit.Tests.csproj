@@ -93,6 +93,7 @@
     <Content Include="Bugs\MaskedEdit\13423.aspx" />
     <Content Include="Bugs\MaskedEdit\15492.aspx" />
     <Content Include="Bugs\MaskedEdit\16109.aspx" />
+    <Content Include="Bugs\MaskedEdit\16186.aspx" />
     <Content Include="Bugs\MaskedEdit\23023.aspx" />
     <Content Include="Bugs\ModalPopup\26732\LandingUserControl.ascx" />
     <Content Include="Bugs\ModalPopup\26732\ModalupPopupWithUpdatePanel.aspx" />
@@ -417,8 +418,15 @@
     <Compile Include="Bugs\MaskedEdit\16109.aspx.designer.cs">
       <DependentUpon>16109.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Bugs\MaskedEdit\16186.aspx.cs">
+      <DependentUpon>16186.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\16186.aspx.designer.cs">
+      <DependentUpon>16186.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Bugs\MaskedEdit\23023.aspx.cs">
       <DependentUpon>23023.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Bugs\MaskedEdit\23023.aspx.designer.cs">
       <DependentUpon>23023.aspx</DependentUpon>
