@@ -2585,7 +2585,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             }
             else 
             {
-                ValueText = arr[0];
+                ValueText = time_arr[0]; //arr[0];
             }
             if (autocomp != "")
             {
