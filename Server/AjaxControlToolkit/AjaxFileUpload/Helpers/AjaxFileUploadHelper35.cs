@@ -31,7 +31,7 @@ namespace AjaxControlToolkit
         /// Process uploaded file from http request.
         /// </summary>
         /// <param name="request"></param>
-        public static bool Process(HttpRequest request)
+        public static bool Process(HttpContext context, HttpRequest request)
         {
             var result = ProcessStream(request.Files[0],
                           request.QueryString["fileId"],

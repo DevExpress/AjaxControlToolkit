@@ -3,7 +3,8 @@ Type.registerNamespace("AjaxFileUpload");
 
 Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
     
-    var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
+    var utils = new Sys.Extended.UI.AjaxFileUpload.Utils(),
+        xhrPoll = new XMLHttpRequest();
 
     this._iframe = null;
     this._iframeName = control.get_id() + '_uploadIframe';
@@ -18,6 +19,27 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
     this.attachEvents = function () {
         this.onFileSelected$delegate = Function.createDelegate(this, this.onFileSelectedHandler);
         this.attachFileInputEvents(elements.inputFile, true);
+
+        var self = this;
+        
+        // Capture uploading percentage report from server
+        xhrPoll.onreadystatechange = function (e) {
+            if (xhrPoll.readyState == 4 && xhrPoll.status == 200) {
+
+                // Update percentage
+                var percent = xhrPoll.responseText;
+                if (percent) {
+                    percent = parseFloat(percent).toFixed(2);
+                    control.setPercent(percent);
+                }
+
+                // Keep polling as long as upload is not completed
+                if (percent < 100)
+                    setTimeout(function() {
+                        self.pollingServerProgress(true);
+                    }, 500);
+            }
+        };
     };
     
     this.attachFileInputEvents = function (fileInput, attach) {
@@ -101,8 +123,6 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
             return;
         }
         
-        this.setThrobber(true);
-        
         // set file item status
         control.setAsUploading(fileItem);
         
@@ -110,6 +130,8 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
 
         // set current file id
         control._currentFileId = fileItem._id;
+
+        this.setThrobber(true);
 
         // clear all form children
         while (form.firstChild) {
@@ -120,27 +142,33 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
         
         // only add 1 file input element to be uploaded
         form.appendChild(inputElement);
-        form.setAttribute("action", control._uploadUrl + '?contextKey=' + control._contextKey + '&fileId=' + control._currentFileId + '&fileName=' + fileItem._fileName);
+        form.setAttribute("action", control._uploadUrl + '?contextKey=' + control._contextKey + '&fileId=' + control._currentFileId + '&fileName=' + fileItem._fileName + '&usePoll=' + (control.get_serverPollingSupport() ? "true" : "false"));
         
         // upload it now
         form.submit();
     };
 
-    this.cancelUpload = function() {
+    this.cancelUpload = function () {
+        /// <summary>
+        /// Send request to server to abort current upload progress.
+        /// </summary>
+
         // send message to server to cancel this upload
         var xhr = new XMLHttpRequest(),
             self = this;
-        xhr.open("POST", "?cancel=1&guid=" + control._currentFileId, true);
+        
+        // aborting server polling request
+        if (xhrPoll)
+            xhrPoll.abort();
+        
+        xhr.open("POST", '?contextKey=' + control._contextKey + "&cancel=1&guid=" + control._currentFileId, true);
         xhr.onreadystatechange = function () {
             self.setThrobber(false);
             if (xhr.readyState == 4 && xhr.status == 200) {
                 // set file status as canceled
                 control.setFileStatus(control._currentFileId, 'cancelled', Sys.Extended.UI.Resources.AjaxFileUpload_Canceled);
                 control.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_UploadCanceled);
-            } else {
-                // cancelation is error. 
-                control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
-                control.raiseUploadError(xhr);
+                control._currentFileId = null;
             }
         };
         xhr.send(null);
@@ -215,10 +243,31 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
         /// Show or hide throbber when processing upload.
         /// </summary>
         /// <param name="value"></param>
+
+        if (control.get_serverPollingSupport()) {
+            control.setPercent(0);
+            $common.setVisible(elements.progressBar, value ? true : false);
+            $common.setVisible(elements.progressBarContainer, value ? true : false);
+            this.pollingServerProgress(value);
+            return;
+        }
         
         if (control.get_throbber() != null) {
             control.get_throbber().style.display = value ? "" : "none";
         }
+    };
+
+    this.pollingServerProgress = function (value) {
+        /// <summary>
+        /// Get percentage of uploading progress from server.
+        /// </summary>
+        /// <param name="value"></param>
+
+        if (!value || !control._currentFileId)
+            return;
+
+        xhrPoll.open("GET", '?contextKey=' + control._contextKey + "&poll=1&guid=" + control._currentFileId, true);
+        xhrPoll.send(null);
     };
 
     this.createForm = function () {

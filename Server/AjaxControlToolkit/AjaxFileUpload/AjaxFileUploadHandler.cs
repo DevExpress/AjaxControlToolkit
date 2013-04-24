@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Web;
-using System.Web.Script.Serialization;
 
 namespace AjaxControlToolkit
 {
@@ -25,7 +24,7 @@ namespace AjaxControlToolkit
             if (request.Headers["Content-Type"] != null &&
                 request.Headers["Content-Type"].StartsWith("multipart/form-data;") &&
                 request.Headers["Content-Length"] != null)
-                AjaxFileUploadHelper.Process(request);
+                AjaxFileUploadHelper.Process(context, request);
             else
                 throw new Exception("Invalid upload request.");
 

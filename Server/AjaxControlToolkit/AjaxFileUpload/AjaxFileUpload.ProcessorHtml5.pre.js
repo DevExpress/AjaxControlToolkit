@@ -105,12 +105,12 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function (control, elements) {
         
         if (fileItem) {
             if (fileItem._sliceIndex === 0)
-                this.setPercent(0);
+                control.setPercent(0);
             $common.setVisible(elements.progressBarContainer, true);
             this.upload(fileItem);
         } else {
             control._currentFileId = null;
-            this.setPercent(0);
+            control.setPercent(0);
             $common.setVisible(elements.progressBarContainer, false);
             control.done();
         }
@@ -193,7 +193,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function (control, elements) {
                         ? (xhr.loaded * 100 / xhr.total).toFixed(2)
                         : ((allBytesUploaded / calculatedFileSize) * 100).toFixed(2);
             
-            this.setPercent(percentComplete);
+            control.setPercent(percentComplete);
         }
     };
 
@@ -259,13 +259,5 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function (control, elements) {
         control.setFileStatus(fileItem, 'canceled', Sys.Extended.UI.Resources.AjaxFileUpload_Canceled);
     };
 
-    this.setPercent = function (percent) {
-        /// <summary>
-        /// Set percentage of progress bar.
-        /// </summary>
-        /// <param name="percent">percentage</param>
-        var progressBar = elements.progressBar;
-        progressBar.style.width = percent + '%';
-        $common.setText(progressBar, String.format(Sys.Extended.UI.Resources.AjaxFileUpload_UploadedPercentage, percent));
-    };
+    
 };
