@@ -12,28 +12,27 @@ namespace AjaxControlToolkit
     /// </summary>
     public static class AjaxFileUploadHelper
     {
-        internal const string TempDirectory = "~/App_Data";
+        internal const string TempDirectory = "~/App_Data/_AjaxFileUpload";
         private const int ChunkSize = 1024 * 1024 * 4;
-
-        private static readonly List<string> AbortRequests = new List<string>();
 
         /// <summary>
         /// Add upload abort request.
         /// </summary>
-        /// <param name="fileId">file id to be aborted.</param>
-        public static void Abort(string fileId)
+        /// <param name="context">Current HttpContext.</param>
+        /// <param name="fileId">File id to be aborted.</param>
+        public static void Abort(HttpContext context, string fileId)
         {
-            if (!AbortRequests.Contains(fileId))
-                AbortRequests.Add(fileId);
+            (new AjaxFileUploadStates(context, fileId)).Abort = true;
         }
 
         /// <summary>
         /// Process uploaded file from http request.
         /// </summary>
-        /// <param name="request"></param>
-        public static bool Process(HttpContext context, HttpRequest request)
+        /// <param name="context">Current HttpContext</param>
+        public static bool Process(HttpContext context)
         {
-            var result = ProcessStream(request.Files[0],
+            var request = context.Request;
+            var result = ProcessStream(context, request.Files[0],
                           request.QueryString["fileId"],
                           request.QueryString["fileName"],
                           bool.Parse(request.QueryString["chunked"] ?? "false"),
@@ -45,9 +44,10 @@ namespace AjaxControlToolkit
             return result;
         }
 
-        private static bool ProcessStream(HttpPostedFile httpPostedFile, string fileId, string fileName, bool chunked, bool isFirstChunk)
+        private static bool ProcessStream(HttpContext context, HttpPostedFile httpPostedFile, string fileId, string fileName, bool chunked, bool isFirstChunk)
         {
             Stream destination = null;
+            var states = new AjaxFileUploadStates(context, fileId);
 
             // Prepare temporary folder, we use file id as a folder name.
             var tempFolder = Path.Combine(HttpContext.Current.Server.MapPath(TempDirectory), fileId);
@@ -81,10 +81,9 @@ namespace AjaxControlToolkit
 
                 bytesWritten += bytesToWrite;
 
-                if (AbortRequests.Contains(fileId))
+                if (states.Abort)
                 {
                     destination.Dispose();
-                    AbortRequests.Remove(fileId);
                     return false;
                 }
             }

@@ -40,7 +40,7 @@
       </handlers>
       <security>
         <requestFiltering>
-          <requestLimits maxAllowedContentLength="4295000000"/>
+          <requestLimits maxAllowedContentLength="4294967295"/>
         </requestFiltering>
       </security>
     </system.webServer>
