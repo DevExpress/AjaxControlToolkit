@@ -65,13 +65,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AjaxControlToolkit\AjaxControlToolkit.csproj">
+    <ProjectReference Include="..\..\AjaxControlToolkit\AjaxControlToolkit.VS2010.csproj">
       <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
-      <Name>AjaxControlToolkit</Name>
+      <Name>AjaxControlToolkit.VS2010</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\SanitizerProviders\SanitizerProviders.csproj">
+    <ProjectReference Include="..\..\SanitizerProviders\SanitizerProviders.VS2010.csproj">
       <Project>{BE5E36F1-B65D-4C4B-97DB-54DCC19D3548}</Project>
-      <Name>SanitizerProviders</Name>
+      <Name>SanitizerProviders.VS2010</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

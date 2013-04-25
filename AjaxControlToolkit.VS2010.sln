@@ -28,13 +28,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{6ED50EB8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptOutput", "ScriptOutput", "{F905803E-B5B4-4F83-BBDB-0E2CA3DD5F5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrosoftAjax", "Client\MicrosoftAjax\MicrosoftAjax.csproj", "{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrosoftAjax.VS2010", "Client\MicrosoftAjax\MicrosoftAjax.VS2010.csproj", "{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrosoftAjax.Extended", "Client\MicrosoftAjax.Extended\MicrosoftAjax.Extended.csproj", "{53BF3496-0AD1-491C-A367-258E84479594}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrosoftAjax.Extended.VS2010", "Client\MicrosoftAjax.Extended\MicrosoftAjax.Extended.VS2010.csproj", "{53BF3496-0AD1-491C-A367-258E84479594}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSBuild", "Tools\JSBuild\JSBuild.csproj", "{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSBuild.VS2010", "Tools\JSBuild\JSBuild.VS2010.csproj", "{69871CED-67C3-4AE1-A7C3-2323AC94CE5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit", "Server\AjaxControlToolkit\AjaxControlToolkit.csproj", "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.VS2010", "Server\AjaxControlToolkit\AjaxControlToolkit.VS2010.csproj", "{66C2EB32-CE54-4374-B73F-2A97EF13DD89}"
 	ProjectSection(ProjectDependencies) = postProject
 		{53BF3496-0AD1-491C-A367-258E84479594} = {53BF3496-0AD1-491C-A367-258E84479594}
 		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}
@@ -42,7 +42,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit", "Serve
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleWebSites", "SampleWebSites", "{E2ED2468-021E-4020-AD37-057943EC0364}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Client\UnitTests\UnitTests.csproj", "{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.VS2010", "Client\UnitTests\UnitTests.VS2010.csproj", "{68DA92FB-A5E7-44DF-9ED4-A5CF7B4C14CB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{53BF3496-0AD1-491C-A367-258E84479594} = {53BF3496-0AD1-491C-A367-258E84479594}
 		{C7C69DA7-4DD7-439B-938D-76A1A4C43D2A} = {C7C69DA7-4DD7-439B-938D-76A1A4C43D2A}
@@ -117,11 +117,11 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0842B4F5-E78A-4003-8993-86E3CFF3F992}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.Tests", "Tests\AjaxControlToolkit.Tests\AjaxControlToolkit.Tests.csproj", "{C45AE222-2E8F-4D7F-9E56-27EC54A8E233}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.Tests.VS2010", "Tests\AjaxControlToolkit.Tests\AjaxControlToolkit.Tests.VS2010.csproj", "{C45AE222-2E8F-4D7F-9E56-27EC54A8E233}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanitizerProviders", "Server\SanitizerProviders\SanitizerProviders.csproj", "{BE5E36F1-B65D-4C4B-97DB-54DCC19D3548}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SanitizerProviders.VS2010", "Server\SanitizerProviders\SanitizerProviders.VS2010.csproj", "{BE5E36F1-B65D-4C4B-97DB-54DCC19D3548}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Server\Tests\UnitTests\UnitTests.csproj", "{EE9560C5-FDAB-49B5-8334-8B7263D8BA4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.VS2010", "Server\Tests\UnitTests\UnitTests.VS2010.csproj", "{EE9560C5-FDAB-49B5-8334-8B7263D8BA4B}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
