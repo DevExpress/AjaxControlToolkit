@@ -420,6 +420,7 @@
     </Compile>
     <Compile Include="Bugs\MaskedEdit\16186.aspx.cs">
       <DependentUpon>16186.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Bugs\MaskedEdit\16186.aspx.designer.cs">
       <DependentUpon>16186.aspx</DependentUpon>

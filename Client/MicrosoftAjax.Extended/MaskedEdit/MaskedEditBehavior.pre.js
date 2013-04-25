@@ -3068,9 +3068,22 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             // convert current Culture to user culture format
             if (this.get_UserDateFormat() != Sys.Extended.UI.MaskedEditUserDateFormat.None)
             {
-                  m_arrDate[this.get_CultureDateFormat().indexOf("D")] = m_arrDateLD[this._CultureDateFormat.indexOf("D")];   
-                  m_arrDate[this.get_CultureDateFormat().indexOf("M")] = m_arrDateLD[this._CultureDateFormat.indexOf("M")];   
-                  m_arrDate[this.get_CultureDateFormat().indexOf("Y")] = m_arrDateLD[this._CultureDateFormat.indexOf("Y")];   
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.DayMonthYear)
+                    this._CultureDateFormat = 'DMY';
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.DayYearMonth)
+                    this._CultureDateFormat = 'DYM';
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.MonthDayYear)
+                    this._CultureDateFormat = 'MDY';
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.MonthYearDay)
+                    this._CultureDateFormat = 'MYD';
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.YearDayMonth)
+                    this._CultureDateFormat = 'YDM';
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.YearMonthDay)
+                    this._CultureDateFormat = 'YMD';
+        
+                m_arrDate[this.get_CultureDateFormat().indexOf("D")] = m_arrDateLD[this._CultureDateFormat.indexOf("D")];   
+                m_arrDate[this.get_CultureDateFormat().indexOf("M")] = m_arrDateLD[this._CultureDateFormat.indexOf("M")];   
+                m_arrDate[this.get_CultureDateFormat().indexOf("Y")] = m_arrDateLD[this._CultureDateFormat.indexOf("Y")];   
             }
         }
         else
