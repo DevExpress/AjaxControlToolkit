@@ -50,13 +50,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.csproj">
-      <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
-      <Name>AjaxControlToolkit</Name>
-    </ProjectReference>
+    <Content Include="Assemblies\HtmlAgilityPack.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assemblies\HtmlAgilityPack.dll" />
+    <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.VS2010.csproj">
+      <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
+      <Name>AjaxControlToolkit.VS2010</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
