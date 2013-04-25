@@ -10,17 +10,17 @@
     <form id="form1" runat="server">
     <act:ToolkitScriptManager ID="ToolkitScriptManager1" CombineScripts="false" runat="server" />
     <div>
-         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
+         <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>--%>
                 <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
                 <act:MaskedEditExtender ID="MaskedEditExtender1" runat="server" Mask="99/99/9999 99:99:99" 
-                TargetControlID="TextBox1" MaskType="DateTime" CultureName="en-US" UserDateFormat="DayMonthYear">
+                TargetControlID="TextBox1" MaskType="DateTime" CultureName="en-GB" UserDateFormat="DayMonthYear">
                 </act:MaskedEditExtender>
                 <act:MaskedEditValidator ID="MaskedEditValidator1" runat="server" ControlExtender="MaskedEditExtender1"
                 ControlToValidate="TextBox1" Display="Dynamic" InvalidValueMessage="invalid date" ErrorMessage="Error in the entered datetime"></act:MaskedEditValidator>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+            <%--</ContentTemplate>
+        </asp:UpdatePanel>--%>
     </div>
     </form>
 </body>
