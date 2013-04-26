@@ -84,6 +84,15 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
+        /// Delete temporary uploaded file data from temporary folder.
+        /// </summary>
+        public void DeleteTemporaryData()
+        {
+            var dirInfo = new DirectoryInfo(Path.Combine(Path.GetTempPath(), this._fileId));
+            dirInfo.Delete(true);
+        }
+
+        /// <summary>
         /// To get state of Uploading/uploaded file.
         /// </summary>
         public AjaxFileUploadState State
@@ -136,5 +145,7 @@ namespace AjaxControlToolkit
             set { _postedUrl = value; }
         }
 
+
+        
     }
 }
