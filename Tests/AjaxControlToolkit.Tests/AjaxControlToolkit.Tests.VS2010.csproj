@@ -90,6 +90,11 @@
     <Content Include="Bugs\HtmlEditorExtender\27020\WebForm1.aspx" />
     <Content Include="Bugs\HtmlEditorExtender\27028\WebForm1.aspx" />
     <Content Include="Bugs\HtmlEditorExtender\27031\WebForm1.aspx" />
+    <Content Include="Bugs\MaskedEdit\13423.aspx" />
+    <Content Include="Bugs\MaskedEdit\15492.aspx" />
+    <Content Include="Bugs\MaskedEdit\16109.aspx" />
+    <Content Include="Bugs\MaskedEdit\16186.aspx" />
+    <Content Include="Bugs\MaskedEdit\23023.aspx" />
     <Content Include="Bugs\ModalPopup\26732\LandingUserControl.ascx" />
     <Content Include="Bugs\ModalPopup\26732\ModalupPopupWithUpdatePanel.aspx" />
     <Content Include="Bugs\ModalPopup\26775\ModalPopupBackground.aspx" />
@@ -391,6 +396,41 @@
     </Compile>
     <Compile Include="Bugs\HtmlEditorExtender\27031\WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\13423.aspx.cs">
+      <DependentUpon>13423.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\13423.aspx.designer.cs">
+      <DependentUpon>13423.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\15492.aspx.cs">
+      <DependentUpon>15492.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\15492.aspx.designer.cs">
+      <DependentUpon>15492.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\16109.aspx.cs">
+      <DependentUpon>16109.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\16109.aspx.designer.cs">
+      <DependentUpon>16109.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\16186.aspx.cs">
+      <DependentUpon>16186.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\16186.aspx.designer.cs">
+      <DependentUpon>16186.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\23023.aspx.cs">
+      <DependentUpon>23023.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\23023.aspx.designer.cs">
+      <DependentUpon>23023.aspx</DependentUpon>
     </Compile>
     <Compile Include="Bugs\ModalPopup\26732\LandingUserControl.ascx.cs">
       <DependentUpon>LandingUserControl.ascx</DependentUpon>
@@ -823,12 +863,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Server\AjaxControlToolkit\AjaxControlToolkit.csproj">
-      <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
-      <Name>AjaxControlToolkit</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
@@ -851,6 +885,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bugs\Tabs\26126\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Server\AjaxControlToolkit\AjaxControlToolkit.VS2010.csproj">
+      <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
+      <Name>AjaxControlToolkit.VS2010</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

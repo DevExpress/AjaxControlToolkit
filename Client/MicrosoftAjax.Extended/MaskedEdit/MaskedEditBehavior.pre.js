@@ -120,6 +120,7 @@ Sys.Extended.UI.MaskedEditBehavior = function(element)
     this._CurrentMessageError = ""; // Save local Current MessageError
     this._FiringOnChange = false;  // true when OnChange is being fired
     this._ErroOnEnter = false; // Flag Erro validate with Enter
+    this._beforeClearMaskText = '';
     // **************************************************
     // local chars ANSI
     // **************************************************
@@ -443,8 +444,9 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             this.AutoFormatNumber();
         }
         // clear mask and set CSS
-        if ((this._ClearMaskOnLostfocus && ClearText != "") || (isblur && this._ClearMaskOnLostfocus) )
+        if (ClearText != "" || isblur)
         {
+            this._beforeClearMaskText = wrapper.get_Value();
             wrapper.set_Value(this._getClearMask(wrapper.get_Value()));
         }
         this.AddCssClassMaskedEdit("");
@@ -474,14 +476,16 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     {
         this._InLostfocus = true;
         var IsValid = this._PeforformValidLostFocus(true);
+        var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
         if (IsValid)
         {
-            // trigger TextChanged with postback
-            var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
+            // trigger TextChanged with postback            
             if (!this.get_element().readOnly && (this._initialvalue != wrapper.get_Value()) && evt) {
                 this._fireChanged();
             }
         }
+        if (this._beforeClearMaskText != '')
+            wrapper.set_Value(this._beforeClearMaskText);
     }
 
     , _fireChanged : function() {
@@ -2024,10 +2028,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         {
             if (aux !="" && aux.length < 4)
             {
-                while (aux.length < 4)
-                {
-                    aux = "0" + aux;
-                }
+                aux = this._Century.toString().substr(0, aux.length) + aux;
                 m_arrDate[this.get_CultureDateFormat().indexOf("Y")] = aux;
             }
         }
@@ -2515,6 +2516,9 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                     var c = value.substring(i-1,i);  
                     if (this._MaskType == Sys.Extended.UI.MaskedEditType.Number && this._AcceptNegative != Sys.Extended.UI.MaskedEditShowSymbol.None && "+-".indexOf(c) != -1)
                     {
+                        if (this._LogicSymbol == '-')
+                            this._LogicSymbol = ' ';
+
                         this.InsertSignal(c);
                     }
                     if (this._processKey(logicPosition,c)) 
@@ -2578,7 +2582,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             }
             else 
             {
-                ValueText = arr[0];
+                ValueText = time_arr[0]; //arr[0];
             }
             if (autocomp != "")
             {
@@ -3064,9 +3068,22 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             // convert current Culture to user culture format
             if (this.get_UserDateFormat() != Sys.Extended.UI.MaskedEditUserDateFormat.None)
             {
-                  m_arrDate[this.get_CultureDateFormat().indexOf("D")] = m_arrDateLD[this._CultureDateFormat.indexOf("D")];   
-                  m_arrDate[this.get_CultureDateFormat().indexOf("M")] = m_arrDateLD[this._CultureDateFormat.indexOf("M")];   
-                  m_arrDate[this.get_CultureDateFormat().indexOf("Y")] = m_arrDateLD[this._CultureDateFormat.indexOf("Y")];   
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.DayMonthYear)
+                    this._CultureDateFormat = 'DMY';
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.DayYearMonth)
+                    this._CultureDateFormat = 'DYM';
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.MonthDayYear)
+                    this._CultureDateFormat = 'MDY';
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.MonthYearDay)
+                    this._CultureDateFormat = 'MYD';
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.YearDayMonth)
+                    this._CultureDateFormat = 'YDM';
+                if (this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.YearMonthDay)
+                    this._CultureDateFormat = 'YMD';
+        
+                m_arrDate[this.get_CultureDateFormat().indexOf("D")] = m_arrDateLD[this._CultureDateFormat.indexOf("D")];   
+                m_arrDate[this.get_CultureDateFormat().indexOf("M")] = m_arrDateLD[this._CultureDateFormat.indexOf("M")];   
+                m_arrDate[this.get_CultureDateFormat().indexOf("Y")] = m_arrDateLD[this._CultureDateFormat.indexOf("Y")];   
             }
         }
         else

@@ -265,7 +265,39 @@ function MaskedEditValidatorPartTime(value,mask,MinVl,MaxVl)
 function MaskedEditValidatorPartDate(value,mask,MinVl,MaxVl)
 {    
     var ret = true;
-    var AttibDtFmt = value.DateFormat;
+    var AttibDtFmt = "MDY";
+    switch (value.DateFormat) {
+        case "DayMonthYear":
+            {
+                AttibDtFmt = "DMY";
+                break;
+            }
+        case "DayYearMonth":
+            {
+                AttibDtFmt = "DYM";
+                break;
+            }
+        case "MonthDayYear":
+            {
+                AttibDtFmt = "MDY";
+                break;
+            }
+        case "MonthYearDay":
+            {
+                AttibDtFmt = "MYD";
+                break;
+            }
+        case "YearDayMonth":
+            {
+                AttibDtFmt = "YDM";
+                break;
+            }
+        case "YearMonthDay":
+            {
+                AttibDtFmt = "YMD";
+                break;
+            }
+    }
     var AttibDtSep = value.DateSeparator;
     var m_arrDate = mask.split(AttibDtSep);
     if (parseInt(m_arrDate.length,10) != 3)
@@ -332,7 +364,6 @@ function MaskedEditValidatorPartDate(value,mask,MinVl,MaxVl)
 }
 function MaskedEditValidatorDate(value)
 {
-
     MaskedEditSetMessage(value,"","");
     MaskedEditSetCssClass(value,"");
     MaskedEditMessageShow(value,true);
@@ -458,10 +489,11 @@ function MaskedEditValidatorNumber(value)
     {
         return true;
     }
-    var target = $get(value.TargetValidator); 
+    var target = $get(value.TargetValidator);
+    var numVal = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(target).get_Value().replace(new RegExp("(\[\w_.,\s\$ ])", "g"), "");
     if (value.ValidEmpty  == "false")
     {
-        if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(target).get_Value() == value.InitialValue)
+        if (numVal == value.InitialValue)
         {
             MaskedEditSetMessage(value,value.EmptyValueMessage,value.EmptyValueText);
             MaskedEditSetCssClass(value,value.InvalidValueCssClass);
@@ -469,7 +501,7 @@ function MaskedEditValidatorNumber(value)
             return false;
         }
     }
-    if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(target).get_Value() == "")
+    if (numVal == "")
     {
         return true;
     }
