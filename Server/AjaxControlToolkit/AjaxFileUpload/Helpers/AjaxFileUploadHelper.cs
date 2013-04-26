@@ -13,7 +13,8 @@ namespace AjaxControlToolkit
     public static class AjaxFileUploadHelper
     {
         internal const string TempDirectory = "~/App_Data/_AjaxFileUpload";
-        private const int ChunkSize = 1024 * 1024 * 4;
+        private const int ChunkSize = 1024*1024*4;
+        private const int ChunkSizeForPolling = 64*1024;
 
         /// <summary>
         /// Add upload abort request.
@@ -83,9 +84,13 @@ namespace AjaxControlToolkit
                         return false;
 
                     // read per chunk
-                    var chunkSize = ChunkSize;
+                    var chunkSize = usePoll ? ChunkSizeForPolling : ChunkSize;
                     if (chunkSize > source.Length)
+                    {
                         chunkSize = (int) source.Length;
+                        if (usePoll)
+                            states.FileLength = chunkSize;
+                    }
 
                     var chunk = new byte[chunkSize];
                     var index = 0;

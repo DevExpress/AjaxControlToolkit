@@ -302,17 +302,21 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         
         xhr.open("POST", "?contextKey="+ this._contextKey +"&done=1&guid=" + fileItem._id, true);
         xhr.onreadystatechange = function (e) {
-            if (xhr.readyState == 4 && xhr.status == 200) {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
 
-                // Mark as done and invoke event handler
-                self.raiseUploadComplete(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
+                    // Mark as done and invoke event handler
+                    self.raiseUploadComplete(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
 
-                // Upload next file
-                self._processor.startUpload();
-            } else {
-                // finalizing is error. next file will not be uploaded.
-                self.setFileStatus(fileItem, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
-                self.raiseUploadError(xhr);
+                    // Upload next file
+                    self._processor.startUpload();
+
+                } else {
+                    // finalizing is error. next file will not be uploaded.
+                    self.setFileStatus(fileItem, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
+                    self.raiseUploadError(xhr);
+                    throw "error raising upload complete event and start new upload";
+                }
             }
         };
         xhr.send(null);
@@ -358,6 +362,11 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         /// </summary>
         /// <param name="percent">percentage</param>
         var progressBar = this._elements.progressBar;
+        if (percent <= 0)
+            percent = "0";
+        else if (percent >= 100)
+            percent = "100";
+
         progressBar.style.width = percent + '%';
         $common.setText(progressBar, String.format(Sys.Extended.UI.Resources.AjaxFileUpload_UploadedPercentage, percent));
     },
