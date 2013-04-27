@@ -23,7 +23,7 @@
     <connectionStrings/>
     <system.web>
 
-
+        <httpRuntime executionTimeout="90" maxRequestLength="4194000" />
         <trust level="Full" />
 
 
@@ -69,9 +69,23 @@
         </siteMap>
         <globalization culture="en-us" uiCulture="en"/>
         <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID"/>
+        <httpHandlers>
+          <add verb="*" path="AjaxFileUploadHandler.axd" type="AjaxControlToolkit.AjaxFileUploadHandler, AjaxControlToolkit"/>
+        </httpHandlers>
     </system.web>
     <!-- 
         The system.webServer section is required for running ASP.NET AJAX under Internet
         Information Services 7.0.  It is not necessary for previous version of IIS.
     -->
+    <system.webServer>
+      <validation validateIntegratedModeConfiguration="false" />
+      <handlers>
+        <add name="AjaxFileUploadHandler" verb="*" path="AjaxFileUploadHandler.axd" type="AjaxControlToolkit.AjaxFileUploadHandler, AjaxControlToolkit"/>
+      </handlers>
+      <security>
+        <requestFiltering>
+          <requestLimits maxAllowedContentLength="4294967295"/>
+        </requestFiltering>
+      </security>
+    </system.webServer>
 </configuration>

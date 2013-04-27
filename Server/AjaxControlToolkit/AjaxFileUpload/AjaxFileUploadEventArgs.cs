@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web;
 
 namespace AjaxControlToolkit
 {
@@ -27,7 +29,6 @@ namespace AjaxControlToolkit
         private int _fileSize = 0;
         private string _contentType = String.Empty;
         private AjaxFileUploadState _state = AjaxFileUploadState.Unknown;
-        private byte[] _contents;
         private string _postedUrl = string.Empty;
 
         /// <summary>
@@ -39,8 +40,7 @@ namespace AjaxControlToolkit
         /// <param name="fileName">Name of the file.</param>
         /// <param name="fileSize">Size of the file.</param>
         /// <param name="contentType">Content type of the file.</param>
-        /// <param name="contents">Contents of file.</param>
-        public AjaxFileUploadEventArgs(string fileId, AjaxFileUploadState state, string statusMessage, string fileName, int fileSize, string contentType, byte[] contents)
+        public AjaxFileUploadEventArgs(string fileId, AjaxFileUploadState state, string statusMessage, string fileName, int fileSize, string contentType)
         {
             _fileId = fileId;
             _state = state;
@@ -48,7 +48,6 @@ namespace AjaxControlToolkit
             _fileName = fileName;
             _fileSize = fileSize;
             _contentType = contentType;
-            _contents = contents;
         }
 
         /// <summary>
@@ -60,12 +59,37 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// To get contents of uploaded file.
+        /// Get contents of uploaded file in byte array.
+        /// Use <code>GetStreamContents()</code> instead when uploaded file size is too big to avoid System.OutOfMemoryException exception.
         /// </summary>
         /// <returns></returns>
         public byte[] GetContents()
         {
-            return _contents;
+            using (var stream = GetStreamContents())
+            {
+                var buffer = new byte[stream.Length];
+                stream.Read(buffer, 0, buffer.Length);
+                return buffer;
+            }
+        }
+
+        /// <summary>
+        /// Get contents of uploaded file in stream.
+        /// </summary>
+        /// <returns></returns>
+        public Stream GetStreamContents()
+        {
+            var dir = Path.Combine(Path.GetTempPath(), this._fileId);
+            return File.OpenRead(Path.Combine(dir, this._fileName));
+        }
+
+        /// <summary>
+        /// Delete temporary uploaded file data from temporary folder.
+        /// </summary>
+        public void DeleteTemporaryData()
+        {
+            var dirInfo = new DirectoryInfo(Path.Combine(Path.GetTempPath(), this._fileId));
+            dirInfo.Delete(true);
         }
 
         /// <summary>
@@ -121,5 +145,7 @@ namespace AjaxControlToolkit
             set { _postedUrl = value; }
         }
 
+
+        
     }
 }
