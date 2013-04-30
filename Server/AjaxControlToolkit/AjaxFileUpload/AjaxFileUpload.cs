@@ -287,7 +287,7 @@ namespace AjaxControlToolkit
         /// </summary>
         public void CleanAllTemporaryData()
         {
-            var dirInfo = new DirectoryInfo(Path.GetDirectoryName(_uploadedFilePath));
+            var dirInfo = new DirectoryInfo(BuildRootTempFolder());
             foreach (var dir in dirInfo.GetDirectories())
             {
                 dir.Delete(true);
