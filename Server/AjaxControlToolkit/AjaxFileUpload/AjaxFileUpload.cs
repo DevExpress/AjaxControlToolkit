@@ -278,7 +278,14 @@ namespace AjaxControlToolkit
         public void SaveAs(string fileName)
         {
             var dir = Path.GetDirectoryName(_uploadedFilePath);
+
+            // Override existing file if any
+            if (File.Exists(fileName))
+                File.Delete(fileName);
+
             File.Move(_uploadedFilePath, fileName);
+
+            // Delete temporary data
             Directory.Delete(dir);
         }
 

@@ -89,7 +89,8 @@ namespace AjaxControlToolkit
         public void DeleteTemporaryData()
         {
             var dirInfo = new DirectoryInfo(AjaxFileUpload.BuildTempFolder(this._fileId));
-            dirInfo.Delete(true);
+            if (dirInfo.Exists)
+                dirInfo.Delete(true);
         }
 
         /// <summary>
