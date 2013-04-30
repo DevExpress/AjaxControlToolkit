@@ -79,7 +79,7 @@ namespace AjaxControlToolkit
         /// <returns></returns>
         public Stream GetStreamContents()
         {
-            var dir = Path.Combine(Path.GetTempPath(), this._fileId);
+            var dir = AjaxFileUpload.BuildTempFolder(this._fileId);
             return File.OpenRead(Path.Combine(dir, this._fileName));
         }
 
@@ -88,8 +88,9 @@ namespace AjaxControlToolkit
         /// </summary>
         public void DeleteTemporaryData()
         {
-            var dirInfo = new DirectoryInfo(Path.Combine(Path.GetTempPath(), this._fileId));
-            dirInfo.Delete(true);
+            var dirInfo = new DirectoryInfo(AjaxFileUpload.BuildTempFolder(this._fileId));
+            if (dirInfo.Exists)
+                dirInfo.Delete(true);
         }
 
         /// <summary>

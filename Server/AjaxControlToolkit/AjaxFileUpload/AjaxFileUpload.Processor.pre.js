@@ -164,7 +164,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
         // send message to server to cancel this upload
         var xhr = new XMLHttpRequest(),
             self = this;
-        
+
         // aborting server polling request
         if (xhrPoll)
             xhrPoll.abort();
@@ -180,9 +180,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
                     control._currentFileId = null;
                 } else {
                     // cancelation is error. 
-                    control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
-                    control.raiseUploadError(xhr);
-                    control._currentFileId = null;
+                    self.raiseUploadError(xhr);
                     throw "Failed to cancel upload.";
                 }
             }
@@ -246,9 +244,8 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
             
             // Cancelation / aborting upload can causing 'Access is denied' or 'Permission denied' on IE 9 bellow,
             // let's consider this exception is not trully error exception from server.
-            if (!(e.message && (e.message.indexOf("Access is denied") > -1 || e.message.indexOf("Permission denied") > -1))) {
-                control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
-                control.raiseUploadError(e);
+            if (!control._canceled || !(e.message && (e.message.indexOf("Access is denied") > -1 || e.message.indexOf("Permission denied") > -1))) {
+                this.raiseUploadError(e);
                 throw e;
             }
         } 
@@ -309,6 +306,16 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
         document.body.appendChild(form);
         
         this._form = form;
+    };
+
+    this.raiseUploadError = function (xhr) {
+        
+        control.raiseUploadError(xhr);
+        control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
+        
+        if (xhrPoll)
+            xhrPoll.abort();
+        control._currentFileId = null;
     };
 
 };

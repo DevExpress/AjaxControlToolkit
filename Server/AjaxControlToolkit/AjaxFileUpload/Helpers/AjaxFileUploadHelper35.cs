@@ -49,7 +49,7 @@ namespace AjaxControlToolkit
             var states = new AjaxFileUploadStates(context, fileId);
 
             // Prepare temporary folder, we use file id as a folder name.
-            var tempFolder = Path.Combine(Path.GetTempPath(), fileId);
+            var tempFolder = AjaxFileUpload.BuildTempFolder(fileId);
             if (!Directory.Exists(tempFolder)) Directory.CreateDirectory(tempFolder);
 
             // Build temporary file path.

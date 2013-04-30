@@ -61,6 +61,7 @@ namespace AjaxControlToolkit
     public class AjaxFileUpload : ScriptControlBase
     {
         internal const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";
+        private const string TemporaryUploadFolderName = "_AjaxFileUpload";
         private string _uploadedFilePath = null;
 
 
@@ -250,7 +251,7 @@ namespace AjaxControlToolkit
                 }
                 else if (this.Page.Request.QueryString["done"] == "1" && !string.IsNullOrEmpty(fileId))
                 {
-                    var tempFolder = Path.Combine(Path.GetTempPath(), fileId);
+                    var tempFolder = BuildTempFolder(fileId);
                     var fileName = Directory.GetFiles(tempFolder)[0];
                     var fileInfo = new FileInfo(fileName);
 
@@ -277,20 +278,49 @@ namespace AjaxControlToolkit
         public void SaveAs(string fileName)
         {
             var dir = Path.GetDirectoryName(_uploadedFilePath);
+
+            // Override existing file if any
+            if (File.Exists(fileName))
+                File.Delete(fileName);
+
             File.Move(_uploadedFilePath, fileName);
+
+            // Delete temporary data
             Directory.Delete(dir);
         }
 
         /// <summary>
         /// Delete all temporary uploaded files from temporary folder.
         /// </summary>
-        public void CleanAllTemporaryData()
+        public static void CleanAllTemporaryData()
         {
-            var dirInfo = new DirectoryInfo(Path.GetDirectoryName(_uploadedFilePath));
+            var dirInfo = new DirectoryInfo(BuildRootTempFolder());
             foreach (var dir in dirInfo.GetDirectories())
             {
                 dir.Delete(true);
             }
+        }
+
+        /// <summary>
+        /// Build temporary folder to store uploaded files.
+        /// </summary>
+        /// <param name="fileId">Id of uploaded file.</param>
+        /// <returns></returns>
+        public static string BuildTempFolder(string fileId)
+        {
+            return Path.Combine(BuildRootTempFolder(), fileId);
+        }
+
+        /// <summary>
+        /// Build root temporary folder to store uploaded files.
+        /// </summary>
+        /// <returns></returns>
+        public static string BuildRootTempFolder()
+        {
+            var rootTempFolder = Path.Combine(Path.GetTempPath(), TemporaryUploadFolderName);
+            if (!Directory.Exists(rootTempFolder))
+                Directory.CreateDirectory(rootTempFolder);
+            return rootTempFolder;
         }
 
         #endregion
