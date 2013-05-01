@@ -181,9 +181,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
                 } else {
                     // cancelation is error. 
                     control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
-                    control.raiseUploadError(xhr);
-                    control._currentFileId = null;
-                    throw "Failed to cancel upload.";
+                    control.raiseUploadError(xhr);                    
                 }
             }
         };

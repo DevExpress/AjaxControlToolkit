@@ -314,8 +314,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                 } else {
                     // finalizing is error. next file will not be uploaded.
                     self.setFileStatus(fileItem, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
-                    self.raiseUploadError(xhr);
-                    throw "error raising upload complete event and start new upload";
+                    self.raiseUploadError(xhr);                    
                 }
             }
         };
