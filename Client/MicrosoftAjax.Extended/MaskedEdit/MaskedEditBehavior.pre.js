@@ -882,8 +882,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             }
         }
         var curpos;
-        if (Sys.Browser.agent == Sys.Browser.InternetExplorer || evt.type == "keypress") 
-        {
+        if (Sys.Browser.agent == Sys.Browser.InternetExplorer || evt.type == "keypress" || (Sys.Browser.agent != Sys.Browser.Firefox && evt.type == "keydown")) {
             if (scanCode == 8) // BackSpace
             {
                 this._SetCancelEvent(evt);
