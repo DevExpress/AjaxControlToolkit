@@ -265,7 +265,39 @@ function MaskedEditValidatorPartTime(value,mask,MinVl,MaxVl)
 function MaskedEditValidatorPartDate(value,mask,MinVl,MaxVl)
 {    
     var ret = true;
-    var AttibDtFmt = value.DateFormat;
+    var AttibDtFmt = "MDY";
+    switch (value.DateFormat) {
+        case "DayMonthYear":
+            {
+                AttibDtFmt = "DMY";
+                break;
+            }
+        case "DayYearMonth":
+            {
+                AttibDtFmt = "DYM";
+                break;
+            }
+        case "MonthDayYear":
+            {
+                AttibDtFmt = "MDY";
+                break;
+            }
+        case "MonthYearDay":
+            {
+                AttibDtFmt = "MYD";
+                break;
+            }
+        case "YearDayMonth":
+            {
+                AttibDtFmt = "YDM";
+                break;
+            }
+        case "YearMonthDay":
+            {
+                AttibDtFmt = "YMD";
+                break;
+            }
+    }
     var AttibDtSep = value.DateSeparator;
     var m_arrDate = mask.split(AttibDtSep);
     if (parseInt(m_arrDate.length,10) != 3)
@@ -332,7 +364,6 @@ function MaskedEditValidatorPartDate(value,mask,MinVl,MaxVl)
 }
 function MaskedEditValidatorDate(value)
 {
-
     MaskedEditSetMessage(value,"","");
     MaskedEditSetCssClass(value,"");
     MaskedEditMessageShow(value,true);
