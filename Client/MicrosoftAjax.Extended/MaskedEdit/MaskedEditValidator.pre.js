@@ -296,7 +296,7 @@ function MaskedEditValidatorPartDate(value,mask,MinVl,MaxVl)
         //        {
         //            Y += parseInt(value.Century.substring(0,1) + Y,10)
         //        }
-        ret = (D > 0 && M > 0 && Y > 0 && (D <= [, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][M] || D == 29 && M == 2 && Y % 4 == 0 && (Y % 100 > 0 || Y % 400 == 0)));        
+        ret = (D > 0 && M > 0 && M <= 12 && Y > 0 && (D <= [, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][M] || D == 29 && M == 2 && Y % 4 == 0 && (Y % 100 > 0 || Y % 400 == 0)));        
     }
     if (!ret)
     {
