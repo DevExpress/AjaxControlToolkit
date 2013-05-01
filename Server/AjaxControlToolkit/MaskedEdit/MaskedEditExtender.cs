@@ -607,7 +607,8 @@ namespace AjaxControlToolkit
         {
             get
             {
-                return GetPropertyValue<int>("Century", 1900);
+                int century = int.Parse(DateTime.Now.Year.ToString().Substring(0, 2)) * 100;
+                return GetPropertyValue<int>("Century", century);
             }
             set
             {
