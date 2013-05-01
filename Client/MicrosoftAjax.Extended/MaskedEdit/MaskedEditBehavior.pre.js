@@ -2516,6 +2516,9 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                     var c = value.substring(i-1,i);  
                     if (this._MaskType == Sys.Extended.UI.MaskedEditType.Number && this._AcceptNegative != Sys.Extended.UI.MaskedEditShowSymbol.None && "+-".indexOf(c) != -1)
                     {
+                        if (this._LogicSymbol == '-')
+                           this._LogicSymbol = ' ';
+
                         this.InsertSignal(c);
                     }
                     if (this._processKey(logicPosition,c)) 
