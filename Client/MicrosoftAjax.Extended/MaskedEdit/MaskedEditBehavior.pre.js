@@ -2464,7 +2464,8 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 }
                 if (this._processKey(logicPosition,c)) 
                 {
-                    this._insertContent(c,logicPosition);
+                    if (this._MaskType != Sys.Extended.UI.MaskedEditType.Number)
+                       this._insertContent(c,logicPosition);
                     logicPosition  = this._getNextPosition(logicPosition+1);
                 }
             }
@@ -2519,7 +2520,8 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                     }
                     if (this._processKey(logicPosition,c)) 
                     {
-                        this._insertContent(c,logicPosition);
+                        if(this._MaskType != Sys.Extended.UI.MaskedEditType.Number)
+                           this._insertContent(c,logicPosition);
                         logicPosition  = this._getPreviousPosition(logicPosition-1);
                     }
                 }   
@@ -3308,11 +3310,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     // Insert Content at position in curpos
     //
     , _insertContent : function(value,curpos) 
-    {
+    {        
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
         var masktext = wrapper.get_Value();
-        masktext = masktext.substring(0,curpos) + value + masktext.substring(curpos+1);
-        this._LogicTextMask = this._LogicTextMask.substring(0,curpos) + value + this._LogicTextMask.substring(curpos+1);
+        masktext = masktext.substring(0, curpos) + value + masktext.substring(curpos + 1);
+       this._LogicTextMask = this._LogicTextMask.substring(0, curpos) + value + this._LogicTextMask.substring(curpos + 1);
         wrapper.set_Value(masktext);
     }    
     //
