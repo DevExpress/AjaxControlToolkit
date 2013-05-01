@@ -87,7 +87,7 @@
         <asp:ImageButton ID="ImgBntCalc" runat="server" ImageUrl="~/images/Calendar_scheduleHS.png" CausesValidation="False" />
         <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender5" runat="server"
             TargetControlID="TextBox5"
-            Mask="99/99/9999"
+            Mask="99/99/99"
             MessageValidatorTip="true"
             OnFocusCssClass="MaskedEditFocus"
             OnInvalidCssClass="MaskedEditError"
