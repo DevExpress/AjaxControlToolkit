@@ -340,14 +340,21 @@ namespace AjaxControlToolkit
 
             HtmlGenericControl fileStatusContainer = new HtmlGenericControl("div");
             fileStatusContainer.Attributes.Add("id", this.ClientID + "_FileStatusContainer");
+            fileStatusContainer.Style[HtmlTextWriterStyle.Position] = "absolute";
+            fileStatusContainer.Style["right"] = "0";
+            fileStatusContainer.Style["top"] = "2px";
+            fileStatusContainer.Style["height"] = "20px";
+            fileStatusContainer.Style["line-height"] = "20px";
             HideElement(fileStatusContainer);
 
-            var selectFileContainer = GenerateHtmlSelectFileContainer(inputFileElement, inputFile, fileStatusContainer);
+            var selectFileContainer = GenerateHtmlSelectFileContainer(inputFileElement, inputFile);
             parent.Controls.Add(selectFileContainer);
+            parent.Controls.Add(GenerateHtmlTopFileStatus(fileStatusContainer));
 
             HtmlGenericControl queueContainer = new HtmlGenericControl("div");
             queueContainer.Attributes.Add("id", this.ClientID + "_QueueContainer");
             queueContainer.Attributes.Add("class", "ajax__fileupload_queueContainer");
+            queueContainer.Style[HtmlTextWriterStyle.MarginTop] = "28px";
             parent.Controls.Add(queueContainer);
             HideElement(queueContainer);
 
@@ -400,34 +407,35 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="html5InputFileElement">Input File Element that will be used to Upload files for modern browsers.</param>
         /// <param name="inputFileElement">Input File Element that will be used to Upload files for older browsers.</param>
-        /// <param name="fileStatusContainer">File Status Container that keeps information of uploading file.</param>
         /// <returns></returns>
-        private HtmlGenericControl GenerateHtmlSelectFileContainer(Control html5InputFileElement, Control inputFileElement, Control fileStatusContainer)
+        private HtmlGenericControl GenerateHtmlSelectFileContainer(Control html5InputFileElement, Control inputFileElement)
         {
             // build select file Container that stays on top
             var htmlSelectFileContainer = new HtmlGenericControl("span");
             htmlSelectFileContainer.Attributes.Add("id", this.ClientID + "_SelectFileContainer");
             htmlSelectFileContainer.Attributes.Add("class", "ajax__fileupload_selectFileContainer");
+            htmlSelectFileContainer.Style["float"] = "left";
 
             // build select file button
             var htmlSelectFileButton = new HtmlGenericControl("span");
             htmlSelectFileButton.Attributes.Add("id", this.ClientID + "_SelectFileButton");
             htmlSelectFileButton.Attributes.Add("class", "ajax__fileupload_selectFileButton");
-            //htmlSelectFileButton.Style["float"] = "left";
-
-            var htmlTopFileStatus = new HtmlGenericControl("div");
-            htmlTopFileStatus.Attributes.Add("class", "ajax__fileupload_topFileStatus");
-            htmlTopFileStatus.Style[HtmlTextWriterStyle.Overflow] = "hidden";
-            //htmlTopFileStatus.Style["float"] = "left";
-            htmlTopFileStatus.Controls.Add(fileStatusContainer);
 
             htmlSelectFileContainer.Controls.Add(htmlSelectFileButton);
             htmlSelectFileContainer.Controls.Add(inputFileElement);
             htmlSelectFileContainer.Controls.Add(html5InputFileElement);
-            htmlSelectFileContainer.Controls.Add(htmlTopFileStatus);
-
 
             return htmlSelectFileContainer;
+        }
+
+        private HtmlGenericControl GenerateHtmlTopFileStatus(Control fileStatusContainer)
+        {
+            var htmlTopFileStatus = new HtmlGenericControl("div");
+            htmlTopFileStatus.Attributes.Add("class", "ajax__fileupload_topFileStatus");
+            htmlTopFileStatus.Style[HtmlTextWriterStyle.Position] = "relative";
+            htmlTopFileStatus.Controls.Add(fileStatusContainer);
+
+            return htmlTopFileStatus;
         }
 
         private void HideElement(HtmlControl element)
