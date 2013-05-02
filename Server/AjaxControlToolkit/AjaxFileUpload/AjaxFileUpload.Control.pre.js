@@ -12,6 +12,7 @@ Sys.Extended.UI.AjaxFileUpload.Control = function (element) {
     this._throbber = null;
     this._maximumNumberOfFiles = 10;
     this._allowedFileTypes = '';
+    this._chunkSize = 4096;
     
     // fields
     this._uploadUrl = 'AjaxFileUploadHandler.axd';
@@ -368,6 +369,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_maximumNumberOfFiles: function (value) {
         this._maximumNumberOfFiles = value;
+    },
+    
+    get_chunkSize: function () {
+        return this._chunkSize;
+    },
+    set_chunkSize: function (value) {
+        this._chunkSize = value;
     },
 
     add_uploadComplete: function (handler) {

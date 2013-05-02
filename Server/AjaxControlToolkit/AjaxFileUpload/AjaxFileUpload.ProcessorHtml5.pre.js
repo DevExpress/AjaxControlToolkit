@@ -4,7 +4,7 @@ Type.registerNamespace("AjaxFileUpload");
 Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function (control, elements) {
 
     var utils = new Sys.Extended.UI.AjaxFileUpload.Utils(),
-        chunkSize = 1024 * 1024 * 4,
+        chunkSize = control.get_chunkSize() * 1000,
         tmpXhrLoaded = 0,
         xhrReq = null;
 
