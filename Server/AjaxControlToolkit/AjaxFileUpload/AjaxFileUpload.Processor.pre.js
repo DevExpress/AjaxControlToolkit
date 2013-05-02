@@ -140,6 +140,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
             } else {
                 // cancelation is error. 
                 control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
+                control.raiseUploadError(xhr);
             }
         };
         xhr.send(null);
@@ -203,6 +204,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
             // let's consider this exception is not trully error exception from server.
             if (!(e.message && (e.message.indexOf("Access is denied") > -1 || e.message.indexOf("Permission denied") > -1))) {
                 control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
+                control.raiseUploadError(e);
                 throw e;
             }
         } 

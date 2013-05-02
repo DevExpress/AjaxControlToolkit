@@ -298,6 +298,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             } else {
                 // finalizing is error. next file will not be uploaded.
                 self.setFileStatus(fileItem, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
+                self.raiseUploadError(xhr);
             }
         };
         xhr.send(null);
@@ -406,6 +407,19 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         }
     },
     
+    add_uploadError: function (handler) {
+       this.get_events().addHandler("uploadError", handler);
+    },
+    remove_uploadError: function (handler) {
+       this.get_events().removeHandler("uploadError", handler);
+    },
+    raiseUploadError: function (e) {
+       var eh = this.get_events().getHandler("uploadError");
+       if (eh) {
+           eh(this, e);
+       }
+    },   
+
     getCurrentFileItem: function () {
         /// <summary>
         /// Get file item based on current file id.
