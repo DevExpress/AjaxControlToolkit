@@ -16,7 +16,6 @@
 
 
         function onClientUploadComplete(sender, e) {
-            var id = e.get_fileId();
             onImageValidated("TRUE", e);
         }
 
@@ -38,7 +37,6 @@
             }
 
             fileList.appendChild(item);
-
         }
 
         function createFileInfo(e) {

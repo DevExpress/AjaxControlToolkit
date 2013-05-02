@@ -68,13 +68,11 @@ Sys.Extended.UI.AjaxFileUpload.Utils = function () {
 
     this.checkHtml5BrowserSupport = function () {
         
-        /// TODO: IE10 Desktop (NOT Metro version) has FormData but seems it's buggy, so we may want exclude it from Html5 supported browser
-        
-        // var browser = Sys.Browser;
-        // if (browser.name == "Microsoft Internet Explorer" && browser.version <= 10)
-        //     return false;
-
-        //return false;
+        // IE10 Desktop (NOT Metro version) has FormData but it's buggy, 
+       // so we want exclude it from Html5 supported browser
+       var browser = Sys.Browser;
+       if (browser.name == "Microsoft Internet Explorer" && browser.version <= 10)
+           return false;
         
         return window.File
             && window.FileReader && window.FileList
