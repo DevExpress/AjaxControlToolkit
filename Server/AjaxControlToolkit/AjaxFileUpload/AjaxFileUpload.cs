@@ -224,7 +224,7 @@ namespace AjaxControlToolkit
 
                         var args = new AjaxFileUploadEventArgs(
                             fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
-                            fileInfo.Extension, null);
+                            fileInfo.Extension);
 
                         UploadComplete(this, args);
 
