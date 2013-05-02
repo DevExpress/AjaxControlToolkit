@@ -871,11 +871,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Server\AjaxControlToolkit\AjaxControlToolkit.VS2010.csproj">
-      <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
-      <Name>AjaxControlToolkit</Name>
-    </ProjectReference>
-  </ItemGroup>
+
+   <ProjectReference Include="..\..\Server\AjaxControlToolkit\AjaxControlToolkit.VS2010.csproj">
+
+     <Project>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</Project>
+
+     <Name>AjaxControlToolkit.VS2010</Name>
+
+   </ProjectReference>
+
+ </ItemGroup>
   <ItemGroup>
     <Content Include="Site.Master" />
   </ItemGroup>
