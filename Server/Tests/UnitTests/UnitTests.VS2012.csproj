@@ -81,7 +81,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AjaxFileUpload\MultipartFormDataParserParseHeaderInfoTests.cs" />
     <Compile Include="ha.ckers.org\HaCkerOrgXMLTest.cs" />
     <Compile Include="HtmlAgilityPackSanitizerTests\HtmlAgilityPackSanitizerProviderTest.cs" />
     <Compile Include="HtmlEditorExtenderTests\DecodeTests.cs" />

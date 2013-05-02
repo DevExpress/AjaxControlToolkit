@@ -26,18 +26,8 @@ using System.Drawing.Design;
 
 #region [ Resources ]
 
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Control.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Control.debug.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.EventArgs.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.EventArgs.debug.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Item.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Item.debug.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Utils.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Utils.debug.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Processor.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Processor.debug.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.ProcessorHtml5.js", "application/x-javascript")]
-[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.ProcessorHtml5.debug.js", "application/x-javascript")]
+[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.js", "application/x-javascript")]
+[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.debug.js", "application/x-javascript")]
 [assembly: WebResource("AjaxFileUpload.AjaxFileUpload.css", "text/css", PerformSubstitution = true)]
 
 #endregion
@@ -55,20 +45,11 @@ namespace AjaxControlToolkit
     [Designer("AjaxControlToolkit.AjaxFileUploadDesigner, AjaxControlToolkit")]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientCssResource("AjaxFileUpload.AjaxFileUpload.css")]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Utils.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Item.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Processor.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.ProcessorHtml5.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Control.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.EventArgs.js", true)]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload", "AjaxFileUpload.AjaxFileUpload.js")]
     public class AjaxFileUpload : ScriptControlBase
     {
-        internal const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";
-        private const string TempDirectory = "~/App_Data";
-        private HttpPostedFile _postedFile;
-
-        private string _uploadedFilePath = null;
-
+        private const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";
+        private HttpPostedFile postedFile;
 
         #region [ Constructors ]
 
@@ -96,7 +77,7 @@ namespace AjaxControlToolkit
 
         #endregion
 
-        #region Public Properties
+        #region [ Public Properties ]
 
         /// <summary>
         /// Any value/Id that can be used when storing file. 
@@ -166,7 +147,7 @@ namespace AjaxControlToolkit
 
         #endregion
 
-        #region Members
+        #region [ Members ]
 
         /// <summary>
         /// Init event of control.
@@ -205,34 +186,44 @@ namespace AjaxControlToolkit
         {
             base.OnPreRender(e);
 
-            var fileId = this.Page.Request.QueryString["guid"];
-            if (this.Page.Request.QueryString["contextkey"] == ContextKey)
+            if (this.Page.Request.QueryString["contextkey"] == ContextKey && this.Page.Request.Files.Count > 0)
             {
+                var serializer = new JavaScriptSerializer();
+                var jsonResult = "";
+                var guid = this.Page.Request.QueryString["guid"];
+                var uploadedFile = this.Page.Request.Files[0];
+                postedFile = uploadedFile;
+                try
+                {
 
-                Page.Response.ClearContent();
-                if (this.Page.Request.QueryString["cancel"] == "1" && !string.IsNullOrEmpty(fileId))
-                {
-                    AjaxFileUploadHelper.Abort(fileId);
-                }
-                else if (this.Page.Request.QueryString["done"] == "1" && !string.IsNullOrEmpty(fileId))
-                {
+                    var bufferSize = uploadedFile.ContentLength;
+                    var buffer = new byte[bufferSize];
+                    var stream = new MemoryStream(bufferSize);
+                    uploadedFile.InputStream.Read(buffer, 0, bufferSize);
+                    stream.Write(buffer, 0, bufferSize);
+
+                    var eventArgs = new AjaxFileUploadEventArgs(guid, AjaxFileUploadState.Success,
+                    "Success", uploadedFile.FileName,
+                    uploadedFile.ContentLength, uploadedFile.ContentType,
+                    stream.ToArray());
 
                     if (UploadComplete != null)
-                    {
-                        var tempFolder = Page.Server.MapPath(Path.Combine(TempDirectory, fileId));
-                        var fileName = Directory.GetFiles(tempFolder)[0];
-                        var fileInfo = new FileInfo(fileName);
-                        _uploadedFilePath = fileName;
+                        UploadComplete(this, eventArgs);
 
-                        var args = new AjaxFileUploadEventArgs(
-                            fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
-                            fileInfo.Extension, null);
+                    jsonResult = serializer.Serialize(eventArgs);
 
-                        UploadComplete(this, args);
-                        Page.Response.Write(new JavaScriptSerializer().Serialize(args));
-
-                    }
                 }
+                catch (Exception)
+                {
+                    var eventArgs = new AjaxFileUploadEventArgs(guid, AjaxFileUploadState.Failed,
+                    "Failed", uploadedFile.FileName,
+                    uploadedFile.ContentLength, uploadedFile.ContentType,
+                    (byte[])null);
+                    jsonResult = serializer.Serialize(eventArgs);
+                }
+
+                Page.Response.ClearContent();
+                Page.Response.Write("<html><body>" + jsonResult + "</body></html>");
                 Page.Response.End();
             }
         }
@@ -243,16 +234,9 @@ namespace AjaxControlToolkit
         /// <param name="fileName">file name with/without full path at server.</param>
         public void SaveAs(string fileName)
         {
-            //_postedFile.SaveAs(fileName);
-            var dir = Path.GetDirectoryName(_uploadedFilePath);
-            File.Move(_uploadedFilePath, fileName);
-            Directory.Delete(dir);
+            postedFile.SaveAs(fileName);
         }
 
-        #endregion
-
-        #region Controls
-        
         /// <summary>
         /// CreateChilds call to create child controls for ajaxfileupload.
         /// </summary>
@@ -290,27 +274,20 @@ namespace AjaxControlToolkit
             inputFile.Attributes.Add("id", this.ClientID + "_Html5InputFile");
             inputFile.Attributes.Add("multiple", "multiple");
             inputFile.Attributes.Add("style", inputFileStyle);
-            HideElement(inputFile);
 
             HtmlInputFile inputFileElement = new HtmlInputFile();
             if (!this.Enabled)
                 inputFileElement.Disabled = true;
             inputFileElement.Attributes.Add("id", this.ClientID + "_InputFileElement");
-            inputFileElement.Attributes.Add("name", "act-file-data");
             inputFileElement.Attributes.Add("style", inputFileStyle);
-            HideElement(inputFileElement);
 
             HtmlGenericControl dropZone = new HtmlGenericControl("div");
             dropZone.Attributes.Add("class", "ajax__fileupload_dropzone");
             dropZone.Attributes.Add("id", this.ClientID + "_Html5DropZone");
-            // IE 10 requested dropzone to be have actual size
-            dropZone.Attributes.Add("style", "width:100%; height:60px;");
-            HideElement(dropZone);
             parent.Controls.Add(dropZone);
 
             HtmlGenericControl fileStatusContainer = new HtmlGenericControl("div");
             fileStatusContainer.Attributes.Add("id", this.ClientID + "_FileStatusContainer");
-            HideElement(fileStatusContainer);
 
             var selectFileContainer = GenerateHtmlSelectFileContainer(inputFileElement, inputFile, fileStatusContainer);
             parent.Controls.Add(selectFileContainer);
@@ -319,12 +296,11 @@ namespace AjaxControlToolkit
             queueContainer.Attributes.Add("id", this.ClientID + "_QueueContainer");
             queueContainer.Attributes.Add("class", "ajax__fileupload_queueContainer");
             parent.Controls.Add(queueContainer);
-            HideElement(queueContainer);
 
             HtmlGenericControl progressBar = new HtmlGenericControl("div");
             progressBar.Attributes.Add("id", this.ClientID + "_ProgressBar");
             progressBar.Attributes.Add("class", "ajax__fileupload_progressBar");
-            progressBar.Attributes.Add("style", "width: 100%; display: none; visibility: hidden; overflow:visible;white-space:nowrap; height:20px;");
+            progressBar.Attributes.Add("style", "width: 100%; display: none; visibility: hidden; overflow:visible;white-space:nowrap;");
 
             var uploadButton = GenerateHtmlFooterContainer(progressBar);
             parent.Controls.Add(uploadButton);
@@ -353,7 +329,6 @@ namespace AjaxControlToolkit
             progressBarContainer.Style["float"] = "left";
             progressBarContainer.Style["width"] = "100%";
             progressBarContainer.Controls.Add(progressBar);
-            HideElement(progressBarContainer);
 
             HtmlGenericControl progressBarHolder = new HtmlGenericControl("div");
             progressBarHolder.Attributes.Add("class", "ajax__fileupload_ProgressBarHolder");
@@ -400,12 +375,6 @@ namespace AjaxControlToolkit
             return htmlSelectFileContainer;
         }
 
-        private void HideElement(HtmlControl element)
-        {
-            element.Style["display"] = "none";
-            element.Style["visibility"] = "hidden";
-        }
-
         /// <summary>
         /// DescribeComponent creates propreties in ScriptComponentDescriptor for child controls in ajaxFileUpload
         /// </summary>
@@ -431,7 +400,7 @@ namespace AjaxControlToolkit
 
         #endregion
 
-        #region Client Events
+        #region Events
 
         /// <summary>
         /// Event handler for upload complete event.

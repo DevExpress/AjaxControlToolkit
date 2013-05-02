@@ -878,7 +878,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>17449</DevelopmentServerPort>
+          <DevelopmentServerPort>2242</DevelopmentServerPort>
           <DevelopmentServerVPath>/MyApp</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
