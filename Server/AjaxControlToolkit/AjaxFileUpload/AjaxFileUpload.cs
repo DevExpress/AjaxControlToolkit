@@ -214,22 +214,20 @@ namespace AjaxControlToolkit
                 else if (this.Page.Request.QueryString["done"] == "1" && !string.IsNullOrEmpty(fileId))
                 {
 
+                    var tempFolder = Page.Server.MapPath(Path.Combine(TempDirectory, fileId));
+                    var fileName = Directory.GetFiles(tempFolder)[0];
+                    var fileInfo = new FileInfo(fileName);
+
+                    _uploadedFilePath = fileName;
+
+                    var args = new AjaxFileUploadEventArgs(
+                       fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
+                       fileInfo.Extension);
+
                     if (UploadComplete != null)
-                    {
-                        var tempFolder = Page.Server.MapPath(Path.Combine(TempDirectory, fileId));
-                        var fileName = Directory.GetFiles(tempFolder)[0];
-                        var fileInfo = new FileInfo(fileName);
-
-                        _uploadedFilePath = fileName;
-
-                        var args = new AjaxFileUploadEventArgs(
-                            fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
-                            fileInfo.Extension);
-
                         UploadComplete(this, args);
 
-                        Page.Response.Write(new JavaScriptSerializer().Serialize(args));
-                    }
+                    Page.Response.Write(new JavaScriptSerializer().Serialize(args));
                 }
 
                 Page.Response.End();
