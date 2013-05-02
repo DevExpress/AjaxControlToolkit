@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+﻿﻿<?xml version="1.0"?>
 
 
 
@@ -12,44 +12,44 @@
 -->
 
 <configuration>
-    <configSections>
-        <sectionGroup name="system.web">
-            <section name="sanitizer" requirePermission="false"
-                     type="AjaxControlToolkit.Sanitizer.ProviderSanitizerSection, AjaxControlToolkit" />
-        </sectionGroup>
-    </configSections>
+  <configSections>
+    <sectionGroup name="system.web">
+      <section name="sanitizer" requirePermission="false"
+               type="AjaxControlToolkit.Sanitizer.ProviderSanitizerSection, AjaxControlToolkit" />
+    </sectionGroup>
+  </configSections>
 
-    <appSettings/>
-    <connectionStrings/>
-    <system.web>
+  <appSettings/>
+  <connectionStrings/>
+  <system.web>
 
-
-        <trust level="Full" />
-
-
-        <sanitizer defaultProvider="HtmlAgilityPackSanitizerProvider">
-            <providers>
-                <add name="HtmlAgilityPackSanitizerProvider" type="AjaxControlToolkit.Sanitizer.HtmlAgilityPackSanitizerProvider"></add>
-            </providers>
-        </sanitizer>
+    <httpRuntime executionTimeout="90" maxRequestLength="102400" />
+    <trust level="Full" />
 
 
+    <sanitizer defaultProvider="HtmlAgilityPackSanitizerProvider">
+      <providers>
+        <add name="HtmlAgilityPackSanitizerProvider" type="AjaxControlToolkit.Sanitizer.HtmlAgilityPackSanitizerProvider"></add>
+      </providers>
+    </sanitizer>
 
-        <!-- 
+
+
+    <!-- 
             Set compilation debug="true" to insert debugging 
             symbols into the compiled page. Because this 
             affects performance, set this value to true only 
             during development.
         -->
-        <compilation debug="true" targetFramework="4.0">
-        </compilation>
-        <!--
+    <compilation debug="true" targetFramework="4.0">
+    </compilation>
+    <!--
             The <authentication> section enables configuration 
             of the security authentication mode used by 
             ASP.NET to identify an incoming user. 
         -->
-        <authentication mode="Windows"/>
-        <!--
+    <authentication mode="Windows"/>
+    <!--
             The <customErrors> section enables configuration 
             of what to do if/when an unhandled error occurs 
             during the execution of a request. Specifically, 
@@ -61,17 +61,26 @@
             <error statusCode="404" redirect="FileNotFound.htm" />
         </customErrors>
         -->
-        <siteMap defaultProvider="SamplesSiteMap">
-            <providers>
-                <add name="SamplesSiteMap" type="System.Web.XmlSiteMapProvider" siteMapFile="~/Samples.sitemap"/>
-                <add name="WalkthroughsSiteMap" type="System.Web.XmlSiteMapProvider" siteMapFile="~/Walkthroughs.sitemap"/>
-            </providers>
-        </siteMap>
-        <globalization culture="en-us" uiCulture="en"/>
-        <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID"/>
-    </system.web>
-    <!-- 
+    <siteMap defaultProvider="SamplesSiteMap">
+      <providers>
+        <add name="SamplesSiteMap" type="System.Web.XmlSiteMapProvider" siteMapFile="~/Samples.sitemap"/>
+        <add name="WalkthroughsSiteMap" type="System.Web.XmlSiteMapProvider" siteMapFile="~/Walkthroughs.sitemap"/>
+      </providers>
+    </siteMap>
+    <globalization culture="en-us" uiCulture="en"/>
+    <pages controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID"/>
+    <httpHandlers>
+      <add verb="*" path="AjaxFileUploadHandler.axd" type="AjaxControlToolkit.AjaxFileUploadHandler, AjaxControlToolkit"/>
+    </httpHandlers>
+  </system.web>
+  <!-- 
         The system.webServer section is required for running ASP.NET AJAX under Internet
         Information Services 7.0.  It is not necessary for previous version of IIS.
     -->
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <handlers>
+      <add name="AjaxFileUploadHandler" verb="*" path="AjaxFileUploadHandler.axd" type="AjaxControlToolkit.AjaxFileUploadHandler, AjaxControlToolkit"/>
+    </handlers>
+  </system.webServer>
 </configuration>

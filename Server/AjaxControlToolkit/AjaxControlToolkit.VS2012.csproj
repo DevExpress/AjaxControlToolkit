@@ -108,6 +108,10 @@
     <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadDesigner.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadEventArgs.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadHandler.cs" />
+    <Compile Include="AjaxFileUpload\FileHeaderInfo.cs" />
+    <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper.cs" />
+    <Compile Include="AjaxFileUpload\Helpers\MultipartFormDataParser.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlDesigner.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlExtender.cs" />
     <Compile Include="AlwaysVisibleControl\HorizontalSide.cs" />
@@ -441,8 +445,13 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BalloonPopup\BalloonPopup.ico" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.Control.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.css" />
-    <Content Include="AjaxFileUpload\AjaxFileUpload.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.EventArgs.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.Item.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.Processor.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.ProcessorHtml5.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.Utils.pre.js" />
     <Content Include="AreaChart\AreaChart.css" />
     <Content Include="AreaChart\AreaChart.pre.js" />
     <Content Include="BalloonPopup\Cloud\BalloonPopup_resource.css" />
