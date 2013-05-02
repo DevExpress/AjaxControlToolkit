@@ -91,6 +91,7 @@
     <Content Include="Bugs\HtmlEditorExtender\27028\WebForm1.aspx" />
     <Content Include="Bugs\HtmlEditorExtender\27031\WebForm1.aspx" />
     <Content Include="Bugs\MaskedEdit\13423.aspx" />
+    <Content Include="Bugs\MaskedEdit\15492.aspx" />
     <Content Include="Bugs\MaskedEdit\16109.aspx" />
     <Content Include="Bugs\MaskedEdit\23236.aspx" />
     <Content Include="Bugs\ModalPopup\26732\LandingUserControl.ascx" />
@@ -401,6 +402,12 @@
     </Compile>
     <Compile Include="Bugs\MaskedEdit\13423.aspx.designer.cs">
       <DependentUpon>13423.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\15492.aspx.cs">
+      <DependentUpon>15492.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\MaskedEdit\15492.aspx.designer.cs">
+      <DependentUpon>15492.aspx</DependentUpon>
     </Compile>
     <Compile Include="Bugs\MaskedEdit\16109.aspx.cs">
       <DependentUpon>16109.aspx</DependentUpon>
