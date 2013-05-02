@@ -13,7 +13,7 @@
     TagPrefix="ajaxToolkit" %>
 <%@ Import Namespace="System.Threading" %>
 <asp:Content ContentPlaceHolderID="SampleContent" runat="Server">
-    <ajaxToolkit:ToolkitScriptManager runat="server" ID="ScriptManager1"  EnableScriptGlobalization="true" EnableScriptLocalization="true" />
+    <ajaxToolkit:ToolkitScriptManager runat="server" ID="ScriptManager1" EnableScriptGlobalization="true" EnableScriptLocalization="true" />
     <div class="demoarea">
         <div class="demoheading">MaskedEdit Demonstration</div>
 
@@ -34,7 +34,7 @@
         <ajaxToolkit:MaskedEditValidator ID="MaskedEditValidator2" runat="server"
             ControlExtender="MaskedEditExtender2"
             ControlToValidate="TextBox2"
-            IsValidEmpty="False"
+            IsValidEmpty="false"
             MaximumValue="12000"
             EmptyValueMessage="Number is required"
             InvalidValueMessage="Number is invalid"
@@ -101,6 +101,7 @@
             EmptyValueMessage="Date is required"
             InvalidValueMessage="Date is invalid"
             Display="Dynamic"
+            IsValidEmpty="false"
             TooltipMessage="Input a date"
             EmptyValueBlurredText="*"
             InvalidValueBlurredMessage="*"
