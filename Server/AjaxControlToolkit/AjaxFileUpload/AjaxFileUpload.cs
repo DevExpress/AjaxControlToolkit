@@ -61,8 +61,6 @@ namespace AjaxControlToolkit
     public class AjaxFileUpload : ScriptControlBase
     {
         internal const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";
-        private const string TempDirectory = "~/App_Data";
-
         private string _uploadedFilePath = null;
 
 
@@ -172,6 +170,26 @@ namespace AjaxControlToolkit
             set { ViewState["ChunkSize"] = value.ToString(); }
         }
 
+        /// <summary>
+        /// Get or set how AjaxFileUpload displays progress bar.
+        /// <code>Auto</code> -- Use Mode="Client" if the browser supports HTML5 progress. 
+        /// If the browser does not support HTML5 progress, and the app is running on .NET 4.5, 
+        /// then use Mode="Server". If not using .NET 4.5, display a standard INPUT TYPE="file" tag. 
+        /// <code>Client</code> -- If a browser supports HTML5 then show progress using HTML5, otherwise, 
+        /// display a standard INPUT TYPE="file" tag. 
+        /// <code>Server</code> -- If using .NET 4.5 then show progress by 
+        /// polling the size of the temporary file on the server. Otherwise, if not using .NET 4.5, 
+        /// then display a standard INPUT TYPE="file" tag.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(AjaxFileUploadMode.Auto)]
+        [ClientPropertyName("mode")]
+        public AjaxFileUploadMode Mode
+        {
+            get { return (AjaxFileUploadMode)Enum.Parse(typeof(AjaxFileUploadMode), (string)ViewState["Mode"] ?? "Auto"); }
+            set { ViewState["Mode"] = value.ToString(); }
+        }
+
         #endregion
 
         #region [ Members ]
@@ -218,15 +236,20 @@ namespace AjaxControlToolkit
             {
                 var fileId = this.Page.Request.QueryString["guid"];
                 Page.Response.ClearContent();
+                Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-                if (this.Page.Request.QueryString["cancel"] == "1" && !string.IsNullOrEmpty(fileId))
+                if (this.Page.Request.QueryString["poll"] == "1" && !string.IsNullOrEmpty(fileId))
+                {
+                    Page.Response.Write((new AjaxFileUploadStates(this.Context, fileId)).Percent.ToString());
+                }
+                else if (this.Page.Request.QueryString["cancel"] == "1" && !string.IsNullOrEmpty(fileId))
                 {
                     AjaxFileUploadHelper.Abort(fileId);
                 }
                 else if (this.Page.Request.QueryString["done"] == "1" && !string.IsNullOrEmpty(fileId))
                 {
 
-                    var tempFolder = Page.Server.MapPath(Path.Combine(TempDirectory, fileId));
+                    var tempFolder = Page.Server.MapPath(Path.Combine(AjaxFileUploadHelper.TempDirectory, fileId));
                     var fileName = Directory.GetFiles(tempFolder)[0];
                     var fileInfo = new FileInfo(fileName);
 
@@ -249,10 +272,9 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Saves the uploaded file with the specified file name.
         /// </summary>
-        /// <param name="fileName">file name with/without full path at server.</param>
+        /// <param name="fileName">Physical file name with/without full path at server.</param>
         public void SaveAs(string fileName)
         {
-            //_postedFile.SaveAs(fileName);
             var dir = Path.GetDirectoryName(_uploadedFilePath);
             File.Move(_uploadedFilePath, fileName);
             Directory.Delete(dir);
@@ -455,6 +477,7 @@ namespace AjaxControlToolkit
             {
                 descriptor.AddProperty("contextKey", ContextKey);
                 descriptor.AddProperty("postBackUrl", this.Page.Request.RawUrl);
+                descriptor.AddProperty("serverPollingSupport", this.ServerPollingSupport);
 
                 if (ThrobberID != string.Empty)
                 {
@@ -511,6 +534,18 @@ namespace AjaxControlToolkit
             set
             {
                 ViewState["OnClientUploadError"] = value;
+            }
+        }
+
+        public bool ServerPollingSupport
+        {
+            get
+            {
+#if (NET45 || NET4)
+                return true;
+#else
+               return false;
+#endif
             }
         }
 

@@ -107,6 +107,8 @@
     <Compile Include="AjaxFileUpload\AjaxFileUploadDesigner.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadEventArgs.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadHandler.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadMode.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadStates.cs" />
     <Compile Include="AjaxFileUpload\FileHeaderInfo.cs" />
     <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper.cs" />
     <Compile Include="AjaxFileUpload\Helpers\MultipartFormDataParser.cs" />

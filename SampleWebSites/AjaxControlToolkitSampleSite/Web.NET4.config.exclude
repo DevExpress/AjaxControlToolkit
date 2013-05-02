@@ -23,7 +23,7 @@
   <connectionStrings/>
   <system.web>
 
-    <httpRuntime executionTimeout="90" maxRequestLength="102400" />
+    <httpRuntime executionTimeout="90" maxRequestLength="4194000" />
     <trust level="Full" />
 
 
@@ -82,5 +82,10 @@
     <handlers>
       <add name="AjaxFileUploadHandler" verb="*" path="AjaxFileUploadHandler.axd" type="AjaxControlToolkit.AjaxFileUploadHandler, AjaxControlToolkit"/>
     </handlers>
+	<security>
+       <requestFiltering>
+         <requestLimits maxAllowedContentLength="4295000000"/>
+       </requestFiltering>
+     </security>
   </system.webServer>
 </configuration>

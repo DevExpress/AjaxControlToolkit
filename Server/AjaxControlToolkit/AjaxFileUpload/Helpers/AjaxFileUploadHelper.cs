@@ -12,7 +12,7 @@ namespace AjaxControlToolkit
     /// </summary>
     public static class AjaxFileUploadHelper
     {
-        internal const string TempDirectory = "~/App_Data";
+        internal const string TempDirectory = "~/App_Data/_AjaxFileUpload";
         private const int ChunkSize = 1024 * 1024 * 4;
 
         private static readonly List<string> AbortRequests = new List<string>();
@@ -32,7 +32,7 @@ namespace AjaxControlToolkit
         /// Process uploaded file from http request.
         /// </summary>
         /// <param name="request"></param>
-        public static bool Process(HttpRequest request)
+        public static bool Process(HttpContext context, HttpRequest request)
         {
 #if NET45
             using (var stream = request.GetBufferedInputStream()) {
@@ -40,11 +40,12 @@ namespace AjaxControlToolkit
             using (var stream = request.GetBufferlessInputStream())
             {
 #endif
-                var success = ProcessStream(stream,
+                var success = ProcessStream(context, stream, 
                     request.QueryString["fileId"],
                     request.QueryString["fileName"],
                     bool.Parse(request.QueryString["chunked"] ?? "false"),
-                    bool.Parse(request.QueryString["firstChunk"] ?? "false"));
+                    bool.Parse(request.QueryString["firstChunk"] ?? "false"),
+                    bool.Parse(request.QueryString["usePoll"] ?? "false"));
 
                 if (!success)
 #if NET45
@@ -65,10 +66,11 @@ namespace AjaxControlToolkit
         /// <param name="chunked">Determine uploading are processed by several chunks.</param>
         /// <param name="isFirstChunk">Is this stream for first chunk.</param>
         /// <returns></returns>
-        public static bool ProcessStream(Stream source, string fileId, string fileName, bool chunked, bool isFirstChunk)
+        public static bool ProcessStream(HttpContext context, Stream source, string fileId, string fileName, bool chunked, bool isFirstChunk, bool usePoll)
         {
             FileHeaderInfo headerInfo = null;
             Stream destination = null;
+            var states = new AjaxFileUploadStates(context, fileId);
 
             using (var tmpStream = new MemoryStream())
             {
@@ -97,6 +99,9 @@ namespace AjaxControlToolkit
                         if (bytesRead == 0)
                             break;
 
+                        if (usePoll)
+                            states.Uploaded += bytesRead;
+
                         index += bytesRead;
                     }
 
@@ -122,6 +127,8 @@ namespace AjaxControlToolkit
                             {
                                 // Calculate total file length.
                                 fileLength = ((int)(source.Length - headerInfo.BoundaryDelimiterLength) - headerInfo.StartIndex);
+                                if (usePoll)
+                                    states.FileLength = fileLength;
 
                                 // Only write file data, so not all bytes are written.
                                 var lengthToWrite = totalBytesRead - headerInfo.StartIndex;
@@ -167,6 +174,7 @@ namespace AjaxControlToolkit
                             destination.Write(chunk, 0, length);
                         }
                     }
+
 
                     // There is no byte to read anymore, upload is finished.
                     if (done || index != chunk.Length)

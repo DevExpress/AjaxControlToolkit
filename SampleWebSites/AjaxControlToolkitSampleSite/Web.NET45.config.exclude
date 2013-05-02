@@ -20,7 +20,7 @@
     </sanitizer>
 
     <compilation debug="false" targetFramework="4.5" />
-    <httpRuntime requestValidationMode="4.5" targetFramework="4.5" encoderType="System.Web.Security.AntiXss.AntiXssEncoder, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" maxRequestLength="102400" />
+    <httpRuntime requestValidationMode="4.5" targetFramework="4.5" encoderType="System.Web.Security.AntiXss.AntiXssEncoder, System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" maxRequestLength="4194000" />
     <pages controlRenderingCompatibilityVersion="4.5" />
     <machineKey compatibilityMode="Framework45" />
     <siteMap defaultProvider="SamplesSiteMap">
@@ -38,5 +38,10 @@
     <handlers>
       <add name="AjaxFileUploadHandler" verb="*" path="AjaxFileUploadHandler.axd" type="AjaxControlToolkit.AjaxFileUploadHandler, AjaxControlToolkit"/>
     </handlers>
+	<security>
+       <requestFiltering>
+         <requestLimits maxAllowedContentLength="4295000000"/>
+       </requestFiltering>
+     </security>
   </system.webServer>
 </configuration>

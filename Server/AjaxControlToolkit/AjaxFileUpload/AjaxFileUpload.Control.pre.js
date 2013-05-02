@@ -9,6 +9,8 @@ Sys.Extended.UI.AjaxFileUpload.Control = function (element) {
     this._allowedFileTypes = null;
     this._contextKey = null;
     this._postBackUrl = null;
+    this._mode = 0;
+    this._serverPollingSupport = false;
     this._throbber = null;
     this._maximumNumberOfFiles = 10;
     this._allowedFileTypes = '';
@@ -16,7 +18,7 @@ Sys.Extended.UI.AjaxFileUpload.Control = function (element) {
     
     // fields
     this._uploadUrl = 'AjaxFileUploadHandler.axd';
-    this._isHtml5Support = false;
+    this._useHtml5Support = false;
     this._elements = null;
     this._processor = null;
     this._filesInQueue = [];
@@ -46,17 +48,18 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                 footer: getElement('_Footer')
             };
         
-        // determine browser supports for HTML5            
-        this._isHtml5Support = utils.checkHtml5BrowserSupport();
+        // determine browser supports for HTML5, only if browser supported and mode is not Server.           
+        this._useHtml5Support = utils.checkHtml5BrowserSupport() && this._mode != 2;
 
-        if (this._isHtml5Support) {
+        // define progress bar element
+        elements.progressBar = getElement('_ProgressBar');
+        elements.progressBarContainer = getElement('_ProgressBarContainer');
+       
+        if (this._useHtml5Support) {
 
             // define spesific elements for HTML5
-            elements.inputFile = getElement('_Html5InputFile');
-            elements.progressBar = getElement('_ProgressBar');
-            elements.progressBarContainer = getElement('_ProgressBarContainer');
-            elements.dropZone = getElement('_Html5DropZone');
-            
+            elements.inputFile = getElement('_Html5InputFile');            
+            elements.dropZone = getElement('_Html5DropZone');            
         } else {
             
             // define spesific elements for non HTML5
@@ -65,7 +68,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this._elements = elements;
 
         // define processor
-        var processor = this._isHtml5Support 
+        var processor = this._useHtml5Support
             ? new Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5(this, elements)
             : new Sys.Extended.UI.AjaxFileUpload.Processor(this, elements);
 
@@ -79,9 +82,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         processor.initialize();
 
         this._processor = processor;
-        Sys.Extended.UI.AjaxFileUpload.Control.callBaseMethod(this, "initialize");
-
-        
+        Sys.Extended.UI.AjaxFileUpload.Control.callBaseMethod(this, "initialize");        
     },
 
     dispose: function () {
@@ -162,7 +163,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         // Lock/unlock input element, so user won't add new file while uploading.
         $common.setVisible(this._elements.inputFile, enable);
         
-        if (this._isHtml5Support) {
+        if (this._useHtml5Support) {
             this._elements.dropZone.disable = !enable;
             this._elements.inputFile.disable = !enable;
         }
@@ -337,7 +338,8 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         /// <param name="text">status resource</param>
         if (typeof (fileItem) === "string")
             fileItem = this.getFileItem(fileItem);
-        fileItem.setStatus(fileStatusText, text);
+        if (fileItem)
+            fileItem.setStatus(fileStatusText, text);
     },
     
     setStatusMessage: function (msg) {
@@ -346,6 +348,17 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         /// </summary>
         /// <param name="msg"></param>
         this._elements.fileStatusContainer.innerHTML = msg;
+    },
+
+       
+    setPercent: function (percent) {
+        /// <summary>
+        /// Set percentage of progress bar.
+        /// </summary>
+        /// <param name="percent">percentage</param>
+        var progressBar = this._elements.progressBar;
+        progressBar.style.width = percent + '%';
+        $common.setText(progressBar, String.format(Sys.Extended.UI.Resources.AjaxFileUpload_UploadedPercentage, percent));
     },
 
     get_allowedFileTypes: function () {
@@ -367,6 +380,20 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_postBackUrl: function (value) {
         this._postBackUrl = value;
+    },
+    
+    get_mode: function () {
+        return this._mode;
+    },
+    set_mode: function (value) {
+        this._mode = value;
+    },
+   
+    get_serverPollingSupport: function () {
+        return this._serverPollingSupport;
+    },
+    set_serverPollingSupport: function (value) {
+        this._serverPollingSupport = value;
     },
 
     get_throbber: function () {

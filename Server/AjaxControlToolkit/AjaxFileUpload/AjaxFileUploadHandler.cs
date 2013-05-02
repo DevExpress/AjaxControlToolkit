@@ -25,7 +25,7 @@ namespace AjaxControlToolkit
             if (request.Headers["Content-Type"] != null &&
                 request.Headers["Content-Type"].StartsWith("multipart/form-data;") &&
                 request.Headers["Content-Length"] != null)
-                AjaxFileUploadHelper.Process(request);
+                AjaxFileUploadHelper.Process(context, request);
             else
                 throw new Exception("Invalid upload request.");
 
