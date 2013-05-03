@@ -59,10 +59,7 @@ Sys.Extended.UI.AjaxFileUpload.Item.prototype = {
             fileInfoText = $common.createElementFromTemplate({
                 nodeName: "span",
                 properties: {
-                    id: this._parentId + '_FileItemInfo_' + id,
-                    style: {
-                        display: 'inline-block'
-                    }
+                    id: this._parentId + '_FileItemInfo_' + id
                 },
                 cssClasses: ['ajax__fileupload_fileItemInfo']
             }),

@@ -163,10 +163,7 @@
     position: relative;
     z-index: 0;
 }
-.ajax__fileupload_fileItemInfo div
-{
-    display: inline-block;
-}
+
 .ajax__fileupload_fileItemInfo div.removeButton 
 {
     position: absolute;

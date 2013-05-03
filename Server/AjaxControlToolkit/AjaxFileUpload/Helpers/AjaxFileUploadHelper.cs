@@ -14,26 +14,25 @@ namespace AjaxControlToolkit
     {
         internal const string TempDirectory = "~/App_Data/_AjaxFileUpload";
         private const int ChunkSize = 1024 * 1024 * 4;
-
-        private static readonly List<string> AbortRequests = new List<string>();
-
+                
         /// <summary>
         /// Add upload abort request.
         /// </summary>
+        /// <param name="context">Current HttpContext</param>
         /// <param name="fileId">file id to be aborted.</param>
-        public static void Abort(string fileId)
+        public static void Abort(HttpContext context, string fileId)
         {
-            if (!AbortRequests.Contains(fileId))
-                AbortRequests.Add(fileId);
+            (new AjaxFileUploadStates(context, fileId)).Abort = true;
         }
 
 
         /// <summary>
         /// Process uploaded file from http request.
         /// </summary>
-        /// <param name="request"></param>
-        public static bool Process(HttpContext context, HttpRequest request)
+        /// <param name="context">Current HttpContext</param>
+        public static bool Process(HttpContext context)
         {
+            var request = context.Request;
 #if NET45
             using (var stream = request.GetBufferedInputStream()) {
 #else
@@ -60,6 +59,7 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Process uploaded stream from Http request.
         /// </summary>
+        /// <param name="context">Current HttpContext</param>
         /// <param name="source">Source stream</param>
         /// <param name="fileId">File Id</param>
         /// <param name="fileName">File Name</param>
@@ -80,11 +80,8 @@ namespace AjaxControlToolkit
 
                 while (true)
                 {
-                    if (AbortRequests.Contains(fileId))
-                    {
-                        AbortRequests.Remove(fileId);
+                    if (states.Abort)
                         return false;
-                    }
 
                     // read per chunk
                     var chunkSize = ChunkSize;
@@ -183,9 +180,6 @@ namespace AjaxControlToolkit
                         {
                             destination.Close();
                             destination.Dispose();
-
-                            if (!AbortRequests.Contains(fileId))
-                                AbortRequests.Remove(fileId);
                         }
                         break;
                     }

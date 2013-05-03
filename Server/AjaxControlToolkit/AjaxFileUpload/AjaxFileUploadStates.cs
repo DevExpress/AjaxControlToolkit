@@ -59,5 +59,17 @@ namespace AjaxControlToolkit
                 return (uploaded / length) * 100;
             }
         }
+        
+        public bool Abort
+        {
+            get
+            {
+                return bool.Parse((string)_httpContext.Cache[GetSessionName("abort")] ?? "false");
+            }
+            set
+            {
+                _httpContext.Cache[GetSessionName("abort")] = value.ToString();
+            }
+        }
     }
 }

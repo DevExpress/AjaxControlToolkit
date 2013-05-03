@@ -244,7 +244,7 @@ namespace AjaxControlToolkit
                 }
                 else if (this.Page.Request.QueryString["cancel"] == "1" && !string.IsNullOrEmpty(fileId))
                 {
-                    AjaxFileUploadHelper.Abort(fileId);
+                    AjaxFileUploadHelper.Abort(this.Context, fileId);
                 }
                 else if (this.Page.Request.QueryString["done"] == "1" && !string.IsNullOrEmpty(fileId))
                 {
