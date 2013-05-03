@@ -24,20 +24,28 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
        
         // Capture uploading percentage report from server
         xhrPoll.onreadystatechange = function (e) {
-            if (xhrPoll.readyState == 4 && xhrPoll.status == 200) {
+            if (xhrPoll.readyState == 4) {
 
-                // Update percentage
-                var percent = xhrPoll.responseText;
-                if (percent) {
-                    percent = parseFloat(percent).toFixed(2);
-                    control.setPercent(percent);
-                }
+                if (xhrPoll.status == 200) {
 
-                // Keep polling as long as upload is not completed
-                if (percent < 100)
-                    setTimeout(function() {
-                        self.pollingServerProgress(true);
-                    }, 500);
+                    // Update percentage
+                    var percent = xhrPoll.responseText;
+                    if (percent) {
+                        percent = parseFloat(percent).toFixed(2);
+                        control.setPercent(percent);
+                    }
+
+                    // Keep polling as long as upload is not completed
+                    if (percent < 100)
+                        setTimeout(function() {
+                            self.pollingServerProgress(true);
+                        }, 500);
+                   
+                } else {
+                   
+                    // We won't do any error handler for polling, since upload error handled by upload request it self.
+                   
+                }                
             }
         };
     };
@@ -165,11 +173,19 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
        xhr.open("POST", '?contextKey=' + control._contextKey + "&cancel=1&guid=" + control._currentFileId, true);
         xhr.onreadystatechange = function () {
             self.setThrobber(false);
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // set file status as canceled
-                control.setFileStatus(control._currentFileId, 'cancelled', Sys.Extended.UI.Resources.AjaxFileUpload_Canceled);
-                control.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_UploadCanceled);
-                control._currentFileId = null;
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    // set file status as canceled
+                    control.setFileStatus(control._currentFileId, 'cancelled', Sys.Extended.UI.Resources.AjaxFileUpload_Canceled);
+                    control.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_UploadCanceled);
+                    control._currentFileId = null;
+                } else {
+                    // cancelation is error. 
+                    control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
+                    control.raiseUploadError(xhr);
+                    control._currentFileId = null;
+                    throw "Failed to cancel upload.";
+                }
             }
         };
         xhr.send(null);
