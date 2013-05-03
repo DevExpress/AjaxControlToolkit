@@ -249,7 +249,7 @@ namespace AjaxControlToolkit
                 else if (this.Page.Request.QueryString["done"] == "1" && !string.IsNullOrEmpty(fileId))
                 {
 
-                    var tempFolder = Page.Server.MapPath(Path.Combine(AjaxFileUploadHelper.TempDirectory, fileId));
+                    var tempFolder = Path.Combine(Path.GetTempPath(), fileId);
                     var fileName = Directory.GetFiles(tempFolder)[0];
                     var fileInfo = new FileInfo(fileName);
 

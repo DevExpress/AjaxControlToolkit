@@ -79,7 +79,7 @@ namespace AjaxControlToolkit
         /// <returns></returns>
         public Stream GetStreamContents()
         {
-            var dir = Path.Combine(HttpContext.Current.Server.MapPath(AjaxFileUploadHelper.TempDirectory), this._fileId);
+            var dir = Path.Combine(Path.GetTempPath(), this._fileId);
             return File.OpenRead(Path.Combine(dir, this._fileName));
         }        
 

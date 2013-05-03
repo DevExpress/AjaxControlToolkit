@@ -12,7 +12,6 @@ namespace AjaxControlToolkit
     /// </summary>
     public static class AjaxFileUploadHelper
     {
-        internal const string TempDirectory = "~/App_Data/_AjaxFileUpload";
         private const int ChunkSize = 1024 * 1024 * 4;
         private const int ChunkSizeForPolling = 64 * 1024;
                 
@@ -145,7 +144,7 @@ namespace AjaxControlToolkit
                                 Buffer.BlockCopy(firstBytes, headerInfo.StartIndex, firstChunk, 0, lengthToWrite);
 
                                 // Prepare temporary folder, we use file id as a folder name.
-                                var tempFolder = Path.Combine(HttpContext.Current.Server.MapPath(TempDirectory), fileId);
+                                var tempFolder = Path.Combine(Path.GetTempPath(), fileId);
                                 if (!Directory.Exists(tempFolder)) Directory.CreateDirectory(tempFolder);
 
                                 // Build temporary file path.
