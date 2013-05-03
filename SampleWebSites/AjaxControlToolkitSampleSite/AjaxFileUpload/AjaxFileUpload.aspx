@@ -143,11 +143,11 @@
    <asp:Panel ID="TemporaryData_ContentPanel" runat="server" Style="overflow: hidden;" Height="0px">
        <p>
            The AjaxFileUpload using physical drive to store temporary data. Once file upload is started, 
-           it creates temporary folder under App_Data folder to store uploaded file chunk by chunk. 
-           This improvements allowed us to able uploading file in large size. 
-           You must be aware that Write permissions in App_Data folder is granted for ASP.Net application. 
+           it creates temporary folder under current user's temporary folder to store uploaded file chunk by chunk. 
+           This improvements allowed us to able uploading file in large size. </p><br/><p>
+           You must be aware that Write permissions in current user's temporary folder is granted for ASP.Net application.  
            In order to keep your temporary folder always kept away from junk data, you may want to call 
-           <b>DeleteTemporaryData()</b> or <b>CleanAllTemporaryData()</b> method.
+           <b>AjaxFileUploadEventArgs.DeleteTemporaryData()</b> or <b>AjaxFileUpload.CleanAllTemporaryData()</b> method.
        </p>
        <br/>        
        </asp:Panel>
@@ -242,7 +242,6 @@
         <ul>
             <li><strong>SaveAs(<span style="color: #2b91af">string</span> filename)</strong> - Saves the contents of an 
             uploaded file to the file system. Your application must have the required Write permissions.</li>
-            <li><strong>DeleteTemporaryData()</strong> - Delete temporary uploaded file data from temporary folder.</li>
             <li><strong>CleanAllTemporaryData()</strong> - Delete all temporary uploaded files from temporary folder.</li>
         </ul>
     </asp:Panel>

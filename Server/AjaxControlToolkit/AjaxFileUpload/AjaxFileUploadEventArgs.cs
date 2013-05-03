@@ -81,7 +81,16 @@ namespace AjaxControlToolkit
         {
             var dir = Path.Combine(Path.GetTempPath(), this._fileId);
             return File.OpenRead(Path.Combine(dir, this._fileName));
-        }        
+        }
+
+        /// <summary>
+        /// Delete temporary uploaded file data from temporary folder.
+        /// </summary>
+        public void DeleteTemporaryData()
+        {
+            var dirInfo = new DirectoryInfo(Path.Combine(Path.GetTempPath(), this._fileId));
+            dirInfo.Delete(true);
+        }
 
         /// <summary>
         /// To get state of Uploading/uploaded file.
@@ -135,6 +144,7 @@ namespace AjaxControlToolkit
             }
             set { _postedUrl = value; }
         }
+
 
     }
 }
