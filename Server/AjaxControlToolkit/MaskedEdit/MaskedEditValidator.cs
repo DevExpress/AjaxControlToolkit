@@ -584,6 +584,7 @@ namespace AjaxControlToolkit
                 {
                     Culture = System.Globalization.CultureInfo.CurrentCulture.Name;
                 }
+                ControlCulture = System.Globalization.CultureInfo.GetCultureInfo(Culture);
                 string CultureAMPMP = "";
                 if (!string.IsNullOrEmpty(ControlCulture.DateTimeFormat.AMDesignator) && !string.IsNullOrEmpty(ControlCulture.DateTimeFormat.PMDesignator))
                 {
