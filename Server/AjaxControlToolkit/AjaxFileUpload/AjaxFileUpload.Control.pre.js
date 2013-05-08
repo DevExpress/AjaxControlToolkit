@@ -15,6 +15,8 @@ Sys.Extended.UI.AjaxFileUpload.Control = function (element) {
     this._maximumNumberOfFiles = 10;
     this._allowedFileTypes = '';
     this._chunkSize = 4096;
+    this._storeToAzure = false;
+    this._azureContainerName = '';
     
     // fields
     this._uploadUrl = 'AjaxFileUploadHandler.axd';
@@ -428,6 +430,20 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_chunkSize: function (value) {
         this._chunkSize = value;
+    },
+    
+    get_storeToAzure: function () {
+        return this._storeToAzure;
+    },
+    set_storeToAzure: function (value) {
+        this._storeToAzure = value;
+    },
+    
+    get_azureContainerName: function () {
+        return this._azureContainerName;
+    },
+    set_azureContainerName: function (value) {
+        this._azureContainerName = value;
     },
 
     add_uploadComplete: function (handler) {

@@ -146,7 +146,14 @@ namespace AjaxControlToolkit
             set { _postedUrl = value; }
         }
 
-
-        
+        /// <summary>
+        /// Returns absolute Uri of uploaded file on Azure blob storage.
+        /// This only works if StoreToAzure set to true.
+        /// </summary>
+        /// <returns></returns>
+        public string GetAzureBlobUri()
+        {
+            return (new AjaxFileUploadStates(HttpContext.Current, this._fileId)).AzureBlobUri;
+        }
     }
 }
