@@ -70,7 +70,7 @@
         <ajaxToolkit:AjaxFileUpload ID="AjaxFileUpload1" runat="server" Padding-Bottom="4"
             Padding-Left="2" Padding-Right="1" Padding-Top="4" ThrobberID="myThrobber" OnClientUploadComplete="onClientUploadComplete"
             OnUploadComplete="AjaxFileUpload1_OnUploadComplete" MaximumNumberOfFiles="10"
-            AllowedFileTypes="jpg,jpeg" AzureContainerName="azuretest" StoreToAzure="True" />
+            AllowedFileTypes="jpg,jpeg" AzureContainerName="" />
         <br />
         <div id="testuploaded" style="display: none; padding: 4px; border: gray 1px solid;">
             <h4>
@@ -220,7 +220,44 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/handlers&gt;
 &lt;/system.webServer&gt;</pre>
         </asp:Panel>
+    
+    <asp:Panel ID="StoreToAzure_HeaderPanel" runat="server" Style="cursor: pointer;">
+            <div class="heading">
+            <asp:ImageButton ID="StoreToAzure_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
+                AlternateText="expand" />
+                Store To Azure
+        </div>
+        </asp:Panel>
+    <asp:Panel ID="StoreToAzure_ContentPanel" runat="server" Style="overflow: hidden;" Height="0px">
+        <p>
+            If you have Windows Azure account, you may want to store uploaded file to your Windows Azure storage. To do that, you just need to simply follow these steps:</p>
 
+        <p>
+            <ol>
+                <li>
+                    Set your Windows Azure connection string by adding setting on web.config under appSettings key. This settings key must be named <b>AjaxFileUploadAzureConnectionString</b>. It should be like this:<br/>
+                <pre>&lt;appSettings&gt;
+    &lt;add key="AjaxFileUploadAzureConnectionString" 
+        value="[Your Azure Connection String]"/&gt;
+&lt;/appSettings&gt;</pre>
+                    To use Windows Azure emulator on your development environment you can set Azure connection string to <b>UseDevelopmentStorage=true</b>.
+                </li>
+                <li>
+                    Set <b>StoreToAzure</b> property to <b>True</b>.
+                </li>
+                <li>
+                    Set <b>AzureContainerName</b> property to appropriate container name as you want the uploaded files to be located on your Windows Azure storage. This property can not be blank and follow the rule about how to create Windows Azure container name. Check out this <a href="http://msdn.microsoft.com/en-us/library/windowsazure/dd135715.aspx">link</a> and go to <i>Container Names</i> section to see more detail.
+                </li>
+            </ol>
+            <p>
+                By using this feature uploaded files will be stored directly to Windows Azure. It&#39;s AjaxFileUpload doesn&#39;t need to use Temporary Data anymore to buffers the file that being uploaded. Windows Azure has it&#39;s own mechanism in buffering.</p>
+            <br/>
+            <p>
+            </p>
+        </p>
+        </asp:Panel>
+
+    
     <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
         <div class="heading">
             <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg"
@@ -288,6 +325,9 @@
     <ajaxToolkit:CollapsiblePanelExtender ID="cpeHandler" runat="Server" TargetControlID="Handler_ContentPanel"
         ExpandControlID="Handler_HeaderPanel" CollapseControlID="Handler_HeaderPanel"
         Collapsed="True" ImageControlID="Handler_ToggleImage" />
+    <ajaxToolkit:CollapsiblePanelExtender ID="cpeStoreToAzure" runat="Server" TargetControlID="StoreToAzure_ContentPanel"
+        ExpandControlID="StoreToAzure_HeaderPanel" CollapseControlID="StoreToAzure_HeaderPanel"
+        Collapsed="True" ImageControlID="StoreToAzure_ToggleImage" />
     <ajaxToolkit:CollapsiblePanelExtender ID="cpeProperties" runat="Server" TargetControlID="Properties_ContentPanel"
         ExpandControlID="Properties_HeaderPanel" CollapseControlID="Properties_HeaderPanel"
         Collapsed="True" ImageControlID="Properties_ToggleImage" />
