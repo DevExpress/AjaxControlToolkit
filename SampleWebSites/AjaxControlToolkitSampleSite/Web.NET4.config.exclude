@@ -19,7 +19,9 @@
         </sectionGroup>
     </configSections>
 
-    <appSettings/>
+    <appSettings>
+      <add key="AjaxFileUploadAzureConnectionString" value="UseDevelopmentStorage=true"/>
+    </appSettings>
     <connectionStrings/>
     <system.web>
 
@@ -73,6 +75,18 @@
           <add verb="*" path="AjaxFileUploadHandler.axd" type="AjaxControlToolkit.AjaxFileUploadHandler, AjaxControlToolkit"/>
         </httpHandlers>
     </system.web>
+
+    <system.codedom>
+      <compilers>
+        <compiler
+           language="c#;cs;CSharp" extension=".cs"
+           compilerOptions="/d:NET4"
+           type="Microsoft.CSharp.CSharpCodeProvider, System,
+                 Version=2.0.0.0, Culture=neutral, 
+                 PublicKeyToken=b77a5c561934e089" />
+      </compilers>
+    </system.codedom>
+  
     <!-- 
         The system.webServer section is required for running ASP.NET AJAX under Internet
         Information Services 7.0.  It is not necessary for previous version of IIS.
