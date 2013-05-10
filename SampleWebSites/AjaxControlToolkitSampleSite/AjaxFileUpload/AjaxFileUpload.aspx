@@ -230,27 +230,27 @@
         </asp:Panel>
     <asp:Panel ID="StoreToAzure_ContentPanel" runat="server" Style="overflow: hidden;" Height="0px">
         <p>
-            If you have Windows Azure account, you may want to store uploaded file to your Windows Azure storage. To do that, you just need to simply follow these steps:</p>
+            If you have a Windows Azure account, you may want to upload files directly to your Windows Azure storage. To do that, you need to follow these simple steps:</p>
 
         <p>
             <ol>
                 <li>
-                    Set your Windows Azure connection string by adding setting on web.config under appSettings key. This settings key must be named <b>AjaxFileUploadAzureConnectionString</b>. It should be like this:<br/>
+                    Set your Windows Azure connection string by adding a setting to web.config file under the appSettings key. This settings key must be named&nbsp; <b>AjaxFileUploadAzureConnectionString</b>. It should be like this:<br/>
                 <pre>&lt;appSettings&gt;
     &lt;add key="AjaxFileUploadAzureConnectionString" 
         value="[Your Azure Connection String]"/&gt;
 &lt;/appSettings&gt;</pre>
-                    To use Windows Azure emulator on your development environment you can set Azure connection string to <b>UseDevelopmentStorage=true</b>.
+                    To use the Windows Azure emulator with your development environment you can set the Azure connection string to <b>UseDevelopmentStorage=true</b>.
                 </li>
                 <li>
                     Set <b>StoreToAzure</b> property to <b>True</b>.
                 </li>
                 <li>
-                    Set <b>AzureContainerName</b> property to appropriate container name as you want the uploaded files to be located on your Windows Azure storage. This property can not be blank and follow the rule about how to create Windows Azure container name. Check out this <a href="http://msdn.microsoft.com/en-us/library/windowsazure/dd135715.aspx">link</a> and go to <i>Container Names</i> section to see more detail.
+                    Set <b>AzureContainerName</b> property to the appropriate container name (the name of the container where you want the uploaded files to be located on your Windows Azure storage). This property cannot be blank and must follow the rules for valid Windows Azure container names. Check out this <a href="http://msdn.microsoft.com/en-us/library/windowsazure/dd135715.aspx">link</a> and go to the <i>Container Names</i> section to see more detail.
                 </li>
             </ol>
             <p>
-                By using this feature uploaded files will be stored directly to Windows Azure. It&#39;s AjaxFileUpload doesn&#39;t need to use Temporary Data anymore to buffers the file that being uploaded. Windows Azure has it&#39;s own mechanism in buffering.</p>
+                This feature enables you to store uploaded files directly to Windows Azure. When uploading files directly to Windows Azure, you no longer need to create a temporary file to buffer the upload. Windows Azure has its own mechanism for buffering.</p>
             <br/>
             <p>
             </p>
