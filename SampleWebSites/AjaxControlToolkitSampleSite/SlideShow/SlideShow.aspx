@@ -52,7 +52,7 @@
                 StopButtonText="Stop"
                 PreviousButtonID="prevButton" 
                 PlayButtonID="playButton" 
-                Loop="true" />
+                Loop="true" SlideShowAnimationType="FadeInOut" />
         </div>
     </div>
     <div class="demobottom">

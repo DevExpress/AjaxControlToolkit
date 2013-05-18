@@ -11,6 +11,7 @@ using System.Drawing.Design;
 #region Assembly Resource Attribute
 [assembly: System.Web.UI.WebResource("SlideShow.SlideShowBehavior.js", "text/javascript")]
 [assembly: System.Web.UI.WebResource("SlideShow.SlideShowBehavior.debug.js", "text/javascript")]
+[assembly: WebResource("SlideShow.SlideShow_resource.css", "text/css", PerformSubstitution = true)]
 #endregion
 
 namespace AjaxControlToolkit
@@ -20,6 +21,7 @@ namespace AjaxControlToolkit
     /// </summary>
     [Designer("AjaxControlToolkit.SlideShowDesigner, AjaxControlToolkit")]
     [ClientScriptResource("Sys.Extended.UI.SlideShowBehavior", "SlideShow.SlideShowBehavior.js")]
+    [ClientCssResource("SlideShow.SlideShow_resource.css")]
     [TargetControlType(typeof(Image))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(TimerScript))]
@@ -218,6 +220,18 @@ namespace AjaxControlToolkit
         {
             get { return GetPropertyValue("AutoPlay", false); }
             set { SetPropertyValue("AutoPlay", value); }
+        }
+
+        /// <summary>
+        /// Animation type that will happen on change of slide.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(SlideShowAnimationType.None)]
+        [ClientPropertyName("slideShowAnimationType")]
+        public SlideShowAnimationType SlideShowAnimationType
+        {
+            get { return GetPropertyValue("SlideShowAnimationType", SlideShowAnimationType.None); }
+            set { SetPropertyValue("SlideShowAnimationType", value); }
         }
     }
 }
