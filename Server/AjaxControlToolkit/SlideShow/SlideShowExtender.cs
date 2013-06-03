@@ -233,5 +233,29 @@ namespace AjaxControlToolkit
             get { return GetPropertyValue("SlideShowAnimationType", SlideShowAnimationType.None); }
             set { SetPropertyValue("SlideShowAnimationType", value); }
         }
+
+        /// <summary>
+        /// Width of Image container to animate slides smoothly from left to right or right to left.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(400)]
+        [ClientPropertyName("imageWidth")]
+        public int ImageWidth
+        {
+            get { return GetPropertyValue("ImageWidth", 400); }
+            set { SetPropertyValue("ImageWidth", value); }
+        }
+
+        /// <summary>
+        /// Height of Image container to animate slides smoothly from up to down or down to up.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(300)]
+        [ClientPropertyName("imageHeight")]
+        public int ImageHeight
+        {
+            get { return GetPropertyValue("ImageHeight", 300); }
+            set { SetPropertyValue("ImageHeight", value); }
+        }
     }
 }

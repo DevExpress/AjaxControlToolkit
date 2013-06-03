@@ -15,6 +15,8 @@ namespace AjaxControlToolkit
         ScaleX = 2,
         ScaleY = 3,
         ZoomInOut = 4,
-        Rotate = 5
+        Rotate = 5,
+        LeftRight = 6,
+        UpDown = 7
     }
 }

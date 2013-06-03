@@ -78,3 +78,23 @@
     -o-transform: rotate(360deg) scale(0,0);
     transform: rotate(360deg) scale(0,0);
 }
+
+.container
+{		
+	overflow:hidden;
+	position:relative;
+}
+
+.slideAnimation
+{
+	-webkit-transition:all 1.0s ease-in-out;
+    -moz-transition:all 1.0s ease-in-out;
+    -o-transition:all 1.0s ease-in-out;
+    transition:all 1.0s ease-in-out;
+}
+
+.sliderUL {
+	margin:0;
+	padding:0;
+	position:relative;
+}
