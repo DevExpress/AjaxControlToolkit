@@ -43,7 +43,7 @@
             affects performance, set this value to true only 
             during development.
         -->
-        <compilation debug="true" targetFramework="4.0">
+        <compilation debug="false" targetFramework="4.0">
         </compilation>
         <!--
             The <authentication> section enables configuration 
