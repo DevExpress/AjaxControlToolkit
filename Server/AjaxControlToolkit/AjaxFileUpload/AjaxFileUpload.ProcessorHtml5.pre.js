@@ -91,9 +91,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function (control, elements) {
         // abort ajax upload request 
         if (xhrReq) xhrReq.abort();
         
-        // set file status as canceled
-        control.setFileStatus(control._currentFileId, 'cancelled', Sys.Extended.UI.Resources.AjaxFileUpload_Canceled);
-        control.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_UploadCanceled);
+        control.cancelUpload();
     },
 
     this.startUpload = function () {
@@ -218,10 +216,6 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function (control, elements) {
             self.startUpload();
             
         } else {
-            
-            // mark as uploaded
-            fileItem._isUploading = false;
-            fileItem._isUploaded = true;
             
             // hide remove button
             fileItem.hide();
