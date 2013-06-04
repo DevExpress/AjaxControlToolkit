@@ -11,7 +11,7 @@
     <RootNamespace>AjaxControlToolkit</RootNamespace>
     <AssemblyName>AjaxControlToolkit</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-	<Framework>$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</Framework>
+    <Framework>$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</Framework>
     <ChildBuild>True</ChildBuild>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
@@ -100,24 +100,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
-	<When Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">
-	  <ItemGroup>
-		<Reference Include="Microsoft.WindowsAzure.Storage, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-		<Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper.cs" />
-		<Compile Include="AjaxFileUpload\AjaxFileUploadBlobInfo.cs" />
-		<Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadAzureHelper.cs" />
-	  </ItemGroup>
-	</When>
-	<When Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
-	  <ItemGroup>
-		<Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper.cs" />
-	  </ItemGroup>
-	</When>
-	<When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
-	  <ItemGroup>
-		<Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper35.cs" />
-	  </ItemGroup>
-	</When>
+    <When Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">
+      <ItemGroup>
+        <Reference Include="Microsoft.WindowsAzure.Storage, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+        <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper.cs" />
+        <Compile Include="AjaxFileUpload\AjaxFileUploadBlobInfo.cs" />
+        <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadAzureHelper.cs" />
+      </ItemGroup>
+    </When>
+    <When Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
+      <ItemGroup>
+        <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper.cs" />
+      </ItemGroup>
+    </When>
+    <When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
+      <ItemGroup>
+        <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper35.cs" />
+      </ItemGroup>
+    </When>
   </Choose>
   <ItemGroup>
     <Compile Include="Accordion\Accordion.cs" />
@@ -132,7 +132,9 @@
     <Compile Include="Accordion\AccordionPaneCollection.cs" />
     <Compile Include="Accordion\AutoSize.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadCompleteAllEventArgs.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadMode.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadStartEventArgs.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadStates.cs" />
     <Compile Include="AjaxFileUpload\FileHeaderInfo.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadDesigner.cs" />
@@ -472,11 +474,13 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BalloonPopup\BalloonPopup.ico" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.CompleteAllEventArgs.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.css" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.Control.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.EventArgs.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.Processor.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.ProcessorHtml5.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.StartEventArgs.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.Utils.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.Item.pre.js" />
     <Content Include="AreaChart\AreaChart.css" />
