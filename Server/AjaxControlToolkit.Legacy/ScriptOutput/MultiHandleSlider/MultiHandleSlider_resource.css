@@ -1,0 +1,10 @@
+.ajax__multi_slider_default .outer_rail_vertical{position:absolute;background:url(<%=WebResource("MultiHandleSlider.Images.slider_v_rail_outer.gif")%>) repeat-y;width:22px;height:150px;}
+.ajax__multi_slider_default .inner_rail_vertical{position:absolute;background:url(<%=WebResource("MultiHandleSlider.Images.slider_v_rail.gif")%>) repeat-y;width:22px;z-index:100;}
+.ajax__multi_slider_default .inner_rail_horizontal{position:absolute;background:url(<%=WebResource("MultiHandleSlider.Images.slider_h_rail.gif")%>) repeat-x;height:22px;z-index:100;}
+.ajax__multi_slider_default .outer_rail_horizontal{position:absolute;background:url(<%=WebResource("MultiHandleSlider.Images.slider_h_rail_outer.gif")%>) repeat-x;height:22px;width:150px;}
+.ajax__multi_slider_default .handle_horizontal{position:absolute;background:url(<%=WebResource("MultiHandleSlider.Images.slider_h_handle.gif")%>) no-repeat;height:22px;width:10px;z-index:200;}
+.ajax__multi_slider_default .handle_horizontal_hover{position:absolute;background:url(<%=WebResource("MultiHandleSlider.Images.slider_h_handle_hover.gif")%>) no-repeat;height:22px;width:10px;z-index:200;}
+.ajax__multi_slider_default .handle_horizontal_down{position:absolute;background:url(<%=WebResource("MultiHandleSlider.Images.slider_h_handle_down.gif")%>) no-repeat;height:22px;width:10px;z-index:200;}
+.ajax__multi_slider_default .handle_vertical{position:absolute;background:url(<%=WebResource("MultiHandleSlider.Images.slider_v_handle.gif")%>) no-repeat;height:10px;width:22px;z-index:200;}
+.ajax__multi_slider_default .handle_vertical_hover{position:absolute;background:url(<%=WebResource("MultiHandleSlider.Images.slider_v_handle_hover.gif")%>) no-repeat;height:10px;width:22px;z-index:200;}
+.ajax__multi_slider_default .handle_vertical_down{position:absolute;background:url(<%=WebResource("MultiHandleSlider.Images.slider_v_handle_down.gif")%>) no-repeat;height:10px;width:22px;z-index:200;}

@@ -1,0 +1,14 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<Framework>$(TargetFrameworkVersion.Replace("v", "NET").Replace(".", ""))</Framework>
+	</PropertyGroup>
+	<PropertyGroup>
+		<DefineConstants Condition=" !$(DefineConstants.Contains(';NET')) ">$(DefineConstants);$(Framework)</DefineConstants>
+		<DefineConstants Condition=" $(DefineConstants.Contains(';NET')) ">$(DefineConstants.Remove($(DefineConstants.LastIndexOf(";NET"))));$(Framework)</DefineConstants>
+	</PropertyGroup>
+    <Target Name="AfterBuild"  Condition=" '$(ChildBuild)' == 'True' ">
+		<MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v3.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="3.5" Properties="TargetFrameworkVersion=v3.5; ChildBuild=False" RunEachTargetSeparately="true" />
+		<MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.0' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.0; ChildBuild=False" RunEachTargetSeparately="true" />
+		<MSBuild Condition=" '$(TargetFrameworkVersion)' != 'v4.5' " Projects="$(MSBuildProjectFile)" ToolsVersion="4.0" Properties="TargetFrameworkVersion=v4.5; ChildBuild=False" RunEachTargetSeparately="true" />
+	</Target>
+</Project>

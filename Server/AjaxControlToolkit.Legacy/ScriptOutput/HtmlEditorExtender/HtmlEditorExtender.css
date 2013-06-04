@@ -1,0 +1,130 @@
+﻿.ajax__html_editor_extender_button
+{
+	background: url(Images/html-editor-buttons.png) no-repeat;
+	cursor: pointer;
+	display: block;
+	float: left;
+	border: none;
+	background-color:#c2c2c2;
+	padding-bottom:2px;	
+}
+
+.ajax__html_editor_extender_button:hover 
+{
+   background-color:#3c8aff; 
+}
+.ajax__html_editor_extender_buttoncontainer
+{
+    background-color:#F0F0F0;     
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #c2c2c2;
+	border-bottom: none;    
+    overflow:auto;
+}
+.ajax__html_editor_extender_buttoncontainer2
+{
+    background-color:#F0F0F0;     
+    padding: 2px 2px 2px 2px;
+    border-left : 1px solid #c2c2c2;    
+    border-right: 1px solid #c2c2c2;
+    border-bottom: 1px solid #c2c2c2;
+    overflow:auto;
+}
+.ajax__html_editor_extender_footercontainer
+{
+    background-color:#F0F0F0;     
+    padding: 2px 2px 2px 2px;
+    border: 1px solid #c2c2c2;
+	height: 10px;
+}
+.ajax__html_editor_extender_texteditor
+{
+    border-width:1px;
+    border-color:#c2c2c2;
+    border-style:solid;
+    padding: 2px 2px 2px 2px;
+}
+.ajax__html_editor_extender_container
+{
+}
+.backcolorclass{float:left;}
+.forecolorclass{float:left;}
+.fontnameclass{float:left;}
+.fontsizeclass{float:left;}
+
+.ajax__html_editor_extender_Undo{ background-position:-0px 0px;}
+.ajax__html_editor_extender_Redo{ background-position:-23px 0px;}
+.ajax__html_editor_extender_Bold{ background-position:-46px 0px;}
+.ajax__html_editor_extender_Italic{ background-position:-69px 0px;}
+.ajax__html_editor_extender_Underline{ background-position:-92px 0px;}
+.ajax__html_editor_extender_StrikeThrough{ background-position:-115px 0px;}
+.ajax__html_editor_extender_Subscript{ background-position:-138px 0px;}
+.ajax__html_editor_extender_Superscript{ background-position:-161px 0px;}
+.ajax__html_editor_extender_JustifyLeft{ background-position:-230px 0px;}
+.ajax__html_editor_extender_JustifyRight{ background-position:-276px 0px;}
+.ajax__html_editor_extender_JustifyCenter{ background-position:-253px 0px;}
+.ajax__html_editor_extender_JustifyFull{ background-position:-299px 0px;}
+.ajax__html_editor_extender_insertOrderedList{ background-position:-345px 0px;}
+.ajax__html_editor_extender_insertUnorderedList{ background-position:-368px 0px;}
+.ajax__html_editor_extender__createLink{ background-position:-414px 0px;}
+.ajax__html_editor_extender_UnLink{ background-position:-437px 0px;}
+.ajax__html_editor_extender_FormatBlock{ background-position:-897px 0px;}
+.ajax__html_editor_extender_RemoveFormat{ background-position:-460px 0px;}
+.ajax__html_editor_extender_InsertImage{ background-position:-621px 0px;}
+.ajax__html_editor_extender_SelectAll{ background-position:-644px 0px;}
+.ajax__html_editor_extender_UnSelect{ background-position:-667px 0px;}
+.ajax__html_editor_extender_Delete{ background-position:-690px 0px;}
+.ajax__html_editor_extender_Cut{ background-position:-483px 0px;}
+.ajax__html_editor_extender_Copy{ background-position:-713px 0px;}
+.ajax__html_editor_extender_Paste{ background-position:-736px 0px;}
+.ajax__html_editor_extender_BackColor{ background-position:-760px -1px; text-indent:-9999px}
+.ajax__html_editor_extender_ForeColor{ background-position:-783px -1px; text-indent:-9999px}
+.ajax__html_editor_extender_FontName{ background-position:-0px 48px;}
+.ajax__html_editor_extender_Indent{ background-position:-575px 0px;}
+.ajax__html_editor_extender_Outdent{ background-position:-552px 0px;}
+.ajax__html_editor_extender_InsertHorizontalRule{ background-position:-391px 0px;}
+.ajax__html_editor_extender_content{ background-position:-920px 0px;}
+.ajax__html_editor_extender_source{ background-position:-943px 0px;}
+.ajax__html_editor_extender_content:active{ background-position:-920px -21px;}
+.ajax__html_editor_extender_source:active{ background-position:-943px -21px;}
+
+.ajax__html_editor_extender_separator
+{
+    background: url(Images/ed_sep.gif) no-repeat -966px 0;
+	display: block;
+	float: left;
+	border: none;
+	width:13px;
+	height:21px;
+}
+.popupDiv
+{
+	border-color: black; 
+	border: 1px solid #555555;
+    box-shadow: 0 4px 30px #000000;
+	overflow: auto; 
+	background-color: white;
+	width: 500px; 
+	height: 290px; 
+	position:fixed; 
+	left:50%; 
+	top: 50%; 
+	margin-left:-250px; 
+	margin-top:-145px;
+	padding: 10px;
+}
+.popupCancelButton
+{
+	border: 1px solid #BBBBBB;
+    color: #464646;
+    cursor: pointer;
+    line-height: 24px;
+    margin-top: 10px;
+    text-align: center;
+    width: 75px;
+}
+.popupCancelButton:hover
+{
+	border-color: #666666;
+    color: #000000;
+}

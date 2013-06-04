@@ -1,0 +1,4 @@
+.ajax__slider_h_rail {position:relative;background:url(<%=WebResource("Slider.Images.slider_h_rail.gif")%>) repeat-x;height:22px;width:150px;}
+.ajax__slider_h_handle {position:absolute;height:22px;width:10px;}
+.ajax__slider_v_rail {position:relative;background:url(<%=WebResource("Slider.Images.slider_v_rail.gif")%>) repeat-y;width:22px;height:150px;}
+.ajax__slider_v_handle {position:absolute;height:10px;width:22px;}

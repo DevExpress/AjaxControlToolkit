@@ -1,0 +1,47 @@
+body {margin:0;padding:0px;color:#404040;background-color:#DFDFDF;}
+html, body { border-width: 0px;}
+
+div.ajax__htmleditor_attachedpopup_default
+{
+	padding: 5px; border-color:#B0B0B0; border-style: solid; border-width: 1px; font-family:Arial;font-size:11px;
+}
+
+.ajax__htmleditor_attachedpopup_default label,button, div, input, select, td, fieldset { font-family: Tahoma; font-size: 11px; }
+.ajax__htmleditor_attachedpopup_default input { height: 14px; }
+.ajax__htmleditor_attachedpopup_default img {border:none;margin:0;padding:0;}
+
+.ajax__htmleditor_attachedpopup_default div.ajax__htmleditor_popup_boxbutton
+{
+	background-color:#C2C2C2; margin:0; border-width: 0px; padding:0px; border-width: 0px; padding: 1px;
+}
+.ajax__htmleditor_attachedpopup_default div.ajax__htmleditor_popup_boxbutton_hover
+{
+	cursor:pointer;background-color:#3C8AFF;
+}
+.ajax__htmleditor_attachedpopup_default div.ajax__htmleditor_popup_boxbutton_mousedown
+{
+}
+.ajax__htmleditor_attachedpopup_default div.ajax__htmleditor_popup_boxbutton table
+{
+	border-width: 0px; width: 100%;
+}
+.ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton
+{
+	border-width: 0px; overflow:hidden; font-weight:bold; vertical-align:middle; text-align: center; height: 19px; width: 100%;
+	background: url(<%=WebResource("HTMLEditor.Images.BgiButton.gif")%>) repeat-x;
+}
+.ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton_hover
+{
+	cursor:pointer;
+}
+.ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton_mousedown
+{
+}
+.ajax__htmleditor_attachedpopup_default div.ajax__htmleditor_popup_confirmbutton
+{
+	float:right; margin-left: 5px; margin-top:5px; width: 60px;
+}
+.ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton_hover span
+{
+	cursor:pointer;
+}
