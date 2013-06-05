@@ -84,8 +84,8 @@
                     this._slideShowAnimationType = Sys.Extended.UI.SlideShowAnimationType.None;
                 }
 
-                if (this._slideShowAnimationType != Sys.Extended.UI.SlideShowAnimationType.LeftRight ||
-                    this._slideShowAnimationType != Sys.Extended.UI.SlideShowAnimationType.UpDown) {
+                if (this._slideShowAnimationType != Sys.Extended.UI.SlideShowAnimationType.SlideRight ||
+                    this._slideShowAnimationType != Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                     // create an invisible img element
                     this._currentImageElement = document.createElement('IMG');
                     this._currentImageElement.style.display = 'none';
@@ -657,7 +657,7 @@
                         return false;
                     }
 
-                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.LeftRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.UpDown) {
+                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                         this._isNext = true;
                         this.setCurrentSlide();
                     }
@@ -698,7 +698,7 @@
                     } else {
                         return false;
                     }
-                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.LeftRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.UpDown) {
+                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                         this._isNext = false;
                         this.setCurrentSlide();
                     }
@@ -733,7 +733,7 @@
                     this._inPlayMode = false;
                     this._timer.set_enabled(false);
                     this.resetSlideShowButtonState();
-                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.LeftRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.UpDown) {
+                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                         this._bNext.disabled = false;
                         this._bPrevious.disabled = false;
                     }
@@ -746,7 +746,7 @@
                         this._tickHandler = Function.createDelegate(this, this._onPlay);
                         this._timer.add_tick(this._tickHandler);
                     }
-                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.LeftRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.UpDown) {
+                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                         this._bNext.disabled = true;
                         this._bPrevious.disabled = true;
                     }
@@ -764,7 +764,7 @@
                 if (this._slides) {
                     if ((this._currentIndex + 1) < this._slides.length) {
                         ++this._currentIndex;
-                        if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.LeftRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.UpDown) {
+                        if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                             this._isNext = true;
                             this.setCurrentSlide();
                         }
@@ -774,7 +774,7 @@
                         return true;
                     } else if (this._loop) {
                         this._currentIndex = 0;
-                        if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.LeftRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.UpDown) {
+                        if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                             this._isNext = true;
                             this.setCurrentSlide();
                         }
@@ -831,12 +831,12 @@
                 this._slides = sender;
                 if (this._slides) {
                     // create image containers if animation is of type LeftRight or UpDown.
-                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.LeftRight) {
-                        this._createElementsForLeftRight();
+                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight) {
+                        this._createElementsForSlideRight();
                         this._setInitialState();
                     }
-                    else if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.UpDown) {
-                        this._createElementsForUpDown();
+                    else if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
+                        this._createElementsForSlideDown();
                         this._setInitialState();
                     }
                     else {
@@ -873,7 +873,7 @@
                 }
             },
 
-            _createElementsForLeftRight: function () {
+            _createElementsForSlideRight: function () {
                 var e = this.get_element();
                 // create parent container
                 var _divContainer = document.createElement('DIV');
@@ -913,7 +913,7 @@
                 }
             },
 
-            _createElementsForUpDown: function () {
+            _createElementsForSlideDown: function () {
                 var e = this.get_element();
 
                 // create parent container
@@ -961,7 +961,7 @@
                 this._currentImage = this._images[this._currentIndex];
                 this._nextImage = this._images.length > 1 ? this._images[this._currentIndex + 1] : this._images[this._currentIndex];
 
-                if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.LeftRight) {
+                if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight) {
                     this._currentImage.style.left = '0px';
                     for (var i = 1; i < this._images.length; i++) {
                         this._images[i].style.left = '-' + (this._imageWidth + 5) + 'px';
@@ -983,18 +983,33 @@
                 this._currentImage.style.height = this._imageHeight + 'px';
                 this._nextImage.style.height = this._imageHeight + 'px';
                 this._previousImage.style.height = this._imageHeight + 'px';
+
+                if (this._imageDescriptionLabel) {
+                    this._imageDescriptionLabel.innerHTML = this._slides[this._currentIndex].Description ? this._slides[this._currentIndex].Description : "";
+                }
+                if (this._imageTitleLabel) {
+                    this._imageTitleLabel.innerHTML = this._slides[this._currentIndex].Name ? this._slides[this._currentIndex].Name : "";
+                }
             },
 
             setCurrentSlide: function () {
                 if (this._isNext) {
-                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.LeftRight) {
+                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight) {
                         this._nextImage = this._images[this._currentIndex];
+                        this._elementImage.alt = this._nextImage.Name;
+                        
                         this._nextImage.className = '';
                         this._nextImage.style.left = '-' + (this._imageWidth + 5) + 'px';
 
                         var me = this;
                         setTimeout(function () {
                             me._nextImage.className = 'slideAnimation';
+                            if (me._imageDescriptionLabel) {
+                                me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
+                            }
+                            if (me._imageTitleLabel) {
+                                me._imageTitleLabel.innerHTML = me._slides[me._currentIndex].Name ? me._slides[me._currentIndex].Name : "";
+                            }
                             me._currentImage.style.left = me._imageWidth + 'px';
                             me._nextImage.style.left = '0px';
                         }, 200);
@@ -1007,10 +1022,10 @@
                             setTimeout(function () {
                                 me._previousImage.className = 'slideAnimation';
                                 this._isNext = false;
-                            }, 750);
-                        }, 950);
+                            }, 1000);
+                        }, 1200);
                     }
-                    else if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.UpDown) {
+                    else if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                         this._nextImage = this._images[this._currentIndex];
                         this._nextImage.className = '';
                         this._nextImage.style.top = '-' + (this._imageHeight + 5) + 'px';
@@ -1018,6 +1033,12 @@
                         var me = this;
                         setTimeout(function () {
                             me._nextImage.className = 'slideAnimation';
+                            if (me._imageDescriptionLabel) {
+                                me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
+                            }
+                            if (me._imageTitleLabel) {
+                                me._imageTitleLabel.innerHTML = me._slides[me._currentIndex].Name ? me._slides[me._currentIndex].Name : "";
+                            }
                             me._currentImage.style.top = me._imageHeight + 'px';
                             me._nextImage.style.top = '0px';
                         }, 200);
@@ -1030,12 +1051,12 @@
                             setTimeout(function () {
                                 me._previousImage.className = 'slideAnimation';
                                 this._isNext = false;
-                            }, 750);
-                        }, 950);
+                            }, 1000);
+                        }, 1200);
                     }
                 }
                 else {
-                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.LeftRight) {
+                    if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight) {
                         this._previousImage = this._images[this._currentIndex];
                         this._previousImage.className = '';
                         this._previousImage.style.left = (this._imageWidth + 5) + 'px';
@@ -1043,6 +1064,12 @@
                         var me = this;
                         setTimeout(function () {
                             me._previousImage.className = 'slideAnimation';
+                            if (me._imageDescriptionLabel) {
+                                me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
+                            }
+                            if (me._imageTitleLabel) {
+                                me._imageTitleLabel.innerHTML = me._slides[me._currentIndex].Name ? me._slides[me._currentIndex].Name : "";
+                            }
                             me._currentImage.style.left = '-' + (me._imageWidth + 5) + 'px';
                             me._previousImage.style.left = '0px';
                         }, 200);
@@ -1055,10 +1082,10 @@
                             setTimeout(function () {
                                 me._nextImage.className = 'slideAnimation';
                                 this._isNext = false;
-                            }, 750);
-                        }, 950);
+                            }, 1000);
+                        }, 1200);
                     }
-                    else if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.UpDown) {
+                    else if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                         this._previousImage = this._images[this._currentIndex];
                         this._previousImage.className = '';
                         this._previousImage.style.top = (this._imageHeight + 5) + 'px';
@@ -1066,6 +1093,12 @@
                         var me = this;
                         setTimeout(function () {
                             me._previousImage.className = 'slideAnimation';
+                            if (me._imageDescriptionLabel) {
+                                me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
+                            }
+                            if (me._imageTitleLabel) {
+                                me._imageTitleLabel.innerHTML = me._slides[me._currentIndex].Name ? me._slides[me._currentIndex].Name : "";
+                            }
                             me._currentImage.style.top = '-' + (me._imageHeight + 5) + 'px';
                             me._previousImage.style.top = '0px';
                         }, 200);
@@ -1078,8 +1111,8 @@
                             setTimeout(function () {
                                 me._nextImage.className = 'slideAnimation';
                                 this._isNext = false;
-                            }, 750);
-                        }, 950);
+                            }, 1000);
+                        }, 1200);
                     }
                 }
             },
@@ -1169,8 +1202,8 @@
             ScaleY: 3,
             ZoomInOut: 4,
             Rotate: 5,
-            LeftRight: 6,
-            UpDown: 7
+            SlideRight: 6,
+            SlideDown: 7
         }
 
         Sys.Extended.UI.SlideShowAnimationType.registerEnum("Sys.Extended.UI.SlideShowAnimationType", false);
