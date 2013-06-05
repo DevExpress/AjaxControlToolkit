@@ -28,8 +28,12 @@ using System.Drawing.Design;
 
 [assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Control.js", "application/x-javascript")]
 [assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Control.debug.js", "application/x-javascript")]
+[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.StartEventArgs.js", "application/x-javascript")]
+[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.StartEventArgs.debug.js", "application/x-javascript")]
 [assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.EventArgs.js", "application/x-javascript")]
 [assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.EventArgs.debug.js", "application/x-javascript")]
+[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.CompleteAllEventArgs.js", "application/x-javascript")]
+[assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.CompleteAllEventArgs.debug.js", "application/x-javascript")]
 [assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Item.js", "application/x-javascript")]
 [assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Item.debug.js", "application/x-javascript")]
 [assembly: System.Web.UI.WebResource("AjaxFileUpload.AjaxFileUpload.Utils.js", "application/x-javascript")]
@@ -56,12 +60,23 @@ namespace AjaxControlToolkit
     [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Item.js", true)]
     [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Processor.js", true)]
     [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.ProcessorHtml5.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Control.js", true)]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.StartEventArgs.js", true)]
     [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.EventArgs.js", true)]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.CompleteAllEventArgs.js", true)]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Control.js", true)]
     public class AjaxFileUpload : ScriptControlBase
     {
         internal const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";
         private const string TemporaryUploadFolderName = "_AjaxFileUpload";
+
+        enum XhrType {
+            None = -1,
+            Start = 0,
+            Poll = 1,
+            Cancel = 2,
+            Done = 3,
+            Complete = 4
+        }
 
         /// <summary>
         /// Location of uploaded temporary file path or absolute Uri when StoreToAzure set to true.
@@ -250,7 +265,38 @@ namespace AjaxControlToolkit
             // Register an empty OnSubmit statement so the ASP.NET WebForm_OnSubmit method will be automatically
             // created and our behavior will be able to disable input file controls prior to submission
             ScriptManager.RegisterOnSubmitStatement(this, typeof(AjaxFileUpload), "AjaxFileUploadOnSubmit", "null;");
-        }        
+        }
+
+        
+
+        private XhrType ParseRequest(out string fileId)
+        {
+            fileId = this.Page.Request.QueryString["guid"];
+
+            if (Page.Request.QueryString["contextkey"] != ContextKey)
+                return XhrType.None;
+
+            if (!string.IsNullOrEmpty(fileId))
+            {
+                if (Page.Request.QueryString["poll"] == "1")
+                    return XhrType.Poll;
+
+                if (Page.Request.QueryString["cancel"] == "1")
+                    return XhrType.Cancel;
+
+                if (Page.Request.QueryString["done"] == "1")
+                    return XhrType.Done;
+            }
+
+            if (Page.Request.QueryString["complete"] == "1")
+                return XhrType.Complete;
+
+            if (Page.Request.QueryString["start"] == "1")
+                return XhrType.Start;
+
+            return XhrType.None;
+        }
+
 
         /// <summary>
         /// OnPreRender renders the output of result to client side.
@@ -259,58 +305,127 @@ namespace AjaxControlToolkit
         protected override void OnPreRender(EventArgs e)
         {
             base.OnPreRender(e);
+
+            string fileId;
+            var xhrType = ParseRequest(out fileId);
             
-            if (Page.Request.QueryString["contextkey"] == ContextKey)
+            if (xhrType != XhrType.None)
             {
-                var fileId = this.Page.Request.QueryString["guid"];
                 Page.Response.ClearContent();
                 Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-                
-                if (this.Page.Request.QueryString["poll"] == "1" && !string.IsNullOrEmpty(fileId))
+                // Process xhr request
+                switch (xhrType)
                 {
-                    Page.Response.Write((new AjaxFileUploadStates(this.Context, fileId)).Percent.ToString());
-                }
-                else if (this.Page.Request.QueryString["cancel"] == "1" && !string.IsNullOrEmpty(fileId))
-                {
-                    AjaxFileUploadHelper.Abort(this.Context, fileId);
-                }
-                else if (this.Page.Request.QueryString["done"] == "1" && !string.IsNullOrEmpty(fileId))
-                {
-                    AjaxFileUploadEventArgs args;
+                    case XhrType.Poll:
+                        // Upload progress polling request
+                        XhrPoll(fileId);
+                        break;
 
-#if NET45 || NET4
-                    if (StoreToAzure)
-                    {
-                        var blobInfo = AjaxFileUploadAzureHelper.GetFileInfo(Context, fileId);
-                        args = new AjaxFileUploadEventArgs(fileId, AjaxFileUploadState.Success, "Success",
-                            blobInfo.Name, (int)blobInfo.Length, blobInfo.Extension);
-                        _uploadedFilePath = blobInfo.Uri.AbsoluteUri;
-                    }
-                    else
-                    {
-#endif
-                        var tempFolder = BuildTempFolder(fileId);
-                        var fileName = Directory.GetFiles(tempFolder)[0];
-                        var fileInfo = new FileInfo(fileName);
+                    case XhrType.Cancel:
+                        // Cancel upload request
+                        XhrCancel(fileId);
+                        break;
 
-                        _uploadedFilePath = fileName;
+                    case XhrType.Done:
+                        // A file is successfully uploaded
+                        XhrDone(fileId);
+                        break;
 
-                        args = new AjaxFileUploadEventArgs(
-                            fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int) fileInfo.Length,
-                            fileInfo.Extension);
+                    case XhrType.Complete:
+                        // All files successfully uploaded
+                        XhrComplete();
+                        break;
 
-#if NET45 || NET4
-                    }
-#endif
-                    if (UploadComplete != null)
-                        UploadComplete(this, args);
-
-                    Page.Response.Write(new JavaScriptSerializer().Serialize(args));
+                    case XhrType.Start:
+                        XhrStart();
+                        break;
                 }
 
                 Page.Response.End();
+                
             }
+        }
+
+        private void XhrStart()
+        {
+            var filesInQueue = int.Parse(Page.Request.QueryString["queue"] ?? "0");
+            var args = new AjaxFileUploadStartEventArgs(filesInQueue);
+            if (UploadStart != null)
+                UploadStart(this, args);
+            Page.Response.Write(new JavaScriptSerializer().Serialize(args));
+        }
+
+        private void XhrComplete()
+        {
+            var filesInQueue = int.Parse(Page.Request.QueryString["queue"] ?? "0");
+            var filesUploaded = int.Parse(Page.Request.QueryString["uploaded"] ?? "0");
+            var reason = Page.Request.QueryString["reason"];
+
+            AjaxFileUploadCompleteAllReason completeReason;
+            switch (reason)
+            {
+                case "done":
+                    completeReason= AjaxFileUploadCompleteAllReason.Success;
+                    break;
+
+                case "cancel":
+                    completeReason= AjaxFileUploadCompleteAllReason.Canceled;
+                    break;
+
+                default:
+                    completeReason = AjaxFileUploadCompleteAllReason.Unknown;
+                    break;
+            }
+
+            var args = new AjaxFileUploadCompleteAllEventArgs(filesInQueue, filesUploaded, completeReason);            
+            if (UploadCompleteAll != null)
+                UploadCompleteAll(this,args);
+            Page.Response.Write(new JavaScriptSerializer().Serialize(args));
+        }
+
+        private void XhrDone(string fileId)
+        {
+            AjaxFileUploadEventArgs args;
+
+#if NET45 || NET4
+            if (StoreToAzure)
+            {
+                var blobInfo = AjaxFileUploadAzureHelper.GetFileInfo(Context, fileId);
+                args = new AjaxFileUploadEventArgs(fileId, AjaxFileUploadState.Success, "Success",
+                                                   blobInfo.Name, (int) blobInfo.Length, blobInfo.Extension);
+                _uploadedFilePath = blobInfo.Uri.AbsoluteUri;
+            }
+            else
+            {
+#endif
+                var tempFolder = BuildTempFolder(fileId);
+                var fileName = Directory.GetFiles(tempFolder)[0];
+                var fileInfo = new FileInfo(fileName);
+
+                _uploadedFilePath = fileName;
+
+                args = new AjaxFileUploadEventArgs(
+                    fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int) fileInfo.Length,
+                    fileInfo.Extension);
+
+#if NET45 || NET4
+            }
+#endif
+            if (UploadComplete != null)
+                UploadComplete(this, args);
+
+            Page.Response.Write(new JavaScriptSerializer().Serialize(args));
+        }
+
+        private void XhrCancel(string fileId)
+        {
+            AjaxFileUploadHelper.Abort(this.Context, fileId);
+        }
+
+        private void XhrPoll(string fileId)
+        {
+            Page.Response.Write((new AjaxFileUploadStates(this.Context, fileId)).Percent.ToString());
         }
 
         /// <summary>
@@ -589,12 +704,53 @@ namespace AjaxControlToolkit
 
         #endregion
 
-        #region [ Client Events ]
+        #region [ Server Events ]
 
         /// <summary>
         /// Event handler for upload complete event.
         /// </summary>
+        [Bindable(true)]
+        [Category("Server Events")]
+        public event EventHandler<AjaxFileUploadStartEventArgs> UploadStart;
+
+        /// <summary>
+        /// Event handler for upload complete event.
+        /// </summary>
+        [Bindable(true)]
+        [Category("Server Events")]
         public event EventHandler<AjaxFileUploadEventArgs> UploadComplete;
+
+        /// <summary>
+        /// Event handler for of files in queue uploaded event, 
+        /// or when user hits Cancel button to stop uploading.
+        /// </summary>
+        [Bindable(true)]
+        [Category("Server Events")]
+        public event EventHandler<AjaxFileUploadCompleteAllEventArgs> UploadCompleteAll;
+
+
+        #endregion
+
+        #region [ Client Events ]
+
+        /// <summary>
+        /// Gets or sets the client script that executes when a file upload Starts.
+        /// </summary>
+        [DefaultValue("")]
+        [Category("Behavior")]
+        [ExtenderControlEvent]
+        [ClientPropertyName("uploadStart")]
+        public string OnClientUploadStart
+        {
+            get
+            {
+                return (string)(ViewState["OnClientUploadStart"] ?? string.Empty);
+            }
+            set
+            {
+                ViewState["OnClientUploadStart"] = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the client script that executes when a file upload completes.
@@ -612,6 +768,26 @@ namespace AjaxControlToolkit
             set
             {
                 ViewState["OnClientUploadComplete"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the client script that executes when all of files in queue uploaded, 
+        /// or when user hits Cancel button to stop uploading.
+        /// </summary>
+        [DefaultValue("")]
+        [Category("Behavior")]
+        [ExtenderControlEvent]
+        [ClientPropertyName("uploadCompleteAll")]
+        public string OnClientUploadCompleteAll
+        {
+            get
+            {
+                return (string)(ViewState["OnClientUploadCompleteAll"] ?? string.Empty);
+            }
+            set
+            {
+                ViewState["OnClientUploadCompleteAll"] = value;
             }
         }
 

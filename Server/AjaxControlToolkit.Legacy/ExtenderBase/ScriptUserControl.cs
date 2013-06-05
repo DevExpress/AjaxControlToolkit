@@ -397,9 +397,9 @@ namespace AjaxControlToolkit
                 if (_scriptManager == null)
                 {
 #if NET4 || NET45
-                    throw new HttpException(Legacy.Properties.Resources_NET4.E_NoScriptManager);
+                    throw new HttpException(Properties.Resources_NET4.E_NoScriptManager);
 #else
-                    throw new HttpException(Legacy.Properties.Resources.E_NoScriptManager);
+                    throw new HttpException(Properties.Resources.E_NoScriptManager);
 #endif
                 }
             }

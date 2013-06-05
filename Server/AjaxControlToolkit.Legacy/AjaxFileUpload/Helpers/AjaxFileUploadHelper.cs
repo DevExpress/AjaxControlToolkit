@@ -47,11 +47,13 @@ namespace AjaxControlToolkit
             using (var stream = request.GetBufferlessInputStream()) {
 #endif
                 var success = false;
+#if NET45
                 if (storeToAzure)
                     success = AjaxFileUploadAzureHelper.ProcessStream(
                         context, stream, fileId, fileName,
                         chunked, firstChunk, usePoll, azureContainerName);
                 else
+#endif
                     success = ProcessStream(
                         context, stream, fileId, fileName,
                         chunked, firstChunk, usePoll);

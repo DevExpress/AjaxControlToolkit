@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</ProjectGuid>
+    <ProjectGuid>{5DEADE8A-7486-4DB3-A0B2-2ADB31BAEFAF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AjaxControlToolkit</RootNamespace>
@@ -23,6 +23,26 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>../../AjaxKey.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,10 +100,12 @@
     <Compile Include="Accordion\AccordionPaneCollection.cs" />
     <Compile Include="Accordion\AutoSize.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadCompleteAllEventArgs.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadDesigner.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadEventArgs.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadHandler.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadMode.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadStartEventArgs.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadStates.cs" />
     <Compile Include="AjaxFileUpload\FileHeaderInfo.cs" />
     <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper35.cs">
@@ -423,12 +445,14 @@
     <EmbeddedResource Include="Accordion\Accordion.ico" />
     <EmbeddedResource Include="AlwaysVisibleControl\AlwaysVisible.ico" />
     <EmbeddedResource Include="Animation\Animation.ico" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.CompleteAllEventArgs.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.Control.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.css" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.EventArgs.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.Item.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.Processor.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.ProcessorHtml5.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.StartEventArgs.pre.js" />
     <Content Include="AjaxFileUpload\AjaxFileUpload.Utils.pre.js" />
     <Content Include="AreaChart\AreaChart.css" />
     <Content Include="AreaChart\AreaChart.pre.js" />
@@ -796,6 +820,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />

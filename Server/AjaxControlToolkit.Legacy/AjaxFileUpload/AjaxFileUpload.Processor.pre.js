@@ -174,10 +174,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
             self.setThrobber(false);
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                    // set file status as canceled
-                    control.setFileStatus(control._currentFileId, 'cancelled', Sys.Extended.UI.Resources.AjaxFileUpload_Canceled);
-                    control.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_UploadCanceled);
-                    control._currentFileId = null;
+                    control.cancelUpload();
                 } else {
                     // cancelation is error. 
                     self.raiseUploadError(xhr);
