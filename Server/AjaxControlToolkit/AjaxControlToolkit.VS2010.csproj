@@ -421,6 +421,7 @@
     <Compile Include="Slider\SliderDesigner.cs" />
     <Compile Include="Slider\SliderExtender.cs" />
     <Compile Include="Slider\SliderOrientation.cs" />
+    <Compile Include="SlideShow\SlideShowAnimationType.cs" />
     <Compile Include="SlideShow\Slide.cs" />
     <Compile Include="SlideShow\SlideShowDesigner.cs" />
     <Compile Include="SlideShow\SlideShowExtender.cs" />
@@ -476,6 +477,7 @@
     <Content Include="LineChart\LineChart.pre.js" />
     <Content Include="PieChart\PieChart.css" />
     <Content Include="PieChart\PieChart.pre.js" />
+    <Content Include="SlideShow\SlideShow_resource.css" />
     <Content Include="Twitter\Twitter.ico" />
     <Content Include="Twitter\Twitter24.png" />
     <Content Include="Twitter\Twitter32.png" />
