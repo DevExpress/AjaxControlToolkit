@@ -43,17 +43,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccordionTests.cs" />
+    <Compile Include="CompatibilityAssert.cs" />
+    <Compile Include="CompatibilityTestAttribute.cs" />
+    <Compile Include="CompatibilityTestCase.cs" />
+    <Compile Include="CompatibilityTestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Server\AjaxControlToolkit.Legacy\AjaxControlToolkit.VS2012.csproj">
+      <Project>{47ccfe55-0f75-4103-b535-86049ead23b3}</Project>
+      <Name>AjaxControlToolkit.VS2012</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Server\AjaxControlToolkit\AjaxControlToolkit.csproj">
       <Project>{f7685cd0-d9c3-4b2b-9d1d-26ada6f3a4f6}</Project>
       <Name>AjaxControlToolkit</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="LegacyAssemblies\NET45\AjaxControlToolkit.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LegacyAssemblies\NET35\AjaxControlToolkit.dll" />
+    <None Include="LegacyAssemblies\NET40\AjaxControlToolkit.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

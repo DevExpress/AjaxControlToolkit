@@ -132,7 +132,7 @@ namespace AjaxControlToolkit
             {
                 var mode = currentContext.Session.Mode;
                 if (mode != SessionStateMode.InProc) {
-#if NET4 || NET45
+#if NET40 || NET45
                     throw new InvalidOperationException(Resources_NET4.SessionStateOutOfProcessNotSupported);
 #else
                     throw new InvalidOperationException(Resources.SessionStateOutOfProcessNotSupported);
