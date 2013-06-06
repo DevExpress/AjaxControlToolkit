@@ -16,11 +16,11 @@
         public static AjaxControlToolkit.Slide[] GetSlides()
         {
             return new AjaxControlToolkit.Slide[] { 
-            new AjaxControlToolkit.Slide("images/Blue hills.jpg", "Blue Hills", "Go Blue"),
-            new AjaxControlToolkit.Slide("images/Sunset.jpg", "Sunset", "Setting sun"),
-            new AjaxControlToolkit.Slide("images/Winter.jpg", "Winter", "Wintery..."),
-            new AjaxControlToolkit.Slide("images/Water lilies.jpg", "Water lillies", "Lillies in the water"),
-            new AjaxControlToolkit.Slide("images/VerticalPicture.jpg", "Sedona", "Portrait style picture")};
+            new AjaxControlToolkit.Slide("images/Blue hills.jpg", "Blue Hills", "Go Blue", "images/Blue hills.jpg"),
+            new AjaxControlToolkit.Slide("images/Sunset.jpg", "Sunset", "Setting sun", "images/Sunset.jpg"),
+            new AjaxControlToolkit.Slide("images/Winter.jpg", "Winter", "Wintery...", "images/Winter.jpg"),
+            new AjaxControlToolkit.Slide("images/Water lilies.jpg", "Water lillies", "Lillies in the water", "images/Water lilies.jpg"),
+            new AjaxControlToolkit.Slide("images/VerticalPicture.jpg", "Sedona", "Portrait style picture", "images/VerticalPicture.jpg")};
         }
     </script>
 
