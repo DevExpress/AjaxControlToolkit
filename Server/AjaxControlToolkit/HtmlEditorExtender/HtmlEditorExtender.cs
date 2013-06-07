@@ -172,6 +172,7 @@ namespace AjaxControlToolkit
             result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             //}
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
+            result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "<[^>]*expression[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "<[^>]*data\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
