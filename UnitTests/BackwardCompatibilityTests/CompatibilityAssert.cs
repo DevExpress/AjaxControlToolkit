@@ -13,19 +13,23 @@ namespace AjaxControlToolkit.BackwardCompatibilityTests
 
             var memberInNewClass = newClassMembers.FirstOrDefault(m => FindMatch(m, memberInOldClass));
 
+            var controlName = memberInOldClass.Name;
+
             if (memberInOldClass.MemberType == MemberTypes.Constructor ||
                 memberInOldClass.MemberType == MemberTypes.Method)
             {
                 var oldClassCi = (memberInOldClass as MethodBase);
                 var oldParams = oldClassCi.GetParameters();
+                    var prms = string.Join(", ", oldParams.Select(p => p.ParameterType.Name).ToArray());
+                controlName = string.Format("{0}({1})", memberInOldClass.MemberType == MemberTypes.Constructor
+                                  ? targetClassName
+                                  : targetClassName + "." + memberInOldClass.Name, prms);
 
                 if (memberInNewClass == null)
                 {
-                    var prms = string.Join(",", oldParams.Select(p => p.ParameterType.Name).ToArray());
-                    NUnit.Framework.Assert.Fail("{0} {1}({2}) is not found",
+                    NUnit.Framework.Assert.Fail("{0} {1} is not found",
                                                memberInOldClass.MemberType,
-                                               memberInOldClass.MemberType == MemberTypes.Constructor ?
-                                               targetClassName : targetClassName +"."+memberInOldClass.Name, prms);
+                                               controlName);
                 }
             }
             else
@@ -34,17 +38,17 @@ namespace AjaxControlToolkit.BackwardCompatibilityTests
                 NUnit.Framework.Assert.NotNull(memberInNewClass,
                                                "{0} {1} is not found on {2}", 
                                                memberInOldClass.MemberType, 
-                                               memberInOldClass.Name, targetClassName);
+                                               controlName, targetClassName);
             }
 
             // Assert member type is equal
-            NUnit.Framework.Assert.AreEqual(memberInOldClass.MemberType, memberInNewClass.MemberType, 
-                "Member type of {0} on {1} is not match.", memberInOldClass.Name, targetClassName);
+            NUnit.Framework.Assert.AreEqual(memberInOldClass.MemberType, memberInNewClass.MemberType,
+                "Member type of {0} on {1} is not match.", controlName, targetClassName);
 
             // Assert underlying member type is equal
             NUnit.Framework.Assert.AreEqual(CompatibilityTestCase.GetMemberUnderlyingTypeName(memberInOldClass), 
-                CompatibilityTestCase.GetMemberUnderlyingTypeName(memberInNewClass), 
-                "Underlying member type of {0} on {1} is not match.", memberInOldClass.Name, targetClassName);
+                CompatibilityTestCase.GetMemberUnderlyingTypeName(memberInNewClass),
+                "Underlying member type of {0} on {1} is not match.", controlName, targetClassName);
         }
 
         static bool FindMatch(MemberInfo memberInNewClass, MemberInfo memberInOldClass)

@@ -80,8 +80,7 @@ namespace AjaxControlToolkit.BackwardCompatibilityTests
         private static MemberInfo[] GetCommonMembers(this Type type)
         {
             var members = type.GetMembers(Flags);
-            return members.Where(m => m.MemberType != MemberTypes.TypeInfo
-                && !IsGetterSetter(members, m) && !IsEventMethods(members, m))
+            return members.Where(m => !IsGetterSetter(members, m) && !IsEventMethods(members, m))
                 .OrderBy(m=>m.ReflectedType.Name)
                 .ToArray();
         }
@@ -151,21 +150,32 @@ namespace AjaxControlToolkit.BackwardCompatibilityTests
         /// <returns>The underlying type of the member.</returns>
         internal static string GetMemberUnderlyingTypeName(MemberInfo member)
         {
+            Type type = null;
             switch (member.MemberType)
             {
                 case MemberTypes.Field:
-                    return ((FieldInfo)member).FieldType.Name;
+                    type = ((FieldInfo)member).FieldType;
+                    break;
                 case MemberTypes.Property:
-                    return ((PropertyInfo)member).PropertyType.Name;
+                    type = ((PropertyInfo)member).PropertyType;
+                    break;
                 case MemberTypes.Event:
-                    return ((EventInfo)member).EventHandlerType.Name;
+                    type = ((EventInfo)member).EventHandlerType;
+                    break;
                 case MemberTypes.Method:
-                    return ((MethodInfo)member).ReturnType.Name;
+                    type = ((MethodInfo)member).ReturnType;
+                    break;
                 case MemberTypes.Constructor:
                     return "Constructor";
                 default:
                     return "--Unspecified--";
             }
+
+            if (!type.IsGenericType)
+                return type.Name;
+
+            var args = string.Join(", ", type.GenericTypeArguments.Select(t=>t.Name));
+            return string.Format("{0}<{1}>", type.Name.Substring(0, type.Name.Length - 2), args);
         }
         
     }
