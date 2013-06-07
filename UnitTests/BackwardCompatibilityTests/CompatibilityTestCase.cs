@@ -12,13 +12,14 @@ namespace AjaxControlToolkit.BackwardCompatibilityTests
         private static Assembly _oldAssembly;
         private static Assembly _newAssembly;
 
-        private const int NameSpaceLevelIgnorance = 0;
+        private static int _nameSpaceLevelIgnorance = 0;
         private const BindingFlags Flags = BindingFlags.Public
             | BindingFlags.Instance
             | BindingFlags.DeclaredOnly;
 
-        public static void SetAssembly(string oldAssemblyFile, string newAssemblyFile)
+        public static void SetAssembly(string oldAssemblyFile, string newAssemblyFile, int nameSpaceLevelIgnorance = 0)
         {
+            _nameSpaceLevelIgnorance = nameSpaceLevelIgnorance;
             _oldAssembly = Assembly.LoadFile(Path.GetFullPath(oldAssemblyFile));
             _newAssembly = Assembly.LoadFile(Path.GetFullPath(newAssemblyFile));
         }
@@ -47,11 +48,28 @@ namespace AjaxControlToolkit.BackwardCompatibilityTests
                                                             });
 
                     var className = GetActualTypeName(newClass);
+                    var typeName = mi.MemberType == MemberTypes.Constructor
+                                       ? ""
+                                       : GetMemberUnderlyingTypeName(mi) + " ";
+                    var testCaseName = "";
+
                     testCaseData.SetCategory(className);
-                    if(mi.MemberType == MemberTypes.Constructor)
-                        testCaseData.SetName(className + " --> " + mi.Name + " [Constructor]");
+
+                    if (mi.MemberType == MemberTypes.Constructor || mi.MemberType == MemberTypes.Method)
+                    {
+                        var oldClassCi = (mi as MethodBase);
+                        var oldParams = oldClassCi.GetParameters();
+                        var prms = string.Join(",", oldParams.Select(p => p.ParameterType.Name).ToArray());
+                        testCaseName = string.Format("{0}({1})",
+                                                     mi.MemberType == MemberTypes.Constructor
+                                                         ? className
+                                                         : mi.Name, prms);
+                    }
                     else
-                        testCaseData.SetName(className + " --> " + mi.Name + " [" + mi.MemberType + " - " + GetMemberUnderlyingTypeName(mi) + "]");
+                        testCaseName = mi.Name;
+
+                    testCaseData.SetName(className + " --> " + " [" + mi.MemberType + "] --> " + typeName + testCaseName);
+
                     results.Add(testCaseData);
                 }
             }
@@ -112,11 +130,11 @@ namespace AjaxControlToolkit.BackwardCompatibilityTests
             if (type == null || type.Namespace == null)
                 throw new Exception("Member or namespace can't be null.");
 
-            if (NameSpaceLevelIgnorance == 0)
+            if (_nameSpaceLevelIgnorance == 0)
                 return type.FullName;
 
             var nameSpace = type.Namespace;
-            var ignorance = NameSpaceLevelIgnorance;
+            var ignorance = _nameSpaceLevelIgnorance;
 
             //http://stackoverflow.com/a/9908392
             var index = nameSpace
