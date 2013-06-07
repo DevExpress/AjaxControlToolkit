@@ -86,6 +86,7 @@
 
                 if (this._slideShowAnimationType != Sys.Extended.UI.SlideShowAnimationType.SlideRight ||
                     this._slideShowAnimationType != Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
+
                     // create an invisible img element
                     this._currentImageElement = document.createElement('IMG');
                     this._currentImageElement.style.display = 'none';
@@ -367,6 +368,14 @@
                 /// <returns />    
                 if (this._slides[this._currentIndex]) {
                     this._currentImageElement.src = this._slides[this._currentIndex].ImagePath;
+                    if (this._slides[this._currentIndex].Url != null) {
+                        this._currentImageElement.style.cursor = 'pointer';
+                        this._currentImageElement.onclick = function () { window.open(this._slides[this._currentIndex].Url); };
+                    }
+                    else {
+                        this._currentImageElement.style.cursor = 'auto';
+                        this._currentImageElement.onclick = function () { };
+                    }
                 } else {
                     this._currentImageElement.src = '';
                 }
@@ -381,8 +390,7 @@
                 /// Set current image to be the specified Slide.
                 /// </summary>  
                 /// <param name="value" type="Object" mayBeNull="false" />
-                /// <returns />
-
+                /// <returns />                
                 if (value) {
                     if (this.raiseSlideChanging(this._currentValue, value)) {
                         return;
@@ -444,6 +452,16 @@
                 if (this._imageTitleLabel) {
                     this._imageTitleLabel.innerHTML = value.Name ? value.Name : "";
                 }
+
+                if (value.Url != null) {
+                    this._elementImage.style.cursor = 'pointer';
+                    this._elementImage.onclick = function () { window.open(value.Url); }
+                }
+                else {
+                    this._elementImage.style.cursor = 'auto';
+                    this._elementImage.onclick = function () { }
+                }
+
                 this.raiseSlideChanged(value);
                 this.resetButtons();
             },
@@ -903,12 +921,23 @@
                     _divImage.className = 'slideAnimation';
                     _divMask.appendChild(_divImage);
 
+                    // create hyperlink for image
+                    if (this._slides[i].Url != null) {
+                        var _imageLink = document.createElement('A');
+                        _imageLink.href = this._slides[i].Url;
+                        _imageLink.target = '_blank';
+                        _divImage.appendChild(_imageLink);
+                    }
+
                     // create image element
                     var _imageElement = document.createElement('IMG');
                     _imageElement.style.width = this._imageWidth + 'px';
                     _imageElement.style.height = this._imageHeight + 'px';
                     _imageElement.src = this._slides[i].ImagePath;
-                    _divImage.appendChild(_imageElement);
+                    if (this._slides[i].Url != null)
+                        _imageLink.appendChild(_imageElement);
+                    else
+                        _divImage.appendChild(_imageElement);
                     this._images[i] = _divImage;
                 }
             },
@@ -946,12 +975,23 @@
                     _LIImage.className = 'slideAnimation';
                     _ULContainer.appendChild(_LIImage);
 
+                    // create hyperlink for image
+                    if (this._slides[i].Url != null) {
+                        var _imageLink = document.createElement('A');
+                        _imageLink.href = this._slides[i].Url;
+                        _imageLink.target = '_blank';
+                        _LIImage.appendChild(_imageLink);
+                    }
+
                     // create image element
                     var _imageElement = document.createElement('IMG');
                     _imageElement.style.width = this._imageWidth + 'px';
                     _imageElement.style.height = this._imageHeight + 'px';
                     _imageElement.src = this._slides[i].ImagePath;
-                    _LIImage.appendChild(_imageElement);
+                    if (this._slides[i].Url != null)
+                        _imageLink.appendChild(_imageElement);
+                    else
+                        _LIImage.appendChild(_imageElement);
                     this._images[i] = _LIImage;
                 }
             },
@@ -997,7 +1037,7 @@
                     if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight) {
                         this._nextImage = this._images[this._currentIndex];
                         this._elementImage.alt = this._nextImage.Name;
-                        
+
                         this._nextImage.className = '';
                         this._nextImage.style.left = '-' + (this._imageWidth + 5) + 'px';
 
