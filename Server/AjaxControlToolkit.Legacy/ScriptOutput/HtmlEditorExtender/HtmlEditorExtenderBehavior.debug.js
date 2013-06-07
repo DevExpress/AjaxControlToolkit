@@ -571,7 +571,8 @@
                     },
                     cssClasses: ['ajax__html_editor_extender_texteditor']
                 }, this._container);
-
+                                
+                this._textbox._element.value = this._textbox._element.value.replace('&#x26;amp&#x3B;', '&#x26;');                
                 this._editableDiv.innerHTML = this._textbox._element.value;
                 this._oldContents = this._editableDiv.innerHTML;
                 $common.setVisible(this._textbox._element, false);
@@ -709,9 +710,9 @@
                         if (tag.toLowerCase().substring(0, 2) != '<a') {
                             sQA = /\=\'([^\'])*\'/g; //single quoted attributes
                             nQA = /\=([^\"][^\s\/\>]*)/g; //non double quoted attributes
-                            return tag.replace(sQA, '="$1"').replace(nQA, '="$1"');
+                            return tag.replace(sQA, '="$1"').replace(nQA, '=$1');
                         }
-                        else {                            
+                        else {
                             return tag;
                         }
                     });

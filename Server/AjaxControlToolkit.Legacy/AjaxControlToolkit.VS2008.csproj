@@ -414,6 +414,7 @@
     <Compile Include="Slider\SliderExtender.cs" />
     <Compile Include="Slider\SliderOrientation.cs" />
     <Compile Include="SlideShow\Slide.cs" />
+    <Compile Include="SlideShow\SlideShowAnimationType.cs" />
     <Compile Include="SlideShow\SlideShowDesigner.cs" />
     <Compile Include="SlideShow\SlideShowExtender.cs" />
     <Compile Include="Tabs\OnDemandMode.cs" />
@@ -692,6 +693,7 @@
     <Content Include="Slider\Slider_resource.css" />
     <EmbeddedResource Include="Slider\Slider.ico" />
     <EmbeddedResource Include="SlideShow\SlideShow.ico" />
+    <Content Include="SlideShow\SlideShow_resource.css" />
     <Content Include="Tabs\Tabs_resource.css" />
     <Content Include="Twitter\Twitter.ico" />
     <Content Include="Twitter\Twitter24.png" />
