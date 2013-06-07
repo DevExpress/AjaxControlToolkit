@@ -74,8 +74,8 @@
             <br />
             <br />
             SlideShow also has capability to animate images. It supports animations of type - FadeInFadeOut, ScaleX, ScaleY, 
-            ZoomInOut, Rotate, SlideLeft and SlideDown. For animations of type SlideLeft and SlideDown you need to set properties 
-            ImageHeight and ImageWidth to get proper animation.
+            ZoomInOut, Rotate, SlideLeft and SlideDown. When using SlideLeft and SlideDown animations, we recommend that you set 
+            the ImageHeight and ImageWidth properties.
             <br />
         </p>
     </asp:Panel>
