@@ -752,8 +752,8 @@
                     this._timer.set_enabled(false);
                     this.resetSlideShowButtonState();
                     if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
-                        this._bNext.disabled = false;
-                        this._bPrevious.disabled = false;
+                        if (this._bNext) this._bNext.disabled = false;
+                        if (this._bPrevious) this._bPrevious.disabled = false;
                     }
                 } else {
                     // play the side show
@@ -765,8 +765,8 @@
                         this._timer.add_tick(this._tickHandler);
                     }
                     if (this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
-                        this._bNext.disabled = true;
-                        this._bPrevious.disabled = true;
+                        if (this._bNext) this._bNext.disabled = true;
+                        if (this._bPrevious) this._bPrevious.disabled = true;
                     }
                     this.resetSlideShowButtonState();
                     this._timer.set_enabled(true);
