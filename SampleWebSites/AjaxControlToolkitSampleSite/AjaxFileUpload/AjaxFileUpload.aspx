@@ -302,6 +302,11 @@
             <li><strong>UploadedComplete</strong> - Raised on the server when a file is uploaded
                 successfully. In this event an instance of AjaxFileUploadEventArgs is passed in the 
                 argument that contains file name, size and content type.</li>
+            <li><strong>UploadedCompleteAll</strong> - Raised on the server when all files are uploaded.
+            </li>
+            <li><strong>UploadedStart</strong> - Raised on the server before any files are uploaded.
+            </li>
+
         </ul>
         <br />
         <b>Properties</b>
@@ -326,6 +331,13 @@
                 the client-side after a file is uploaded successfully.</li>
             <li><strong>OnClientUploadError</strong> - The name of a JavaScript function executed on the 
                 client-side if the file upload failed.</li>
+
+            <li><strong>OnClientUploadCompleteAll</strong> - The name of a JavaScript function executed on the 
+                client-side after all files are uploaded.</li>
+            <li><strong>OnClientUploadStart</strong> - The name of a JavaScript function executed on the 
+                client-side before any files are uploaded.</li>
+
+
         </ul>
         <br />
         <b>Methods</b>

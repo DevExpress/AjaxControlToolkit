@@ -65,7 +65,7 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            SlideShow is an extender that targets image controls. You can provide it with buttons to hit previous,
+            SlideShow is an extender that targets image controls. You can provide it with buttons for previous,
             next and  play. You can configure the slideshow to play automatically on render, allow it loop through the
             images in a round robin fashion and also set the interval for slide transitions. You can use a page method to
             supply images to the slide show or use a webservice. In the sample above we have provided you with a slideshow that
@@ -73,9 +73,9 @@
             versa if you hit previous on the first picture. The slideshow transitions pictures after 3 seconds.
             <br />
             <br />
-            SlideShow also has capability to animate images. It supports animations of type - FadeInFadeOut, ScaleX, ScaleY, 
-            ZoomInOut, Rotate, SlideLeft and SlideDown. When using SlideLeft and SlideDown animations, we recommend that you set 
-            the ImageHeight and ImageWidth properties.
+            SlideShow also supports animations. It supports animations of type - FadeInFadeOut, ScaleX, ScaleY, 
+            ZoomInOut, Rotate, SlideLeft and SlideDown. <b>When using SlideLeft and SlideDown animations, you must set 
+            set both the Height and Width properties of the Image control being extended by the SlideShow extender.</b>
             <br />
         </p>
     </asp:Panel>
@@ -136,7 +136,10 @@
             <li><strong>ImageDescriptionLabelID</strong> - ID of Label describing current picture.</li>
             <li><strong>Loop</strong> - Setting this to true will allow you to view images in a round-robin fashion.</li>
             <li><strong>AutoPlay</strong> - Setting this to true will play the slideshow automatically on render.</li>
-            <li><strong>AnimationType</strong> - Type of animation that will be happen during change of slides/images.</li>            
+            <li><strong>SlideShowAnimationType</strong> - Type of animation used during change from one slide to another.
+                If you set SlideShowAnimationType to either SlideDown or SlideRight then you must set both the Height and
+                Width properties on the Image control being extended by the SlideShow extender.
+            </li>            
         </ul>
     </asp:Panel>
     <ajaxToolkit:CollapsiblePanelExtender runat="Server"  ID="cpeDescription" 
