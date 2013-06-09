@@ -34,8 +34,8 @@
             <asp:Label runat="Server" ID="imageTitle" CssClass="slideTitle"/><br />
             <asp:Image ID="Image1" runat="server" 
                 Height="300"
-                Style="border: 1px solid black;width:auto" 
-                ImageUrl="~/SlideShow/images/Blue hills.jpg"
+                Width="400"
+                Style="border: 1px solid black;"                 
                 AlternateText="Blue Hills image" />
             <asp:Label runat="server" ID="imageDescription" CssClass="slideDescription"></asp:Label><br /><br />
             <asp:Button runat="Server" ID="prevButton" Text="Prev" Font-Size="Larger" />
@@ -136,11 +136,7 @@
             <li><strong>ImageDescriptionLabelID</strong> - ID of Label describing current picture.</li>
             <li><strong>Loop</strong> - Setting this to true will allow you to view images in a round-robin fashion.</li>
             <li><strong>AutoPlay</strong> - Setting this to true will play the slideshow automatically on render.</li>
-            <li><strong>AnimationType</strong> - Type of animation that will be happen during change of slides/images.</li>
-            <li><strong>ImageWidth</strong> - To set all images of same width to run animations - SlideLeft and SlideDown 
-            smoothly</li>
-            <li><strong>ImageHeight</strong> - To set all images of same height to run animations - SlideLeft and SlideDown 
-            smoothly</li>
+            <li><strong>AnimationType</strong> - Type of animation that will be happen during change of slides/images.</li>            
         </ul>
     </asp:Panel>
     <ajaxToolkit:CollapsiblePanelExtender runat="Server"  ID="cpeDescription" 
