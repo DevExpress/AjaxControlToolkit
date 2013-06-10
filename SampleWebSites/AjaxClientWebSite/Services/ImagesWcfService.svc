@@ -1,3 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="ImagesWcfService" CodeBehind="~/App_Code/ImagesWcfService.cs" %>
-
-
