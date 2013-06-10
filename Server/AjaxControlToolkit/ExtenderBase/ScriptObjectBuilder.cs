@@ -328,7 +328,7 @@ namespace AjaxControlToolkit
                     ScriptManager scriptManager = ScriptManager.GetCurrent(control.Page);
                     if (null == scriptManager)
                     {
-#if NET4 || NET45
+#if NET40 || NET45
                         throw new InvalidOperationException(Properties.Resources_NET4.E_NoScriptManager);
 #else
                         throw new InvalidOperationException(Properties.Resources.E_NoScriptManager);

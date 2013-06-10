@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlwaysVisible_ElementRequired" xml:space="preserve">
+    <value>Sys.Extended.UI.AlwaysVisibleControlBehavior moet een element hebben</value>
+  </data>
+  <data name="Animation_CannotNestSequence" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.SequenceAnimation kan niet genest worden binnen  Sys.Extended.UI.Animation.ParallelAnimation</value>
+  </data>
+  <data name="Animation_ChildrenNotAllowed" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation kan geen deelanimaties toevoegen aantype "{0}" omdat deze niet afgeleid is van Sys.Extended.UI.Animation.ParentAnimation</value>
+  </data>
+  <data name="Animation_InvalidBaseType" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.registerAnimation kan alleen types registreren die afgeleid zijn van Sys.Extended.UI.Animation.Animation</value>
+  </data>
+  <data name="Animation_InvalidColor" xml:space="preserve">
+    <value>Color moet een hexadecimale notatie van 7 tekens zijn (bijv. #246ACF), niet "{0}"</value>
+  </data>
+  <data name="Animation_MissingAnimationName" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation vereist een object met een AnimationName-eigenschap</value>
+  </data>
+  <data name="Animation_NoDynamicPropertyFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation vond geen eigenschap corresponderend met "{0}" of "{1}"</value>
+  </data>
+  <data name="Animation_NoPropertyFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation vond geen eigenschap corresponderend met "{0}"</value>
+  </data>
+  <data name="Animation_TargetNotFound" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.Animation.set_animationTarget vereist dat de ID van een Sys.UI.DomElement of Sys.UI.Control.  Er kon geen element of control gevonden worden corresponderend met "{0}"</value>
+  </data>
+  <data name="Animation_UknownAnimationName" xml:space="preserve">
+    <value>Sys.Extended.UI.Animation.createAnimation kon geen Animation vinden corresponderend met de naam "{0}"</value>
+  </data>
+  <data name="Calendar_Today" xml:space="preserve">
+    <value>Vandaag: {0}</value>
+  </data>
+  <data name="CascadingDropDown_MethodError" xml:space="preserve">
+    <value>[Methodefout {0}]</value>
+  </data>
+  <data name="CascadingDropDown_MethodTimeout" xml:space="preserve">
+    <value>[Methodetimeout]</value>
+  </data>
+  <data name="CascadingDropDown_NoParentElement" xml:space="preserve">
+    <value>Kon geen bovenliggend element "{0}" vinden</value>
+  </data>
+  <data name="CollapsiblePanel_NoControlID" xml:space="preserve">
+    <value>Kon element "{0}"niet vinden</value>
+  </data>
+  <data name="Common_DateTime_InvalidFormat" xml:space="preserve">
+    <value>Ongeldige notatie</value>
+  </data>
+  <data name="Common_DateTime_InvalidTimeSpan" xml:space="preserve">
+    <value>De eenheid "{0}"' is niet geldig voor parseBorderWidth</value>
+  </data>
+  <data name="Common_InvalidPaddingUnit" xml:space="preserve">
+    <value>De eenheid "{0}" is niet geldig voor parsePadding</value>
+  </data>
+  <data name="Common_UnitHasNoDigits" xml:space="preserve">
+    <value>Geen cijfers</value>
+  </data>
+  <data name="DynamicPopulate_WebServiceError" xml:space="preserve">
+    <value>Web Service-aanroep mislukt: {0}</value>
+  </data>
+  <data name="DynamicPopulate_WebServiceTimeout" xml:space="preserve">
+    <value>Web Service heeft niet tijdig gereageerd</value>
+  </data>
+  <data name="ExtenderBase_CannotSetClientStateField" xml:space="preserve">
+    <value>clientStateField kan alleen vóór initialisatie worden ingesteld</value>
+  </data>
+  <data name="ExtenderBase_ControlNotRegisteredForCallbacks" xml:space="preserve">
+    <value>Deze control is niet geregistreerd voor callbacks</value>
+  </data>
+  <data name="ExtenderBase_InvalidClientStateType" xml:space="preserve">
+    <value>saveClientState moet een waarde van het type string retourneren</value>
+  </data>
+  <data name="ExtenderBase_PageNotRegisteredForCallbacks" xml:space="preserve">
+    <value>Deze pagina is niet geregistreerd voor callbacks</value>
+  </data>
+  <data name="ListSearch_DefaultPrompt" xml:space="preserve">
+    <value>Typ om te zoeken</value>
+  </data>
+  <data name="PasswordStrength_DefaultStrengthDescriptions" xml:space="preserve">
+    <value>Geen enkel;Zeer zwak;Zwak;Matig;Bijna in orde;Net voldoende;Gemiddeld;Goed;Sterk;Uitstekend;Onbreekbaar!</value>
+  </data>
+  <data name="PasswordStrength_GetHelpRequirements" xml:space="preserve">
+    <value>Hulp voor wachtwoord-vereisten</value>
+  </data>
+  <data name="PasswordStrength_InvalidStrengthDescriptions" xml:space="preserve">
+    <value>Ongeldig aantal tekststerkte-beschrijvingen opgegeven</value>
+  </data>
+  <data name="PasswordStrength_InvalidStrengthDescriptionStyles" xml:space="preserve">
+    <value>Text Strength beschrijvingsstijl-klassen moeten met het aantal tekstbeschrijvingen overeenkomen.</value>
+  </data>
+  <data name="PasswordStrength_InvalidWeightingRatios" xml:space="preserve">
+    <value>Strength Weighting ratio's moeten 4 elementen hebben</value>
+  </data>
+  <data name="PasswordStrength_RemainingCharacters" xml:space="preserve">
+    <value>nog {0} tekens</value>
+  </data>
+  <data name="PasswordStrength_RemainingMixedCase" xml:space="preserve">
+    <value>Hoofd- en kleine letters</value>
+  </data>
+  <data name="PasswordStrength_RemainingNumbers" xml:space="preserve">
+    <value>nog {0} cijfers</value>
+  </data>
+  <data name="PasswordStrength_RemainingSymbols" xml:space="preserve">
+    <value>nog {0} symbooltekens</value>
+  </data>
+  <data name="PasswordStrength_Satisfied" xml:space="preserve">
+    <value>Niets meer benodigd</value>
+  </data>
+  <data name="PasswordStrength_StrengthPrompt" xml:space="preserve">
+    <value>Sterkte:</value>
+  </data>
+  <data name="PopupControl_NoDefaultProperty" xml:space="preserve">
+    <value>Geen standaard-eigenschap ondersteund voor control "{0}" van type "{1}"</value>
+  </data>
+  <data name="PopupExtender_NoParentElement" xml:space="preserve">
+    <value>Kon geen bovenliggend element "{0}" vinden</value>
+  </data>
+  <data name="Rating_CallbackError" xml:space="preserve">
+    <value>Een niet-afgehandelde uitzondering is opgetreden:\r\n{0}</value>
+  </data>
+  <data name="ReorderList_DropWatcherBehavior_CallbackError" xml:space="preserve">
+    <value>Herschikken mislukt; zie details hieronder.\r\n\r\n{0}</value>
+  </data>
+  <data name="ReorderList_DropWatcherBehavior_NoChild" xml:space="preserve">
+    <value>Kon geen onderliggend element van lijst met id "{0}" vinden</value>
+  </data>
+  <data name="ResizableControlBehavior_CannotChangeProperty" xml:space="preserve">
+    <value>Veranderingen voor {0} niet ondersteund</value>
+  </data>
+  <data name="ResizableControlBehavior_InvalidHandler" xml:space="preserve">
+    <value>{0} handler is geen functie, functienaam of functietekst</value>
+  </data>
+  <data name="Shared_BrowserSecurityPreventsPaste" xml:space="preserve">
+    <value>De beveiligingsinstellingen van uw browser staan het automatisch uitvoeren van de plak-bewerking niet toe. Gebruik in plaats hiervan de toetsencombinatie Ctrl+V.</value>
+  </data>
+  <data name="Slider_NoSizeProvided" xml:space="preserve">
+    <value>Stel geldige waarden in voor de height en width-CSS-attributen van de sliders CSS-klassen</value>
+  </data>
+  <data name="Tabs_ActiveTabArgumentOutOfRange" xml:space="preserve">
+    <value>Het opgegeven argument maakt geen deel uit van de tabverzameling</value>
+  </data>
+  <data name="Tabs_OwnerExpected" xml:space="preserve">
+    <value>owner moet ingesteld worden vóór initialisatie</value>
+  </data>
+  <data name="Tabs_PropertySetAfterInitialization" xml:space="preserve">
+    <value>{0} kan na initialisatie niet meer worden gewijzigd</value>
+  </data>
+  <data name="Tabs_PropertySetBeforeInitialization" xml:space="preserve">
+    <value>{0} kan vóór initialisatie niet worden gewijzigd</value>
+  </data>
+  <data name="ValidatorCallout_DefaultErrorMessage" xml:space="preserve">
+    <value>Deze control is niet geldig</value>
+  </data>
+</root>

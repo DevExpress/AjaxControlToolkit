@@ -1,0 +1,77 @@
+/* default layout */
+.ajax__tab_default .ajax__tab_header {white-space:normal !important}
+.ajax__tab_default .ajax__tab_outer {display:-moz-inline-box;display:inline-block}
+.ajax__tab_default .ajax__tab_inner {display:-moz-inline-box;display:inline-block}
+.ajax__tab_default .ajax__tab_tab {overflow:hidden;text-align:center;display:-moz-inline-box;display:inline-block}
+
+.ajax__tab_xp .ajax__tab_disabled { cursor: default; color: #A0A0A0; }
+
+
+/* xp theme */
+.ajax__tab_xp .ajax__tab_header {font-family:verdana,tahoma,helvetica;font-size:11px;background:url("tab-line.gif") repeat-x bottom;}
+.ajax__tab_xp .ajax__tab_header .ajax__tab_outer {padding-right:4px;background:url("tab-right.gif") no-repeat bottom;height:21px;}
+.ajax__tab_xp .ajax__tab_header .ajax__tab_inner {padding-left:3px;background:url("tab-left.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header .ajax__tab_tab {height:13px;padding:4px;margin:0px;background:url("tab.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_header .ajax__tab_hover .ajax__tab_outer {cursor:pointer;background:url("tab-hover-right.gif") no-repeat right;}
+.ajax__tab_xp .ajax__tab_header .ajax__tab_hover .ajax__tab_inner {cursor:pointer;background:url("tab-hover-left.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header .ajax__tab_hover .ajax__tab_tab {cursor:pointer;background:url("tab-hover.gif") repeat-x;}
+/*.ajax__tab_xp .ajax__tab_header .ajax__tab_active { margin-top: 1px; }*/
+.ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_outer {background:url("tab-active-right.gif") no-repeat right;}
+.ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_inner {background:url("tab-active-left.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_tab {background:url("tab-active.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_body {font-family:verdana,tahoma,helvetica;font-size:10pt;border:1px solid #999999;border-top:0;padding:8px;background-color:#ffffff;}
+
+/* xp theme vertical left */
+.ajax__tab_xp .ajax__tab_header_verticalleft {font-family:verdana,tahoma,helvetica;font-size:11px;background:url("tab-line.gif") repeat-y right;}
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_outer {padding-right:4px;background:url("tab-right-verticalleft.gif") no-repeat right;height:21px;}
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_inner {padding-left:3px;background:url("tab-left-verticalleft.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_tab {height:13px;padding:4px;margin:0px;background:url("tab-verticalleft.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_outer {cursor:pointer;background:url("tab-hover-right-verticalleft.gif") no-repeat right;}
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_inner {cursor:pointer;background:url("tab-hover-left-verticalleft.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_tab {cursor:pointer;background:url("tab-hover-verticalleft.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active { margin-top: 1px; }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_outer {background:url("tab-active-right-verticalleft.gif") no-repeat right;}
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_inner {background:url("tab-active-left-verticalleft.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_tab {background:url("tab-active-verticalleft.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_body_verticalleft {font-family:verdana,tahoma,helvetica;font-size:10pt;border:1px solid #999999;border-left:0;padding:8px;background-color:#ffffff;}
+
+/* xp theme vertical right */
+.ajax__tab_xp .ajax__tab_header_verticalright {font-family:verdana,tahoma,helvetica;font-size:11px;background:url("tab-line.gif") repeat-y left;}
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_outer {padding-right:4px;background:url("tab-right-verticalright.gif") no-repeat right;height:21px;}
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_inner {padding-left:3px;background:url("tab-left-verticalright.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_tab {height:13px;padding:4px;margin:0px;background:url("tab-verticalright.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_outer {cursor:pointer;background:url("tab-hover-right-verticalright.gif") no-repeat right;}
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_inner {cursor:pointer;background:url("tab-hover-left-verticalright.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_tab {cursor:pointer;background:url("tab-hover-verticalright.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active { margin-top: 1px; }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_outer {background:url("tab-active-right-verticalright.gif") no-repeat right;}
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_inner {background:url("tab-active-left-verticalright.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_tab {background:url("tab-active-verticalright.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_body_verticalright {font-family:verdana,tahoma,helvetica;font-size:10pt;border:1px solid #999999;border-right:0;padding:8px;background-color:#ffffff;}
+
+/* header on bottom */
+.ajax__tab_xp .ajax__tab_header_bottom {font-family:verdana,tahoma,helvetica;font-size:11px;background:url("tab-line.gif") repeat-x top;}
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_outer {padding-right:4px;background:url("tab-bottom-right.gif") no-repeat right;height:21px;}
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_inner {padding-left:3px;background:url("tab-bottom-left.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_tab {height:17px;padding:0px 4px 4px 4px;margin:0px;background:url("tab-bottom.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_outer {cursor:pointer;background:url("tab-bottom-hover-right.gif") no-repeat right;}
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_inner {cursor:pointer;background:url("tab-bottom-hover-left.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_tab {cursor:pointer;background:url("tab-bottom-hover.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_outer {background:url("tab-bottom-active-right.gif") no-repeat right;}
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_inner {background:url("tab-bottom-active-left.gif") no-repeat;}
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_tab {background:url("tab-bottom-active.gif") repeat-x;}
+.ajax__tab_xp .ajax__tab_body_bottom {font-family:verdana,tahoma,helvetica;font-size:10pt;border:1px solid #999999;border-bottom:0;padding:8px;background-color:#ffffff;}
+
+/* scrolling */
+.ajax__scroll_horiz {overflow-x:scroll;}
+.ajax__scroll_vert {overflow-y:scroll;}
+.ajax__scroll_both {overflow:scroll}
+.ajax__scroll_auto {overflow:auto}
+.ajax__scroll_none {overflow:hidden}
+
+/* plain theme */
+.ajax__tab_plain .ajax__tab_outer {text-align: center; vertical-align: middle; border:2px solid #999999;}
+.ajax__tab_plain .ajax__tab_inner {text-align: center; vertical-align: middle; }
+.ajax__tab_plain .ajax__tab_body {text-align: center; vertical-align: middle;}
+.ajax__tab_plain .ajax__tab_header {text-align: center; vertical-align: middle;}
+.ajax__tab_plain .ajax__tab_active .ajax__tab_outer {background:#FFFFE1;}

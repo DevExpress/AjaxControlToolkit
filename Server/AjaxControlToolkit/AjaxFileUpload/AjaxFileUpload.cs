@@ -218,7 +218,7 @@ namespace AjaxControlToolkit
         [ClientPropertyName("storeToAzure")]
         public bool StoreToAzure
         {
-#if NET45 || NET4
+#if NET45 || NET40
             get; set;
 #else
             get { return false; }
@@ -388,7 +388,7 @@ namespace AjaxControlToolkit
         {
             AjaxFileUploadEventArgs args;
 
-#if NET45 || NET4
+#if NET45 || NET40
             if (StoreToAzure)
             {
                 var blobInfo = AjaxFileUploadAzureHelper.GetFileInfo(Context, fileId);
@@ -409,7 +409,7 @@ namespace AjaxControlToolkit
                     fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int) fileInfo.Length,
                     fileInfo.Extension);
 
-#if NET45 || NET4
+#if NET45 || NET40
             }
 #endif
             if (UploadComplete != null)
@@ -452,7 +452,7 @@ namespace AjaxControlToolkit
         public void SaveAs(string fileName, bool deleteAzureBlob)
         {
 
-#if NET45 || NET4
+#if NET45 || NET40
             if (StoreToAzure)
             {
                 using (var stream = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
@@ -474,7 +474,7 @@ namespace AjaxControlToolkit
 
                 // Delete temporary data
                 Directory.Delete(dir);
-#if NET45 || NET4
+#if NET45 || NET40
             }
 #endif
         }
@@ -814,7 +814,7 @@ namespace AjaxControlToolkit
         {
             get
             {
-#if NET45 || NET4
+#if NET45 || NET40
                 return true;
 #else
                 return false;

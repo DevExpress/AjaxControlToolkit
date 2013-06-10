@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+/*Round Rectangle Popup Sprite*/
+.roundRectangle{float:left; }
+#type2 {background-color:#CDDFCA;}
+#type2 .corner {background-image:url(<%=WebResource("BalloonPopup.corners-type2.gif")%>);}
+.roundedBox {position:relative; padding:17px; margin:0px 0;}
+    .corner {position:absolute; width:17px; height:17px;}
+        .topLeft {top:0; left:0; background-position:-1px -1px;}
+        .topRight {top:0; right:0; background-position:-19px -1px;}
+        .bottomLeft {bottom:0; left:0; background-position:-1px -19px;}
+        .bottomRight {bottom:0; right:0; background-position:-19px -19px;}		
+.up-left-arrow{ float:right; margin-top:-1px; background-image:url(<%=WebResource("BalloonPopup.act_up_left.png")%>); position:relative; top:0; left:10; width:50px; height:30px;}
+.up-right-arrow{ float:left; margin-top:-1px;background-image:url(<%=WebResource("BalloonPopup.act_up_right.png")%>); position:relative; top:0; left:10; width:50px; height:30px;}
+.down-left-arrow{ float:right; margin-top:-1px; background-image:url(<%=WebResource("BalloonPopup.act_down_left.png")%>); position:relative; top:0; left:10; width:50px; height:30px;}
+.down-right-arrow{ float:left; margin-top:-1px;background-image:url(<%=WebResource("BalloonPopup.act_down_right.png")%>); position:relative; top:0; left:10; width:50px; height:30px;}
+		
+.clear{clear:both ;}

@@ -1,0 +1,9 @@
+table {border: #000000 1px dashed;}
+td    {border: #000000 1px dashed;}
+div   {border: #0000FF 1px dashed; padding: 0px; margin:0px;}
+form  {border: #FF0000 1px dashed;}
+.spell_highlighted
+{
+	background-color: blue;
+	color: yellow;
+}

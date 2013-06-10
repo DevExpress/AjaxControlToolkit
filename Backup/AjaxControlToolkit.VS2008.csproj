@@ -1,0 +1,885 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{66C2EB32-CE54-4374-B73F-2A97EF13DD89}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AjaxControlToolkit</RootNamespace>
+    <AssemblyName>AjaxControlToolkit</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../../AjaxKey.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions.Design">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accordion\Accordion.cs" />
+    <Compile Include="Accordion\AccordionCommandEventArgs.cs" />
+    <Compile Include="Accordion\AccordionContentPanel.cs" />
+    <Compile Include="Accordion\AccordionDesigner.cs" />
+    <Compile Include="Accordion\AccordionExtender.cs" />
+    <Compile Include="Accordion\AccordionExtenderDesigner.cs" />
+    <Compile Include="Accordion\AccordionItemEvent.cs" />
+    <Compile Include="Accordion\AccordionItemType.cs" />
+    <Compile Include="Accordion\AccordionPane.cs" />
+    <Compile Include="Accordion\AccordionPaneCollection.cs" />
+    <Compile Include="Accordion\AutoSize.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadDesigner.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadEventArgs.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadHandler.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadMode.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadStates.cs" />
+    <Compile Include="AjaxFileUpload\FileHeaderInfo.cs" />
+    <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper35.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlDesigner.cs" />
+    <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlExtender.cs" />
+    <Compile Include="AlwaysVisibleControl\HorizontalSide.cs" />
+    <Compile Include="AlwaysVisibleControl\VerticalSide.cs" />
+    <Compile Include="Animation\Animation.cs" />
+    <Compile Include="Animation\AnimationExtender.cs" />
+    <Compile Include="Animation\AnimationExtenderDesigner.cs" />
+    <Compile Include="Animation\AnimationJavaScriptConverter.cs" />
+    <Compile Include="Animation\AnimationScripts.cs" />
+    <Compile Include="AreaChart\AreaChart.cs" />
+    <Compile Include="AreaChart\AreaChartDesigner.cs" />
+    <Compile Include="AreaChart\AreaChartSeries.cs" />
+    <Compile Include="AreaChart\AreaChartSeriesCollection.cs" />
+    <Compile Include="AreaChart\AreaChartSeriesCollectionEditor.cs" />
+    <Compile Include="AreaChart\AreaChartType.cs" />
+    <Compile Include="AsyncFileUpload\AsyncFileUpload.cs" />
+    <Compile Include="AsyncFileUpload\AsyncFileUploadDesigner.cs" />
+    <Compile Include="AsyncFileUpload\FileUploadEventArgs.cs" />
+    <Compile Include="AsyncFileUpload\PersistedStoreManager.cs" />
+    <Compile Include="AutoComplete\AutoCompleteDesigner.cs" />
+    <Compile Include="AutoComplete\AutoCompleteExtender.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupDesigner.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupExtender.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupPosition.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupSize.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupStyle.cs" />
+    <Compile Include="BarChart\BarChart.cs" />
+    <Compile Include="BarChart\BarChartDesigner.cs" />
+    <Compile Include="BarChart\BarChartSeries.cs" />
+    <Compile Include="BarChart\BarChartSeriesCollection.cs" />
+    <Compile Include="BarChart\BarChartSeriesCollectionEditor.cs" />
+    <Compile Include="BarChart\ChartType.cs" />
+    <Compile Include="BubbleChart\BubbleChart.cs" />
+    <Compile Include="BubbleChart\BubbleChartDesigner.cs" />
+    <Compile Include="BubbleChart\BubbleChartValue.cs" />
+    <Compile Include="BubbleChart\BubbleChartValueCollection.cs" />
+    <Compile Include="BubbleChart\BubbleChartValueCollectionEditor.cs" />
+    <Compile Include="Calendar\CalendarDefaultView.cs" />
+    <Compile Include="Calendar\CalendarDesigner.cs" />
+    <Compile Include="Calendar\CalendarExtender.cs" />
+    <Compile Include="Calendar\CalendarPosition.cs" />
+    <Compile Include="CascadingDropDown\CascadingDropDownDesigner.cs" />
+    <Compile Include="CascadingDropDown\CascadingDropDownExtender.cs" />
+    <Compile Include="CascadingDropDown\CascadingDropDownNameValue.cs" />
+    <Compile Include="CollapsiblePanel\CollapsiblePanelDesigner.cs" />
+    <Compile Include="CollapsiblePanel\CollapsiblePanelExpandDirection.cs" />
+    <Compile Include="CollapsiblePanel\CollapsiblePanelExtender.cs" />
+    <Compile Include="ColorPicker\ColorPickerDesigner.cs" />
+    <Compile Include="ColorPicker\ColorPickerExtender.cs" />
+    <Compile Include="ComboBox\ComboBox.cs" />
+    <Compile Include="ComboBox\ComboBoxAutoCompleteMode.cs" />
+    <Compile Include="ComboBox\ComboBoxButton.cs" />
+    <Compile Include="ComboBox\ComboBoxDesigner.cs" />
+    <Compile Include="ComboBox\ComboBoxDesignerActionList.cs" />
+    <Compile Include="ComboBox\ComboBoxInputMode.cs" />
+    <Compile Include="ComboBox\ComboBoxItemInsertEventArgs.cs" />
+    <Compile Include="ComboBox\ComboBoxItemInsertLocation.cs" />
+    <Compile Include="ComboBox\ComboBoxRenderMode.cs" />
+    <Compile Include="Common\BoxSide.cs" />
+    <Compile Include="Common\CommonToolkitScripts.cs" />
+    <Compile Include="Common\DataConverter.cs" />
+    <Compile Include="Common\DateTimeScripts.cs" />
+    <Compile Include="Common\ThreadingScripts.cs" />
+    <Compile Include="Common\Utility.cs" />
+    <Compile Include="Compat\DragDrop\DragDropScripts.cs" />
+    <Compile Include="Compat\Timer\TimerScript.cs" />
+    <Compile Include="ConfirmButton\confirmButtonDesigner.cs" />
+    <Compile Include="ConfirmButton\confirmButtonExtender.cs" />
+    <Compile Include="DragPanel\DragPanelDesigner.cs" />
+    <Compile Include="DragPanel\DragPanelExtender.cs" />
+    <Compile Include="DropDown\DropDownDesigner.cs" />
+    <Compile Include="DropDown\DropDownExtender.cs" />
+    <Compile Include="DropShadow\DropShadowDesigner.cs" />
+    <Compile Include="DropShadow\DropShadowExtender.cs" />
+    <Compile Include="DynamicPopulate\DynamicPopulateDesigner.cs" />
+    <Compile Include="DynamicPopulate\DynamicPopulateExtender.cs" />
+    <Compile Include="ExtenderBase\AnimationExtenderControlBase.cs" />
+    <Compile Include="ExtenderBase\ClientCssResourceAttribute.cs" />
+    <Compile Include="ExtenderBase\ClientPropertyNameAttribute.cs" />
+    <Compile Include="ExtenderBase\ClientScriptResourceAttribute.cs" />
+    <Compile Include="ExtenderBase\ComponentReferenceAttribute.cs" />
+    <Compile Include="ExtenderBase\Constants.cs" />
+    <Compile Include="ExtenderBase\Design\ExtendedTypeDescriptionProvider.cs" />
+    <Compile Include="ExtenderBase\Design\ExtenderBaseDesignerHelpers.cs" />
+    <Compile Include="ExtenderBase\Design\ExtenderControlBaseDesigner.cs" />
+    <Compile Include="ExtenderBase\Design\ExtenderControlBaseDesigner.PageMethodSignatures.cs" />
+    <Compile Include="ExtenderBase\Design\ExternalReferences.cs" />
+    <Compile Include="ExtenderBase\Design\PageMethodSignatureAttribute.cs" />
+    <Compile Include="ExtenderBase\Design\TypeControlIDConverter.cs" />
+    <Compile Include="ExtenderBase\DynamicPopulateExtenderControlBase.cs" />
+    <Compile Include="ExtenderBase\ElementReferenceAttribute.cs" />
+    <Compile Include="ExtenderBase\ExtenderControlBase.cs" />
+    <Compile Include="ExtenderBase\ExtenderControlEventAttribute.cs" />
+    <Compile Include="ExtenderBase\ExtenderControlMethodAttribute.cs" />
+    <Compile Include="ExtenderBase\ExtenderControlPropertyAttribute.cs" />
+    <Compile Include="ExtenderBase\IClientStateManager.cs" />
+    <Compile Include="ExtenderBase\IControlResolver.cs" />
+    <Compile Include="ExtenderBase\ProfilePropertyBinding.cs" />
+    <Compile Include="ExtenderBase\ProfilePropertyBindingCollection.cs" />
+    <Compile Include="ExtenderBase\RequiredPropertyAttribute.cs" />
+    <Compile Include="ExtenderBase\RequiredScriptAttribute.cs" />
+    <Compile Include="ExtenderBase\ResolveControlEventArgs.cs" />
+    <Compile Include="ExtenderBase\ResolveControlEventHandler.cs" />
+    <Compile Include="ExtenderBase\ScriptControlBase.cs" />
+    <Compile Include="ExtenderBase\ScriptObjectBuilder.cs" />
+    <Compile Include="ExtenderBase\ScriptUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExtenderBase\ServicePathConverter.cs" />
+    <Compile Include="FilteredTextBox\FilteredTextBoxDesigner.cs" />
+    <Compile Include="FilteredTextBox\FilteredTextBoxExtender.cs" />
+    <Compile Include="FilteredTextBox\FilterModes.cs" />
+    <Compile Include="FilteredTextBox\FilterTypes.cs" />
+    <Compile Include="Gravatar\Gravatar.cs" />
+    <Compile Include="Gravatar\GravatarDefaultImageBehavior.cs" />
+    <Compile Include="Gravatar\GravatarDesigner.cs" />
+    <Compile Include="Gravatar\GravatarRating.cs" />
+    <Compile Include="HoverExtender\HoverExtender.cs" />
+    <Compile Include="HoverExtender\HoverExtenderDesigner.cs" />
+    <Compile Include="HoverMenu\HoverMenuDesigner.cs" />
+    <Compile Include="HoverMenu\HoverMenuExtender.cs" />
+    <Compile Include="HoverMenu\HoverMenuPopupPosition.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtender.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollection.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollectionEditor.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtons.cs" />
+    <Compile Include="HTMLEditor\DesignPanel.cs" />
+    <Compile Include="HTMLEditor\DesignPanelEventHandler.cs" />
+    <Compile Include="HTMLEditor\Editor.cs" />
+    <Compile Include="HTMLEditor\EditorDesigner.cs" />
+    <Compile Include="HTMLEditor\EditPanel.cs" />
+    <Compile Include="HTMLEditor\EditPanelInstance.cs" />
+    <Compile Include="HTMLEditor\Enums.cs" />
+    <Compile Include="HTMLEditor\Events.cs" />
+    <Compile Include="HTMLEditor\ExecCommandEmulation.cs" />
+    <Compile Include="HTMLEditor\HTMLEditor.cs" />
+    <Compile Include="HTMLEditor\HtmlPanel.cs" />
+    <Compile Include="HTMLEditor\ModePanel.cs" />
+    <Compile Include="HTMLEditor\Popups\AttachedPopup.cs" />
+    <Compile Include="HTMLEditor\Popups\AttachedTemplatePopup.cs" />
+    <Compile Include="HTMLEditor\Popups\BaseColorsPopup.cs" />
+    <Compile Include="HTMLEditor\Popups\LinkProperties.cs" />
+    <Compile Include="HTMLEditor\Popups\OkCancelAttachedTemplatePopup.cs" />
+    <Compile Include="HTMLEditor\Popups\Popup.cs" />
+    <Compile Include="HTMLEditor\Popups\PopupBGIButton.cs" />
+    <Compile Include="HTMLEditor\Popups\PopupBoxButton.cs" />
+    <Compile Include="HTMLEditor\Popups\PopupCommonButton.cs" />
+    <Compile Include="HTMLEditor\PreviewPanel.cs" />
+    <Compile Include="HTMLEditor\Toolbar.cs" />
+    <Compile Include="HTMLEditor\ToolbarInstance.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\BackColorClear.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\BackColorSelector.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Bold.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\BoxButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\BulletedList.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\ColorButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\ColorSelector.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\CommonButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Copy.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Cut.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\DecreaseIndent.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\DesignMode.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\DesignModeBoxButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\DesignModeImageButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\DesignModePopupImageButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\DesignModeSelectButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\EditorToggleButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\FixedBackColor.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\FixedColorButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\FixedForeColor.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\FontName.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\FontSize.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\ForeColor.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\ForeColorClear.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\ForeColorSelector.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\HorizontalSeparator.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\HtmlMode.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\ImageButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\IncreaseIndent.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\InsertHR.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\InsertLink.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Italic.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\JustifyCenter.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\JustifyFull.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\JustifyLeft.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\JustifyRight.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Ltr.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\MethodButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\ModeButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\OkCancelPopupButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\OrderedList.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Paragraph.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Paste.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\PasteText.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\PasteWord.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\PreviewMode.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Redo.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\RemoveAlignment.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\RemoveLink.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\RemoveStyles.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Rtl.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\SelectButton.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Selector.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\StrikeThrough.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\SubScript.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\SuperScript.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Underline.cs" />
+    <Compile Include="HTMLEditor\Toolbar_buttons\Undo.cs" />
+    <Compile Include="LineChart\LineChart.cs" />
+    <Compile Include="LineChart\LineChartDesigner.cs" />
+    <Compile Include="LineChart\LineChartSeries.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollection.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollectionEditor.cs" />
+    <Compile Include="LineChart\LineChartType.cs" />
+    <Compile Include="ListSearch\ListSearchDesigner.cs" />
+    <Compile Include="ListSearch\ListSearchExtender.cs" />
+    <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
+    <Compile Include="ListSearch\ListSearchQueryPattern.cs" />
+    <Compile Include="MaskedEdit\Compatibility\BaseValidator.cs" />
+    <Compile Include="MaskedEdit\Compatibility\IBaseCompareValidatorAccessor.cs" />
+    <Compile Include="MaskedEdit\Compatibility\IBaseValidatorAccessor.cs" />
+    <Compile Include="MaskedEdit\Compatibility\IWebControlAccessor.cs" />
+    <Compile Include="MaskedEdit\Compatibility\ValidatorHelper.cs" />
+    <Compile Include="MaskedEdit\MaskedEditCommon.cs" />
+    <Compile Include="MaskedEdit\MaskedEditDesigner.cs" />
+    <Compile Include="MaskedEdit\MaskedEditEnum.cs" />
+    <Compile Include="MaskedEdit\MaskedEditExtender.cs" />
+    <Compile Include="MaskedEdit\MaskedEditTypeConvert.cs" />
+    <Compile Include="MaskedEdit\MaskedEditValidator.cs" />
+    <Compile Include="ModalPopup\ModalPopupDesigner.cs" />
+    <Compile Include="ModalPopup\ModalPopupExtender.cs" />
+    <Compile Include="ModalPopup\ModalPopupRepositionMode.cs" />
+    <Compile Include="MultiHandleSlider\MultiHandleInnerRailStyle.cs" />
+    <Compile Include="MultiHandleSlider\MultiHandleSliderDesigner.cs" />
+    <Compile Include="MultiHandleSlider\MultiHandleSliderExtender.cs" />
+    <Compile Include="MultiHandleSlider\MultiHandleSliderTarget.cs" />
+    <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxDesigner.cs" />
+    <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtender.cs" />
+    <Compile Include="NoBot\NoBot.cs" />
+    <Compile Include="NoBot\NoBotDesigner.cs" />
+    <Compile Include="NoBot\NoBotEventArgs.cs" />
+    <Compile Include="NoBot\NoBotExtender.cs" />
+    <Compile Include="NoBot\NoBotState.cs" />
+    <Compile Include="NumericUpDown\NumericUpDownDesigner.cs" />
+    <Compile Include="NumericUpDown\NumericUpDownExtender.cs" />
+    <Compile Include="PagingBulletedList\PagingBulletedListDesigner.cs" />
+    <Compile Include="PagingBulletedList\PagingBulletedListExtender.cs" />
+    <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
+    <Compile Include="PasswordStrength\PasswordStrengthExtenderExtender.cs" />
+    <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
+    <Compile Include="PieChart\PieChart.cs" />
+    <Compile Include="PieChart\PieChartDesigner.cs" />
+    <Compile Include="PieChart\PieChartValue.cs" />
+    <Compile Include="PieChart\PieChartValueCollection.cs" />
+    <Compile Include="PieChart\PieChartValueCollectionEditor.cs" />
+    <Compile Include="PopupControl\PopupControlDesigner.cs" />
+    <Compile Include="PopupControl\PopupControlExtender.cs" />
+    <Compile Include="PopupExtender\PopupExtender.cs" />
+    <Compile Include="PopupExtender\PopupExtenderDesigner.cs" />
+    <Compile Include="PopupExtender\PositioningMode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Rating\Rating.cs" />
+    <Compile Include="Rating\RatingDesigner.cs" />
+    <Compile Include="Rating\RatingExtender.cs" />
+    <Compile Include="ReorderList\BulletedList.cs" />
+    <Compile Include="ReorderList\BulletedListItem.cs" />
+    <Compile Include="ReorderList\DraggableListItemExtender.cs" />
+    <Compile Include="ReorderList\DropWatcherExtender.cs" />
+    <Compile Include="ReorderList\ReorderHandleAlignment.cs" />
+    <Compile Include="ReorderList\ReorderList.cs" />
+    <Compile Include="ReorderList\ReorderListDesigner.cs" />
+    <Compile Include="ReorderList\ReorderListEvents.cs" />
+    <Compile Include="ReorderList\ReorderListInsertLocation.cs" />
+    <Compile Include="ReorderList\ReorderListItem.cs" />
+    <Compile Include="ReorderList\ReorderListItemCollection.cs" />
+    <Compile Include="ReorderList\ReorderListItemLayoutType.cs" />
+    <Compile Include="ReorderList\RepeatDirection.cs" />
+    <Compile Include="ResizableControl\ResizableControlDesigner.cs" />
+    <Compile Include="ResizableControl\ResizableControlExtender.cs" />
+    <Compile Include="RoundedCorners\BoxCorners.cs" />
+    <Compile Include="RoundedCorners\RoundedCornersDesigner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
+    <Compile Include="Sanitizer\ProviderSanitizerSection.cs" />
+    <Compile Include="Sanitizer\Sanitizer.cs" />
+    <Compile Include="Sanitizer\SanitizerProvider.cs" />
+    <Compile Include="Sanitizer\SanitizerProviderCollection.cs" />
+    <Compile Include="Seadragon\OverlayCollectionEditor.cs" />
+    <Compile Include="Seadragon\Seadragon.cs" />
+    <Compile Include="Seadragon\SeadragonControl.cs" />
+    <Compile Include="Seadragon\SeadragonDesigner.cs" />
+    <Compile Include="Seadragon\SeadragonOverlay.cs" />
+    <Compile Include="Seadragon\UrlEditor.cs" />
+    <Compile Include="Slider\SliderDesigner.cs" />
+    <Compile Include="Slider\SliderExtender.cs" />
+    <Compile Include="Slider\SliderOrientation.cs" />
+    <Compile Include="SlideShow\Slide.cs" />
+    <Compile Include="SlideShow\SlideShowAnimationType.cs" />
+    <Compile Include="SlideShow\SlideShowDesigner.cs" />
+    <Compile Include="SlideShow\SlideShowExtender.cs" />
+    <Compile Include="Tabs\OnDemandMode.cs" />
+    <Compile Include="Tabs\TabContainer.cs" />
+    <Compile Include="Tabs\TabContainerDesigner.cs" />
+    <Compile Include="Tabs\TabPanel.cs" />
+    <Compile Include="Tabs\TabPanelCollection.cs" />
+    <Compile Include="Tabs\TabPanelDesigner.cs" />
+    <Compile Include="Tabs\TabStripPlacement.cs" />
+    <Compile Include="TextboxWatermark\TextboxWatermarkExtender.cs" />
+    <Compile Include="TextboxWatermark\TextboxWatermarkExtenderDesigner.cs" />
+    <Compile Include="ToggleButton\ToggleButtonExtender.cs" />
+    <Compile Include="ToggleButton\ToggleButtonExtenderDesigner.cs" />
+    <Compile Include="ToolkitScriptManager\ScriptCombineAttribute.cs" />
+    <Compile Include="ToolkitScriptManager\ToolkitScriptManager.cs" />
+    <Compile Include="Twitter\Twitter.cs" />
+    <Compile Include="Twitter\TwitterAPI.cs" />
+    <Compile Include="Twitter\TwitterDesigner.cs" />
+    <Compile Include="Twitter\TwitterMode.cs" />
+    <Compile Include="Twitter\TwitterStatus.cs" />
+    <Compile Include="Twitter\TwitterUser.cs" />
+    <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationDesigner.cs" />
+    <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationExtender.cs" />
+    <Compile Include="ValidatorCallout\ValidatorCalloutDesigner.cs" />
+    <Compile Include="ValidatorCallout\ValidatorCalloutExtender.cs" />
+    <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Accordion\Accordion.ico" />
+    <EmbeddedResource Include="AlwaysVisibleControl\AlwaysVisible.ico" />
+    <EmbeddedResource Include="Animation\Animation.ico" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.Control.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.css" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.EventArgs.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.Item.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.Processor.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.ProcessorHtml5.pre.js" />
+    <Content Include="AjaxFileUpload\AjaxFileUpload.Utils.pre.js" />
+    <Content Include="AreaChart\AreaChart.css" />
+    <Content Include="AreaChart\AreaChart.pre.js" />
+    <Content Include="AsyncFileUpload\AsyncFileUpload.pre.js" />
+    <Content Include="AsyncFileUpload\images\fileupload.png" />
+    <EmbeddedResource Include="AutoComplete\AutoComplete.ico" />
+    <EmbeddedResource Include="Calendar\Calendar.ico" />
+    <EmbeddedResource Include="BalloonPopup\BalloonPopup.ico" />
+    <Content Include="BalloonPopup\Cloud\BalloonPopup_resource.css" />
+    <Content Include="BalloonPopup\Cloud\sprite.png" />
+    <Content Include="BalloonPopup\Rectangle\BalloonPopup_resource.css" />
+    <Content Include="BalloonPopup\Rectangle\sprite.png" />
+    <Content Include="BarChart\BarChart.css" />
+    <Content Include="BarChart\BarChart.pre.js" />
+    <Content Include="BubbleChart\BubbleChart.css" />
+    <Content Include="BubbleChart\BubbleChart.pre.js" />
+    <Content Include="Calendar\Calendar_resource.css" />
+    <EmbeddedResource Include="CascadingDropDown\CascadingDropDown.ico" />
+    <EmbeddedResource Include="CollapsiblePanel\CollapsiblePanel.ico" />
+    <EmbeddedResource Include="ColorPicker\ColorPicker.ico" />
+    <Content Include="ComboBox\arrow-down.gif" />
+    <Content Include="ComboBox\ComboBox.css" />
+    <EmbeddedResource Include="ComboBox\ComboBox.ico" />
+    <Content Include="ComboBox\ComboBox.pre.js" />
+    <EmbeddedResource Include="ConfirmButton\ConfirmButton.ico" />
+    <EmbeddedResource Include="DragPanel\DragPanel.ico" />
+    <EmbeddedResource Include="DropDown\DropDown.ico" />
+    <EmbeddedResource Include="DropShadow\DropShadow.ico" />
+    <EmbeddedResource Include="DynamicPopulate\DynamicPopulate.ico" />
+    <EmbeddedResource Include="FilteredTextBox\FilteredTextBox.ico" />
+    <EmbeddedResource Include="HoverMenu\HoverMenu.ico" />
+    <Content Include="DropDown\DropDown_resource.css" />
+    <Content Include="Gravatar\Gravatar.ico" />
+    <Content Include="Gravatar\Images\gravatar-anonymous.jpg" />
+    <Content Include="Gravatar\Images\gravatar-G.jpg" />
+    <Content Include="Gravatar\Images\gravatar-PG.jpg" />
+    <Content Include="Gravatar\Images\gravatar-R.jpg" />
+    <Content Include="Gravatar\Images\gravatar-X.jpg" />
+    <Content Include="HtmlEditorExtender\HtmlEditorExtender_resource.css" />
+    <Content Include="HtmlEditorExtender\html_editor_extender.ico" />
+    <Content Include="HTMLEditor\DesignPanel.css" />
+    <Content Include="HTMLEditor\DesignPanel.pre.js" />
+    <Content Include="HTMLEditor\DesignPanelEventHandler.pre.js" />
+    <Content Include="HTMLEditor\Document.css" />
+    <Content Include="HTMLEditor\Editor.css" />
+    <EmbeddedResource Include="HTMLEditor\Editor.ico" />
+    <Content Include="HTMLEditor\Editor.pre.js" />
+    <Content Include="HTMLEditor\EditPanel.pre.js" />
+    <Content Include="HTMLEditor\Enums.pre.js" />
+    <Content Include="HTMLEditor\Events.pre.js" />
+    <Content Include="HTMLEditor\ExecCommandEmulation.pre.js" />
+    <Content Include="HTMLEditor\HTMLEditor.pre.js" />
+    <Content Include="HTMLEditor\HtmlPanel.css" />
+    <Content Include="HTMLEditor\HtmlPanel.pre.js" />
+    <Content Include="HTMLEditor\Images\BgiButton.gif" />
+    <Content Include="HTMLEditor\Images\design.gif" />
+    <Content Include="HTMLEditor\Images\ed_1x1.gif" />
+    <Content Include="HTMLEditor\Images\ed_align_center_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_align_center_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_align_justify_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_align_justify_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_align_left_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_align_left_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_align_right_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_align_right_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_anchor.gif" />
+    <Content Include="HTMLEditor\Images\ed_backcolor_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_backcolor_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_color_bg_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_color_bg_clear_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_color_bg_clear_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_color_bg_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_color_fg_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_color_fg_clear_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_color_fg_clear_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_color_fg_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_copy_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_copy_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_cut_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_cut_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_design_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_design_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_flash.gif" />
+    <Content Include="HTMLEditor\Images\ed_forecolor_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_forecolor_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_bold_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_bold_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_italic_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_italic_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_ltr_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_ltr_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_paragraph_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_paragraph_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_rtl_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_rtl_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_strike_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_strike_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_sub_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_sub_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_sup_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_sup_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_underline_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_format_underline_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_html_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_html_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_indent_less_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_indent_less_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_indent_more_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_indent_more_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_link_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_link_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_list_bullet_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_list_bullet_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_list_num_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_list_num_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_media.gif" />
+    <Content Include="HTMLEditor\Images\ed_pasteText_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_pasteText_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_pasteWord_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_pasteWord_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_paste_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_paste_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_placeHolder.gif" />
+    <Content Include="HTMLEditor\Images\ed_preview_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_preview_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_redo_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_redo_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_removealign_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_removealign_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_rule_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_rule_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_selector_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_selector_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_sep.gif" />
+    <Content Include="HTMLEditor\Images\ed_undo_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_undo_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_unformat_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_unformat_n.gif" />
+    <Content Include="HTMLEditor\Images\ed_unlink_a.gif" />
+    <Content Include="HTMLEditor\Images\ed_unlink_n.gif" />
+    <Content Include="HTMLEditor\Images\html.gif" />
+    <Content Include="HTMLEditor\Images\preview.gif" />
+    <Content Include="HTMLEditor\ModePanel.pre.js" />
+    <Content Include="HTMLEditor\Popups\AttachedPopup.pre.js" />
+    <Content Include="HTMLEditor\Popups\AttachedTemplatePopup.css" />
+    <Content Include="HTMLEditor\Popups\AttachedTemplatePopup.pre.js" />
+    <Content Include="HTMLEditor\Popups\BaseColorsPopup.pre.js" />
+    <Content Include="HTMLEditor\Popups\LinkProperties.pre.js" />
+    <Content Include="HTMLEditor\Popups\OkCancelAttachedTemplatePopup.pre.js" />
+    <Content Include="HTMLEditor\Popups\Popup.pre.js" />
+    <Content Include="HTMLEditor\Popups\PopupBGIButton.pre.js" />
+    <Content Include="HTMLEditor\Popups\PopupBoxButton.pre.js" />
+    <Content Include="HTMLEditor\Popups\PopupCommonButton.pre.js" />
+    <Content Include="HTMLEditor\PreviewPanel.pre.js" />
+    <Content Include="HTMLEditor\Toolbar.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\BackColorClear.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\BackColorSelector.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Bold.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\BoxButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\BulletedList.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\ColorButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\ColorSelector.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\CommonButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Copy.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Cut.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\DecreaseIndent.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\DesignMode.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\DesignModeBoxButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\DesignModeImageButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\DesignModePopupImageButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\DesignModeSelectButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\EditorToggleButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\FixedBackColor.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\FixedColorButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\FixedForeColor.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\FontName.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\FontSize.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\ForeColor.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\ForeColorClear.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\ForeColorSelector.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\HorizontalSeparator.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\HtmlMode.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\ImageButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\IncreaseIndent.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\InsertHR.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\InsertLink.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Italic.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\JustifyCenter.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\JustifyFull.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\JustifyLeft.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\JustifyRight.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Ltr.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\MethodButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\ModeButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\OkCancelPopupButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\OrderedList.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Paragraph.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Paste.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\PasteText.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\PasteWord.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\PreviewMode.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Redo.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\RemoveAlignment.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\RemoveLink.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\RemoveStyles.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Rtl.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\SelectButton.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Selector.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\StrikeThrough.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\SubScript.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\SuperScript.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Underline.pre.js" />
+    <Content Include="HTMLEditor\Toolbar_buttons\Undo.pre.js" />
+    <EmbeddedResource Include="ListSearch\ListSearch.ico" />
+    <EmbeddedResource Include="MaskedEdit\MaskedEdit.ico" />
+    <EmbeddedResource Include="ModalPopup\ModalPopup.ico" />
+    <Content Include="LineChart\LineChart.css" />
+    <Content Include="LineChart\LineChart.pre.js" />
+    <Content Include="MultiHandleSlider\MultiHandleSlider_resource.css" />
+    <EmbeddedResource Include="MultiHandleSlider\MultiHandleSlider.ico" />
+    <EmbeddedResource Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBox.ico" />
+    <EmbeddedResource Include="NoBot\NoBot.ico" />
+    <Content Include="NoBot\NoBotBehavior.pre.js" />
+    <EmbeddedResource Include="NumericUpDown\NumericUpDown.ico" />
+    <EmbeddedResource Include="PagingBulletedList\PagingBulletedList.ico" />
+    <EmbeddedResource Include="PasswordStrength\PasswordStrength.ico" />
+    <EmbeddedResource Include="PopupControl\PopupControl.ico" />
+    <EmbeddedResource Include="Rating\Rating.ico" />
+    <Content Include="PieChart\PieChart.css" />
+    <Content Include="PieChart\PieChart.pre.js" />
+    <Content Include="ReorderList\DraggableListItemBehavior.pre.js" />
+    <Content Include="ReorderList\DropWatcherBehavior.pre.js" />
+    <EmbeddedResource Include="ReorderList\ReorderList.ico" />
+    <EmbeddedResource Include="ResizableControl\ResizableControl.ico" />
+    <EmbeddedResource Include="RoundedCorners\RoundedCorners.ico" />
+    <Content Include="Slider\SliderBehavior_resource.pre.js" />
+    <Content Include="Slider\Slider_resource.css" />
+    <EmbeddedResource Include="Slider\Slider.ico" />
+    <EmbeddedResource Include="SlideShow\SlideShow.ico" />
+    <Content Include="SlideShow\SlideShow_resource.css" />
+    <Content Include="Tabs\Tabs_resource.css" />
+    <Content Include="Twitter\Twitter.ico" />
+    <Content Include="Twitter\Twitter24.png" />
+    <Content Include="Twitter\Twitter32.png" />
+    <Content Include="Twitter\Twitter_resource.css" />
+    <EmbeddedResource Include="Tabs\Tabs.ico" />
+    <EmbeddedResource Include="TextboxWatermark\TextboxWatermark.ico" />
+    <EmbeddedResource Include="ToggleButton\ToggleButton.ico" />
+    <EmbeddedResource Include="UpdatePanelAnimation\UpdatePanelAnimation.ico" />
+    <EmbeddedResource Include="ValidatorCallout\ValidatorCallout.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ExtenderBase\Design\ExternalReferences.t4" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\DataContext.Res.resx">
+      <Link>ScriptResources\DataContext.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\DataContext.Res.debug.resx">
+      <Link>ScriptResources\DataContext.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\OpenData.Res.resx">
+      <Link>ScriptResources\OpenData.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\OpenData.Res.debug.resx">
+      <Link>ScriptResources\OpenData.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Res.resx">
+      <Link>ScriptResources\Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Res.debug.resx">
+      <Link>ScriptResources\Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Templates.Res.resx">
+      <Link>ScriptResources\Templates.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\Templates.Res.debug.resx">
+      <Link>ScriptResources\Templates.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\WebForms.Res.resx">
+      <Link>ScriptResources\WebForms.Res.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\WebForms.Res.debug.resx">
+      <Link>ScriptResources\WebForms.Res.debug.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.ar.resx">
+      <Link>ScriptResources\BaseScriptsResources.ar.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.cs.resx">
+      <Link>ScriptResources\BaseScriptsResources.cs.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.de.resx">
+      <Link>ScriptResources\BaseScriptsResources.de.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.es.resx">
+      <Link>ScriptResources\BaseScriptsResources.es.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.fr.resx">
+      <Link>ScriptResources\BaseScriptsResources.fr.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.he.resx">
+      <Link>ScriptResources\BaseScriptsResources.he.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.hi.resx">
+      <Link>ScriptResources\BaseScriptsResources.hi.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.it.resx">
+      <Link>ScriptResources\BaseScriptsResources.it.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.ja.resx">
+      <Link>ScriptResources\BaseScriptsResources.ja.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.ko.resx">
+      <Link>ScriptResources\BaseScriptsResources.ko.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.nl.resx">
+      <Link>ScriptResources\BaseScriptsResources.nl.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.pt.resx">
+      <Link>ScriptResources\BaseScriptsResources.pt.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.resx">
+      <Link>ScriptResources\BaseScriptsResources.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.ru.resx">
+      <Link>ScriptResources\BaseScriptsResources.ru.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.tr-TR.resx">
+      <Link>ScriptResources\BaseScriptsResources.tr-TR.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.zh-CHS.resx">
+      <Link>ScriptResources\BaseScriptsResources.zh-CHS.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.zh-CHT.resx">
+      <Link>ScriptResources\BaseScriptsResources.zh-CHT.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
+  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
+  <Target Name="BeforeBuild">
+    <MakeDir Directories="ScriptOutput" />
+    <!-- clean out old files from previous build -->
+    <ItemGroup>
+      <ToDelete Include="ScriptOutput\**\*" />
+    </ItemGroup>
+    <Delete Files="@(ToDelete)" />
+    <!--
+    Delete all the directories. No built-in msbuild task can do this.
+    See the following for explaination:
+    http://social.msdn.microsoft.com/forums/en-US/msbuild/thread/d2833d1e-2d56-4fc4-98a4-e321b976b9ac
+    -->
+    <Exec Command="for /f %%d in ('dir /ad /b') do rd /s /q %%d" WorkingDirectory="ScriptOutput" />
+    <!-- Build pre.js files that are in the server project -->
+    <Message Text="JSBuild: Executing JavaScript Preprocessor." />
+    <ItemGroup>
+      <PreJS Include="**\*.pre.js">
+        <InProject>False</InProject>
+      </PreJS>
+    </ItemGroup>
+    <JSBuildTask SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="ScriptOutput" />
+    <!-- minify the release scripts (overwrite them) -->
+    <ItemGroup>
+      <JS Include="ScriptOutput\**\*.js" Exclude="ScriptOutput\**\*.debug.*" />
+    </ItemGroup>
+    <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
+    <!-- Copy Server project Images and CSS into the Scripts Folder -->
+    <ItemGroup>
+      <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css;" />
+    </ItemGroup>
+    <Copy SourceFiles="@(StaticResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
+    <!-- Copy client project script output into the server output folder -->
+    <ItemGroup>
+      <BaseScriptResources Include="..\..\Client\ScriptOutput\**\*" Exclude="..\..\Client\ScriptOutput\**\embed\*;..\..\Client\ScriptOutput\**\loc\*;..\..\Client\ScriptOutput\extended\**\*" />
+      <ExtendedScriptResources Include="..\..\Client\ScriptOutput\extended\**\*" Exclude="..\..\Client\ScriptOutput\extended\**\embed\*;..\..\Client\ScriptOutput\extended\**\loc\*" />
+      <BaseEmbedScriptResources Include="..\..\Client\ScriptOutput\**\embed\*" Exclude="..\..\Client\ScriptOutput\extended\**\embed\*" />
+      <ExtendedEmbedScriptResources Include="..\..\Client\ScriptOutput\extended\**\embed\*" />
+    </ItemGroup>
+    <Message Text="======== Copying script resources from client project ========" />
+    <Copy SourceFiles="@(BaseScriptResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
+    <Copy SourceFiles="@(ExtendedScriptResources)" DestinationFolder="ScriptOutput\%(RecursiveDir)" />
+    <!--
+    Some scripts have a special version that is meant for embedding into the assembly.
+    This is because of the localization feature of ScriptResourceHandler, where each localized
+    script is not in the assembly - rather, the script is embedded without the resources, and
+    then the resources are built dynamically from an embedded strings resource file.
+    The embed versions are all in an 'embed' folder within the folder they were meant to be within,
+    so copy each to it's parent directory, overwriting the existing files.
+    -->
+    <Message Text="======== Copying embed script resources from client project ========" />
+    <Copy SourceFiles="@(BaseEmbedScriptResources)" DestinationFiles="@(BaseEmbedScriptResources -> 'ScriptOutput\%(RecursiveDir)..\%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" />
+    <Copy SourceFiles="@(ExtendedEmbedScriptResources)" DestinationFiles="@(ExtendedEmbedScriptResources -> 'ScriptOutput\%(RecursiveDir)..\%(Filename)%(Extension)')" OverwriteReadOnlyFiles="true" />
+    <!-- Mark everything under the ScriptOutput folder as embedded resource -->
+    <ItemGroup>
+      <EmbeddedResource Include="ScriptOutput\**\*" />
+    </ItemGroup>
+  </Target>
+  <UsingTask TaskName="JSBuild.CreateJSManifestResourceName" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
+  <Target Name="CreateManifestResourceNames" Condition="'@(EmbeddedResource)' != ''" DependsOnTargets="$(CreateManifestResourceNamesDependsOn)">
+    <ItemGroup>
+      <_Temporary Remove="@(_Temporary)" />
+    </ItemGroup>
+    <!-- Create manifest names for ICOs -->
+    <CreateJSManifestResourceName BaseDirectory="\" ResourceFiles="@(EmbeddedResource)" RootNamespace="AjaxControlToolkit" Condition="'%(Extension)' == '.ico'">
+      <Output TaskParameter="ResourceFilesWithManifestResourceNames" ItemName="_Temporary" />
+    </CreateJSManifestResourceName>
+    <!-- Create manifest names for culture and non-culture Resx files, and for non-culture Non-Resx resources -->
+    <CreateJSManifestResourceName BaseDirectory="ScriptOutput\" ResourceFiles="@(EmbeddedResource)" RootNamespace="" Condition="'%(Extension)' != '.ico' and '%(EmbeddedResource.ManifestResourceName)' == '' and ('%(EmbeddedResource.WithCulture)' == 'false' or '%(EmbeddedResource.Type)' == 'Resx')">
+      <Output TaskParameter="ResourceFilesWithManifestResourceNames" ItemName="_Temporary" />
+    </CreateJSManifestResourceName>
+    <!-- Create manifest names for all culture non-resx resources -->
+    <CreateJSManifestResourceName BaseDirectory="ScriptOutput\" ResourceFiles="@(EmbeddedResource)" RootNamespace="" PrependCultureAsDirectory="false" Condition="'%(Extension)' != '.ico' and '%(EmbeddedResource.ManifestResourceName)' == '' and '%(EmbeddedResource.WithCulture)' == 'true' and '%(EmbeddedResource.Type)' == 'Non-Resx'">
+      <Output TaskParameter="ResourceFilesWithManifestResourceNames" ItemName="_Temporary" />
+    </CreateJSManifestResourceName>
+    <ItemGroup>
+      <EmbeddedResource Remove="@(EmbeddedResource)" Condition="'%(EmbeddedResource.ManifestResourceName)' == ''" />
+      <EmbeddedResource Include="@(_Temporary)" />
+      <_Temporary Remove="@(_Temporary)" />
+    </ItemGroup>
+  </Target>
+</Project>

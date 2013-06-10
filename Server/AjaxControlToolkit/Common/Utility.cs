@@ -10,7 +10,7 @@ namespace AjaxControlToolkit
     /// </summary>
     public static class Utility
     {
-#if NET4 || NET45
+#if NET40 || NET45
         internal const string ToolBoxItemTypeName = "System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";
 #else
         internal const string ToolBoxItemTypeName = "System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a";

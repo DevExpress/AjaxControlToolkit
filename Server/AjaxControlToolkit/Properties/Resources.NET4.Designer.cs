@@ -39,7 +39,7 @@ namespace AjaxControlToolkit.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AjaxControlToolkit.Properties.Resources.NET4", typeof(Resources_NET4).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AjaxControlToolkit.Properties.Resources.NET40", typeof(Resources_NET4).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

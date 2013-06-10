@@ -33,7 +33,7 @@ using AjaxControlToolkit;
 [assembly: ComVisible(false)]
 [assembly: System.CLSCompliant(true)]
 
-#if NET4
+#if NET40
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 [assembly: System.Web.Script.AjaxFrameworkAssembly]
 [assembly: AssemblyVersion("4.1.7.0607")]
