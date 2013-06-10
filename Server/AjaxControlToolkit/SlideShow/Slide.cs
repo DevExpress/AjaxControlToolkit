@@ -21,12 +21,14 @@ namespace AjaxControlToolkit
         private string imagePath;
         private string name;
         private string description;
+        private string url;
 
         /// <summary>
         /// Default constructor
         /// </summary>
         public Slide() : this(null, null, null)
         { }
+
 
         /// <summary>
         /// Slide constructor with params
@@ -38,7 +40,22 @@ namespace AjaxControlToolkit
         {
             this.imagePath = imagePath;
             this.name = name;
+            this.description = description;            
+        }
+        
+        /// <summary>
+        /// Slide constructor with params
+        /// </summary>
+        /// <param name="imagePath"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="url"></param>
+        public Slide(string imagePath, string name, string description, string url)
+        {
+            this.imagePath = imagePath;
+            this.name = name;
             this.description = description;
+            this.url = url;
         }
 
         /// <summary>
@@ -66,6 +83,15 @@ namespace AjaxControlToolkit
         {
             get { return this.description; }
             set { this.description = value; }
+        }
+
+        /// <summary>
+        /// image Url
+        /// </summary>
+        public string Url
+        {
+            get { return this.url; }
+            set { this.url = value; }
         }
     }
 }

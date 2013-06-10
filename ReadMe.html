@@ -21,111 +21,23 @@
 
 <div id="main">
 
-<h1>AJAX Control Toolkit &mdash; April 2013 Release</h1> 
+<h1>AJAX Control Toolkit &mdash; June 2013 Release</h1> 
 <p> 
-This release of the Ajax Control Toolkit improves the AjaxFileUpload control to support large file uploads. This 
-    release also includes numerous bug fixes related to the
-    MaskedEdit extender.
+This release of the Ajax Control Toolkit improves the AjaxFileUpload control by adding support for uploading files directly to Windows Azure. This 
+    release also improves the SlideShow control by adding support for CSS3 animated slide transitions.
 </p>
 <ul>
 <li>
     <p>
-    Large Files - The AjaxFileUpload control now supports uploading very large files (great than 1 gigabyte). 
+    AjaxFileUpload - Use the new AjaxFileUpload StoreToAzure and AzureContainerName properties to upload files directly to Windows Azure Blob Storage. 
     </p>
 </li>
 <li>
     <p>
-    File Upload Progress - The AjaxFileUpload control has been improved to display file upload progress
-    using two different techniques. For browsers which fully support the HTML5 standard, the AjaxFileUpload 
-    displays progress using client-side progress events. For browsers which do not fully support the HTML5 
-    standard, the AjaxFileUpload displays upload progress by polling the server. 
+    SlideShow - Use the new SlideShowAnimationType property to animate slide transitions. You can select from the following animations: FadeInFadeOut, ScaleX, ScaleY, 
+            ZoomInOut, Rotate, SlideLeft and SlideDown. 
     </p>
 </li> 
-<li>
-    <p>
-    Bug Fixes for MaskedEdit - This release contains fixes for the following MaskedEdit extender issues:
-    </p>
-<ol>
-<li>
-17302	MaskedEditExtender MaskType=Date, Mask=99/99/99 Undefined JS Error
-</li>
-<li>
-11758	MaskedEdit causes error in JScript when working with 2-digits year
-</li>
-<li>
-18810	Maskededitextender/validator Date validation issue
-</li>
-<li>
-23236	MaskEditValidator does not work with date input using format dd/mm/yyyy
-</li>
-<li>
-23042	Webkit based browsers (Safari, Chrome) and MaskedEditExtender
-</li>
-<li>
-26685	MaskedEditExtender@(ClearMaskOnLostFocus=false) adds a zero character when you each focused to target textbox
-</li>
-<li>
-16109	MaskedEditExtender: Negative amount, followed by decimal, sets value to positive
-</li>
-<li>
-11522	MaskEditExtender of AjaxtoolKit-1.0.10618.0 does not work properly for Hungarian Culture
-</li>
-<li>
-25988	MaskedEdit Extender - CultureName (HU-hu) > DateSeparator
-</li>
-<li>
-23221	masked edit extender date separator problem
-</li>
-<li>
-15233	Day and month swap in Dynamic user control
-</li>
-<li>
-15492	MaskedEditExtender with ClearMaskOnLostFocus and with MaskedEditValidator with ClientValidationFunction
-</li>
-<li>
-9389	MaskedEditValidator - when on no entry?
-</li>
-<li>
-11392	MaskedEdit Number format messed up
-</li>
-<li>
-11819	MaskedEditExtender erases all values beyond first comma separtor
-</li>
-<li>
-13423	MaskedEdit(Extender/Validator) combo problem
-</li>
-<li>
-16111	MaskedEditValidator cannot validate date with DayMonthYear in UserDateFormat of MaskedEditExtender
-</li>
-<li>
-10901	MaskedEdit: The months and date fields swap values when you hit submit if UserDateFormat is set.
-</li>
-<li>
-15190	MaskedEditValidator can't make use of MaskedEditExtender's UserDateFormat property
-</li>
-<li>
-13898	MaskedEdit Extender with custom date type mask gives javascript error
-</li>
-<li>
-14692	MaskedEdit error in "yy/MM/dd" format.
-</li>
-<li>
-16186	MaskedEditExtender does not handle century properly in a date mask
-</li>
-<li>
-26456	MaskedEditBehavior. ConvFmtTime : function(input,loadFirst) fails if this._CultureAMPMPlaceholder == ""
-</li>
-<li>
-21474	Error on MaskedEditExtender working winth number format
-</li>
-<li>
-23023	MaskedEditExtender's ClearMaskOnLostFocus property causes problems for MaskedEditValidator when set to false
-</li>
-<li>
-13656	MaskedEditValidator Min/Max Date value issue
-</li>
-    </ol>
-</li>
 </ul>
  
 

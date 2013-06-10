@@ -16,11 +16,11 @@
         public static AjaxControlToolkit.Slide[] GetSlides()
         {
             return new AjaxControlToolkit.Slide[] { 
-            new AjaxControlToolkit.Slide("images/Blue hills.jpg", "Blue Hills", "Go Blue"),
-            new AjaxControlToolkit.Slide("images/Sunset.jpg", "Sunset", "Setting sun"),
-            new AjaxControlToolkit.Slide("images/Winter.jpg", "Winter", "Wintery..."),
-            new AjaxControlToolkit.Slide("images/Water lilies.jpg", "Water lillies", "Lillies in the water"),
-            new AjaxControlToolkit.Slide("images/VerticalPicture.jpg", "Sedona", "Portrait style picture")};
+            new AjaxControlToolkit.Slide("images/Blue hills.jpg", "Blue Hills", "Go Blue", "images/Blue hills.jpg"),
+            new AjaxControlToolkit.Slide("images/Sunset.jpg", "Sunset", "Setting sun", "images/Sunset.jpg"),
+            new AjaxControlToolkit.Slide("images/Winter.jpg", "Winter", "Wintery...", "images/Winter.jpg"),
+            new AjaxControlToolkit.Slide("images/Water lilies.jpg", "Water lillies", "Lillies in the water", "images/Water lilies.jpg"),
+            new AjaxControlToolkit.Slide("images/VerticalPicture.jpg", "Sedona", "Portrait style picture", "images/VerticalPicture.jpg")};
         }
     </script>
 
@@ -34,8 +34,8 @@
             <asp:Label runat="Server" ID="imageTitle" CssClass="slideTitle"/><br />
             <asp:Image ID="Image1" runat="server" 
                 Height="300"
-                Style="border: 1px solid black;width:auto" 
-                ImageUrl="~/SlideShow/images/Blue hills.jpg"
+                Width="400"
+                Style="border: 1px solid black;"                 
                 AlternateText="Blue Hills image" />
             <asp:Label runat="server" ID="imageDescription" CssClass="slideDescription"></asp:Label><br /><br />
             <asp:Button runat="Server" ID="prevButton" Text="Prev" Font-Size="Larger" />
@@ -65,7 +65,7 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            SlideShow is an extender that targets image controls. You can provide it with buttons to hit previous,
+            SlideShow is an extender that targets image controls. You can provide it with buttons for previous,
             next and  play. You can configure the slideshow to play automatically on render, allow it loop through the
             images in a round robin fashion and also set the interval for slide transitions. You can use a page method to
             supply images to the slide show or use a webservice. In the sample above we have provided you with a slideshow that
@@ -73,9 +73,9 @@
             versa if you hit previous on the first picture. The slideshow transitions pictures after 3 seconds.
             <br />
             <br />
-            SlideShow also has capability to animate images. It supports animations of type - FadeInFadeOut, ScaleX, ScaleY, 
-            ZoomInOut, Rotate, SlideLeft and SlideDown. For animations of type SlideLeft and SlideDown you need to set properties 
-            ImageHeight and ImageWidth to get proper animation.
+            SlideShow also supports animations. It supports animations of type - FadeInFadeOut, ScaleX, ScaleY, 
+            ZoomInOut, Rotate, SlideLeft and SlideDown. <b>When using SlideLeft and SlideDown animations, you must set 
+            set both the Height and Width properties of the Image control being extended by the SlideShow extender.</b>
             <br />
         </p>
     </asp:Panel>
@@ -136,11 +136,10 @@
             <li><strong>ImageDescriptionLabelID</strong> - ID of Label describing current picture.</li>
             <li><strong>Loop</strong> - Setting this to true will allow you to view images in a round-robin fashion.</li>
             <li><strong>AutoPlay</strong> - Setting this to true will play the slideshow automatically on render.</li>
-            <li><strong>AnimationType</strong> - Type of animation that will be happen during change of slides/images.</li>
-            <li><strong>ImageWidth</strong> - To set all images of same width to run animations - SlideLeft and SlideDown 
-            smoothly</li>
-            <li><strong>ImageHeight</strong> - To set all images of same height to run animations - SlideLeft and SlideDown 
-            smoothly</li>
+            <li><strong>SlideShowAnimationType</strong> - Type of animation used during change from one slide to another.
+                If you set SlideShowAnimationType to either SlideDown or SlideRight then you must set both the Height and
+                Width properties on the Image control being extended by the SlideShow extender.
+            </li>            
         </ul>
     </asp:Panel>
     <ajaxToolkit:CollapsiblePanelExtender runat="Server"  ID="cpeDescription" 

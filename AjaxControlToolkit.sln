@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1CDF1621
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{F8723467-F61D-44AA-9084-1B99B75A14A6}"
 	ProjectSection(SolutionItems) = preProject
+		AjaxControlToolkit.nuspec = AjaxControlToolkit.nuspec
 		AjaxControlToolkit.vsmdi = AjaxControlToolkit.vsmdi
 		AjaxExtended.snk = AjaxExtended.snk
 		AjaxKey.snk = AjaxKey.snk
