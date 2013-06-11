@@ -26,6 +26,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -282,6 +283,7 @@
     <Content Include="ExtenderBase\BaseScriptsResources.zh-CHT.resx">
       <SubType>Designer</SubType>
     </Content>
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.pl.resx" />
     <EmbeddedResource Include="ScriptResources\ScriptResources.ar.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -315,6 +317,7 @@
     <EmbeddedResource Include="ScriptResources\ScriptResources.nl.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.pl.resx" />
     <EmbeddedResource Include="ScriptResources\ScriptResources.pt.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

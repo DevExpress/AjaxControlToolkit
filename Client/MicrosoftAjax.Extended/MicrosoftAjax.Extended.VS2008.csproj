@@ -242,6 +242,7 @@
     <Content Include="HtmlEditorExtender\HtmlEditorExtender.css" />
     <Content Include="HtmlEditorExtender\HtmlEditorExtenderBehavior.Pre.js" />
     <Content Include="HtmlEditorExtender\Images\html-editor-buttons.png" />
+    <EmbeddedResource Include="ExtenderBase\BaseScriptsResources.pl.resx" />
     <EmbeddedResource Include="ScriptResources\ScriptResources.ar.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -275,6 +276,7 @@
     <EmbeddedResource Include="ScriptResources\ScriptResources.nl.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ScriptResources\ScriptResources.pl.resx" />
     <EmbeddedResource Include="ScriptResources\ScriptResources.pt.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
