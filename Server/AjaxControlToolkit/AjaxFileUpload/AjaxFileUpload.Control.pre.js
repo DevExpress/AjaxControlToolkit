@@ -24,6 +24,7 @@ Sys.Extended.UI.AjaxFileUpload.Control = function (element) {
     this._filesInQueue = [];
     this._isUploading = false;
     this._currentFileId = null;
+    this._canceled = false;
 };
 
 Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
@@ -136,8 +137,10 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         // Toggling state
         this._isUploading = !this._isUploading;
         if (this._isUploading) {
+            this._canceled = false;
             this._processor.startUpload();
         } else {
+            this._canceled = true;
             this._processor.cancelUpload();
             
             // reset all file items state
@@ -471,10 +474,15 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
        this.get_events().removeHandler("uploadError", handler);
     },
     raiseUploadError: function (e) {
+
        var eh = this.get_events().getHandler("uploadError");
        if (eh) {
            eh(this, e);
        }
+       
+       this._canceled = false;
+       this._isUploading = false;
+       this.enableControls(true);
     },   
 
     getCurrentFileItem: function () {
