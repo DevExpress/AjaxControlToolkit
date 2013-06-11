@@ -151,7 +151,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function (control, elements) {
         
         // only add 1 file input element to be uploaded
         form.appendChild(inputElement);
-        form.setAttribute("action", control._uploadUrl + '?contextKey=' + control._contextKey + '&fileId=' + control._currentFileId + '&fileName=' + fileItem._fileName + '&usePoll=' + (control.get_serverPollingSupport() ? "true" : "false"));
+        form.setAttribute("action", control._uploadUrl + '?contextKey=' + control._contextKey + '&fileId=' + control._currentFileId + '&fileName=' + fileItem._fileName + '&usePoll=' + (control.get_serverPollingSupport() ? "true" : "false") + '&storeToAzure=' + control.get_storeToAzure() + '&acn=' + control.get_azureContainerName());
         
         // upload it now
         form.submit();

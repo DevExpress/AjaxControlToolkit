@@ -44,7 +44,7 @@ using System.Drawing.Design;
 
 namespace AjaxControlToolkit
 {
-    
+
     /// <summary>
     /// AjaxFileUpload enables you to upload multiple files to a server. Url of uploaded file can be passed
     /// back to client to use e.g. to display preview of image.
@@ -62,8 +62,11 @@ namespace AjaxControlToolkit
     {
         internal const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";
         private const string TemporaryUploadFolderName = "_AjaxFileUpload";
-        private string _uploadedFilePath = null;
 
+        /// <summary>
+        /// Location of uploaded temporary file path or absolute Uri when StoreToAzure set to true.
+        /// </summary>
+        private string _uploadedFilePath = null;
 
         #region [ Constructors ]
 
@@ -195,20 +198,26 @@ namespace AjaxControlToolkit
         /// If set to true, then uploaded files automatically stored to azure storage.
         /// You will need to set AzureConnectionString and AzureContainerName property.
         /// </summary>
+        [ExtenderControlProperty]
         [DefaultValue(false)]
-        public bool StoreToAzure { get; set; }
-
-        /// <summary>
-        /// Azure connection string to connect to Azure blob storage store your uploaded files.
-        /// This is only works when you set StoreToAzure property to true.
-        /// </summary>
-        public string AzureConnectionString { get; set; }
+        [ClientPropertyName("storeToAzure")]
+        public bool StoreToAzure
+        {
+#if NET45 || NET4
+            get;
+            set;
+#else
+            get { return false; }
+#endif
+        }
 
         /// <summary>
         /// Azure container name on blob storage where your uploaded files will be stored.
         /// If container is not exists then it will be created automatically.
         /// This is only works when you set StoreToAzure property to true.
         /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("azureContainerName")]
         public string AzureContainerName { get; set; }
 
         #endregion
@@ -252,12 +261,12 @@ namespace AjaxControlToolkit
         {
             base.OnPreRender(e);
 
-
             if (Page.Request.QueryString["contextkey"] == ContextKey)
             {
                 var fileId = this.Page.Request.QueryString["guid"];
                 Page.Response.ClearContent();
                 Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
 
                 if (this.Page.Request.QueryString["poll"] == "1" && !string.IsNullOrEmpty(fileId))
                 {
@@ -269,22 +278,32 @@ namespace AjaxControlToolkit
                 }
                 else if (this.Page.Request.QueryString["done"] == "1" && !string.IsNullOrEmpty(fileId))
                 {
+                    AjaxFileUploadEventArgs args;
 
-                    var tempFolder = BuildTempFolder(fileId);
-                    var fileName = Directory.GetFiles(tempFolder)[0];
-                    var fileInfo = new FileInfo(fileName);
-
-                    _uploadedFilePath = fileName;
-
-                    var args = new AjaxFileUploadEventArgs(
-                       fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
-                       fileInfo.Extension);
-
+#if NET45 || NET4
                     if (StoreToAzure)
                     {
-                        AjaxFileUploadAzureHelper.StoreToAzure(AzureConnectionString, AzureContainerName, args);
+                        var blobInfo = AjaxFileUploadAzureHelper.GetFileInfo(Context, fileId);
+                        args = new AjaxFileUploadEventArgs(fileId, AjaxFileUploadState.Success, "Success",
+                            blobInfo.Name, (int)blobInfo.Length, blobInfo.Extension);
+                        _uploadedFilePath = blobInfo.Uri.AbsoluteUri;
                     }
+                    else
+                    {
+#endif
+                        var tempFolder = BuildTempFolder(fileId);
+                        var fileName = Directory.GetFiles(tempFolder)[0];
+                        var fileInfo = new FileInfo(fileName);
 
+                        _uploadedFilePath = fileName;
+
+                        args = new AjaxFileUploadEventArgs(
+                            fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
+                            fileInfo.Extension);
+
+#if NET45 || NET4
+                    }
+#endif
                     if (UploadComplete != null)
                         UploadComplete(this, args);
 
@@ -299,20 +318,53 @@ namespace AjaxControlToolkit
         /// Saves the uploaded file with the specified file name.
         /// </summary>
         /// <param name="fileName">Physical file name with/without full path at server.</param>
+        /// <param name="deleteAzureBlob">
+        /// If set to true, Azure blob will automatically deleted when file saving is completed.
+        /// This only works when StoreToAzure property set to true, otherwise it will be ignored.
+        /// </param>
         public void SaveAs(string fileName)
         {
-            var dir = Path.GetDirectoryName(_uploadedFilePath);
-
-            // Override existing file if any
-            if (File.Exists(fileName))
-                File.Delete(fileName);
-
-            File.Move(_uploadedFilePath, fileName);
-
-            // Delete temporary data
-            Directory.Delete(dir);
+            SaveAs(fileName, false);
         }
-        
+
+        /// <summary>
+        /// Saves the uploaded file with the specified file name.
+        /// </summary>
+        /// <param name="fileName">Physical file name with/without full path at server.</param>
+        /// <param name="deleteAzureBlob">
+        /// If set to true, Azure blob will automatically deleted when file saving is completed.
+        /// This only works when StoreToAzure property set to true, otherwise it will be ignored.
+        /// </param>
+        public void SaveAs(string fileName, bool deleteAzureBlob)
+        {
+
+#if NET45 || NET4
+            if (StoreToAzure)
+            {
+                using (var stream = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
+                {
+                    AjaxFileUploadBlobInfo blobInfo;
+                    AjaxFileUploadAzureHelper.DownloadStream(_uploadedFilePath, stream, out blobInfo, deleteAzureBlob);
+                }
+            }
+            else
+            {
+#endif
+                var dir = Path.GetDirectoryName(_uploadedFilePath);
+
+                // Override existing file if any
+                if (File.Exists(fileName))
+                    File.Delete(fileName);
+
+                File.Move(_uploadedFilePath, fileName);
+
+                // Delete temporary data
+                Directory.Delete(dir);
+#if NET45 || NET4
+            }
+#endif
+        }
+
         /// <summary>
         /// Delete all temporary uploaded files from temporary folder.
         /// </summary>
@@ -587,10 +639,10 @@ namespace AjaxControlToolkit
         {
             get
             {
-#if (NET45 || NET4)
+#if NET45 || NET4
                 return true;
 #else
-               return false;
+                return false;
 #endif
             }
         }

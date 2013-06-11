@@ -14,7 +14,7 @@ namespace AjaxControlToolkit
     {
         private const int ChunkSize = 1024 * 1024 * 4;
         private const int ChunkSizeForPolling = 64 * 1024;
-                
+
         /// <summary>
         /// Add upload abort request.
         /// </summary>
@@ -33,18 +33,29 @@ namespace AjaxControlToolkit
         public static bool Process(HttpContext context)
         {
             var request = context.Request;
+            var storeToAzure = bool.Parse(request.QueryString["storeToAzure"] ?? "false");
+            var fileId = request.QueryString["fileId"];
+            var fileName = request.QueryString["fileName"];
+            var chunked = bool.Parse(request.QueryString["chunked"] ?? "false");
+            var firstChunk = bool.Parse(request.QueryString["firstChunk"] ?? "false");
+            var usePoll = bool.Parse(request.QueryString["usePoll"] ?? "false");
+            var azureContainerName = request.QueryString["acn"];
+
 #if NET45
             using (var stream = request.GetBufferedInputStream()) {
 #else
             using (var stream = request.GetBufferlessInputStream())
             {
 #endif
-                var success = ProcessStream(context, stream, 
-                    request.QueryString["fileId"],
-                    request.QueryString["fileName"],
-                    bool.Parse(request.QueryString["chunked"] ?? "false"),
-                    bool.Parse(request.QueryString["firstChunk"] ?? "false"),
-                    bool.Parse(request.QueryString["usePoll"] ?? "false"));
+                var success = false;
+                if (storeToAzure)
+                    success = AjaxFileUploadAzureHelper.ProcessStream(
+                        context, stream, fileId, fileName,
+                        chunked, firstChunk, usePoll, azureContainerName);
+                else
+                    success = ProcessStream(
+                        context, stream, fileId, fileName,
+                        chunked, firstChunk, usePoll);
 
                 if (!success)
 #if NET45
@@ -175,6 +186,7 @@ namespace AjaxControlToolkit
                             destination.Write(chunk, 0, length);
                         }
                     }
+
 
 
                     // There is no byte to read anymore, upload is finished.

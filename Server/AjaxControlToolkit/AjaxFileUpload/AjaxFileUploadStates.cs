@@ -26,11 +26,11 @@ namespace AjaxControlToolkit
         {
             get
             {
-                return decimal.Parse((string)_httpContext.Cache[GetSessionName("percent")] ?? "0");
+                return decimal.Parse((string)_httpContext.Cache[GetSessionName("fileLength")] ?? "0");
             }
             set
             {
-                _httpContext.Cache[GetSessionName("percent")] = value.ToString();
+                _httpContext.Cache[GetSessionName("fileLength")] = value.ToString();
             }
         }
 
@@ -59,7 +59,7 @@ namespace AjaxControlToolkit
                 return (uploaded / length) * 100;
             }
         }
-        
+
         public bool Abort
         {
             get
@@ -69,6 +69,35 @@ namespace AjaxControlToolkit
             set
             {
                 _httpContext.Cache[GetSessionName("abort")] = value.ToString();
+            }
+        }
+
+        public List<string> BlockList
+        {
+            get
+            {
+                if (_httpContext.Cache[GetSessionName("blockList")] == null)
+                    _httpContext.Cache[GetSessionName("blockList")] = new List<string>();
+                return (List<string>)_httpContext.Cache[GetSessionName("blockList")];
+            }
+            set
+            {
+                _httpContext.Cache[GetSessionName("blockList")] = value;
+            }
+        }
+
+        /// <summary>
+        /// Absoulte URI on blob azure storage of uploaded file.
+        /// </summary>
+        public string AzureBlobUri
+        {
+            get
+            {
+                return (string)_httpContext.Cache[GetSessionName("azureBlobUri")];
+            }
+            set
+            {
+                _httpContext.Cache[GetSessionName("azureBlobUri")] = value;
             }
         }
     }

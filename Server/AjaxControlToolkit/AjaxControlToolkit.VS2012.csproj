@@ -106,6 +106,7 @@
     <Compile Include="Accordion\AccordionPaneCollection.cs" />
     <Compile Include="Accordion\AutoSize.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadBlobInfo.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadDesigner.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadEventArgs.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadHandler.cs" />
