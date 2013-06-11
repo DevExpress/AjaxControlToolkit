@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
@@ -100,6 +101,24 @@ public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page
 
     }
 
+    protected void AjaxFileUpload1_UploadCompleteAll(object sender, AjaxFileUploadCompleteAllEventArgs e)
+    {
+        var startedAt = (DateTime)Session["uploadTime"];
+        var now = DateTime.Now;
+        e.ServerArguments = new JavaScriptSerializer()
+            .Serialize(new
+            {
+                duration = (now - startedAt).Seconds,
+                time = DateTime.Now.ToShortTimeString()
+            });
+    }
+
+    protected void AjaxFileUpload1_UploadStart(object sender, AjaxFileUploadStartEventArgs e)
+    {
+        var now = DateTime.Now;
+        e.ServerArguments = now.ToShortTimeString();
+        Session["uploadTime"] = now;
+    }
 }
 
 

@@ -26,6 +26,7 @@ Sys.Extended.UI.AjaxFileUpload.Control = function (element) {
     this._filesInQueue = [];
     this._isUploading = false;
     this._currentFileId = null;
+    this._currentQueueIndex = 0;
     this._canceled = false;
 };
 
@@ -57,12 +58,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         // define progress bar element
         elements.progressBar = getElement('_ProgressBar');
         elements.progressBarContainer = getElement('_ProgressBarContainer');
-       
+        
         if (this._useHtml5Support) {
 
             // define spesific elements for HTML5
-            elements.inputFile = getElement('_Html5InputFile');            
-            elements.dropZone = getElement('_Html5DropZone');            
+            elements.inputFile = getElement('_Html5InputFile');
+            elements.dropZone = getElement('_Html5DropZone');
         } else {
             
             // define spesific elements for non HTML5
@@ -71,7 +72,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this._elements = elements;
 
         // define processor
-        var processor = this._useHtml5Support
+        var processor = this._useHtml5Support 
             ? new Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5(this, elements)
             : new Sys.Extended.UI.AjaxFileUpload.Processor(this, elements);
 
@@ -85,7 +86,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         processor.initialize();
 
         this._processor = processor;
-        Sys.Extended.UI.AjaxFileUpload.Control.callBaseMethod(this, "initialize");        
+        Sys.Extended.UI.AjaxFileUpload.Control.callBaseMethod(this, "initialize");
     },
 
     dispose: function () {
@@ -140,7 +141,26 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this._isUploading = !this._isUploading;
         if (this._isUploading) {
             this._canceled = false;
-            this._processor.startUpload();
+            
+            // Tell server upload is started
+            var xhr = new XMLHttpRequest(),
+                self = this;
+            
+            xhr.open("POST", '?contextKey=' + this._contextKey
+                + "&start=1&queue=" + this._filesInQueue.length);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        self._processor.startUpload();
+                        self.raiseUploadStart(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
+                    } else {
+                        self.raiseUploadError(xhr);
+                        throw "Failed to starting upload.";
+                    }
+                }
+            };
+            xhr.send(null);
+
         } else {
             this._canceled = true;
             this._processor.cancelUpload();
@@ -184,9 +204,32 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this.enableControls(true);
         this.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_AllFilesUploaded + " " + Sys.Extended.UI.Resources.AjaxFileUpload_SelectFileToUpload);
         $common.setVisible(this._elements.uploadOrCancelButton, false);
+        
+        // Tell to server that all files has been uploaded.
+        var xhr = new XMLHttpRequest(),
+            self = this,
+            currentFile = this._filesInQueue[this._currentQueueIndex - 1];
+
+        xhr.open("POST", '?contextKey=' + this._contextKey
+            + "&complete=1&queue=" + this._filesInQueue.length
+            + "&uploaded=" + (this._currentQueueIndex - (currentFile._isUploaded ? 0 : 1))
+            + "&reason=" + (this._canceled ? "cancel" : "done"));
+        
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    self.raiseUploadCompleteAll(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
+                } else {
+                    self.raiseUploadError(xhr);
+                    throw "Failed to completing upload.";
+                }
+            }
+        };
+        xhr.send(null);
        
         // Reset queue
         this._filesInQueue = [];
+        this._currentQueueIndex = 0;
     },
     
     removeFileFromQueueHandler: function (e) {
@@ -239,6 +282,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         fileItem.setStatus('pending', Sys.Extended.UI.Resources.AjaxFileUpload_Pending);
 
         // Ensure the queue container is visible
+        $common.setVisible(this._elements.queueContainer, true);
         $common.setVisible(this._elements.uploadOrCancelButton, true);
 
         // add into queue.
@@ -307,13 +351,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         xhr.open("POST", "?contextKey="+ this._contextKey +"&done=1&guid=" + fileItem._id, true);
         xhr.onreadystatechange = function (e) {
             if (xhr.readyState == 4) {
-               if (xhr.status == 200) {
+                if (xhr.status == 200) {
 
-                // Mark as done and invoke event handler
+                    // Mark as done and invoke event handler
                     self.raiseUploadComplete(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
 
-                // Upload next file
-                   self._processor.startUpload();
+                    // Upload next file
+                    self._processor.startUpload();
 
                 } else {
                     // finalizing is error. next file will not be uploaded.
@@ -321,8 +365,29 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                     self.raiseUploadError(xhr);
                     throw "error raising upload complete event and start new upload";
                 }
+            }
         };
         xhr.send(null);
+    },
+    
+    cancelUpload: function () {
+        
+        var fileItem = this.getCurrentFileItem();
+        
+        // Reset file item state
+        fileItem._isUploaded = false;
+        fileItem._isUploading = false;
+        
+        // Update status
+        this.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_UploadCanceled);
+        
+        // Mark all rest un-uploaded files to be canceled
+        for (var i = 0; i < this._filesInQueue.length; i++) {
+            var file = this._filesInQueue[i];
+            if (!file._isUploaded) {
+                this.setFileStatus(file, 'cancelled', Sys.Extended.UI.Resources.AjaxFileUpload_Canceled);
+            }
+        }
     },
     
     setAsUploading: function (fileItem) {
@@ -333,8 +398,11 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         
         fileItem._isUploading = true;
         fileItem._isUploaded = false;
+
+        this._currentQueueIndex = Array.indexOf(this._filesInQueue, fileItem) + 1;
+
         this.setFileStatus(fileItem, 'uploading', Sys.Extended.UI.Resources.AjaxFileUpload_Uploading);
-        this.setStatusMessage('Uploading ' + (Array.indexOf(this._filesInQueue, fileItem)+1) + ' of ' + this._filesInQueue.length + ' file(s)');
+        this.setStatusMessage('Uploading ' + this._currentQueueIndex + ' of ' + this._filesInQueue.length + ' file(s)');
     },
     
     setFileStatus: function (fileItem, fileStatusText, text) {
@@ -344,6 +412,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         /// <param name="fileItem">file item or id</param>
         /// <param name="fileStatusText">status text</param>
         /// <param name="text">status resource</param>
+
         if (typeof (fileItem) === "string")
             fileItem = this.getFileItem(fileItem);
         if (fileItem)
@@ -357,8 +426,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         /// <param name="msg"></param>
         this._elements.fileStatusContainer.innerHTML = msg;
     },
-
-       
+    
     setPercent: function (percent) {
         /// <summary>
         /// Set percentage of progress bar.
@@ -366,9 +434,9 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         /// <param name="percent">percentage</param>
         var progressBar = this._elements.progressBar;
         if (percent <= 0)
-           percent = "0";
-       else if (percent >= 100)
-           percent = "100";
+            percent = "0";
+        else if (percent >= 100)
+            percent = "100";
 
         progressBar.style.width = percent + '%';
         $common.setText(progressBar, String.format(Sys.Extended.UI.Resources.AjaxFileUpload_UploadedPercentage, percent));
@@ -401,7 +469,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     set_mode: function (value) {
         this._mode = value;
     },
-   
+    
     get_serverPollingSupport: function () {
         return this._serverPollingSupport;
     },
@@ -429,27 +497,49 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     set_chunkSize: function (value) {
         this._chunkSize = value;
     },
-
+    
     get_storeToAzure: function () {
-       return this._storeToAzure;
-   },
-   set_storeToAzure: function (value) {
-       this._storeToAzure = value;
-   },
-   
-   get_azureContainerName: function () {
-       return this._azureContainerName;
-   },
-   set_azureContainerName: function (value) {
-       this._azureContainerName = value;
-   },
+        return this._storeToAzure;
+    },
+    set_storeToAzure: function (value) {
+        this._storeToAzure = value;
+    },
+    
+    get_azureContainerName: function () {
+        return this._azureContainerName;
+    },
+    set_azureContainerName: function (value) {
+        this._azureContainerName = value;
+    },
+    
+    add_uploadStart: function (handler) {
+        this.get_events().addHandler("uploadStart", handler);
+    },
+    remove_uploadStart: function (handler) {
+        this.get_events().removeHandler("uploadStart", handler);
+    },
 
     add_uploadComplete: function (handler) {
         this.get_events().addHandler("uploadComplete", handler);
     },
-
     remove_uploadComplete: function (handler) {
         this.get_events().removeHandler("uploadComplete", handler);
+    },
+    
+    add_uploadCompleteAll: function (handler) {
+        this.get_events().addHandler("uploadCompleteAll", handler);
+    },
+    remove_uploadCompleteAll: function (handler) {
+        this.get_events().removeHandler("uploadCompleteAll", handler);
+    },
+
+    raiseUploadStart: function(e) {
+        // Invoke uploadStart event
+        var eh = this.get_events().getHandler("uploadStart");
+        if (eh) {
+            var eventArgs = new Sys.Extended.UI.AjaxFileUploadStartEventArgs(e.FilesInQueue, e.ServerArguments);
+            eh(this, eventArgs);
+        }
     },
 
     raiseUploadComplete: function (e) {
@@ -465,8 +555,8 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
 
         // Mark and reset state that current file is uploaded
         this.setFileStatus(fileItem, 'uploaded', Sys.Extended.UI.Resources.AjaxFileUpload_Uploaded);
-        this.setStatusMessage('Uploaded ' + (Array.indexOf(this._filesInQueue, fileItem) + 1) + ' of ' + this._filesInQueue.length + ' file(s)');
-
+        this.setStatusMessage('Uploaded ' + this._currentQueueIndex + ' of ' + this._filesInQueue.length + ' file(s)');
+        
         fileItem._isUploaded = true;
         fileItem._isUploading = false;
         fileItem.hide();
@@ -483,24 +573,32 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         }
     },
     
+    raiseUploadCompleteAll: function(e) {
+        var eh = this.get_events().getHandler("uploadCompleteAll");
+        if (eh) {
+            var eventArgs = new Sys.Extended.UI.AjaxFileUploadCompleteAllEventArgs(e.FilesInQueue, e.FilesUploaded, e.Reason, e.ServerArguments);
+            eh(this, eventArgs);
+        }
+    },
+    
     add_uploadError: function (handler) {
-       this.get_events().addHandler("uploadError", handler);
+        this.get_events().addHandler("uploadError", handler);
     },
     remove_uploadError: function (handler) {
-       this.get_events().removeHandler("uploadError", handler);
+        this.get_events().removeHandler("uploadError", handler);
     },
     raiseUploadError: function (e) {
 
-       var eh = this.get_events().getHandler("uploadError");
-       if (eh) {
-           eh(this, e);
-       }
-       
-       this._canceled = false;
-       this._isUploading = false;
-       this.enableControls(true);
-    },   
+        var eh = this.get_events().getHandler("uploadError");
+        if (eh) {
+            eh(this, e);
+        }
 
+        this._canceled = false;
+        this._isUploading = false;
+        this.enableControls(true);
+    },
+    
     getCurrentFileItem: function () {
         /// <summary>
         /// Get file item based on current file id.
