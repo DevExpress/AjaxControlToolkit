@@ -722,9 +722,9 @@
                         if (tag.toLowerCase().substring(0, 2) != '<a') {
                             sQA = /\=\'([^\'])*\'/g; //single quoted attributes
                             nQA = /\=([^\"][^\s\/\>]*)/g; //non double quoted attributes
-                            return tag.replace(sQA, '="$1"').replace(nQA, '="$1"');
+                            return tag.replace(sQA, '="$1"').replace(nQA, '=$1');
                         }
-                        else {                            
+                        else {
                             return tag;
                         }
                     });
