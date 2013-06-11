@@ -74,7 +74,7 @@
             <br />
             <br />
             SlideShow also has capability to animate images. It supports animations of type - FadeInFadeOut, ScaleX, ScaleY, 
-            ZoomInOut, Rotate, LeftRight and UpDown. For animations of type LeftRight and UpDown you need to set properties 
+            ZoomInOut, Rotate, SlideLeft and SlideDown. For animations of type SlideLeft and SlideDown you need to set properties 
             ImageHeight and ImageWidth to get proper animation.
            <br />
         </p>
@@ -102,7 +102,7 @@
     <em>PreviousButtonID="prevButton" </em>
     <em>PlayButtonID="playButton" </em>
     <em>Loop="true" </em>
-   <em>SlideShowAnimationType="FadeInOut" </em>/&gt; </pre>
+   <em>SlideShowAnimationType="SlideRight" </em>/&gt; </pre>
         <ul>
             <li><strong>SlideShowServicePath</strong> - Path to the webservice that the extender will pull the images from.</li>
             <li><strong>SlideShowServiceMethod</strong> - The webservice method that will be called to supply images. 
@@ -137,9 +137,9 @@
             <li><strong>Loop</strong> - Setting this to true will allow you to view images in a round-robin fashion.</li>
             <li><strong>AutoPlay</strong> - Setting this to true will play the slideshow automatically on render.</li>
             <li><strong>AnimationType</strong> - Type of animation that will be happen during change of slides/images.</li>
-           <li><strong>ImageWidth</strong> - To set all images of same width to run animations - LeftRight and Updown 
+           <li><strong>ImageWidth</strong> - To set all images of same width to run animations - SlideLeft and SlideDown 
            smoothly</li>
-           <li><strong>ImageHeight</strong> - To set all images of same height to run animations - LeftRight and Updown 
+           <li><strong>ImageHeight</strong> - To set all images of same height to run animations - SlideLeft and SlideDown 
            smoothly</li>
         </ul>
     </asp:Panel>
