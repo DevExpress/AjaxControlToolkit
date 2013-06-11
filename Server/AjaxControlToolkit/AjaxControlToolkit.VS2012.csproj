@@ -112,6 +112,7 @@
     <Compile Include="AjaxFileUpload\AjaxFileUploadMode.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadStates.cs" />
     <Compile Include="AjaxFileUpload\FileHeaderInfo.cs" />
+    <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadAzureHelper.cs" />
     <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper.cs" />
     <Compile Include="AjaxFileUpload\Helpers\MultipartFormDataParser.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlDesigner.cs" />

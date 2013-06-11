@@ -191,6 +191,26 @@ namespace AjaxControlToolkit
             set { ViewState["Mode"] = value.ToString(); }
         }
 
+        /// <summary>
+        /// If set to true, then uploaded files automatically stored to azure storage.
+        /// You will need to set AzureConnectionString and AzureContainerName property.
+        /// </summary>
+        [DefaultValue(false)]
+        public bool StoreToAzure { get; set; }
+
+        /// <summary>
+        /// Azure connection string to connect to Azure blob storage store your uploaded files.
+        /// This is only works when you set StoreToAzure property to true.
+        /// </summary>
+        public string AzureConnectionString { get; set; }
+
+        /// <summary>
+        /// Azure container name on blob storage where your uploaded files will be stored.
+        /// If container is not exists then it will be created automatically.
+        /// This is only works when you set StoreToAzure property to true.
+        /// </summary>
+        public string AzureContainerName { get; set; }
+
         #endregion
 
         #region [ Members ]
@@ -259,6 +279,11 @@ namespace AjaxControlToolkit
                     var args = new AjaxFileUploadEventArgs(
                        fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
                        fileInfo.Extension);
+
+                    if (StoreToAzure)
+                    {
+                        AjaxFileUploadAzureHelper.StoreToAzure(AzureConnectionString, AzureContainerName, args);
+                    }
 
                     if (UploadComplete != null)
                         UploadComplete(this, args);
