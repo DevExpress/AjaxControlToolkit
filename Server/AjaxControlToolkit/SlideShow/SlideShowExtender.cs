@@ -238,6 +238,7 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(400)]
+        [Browsable(false)]
         [ClientPropertyName("imageWidth")]
         public int ImageWidth
         {
@@ -250,11 +251,21 @@ namespace AjaxControlToolkit
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(300)]
+        [Browsable(false)]
         [ClientPropertyName("imageHeight")]
         public int ImageHeight
         {
             get { return GetPropertyValue("ImageHeight", 300); }
             set { SetPropertyValue("ImageHeight", value); }
+        }
+
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+
+            Image image = (Image)TargetControl;
+            ImageHeight = (int)image.Height.Value;
+            ImageWidth = (int)image.Width.Value;
         }
     }
 }
