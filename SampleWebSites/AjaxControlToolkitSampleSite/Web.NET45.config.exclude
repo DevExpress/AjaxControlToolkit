@@ -11,6 +11,7 @@
   <appSettings>
     <add key="aspnet:UseTaskFriendlySynchronizationContext" value="true" />
     <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
+	<add key="AjaxFileUploadAzureConnectionString" value="UseDevelopmentStorage=true"/>
   </appSettings>
   <system.web>
     <sanitizer defaultProvider="HtmlAgilityPackSanitizerProvider">

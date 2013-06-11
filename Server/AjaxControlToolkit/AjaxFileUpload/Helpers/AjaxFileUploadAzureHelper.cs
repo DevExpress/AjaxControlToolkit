@@ -18,9 +18,9 @@ namespace AjaxControlToolkit
 
         static AjaxFileUploadAzureHelper()
         {
-            var conStrSetting = System.Web.Configuration.WebConfigurationManager.AppSettings["AjaxControlToolkitAzureConnectionString"];
+            var conStrSetting = System.Web.Configuration.WebConfigurationManager.AppSettings["AjaxFileUploadAzureConnectionString"];
             if (string.IsNullOrEmpty(conStrSetting))
-                throw new Exception("AjaxControlToolkitAzureConnectionString is not specified on web.config.");
+                throw new Exception("AjaxFileUploadAzureConnectionString is not specified on web.config.");
             AzureConnectionString = conStrSetting;
         }
 
