@@ -92,19 +92,43 @@
     </asp:Panel>
     <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
         <p>
-            AjaxFileUpload is an ASP.NET Ajax control which enables you to upload multiple files
-            to the server asynchronously. When the control is used with a browser which supports
-            the latest features of HTML5 -- such as Microsoft Internet Explorer 10, Mozilla
-            Firefox 9, or Google Chrome 17 -- then the AjaxFileUpload supports displaying file
-            upload progress. The control displays a progress bar as the file is being uploaded.
-        </p>   
-            <br />
-        <p>
-            If a browser does not support the HTML5 File API (for example, Internet Explorer
-            9) then upload progress is not displayed and a throbber image is displayed instead.
-            In other words, a busy wait image is displayed instead of actual progress.
+            AjaxFileUpload is an ASP.NET Ajax control which supports:
         </p>
+       <br />    
+           <ul>
+               <li>
+                   <p>
+                   Displaying File Upload Progress
+                   </p>
+               </li>
+               <li>
+                   <p>
+                   Uploading Very Large Files (greater than 1 Gigabyte)
+                   </p>
+               </li>
+               <li>
+                   Client-Side File Chunking 
+               </li>
+               <li>
+                   <p>                    
+                   Uploading Multiple Files at a Time
+                   </p>
+               </li>
+               <li>
+                   <p>
+                   Drag-and-Drop File Upload
+                   </p>
+               </li>
+           </ul> 
+           <br />            
+           <p>
+           The AjaxFileUpload control uses one of two methods of showing file upload progress. If you are using a browser which
+               fully supports the HTML5 File API (such as Google Chrome or Mozilla Firefox) then upload progress is displayed
+               using client-side events.  If, on the other hand, you are using a browser which does not fully support the HTML5 standard (such as Microsoft
+               Internet Explorer or Apple Safari) then file upload progress is displayed by polling the server.
+           </p>        
             <br />
+        
         <p>
             The AjaxFileUpload control also supports a drag-and-drop interface. You can add
             multiple files to the AjaxFileUpload upload queue by dragging the files onto the
@@ -142,13 +166,16 @@
        </asp:Panel>
    <asp:Panel ID="TemporaryData_ContentPanel" runat="server" Style="overflow: hidden;" Height="0px">
        <p>
-           The AjaxFileUpload using physical drive to store temporary data. Once file upload is started, 
-           it creates temporary folder under current user's temporary folder to store uploaded file chunk by chunk. 
-           This improvements allowed us to able uploading file in large size. </p><br/><p>
-           You must be aware that Write permissions in current user's temporary folder is granted for ASP.Net application.  
-           In order to keep your temporary folder always kept away from junk data, you may want to call 
-           <b>AjaxFileUploadEventArgs.DeleteTemporaryData()</b> or <b>AjaxFileUpload.CleanAllTemporaryData()</b> method.
-       </p>
+           The AjaxFileUpload control buffers the file being uploaded onto your web server's hard drive. This temporary
+           folder is located at Path.GetTempPath().
+        </p>
+       <br />
+       <p>
+           When you call the SaveAs() method to save the uploaded file to a new location, the AjaxFileUpload control
+           deletes the temporary file automatically. If you don't call the SaveAs() method (for example, you are saving the 
+           uploaded file to a database) then you need to call the AjaxFileUploadEventArgs.DeleteTemporaryData() method 
+           to delete the temporary file. 
+       </p>         
        <br/>        
        </asp:Panel>
 
@@ -161,14 +188,15 @@
        </asp:Panel>
    <asp:Panel ID="Handler_ContentPanel" runat="server" Style="overflow: hidden;" Height="0px">
        <p>
-           Uploaded file addresed to handler named <b>AjaxFileUploadHandler.axd</b>, 
-           this handler has a type <b>AjaxControlToolkit.AjaxFileUploadHandler</b>.
-           You have to add this handler to your Web.Config to make it work. 
+           The AjaxFileUpload control uses an HTTP Handler named <b>AjaxFileUploadHandler.axd</b>
+            
+           This handler has the type <b>AjaxControlToolkit.AjaxFileUploadHandler</b>.
+           You must add this handler to your Web.Config file in order for the AjaxFileUpload control to work. 
            
        </p>
        <br/>
 
-       <b>Here's the example Web.Config configuration that you must add:</b><br/>
+       <b>Here's the Web.Config configuration that you must add:</b><br/>
 
 <pre>&lt;system.web&gt;
 &nbsp;&nbsp;&nbsp;&nbsp;....
@@ -220,9 +248,13 @@
         <br />
         <b>Properties</b>
         <ul>
+            <li><strong>Mode</strong> - Determines how upload progress is displayed. Possible
+               values are Auto (the default), Client, and Server. If, for example, you want force the AjaxFileUpload
+               control to display upload progress by using server-side polling then set Mode="Server".
+           </li>
             <li><strong>ThrobberID</strong> - The ID of a control that is shown while the file is
                 uploading. The throbber image is displayed for browsers that do not support the
-                HTML5 File API.</li>
+                HTML5 File API or server-side polling.</li>
             <li><strong>ContextKeys</strong> - A dictionary that can be used to pass information
                 to the server when a file is uploaded.</li>
             <li><strong>MaximumNumberOfFiles</strong> - This property enables you to limit the number
@@ -232,9 +264,9 @@
                 to this property.</li>
             <li><strong>IsInFileUploadPostBack</strong> - This property has the value true when a page is 
                 created in response to an AjaxFileUpload asynchronous postback.</li>
-            <li><strong>OnClientUploadComplete</strong> - The name of a JavaScript function executed in 
+            <li><strong>OnClientUploadComplete</strong> - The name of a JavaScript function executed on 
                 the client-side after a file is uploaded successfully.</li>
-            <li><strong>OnClientUploadError</strong> - The name of a JavaScript function executed in the 
+            <li><strong>OnClientUploadError</strong> - The name of a JavaScript function executed on the 
                 client-side if the file upload failed.</li>
         </ul>
         <br />
