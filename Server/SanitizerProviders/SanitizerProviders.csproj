@@ -57,6 +57,10 @@
     <DefineConstants Condition=" $(DefineConstants.Contains(';NET')) ">$(DefineConstants.Remove($(DefineConstants.LastIndexOf(";NET"))));$(Framework)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\AjaxControlToolkit\bin\$(Framework)\Debug\AjaxControlToolkit.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>Assemblies\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -99,12 +103,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.csproj">
-      <Project>{f7685cd0-d9c3-4b2b-9d1d-26ada6f3a4f6}</Project>
-      <Name>AjaxControlToolkit</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
