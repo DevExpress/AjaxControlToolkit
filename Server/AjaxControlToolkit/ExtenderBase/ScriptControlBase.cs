@@ -357,11 +357,11 @@ namespace AjaxControlToolkit
             if (!Visible) return null;
 
             List<ScriptReference> refs = new List<ScriptReference>();
-            refs.AddRange(ScriptObjectBuilder.GetScriptReferences(GetType()));
-            if (ScriptPath.Length > 0)
-            {
-                refs.Add(new ScriptReference(ScriptPath));
-            }
+            //refs.AddRange(ScriptObjectBuilder.GetScriptReferences(GetType()));
+            //if (ScriptPath.Length > 0)
+            //{
+            //    refs.Add(new ScriptReference(ScriptPath));
+            //}
             return refs;
         }
 
