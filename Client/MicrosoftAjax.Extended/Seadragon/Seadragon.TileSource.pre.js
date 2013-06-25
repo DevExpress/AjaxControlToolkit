@@ -9,7 +9,7 @@ Sys.Extended.UI.Seadragon.TileSource = function(width, height, tileSize, tileOve
             Math.ceil(Math.log(Math.max(width, height)) / Math.log(2));
     this.tileSize = tileSize ? tileSize : 0;
     this.tileOverlap = tileOverlap ? tileOverlap : 0;
-}
+};
 Sys.Extended.UI.Seadragon.TileSource.prototype = {
     getLevelScale: function(level) {
         // equivalent to Math.pow(0.5, numLevels - level);
@@ -74,5 +74,5 @@ Sys.Extended.UI.Seadragon.TileSource.prototype = {
         return level >= this.minLevel && level <= this.maxLevel &&
                 x >= 0 && y >= 0 && x < numTiles.x && y < numTiles.y;
     }
-}
+};
 Sys.Extended.UI.Seadragon.TileSource.registerClass('Sys.Extended.UI.Seadragon.TileSource', null, Sys.IDisposable);

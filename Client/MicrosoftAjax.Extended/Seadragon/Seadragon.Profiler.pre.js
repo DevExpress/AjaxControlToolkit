@@ -15,7 +15,7 @@ Sys.Extended.UI.Seadragon.Profiler = function() {
     this._minIdleTime = Infinity;
     this._avgIdleTime = 0;
     this._maxIdleTime = 0;
-}
+};
 Sys.Extended.UI.Seadragon.Profiler.prototype = {
     // Methods -- UPDATE TIME ACCESSORS
 
@@ -117,5 +117,5 @@ Sys.Extended.UI.Seadragon.Profiler.prototype = {
         this._avgIdleTime = 0;
         this._maxIdleTime = 0;
     }
-}
+};
 Sys.Extended.UI.Seadragon.Profiler.registerClass('Sys.Extended.UI.Seadragon.Profiler', null, Sys.IDisposable);

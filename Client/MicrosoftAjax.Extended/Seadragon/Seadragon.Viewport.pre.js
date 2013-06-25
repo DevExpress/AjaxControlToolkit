@@ -13,7 +13,7 @@ Sys.Extended.UI.Seadragon.Viewport = function(containerSize, contentSize, config
 	this._homeBounds = new Sys.Extended.UI.Seadragon.Rect(0, 0, 1, this._contentHeight);
 	this.goHome(true);
 	this.update();
-}
+};
 Sys.Extended.UI.Seadragon.Viewport.prototype = {
 	_getHomeZoom: function() {
 		var aspectFactor = this._contentAspect / this.getAspectRatio();
@@ -344,6 +344,6 @@ Sys.Extended.UI.Seadragon.Viewport.prototype = {
 		var bounds = this.getBounds(current);
 		return pixel.divide(this._containerSize.x / bounds.width).plus(bounds.getTopLeft());
 	}
-}
+};
 Sys.Extended.UI.Seadragon.Viewport.registerClass('Sys.Extended.UI.Seadragon.Viewport', null, Sys.IDisposable);
 

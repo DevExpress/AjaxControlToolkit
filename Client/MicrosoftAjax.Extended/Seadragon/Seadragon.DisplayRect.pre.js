@@ -5,5 +5,5 @@ Sys.Extended.UI.Seadragon.DisplayRect.initializeBase(this, [x, y, width, height]
 
     this.minLevel = minLevel;
     this.maxLevel = maxLevel;
-}
+};
 Sys.Extended.UI.Seadragon.DisplayRect.registerClass('Sys.Extended.UI.Seadragon.DisplayRect', Sys.Extended.UI.Seadragon.Rect);

@@ -20,8 +20,7 @@ Sys.Extended.UI.ComboBoxAutoCompleteMode.prototype =
     Append: 1,
     Suggest: 2,
     SuggestAppend: 3
-}
-
+};
 Sys.Extended.UI.ComboBoxAutoCompleteMode.registerEnum(
     'Sys.Extended.UI.ComboBoxAutoCompleteMode', false);
 
@@ -31,8 +30,7 @@ Sys.Extended.UI.ComboBoxStyle.prototype =
     DropDownList: 0,
     DropDown: 1,
     Simple: 2
-}
-
+};
 Sys.Extended.UI.ComboBoxStyle.registerEnum(
     'Sys.Extended.UI.ComboBoxStyle', false);
 
@@ -42,8 +40,7 @@ Sys.Extended.UI.ComboBoxTextSelectionStrategy.prototype =
     Unknown: 0,
     Microsoft: 1,
     W3C: 2
-}
-
+};
 Sys.Extended.UI.ComboBoxTextSelectionStrategy.registerEnum(
     "Sys.Extended.UI.ComboBoxTextSelectionStrategy", false);
 
@@ -78,8 +75,7 @@ Sys.Extended.UI.ComboBox = function (element) {
 
     this.clearDelegates();
 
-}
-
+};
 Sys.Extended.UI.ComboBox.prototype = {
 
     initialize: function () {
@@ -286,7 +282,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
             var parent = this.get_element().parentNode;
             while (typeof (parent) != typeof (document.forms[0])) {
-                parent = parent.parentNode
+                parent = parent.parentNode;
             }
             var safariListContainer = document.createElement('div');
             safariListContainer.className = this.get_element().className;
@@ -971,7 +967,7 @@ Sys.Extended.UI.ComboBox.prototype = {
                 // to avoid scrollbar flickering during scrolls in IE, do not set className unless it is provided
                 if (this.get_listItemHoverCssClass() == undefined || this.get_listItemHoverCssClass() == '') {
                     liElement.style.backgroundColor = 'Highlight';
-                    liElement.style.color = 'HighlightText'
+                    liElement.style.color = 'HighlightText';
                 }
                 else {
                     liElement.className = this.get_listItemHoverCssClass;
@@ -991,7 +987,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         else {
             if (this.get_listItemHoverCssClass() == undefined || this.get_listItemHoverCssClass() == '') {
                 liElement.style.backgroundColor = '';
-                liElement.style.color = ''
+                liElement.style.color = '';
             }
             else {
                 liElement.className = '';
@@ -1101,7 +1097,7 @@ Sys.Extended.UI.ComboBox.prototype = {
             // if the dropdown is open, close it.
             if (this._popupBehavior._visible) {
                 if (this._highlightedIndex >= 0) {
-                    this.get_textBoxControl().value = this._optionListItems[this._highlightedIndex].text
+                    this.get_textBoxControl().value = this._optionListItems[this._highlightedIndex].text;
                     this.set_selectedIndex(this._highlightedIndex);
                     __doPostBack(this.get_element().id, '');
                 }
@@ -1407,8 +1403,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         // whether strings match exactly, depending on case sensitivity
         var exactMatch = (itemText == userText);
         if (!exactMatch && !this.get_caseSensitive())
-            exactMatch = (itemText.toLowerCase() == userText.toLowerCase())
-
+            exactMatch = (itemText.toLowerCase() == userText.toLowerCase());
         return exactMatch;
 
     },
@@ -1431,11 +1426,11 @@ Sys.Extended.UI.ComboBox.prototype = {
 
             // opera wants to also invoke the W3C setSelectionRange method
             if (Sys.Browser.agent == Sys.Browser.Opera) {
-                textBox.setSelectionRange(selectionStart, selectionEnd)
+                textBox.setSelectionRange(selectionStart, selectionEnd);
             }
         }
         else if (strategy == Sys.Extended.UI.ComboBoxTextSelectionStrategy.W3C) {
-            textBox.setSelectionRange(selectionStart, selectionEnd)
+            textBox.setSelectionRange(selectionStart, selectionEnd);
         }
 
     },
@@ -1810,8 +1805,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
     }
 
-}
-
+};
 Sys.Extended.UI.ComboBox.registerClass('Sys.Extended.UI.ComboBox', Sys.UI.Control);
 
 //if (typeof (Sys) !== 'undefined') Sys.Application.notifyScriptLoaded();
@@ -1829,4 +1823,4 @@ Sys.Extended.UI.ComboBox.IsOpen = function (currentInstance) {
             }
         }
     }
-}
+};

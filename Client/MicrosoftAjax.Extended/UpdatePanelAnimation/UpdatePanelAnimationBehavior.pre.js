@@ -29,7 +29,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior = function (element) {
     this._postBackPending = null;
     this._pageLoadedHandler = null;
     this._AlwaysFinishOnUpdatingAnimation = null;
-}
+};
 Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     initialize: function () {
         /// <summary>
@@ -194,7 +194,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
             this.raisePropertyChanged('AlwaysFinishOnUpdatingAnimation');
         }
     }
-}
+};
 Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.registerClass('Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior', Sys.Extended.UI.BehaviorBase);
 //    // Create a type descriptor
 //    getDescriptor : function() {

@@ -7,7 +7,7 @@ Sys.Extended.UI.Seadragon.Rect = function(x, y, width, height) {
     this.y = typeof (y) == "number" ? y : 0;
     this.width = typeof (width) == "number" ? width : 0;
     this.height = typeof (height) == "number" ? height : 0;
-}
+};
 Sys.Extended.UI.Seadragon.Rect.prototype = {
     getAspectRatio: function() {
         return this.width / this.height;
@@ -40,5 +40,5 @@ Sys.Extended.UI.Seadragon.Rect.prototype = {
         return "[" + this.x + "," + this.y + "," + this.width + "x" +
                 this.height + "]";
     }
-}
+};
 Sys.Extended.UI.Seadragon.Rect.registerClass('Sys.Extended.UI.Seadragon.Rect', null, Sys.IDisposable);

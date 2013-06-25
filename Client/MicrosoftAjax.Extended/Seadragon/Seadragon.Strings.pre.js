@@ -63,7 +63,7 @@ Sys.Extended.UI.Seadragon.Strings = {
         container[props[i]] = value;
     }
 
-}
+};
 Seadragon.Strings = Sys.Extended.UI.Seadragon.Strings;
 
 

@@ -69,6 +69,6 @@ Sys.Extended.UI.Seadragon.Config = function() {
             HOVER: '<%= WebResource("Seadragon.images.fullpage_hover.png") %>',
             DOWN: '<%= WebResource("Seadragon.images.fullpage_pressed.png") %>'
         }
-    }
-}
+    };
+};
 Sys.Extended.UI.Seadragon.Config.registerClass('Sys.Extended.UI.Seadragon.Config', null, Sys.IDisposable);

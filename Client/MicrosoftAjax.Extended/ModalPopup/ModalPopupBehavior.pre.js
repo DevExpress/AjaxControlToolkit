@@ -25,13 +25,13 @@ Sys.Extended.UI.ModalPopupRepositionMode = function () {
     /// <field name="RepositionOnWindowScroll" type="Number" integer="true" />
     /// <field name="RepositionOnWindowResizeAndScroll" type="Number" integer="true" />
     throw Error.invalidOperation();
-}
+};
 Sys.Extended.UI.ModalPopupRepositionMode.prototype = {
     None: 0,
     RepositionOnWindowResize: 1,
     RepositionOnWindowScroll: 2,
     RepositionOnWindowResizeAndScroll: 3
-}
+};
 Sys.Extended.UI.ModalPopupRepositionMode.registerEnum('Sys.Extended.UI.ModalPopupRepositionMode');
 
 
@@ -86,7 +86,7 @@ Sys.Extended.UI.ModalPopupBehavior = function (element) {
     this._hidingAnimationEndedHandler = null;
     this._showingAnimationEndedHandler = null;
 
-}
+};
 Sys.Extended.UI.ModalPopupBehavior.prototype = {
     initialize: function () {
         /// <summary>
@@ -1063,7 +1063,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             handler(this, eventArgs);
         }
     }
-}
+};
 Sys.Extended.UI.ModalPopupBehavior.registerClass('Sys.Extended.UI.ModalPopupBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
 
 Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function (behaviorID, show) {
@@ -1087,5 +1087,5 @@ Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function (behaviorID, show)
             behavior.hide();
         }
     }
-}
+};
 
