@@ -85,7 +85,7 @@ namespace AjaxControlToolkit
                 {
                     var configParam = (!string.IsNullOrEmpty(_controlsConfig)
                                           ? "Custom_" + ClientID
-                                          : "Default") + ";" + ScriptMode.ToString();
+                                          : "Default") + ";" + ScriptMode.ToString() + (ScriptMode == ScriptMode.Debug ? ";bust=" + Guid.NewGuid() : "");
                     var combinedScriptUrl = String.Format(CultureInfo.InvariantCulture, 
                         "{0}?{1}={2}",
                         ((null != _combineScriptsHandlerUrl) ? Page.ResolveUrl(_combineScriptsHandlerUrl.ToString()) : Page.Request.Path.Replace(" ", "%20")),

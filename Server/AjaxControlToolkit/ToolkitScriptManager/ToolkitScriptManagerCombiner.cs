@@ -69,15 +69,18 @@ namespace AjaxControlToolkit
                 HttpResponse response = context.Response;
                 response.ContentType = "application/x-javascript";
 
-                // Set the same (~forever) caching rules that ScriptResource.axd uses
-                HttpCachePolicy cache = response.Cache;
-                cache.SetCacheability(HttpCacheability.Public);
-                //cache.VaryByParams[HiddenFieldParamName] = true;
-                cache.VaryByParams[CombinedScriptsParamName] = true;
-                cache.SetOmitVaryStar(true);
-                cache.SetExpires(DateTime.Now.AddDays(365));
-                cache.SetValidUntilExpires(true);
-                cache.SetLastModifiedFromFileDependencies();
+                // Only cache script when not in Debug mode
+                if (scriptMode != ScriptMode.Debug)
+                {
+                    // Set the same (~forever) caching rules that ScriptResource.axd uses
+                    HttpCachePolicy cache = response.Cache;
+                    cache.SetCacheability(HttpCacheability.Public);
+                    cache.VaryByParams[CombinedScriptsParamName] = true;
+                    cache.SetOmitVaryStar(true);
+                    cache.SetExpires(DateTime.Now.AddDays(365));
+                    cache.SetValidUntilExpires(true);
+                    cache.SetLastModifiedFromFileDependencies();
+                }
 
                 // Get the stream to write the combined script to (using a compressed stream if requested)
                 // Note that certain versions of IE6 have difficulty with compressed responses, so we
