@@ -36,15 +36,14 @@ namespace AjaxControlToolkit
         /// Outputs the combined script file requested by the HttpRequest to the HttpResponse
         /// </summary>
         /// <param name="context">HttpContext for the transaction</param>
-        /// <param name="scriptMode">Render unminified script version if set to Debug</param>
-        /// /// <param name="configFilePath">Path for controls config</param>
+        /// <param name="configFilePath">Path for controls config</param>
         /// <returns>true if the script file was output</returns>
         internal bool OutputCombinedScriptFile(HttpContext context, string configFilePath)
         {
             // Initialize
             bool output = false;
             HttpRequest request = context.Request;
-            //string hiddenFieldName;
+
             string combinedScripts;
             if (request.RequestType.ToUpper() == "GET")
             {
@@ -61,26 +60,20 @@ namespace AjaxControlToolkit
 
             if (!string.IsNullOrEmpty(combinedScripts))
             {
-
-                var combineOptions = combinedScripts.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries);
-                var scriptMode = (ScriptMode)Enum.Parse(typeof (ScriptMode), combineOptions[1]);
-
                 // This is a request for a combined script file
                 HttpResponse response = context.Response;
                 response.ContentType = "application/x-javascript";
 
+                HttpCachePolicy cache = response.Cache;
+
                 // Only cache script when not in Debug mode
-                if (scriptMode != ScriptMode.Debug)
-                {
-                    // Set the same (~forever) caching rules that ScriptResource.axd uses
-                    HttpCachePolicy cache = response.Cache;
-                    cache.SetCacheability(HttpCacheability.Public);
-                    cache.VaryByParams[CombinedScriptsParamName] = true;
-                    cache.SetOmitVaryStar(true);
-                    cache.SetExpires(DateTime.Now.AddDays(365));
-                    cache.SetValidUntilExpires(true);
-                    cache.SetLastModifiedFromFileDependencies();
-                }
+                // Set the same (~forever) caching rules that ScriptResource.axd uses
+                cache.SetCacheability(HttpCacheability.Public);
+                cache.VaryByParams[CombinedScriptsParamName] = true;
+                cache.SetOmitVaryStar(true);
+                cache.SetExpires(DateTime.Now.AddDays(365));
+                cache.SetValidUntilExpires(true);
+                cache.SetLastModifiedFromFileDependencies();
 
                 // Get the stream to write the combined script to (using a compressed stream if requested)
                 // Note that certain versions of IE6 have difficulty with compressed responses, so we
@@ -112,7 +105,7 @@ namespace AjaxControlToolkit
                 using (StreamWriter outputWriter = new StreamWriter(outputStream))
                 {
                     // Get the list of scripts to combine
-                    List<ScriptEntry> scriptEntries = DeserializeScriptEntries(scriptMode, configFilePath);
+                    List<ScriptEntry> scriptEntries = DeserializeScriptEntries(ScriptMode.Auto, configFilePath);
 
                     // Write the scripts
                     WriteScripts(scriptEntries, outputWriter);
@@ -126,12 +119,23 @@ namespace AjaxControlToolkit
             return output;
         }
 
+        /// <summary>
+        /// Get script entries based on config file.
+        /// </summary>
+        /// <param name="scriptMode">When set to Debug then load un-minified version of script, otherwise minified.</param>
+        /// <param name="configFilePath">Path of config file.</param>
+        /// <returns>List of script entry</returns>
         private List<ScriptEntry> DeserializeScriptEntries(ScriptMode scriptMode, string configFilePath)
         {
             var scriptReferences = GetScriptReferences(configFilePath);
             return scriptReferences.Select(scriptRef => new ScriptEntry(scriptRef, scriptMode)).ToList();
         }
 
+        /// <summary>
+        /// Load all script references needed by toolkits registered at config file.
+        /// </summary>
+        /// <param name="configFilePath">Path of config file</param>
+        /// <returns>List of script reference</returns>
         internal List<ScriptReference> GetScriptReferences(string configFilePath)
         {
             var scriptReferences = new List<ScriptReference>();

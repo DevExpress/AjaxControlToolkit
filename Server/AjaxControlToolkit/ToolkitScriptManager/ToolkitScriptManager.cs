@@ -81,11 +81,12 @@ namespace AjaxControlToolkit
         {
             if (!IsInAsyncPostBack)
             {
-                if (_combineScripts)
+                if (_combineScripts && ScriptMode != ScriptMode.Debug)
                 {
-                    var configParam = (!string.IsNullOrEmpty(_controlsConfig)
+                    var configParam = !string.IsNullOrEmpty(_controlsConfig)
                                           ? "Custom_" + ClientID
-                                          : "Default") + ";" + ScriptMode.ToString() + (ScriptMode == ScriptMode.Debug ? ";bust=" + Guid.NewGuid() : "");
+                                          : "Default";
+
                     var combinedScriptUrl = String.Format(CultureInfo.InvariantCulture, 
                         "{0}?{1}={2}",
                         ((null != _combineScriptsHandlerUrl) ? Page.ResolveUrl(_combineScriptsHandlerUrl.ToString()) : Page.Request.Path.Replace(" ", "%20")),
@@ -94,6 +95,12 @@ namespace AjaxControlToolkit
                 }
                 else
                 {
+                    var cache = Page.Response.Cache;
+                    
+                    // Send a no-cache, no-store header
+                    cache.SetCacheability(HttpCacheability.NoCache);
+                    cache.SetNoStore();
+
                     var scriptReferences = Combiner.GetScriptReferences(_controlsConfig);
                     foreach (var scriptRef in scriptReferences)
                     {
