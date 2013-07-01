@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
+using Microsoft.Ajax.Utilities;
 
 namespace AjaxControlToolkit
 {
@@ -105,11 +106,23 @@ namespace AjaxControlToolkit
                 using (StreamWriter outputWriter = new StreamWriter(outputStream))
                 {
                     // Get the list of scripts to combine
-                    List<ScriptEntry> scriptEntries = DeserializeScriptEntries(ScriptMode.Auto, configFilePath);
+                    List<ScriptEntry> scriptEntries = DeserializeScriptEntries(configFilePath);
 
-                    // Write the scripts
-                    WriteScripts(scriptEntries, outputWriter);
+                    var js = "";
+                    using (var ms = new MemoryStream())
+                    {
+                        var writer = new StreamWriter(ms);
+                        // Write the scripts
+                        WriteScripts(scriptEntries, writer);
+                        writer.Flush();
 
+                        ms.Position = 0;
+                        js = (new StreamReader(ms)).ReadToEnd();
+                    }
+
+                    var minifier = new Minifier();
+                    var jsContents = minifier.MinifyJavaScript(js);
+                    outputWriter.WriteLine(jsContents);
                     // Write the ASP.NET AJAX script notification code
                     outputWriter.WriteLine("if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
                 }
@@ -122,13 +135,12 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Get script entries based on config file.
         /// </summary>
-        /// <param name="scriptMode">When set to Debug then load un-minified version of script, otherwise minified.</param>
         /// <param name="configFilePath">Path of config file.</param>
         /// <returns>List of script entry</returns>
-        private List<ScriptEntry> DeserializeScriptEntries(ScriptMode scriptMode, string configFilePath)
+        private List<ScriptEntry> DeserializeScriptEntries(string configFilePath)
         {
             var scriptReferences = GetScriptReferences(configFilePath);
-            return scriptReferences.Select(scriptRef => new ScriptEntry(scriptRef, scriptMode)).ToList();
+            return scriptReferences.Select(scriptRef => new ScriptEntry(scriptRef)).ToList();
         }
 
         /// <summary>
@@ -176,8 +188,6 @@ namespace AjaxControlToolkit
                     if (combineStatus == ScriptCombineStatus.Combineable)
                     {
                         // This script hasn't been loaded by the browser, so add it to the combined script file
-                        outputWriter.Write("//START ");
-                        outputWriter.WriteLine(scriptEntry.Name);
                         string script = scriptEntry.GetScript();
                         if (WebResourceRegex.IsMatch(script))
                         {
@@ -259,8 +269,6 @@ namespace AjaxControlToolkit
                         }
 
                         // Done with this script
-                        outputWriter.Write("//END ");
-                        outputWriter.WriteLine(scriptEntry.Name);
                     }
 
                     // This script is now (or will be soon) loaded by the browser
@@ -522,22 +530,24 @@ namespace AjaxControlToolkit
             /// <param name="assembly">containing assembly</param>
             /// <param name="name">script name</param>
             /// <param name="culture">culture for rendering the script</param>
-            /// <param name="scriptMode">when set to Debug mode, script rendered as unminified</param>
-            public ScriptEntry(string assembly, string name, string culture, ScriptMode scriptMode)
+            public ScriptEntry(string assembly, string name, string culture)
             {
                 _assembly = assembly;
                 Name = name;
                 Culture = culture;
-                _scriptMode = scriptMode;
+#if DEBUG
+                _scriptMode = ScriptMode.Debug;
+#else
+                _scriptMode = ScriptMode.Release;
+#endif
             }
 
             /// <summary>
             /// Constructor
             /// </summary>
             /// <param name="scriptReference">script reference</param>
-            /// <param name="scriptMode">when set to Debug mode, script rendered as unminified</param>
-            public ScriptEntry(ScriptReference scriptReference, ScriptMode scriptMode)
-                : this(scriptReference.Assembly, scriptReference.Name, null, scriptMode)
+            public ScriptEntry(ScriptReference scriptReference)
+                : this(scriptReference.Assembly, scriptReference.Name, null)
             {
             }
 

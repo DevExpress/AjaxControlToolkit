@@ -102,6 +102,9 @@
   <Choose>
     <When Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">
       <ItemGroup>
+        <Reference Include="AjaxMin">
+          <HintPath>..\..\packages\AjaxMin.4.95.4924.12392\lib\net40\AjaxMin.dll</HintPath>
+        </Reference>
         <Reference Include="Microsoft.WindowsAzure.Storage, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
         <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper.cs" />
         <Compile Include="AjaxFileUpload\AjaxFileUploadBlobInfo.cs" />
@@ -110,6 +113,9 @@
     </When>
     <When Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">
       <ItemGroup>
+        <Reference Include="AjaxMin">
+          <HintPath>..\..\packages\AjaxMin.4.95.4924.12392\lib\net40\AjaxMin.dll</HintPath>
+        </Reference>
         <Reference Include="Microsoft.WindowsAzure.Storage, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
         <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper.cs" />
         <Compile Include="AjaxFileUpload\AjaxFileUploadBlobInfo.cs" />
@@ -118,6 +124,9 @@
     </When>
     <When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
       <ItemGroup>
+        <Reference Include="AjaxMin">
+          <HintPath>..\..\packages\AjaxMin.4.95.4924.12392\lib\net35\AjaxMin.dll</HintPath>
+        </Reference>
         <Compile Include="AjaxFileUpload\Helpers\AjaxFileUploadHelper35.cs" />
       </ItemGroup>
     </When>
@@ -751,6 +760,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ExtenderBase\Design\ExternalReferences.t4" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\..\Client\MicrosoftAjax\Resources\DataContext.Res.resx">
@@ -887,7 +897,6 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
-  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
   <Target Name="BeforeBuild">
     <MakeDir Directories="ScriptOutput" />
     <!-- clean out old files from previous build -->
@@ -913,7 +922,6 @@
     <ItemGroup>
       <JS Include="ScriptOutput\**\*.js" Exclude="ScriptOutput\**\*.debug.*" />
     </ItemGroup>
-    <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
     <!-- Copy Server project Images and CSS into the Scripts Folder -->
     <ItemGroup>
       <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css;" />

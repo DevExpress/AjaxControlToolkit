@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -83,14 +84,15 @@ namespace AjaxControlToolkit
             {
                 if (_combineScripts && ScriptMode != ScriptMode.Debug)
                 {
+                    var version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
                     var configParam = !string.IsNullOrEmpty(_controlsConfig)
                                           ? "Custom_" + ClientID
                                           : "Default";
 
                     var combinedScriptUrl = String.Format(CultureInfo.InvariantCulture, 
-                        "{0}?{1}={2}",
+                        "{0}?{1}={2}&v={3}",
                         ((null != _combineScriptsHandlerUrl) ? Page.ResolveUrl(_combineScriptsHandlerUrl.ToString()) : Page.Request.Path.Replace(" ", "%20")),
-                        ToolkitScriptManagerCombiner.CombinedScriptsParamName, configParam);
+                        ToolkitScriptManagerCombiner.CombinedScriptsParamName, configParam, version);
                     Scripts.Add(new ScriptReference(combinedScriptUrl));
                 }
                 else
