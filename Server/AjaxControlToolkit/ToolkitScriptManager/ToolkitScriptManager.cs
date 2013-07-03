@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -17,16 +18,70 @@ namespace AjaxControlToolkit
     public class ToolkitScriptManager : ScriptManager
     {
         /// <summary>
+        /// Request param name for the serialized combined scripts string
+        /// </summary>
+        internal const string CombinedScriptsParamName = "_TSM_CombinedScripts_";
+
+        /// <summary>
+        /// Request param name for the hidden field name
+        /// </summary>
+        internal const string HiddenFieldParamName = "_TSM_HiddenField_";
+
+        /// <summary>
         /// Regular expression for detecting WebResource/ScriptResource substitutions in script files
         /// </summary>
         protected static readonly Regex WebResourceRegex = ToolkitScriptManagerCombiner.WebResourceRegex;
 
-        private static readonly ToolkitScriptManagerCombiner Combiner = new ToolkitScriptManagerCombiner();
+        /// <summary>
+        /// Backing field for Combiner. Please don't use this for operational, use Combiner instead.
+        /// </summary>
+        private static ToolkitScriptManagerCombiner _combiner;
 
         private string _controlsConfig;
         private bool _combineScripts = true;
         private Uri _combineScriptsHandlerUrl;
+        private string _combinedScriptUrl;
 
+        /// <summary>
+        /// Initialize and get ToolkitScriptManagerCombiner
+        /// </summary>
+        private static ToolkitScriptManagerCombiner Combiner
+        {
+            get
+            {
+                if (_combiner == null)
+                {
+                    // Determine is user uses custom cache provider
+                    IAjaxControlToolkitCacheProvider cacheProvider = null;
+                    var customCacheProviderSetting = ConfigurationManager.AppSettings["AjaxControlToolkitCacheProvider"];
+                    if (customCacheProviderSetting != null)
+                    {
+                        try
+                        {
+                            var assemblyInfo = customCacheProviderSetting.Split(new[] { "," },
+                                                                                      StringSplitOptions.RemoveEmptyEntries);
+                            cacheProvider =
+                                (IAjaxControlToolkitCacheProvider)
+                                Activator.CreateInstance(assemblyInfo[0], assemblyInfo[1]).Unwrap();
+                        }
+                        catch (Exception e)
+                        {
+                            throw new Exception("Failed to activate custom cache provider " +
+                                                    customCacheProviderSetting, e);
+                        }
+                    }
+
+                    // Use default cache provider if custom cache provider not found
+                    if (cacheProvider == null)
+                        cacheProvider = new AjaxControlToolkitCacheProvider();
+
+                    // Initialize ToolkitScriptManagerCombiner
+                    _combiner = new ToolkitScriptManagerCombiner(cacheProvider);
+                }
+
+                return _combiner;
+            }
+        }
 
         /// <summary>
         /// Specifies whether or not multiple script references should be combined into a single file
@@ -66,7 +121,7 @@ namespace AjaxControlToolkit
         /// <param name="e">event args</param>
         protected override void OnInit(EventArgs e)
         {
-            if (!DesignMode && (null != Context) && OutputCombinedScriptFile(Context, _controlsConfig))
+            if (!DesignMode && (null != Context) && Combiner.OutputCombinedScriptFile(Context, _controlsConfig))
             {
                 // This was a combined script request that was satisfied; end all processing now
                 Page.Response.End();
@@ -84,16 +139,14 @@ namespace AjaxControlToolkit
             {
                 if (_combineScripts && ScriptMode != ScriptMode.Debug)
                 {
-                    var version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                    var configParam = !string.IsNullOrEmpty(_controlsConfig)
+                    var contentHash = Combiner.GetContentHash(_controlsConfig);
+                    var configParam = !String.IsNullOrEmpty(_controlsConfig)
                                           ? "Custom_" + ClientID
                                           : "Default";
 
-                    var combinedScriptUrl = String.Format(CultureInfo.InvariantCulture, 
-                        "{0}?{1}={2}&v={3}",
-                        ((null != _combineScriptsHandlerUrl) ? Page.ResolveUrl(_combineScriptsHandlerUrl.ToString()) : Page.Request.Path.Replace(" ", "%20")),
-                        ToolkitScriptManagerCombiner.CombinedScriptsParamName, configParam, version);
-                    Scripts.Add(new ScriptReference(combinedScriptUrl));
+                    Page.ClientScript.RegisterHiddenField(HiddenFieldParamName, configParam+";"+contentHash);
+                    _combinedScriptUrl = BuildCombinedScriptUrl(configParam, contentHash);
+                    Scripts.Add(new ScriptReference(_combinedScriptUrl));
                 }
                 else
                 {
@@ -114,6 +167,17 @@ namespace AjaxControlToolkit
             base.OnLoad(e);
         }
 
+        private string BuildCombinedScriptUrl(string configParam, string contentHash)
+        {
+            return String.Format(CultureInfo.InvariantCulture,
+                                               "{0}?{1}={2}&{3}={4}",
+                                               ((null != _combineScriptsHandlerUrl)
+                                                    ? Page.ResolveUrl(_combineScriptsHandlerUrl.ToString())
+                                                    : Page.Request.Path.Replace(" ", "%20")),
+                                               CombinedScriptsParamName, configParam,
+                                               ToolkitScriptManagerCombiner.CacheBustParamName, contentHash);
+        }
+
         /// <summary>
         /// Outputs the combined script file requested by the HttpRequest to the HttpResponse.
         /// If AjaxControlToolkit.config is exists on root folder of web, then combined scripts 
@@ -122,18 +186,7 @@ namespace AjaxControlToolkit
         /// <param name="context">HttpContext for the transaction</param>
         public static bool OutputCombinedScriptFile(HttpContext context)
         {
-            return OutputCombinedScriptFile(context, null);
-        }
-
-        /// <summary>
-        /// Outputs the combined script file requested by the HttpRequest to the HttpResponse
-        /// Combined scripts determined from settings on configuration file at configFilePath.
-        /// </summary>
-        /// <param name="context">HttpContext for the transaction</param>
-        /// <param name="configFilePath">Path for controls config</param>
-        public static bool OutputCombinedScriptFile(HttpContext context, string configFilePath)
-        {
-            return Combiner.OutputCombinedScriptFile(context, configFilePath);
+            return Combiner.OutputCombinedScriptFile(context, null);
         }
 
         /// <summary>
@@ -141,7 +194,7 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="value">value to quote</param>
         /// <returns>quoted string</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity",
+        [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity",
             Justification = "Callable implementation of System.Web.Script.Serialization.JavaScriptString.QuoteString")]
         protected static string QuoteString(string value)
         {
@@ -153,10 +206,10 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="builder">string builder</param>
         /// <param name="c">character to append</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods",
             Justification =
                 "Callable implementation of System.Web.Script.Serialization.JavaScriptString.AppendCharAsUnicode")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming",
+        [SuppressMessage("Microsoft.Naming",
             "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "c",
             Justification =
                 "Callable implementation of System.Web.Script.Serialization.JavaScriptString.AppendCharAsUnicode")]
@@ -165,5 +218,28 @@ namespace AjaxControlToolkit
             ToolkitScriptManagerCombiner.AppendCharAsUnicode(builder, c);
         }
 
+
+        protected override void OnResolveScriptReference(ScriptReferenceEventArgs e)
+        {
+            base.OnResolveScriptReference(e);
+            if (_combineScripts && ScriptMode != ScriptMode.Debug && !String.IsNullOrEmpty(e.Script.Assembly)
+                && !String.IsNullOrEmpty(e.Script.Name) && Combiner.IsScriptRegistered(e.Script))
+            {
+                if (IsInAsyncPostBack && String.IsNullOrEmpty(_combinedScriptUrl))
+                {
+                    var hiddenParam = Page.Request.Form[HiddenFieldParamName];
+                    if(String.IsNullOrEmpty(hiddenParam))
+                        throw new Exception(HiddenFieldParamName + " is empty");
+
+                    var configParam = hiddenParam.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)[0];
+                    var contentHash = hiddenParam.Substring(configParam.Length + 1);
+                    _combinedScriptUrl = BuildCombinedScriptUrl(configParam, contentHash);
+                }
+
+                e.Script.Name = "";
+                e.Script.Assembly = "";
+                e.Script.Path = _combinedScriptUrl;
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Xml.Serialization;
 
@@ -90,36 +91,51 @@ namespace AjaxControlToolkit
         /// <returns>All registered controls types.</returns>
         internal static List<Type> GetRegisteredControls(string configFilePath)
         {
-            var selectedControlTypes = new List<string>();
+            var selectedControlTypesName = new List<string>();
             var loadAllControls = true;
+            SettingsControl[] customControls = null;
+            var fileName =
+                HttpContext.Current.Server.MapPath(string.IsNullOrEmpty(configFilePath)
+                                                       ? "~/AjaxControlToolkit.config"
+                                                       : configFilePath);
 
-            if (!string.IsNullOrEmpty(configFilePath))
+            if (!string.IsNullOrEmpty(configFilePath) && !File.Exists(fileName))
+                throw new Exception("Could not find AjaxControlToolkit configuration file named on path " +
+                                    configFilePath);
+
+            var serializer = new XmlSerializer(typeof (Settings));
+
+            using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
-                var fileName =
-                    HttpContext.Current.Server.MapPath(string.IsNullOrEmpty(configFilePath)
-                                                           ? "~/AjaxControlToolkit.config"
-                                                           : configFilePath);
-                if (!File.Exists(fileName))
-                    throw new Exception("Could not find AjaxControlToolkit configuration file named on path " +
-                                        configFilePath);
-
-                var serializer = new XmlSerializer(typeof (Settings));
-                using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+                var settings = (Settings) serializer.Deserialize(fs);
+                if (settings.Controls != null && settings.Controls.Length > 0)
                 {
-                    var settings = (Settings) serializer.Deserialize(fs);
+                    var actControls =
+                        settings.Controls.Where(
+                            c => string.IsNullOrEmpty(c.Assembly) || c.Assembly == "AjaxControlToolkit")
+                                .ToArray();
 
-                    // No control specified on config, assume all controls are demanded.
-                    loadAllControls = settings.Controls.Length == 0;
-                    foreach (var controlName in settings.Controls)
+                    // If there is no control specified on config and user does not set NoneIfEmpty to true, 
+                    // then assume all controls are demanded.
+                    loadAllControls = !settings.NoneIfEmpty && !actControls.Any();
+                    foreach (var control in actControls)
                     {
-                        if (!ControlTypeMaps.ContainsKey(controlName))
+                        if (!ControlTypeMaps.ContainsKey(control.Name))
                             throw new Exception(
                                 string.Format(
                                     "Could not find control '{0}'. Please make sure you entered the correct control name in AjaxControlToolkit.config file.",
-                                    controlName));
+                                    control));
 
-                        selectedControlTypes.AddRange(ControlTypeMaps[controlName]);
+                        selectedControlTypesName.AddRange(ControlTypeMaps[control.Name]);
                     }
+
+                    customControls =
+                        settings.Controls.Where(
+                            c => !string.IsNullOrEmpty(c.Assembly) && c.Assembly != "AjaxControlToolkit").ToArray();
+                }
+                else
+                {
+                    loadAllControls = !settings.NoneIfEmpty;
                 }
             }
 
@@ -127,12 +143,16 @@ namespace AjaxControlToolkit
             {
                 foreach (var map in ControlTypeMaps)
                 {
-                    selectedControlTypes.AddRange(map.Value);
+                    selectedControlTypesName.AddRange(map.Value);
                 }
             }
 
-            return selectedControlTypes.Select(control => Type.GetType("AjaxControlToolkit." + control)).ToList();
+            var selectedControlTypes =
+                selectedControlTypesName.Select(c => Type.GetType("AjaxControlToolkit." + c)).ToList();
+            if (customControls != null && customControls.Any())
+                selectedControlTypes.AddRange(customControls.Select(c => Assembly.Load(c.Assembly).GetType(c.Assembly + "." + c.Name)));
+
+            return selectedControlTypes;
         }
-        
     }
 }

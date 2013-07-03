@@ -471,9 +471,11 @@
     <Compile Include="TextboxWatermark\TextboxWatermarkExtenderDesigner.cs" />
     <Compile Include="ToggleButton\ToggleButtonExtender.cs" />
     <Compile Include="ToggleButton\ToggleButtonExtenderDesigner.cs" />
+    <Compile Include="ToolkitScriptManager\IAjaxControlToolkitCacheProvider.cs" />
     <Compile Include="ToolkitScriptManager\ScriptCombineAttribute.cs" />
     <Compile Include="ToolkitScriptManager\Settings.cs" />
     <Compile Include="ToolkitScriptManager\ToolkitScriptManager.cs" />
+    <Compile Include="ToolkitScriptManager\AjaxControlToolkitCacheProvider.cs" />
     <Compile Include="ToolkitScriptManager\ToolkitScriptManagerCombiner.cs" />
     <Compile Include="ToolkitScriptManager\ToolkitScriptManagerConfig.cs" />
     <Compile Include="Twitter\TwitterDesigner.cs" />

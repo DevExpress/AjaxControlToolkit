@@ -10,7 +10,7 @@
     Namespace="AjaxControlToolkit"
     TagPrefix="ajaxToolkit" %>
 <asp:Content ContentPlaceHolderID="SampleContent" Runat="Server">
-    <ajaxToolkit:ToolkitScriptManager runat="server" ID="ScriptManager1" />
+    <ajaxToolkit:ToolkitScriptManager runat="server" ID="ScriptManager1" ControlsConfig="~/Accordion.config"/>
     <div class="demoarea">
         <div class="demoheading">Accordion Demonstration</div>
     

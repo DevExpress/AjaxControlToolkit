@@ -5,6 +5,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,19 +20,26 @@ namespace AjaxControlToolkit
         private readonly Dictionary<Assembly, WebResourceAttribute[]> _webResourceAttributeCache = new Dictionary<Assembly, WebResourceAttribute[]>();
         private readonly Dictionary<Assembly, ScriptCombineAttribute[]> _scriptCombineAttributeCache = new Dictionary<Assembly, ScriptCombineAttribute[]>();
         private readonly Dictionary<Assembly, ScriptResourceAttribute[]> _scriptResourceAttributeCache = new Dictionary<Assembly, ScriptResourceAttribute[]>();
+        private readonly IAjaxControlToolkitCacheProvider _cacheProvider = new AjaxControlToolkitCacheProvider();
 
         private enum ScriptCombineStatus
         {
             Combineable, Excluded, NotCorrespondingWebResourceAttribute
-        }   
+        }           
 
         /// <summary>
-        /// Request param name for the serialized combined scripts string
+        /// Request param name for the script version
         /// </summary>
-        internal const string CombinedScriptsParamName = "_TSM_CombinedScripts_";
+        internal const string CacheBustParamName = "v";
 
         internal static readonly Regex WebResourceRegex = new Regex("<%\\s*=\\s*(?<resourceType>WebResource|ScriptResource)\\(\"(?<resourceName>[^\"]*)\"\\)\\s*%>", RegexOptions.Singleline | RegexOptions.Multiline);
+        private List<ScriptReference> _scriptReferences;
+        private bool _scriptEntriesLoaded = false;
 
+        internal ToolkitScriptManagerCombiner(IAjaxControlToolkitCacheProvider cacheProvider)
+        {
+            _cacheProvider = cacheProvider;
+        }
 
         /// <summary>
         /// Outputs the combined script file requested by the HttpRequest to the HttpResponse
@@ -48,14 +56,14 @@ namespace AjaxControlToolkit
             string combinedScripts;
             if (request.RequestType.ToUpper() == "GET")
             {
-                combinedScripts = request.Params[CombinedScriptsParamName];
+                combinedScripts = request.Params[ToolkitScriptManager.CombinedScriptsParamName];
             }
             else
             {
 #if NET45
-                combinedScripts = request.Form[CombinedScriptsParamName];
+                combinedScripts = request.Form[ToolkitScriptManager.CombinedScriptsParamName];
 #else
-                combinedScripts = request.Params[CombinedScriptsParamName];
+                combinedScripts = request.Params[ToolkitScriptManager.CombinedScriptsParamName];
 #endif
             }
 
@@ -70,7 +78,8 @@ namespace AjaxControlToolkit
                 // Only cache script when not in Debug mode
                 // Set the same (~forever) caching rules that ScriptResource.axd uses
                 cache.SetCacheability(HttpCacheability.Public);
-                cache.VaryByParams[CombinedScriptsParamName] = true;
+                cache.VaryByParams[ToolkitScriptManager.CombinedScriptsParamName] = true;
+                cache.VaryByParams[ToolkitScriptManager.HiddenFieldParamName] = true;
                 cache.SetOmitVaryStar(true);
                 cache.SetExpires(DateTime.Now.AddDays(365));
                 cache.SetValidUntilExpires(true);
@@ -102,35 +111,112 @@ namespace AjaxControlToolkit
                     }
                 }
 
+                
+
                 // Output the combined script
-                using (StreamWriter outputWriter = new StreamWriter(outputStream))
+                using (var outputWriter = new StreamWriter(outputStream))
                 {
-                    // Get the list of scripts to combine
-                    List<ScriptEntry> scriptEntries = DeserializeScriptEntries(configFilePath);
-
-                    var js = "";
-                    using (var ms = new MemoryStream())
-                    {
-                        var writer = new StreamWriter(ms);
-                        // Write the scripts
-                        WriteScripts(scriptEntries, writer);
-                        writer.Flush();
-
-                        ms.Position = 0;
-                        js = (new StreamReader(ms)).ReadToEnd();
-                    }
+                    var js = GetCombinedScriptContent(context, configFilePath);
 
                     var minifier = new Minifier();
                     var jsContents = minifier.MinifyJavaScript(js);
-                    outputWriter.WriteLine(jsContents);
-                    // Write the ASP.NET AJAX script notification code
-                    outputWriter.WriteLine("if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
+
+                    if (minifier.ErrorList.Count > 0)
+                    {
+                        WriteErrors(outputWriter, minifier.ErrorList);
+                    }
+                    else
+                    {
+                        outputWriter.WriteLine(jsContents);
+                        // Write the ASP.NET AJAX script notification code
+                        outputWriter.WriteLine("if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
+                    }
                 }
 
                 output = true;
             }
             return output;
         }
+
+        internal static void WriteErrors(StreamWriter writer, IEnumerable<ContextError> errors)
+        {
+            writer.WriteLine("/* ");
+            writer.WriteLine("Javascript minification errors:");
+            foreach (object obj in errors)
+                writer.WriteLine(obj.ToString());
+            writer.WriteLine(" */\r\n");
+        }
+
+        private string GetCombinedScriptContent(HttpContext context, string configFilePath)
+        {
+            var hash = context.Request.QueryString[CacheBustParamName];
+            var content = "";
+
+            // Try to get cached content
+            if (!string.IsNullOrEmpty(hash))
+                content = _cacheProvider.Get<string>(GetHashContentKey(hash));
+
+            // If not found then generate it, although maybe hash is not empty but
+            // we should never set cached content here since we don't know that hash is valid
+            if (string.IsNullOrEmpty(content))
+            {
+                if (string.IsNullOrEmpty(configFilePath) && !string.IsNullOrEmpty(hash))
+                    configFilePath = _cacheProvider.Get<string>(GetHashConfigKey(hash));
+
+                content = GetCombinedScriptContent(configFilePath);
+            }
+
+            return content;
+        }
+
+        private string GetCombinedScriptContent(string configFilePath)
+        {
+            // Get the list of scripts to combine
+            List<ScriptEntry> scriptEntries = DeserializeScriptEntries(configFilePath);
+
+            using (var ms = new MemoryStream())
+            {
+                var writer = new StreamWriter(ms);
+                // Write the scripts
+                WriteScripts(scriptEntries, writer);
+                writer.Flush();
+
+                ms.Position = 0;
+                return (new StreamReader(ms)).ReadToEnd();
+            }
+        }
+
+        internal string GetContentHash(string configFilePath)
+        {
+            var content = GetCombinedScriptContent(configFilePath);
+            var hash = "";
+
+            using (SHA256 hashAlgorithm = new SHA256Managed())
+            {
+                hash = HttpServerUtility.UrlTokenEncode(
+                    hashAlgorithm.ComputeHash(
+                        Encoding.Unicode.GetBytes(string.IsNullOrEmpty(content) ? configFilePath : content)));
+            }
+
+            _cacheProvider.Set(GetHashContentKey(hash), content);
+            if (configFilePath != null)
+                _cacheProvider.Set(GetHashConfigKey(hash), configFilePath);
+            else
+                _cacheProvider.Remove(GetHashConfigKey(hash));
+
+            return hash;
+        }
+
+        private string GetHashConfigKey(string hash)
+        {
+            return hash + "_config";
+        }
+
+        private string GetHashContentKey(string hash)
+        {
+            return hash + "_content";
+        }
+
 
         /// <summary>
         /// Get script entries based on config file.
@@ -150,19 +236,37 @@ namespace AjaxControlToolkit
         /// <returns>List of script reference</returns>
         internal List<ScriptReference> GetScriptReferences(string configFilePath)
         {
-            var scriptReferences = new List<ScriptReference>();
+            _scriptReferences = new List<ScriptReference>();
             foreach (var control in ToolkitScriptManagerConfig.GetRegisteredControls(configFilePath))
             {
                 var scriptRefs = ScriptObjectBuilder.GetScriptReferences(control);
                 foreach (var scriptRef in scriptRefs)
                 {
-                    if (scriptReferences.All(s => s.Name != scriptRef.Name))
+                    if (_scriptReferences.All(s => s.Name != scriptRef.Name))
                     {
-                        scriptReferences.Add(scriptRef);
+                        _scriptReferences.Add(scriptRef);
                     }
                 }
             }
-            return scriptReferences;
+
+            _scriptEntriesLoaded = true;
+            return _scriptReferences;
+        }
+
+        /// <summary>
+        /// Determine is script already registered to be combined.
+        /// </summary>
+        /// <param name="scriptReference">Script to determine.</param>
+        /// <returns>true if registered</returns>
+        internal bool IsScriptRegistered(ScriptReference scriptReference)
+        {
+            if (!_scriptEntriesLoaded)
+                throw new Exception("Script entries not loaded yet.");
+
+            if (_scriptReferences == null || _scriptReferences.Count == 0)
+                return false;
+
+            return _scriptReferences.Any(s => s.Name == scriptReference.Name && s.Assembly == scriptReference.Assembly);
         }
 
         /// <summary>
@@ -521,7 +625,7 @@ namespace AjaxControlToolkit
             /// <summary>
             /// Reference to the Assembly object (if loaded by LoadAssembly)
             /// </summary>
-            private Assembly _loadedAssembly;
+            private static Dictionary<string, Assembly> _loadedAssembly = new Dictionary<string, Assembly>();
             private ScriptMode _scriptMode;
 
             /// <summary>
@@ -558,7 +662,7 @@ namespace AjaxControlToolkit
             public string GetScript()
             {
                 string script;
-                using (Stream stream = LoadAssembly().GetManifestResourceStream(_scriptMode == ScriptMode.Debug ? Name.Replace(".js", ".debug.js") : Name))
+                using (Stream stream = LoadAssembly().GetManifestResourceStream(Name))
                 {
                     using (StreamReader reader = new StreamReader(stream))
                     {
@@ -568,17 +672,16 @@ namespace AjaxControlToolkit
                 return script;
             }
 
+
             /// <summary>
             /// Loads the associated Assembly
             /// </summary>
             /// <returns>Assembly reference</returns>
             public Assembly LoadAssembly()
             {
-                if (null == _loadedAssembly)
-                {
-                    _loadedAssembly = System.Reflection.Assembly.Load(_assembly);
-                }
-                return _loadedAssembly;
+                if (!_loadedAssembly.ContainsKey(_assembly))
+                    _loadedAssembly.Add(_assembly, Assembly.Load(_assembly));
+                return _loadedAssembly[_assembly];
             }
 
             /// <summary>
