@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -6,26 +8,35 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
+using System.Linq;
 
-namespace AjaxControlToolkit
-{
+namespace AjaxControlToolkit {
     /// <summary>
     /// ScriptManager derived class to add the ability to combine multiple
     /// smaller scripts into one larger one as a way to reduce the number
     /// of files the client must download
     /// </summary>
     [Themeable(true)]
-    public class ToolkitScriptManager : ScriptManager
-    {
+    public class ToolkitScriptManager : ScriptManager {
         /// <summary>
         /// Request param name for the serialized combined scripts string
         /// </summary>
         internal const string CombinedScriptsParamName = "_TSM_CombinedScripts_";
 
         /// <summary>
+        /// Request param name for the control bundles
+        /// </summary>
+        internal const string ControlBundleParamName = "_TSM_Bundles_";
+
+        /// <summary>
         /// Request param name for the hidden field name
         /// </summary>
         internal const string HiddenFieldParamName = "_TSM_HiddenField_";
+
+        /// <summary>
+        /// Delimiter string to separate bundle names in query string
+        /// </summary>
+        internal const string QueryStringBundleDelimiter = ";";
 
         /// <summary>
         /// Regular expression for detecting WebResource/ScriptResource substitutions in script files
@@ -37,57 +48,22 @@ namespace AjaxControlToolkit
         /// </summary>
         private static ToolkitScriptManagerCombiner _combiner;
 
-        private string _controlsConfig;
         private bool _combineScripts = true;
         private Uri _combineScriptsHandlerUrl;
         private string _combinedScriptUrl;
+        private List<ControlBundle> _controlBundles;
 
         /// <summary>
         /// Initialize and get ToolkitScriptManagerCombiner
         /// </summary>
-        private static ToolkitScriptManagerCombiner Combiner
-        {
-            get
-            {
-                if (_combiner == null)
-                {
-                    // Determine is user uses custom cache provider
-                    IAjaxControlToolkitCacheProvider cacheProvider = null;
-                    var customCacheProviderSetting = ConfigurationManager.AppSettings["AjaxControlToolkitCacheProvider"];
-                    if (customCacheProviderSetting != null)
-                    {
-                        try
-                        {
-                            var assemblyInfo = customCacheProviderSetting.Split(new[] { "," },
-                                                                                      StringSplitOptions.RemoveEmptyEntries);
-                            cacheProvider =
-                                (IAjaxControlToolkitCacheProvider)
-                                Activator.CreateInstance(assemblyInfo[0], assemblyInfo[1]).Unwrap();
-                        }
-                        catch (Exception e)
-                        {
-                            throw new Exception("Failed to activate custom cache provider " +
-                                                    customCacheProviderSetting, e);
-                        }
-                    }
-
-                    // Use default cache provider if custom cache provider not found
-                    if (cacheProvider == null)
-                        cacheProvider = new AjaxControlToolkitCacheProvider();
-
-                    // Initialize ToolkitScriptManagerCombiner
-                    _combiner = new ToolkitScriptManagerCombiner(cacheProvider);
-                }
-
-                return _combiner;
-            }
+        private static ToolkitScriptManagerCombiner Combiner {
+            get { return _combiner ?? (_combiner = new ToolkitScriptManagerCombiner()); }
         }
 
         /// <summary>
         /// Specifies whether or not multiple script references should be combined into a single file
         /// </summary>
-        public bool CombineScripts
-        {
+        public bool CombineScripts {
             get { return _combineScripts; }
             set { _combineScripts = value; }
         }
@@ -95,34 +71,69 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Optionally specifies the URL of an HTTP handler for generating the combined script files.
         /// Property CombineScripts must set to true to make this works.
+        /// This property will be overridden if AjaxControlToolkit.CombineScriptsHandler http handler registered.
         /// </summary>
         /// <remarks>
         /// The handler's ProcessRequest method should call directly through to ToolkitScriptManager.OutputCombinedScriptFile
         /// </remarks>
+        [Obsolete("Please register AjaxControlToolkit.CombineScriptsHandler http handler instead.")]
         [UrlProperty]
-        public Uri CombineScriptsHandlerUrl
-        {
+        public Uri CombineScriptsHandlerUrl {
             get { return _combineScriptsHandlerUrl; }
             set { _combineScriptsHandlerUrl = value; }
         }
 
         /// <summary>
-        /// Path of AjaxControlToolkit config file.
+        /// Selected control bundles to be used by this ToolkitScriptManager.
+        /// You have to set control bundles in AjaxControlToolkit.config to make this works.
+        /// If this property is not set then default controls in control bundles will be used.
         /// </summary>
-        public string ControlsConfig
-        {
-            get { return _controlsConfig; }
-            set { _controlsConfig = value; }
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        public List<ControlBundle> ControlBundles {
+            get {
+                this.EnsureChildControls();
+                if (_controlBundles == null)
+                    _controlBundles = new List<ControlBundle>();
+                return _controlBundles;
+            }
         }
+
 
         /// <summary>
         /// OnInit override that runs only when serving the combined script file
         /// </summary>
         /// <param name="e">event args</param>
-        protected override void OnInit(EventArgs e)
-        {
-            if (!DesignMode && (null != Context) && Combiner.OutputCombinedScriptFile(Context, _controlsConfig))
-            {
+        protected override void OnInit(EventArgs e) {
+
+            var config =
+                ConfigurationManager.GetSection("system.web/httpHandlers") as
+                System.Web.Configuration.HttpHandlersSection ??
+                ConfigurationManager.GetSection("system.webServer/handlers") as
+                System.Web.Configuration.HttpHandlersSection;
+
+            if (config != null && config.Handlers != null) {
+
+                var handlers = config.Handlers.OfType<System.Web.Configuration.HttpHandlerAction>();
+
+                var combineScriptsHandlerConfig = handlers.FirstOrDefault(
+                    c => {
+                        var type = c.Type.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries);
+                        return type[0].Trim() == "AjaxControlToolkit.CombineScriptsHandler" &&
+                               type[1].Trim() == "AjaxControlToolkit";
+                    });
+
+                if (combineScriptsHandlerConfig != null) {
+                    var uriBase = new Uri(new Uri(this.Page.Request.Url.GetLeftPart(UriPartial.Authority)),
+                                          Page.ResolveUrl("~/"));
+                    _combineScriptsHandlerUrl = new Uri(uriBase, combineScriptsHandlerConfig.Path);
+                }
+
+
+            }
+
+            if (!DesignMode && (null != Context) && Combiner.OutputCombinedScriptFile(Context)) {
                 // This was a combined script request that was satisfied; end all processing now
                 Page.Response.End();
             }
@@ -133,32 +144,36 @@ namespace AjaxControlToolkit
         /// OnLoad override that runs only when serving the original page
         /// </summary>
         /// <param name="e">event args</param>
-        protected override void OnLoad(EventArgs e)
-        {
-            if (!IsInAsyncPostBack)
-            {
-                if (_combineScripts && ScriptMode != ScriptMode.Debug)
-                {
-                    var contentHash = Combiner.GetContentHash(_controlsConfig);
-                    var configParam = !String.IsNullOrEmpty(_controlsConfig)
-                                          ? "Custom_" + ClientID
-                                          : "Default";
+        protected override void OnLoad(EventArgs e) {
 
-                    Page.ClientScript.RegisterHiddenField(HiddenFieldParamName, configParam+";"+contentHash);
-                    _combinedScriptUrl = BuildCombinedScriptUrl(configParam, contentHash);
+            if (!IsInAsyncPostBack) {
+
+                var customizeBundles = _controlBundles != null;
+                var bundles = customizeBundles ? _controlBundles.Select(c => c.Name).ToArray() : null;
+
+                if (_combineScripts && ScriptMode != ScriptMode.Debug) {
+
+                    // Combine & minify only work when not in debug mode and CombineScripts property set to true
+
+                    var contentHash =
+                        Combiner.GetCombinedScriptContentHash(bundles);
+
+                    Page.ClientScript.RegisterHiddenField(HiddenFieldParamName, contentHash);
+                    _combinedScriptUrl = BuildCombinedScriptUrl(contentHash);
                     Scripts.Add(new ScriptReference(_combinedScriptUrl));
                 }
-                else
-                {
+                else {
+
+                    // Load all requestred scripts controls in normal way as script references
+
                     var cache = Page.Response.Cache;
-                    
+
                     // Send a no-cache, no-store header
                     cache.SetCacheability(HttpCacheability.NoCache);
                     cache.SetNoStore();
 
-                    var scriptReferences = Combiner.GetScriptReferences(_controlsConfig);
-                    foreach (var scriptRef in scriptReferences)
-                    {
+                    var scriptReferences = Combiner.GetScriptReferences(bundles);
+                    foreach (var scriptRef in scriptReferences) {
                         Scripts.Add(scriptRef);
                     }
                 }
@@ -167,15 +182,20 @@ namespace AjaxControlToolkit
             base.OnLoad(e);
         }
 
-        private string BuildCombinedScriptUrl(string configParam, string contentHash)
-        {
+        private string BuildCombinedScriptUrl(string contentHash) {
+            var bundleControlsParam = "";
+            if (_controlBundles != null && _controlBundles.Count > 0)
+                bundleControlsParam = string.Join(QueryStringBundleDelimiter,
+                                                  _controlBundles.Select(x => x.Name).ToArray());
+
             return String.Format(CultureInfo.InvariantCulture,
-                                               "{0}?{1}={2}&{3}={4}",
-                                               ((null != _combineScriptsHandlerUrl)
-                                                    ? Page.ResolveUrl(_combineScriptsHandlerUrl.ToString())
-                                                    : Page.Request.Path.Replace(" ", "%20")),
-                                               CombinedScriptsParamName, configParam,
-                                               ToolkitScriptManagerCombiner.CacheBustParamName, contentHash);
+                                 "{0}?{1}={2}&{3}={4}&{5}={6}",
+                                 null != _combineScriptsHandlerUrl
+                                     ? Page.ResolveUrl(_combineScriptsHandlerUrl.ToString())
+                                     : Page.Request.Path.Replace(" ", "%20"),
+                                 CombinedScriptsParamName, _combineScripts,
+                                 ToolkitScriptManagerCombiner.CacheBustParamName, contentHash,
+                                 ControlBundleParamName, bundleControlsParam);
         }
 
         /// <summary>
@@ -184,9 +204,8 @@ namespace AjaxControlToolkit
         /// are determined from there.
         /// </summary>
         /// <param name="context">HttpContext for the transaction</param>
-        public static bool OutputCombinedScriptFile(HttpContext context)
-        {
-            return Combiner.OutputCombinedScriptFile(context, null);
+        public static bool OutputCombinedScriptFile(HttpContext context) {
+            return Combiner.OutputCombinedScriptFile(context);
         }
 
         /// <summary>
@@ -196,8 +215,7 @@ namespace AjaxControlToolkit
         /// <returns>quoted string</returns>
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity",
             Justification = "Callable implementation of System.Web.Script.Serialization.JavaScriptString.QuoteString")]
-        protected static string QuoteString(string value)
-        {
+        protected static string QuoteString(string value) {
             return ToolkitScriptManagerCombiner.QuoteString(value);
         }
 
@@ -213,27 +231,21 @@ namespace AjaxControlToolkit
             "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "c",
             Justification =
                 "Callable implementation of System.Web.Script.Serialization.JavaScriptString.AppendCharAsUnicode")]
-        protected static void AppendCharAsUnicode(StringBuilder builder, char c)
-        {
+        protected static void AppendCharAsUnicode(StringBuilder builder, char c) {
             ToolkitScriptManagerCombiner.AppendCharAsUnicode(builder, c);
         }
 
 
-        protected override void OnResolveScriptReference(ScriptReferenceEventArgs e)
-        {
+        protected override void OnResolveScriptReference(ScriptReferenceEventArgs e) {
             base.OnResolveScriptReference(e);
             if (_combineScripts && ScriptMode != ScriptMode.Debug && !String.IsNullOrEmpty(e.Script.Assembly)
-                && !String.IsNullOrEmpty(e.Script.Name) && Combiner.IsScriptRegistered(e.Script))
-            {
-                if (IsInAsyncPostBack && String.IsNullOrEmpty(_combinedScriptUrl))
-                {
-                    var hiddenParam = Page.Request.Form[HiddenFieldParamName];
-                    if(String.IsNullOrEmpty(hiddenParam))
+                && !String.IsNullOrEmpty(e.Script.Name) && Combiner.IsScriptRegistered(e.Script)) {
+                if (IsInAsyncPostBack && String.IsNullOrEmpty(_combinedScriptUrl)) {
+                    var contentHash = Page.Request.Form[HiddenFieldParamName];
+                    if (String.IsNullOrEmpty(contentHash))
                         throw new Exception(HiddenFieldParamName + " is empty");
 
-                    var configParam = hiddenParam.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries)[0];
-                    var contentHash = hiddenParam.Substring(configParam.Length + 1);
-                    _combinedScriptUrl = BuildCombinedScriptUrl(configParam, contentHash);
+                    _combinedScriptUrl = BuildCombinedScriptUrl(contentHash);
                 }
 
                 e.Script.Name = "";

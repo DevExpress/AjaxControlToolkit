@@ -37,7 +37,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSite", "SampleWebSites\AjaxControlToolkitSampleSite\", "{798D9160-5CAA-453A-94BA-99186169DA75}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		ProjectReferences = "{f80dbdc1-97b4-4b28-861e-282da97f5177}|CustomControlDemo.dll;{1d3ffb24-4669-4eab-96a1-2a0ee876bb6a}|CustomCacheProvider.dll;{F7685CD0-D9C3-4B2B-9D1D-26ADA6F3A4F6}|AjaxControlToolkit.dll;"
+		ProjectReferences = "{f80dbdc1-97b4-4b28-861e-282da97f5177}|CustomControlDemo.dll;{F7685CD0-D9C3-4B2B-9D1D-26ADA6F3A4F6}|AjaxControlToolkit.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/AjaxControlToolkitSampleSite"
 		Debug.AspNetCompiler.PhysicalPath = "SampleWebSites\AjaxControlToolkitSampleSite\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkitSampleSite\"
@@ -87,8 +87,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.BackwardCompatibilityTests", "Server\Tests\BackwardCompatibilityTests\AjaxControlToolkit.BackwardCompatibilityTests.csproj", "{7D154E65-09B1-469F-9B2D-6294E4728A3D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControlDemo", "CustomControlDemo\CustomControlDemo.csproj", "{F80DBDC1-97B4-4B28-861E-282DA97F5177}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomCacheProvider", "CustomCacheProvider\CustomCacheProvider.csproj", "{1D3FFB24-4669-4EAB-96A1-2A0EE876BB6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,10 +139,6 @@ Global
 		{F80DBDC1-97B4-4B28-861E-282DA97F5177}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F80DBDC1-97B4-4B28-861E-282DA97F5177}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F80DBDC1-97B4-4B28-861E-282DA97F5177}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D3FFB24-4669-4EAB-96A1-2A0EE876BB6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D3FFB24-4669-4EAB-96A1-2A0EE876BB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D3FFB24-4669-4EAB-96A1-2A0EE876BB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D3FFB24-4669-4EAB-96A1-2A0EE876BB6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -159,7 +153,6 @@ Global
 		{3163BBDB-0D46-4598-BC45-AF45871E0DE0} = {6E847E97-5F3E-45BF-8090-C8E2FBE6BB0E}
 		{798D9160-5CAA-453A-94BA-99186169DA75} = {38398AD9-651C-45F1-954A-F7E898CA65B8}
 		{F80DBDC1-97B4-4B28-861E-282DA97F5177} = {38398AD9-651C-45F1-954A-F7E898CA65B8}
-		{1D3FFB24-4669-4EAB-96A1-2A0EE876BB6A} = {38398AD9-651C-45F1-954A-F7E898CA65B8}
 		{84EEC471-6141-461A-A1A8-DD57343A2C56} = {AA6C13E1-48A0-42F1-942F-0CE841010293}
 		{7D154E65-09B1-469F-9B2D-6294E4728A3D} = {AA6C13E1-48A0-42F1-942F-0CE841010293}
 		{F2D3A60E-968C-477F-83A6-50BB21366F7A} = {1CDF1621-D387-472A-993F-A798A5FE1FBC}

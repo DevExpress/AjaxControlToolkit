@@ -20,7 +20,6 @@ namespace AjaxControlToolkit
         private readonly Dictionary<Assembly, WebResourceAttribute[]> _webResourceAttributeCache = new Dictionary<Assembly, WebResourceAttribute[]>();
         private readonly Dictionary<Assembly, ScriptCombineAttribute[]> _scriptCombineAttributeCache = new Dictionary<Assembly, ScriptCombineAttribute[]>();
         private readonly Dictionary<Assembly, ScriptResourceAttribute[]> _scriptResourceAttributeCache = new Dictionary<Assembly, ScriptResourceAttribute[]>();
-        private readonly IAjaxControlToolkitCacheProvider _cacheProvider = new AjaxControlToolkitCacheProvider();
 
         private enum ScriptCombineStatus
         {
@@ -36,106 +35,105 @@ namespace AjaxControlToolkit
         private List<ScriptReference> _scriptReferences;
         private bool _scriptEntriesLoaded = false;
 
-        internal ToolkitScriptManagerCombiner(IAjaxControlToolkitCacheProvider cacheProvider)
-        {
-            _cacheProvider = cacheProvider;
-        }
 
         /// <summary>
         /// Outputs the combined script file requested by the HttpRequest to the HttpResponse
         /// </summary>
         /// <param name="context">HttpContext for the transaction</param>
-        /// <param name="configFilePath">Path for controls config</param>
         /// <returns>true if the script file was output</returns>
-        internal bool OutputCombinedScriptFile(HttpContext context, string configFilePath)
-        {
+        internal bool OutputCombinedScriptFile(HttpContext context) {
             // Initialize
-            bool output = false;
             HttpRequest request = context.Request;
 
-            string combinedScripts;
-            if (request.RequestType.ToUpper() == "GET")
-            {
-                combinedScripts = request.Params[ToolkitScriptManager.CombinedScriptsParamName];
+            // Determine is there any combine script request in http context
+            var combinedScripts = GetRequestParamValue(request, ToolkitScriptManager.CombinedScriptsParamName);
+
+            if (string.IsNullOrEmpty(combinedScripts))
+                return false;
+
+            // This is a request for a combined script file
+            HttpResponse response = context.Response;
+            response.ContentType = "application/x-javascript";
+
+            HttpCachePolicy cache = response.Cache;
+
+            // Only cache script when not in Debug mode
+            // Set the same (~forever) caching rules that ScriptResource.axd uses
+            cache.SetCacheability(HttpCacheability.Public);
+            cache.VaryByParams[ToolkitScriptManager.CombinedScriptsParamName] = true;
+            cache.VaryByParams[ToolkitScriptManager.HiddenFieldParamName] = true;
+            cache.SetOmitVaryStar(true);
+            cache.SetExpires(DateTime.Now.AddDays(365));
+            cache.SetValidUntilExpires(true);
+            cache.SetLastModifiedFromFileDependencies();
+
+            // Get the stream to write the combined script to (using a compressed stream if requested)
+            // Note that certain versions of IE6 have difficulty with compressed responses, so we
+            // don't compress for those browsers (just like ASP.NET AJAX's ScriptResourceHandler)
+            Stream outputStream = response.OutputStream;
+            if (!request.Browser.IsBrowser("IE") || (6 < request.Browser.MajorVersion)) {
+                foreach (
+                    string acceptEncoding in (request.Headers["Accept-Encoding"] ?? "").ToUpperInvariant().Split(',')) {
+                    if ("GZIP" == acceptEncoding) {
+                        // Browser wants GZIP; wrap the output stream with a GZipStream
+                        response.AddHeader("Content-encoding", "gzip");
+                        outputStream = new GZipStream(outputStream, CompressionMode.Compress);
+                        break;
+                    }
+
+                    if ("DEFLATE" == acceptEncoding) {
+                        // Browser wants Deflate; wrap the output stream with a DeflateStream
+                        response.AddHeader("Content-encoding", "deflate");
+                        outputStream = new DeflateStream(outputStream, CompressionMode.Compress);
+                        break;
+                    }
+                }
             }
-            else
-            {
+
+
+            // Output the combined script
+            using (var outputWriter = new StreamWriter(outputStream)) {
+
+                var hash = GetRequestParamValue(request, CacheBustParamName);
+                var bundlesParam = GetRequestParamValue(request, ToolkitScriptManager.ControlBundleParamName);
+                string[] bundles = null;
+                if (!string.IsNullOrEmpty(bundlesParam)) {
+                    bundles = bundlesParam.Split(new[] {ToolkitScriptManager.QueryStringBundleDelimiter},
+                                                 StringSplitOptions.RemoveEmptyEntries);
+                }
+
+                var js = GetCombinedScriptContent(bundles, hash);
+
+                var minifier = new Minifier();
+                var jsContents = minifier.MinifyJavaScript(js);
+
+                if (minifier.ErrorList.Count > 0) {
+                    WriteErrors(outputWriter, minifier.ErrorList);
+                }
+                else {
+                    outputWriter.WriteLine(jsContents);
+                    // Write the ASP.NET AJAX script notification code
+                    outputWriter.WriteLine("if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
+                }
+            }
+            return true;
+        }
+
+        
+
+        private static string GetRequestParamValue(HttpRequest request, string key) {
+            string combinedScripts;
+            if (request.RequestType.ToUpper() == "GET") {
+                combinedScripts = request.Params[key];
+            }
+            else {
 #if NET45
-                combinedScripts = request.Form[ToolkitScriptManager.CombinedScriptsParamName];
+                combinedScripts = request.Form[key];
 #else
-                combinedScripts = request.Params[ToolkitScriptManager.CombinedScriptsParamName];
+                combinedScripts = request.Params[key];
 #endif
             }
-
-            if (!string.IsNullOrEmpty(combinedScripts))
-            {
-                // This is a request for a combined script file
-                HttpResponse response = context.Response;
-                response.ContentType = "application/x-javascript";
-
-                HttpCachePolicy cache = response.Cache;
-
-                // Only cache script when not in Debug mode
-                // Set the same (~forever) caching rules that ScriptResource.axd uses
-                cache.SetCacheability(HttpCacheability.Public);
-                cache.VaryByParams[ToolkitScriptManager.CombinedScriptsParamName] = true;
-                cache.VaryByParams[ToolkitScriptManager.HiddenFieldParamName] = true;
-                cache.SetOmitVaryStar(true);
-                cache.SetExpires(DateTime.Now.AddDays(365));
-                cache.SetValidUntilExpires(true);
-                cache.SetLastModifiedFromFileDependencies();
-
-                // Get the stream to write the combined script to (using a compressed stream if requested)
-                // Note that certain versions of IE6 have difficulty with compressed responses, so we
-                // don't compress for those browsers (just like ASP.NET AJAX's ScriptResourceHandler)
-                Stream outputStream = response.OutputStream;
-                if (!request.Browser.IsBrowser("IE") || (6 < request.Browser.MajorVersion))
-                {
-                    foreach (string acceptEncoding in (request.Headers["Accept-Encoding"] ?? "").ToUpperInvariant().Split(','))
-                    {
-                        if ("GZIP" == acceptEncoding)
-                        {
-                            // Browser wants GZIP; wrap the output stream with a GZipStream
-                            response.AddHeader("Content-encoding", "gzip");
-                            outputStream = new GZipStream(outputStream, CompressionMode.Compress);
-                            break;
-                        }
-
-                        if ("DEFLATE" == acceptEncoding)
-                        {
-                            // Browser wants Deflate; wrap the output stream with a DeflateStream
-                            response.AddHeader("Content-encoding", "deflate");
-                            outputStream = new DeflateStream(outputStream, CompressionMode.Compress);
-                            break;
-                        }
-                    }
-                }
-
-                
-
-                // Output the combined script
-                using (var outputWriter = new StreamWriter(outputStream))
-                {
-                    var js = GetCombinedScriptContent(context, configFilePath);
-
-                    var minifier = new Minifier();
-                    var jsContents = minifier.MinifyJavaScript(js);
-
-                    if (minifier.ErrorList.Count > 0)
-                    {
-                        WriteErrors(outputWriter, minifier.ErrorList);
-                    }
-                    else
-                    {
-                        outputWriter.WriteLine(jsContents);
-                        // Write the ASP.NET AJAX script notification code
-                        outputWriter.WriteLine("if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
-                    }
-                }
-
-                output = true;
-            }
-            return output;
+            return combinedScripts;
         }
 
         internal static void WriteErrors(StreamWriter writer, IEnumerable<ContextError> errors)
@@ -147,35 +145,23 @@ namespace AjaxControlToolkit
             writer.WriteLine(" */\r\n");
         }
 
-        private string GetCombinedScriptContent(HttpContext context, string configFilePath)
+        private static Dictionary<string, string> _cachedScriptContent = new Dictionary<string, string>();
+
+        private string GetCombinedScriptContent(string[] bundles, string hash)
         {
-            var hash = context.Request.QueryString[CacheBustParamName];
-            var content = "";
+            if (_cachedScriptContent.ContainsKey(hash))
+                return _cachedScriptContent[hash];
 
-            // Try to get cached content
-            if (!string.IsNullOrEmpty(hash))
-                content = _cacheProvider.Get<string>(GetHashContentKey(hash));
-
-            // If not found then generate it, although maybe hash is not empty but
-            // we should never set cached content here since we don't know that hash is valid
-            if (string.IsNullOrEmpty(content))
-            {
-                if (string.IsNullOrEmpty(configFilePath) && !string.IsNullOrEmpty(hash))
-                    configFilePath = _cacheProvider.Get<string>(GetHashConfigKey(hash));
-
-                content = GetCombinedScriptContent(configFilePath);
-            }
-
-            return content;
+            return GetCombinedScriptContent(bundles);
         }
 
-        private string GetCombinedScriptContent(string configFilePath)
-        {
-            // Get the list of scripts to combine
-            List<ScriptEntry> scriptEntries = DeserializeScriptEntries(configFilePath);
+        private string GetCombinedScriptContent(string[] bundles) {
 
-            using (var ms = new MemoryStream())
-            {
+            // Get the list of scripts to combine
+            var scriptReferences = GetScriptReferences(bundles);
+            var scriptEntries = scriptReferences.Select(scriptRef => new ScriptEntry(scriptRef)).ToList();
+
+            using (var ms = new MemoryStream()) {
                 var writer = new StreamWriter(ms);
                 // Write the scripts
                 WriteScripts(scriptEntries, writer);
@@ -186,64 +172,33 @@ namespace AjaxControlToolkit
             }
         }
 
-        internal string GetContentHash(string configFilePath)
-        {
-            var content = GetCombinedScriptContent(configFilePath);
+        internal string GetCombinedScriptContentHash(string[] bundles) {
+            var content = GetCombinedScriptContent(bundles);
             var hash = "";
 
-            using (SHA256 hashAlgorithm = new SHA256Managed())
-            {
+            using (SHA256 hashAlgorithm = new SHA256Managed()) {
                 hash = HttpServerUtility.UrlTokenEncode(
                     hashAlgorithm.ComputeHash(
-                        Encoding.Unicode.GetBytes(string.IsNullOrEmpty(content) ? configFilePath : content)));
+                        Encoding.Unicode.GetBytes(string.IsNullOrEmpty(content) ? "empty_script" : content)));
             }
 
-            _cacheProvider.Set(GetHashContentKey(hash), content);
-            if (configFilePath != null)
-                _cacheProvider.Set(GetHashConfigKey(hash), configFilePath);
-            else
-                _cacheProvider.Remove(GetHashConfigKey(hash));
+            if (!_cachedScriptContent.ContainsKey(hash))
+                _cachedScriptContent.Add(hash, content);
 
             return hash;
         }
-
-        private string GetHashConfigKey(string hash)
-        {
-            return hash + "_config";
-        }
-
-        private string GetHashContentKey(string hash)
-        {
-            return hash + "_content";
-        }
-
-
-        /// <summary>
-        /// Get script entries based on config file.
-        /// </summary>
-        /// <param name="configFilePath">Path of config file.</param>
-        /// <returns>List of script entry</returns>
-        private List<ScriptEntry> DeserializeScriptEntries(string configFilePath)
-        {
-            var scriptReferences = GetScriptReferences(configFilePath);
-            return scriptReferences.Select(scriptRef => new ScriptEntry(scriptRef)).ToList();
-        }
-
+        
         /// <summary>
         /// Load all script references needed by toolkits registered at config file.
         /// </summary>
-        /// <param name="configFilePath">Path of config file</param>
+        /// <param name="bundles">Name of bundles</param>
         /// <returns>List of script reference</returns>
-        internal List<ScriptReference> GetScriptReferences(string configFilePath)
-        {
+        internal List<ScriptReference> GetScriptReferences(string[] bundles) {
             _scriptReferences = new List<ScriptReference>();
-            foreach (var control in ToolkitScriptManagerConfig.GetRegisteredControls(configFilePath))
-            {
+            foreach (var control in ToolkitScriptManagerConfig.GetControlTypesInBundles(bundles)) {
                 var scriptRefs = ScriptObjectBuilder.GetScriptReferences(control);
-                foreach (var scriptRef in scriptRefs)
-                {
-                    if (_scriptReferences.All(s => s.Name != scriptRef.Name))
-                    {
+                foreach (var scriptRef in scriptRefs) {
+                    if (_scriptReferences.All(s => s.Name != scriptRef.Name)) {
                         _scriptReferences.Add(scriptRef);
                     }
                 }
