@@ -5,7 +5,6 @@ using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Linq;
@@ -18,30 +17,35 @@ namespace AjaxControlToolkit {
     /// </summary>
     [Themeable(true)]
     public class ToolkitScriptManager : ScriptManager {
+        
+        #region Constants
+
         /// <summary>
         /// Request param name for the serialized combined scripts string
         /// </summary>
-        internal const string CombinedScriptsParamName = "_TSM_CombinedScripts_";
+        public const string CombinedScriptsParamName = "_TSM_CombinedScripts_";
 
         /// <summary>
         /// Request param name for the control bundles
         /// </summary>
-        internal const string ControlBundleParamName = "_TSM_Bundles_";
+        public const string ControlBundleParamName = "_TSM_Bundles_";
+
+        /// <summary>
+        /// Request param name for the script version
+        /// </summary>
+        public const string CacheBustParamName = "v";
 
         /// <summary>
         /// Request param name for the hidden field name
         /// </summary>
-        internal const string HiddenFieldParamName = "_TSM_HiddenField_";
+        public const string HiddenFieldParamName = "_TSM_HiddenField_";
 
         /// <summary>
         /// Delimiter string to separate bundle names in query string
         /// </summary>
         internal const string QueryStringBundleDelimiter = ";";
 
-        /// <summary>
-        /// Regular expression for detecting WebResource/ScriptResource substitutions in script files
-        /// </summary>
-        protected static readonly Regex WebResourceRegex = ToolkitScriptManagerCombiner.WebResourceRegex;
+        #endregion
 
         /// <summary>
         /// Backing field for Combiner. Please don't use this for operational, use Combiner instead.
@@ -57,7 +61,10 @@ namespace AjaxControlToolkit {
         /// Initialize and get ToolkitScriptManagerCombiner
         /// </summary>
         private static ToolkitScriptManagerCombiner Combiner {
-            get { return _combiner ?? (_combiner = new ToolkitScriptManagerCombiner()); }
+            get { return _combiner ?? (_combiner = new ToolkitScriptManagerCombiner(
+                new ToolkitScriptManagerConfig(new AjaxControlToolkitCacheProvider()), 
+                new ToolkitScriptManagerHelper()));
+            }
         }
 
         /// <summary>
@@ -133,7 +140,7 @@ namespace AjaxControlToolkit {
 
             }
 
-            if (!DesignMode && (null != Context) && Combiner.OutputCombinedScriptFile(Context)) {
+            if (!DesignMode && (null != Context) && Combiner.OutputCombinedScriptFile(new HttpContextWrapper(Context))) {
                 // This was a combined script request that was satisfied; end all processing now
                 Page.Response.End();
             }
@@ -156,11 +163,16 @@ namespace AjaxControlToolkit {
                     // Combine & minify only work when not in debug mode and CombineScripts property set to true
 
                     var contentHash =
-                        Combiner.GetCombinedScriptContentHash(bundles);
+                        Combiner.GetCombinedScriptContentHash(new HttpContextWrapper(Context), bundles);
 
                     Page.ClientScript.RegisterHiddenField(HiddenFieldParamName, contentHash);
                     _combinedScriptUrl = BuildCombinedScriptUrl(contentHash);
                     Scripts.Add(new ScriptReference(_combinedScriptUrl));
+
+                    var excludedScripts = Combiner.GetExcludedScripts();
+                    foreach (var scriptReference in excludedScripts) {
+                        Scripts.Add(scriptReference);
+                    }
                 }
                 else {
 
@@ -172,7 +184,7 @@ namespace AjaxControlToolkit {
                     cache.SetCacheability(HttpCacheability.NoCache);
                     cache.SetNoStore();
 
-                    var scriptReferences = Combiner.GetScriptReferences(bundles);
+                    var scriptReferences = Combiner.GetScriptReferences(new HttpContextWrapper(Context), bundles);
                     foreach (var scriptRef in scriptReferences) {
                         Scripts.Add(scriptRef);
                     }
@@ -194,7 +206,7 @@ namespace AjaxControlToolkit {
                                      ? Page.ResolveUrl(_combineScriptsHandlerUrl.ToString())
                                      : Page.Request.Path.Replace(" ", "%20"),
                                  CombinedScriptsParamName, _combineScripts,
-                                 ToolkitScriptManagerCombiner.CacheBustParamName, contentHash,
+                                 CacheBustParamName, contentHash,
                                  ControlBundleParamName, bundleControlsParam);
         }
 
@@ -205,7 +217,7 @@ namespace AjaxControlToolkit {
         /// </summary>
         /// <param name="context">HttpContext for the transaction</param>
         public static bool OutputCombinedScriptFile(HttpContext context) {
-            return Combiner.OutputCombinedScriptFile(context);
+            return Combiner.OutputCombinedScriptFile(new HttpContextWrapper(context));
         }
 
         /// <summary>
@@ -216,7 +228,7 @@ namespace AjaxControlToolkit {
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity",
             Justification = "Callable implementation of System.Web.Script.Serialization.JavaScriptString.QuoteString")]
         protected static string QuoteString(string value) {
-            return ToolkitScriptManagerCombiner.QuoteString(value);
+            return ToolkitScriptManagerHelper.QuoteString(value);
         }
 
         /// <summary>
@@ -232,25 +244,31 @@ namespace AjaxControlToolkit {
             Justification =
                 "Callable implementation of System.Web.Script.Serialization.JavaScriptString.AppendCharAsUnicode")]
         protected static void AppendCharAsUnicode(StringBuilder builder, char c) {
-            ToolkitScriptManagerCombiner.AppendCharAsUnicode(builder, c);
+            ToolkitScriptManagerHelper.AppendCharAsUnicode(builder, c);
         }
 
 
         protected override void OnResolveScriptReference(ScriptReferenceEventArgs e) {
             base.OnResolveScriptReference(e);
             if (_combineScripts && ScriptMode != ScriptMode.Debug && !String.IsNullOrEmpty(e.Script.Assembly)
-                && !String.IsNullOrEmpty(e.Script.Name) && Combiner.IsScriptRegistered(e.Script)) {
-                if (IsInAsyncPostBack && String.IsNullOrEmpty(_combinedScriptUrl)) {
-                    var contentHash = Page.Request.Form[HiddenFieldParamName];
-                    if (String.IsNullOrEmpty(contentHash))
-                        throw new Exception(HiddenFieldParamName + " is empty");
+                && !String.IsNullOrEmpty(e.Script.Name)) {
 
-                    _combinedScriptUrl = BuildCombinedScriptUrl(contentHash);
+                if (Combiner.IsScriptRegistered(e.Script)) {
+                    if (IsInAsyncPostBack && String.IsNullOrEmpty(_combinedScriptUrl)) {
+                        var contentHash = Page.Request.Form[HiddenFieldParamName];
+                        if (String.IsNullOrEmpty(contentHash))
+                            throw new Exception(HiddenFieldParamName + " is empty");
+
+                        _combinedScriptUrl = BuildCombinedScriptUrl(contentHash);
+                    }
+
+                    e.Script.Name = "";
+                    e.Script.Assembly = "";
+                    e.Script.Path = _combinedScriptUrl;
                 }
-
-                e.Script.Name = "";
-                e.Script.Assembly = "";
-                e.Script.Path = _combinedScriptUrl;
+                else {
+                    // TODO: Do something to minify excluded scripts
+                }
             }
         }
     }

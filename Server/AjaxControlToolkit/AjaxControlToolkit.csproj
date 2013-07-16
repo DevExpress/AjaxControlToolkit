@@ -124,6 +124,7 @@
     </When>
     <When Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
       <ItemGroup>
+        <Reference Include="System.Web.Abstractions" />
         <Reference Include="AjaxMin">
           <HintPath>..\..\packages\AjaxMin.4.95.4924.12392\lib\net35\AjaxMin.dll</HintPath>
         </Reference>
@@ -480,6 +481,7 @@
     <Compile Include="ToolkitScriptManager\AjaxControlToolkitCacheProvider.cs" />
     <Compile Include="ToolkitScriptManager\ToolkitScriptManagerCombiner.cs" />
     <Compile Include="ToolkitScriptManager\ToolkitScriptManagerConfig.cs" />
+    <Compile Include="ToolkitScriptManager\ToolkitScriptManagerHelper.cs" />
     <Compile Include="Twitter\TwitterDesigner.cs" />
     <Compile Include="Twitter\TwitterStatus.cs" />
     <Compile Include="Twitter\Twitter.cs" />

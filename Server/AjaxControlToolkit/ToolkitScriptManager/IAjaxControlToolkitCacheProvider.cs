@@ -25,5 +25,13 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="key">cache key</param>
         void Remove(string key);
+
+        /// <summary>
+        /// Set file cache dependency
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="fileCacheDependencyName"></param>
+        void Set(string key, object value, string fileCacheDependencyName);
     }
 }

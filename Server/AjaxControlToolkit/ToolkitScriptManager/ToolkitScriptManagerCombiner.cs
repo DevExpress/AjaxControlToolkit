@@ -5,35 +5,42 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web;
 using System.Web.UI;
-using Microsoft.Ajax.Utilities;
 
 namespace AjaxControlToolkit
 {
-    internal class ToolkitScriptManagerCombiner
+    public class ToolkitScriptManagerCombiner
     {
         private readonly Dictionary<Assembly, WebResourceAttribute[]> _webResourceAttributeCache = new Dictionary<Assembly, WebResourceAttribute[]>();
         private readonly Dictionary<Assembly, ScriptCombineAttribute[]> _scriptCombineAttributeCache = new Dictionary<Assembly, ScriptCombineAttribute[]>();
         private readonly Dictionary<Assembly, ScriptResourceAttribute[]> _scriptResourceAttributeCache = new Dictionary<Assembly, ScriptResourceAttribute[]>();
+        private static readonly Dictionary<string, string> CachedScriptContent = new Dictionary<string, string>();
 
-        private enum ScriptCombineStatus
-        {
-            Combineable, Excluded, NotCorrespondingWebResourceAttribute
-        }           
+        private enum ScriptCombineStatus {
+            Combineable,
+            Excluded,
+            NotCorrespondingWebResourceAttribute
+        }
+
 
         /// <summary>
-        /// Request param name for the script version
+        /// Regular expression for detecting WebResource/ScriptResource substitutions in script files
         /// </summary>
-        internal const string CacheBustParamName = "v";
-
         internal static readonly Regex WebResourceRegex = new Regex("<%\\s*=\\s*(?<resourceType>WebResource|ScriptResource)\\(\"(?<resourceName>[^\"]*)\"\\)\\s*%>", RegexOptions.Singleline | RegexOptions.Multiline);
         private List<ScriptReference> _scriptReferences;
-        private bool _scriptEntriesLoaded = false;
+        private bool _scriptEntriesLoaded;
+
+        private readonly ToolkitScriptManagerConfig _scriptManagerConfig;
+        private readonly ToolkitScriptManagerHelper _helper;
+        private List<ScriptEntry> _scriptEntries;
+
+        public ToolkitScriptManagerCombiner(ToolkitScriptManagerConfig toolkitScriptManagerConfig, ToolkitScriptManagerHelper helper) {
+            _scriptManagerConfig = toolkitScriptManagerConfig;
+            _helper = helper;
+        }
 
 
         /// <summary>
@@ -41,27 +48,29 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="context">HttpContext for the transaction</param>
         /// <returns>true if the script file was output</returns>
-        internal bool OutputCombinedScriptFile(HttpContext context) {
+        public bool OutputCombinedScriptFile(HttpContextBase context) {
+
             // Initialize
-            HttpRequest request = context.Request;
+            var request = context.Request;
 
             // Determine is there any combine script request in http context
-            var combinedScripts = GetRequestParamValue(request, ToolkitScriptManager.CombinedScriptsParamName);
+            var combinedScripts = ToolkitScriptManagerHelper.GetRequestParamValue(request, ToolkitScriptManager.CombinedScriptsParamName);
 
             if (string.IsNullOrEmpty(combinedScripts))
                 return false;
 
             // This is a request for a combined script file
-            HttpResponse response = context.Response;
+            var response = context.Response;
             response.ContentType = "application/x-javascript";
 
-            HttpCachePolicy cache = response.Cache;
+            var cache = response.Cache;
 
             // Only cache script when not in Debug mode
             // Set the same (~forever) caching rules that ScriptResource.axd uses
             cache.SetCacheability(HttpCacheability.Public);
             cache.VaryByParams[ToolkitScriptManager.CombinedScriptsParamName] = true;
             cache.VaryByParams[ToolkitScriptManager.HiddenFieldParamName] = true;
+            cache.VaryByParams[ToolkitScriptManager.CacheBustParamName] = true;
             cache.SetOmitVaryStar(true);
             cache.SetExpires(DateTime.Now.AddDays(365));
             cache.SetValidUntilExpires(true);
@@ -70,7 +79,7 @@ namespace AjaxControlToolkit
             // Get the stream to write the combined script to (using a compressed stream if requested)
             // Note that certain versions of IE6 have difficulty with compressed responses, so we
             // don't compress for those browsers (just like ASP.NET AJAX's ScriptResourceHandler)
-            Stream outputStream = response.OutputStream;
+            var outputStream = response.OutputStream;
             if (!request.Browser.IsBrowser("IE") || (6 < request.Browser.MajorVersion)) {
                 foreach (
                     string acceptEncoding in (request.Headers["Accept-Encoding"] ?? "").ToUpperInvariant().Split(',')) {
@@ -94,77 +103,57 @@ namespace AjaxControlToolkit
             // Output the combined script
             using (var outputWriter = new StreamWriter(outputStream)) {
 
-                var hash = GetRequestParamValue(request, CacheBustParamName);
-                var bundlesParam = GetRequestParamValue(request, ToolkitScriptManager.ControlBundleParamName);
+                var hash = ToolkitScriptManagerHelper.GetRequestParamValue(request, ToolkitScriptManager.CacheBustParamName);
+                var bundlesParam = ToolkitScriptManagerHelper.GetRequestParamValue(request, ToolkitScriptManager.ControlBundleParamName);
                 string[] bundles = null;
                 if (!string.IsNullOrEmpty(bundlesParam)) {
                     bundles = bundlesParam.Split(new[] {ToolkitScriptManager.QueryStringBundleDelimiter},
                                                  StringSplitOptions.RemoveEmptyEntries);
                 }
 
-                var js = GetCombinedScriptContent(bundles, hash);
+                var js = GetCombinedScriptContent(context, bundles, hash);
 
-                var minifier = new Minifier();
-                var jsContents = minifier.MinifyJavaScript(js);
 
-                if (minifier.ErrorList.Count > 0) {
-                    WriteErrors(outputWriter, minifier.ErrorList);
+                var minifyResult = _helper.MinifyJS(js);
+                if (minifyResult.ErrorList.Count > 0) {
+                    _helper.WriteErrors(outputWriter, minifyResult.ErrorList);
                 }
                 else {
-                    outputWriter.WriteLine(jsContents);
+                    // Write minified scripts
+                    _helper.WriteToStream(outputWriter, minifyResult.Result);
                     // Write the ASP.NET AJAX script notification code
-                    outputWriter.WriteLine("if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
+                    _helper.WriteToStream(outputWriter, "if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
                 }
             }
             return true;
         }
+              
 
-        
-
-        private static string GetRequestParamValue(HttpRequest request, string key) {
-            string combinedScripts;
-            if (request.RequestType.ToUpper() == "GET") {
-                combinedScripts = request.Params[key];
-            }
-            else {
-#if NET45
-                combinedScripts = request.Form[key];
-#else
-                combinedScripts = request.Params[key];
-#endif
-            }
-            return combinedScripts;
-        }
-
-        internal static void WriteErrors(StreamWriter writer, IEnumerable<ContextError> errors)
+        /// <summary>
+        /// Get cached combined script content with 'hash' as a cache key. If not found then generate it based on bundles.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="bundles"></param>
+        /// <param name="hash"></param>
+        /// <returns></returns>
+        private string GetCombinedScriptContent(HttpContextBase context, string[] bundles, string hash)
         {
-            writer.WriteLine("/* ");
-            writer.WriteLine("Javascript minification errors:");
-            foreach (object obj in errors)
-                writer.WriteLine(obj.ToString());
-            writer.WriteLine(" */\r\n");
+            if (CachedScriptContent.ContainsKey(hash))
+                return CachedScriptContent[hash];
+
+            return GetCombinedScriptContent(context, bundles);
         }
 
-        private static Dictionary<string, string> _cachedScriptContent = new Dictionary<string, string>();
-
-        private string GetCombinedScriptContent(string[] bundles, string hash)
-        {
-            if (_cachedScriptContent.ContainsKey(hash))
-                return _cachedScriptContent[hash];
-
-            return GetCombinedScriptContent(bundles);
-        }
-
-        private string GetCombinedScriptContent(string[] bundles) {
+        private string GetCombinedScriptContent(HttpContextBase context, string[] bundles) {
 
             // Get the list of scripts to combine
-            var scriptReferences = GetScriptReferences(bundles);
-            var scriptEntries = scriptReferences.Select(scriptRef => new ScriptEntry(scriptRef)).ToList();
+            var scriptReferences = GetScriptReferences(context, bundles);
+            _scriptEntries = scriptReferences.Select(scriptRef => new ScriptEntry(scriptRef)).ToList();
 
             using (var ms = new MemoryStream()) {
                 var writer = new StreamWriter(ms);
                 // Write the scripts
-                WriteScripts(scriptEntries, writer);
+                WriteScripts(_scriptEntries, writer);
                 writer.Flush();
 
                 ms.Position = 0;
@@ -172,30 +161,42 @@ namespace AjaxControlToolkit
             }
         }
 
-        internal string GetCombinedScriptContentHash(string[] bundles) {
-            var content = GetCombinedScriptContent(bundles);
-            var hash = "";
+        internal List<ScriptReference> GetExcludedScripts() {
+            if (_scriptEntries == null || _scriptEntries.Count == 0)
+                return null;
 
-            using (SHA256 hashAlgorithm = new SHA256Managed()) {
-                hash = HttpServerUtility.UrlTokenEncode(
-                    hashAlgorithm.ComputeHash(
-                        Encoding.Unicode.GetBytes(string.IsNullOrEmpty(content) ? "empty_script" : content)));
-            }
+            return
+                _scriptEntries.Where(s => !s.Loaded)
+                              .Select(s => new ScriptReference(s.Name, s.LoadAssembly().FullName))
+                              .ToList();
+        }
 
-            if (!_cachedScriptContent.ContainsKey(hash))
-                _cachedScriptContent.Add(hash, content);
+        /// <summary>
+        /// Get script content hash in bundles
+        /// </summary>
+        /// <param name="context">Current HttpContext</param>
+        /// <param name="bundles">Bundle names</param>
+        /// <returns></returns>
+        public string GetCombinedScriptContentHash(HttpContextBase context, string[] bundles) {
+            var content = GetCombinedScriptContent(context, bundles);
+            var hash = _helper.Hashing(content);
+
+            if (!CachedScriptContent.ContainsKey(hash))
+                CachedScriptContent.Add(hash, content);
 
             return hash;
-        }
-        
+        }        
+
         /// <summary>
         /// Load all script references needed by toolkits registered at config file.
         /// </summary>
+        /// <param name="context">Current HttpContext</param>
         /// <param name="bundles">Name of bundles</param>
         /// <returns>List of script reference</returns>
-        internal List<ScriptReference> GetScriptReferences(string[] bundles) {
+        public List<ScriptReference> GetScriptReferences(HttpContextBase context, string[] bundles) {
             _scriptReferences = new List<ScriptReference>();
-            foreach (var control in ToolkitScriptManagerConfig.GetControlTypesInBundles(bundles)) {
+            foreach (var control in _scriptManagerConfig.GetControlTypesInBundles(context, bundles))
+            {
                 var scriptRefs = ScriptObjectBuilder.GetScriptReferences(control);
                 foreach (var scriptRef in scriptRefs) {
                     if (_scriptReferences.All(s => s.Name != scriptRef.Name)) {
@@ -213,12 +214,21 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="scriptReference">Script to determine.</param>
         /// <returns>true if registered</returns>
-        internal bool IsScriptRegistered(ScriptReference scriptReference)
-        {
+        public bool IsScriptRegistered(ScriptReference scriptReference) {
             if (!_scriptEntriesLoaded)
-                throw new Exception("Script entries not loaded yet.");
+                throw new OperationCanceledException("Script entries not loaded yet.");
 
+            // No script was registered
             if (_scriptReferences == null || _scriptReferences.Count == 0)
+                return false;
+
+            // Determine is script is not loaded because part of excluded script to be combined
+            if (_scriptEntries != null &&
+                _scriptEntries.Where(s => !s.Loaded)
+                              .Any(
+                                  s =>
+                                  s.Name == scriptReference.Name &&
+                                  s.LoadAssembly().FullName == scriptReference.Assembly))
                 return false;
 
             return _scriptReferences.Any(s => s.Name == scriptReference.Name && s.Assembly == scriptReference.Assembly);
@@ -311,8 +321,8 @@ namespace AjaxControlToolkit
                                             string name = (string)de.Key;
                                             string value = resourceManager.GetString(name);
                                             outputWriter.Write(string.Format(CultureInfo.InvariantCulture,
-                                                                             "\"{0}\":\"{1}\"", QuoteString(name),
-                                                                             QuoteString(value)));
+                                                                             "\"{0}\":\"{1}\"", ToolkitScriptManagerHelper.QuoteString(name),
+                                                                             ToolkitScriptManagerHelper.QuoteString(value)));
                                             first = false;
                                         }
                                     }
@@ -328,10 +338,10 @@ namespace AjaxControlToolkit
                         }
 
                         // Done with this script
+                        // This script is now (or will be soon) loaded by the browser
+                        scriptEntry.Loaded = true;
                     }
 
-                    // This script is now (or will be soon) loaded by the browser
-                    scriptEntry.Loaded = true;
                 }
             }
         }
@@ -443,120 +453,9 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// Callable implementation of System.Web.Script.Serialization.JavaScriptString.QuoteString
-        /// </summary>
-        /// <param name="value">value to quote</param>
-        /// <returns>quoted string</returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Callable implementation of System.Web.Script.Serialization.JavaScriptString.QuoteString")]
-        internal static string QuoteString(string value)
-        {
-            StringBuilder builder = null;
-            if (string.IsNullOrEmpty(value))
-            {
-                return string.Empty;
-            }
-            int startIndex = 0;
-            int count = 0;
-            for (int i = 0; i < value.Length; i++)
-            {
-                char c = value[i];
-                if ((((c == '\r') || (c == '\t')) || ((c == '"') || (c == '\''))) || ((((c == '<') || (c == '>')) || ((c == '\\') || (c == '\n'))) || (((c == '\b') || (c == '\f')) || (c < ' '))))
-                {
-                    if (builder == null)
-                    {
-                        builder = new StringBuilder(value.Length + 5);
-                    }
-                    if (count > 0)
-                    {
-                        builder.Append(value, startIndex, count);
-                    }
-                    startIndex = i + 1;
-                    count = 0;
-                }
-
-                switch (c)
-                {
-                    case '<':
-                    case '>':
-                    case '\'':
-                        {
-                            AppendCharAsUnicode(builder, c);
-                            continue;
-                        }
-                    case '\\':
-                        {
-                            builder.Append(@"\\");
-                            continue;
-                        }
-                    case '\b':
-                        {
-                            builder.Append(@"\b");
-                            continue;
-                        }
-                    case '\t':
-                        {
-                            builder.Append(@"\t");
-                            continue;
-                        }
-                    case '\n':
-                        {
-                            builder.Append(@"\n");
-                            continue;
-                        }
-                    case '\f':
-                        {
-                            builder.Append(@"\f");
-                            continue;
-                        }
-                    case '\r':
-                        {
-                            builder.Append(@"\r");
-                            continue;
-                        }
-                    case '"':
-                        {
-                            builder.Append("\\\"");
-                            continue;
-                        }
-                }
-                if (c < ' ')
-                {
-                    AppendCharAsUnicode(builder, c);
-                }
-                else
-                {
-                    count++;
-                }
-            }
-            if (builder == null)
-            {
-                return value;
-            }
-            if (count > 0)
-            {
-                builder.Append(value, startIndex, count);
-            }
-            return builder.ToString();
-        }
-
-        /// <summary>
-        /// Callable implementation of System.Web.Script.Serialization.JavaScriptString.AppendCharAsUnicode
-        /// </summary>
-        /// <param name="builder">string builder</param>
-        /// <param name="c">character to append</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods", Justification = "Callable implementation of System.Web.Script.Serialization.JavaScriptString.AppendCharAsUnicode")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "c", Justification = "Callable implementation of System.Web.Script.Serialization.JavaScriptString.AppendCharAsUnicode")]
-        internal static void AppendCharAsUnicode(StringBuilder builder, char c)
-        {
-            builder.Append(@"\u");
-            builder.AppendFormat(CultureInfo.InvariantCulture, "{0:x4}", new object[] { (int)c });
-        }
-
-        /// <summary>
         /// Represents a script reference - including tracking its loaded state in the client browser
         /// </summary>
-        private class ScriptEntry
-        {
+        private class ScriptEntry {
             /// <summary>
             /// Containing Assembly
             /// </summary>
@@ -578,27 +477,15 @@ namespace AjaxControlToolkit
             public bool Loaded;
 
             /// <summary>
-            /// Reference to the Assembly object (if loaded by LoadAssembly)
-            /// </summary>
-            private static Dictionary<string, Assembly> _loadedAssembly = new Dictionary<string, Assembly>();
-            private ScriptMode _scriptMode;
-
-            /// <summary>
             /// Constructor
             /// </summary>
             /// <param name="assembly">containing assembly</param>
             /// <param name="name">script name</param>
             /// <param name="culture">culture for rendering the script</param>
-            public ScriptEntry(string assembly, string name, string culture)
-            {
+            public ScriptEntry(string assembly, string name, string culture) {
                 _assembly = assembly;
                 Name = name;
                 Culture = culture;
-#if DEBUG
-                _scriptMode = ScriptMode.Debug;
-#else
-                _scriptMode = ScriptMode.Release;
-#endif
             }
 
             /// <summary>
@@ -606,21 +493,16 @@ namespace AjaxControlToolkit
             /// </summary>
             /// <param name="scriptReference">script reference</param>
             public ScriptEntry(ScriptReference scriptReference)
-                : this(scriptReference.Assembly, scriptReference.Name, null)
-            {
-            }
+                : this(scriptReference.Assembly, scriptReference.Name, null) {}
 
             /// <summary>
             /// Gets the script corresponding to the object
             /// </summary>
             /// <returns>script text</returns>
-            public string GetScript()
-            {
+            public string GetScript() {
                 string script;
-                using (Stream stream = LoadAssembly().GetManifestResourceStream(Name))
-                {
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
+                using (Stream stream = LoadAssembly().GetManifestResourceStream(Name)) {
+                    using (StreamReader reader = new StreamReader(stream)) {
                         script = reader.ReadToEnd();
                     }
                 }
@@ -632,11 +514,11 @@ namespace AjaxControlToolkit
             /// Loads the associated Assembly
             /// </summary>
             /// <returns>Assembly reference</returns>
-            public Assembly LoadAssembly()
-            {
-                if (!_loadedAssembly.ContainsKey(_assembly))
-                    _loadedAssembly.Add(_assembly, Assembly.Load(_assembly));
-                return _loadedAssembly[_assembly];
+            public Assembly LoadAssembly() {
+                //if (!LoadedAssembly.ContainsKey(_assembly))
+                //    LoadedAssembly.Add(_assembly, Assembly.Load(_assembly));
+                //return LoadedAssembly[_assembly];
+                return ToolkitScriptManagerHelper.GetAssembly(_assembly);
             }
 
             /// <summary>
@@ -644,9 +526,8 @@ namespace AjaxControlToolkit
             /// </summary>
             /// <param name="obj">comparison object</param>
             /// <returns>true iff both ScriptEntries represent the same script</returns>
-            public override bool Equals(object obj)
-            {
-                ScriptEntry other = (ScriptEntry)obj;
+            public override bool Equals(object obj) {
+                ScriptEntry other = (ScriptEntry) obj;
                 return ((other._assembly == _assembly) && (other.Name == Name));
             }
 
@@ -654,10 +535,10 @@ namespace AjaxControlToolkit
             /// GetHashCode override corresponding to the Equals override above
             /// </summary>
             /// <returns>hash code for the object</returns>
-            public override int GetHashCode()
-            {
+            public override int GetHashCode() {
                 return _assembly.GetHashCode() ^ Name.GetHashCode();
             }
         }
+
     }
 }

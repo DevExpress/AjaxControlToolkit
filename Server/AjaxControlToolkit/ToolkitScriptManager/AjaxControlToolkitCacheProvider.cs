@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using System.Web.Caching;
 
 namespace AjaxControlToolkit
 {
@@ -36,5 +37,16 @@ namespace AjaxControlToolkit
         {
             HttpRuntime.Cache.Remove(key);
         }
+
+        /// <summary>
+        /// Set file cache dependency
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="fileCacheDependencyName"></param>
+        public void Set(string key, object value, string fileCacheDependencyName) {
+            HttpRuntime.Cache.Insert(key, value, new CacheDependency(fileCacheDependencyName));
+        }
+
     }
 }
