@@ -74,6 +74,9 @@
     <DefineConstants Condition=" $(DefineConstants.Contains(';NET')) ">$(DefineConstants.Remove($(DefineConstants.LastIndexOf(";NET"))));$(Framework)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.4.6\lib\$(Framework)\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -444,6 +447,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
+    <Compile Include="Sanitizer\HtmlAgilityPackSanitizerProvider.cs" />
     <Compile Include="Sanitizer\ProviderSanitizerSection.cs" />
     <Compile Include="Sanitizer\Sanitizer.cs" />
     <Compile Include="Sanitizer\SanitizerProvider.cs" />

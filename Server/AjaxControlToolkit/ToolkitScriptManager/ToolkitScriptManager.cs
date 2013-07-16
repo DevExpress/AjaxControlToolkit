@@ -70,6 +70,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Specifies whether or not multiple script references should be combined into a single file
         /// </summary>
+        [DefaultValue(true)]
         public bool CombineScripts {
             get { return _combineScripts; }
             set { _combineScripts = value; }

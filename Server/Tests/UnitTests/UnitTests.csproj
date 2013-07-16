@@ -59,18 +59,8 @@
     <DefineConstants Condition=" $(DefineConstants.Contains(';NET')) ">$(DefineConstants.Remove($(DefineConstants.LastIndexOf(";NET"))));$(Framework)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AntiXSSLibrary">
-      <HintPath>..\..\SanitizerProviders\Assemblies\AntiXSSLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\..\SanitizerProviders\Assemblies\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="HtmlSanitizationLibrary, Version=4.2.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="SanitizerProviders">
-      <HintPath>..\..\SanitizerProviders\bin\$(Framework)\Debug\SanitizerProviders.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -103,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HtmlEditorExtenderTests\Inputs.csv" />
-    <Shadow Include="Test References\SanitizerProviders.accessor" />
+    <None Include="Test References\SanitizerProviders.accessor" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
