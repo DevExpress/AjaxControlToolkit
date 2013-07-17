@@ -159,7 +159,7 @@ namespace AjaxControlToolkit {
                 var customizeBundles = _controlBundles != null;
                 var bundles = customizeBundles ? _controlBundles.Select(c => c.Name).ToArray() : null;
 
-                if (_combineScripts && ScriptMode != ScriptMode.Debug) {
+                if (_combineScripts && !IsDebuggingEnabled) {
 
                     // Combine & minify only work when not in debug mode and CombineScripts property set to true
 
@@ -251,25 +251,24 @@ namespace AjaxControlToolkit {
 
         protected override void OnResolveScriptReference(ScriptReferenceEventArgs e) {
             base.OnResolveScriptReference(e);
-            if (_combineScripts && ScriptMode != ScriptMode.Debug && !String.IsNullOrEmpty(e.Script.Assembly)
-                && !String.IsNullOrEmpty(e.Script.Name)) {
 
-                if (Combiner.IsScriptRegistered(e.Script)) {
-                    if (IsInAsyncPostBack && String.IsNullOrEmpty(_combinedScriptUrl)) {
-                        var contentHash = Page.Request.Form[HiddenFieldParamName];
-                        if (String.IsNullOrEmpty(contentHash))
-                            throw new Exception(HiddenFieldParamName + " is empty");
+            if (_combineScripts && !IsDebuggingEnabled && !String.IsNullOrEmpty(e.Script.Assembly)
+                && !String.IsNullOrEmpty(e.Script.Name) && Combiner.IsScriptRegistered(e.Script)) {
 
-                        _combinedScriptUrl = BuildCombinedScriptUrl(contentHash);
-                    }
+                if (IsInAsyncPostBack && String.IsNullOrEmpty(_combinedScriptUrl)) {
+                    var contentHash = Page.Request.Form[HiddenFieldParamName];
+                    if (String.IsNullOrEmpty(contentHash))
+                        throw new Exception(HiddenFieldParamName + " is empty");
 
+                    _combinedScriptUrl = BuildCombinedScriptUrl(contentHash);
+                }
+
+                if (!string.IsNullOrEmpty(_combinedScriptUrl)) {
                     e.Script.Name = "";
                     e.Script.Assembly = "";
                     e.Script.Path = _combinedScriptUrl;
                 }
-                else {
-                    // TODO: Do something to minify excluded scripts
-                }
+
             }
         }
     }

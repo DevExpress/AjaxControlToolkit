@@ -144,6 +144,15 @@ namespace AjaxControlToolkit
             return GetCombinedScriptContent(context, bundles);
         }
 
+        /// <summary>
+        /// Get combined script content by: 
+        /// (1) Get script references based on bundles
+        /// (2) Ensure this script is combinable before combine it.
+        /// (3) Set each ScriptEntry's Loaded property to true in _scriptEntries when script is combined.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="bundles"></param>
+        /// <returns></returns>
         private string GetCombinedScriptContent(HttpContextBase context, string[] bundles) {
 
             // Get the list of scripts to combine
@@ -166,9 +175,9 @@ namespace AjaxControlToolkit
                 return null;
 
             return
-                _scriptEntries.Where(s => !s.Loaded)
-                              .Select(s => new ScriptReference(s.Name, s.LoadAssembly().FullName))
-                              .ToList();
+                _scriptReferences.Where(
+                    s => _scriptEntries.Where(se => !se.Loaded)
+                        .Select(se => se.Name).Contains(s.Name)).ToList();
         }
 
         /// <summary>
@@ -181,6 +190,7 @@ namespace AjaxControlToolkit
             var content = GetCombinedScriptContent(context, bundles);
             var hash = _helper.Hashing(content);
 
+            // Store script content into cache once we have its hash.
             if (!CachedScriptContent.ContainsKey(hash))
                 CachedScriptContent.Add(hash, content);
 

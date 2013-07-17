@@ -385,6 +385,8 @@
   <!-- JSBuild outputs the results of a build to the Scripts folder -->
   <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
   <UsingTask TaskName="JSBuild.PrependTask" AssemblyFile="..\..\Tools\v4\JSBuild.dll" />
+  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\packages\AjaxMin.4.96.4941.15389\build\net40\AjaxMinTask.dll" Condition=" '$(TargetFrameworkVersion)' == 'v4.5' Or '$(TargetFrameworkVersion)' == 'v4.0' "/>
+  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\packages\AjaxMin.4.96.4941.15389\build\net35\AjaxMinTask.dll" Condition=" '$(TargetFrameworkVersion)' == 'v3.5' "/>  
   <Target Name="BeforeBuild">
     <MakeDir Directories="$(ScriptOutput)" />
     <!-- clean out old files from previous build -->
@@ -409,6 +411,7 @@
     <ItemGroup>
       <JS Include="$(ScriptOutput)\**\*.js" Exclude="$(ScriptOutput)\**\*.debug.*" />
     </ItemGroup>
+	<AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
     <PrependTask Text="// (c) 2010 CodePlex Foundation" SourceFiles="@(JS)" />
     <!-- Copy Images and CSS directly into script output -->
     <ItemGroup>

@@ -56,6 +56,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSit
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "Server\Tests\UnitTests\UnitTests.csproj", "{84EEC471-6141-461A-A1A8-DD57343A2C56}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7685CD0-D9C3-4B2B-9D1D-26ADA6F3A4F6} = {F7685CD0-D9C3-4B2B-9D1D-26ADA6F3A4F6}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSBuild.VS2012", "Tools\JSBuild\JSBuild.VS2012.csproj", "{F2D3A60E-968C-477F-83A6-50BB21366F7A}"
 EndProject
