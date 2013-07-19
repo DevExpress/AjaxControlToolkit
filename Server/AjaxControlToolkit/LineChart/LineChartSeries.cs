@@ -15,7 +15,6 @@ namespace AjaxControlToolkit
     {
         private string _name = String.Empty;
         private string _lineColor = string.Empty;
-        private decimal[] _data;
 
         /// <summary>
         /// To get name of series.

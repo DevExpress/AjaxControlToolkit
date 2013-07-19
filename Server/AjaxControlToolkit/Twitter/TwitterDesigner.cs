@@ -60,8 +60,6 @@ namespace AjaxControlToolkit {
                         break;
                 }
 
-                string userName = null;
-                var api = new TwitterAPI();
                 var statuses = GenerateData();
                 if (statuses.Count > 0)
                     twitterHtml = RenderLayout(statuses);

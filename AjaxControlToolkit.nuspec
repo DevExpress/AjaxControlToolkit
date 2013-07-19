@@ -14,26 +14,29 @@
 	<frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Web" targetFramework="net45" />      
     </frameworkAssemblies>
+	<dependencies>
+	  <dependency id="AjaxMin" version="4.96.4941.15389" />
+	  <dependency id="HtmlAgilityPack" version="1.4.6" />
+	</dependencies>
   </metadata>
   <files>
-    <file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll" target="lib\40" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\ar\*.dll" target="lib\40\ar" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\cs\*.dll" target="lib\40\cs" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\de\*.dll" target="lib\40\de" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\es\*.dll" target="lib\40\es" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\fr\*.dll" target="lib\40\fr" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\hi\*.dll" target="lib\40\hi" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\he\*.dll" target="lib\40\he" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\it\*.dll" target="lib\40\it" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\ja\*.dll" target="lib\40\ja" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\ko\*.dll" target="lib\40\ko" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\nl\*.dll" target="lib\40\nl" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\pt\*.dll" target="lib\40\pt" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\ru\*.dll" target="lib\40\ru" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\SanitizerProviders\*.dll" target="lib\40\SanitizerProviders" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\tr-TR\*.dll" target="lib\40\tr-TR" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\zh-CHS\*.dll" target="lib\40\zh-CHS" />
-	<file src="PackageForNET4\AjaxControlToolkit.Binary.NET4\zh-CHT\*.dll" target="lib\40\zh-CHT" />	
+    <file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\AjaxControlToolkit.dll" target="lib\40" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\ar\*.dll" target="lib\40\ar" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\cs\*.dll" target="lib\40\cs" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\de\*.dll" target="lib\40\de" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\es\*.dll" target="lib\40\es" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\fr\*.dll" target="lib\40\fr" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\hi\*.dll" target="lib\40\hi" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\he\*.dll" target="lib\40\he" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\it\*.dll" target="lib\40\it" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\ja\*.dll" target="lib\40\ja" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\ko\*.dll" target="lib\40\ko" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\nl\*.dll" target="lib\40\nl" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\pt\*.dll" target="lib\40\pt" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\ru\*.dll" target="lib\40\ru" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\tr-TR\*.dll" target="lib\40\tr-TR" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\zh-CHS\*.dll" target="lib\40\zh-CHS" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\zh-CHT\*.dll" target="lib\40\zh-CHT" />	
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\AjaxControlToolkit.dll" target="lib\35" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\ar\*.dll" target="lib\35\ar" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\cs\*.dll" target="lib\35\cs" />
@@ -48,7 +51,6 @@
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\nl\*.dll" target="lib\35\nl" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\pt\*.dll" target="lib\35\pt" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\ru\*.dll" target="lib\35\ru" />
-	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\SanitizerProviders\*.dll" target="lib\35\SanitizerProviders" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\tr-TR\*.dll" target="lib\35\tr-TR" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\zh-CHS\*.dll" target="lib\35\zh-CHS" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\zh-CHT\*.dll" target="lib\35\zh-CHT" />
@@ -66,7 +68,6 @@
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\nl\*.dll" target="lib\45\nl" />
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\pt\*.dll" target="lib\45\pt" />
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\ru\*.dll" target="lib\45\ru" />
-	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\SanitizerProviders\*.dll" target="lib\45\SanitizerProviders" />
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\tr-TR\*.dll" target="lib\45\tr-TR" />
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\zh-CHS\*.dll" target="lib\45\zh-CHS" />
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\zh-CHT\*.dll" target="lib\45\zh-CHT" />

@@ -249,7 +249,7 @@ namespace AjaxControlToolkit {
             writer.RenderEndTag();
         }
 
-        private void RenderBeginTag(HtmlTextWriter writer) {
+        public override void RenderBeginTag(HtmlTextWriter writer) {
             if (_owner.UseVerticalStripPlacement)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
             writer.RenderBeginTag(HtmlTextWriterTag.Span);

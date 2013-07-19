@@ -17,7 +17,6 @@ namespace AjaxControlToolkit
     {
         private string _name = String.Empty;        
         private string _barColor = string.Empty;        
-        private decimal[] _data;
 
         /// <summary>
         /// To get name of series.

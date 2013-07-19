@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Reflection;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -56,6 +57,52 @@ namespace AjaxControlToolkit {
         private Uri _combineScriptsHandlerUrl;
         private string _combinedScriptUrl;
         private List<ControlBundle> _controlBundles;
+
+#if !NET40 && !NET45
+        private static Dictionary<String, bool> _scripts;
+
+        static ToolkitScriptManager() {
+            _scripts = new Dictionary<string, bool>();
+            _scripts.Add("MicrosoftAjax.js", true);
+            _scripts.Add("MicrosoftAjaxWebForms.js", true);
+            _scripts.Add("MicrosoftAjaxTimer.js", true);
+            _scripts.Add("MicrosoftAjax.debug.js", true);
+            _scripts.Add("MicrosoftAjaxWebForms.debug.js", true);
+            _scripts.Add("MicrosoftAjaxTimer.debug.js", true);
+        }
+
+        private void ApplyAssembly(ScriptReference script, bool isComposite) {
+            // if the script has a name and no path, and no assembly or the assembly is set to SWE,
+            // set the path to the resource in ACT. We set the path instead of just changing the assembly
+            // so that ScriptManager still considers the scripts Microsoft Ajax scripts, which allows it to emit
+            // inline script.
+            if (!String.IsNullOrEmpty(script.Name) && String.IsNullOrEmpty(script.Path) &&
+                (String.IsNullOrEmpty(script.Assembly) || Assembly.Load(script.Assembly) == typeof(ScriptManager).Assembly)) {
+                if (!isComposite && _scripts.ContainsKey(script.Name)) {
+                    RedirectScriptReference sr = new RedirectScriptReference(script.Name);
+                    script.Path = sr.GetBaseUrl(ScriptManager.GetCurrent(Page));
+                    script.ScriptMode = ScriptMode.Release;
+                }
+                else {
+                    script.Assembly = typeof(ToolkitScriptManager).Assembly.FullName;
+                }
+            }
+        }
+
+        private class RedirectScriptReference : ScriptReference
+        {
+            public RedirectScriptReference(string name)
+            {
+                Name = name;
+                Assembly = typeof(ToolkitScriptManager).Assembly.FullName;
+            }
+
+            public string GetBaseUrl(ScriptManager sm)
+            {
+                return base.GetUrl(sm, true);
+            }
+        }
+#endif
 
         /// <summary>
         /// Initialize and get ToolkitScriptManagerCombiner
@@ -159,7 +206,7 @@ namespace AjaxControlToolkit {
                 var customizeBundles = _controlBundles != null;
                 var bundles = customizeBundles ? _controlBundles.Select(c => c.Name).ToArray() : null;
 
-                if (_combineScripts && !IsDebuggingEnabled) {
+                if (_combineScripts && !IsDebugMode) {
 
                     // Combine & minify only work when not in debug mode and CombineScripts property set to true
 
@@ -249,10 +296,26 @@ namespace AjaxControlToolkit {
         }
 
 
-        protected override void OnResolveScriptReference(ScriptReferenceEventArgs e) {
+        protected override void OnResolveCompositeScriptReference(CompositeScriptReferenceEventArgs e)
+        {
+#if !NET40 && !NET45            
+            foreach (ScriptReference sr in e.CompositeScript.Scripts) {
+                ApplyAssembly(sr, true);
+            }
+            base.OnResolveCompositeScriptReference(e);
+#endif
+        }
+
+
+        protected override void OnResolveScriptReference(ScriptReferenceEventArgs e)
+        {
+
+#if !NET40 && !NET45
+            ApplyAssembly(e.Script, false);
+#endif
             base.OnResolveScriptReference(e);
 
-            if (_combineScripts && !IsDebuggingEnabled && !String.IsNullOrEmpty(e.Script.Assembly)
+            if (_combineScripts && !IsDebugMode && !String.IsNullOrEmpty(e.Script.Assembly)
                 && !String.IsNullOrEmpty(e.Script.Name) && Combiner.IsScriptRegistered(e.Script)) {
 
                 if (IsInAsyncPostBack && String.IsNullOrEmpty(_combinedScriptUrl)) {
@@ -269,6 +332,13 @@ namespace AjaxControlToolkit {
                     e.Script.Path = _combinedScriptUrl;
                 }
 
+            }
+        }
+
+        private bool IsDebugMode {
+            get {
+                return false;
+                return IsDebuggingEnabled;
             }
         }
     }

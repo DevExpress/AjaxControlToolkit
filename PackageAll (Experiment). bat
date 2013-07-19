@@ -1,0 +1,91 @@
+REM Creates download package for .NET 3.5, .NET 4.0 and .NET 4.5 version of Ajax Control Toolkit
+REM Requires 7za.exe (http://www.7-zip.org/download.html) at c:\zip\7za.exe
+
+SET MSBuildFolder=C:\Windows\Microsoft.NET\Framework\v4.0.30319\
+
+SET PackageFolderNET35=PackageForNET35
+SET PackageFolderNET40=PackageForNET40
+SET PackageFolderNET45=PackageForNET45
+
+SET BinaryFolderNET35=%PackageFolderNET35%\AjaxControlToolkit.Binary.NET35
+SET BinaryFolderNET40=%PackageFolderNET40%\AjaxControlToolkit.Binary.NET40
+SET BinaryFolderNET45=%PackageFolderNET45%\AjaxControlToolkit.Binary.NET45
+
+SET SampleSiteFolder=.\SampleWebSites\AjaxControlToolkitSampleSite
+SET CustomControlBinFolder=.\CustomControlDemo\Bin
+
+SET zipper=%c:\zip\7za.exe
+
+REM Remove package folders
+rd %PackageFolderNET35% /s /q
+rd %PackageFolderNET40% /s /q
+rd %PackageFolderNET45% /s /q
+
+REM Clean up old binaries
+rd Client\MicrosoftAjax\bin /s /q
+rd Client\MicrosoftAjax.Extended\bin /s /q
+rd Server\AjaxControlToolkit\bin /s /q
+rd CustomControlDemo\bin /s /q
+
+REM Build the Solution
+%MSBuildFolder%msbuild AjaxControlToolkit.sln  /p:Configuration=Release /t:Rebuild /verbosity:minimal
+
+REM Create the package folders
+md %PackageFolderNET35%
+md %PackageFolderNET40%
+md %PackageFolderNET45%
+
+REM Create the binary folders
+md %BinaryFolderNET35%
+md %BinaryFolderNET40%
+md %BinaryFolderNET45%
+
+REM Add all files from the Release folder
+xcopy Server\AjaxControlToolkit\bin\NET35\Release\*.* %BinaryFolderNET35% /E
+xcopy Server\AjaxControlToolkit\bin\NET40\Release\*.* %BinaryFolderNET40% /E
+xcopy Server\AjaxControlToolkit\bin\NET45\Release\*.* %BinaryFolderNET45% /E
+
+REM Add the Readme and License files
+copy License.txt %BinaryFolderNET35%
+copy License.txt %BinaryFolderNET40%
+copy License.txt %BinaryFolderNET45%
+copy ReadMe.html %BinaryFolderNET35%
+copy ReadMe.html %BinaryFolderNET40%
+copy ReadMe.html %BinaryFolderNET45%
+
+REM Add the Sample Site
+md SampleSite35
+xcopy %SampleSiteFolder%\*.* SampleSite35 /E /Y
+xcopy %CustomControlBinFolder%\NET35\Release\CustomControlDemo.* SampleSite35\Bin /Y
+xcopy %BinaryFolderNET35%\*.* SampleSite35\Bin /E /Y
+del SampleSite35\Bin\Microsoft.WindowsAzure.Storage.*
+del SampleSite35\Web.Config
+ren SampleSite35\Web.NET35.config.exclude Web.Config 
+del SampleSite35\*.exclude
+c:\zip\7za.exe a %BinaryFolderNET35%\AjaxControlToolkitSampleSite.zip .\SampleSite35\*  
+rd SampleSite35 /s /q
+
+md SampleSite40
+xcopy %SampleSiteFolder%\*.* SampleSite40 /E /Y
+xcopy %CustomControlBinFolder%\NET40\Release\CustomControlDemo.* SampleSite40\Bin /Y
+xcopy %BinaryFolderNET40%\*.* SampleSite40\Bin /E /Y
+del SampleSite40\Web.Config
+ren SampleSite40\Web.NET4.config.exclude Web.Config 
+del SampleSite40\*.exclude
+c:\zip\7za.exe a %BinaryFolderNET40%\AjaxControlToolkitSampleSite.zip .\SampleSite40\*  
+rd SampleSite40 /s /q
+
+md SampleSite45
+xcopy %SampleSiteFolder%\*.* SampleSite45 /E /Y
+xcopy %CustomControlBinFolder%\NET45\Release\CustomControlDemo.* SampleSite45\Bin /Y
+xcopy %BinaryFolderNET45%\*.* SampleSite45\Bin /E /Y
+del SampleSite45\Web.Config
+ren SampleSite45\Web.NET45.config.exclude Web.Config 
+del SampleSite45\*.exclude
+c:\zip\7za.exe a %BinaryFolderNET45%\AjaxControlToolkitSampleSite.zip .\SampleSite45\*  
+rd SampleSite45 /s /q
+
+REM zip the results
+c:\zip\7za.exe a %BinaryFolderNET35%.zip .\%BinaryFolderNET35%\* 
+c:\zip\7za.exe a %BinaryFolderNET40%.zip .\%BinaryFolderNET40%\* 
+c:\zip\7za.exe a %BinaryFolderNET45%.zip .\%BinaryFolderNET45%\* 
