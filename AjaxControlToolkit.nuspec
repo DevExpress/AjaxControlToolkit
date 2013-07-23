@@ -15,7 +15,7 @@
       <frameworkAssembly assemblyName="System.Web" targetFramework="net45" />      
     </frameworkAssemblies>
 	<dependencies>
-	  <dependency id="AjaxMin" version="[4.95.4924.12392]" />
+	  <dependency id="AjaxMin" version="4.97.4951.28483" />
 	  <dependency id="HtmlAgilityPack" version="1.4.6" />
 	</dependencies>
   </metadata>
