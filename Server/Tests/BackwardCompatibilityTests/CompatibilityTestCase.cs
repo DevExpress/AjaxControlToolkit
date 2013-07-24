@@ -28,13 +28,16 @@ namespace AjaxControlToolkit.BackwardCompatibilityTests
         {
             var results = new List<TestCaseData>();
 
-            var oldClasses = _oldAssembly.GetTypes().Where(m => !string.IsNullOrEmpty(m.Namespace));
-            var newClasses = _newAssembly.GetTypes().Where(m => !string.IsNullOrEmpty(m.Namespace));
+            var oldClasses = _oldAssembly.GetTypes().Where(m => m.IsPublic && !string.IsNullOrEmpty(m.Namespace)).ToList();
+            var newClasses = _newAssembly.GetTypes().Where(m => m.IsPublic && !string.IsNullOrEmpty(m.Namespace)).ToList();
 
             foreach (var oldClass in oldClasses)
             {
                 // Find new class that match with old class
                 var newClass = GetMemberInType(newClasses, oldClass);
+                if (newClass == null)
+                    throw new Exception("Could not found type " + oldClass.FullName + " in new assembly.");
+
                 var newClassMembers = newClass.GetCommonMembers();
                 var oldClassMembers = oldClass.GetCommonMembers();
 
