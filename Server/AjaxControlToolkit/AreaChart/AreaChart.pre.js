@@ -11,7 +11,7 @@ Sys.Extended.UI.AreaChart = function (element) {
     this._chartTitle = '';
     this._categoriesAxis = '';
     this._series = null;
-    this._chartType = Sys.Extended.UI.ChartType.Basic;
+    this._chartType = Sys.Extended.UI.AreaChartType.Basic;
     this._theme = 'AreaChart';
     this._valueAxisLines = 9;
     this._chartTitleColor = '';
@@ -96,7 +96,7 @@ Sys.Extended.UI.AreaChart.prototype = {
         var seriesMax;
         var seriesMin;
         var arrData;
-        if (this._chartType == Sys.Extended.UI.ChartType.Basic) {
+        if (this._chartType == Sys.Extended.UI.AreaChartType.Basic) {
             for (var i = 0; i < this._series.length; i++) {
                 arrData = this._series[i].Data;
                 seriesMax = Math.max.apply(null, arrData);
@@ -371,7 +371,7 @@ Sys.Extended.UI.AreaChart.prototype = {
         for (var i = 0; i < this.arrXAxisLength; i++) {
             for (var j = 0; j < this._series.length; j++) {
                 yVal[j] = 0;
-                if (this._chartType == Sys.Extended.UI.ChartType.Stacked) {
+                if (this._chartType == Sys.Extended.UI.AreaChartType.Stacked) {
                     for (var k = 0; k <= j; k++) {
                         yVal[j] = parseFloat(yVal[j]) + parseFloat(this._series[k].Data[i]);
                     }
@@ -551,7 +551,7 @@ Sys.Extended.UI.AreaChart.prototype = {
 Sys.Extended.UI.AreaChart.registerClass("Sys.Extended.UI.AreaChart", Sys.Extended.UI.ControlBase);
 Sys.registerComponent(Sys.Extended.UI.AreaChart, { name: 'AreaChart', parameters: [{ name: 'ClientSeries', type: 'AreaChartSeries[]'}] });
 
-Sys.Extended.UI.ChartType = function () {
+Sys.Extended.UI.AreaChartType = function () {
     /// <summary>
     /// Type of Area Chart
     /// </summary>            
@@ -559,9 +559,9 @@ Sys.Extended.UI.ChartType = function () {
     /// <field name="Stacked" type="Number" integer="true" />
     throw Error.invalidOperation();
 }
-Sys.Extended.UI.ChartType.prototype = {
+Sys.Extended.UI.AreaChartType.prototype = {
     Basic: 0,
     Stacked: 1
 }
 
-Sys.Extended.UI.ChartType.registerEnum("Sys.Extended.UI.ChartType", false);
+Sys.Extended.UI.AreaChartType.registerEnum("Sys.Extended.UI.AreaChartType", false);

@@ -1,6 +1,7 @@
 /// <reference name='MicrosoftAjax.js' />
 /// <reference path='../ExtenderBase/BaseScripts.js' />
 /// <reference path='../Common/Common.js' />
+/// <reference path="~/Common/Common.pre.js" />
 
 (function () {
 
@@ -162,7 +163,7 @@
             this._popupDiv = null;
             this._btnDone = null;
             this._btnCancel = null;
-            this._isFocusInEditableDiv;
+            this._isFocusInEditableDiv = false;
             this._textBoxOnBlurDelegate = null;
             this._editableDivOnBlurDelegate = null;
             this._editableDivOnFocusDelegate = null;
@@ -177,8 +178,7 @@
                 Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit = WebForm_OnSubmit;
                 WebForm_OnSubmit = Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit;
             }
-        }
-
+        };
         Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             initialize: function () {
                 Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
@@ -528,8 +528,7 @@
                             Copy: 1,
                             Cut: 1,
                             Paste: 1
-                        }
-
+                        };
                         if (Sys.Browser.agent != Sys.Browser.InternetExplorer && map[this._toolbarButtons[i].CommandName]) {
                             // don't render button
                         }
@@ -756,9 +755,8 @@
 
                 setTimeout(function () {
                     if (this._editableDiv != null)
-                        this._editableDiv.focus()
-                }, 0)
-
+                        this._editableDiv.focus();
+                }, 0);
                 if (Sys.Browser.agent != Sys.Browser.Firefox) {
                     if (document.selection) {
                         sel = document.selection.createRange();
@@ -1134,15 +1132,14 @@
                 if (sender._filesInQueue.length == sender._currentQueueIndex + 1) {
                     while (sender._filesInQueue.length >= 1) {
                         sender._filesInQueue[0].removeNodeFrom(sender._queueContainer);
-                        Array.removeAt(sender._filesInQueue, 0)
+                        Array.removeAt(sender._filesInQueue, 0);
                     }
-                    sender._showFilesCount()
+                    sender._showFilesCount();
                     sender._reset();
                     htmlEditorExtender._popupBehavior.hide();
                 }
             }
-        }
-
+        };
     } // execute
 
     if (window.Sys && Sys.loader) {

@@ -18,8 +18,8 @@ Type.registerNamespace('Sys.Extended.UI');
 Sys.Extended.UI._MultiHandleSliderDragDropInternal = function() {
     Sys.Extended.UI._MultiHandleSliderDragDropInternal.initializeBase(this);
     this._instance = null;
-}
-Sys.Extended.UI._MultiHandleSliderDragDropInternal.prototype = {
+};
+    Sys.Extended.UI._MultiHandleSliderDragDropInternal.prototype = {
     _getInstance: function() {
         // Do not use singleton pattern here; it will break the DragDropScripts.js implementation!
         //if(!this._instance) {
@@ -30,8 +30,8 @@ Sys.Extended.UI._MultiHandleSliderDragDropInternal.prototype = {
         //}
         return this._instance;
     }
-}
-Sys.Extended.UI._MultiHandleSliderDragDropInternal.registerClass('Sys.Extended.UI._MultiHandleSliderDragDropInternal', Sys.Extended.UI._DragDropManager);
+};
+    Sys.Extended.UI._MultiHandleSliderDragDropInternal.registerClass('Sys.Extended.UI._MultiHandleSliderDragDropInternal', Sys.Extended.UI._DragDropManager);
 Sys.Extended.UI.DragDrop = new Sys.Extended.UI._MultiHandleSliderDragDropInternal();
 
 // Enums
@@ -42,27 +42,25 @@ Sys.Extended.UI.MultiHandleInnerRailStyle = function() {
     /// </summary>
     /// <field name="AsIs">The inner style is rendered as it is defined.</field>
     /// <field name="SlidingDoors">The inner style is super-imposed on the outer style.</field>
-}
-
-Sys.Extended.UI.MultiHandleInnerRailStyle.prototype = {
+};
+    Sys.Extended.UI.MultiHandleInnerRailStyle.prototype = {
     AsIs: 0,
     SlidingDoors: 1
-}
-Sys.Extended.UI.MultiHandleInnerRailStyle.registerEnum('Sys.Extended.UI.MultiHandleInnerRailStyle', false);
+};
+    Sys.Extended.UI.MultiHandleInnerRailStyle.registerEnum('Sys.Extended.UI.MultiHandleInnerRailStyle', false);
 
-Sys.Extended.UI.SliderOrientation = function() {
+Sys.Extended.UI.MultiHandleSliderOrientation = function() {
     /// <summary>
     /// The SliderOrientation enumeration describes the slider's visual orientation.
     /// </summary>
     /// <field name="Horizontal">The slider orientation is left to right.</field>
     /// <field name="Vertical">The slider orientation is top to bottom.</field>
-}
-
-Sys.Extended.UI.SliderOrientation.prototype = {
+};
+    Sys.Extended.UI.MultiHandleSliderOrientation.prototype = {
     Horizontal: 0,
     Vertical: 1
-}
-Sys.Extended.UI.SliderOrientation.registerEnum('Sys.Extended.UI.SliderOrientation', false);
+};
+    Sys.Extended.UI.MultiHandleSliderOrientation.registerEnum('Sys.Extended.UI.MultiHandleSliderOrientation', false);
 
 // Behavior
 
@@ -79,7 +77,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior = function(element) {
     this._isServerControl = false;
     this._minimum = null;
     this._maximum = null;
-    this._orientation = Sys.Extended.UI.SliderOrientation.Horizontal;
+    this._orientation = Sys.Extended.UI.MultiHandleSliderOrientation.Horizontal;
     this._cssClass = null;
     this._multiHandleSliderTargets = null;
     this._length = 150;
@@ -134,9 +132,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior = function(element) {
     this._handleUnderDrag = null;
     this._innerDrag = false;
     this._blockInnerClick = false;
-}
-
-// MultiHandleSliderExtender Behavior
+}; // MultiHandleSliderExtender Behavior
 
 Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     
@@ -180,7 +176,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             this._handles = 1;
         }
         
-        this._isVertical = this._orientation === Sys.Extended.UI.SliderOrientation.Vertical;
+        this._isVertical = this._orientation === Sys.Extended.UI.MultiHandleSliderOrientation.Vertical;
 
         this._resolveNamingContainer();
         this._createWrapper();
@@ -2525,9 +2521,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         
         this.get_events().removeHandler('valueChanged', handler);
     }
-}
-
-Sys.Extended.UI.MultiHandleSliderBehavior.DropPending = null;
+};
+    Sys.Extended.UI.MultiHandleSliderBehavior.DropPending = null;
 Sys.Extended.UI.MultiHandleSliderBehavior.registerClass('Sys.Extended.UI.MultiHandleSliderBehavior', Sys.Extended.UI.BehaviorBase);
 Sys.registerComponent(Sys.Extended.UI.MultiHandleSliderBehavior, { name: "multiHandleSlider" });
 

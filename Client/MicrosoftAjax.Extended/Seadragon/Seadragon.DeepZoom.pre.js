@@ -3,7 +3,7 @@
 Sys.Extended.UI.Seadragon.DziError = function(message) {
     Sys.Extended.UI.Seadragon.DziError.initializeBase(this, [message]);
     this.message = message;
-}
+};
 Sys.Extended.UI.Seadragon.DziError.registerClass('Sys.Extended.UI.Seadragon.DziError', Error);
 
 Sys.Extended.UI.Seadragon.DziTileSource = function(width, height, tileSize, tileOverlap, tilesUrl, fileFormat, displayRects) {
@@ -14,7 +14,7 @@ Sys.Extended.UI.Seadragon.DziTileSource = function(width, height, tileSize, tile
     this.fileFormat = fileFormat;
     this.displayRects = displayRects;
     this._init();
-}
+};
 Sys.Extended.UI.Seadragon.DziTileSource.prototype = {
     _init: function() {
         if (!this.displayRects) {
@@ -73,11 +73,11 @@ Sys.Extended.UI.Seadragon.DziTileSource.prototype = {
 
         return false;
     }
-}
+};
 Sys.Extended.UI.Seadragon.DziTileSource.registerClass('Sys.Extended.UI.Seadragon.DziTileSource', Sys.Extended.UI.Seadragon.TileSource);
 Sys.Extended.UI.Seadragon._DziTileSourceHelper = function() {
 
-}
+};
 Sys.Extended.UI.Seadragon._DziTileSourceHelper.prototype = {
     createFromXml: function(xmlUrl, xmlString, callback) {
         var async = typeof (callback) == "function";
@@ -234,6 +234,6 @@ Sys.Extended.UI.Seadragon._DziTileSourceHelper.prototype = {
         }
 
     }
-}
+};
 //Static objects
 Sys.Extended.UI.Seadragon.DziTileSourceHelper = new Sys.Extended.UI.Seadragon._DziTileSourceHelper();

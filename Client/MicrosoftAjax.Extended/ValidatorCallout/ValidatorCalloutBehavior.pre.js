@@ -40,7 +40,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior = function Sys$Extended$UI$ValidatorCal
     this._isBuilt = false;
     this._focusHandler = Function.createDelegate(this, this._onfocus);
     this._closeClickHandler = Function.createDelegate(this, this._oncloseClick);
-}
+};
 Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     initialize : function() {
         Sys.Extended.UI.ValidatorCalloutBehavior.callBaseMethod(this, 'initialize');
@@ -122,11 +122,11 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomLeft)
                 calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_bottomleftpos";
             else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomRight)
-                calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_bottomrightpos"
+                calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_bottomrightpos";
             else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopLeft)
-                calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_topleftpos"
+                calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_topleftpos";
             else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopRight)
-                calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_toprightpos"
+                calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_toprightpos";
             else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.Left)
                 calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_leftpos";
             else
@@ -157,7 +157,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             //
             // Create the DOM tree
             //
-            elt.parentNode.appendChild(popupTable)
+            elt.parentNode.appendChild(popupTable);
             popupTable.appendChild(popupTableBody);
             popupTableBody.appendChild(popupTableRow);
             popupTableRow.appendChild(calloutCell);
@@ -378,7 +378,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             return false;
         } else {
             if(this._highlightCssClass && this._invalid) {
-                Sys.UI.DomElement.removeCssClass(this._elementToValidate, this._highlightCssClass)
+                Sys.UI.DomElement.removeCssClass(this._elementToValidate, this._highlightCssClass);
             }
             this._invalid = false;
             this.hide();
@@ -394,7 +394,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
     set_onShow : function(value) {
         if (this._popupBehavior) {
-            this._popupBehavior.set_onShow(value)
+            this._popupBehavior.set_onShow(value);
         } else {
             this._onShowJson = value;
         }
@@ -424,7 +424,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
     set_onHide : function(value) {
         if (this._popupBehavior) {
-            this._popupBehavior.set_onHide(value)
+            this._popupBehavior.set_onHide(value);
         } else {
             this._onHideJson = value;
         }
@@ -528,7 +528,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     get_isOpen : function() {
         return $common.getVisible(this._popupTable);
     }
-}
+};
 Sys.Extended.UI.ValidatorCalloutBehavior.registerClass('Sys.Extended.UI.ValidatorCalloutBehavior', Sys.Extended.UI.BehaviorBase);
 
 Sys.Extended.UI.ValidatorCalloutPosition = function() {
@@ -542,7 +542,7 @@ Sys.Extended.UI.ValidatorCalloutPosition = function() {
     /// <field name="Right" type="Number" integer="true" />
     /// <field name="Left" type="Number" integer="true" />
     throw Error.invalidOperation();
-}
+};
 Sys.Extended.UI.ValidatorCalloutPosition.prototype = {
     Right: 0,
     Left: 1,
@@ -550,5 +550,5 @@ Sys.Extended.UI.ValidatorCalloutPosition.prototype = {
     BottomRight: 3,
     TopLeft: 4,
     TopRight: 5
-}
+};
 Sys.Extended.UI.ValidatorCalloutPosition.registerEnum('Sys.Extended.UI.ValidatorCalloutPosition');

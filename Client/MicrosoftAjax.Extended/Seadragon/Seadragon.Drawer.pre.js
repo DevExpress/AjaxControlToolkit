@@ -53,7 +53,7 @@ Sys.Extended.UI.Seadragon.Tile = function(level, x, y, bounds, exists, url) {
     // Caching
     this.beingDrawn = false; // whether this tile is currently being drawn
     this.lastTouchTime = 0; // the time that tile was last touched
-}
+};
 Sys.Extended.UI.Seadragon.Tile.prototype = {
     dispose: function() {
     },
@@ -126,7 +126,7 @@ Sys.Extended.UI.Seadragon.Tile.prototype = {
         this.loaded = false;
         this.loading = false;
     }
-}
+};
 Sys.Extended.UI.Seadragon.Tile.registerClass('Sys.Extended.UI.Seadragon.Tile', null, Sys.IDisposable);
 
 Sys.Extended.UI.Seadragon.Overlay = function(elmt, loc, placement) {
@@ -139,7 +139,7 @@ Sys.Extended.UI.Seadragon.Overlay = function(elmt, loc, placement) {
     this.position = new Sys.Extended.UI.Seadragon.Point(loc.x, loc.y);
     this.size = new Sys.Extended.UI.Seadragon.Point(loc.width, loc.height);
     this.style = elmt.style;
-}
+};
 Sys.Extended.UI.Seadragon.Overlay.prototype = {
 
     adjust: function(position, size) {
@@ -233,7 +233,7 @@ Sys.Extended.UI.Seadragon.Overlay.prototype = {
                 placement : Sys.Extended.UI.Seadragon.OverlayPlacement.TOP_LEFT;    // rects are always top-left
     }
 
-}
+};
 Sys.Extended.UI.Seadragon.Overlay.registerClass('Sys.Extended.UI.Seadragon.Overlay', null, Sys.IDisposable);
 
 Sys.Extended.UI.Seadragon.Drawer = function(source, viewport, elmt) {
@@ -273,7 +273,7 @@ Sys.Extended.UI.Seadragon.Drawer = function(source, viewport, elmt) {
 	// Constructor
 
 	this._init();
-}
+};
 Sys.Extended.UI.Seadragon.Drawer.prototype = {
     dispose: function() {
         //ToDO:
@@ -901,6 +901,6 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
     idle: function() {
         // TODO idling function
     }
-}
+};
 Sys.Extended.UI.Seadragon.Drawer.registerClass('Sys.Extended.UI.Seadragon.Drawer', null, Sys.IDisposable);
 

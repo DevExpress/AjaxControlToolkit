@@ -6,7 +6,7 @@ Sys.Extended.UI.Seadragon.Job = function(src, callback) {
     this._src = src;
     this._callback = callback;
     this.TIMEOUT = 5000;
-}
+};
 Sys.Extended.UI.Seadragon.Job.prototype = {
     _finish: function(success) {
         this._image.onload = null;
@@ -42,14 +42,14 @@ Sys.Extended.UI.Seadragon.Job.prototype = {
 
         this._image.src = this._src;
     }
-}
+};
 Sys.Extended.UI.Seadragon.Job.registerClass('Sys.Extended.UI.Seadragon.Job', null, Sys.IDisposable);
 
 
 Sys.Extended.UI.Seadragon.ImageLoader = function(imageLoaderLimit) {
 	this._downloading = 0;
 	this.imageLoaderLimit = imageLoaderLimit;
-}
+};
 Sys.Extended.UI.Seadragon.ImageLoader.prototype = {
     _onComplete: function(callback, src, image) {
         this._downloading--;
@@ -75,6 +75,6 @@ Sys.Extended.UI.Seadragon.ImageLoader.prototype = {
 
         return true;
     }
-}
+};
 Sys.Extended.UI.Seadragon.ImageLoader.registerClass('Sys.Extended.UI.Seadragon.ImageLoader', null, Sys.IDisposable);
 

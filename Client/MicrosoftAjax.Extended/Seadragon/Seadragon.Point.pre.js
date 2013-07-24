@@ -4,7 +4,7 @@ Type.registerNamespace('Seadragon');
 Seadragon.Point=Sys.Extended.UI.Seadragon.Point = function(x, y) {
     this.x = typeof (x) == "number" ? x : 0;
     this.y = typeof (y) == "number" ? y : 0;
-}
+};
 Sys.Extended.UI.Seadragon.Point.prototype = {
     // Methods
 
@@ -45,5 +45,5 @@ Sys.Extended.UI.Seadragon.Point.prototype = {
     toString: function() {
         return "(" + this.x + "," + this.y + ")";
     }
-}
+};
 Sys.Extended.UI.Seadragon.Point.registerClass('Sys.Extended.UI.Seadragon.Point', null, Sys.IDisposable);  

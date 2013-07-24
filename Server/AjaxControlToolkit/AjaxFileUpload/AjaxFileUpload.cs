@@ -56,14 +56,14 @@ namespace AjaxControlToolkit
     [Designer("AjaxControlToolkit.AjaxFileUploadDesigner, AjaxControlToolkit")]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientCssResource("AjaxFileUpload.AjaxFileUpload.css")]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Utils.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Item.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Processor.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.ProcessorHtml5.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.StartEventArgs.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.EventArgs.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.CompleteAllEventArgs.js", true)]
-    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Control.js", true)]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Utils.js")]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Item.js")]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Processor.js")]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.ProcessorHtml5.js")]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.StartEventArgs.js")]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.EventArgs.js")]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.CompleteAllEventArgs.js")]
+    [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", "AjaxFileUpload.AjaxFileUpload.Control.js")]
     public class AjaxFileUpload : ScriptControlBase
     {
         internal const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";

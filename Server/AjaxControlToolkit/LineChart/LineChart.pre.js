@@ -11,7 +11,7 @@ Sys.Extended.UI.LineChart = function (element) {
     this._chartTitle = '';
     this._categoriesAxis = '';
     this._series = null;
-    this._chartType = Sys.Extended.UI.ChartType.Basic;
+    this._chartType = Sys.Extended.UI.LineChartType.Basic;
     this._theme = 'LineChart';
     this._valueAxisLines = 9;
     this._chartTitleColor = '';
@@ -123,7 +123,7 @@ Sys.Extended.UI.LineChart.prototype = {
         var seriesMin;
         var arrData;
 
-        if (this._chartType == Sys.Extended.UI.ChartType.Basic) {
+        if (this._chartType == Sys.Extended.UI.LineChartType.Basic) {
             for (var i = 0; i < this._series.length; i++) {
                 arrData = new Array();
                 for (var j = 0; j < this._series[i].Data.length; j++) {
@@ -379,7 +379,7 @@ Sys.Extended.UI.LineChart.prototype = {
     animateLines: function (me, lastStartX, lastStartY, yVal, index) {
         for (var j = 0; j < me._series.length; j++) {
             yVal = 0;
-            if (me._chartType == Sys.Extended.UI.ChartType.Stacked) {
+            if (me._chartType == Sys.Extended.UI.LineChartType.Stacked) {
                 for (k = 0; k <= j; k++) {
                     yVal = parseFloat(yVal) + parseFloat(me._series[k].Data[index]);
                 }
@@ -388,7 +388,7 @@ Sys.Extended.UI.LineChart.prototype = {
                 yVal = me._series[j].Data[index];
             }
 
-            if (me._chartType == Sys.Extended.UI.ChartType.Stacked) {
+            if (me._chartType == Sys.Extended.UI.LineChartType.Stacked) {
                 if (me.arrCombinedData[index] > 0) {
                     if (index > 0)
                         me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<circle id="Dot{2}" cx="{0}" cy="{1}" r="4" style="fill:{3};stroke:{3}" onmouseover="ShowTooltip(this, evt, {4}, \'{5}\')" onmouseout="HideTooltip(this, evt)"></circle>', me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor, yVal, me._areaDataLabel) + String.format('<path d="M{0} {1} {2} {3}" id="Line{4}" style="fill:{5};stroke:{5}"></path>', lastStartX[j], lastStartY[j], me.startX + (me.xInterval * index) + (me.xInterval / 2), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)), j + 1, me._series[j].LineColor) + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', me.startX + (me.xInterval * index) + (me.xInterval * 20 / 100), me.startY - Math.round(yVal * (me.yInterval / me.roundedTickRange)) - 7.5, yVal);
@@ -547,7 +547,7 @@ Sys.Extended.UI.LineChart.prototype = {
 Sys.Extended.UI.LineChart.registerClass("Sys.Extended.UI.LineChart", Sys.Extended.UI.ControlBase);
 Sys.registerComponent(Sys.Extended.UI.LineChart, { name: 'LineChart', parameters: [{ name: 'ClientSeries', type: 'LineChartSeries[]'}] });
 
-Sys.Extended.UI.ChartType = function () {
+Sys.Extended.UI.LineChartType = function () {
     /// <summary>
     /// Type of Line Chart
     /// </summary>            
@@ -555,9 +555,9 @@ Sys.Extended.UI.ChartType = function () {
     /// <field name="Stacked" type="Number" integer="true" />    
     throw Error.invalidOperation();
 }
-Sys.Extended.UI.ChartType.prototype = {
+Sys.Extended.UI.LineChartType.prototype = {
     Basic: 0,
     Stacked: 1
 }
 
-Sys.Extended.UI.ChartType.registerEnum("Sys.Extended.UI.ChartType", false);
+Sys.Extended.UI.LineChartType.registerEnum("Sys.Extended.UI.LineChartType", false);

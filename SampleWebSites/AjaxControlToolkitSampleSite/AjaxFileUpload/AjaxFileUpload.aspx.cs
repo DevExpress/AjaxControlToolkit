@@ -30,7 +30,7 @@ public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page
 
                 if (AjaxFileUpload1.StoreToAzure)
                 {
-#if NET45 || NET4
+#if NET45 || NET40
                     using (var stream = new MemoryStream())
                     {
                         AjaxFileUploadBlobInfo blobInfo;

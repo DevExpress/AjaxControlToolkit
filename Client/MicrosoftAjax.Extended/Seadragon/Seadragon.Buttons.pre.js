@@ -3,13 +3,13 @@ Type.registerNamespace('Seadragon');
 
 Sys.Extended.UI.Seadragon.ButtonState = function() {
 	throw Error.invalidOperation();
-}
+};
 Sys.Extended.UI.Seadragon.ButtonState.prototype = {
 	REST: 0,
 	GROUP: 1,
 	HOVER: 2,
 	DOWN: 3
-}
+};
 Sys.Extended.UI.Seadragon.ButtonState.registerEnum("Sys.Extended.UI.Seadragon.ButtonState", false);
 
 Sys.Extended.UI.Seadragon.Button = function() {
@@ -23,7 +23,7 @@ Sys.Extended.UI.Seadragon.Button = function() {
 	this._button = null;
 	this.config = null;
 
-}
+};
 Sys.Extended.UI.Seadragon.Button.prototype = {
     initialize: function() {
         Sys.Extended.UI.Seadragon.Button.callBaseMethod(this, 'initialize');
@@ -270,7 +270,7 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
     notifyGroupExit: function() {
         this._outTo(Sys.Extended.UI.Seadragon.ButtonState.REST);
     }
-}
+};
 Sys.Extended.UI.Seadragon.Button.registerClass('Sys.Extended.UI.Seadragon.Button', Sys.Component);
 
 Sys.Extended.UI.Seadragon.ButtonGroup = function() {
@@ -279,7 +279,7 @@ Sys.Extended.UI.Seadragon.ButtonGroup = function() {
 	this._buttons = null;
 	this._group = null;
 	this.config = null;
-}
+};
 Sys.Extended.UI.Seadragon.ButtonGroup.prototype = {
 	initialize: function() {
 		Sys.Extended.UI.Seadragon.ButtonGroup.callBaseMethod(this, 'initialize');
@@ -350,5 +350,5 @@ Sys.Extended.UI.Seadragon.ButtonGroup.prototype = {
 	emulateExit: function() {
 		this._exitHandler();
 	}
-}
+};
 Sys.Extended.UI.Seadragon.ButtonGroup.registerClass('Sys.Extended.UI.Seadragon.ButtonGroup', Sys.Component);

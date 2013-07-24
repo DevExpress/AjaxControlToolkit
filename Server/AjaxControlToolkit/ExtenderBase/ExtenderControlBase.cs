@@ -435,9 +435,9 @@ namespace AjaxControlToolkit
 
         protected override IEnumerable<ScriptReference> GetScriptReferences()
         {
-            if (Enabled) {
-                return EnsureScripts();
-            }
+            //if (Enabled) {
+            //    return EnsureScripts();
+            //}
             return null;
         }
 

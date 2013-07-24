@@ -11,7 +11,7 @@ Sys.Extended.UI.BarChart = function (element) {
     this._chartTitle = '';
     this._categoriesAxis = '';
     this._series = null;
-    this._chartType = Sys.Extended.UI.ChartType.Column;
+    this._chartType = Sys.Extended.UI.BarChartType.Column;
     this._theme = 'BarChart';
     this._valueAxisLines = 9;
     this._chartTitleColor = '';
@@ -52,9 +52,9 @@ Sys.Extended.UI.BarChart.prototype = {
             this._valueAxisLines = 9;
         }
 
-        if (this._chartType == Sys.Extended.UI.ChartType.Column || this._chartType == Sys.Extended.UI.ChartType.StackedColumn)
+        if (this._chartType == Sys.Extended.UI.BarChartType.Column || this._chartType == Sys.Extended.UI.BarChartType.StackedColumn)
             this.generateColumnChart();
-        else if (this._chartType == Sys.Extended.UI.ChartType.Bar || this._chartType == Sys.Extended.UI.ChartType.StackedBar)
+        else if (this._chartType == Sys.Extended.UI.BarChartType.Bar || this._chartType == Sys.Extended.UI.BarChartType.StackedBar)
             this.generateBarChart();
     },
 
@@ -106,7 +106,7 @@ Sys.Extended.UI.BarChart.prototype = {
         var seriesMin;
         var arrData;
 
-        if (this._chartType == Sys.Extended.UI.ChartType.Column) {
+        if (this._chartType == Sys.Extended.UI.BarChartType.Column) {
             for (var i = 0; i < this._series.length; i++) {
                 arrData = this._series[i].Data;
                 seriesMax = Math.max.apply(null, arrData);
@@ -279,7 +279,7 @@ Sys.Extended.UI.BarChart.prototype = {
         var numberOfBars = this._series.length;
         var widthBetweenBars = this.xInterval * 10 / 100;
         var barWidth;
-        if (this._chartType == Sys.Extended.UI.ChartType.Column) {
+        if (this._chartType == Sys.Extended.UI.BarChartType.Column) {
             barWidth = Math.round(((this.xInterval * 80 / 100) - (widthBetweenBars * numberOfBars)) / numberOfBars);
         }
         else {
@@ -289,7 +289,7 @@ Sys.Extended.UI.BarChart.prototype = {
         var barColor = '';
         for (var i = 0; i < this.arrXAxisLength; i++) {
             barContents = barContents + '<g>';
-            if (this._chartType == Sys.Extended.UI.ChartType.Column) {
+            if (this._chartType == Sys.Extended.UI.BarChartType.Column) {
                 for (var j = 0; j < this._series.length; j++) {
                     this.yVal = parseFloat(this._series[j].Data[i]);
                     if (i == 0) {
@@ -457,7 +457,7 @@ Sys.Extended.UI.BarChart.prototype = {
         var seriesMax;
         var seriesMin;
         var arrData;
-        if (this._chartType == Sys.Extended.UI.ChartType.Bar) {
+        if (this._chartType == Sys.Extended.UI.BarChartType.Bar) {
             for (var i = 0; i < this._series.length; i++) {
                 arrData = this._series[i].Data;
                 seriesMax = Math.max.apply(null, arrData);
@@ -624,10 +624,10 @@ Sys.Extended.UI.BarChart.prototype = {
         var barContents = '';
         var numberOfBars = this._series.length;
         var widthBetweenBars = this.yInterval * 10 / 100;
-        var barWidth = this._chartType == Sys.Extended.UI.ChartType.Bar ? Math.round(((this.yInterval * 80 / 100) - (widthBetweenBars * numberOfBars)) / numberOfBars) : Math.round(this.yInterval * 80 / 100);
+        var barWidth = this._chartType == Sys.Extended.UI.BarChartType.Bar ? Math.round(((this.yInterval * 80 / 100) - (widthBetweenBars * numberOfBars)) / numberOfBars) : Math.round(this.yInterval * 80 / 100);
         for (var i = 0; i < this.arrYAxisLength; i++) {
             barContents = barContents + '<g>';
-            if (this._chartType == Sys.Extended.UI.ChartType.Bar) {
+            if (this._chartType == Sys.Extended.UI.BarChartType.Bar) {
                 for (var j = 0; j < this._series.length; j++) {
                     this.xVal = this._series[j].Data[i];
                     if (i == 0) {
@@ -765,7 +765,7 @@ Sys.Extended.UI.BarChart.prototype = {
 Sys.Extended.UI.BarChart.registerClass("Sys.Extended.UI.BarChart", Sys.Extended.UI.ControlBase);
 Sys.registerComponent(Sys.Extended.UI.BarChart, { name: 'BarChart', parameters: [{ name: 'ClientSeries', type: 'BarChartSeries[]'}] });
 
-Sys.Extended.UI.ChartType = function () {
+Sys.Extended.UI.BarChartType = function () {
     /// <summary>
     /// Type of Chart
     /// </summary>            
@@ -773,11 +773,11 @@ Sys.Extended.UI.ChartType = function () {
     /// <field name="Bar" type="Number" integer="true" />
     throw Error.invalidOperation();
 }
-Sys.Extended.UI.ChartType.prototype = {
+Sys.Extended.UI.BarChartType.prototype = {
     Column: 0,
     Bar: 1,
     StackedColumn: 2,
     StackedBar: 3
 }
 
-Sys.Extended.UI.ChartType.registerEnum("Sys.Extended.UI.ChartType", false);
+Sys.Extended.UI.BarChartType.registerEnum("Sys.Extended.UI.BarChartType", false);

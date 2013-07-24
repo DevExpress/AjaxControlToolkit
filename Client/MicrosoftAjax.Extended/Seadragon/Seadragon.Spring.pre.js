@@ -10,7 +10,7 @@ Seadragon.Spring = Sys.Extended.UI.Seadragon.Spring = function(initialValue, con
 	this._currentTime = new Date().getTime(); // always work in milliseconds
 	this._startTime = this._currentTime;
 	this._targetTime = this._currentTime;
-}
+};
 Sys.Extended.UI.Seadragon.Spring.prototype = {
 	_transform: function(x) {
 		var s = this.config.springStiffness;
@@ -49,5 +49,5 @@ Sys.Extended.UI.Seadragon.Spring.prototype = {
                 this._startValue + (this._targetValue - this._startValue) *
                 this._transform((this._currentTime - this._startTime) / (this._targetTime - this._startTime));
 	}
-}
+};
 Sys.Extended.UI.Seadragon.Spring.registerClass('Sys.Extended.UI.Seadragon.Spring', null, Sys.IDisposable);

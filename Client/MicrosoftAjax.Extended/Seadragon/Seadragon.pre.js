@@ -6,21 +6,21 @@ Type.registerNamespace('Seadragon');
 
 Sys.Extended.UI.Seadragon.ControlAnchor = function() {
     throw Error.invalidOperation();
-}
+};
 Sys.Extended.UI.Seadragon.ControlAnchor.prototype = {
     NONE: 0,
     TOP_LEFT: 1,
     TOP_RIGHT: 2,
     BOTTOM_RIGHT: 3,
     BOTTOM_LEFT: 4
-}
+};
 Sys.Extended.UI.Seadragon.ControlAnchor.registerEnum("Sys.Extended.UI.Seadragon.ControlAnchor", false);
 
 Seadragon.ControlAnchor = Sys.Extended.UI.Seadragon.ControlAnchor;
 
 Sys.Extended.UI.Seadragon.OverlayPlacement = function() {
     throw Error.invalidOperation();
-}
+};
 Sys.Extended.UI.Seadragon.OverlayPlacement.prototype = {
     CENTER: 0,
     TOP_LEFT: 1,
@@ -31,7 +31,7 @@ Sys.Extended.UI.Seadragon.OverlayPlacement.prototype = {
     BOTTOM: 6,
     BOTTOM_LEFT: 7,
     LEFT: 8
-}
+};
 Sys.Extended.UI.Seadragon.OverlayPlacement.registerEnum("Sys.Extended.UI.Seadragon.OverlayPlacement", false);
 Seadragon.OverlayPlacement = Sys.Extended.UI.Seadragon.OverlayPlacement;
 
@@ -45,7 +45,7 @@ Sys.Extended.UI.Seadragon.NavControl = function(viewer) {
 
     this.elmt = null;
     this.initialize();
-}
+};
 Sys.Extended.UI.Seadragon.NavControl.prototype = {
     initialize: function() {
         var beginZoomingInHandler = Function.createDelegate(this, this._beginZoomingIn);
@@ -143,7 +143,7 @@ Sys.Extended.UI.Seadragon.NavControl.prototype = {
             this._viewer.viewport.applyConstraints();
         }
     }
-}
+};
 Sys.Extended.UI.Seadragon.NavControl.registerClass('Sys.Extended.UI.Seadragon.NavControl', null, Sys.IDisposable);
 
 Sys.Extended.UI.Seadragon.Control = function(elmt, anchor, container) {
@@ -153,7 +153,7 @@ Sys.Extended.UI.Seadragon.Control = function(elmt, anchor, container) {
     this.container = container;
     this.wrapper = Seadragon.Utils.makeNeutralElement("span");
     this.initialize();
-}
+};
 Sys.Extended.UI.Seadragon.Control.prototype = {
     initialize: function() {
         this.wrapper = Seadragon.Utils.makeNeutralElement("span");
@@ -196,7 +196,7 @@ Sys.Extended.UI.Seadragon.Control.prototype = {
             Seadragon.Utils.setElementOpacity(this.wrapper, opacity, true);
         }
     }
-}
+};
 Sys.Extended.UI.Seadragon.Control.registerClass('Sys.Extended.UI.Seadragon.Control', null, Sys.IDisposable);
 
 Sys.Extended.UI.Seadragon.Viewer = function(element) {
@@ -235,7 +235,7 @@ Sys.Extended.UI.Seadragon.Viewer = function(element) {
     this.viewport = null;
     this.profiler = null;
 
-}
+};
 Sys.Extended.UI.Seadragon.Viewer.prototype = {
     initialize: function() {
         Sys.Extended.UI.Seadragon.Viewer.callBaseMethod(this, 'initialize');
@@ -1028,5 +1028,5 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         this._container.style.visibility = visible ? "" : "hidden";
     }
 
-}
+};
 Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer', Sys.UI.Control);
