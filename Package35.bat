@@ -8,7 +8,6 @@ SET PackageFolderNET35=PackageForNET35
 SET BinaryFolderNET35=%PackageFolderNET35%\AjaxControlToolkit.Binary.NET35
 
 SET SampleSiteFolder=.\SampleWebSites\AjaxControlToolkitSampleSite
-SET CustomControlBinFolder=.\CustomControlDemo\Bin
 
 SET zipper=%c:\zip\7za.exe
 
@@ -19,7 +18,6 @@ REM Clean up old binaries
 rd Client\MicrosoftAjax\bin /s /q
 rd Client\MicrosoftAjax.Extended\bin /s /q
 rd Server\AjaxControlToolkit\bin\NET35 /s /q
-rd CustomControlDemo\bin\NET35 /s /q
 
 REM Prepare web.config
 copy /Y %SampleSiteFolder%\Web.config %SampleSiteFolder%\Web_config_backup.exclude 
@@ -44,7 +42,6 @@ copy ReadMe.html %BinaryFolderNET35%
 REM Add the Sample Site
 md SampleSite35
 xcopy %SampleSiteFolder%\*.* SampleSite35 /E /Y
-xcopy %CustomControlBinFolder%\NET35\Release\CustomControlDemo.* SampleSite35\Bin /Y
 xcopy %BinaryFolderNET35%\*.* SampleSite35\Bin /E /Y
 del SampleSite35\Bin\Microsoft.WindowsAzure.Storage.*
 del SampleSite35\*.exclude

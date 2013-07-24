@@ -8,7 +8,6 @@ SET PackageFolderNET40=PackageForNET40
 SET BinaryFolderNET40=%PackageFolderNET40%\AjaxControlToolkit.Binary.NET40
 
 SET SampleSiteFolder=.\SampleWebSites\AjaxControlToolkitSampleSite
-SET CustomControlBinFolder=.\CustomControlDemo\Bin
 
 SET zipper=%c:\zip\7za.exe
 
@@ -19,7 +18,6 @@ REM Clean up old binaries
 rd Client\MicrosoftAjax\bin /s /q
 rd Client\MicrosoftAjax.Extended\bin /s /q
 rd Server\AjaxControlToolkit\bin\NET40 /s /q
-rd CustomControlDemo\bin\NET40 /s /q
 
 REM Prepare web.config
 copy /Y %SampleSiteFolder%\Web.config %SampleSiteFolder%\Web_config_backup.exclude 
@@ -44,7 +42,6 @@ copy ReadMe.html %BinaryFolderNET40%
 REM Add the Sample Site
 md SampleSite40
 xcopy %SampleSiteFolder%\*.* SampleSite40 /E /Y
-xcopy %CustomControlBinFolder%\NET40\Release\CustomControlDemo.* SampleSite40\Bin /Y
 xcopy %BinaryFolderNET40%\*.* SampleSite40\Bin /E /Y
 del SampleSite40\*.exclude
 c:\zip\7za.exe a %BinaryFolderNET40%\AjaxControlToolkitSampleSite.zip .\SampleSite40\*  
