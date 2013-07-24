@@ -65,7 +65,6 @@ namespace AjaxControlToolkit
 
             var cache = response.Cache;
 
-            // Only cache script when not in Debug mode
             // Set the same (~forever) caching rules that ScriptResource.axd uses
             cache.SetCacheability(HttpCacheability.Public);
             cache.VaryByParams[ToolkitScriptManager.CombinedScriptsParamName] = true;

@@ -337,7 +337,6 @@ namespace AjaxControlToolkit {
 
         private bool IsDebugMode {
             get {
-                return false;
                 return IsDebuggingEnabled;
             }
         }
