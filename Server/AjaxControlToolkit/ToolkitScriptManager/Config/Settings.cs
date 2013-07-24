@@ -2,34 +2,34 @@
 
 namespace AjaxControlToolkit.Config
 {
-    [XmlRoot("AjaxControlToolkit")]
+    [XmlRoot("ajaxControlToolkit")]
     public class Settings
     {
-        [XmlElement("ControlBundles", IsNullable = false)]
+        [XmlElement("controlBundles", IsNullable = false)]
         public ControlBundleSection[] ControlBundles { get; set; }
     }
 
     public class ControlBundleSection
     {
-        [XmlElement("ControlBundle", IsNullable = false)]
+        [XmlElement("controlBundle", IsNullable = false)]
         public ControlBundle[] ControlBundles { get; set; }
     }
 
     public class ControlBundle
     {
-        [XmlAttribute]
+        [XmlAttribute("name")]
         public string Name { get; set; }
 
-        [XmlElement("Control", IsNullable = false)]
+        [XmlElement("control", IsNullable = false)]
         public Control[] Controls { get; set; }
     }
 
     public class Control
     {
-        [XmlAttribute]
+        [XmlAttribute("name")]
         public string Name { get; set; }
 
-        [XmlAttribute]
+        [XmlAttribute("assembly")]
         public string Assembly { get; set; }
     }
 }

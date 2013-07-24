@@ -132,17 +132,17 @@ namespace AjaxControlToolkit.Tests {
 
             _mockCacheProvider.Setup(c => c.Get<string>(CacheConfigName)).Returns(
 @"<?xml version=""1.0"" encoding=""utf-8"" ?>
-<AjaxControlToolkit>
-  <ControlBundles>
-    <ControlBundle>
-      <Control Name=""AsyncFileUpload""></Control>
-      <Control Name=""AutoCompleteExtender""></Control>
-      <Control Name=""BalloonPopupExtender""></Control>
-      <Control Name=""BarChart""></Control>
-      <Control Name=""BubbleChart""></Control>
-    </ControlBundle>
-  </ControlBundles>
-</AjaxControlToolkit>");
+<ajaxControlToolkit>
+  <controlBundles>
+    <controlBundle>
+      <control name=""AsyncFileUpload""></control>
+      <control name=""AutoCompleteExtender""></control>
+      <control name=""BalloonPopupExtender""></control>
+      <control name=""BarChart""></control>
+      <control name=""BubbleChart""></control>
+    </controlBundle>
+  </controlBundles>
+</ajaxControlToolkit>");
 
             var configManager = new ToolkitScriptManagerConfig(_mockCacheProvider.Object);
             configManager.GetControlTypesInBundles(_moqContext.Object, null);
