@@ -146,7 +146,7 @@ namespace AjaxControlToolkit {
                                         throw new Exception(
                                             string.Format(
                                                 "Could not find control '{0}'. Please make sure you entered the correct control name in AjaxControlToolkit.config file.",
-                                                control));
+                                                control.Name));
 
                                     registeredControls.AddRange(
                                         ControlTypeMaps[control.Name].Select(
