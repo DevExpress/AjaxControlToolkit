@@ -9,6 +9,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
     /// <summary>
@@ -240,6 +241,41 @@ namespace AjaxControlToolkit {
             }
 
             base.OnLoad(e);
+        }
+
+        protected override void OnPreRender(EventArgs e)
+        {
+            base.OnPreRender(e);
+
+            // Ensure all control script references was loaded.
+            var controlTypes = new List<Type>();
+            GetRegisteredControlTypes(Page.Controls, controlTypes);
+            foreach (var controlType in controlTypes) {
+                var scriptReferences = ScriptObjectBuilder.GetScriptReferences(controlType);
+                foreach (var scriptReference in scriptReferences) {
+                    if (!Combiner.IsScriptRegistered(scriptReference))
+                        throw new Exception("Could not load control " + controlType.FullName 
+                            + ". The script reference(s) of this control was not loaded correctly. "
+                            + "If AjaxControlToolkit.config is used, probably this control is not registered properly.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Recursively find all WebControls type registered in Page
+        /// </summary>
+        /// <param name="controls">Control collection in Page</param>
+        /// <param name="results">Distinct results</param>
+        private void GetRegisteredControlTypes(ControlCollection controls, ICollection<Type> results) {
+            foreach (Control control in controls) {
+                var controlType = control.GetType();
+
+                if (control is WebControl && !results.Contains(controlType))
+                    results.Add(controlType);
+
+                if (control.HasControls())
+                    GetRegisteredControlTypes(control.Controls, results);
+            }
         }
 
         private string BuildCombinedScriptUrl(string contentHash) {
