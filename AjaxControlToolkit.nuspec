@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>AjaxControlToolkit</id>
-    <version>7.0607</version>    
+    <version>7.0725</version>    
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
 	<licenseUrl>http://ajaxcontroltoolkit.codeplex.com/license</licenseUrl>

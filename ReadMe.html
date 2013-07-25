@@ -21,26 +21,42 @@
 
 <div id="main">
 
-<h1>AJAX Control Toolkit &mdash; June 2013 Release</h1> 
+<h1>AJAX Control Toolkit &mdash; July 2013 Release</h1> 
 <p> 
-This release of the Ajax Control Toolkit improves the AjaxFileUpload control by adding support for uploading files directly to Windows Azure. This 
-    release also improves the SlideShow control by adding support for CSS3 animated slide transitions.
+This release of the Ajax Control Toolkit improves the performance of the Ajax Control Toolkit 
+    and makes it easier to create custom Ajax Control Toolkit controls.
 </p>
 <ul>
 <li>
     <p>
-    AjaxFileUpload - Use the new AjaxFileUpload StoreToAzure and AzureContainerName properties to upload files directly to Windows Azure Blob Storage. 
+    Control Bundles - Use Control Bundles to specify the subset of the Ajax Control Toolkit controls that you want to use in your app.
+        Control Bundles can substantially improve the performance of your app by enabling you to download only the scripts that you need.  
     </p>
 </li>
 <li>
     <p>
-    SlideShow - Use the new SlideShowAnimationType property to animate slide transitions. You can select from the following animations: FadeInFadeOut, ScaleX, ScaleY, 
-            ZoomInOut, Rotate, SlideLeft and SlideDown. 
+    CombineScripts Handler - Use the new AjaxControlToolkit.CombineScripts handler to cache Ajax Control Toolkit scripts for an entire app. 
+        To take advantage of the CombineScripts handler, you need to register the handler in your web.config file (see the sample website). 
     </p>
 </li> 
 </ul>
  
-
+<h1>Changes with this Release</h1>
+    <ul>
+        <li>
+            <p>
+                Visual Studio 2012 Solution - Starting with this release, you must use Visual Studio 2012 
+                when working with the Ajax Control Toolkit source code. We no longer maintain seperate Visual Studio 2008, Visual Studio 2010, and Visual Studio 2012 
+                solution and project files.
+            </p>
+        </li>
+        <li>
+            <p>
+                Sanitizer Providers - The Sanitizer Providers no longer ship in a seperate assembly.  The code has been merged into the
+                AjaxControlToolkit.dll assembly. You will need to update your web.config file (see the sample website).
+            </p>
+        </li>
+    </ul>
 
 
 <h2>What's in the Download</h2> 
