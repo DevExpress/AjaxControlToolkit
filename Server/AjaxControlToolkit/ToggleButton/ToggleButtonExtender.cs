@@ -1,15 +1,10 @@
-
-
-using System;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.Text;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
-[assembly: System.Web.UI.WebResource("ToggleButton.ToggleButton.js", "text/javascript")]
-[assembly: System.Web.UI.WebResource("ToggleButton.ToggleButton.debug.js", "text/javascript")]
+[assembly: System.Web.UI.WebResource("ToggleButton.ToggleButtonExtenderActivator.js", "text/javascript")]
+[assembly: System.Web.UI.WebResource("ToggleButton.ToggleButtonExtenderActivator.debug.js", "text/javascript")]
+[assembly: System.Web.UI.WebResource("jQuery.ToggleButton.ToggleButtonExtender.js", "text/javascript")]
+[assembly: System.Web.UI.WebResource("jQuery.ToggleButton.ToggleButtonExtender.debug.js", "text/javascript")]
 
 namespace AjaxControlToolkit
 {
@@ -17,10 +12,12 @@ namespace AjaxControlToolkit
     /// ToggleButton extender class definition
     /// </summary>
     [Designer("AjaxControlToolkit.ToggleButtonExtenderDesigner, AjaxControlToolkit")]
-    [ClientScriptResource("Sys.Extended.UI.ToggleButtonBehavior", "ToggleButton.ToggleButton.js")]
+    [ClientScriptResource("Sys.Extended.UI.ToggleButtonBehavior", "ToggleButton.ToggleButtonExtenderActivator.js")]
+    [ClientScriptResource(null, "jQuery.ToggleButton.ToggleButtonExtender.js")]
     [TargetControlType(typeof(ICheckBoxControl))]
     [System.Drawing.ToolboxBitmap(typeof(ToggleButtonExtender), "ToggleButton.ToggleButton.ico")]
-    public class ToggleButtonExtender : ExtenderControlBase
+    [RequiredScript(typeof(JQueryToolkitScripts))]
+    public class ToggleButtonExtender : JQueryExtenderControl
     {
         // Constant strings for each property name
         private const string stringImageWidth = "ImageWidth";

@@ -38,6 +38,11 @@ namespace AjaxControlToolkit {
         public const string CacheBustParamName = "v";
 
         /// <summary>
+        /// Request param name for the CDN enabled script
+        /// </summary>
+        public const string EnableCdnParamName = "cdn";
+
+        /// <summary>
         /// Request param name for the hidden field name
         /// </summary>
         public const string HiddenFieldParamName = "_TSM_HiddenField_";
@@ -211,14 +216,27 @@ namespace AjaxControlToolkit {
 
                     // Combine & minify only work when not in debug mode and CombineScripts property set to true
 
+                    bool enableCdn = false;
+#if NET45 || NET40
+                    enableCdn = EnableCdn;
+#endif
+
                     var contentHash =
-                        Combiner.GetCombinedScriptContentHash(new HttpContextWrapper(Context), bundles);
+                        Combiner.GetCombinedScriptContentHash(new HttpContextWrapper(Context), bundles, enableCdn);
 
                     Page.ClientScript.RegisterHiddenField(HiddenFieldParamName, contentHash);
                     _combinedScriptUrl = BuildCombinedScriptUrl(contentHash);
+
+                    if (enableCdn) {
+                        var cdnScripts = Combiner.GetExcludedScripts(true);
+                        foreach (var scriptReference in cdnScripts) {
+                            Scripts.Add(scriptReference);
+                        }
+                    }
+
                     Scripts.Add(new ScriptReference(_combinedScriptUrl));
 
-                    var excludedScripts = Combiner.GetExcludedScripts();
+                    var excludedScripts = Combiner.GetExcludedScripts(false);
                     foreach (var scriptReference in excludedScripts) {
                         Scripts.Add(scriptReference);
                     }
@@ -283,15 +301,19 @@ namespace AjaxControlToolkit {
             if (_controlBundles != null && _controlBundles.Count > 0)
                 bundleControlsParam = string.Join(QueryStringBundleDelimiter,
                                                   _controlBundles.Select(x => x.Name).ToArray());
+            bool enableCdn = false;
+#if NET45 || NET40
+            enableCdn = EnableCdn;
+#endif
 
             return String.Format(CultureInfo.InvariantCulture,
-                                 "{0}?{1}={2}&{3}={4}&{5}={6}",
+                                 "{0}?{1}={2}&{3}={4}&{5}={6}&{7}={8}",
                                  null != _combineScriptsHandlerUrl
                                      ? Page.ResolveUrl(_combineScriptsHandlerUrl.ToString())
                                      : Page.Request.Path.Replace(" ", "%20"),
                                  CombinedScriptsParamName, _combineScripts,
                                  CacheBustParamName, contentHash,
-                                 ControlBundleParamName, bundleControlsParam);
+                                 ControlBundleParamName, bundleControlsParam, EnableCdnParamName, enableCdn);
         }
 
         /// <summary>
@@ -373,6 +395,7 @@ namespace AjaxControlToolkit {
 
         private bool IsDebugMode {
             get {
+                return false;
                 return IsDebuggingEnabled;
             }
         }

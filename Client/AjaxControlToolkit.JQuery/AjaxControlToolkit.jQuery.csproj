@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{979AF0ED-8F7C-4F5D-959D-B2DC1739C5DF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AjaxControlToolkit.jQuery</RootNamespace>
+    <AssemblyName>AjaxControlToolkit.jQuery</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ScriptOutput>$(SolutionDir)\Client\ScriptOutput\jQuery</ScriptOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="jQuery.pre.js" />
+    <Content Include="jQueryUI.pre.js" />
+    <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery.ui.widget.js" />
+    <Content Include="Start.pre.js" />
+    <Content Include="ToggleButton\ToggleButtonExtender.pre.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Scripts\jquery-1.9.1.min.map" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- JSBuild outputs the results of a build to the Scripts folder -->
+  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\NET45\JSBuild.dll" />
+  <UsingTask TaskName="JSBuild.PrependTask" AssemblyFile="..\..\Tools\NET45\JSBuild.dll" />
+  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\Libs\NET45\AjaxMinTask.dll" />
+  <Target Name="BeforeBuild">
+    <MakeDir Directories="$(ScriptOutput)" />
+    <!-- clean out old files from previous build -->
+    <ItemGroup>
+      <ToDelete Include="$(ScriptOutput)\**\*" />
+    </ItemGroup>
+    <Delete Files="@(ToDelete)" />
+    <!--
+    Delete all the directories. No built-in msbuild task can do this.
+    See the following for explaination:
+    http://social.msdn.microsoft.com/forums/en-US/msbuild/thread/d2833d1e-2d56-4fc4-98a4-e321b976b9ac
+    -->
+    <Exec Command="for /f %%d in ('dir /ad /b') do rd /s /q %%d" WorkingDirectory="$(ScriptOutput)" />
+    <!-- build pre.js files with the JSBuildTask preprocessor, which generates debug and release scripts -->
+    <ItemGroup>
+      <PreJS Include="**\*.pre.js">
+        <InProject>False</InProject>
+      </PreJS>
+    </ItemGroup>
+    <JSBuildTask IncludePathInOutput="true" SourceFiles="@(PreJS)" SourceDirectory="$(MSBuildProjectDirectory)" DestinationDirectory="$(ScriptOutput)" DebugHeader="// (c) 2010 CodePlex Foundation" />
+    <!-- Write the copyright header to the now minified scripts -->
+    <ItemGroup>
+      <JS Include="$(ScriptOutput)\**\*.js" Exclude="$(ScriptOutput)\**\*.debug.*" />
+    </ItemGroup>
+    <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
+    <PrependTask Text="// (c) 2010 CodePlex Foundation" SourceFiles="@(JS)" />
+    <!-- Copy Images and CSS directly into script output -->
+    <ItemGroup>
+      <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css">
+        <InProject>False</InProject>
+      </StaticResources>
+    </ItemGroup>
+    <Copy SourceFiles="@(StaticResources)" DestinationFolder="$(ScriptOutput)\%(RecursiveDir)" />
+  </Target>
+</Project>

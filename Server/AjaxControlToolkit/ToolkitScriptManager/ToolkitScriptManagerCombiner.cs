@@ -22,7 +22,8 @@ namespace AjaxControlToolkit
         private enum ScriptCombineStatus {
             Combineable,
             Excluded,
-            NotCorrespondingWebResourceAttribute
+            NotCorrespondingWebResourceAttribute,
+            HasCdnPath
         }
 
 
@@ -70,6 +71,7 @@ namespace AjaxControlToolkit
             cache.VaryByParams[ToolkitScriptManager.CombinedScriptsParamName] = true;
             cache.VaryByParams[ToolkitScriptManager.HiddenFieldParamName] = true;
             cache.VaryByParams[ToolkitScriptManager.CacheBustParamName] = true;
+            cache.VaryByParams[ToolkitScriptManager.EnableCdnParamName] = true;
             cache.SetOmitVaryStar(true);
             cache.SetExpires(DateTime.Now.AddDays(365));
             cache.SetValidUntilExpires(true);
@@ -104,13 +106,15 @@ namespace AjaxControlToolkit
 
                 var hash = ToolkitScriptManagerHelper.GetRequestParamValue(request, ToolkitScriptManager.CacheBustParamName);
                 var bundlesParam = ToolkitScriptManagerHelper.GetRequestParamValue(request, ToolkitScriptManager.ControlBundleParamName);
+                var enableCdn = bool.Parse(ToolkitScriptManagerHelper.GetRequestParamValue(request, ToolkitScriptManager.EnableCdnParamName));
+
                 string[] bundles = null;
                 if (!string.IsNullOrEmpty(bundlesParam)) {
                     bundles = bundlesParam.Split(new[] {ToolkitScriptManager.QueryStringBundleDelimiter},
                                                  StringSplitOptions.RemoveEmptyEntries);
                 }
 
-                var js = GetCombinedScriptContent(context, bundles, hash);
+                var js = GetCombinedScriptContent(context, bundles, hash, enableCdn);
 
 
                 var minifyResult = _helper.MinifyJS(js);
@@ -126,21 +130,17 @@ namespace AjaxControlToolkit
             }
             return true;
         }
-              
+
 
         /// <summary>
         /// Get cached combined script content with 'hash' as a cache key. If not found then generate it based on bundles.
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="bundles"></param>
-        /// <param name="hash"></param>
-        /// <returns></returns>
-        private string GetCombinedScriptContent(HttpContextBase context, string[] bundles, string hash)
+        private string GetCombinedScriptContent(HttpContextBase context, string[] bundles, string hash, bool enableCdn)
         {
             if (CachedScriptContent.ContainsKey(hash))
                 return CachedScriptContent[hash];
 
-            return GetCombinedScriptContent(context, bundles);
+            return GetCombinedScriptContent(context, bundles, enableCdn);
         }
 
         /// <summary>
@@ -149,10 +149,9 @@ namespace AjaxControlToolkit
         /// (2) Ensure this script is combinable before combine it.
         /// (3) Set each ScriptEntry's Loaded property to true in _scriptEntries when script is combined.
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="bundles"></param>
         /// <returns></returns>
-        private string GetCombinedScriptContent(HttpContextBase context, string[] bundles) {
+        private string GetCombinedScriptContent(HttpContextBase context, string[] bundles, bool enableCdn)
+        {
 
             // Get the list of scripts to combine
             var scriptReferences = GetScriptReferences(context, bundles);
@@ -161,7 +160,7 @@ namespace AjaxControlToolkit
             using (var ms = new MemoryStream()) {
                 var writer = new StreamWriter(ms);
                 // Write the scripts
-                WriteScripts(_scriptEntries, writer);
+                WriteScripts(_scriptEntries, writer, enableCdn);
                 writer.Flush();
 
                 ms.Position = 0;
@@ -169,13 +168,13 @@ namespace AjaxControlToolkit
             }
         }
 
-        internal List<ScriptReference> GetExcludedScripts() {
+        internal List<ScriptReference> GetExcludedScripts(bool hasCdnPath) {
             if (_scriptEntries == null || _scriptEntries.Count == 0)
                 return null;
 
             return
                 _scriptReferences.Where(
-                    s => _scriptEntries.Where(se => !se.Loaded)
+                    s => _scriptEntries.Where(se => !se.Loaded && se.HasCdnPath == hasCdnPath)
                         .Select(se => se.Name).Contains(s.Name)).ToList();
         }
 
@@ -184,9 +183,10 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="context">Current HttpContext</param>
         /// <param name="bundles">Bundle names</param>
+        /// <param name="enableCdn">Enable Cdn (If enabled, prefer to use CDN instead of local script)</param>
         /// <returns></returns>
-        public string GetCombinedScriptContentHash(HttpContextBase context, string[] bundles) {
-            var content = GetCombinedScriptContent(context, bundles);
+        public string GetCombinedScriptContentHash(HttpContextBase context, string[] bundles, bool enableCdn) {
+            var content = GetCombinedScriptContent(context, bundles, enableCdn);
             var hash = _helper.Hashing(content);
 
             // Store script content into cache once we have its hash.
@@ -194,7 +194,7 @@ namespace AjaxControlToolkit
                 CachedScriptContent.Add(hash, content);
 
             return hash;
-        }        
+        }
 
         /// <summary>
         /// Load all script references needed by toolkits registered at config file.
@@ -248,13 +248,13 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="scriptEntries">list of scripts to write</param>
         /// <param name="outputWriter">writer for output stream</param>
-        private void WriteScripts(List<ScriptEntry> scriptEntries, TextWriter outputWriter)
+        private void WriteScripts(List<ScriptEntry> scriptEntries, TextWriter outputWriter, bool enableCdn)
         {
             foreach (ScriptEntry scriptEntry in scriptEntries)
             {
                 if (!scriptEntry.Loaded)
                 {
-                    var combineStatus = IsScriptCombinable(scriptEntry);
+                    var combineStatus = IsScriptCombinable(scriptEntry, enableCdn);
 
                     if (combineStatus == ScriptCombineStatus.NotCorrespondingWebResourceAttribute)
                     {
@@ -360,7 +360,7 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="scriptEntry">ScriptEntry to check</param>
         /// <returns>true iff combinable</returns>
-        private ScriptCombineStatus IsScriptCombinable(ScriptEntry scriptEntry)
+        private ScriptCombineStatus IsScriptCombinable(ScriptEntry scriptEntry, bool enableCdn)
         {
             // Load the script's assembly and look for ScriptCombineAttribute
             bool combinable = false;
@@ -407,6 +407,13 @@ namespace AjaxControlToolkit
                 {
                     if (scriptEntry.Name == webResourceAttribute.WebResource)
                     {
+#if NET45 || NET40
+                        if (enableCdn && !string.IsNullOrEmpty(webResourceAttribute.CdnPath)) {
+                            scriptEntry.HasCdnPath = true;
+                            return ScriptCombineStatus.HasCdnPath;
+                        }
+#endif
+
                         correspondingWebResourceAttribute = true;
                         break;
                     }
@@ -426,7 +433,9 @@ namespace AjaxControlToolkit
             {
                 if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes))
                 {
-                    attributes = (WebResourceAttribute[])assembly.GetCustomAttributes(typeof(WebResourceAttribute), false);
+                    attributes = assembly.GetCustomAttributes(typeof(WebResourceAttribute), false)
+                        .Cast<WebResourceAttribute>()
+                        .Distinct().ToArray();
                     _webResourceAttributeCache[assembly] = attributes;
                 }
             }
@@ -486,6 +495,11 @@ namespace AjaxControlToolkit
             public bool Loaded;
 
             /// <summary>
+            /// Indicate that the script has CDN path.
+            /// </summary>
+            public bool HasCdnPath;
+
+            /// <summary>
             /// Constructor
             /// </summary>
             /// <param name="assembly">containing assembly</param>
@@ -524,9 +538,6 @@ namespace AjaxControlToolkit
             /// </summary>
             /// <returns>Assembly reference</returns>
             public Assembly LoadAssembly() {
-                //if (!LoadedAssembly.ContainsKey(_assembly))
-                //    LoadedAssembly.Add(_assembly, Assembly.Load(_assembly));
-                //return LoadedAssembly[_assembly];
                 return ToolkitScriptManagerHelper.GetAssembly(_assembly);
             }
 
