@@ -88,13 +88,13 @@ namespace AjaxControlToolkit.Tests {
             var results = configManager.GetControlTypesInBundles(_moqContext.Object, null);
 
             var bundleTypes = new List<string>();
-            foreach (var bundleControl in ToolkitScriptManagerConfig.ControlTypeMaps) {
+            foreach (var bundleControl in ToolkitScriptManagerConfig.ControlDependencyTypeMaps) {
                 bundleTypes.AddRange(bundleControl.Value);
             }
 
-            Assert.AreEqual(results.Count, bundleTypes.Count);
+            Assert.AreEqual(results.Count, bundleTypes.Distinct().Count());
             foreach (string type in bundleTypes) {
-                Assert.IsTrue(results.Select(r => r.FullName).Contains("AjaxControlToolkit." + type),
+                Assert.IsTrue(results.Select(r => r.FullName).Contains(type),
                               "Can't resolve {0}", type);
             }
         }
@@ -160,8 +160,9 @@ namespace AjaxControlToolkit.Tests {
 
         private static void AssertResults(List<Type> results, string[] maps) {
 
-            var bundleControls = ToolkitScriptManagerConfig.ControlTypeMaps
-                                                           .Where(c => maps.Contains(c.Key));
+            // Get dependency in standard ACT control dependency maps based on maps
+            var bundleControls = ToolkitScriptManagerConfig.ControlDependencyTypeMaps
+                                                           .Where(c => maps.Contains(c.Key.Remove(0, "AjaxControlToolkit.".Length)));
             var bundleTypes = new List<string>();
             foreach (var bundleControl in bundleControls) {
                 bundleTypes.AddRange(bundleControl.Value);
@@ -169,7 +170,7 @@ namespace AjaxControlToolkit.Tests {
 
             Assert.AreEqual(results.Count, bundleTypes.Count);
             foreach (string type in bundleTypes) {
-                Assert.IsTrue(results.Select(r => r.Name).Contains(type));
+                Assert.IsTrue(results.Select(r => r.FullName).Contains(type));
             }
         }
     }
