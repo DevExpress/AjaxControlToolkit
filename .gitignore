@@ -76,3 +76,6 @@ Server/AjaxControlToolkit/ScriptOutput/HtmlEditorExtender/HtmlEditorExtenderBeha
 Server/AjaxControlToolkit/ScriptOutput/HtmlEditorExtender/HtmlEditorExtenderBehavior.js
 PrecompiledWeb/*
 Server/AjaxControlToolkit.Legacy/ScriptOutput/
+UpgradeLog.htm
+UpgradeLog.XML
+_UpgradeReport_Files/*
