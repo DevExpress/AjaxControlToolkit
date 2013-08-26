@@ -32,6 +32,7 @@
 	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\ja\*.dll" target="lib\40\ja" />
 	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\ko\*.dll" target="lib\40\ko" />
 	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\nl\*.dll" target="lib\40\nl" />
+	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\pl\*.dll" target="lib\40\pl" />
 	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\pt\*.dll" target="lib\40\pt" />
 	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\ru\*.dll" target="lib\40\ru" />
 	<file src="PackageForNET40\AjaxControlToolkit.Binary.NET40\tr-TR\*.dll" target="lib\40\tr-TR" />
@@ -49,6 +50,7 @@
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\ja\*.dll" target="lib\35\ja" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\ko\*.dll" target="lib\35\ko" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\nl\*.dll" target="lib\35\nl" />
+	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\pl\*.dll" target="lib\35\pl" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\pt\*.dll" target="lib\35\pt" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\ru\*.dll" target="lib\35\ru" />
 	<file src="PackageForNET35\AjaxControlToolkit.Binary.NET35\tr-TR\*.dll" target="lib\35\tr-TR" />
@@ -66,6 +68,7 @@
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\ja\*.dll" target="lib\45\ja" />
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\ko\*.dll" target="lib\45\ko" />
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\nl\*.dll" target="lib\45\nl" />
+	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\pl\*.dll" target="lib\45\pl" />
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\pt\*.dll" target="lib\45\pt" />
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\ru\*.dll" target="lib\45\ru" />
 	<file src="PackageForNET45\AjaxControlToolkit.Binary.NET45\tr-TR\*.dll" target="lib\45\tr-TR" />

@@ -852,6 +852,10 @@
       <Link>ScriptResources\BaseScriptsResources.pt.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+	<EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.pl.resx">
+      <Link>ScriptResources\BaseScriptsResources.pl.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.resx">
       <Link>ScriptResources\BaseScriptsResources.resx</Link>
       <SubType>Designer</SubType>
