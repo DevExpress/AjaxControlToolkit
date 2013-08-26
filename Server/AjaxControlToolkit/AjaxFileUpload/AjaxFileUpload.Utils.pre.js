@@ -17,28 +17,31 @@ Sys.Extended.UI.AjaxFileUpload.Utils = function () {
 
     this.getFileName = function (fullPath) {
 
+        var result = "";
         if (!fullPath)
             return '';
-        
+
         if (!fullPath.value && fullPath.name)
-            return fullPath.name;
+            result = fullPath.name;
+        else {
+            if (!fullPath.value && typeof(fullPath) !== "string")
+                throw "Invalid parameter. fullPath parameter must be a string of full path or file element.";
 
-        if (!fullPath.value && typeof (fullPath) !== "string")
-            throw "Invalid parameter. fullPath parameter must be a string of full path or file element.";
+            if (fullPath.value)
+                fullPath = fullPath.value;
 
-        if (fullPath.value)
-            fullPath = fullPath.value;
+            if (fullPath) {
+                var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+                var filename = fullPath.substring(startIndex);
+                if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                    filename = filename.substring(1);
+                }
 
-        if (fullPath) {
-            var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-            var filename = fullPath.substring(startIndex);
-            if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                filename = filename.substring(1);
-            }
-            return filename;
+                result = filename;                
+            }           
         }
 
-        return '';
+        return  encodeURIComponent(result);
     };
 
     this.getFileType = function (file) {
