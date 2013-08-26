@@ -66,6 +66,7 @@
     <Compile Include="ToolkitScriptManagerCombinerTest.cs" />
     <Compile Include="ToolkitScriptManagerConfigTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolkitScriptManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AjaxControlToolkit\AjaxControlToolkit.csproj">
@@ -81,6 +82,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="TestData\AjaxControlToolkitIndividualBundles.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\CustomControlDemo.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
