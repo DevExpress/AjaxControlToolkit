@@ -251,30 +251,42 @@ namespace AjaxControlToolkit {
                     cache.SetCacheability(HttpCacheability.NoCache);
                     cache.SetNoStore();
 
-                    var scriptReferences = Combiner.GetScriptReferences(new HttpContextWrapper(Context), bundles);
-                    foreach (var scriptRef in scriptReferences) {
-                        Scripts.Add(scriptRef);
-                    }
+                    LoadScriptReferences(new HttpContextWrapper(Context), bundles);
                 }
             }
 
             base.OnLoad(e);
         }
 
-        protected override void OnPreRender(EventArgs e)
+        public void LoadScriptReferences(HttpContextBase context, string[] bundles)
         {
+            var scriptReferences = Combiner.GetScriptReferences(context, bundles);
+            foreach (var scriptRef in scriptReferences)
+            {
+                Scripts.Add(scriptRef);
+            }
+        }
+
+        protected override void OnPreRender(EventArgs e) {
             base.OnPreRender(e);
 
-            // Ensure all control script references was loaded.
+            ValidateScriptReferences();
+        }
+
+        /// <summary>
+        /// Ensure all control script references was loaded.
+        /// </summary>
+        public void ValidateScriptReferences() {
             var controlTypes = new List<Type>();
             GetRegisteredControlTypes(Page.Controls, controlTypes);
             foreach (var controlType in controlTypes) {
                 var scriptReferences = ScriptObjectBuilder.GetScriptReferences(controlType);
                 foreach (var scriptReference in scriptReferences) {
                     if (!Combiner.IsScriptRegistered(scriptReference))
-                        throw new Exception("Could not load control " + controlType.FullName 
-                            + ". The script reference(s) of this control was not loaded correctly. "
-                            + "If AjaxControlToolkit.config is used, probably this control is not registered properly.");
+                        throw new Exception("Could not load control " + controlType.FullName
+                                            + ". The script reference(s) of this control was not loaded correctly. "
+                                            +
+                                            "If AjaxControlToolkit.config is used, probably this control is not registered properly.");
                 }
             }
         }
@@ -288,7 +300,7 @@ namespace AjaxControlToolkit {
             foreach (Control control in controls) {
                 var controlType = control.GetType();
 
-                if (control is WebControl && !results.Contains(controlType))
+                if ((control is WebControl || control is ExtenderControl) && !results.Contains(controlType))
                     results.Add(controlType);
 
                 if (control.HasControls())
