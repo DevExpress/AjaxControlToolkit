@@ -83,17 +83,18 @@ Sys.Extended.UI.AjaxFileUpload.Item.prototype = {
             });
 
         this._fileName = utils.getFileName(file);
+        var fileNameToDisplay = decodeURIComponent(this._fileName);
        
         if (isHtml5Support) {
             this._fileSize = file.size;
             var fType = file.type ? '<span class="filetype">(' + file.type + ')</span>' : '';
-            fileInfoText.innerHTML = '<span class="filename">' + this._fileName + '</span> '
+            fileInfoText.innerHTML = '<span class="filename">' + fileNameToDisplay + '</span> '
                 + fType
                 + ' - <span class="filesize">' + utils.sizeToString(file.size) + '</span> ';
             this._fileType = file.type;
         } else {
             
-            fileInfoText.innerHTML = '<span class="filename">' + this._fileName + '</span>';
+            fileInfoText.innerHTML = '<span class="filename">' + fileNameToDisplay + '</span>';
             this._fileType = utils.getFileType(file);
         }
         
