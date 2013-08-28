@@ -20,15 +20,17 @@
             }
 
             var createFunc = prototype._create;
-            prototype._create = function() {
-                this.metadata = this.element.data('act-options');
+            prototype._create = function () {
+
+                this.dataAttrName = 'act-' + name.toLowerCase();
+                this.metadata = this.element.data(this.dataAttrName);
                 
                 // metadata is not found, this control could be an extender control, 
-                // let's find where is the metadata located on, it should be carries out by data element
+                // let's find where is the metadata located on, it should be carried out by data element
                 if (!this.metadata) {
                     var dataElement = $("data[data-act-target='" + this.element.attr('id') + "']");
                     if (dataElement)
-                        this.metadata = dataElement.data('act-options');
+                        this.metadata = dataElement.data(this.dataAttrName);
                 }
 
                 if (!this.metadata)
