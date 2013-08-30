@@ -17,9 +17,9 @@
                         position: 'absolute',
                         left: '0px',
                         top: '0px',
-                        width: opt.ImageWidth + 'px',
-                        height: opt.ImageHeight + 'px',
-                        'font-size': opt.ImageHeight + 'px',
+                        width: opt.imageWidth + 'px',
+                        height: opt.imageHeight + 'px',
+                        'font-size': opt.imageHeight + 'px',
                         'background-repeat': 'no-repeat'
                     });
 
@@ -64,14 +64,14 @@
                 return;
 
             if (el.checked) {
-                self._decoyElement.css('background-image', 'url(' + (el.disabled ? opt.DisabledCheckedImageUrl : opt.CheckedImageUrl) + ')');
-                if (self.CheckedImageAlternateText) {
-                    self._decoyElement.prop('title', self.CheckedImageAlternateText);
+                self._decoyElement.css('background-image', 'url(' + (el.disabled ? opt.disabledCheckedImageUrl : opt.checkedImageUrl) + ')');
+                if (opt.checkedImageAlternateText) {
+                    self._decoyElement.prop('title', opt.checkedImageAlternateText);
                 }
             } else {
-                self._decoyElement.css('background-image', 'url(' + (el.disabled ? opt.DisabledUncheckedImageUrl : opt.UncheckedImageUrl) + ')');
-                if (opt.UncheckedImageAlternateText) {
-                    self._decoyElement.prop('title', opt.UncheckedImageAlternateText);
+                self._decoyElement.css('background-image', 'url(' + (el.disabled ? opt.disabledUncheckedImageUrl : opt.uncheckedImageUrl) + ')');
+                if (opt.uncheckedImageAlternateText) {
+                    self._decoyElement.prop('title', opt.uncheckedImageAlternateText);
                 }
             }
         },
@@ -96,15 +96,15 @@
                opt = self.config;
             
             if (el && !el.disabled) {
-                if (el.checked && opt.CheckedImageOverUrl) {
-                    self._decoyElement.css('background-image', 'url(' + opt.CheckedImageOverUrl + ')');
-                    if (opt.CheckedImageOverAlternateText) {
-                        self._decoyElement.prop('title', opt.CheckedImageOverAlternateText);
+                if (el.checked && opt.checkedImageOverUrl) {
+                    self._decoyElement.css('background-image', 'url(' + opt.checkedImageOverUrl + ')');
+                    if (opt.checkedImageOverAlternateText) {
+                        self._decoyElement.prop('title', opt.checkedImageOverAlternateText);
                     }
-                } else if (!el.checked && opt.UncheckedImageOverUrl) {
-                    self._decoyElement.css('background-image', 'url(' + opt.UncheckedImageOverUrl + ')');
-                    if (opt.UncheckedImageOverAlternateText) {
-                        self._decoyElement.prop('title', opt.UncheckedImageOverAlternateText);
+                } else if (!el.checked && opt.uncheckedImageOverUrl) {
+                    self._decoyElement.css('background-image', 'url(' + opt.uncheckedImageOverUrl + ')');
+                    if (opt.uncheckedImageOverAlternateText) {
+                        self._decoyElement.prop('title', opt.uncheckedImageOverAlternateText);
                     }
                 }
             }

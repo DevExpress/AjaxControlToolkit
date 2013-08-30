@@ -21,26 +21,48 @@
 
             var createFunc = prototype._create;
             prototype._create = function () {
-
+                
                 this.dataAttrName = 'act-' + name.toLowerCase();
-                this.metadata = this.element.data(this.dataAttrName);
+                
+                var self = this,
+                    strMetadata = self.element.data(self.dataAttrName);
                 
                 // metadata is not found, this control could be an extender control, 
                 // let's find where is the metadata located on, it should be carried out by data element
-                if (!this.metadata) {
-                    var dataElement = $("data[data-act-target='" + this.element.attr('id') + "']");
+                if (!strMetadata) {
+                    var dataElement = $("data[data-act-target='" + self.element.attr('id') + "']");
                     if (dataElement)
-                        this.metadata = dataElement.data(this.dataAttrName);
+                        strMetadata = dataElement.data(self.dataAttrName);
                 }
 
-                if (!this.metadata)
-                    throw "Could not resolve meta-data. Please ensure that data-act-options attribute is not empty.";
+                if (!strMetadata)
+                    throw "Could not resolve meta-data. Please ensure that data-" + self.dataAttrName + " attribute is not empty.";
 
-                this.config = $.extend({}, this.defaults, this.options, this.metadata);
+                // parse string metadata into object notation
+                var props = strMetadata.match(/('\w+)(':)/g),
+                    obj = {};
+                
+                for (var i = 0; i < props.length; i++) {
+                    var prop = props[i],
+                        idx = strMetadata.indexOf(prop) + prop.length,
+                        nextIdx = (i < props.length - 1)
+                            ? strMetadata.indexOf(props[i + 1]) - 1
+                            : strMetadata.length,
+                        propVal = strMetadata.substring(idx, nextIdx);
+
+                    // decode string value
+                    if (propVal.startsWith("'") && propVal.endsWith("'"))
+                        propVal = $('<div/>').html(propVal.substr(1, propVal.length - 2)).text();
+                    
+                    obj[props[i].substr(1, props[i].length - 3)] = propVal;
+                }
+
+                self.metadata = obj;
+                self.config = $.extend({}, self.defaults, self.options, self.metadata);
 
                 // apply actual _create method implementation
                 if (createFunc)
-                    createFunc.apply(this);
+                    createFunc.apply(self);
             };
             $.widget('ajaxControlToolkit.' + name, base, prototype);
         }

@@ -13,7 +13,7 @@ namespace AjaxControlToolkit
     /// </summary>
     [Designer("AjaxControlToolkit.ToggleButtonExtenderDesigner, AjaxControlToolkit")]
     [ClientScriptResource("Sys.Extended.UI.ToggleButtonBehavior", "ToggleButton.ToggleButtonExtenderActivator.js")]
-    [ClientScriptResource(null, "jQuery.ToggleButton.ToggleButtonExtender.js")]
+    [ClientScriptResource("Sys.Extended.UI.ToggleButtonBehavior", "jQuery.ToggleButton.ToggleButtonExtender.js")]
     [TargetControlType(typeof(ICheckBoxControl))]
     [System.Drawing.ToolboxBitmap(typeof(ToggleButtonExtender), "ToggleButton.ToggleButton.ico")]
     [RequiredScript(typeof(JQueryToolkitScripts))]

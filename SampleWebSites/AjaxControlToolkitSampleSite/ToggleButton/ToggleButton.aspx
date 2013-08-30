@@ -23,8 +23,8 @@
                     ImageHeight="19"
                     UncheckedImageUrl="ToggleButton_Unchecked.gif"
                     CheckedImageUrl="ToggleButton_Checked.gif"
-                    CheckedImageAlternateText="Check"
-                    UncheckedImageAlternateText="UnCheck" />
+                    CheckedImageAlternateText="It's really nice to hear from you that you like ASP.NET"
+                    UncheckedImageAlternateText="I don't understand why you don't like ASP.NET" />
         
                 <asp:CheckBox ID="CheckBox2" Checked="true" Text='I like ASP.NET AJAX' runat="server"/><br /><br />
                 <ajaxToolkit:ToggleButtonExtender ID="ToggleButtonExtender2" runat="server"
@@ -33,8 +33,8 @@
                     ImageHeight="19"
                     UncheckedImageUrl="ToggleButton_Unchecked.gif"
                     CheckedImageUrl="ToggleButton_Checked.gif"
-                    CheckedImageAlternateText="Check"
-                    UncheckedImageAlternateText="UnCheck" />
+                    CheckedImageAlternateText="It's really nice to hear from you that you like ASP.NET AJAX"
+                    UncheckedImageAlternateText="I don't understand why you don't like ASP.NET AJAX" />
 
                 <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
                 <br /><br />
