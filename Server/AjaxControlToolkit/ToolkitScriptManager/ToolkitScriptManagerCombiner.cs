@@ -10,13 +10,20 @@ using System.Threading;
 using System.Web;
 using System.Web.UI;
 
-namespace AjaxControlToolkit
-{
-    public class ToolkitScriptManagerCombiner
-    {
-        private readonly Dictionary<Assembly, WebResourceAttribute[]> _webResourceAttributeCache = new Dictionary<Assembly, WebResourceAttribute[]>();
-        private readonly Dictionary<Assembly, ScriptCombineAttribute[]> _scriptCombineAttributeCache = new Dictionary<Assembly, ScriptCombineAttribute[]>();
-        private readonly Dictionary<Assembly, ScriptResourceAttribute[]> _scriptResourceAttributeCache = new Dictionary<Assembly, ScriptResourceAttribute[]>();
+namespace AjaxControlToolkit {
+    /// <summary>
+    /// Provide functionality for combine and minificaton for ToolkitScriptManager
+    /// </summary>
+    public class ToolkitScriptManagerCombiner {
+        private readonly Dictionary<Assembly, WebResourceAttribute[]> _webResourceAttributeCache =
+            new Dictionary<Assembly, WebResourceAttribute[]>();
+
+        private readonly Dictionary<Assembly, ScriptCombineAttribute[]> _scriptCombineAttributeCache =
+            new Dictionary<Assembly, ScriptCombineAttribute[]>();
+
+        private readonly Dictionary<Assembly, ScriptResourceAttribute[]> _scriptResourceAttributeCache =
+            new Dictionary<Assembly, ScriptResourceAttribute[]>();
+
         private static readonly Dictionary<string, string> CachedScriptContent = new Dictionary<string, string>();
 
         private enum ScriptCombineStatus {
@@ -29,7 +36,10 @@ namespace AjaxControlToolkit
         /// <summary>
         /// Regular expression for detecting WebResource/ScriptResource substitutions in script files
         /// </summary>
-        internal static readonly Regex WebResourceRegex = new Regex("<%\\s*=\\s*(?<resourceType>WebResource|ScriptResource)\\(\"(?<resourceName>[^\"]*)\"\\)\\s*%>", RegexOptions.Singleline | RegexOptions.Multiline);
+        internal static readonly Regex WebResourceRegex =
+            new Regex("<%\\s*=\\s*(?<resourceType>WebResource|ScriptResource)\\(\"(?<resourceName>[^\"]*)\"\\)\\s*%>",
+                RegexOptions.Singleline | RegexOptions.Multiline);
+
         private List<ScriptReference> _scriptReferences;
         private bool _scriptEntriesLoaded;
 
@@ -37,7 +47,14 @@ namespace AjaxControlToolkit
         private readonly ToolkitScriptManagerHelper _helper;
         private List<ScriptEntry> _scriptEntries;
 
-        public ToolkitScriptManagerCombiner(ToolkitScriptManagerConfig toolkitScriptManagerConfig, ToolkitScriptManagerHelper helper) {
+        /// <summary>
+        /// Helper class to provide combine and minification for ToolkitScriptManager.
+        /// This API supports the AjaxControlToolkit infrastructure and is not intended to be used directly from your code.
+        /// </summary>
+        /// <param name="toolkitScriptManagerConfig"></param>
+        /// <param name="helper"></param>
+        public ToolkitScriptManagerCombiner(ToolkitScriptManagerConfig toolkitScriptManagerConfig,
+            ToolkitScriptManagerHelper helper) {
             _scriptManagerConfig = toolkitScriptManagerConfig;
             _helper = helper;
         }
@@ -54,7 +71,8 @@ namespace AjaxControlToolkit
             var request = context.Request;
 
             // Determine is there any combine script request in http context
-            var combinedScripts = ToolkitScriptManagerHelper.GetRequestParamValue(request, ToolkitScriptManager.CombinedScriptsParamName);
+            var combinedScripts = ToolkitScriptManagerHelper.GetRequestParamValue(request,
+                ToolkitScriptManager.CombinedScriptsParamName);
 
             if (string.IsNullOrEmpty(combinedScripts))
                 return false;
@@ -102,15 +120,17 @@ namespace AjaxControlToolkit
             // Output the combined script
             using (var outputWriter = new StreamWriter(outputStream)) {
 
-                var hash = ToolkitScriptManagerHelper.GetRequestParamValue(request, ToolkitScriptManager.CacheBustParamName);
-                var bundlesParam = ToolkitScriptManagerHelper.GetRequestParamValue(request, ToolkitScriptManager.ControlBundleParamName);
+                var hash = ToolkitScriptManagerHelper.GetRequestParamValue(request,
+                    ToolkitScriptManager.CacheBustParamName);
+                var bundlesParam = ToolkitScriptManagerHelper.GetRequestParamValue(request,
+                    ToolkitScriptManager.ControlBundleParamName);
                 string[] bundles = null;
                 if (!string.IsNullOrEmpty(bundlesParam)) {
                     bundles = bundlesParam.Split(new[] {ToolkitScriptManager.QueryStringBundleDelimiter},
-                                                 StringSplitOptions.RemoveEmptyEntries);
+                        StringSplitOptions.RemoveEmptyEntries);
                 }
 
-                var js = GetCombinedScriptContent(context, bundles, hash);
+                var js = GetCombinedScriptContent(context, hash, bundles);
 
 
                 var minifyResult = _helper.MinifyJS(js);
@@ -121,42 +141,46 @@ namespace AjaxControlToolkit
                     // Write minified scripts
                     _helper.WriteToStream(outputWriter, minifyResult.Result);
                     // Write the ASP.NET AJAX script notification code
-                    _helper.WriteToStream(outputWriter, "if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
+                    _helper.WriteToStream(outputWriter,
+                        "if(typeof(Sys)!=='undefined')Sys.Application.notifyScriptLoaded();");
                 }
             }
             return true;
         }
-              
+
 
         /// <summary>
-        /// Get cached combined script content with 'hash' as a cache key. If not found then generate it based on bundles.
+        /// Try to get cached script content. If not found then reload and recache it based on bundles.
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="bundles"></param>
-        /// <param name="hash"></param>
+        /// <param name="context">Current HttpContext</param>
+        /// <param name="hash">Hash as a cache key</param>
+        /// <param name="bundles">Bundles to load if cache is expired or not found</param>
         /// <returns></returns>
-        private string GetCombinedScriptContent(HttpContextBase context, string[] bundles, string hash)
-        {
+        private string GetCombinedScriptContent(HttpContextBase context, string hash, string[] bundles) {
             if (CachedScriptContent.ContainsKey(hash))
                 return CachedScriptContent[hash];
 
-            return GetCombinedScriptContent(context, bundles);
+            // reload script references
+            LoadScriptReferences(context, bundles);
+            var scriptContent = GetCombinedRegisteredScriptContent();
+
+            // recache script references
+            CachedScriptContent.Add(hash, scriptContent);
+
+            return scriptContent;
         }
 
         /// <summary>
-        /// Get combined script content by: 
-        /// (1) Get script references based on bundles
-        /// (2) Ensure this script is combinable before combine it.
-        /// (3) Set each ScriptEntry's Loaded property to true in _scriptEntries when script is combined.
+        /// Get combined registered script content. Script entries must be loaded before calling this method.
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="bundles"></param>
         /// <returns></returns>
-        private string GetCombinedScriptContent(HttpContextBase context, string[] bundles) {
+        private string GetCombinedRegisteredScriptContent() {
+
+            if (!_scriptEntriesLoaded)
+                throw new OperationCanceledException("Script entries not loaded yet.");
 
             // Get the list of scripts to combine
-            var scriptReferences = GetScriptReferences(context, bundles);
-            _scriptEntries = scriptReferences.Select(scriptRef => new ScriptEntry(scriptRef)).ToList();
+            _scriptEntries = _scriptReferences.Select(scriptRef => new ScriptEntry(scriptRef)).ToList();
 
             using (var ms = new MemoryStream()) {
                 var writer = new StreamWriter(ms);
@@ -180,13 +204,13 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// Get script content hash in bundles
+        /// Get script content hash in bundles. Script entries must be loaded first before calling this method.
         /// </summary>
         /// <param name="context">Current HttpContext</param>
         /// <param name="bundles">Bundle names</param>
         /// <returns></returns>
         public string GetCombinedScriptContentHash(HttpContextBase context, string[] bundles) {
-            var content = GetCombinedScriptContent(context, bundles);
+            var content = GetCombinedRegisteredScriptContent();
             var hash = _helper.Hashing(content);
 
             // Store script content into cache once we have its hash.
@@ -194,18 +218,18 @@ namespace AjaxControlToolkit
                 CachedScriptContent.Add(hash, content);
 
             return hash;
-        }        
+        }
 
         /// <summary>
-        /// Load all script references needed by toolkits registered at config file.
+        /// Load all script references needed by toolkits registered at config file based on bundles.
+        /// If bundles is null then all control types from config are loaded.
         /// </summary>
         /// <param name="context">Current HttpContext</param>
         /// <param name="bundles">Name of bundles</param>
         /// <returns>List of script reference</returns>
-        public List<ScriptReference> GetScriptReferences(HttpContextBase context, string[] bundles) {
+        public List<ScriptReference> LoadScriptReferences(HttpContextBase context, string[] bundles) {
             _scriptReferences = new List<ScriptReference>();
-            foreach (var control in _scriptManagerConfig.GetControlTypesInBundles(context, bundles))
-            {
+            foreach (var control in _scriptManagerConfig.GetControlTypesInBundles(context, bundles)) {
                 var scriptRefs = ScriptObjectBuilder.GetScriptReferences(control);
                 foreach (var scriptRef in scriptRefs) {
                     if (_scriptReferences.All(s => s.Name != scriptRef.Name)) {
@@ -219,7 +243,7 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
-        /// Determine is script already registered to be combined.
+        /// Determine is script already registered on script entries memory to be combined.
         /// </summary>
         /// <param name="scriptReference">Script to determine.</param>
         /// <returns>true if registered</returns>
@@ -234,13 +258,33 @@ namespace AjaxControlToolkit
             // Determine is script is not loaded because part of excluded script to be combined
             if (_scriptEntries != null &&
                 _scriptEntries.Where(s => !s.Loaded)
-                              .Any(
-                                  s =>
-                                  s.Name == scriptReference.Name &&
-                                  s.LoadAssembly().FullName == scriptReference.Assembly))
+                    .Any(
+                        s =>
+                            s.Name == scriptReference.Name &&
+                            s.LoadAssembly().FullName == scriptReference.Assembly))
                 return false;
 
             return _scriptReferences.Any(s => s.Name == scriptReference.Name && s.Assembly == scriptReference.Assembly);
+        }
+
+        /// <summary>
+        /// Register script reference to script entries.
+        /// </summary>
+        /// <param name="scriptReference"></param>
+        public void RegisterScriptReference(ScriptReference scriptReference) {
+            if (_scriptEntries == null)
+                _scriptEntries = new List<ScriptEntry>();
+
+            var scriptEntry =
+                _scriptEntries.FirstOrDefault(
+                    s => s.LoadAssembly().FullName == scriptReference.Assembly && s.Name == scriptReference.Name);
+
+            if (scriptEntry == null) {
+                scriptEntry = new ScriptEntry(scriptReference);
+                _scriptEntries.Add(scriptEntry);
+            }
+
+            scriptEntry.Loaded = true;
         }
 
         /// <summary>
@@ -248,44 +292,35 @@ namespace AjaxControlToolkit
         /// </summary>
         /// <param name="scriptEntries">list of scripts to write</param>
         /// <param name="outputWriter">writer for output stream</param>
-        private void WriteScripts(List<ScriptEntry> scriptEntries, TextWriter outputWriter)
-        {
-            foreach (ScriptEntry scriptEntry in scriptEntries)
-            {
-                if (!scriptEntry.Loaded)
-                {
+        private void WriteScripts(List<ScriptEntry> scriptEntries, TextWriter outputWriter) {
+            foreach (ScriptEntry scriptEntry in scriptEntries) {
+                if (!scriptEntry.Loaded) {
                     var combineStatus = IsScriptCombinable(scriptEntry);
 
-                    if (combineStatus == ScriptCombineStatus.NotCorrespondingWebResourceAttribute)
-                    {
+                    if (combineStatus == ScriptCombineStatus.NotCorrespondingWebResourceAttribute) {
                         throw new NotSupportedException(string.Format(CultureInfo.CurrentCulture,
-                                                                      "Combined script request includes uncombinable script \"{0}\".",
-                                                                      scriptEntry.Name));
+                            "Combined script request includes uncombinable script \"{0}\".",
+                            scriptEntry.Name));
                     }
 
-                    if (combineStatus == ScriptCombineStatus.Combineable)
-                    {
+                    if (combineStatus == ScriptCombineStatus.Combineable) {
                         // This script hasn't been loaded by the browser, so add it to the combined script file
                         string script = scriptEntry.GetScript();
-                        if (WebResourceRegex.IsMatch(script))
-                        {
+                        if (WebResourceRegex.IsMatch(script)) {
                             // This script uses script substitution which isn't supported yet, so throw an exception since it's too late to fix
                             throw new NotSupportedException(string.Format(CultureInfo.CurrentCulture,
-                                                                          "ToolkitScriptManager does not support <%= WebResource/ScriptResource(...) %> substitution as used by script file \"{0}\".",
-                                                                          scriptEntry.Name));
+                                "ToolkitScriptManager does not support <%= WebResource/ScriptResource(...) %> substitution as used by script file \"{0}\".",
+                                scriptEntry.Name));
                         }
                         outputWriter.WriteLine(script);
 
                         // Save current culture and set the specified culture
                         CultureInfo currentUiCulture = Thread.CurrentThread.CurrentUICulture;
-                        try
-                        {
-                            try
-                            {
+                        try {
+                            try {
                                 Thread.CurrentThread.CurrentUICulture = new CultureInfo(scriptEntry.Culture);
                             }
-                            catch (ArgumentException)
-                            {
+                            catch (ArgumentException) {
                                 // Invalid culture; proceed with default culture (just as for unsupported cultures)
                             }
 
@@ -293,21 +328,18 @@ namespace AjaxControlToolkit
                             Assembly scriptAssembly = scriptEntry.LoadAssembly();
                             foreach (
                                 ScriptResourceAttribute scriptResourceAttribute in
-                                    GetScriptResourceAttributes(scriptAssembly))
-                            {
-                                if (scriptResourceAttribute.ScriptName == scriptEntry.Name)
-                                {
+                                    GetScriptResourceAttributes(scriptAssembly)) {
+                                if (scriptResourceAttribute.ScriptName == scriptEntry.Name) {
 #pragma warning disable 0618 // obsolete members of ScriptResourceAttribute are used but necessary in the 3.5 build
                                     // Found a matching script resource; write it out
                                     outputWriter.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0}={{",
-                                                                         scriptResourceAttribute.TypeName));
+                                        scriptResourceAttribute.TypeName));
 
                                     // Get the script resource name (without the trailing ".resources")
                                     string scriptResourceName = scriptResourceAttribute.ScriptResourceName;
-                                    if (scriptResourceName.EndsWith(".resources", StringComparison.OrdinalIgnoreCase))
-                                    {
+                                    if (scriptResourceName.EndsWith(".resources", StringComparison.OrdinalIgnoreCase)) {
                                         scriptResourceName = scriptResourceName.Substring(0,
-                                                                                          scriptResourceName.Length - 10);
+                                            scriptResourceName.Length - 10);
                                     }
 #pragma warning restore 0618
 
@@ -316,22 +348,19 @@ namespace AjaxControlToolkit
                                         new System.Resources.ResourceManager(scriptResourceName, scriptAssembly);
                                     using (
                                         System.Resources.ResourceSet resourceSet =
-                                            resourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, true))
-                                    {
+                                            resourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, true)) {
                                         bool first = true;
-                                        foreach (System.Collections.DictionaryEntry de in resourceSet)
-                                        {
-                                            if (!first)
-                                            {
+                                        foreach (System.Collections.DictionaryEntry de in resourceSet) {
+                                            if (!first) {
                                                 // Need a comma between all entries
                                                 outputWriter.Write(",");
                                             }
                                             // Output the entry
-                                            string name = (string)de.Key;
+                                            string name = (string) de.Key;
                                             string value = resourceManager.GetString(name);
                                             outputWriter.Write(string.Format(CultureInfo.InvariantCulture,
-                                                                             "\"{0}\":\"{1}\"", ToolkitScriptManagerHelper.QuoteString(name),
-                                                                             ToolkitScriptManagerHelper.QuoteString(value)));
+                                                "\"{0}\":\"{1}\"", ToolkitScriptManagerHelper.QuoteString(name),
+                                                ToolkitScriptManagerHelper.QuoteString(value)));
                                             first = false;
                                         }
                                     }
@@ -340,8 +369,7 @@ namespace AjaxControlToolkit
                             }
 
                         }
-                        finally
-                        {
+                        finally {
                             // Restore culture
                             Thread.CurrentThread.CurrentUICulture = currentUiCulture;
                         }
@@ -356,57 +384,56 @@ namespace AjaxControlToolkit
         }
 
         /// <summary>
+        /// Determine is script reference combinable.
+        /// </summary>
+        /// <param name="scriptReference">Script Reference to check</param>
+        /// <returns>Returns true if script combinable, otherwise false</returns>
+        public bool IsScriptCombinable(ScriptReference scriptReference) {
+            return IsScriptCombinable(new ScriptEntry(scriptReference)) == ScriptCombineStatus.Combineable;
+        }
+
+        /// <summary>
         /// Checks if the specified ScriptEntry is combinable
         /// </summary>
         /// <param name="scriptEntry">ScriptEntry to check</param>
         /// <returns>true iff combinable</returns>
-        private ScriptCombineStatus IsScriptCombinable(ScriptEntry scriptEntry)
-        {
+        private ScriptCombineStatus IsScriptCombinable(ScriptEntry scriptEntry) {
             // Load the script's assembly and look for ScriptCombineAttribute
             bool combinable = false;
             Assembly assembly = scriptEntry.LoadAssembly();
-            foreach (ScriptCombineAttribute scriptCombineAttribute in GetScriptCombineAttributes(assembly))
-            {
-                if (string.IsNullOrEmpty(scriptCombineAttribute.IncludeScripts))
-                {
+            foreach (ScriptCombineAttribute scriptCombineAttribute in GetScriptCombineAttributes(assembly)) {
+                if (string.IsNullOrEmpty(scriptCombineAttribute.IncludeScripts)) {
                     // If the IncludeScripts property is empty, all scripts are combinable by default
                     combinable = true;
                 }
-                else
-                {
+                else {
                     // IncludeScripts specifies the combinable scripts
-                    foreach (string includeScript in scriptCombineAttribute.IncludeScripts.Split(','))
-                    {
+                    foreach (string includeScript in scriptCombineAttribute.IncludeScripts.Split(',')) {
                         // If this script name matches, it's combinable
-                        if (0 == string.Compare(scriptEntry.Name, includeScript.Trim(), StringComparison.OrdinalIgnoreCase))
-                        {
+                        if (0 ==
+                            string.Compare(scriptEntry.Name, includeScript.Trim(), StringComparison.OrdinalIgnoreCase)) {
                             combinable = true;
                             break;
                         }
                     }
                 }
-                if (!string.IsNullOrEmpty(scriptCombineAttribute.ExcludeScripts))
-                {
+                if (!string.IsNullOrEmpty(scriptCombineAttribute.ExcludeScripts)) {
                     // ExcludeScripts specifies the non-combinable scripts (and overrides IncludeScripts)
-                    foreach (string excludeScript in scriptCombineAttribute.ExcludeScripts.Split(','))
-                    {
+                    foreach (string excludeScript in scriptCombineAttribute.ExcludeScripts.Split(',')) {
                         // If the script name matches, it's not combinable
-                        if (0 == string.Compare(scriptEntry.Name, excludeScript.Trim(), StringComparison.OrdinalIgnoreCase))
-                        {
+                        if (0 ==
+                            string.Compare(scriptEntry.Name, excludeScript.Trim(), StringComparison.OrdinalIgnoreCase)) {
                             return ScriptCombineStatus.Excluded;
                         }
                     }
                 }
             }
 
-            if (combinable)
-            {
+            if (combinable) {
                 // Make sure the script has an associated WebResourceAttribute (else ScriptManager wouldn't have served it)
                 bool correspondingWebResourceAttribute = false;
-                foreach (WebResourceAttribute webResourceAttribute in GetWebResourceAttributes(assembly))
-                {
-                    if (scriptEntry.Name == webResourceAttribute.WebResource)
-                    {
+                foreach (WebResourceAttribute webResourceAttribute in GetWebResourceAttributes(assembly)) {
+                    if (scriptEntry.Name == webResourceAttribute.WebResource) {
                         correspondingWebResourceAttribute = true;
                         break;
                     }
@@ -419,42 +446,37 @@ namespace AjaxControlToolkit
             return ScriptCombineStatus.Combineable;
         }
 
-        private WebResourceAttribute[] GetWebResourceAttributes(Assembly assembly)
-        {
+        private WebResourceAttribute[] GetWebResourceAttributes(Assembly assembly) {
             WebResourceAttribute[] attributes;
-            lock (_webResourceAttributeCache)
-            {
-                if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes))
-                {
-                    attributes = (WebResourceAttribute[])assembly.GetCustomAttributes(typeof(WebResourceAttribute), false);
+            lock (_webResourceAttributeCache) {
+                if (!_webResourceAttributeCache.TryGetValue(assembly, out attributes)) {
+                    attributes =
+                        (WebResourceAttribute[]) assembly.GetCustomAttributes(typeof (WebResourceAttribute), false);
                     _webResourceAttributeCache[assembly] = attributes;
                 }
             }
             return attributes;
         }
 
-        private ScriptResourceAttribute[] GetScriptResourceAttributes(Assembly assembly)
-        {
+        private ScriptResourceAttribute[] GetScriptResourceAttributes(Assembly assembly) {
             ScriptResourceAttribute[] attributes;
-            lock (_scriptResourceAttributeCache)
-            {
-                if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes))
-                {
-                    attributes = (ScriptResourceAttribute[])assembly.GetCustomAttributes(typeof(ScriptResourceAttribute), false);
+            lock (_scriptResourceAttributeCache) {
+                if (!_scriptResourceAttributeCache.TryGetValue(assembly, out attributes)) {
+                    attributes =
+                        (ScriptResourceAttribute[])
+                            assembly.GetCustomAttributes(typeof (ScriptResourceAttribute), false);
                     _scriptResourceAttributeCache[assembly] = attributes;
                 }
             }
             return attributes;
         }
 
-        private ScriptCombineAttribute[] GetScriptCombineAttributes(Assembly assembly)
-        {
+        private ScriptCombineAttribute[] GetScriptCombineAttributes(Assembly assembly) {
             ScriptCombineAttribute[] attributes;
-            lock (_scriptCombineAttributeCache)
-            {
-                if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes))
-                {
-                    attributes = (ScriptCombineAttribute[])assembly.GetCustomAttributes(typeof(ScriptCombineAttribute), false);
+            lock (_scriptCombineAttributeCache) {
+                if (!_scriptCombineAttributeCache.TryGetValue(assembly, out attributes)) {
+                    attributes =
+                        (ScriptCombineAttribute[]) assembly.GetCustomAttributes(typeof (ScriptCombineAttribute), false);
                     _scriptCombineAttributeCache[assembly] = attributes;
                 }
             }
@@ -502,7 +524,8 @@ namespace AjaxControlToolkit
             /// </summary>
             /// <param name="scriptReference">script reference</param>
             public ScriptEntry(ScriptReference scriptReference)
-                : this(scriptReference.Assembly, scriptReference.Name, null) {}
+                : this(scriptReference.Assembly, scriptReference.Name, null) {
+            }
 
             /// <summary>
             /// Gets the script corresponding to the object
@@ -547,7 +570,6 @@ namespace AjaxControlToolkit
             public override int GetHashCode() {
                 return _assembly.GetHashCode() ^ Name.GetHashCode();
             }
-        }
-
+        }       
     }
 }

@@ -116,6 +116,14 @@ namespace AjaxControlToolkit {
             this._cacheProvider = cacheProvider;
         }
 
+        /// <summary>
+        /// Get all types of controls referenced by control bundle names. 
+        /// If control bundle names is empty then default control bundle defined in AjaxControlToolkit.config will be use to retrieved control types.
+        /// If AjaxControlToolkit.config file is not found then all standard control types of AjaxControlToolkit will be retrieved and if control bundle names is defined exception will thrown.
+        /// </summary>
+        /// <param name="context">Current HttpContext.</param>
+        /// <param name="bundles">Control bundle names. Will be ignored if AjaxControlToolkit.config file is not found.</param>
+        /// <returns></returns>
         public virtual List<Type> GetControlTypesInBundles(HttpContextBase context, string[] bundles) {
 
             var registeredControls = new List<Type>();
@@ -124,14 +132,14 @@ namespace AjaxControlToolkit {
 
             if (!File.Exists(fileName)) {
 
-                // No bundle config specified
+                // No configuration config (AjaxControlToolkit.config) is specified
 
-                // User specify requested bundle on page which transfered through query string / form request data, 
-                // but did not register the bundle config yet then exception should be thrown
+                // Bundle names specified, but AjaxControlToolkit.config is not provided then exception should be thrown
                 if (bundles != null && bundles.Length > 0)
                     throw new Exception("Can not resolve requested control bundle since " + ConfigFileName +
                                         " file is not defined.");
 
+                // Parse all controls type name in ControlDependencyTypeMaps
                 var allControlTypesName = new List<string>();
                 foreach (var map in ControlDependencyTypeMaps) {
                     allControlTypesName.AddRange(map.Value);
@@ -143,33 +151,43 @@ namespace AjaxControlToolkit {
             }
             else {
 
-                // Bundle config specified
-
-                var serializer = new XmlSerializer(typeof (Config.Settings));
-
+                // Bundle configuration (AjaxControlToolkit.config) specified
+                // Try read config content from cache
                 var configContent = _cacheProvider.Get<string>(CacheConfigName);
                 if (string.IsNullOrEmpty(configContent)) {
                     using (StreamReader sr = File.OpenText(fileName)) {
+                        // Retrieve config content from file and caching it
                         configContent = sr.ReadToEnd();
                         _cacheProvider.Set(CacheConfigName, configContent, fileName);
                     }
                 }
 
-                var settings = (Config.Settings) serializer.Deserialize(new StringReader(configContent));
-                foreach (var bundle in settings.ControlBundles) {
+                // Deserialize bundle configuration
+                var bundleConfig = (Config.Settings)(new XmlSerializer(typeof(Config.Settings)))
+                    .Deserialize(new StringReader(configContent));
+
+                // Iterate all control bundle sections. Normaly, there will be only 1 section.
+                foreach (var bundle in bundleConfig.ControlBundleSections) {
+
+                    // Iterate all control bundles in a section.
                     foreach (var controlBundle in bundle.ControlBundles) {
-                        // Only add control types if ...
+                        
+                        // Only add control types if ... 
                         if (
-                            // this is default bundle and requested bundle not specified.
+                            // ... this is default control bundle and requested bundle not specified.
                             (string.IsNullOrEmpty(controlBundle.Name) && (bundles == null || bundles.Length == 0)) ||
-                            // this is not default bundle and its specified in requested bundle
+
+                            // .. or this is not default bundle and its specified in requested bundle
                             (bundles != null && bundles.Contains(controlBundle.Name))) {
+
+                            // Iterate all controls registered in control bundle. Determining control types is works here.
                             foreach (var control in controlBundle.Controls) {
                                 if (string.IsNullOrEmpty(control.Assembly) || control.Assembly == "AjaxControlToolkit") {
-                                    // Processing AjaxControlToolkit controls
 
+                                    // Processing AjaxControlToolkit controls
                                     var controlName = "AjaxControlToolkit." + control.Name;
 
+                                    // Verify that control is a standard AjaxControlToolkit control
                                     if (!ControlDependencyTypeMaps.ContainsKey(controlName))
                                         throw new Exception(
                                             string.Format(
@@ -180,8 +198,8 @@ namespace AjaxControlToolkit {
                                         .Select(c => Type.GetType(c)));
                                 }
                                 else {
-                                    // Processing custom controls
 
+                                    // Processing custom controls
                                     registeredControls.Add(
                                         ToolkitScriptManagerHelper.GetAssembly(control.Assembly)
                                             .GetType(control.Assembly + "." + control.Name));
