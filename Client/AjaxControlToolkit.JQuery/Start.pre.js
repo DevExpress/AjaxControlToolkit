@@ -39,22 +39,26 @@
                     throw "Could not resolve meta-data. Please ensure that data-" + self.dataAttrName + " attribute is not empty.";
 
                 // parse string metadata into object notation
-                var props = strMetadata.match(/('\w+)(':)/g),
+                var rgx = /(\w+)(.|\s+)(:)/g, pimp = function(s) {
+                        return '#$%<*' + s + '$%@#<';
+                    },
+                    props = strMetadata.match(rgx),
+                    tmpMetadata = strMetadata.replace(rgx, pimp('$1$2$3')),
                     obj = {};
                 
                 for (var i = 0; i < props.length; i++) {
-                    var prop = props[i],
-                        idx = strMetadata.indexOf(prop) + prop.length,
+                    var prop = pimp(props[i]),
+                        idx = tmpMetadata.indexOf(prop) + prop.length,
                         nextIdx = (i < props.length - 1)
-                            ? strMetadata.indexOf(props[i + 1]) - 1
-                            : strMetadata.length,
-                        propVal = strMetadata.substring(idx, nextIdx);
+                            ? tmpMetadata.indexOf(pimp(props[i + 1])) - 1
+                            : tmpMetadata.length,
+                        propVal = tmpMetadata.substring(idx, nextIdx);
 
                     // decode string value
                     if (propVal.startsWith("'") && propVal.endsWith("'"))
                         propVal = $('<div/>').html(propVal.substr(1, propVal.length - 2)).text();
                     
-                    obj[props[i].substr(1, props[i].length - 3)] = propVal;
+                    obj[props[i].trim().slice(0, -1)] = propVal;
                 }
 
                 self.metadata = obj;

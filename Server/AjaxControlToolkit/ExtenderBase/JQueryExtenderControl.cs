@@ -130,7 +130,7 @@ namespace AjaxControlToolkit {
                         // Encode and quotize if value is string
                         if (propType.Equals(typeof (string)))
                             formatedValue = "'" + Page.Server.HtmlEncode(formatedValue) + "'";
-                        dataOptions.Add(string.Format("\'{0}\':{1}", CamelCaseFormat(property.Name), formatedValue));
+                        dataOptions.Add(string.Format("{0}:{1}", CamelCaseFormat(property.Name), formatedValue));
                     }
                 }
             }
