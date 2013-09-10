@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Web.UI;
 
@@ -12,8 +13,7 @@ namespace AjaxControlToolkit
     /// ToggleButton extender class definition
     /// </summary>
     [Designer("AjaxControlToolkit.ToggleButtonExtenderDesigner, AjaxControlToolkit")]
-    [ClientScriptResource("Sys.Extended.UI.ToggleButtonBehavior", "ToggleButton.ToggleButtonExtenderActivator.js")]
-    [ClientScriptResource("Sys.Extended.UI.ToggleButtonBehavior", "jQuery.ToggleButton.ToggleButtonExtender.js")]
+    [ClientScriptResource(null, "jQuery.ToggleButton.ToggleButtonExtender.js")]
     [TargetControlType(typeof(ICheckBoxControl))]
     [System.Drawing.ToolboxBitmap(typeof(ToggleButtonExtender), "ToggleButton.ToggleButton.ico")]
     [RequiredScript(typeof(JQueryToolkitScripts))]
@@ -31,8 +31,17 @@ namespace AjaxControlToolkit
         private const string stringUncheckedImageAlternateText = "UncheckedImageAlternateText";
         private const string stringCheckedImageAlternateText = "CheckedImageAlternateText";
         private const string stringCheckedImageOverAlternateText = "CheckedImageOverAlternateText"; 
-        private const string stringUncheckedImageOverAlternateText = "UncheckedImageOverAlternateText"; 
+        private const string stringUncheckedImageOverAlternateText = "UncheckedImageOverAlternateText";
 
+        protected override void OnPreRender(EventArgs e) {
+            base.OnPreRender(e);
+
+            // Insert activation script as a start-up script. 
+            // This script executed on first load of page, and everytime post-back occurred.
+            var script = string.Format("jQuery(\"#{0}\").toggleButtonExtender();", this.TargetControl.ClientID);
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "toggleButtonExtenderActivationScript" + this.ID,
+                script, true);
+        }
 
         /// <summary>
         /// Width of the checkbox images

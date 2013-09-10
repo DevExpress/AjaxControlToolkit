@@ -154,8 +154,7 @@ namespace AjaxControlToolkit {
         /// <param name="targetControl"></param>
         /// <returns></returns>
         protected override IEnumerable<ScriptDescriptor> GetScriptDescriptors(Control targetControl) {
-            var descriptor = new ScriptBehaviorDescriptor(ClientControlType, targetControl.ClientID);
-            return new List<ScriptDescriptor>(new ScriptDescriptor[] {descriptor});
+            return null;
         }
 
         /// <summary>
