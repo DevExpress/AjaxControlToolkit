@@ -6,5 +6,6 @@
     <siteMapNode url="~/Walkthrough/AnimationReference.aspx" title="Animation Reference" />
     <siteMapNode url="~/Walkthrough/CCDWithDB.aspx" title="CascadingDropDown with&lt;br/&gt;&#160;&#160;&#160;&#160;&#160;a Database" />
     <siteMapNode url="~/Walkthrough/OtherNeatStuff.aspx" title="Other neat stuff" />
+    <siteMapNode url="~/Walkthrough/CombineCustomControl/CombineCustomControl.aspx" title="Bundling custom control" />
   </siteMapNode>
 </siteMap>

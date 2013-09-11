@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Web;
 using System.Web.UI;
@@ -31,7 +32,8 @@ namespace AjaxControlToolkit.Tests
             page.Controls.Add(page.LoadControl(control.GetType(), null));
 
             var toolkit = new ToolkitScriptManager {Page = page};
-            toolkit.LoadScriptReferences(_moqContext.Object, new[] {bundleName});
+            toolkit.CombineScriptsHandlerUrl = new Uri("http://acttest.axd"); // avoid error
+            toolkit.LoadScriptReferences(_moqContext.Object, new[] {bundleName}, true);
             toolkit.ValidateScriptReferences();
         }
 
@@ -41,7 +43,8 @@ namespace AjaxControlToolkit.Tests
         public void ValidateScriptReferencesFalseTest() {
             var toolkit = new ToolkitScriptManager {Page = new Page()};
             toolkit.Page.Controls.Add(new AccordionExtender());
-            toolkit.LoadScriptReferences(_moqContext.Object, new[] {"Twitter"});
+            toolkit.CombineScriptsHandlerUrl = new Uri("http://acttest.axd"); // avoid error
+            toolkit.LoadScriptReferences(_moqContext.Object, new[] {"Twitter"}, true);
             toolkit.ValidateScriptReferences();
         }
 

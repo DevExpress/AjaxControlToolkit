@@ -44,7 +44,7 @@ namespace AjaxControlToolkit.Tests {
                                     .Returns(new List<Type>() {});
 
             // Call GetScriptReferences so script references are registered
-            scriptCombiner.GetScriptReferences(null, null);
+            scriptCombiner.LoadScriptReferences(null, null);
 
             // Assertion
             var result = scriptCombiner.IsScriptRegistered(new ScriptReference());
@@ -64,7 +64,7 @@ namespace AjaxControlToolkit.Tests {
                 _mockToolkitScriptManagerHelper.Object);
 
             // Call GetScriptReferences so script references are registered
-            scriptCombiner.GetScriptReferences(null, null);
+            scriptCombiner.LoadScriptReferences(null, null);
 
             // Get one of script reference as a test data
             var reference = ScriptObjectBuilder.GetScriptReferences(targetType).First();
@@ -95,6 +95,7 @@ namespace AjaxControlToolkit.Tests {
                                                return "hashed";
                                            });
 
+            scriptCombiner.LoadScriptReferences(_moqContext.Object, null);
             var result=scriptCombiner.GetCombinedScriptContentHash(null, null);
             Assert.AreEqual("hashed", result);
         }
