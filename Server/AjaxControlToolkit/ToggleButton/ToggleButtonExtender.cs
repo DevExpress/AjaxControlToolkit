@@ -33,16 +33,6 @@ namespace AjaxControlToolkit
         private const string stringCheckedImageOverAlternateText = "CheckedImageOverAlternateText"; 
         private const string stringUncheckedImageOverAlternateText = "UncheckedImageOverAlternateText";
 
-        protected override void OnPreRender(EventArgs e) {
-            base.OnPreRender(e);
-
-            // Insert activation script as a start-up script. 
-            // This script executed on first load of page, and everytime post-back occurred.
-            var script = string.Format("jQuery(\"#{0}\").toggleButtonExtender();", this.TargetControl.ClientID);
-            ScriptManager.RegisterStartupScript(Page, this.GetType(), "toggleButtonExtenderActivationScript" + this.ID,
-                script, true);
-        }
-
         /// <summary>
         /// Width of the checkbox images
         /// </summary>

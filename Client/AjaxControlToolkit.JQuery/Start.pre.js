@@ -13,17 +13,25 @@
             documentMode: 0
         },
         
+        widgets: [],
+        
         createWidget: function(name, base, prototype) {
             if (!prototype) {
                 prototype = base;
                 base = $.Widget;
             }
 
+            // Registering widget
+            var attrKey = 'act' + name.substr(0, 1).toLocaleUpperCase()
+                + name.toLocaleLowerCase().substr(1);
+            act.widgets[attrKey] = name;
+
+            // Build create prototype
             var createFunc = prototype._create;
             prototype._create = function () {
                 
                 this.dataAttrName = 'act-' + name.toLowerCase();
-                
+
                 var self = this,
                     strMetadata = self.element.data(self.dataAttrName);
                 
@@ -71,6 +79,29 @@
             $.widget('ajaxControlToolkit.' + name, base, prototype);
         }
     };
+
+
+    $(document).ready(function () {
+        // select all elements containing "data-act-*" attribute
+        var elements = $('*').map(function() {
+            var self = this,
+                data = $(self).data(),
+                results = [];
+            
+            for (var key in data) {
+                if (key.indexOf('act') === 0)
+                    results.push({ key: key, value: self });
+            }
+            return results;
+        }).get();
+
+        // validate and activate widget for all elements
+        $.each(elements, function (key, obj) {
+            var widget = $act.widgets[obj.key];
+            if (widget)
+                $(obj.value)[widget]();
+        });
+    });
     
 
     // Adapt from MicrosoftAjax.Extensions.Compact.Browser

@@ -18,6 +18,11 @@ namespace AjaxControlToolkit {
         /// </summary>
         private readonly string _attrControlName;
 
+        /// <summary>
+        /// The name of jQuery widget function 
+        /// </summary>
+        private readonly string _widgetFunctionName;
+
         private Type _targetControlType;
 
         private const string DataOptionPrefix = "data-act-";
@@ -26,7 +31,9 @@ namespace AjaxControlToolkit {
         /// JQueryExtenderControl constructor.
         /// </summary>
         protected JQueryExtenderControl() {
-            _attrControlName = this.GetType().Name.ToLower();
+            var name = this.GetType().Name;
+            _attrControlName = name.ToLower();
+            _widgetFunctionName = name.Substring(0, 1).ToLower() + name.Substring(1);
         }
 
 
@@ -54,6 +61,18 @@ namespace AjaxControlToolkit {
                 : targetControl.Attributes;
 
             attrs.Add(DataOptionPrefix + _attrControlName, dataOptions);
+        }
+
+        protected override void OnPreRender(EventArgs e) {
+            base.OnPreRender(e);
+            if (Page.IsPostBack) {
+                // Insert activation script as a start-up script. 
+                // This script executed everytime post-back occurred.
+                var script = string.Format("jQuery(\"#{0}\").{1}();", this.TargetControl.ClientID, this._widgetFunctionName);
+                ScriptManager.RegisterStartupScript(Page, this.GetType(),
+                    this._widgetFunctionName + "ActivationScript" + this.ID,
+                    script, true);
+            }
         }
 
         /// <summary>
