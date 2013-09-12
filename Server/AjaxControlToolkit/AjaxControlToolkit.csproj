@@ -211,6 +211,7 @@
     <Compile Include="Common\CommonToolkitScripts.cs" />
     <Compile Include="Common\DataConverter.cs" />
     <Compile Include="Common\DateTimeScripts.cs" />
+    <Compile Include="Common\JQueryToolkitScripts.cs" />
     <Compile Include="Common\ThreadingScripts.cs" />
     <Compile Include="Common\Utility.cs" />
     <Compile Include="Compat\DragDrop\DragDropScripts.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="ExtenderBase\ExtenderControlPropertyAttribute.cs" />
     <Compile Include="ExtenderBase\IClientStateManager.cs" />
     <Compile Include="ExtenderBase\IControlResolver.cs" />
+    <Compile Include="ExtenderBase\JQueryExtenderControl.cs" />
     <Compile Include="ExtenderBase\ProfilePropertyBinding.cs" />
     <Compile Include="ExtenderBase\ProfilePropertyBindingCollection.cs" />
     <Compile Include="ExtenderBase\RequiredPropertyAttribute.cs" />
@@ -852,7 +854,7 @@
       <Link>ScriptResources\BaseScriptsResources.pt.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-	<EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.pl.resx">
+    <EmbeddedResource Include="..\..\Client\MicrosoftAjax.Extended\ExtenderBase\BaseScriptsResources.pl.resx">
       <Link>ScriptResources\BaseScriptsResources.pl.resx</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>

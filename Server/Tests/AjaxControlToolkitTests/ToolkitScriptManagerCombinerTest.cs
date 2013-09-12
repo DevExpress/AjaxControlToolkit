@@ -96,7 +96,7 @@ namespace AjaxControlToolkit.Tests {
                                            });
 
             scriptCombiner.LoadScriptReferences(_moqContext.Object, null);
-            var result=scriptCombiner.GetCombinedScriptContentHash(null, null);
+            var result=scriptCombiner.GetCombinedScriptContentHash(null, null, false);
             Assert.AreEqual("hashed", result);
         }
 
@@ -138,7 +138,8 @@ namespace AjaxControlToolkit.Tests {
             var request = new NameValueCollection {
                                                       // Pretend there is a combine request 
                                                       {ToolkitScriptManager.CombinedScriptsParamName, "true"},
-                                                      {ToolkitScriptManager.CacheBustParamName, "somehash"}
+                                                      {ToolkitScriptManager.CacheBustParamName, "somehash"},
+                                                      {ToolkitScriptManager.EnableCdnParamName, "false"}
                                                   };
 
             mockHttpRequest.Setup(r => r.Params).Returns(request);
