@@ -6,7 +6,7 @@ namespace AjaxControlToolkit.Config
     public class Settings
     {
         [XmlElement("controlBundles", IsNullable = false)]
-        public ControlBundleSection[] ControlBundles { get; set; }
+        public ControlBundleSection[] ControlBundleSections { get; set; }
     }
 
     public class ControlBundleSection

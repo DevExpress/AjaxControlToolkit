@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode>
-    <siteMapNode url="~/Default.aspx" title="HOME" />
+    <siteMapNode url="~/Default.aspx" title="HOME" />    
     <siteMapNode url="~/Accordion/Accordion.aspx" title="Accordion" />
     <siteMapNode url="~/AjaxFileUpload/AjaxFileUpload.aspx" title="AjaxFileUpload" />
     <siteMapNode url="~/AlwaysVisibleControl/AlwaysVisibleControl.aspx" title="AlwaysVisibleControl" />
@@ -49,6 +49,7 @@
     <siteMapNode url="~/Tabs/Tabs.aspx" title="Tabs" />
     <siteMapNode url="~/TextBoxWatermark/TextBoxWatermark.aspx" title="TextBoxWatermark" />
     <siteMapNode url="~/ToggleButton/ToggleButton.aspx" title="ToggleButton" />
+    <siteMapNode url="~/ToolkitScriptManager/ToolkitScriptManager.aspx" title="ToolkitScriptManager" />
     <siteMapNode url="~/Twitter/Twitter.aspx" title="Twitter" />
     <siteMapNode url="~/UpdatePanelAnimation/UpdatePanelAnimation.aspx" title="UpdatePanelAnimation" />
     <siteMapNode url="~/ValidatorCallout/ValidatorCallout.aspx" title="ValidatorCallout" />

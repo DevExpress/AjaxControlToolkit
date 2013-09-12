@@ -3,7 +3,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ContentPlaceHolderID="SampleContent" runat="Server">
-    <ajaxToolkit:ToolkitScriptManager ID="ScriptManager1" runat="server" CombineScripts="false" />
+    <ajaxToolkit:ToolkitScriptManager ID="ScriptManager1" runat="server" />
     <style type="text/css">
         .seadragon
         {
