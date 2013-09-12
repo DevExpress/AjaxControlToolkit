@@ -38,6 +38,11 @@ namespace AjaxControlToolkit {
         public const string CacheBustParamName = "v";
 
         /// <summary>
+        /// Request param name for the CDN enabled script
+        /// </summary>
+        public const string EnableCdnParamName = "cdn";
+
+        /// <summary>
         /// Request param name for the hidden field name
         /// </summary>
         public const string HiddenFieldParamName = "_TSM_HiddenField_";
@@ -237,18 +242,33 @@ namespace AjaxControlToolkit {
             var scriptReferences = Combiner.LoadScriptReferences(context, bundles);
 
             if (forCombineAndMinify) {
+
+                bool enableCdn = false;
+#if NET45 || NET40
+                enableCdn = EnableCdn;
+#endif
+
                 // Build unique content hash
-                var contentHash = Combiner.GetCombinedScriptContentHash(context, bundles);
+                var contentHash = Combiner.GetCombinedScriptContentHash(context, bundles, enableCdn);
 
                 // Store content hash in hidden field, we'll use it in resolving script reference when async callback occurred
                 Page.ClientScript.RegisterHiddenField(HiddenFieldParamName, contentHash);
+
+                // Add un-combined scripts that referenced to its CDN to the Page
+                var excludedCdnScripts = Combiner.GetExcludedScripts(true);
+                if (excludedCdnScripts != null) {
+                    foreach (var scriptReference in excludedCdnScripts) {
+                        Scripts.Add(scriptReference);
+                        Combiner.RegisterScriptReference(scriptReference);
+                    }
+                }
 
                 // Add combined script URL to the Page
                 _combinedScriptUrl = BuildCombinedScriptUrl(contentHash);
                 Scripts.Add(new ScriptReference(_combinedScriptUrl));
 
                 // Add another un-combined scripts to the Page
-                var excludedScripts = Combiner.GetExcludedScripts();
+                var excludedScripts = Combiner.GetExcludedScripts(false);
                 if (excludedScripts != null) {
                     foreach (var scriptReference in excludedScripts) {
                         Scripts.Add(scriptReference);
@@ -325,14 +345,20 @@ namespace AjaxControlToolkit {
                 bundleControlsParam = string.Join(QueryStringBundleDelimiter,
                                                   _controlBundles.Select(x => x.Name).ToArray());
 
+            bool enableCdn = false;
+#if NET45 || NET40
+            enableCdn = EnableCdn;
+#endif
+
             return String.Format(CultureInfo.InvariantCulture,
-                                 "{0}?{1}={2}&{3}={4}&{5}={6}",
+                                 "{0}?{1}={2}&{3}={4}&{5}={6}&{7}={8}",
                                  null != _combineScriptsHandlerUrl
                                      ? Page.ResolveUrl(_combineScriptsHandlerUrl.ToString())
                                      : Page.Request.Path.Replace(" ", "%20"),
                                  CombinedScriptsParamName, _combineScripts,
                                  CacheBustParamName, contentHash,
-                                 ControlBundleParamName, bundleControlsParam);
+                                 ControlBundleParamName, bundleControlsParam,
+                                 EnableCdnParamName, enableCdn);
         }
 
         /// <summary>
@@ -398,9 +424,15 @@ namespace AjaxControlToolkit {
 #endif
             base.OnResolveScriptReference(e);
 
+            bool enableCdn = false;
+#if NET45 || NET40
+            enableCdn = EnableCdn;
+#endif
+
+
             if (_combineScripts && !IsDebugMode && !String.IsNullOrEmpty(e.Script.Assembly)
-                && !String.IsNullOrEmpty(e.Script.Name) && Combiner.IsScriptRegistered(e.Script) 
-                && Combiner.IsScriptCombinable(e.Script)) {
+                && !String.IsNullOrEmpty(e.Script.Name) && Combiner.IsScriptRegistered(e.Script)
+                && Combiner.IsScriptCombinable(e.Script, enableCdn)) {
 
                 // Verify combined script URL. When async postback occurred, the _combinedScriptUrl is lost,
                 // we need to restore it from posted hidden field

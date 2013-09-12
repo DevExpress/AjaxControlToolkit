@@ -4,15 +4,17 @@
 [assembly: WebResource("jQuery.Start.debug.js", "text/javascript")]
 
 #if (NET45 || NET40)
-[assembly: WebResource("jQuery.jQuery.js", "application/x-javascript", CdnPath = "http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js")]
-[assembly: WebResource("jQuery.jQuery.debug.js", "application/x-javascript", CdnPath = "http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js")]
+[assembly: WebResource("jQuery.jQuery.js", "application/x-javascript", CdnPath = "http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.10.2.min.js")]
+[assembly: WebResource("jQuery.jQuery.debug.js", "application/x-javascript", CdnPath = "http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.10.2.js")]
+[assembly: WebResource("jQuery.jQueryUI.js", "application/x-javascript", CdnPath = "http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js")]
+[assembly: WebResource("jQuery.jQueryUI.debug.js", "application/x-javascript", CdnPath = "http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.js")]
 #else
 [assembly: WebResource("jQuery.jQuery.js", "application/x-javascript")]
 [assembly: WebResource("jQuery.jQuery.debug.js", "application/x-javascript")]
-#endif
-
 [assembly: WebResource("jQuery.jQueryUI.js", "application/x-javascript")]
 [assembly: WebResource("jQuery.jQueryUI.debug.js", "application/x-javascript")]
+#endif
+
 
 
 namespace AjaxControlToolkit {
