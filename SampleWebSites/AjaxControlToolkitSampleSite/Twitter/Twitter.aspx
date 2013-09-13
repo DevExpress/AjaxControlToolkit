@@ -11,6 +11,12 @@
     TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" Runat="Server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" ID="ScriptManager1" CombineScripts="false" />
+     <style>
+        .src_code {
+            background-color: white;
+            padding: 15px;
+        }
+    </style>
     <div class="demoarea">
         <div class="demoheading">
             Twitter Demonstration</div>
@@ -19,9 +25,6 @@
                 <br /><br />
                 <ajaxToolkit:Twitter ID="Twitter1" Mode="Profile" ScreenName="ScottGu" runat="server" />
                 <br />
-                
- 
-
                 <hr />
                 Displays status messages (tweets) for a Twitter account using a custom LayoutTemplate and StatusTemplate:
                 <br />
@@ -134,10 +137,53 @@
             </ul>
     </asp:Panel>    
     
+    
+    
+    <asp:Panel ID="ApiChange_HeaderPanel" runat="server" Style="cursor: pointer;">
+        <div class="heading">
+            <asp:ImageButton ID="ApiChange_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg"
+                AlternateText="collapse" />
+            Twitter API</div>
+    </asp:Panel>
+    <asp:Panel ID="ApiChange_ContentPanel" runat="server" Style="overflow: hidden;">
+        <p>
+            AjaxControlToolkit Twitter Control using Twitter API v1.1. The Twitter API v1.1 requiring us to provide API keys which are <b>Consumer Key</b>, <b>Consumer Secret</b>, <b>Access token</b> and <b>Access token secret</b>. 
+            You will need to create those keys through <a href="https://dev.twitter.com/apps/new">https://dev.twitter.com/apps/new</a> and supply those information into 
+            your web config under <b>appSettings</b> tag. It should looks like this:</p>
+        <p>
+            &nbsp;</p>
+        <div class="src_code">
+        <p>
+            <font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&lt;</font></font><font color="#a31515" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">appSettings</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&gt;</font></font></p>
+        <p>
+            <font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&nbsp;&nbsp; &lt;</font></font><font color="#a31515" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">add</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"> </font></font><font color="#ff0000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">key</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">=</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">TwitterConsumerKey</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"> </font></font><font color="#ff0000" face="Consolas, sans-serif">
+            <font size="2" style="font-size: 9pt">value</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">=</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"><b>[Your consumer key]</b></font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">/&gt;</font></font></p>
+        <p>
+            <font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&nbsp;&nbsp; &lt;</font></font><font color="#a31515" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">add</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"> </font></font><font color="#ff0000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">key</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">=</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">TwitterConsumerSecret</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"> </font></font>
+            <font color="#ff0000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">value</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">=</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"><b>[Your consumer secret]</b></font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">/&gt;</font></font></p>
+        <p>
+            <font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&nbsp;&nbsp; &lt;</font></font><font color="#a31515" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">add</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"> </font></font><font color="#ff0000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">key</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">=</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">TwitterAccessToken</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"> </font></font><font color="#ff0000" face="Consolas, sans-serif">
+            <font size="2" style="font-size: 9pt">value</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">=</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">[</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"><b>Your</b></font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"> <b>access token]</b></font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">/&gt;</font></font></p>
+        <p>
+            <font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&nbsp;&nbsp; &lt;</font></font><font color="#a31515" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">add</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"> </font></font><font color="#ff0000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">key</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">=</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">TwitterAccessTokenSecret</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"> </font></font>
+            <font color="#ff0000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">value</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">=</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">[</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt"><b>Your token secret</b></font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">]</font></font><font color="#000000" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&quot;</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">/&gt;</font></font></p>
+        <p>
+            <font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&lt;/</font></font><font color="#a31515" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">appSettings</font></font><font color="#0000ff" face="Consolas, sans-serif"><font size="2" style="font-size: 9pt">&gt;</font></font></p>
+            </div>
+        <p>
+            &nbsp;</p>
+        For more information about Twitter API v1.1 you can find in <a href="https://dev.twitter.com/docs/api/1.1/overview">https://dev.twitter.com/docs/api/1.1/overview</a>.<br />     
+        <br />        
+        
+    </asp:Panel>
+
     <ajaxToolkit:CollapsiblePanelExtender ID="cpeDescription" runat="Server" TargetControlID="Description_ContentPanel"
         ExpandControlID="Description_HeaderPanel" CollapseControlID="Description_HeaderPanel"
         Collapsed="False" ImageControlID="Description_ToggleImage" />
     <ajaxToolkit:CollapsiblePanelExtender ID="cpeProperties" runat="Server" TargetControlID="Properties_ContentPanel"
         ExpandControlID="Properties_HeaderPanel" CollapseControlID="Properties_HeaderPanel"
-        Collapsed="True" ImageControlID="Properties_ToggleImage" />    
+        Collapsed="True" ImageControlID="Properties_ToggleImage" /> 
+    <ajaxToolkit:CollapsiblePanelExtender ID="cpeApiChange" runat="Server" TargetControlID="ApiChange_ContentPanel"
+        ExpandControlID="ApiChange_HeaderPanel" CollapseControlID="ApiChange_HeaderPanel"
+        Collapsed="True" ImageControlID="ApiChange_ToggleImage" />    
 </asp:Content>
