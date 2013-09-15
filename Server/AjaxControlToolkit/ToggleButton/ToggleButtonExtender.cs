@@ -2,8 +2,6 @@ using System;
 using System.ComponentModel;
 using System.Web.UI;
 
-[assembly: System.Web.UI.WebResource("ToggleButton.ToggleButtonExtenderActivator.js", "text/javascript")]
-[assembly: System.Web.UI.WebResource("ToggleButton.ToggleButtonExtenderActivator.debug.js", "text/javascript")]
 [assembly: System.Web.UI.WebResource("jQuery.ToggleButton.ToggleButtonExtender.js", "text/javascript")]
 [assembly: System.Web.UI.WebResource("jQuery.ToggleButton.ToggleButtonExtender.debug.js", "text/javascript")]
 
@@ -15,8 +13,7 @@ namespace AjaxControlToolkit
     [Designer("AjaxControlToolkit.ToggleButtonExtenderDesigner, AjaxControlToolkit")]
     [ClientScriptResource(null, "jQuery.ToggleButton.ToggleButtonExtender.js")]
     [TargetControlType(typeof(ICheckBoxControl))]
-    [System.Drawing.ToolboxBitmap(typeof(ToggleButtonExtender), "ToggleButton.ToggleButton.ico")]
-    [RequiredScript(typeof(JQueryToolkitScripts))]
+    [System.Drawing.ToolboxBitmap(typeof(ToggleButtonExtender), "ToggleButton.ToggleButton.ico")]    
     public class ToggleButtonExtender : JQueryExtenderControl
     {
         // Constant strings for each property name
