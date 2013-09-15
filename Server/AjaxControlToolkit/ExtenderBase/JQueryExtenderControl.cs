@@ -11,6 +11,7 @@ namespace AjaxControlToolkit {
     /// <summary>
     /// Base class to build extender control using jQuery.
     /// </summary>
+    [RequiredScript(typeof(JQueryToolkitScripts))]
     public abstract class JQueryExtenderControl : ExtenderControlBase {
 
         /// <summary>
@@ -59,7 +60,6 @@ namespace AjaxControlToolkit {
             var attrs = (targetControl is CheckBox)
                 ? (targetControl as CheckBox).InputAttributes
                 : targetControl.Attributes;
-
             attrs.Add(DataOptionPrefix + _attrControlName, dataOptions);
         }
 
