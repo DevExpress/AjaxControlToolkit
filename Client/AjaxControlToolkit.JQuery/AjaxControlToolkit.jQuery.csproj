@@ -47,11 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="jQuery.pre.js" />
-    <Content Include="jQueryUI.pre.js" />
+    <Content Include="jQueryUIWidget.pre.js" />
     <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
-    <Content Include="Scripts\jquery.ui.widget.js" />
     <Content Include="Start.pre.js" />
     <Content Include="ToggleButton\ToggleButtonExtender.pre.js" />
   </ItemGroup>

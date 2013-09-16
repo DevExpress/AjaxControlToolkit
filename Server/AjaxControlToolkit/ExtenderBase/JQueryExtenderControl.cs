@@ -63,18 +63,6 @@ namespace AjaxControlToolkit {
             attrs.Add(DataOptionPrefix + _attrControlName, dataOptions);
         }
 
-        protected override void OnPreRender(EventArgs e) {
-            base.OnPreRender(e);
-            if (Page.IsPostBack) {
-                // Insert activation script as a start-up script. 
-                // This script executed everytime post-back occurred.
-                var script = string.Format("jQuery(\"#{0}\").{1}();", this.TargetControl.ClientID, this._widgetFunctionName);
-                ScriptManager.RegisterStartupScript(Page, this.GetType(),
-                    this._widgetFunctionName + "ActivationScript" + this.ID,
-                    script, true);
-            }
-        }
-
         /// <summary>
         /// Delegate method for extender target control parent SetRenderMethodDelegate method
         /// </summary>
