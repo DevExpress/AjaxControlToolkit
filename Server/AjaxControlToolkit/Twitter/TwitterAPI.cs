@@ -88,10 +88,10 @@ namespace AjaxControlToolkit {
         private string Query(string resourceUrl, IEnumerable<KeyValuePair<string, string>> parameters) {
 
             // oauth application keys
-            var oAuthToken = ConfigurationManager.AppSettings["TwitterAccessToken"];
-            var oAuthTokenSecret = ConfigurationManager.AppSettings["TwitterAccessTokenSecret"];
-            var oAuthConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"];
-            var oAuthConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"];
+            var oAuthToken = ConfigurationManager.AppSettings["act:TwitterAccessToken"];
+            var oAuthTokenSecret = ConfigurationManager.AppSettings["act:TwitterAccessTokenSecret"];
+            var oAuthConsumerKey = ConfigurationManager.AppSettings["act:TwitterConsumerKey"];
+            var oAuthConsumerSecret = ConfigurationManager.AppSettings["act:TwitterConsumerSecret"];
 
             // oauth implementation details
             const string oAuthVersion = "1.0";

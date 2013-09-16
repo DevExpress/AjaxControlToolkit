@@ -46,12 +46,12 @@
   </configSections>
 
   <appSettings>
-    <!-- Please provide your Twitter API Keys here -->
+    <!-- Please provide your Twitter API Keys here
     <add key="TwitterConsumerKey" value="[Your consumer key]"/>
     <add key="TwitterConsumerSecret" value="[Your consumer secret]"/>
     <add key="TwitterAccessToken" value="[Your access token]"/>
     <add key="TwitterAccessTokenSecret" value="[Your token secret]"/>
-    <!-- End of Twitter API Keys section -->
+    End of Twitter API Keys section -->
   </appSettings>
   <connectionStrings />
 
