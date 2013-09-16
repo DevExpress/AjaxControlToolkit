@@ -18,6 +18,11 @@
         }
     </style>
     <ajaxToolkit:ToolkitScriptManager runat="Server" ID="ScriptManager1" />
+    <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+        <ProgressTemplate>
+            <b>Processing...</b>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
                             <div class="demoarea">
@@ -77,10 +82,10 @@
 
                 
                         <hr />
-                        Displays Twitter search results for <i>'Ajax Control Toolkit'</i>:
+                        Displays Twitter search results for <i>ASP.NET</i>:
                         <br />
                         <ajaxToolkit:Twitter ID="Twitter2" Mode="Search" 
-                                             Search="'Ajax Control Toolkit'" runat="server" Caption="The Caption" 
+                                             Search="ASP.NET" runat="server" Caption="The Caption" 
                                              Title="Title goes here..." >                     
                         </ajaxToolkit:Twitter>
                         <br />
