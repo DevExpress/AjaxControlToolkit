@@ -8,7 +8,7 @@
         function pageLoaded(sender, args) {
             var panelsUpdated = args.get_panelsUpdated();
             for (var i = 0; i < panelsUpdated.length; i++) {
-                $act.activateWidgets('#' + panelsUpdated[i].id + '>*');
+                $act.activateWidgets('#' + panelsUpdated[i].id + ' *');
             }
         }
     }
