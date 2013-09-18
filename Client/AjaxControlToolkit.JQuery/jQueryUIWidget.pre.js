@@ -1,14 +1,4 @@
-﻿/*!
- * jQuery UI Widget @VERSION
- * http://jqueryui.com
- *
- * Copyright 2013 jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/jQuery.widget/
- */
-(function ($, undefined) {
+﻿(function ($, undefined) {
 
     var uuid = 0,
         slice = Array.prototype.slice,

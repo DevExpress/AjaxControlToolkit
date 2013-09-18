@@ -77,30 +77,34 @@
                     createFunc.apply(self);
             };
             $.widget('ajaxControlToolkit.' + name, base, prototype);
+        },
+        
+        activateWidgets: function(elements) {
+            // select all elements containing "data-act-*" attribute
+            var targets = $(elements).map(function () {
+                var self = this,
+                    data = $(self).data(),
+                    results = [];
+
+                for (var key in data) {
+                    if (key.indexOf('act') === 0)
+                        results.push({ key: key, value: self });
+                }
+                return results;
+            }).get();
+
+            // validate and activate widget for all elements
+            $.each(targets, function (key, obj) {
+                var widget = $act.widgets[obj.key];
+                if (widget)
+                    $(obj.value)[widget]();
+            });
         }
     };
 
 
     $(document).ready(function () {
-        // select all elements containing "data-act-*" attribute
-        var elements = $('*').map(function() {
-            var self = this,
-                data = $(self).data(),
-                results = [];
-            
-            for (var key in data) {
-                if (key.indexOf('act') === 0)
-                    results.push({ key: key, value: self });
-            }
-            return results;
-        }).get();
-
-        // validate and activate widget for all elements
-        $.each(elements, function (key, obj) {
-            var widget = $act.widgets[obj.key];
-            if (widget)
-                $(obj.value)[widget]();
-        });
+        $act.activateWidgets('*');
     });
     
 
