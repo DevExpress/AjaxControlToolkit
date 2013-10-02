@@ -54,15 +54,11 @@ namespace AjaxControlToolkit {
 
         #endregion
 
-        /// <summary>
-        /// Backing field for Combiner. Please don't use this for operational, use Combiner instead.
-        /// </summary>
-        private static ToolkitScriptManagerCombiner _combiner;
-
         private bool _combineScripts = true;
         private Uri _combineScriptsHandlerUrl;
         private string _combinedScriptUrl;
         private List<ControlBundle> _controlBundles;
+        private readonly ToolkitScriptManagerCombiner _combiner;
 
 #if !NET40 && !NET45
         private static Dictionary<String, bool> _scripts;
@@ -110,14 +106,14 @@ namespace AjaxControlToolkit {
         }
 #endif
 
+
         /// <summary>
-        /// Initialize and get ToolkitScriptManagerCombiner
+        /// Constructor
         /// </summary>
-        private static ToolkitScriptManagerCombiner Combiner {
-            get { return _combiner ?? (_combiner = new ToolkitScriptManagerCombiner(
-                new ToolkitScriptManagerConfig(new AjaxControlToolkitCacheProvider()), 
-                new ToolkitScriptManagerHelper()));
-            }
+        public ToolkitScriptManager() {
+            _combiner = new ToolkitScriptManagerCombiner(
+                new ToolkitScriptManagerConfig(new AjaxControlToolkitCacheProvider()),
+                new ToolkitScriptManagerHelper());
         }
 
         /// <summary>
@@ -192,7 +188,7 @@ namespace AjaxControlToolkit {
             }
 
             // Querying http request, determine if request is for serving the combined script file then just end the response of Page.
-            if (!DesignMode && (null != Context) && Combiner.OutputCombinedScriptFile(new HttpContextWrapper(Context))) {
+            if (!DesignMode && (null != Context) && _combiner.OutputCombinedScriptFile(new HttpContextWrapper(Context))) {
                 // This was a combined script request that was satisfied; end all processing now
                 Page.Response.End();
             }
@@ -239,7 +235,7 @@ namespace AjaxControlToolkit {
         public void LoadScriptReferences(HttpContextBase context, string[] bundles, bool forCombineAndMinify) {
 
             // Load script references in memory
-            var scriptReferences = Combiner.LoadScriptReferences(context, bundles);
+            var scriptReferences = _combiner.LoadScriptReferences(context, bundles);
 
             if (forCombineAndMinify) {
 
@@ -249,17 +245,17 @@ namespace AjaxControlToolkit {
 #endif
 
                 // Build unique content hash
-                var contentHash = Combiner.GetCombinedScriptContentHash(context, bundles, enableCdn);
+                var contentHash = _combiner.GetCombinedScriptContentHash(context, bundles, enableCdn);
 
                 // Store content hash in hidden field, we'll use it in resolving script reference when async callback occurred
                 Page.ClientScript.RegisterHiddenField(HiddenFieldParamName, contentHash);
 
                 // Add un-combined scripts that referenced to its CDN to the Page
-                var excludedCdnScripts = Combiner.GetExcludedScripts(true);
+                var excludedCdnScripts = _combiner.GetExcludedScripts(true);
                 if (excludedCdnScripts != null) {
                     foreach (var scriptReference in excludedCdnScripts) {
                         Scripts.Add(scriptReference);
-                        Combiner.RegisterScriptReference(scriptReference);
+                        _combiner.RegisterScriptReference(scriptReference);
                     }
                 }
 
@@ -268,11 +264,11 @@ namespace AjaxControlToolkit {
                 Scripts.Add(new ScriptReference(_combinedScriptUrl));
 
                 // Add another un-combined scripts to the Page
-                var excludedScripts = Combiner.GetExcludedScripts(false);
+                var excludedScripts = _combiner.GetExcludedScripts(false);
                 if (excludedScripts != null) {
                     foreach (var scriptReference in excludedScripts) {
                         Scripts.Add(scriptReference);
-                        Combiner.RegisterScriptReference(scriptReference);
+                        _combiner.RegisterScriptReference(scriptReference);
                     }
                 }
             }
@@ -308,7 +304,7 @@ namespace AjaxControlToolkit {
             foreach (var controlType in controlTypesInPage) {
                 var scriptReferences = ScriptObjectBuilder.GetScriptReferences(controlType);
                 foreach (var scriptReference in scriptReferences) {
-                    if (!Combiner.IsScriptRegistered(scriptReference))
+                    if (!_combiner.IsScriptRegistered(scriptReference))
                         throw new Exception("Could not load control " + controlType.FullName
                                             + ". The script reference(s) of this control was not loaded correctly. "
                                             +
@@ -368,7 +364,10 @@ namespace AjaxControlToolkit {
         /// </summary>
         /// <param name="context">HttpContext for the transaction</param>
         public static bool OutputCombinedScriptFile(HttpContext context) {
-            return Combiner.OutputCombinedScriptFile(new HttpContextWrapper(context));
+            return new ToolkitScriptManagerCombiner(
+                new ToolkitScriptManagerConfig(new AjaxControlToolkitCacheProvider()),
+                new ToolkitScriptManagerHelper())
+                .OutputCombinedScriptFile(new HttpContextWrapper(context));
         }
 
         /// <summary>
@@ -431,8 +430,8 @@ namespace AjaxControlToolkit {
 
 
             if (_combineScripts && !IsDebugMode && !String.IsNullOrEmpty(e.Script.Assembly)
-                && !String.IsNullOrEmpty(e.Script.Name) && Combiner.IsScriptRegistered(e.Script)
-                && Combiner.IsScriptCombinable(e.Script, enableCdn)) {
+                && !String.IsNullOrEmpty(e.Script.Name) && _combiner.IsScriptRegistered(e.Script)
+                && _combiner.IsScriptCombinable(e.Script, enableCdn)) {
 
                 // Verify combined script URL. When async postback occurred, the _combinedScriptUrl is lost,
                 // we need to restore it from posted hidden field
