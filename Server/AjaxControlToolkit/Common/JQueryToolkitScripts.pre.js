@@ -1,9 +1,6 @@
 ﻿if (Sys && Sys.WebForms && Sys.WebForms.PageRequestManager && $act) {
     if (!$act.isPostBackActivatorHandled) {
         $act.isPostBackActivatorHandled = true;
-        
-        var prm = Sys.WebForms.PageRequestManager.getInstance();
-        prm.add_pageLoaded(pageLoaded);
 
         function pageLoaded(sender, args) {
             var panelsUpdated = args.get_panelsUpdated();
@@ -11,5 +8,8 @@
                 $act.activateWidgets('#' + panelsUpdated[i].id + ' *');
             }
         }
+        
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        prm.add_pageLoaded(pageLoaded);
     }
 }
