@@ -21,7 +21,30 @@
 
 <div id="main">
 
-<h1>AJAX Control Toolkit &mdash; September 2013 Release</h1> 
+<h1>AJAX Control Toolkit &mdash; September 2013 Release (Updated)</h1> 
+
+    <div style="background-color:#eeeeee;border:solid 2px black;padding:10px;font-weight:bold">
+        This release has been updated to fix two issues:
+        <ul>
+            <li>
+                Update to the ToolkitScriptManager to prevent
+                an error that resulted from concurrency conflicts on high traffic websites.
+                If you are getting the error message "Could not load control [control name].
+                The script reference(s) of this control was not loaded correctly." then
+                please install this update.
+            </li>
+            <li>
+                Update to the ToolkitScriptManager to prevent
+                a pageLoaded error in Firefox when using the new jQueryExtender base class.
+            </li>
+        </ul>
+
+        The assembly version of the updated release is x.x.x.1002. The version with 
+        the two issues is version x.x.x.0930. Right-click on the 
+        AjaxControlToolkit.dll, select Properties, and look at the Details tab to view the assembly version.
+
+    </div>
+
 <p> 
 This release of the Ajax Control Toolkit introduces a new jQueryExtender base class
     and contains a new version of the ToggleButton control completely rewritten in jQuery.
