@@ -286,7 +286,8 @@ namespace AjaxControlToolkit {
         /// <param name="e"></param>
         protected override void OnPreRender(EventArgs e) {
             base.OnPreRender(e);
-            ValidateScriptReferences();
+            if (!IsInAsyncPostBack)
+                ValidateScriptReferences();
         }
 
         /// <summary>
