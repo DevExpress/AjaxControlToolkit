@@ -17,14 +17,14 @@
         <div class="heading">Bundling Custom Control</div>
         <p>
             <span>
-                The purpose of this walkthrough is to learn how to put custom control in <b>AjaxControlToolkit Control Bundle</b>.
+                The purpose of this walk-through is to learn how to put custom controls into an <b>AjaxControlToolkit Control Bundle</b>.
             </span>
         </p>
         <p><br/></p>        
         <p>
             <span>
-                This page is demonstrate two identical custom controls that one of it is a standard ASP.NET Ajax Custom Control and 
-                the other one is standard ASP.NET Ajax Custom Control that using <b>AjaxControlToolkit</b> <b>ClientScriptResourceAttribute</b> and <b>RequiredScriptAttribute</b>
+                This page is demonstrate two identical custom controls. One is a standard ASP.NET Ajax Custom Control and 
+                the other is a standard ASP.NET Ajax Custom Control that is using <b>AjaxControlToolkit</b> <b>ClientScriptResourceAttribute</b> and <b>RequiredScriptAttribute</b>
                 to register the script references.
             </span>
         </p>
@@ -130,9 +130,9 @@ namespace CustomAjaxServerControlSample.AjaxControlToolkitWelcomeLabel {
         <br/>
         <p>
             <span>
-                First thing to know is that <b>AjaxControlToolkit Control Bundle</b> only works for scripts that registered by <b>AjaxControlToolkit</b> <b>ClientScriptResourceAttribute</b> or <b>RequiredScriptAttribute</b>.
-                So, the custom control demo above is working. You only need to register it on <b>AjaxControlToolkit.config</b>. In this page we want to put it at Control Bundle named <b>CustomControls</b> so the <b>AjaxControlToolkit.config</b>
-                will looks something like this:
+                The <b>AjaxControlToolkit Control Bundle</b> only works for scripts that registered by <b>AjaxControlToolkit</b> <b>ClientScriptResourceAttribute</b> or <b>RequiredScriptAttribute</b>.
+                You need to register the custom control like in the example above on <b>AjaxControlToolkit.config</b>. In this page we put it at Control Bundle named <b>CustomControls</b> so the <b>AjaxControlToolkit.config</b>
+                looks like this:
            
                 <pre>
 &lt;ajaxControlToolkit&gt;
@@ -147,7 +147,7 @@ namespace CustomAjaxServerControlSample.AjaxControlToolkitWelcomeLabel {
         
         <p>
             <span>
-                On your web page, you need to use the control bundle by define it on your ToolkitScriptManager like this:
+                On your web page, you use the control bundle by defining it on your ToolkitScriptManager like this:
                 <pre>
 &lt;ajaxToolkit:ToolkitScriptManager runat=&quot;Server&quot; 
   EnableScriptGlobalization=&quot;true&quot; 
@@ -163,7 +163,7 @@ namespace CustomAjaxServerControlSample.AjaxControlToolkitWelcomeLabel {
         </p>
         <p>
             <span>
-                All scripts needed by <b>ActWelcomeLabel</b> will be combined in one combined script reference. If you do view source on your web browser
+                All scripts needed by <b>ActWelcomeLabel</b> will be combined in one combined script reference. If you click View Source on your web browser
                 you can find the script reference that should looks like this:
                 <pre><span class="webkit-html-tag" style="-webkit-text-stroke-width: 0px; font-family: monospace; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: auto; word-spacing: 0px;">&lt;script <span class="webkit-html-attribute-name">src</span>=&quot;<a class="webkit-html-attribute-value webkit-html-resource-link" href="../../CombineScriptsHandler.axd?_TSM_CombinedScripts_=True&amp;v=kDHQf8KmDKwi_x8SCZdDKSqFFj_km_g1RljP6Y7UzGs1&amp;_TSM_Bundles_=CustomControls" target="_blank">AjaxControlToolkitSampleSite/ CombineScriptsHandler.axd?_TSM_CombinedScripts_=True&amp;amp;v=kDHQf8KmDKwi_ x8SCZdDKSqFFj_km_g1RljP6Y7UzGs1&amp;amp;_TSM_Bundles_= CustomControls</a>&quot; <span class="webkit-html-attribute-name">type</span>=&quot;<span class="webkit-html-attribute-value">text/javascript</span>&quot;&gt;&lt;/script&gt;</span><span style="-webkit-text-stroke-width: 0px; color: rgb(0, 0, 0); display: inline !important; float: none; font-family: monospace; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: auto; word-spacing: 0px;"> </span></pre>
                 If you open the source of provided link you can see that the content of script for <b>ActWelcomeLabel</b> is there.
@@ -268,16 +268,16 @@ namespace CustomAjaxServerControlSample.StandardWelcomeLabel {
         <br/>
         <p>
             <span>
-                This standard custom control will not works with <b>AjaxControlToolkit Control Bundle</b>. No matter you register the control and assembly into <b>AjaxControlToolkit.config</b>,
-                the ToolkitScriptManager can't recognize the script references needed by this control since it's not registered using <b>ClientScriptResourceAttribute</b> or <b>RequiredScriptAttribute</b>.
+                This standard custom control will not work with an <b>AjaxControlToolkit Control Bundle</b>. Even if you register the control and assembly in the <b>AjaxControlToolkit.config</b>,
+                the ToolkitScriptManager can't recognize the script references needed by this control, since it's not registered using <b>ClientScriptResourceAttribute</b> or <b>RequiredScriptAttribute</b>.
                 <br/><br/>
-                If you do view source on your web browser for this page, you can find one script reference for first custom control demo registered independenly.
-                It should be something like this:               
+                If you click View Source on your web browser for this page, you can find the script reference for first custom control demo registered independenly.
+                It looks like this:               
             </span>
             <pre><span class="webkit-html-tag" style="-webkit-text-stroke-width: 0px; font-family: monospace; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: auto; word-spacing: 0px;">&lt;script <span class="webkit-html-attribute-name">src</span>=&quot;<a class="webkit-html-attribute-value webkit-html-resource-link" href="../../ScriptResource.axd?d=kra1eBS6ya0j3bYvh-KAPAesigyn82VmaulB375--fzTWWcHEZBU5WydyBrkepXYDzNiz_g1sQvZgUvh5DUkIpYuswHKiBTQLMrbDcXf6SimRnosuvrxBSgANrzcA4zgo43vpyilJWn7m57oQGa4Y9z7nloCSpnA1QHTuRARkMaAyuJnK7HSGymbtNL1b-fXYyF_Xsr04CHEA_YGT1o37g2&amp;t=3cbaff2d" target="_blank">/AjaxControlToolkitSampleSite/ScriptResource.axd?d=kra1...t=3cbaff2d</a>&quot; <span class="webkit-html-attribute-name">type</span>=&quot;<span class="webkit-html-attribute-value">text/javascript</span>&quot;&gt;&lt;/script&gt;</span><span style="-webkit-text-stroke-width: 0px; color: rgb(0, 0, 0); display: inline !important; float: none; font-family: monospace; font-size: medium; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: pre-wrap; widows: auto; word-spacing: 0px;"> </span></pre>
         </p>
         <p>
-            <span>This situation usually happen if you are using third party controls.</span>
+            <span>This happens if you are using third party controls.</span>
         </p>
     </div>
 </asp:Content>
