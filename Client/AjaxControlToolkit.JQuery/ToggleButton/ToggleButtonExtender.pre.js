@@ -120,4 +120,4 @@
         }
     });
 
-})(window, jQuery);
+})(window, actJQuery);

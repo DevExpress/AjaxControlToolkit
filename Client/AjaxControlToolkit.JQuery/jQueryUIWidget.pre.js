@@ -510,4 +510,4 @@
         };
     });
 
-})(jQuery);
+})(actJQuery);

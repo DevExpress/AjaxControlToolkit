@@ -18,8 +18,8 @@
 
 namespace AjaxControlToolkit {
     [ClientScriptResource(null, "jQuery.jQuery.js", LoadOrder = 0)]
-    [ClientScriptResource(null, "jQuery.jQueryUIWidget.js", LoadOrder = 1)]
-    [ClientScriptResource(null, "jQuery.Start.js", LoadOrder = 2)]
+    [ClientScriptResource(null, "jQuery.Start.js", LoadOrder = 1)]
+    [ClientScriptResource(null, "jQuery.jQueryUIWidget.js", LoadOrder = 2)]
     [ClientScriptResource(null, "Common.JQueryToolkitScripts.js", LoadOrder = 3)]
     public static class JQueryToolkitScripts {
     }

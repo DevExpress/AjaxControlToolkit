@@ -1,6 +1,9 @@
-﻿jQuery.noConflict();
+﻿var actJQuery = jQuery.noConflict(true);
 (function (window, $) {
     var act = {
+        
+        jQueryVersion: $.fn.jquery,
+
         browser: {
             InternetExplorer: {},
             Firefox: {},
@@ -136,4 +139,4 @@
 
     window.$act = act;
 
-})(window, jQuery);
+})(window, actJQuery);
