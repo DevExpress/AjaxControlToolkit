@@ -248,6 +248,8 @@
     <Compile Include="ExtenderBase\IClientStateManager.cs" />
     <Compile Include="ExtenderBase\IControlResolver.cs" />
     <Compile Include="ExtenderBase\JQueryExtenderControl.cs" />
+    <Compile Include="ExtenderBase\JQueryScriptBuilder.cs" />
+    <Compile Include="ExtenderBase\JQueryScriptControl.cs" />
     <Compile Include="ExtenderBase\ProfilePropertyBinding.cs" />
     <Compile Include="ExtenderBase\ProfilePropertyBindingCollection.cs" />
     <Compile Include="ExtenderBase\RequiredPropertyAttribute.cs" />

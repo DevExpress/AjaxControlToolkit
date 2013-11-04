@@ -9,7 +9,7 @@
                 el = self.element[0],
                 id = el.id + this.idDecoration,
                 container = $('<div/>').insertBefore(el).css({ position: 'relative' }),
-                opt = self.config;
+                opt = self.options;
 
             self._decoyElement = $('<a/>').appendTo(container)
                     .attr({ id: id, href: '' })
@@ -58,7 +58,7 @@
 
             var self = this,
                 el = self.element[0],
-                opt = self.config;
+                opt = self.options;
 
             if (!el)
                 return;
@@ -93,7 +93,7 @@
 
             var self = this,
                el = self.element[0],
-               opt = self.config;
+               opt = self.options;
             
             if (el && !el.disabled) {
                 if (el.checked && opt.checkedImageOverUrl) {

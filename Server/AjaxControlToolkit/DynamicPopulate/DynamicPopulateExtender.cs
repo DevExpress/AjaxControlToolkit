@@ -4,8 +4,8 @@ using System;
 using System.ComponentModel;
 using System.Web.UI;
 
-[assembly: System.Web.UI.WebResource("DynamicPopulate.DynamicPopulateBehavior.js", "text/javascript")]
-[assembly: System.Web.UI.WebResource("DynamicPopulate.DynamicPopulateBehavior.debug.js", "text/javascript")]
+[assembly: System.Web.UI.WebResource("jQuery.DynamicPopulate.DynamicPopulateExtender.js", "text/javascript")]
+[assembly: System.Web.UI.WebResource("jQuery.DynamicPopulate.DynamicPopulateExtender.debug.js", "text/javascript")]
 
 namespace AjaxControlToolkit
 {
@@ -14,11 +14,11 @@ namespace AjaxControlToolkit
     /// web service callback.
     /// </summary>
     [Designer("AjaxControlToolkit.DynamicPopulateDesigner, AjaxControlToolkit")]
-    [RequiredScript(typeof(CommonToolkitScripts))]
-    [ClientScriptResource("Sys.Extended.UI.DynamicPopulateBehavior", "DynamicPopulate.DynamicPopulateBehavior.js")]
+    //[RequiredScript(typeof(CommonToolkitScripts))]
+    [ClientScriptResource(null, "jQuery.DynamicPopulate.DynamicPopulateExtender.js")]
     [TargetControlType(typeof(Control))]
     [System.Drawing.ToolboxBitmap(typeof(DynamicPopulateExtender), "DynamicPopulate.DynamicPopulate.ico")]
-    public class DynamicPopulateExtender : ExtenderControlBase
+    public class DynamicPopulateExtender : JQueryExtenderControl
     {
         /// <summary>
         /// Whether or not we should clear the HTML contents of the

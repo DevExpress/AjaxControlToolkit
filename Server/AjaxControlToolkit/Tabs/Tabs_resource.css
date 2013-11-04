@@ -8,7 +8,7 @@
 
 
 /* xp theme top / default */
-.ajax__tab_xp .ajax__tab_header {font-family:verdana,tahoma,helvetica;font-size:11px;background:url(<%=WebResource("Tabs.tab-line.gif")%>) repeat-x bottom; }
+.ajax__tab_xp .ajax__tab_header {font-family:verdana,tahoma,helvetica;font-size:11px;background:url(<%=WebResource("Tabs.tab-line.gif")%>) repeat-x bottom;height:21px; }
 .ajax__tab_xp .ajax__tab_header .ajax__tab_outer {padding-right:4px;background:url(<%=WebResource("Tabs.tab-right.gif")%>) no-repeat right;height:21px;}
 .ajax__tab_xp .ajax__tab_header .ajax__tab_inner {padding-left:3px;background:url(<%=WebResource("Tabs.tab-left.gif")%>) no-repeat;}
 .ajax__tab_xp .ajax__tab_header .ajax__tab_tab {height:13px;padding:4px;margin:0px;background:url(<%=WebResource("Tabs.tab.gif")%>) repeat-x;}
