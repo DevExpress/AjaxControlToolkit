@@ -46,12 +46,21 @@
     <Folder Include="Base\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Common\Args.js" />
+    <Content Include="Common\Common.pre.js" />
+    <Content Include="Common\Resources.js" />
+    <Content Include="Common\String.js" />
+    <Content Include="DynamicPopulate\DynamicPopulateExtender.pre.js" />
     <Content Include="jQuery.pre.js" />
     <Content Include="jQueryUIWidget.pre.js" />
     <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\json2.min.js" />
     <Content Include="Start.pre.js" />
+    <Content Include="Tabs\TabPanel.pre.js" />
+    <Content Include="Tabs\TabContainer.pre.js" />
     <Content Include="ToggleButton\ToggleButtonExtender.pre.js" />
   </ItemGroup>
   <ItemGroup>

@@ -8,10 +8,12 @@
 [assembly: WebResource("jQuery.jQuery.debug.js", "application/x-javascript")]
 #endif
 
-[assembly: WebResource("jQuery.jQueryUIWidget.js", "application/x-javascript")]
-[assembly: WebResource("jQuery.jQueryUIWidget.debug.js", "application/x-javascript")]
 [assembly: WebResource("jQuery.Start.js", "text/javascript")]
 [assembly: WebResource("jQuery.Start.debug.js", "text/javascript")]
+[assembly: WebResource("jQuery.Common.Common.js", "text/javascript")]
+[assembly: WebResource("jQuery.Common.Common.debug.js", "text/javascript")]
+[assembly: WebResource("jQuery.jQueryUIWidget.js", "application/x-javascript")]
+[assembly: WebResource("jQuery.jQueryUIWidget.debug.js", "application/x-javascript")]
 [assembly: WebResource("Common.JQueryToolkitScripts.js", "application/x-javascript")]
 [assembly: WebResource("Common.JQueryToolkitScripts.debug.js", "application/x-javascript")]
 
@@ -19,8 +21,11 @@
 namespace AjaxControlToolkit {
     [ClientScriptResource(null, "jQuery.jQuery.js", LoadOrder = 0)]
     [ClientScriptResource(null, "jQuery.Start.js", LoadOrder = 1)]
-    [ClientScriptResource(null, "jQuery.jQueryUIWidget.js", LoadOrder = 2)]
-    [ClientScriptResource(null, "Common.JQueryToolkitScripts.js", LoadOrder = 3)]
-    public static class JQueryToolkitScripts {
+    [ClientScriptResource(null, "jQuery.Common.Common.js", LoadOrder = 2)]
+    [ClientScriptResource(null, "jQuery.jQueryUIWidget.js", LoadOrder = 3)]
+    [ClientScriptResource(null, "Common.JQueryToolkitScripts.js", LoadOrder = 4)]
+    public class JQueryToolkitScripts
+    {
+        
     }
 }

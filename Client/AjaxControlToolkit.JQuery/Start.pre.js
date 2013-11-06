@@ -16,98 +16,151 @@
             documentMode: 0
         },
         
+        initialized: false,
         widgets: [],
+        behaviors: [],
         
-        createWidget: function(name, base, prototype) {
+        createWidget: function (name, base, prototype, skipAutoActivation) {
+
+            var body = prototype || base,
+                attrKey = 'act' + name.substr(0, 1).toLocaleUpperCase()
+                + name.toLocaleLowerCase().substr(1);
+            
             if (!prototype) {
-                prototype = base;
                 base = $.Widget;
             }
+            
+            // Registering widget for auto activation
+            if (!skipAutoActivation)
+                act.widgets[attrKey] = name;
 
-            // Registering widget
-            var attrKey = 'act' + name.substr(0, 1).toLocaleUpperCase()
-                + name.toLocaleLowerCase().substr(1);
-            act.widgets[attrKey] = name;
-
-            // Build create prototype
-            var createFunc = prototype._create;
-            prototype._create = function () {
-                
-                this.dataAttrName = 'act-' + name.toLowerCase();
-
-                var self = this,
-                    strMetadata = self.element.data(self.dataAttrName);
-                
-                // metadata is not found, this control could be an extender control, 
-                // let's find where is the metadata located on, it should be carried out by data element
-                if (!strMetadata) {
-                    var dataElement = $("data[data-act-target='" + self.element.attr('id') + "']");
-                    if (dataElement)
-                        strMetadata = dataElement.data(self.dataAttrName);
-                }
-
-                if (!strMetadata)
-                    throw "Could not resolve meta-data. Please ensure that data-" + self.dataAttrName + " attribute is not empty.";
-
-                // parse string metadata into object notation
-                var rgx = /(\w+)(.|\s+)(:)/g, pimp = function(s) {
-                        return '#$%<*' + s + '$%@#<';
-                    },
-                    props = strMetadata.match(rgx),
-                    tmpMetadata = strMetadata.replace(rgx, pimp('$1$2$3')),
-                    obj = {};
-                
-                for (var i = 0; i < props.length; i++) {
-                    var prop = pimp(props[i]),
-                        idx = tmpMetadata.indexOf(prop) + prop.length,
-                        nextIdx = (i < props.length - 1)
-                            ? tmpMetadata.indexOf(pimp(props[i + 1])) - 1
-                            : tmpMetadata.length,
-                        propVal = tmpMetadata.substring(idx, nextIdx);
-
-                    // decode string value
-                    if (propVal.startsWith("'") && propVal.endsWith("'"))
-                        propVal = $('<div/>').html(propVal.substr(1, propVal.length - 2)).text();
-                    
-                    obj[props[i].trim().slice(0, -1)] = propVal;
-                }
-
-                self.metadata = obj;
-                self.config = $.extend({}, self.defaults, self.options, self.metadata);
-
-                // apply actual _create method implementation
-                if (createFunc)
-                    createFunc.apply(self);
+            // Event handlers builder
+            body._addHandler = function(handlerName, handler) {
+                this._handlers[name + handlerName] = handler;
             };
-            $.widget('ajaxControlToolkit.' + name, base, prototype);
+            body._removeHandler = function(handlerName) {
+                if (this._handlers[name + handlerName])
+                    delete this._handlers[name + handlerName];
+            };
+            body._invokeHandler = function(handlerName, args) {
+                var handler = this._handlers[name + handlerName];
+                if (!handler)
+                    return;
+                
+                if (typeof handler == "string") {
+                    eval(handler)(args);
+                } else {
+                    handler.call(this, args);
+                }
+            };
+            
+            // Hook _create method
+            var createMethod = body._create;
+            body._create = function () {
+                
+                this._handlers = [];
+                this._clientStateElement = $('#' + this.element.attr('id') + "_ClientState");
+
+                // Maintain 'dispose' method for backward compatibility
+                this.dispose = this.destroy;
+                
+                function createDelegate(object, ev, method) {
+                    var fn = function () {
+                        var args = [];
+                        args.push(ev);
+                        if (arguments) {
+                            for (var a in arguments) {
+                                args.push(arguments[a]);
+                            }
+                        }
+                        return method.apply(object, args);
+                    };
+
+                    return fn;
+                }
+
+                if (this._events) {
+
+                    // Maintain add/remove/raise event methods for backward compatibility
+                    for (var i = 0; i < this._events.length; i++) {
+                        var evt = this._events[i],
+                            eventMethodName = 'add_' + evt;
+                        if (!this[eventMethodName])
+                            this[eventMethodName] = createDelegate(this, evt, this._addHandler);
+
+                        eventMethodName = 'remove_' + evt;
+                        if (!this[eventMethodName])
+                            this[eventMethodName] = createDelegate(this, evt, this._removeHandler);
+
+                        eventMethodName = 'raise' + $act.common.pascalCase(evt);
+                        if (!this[eventMethodName])
+                            this[eventMethodName] = createDelegate(this, evt, this._invokeHandler);
+
+                        // Assign event handler and remove from options if found
+                        if (this.options[evt]) {
+                            var eh = this.options[evt];
+                            delete this.options[evt];
+                            this['add_' + evt](eh);
+                        }
+                    }
+                }
+
+                if (this.options) {
+                    for (var o in this.options) {
+                        var getName = "get_" + o,
+                            setName = "set_" + o;
+
+                        if (!this[getName])
+                            this[getName] = createDelegate(this, o, this.option);
+
+                        if (!this[setName])
+                            this[setName] = createDelegate(this, o, this.option);
+                    }
+                }
+                
+                if (createMethod)
+                    createMethod.apply(this);
+            };
+
+            $.widget('ajaxControlToolkit.' + name, base, body);
         },
         
-        activateWidgets: function(elements) {
-            // select all elements containing "data-act-*" attribute
-            var targets = $(elements).map(function () {
-                var self = this,
-                    data = $(self).data(),
+        activateWidgets: function (elements) {
+            
+            // Select all elements containing "data-act-*" attribute
+            var self = this, targets = $(elements).map(function () {
+                var that = this,
+                    data = $(that).data(),
                     results = [];
 
                 for (var key in data) {
                     if (key.indexOf('act') === 0)
-                        results.push({ key: key, value: self });
+                        results.push({ key: key, value: that });
                 }
                 return results;
             }).get();
 
-            // validate and activate widget for all elements
+            // Validate and activate widget for all elements
             $.each(targets, function (key, obj) {
-                var widget = $act.widgets[obj.key];
-                if (widget)
-                    $(obj.value)[widget]();
+                var widgetName = $act.widgets[obj.key];
+                if (widgetName) {
+                    $act.common.activateWidget(widgetName, obj.value);
+                }
             });
+        },
+        
+        init: function () {            
+            var self = this;
+            if (!self.initialized) {
+                self.initialized = true;
+                self.activateWidgets('*');
+            }
         }
     };
 
 
     $(document).ready(function () {
-        $act.activateWidgets('*');
+        $act.init();
     });
     
 

@@ -19,6 +19,7 @@
 	<dependencies>
 	  <dependency id="AjaxMin" version="4.97.4951.28483" />
 	  <dependency id="HtmlAgilityPack" version="1.4.6" />
+	  <dependency id="WindowsAzure.Storage" version="2.1.0.3" />
 	</dependencies>
   </metadata>
   <files>

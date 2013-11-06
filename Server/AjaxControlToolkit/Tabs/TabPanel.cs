@@ -3,16 +3,19 @@ using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+[assembly: System.Web.UI.WebResource("jQuery.Tabs.TabPanel.js", "text/javascript")]
+[assembly: System.Web.UI.WebResource("jQuery.Tabs.TabPanel.debug.js", "text/javascript")]
+
 namespace AjaxControlToolkit {
     [ParseChildren(true)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(DynamicPopulateExtender))]
     [RequiredScript(typeof(TabContainer))]
     [ClientCssResource("Tabs.Tabs_resource.css")]
-    [ClientScriptResource("Sys.Extended.UI.TabPanel", "Tabs.Tabs.js")]
+    [ClientScriptResource(null, "jQuery.Tabs.TabPanel.js")]
     [ToolboxItem(false)]
     [Designer(typeof(TabPanelDesigner))]
-    public class TabPanel : ScriptControlBase {
+    public class TabPanel : JQueryScriptControl {
         #region [ Fields ]
 
         private bool _active;
@@ -170,24 +173,29 @@ namespace AjaxControlToolkit {
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
 
-            if (_headerTemplate != null) {
+            if (_headerTemplate != null)
+            {
                 _headerControl = new Control();
                 _headerTemplate.InstantiateIn(_headerControl);
                 Controls.Add(_headerControl);
             }
-            if (_contentTemplate != null) {
+            if (_contentTemplate != null)
+            {
                 var c = new Control();
                 _contentTemplate.InstantiateIn(c);
 
-                if (_owner.OnDemand && OnDemandMode != OnDemandMode.None) {
+                if (_owner.OnDemand && OnDemandMode != OnDemandMode.None)
+                {
                     var invisiblePanelID = ClientID + "_onDemandPanel";
-                    var invisiblePanel = new Panel() {
+                    var invisiblePanel = new Panel()
+                    {
                         ID = invisiblePanelID,
                         Visible = false
                     };
                     invisiblePanel.Controls.Add(c);
 
-                    var updatePanel = new UpdatePanel() {
+                    var updatePanel = new UpdatePanel()
+                    {
                         ID = ClientID + "_updatePanel",
                         UpdateMode = UpdatePanelUpdateMode.Conditional
                     };
@@ -195,7 +203,8 @@ namespace AjaxControlToolkit {
                     updatePanel.ContentTemplateContainer.Controls.Add(invisiblePanel);
                     Controls.Add(updatePanel);
                     UpdatePanelID = updatePanel.ClientID;
-                } else
+                }
+                else
                     Controls.Add(c);
             }
         }
@@ -256,6 +265,7 @@ namespace AjaxControlToolkit {
         }
 
         protected override void Render(HtmlTextWriter writer) {
+            DecodeAttributeValues(writer, this);
             if (_headerControl != null) {
                 _headerControl.Visible = false;
             }
@@ -269,16 +279,6 @@ namespace AjaxControlToolkit {
             writer.RenderBeginTag(HtmlTextWriterTag.Div);
             RenderChildren(writer);
             writer.RenderEndTag();
-            ScriptManager.RegisterScriptDescriptors(this);
-        }
-
-        protected override void DescribeComponent(ScriptComponentDescriptor descriptor) {
-            base.DescribeComponent(descriptor);
-            descriptor.AddElementProperty("headerTab", "__tab_" + ClientID);
-            if (_owner != null) {
-                descriptor.AddComponentProperty("owner", _owner.ClientID);
-                descriptor.AddProperty("ownerID", _owner.ClientID);
-            }
         }
 
         internal void SetOwner(TabContainer owner) {

@@ -2,6 +2,21 @@
     CodeFile="Tabs.aspx.cs" Inherits="Tabs_Tabs" Title="Tabs Sample" Theme="SampleSiteTheme" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+<script runat="server">
+    [System.Web.Services.WebMethod]
+    [System.Web.Script.Services.ScriptMethod]
+    public static string GetHtml(string contextKey) {
+        // A little pause to mimic a latent call
+        System.Threading.Thread.Sleep(250);
+
+        string value = (contextKey == "U") ?
+            DateTime.UtcNow.ToString() :
+            String.Format("{0:" + contextKey + "}", DateTime.Now);
+        return String.Format("<span style='font-family:courier new;font-weight:bold;'>{0}</span>", value);
+    }
+</script>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="SampleContent" runat="Server">
     <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1" />
     <script type="text/javascript">
@@ -101,6 +116,8 @@
                     </ul>
                     <br />
                 </ContentTemplate>
+            </ajaxToolkit:TabPanel>
+            <ajaxToolkit:TabPanel ID="PanelDP" HeaderText="Dynamic" DynamicServicePath="~/Tabs/Tabs.aspx" DynamicServiceMethod="GetHtml" DynamicContextKey="G" runat="server">
             </ajaxToolkit:TabPanel>
         </ajaxToolkit:TabContainer>
         <br />
