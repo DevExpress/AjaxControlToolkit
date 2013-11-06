@@ -53,6 +53,11 @@ namespace AjaxControlToolkit.HTMLEditor
     [RequiredScript(typeof(AjaxControlToolkit.HTMLEditor.HTMLEditor))]
     [ClientScriptResource("Sys.Extended.UI.HTMLEditor.EditPanel", "HTMLEditor.EditPanel.js")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1012:AbstractTypesShouldNotHaveConstructors")]
+
+    [RequiredScript(typeof(DesignPanel))]
+    [RequiredScript(typeof(HtmlPanel))]
+    [RequiredScript(typeof(PreviewPanel))]
+
     public abstract class EditPanel : ScriptControlBase, IPostBackEventHandler
     {
         #region [ Static Fields ]

@@ -87,7 +87,7 @@ namespace AjaxControlToolkit {
             var deps = dependencies;
 
             // Retrieve all member types which are not in dependency list yet
-            var members = ctlType.GetMembers(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public)
+            var members = ctlType.GetMembers(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static)
                 .SelectMany(info => GetMemberTypes(info))
                 .Where(m => m != null && m.Namespace != null && m.Namespace.StartsWith("AjaxControlToolkit"))
                 .Distinct()
