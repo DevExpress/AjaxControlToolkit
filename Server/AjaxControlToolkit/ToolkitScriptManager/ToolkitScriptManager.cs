@@ -429,10 +429,9 @@ namespace AjaxControlToolkit {
             enableCdn = EnableCdn;
 #endif
 
-
+            // Redirecting combinable script to the combined script URL address
             if (_combineScripts && !IsDebugMode && !String.IsNullOrEmpty(e.Script.Assembly)
-                && !String.IsNullOrEmpty(e.Script.Name) && _combiner.IsScriptRegistered(e.Script)
-                && _combiner.IsScriptCombinable(e.Script, enableCdn)) {
+                && !String.IsNullOrEmpty(e.Script.Name) && _combiner.IsScriptCombinable(e.Script, enableCdn)) {
 
                 // Verify combined script URL. When async postback occurred, the _combinedScriptUrl is lost,
                 // we need to restore it from posted hidden field
