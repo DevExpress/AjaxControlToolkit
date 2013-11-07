@@ -307,7 +307,7 @@ namespace AjaxControlToolkit
         [Category("Appearance")]
         public override string CssClass
         {
-            get { return base.CssClass; }
+            get { return string.IsNullOrEmpty(base.CssClass) ? "ajax__tab_xp" : base.CssClass; }
             set { base.CssClass = value; }
         }
 
@@ -528,7 +528,7 @@ namespace AjaxControlToolkit
         protected override Style CreateControlStyle()
         {
             TabContainerStyle style = new TabContainerStyle(ViewState);
-            style.CssClass = "ajax__tab_xp";
+            style.CssClass = CssClass;
             return style;
         }
 
@@ -649,7 +649,7 @@ namespace AjaxControlToolkit
         {
             Style.Remove(HtmlTextWriterStyle.Visibility);
             if (!ControlStyleCreated)
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_xp");
+                writer.AddAttribute(HtmlTextWriterAttribute.Class, CssClass);
             if (_useVerticalStripPlacement)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
             if (!Height.IsEmpty && Height.Type == UnitType.Percentage)
