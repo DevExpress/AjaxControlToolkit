@@ -836,8 +836,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
-  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\ajaxmintask.dll" />
+  <UsingTask TaskName="JSBuild.JSBuildTask" AssemblyFile="..\..\Tools\NET35\JSBuild.dll" />
+  <UsingTask TaskName="AjaxMin" AssemblyFile="..\..\Libs\NET35\ajaxmintask.dll" />
   <Target Name="BeforeBuild">
     <MakeDir Directories="ScriptOutput" />
     <!-- clean out old files from previous build -->
@@ -863,7 +863,7 @@
     <ItemGroup>
       <JS Include="ScriptOutput\**\*.js" Exclude="ScriptOutput\**\*.debug.*" />
     </ItemGroup>
-    <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSCombineDuplicateLiterals="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
+    <AjaxMin JSSourceFiles="@(JS)" JSSourceExtensionPattern="\.js$" JSTargetExtension=".js" JSCollapseToLiteral="true" JSLocalRenaming="CrunchAll" JSMacSafariQuirks="true" JSRemoveUnneededCode="true" JSStripDebugStatements="true" JSEvalTreatment="Ignore" JSInlineSafeStrings="true" />
     <!-- Copy Server project Images and CSS into the Scripts Folder -->
     <ItemGroup>
       <StaticResources Include="**\*.png;**\*.jpg;**\*.gif;**\*.css;" />
@@ -895,7 +895,7 @@
       <EmbeddedResource Include="ScriptOutput\**\*" />
     </ItemGroup>
   </Target>
-  <UsingTask TaskName="JSBuild.CreateJSManifestResourceName" AssemblyFile="..\..\Tools\v3.5\JSBuild.dll" />
+  <UsingTask TaskName="JSBuild.CreateJSManifestResourceName" AssemblyFile="..\..\Tools\NET35\JSBuild.dll" />
   <Target Name="CreateManifestResourceNames" Condition="'@(EmbeddedResource)' != ''" DependsOnTargets="$(CreateManifestResourceNamesDependsOn)">
     <ItemGroup>
       <_Temporary Remove="@(_Temporary)" />
