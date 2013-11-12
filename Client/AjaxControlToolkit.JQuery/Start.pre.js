@@ -1,4 +1,12 @@
-﻿var actJQuery = jQuery.noConflict(true);
+﻿if (typeof actJQuery == "undefined") {
+    
+    if (typeof jQuery == "undefined" || jQuery.fn.jquery !== "1.9.1") {
+        throw "jQuery 1.9.1 required.";
+    }
+    
+    actJQuery = jQuery.noConflict();
+}
+
 (function (window, $) {
     var act = {
         

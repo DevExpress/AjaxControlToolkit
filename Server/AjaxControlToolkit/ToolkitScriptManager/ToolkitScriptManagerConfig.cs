@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Serialization;
+using AjaxControlToolkit.Config;
 
 
 namespace AjaxControlToolkit {
@@ -116,6 +117,13 @@ namespace AjaxControlToolkit {
             this._cacheProvider = cacheProvider;
         }
 
+        public virtual List<Type> GetControlTypesInBundles(HttpContextBase context, string[] bundles) {
+            ScriptReference[] addedScriptReferences;
+            ScriptReference[] removedScriptReferences;
+
+            return GetControlTypesInBundles(context, bundles, out addedScriptReferences, out removedScriptReferences);
+        }
+
         /// <summary>
         /// Get all types of controls referenced by control bundle names. 
         /// If control bundle names is empty then default control bundle defined in AjaxControlToolkit.config will be use to retrieved control types.
@@ -124,11 +132,14 @@ namespace AjaxControlToolkit {
         /// <param name="context">Current HttpContext.</param>
         /// <param name="bundles">Control bundle names. Will be ignored if AjaxControlToolkit.config file is not found.</param>
         /// <returns></returns>
-        public virtual List<Type> GetControlTypesInBundles(HttpContextBase context, string[] bundles) {
+        public virtual List<Type> GetControlTypesInBundles(HttpContextBase context, string[] bundles, out ScriptReference[] addedScriptReferences, out ScriptReference[] removedScriptReferences) {
 
             var registeredControls = new List<Type>();
             var registeredBundles = new List<string>();
             var fileName = context.Server.MapPath(ConfigFileName);
+
+            addedScriptReferences = null;
+            removedScriptReferences = null;
 
             if (!File.Exists(fileName)) {
 
@@ -151,20 +162,31 @@ namespace AjaxControlToolkit {
             }
             else {
 
-                // Bundle configuration (AjaxControlToolkit.config) specified
-                // Try read config content from cache
-                var configContent = _cacheProvider.Get<string>(CacheConfigName);
-                if (string.IsNullOrEmpty(configContent)) {
-                    using (StreamReader sr = File.OpenText(fileName)) {
-                        // Retrieve config content from file and caching it
-                        configContent = sr.ReadToEnd();
-                        _cacheProvider.Set(CacheConfigName, configContent, fileName);
-                    }
-                }
+                var bundleConfig = ParseConfiguration(fileName);
+                if (bundleConfig.ScriptsSections != null) {
+                    var addScripts = new List<ScriptReference>();
+                    var removeScripts = new List<ScriptReference>();
+                    var actAssembly = Assembly.GetCallingAssembly().ToString();
 
-                // Deserialize bundle configuration
-                var bundleConfig = (Config.Settings)(new XmlSerializer(typeof(Config.Settings)))
-                    .Deserialize(new StringReader(configContent));
+                    foreach (var scriptsSection in bundleConfig.ScriptsSections) {
+                        if (scriptsSection.AddScripts != null) {
+                            foreach (var script in scriptsSection.AddScripts) {
+                                addScripts.Add(new ScriptReference(script.Name,
+                                    string.IsNullOrEmpty(script.Assembly) ? actAssembly : script.Assembly));
+                            }
+                        }
+
+                        if (scriptsSection.RemoveScripts != null) {
+                            foreach (var script in scriptsSection.RemoveScripts) {
+                                removeScripts.Add(new ScriptReference(script.Name,
+                                    string.IsNullOrEmpty(script.Assembly) ? actAssembly : script.Assembly));
+                            }
+                        }
+                    }
+
+                    addedScriptReferences = addScripts.ToArray();
+                    removedScriptReferences = removeScripts.ToArray();
+                }
 
                 // Iterate all control bundle sections. Normaly, there will be only 1 section.
                 foreach (var bundle in bundleConfig.ControlBundleSections) {
@@ -225,6 +247,54 @@ namespace AjaxControlToolkit {
             return registeredControls.Distinct().ToList();
         }
 
+        private Settings ParseConfiguration(string fileName) {
+            // Bundle configuration (AjaxControlToolkit.config) specified
+            // Try read config content from cache
+            var configContent = _cacheProvider.Get<string>(CacheConfigName);
+            if (string.IsNullOrEmpty(configContent)) {
+                using (StreamReader sr = File.OpenText(fileName)) {
+                    // Retrieve config content from file and caching it
+                    configContent = sr.ReadToEnd();
+                    _cacheProvider.Set(CacheConfigName, configContent, fileName);
+                }
+            }
 
+            // Deserialize bundle configuration
+            var bundleConfig = (Config.Settings) (new XmlSerializer(typeof (Config.Settings)))
+                .Deserialize(new StringReader(configContent));
+            return bundleConfig;
+        }
+
+        public List<ScriptReference> GetScriptReferences(HttpContextBase context, string[] bundles, out ScriptReference[] addedScriptReferences, out ScriptReference[] removedScriptReferences) {
+            var scriptReferences = new List<ScriptReference>();
+            
+            foreach (
+                var control in
+                    GetControlTypesInBundles(context, bundles, out addedScriptReferences, out removedScriptReferences)) {
+                var scriptRefs = ScriptObjectBuilder.GetScriptReferences(control).ToList();
+                foreach (var scriptRef in scriptRefs) {
+                    if (scriptReferences.All(s => s.Name != scriptRef.Name)) {
+                        scriptReferences.Add(scriptRef);
+                    }
+                }
+            }
+
+            scriptReferences = scriptReferences.Distinct().ToList();
+            if (addedScriptReferences != null) {
+                foreach (var script in addedScriptReferences) {
+                    scriptReferences.Add(script);
+                }
+            }
+
+            if (removedScriptReferences != null) {
+                foreach (var script in removedScriptReferences) {
+                    var scriptToRemove = scriptReferences.FirstOrDefault(s => s.Name.Equals(script.Name) && s.Assembly.Equals(script.Assembly));
+                    if (scriptToRemove != null)
+                        scriptReferences.Remove(scriptToRemove);
+                }
+            }
+
+            return scriptReferences;
+        }
     }
 }
