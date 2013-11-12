@@ -66,7 +66,6 @@ namespace AjaxControlToolkit
     /// </summary>
     [Designer("AjaxControlToolkit.TabContainerDesigner, AjaxControlToolkit")]
     [ParseChildren(typeof(TabPanel))]
-    [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientCssResource("Tabs.Tabs_resource.css")]
     [ClientScriptResource(null, "jQuery.Tabs.TabContainer.js")]
     [System.Drawing.ToolboxBitmap(typeof(TabContainer), "Tabs.Tabs.ico")]

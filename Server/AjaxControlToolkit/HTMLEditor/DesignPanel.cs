@@ -32,10 +32,10 @@ namespace AjaxControlToolkit.HTMLEditor
 {
     [ParseChildren(true)]
     [PersistChildren(false)]
-    [RequiredScript(typeof(CommonToolkitScripts))]
-    [RequiredScript(typeof(AjaxControlToolkit.HTMLEditor.HTMLEditor))]
-    [RequiredScript(typeof(AjaxControlToolkit.HTMLEditor.ExecCommandEmulation))]
-    [RequiredScript(typeof(AjaxControlToolkit.HTMLEditor.DesignPanelEventHandler))]
+    [RequiredScript(typeof(CommonToolkitScripts), 0)]
+    [RequiredScript(typeof(AjaxControlToolkit.HTMLEditor.HTMLEditor), 1)]
+    [RequiredScript(typeof(AjaxControlToolkit.HTMLEditor.ExecCommandEmulation), 2)]
+    [RequiredScript(typeof(AjaxControlToolkit.HTMLEditor.DesignPanelEventHandler), 3)]
     [ClientScriptResource("Sys.Extended.UI.HTMLEditor.DesignPanel", "HTMLEditor.DesignPanel.js")]
     internal class DesignPanel : ModePanel
     {
