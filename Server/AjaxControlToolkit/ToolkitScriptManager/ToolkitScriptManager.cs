@@ -296,6 +296,7 @@ namespace AjaxControlToolkit {
         /// </summary>
         public void ValidateScriptReferences() {
 
+
             // validation works for combine and minification only
             if (!_combineScripts || IsDebugMode)
                 return;

@@ -42,6 +42,9 @@ namespace AjaxControlToolkit {
                 RegexOptions.Singleline | RegexOptions.Multiline);
 
         private List<ScriptReference> _scriptReferences;
+        private ScriptReference[] _addedScriptReferences;
+        private ScriptReference[] _removedReferences;
+
         private bool _scriptEntriesLoaded;
 
         private readonly ToolkitScriptManagerConfig _scriptManagerConfig;
@@ -234,16 +237,7 @@ namespace AjaxControlToolkit {
         /// <param name="bundles">Name of bundles</param>
         /// <returns>List of script reference</returns>
         public List<ScriptReference> LoadScriptReferences(HttpContextBase context, string[] bundles) {
-            _scriptReferences = new List<ScriptReference>();
-            foreach (var control in _scriptManagerConfig.GetControlTypesInBundles(context, bundles)) {
-                var scriptRefs = ScriptObjectBuilder.GetScriptReferences(control);
-                foreach (var scriptRef in scriptRefs) {
-                    if (_scriptReferences.All(s => s.Name != scriptRef.Name)) {
-                        _scriptReferences.Add(scriptRef);
-                    }
-                }
-            }
-
+            _scriptReferences = _scriptManagerConfig.GetScriptReferences(context, bundles, out _addedScriptReferences, out _removedReferences);
             _scriptEntriesLoaded = true;
             return _scriptReferences;
         }
@@ -270,7 +264,14 @@ namespace AjaxControlToolkit {
                             s.LoadAssembly().FullName == scriptReference.Assembly))
                 return false;
 
-            return _scriptReferences.Any(s => s.Name == scriptReference.Name && s.Assembly == scriptReference.Assembly);
+            var registered = _scriptReferences.Any(s => s.Name == scriptReference.Name && s.Assembly == scriptReference.Assembly);
+
+            // If not registered, let's check again is script has been removed manually by user
+            if (!registered) {
+                registered = _removedReferences.Any(s => s.Name == scriptReference.Name && s.Assembly == scriptReference.Assembly);
+            }
+
+            return registered;
         }
 
         /// <summary>
