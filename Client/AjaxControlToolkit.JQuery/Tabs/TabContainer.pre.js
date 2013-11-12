@@ -24,7 +24,7 @@
             self._created = false;
             
             el.addClass("ajax__tab_container ajax__tab_default");
-            self._body.children('.ajax__tab_panel').each(function (idx, val) {
+            self._body.children().each(function (idx, val) {
                 self._tabs.push(
                     $act.common.activateWidget('tabPanel', val,
                         { owner: self, tabIndex: idx }));

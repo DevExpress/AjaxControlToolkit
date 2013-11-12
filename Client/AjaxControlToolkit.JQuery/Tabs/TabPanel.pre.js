@@ -31,6 +31,8 @@
 
             if (opt.enabled) {
                 self._addHandlersOnEnabled();
+            } else {
+                self._makeEnabled(false);
             }
             
             if (opt.onClientClick) {
