@@ -43,8 +43,14 @@ REM Add the Sample Site
 md SampleSite35
 xcopy %SampleSiteFolder%\*.* SampleSite35 /E /Y
 xcopy %BinaryFolderNET35%\*.* SampleSite35\Bin /E /Y
-del SampleSite35\Bin\Microsoft.WindowsAzure.Storage.*
+del SampleSite35\Bin\Microsoft.WindowsAzure.*
+del SampleSite35\Bin\Microsoft.Data.Edm.*
+del SampleSite35\Bin\Microsoft.Data.OData.*
+del SampleSite35\Bin\System.Spatial.*
 del SampleSite35\*.exclude
+del SampleSite35\website.publishproj
+rd SampleSite35\App_Data\PublishProfiles  /s /q
+
 c:\zip\7za.exe a %BinaryFolderNET35%\AjaxControlToolkitSampleSite.zip .\SampleSite35\*  
 rd SampleSite35 /s /q
 copy /Y %SampleSiteFolder%\Web_config_backup.exclude %SampleSiteFolder%\Web.config

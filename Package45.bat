@@ -44,6 +44,9 @@ md SampleSite45
 xcopy %SampleSiteFolder%\*.* SampleSite45 /E /Y
 xcopy %BinaryFolderNET45%\*.* SampleSite45\Bin /E /Y
 del SampleSite45\*.exclude
+del SampleSite40\website.publishproj
+rd SampleSite45\App_Data\PublishProfiles  /s /q
+
 c:\zip\7za.exe a %BinaryFolderNET45%\AjaxControlToolkitSampleSite.zip .\SampleSite45\*  
 rd SampleSite45 /s /q
 copy /Y %SampleSiteFolder%\Web_config_backup.exclude %SampleSiteFolder%\Web.config
