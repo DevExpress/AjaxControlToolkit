@@ -171,7 +171,7 @@
     <validation validateIntegratedModeConfiguration="false" />
     <security>
       <requestFiltering>
-        <requestLimits maxAllowedContentLength="2097151000" />
+        <requestLimits maxAllowedContentLength="4294967295" />
       </requestFiltering>
     </security>
     <modules>
@@ -195,11 +195,6 @@
       <add name="CombineScriptsHandler" preCondition="integratedMode" verb="*" path="CombineScriptsHandler.axd"
            type="AjaxControlToolkit.CombineScriptsHandler, AjaxControlToolkit" />
     </handlers>
-    <security>
-      <requestFiltering>
-        <requestLimits maxAllowedContentLength="4294967295" />
-      </requestFiltering>
-    </security>
   </system.webServer>
 
   <runtime>
