@@ -470,7 +470,8 @@ namespace AjaxControlToolkit
                 if (File.Exists(fileName))
                     File.Delete(fileName);
 
-                File.Move(_uploadedFilePath, fileName);
+                File.Copy(_uploadedFilePath, fileName);
+                File.Delete(_uploadedFilePath);
 
                 // Delete temporary data
                 Directory.Delete(dir);
@@ -507,7 +508,7 @@ namespace AjaxControlToolkit
         /// <returns></returns>
         public static string BuildRootTempFolder()
         {
-            var rootTempFolder = Path.Combine(HttpRuntime.BinDirectory, TemporaryUploadFolderName);
+            var rootTempFolder = Path.Combine(Path.GetTempPath(), TemporaryUploadFolderName);
             if (!Directory.Exists(rootTempFolder))
                 Directory.CreateDirectory(rootTempFolder);
             return rootTempFolder;
