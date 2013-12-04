@@ -470,7 +470,8 @@ namespace AjaxControlToolkit
                 if (File.Exists(fileName))
                     File.Delete(fileName);
 
-                File.Move(_uploadedFilePath, fileName);
+                File.Copy(_uploadedFilePath, fileName);
+                File.Delete(_uploadedFilePath);
 
                 // Delete temporary data
                 Directory.Delete(dir);
