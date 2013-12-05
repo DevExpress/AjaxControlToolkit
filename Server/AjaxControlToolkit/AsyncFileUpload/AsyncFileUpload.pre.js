@@ -183,14 +183,6 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
                     change: this._onchange$delegate
                 });
             }
-            if (Sys.Browser.agent == Sys.Browser.Firefox) {
-                this._inputFile.size = 20;
-                var width = this._inputFile.offsetWidth;
-                this._inputFile.style.width = "";
-                while (this._inputFile.offsetWidth < width) {
-                    this._inputFile.size++;
-                }
-            }
             if (this._innerTB != null) {
                 this._inputFile.blur();
                 var inputFile = this._inputFile;
