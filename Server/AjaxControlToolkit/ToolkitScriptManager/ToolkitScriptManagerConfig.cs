@@ -162,13 +162,13 @@ namespace AjaxControlToolkit {
             }
             else {
 
-                var bundleConfig = ParseConfiguration(fileName);
-                if (bundleConfig.ScriptsSections != null) {
+                var actConfig = ParseConfiguration(fileName);
+                if (actConfig.ScriptsSections != null && actConfig.ScriptsSections.Length > 0) {
                     var addScripts = new List<ScriptReference>();
                     var removeScripts = new List<ScriptReference>();
                     var actAssembly = Assembly.GetCallingAssembly().ToString();
 
-                    foreach (var scriptsSection in bundleConfig.ScriptsSections) {
+                    foreach (var scriptsSection in actConfig.ScriptsSections) {
                         if (scriptsSection.AddScripts != null) {
                             foreach (var script in scriptsSection.AddScripts) {
                                 addScripts.Add(new ScriptReference(script.Name,
@@ -188,48 +188,59 @@ namespace AjaxControlToolkit {
                     removedScriptReferences = removeScripts.ToArray();
                 }
 
-                // Iterate all control bundle sections. Normaly, there will be only 1 section.
-                foreach (var bundle in bundleConfig.ControlBundleSections) {
+                if (actConfig.ControlBundleSections != null && actConfig.ControlBundleSections.Length > 0) {
+                    // Iterate all control bundle sections. Normaly, there will be only 1 section.
+                    foreach (var bundle in actConfig.ControlBundleSections) {
 
-                    // Iterate all control bundles in a section.
-                    foreach (var controlBundle in bundle.ControlBundles) {
-                        
-                        // Only add control types if ... 
-                        if (
-                            // ... this is default control bundle and requested bundle not specified.
-                            (string.IsNullOrEmpty(controlBundle.Name) && (bundles == null || bundles.Length == 0)) ||
+                        if (bundle != null && bundle.ControlBundles != null && bundle.ControlBundles.Length > 0) {
+                            // Iterate all control bundles in a section.
+                            foreach (var controlBundle in bundle.ControlBundles) {
 
-                            // .. or this is not default bundle and its specified in requested bundle
-                            (bundles != null && bundles.Contains(controlBundle.Name))) {
+                                // Only add control types if ... 
+                                if (
 
-                            // Iterate all controls registered in control bundle. Determining control types is works here.
-                            foreach (var control in controlBundle.Controls) {
-                                if (string.IsNullOrEmpty(control.Assembly) || control.Assembly == "AjaxControlToolkit") {
+                                    // ... bundle contains control(s) and ...
+                                    (controlBundle.Controls != null && controlBundle.Controls.Length > 0) && (
 
-                                    // Processing AjaxControlToolkit controls
-                                    var controlName = "AjaxControlToolkit." + control.Name;
+                                    // ... this is default control bundle and requested bundle not specified.
+                                    (string.IsNullOrEmpty(controlBundle.Name) &&
+                                     (bundles == null || bundles.Length == 0)) ||
 
-                                    // Verify that control is a standard AjaxControlToolkit control
-                                    if (!ControlDependencyTypeMaps.ContainsKey(controlName))
-                                        throw new Exception(
-                                            string.Format(
-                                                "Could not find control '{0}'. Please make sure you entered the correct control name in AjaxControlToolkit.config file.",
-                                                control.Name));
+                                    // .. or this is not default bundle and its specified in requested bundle
+                                    (bundles != null && bundles.Contains(controlBundle.Name))
+                                    )){
 
-                                    registeredControls.AddRange(ControlDependencyTypeMaps[controlName]
-                                        .Select(c => Type.GetType(c)));
-                                }
-                                else {
+                                    // Iterate all controls registered in control bundle. Determining control types is works here.
+                                    foreach (var control in controlBundle.Controls) {
+                                        if (string.IsNullOrEmpty(control.Assembly) ||
+                                            control.Assembly == "AjaxControlToolkit") {
 
-                                    // Processing custom controls
-                                    registeredControls.Add(
-                                        ToolkitScriptManagerHelper.GetAssembly(control.Assembly)
-                                            .GetType(control.Assembly + "." + control.Name));
+                                            // Processing AjaxControlToolkit controls
+                                            var controlName = "AjaxControlToolkit." + control.Name;
+
+                                            // Verify that control is a standard AjaxControlToolkit control
+                                            if (!ControlDependencyTypeMaps.ContainsKey(controlName))
+                                                throw new Exception(
+                                                    string.Format(
+                                                        "Could not find control '{0}'. Please make sure you entered the correct control name in AjaxControlToolkit.config file.",
+                                                        control.Name));
+
+                                            registeredControls.AddRange(ControlDependencyTypeMaps[controlName]
+                                                .Select(c => Type.GetType(c)));
+                                        }
+                                        else {
+
+                                            // Processing custom controls
+                                            registeredControls.Add(
+                                                ToolkitScriptManagerHelper.GetAssembly(control.Assembly)
+                                                    .GetType(control.Assembly + "." + control.Name));
+                                        }
+                                    }
+
+                                    // Mark that bundle is registered for future verification
+                                    registeredBundles.Add(controlBundle.Name);
                                 }
                             }
-
-                            // Mark that bundle is registered for future verification
-                            registeredBundles.Add(controlBundle.Name);
                         }
                     }
                 }
