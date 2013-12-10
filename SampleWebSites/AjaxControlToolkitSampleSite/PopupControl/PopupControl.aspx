@@ -65,7 +65,7 @@
             PopupControlID="Panel2"
             CommitProperty="value"
             Position="Bottom"
-            CommitScript="e.value += ' - do not forget!';" />
+            CommitScript="this.get_element().value += ' - do not forget!';" />
 
         <asp:UpdatePanel ID="UpdatePanel3" runat="server">
             <ContentTemplate>

@@ -44,8 +44,8 @@ Sys.Extended.UI.PopupControlBehavior = function(element) {
     this._bodyClickHandler = null;
     this._onShowJson = null;
     this._onHideJson = null;
-}
-Sys.Extended.UI.PopupControlBehavior.prototype = {
+};
+    Sys.Extended.UI.PopupControlBehavior.prototype = {
     initialize : function() {
         /// <summary>
         /// Initialize the behavior
@@ -339,7 +339,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
     set_onShow : function(value) {
         if (this._popupBehavior) {
-            this._popupBehavior.set_onShow(value)
+            this._popupBehavior.set_onShow(value);
         } else {
             this._onShowJson = value;
         }
@@ -369,7 +369,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
     set_onHide : function(value) {
         if (this._popupBehavior) {
-            this._popupBehavior.set_onHide(value)
+            this._popupBehavior.set_onHide(value);
         } else {
             this._onHideJson = value;
         }
@@ -649,8 +649,8 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
             this._popupBehavior.raiseHidden(eventArgs);
         }
     }
-}
-Sys.Extended.UI.PopupControlBehavior.registerClass('Sys.Extended.UI.PopupControlBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
+};
+    Sys.Extended.UI.PopupControlBehavior.registerClass('Sys.Extended.UI.PopupControlBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
 Sys.registerComponent(Sys.Extended.UI.PopupControlBehavior, { name: "popupBehavior" });
 
 // This global variable tracks the currently visible popup.  Automatically
@@ -670,15 +670,15 @@ Sys.Extended.UI.PopupControlPopupPosition = function() {
     /// <field name="Bottom" type="Number" integer="true" />
     /// <field name="Right" type="Number" integer="true" />
     throw Error.invalidOperation();
-}
-Sys.Extended.UI.PopupControlPopupPosition.prototype = {
+};
+    Sys.Extended.UI.PopupControlPopupPosition.prototype = {
     Center : 0,
     Top : 1,
     Left : 2,
     Bottom : 3,
     Right : 4
-}
-Sys.Extended.UI.PopupControlPopupPosition.registerEnum("Sys.Extended.UI.PopupControlPopupPosition", false);
+};
+    Sys.Extended.UI.PopupControlPopupPosition.registerEnum("Sys.Extended.UI.PopupControlPopupPosition", false);
 
 } // execute
 
