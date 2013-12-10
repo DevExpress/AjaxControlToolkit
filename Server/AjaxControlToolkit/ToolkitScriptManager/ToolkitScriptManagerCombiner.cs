@@ -267,7 +267,7 @@ namespace AjaxControlToolkit {
             var registered = _scriptReferences.Any(s => s.Name == scriptReference.Name && s.Assembly == scriptReference.Assembly);
 
             // If not registered, let's check again is script has been removed manually by user
-            if (!registered) {
+            if (!registered && _removedReferences!=null) {
                 registered = _removedReferences.Any(s => s.Name == scriptReference.Name && s.Assembly == scriptReference.Assembly);
             }
 
