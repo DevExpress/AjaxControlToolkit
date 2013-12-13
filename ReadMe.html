@@ -21,63 +21,59 @@
 
 <div id="main">
 
-<h1>AJAX Control Toolkit &mdash; September 2013 Release (Updated)</h1> 
-
-    <div style="background-color:#eeeeee;border:solid 2px black;padding:10px;font-weight:bold">
-        This release has been updated to fix the following three issues:
-        <ul>
-            <li>
-                Update to prevent a conflict between the Ajax Control Toolkit and jQuery/jQuery UI.
-            </li>
-            <li>
-                Update to the ToolkitScriptManager to prevent
-                an error that resulted from concurrency conflicts on high traffic websites.
-                If you are getting the error message "Could not load control [control name].
-                The script reference(s) of this control was not loaded correctly." then
-                please install this update.
-            </li>
-            <li>
-                Update to the ToolkitScriptManager to prevent
-                a pageLoaded error in Firefox when using the new jQueryExtender base class.
-            </li>
-        </ul>
-
-        The assembly version of the updated release is x.x.x.1005. Right-click on the 
-        AjaxControlToolkit.dll, select Properties, and look at the Details tab to view the assembly version.
-
-    </div>
+<h1>AJAX Control Toolkit &mdash; December 2013 Release</h1> 
 
 <p> 
-This release of the Ajax Control Toolkit introduces a new jQueryExtender base class
-    and contains a new version of the ToggleButton control completely rewritten in jQuery.
+This release of the Ajax Control Toolkit includes a new version of the Tabs control rewritten using
+    jQuery. It also includes several important bug fixes.
 </p>
 <ul>
-<li>
-    <p>
-    jQueryExtender - Use the new jQueryExtender base class to create new Ajax Control
-        Toolkit controls using jQuery.  
-    </p>
-</li>
-<li>
-    <p>
-    ToggleButton Control - Rewritten using pure jQuery. 
-    </p>
-</li>
-<li>
-    <p>
-       Twitter Control - Completely rewritten to use the new Twitter API.
-    </p>
-</li>
-<li>
-    <p>
-        ToolkitScriptManager - Fixed issue concerning errors when used in Medium Trust.
-    </p>
-</li>
-<li>
-    <p>
-        AjaxFileUpload - Fixed issue concerning ampersands in file names (issue 27476).
-    </p>
-</li> 
+    <li>
+        <p>
+        Tabs control - Completely rewritten using jQuery and the jQueryExtender base class.
+        </p>
+    </li>
+    <li>
+        <p>
+            Add and Remove Scripts - New &lt;add&gt; and &lt;remove&gt; elements can be used in 
+            the AjaxControlToolkit.config file to add or remove scripts from the script bundle generated
+            by the Ajax Control Toolkit. 
+        </p>
+    </li>
+    <li>
+        <p>
+            HTMLEditor Control - The HTMLEditor control has been updated to work with the new Ajax
+            Control Toolkit bundling and minification framework.
+        </p>
+    </li>
+    <li>
+        <p>
+            AjaxFileUpload and Windows Azure Websites - The AjaxFileUpload control was updated to resolve an issue
+            concerning the TMP folder in a Windows Azure Website.
+        </p>
+    </li>
+    <li>
+        <p>
+            Additional Bug Fixes - The following issues reported on CodePlex were fixed:
+            <ol>
+                <li>
+                    <a href="http://ajaxcontroltoolkit.codeplex.com/workitem/27517">Sys.WebForms.PageRequestManagerServerErrorException: Script entries not loaded yet</a>
+                </li>
+                <li>
+                    <a href="http://ajaxcontroltoolkit.codeplex.com/workitem/7564">TAB CONTROL ERROR</a> 
+                </li>
+                <li>
+                    <a href="http://ajaxcontroltoolkit.codeplex.com/workitem/27237">Error in Tabs Ajax Control Toolkit.</a> 
+                </li>
+                <li>
+                    <a href="http://ajaxcontroltoolkit.codeplex.com/workitem/27201">Problem with tabcontainer in IE8</a> 
+                </li>
+                <li>
+                    <a href="http://ajaxcontroltoolkit.codeplex.com/workitem/27053">TabContainer throws exception in user control with Nov release</a>
+                </li>
+            </ol>
+        </p>
+    </li>
 </ul>
  
 

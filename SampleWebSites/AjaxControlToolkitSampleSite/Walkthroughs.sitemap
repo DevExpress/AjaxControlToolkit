@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode>
+    <siteMapNode url="~/Walkthrough/UsingJQuery/UsingJQuery.aspx" title="Using jQuery" />
     <siteMapNode url="~/Walkthrough/ExtenderClasses.aspx" title="Extender base class features" />
     <siteMapNode url="~/Walkthrough/UsingAnimations.aspx" title="Using Animations" />
     <siteMapNode url="~/Walkthrough/AnimationReference.aspx" title="Animation Reference" />

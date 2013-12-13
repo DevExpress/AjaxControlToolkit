@@ -51,7 +51,7 @@
         <div id="master_content">
             <div id="master_contentheader"></div>
             <div id="master_contentplaceholder"><asp:ContentPlaceHolder ID="SampleContent" runat="server" /></div>
-            <div id="master_contentfooter">Copyright &#169; 2006-2012 Microsoft Corporation. All Rights Reserved.</div>
+            <div id="master_contentfooter">Copyright &#169; 2006-2013 Microsoft Corporation. All Rights Reserved.</div>
         </div>
     </div>
 </form></body>

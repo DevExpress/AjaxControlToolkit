@@ -286,6 +286,59 @@
     <p>
         <font color="#0000ff" face="Consolas, serif" size="2">&lt;/</font><font color="#a31515" face="Consolas, serif" size="2">ajaxControlToolkit</font><font color="#0000ff" face="Consolas, serif" size="2">&gt;</font></p>
     </div>
+
+
+    <div class="heading">Including and Excluding Scripts</div>
+    <p>
+        You can use &lt;add&gt; and &lt;remove&gt; elements in the AjaxControlToolkit.config file to exclude or
+        include a particular JavaScript script from a control bundle. For example, imagine that you want
+        to include Twitter Bootstrap in your control bundle. In that case, you can add the following &lt;add&gt; element
+        to your AjaxControlToolkit.config file:
+    </p>
+
+<pre style="font-family:Consolas;font-size:16;color:black;background:white;"><span style="color:blue;">&lt;</span><span style="color:maroon;">ajaxControlToolkit</span><span style="color:blue;">&gt;</span>
+ <span style="color:blue;">&lt;</span><span style="color:maroon;">scripts</span><span style="color:blue;">&gt;</span>
+   <span style="color:blue;">&lt;</span><span style="color:maroon;">add</span> <span style="color:red;">name</span><span style="color:blue;">=</span><span style="color:blue;">&quot;MyApp.Scripts.bootstrap.js.bootstrap.js&quot;</span> 
+       <span style="color:red;">assembly</span><span style="color:blue;">=</span><span style="color:blue;">&quot;MyApp&quot;</span><span style="color:blue;">/&gt;</span>
+ <span style="color:blue;">&lt;/</span><span style="color:maroon;">scripts</span><span style="color:blue;">&gt;</span> 
+ 
+     ...
+ 
+<span style="color:blue;">&lt;/</span><span style="color:maroon;">ajaxControlToolkit</span><span style="color:blue;">&gt;</span>
+</pre>
+
+    <p>
+        In the code above, you should replace <i>MyApp</i> with the name of your Web Forms application.
+    </p>
+
+    <br />
+
+    <p>
+        To get this to work, you need to embed the bootstrap.js file in your Web Forms application's assembly.  Open the Properties
+        window for the bootstrap.js JavaScript file in your project and set its
+        Build Action to the value <i>Embedded Resource</i>. Finally, add the following attribute to your Global.asax file:
+    </p>
+
+    <pre>
+[assembly: System.Web.UI.WebResource(
+        "MyApp.Scripts.bootstrap.js.bootstrap.js", 
+        "application/x-javascript")]
+    </pre>
+
+    <p>
+        After you complete these steps, Twitter Bootstrap will be included in your JavaScript bundle (compressed, minified, bundled,
+        and far future cached).
+    </p>
+    <br />
+
+    <p>
+        The ability to remove scripts from a control bundle is useful when you want to use your own version of jQuery
+        with the Ajax Control Toolkit. To learn more about using jQuery with the Ajax Control Toolkit, read
+        <a href="../Walkthrough/UsingJQuery/UsingJQuery.aspx">Using jQuery with the Ajax Control Toolkit</a>
+    </p>
+
+
+
     <div class="heading">How It Works</div>
     <p>
         The ToolkitScriptManager uses four attributes to determine which scripts and Cascading Style Sheet files to load and combine. These attributes are server-side attributes applied to Ajax Control Toolkit controls:</p>
