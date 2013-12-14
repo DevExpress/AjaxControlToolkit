@@ -104,17 +104,23 @@
 
 </pre>
 
+    <p>
+        (Be careful here, the name of the script is case-sensitive) 
+
+    </p>
+    <br />
 
     <p>
-        If you remove jQuery then it is your responsibility to add jQuery back into your application by using
-                either the ToolkitScriptManager or adding a &lt;script&gt; tag that loads jQuery.
+        If you remove jQuery then it is your responsibility to add the exact same version of jQuery back into your application 
+        by using either the ToolkitScriptManager or adding a &lt;script&gt; tag that loads jQuery. Also, if you use a 
+        &lt;script&gt; tag then you need to be careful to add jQuery before the opening server-side &lt;form&gt; tag.
     </p>
     <br />
 
     <p>
         The Ajax Control Toolkit is tested against the particular version of jQuery that is bundled with the Ajax Control Toolkit. 
         Currently, the Ajax Control Toolkit uses jQuery version <strong class="currentACTJQueryVersion"></strong>.  If you attempt
-        to use a different version of jQuery with the Ajax Control Toolkit then you might encounter issues.
+        to use a different version of jQuery with the Ajax Control Toolkit then we will throw an exception at you.
     </p>
         <br />
 
