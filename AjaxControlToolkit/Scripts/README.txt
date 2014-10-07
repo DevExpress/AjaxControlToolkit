@@ -1,0 +1,1 @@
+﻿Web Essentials is used for script minification on save

@@ -33,10 +33,51 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions.Design" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtenderBase\ClientPropertyNameAttribute.cs" />
+    <Compile Include="ExtenderBase\ClientScriptResourceAttribute.cs" />
+    <Compile Include="ExtenderBase\CommonToolkitScripts.cs" />
+    <Compile Include="ExtenderBase\ComponentReferenceAttribute.cs" />
+    <Compile Include="ExtenderBase\Constants.cs" />
+    <Compile Include="ExtenderBase\Design\ExtenderPropertyRenameDescProv.cs" />
+    <Compile Include="ExtenderBase\Design\FilterTypeDescriptionProvider.cs" />
+    <Compile Include="ExtenderBase\ElementReferenceAttribute.cs" />
+    <Compile Include="ExtenderBase\ExtenderControlEventAttribute.cs" />
+    <Compile Include="ExtenderBase\ExtenderControlMethodAttribute.cs" />
+    <Compile Include="ExtenderBase\ExtenderControlPropertyAttribute.cs" />
+    <Compile Include="ExtenderBase\IControlResolver.cs" />
+    <Compile Include="ExtenderBase\RequiredPropertyAttribute.cs" />
+    <Compile Include="ExtenderBase\RequiredScriptAttribute.cs" />
+    <Compile Include="ExtenderBase\ResolveControlEventArgs.cs" />
+    <Compile Include="ExtenderBase\ResolveControlEventHandler.cs" />
+    <Compile Include="ExtenderBase\ScriptObjectBuilder.cs" />
+    <Compile Include="TextBoxWatermark\TextBoxWatermarkExtenderDesigner.cs" />
+    <Compile Include="ExtenderBase\Design\ExtenderControlBaseDesigner.cs" />
+    <Compile Include="ExtenderBase\ExtenderControlBase.cs" />
+    <Compile Include="TextBoxWatermark\TextBoxWatermarkExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\Common.min.js">
+      <DependentUpon>Common.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\Common.js" />
+    <EmbeddedResource Include="Scripts\TextBoxWatermark.js" />
+    <EmbeddedResource Include="Scripts\BaseScripts.js" />
+    <EmbeddedResource Include="Scripts\BaseScripts.min.js">
+      <DependentUpon>BaseScripts.js</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\TextBoxWatermark.min.js">
+      <DependentUpon>TextBoxWatermark.js</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="ToolboxIcons\TextboxWatermark.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
