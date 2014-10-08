@@ -77,6 +77,7 @@
     <EmbeddedResource Include="Scripts\TextBoxWatermark.min.js">
       <DependentUpon>TextBoxWatermark.js</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Scripts\README.txt" />
     <Content Include="ToolboxIcons\TextboxWatermark.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
