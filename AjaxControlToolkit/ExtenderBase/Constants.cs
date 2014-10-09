@@ -6,6 +6,10 @@ namespace AjaxControlToolkit {
 
             BaseScriptName = "BaseScripts",
             CommonScriptName = "Common",
+            CompatTimerScriptName = "Compat.Timer",
+
+            DropShadowScriptName = "DropShadowBehavior",
+            RoundedCornersScriptName = "RoundedCornersBehavior",
             TextBoxWatermarkScriptName = "TextBoxWatermark";
     }
 }

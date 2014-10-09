@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compat\Timer\TimerScript.cs" />
+    <Compile Include="DropShadow\DropShadowExtenderDesigner.cs" />
+    <Compile Include="DropShadow\DropShadowExtender.cs" />
     <Compile Include="ExtenderBase\ClientPropertyNameAttribute.cs" />
     <Compile Include="ExtenderBase\ClientScriptResourceAttribute.cs" />
     <Compile Include="ExtenderBase\CommonToolkitScripts.cs" />
@@ -58,6 +61,9 @@
     <Compile Include="ExtenderBase\ResolveControlEventArgs.cs" />
     <Compile Include="ExtenderBase\ResolveControlEventHandler.cs" />
     <Compile Include="ExtenderBase\ScriptObjectBuilder.cs" />
+    <Compile Include="RoundedCorners\BoxCorners.cs" />
+    <Compile Include="RoundedCorners\RoundedCornersExtenderDesigner.cs" />
+    <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
     <Compile Include="TextBoxWatermark\TextBoxWatermarkExtenderDesigner.cs" />
     <Compile Include="ExtenderBase\Design\ExtenderControlBaseDesigner.cs" />
     <Compile Include="ExtenderBase\ExtenderControlBase.cs" />
@@ -84,11 +90,25 @@
     <Content Include="Scripts\Common.min.js">
       <DependentUpon>Common.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Compat.Timer.min.js">
+      <DependentUpon>Compat.Timer.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\DropShadowBehavior.js" />
+    <Content Include="Scripts\DropShadowBehavior.min.js">
+      <DependentUpon>DropShadowBehavior.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\README.txt" />
+    <Content Include="Scripts\RoundedCornersBehavior.js" />
+    <Content Include="Scripts\RoundedCornersBehavior.min.js">
+      <DependentUpon>RoundedCornersBehavior.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\TextBoxWatermark.js" />
     <Content Include="Scripts\TextBoxWatermark.min.js">
       <DependentUpon>TextBoxWatermark.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Compat.Timer.js" />
+    <Content Include="ToolboxIcons\DropShadow.ico" />
+    <Content Include="ToolboxIcons\RoundedCorners.ico" />
     <Content Include="ToolboxIcons\TextboxWatermark.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
