@@ -5,6 +5,15 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
+    // Usage:
+    //
+    // Application_Start:
+    // ToolkitScriptMappings.Register();
+    // BundleTable.Bundles.Add(new ScriptBundle("~/bundles/AjaxControlToolki").Include(ToolkitScriptMappings.GetScriptPaths()));
+    // 
+    // ScriptManager:
+    // <asp:ScriptReference Path="~/bundles/AjaxControlToolkit" />
+
     public static class ToolkitScriptMappings {
 
         static readonly string[] _scripts = new[] {
@@ -28,14 +37,17 @@ namespace AjaxControlToolkit {
                 script + Constants.JsPostfix,
                 typeof(ToolkitScriptMappings).Assembly,
                 new ScriptResourceDefinition() {
-                    Path = FormatScriptPath(script, false)
-                    // DebugPath = FormatScriptPath(script, true) - bundling does not work with debug scripts
+                    Path = FormatScriptPath(script, false),
+                    DebugPath = FormatScriptPath(script, true)
                 }
             );
         }
 
         static string FormatScriptPath(string script, bool isDebug) {
-            return "~/Scripts/AjaxControlToolkit/" + script + (isDebug ? Constants.DebugJsPostfix : Constants.JsPostfix);
+            return "~/Scripts/AjaxControlToolkit/" 
+                + (isDebug ? "Debug" : "Release") + "/" 
+                + script 
+                + (isDebug ? Constants.DebugJsPostfix : Constants.JsPostfix);
         }
     }
 
