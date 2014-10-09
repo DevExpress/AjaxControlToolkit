@@ -17,11 +17,11 @@ using System.Web.UI;
 [assembly: AssemblyVersion("15.1")]
 [assembly: AssemblyFileVersion("15.1")]
 
-[assembly: WebResource(Constants.ScriptResourcePrefix + Constants.BaseScriptName + Constants.JsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.ScriptResourcePrefix + Constants.BaseScriptName + Constants.MinJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.BaseScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.BaseScriptName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.ScriptResourcePrefix + Constants.CommonScriptName + Constants.JsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.ScriptResourcePrefix + Constants.CommonScriptName + Constants.MinJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.CommonScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.CommonScriptName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.ScriptResourcePrefix + Constants.TextBoxWatermark + Constants.JsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.ScriptResourcePrefix + Constants.TextBoxWatermark + Constants.MinJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.TextBoxWatermarkScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.TextBoxWatermarkScriptName + Constants.JsPostfix, "text/javascript")]

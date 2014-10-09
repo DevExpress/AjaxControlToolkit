@@ -1,12 +1,11 @@
 namespace AjaxControlToolkit {
     internal static class Constants {
-        internal const string
-            ScriptResourcePrefix = "AjaxControlToolkit.Scripts.",
+        internal const string            
             JsPostfix = ".js",
-            MinJsPostfix = ".min" + JsPostfix,
+            DebugJsPostfix = ".debug" + JsPostfix,
 
             BaseScriptName = "BaseScripts",
             CommonScriptName = "Common",
-            TextBoxWatermark = "TextBoxWatermark";
+            TextBoxWatermarkScriptName = "TextBoxWatermark";
     }
 }

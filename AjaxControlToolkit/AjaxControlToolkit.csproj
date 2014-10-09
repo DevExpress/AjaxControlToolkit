@@ -63,21 +63,32 @@
     <Compile Include="ExtenderBase\ExtenderControlBase.cs" />
     <Compile Include="TextBoxWatermark\TextBoxWatermarkExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolkitScriptMappings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\Common.min.js">
-      <DependentUpon>Common.js</DependentUpon>
+    <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
+    <EmbeddedResource Include="Scripts\*.min.js">
+	  <LogicalName>$([System.String]::Copy(%(FileName)).Replace('.min','')).js</LogicalName>
+	  <Visible>False</Visible>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\Common.js" />
-    <EmbeddedResource Include="Scripts\TextBoxWatermark.js" />
-    <EmbeddedResource Include="Scripts\BaseScripts.js" />
-    <EmbeddedResource Include="Scripts\BaseScripts.min.js">
+    <EmbeddedResource Include="Scripts\*.js" Exclude="Scripts\*.min.js">
+      <LogicalName>%(FileName).debug.js</LogicalName>
+      <Visible>False</Visible>
+    </EmbeddedResource>
+	<!-- end -->
+    <Content Include="Scripts\BaseScripts.js" />
+    <Content Include="Scripts\BaseScripts.min.js">
       <DependentUpon>BaseScripts.js</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\TextBoxWatermark.min.js">
-      <DependentUpon>TextBoxWatermark.js</DependentUpon>
-    </EmbeddedResource>
+    </Content>
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\Common.min.js">
+      <DependentUpon>Common.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\README.txt" />
+    <Content Include="Scripts\TextBoxWatermark.js" />
+    <Content Include="Scripts\TextBoxWatermark.min.js">
+      <DependentUpon>TextBoxWatermark.js</DependentUpon>
+    </Content>
     <Content Include="ToolboxIcons\TextboxWatermark.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

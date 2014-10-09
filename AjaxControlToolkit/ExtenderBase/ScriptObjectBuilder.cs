@@ -17,7 +17,6 @@ namespace AjaxControlToolkit {
 
         public static IEnumerable<ScriptReference> GetScriptReferences(Type type) {
             List<ResourceEntry> entries = GetScriptReferencesInternal(type, new Stack<Type>());
-
             return ScriptReferencesFromResourceEntries(entries);
         }
 
@@ -276,14 +275,10 @@ namespace AjaxControlToolkit {
             }
 
             public ScriptReference ToScriptReference() {
-                ScriptReference refr = new ScriptReference();
-                refr.Assembly = AssemblyName;
-
-                // Workaround for .min.js extension instead of .debug.js
-                refr.Name = Constants.ScriptResourcePrefix + ResourcePath + (IsDebuggingEnabled() ? Constants.JsPostfix : Constants.MinJsPostfix);
-                refr.ScriptMode = ScriptMode.Release;
-
-                return refr;
+                return new ScriptReference { 
+                    Assembly = AssemblyName,
+                    Name = ResourcePath + Constants.JsPostfix
+                };
             }
 
             static bool IsDebuggingEnabled() {

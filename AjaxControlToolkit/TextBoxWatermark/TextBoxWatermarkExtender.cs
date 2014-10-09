@@ -7,7 +7,7 @@ using System;
 namespace AjaxControlToolkit {
 
     [Designer("AjaxControlToolkit.Design.TextBoxWatermarkExtenderDesigner, AjaxControlToolkit")]
-    [ClientScriptResource("Sys.Extended.UI.TextBoxWatermarkBehavior", Constants.TextBoxWatermark)]
+    [ClientScriptResource("Sys.Extended.UI.TextBoxWatermarkBehavior", Constants.TextBoxWatermarkScriptName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(TextBox))]
     [ToolboxBitmap(typeof(TextBoxWatermarkExtender), "TextboxWatermark.ico")]
