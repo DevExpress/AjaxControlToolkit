@@ -29,6 +29,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.DropShadowScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DropShadowScriptName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.FilteredTextBoxScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.FilteredTextBoxScriptName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.RoundedCornersScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.RoundedCornersScriptName + Constants.JsPostfix, "text/javascript")]
 

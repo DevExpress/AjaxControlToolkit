@@ -61,6 +61,10 @@
     <Compile Include="ExtenderBase\ResolveControlEventArgs.cs" />
     <Compile Include="ExtenderBase\ResolveControlEventHandler.cs" />
     <Compile Include="ExtenderBase\ScriptObjectBuilder.cs" />
+    <Compile Include="FiteredTextBox\FilteredTextBoxExtenderDesigner.cs" />
+    <Compile Include="FiteredTextBox\FilteredTextBoxExtender.cs" />
+    <Compile Include="FiteredTextBox\FilterModes.cs" />
+    <Compile Include="FiteredTextBox\FilterTypes.cs" />
     <Compile Include="RoundedCorners\BoxCorners.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtenderDesigner.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
@@ -97,6 +101,10 @@
     <Content Include="Scripts\DropShadowBehavior.min.js">
       <DependentUpon>DropShadowBehavior.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\FilteredTextBoxBehavior.js" />
+    <Content Include="Scripts\FilteredTextBoxBehavior.min.js">
+      <DependentUpon>FilteredTextBoxBehavior.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\README.txt" />
     <Content Include="Scripts\RoundedCornersBehavior.js" />
     <Content Include="Scripts\RoundedCornersBehavior.min.js">
@@ -108,6 +116,7 @@
     </Content>
     <Content Include="Scripts\Compat.Timer.js" />
     <Content Include="ToolboxIcons\DropShadow.ico" />
+    <Content Include="ToolboxIcons\FilteredTextBox.ico" />
     <Content Include="ToolboxIcons\RoundedCorners.ico" />
     <Content Include="ToolboxIcons\TextboxWatermark.ico" />
   </ItemGroup>
