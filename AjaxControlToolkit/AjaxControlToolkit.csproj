@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compat\DragDrop\DragDropScripts.cs" />
     <Compile Include="Compat\Timer\TimerScript.cs" />
+    <Compile Include="DragPanel\DragPanelExtender.cs" />
+    <Compile Include="DragPanel\DragPanelExtenderDesigner.cs" />
     <Compile Include="DropShadow\DropShadowExtenderDesigner.cs" />
     <Compile Include="DropShadow\DropShadowExtender.cs" />
     <Compile Include="ExtenderBase\ClientPropertyNameAttribute.cs" />
@@ -78,14 +81,14 @@
   <ItemGroup>
     <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
     <EmbeddedResource Include="Scripts\*.min.js">
-	  <LogicalName>$([System.String]::Copy(%(FileName)).Replace('.min','')).js</LogicalName>
-	  <Visible>False</Visible>
+      <LogicalName>$([System.String]::Copy(%(FileName)).Replace('.min','')).js</LogicalName>
+      <Visible>False</Visible>
     </EmbeddedResource>
     <EmbeddedResource Include="Scripts\*.js" Exclude="Scripts\*.min.js">
       <LogicalName>%(FileName).debug.js</LogicalName>
       <Visible>False</Visible>
     </EmbeddedResource>
-	<!-- end -->
+    <!-- end -->
     <Content Include="Scripts\BaseScripts.js" />
     <Content Include="Scripts\BaseScripts.min.js">
       <DependentUpon>BaseScripts.js</DependentUpon>
@@ -94,8 +97,16 @@
     <Content Include="Scripts\Common.min.js">
       <DependentUpon>Common.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Compat.DragDrop.js" />
+    <Content Include="Scripts\Compat.DragDrop.min.js">
+      <DependentUpon>Compat.DragDrop.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Compat.Timer.min.js">
       <DependentUpon>Compat.Timer.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\DragPanelBehavior.js" />
+    <Content Include="Scripts\DragPanelBehavior.min.js">
+      <DependentUpon>DragPanelBehavior.js</DependentUpon>
     </Content>
     <Content Include="Scripts\DropShadowBehavior.js" />
     <Content Include="Scripts\DropShadowBehavior.min.js">
@@ -115,6 +126,7 @@
       <DependentUpon>TextBoxWatermark.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Compat.Timer.js" />
+    <Content Include="ToolboxIcons\DragPanel.ico" />
     <Content Include="ToolboxIcons\DropShadow.ico" />
     <Content Include="ToolboxIcons\FilteredTextBox.ico" />
     <Content Include="ToolboxIcons\RoundedCorners.ico" />

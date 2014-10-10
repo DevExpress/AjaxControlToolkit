@@ -23,8 +23,14 @@ using System.Web.UI;
 [assembly: WebResource(Constants.CommonScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CommonScriptName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.CompatDragDropScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.CompatDragDropScriptName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.CompatTimerScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CompatTimerScriptName + Constants.JsPostfix, "text/javascript")]
+
+[assembly: WebResource(Constants.DragPanelScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.DragPanelScriptName + Constants.JsPostfix, "text/javascript")]
 
 [assembly: WebResource(Constants.DropShadowScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DropShadowScriptName + Constants.JsPostfix, "text/javascript")]

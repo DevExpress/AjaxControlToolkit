@@ -6,8 +6,10 @@ namespace AjaxControlToolkit {
 
             BaseScriptName = "BaseScripts",
             CommonScriptName = "Common",
+            CompatDragDropScriptName = "Compat.DragDrop",
             CompatTimerScriptName = "Compat.Timer",
 
+            DragPanelScriptName = "DragPanelBehavior",
             DropShadowScriptName = "DropShadowBehavior",
             FilteredTextBoxScriptName = "FilteredTextBoxBehavior",
             RoundedCornersScriptName = "RoundedCornersBehavior",
