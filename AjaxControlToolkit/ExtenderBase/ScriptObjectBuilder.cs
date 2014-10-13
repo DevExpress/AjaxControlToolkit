@@ -16,19 +16,13 @@ namespace AjaxControlToolkit {
         private static readonly object _sync = new object();
 
         public static IEnumerable<ScriptReference> GetScriptReferences(Type type) {
-            List<ResourceEntry> entries = GetScriptReferencesInternal(type, new Stack<Type>());
-            return ScriptReferencesFromResourceEntries(entries);
+            // ScriptReference objects aren't immutable.  The AJAX core adds context to them, so we cant' reuse them.
+            // Therefore, we track only ReferenceEntries internally and then convert them to NEW ScriptReference objects on-demand.        
+            return GetScriptReferencesInternal(type, new Stack<Type>()).Select(entry => entry.ToScriptReference());
         }
 
-        // ScriptReference objects aren't immutable.  The AJAX core adds context to them, so we cant' reuse them.
-        // Therefore, we track only ReferenceEntries internally and then convert them to NEW ScriptReference objects on-demand.        
-        private static IEnumerable<ScriptReference> ScriptReferencesFromResourceEntries(IList<ResourceEntry> entries) {
-            IList<ScriptReference> referenceList = new List<ScriptReference>(entries.Count);
-
-            foreach(ResourceEntry re in entries) {
-                referenceList.Add(re.ToScriptReference());
-            }
-            return referenceList;
+        public static IEnumerable<string> GetScriptNames(Type type) {
+            return GetScriptReferencesInternal(type, new Stack<Type>()).Select(entry => entry.ResourcePath);
         }
 
         // Gets the ScriptReferences for a Type and walks the Type's dependencies with circular-reference checking

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 
 namespace AjaxControlToolkit {
@@ -16,29 +17,26 @@ namespace AjaxControlToolkit {
 
     public static class ToolkitScriptMappings {
 
-        static readonly string[] _scripts = new[] {
-            Constants.BaseScriptName,
-            Constants.CommonScriptName,
-            Constants.TextBoxWatermarkScriptName
-        };
-
-        public static string[] GetScriptPaths() {
-            return _scripts.Select(name => FormatScriptPath(name, false)).ToArray();
+        public static string[] GetScriptPaths(params string[] toolkitBundles) {
+            return GetScriptNames(toolkitBundles).Select(n => FormatScriptPath(n, false)).ToArray();
         }
 
         public static void Register() {
-            foreach(var script in _scripts) {
-                AddDefinition(script);
-            }
+            foreach(var name in GetScriptNames(null))
+                AddDefinition(name);
         }
 
-        static void AddDefinition(string script) {
+        static IEnumerable<string> GetScriptNames(string[] toolkitBundles) { 
+            return new Bundling.BundleResolver(new Bundling.DefaultCache()).GetScriptNames(new HttpContextWrapper(HttpContext.Current), toolkitBundles);
+        }
+
+        static void AddDefinition(string name) {
             ScriptManager.ScriptResourceMapping.AddDefinition(
-                script + Constants.JsPostfix,
+                name + Constants.JsPostfix,
                 typeof(ToolkitScriptMappings).Assembly,
                 new ScriptResourceDefinition() {
-                    Path = FormatScriptPath(script, false),
-                    DebugPath = FormatScriptPath(script, true)
+                    Path = FormatScriptPath(name, false),
+                    DebugPath = FormatScriptPath(name, true)
                 }
             );
         }

@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bundling\BundleResolver.cs" />
+    <Compile Include="Bundling\ConfigXmlElements.cs" />
+    <Compile Include="Bundling\DefaultCache.cs" />
+    <Compile Include="Bundling\ICache.cs" />
     <Compile Include="Compat\DragDrop\DragDropScripts.cs" />
     <Compile Include="Compat\Timer\TimerScript.cs" />
     <Compile Include="DragPanel\DragPanelExtender.cs" />
