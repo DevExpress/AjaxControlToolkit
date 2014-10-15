@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkitVsPackage", "AjaxControlToolkitVsPackage.csproj", "{BB416572-24CB-4A40-A1D6-FECA7F53691F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB416572-24CB-4A40-A1D6-FECA7F53691F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB416572-24CB-4A40-A1D6-FECA7F53691F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB416572-24CB-4A40-A1D6-FECA7F53691F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB416572-24CB-4A40-A1D6-FECA7F53691F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

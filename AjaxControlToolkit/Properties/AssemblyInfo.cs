@@ -6,16 +6,10 @@ using System.Security;
 using System.Web.UI;
 
 [assembly: AssemblyTitle("Ajax Control Toolkit")]
-[assembly: AssemblyProduct("AjaxControlToolkit")]
-[assembly: AssemblyCopyright("Copyright © CodePlex Foundation 2012-2014")]
 
 [assembly: AllowPartiallyTrustedCallers]
 [assembly: ComVisible(false)]
-
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
-[assembly: NeutralResourcesLanguage("en-US")]
-[assembly: AssemblyVersion("15.1")]
-[assembly: AssemblyFileVersion("15.1")]
 
 [assembly: WebResource(Constants.BaseScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.BaseScriptName + Constants.JsPostfix, "text/javascript")]
