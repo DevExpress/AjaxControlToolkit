@@ -8,6 +8,7 @@ namespace AjaxControlToolkit {
             CommonScriptName = "Common",
             CompatDragDropScriptName = "Compat.DragDrop",
             CompatTimerScriptName = "Compat.Timer",
+            LocalizationScriptName = "Localization.Resources",
 
             DragPanelScriptName = "DragPanelBehavior",
             DropShadowScriptName = "DropShadowBehavior",

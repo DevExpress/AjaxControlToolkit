@@ -88,6 +88,7 @@
     <Compile Include="TextBoxWatermark\TextBoxWatermarkExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolkitScriptMappings.cs" />
+    <Compile Include="Localization.cs" />
   </ItemGroup>
   <ItemGroup>
     <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
@@ -97,6 +98,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Scripts\*.js" Exclude="Scripts\*.min.js">
       <LogicalName>%(FileName).debug.js</LogicalName>
+      <Visible>False</Visible>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\Localization\*.min.js">
+      <LogicalName>Localization.$([System.String]::Copy(%(FileName)).Replace('.min','').Replace('_','.')).js</LogicalName>
+      <Visible>False</Visible>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\Localization\*.js" Exclude="Scripts\Localization\*.min.js">
+      <LogicalName>Localization.$([System.String]::Copy(%(FileName)).Replace('_','.')).debug.js</LogicalName>
       <Visible>False</Visible>
     </EmbeddedResource>
     <!-- end -->
@@ -126,6 +135,78 @@
     <Content Include="Scripts\FilteredTextBoxBehavior.js" />
     <Content Include="Scripts\FilteredTextBoxBehavior.min.js">
       <DependentUpon>FilteredTextBoxBehavior.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources.js" />
+    <Content Include="Scripts\Localization\Resources.min.js">
+      <DependentUpon>Resources.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_ar.js" />
+    <Content Include="Scripts\Localization\Resources_ar.min.js">
+      <DependentUpon>Resources_ar.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_cs.js" />
+    <Content Include="Scripts\Localization\Resources_cs.min.js">
+      <DependentUpon>Resources_cs.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_de.js" />
+    <Content Include="Scripts\Localization\Resources_de.min.js">
+      <DependentUpon>Resources_de.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_es.js" />
+    <Content Include="Scripts\Localization\Resources_es.min.js">
+      <DependentUpon>Resources_es.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_fr.js" />
+    <Content Include="Scripts\Localization\Resources_fr.min.js">
+      <DependentUpon>Resources_fr.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_he.js" />
+    <Content Include="Scripts\Localization\Resources_he.min.js">
+      <DependentUpon>Resources_he.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_hi.js" />
+    <Content Include="Scripts\Localization\Resources_hi.min.js">
+      <DependentUpon>Resources_hi.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_it.js" />
+    <Content Include="Scripts\Localization\Resources_it.min.js">
+      <DependentUpon>Resources_it.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_ja.js" />
+    <Content Include="Scripts\Localization\Resources_ja.min.js">
+      <DependentUpon>Resources_ja.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_ko.js" />
+    <Content Include="Scripts\Localization\Resources_ko.min.js">
+      <DependentUpon>Resources_ko.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_nl.js" />
+    <Content Include="Scripts\Localization\Resources_nl.min.js">
+      <DependentUpon>Resources_nl.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_pl.js" />
+    <Content Include="Scripts\Localization\Resources_pl.min.js">
+      <DependentUpon>Resources_pl.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_pt.js" />
+    <Content Include="Scripts\Localization\Resources_pt.min.js">
+      <DependentUpon>Resources_pt.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_ru.js" />
+    <Content Include="Scripts\Localization\Resources_ru.min.js">
+      <DependentUpon>Resources_ru.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_tr-TR.js" />
+    <Content Include="Scripts\Localization\Resources_tr-TR.min.js">
+      <DependentUpon>Resources_tr-TR.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_zh-CHS.js" />
+    <Content Include="Scripts\Localization\Resources_zh-CHS.min.js">
+      <DependentUpon>Resources_zh-CHS.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Localization\Resources_zh-CHT.js" />
+    <Content Include="Scripts\Localization\Resources_zh-CHT.min.js">
+      <DependentUpon>Resources_zh-CHT.js</DependentUpon>
     </Content>
     <Content Include="Scripts\PagingBulletedListBehavior.js" />
     <Content Include="Scripts\PagingBulletedListBehavior.min.js">

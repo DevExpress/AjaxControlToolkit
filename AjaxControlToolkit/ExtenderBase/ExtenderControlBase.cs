@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Web.UI;
 
 namespace AjaxControlToolkit {
@@ -183,7 +184,8 @@ namespace AjaxControlToolkit {
         // 1) Required scripts such as ASP.NET AJAX Scripts or other components
         // 2) Scripts for this Extender/Behavior
         internal IEnumerable<ScriptReference> EnsureScripts() {
-            return ScriptObjectBuilder.GetScriptReferences(GetType());
+            return new Localization().GetLocalizationScriptReferences()
+                .Concat(ScriptObjectBuilder.GetScriptReferences(GetType()));
         }
 
         protected V GetPropertyValue<V>(string propertyName, V nullValue) {
@@ -195,6 +197,16 @@ namespace AjaxControlToolkit {
 
         protected void SetPropertyValue<V>(string propertyName, V value) {
             ViewState[propertyName] = value;
+        }
+
+        protected override void OnPreRender(EventArgs e) {
+            base.OnPreRender(e);
+            var localeKey = new Localization().GetLocaleKey();
+
+            if (Enabled && !String.IsNullOrEmpty(localeKey)) {
+                var script = String.Format(@"Sys.Extended.UI.Localization.SetLocale(""{0}"");", localeKey);
+                Page.ClientScript.RegisterStartupScript(GetType(), "f93b988bab7e44ffbcff635ee599ade2", script, true);
+            }
         }
 
     }

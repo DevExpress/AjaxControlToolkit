@@ -41,6 +41,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BundleResolverTests.cs" />
+    <Compile Include="LocalizationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.csproj">

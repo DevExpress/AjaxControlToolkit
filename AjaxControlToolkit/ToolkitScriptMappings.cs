@@ -26,8 +26,10 @@ namespace AjaxControlToolkit {
                 AddDefinition(name);
         }
 
-        static IEnumerable<string> GetScriptNames(string[] toolkitBundles) { 
-            return new Bundling.BundleResolver(new Bundling.DefaultCache()).GetScriptNames(new HttpContextWrapper(HttpContext.Current), toolkitBundles);
+        static IEnumerable<string> GetScriptNames(string[] toolkitBundles) {
+            return new Localization().GetAllLocalizationScripts()
+                .Concat(new Bundling.BundleResolver(new Bundling.DefaultCache())
+                    .GetScriptNames(new HttpContextWrapper(HttpContext.Current), toolkitBundles));
         }
 
         static void AddDefinition(string name) {
