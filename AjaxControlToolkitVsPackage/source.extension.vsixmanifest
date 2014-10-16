@@ -10,6 +10,7 @@
         <Author>CodePlex Foundation</Author>
         <Version>15.1</Version>
         <Description xml:space="preserve">AjaxControlToolkit Visual Studio integration package</Description>
+        <License>LICENSE.txt</License>
         <Locale>1033</Locale>
         <InstalledByMsi>false</InstalledByMsi>
         <SupportedProducts>
