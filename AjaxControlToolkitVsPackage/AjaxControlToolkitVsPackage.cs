@@ -47,6 +47,7 @@ namespace AjaxControlToolkitVsPackage {
 
         static Assembly LoadToolkitAssembly() {
             var path = new Uri(typeof(AjaxControlToolkitVsPackage).Assembly.CodeBase).AbsolutePath;
+            path = Uri.UnescapeDataString(path);
             path = Path.GetDirectoryName(path);
             path = Path.Combine(path, "AjaxControlToolkit.dll"); 
 
