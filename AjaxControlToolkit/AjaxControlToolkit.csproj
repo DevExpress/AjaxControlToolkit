@@ -77,6 +77,8 @@
     <Compile Include="FiteredTextBox\FilteredTextBoxExtender.cs" />
     <Compile Include="FiteredTextBox\FilterModes.cs" />
     <Compile Include="FiteredTextBox\FilterTypes.cs" />
+    <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtenderDesigner.cs" />
+    <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtender.cs" />
     <Compile Include="PagingBulletedList\PagingBulletedListExtenderDesigner.cs" />
     <Compile Include="PagingBulletedList\PagingBulletedListExtender.cs" />
     <Compile Include="RoundedCorners\BoxCorners.cs" />
@@ -208,6 +210,10 @@
     <Content Include="Scripts\Localization\Resources_zh-CHT.min.js">
       <DependentUpon>Resources_zh-CHT.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\MutuallyExclusiveCheckBoxBehavior.js" />
+    <Content Include="Scripts\MutuallyExclusiveCheckBoxBehavior.min.js">
+      <DependentUpon>MutuallyExclusiveCheckBoxBehavior.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\PagingBulletedListBehavior.js" />
     <Content Include="Scripts\PagingBulletedListBehavior.min.js">
       <DependentUpon>PagingBulletedListBehavior.js</DependentUpon>
@@ -225,6 +231,7 @@
     <Content Include="ToolboxIcons\DragPanel.ico" />
     <Content Include="ToolboxIcons\DropShadow.ico" />
     <Content Include="ToolboxIcons\FilteredTextBox.ico" />
+    <Content Include="ToolboxIcons\MutuallyExclusiveCheckBox.ico" />
     <Content Include="ToolboxIcons\PagingBulletedList.ico" />
     <Content Include="ToolboxIcons\RoundedCorners.ico" />
     <Content Include="ToolboxIcons\TextboxWatermark.ico" />

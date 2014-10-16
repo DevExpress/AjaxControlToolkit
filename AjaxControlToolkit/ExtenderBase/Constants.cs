@@ -13,6 +13,7 @@ namespace AjaxControlToolkit {
             DragPanelScriptName = "DragPanelBehavior",
             DropShadowScriptName = "DropShadowBehavior",
             FilteredTextBoxScriptName = "FilteredTextBoxBehavior",
+            MutuallyExclusiveCheckBox = "MutuallyExclusiveCheckBoxBehavior",
             PagingBulletedListScriptName = "PagingBulletedListBehavior",
             RoundedCornersScriptName = "RoundedCornersBehavior",
             TextBoxWatermarkScriptName = "TextBoxWatermark";
