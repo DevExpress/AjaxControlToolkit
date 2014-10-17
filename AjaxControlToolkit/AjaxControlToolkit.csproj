@@ -81,6 +81,9 @@
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtender.cs" />
     <Compile Include="PagingBulletedList\PagingBulletedListExtenderDesigner.cs" />
     <Compile Include="PagingBulletedList\PagingBulletedListExtender.cs" />
+    <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
+    <Compile Include="PasswordStrength\PasswordStrengthExtender.cs" />
+    <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
     <Compile Include="RoundedCorners\BoxCorners.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtenderDesigner.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
@@ -218,6 +221,10 @@
     <Content Include="Scripts\PagingBulletedListBehavior.min.js">
       <DependentUpon>PagingBulletedListBehavior.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\PasswordStrengthBehavior.js" />
+    <Content Include="Scripts\PasswordStrengthBehavior.min.js">
+      <DependentUpon>PasswordStrengthBehavior.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\README.txt" />
     <Content Include="Scripts\RoundedCornersBehavior.js" />
     <Content Include="Scripts\RoundedCornersBehavior.min.js">
@@ -233,6 +240,7 @@
     <Content Include="ToolboxIcons\FilteredTextBox.ico" />
     <Content Include="ToolboxIcons\MutuallyExclusiveCheckBox.ico" />
     <Content Include="ToolboxIcons\PagingBulletedList.ico" />
+    <Content Include="ToolboxIcons\PasswordStrength.ico" />
     <Content Include="ToolboxIcons\RoundedCorners.ico" />
     <Content Include="ToolboxIcons\TextboxWatermark.ico" />
   </ItemGroup>

@@ -38,6 +38,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.PagingBulletedListScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.PagingBulletedListScriptName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.PasswordStrengthScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.PasswordStrengthScriptName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.RoundedCornersScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.RoundedCornersScriptName + Constants.JsPostfix, "text/javascript")]
 
