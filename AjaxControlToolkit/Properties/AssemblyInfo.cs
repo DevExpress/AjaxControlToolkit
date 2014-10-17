@@ -35,6 +35,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.MutuallyExclusiveCheckBox + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.MutuallyExclusiveCheckBox + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.NumericUpDownScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.NumericUpDownScriptName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.PagingBulletedListScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.PagingBulletedListScriptName + Constants.JsPostfix, "text/javascript")]
 

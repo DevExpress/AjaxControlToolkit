@@ -63,6 +63,7 @@
     <Compile Include="ExtenderBase\Constants.cs" />
     <Compile Include="ExtenderBase\Design\ExtenderPropertyRenameDescProv.cs" />
     <Compile Include="ExtenderBase\Design\FilterTypeDescriptionProvider.cs" />
+    <Compile Include="ExtenderBase\Design\PageMethodSignatureAttribute.cs" />
     <Compile Include="ExtenderBase\ElementReferenceAttribute.cs" />
     <Compile Include="ExtenderBase\ExtenderControlEventAttribute.cs" />
     <Compile Include="ExtenderBase\ExtenderControlMethodAttribute.cs" />
@@ -73,12 +74,15 @@
     <Compile Include="ExtenderBase\ResolveControlEventArgs.cs" />
     <Compile Include="ExtenderBase\ResolveControlEventHandler.cs" />
     <Compile Include="ExtenderBase\ScriptObjectBuilder.cs" />
+    <Compile Include="ExtenderBase\ServicePathConverter.cs" />
     <Compile Include="FiteredTextBox\FilteredTextBoxExtenderDesigner.cs" />
     <Compile Include="FiteredTextBox\FilteredTextBoxExtender.cs" />
     <Compile Include="FiteredTextBox\FilterModes.cs" />
     <Compile Include="FiteredTextBox\FilterTypes.cs" />
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtenderDesigner.cs" />
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtender.cs" />
+    <Compile Include="NumericUpDown\NumericUpDownExtenderDesigner.cs" />
+    <Compile Include="NumericUpDown\NumericUpDownExtender.cs" />
     <Compile Include="PagingBulletedList\PagingBulletedListExtenderDesigner.cs" />
     <Compile Include="PagingBulletedList\PagingBulletedListExtender.cs" />
     <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
@@ -220,6 +224,10 @@
     <Content Include="Scripts\PagingBulletedListBehavior.js" />
     <Content Include="Scripts\PagingBulletedListBehavior.min.js">
       <DependentUpon>PagingBulletedListBehavior.js</DependentUpon>
+	</Content>  
+    <Content Include="Scripts\NumericUpDownBehavior.js" />
+    <Content Include="Scripts\NumericUpDownBehavior.min.js">
+      <DependentUpon>NumericUpDownBehavior.js</DependentUpon>
     </Content>
     <Content Include="Scripts\PasswordStrengthBehavior.js" />
     <Content Include="Scripts\PasswordStrengthBehavior.min.js">
@@ -240,6 +248,7 @@
     <Content Include="ToolboxIcons\FilteredTextBox.ico" />
     <Content Include="ToolboxIcons\MutuallyExclusiveCheckBox.ico" />
     <Content Include="ToolboxIcons\PagingBulletedList.ico" />
+    <Content Include="ToolboxIcons\NumericUpDown.ico" />
     <Content Include="ToolboxIcons\PasswordStrength.ico" />
     <Content Include="ToolboxIcons\RoundedCorners.ico" />
     <Content Include="ToolboxIcons\TextboxWatermark.ico" />
