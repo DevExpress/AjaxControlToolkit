@@ -6,7 +6,7 @@ namespace AjaxControlToolkit {
 
     [TargetControlType(typeof(ICheckBoxControl))]
     [RequiredScript(typeof(CommonToolkitScripts))]
-    [ClientScriptResource("Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior", Constants.MutuallyExclusiveCheckBox)]
+    [ClientScriptResource("Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior", Constants.MutuallyExclusiveCheckBoxScriptName)]
     [Designer("AjaxControlToolkit.Design.MutuallyExclusiveCheckBoxExtenderDesigner, AjaxControlToolkit")]
     [ToolboxBitmap(typeof(MutuallyExclusiveCheckBoxExtender), "MutuallyExclusiveCheckBox.ico")]
     public class MutuallyExclusiveCheckBoxExtender : ExtenderControlBase {
