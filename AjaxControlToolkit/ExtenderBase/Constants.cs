@@ -17,6 +17,7 @@ namespace AjaxControlToolkit {
             NumericUpDownScriptName = "NumericUpDownBehavior",
             PagingBulletedListScriptName = "PagingBulletedListBehavior",
             PasswordStrengthScriptName = "PasswordStrengthBehavior",
+            ResizableControlScriptName = "ResizableControlBehavior",
             RoundedCornersScriptName = "RoundedCornersBehavior",
             TextBoxWatermarkScriptName = "TextBoxWatermark";
     }

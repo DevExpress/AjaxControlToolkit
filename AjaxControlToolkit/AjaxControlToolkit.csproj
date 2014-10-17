@@ -88,6 +88,8 @@
     <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
     <Compile Include="PasswordStrength\PasswordStrengthExtender.cs" />
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
+    <Compile Include="ResizableControl\ResizableControlExtenderDesigner.cs" />
+    <Compile Include="ResizableControl\ResizableControlExtender.cs" />
     <Compile Include="RoundedCorners\BoxCorners.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtenderDesigner.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
@@ -234,6 +236,10 @@
       <DependentUpon>PasswordStrengthBehavior.js</DependentUpon>
     </Content>
     <Content Include="Scripts\README.txt" />
+    <Content Include="Scripts\ResizableControlBehavior.js" />
+    <Content Include="Scripts\ResizableControlBehavior.min.js">
+      <DependentUpon>ResizableControlBehavior.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\RoundedCornersBehavior.js" />
     <Content Include="Scripts\RoundedCornersBehavior.min.js">
       <DependentUpon>RoundedCornersBehavior.js</DependentUpon>
@@ -250,6 +256,7 @@
     <Content Include="ToolboxIcons\PagingBulletedList.ico" />
     <Content Include="ToolboxIcons\NumericUpDown.ico" />
     <Content Include="ToolboxIcons\PasswordStrength.ico" />
+    <Content Include="ToolboxIcons\ResizableControl.ico" />
     <Content Include="ToolboxIcons\RoundedCorners.ico" />
     <Content Include="ToolboxIcons\TextboxWatermark.ico" />
   </ItemGroup>
