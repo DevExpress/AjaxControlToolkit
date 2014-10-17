@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode>
+        <siteMapNode url="~/Default.aspx" title="HOME" />
+        <siteMapNode url="~/DragPanel/DragPanel.aspx" title="DragPanel" />
+        <siteMapNode url="~/DropShadow/DropShadow.aspx" title="DropShadow" />
+        <siteMapNode url="~/FilteredTextBox/FilteredTextBox.aspx" title="FilteredTextBox" />
+        <siteMapNode url="~/MutuallyExclusiveCheckBox/MutuallyExclusiveCheckBox.aspx" title="MutuallyExclusiveCheckBox" />
+        <siteMapNode url="~/NumericUpDown/NumericUpDown.aspx" title="NumericUpDown" />
+        <siteMapNode url="~/PagingBulletedList/PagingBulletedList.aspx" title="PagingBulletedList" />
+        <siteMapNode url="~/PasswordStrength/PasswordStrength.aspx" title="PasswordStrength" />
+        <siteMapNode url="~/ResizableControl/ResizableControl.aspx" title="ResizableControl" />
+        <siteMapNode url="~/RoundedCorners/RoundedCorners.aspx" title="RoundedCorners" />
+        <siteMapNode url="~/TextBoxWatermark/TextBoxWatermark.aspx" title="TextBoxWatermark" />
+    </siteMapNode>
+</siteMap>
