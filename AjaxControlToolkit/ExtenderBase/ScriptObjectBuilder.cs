@@ -18,88 +18,60 @@ namespace AjaxControlToolkit {
         public static IEnumerable<ScriptReference> GetScriptReferences(Type type) {
             // ScriptReference objects aren't immutable.  The AJAX core adds context to them, so we cant' reuse them.
             // Therefore, we track only ReferenceEntries internally and then convert them to NEW ScriptReference objects on-demand.        
-            return GetScriptReferencesInternal(type, new Stack<Type>()).Select(entry => entry.ToScriptReference());
+            return GetScriptReferencesInternal(type, new HashSet<Type>()).Select(entry => entry.ToScriptReference());
         }
 
         public static IEnumerable<string> GetScriptNames(Type type) {
-            return GetScriptReferencesInternal(type, new Stack<Type>()).Select(entry => entry.ResourcePath);
+            return GetScriptReferencesInternal(type, new HashSet<Type>()).Select(entry => entry.ResourcePath);
         }
 
         // Gets the ScriptReferences for a Type and walks the Type's dependencies with circular-reference checking
-        private static List<ResourceEntry> GetScriptReferencesInternal(Type type, Stack<Type> typeReferenceStack) {
-            // Verify no circular references
-            if(typeReferenceStack.Contains(type)) {
+        private static List<ResourceEntry> GetScriptReferencesInternal(Type type, ICollection<Type> typeTrace) {            
+            if(typeTrace.Contains(type))
                 throw new InvalidOperationException("Circular reference detected.");
-            }
 
             // Look for a cached set of references outside of the lock for perf.
-            //
-            List<ResourceEntry> entries;
-
-            if(_cache.TryGetValue(type, out entries)) {
-                return entries;
-            }
+            if(_cache.ContainsKey(type))
+                return _cache[type];
 
             // Track this type to prevent circular references
-            typeReferenceStack.Push(type);
+            typeTrace.Add(type);
             try {
                 lock(_sync) {
-                    // since we're inside the lock, check again just in case.
-                    //
-                    if(!_cache.TryGetValue(type, out entries)) {
-                        entries = new List<ResourceEntry>();
+                    // double-checked lock pattern
+                    if(_cache.ContainsKey(type))
+                        return _cache[type];
 
-                        // Get the required scripts by type
-                        List<RequiredScriptAttribute> requiredScripts = new List<RequiredScriptAttribute>();
-                        foreach(RequiredScriptAttribute attr in type.GetCustomAttributes(typeof(RequiredScriptAttribute), true)) {
-                            requiredScripts.Add(attr);
-                        }
+                    var requiredEntries = type.GetCustomAttributes(typeof(RequiredScriptAttribute), true)
+                        .Cast<RequiredScriptAttribute>()
+                        .Where(a => a.ExtenderType != null)
+                        .OrderBy(a => a.LoadOrder)
+                        .SelectMany(a => GetScriptReferencesInternal(a.ExtenderType, typeTrace));                    
 
-                        requiredScripts.Sort(delegate(RequiredScriptAttribute left, RequiredScriptAttribute right) { return left.LoadOrder.CompareTo(right.LoadOrder); });
-                        foreach(RequiredScriptAttribute attr in requiredScripts) {
-                            if(attr.ExtenderType != null) {
-                                // extrapolate dependent references and add them to the ref list.
-                                entries.AddRange(GetScriptReferencesInternal(attr.ExtenderType, typeReferenceStack));
-                            }
-                        }
+                    // create a new sequence so we can sort it independently
+                    var scriptEntries = Enumerable.Empty<ResourceEntry>();
 
-                        // Get the client script resource values for this type
-                        int order = 0;
+                    var current = type;
+                    var orderOffset = 0;
+                    while(current != typeof(object)) {
+                        var attrs = current.GetCustomAttributes(typeof(ClientScriptResourceAttribute), false);
+                        orderOffset -= attrs.Length;
 
-                        // create a new list so we can sort it independently.
-                        //
-                        List<ResourceEntry> newEntries = new List<ResourceEntry>();
-                        for(Type current = type; current != null && current != typeof(object); current = current.BaseType) {
-                            object[] attrs = Attribute.GetCustomAttributes(current, typeof(ClientScriptResourceAttribute), false);
-                            order -= attrs.Length;
+                        scriptEntries = scriptEntries.Concat(attrs
+                            .Cast<ClientScriptResourceAttribute>()
+                            .Select(a => new ResourceEntry(a.ResourcePath, current, orderOffset + a.LoadOrder))
+                            .ToList() // force evaluation because 'current' is mutable
+                        );
 
-                            foreach(ClientScriptResourceAttribute attr in attrs) {
-                                ResourceEntry re = new ResourceEntry(attr.ResourcePath, current, order + attr.LoadOrder);
-
-                                // check for dups in the list.
-                                //
-                                if(!entries.Contains(re) && !newEntries.Contains(re)) {
-                                    newEntries.Add(re);
-                                }
-                            }
-                        }
-
-                        // sort the list and add it to the array.
-                        //
-                        newEntries.Sort(delegate(ResourceEntry l, ResourceEntry r) { return l.Order.CompareTo(r.Order); });
-                        entries.AddRange(newEntries);
-
-                        // Cache the reference list and return (but don't cache if this response is unusual for some reason)
-                        //
-
-                        _cache.Add(type, entries);
+                        current = current.BaseType;
                     }
 
-                    return entries;
+                    var result = requiredEntries.Concat(scriptEntries.Distinct().OrderBy(e => e.Order)).ToList();                    
+                    _cache.Add(type, result);
+                    return result;
                 }
             } finally {
-                // Remove the type as further requests will get the cached reference
-                typeReferenceStack.Pop();
+                typeTrace.Remove(type);
             }
         }
 
