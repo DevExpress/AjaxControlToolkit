@@ -4,6 +4,9 @@ namespace AjaxControlToolkit {
             JsPostfix = ".js",
             DebugJsPostfix = ".debug" + JsPostfix,
 
+            CssPostfix = ".css",
+            DebugCssPostfix = ".min" + CssPostfix,
+
             BaseScriptName = "BaseScripts",
             CommonScriptName = "Common",
             CompatDragDropScriptName = "Compat.DragDrop",
@@ -19,6 +22,8 @@ namespace AjaxControlToolkit {
             PasswordStrengthScriptName = "PasswordStrengthBehavior",
             ResizableControlScriptName = "ResizableControlBehavior",
             RoundedCornersScriptName = "RoundedCornersBehavior",
+            SlideShowScriptName = "SlideShowBehavior",
+            SlideShowStyleName = "SlideShow",
             TextBoxWatermarkScriptName = "TextBoxWatermark";
     }
 }

@@ -83,6 +83,12 @@ namespace AjaxControlToolkit {
             return FindControlHelper(id);
         }
 
+        protected Control TargetControl {
+            get {
+                return FindControlHelper(TargetControlID);
+            }
+        }
+
         // This helper automates locating a control by ID.
         // It calls FindControl on the NamingContainer, then the Page.  If that fails, it fires the resolve event.
         protected Control FindControlHelper(string id) {

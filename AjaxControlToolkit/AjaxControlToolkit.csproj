@@ -95,6 +95,10 @@
     <Compile Include="RoundedCorners\BoxCorners.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtenderDesigner.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
+    <Compile Include="SlideShow\Slide.cs" />
+    <Compile Include="SlideShow\SlideShowAnimationType.cs" />
+    <Compile Include="SlideShow\SlideShowExtenderDesigner.cs" />
+    <Compile Include="SlideShow\SlideShowExtender.cs" />
     <Compile Include="TextBoxWatermark\TextBoxWatermarkExtenderDesigner.cs" />
     <Compile Include="ExtenderBase\Design\ExtenderControlBaseDesigner.cs" />
     <Compile Include="ExtenderBase\ExtenderControlBase.cs" />
@@ -228,7 +232,7 @@
     <Content Include="Scripts\PagingBulletedListBehavior.js" />
     <Content Include="Scripts\PagingBulletedListBehavior.min.js">
       <DependentUpon>PagingBulletedListBehavior.js</DependentUpon>
-	</Content>  
+    </Content>
     <Content Include="Scripts\NumericUpDownBehavior.js" />
     <Content Include="Scripts\NumericUpDownBehavior.min.js">
       <DependentUpon>NumericUpDownBehavior.js</DependentUpon>
@@ -246,11 +250,19 @@
     <Content Include="Scripts\RoundedCornersBehavior.min.js">
       <DependentUpon>RoundedCornersBehavior.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\SlideShowBehavior.js" />
+    <Content Include="Scripts\SlideShowBehavior.min.js">
+      <DependentUpon>SlideShowBehavior.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\TextBoxWatermark.js" />
     <Content Include="Scripts\TextBoxWatermark.min.js">
       <DependentUpon>TextBoxWatermark.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Compat.Timer.js" />
+    <Content Include="Styles\SlideShow.css" />
+    <Content Include="Styles\SlideShow.min.css">
+      <DependentUpon>SlideShow.css</DependentUpon>
+    </Content>
     <Content Include="ToolboxIcons\DragPanel.ico" />
     <Content Include="ToolboxIcons\DropShadow.ico" />
     <Content Include="ToolboxIcons\FilteredTextBox.ico" />
@@ -260,8 +272,10 @@
     <Content Include="ToolboxIcons\PasswordStrength.ico" />
     <Content Include="ToolboxIcons\ResizableControl.ico" />
     <Content Include="ToolboxIcons\RoundedCorners.ico" />
+    <Content Include="ToolboxIcons\SlideShow.ico" />
     <Content Include="ToolboxIcons\TextboxWatermark.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

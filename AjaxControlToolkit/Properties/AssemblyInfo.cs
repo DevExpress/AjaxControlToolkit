@@ -50,6 +50,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.RoundedCornersScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.RoundedCornersScriptName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.SlideShowScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.SlideShowScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.SlideShowStyleName + Constants.CssPostfix, "text/css")]
+[assembly: WebResource(Constants.SlideShowStyleName + Constants.DebugCssPostfix, "text/css")]
+
 [assembly: WebResource(Constants.TextBoxWatermarkScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.TextBoxWatermarkScriptName + Constants.JsPostfix, "text/javascript")]
 
