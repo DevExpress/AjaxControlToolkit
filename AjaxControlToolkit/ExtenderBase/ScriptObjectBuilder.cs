@@ -12,53 +12,63 @@ namespace AjaxControlToolkit {
     public class ScriptObjectBuilder {
 
         private static Dictionary<Type, Converter<object, string>> _customConverters = new Dictionary<Type, Converter<object, string>>();
-        private static readonly Dictionary<Type, List<ResourceEntry>> _cache = new Dictionary<Type, List<ResourceEntry>>();
+        private static readonly Dictionary<Type, List<ResourceEntry>> _scriptsCache = new Dictionary<Type, List<ResourceEntry>>();
+        private static readonly Dictionary<Type, List<ResourceEntry>> _cssCache = new Dictionary<Type, List<ResourceEntry>>();
         private static readonly object _sync = new object();
 
         public static IEnumerable<ScriptReference> GetScriptReferences(Type type) {
             // ScriptReference objects aren't immutable.  The AJAX core adds context to them, so we cant' reuse them.
-            // Therefore, we track only ReferenceEntries internally and then convert them to NEW ScriptReference objects on-demand.        
-            return GetScriptReferencesInternal(type, new HashSet<Type>()).Select(entry => entry.ToScriptReference());
+            // Therefore, we track only ReferenceEntries internally and then convert them to NEW ScriptReference objects on-demand.
+            return GetScriptReferencesInternal(type).Select(entry => entry.ToScriptReference());
         }
 
         public static IEnumerable<string> GetScriptNames(Type type) {
-            return GetScriptReferencesInternal(type, new HashSet<Type>()).Select(entry => entry.ResourcePath);
+            return GetScriptReferencesInternal(type).Select(entry => entry.ResourcePath);
+        }
+
+        static IList<ResourceEntry> GetScriptReferencesInternal(Type type) {
+            return GetResourceEntries<ClientScriptResourceAttribute>(type, new HashSet<Type>(), _scriptsCache);
+        }
+
+        public static IEnumerable<string> GetCssUrls(Control control) {
+            return GetResourceEntries<ClientCssResourceAttribute>(control.GetType(), new HashSet<Type>(), _cssCache)
+                .Select(e => e.ToWebResourceUrl(control.Page.ClientScript));
         }
 
         // Gets the ScriptReferences for a Type and walks the Type's dependencies with circular-reference checking
-        private static List<ResourceEntry> GetScriptReferencesInternal(Type type, ICollection<Type> typeTrace) {            
+        static List<ResourceEntry> GetResourceEntries<AttributeType>(Type type, ICollection<Type> typeTrace, IDictionary<Type, List<ResourceEntry>> cache) where AttributeType: ClientResourceAttribute {
             if(typeTrace.Contains(type))
                 throw new InvalidOperationException("Circular reference detected.");
 
             // Look for a cached set of references outside of the lock for perf.
-            if(_cache.ContainsKey(type))
-                return _cache[type];
+            if(cache.ContainsKey(type))
+                return cache[type];
 
             // Track this type to prevent circular references
             typeTrace.Add(type);
             try {
                 lock(_sync) {
                     // double-checked lock pattern
-                    if(_cache.ContainsKey(type))
-                        return _cache[type];
+                    if(cache.ContainsKey(type))
+                        return cache[type];
 
                     var requiredEntries = type.GetCustomAttributes(typeof(RequiredScriptAttribute), true)
                         .Cast<RequiredScriptAttribute>()
                         .Where(a => a.ExtenderType != null)
                         .OrderBy(a => a.LoadOrder)
-                        .SelectMany(a => GetScriptReferencesInternal(a.ExtenderType, typeTrace));                    
+                        .SelectMany(a => GetResourceEntries<AttributeType>(a.ExtenderType, typeTrace, cache));
 
                     // create a new sequence so we can sort it independently
-                    var scriptEntries = Enumerable.Empty<ResourceEntry>();
+                    var resourceEntries = Enumerable.Empty<ResourceEntry>();
 
                     var current = type;
                     var orderOffset = 0;
                     while(current != typeof(object)) {
-                        var attrs = current.GetCustomAttributes(typeof(ClientScriptResourceAttribute), false);
+                        var attrs = current.GetCustomAttributes(typeof(AttributeType), false);
                         orderOffset -= attrs.Length;
 
-                        scriptEntries = scriptEntries.Concat(attrs
-                            .Cast<ClientScriptResourceAttribute>()
+                        resourceEntries = resourceEntries.Concat(attrs
+                            .Cast<AttributeType>()
                             .Select(a => new ResourceEntry(a.ResourcePath, current, orderOffset + a.LoadOrder))
                             .ToList() // force evaluation because 'current' is mutable
                         );
@@ -66,8 +76,8 @@ namespace AjaxControlToolkit {
                         current = current.BaseType;
                     }
 
-                    var result = requiredEntries.Concat(scriptEntries.Distinct().OrderBy(e => e.Order)).ToList();                    
-                    _cache.Add(type, result);
+                    var result = requiredEntries.Concat(resourceEntries.Distinct().OrderBy(e => e.Order)).ToList();
+                    cache.Add(type, result);
                     return result;
                 }
             } finally {
@@ -247,20 +257,8 @@ namespace AjaxControlToolkit {
                 };
             }
 
-            static bool IsDebuggingEnabled() {
-                var context = HttpContext.Current;
-                if(context == null)
-                    return false;
-
-                var page = context.Handler as Page;
-                if(page == null)
-                    return false;
-
-                var sm = ScriptManager.GetCurrent(page);
-                if(sm == null)
-                    return false;
-
-                return sm.IsDebuggingEnabled;
+            public string ToWebResourceUrl(ClientScriptManager clientScript) {
+                return clientScript.GetWebResourceUrl(ComponentType, ResourcePath);
             }
 
             public override bool Equals(object obj) {
@@ -280,6 +278,7 @@ namespace AjaxControlToolkit {
             public override int GetHashCode() {
                 return AssemblyName.GetHashCode() ^ ResourcePath.GetHashCode();
             }
+
         }
 
 

@@ -56,7 +56,9 @@
     <Compile Include="DragPanel\DragPanelExtenderDesigner.cs" />
     <Compile Include="DropShadow\DropShadowExtenderDesigner.cs" />
     <Compile Include="DropShadow\DropShadowExtender.cs" />
+    <Compile Include="ExtenderBase\ClientCssResourceAttribute.cs" />
     <Compile Include="ExtenderBase\ClientPropertyNameAttribute.cs" />
+    <Compile Include="ExtenderBase\ClientResourceAttribute.cs" />
     <Compile Include="ExtenderBase\ClientScriptResourceAttribute.cs" />
     <Compile Include="ExtenderBase\CommonToolkitScripts.cs" />
     <Compile Include="ExtenderBase\ComponentReferenceAttribute.cs" />
