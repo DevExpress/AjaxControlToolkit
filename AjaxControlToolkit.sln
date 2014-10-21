@@ -10,27 +10,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.Tests", "AjaxControlToolkit.Tests\AjaxControlToolkit.Tests.csproj", "{6B8ADD9E-818C-407D-BE71-3DC78D3D46EE}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSite", "http://localhost:52520", "{E3458D23-E5E0-4F6D-9AA4-FB48563E40EE}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkit.SampleSite", "AjaxControlToolkit.SampleSite\", "{5B8E3F7D-A045-46D2-9EA0-D5AEC3152504}"
 	ProjectSection(WebsiteProperties) = preProject
-		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		ProjectReferences = "{676b3449-93f7-4102-8df0-fb51911675d6}|AjaxControlToolkit.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_52520"
-		Debug.AspNetCompiler.PhysicalPath = "AjaxControlToolkitSampleSite\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52520\"
+		Debug.AspNetCompiler.VirtualPath = "/AjaxControlToolkit.SampleSite"
+		Debug.AspNetCompiler.PhysicalPath = "AjaxControlToolkit.SampleSite\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkit.SampleSite\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_52520"
-		Release.AspNetCompiler.PhysicalPath = "AjaxControlToolkitSampleSite\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52520\"
+		Release.AspNetCompiler.VirtualPath = "/AjaxControlToolkit.SampleSite"
+		Release.AspNetCompiler.PhysicalPath = "AjaxControlToolkit.SampleSite\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkit.SampleSite\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		SlnRelativePath = "AjaxControlToolkitSampleSite\"
-		DefaultWebSiteLanguage = "Visual C#"
+		VWDPort = "49290"
 	EndProjectSection
 EndProject
 Global
@@ -47,10 +45,10 @@ Global
 		{6B8ADD9E-818C-407D-BE71-3DC78D3D46EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B8ADD9E-818C-407D-BE71-3DC78D3D46EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B8ADD9E-818C-407D-BE71-3DC78D3D46EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3458D23-E5E0-4F6D-9AA4-FB48563E40EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3458D23-E5E0-4F6D-9AA4-FB48563E40EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3458D23-E5E0-4F6D-9AA4-FB48563E40EE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3458D23-E5E0-4F6D-9AA4-FB48563E40EE}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{5B8E3F7D-A045-46D2-9EA0-D5AEC3152504}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B8E3F7D-A045-46D2-9EA0-D5AEC3152504}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B8E3F7D-A045-46D2-9EA0-D5AEC3152504}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B8E3F7D-A045-46D2-9EA0-D5AEC3152504}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
