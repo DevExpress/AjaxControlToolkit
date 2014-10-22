@@ -90,6 +90,9 @@
     <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
     <Compile Include="PasswordStrength\PasswordStrengthExtender.cs" />
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
+    <Compile Include="Rating\Rating.cs" />
+    <Compile Include="Rating\RatingExtenderDesigner.cs" />
+    <Compile Include="Rating\RatingExtender.cs" />
     <Compile Include="ResizableControl\ResizableControlExtenderDesigner.cs" />
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
     <Compile Include="ResourceHelper.cs" />
@@ -242,6 +245,10 @@
     <Content Include="Scripts\PasswordStrength.min.js">
       <DependentUpon>PasswordStrength.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Rating.js" />
+    <Content Include="Scripts\Rating.min.js">
+      <DependentUpon>Rating.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\README.txt" />
     <Content Include="Scripts\ResizableControl.js" />
     <Content Include="Scripts\ResizableControl.min.js">
@@ -271,6 +278,7 @@
     <Content Include="ToolboxIcons\PagingBulletedList.ico" />
     <Content Include="ToolboxIcons\NumericUpDown.ico" />
     <Content Include="ToolboxIcons\PasswordStrength.ico" />
+    <Content Include="ToolboxIcons\Rating.ico" />
     <Content Include="ToolboxIcons\ResizableControl.ico" />
     <Content Include="ToolboxIcons\RoundedCorners.ico" />
     <Content Include="ToolboxIcons\SlideShow.ico" />

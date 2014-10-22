@@ -44,6 +44,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.PasswordStrengthName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.PasswordStrengthName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.RatingName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.RatingName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.ResizableControlName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.ResizableControlName + Constants.JsPostfix, "text/javascript")]
 

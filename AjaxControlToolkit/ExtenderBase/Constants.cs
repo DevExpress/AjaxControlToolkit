@@ -22,6 +22,7 @@ namespace AjaxControlToolkit {
             NumericUpDownName = "NumericUpDown",
             PagingBulletedListName = "PagingBulletedList",
             PasswordStrengthName = "PasswordStrength",
+            RatingName = "Rating",
             ResizableControlName = "ResizableControl",
             RoundedCornersName = "RoundedCorners",
             SlideShowName = "SlideShow",

@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
@@ -21,6 +22,7 @@ namespace AjaxControlToolkit {
         private bool _enableClientState;
         private bool _isDisposed;
         private bool _renderingScript;
+        private bool _loadedClientStateValues;
 
         // Called when the ExtenderControlBase fails to locate a control referenced by a TargetControlID.
         // In this event, user code is given an opportunity to find the control.        
@@ -55,6 +57,89 @@ namespace AjaxControlToolkit {
             set {
                 SetPropertyValue("BehaviorID", value);
             }
+        }
+
+        private string GetClientStateFieldID() {
+            return string.Format(CultureInfo.InvariantCulture, "{0}_ClientState", ID);
+        }
+
+        // On Init we load target properties values and process data-binding handlers.
+        protected override void OnInit(EventArgs e) {
+            if(EnableClientState) {
+                CreateClientStateField();
+            }
+            Page.PreLoad += new EventHandler(Page_PreLoad);
+            base.OnInit(e);
+        }
+
+        void Page_PreLoad(object sender, EventArgs e) {
+            // Needs to happen sometime after ASP.NET populates the control
+            // values from the postback but sometime before Load so that
+            // the values will be available to controls then. PreLoad is
+            // therefore the obvious choice.
+            LoadClientStateValues();
+        }
+
+        private HiddenField CreateClientStateField() {
+            // add a hidden field so we'll pick up the value
+            HiddenField field = new HiddenField();
+            field.ID = GetClientStateFieldID();
+            Controls.Add(field);
+            ClientStateFieldID = field.ID;
+            return field;
+        }
+
+        // Loads the values for each of the TargetProperties classes coming back from a postback.
+        private void LoadClientStateValues() {
+            if(EnableClientState && !string.IsNullOrEmpty(ClientStateFieldID)) {
+                HiddenField hiddenField = (HiddenField)NamingContainer.FindControl(ClientStateFieldID);
+
+                if((hiddenField != null) && !string.IsNullOrEmpty(hiddenField.Value)) {
+                    ClientState = hiddenField.Value;
+                }
+            }
+
+            if(null != ClientStateValuesLoaded) {
+                ClientStateValuesLoaded(this, EventArgs.Empty);
+            }
+
+            _loadedClientStateValues = true;
+        }
+
+        protected event EventHandler ClientStateValuesLoaded;
+
+        // Save any values in the TargetProperties objects out to client state so they are available
+        // on the client side.
+        private void SaveClientStateValues() {
+            if(EnableClientState) {
+                HiddenField hiddenField = null;
+
+                // if we don't have a value here, this properties
+                // object may have been created dynamically in code
+                // so we create the field on demand.
+                //
+                if(string.IsNullOrEmpty(ClientStateFieldID)) {
+                    hiddenField = CreateClientStateField();
+                }
+                else {
+                    hiddenField = (HiddenField)NamingContainer.FindControl(ClientStateFieldID);
+                }
+
+                if(hiddenField != null) {
+                    hiddenField.Value = ClientState;
+                }
+            }
+        }
+
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [ExtenderControlProperty()]
+        [IDReferenceProperty(typeof(HiddenField))]
+        [DefaultValue("")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string ClientStateFieldID {
+            get { return GetPropertyValue("ClientStateFieldID", ""); }
+            set { SetPropertyValue("ClientStateFieldID", value); }
         }
 
         [Browsable(false)]
@@ -214,9 +299,17 @@ namespace AjaxControlToolkit {
                 var script = String.Format(@"Sys.Extended.UI.Localization.SetLocale(""{0}"");", localeKey);
                 Page.ClientScript.RegisterStartupScript(GetType(), "f93b988bab7e44ffbcff635ee599ade2", script, true);
             }
+
+            if(Enabled && TargetControl.Visible) {
+                SaveClientStateValues();
+            }
         }
 
         protected override void OnLoad(EventArgs e) {
+            if(!_loadedClientStateValues) {
+                LoadClientStateValues();
+            }
+
             base.OnLoad(e);
 
             RegisterCssReferences();
