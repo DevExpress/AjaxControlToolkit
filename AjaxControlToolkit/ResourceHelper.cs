@@ -8,18 +8,32 @@ using System.Web.UI;
 namespace AjaxControlToolkit {
 
     public static class ResourceHelper {
-        private static readonly object _sync = new object();
-        private static readonly Dictionary<Type, List<ResourceEntry>> _scriptsCache = new Dictionary<Type, List<ResourceEntry>>();
-        private static readonly Dictionary<Type, List<ResourceEntry>> _cssCache = new Dictionary<Type, List<ResourceEntry>>();
+        static readonly object _sync = new object();
+
+        static readonly Dictionary<Type, List<ResourceEntry>> 
+            _scriptsCache = new Dictionary<Type, List<ResourceEntry>>(),
+            _cssCache = new Dictionary<Type, List<ResourceEntry>>();
+
+        const string ContextKey_UseEmbeddedStyles = "3ca56b9cc998439ca4894b076783cfc9";
+
+        public static bool RenderStyleLinks {
+            get { return GetContextFlag(ContextKey_UseEmbeddedStyles, true); }
+            set { SetContextFlag(ContextKey_UseEmbeddedStyles, true, value); }
+        }
+
+        public static bool UseStaticResources { get; set; }
 
         public static IEnumerable<string> GetCssUrls(Control control) {
             var minified = !IsDebuggingEnabled();
             var clientScript = control.Page.ClientScript;
 
             return GetResourceEntries<ClientCssResourceAttribute>(control.GetType(), new HashSet<Type>(), _cssCache)
-                .Select(entry => { 
-                    var fullName = Constants.StyleResourcePrefix + entry.ResourceName + (minified ? Constants.MinCssPostfix : Constants.CssPostfix);
-                    return clientScript.GetWebResourceUrl(entry.ComponentType, fullName);
+                .Select(entry => {
+                    var prefix = UseStaticResources ? Constants.StyleStaticPrefix : Constants.StyleResourcePrefix;
+                    var postfix = minified ? Constants.MinCssPostfix : Constants.CssPostfix;
+                    var fullName = prefix + entry.ResourceName + postfix;
+
+                    return UseStaticResources ? fullName : clientScript.GetWebResourceUrl(entry.ComponentType, fullName);
                 });
         }
 
@@ -103,6 +117,25 @@ namespace AjaxControlToolkit {
                 return context.IsDebuggingEnabled;
 
             return sm.IsDebuggingEnabled;
+        }
+
+        static bool GetContextFlag(string key, bool defaultValue) {
+            var context = HttpContext.Current;
+            if(context == null || !context.Items.Contains(key))
+                return defaultValue;
+
+            return (bool)context.Items[key];
+        }
+
+        static void SetContextFlag(string key, object defaultValue, object value) {
+            var context = HttpContext.Current;
+            if(context == null)
+                return;
+
+            if(defaultValue == value)
+                context.Items.Remove(key);
+            else
+                context.Items[key] = value;
         }
 
         struct ResourceEntry : IEquatable<ResourceEntry> {

@@ -316,8 +316,11 @@ namespace AjaxControlToolkit {
         }
 
         void RegisterCssReferences() {
+            if(!ResourceHelper.RenderStyleLinks)
+                return;
+
             // Add the link to the page header instead of inside the body which is not xhtml compliant
-            HtmlHead header = Page.Header;
+            var header = Page.Header;
 
             foreach(var styleSheet in ResourceHelper.GetCssUrls(this)) {
                 // It would be nice to add the required header here, but it's too late in the page

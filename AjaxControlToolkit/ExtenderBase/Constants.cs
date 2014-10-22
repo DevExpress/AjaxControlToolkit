@@ -7,6 +7,8 @@ namespace AjaxControlToolkit {
             CssPostfix = ".css",
             MinCssPostfix = ".min" + CssPostfix,
 
+            ScriptStaticPrefix = "~/Scripts/AjaxControlToolkit/",
+            StyleStaticPrefix = "~/Content/AjaxControlToolkit/Styles/",
             StyleResourcePrefix = "AjaxControlToolkit.Styles.",
 
             BaseScriptName = "BaseScripts",

@@ -44,7 +44,7 @@ namespace AjaxControlToolkit {
         }
 
         static string FormatScriptPath(string script, bool isDebug) {
-            return "~/Scripts/AjaxControlToolkit/" 
+            return Constants.ScriptStaticPrefix
                 + (isDebug ? "Debug" : "Release") + "/" 
                 + script 
                 + (isDebug ? Constants.DebugJsPostfix : Constants.JsPostfix);
