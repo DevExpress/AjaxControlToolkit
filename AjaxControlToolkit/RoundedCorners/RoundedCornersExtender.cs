@@ -5,7 +5,7 @@ using System.Drawing;
 namespace AjaxControlToolkit {
 
     [Designer("AjaxControlToolkit.Design.RoundedCornersExtenderDesigner, AjaxControlToolkit")]
-    [ClientScriptResource("Sys.Extended.UI.RoundedCornersBehavior", Constants.RoundedCornersScriptName)]
+    [ClientScriptResource("Sys.Extended.UI.RoundedCornersBehavior", Constants.RoundedCornersName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(Control))]
     [ToolboxBitmap(typeof(RoundedCornersExtender), "RoundedCorners.ico")]

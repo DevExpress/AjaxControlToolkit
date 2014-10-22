@@ -1,7 +1,4 @@
-﻿@charset "utf-8";
-/* CSS Document */
-
-.fadeIn
+﻿.fadeIn
 {
 	-webkit-transition: all 1s ease-in-out;
 	-moz-transition: all 1s ease-in-out;

@@ -23,7 +23,7 @@ namespace AjaxControlToolkit {
         }
 
         public static IEnumerable<string> GetScriptNames(Type type) {
-            return GetScriptReferencesInternal(type).Select(entry => entry.ResourcePath);
+            return GetScriptReferencesInternal(type).Select(entry => entry.ResourceName);
         }
 
         static IList<ResourceEntry> GetScriptReferencesInternal(Type type) {
@@ -32,7 +32,23 @@ namespace AjaxControlToolkit {
 
         public static IEnumerable<string> GetCssUrls(Control control) {
             return GetResourceEntries<ClientCssResourceAttribute>(control.GetType(), new HashSet<Type>(), _cssCache)
-                .Select(e => e.ToWebResourceUrl(control.Page.ClientScript));
+                .Select(e => e.ToCssWebResourceUrl(control.Page.ClientScript, !IsDebuggingEnabled()));
+        }
+
+        static bool IsDebuggingEnabled() {
+            var context = HttpContext.Current;
+            if(context == null)
+                return false;
+
+            var page = context.Handler as Page;
+            if(page == null)
+                return false;
+
+            var sm = ScriptManager.GetCurrent(page);
+            if(sm == null)
+                return false;
+
+            return sm.IsDebuggingEnabled;
         }
 
         // Gets the ScriptReferences for a Type and walks the Type's dependencies with circular-reference checking
@@ -234,7 +250,7 @@ namespace AjaxControlToolkit {
         }
 
         private struct ResourceEntry {
-            public string ResourcePath;
+            public string ResourceName;
             public Type ComponentType;
             public int Order;
 
@@ -244,8 +260,8 @@ namespace AjaxControlToolkit {
                 }
             }
 
-            public ResourceEntry(string path, Type componentType, int order) {
-                ResourcePath = path;
+            public ResourceEntry(string name, Type componentType, int order) {
+                ResourceName = name;
                 ComponentType = componentType;
                 Order = order;
             }
@@ -253,17 +269,18 @@ namespace AjaxControlToolkit {
             public ScriptReference ToScriptReference() {
                 return new ScriptReference { 
                     Assembly = AssemblyName,
-                    Name = ResourcePath + Constants.JsPostfix
+                    Name = ResourceName + Constants.JsPostfix
                 };
             }
 
-            public string ToWebResourceUrl(ClientScriptManager clientScript) {
-                return clientScript.GetWebResourceUrl(ComponentType, ResourcePath);
+            public string ToCssWebResourceUrl(ClientScriptManager clientScript, bool minified) {
+                var fullName = Constants.StyleResourcePrefix + ResourceName + (minified ? Constants.MinCssPostfix : Constants.CssPostfix);
+                return clientScript.GetWebResourceUrl(ComponentType, fullName);
             }
 
             public override bool Equals(object obj) {
                 ResourceEntry other = (ResourceEntry)obj;
-                return ResourcePath.Equals(other.ResourcePath, StringComparison.OrdinalIgnoreCase)
+                return ResourceName.Equals(other.ResourceName, StringComparison.OrdinalIgnoreCase)
                        && AssemblyName.Equals(other.AssemblyName, StringComparison.OrdinalIgnoreCase);
             }
 
@@ -276,7 +293,7 @@ namespace AjaxControlToolkit {
             }
 
             public override int GetHashCode() {
-                return AssemblyName.GetHashCode() ^ ResourcePath.GetHashCode();
+                return AssemblyName.GetHashCode() ^ ResourceName.GetHashCode();
             }
 
         }

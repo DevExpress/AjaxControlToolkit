@@ -141,17 +141,17 @@
     <Content Include="Scripts\Compat.Timer.min.js">
       <DependentUpon>Compat.Timer.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\DragPanelBehavior.js" />
-    <Content Include="Scripts\DragPanelBehavior.min.js">
-      <DependentUpon>DragPanelBehavior.js</DependentUpon>
+    <Content Include="Scripts\DragPanel.js" />
+    <Content Include="Scripts\DragPanel.min.js">
+      <DependentUpon>DragPanel.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\DropShadowBehavior.js" />
-    <Content Include="Scripts\DropShadowBehavior.min.js">
-      <DependentUpon>DropShadowBehavior.js</DependentUpon>
+    <Content Include="Scripts\DropShadow.js" />
+    <Content Include="Scripts\DropShadow.min.js">
+      <DependentUpon>DropShadow.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\FilteredTextBoxBehavior.js" />
-    <Content Include="Scripts\FilteredTextBoxBehavior.min.js">
-      <DependentUpon>FilteredTextBoxBehavior.js</DependentUpon>
+    <Content Include="Scripts\FilteredTextBox.js" />
+    <Content Include="Scripts\FilteredTextBox.min.js">
+      <DependentUpon>FilteredTextBox.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Localization\Resources.js" />
     <Content Include="Scripts\Localization\Resources.min.js">
@@ -225,44 +225,44 @@
     <Content Include="Scripts\Localization\Resources_zh-CHT.min.js">
       <DependentUpon>Resources_zh-CHT.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\MutuallyExclusiveCheckBoxBehavior.js" />
-    <Content Include="Scripts\MutuallyExclusiveCheckBoxBehavior.min.js">
-      <DependentUpon>MutuallyExclusiveCheckBoxBehavior.js</DependentUpon>
+    <Content Include="Scripts\MutuallyExclusiveCheckBox.js" />
+    <Content Include="Scripts\MutuallyExclusiveCheckBox.min.js">
+      <DependentUpon>MutuallyExclusiveCheckBox.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\PagingBulletedListBehavior.js" />
-    <Content Include="Scripts\PagingBulletedListBehavior.min.js">
-      <DependentUpon>PagingBulletedListBehavior.js</DependentUpon>
+    <Content Include="Scripts\NumericUpDown.min.js">
+      <DependentUpon>NumericUpDown.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\NumericUpDownBehavior.js" />
-    <Content Include="Scripts\NumericUpDownBehavior.min.js">
-      <DependentUpon>NumericUpDownBehavior.js</DependentUpon>
+    <Content Include="Scripts\PagingBulletedList.js" />
+    <Content Include="Scripts\NumericUpDown.js" />
+    <Content Include="Scripts\PagingBulletedList.min.js">
+      <DependentUpon>PagingBulletedList.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\PasswordStrengthBehavior.js" />
-    <Content Include="Scripts\PasswordStrengthBehavior.min.js">
-      <DependentUpon>PasswordStrengthBehavior.js</DependentUpon>
+    <Content Include="Scripts\PasswordStrength.js" />
+    <Content Include="Scripts\PasswordStrength.min.js">
+      <DependentUpon>PasswordStrength.js</DependentUpon>
     </Content>
     <Content Include="Scripts\README.txt" />
-    <Content Include="Scripts\ResizableControlBehavior.js" />
-    <Content Include="Scripts\ResizableControlBehavior.min.js">
-      <DependentUpon>ResizableControlBehavior.js</DependentUpon>
+    <Content Include="Scripts\ResizableControl.js" />
+    <Content Include="Scripts\ResizableControl.min.js">
+      <DependentUpon>ResizableControl.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\RoundedCornersBehavior.js" />
-    <Content Include="Scripts\RoundedCornersBehavior.min.js">
-      <DependentUpon>RoundedCornersBehavior.js</DependentUpon>
+    <Content Include="Scripts\RoundedCorners.js" />
+    <Content Include="Scripts\RoundedCorners.min.js">
+      <DependentUpon>RoundedCorners.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\SlideShowBehavior.js" />
-    <Content Include="Scripts\SlideShowBehavior.min.js">
-      <DependentUpon>SlideShowBehavior.js</DependentUpon>
+    <Content Include="Scripts\SlideShow.js" />
+    <Content Include="Scripts\SlideShow.min.js">
+      <DependentUpon>SlideShow.js</DependentUpon>
     </Content>
     <Content Include="Scripts\TextBoxWatermark.js" />
     <Content Include="Scripts\TextBoxWatermark.min.js">
       <DependentUpon>TextBoxWatermark.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Compat.Timer.js" />
-    <Content Include="Styles\SlideShow.css" />
-    <Content Include="Styles\SlideShow.min.css">
+    <EmbeddedResource Include="Styles\SlideShow.css" />
+    <EmbeddedResource Include="Styles\SlideShow.min.css">
       <DependentUpon>SlideShow.css</DependentUpon>
-    </Content>
+    </EmbeddedResource>
     <Content Include="ToolboxIcons\DragPanel.ico" />
     <Content Include="ToolboxIcons\DropShadow.ico" />
     <Content Include="ToolboxIcons\FilteredTextBox.ico" />

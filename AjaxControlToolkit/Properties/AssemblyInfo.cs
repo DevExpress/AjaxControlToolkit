@@ -23,40 +23,40 @@ using System.Web.UI;
 [assembly: WebResource(Constants.CompatTimerScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CompatTimerScriptName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.DragPanelScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.DragPanelScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.DragPanelName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.DragPanelName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.DropShadowScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.DropShadowScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.DropShadowName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.DropShadowName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.FilteredTextBoxScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.FilteredTextBoxScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.FilteredTextBoxName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.FilteredTextBoxName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.MutuallyExclusiveCheckBoxScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.MutuallyExclusiveCheckBoxScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.MutuallyExclusiveCheckBoxName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.MutuallyExclusiveCheckBoxName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.NumericUpDownScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.NumericUpDownScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.NumericUpDownName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.NumericUpDownName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.PagingBulletedListScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.PagingBulletedListScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.PagingBulletedListName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.PagingBulletedListName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.PasswordStrengthScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.PasswordStrengthScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.PasswordStrengthName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.PasswordStrengthName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.ResizableControlScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.ResizableControlScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.ResizableControlName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.ResizableControlName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.RoundedCornersScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.RoundedCornersScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.RoundedCornersName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.RoundedCornersName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.SlideShowScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.SlideShowScriptName + Constants.JsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.SlideShowStyleName + Constants.CssPostfix, "text/css")]
-[assembly: WebResource(Constants.SlideShowStyleName + Constants.DebugCssPostfix, "text/css")]
+[assembly: WebResource(Constants.SlideShowName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.SlideShowName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.SlideShowName + Constants.CssPostfix, "text/css")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.SlideShowName + Constants.MinCssPostfix, "text/css")]
 
-[assembly: WebResource(Constants.TextBoxWatermarkScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.TextBoxWatermarkScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.TextBoxWatermarkName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.TextBoxWatermarkName + Constants.JsPostfix, "text/javascript")]
 
 [assembly: WebResource(Constants.LocalizationScriptName + Constants.JsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.LocalizationScriptName + Constants.DebugJsPostfix, "text/javascript")]

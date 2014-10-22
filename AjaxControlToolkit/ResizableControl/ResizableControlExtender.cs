@@ -8,7 +8,7 @@ namespace AjaxControlToolkit {
 
     [Designer("AjaxControlToolkit.Design.ResizableControlExtenderDesigner, AjaxControlToolkit")]
     [RequiredScript(typeof(CommonToolkitScripts))]
-    [ClientScriptResource("Sys.Extended.UI.ResizableControlBehavior", Constants.ResizableControlScriptName)]
+    [ClientScriptResource("Sys.Extended.UI.ResizableControlBehavior", Constants.ResizableControlName)]
     [TargetControlType(typeof(Control))]
     [ToolboxBitmap(typeof(ResizableControlExtender), "ResizableControl.ico")]
     public class ResizableControlExtender: ExtenderControlBase {

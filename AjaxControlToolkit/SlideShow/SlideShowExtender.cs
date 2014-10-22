@@ -8,8 +8,8 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     [Designer("AjaxControlToolkit.Design.SlideShowExtenderDesigner, AjaxControlToolkit")]
-    [ClientScriptResource("Sys.Extended.UI.SlideShowBehavior", Constants.SlideShowScriptName)]
-    [ClientCssResource(Constants.SlideShowStyleName)]
+    [ClientScriptResource("Sys.Extended.UI.SlideShowBehavior", Constants.SlideShowName)]
+    [ClientCssResource(Constants.SlideShowName)]
     [TargetControlType(typeof(System.Web.UI.WebControls.Image))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(TimerScript))]

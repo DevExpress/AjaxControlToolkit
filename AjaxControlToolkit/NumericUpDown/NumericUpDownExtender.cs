@@ -8,7 +8,7 @@ namespace AjaxControlToolkit {
 
     [Designer("AjaxControlToolkit.Design.NumericUpDownExtenderDesigner, AjaxControlToolkit")]
     [RequiredScript(typeof(CommonToolkitScripts))]
-    [ClientScriptResource("Sys.Extended.UI.NumericUpDownBehavior", Constants.NumericUpDownScriptName)]
+    [ClientScriptResource("Sys.Extended.UI.NumericUpDownBehavior", Constants.NumericUpDownName)]
     [TargetControlType(typeof(TextBox))]
     [ToolboxBitmap(typeof(NumericUpDownExtender), "NumericUpDown.ico")]
     public class NumericUpDownExtender : ExtenderControlBase {

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     [Designer("AjaxControlToolkit.Design.FilteredTextBoxExtenderDesigner, AjaxControlToolkit")]
-    [ClientScriptResource("Sys.Extended.UI.FilteredTextBoxBehavior", Constants.FilteredTextBoxScriptName)]
+    [ClientScriptResource("Sys.Extended.UI.FilteredTextBoxBehavior", Constants.FilteredTextBoxName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(TextBox))]
     [DefaultProperty("ValidChars")]

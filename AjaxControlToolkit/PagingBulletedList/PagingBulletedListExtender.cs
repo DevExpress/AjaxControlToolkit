@@ -6,7 +6,7 @@ using System.Drawing;
 namespace AjaxControlToolkit {
 
     [Designer("AjaxControlToolkit.Design.PagingBulletedListExtenderDesigner, AjaxControlToolkit")]
-    [ClientScriptResource("Sys.Extended.UI.PagingBulletedListBehavior", Constants.PagingBulletedListScriptName)]
+    [ClientScriptResource("Sys.Extended.UI.PagingBulletedListBehavior", Constants.PagingBulletedListName)]
     [TargetControlType(typeof(BulletedList))]
     [ToolboxBitmap(typeof(PagingBulletedListExtender), "PagingBulletedList.ico")]
     public class PagingBulletedListExtender : ExtenderControlBase {

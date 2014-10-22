@@ -9,7 +9,7 @@ namespace AjaxControlToolkit {
 
     [TargetControlType(typeof(TextBox))]
     [Designer("AjaxControlToolkit.Design.PasswordStrengthExtenderDesigner, AjaxControlToolkit")]
-    [ClientScriptResource("Sys.Extended.UI.PasswordStrengthExtenderBehavior", Constants.PasswordStrengthScriptName)]
+    [ClientScriptResource("Sys.Extended.UI.PasswordStrengthExtenderBehavior", Constants.PasswordStrengthName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ToolboxBitmap(typeof(PasswordStrength), "PasswordStrength.ico")]
     public class PasswordStrength : ExtenderControlBase {

@@ -5,7 +5,9 @@ namespace AjaxControlToolkit {
             DebugJsPostfix = ".debug" + JsPostfix,
 
             CssPostfix = ".css",
-            DebugCssPostfix = ".min" + CssPostfix,
+            MinCssPostfix = ".min" + CssPostfix,
+
+            StyleResourcePrefix = "AjaxControlToolkit.Styles.",
 
             BaseScriptName = "BaseScripts",
             CommonScriptName = "Common",
@@ -13,17 +15,16 @@ namespace AjaxControlToolkit {
             CompatTimerScriptName = "Compat.Timer",
             LocalizationScriptName = "Localization.Resources",
 
-            DragPanelScriptName = "DragPanelBehavior",
-            DropShadowScriptName = "DropShadowBehavior",
-            FilteredTextBoxScriptName = "FilteredTextBoxBehavior",
-            MutuallyExclusiveCheckBoxScriptName = "MutuallyExclusiveCheckBoxBehavior",
-            NumericUpDownScriptName = "NumericUpDownBehavior",
-            PagingBulletedListScriptName = "PagingBulletedListBehavior",
-            PasswordStrengthScriptName = "PasswordStrengthBehavior",
-            ResizableControlScriptName = "ResizableControlBehavior",
-            RoundedCornersScriptName = "RoundedCornersBehavior",
-            SlideShowScriptName = "SlideShowBehavior",
-            SlideShowStyleName = "SlideShow",
-            TextBoxWatermarkScriptName = "TextBoxWatermark";
+            DragPanelName = "DragPanel",
+            DropShadowName = "DropShadow",
+            FilteredTextBoxName = "FilteredTextBox",
+            MutuallyExclusiveCheckBoxName = "MutuallyExclusiveCheckBox",
+            NumericUpDownName = "NumericUpDown",
+            PagingBulletedListName = "PagingBulletedList",
+            PasswordStrengthName = "PasswordStrength",
+            ResizableControlName = "ResizableControl",
+            RoundedCornersName = "RoundedCorners",
+            SlideShowName = "SlideShow",
+            TextBoxWatermarkName = "TextBoxWatermark";
     }
 }
