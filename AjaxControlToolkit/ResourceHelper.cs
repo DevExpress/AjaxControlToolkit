@@ -96,11 +96,11 @@ namespace AjaxControlToolkit {
 
             var page = context.Handler as Page;
             if(page == null)
-                return false;
+                return context.IsDebuggingEnabled;
 
             var sm = ScriptManager.GetCurrent(page);
             if(sm == null)
-                return false;
+                return context.IsDebuggingEnabled;
 
             return sm.IsDebuggingEnabled;
         }
