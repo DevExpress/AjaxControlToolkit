@@ -11,6 +11,7 @@
         <siteMapNode url="~/PasswordStrength/PasswordStrength.aspx" title="PasswordStrength" />
         <siteMapNode url="~/ResizableControl/ResizableControl.aspx" title="ResizableControl" />
         <siteMapNode url="~/RoundedCorners/RoundedCorners.aspx" title="RoundedCorners" />
+        <siteMapNode url="~/SlideShow/SlideShow.aspx" title="SlideShow" />
         <siteMapNode url="~/TextBoxWatermark/TextBoxWatermark.aspx" title="TextBoxWatermark" />
     </siteMapNode>
 </siteMap>
