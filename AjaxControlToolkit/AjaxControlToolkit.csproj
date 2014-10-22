@@ -83,6 +83,11 @@
     <Compile Include="FiteredTextBox\FilterTypes.cs" />
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtenderDesigner.cs" />
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtender.cs" />
+    <Compile Include="NoBot\NoBot.cs" />
+    <Compile Include="NoBot\NoBotExtenderDesigner.cs" />
+    <Compile Include="NoBot\NoBotEventArgs.cs" />
+    <Compile Include="NoBot\NoBotExtender.cs" />
+    <Compile Include="NoBot\NoBotState.cs" />
     <Compile Include="NumericUpDown\NumericUpDownExtenderDesigner.cs" />
     <Compile Include="NumericUpDown\NumericUpDownExtender.cs" />
     <Compile Include="PagingBulletedList\PagingBulletedListExtenderDesigner.cs" />
@@ -233,6 +238,10 @@
     <Content Include="Scripts\MutuallyExclusiveCheckBox.min.js">
       <DependentUpon>MutuallyExclusiveCheckBox.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\NoBot.js" />
+    <Content Include="Scripts\NoBot.min.js">
+      <DependentUpon>NoBot.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\NumericUpDown.min.js">
       <DependentUpon>NumericUpDown.js</DependentUpon>
     </Content>
@@ -275,6 +284,7 @@
     <Content Include="ToolboxIcons\DropShadow.ico" />
     <Content Include="ToolboxIcons\FilteredTextBox.ico" />
     <Content Include="ToolboxIcons\MutuallyExclusiveCheckBox.ico" />
+    <Content Include="ToolboxIcons\NoBot.ico" />
     <Content Include="ToolboxIcons\PagingBulletedList.ico" />
     <Content Include="ToolboxIcons\NumericUpDown.ico" />
     <Content Include="ToolboxIcons\PasswordStrength.ico" />

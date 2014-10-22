@@ -19,6 +19,7 @@ namespace AjaxControlToolkit {
             DropShadowName = "DropShadow",
             FilteredTextBoxName = "FilteredTextBox",
             MutuallyExclusiveCheckBoxName = "MutuallyExclusiveCheckBox",
+            NoBotName = "NoBot",
             NumericUpDownName = "NumericUpDown",
             PagingBulletedListName = "PagingBulletedList",
             PasswordStrengthName = "PasswordStrength",
