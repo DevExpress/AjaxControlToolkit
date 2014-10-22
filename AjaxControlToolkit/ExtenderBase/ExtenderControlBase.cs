@@ -277,7 +277,7 @@ namespace AjaxControlToolkit {
         // 2) Scripts for this Extender/Behavior
         internal IEnumerable<ScriptReference> EnsureScripts() {
             return new Localization().GetLocalizationScriptReferences()
-                .Concat(ResourceHelper.GetScriptReferences(GetType()));
+                .Concat(ToolkitResourceManager.GetControlScriptReferences(GetType()));
         }
 
         protected V GetPropertyValue<V>(string propertyName, V nullValue) {
@@ -316,13 +316,13 @@ namespace AjaxControlToolkit {
         }
 
         void RegisterCssReferences() {
-            if(!ResourceHelper.RenderStyleLinks)
+            if(!ToolkitResourceManager.RenderStyleLinks)
                 return;
 
             // Add the link to the page header instead of inside the body which is not xhtml compliant
             var header = Page.Header;
 
-            foreach(var styleSheet in ResourceHelper.GetCssUrls(this)) {
+            foreach(var styleSheet in ToolkitResourceManager.GetStyleUrls(this)) {
                 // It would be nice to add the required header here, but it's too late in the page
                 // lifecycle to be modifying the Page.Controls collection - throw an informative
                 // exception instead and let the page author make the simple change.

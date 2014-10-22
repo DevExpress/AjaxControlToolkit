@@ -250,23 +250,6 @@ namespace AjaxControlToolkit.Bundling {
             }
         }
 
-        public List<string> GetScriptNames(HttpContextBase context, string[] bundles) {
-            var result = new List<string>();
-            var trace = new HashSet<string>();
-
-            foreach(var type in GetControlTypesInBundles(context, bundles)) {
-                foreach(var name in ResourceHelper.GetScriptNames(type)) {
-                    if(trace.Contains(name))
-                        continue;
-
-                    result.Add(name);
-                    trace.Add(name);
-                }
-            }
-
-            return result;
-        }
-
         static Assembly GetAssembly(string name) {
             if(!LoadedAssemblies.ContainsKey(name))
                 LoadedAssemblies.Add(name, Assembly.Load(name));

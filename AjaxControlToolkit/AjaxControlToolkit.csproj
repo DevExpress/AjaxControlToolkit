@@ -111,7 +111,7 @@
     <Compile Include="Rating\RatingExtender.cs" />
     <Compile Include="ResizableControl\ResizableControlExtenderDesigner.cs" />
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
-    <Compile Include="ResourceHelper.cs" />
+    <Compile Include="ToolkitResourceManager.cs" />
     <Compile Include="RoundedCorners\BoxCorners.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtenderDesigner.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
@@ -124,7 +124,6 @@
     <Compile Include="ExtenderBase\ExtenderControlBase.cs" />
     <Compile Include="TextBoxWatermark\TextBoxWatermarkExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToolkitScriptMappings.cs" />
     <Compile Include="Localization.cs" />
   </ItemGroup>
   <ItemGroup>
