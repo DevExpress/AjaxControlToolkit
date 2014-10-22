@@ -255,7 +255,7 @@ namespace AjaxControlToolkit.Bundling {
             var trace = new HashSet<string>();
 
             foreach(var type in GetControlTypesInBundles(context, bundles)) {
-                foreach(var name in ScriptObjectBuilder.GetScriptNames(type)) {
+                foreach(var name in ResourceHelper.GetScriptNames(type)) {
                     if(trace.Contains(name))
                         continue;
 

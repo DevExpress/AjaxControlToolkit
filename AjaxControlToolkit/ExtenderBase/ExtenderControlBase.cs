@@ -170,7 +170,7 @@ namespace AjaxControlToolkit {
         protected virtual void RenderScriptAttributes(ScriptBehaviorDescriptor descriptor) {
             try {
                 _renderingScript = true;
-                ScriptObjectBuilder.DescribeComponent(this, descriptor, this, this);
+                ComponentDescriber.DescribeComponent(this, descriptor, this, this);
             } finally {
                 _renderingScript = false;
             }
@@ -192,7 +192,7 @@ namespace AjaxControlToolkit {
         // 2) Scripts for this Extender/Behavior
         internal IEnumerable<ScriptReference> EnsureScripts() {
             return new Localization().GetLocalizationScriptReferences()
-                .Concat(ScriptObjectBuilder.GetScriptReferences(GetType()));
+                .Concat(ResourceHelper.GetScriptReferences(GetType()));
         }
 
         protected V GetPropertyValue<V>(string propertyName, V nullValue) {
@@ -226,7 +226,7 @@ namespace AjaxControlToolkit {
             // Add the link to the page header instead of inside the body which is not xhtml compliant
             HtmlHead header = Page.Header;
 
-            foreach(var styleSheet in ScriptObjectBuilder.GetCssUrls(this)) {
+            foreach(var styleSheet in ResourceHelper.GetCssUrls(this)) {
                 // It would be nice to add the required header here, but it's too late in the page
                 // lifecycle to be modifying the Page.Controls collection - throw an informative
                 // exception instead and let the page author make the simple change.

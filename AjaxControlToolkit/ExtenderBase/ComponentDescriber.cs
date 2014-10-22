@@ -9,97 +9,8 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
-    public class ScriptObjectBuilder {
-
-        private static Dictionary<Type, Converter<object, string>> _customConverters = new Dictionary<Type, Converter<object, string>>();
-        private static readonly Dictionary<Type, List<ResourceEntry>> _scriptsCache = new Dictionary<Type, List<ResourceEntry>>();
-        private static readonly Dictionary<Type, List<ResourceEntry>> _cssCache = new Dictionary<Type, List<ResourceEntry>>();
-        private static readonly object _sync = new object();
-
-        public static IEnumerable<ScriptReference> GetScriptReferences(Type type) {
-            // ScriptReference objects aren't immutable.  The AJAX core adds context to them, so we cant' reuse them.
-            // Therefore, we track only ReferenceEntries internally and then convert them to NEW ScriptReference objects on-demand.
-            return GetScriptReferencesInternal(type).Select(entry => entry.ToScriptReference());
-        }
-
-        public static IEnumerable<string> GetScriptNames(Type type) {
-            return GetScriptReferencesInternal(type).Select(entry => entry.ResourceName);
-        }
-
-        static IList<ResourceEntry> GetScriptReferencesInternal(Type type) {
-            return GetResourceEntries<ClientScriptResourceAttribute>(type, new HashSet<Type>(), _scriptsCache);
-        }
-
-        public static IEnumerable<string> GetCssUrls(Control control) {
-            return GetResourceEntries<ClientCssResourceAttribute>(control.GetType(), new HashSet<Type>(), _cssCache)
-                .Select(e => e.ToCssWebResourceUrl(control.Page.ClientScript, !IsDebuggingEnabled()));
-        }
-
-        static bool IsDebuggingEnabled() {
-            var context = HttpContext.Current;
-            if(context == null)
-                return false;
-
-            var page = context.Handler as Page;
-            if(page == null)
-                return false;
-
-            var sm = ScriptManager.GetCurrent(page);
-            if(sm == null)
-                return false;
-
-            return sm.IsDebuggingEnabled;
-        }
-
-        // Gets the ScriptReferences for a Type and walks the Type's dependencies with circular-reference checking
-        static List<ResourceEntry> GetResourceEntries<AttributeType>(Type type, ICollection<Type> typeTrace, IDictionary<Type, List<ResourceEntry>> cache) where AttributeType: ClientResourceAttribute {
-            if(typeTrace.Contains(type))
-                throw new InvalidOperationException("Circular reference detected.");
-
-            // Look for a cached set of references outside of the lock for perf.
-            if(cache.ContainsKey(type))
-                return cache[type];
-
-            // Track this type to prevent circular references
-            typeTrace.Add(type);
-            try {
-                lock(_sync) {
-                    // double-checked lock pattern
-                    if(cache.ContainsKey(type))
-                        return cache[type];
-
-                    var requiredEntries = type.GetCustomAttributes(typeof(RequiredScriptAttribute), true)
-                        .Cast<RequiredScriptAttribute>()
-                        .Where(a => a.ExtenderType != null)
-                        .OrderBy(a => a.LoadOrder)
-                        .SelectMany(a => GetResourceEntries<AttributeType>(a.ExtenderType, typeTrace, cache));
-
-                    // create a new sequence so we can sort it independently
-                    var resourceEntries = Enumerable.Empty<ResourceEntry>();
-
-                    var current = type;
-                    var orderOffset = 0;
-                    while(current != typeof(object)) {
-                        var attrs = current.GetCustomAttributes(typeof(AttributeType), false);
-                        orderOffset -= attrs.Length;
-
-                        resourceEntries = resourceEntries.Concat(attrs
-                            .Cast<AttributeType>()
-                            .Select(a => new ResourceEntry(a.ResourcePath, current, orderOffset + a.LoadOrder))
-                            .ToList() // force evaluation because 'current' is mutable
-                        );
-
-                        current = current.BaseType;
-                    }
-
-                    var result = requiredEntries.Concat(resourceEntries.Distinct().OrderBy(e => e.Order)).ToList();
-                    cache.Add(type, result);
-                    return result;
-                }
-            } finally {
-                typeTrace.Remove(type);
-            }
-        }
+    public class ComponentDescriber {
+        static Dictionary<Type, Converter<object, string>> _customConverters = new Dictionary<Type, Converter<object, string>>();
 
         public static void DescribeComponent(object instance, ScriptComponentDescriptor descriptor, IUrlResolutionService urlResolver, IControlResolver controlResolver) {
             // validate preconditions
@@ -248,56 +159,6 @@ namespace AjaxControlToolkit {
                 break;
             }
         }
-
-        private struct ResourceEntry {
-            public string ResourceName;
-            public Type ComponentType;
-            public int Order;
-
-            private string AssemblyName {
-                get {
-                    return ComponentType == null ? "" : ComponentType.Assembly.FullName;
-                }
-            }
-
-            public ResourceEntry(string name, Type componentType, int order) {
-                ResourceName = name;
-                ComponentType = componentType;
-                Order = order;
-            }
-
-            public ScriptReference ToScriptReference() {
-                return new ScriptReference { 
-                    Assembly = AssemblyName,
-                    Name = ResourceName + Constants.JsPostfix
-                };
-            }
-
-            public string ToCssWebResourceUrl(ClientScriptManager clientScript, bool minified) {
-                var fullName = Constants.StyleResourcePrefix + ResourceName + (minified ? Constants.MinCssPostfix : Constants.CssPostfix);
-                return clientScript.GetWebResourceUrl(ComponentType, fullName);
-            }
-
-            public override bool Equals(object obj) {
-                ResourceEntry other = (ResourceEntry)obj;
-                return ResourceName.Equals(other.ResourceName, StringComparison.OrdinalIgnoreCase)
-                       && AssemblyName.Equals(other.AssemblyName, StringComparison.OrdinalIgnoreCase);
-            }
-
-            public static bool operator ==(ResourceEntry obj1, ResourceEntry obj2) {
-                return obj1.Equals(obj2);
-            }
-
-            public static bool operator !=(ResourceEntry obj1, ResourceEntry obj2) {
-                return !obj1.Equals(obj2);
-            }
-
-            public override int GetHashCode() {
-                return AssemblyName.GetHashCode() ^ ResourceName.GetHashCode();
-            }
-
-        }
-
 
     }
 

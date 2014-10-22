@@ -75,7 +75,7 @@
     <Compile Include="ExtenderBase\RequiredScriptAttribute.cs" />
     <Compile Include="ExtenderBase\ResolveControlEventArgs.cs" />
     <Compile Include="ExtenderBase\ResolveControlEventHandler.cs" />
-    <Compile Include="ExtenderBase\ScriptObjectBuilder.cs" />
+    <Compile Include="ExtenderBase\ComponentDescriber.cs" />
     <Compile Include="ExtenderBase\ServicePathConverter.cs" />
     <Compile Include="FiteredTextBox\FilteredTextBoxExtenderDesigner.cs" />
     <Compile Include="FiteredTextBox\FilteredTextBoxExtender.cs" />
@@ -92,6 +92,7 @@
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
     <Compile Include="ResizableControl\ResizableControlExtenderDesigner.cs" />
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
+    <Compile Include="ResourceHelper.cs" />
     <Compile Include="RoundedCorners\BoxCorners.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtenderDesigner.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtender.cs" />
