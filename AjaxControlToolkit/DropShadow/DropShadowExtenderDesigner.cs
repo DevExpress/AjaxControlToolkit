@@ -6,4 +6,5 @@ namespace AjaxControlToolkit.Design {
     [TargetControlType(typeof(Panel))]
     class DropShadowExtenderDesigner : ExtenderControlBaseDesigner<DropShadowExtender> {
     }
+
 }

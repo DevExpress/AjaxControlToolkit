@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Web.UI.WebControls;
 
-
 namespace AjaxControlToolkit {
 
     [Designer("AjaxControlToolkit.Design.SlideShowExtenderDesigner, AjaxControlToolkit")]
@@ -21,7 +20,7 @@ namespace AjaxControlToolkit {
         [DefaultValue("")]
         [ClientPropertyName("slideShowServiceMethod")]
         public string SlideShowServiceMethod {
-            get { return GetPropertyValue("SlideShowServiceMethod", ""); }
+            get { return GetPropertyValue("SlideShowServiceMethod", String.Empty); }
             set { SetPropertyValue("SlideShowServiceMethod", value); }
         }
 
@@ -31,7 +30,7 @@ namespace AjaxControlToolkit {
         [TypeConverter(typeof(ServicePathConverter))]
         [ClientPropertyName("slideShowServicePath")]
         public string SlideShowServicePath {
-            get { return GetPropertyValue("SlideShowServicePath", ""); }
+            get { return GetPropertyValue("SlideShowServicePath", String.Empty); }
             set { SetPropertyValue("SlideShowServicePath", value); }
         }
 
@@ -69,7 +68,7 @@ namespace AjaxControlToolkit {
         [IDReferenceProperty(typeof(WebControl))]
         [ClientPropertyName("nextButtonID")]
         public string NextButtonID {
-            get { return GetPropertyValue("NextButtonID", ""); }
+            get { return GetPropertyValue("NextButtonID", String.Empty); }
             set { SetPropertyValue("NextButtonID", value); }
         }
 
@@ -79,7 +78,7 @@ namespace AjaxControlToolkit {
         [IDReferenceProperty(typeof(WebControl))]
         [ClientPropertyName("playButtonID")]
         public string PlayButtonID {
-            get { return GetPropertyValue("PlayButtonID", ""); }
+            get { return GetPropertyValue("PlayButtonID", String.Empty); }
             set { SetPropertyValue("PlayButtonID", value); }
         }
 
@@ -88,7 +87,7 @@ namespace AjaxControlToolkit {
         [DefaultValue("")]
         [ClientPropertyName("playButtonText")]
         public string PlayButtonText {
-            get { return GetPropertyValue("PlayButtonText", ""); }
+            get { return GetPropertyValue("PlayButtonText", String.Empty); }
             set { SetPropertyValue("PlayButtonText", value); }
         }
 
@@ -97,7 +96,7 @@ namespace AjaxControlToolkit {
         [DefaultValue("")]
         [ClientPropertyName("stopButtonText")]
         public string StopButtonText {
-            get { return GetPropertyValue("StopButtonText", ""); }
+            get { return GetPropertyValue("StopButtonText", String.Empty); }
             set { SetPropertyValue("StopButtonText", value); }
         }
 
@@ -116,7 +115,7 @@ namespace AjaxControlToolkit {
         [IDReferenceProperty(typeof(WebControl))]
         [ClientPropertyName("imageTitleLabelID")]
         public string ImageTitleLabelID {
-            get { return GetPropertyValue("ImageTitleLabelID", ""); }
+            get { return GetPropertyValue("ImageTitleLabelID", String.Empty); }
             set { SetPropertyValue("ImageTitleLabelID", value); }
         }
 
@@ -126,7 +125,7 @@ namespace AjaxControlToolkit {
         [IDReferenceProperty(typeof(WebControl))]
         [ClientPropertyName("imageDescriptionLabelID")]
         public string ImageDescriptionLabelID {
-            get { return GetPropertyValue("ImageDescriptionLabelID", ""); }
+            get { return GetPropertyValue("ImageDescriptionLabelID", String.Empty); }
             set { SetPropertyValue("ImageDescriptionLabelID", value); }
         }
 
@@ -136,7 +135,7 @@ namespace AjaxControlToolkit {
         [IDReferenceProperty(typeof(WebControl))]
         [ClientPropertyName("previousButtonID")]
         public string PreviousButtonID {
-            get { return GetPropertyValue("PreviousButtonID", ""); }
+            get { return GetPropertyValue("PreviousButtonID", String.Empty); }
             set { SetPropertyValue("PreviousButtonID", value); }
         }
 
@@ -190,7 +189,7 @@ namespace AjaxControlToolkit {
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
 
-            System.Web.UI.WebControls.Image image = (System.Web.UI.WebControls.Image)TargetControl;
+            var image = (System.Web.UI.WebControls.Image)TargetControl;
             ImageHeight = (int)image.Height.Value;
             ImageWidth = (int)image.Width.Value;
         }

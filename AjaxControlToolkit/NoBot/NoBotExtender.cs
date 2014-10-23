@@ -7,7 +7,7 @@ namespace AjaxControlToolkit {
     [ToolboxItem(false)]
     [ClientScriptResource("Sys.Extended.UI.NoBotBehavior", Constants.NoBotName)]
     [TargetControlType(typeof(Label))]
-    public class NoBotExtender: ExtenderControlBase {
+    public class NoBotExtender : ExtenderControlBase {
         public NoBotExtender() {
             EnableClientState = true;
         }

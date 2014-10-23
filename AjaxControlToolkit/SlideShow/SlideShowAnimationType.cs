@@ -10,4 +10,5 @@
         SlideRight = 6,
         SlideDown = 7
     }
+
 }

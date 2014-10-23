@@ -3,45 +3,45 @@ using System;
 namespace AjaxControlToolkit {
 
     public class Slide {
-        private string imagePath;
-        private string name;
-        private string description;
-        private string url;
+        string _imagePath;
+        string _name;
+        string _description;
+        string _url;
 
         public Slide()
             : this(null, null, null) { }
 
         public Slide(string imagePath, string name, string description) {
-            this.imagePath = imagePath;
-            this.name = name;
-            this.description = description;
+            _imagePath = imagePath;
+            _name = name;
+            _description = description;
         }
 
         public Slide(string imagePath, string name, string description, string url) {
-            this.imagePath = imagePath;
-            this.name = name;
-            this.description = description;
-            this.url = url;
+            _imagePath = imagePath;
+            _name = name;
+            _description = description;
+            _url = url;
         }
 
         public string ImagePath {
-            get { return this.imagePath; }
-            set { this.imagePath = value; }
+            get { return _imagePath; }
+            set { _imagePath = value; }
         }
 
         public string Name {
-            get { return this.name; }
-            set { this.name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
 
         public string Description {
-            get { return this.description; }
-            set { this.description = value; }
+            get { return _description; }
+            set { _description = value; }
         }
 
         public string Url {
-            get { return this.url; }
-            set { this.url = value; }
+            get { return _url; }
+            set { _url = value; }
         }
     }
 

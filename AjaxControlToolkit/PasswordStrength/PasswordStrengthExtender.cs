@@ -1,9 +1,9 @@
 using System;
-using System.Web.UI.WebControls;
-using System.Web.UI;
 using System.ComponentModel;
-using System.Globalization;
 using System.Drawing;
+using System.Globalization;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
@@ -13,34 +13,34 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ToolboxBitmap(typeof(PasswordStrength), "PasswordStrength.ico")]
     public class PasswordStrength : ExtenderControlBase {
-        private const string _txtPasswordCssClass = "TextCssClass";
-        private const string _barBorderCssClass = "BarBorderCssClass";
-        private const string _barIndicatorCssClass = "BarIndicatorCssClass";
-        private const string _strengthIndicatorType = "StrengthIndicatorType";
-        private const string _displayPosition = "DisplayPosition";
-        private const string _prefixText = "PrefixText";
-        private const string _txtDisplayIndicators = "TextStrengthDescriptions";
-        private const string _strengthStyles = "StrengthStyles";
+        const string _txtPasswordCssClass = "TextCssClass";
+        const string _barBorderCssClass = "BarBorderCssClass";
+        const string _barIndicatorCssClass = "BarIndicatorCssClass";
+        const string _strengthIndicatorType = "StrengthIndicatorType";
+        const string _displayPosition = "DisplayPosition";
+        const string _prefixText = "PrefixText";
+        const string _txtDisplayIndicators = "TextStrengthDescriptions";
+        const string _strengthStyles = "StrengthStyles";
 
-        private const int TXT_INDICATORS_MIN_COUNT = 2;  // Minimum number of textual descriptions
-        private const int TXT_INDICATORS_MAX_COUNT = 10; // Maximum number of textual descriptions.
-        private const char TXT_INDICATOR_DELIMITER = ';'; // Text indicators are delimited with a semi colon
+        const int _txtIndicatorsMinCount = 2;  // Minimum number of textual descriptions
+        const int _txtIndicatorsMaxCount = 10; // Maximum number of textual descriptions.
+        const char _txtIndicatorDelimiter = ';'; // Text indicators are delimited with a semi colon
 
-        private const string _preferredPasswordLength = "PreferredPasswordLength";
-        private const string _minPasswordNumerics = "MinimumNumericCharacters";
-        private const string _minPasswordSymbols = "MinimumSymbolCharacters";
-        private const string _requiresUpperLowerCase = "RequiresUpperAndLowerCaseCharacters";
+        const string _preferredPasswordLength = "PreferredPasswordLength";
+        const string _minPasswordNumerics = "MinimumNumericCharacters";
+        const string _minPasswordSymbols = "MinimumSymbolCharacters";
+        const string _requiresUpperLowerCase = "RequiresUpperAndLowerCaseCharacters";
 
-        private const string _minLowerCaseChars = "MinimumLowerCaseCharacters";
-        private const string _minUpperCaseChars = "MinimumUpperCaseCharacters";
+        const string _minLowerCaseChars = "MinimumLowerCaseCharacters";
+        const string _minUpperCaseChars = "MinimumUpperCaseCharacters";
 
 
-        private const string _helpHandleCssClass = "HelpHandleCssClass";
-        private const string _helphandlePosition = "HelpHandlePosition";
-        private const string _helpStatusLabelID = "HelpStatusLabelID";
-        private const string _calcWeightings = "CalculationWeightings";
+        const string _helpHandleCssClass = "HelpHandleCssClass";
+        const string _helphandlePosition = "HelpHandlePosition";
+        const string _helpStatusLabelID = "HelpStatusLabelID";
+        const string _calcWeightings = "CalculationWeightings";
 
-        private const string _prefixTextDefault = "Strength: ";
+        const string _prefixTextDefault = "Strength: ";
 
         // The preferred or ideal length of the password. Passwords could be less than this amount but wont reach the 100% calculation
         // if less than this count. This is used to calculate 50% of the percentage strength of the password
@@ -68,7 +68,7 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty()]
         [DefaultValue("")]
         public string HelpHandleCssClass {
-            get { return GetPropertyValue(_helpHandleCssClass, ""); }
+            get { return GetPropertyValue(_helpHandleCssClass, String.Empty); }
             set { SetPropertyValue(_helpHandleCssClass, value); }
         }
 
@@ -84,7 +84,7 @@ namespace AjaxControlToolkit {
         [DefaultValue("")]
         [ExtenderControlProperty()]
         public string HelpStatusLabelID {
-            get { return GetPropertyValue(_helpStatusLabelID, ""); }
+            get { return GetPropertyValue(_helpStatusLabelID, String.Empty); }
             set { SetPropertyValue(_helpStatusLabelID, value); }
         }
 
@@ -165,31 +165,27 @@ namespace AjaxControlToolkit {
         [DefaultValue("")]
         [ExtenderControlProperty()]
         public string CalculationWeightings {
-            get { return GetPropertyValue(_calcWeightings, ""); }
+            get { return GetPropertyValue(_calcWeightings, String.Empty); }
             set {
-
-                if(String.IsNullOrEmpty(value)) {
+                if(String.IsNullOrEmpty(value))
                     SetPropertyValue(_calcWeightings, value);
-                } else {
-                    int total = 0;
-                    if(null != value) {
-                        string[] tmpList = value.Split(';');
-                        foreach(string val in tmpList) {
+                else {
+                    var total = 0;
+                    if(value != null) {
+                        var tmpList = value.Split(';');
+                        foreach(var val in tmpList) {
                             int tmpVal;
 
-                            if(int.TryParse(val, NumberStyles.Integer, CultureInfo.InvariantCulture, out tmpVal))
+                            if(Int32.TryParse(val, NumberStyles.Integer, CultureInfo.InvariantCulture, out tmpVal))
                                 total += tmpVal;
                         }
                     }
-
 
                     if(total == 100)
                         SetPropertyValue(_calcWeightings, value);
                     else
                         throw new ArgumentException("There must be 4 Calculation Weighting items which must total 100");
-
                 }
-
             }
         }
 
@@ -198,21 +194,19 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty()]
         [DefaultValue("")]
         public string TextStrengthDescriptions {
-            get { return GetPropertyValue(_txtDisplayIndicators, ""); }
+            get { return GetPropertyValue(_txtDisplayIndicators, String.Empty); }
             set {
-                bool valid = false;
-                if(!string.IsNullOrEmpty(value)) {
-                    string[] txtItems = value.Split(TXT_INDICATOR_DELIMITER);
-                    if(txtItems.Length >= TXT_INDICATORS_MIN_COUNT && txtItems.Length <= TXT_INDICATORS_MAX_COUNT) {
+                var valid = false;
+                if(!String.IsNullOrEmpty(value)) {
+                    var txtItems = value.Split(_txtIndicatorDelimiter);
+                    if(txtItems.Length >= _txtIndicatorsMinCount && txtItems.Length <= _txtIndicatorsMaxCount)
                         valid = true;
-                    }
                 }
 
-
-                if(valid) {
+                if(valid)
                     SetPropertyValue(_txtDisplayIndicators, value);
-                } else {
-                    string msg = string.Format(CultureInfo.CurrentCulture, "Invalid property specification for TextStrengthDescriptions property. Must be a string delimited with '{0}', contain a minimum of {1} entries, and a maximum of {2}.", TXT_INDICATOR_DELIMITER, TXT_INDICATORS_MIN_COUNT, TXT_INDICATORS_MAX_COUNT);
+                else {
+                    var msg = String.Format(CultureInfo.CurrentCulture, "Invalid property specification for TextStrengthDescriptions property. Must be a string delimited with '{0}', contain a minimum of {1} entries, and a maximum of {2}.", _txtIndicatorDelimiter, _txtIndicatorsMinCount, _txtIndicatorsMaxCount);
                     throw new ArgumentException(msg);
                 }
             }
@@ -223,22 +217,21 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty()]
         [DefaultValue("")]
         public string StrengthStyles {
-            get { return GetPropertyValue(_strengthStyles, ""); }
+            get { return GetPropertyValue(_strengthStyles, String.Empty); }
             set {
-                bool valid = false;
-                if(!string.IsNullOrEmpty(value)) {
-                    string[] styleItems = value.Split(TXT_INDICATOR_DELIMITER);
+                var valid = false;
+                if(!String.IsNullOrEmpty(value)) {
+                    var styleItems = value.Split(_txtIndicatorDelimiter);
 
-                    if(styleItems.Length <= TXT_INDICATORS_MAX_COUNT) {
+                    if(styleItems.Length <= _txtIndicatorsMaxCount) {
                         valid = true;
                     }
                 }
 
-
-                if(valid) {
+                if(valid)
                     SetPropertyValue(_strengthStyles, value);
-                } else {
-                    string msg = string.Format(CultureInfo.CurrentCulture, "Invalid property specification for TextStrengthDescriptionStyles property. Must match the number of entries for the TextStrengthDescriptions property.");
+                else {
+                    var msg = String.Format(CultureInfo.CurrentCulture, "Invalid property specification for TextStrengthDescriptionStyles property. Must match the number of entries for the TextStrengthDescriptions property.");
                     throw new ArgumentException(msg);
                 }
             }
@@ -274,4 +267,5 @@ namespace AjaxControlToolkit {
             set { StrengthStyles = value; }
         }
     }
+
 }

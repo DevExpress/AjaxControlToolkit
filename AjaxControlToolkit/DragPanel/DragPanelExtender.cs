@@ -1,7 +1,8 @@
+using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Drawing;
 
 namespace AjaxControlToolkit {
 
@@ -24,13 +25,15 @@ namespace AjaxControlToolkit {
         [ClientPropertyName("handle")] // the property on the floatingBevahior is called "handle" - this associates this property with that name
         public string DragHandleID {
             get {
-                string dragHandleID = GetPropertyValue("DragHandleID", "");
-                if(string.IsNullOrEmpty(dragHandleID)) {
+                var dragHandleID = GetPropertyValue("DragHandleID", "");
+                if(String.IsNullOrEmpty(dragHandleID)) {
                     dragHandleID = TargetControlID;
                 }
+
                 return dragHandleID;
             }
             set { SetPropertyValue("DragHandleID", value); }
         }
     }
+
 }

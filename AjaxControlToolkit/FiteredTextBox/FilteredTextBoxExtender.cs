@@ -51,15 +51,16 @@ namespace AjaxControlToolkit {
         }
 
         protected override bool CheckIfValid(bool throwException) {
-            if (FilterType == FilterTypes.Custom && (
-                 (FilterMode == FilterModes.ValidChars && string.IsNullOrEmpty(ValidChars)) ||
-                 (FilterMode == FilterModes.InvalidChars && string.IsNullOrEmpty(InvalidChars)))) {
-                if (throwException) {
+            if(FilterType == FilterTypes.Custom && (
+                 (FilterMode == FilterModes.ValidChars && String.IsNullOrEmpty(ValidChars)) ||
+                 (FilterMode == FilterModes.InvalidChars && String.IsNullOrEmpty(InvalidChars)))) {
+                if(throwException)
                     throw new InvalidOperationException("If FilterTypes.Custom is specified, please provide a value for ValidChars or InvalidChars");
-                }
+
                 return false;
             }
             return base.CheckIfValid(throwException);
         }
     }
+
 }

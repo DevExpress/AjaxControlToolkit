@@ -2,17 +2,18 @@ using System;
 
 namespace AjaxControlToolkit {
 
-    public class NoBotEventArgs: EventArgs {
-        private string challengeScript = "";
-        private string requiredResponse = "";
+    public class NoBotEventArgs : EventArgs {
+        string _challengeScript = String.Empty;
+        string _requiredResponse = String.Empty;
 
         public string ChallengeScript {
-            get { return challengeScript; }
-            set { challengeScript = value; }
+            get { return _challengeScript; }
+            set { _challengeScript = value; }
         }
+
         public string RequiredResponse {
-            get { return requiredResponse; }
-            set { requiredResponse = value; }
+            get { return _requiredResponse; }
+            set { _requiredResponse = value; }
         }
     }
 

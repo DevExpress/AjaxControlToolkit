@@ -1,6 +1,6 @@
 namespace AjaxControlToolkit.Design {
 
-    class MaskedEditExtenderDesigner: ExtenderControlBaseDesigner<MaskedEditExtender> {
+    class MaskedEditExtenderDesigner : ExtenderControlBaseDesigner<MaskedEditExtender> {
     }
 
 }

@@ -1,8 +1,8 @@
 using System;
-using System.Web.UI;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
+using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
@@ -11,8 +11,8 @@ namespace AjaxControlToolkit {
     [ClientScriptResource("Sys.Extended.UI.ResizableControlBehavior", Constants.ResizableControlName)]
     [TargetControlType(typeof(Control))]
     [ToolboxBitmap(typeof(ResizableControlExtender), "ResizableControl.ico")]
-    public class ResizableControlExtender: ExtenderControlBase {
-        private const int MaximumValue = 100000;
+    public class ResizableControlExtender : ExtenderControlBase {
+        const int MaximumValue = 100000;
 
         public ResizableControlExtender() {
             EnableClientState = true;
@@ -22,14 +22,14 @@ namespace AjaxControlToolkit {
         [DefaultValue("")]
         [RequiredProperty()]
         public string HandleCssClass {
-            get { return GetPropertyValue("HandleCssClass", ""); }
+            get { return GetPropertyValue("HandleCssClass", String.Empty); }
             set { SetPropertyValue("HandleCssClass", value); }
         }
 
         [ExtenderControlProperty()]
         [DefaultValue("")]
         public string ResizableCssClass {
-            get { return GetPropertyValue("ResizableCssClass", ""); }
+            get { return GetPropertyValue("ResizableCssClass", String.Empty); }
             set { SetPropertyValue("ResizableCssClass", value); }
         }
 
@@ -84,7 +84,7 @@ namespace AjaxControlToolkit {
         [DefaultValue("")]
         [ClientPropertyName("resize")]
         public string OnClientResize {
-            get { return GetPropertyValue("OnClientResize", ""); }
+            get { return GetPropertyValue("OnClientResize", String.Empty); }
             set { SetPropertyValue("OnClientResize", value); }
         }
 
@@ -93,7 +93,7 @@ namespace AjaxControlToolkit {
         [DefaultValue("")]
         [ClientPropertyName("resizing")]
         public string OnClientResizing {
-            get { return GetPropertyValue("OnClientResizing", ""); }
+            get { return GetPropertyValue("OnClientResizing", String.Empty); }
             set { SetPropertyValue("OnClientResizing", value); }
         }
 
@@ -102,18 +102,17 @@ namespace AjaxControlToolkit {
         [DefaultValue("")]
         [ClientPropertyName("resizebegin")]
         public string OnClientResizeBegin {
-            get { return GetPropertyValue("OnClientResizeBegin", ""); }
+            get { return GetPropertyValue("OnClientResizeBegin", String.Empty); }
             set { SetPropertyValue("OnClientResizeBegin", value); }
         }
 
         public override void EnsureValid() {
             base.EnsureValid();
-            if(MaximumWidth < MinimumWidth) {
+            if(MaximumWidth < MinimumWidth)
                 throw new ArgumentException("Maximum width must not be less than minimum width");
-            }
-            if(MaximumHeight < MinimumHeight) {
+
+            if(MaximumHeight < MinimumHeight)
                 throw new ArgumentException("Maximum height must not be less than minimum height");
-            }
         }
 
         // This Size property is available for use on the server via code-behind.
@@ -126,22 +125,19 @@ namespace AjaxControlToolkit {
                 int width;
                 int height;
 
-                string[] clientStateArray = (ClientState ?? string.Empty).Split(',');
+                var clientStateArray = (ClientState ?? String.Empty).Split(',');
 
                 if(clientStateArray.Length < 2 ||
-                    string.IsNullOrEmpty(clientStateArray[0]) ||
-                    string.IsNullOrEmpty(clientStateArray[1]) ||
-                    !int.TryParse(clientStateArray[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out width) ||
-                    !int.TryParse(clientStateArray[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out height)) {
+                    String.IsNullOrEmpty(clientStateArray[0]) ||
+                    String.IsNullOrEmpty(clientStateArray[1]) ||
+                    !Int32.TryParse(clientStateArray[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out width) ||
+                    !Int32.TryParse(clientStateArray[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out height)) {
                     return Size.Empty;
-                }
-                else {
+                } else
                     return new Size(width, height);
-                }
             }
-            set {
-                ClientState = string.Format(CultureInfo.InvariantCulture, "{0},{1}", value.Width, value.Height);
-            }
+            set { ClientState = String.Format(CultureInfo.InvariantCulture, "{0},{1}", value.Width, value.Height); }
         }
     }
+
 }

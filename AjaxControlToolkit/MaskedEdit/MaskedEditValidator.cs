@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     [ToolboxBitmap(typeof(MaskedEditValidator), "MaskedEdit.ico")]
-    public class MaskedEditValidator: BaseValidator {
+    public class MaskedEditValidator : BaseValidator {
         bool _isValidEmpty = true;
         string _messageTip = String.Empty;
         // error message

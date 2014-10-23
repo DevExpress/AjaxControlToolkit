@@ -5,8 +5,8 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.Design {
 
-    class RatingExtenderDesigner: ControlDesigner {
-        private DesignerActionListCollection _actionLists;
+    class RatingExtenderDesigner : ControlDesigner {
+        DesignerActionListCollection _actionLists;
 
         public RatingExtenderDesigner() {
         }
@@ -24,9 +24,9 @@ namespace AjaxControlToolkit.Design {
             }
         }
 
-        public class ActionList: DesignerActionList {
-            private RatingExtenderDesigner _parent;
-            private DesignerActionItemCollection _items;
+        public class ActionList : DesignerActionList {
+            RatingExtenderDesigner _parent;
+            DesignerActionItemCollection _items;
 
             public ActionList(RatingExtenderDesigner parent)
                 : base(parent.Component) {
@@ -37,7 +37,7 @@ namespace AjaxControlToolkit.Design {
                 get { return ((Rating)_parent.Component).CurrentRating; }
                 set {
                     try {
-                        PropertyDescriptor propDesc = TypeDescriptor.GetProperties(_parent.Component)["CurrentRating"];
+                        var propDesc = TypeDescriptor.GetProperties(_parent.Component)["CurrentRating"];
                         propDesc.SetValue(_parent.Component, value);
                     }
                     catch {
@@ -50,7 +50,7 @@ namespace AjaxControlToolkit.Design {
                 get { return ((Rating)_parent.Component).MaxRating; }
                 set {
                     try {
-                        PropertyDescriptor propDesc = TypeDescriptor.GetProperties(_parent.Component)["MaxRating"];
+                        var propDesc = TypeDescriptor.GetProperties(_parent.Component)["MaxRating"];
                         propDesc.SetValue(_parent.Component, value);
                     }
                     catch {
@@ -62,7 +62,7 @@ namespace AjaxControlToolkit.Design {
             public bool RealOnly {
                 get { return ((Rating)_parent.Component).ReadOnly; }
                 set {
-                    PropertyDescriptor propDesc = TypeDescriptor.GetProperties(_parent.Component)["ReadOnly"];
+                    var propDesc = TypeDescriptor.GetProperties(_parent.Component)["ReadOnly"];
                     propDesc.SetValue(_parent.Component, value);
                 }
             }
@@ -83,11 +83,11 @@ namespace AjaxControlToolkit.Design {
                 return _items;
             }
 
-            private void Alignment() {
-                Rating rating = ((Rating)_parent.Component);
+            void Alignment() {
+                var rating = ((Rating)_parent.Component);
 
                 // Get a reference to the control's Alignment property
-                PropertyDescriptor propDesc = TypeDescriptor.GetProperties(rating)["RatingAlign"];
+                var propDesc = TypeDescriptor.GetProperties(rating)["RatingAlign"];
 
                 //Switch
                 if(rating.RatingAlign == Orientation.Horizontal)
@@ -96,11 +96,11 @@ namespace AjaxControlToolkit.Design {
                     propDesc.SetValue(rating, Orientation.Horizontal);
             }
 
-            private void Direction() {
-                Rating rating = ((Rating)_parent.Component);
+            void Direction() {
+                var rating = ((Rating)_parent.Component);
 
                 // Get a reference to the control's Alignment property
-                PropertyDescriptor propDesc = TypeDescriptor.GetProperties(rating)["RatingDirection"];
+                var propDesc = TypeDescriptor.GetProperties(rating)["RatingDirection"];
 
                 //Switch
                 if(rating.RatingDirection == RatingDirection.LeftToRightTopToBottom)

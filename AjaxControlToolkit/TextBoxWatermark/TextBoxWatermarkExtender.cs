@@ -13,8 +13,8 @@ namespace AjaxControlToolkit {
     [ToolboxBitmap(typeof(TextBoxWatermarkExtender), "TextboxWatermark.ico")]
     public class TextBoxWatermarkExtender : ExtenderControlBase {
 
-        private const string stringWatermarkText = "WatermarkText";
-        private const string stringWatermarkCssClass = "WatermarkCssClass";
+        const string stringWatermarkText = "WatermarkText";
+        const string stringWatermarkCssClass = "WatermarkCssClass";
 
         public TextBoxWatermarkExtender() {
             EnableClientState = true;
@@ -37,17 +37,16 @@ namespace AjaxControlToolkit {
         [RequiredProperty()]
         [DefaultValue("")]
         public string WatermarkText {
-            get { return GetPropertyValue(stringWatermarkText, ""); }
+            get { return GetPropertyValue(stringWatermarkText, String.Empty); }
             set { SetPropertyValue(stringWatermarkText, value); }
         }
 
         [ExtenderControlProperty()]
         [DefaultValue("")]
         public string WatermarkCssClass {
-            get { return GetPropertyValue(stringWatermarkCssClass, ""); }
+            get { return GetPropertyValue(stringWatermarkCssClass, String.Empty); }
             set { SetPropertyValue(stringWatermarkCssClass, value); }
         }
-
     }
 
 }

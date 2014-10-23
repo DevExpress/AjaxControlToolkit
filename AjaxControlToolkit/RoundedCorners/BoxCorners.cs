@@ -17,4 +17,5 @@ namespace AjaxControlToolkit {
         Left = BottomLeft | TopLeft,
         All = TopLeft | TopRight | BottomRight | BottomLeft
     }
+
 }

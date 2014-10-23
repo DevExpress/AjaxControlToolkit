@@ -7,4 +7,5 @@ namespace AjaxControlToolkit {
         ValidChars = 0x1,
         InvalidChars = 0x2
     }
+
 }

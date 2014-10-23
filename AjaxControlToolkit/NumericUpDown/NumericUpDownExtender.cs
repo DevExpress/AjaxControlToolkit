@@ -1,8 +1,9 @@
-using System.Web.UI.WebControls;
-using System.Web.UI;
+using System;
 using System.ComponentModel;
-using System.Drawing.Design;
 using System.Drawing;
+using System.Drawing.Design;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
@@ -38,8 +39,8 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("ServiceUpPath", value); }
         }
 
-        private bool ShouldSerializeServiceUpPath() {
-            return !string.IsNullOrEmpty(ServiceUpMethod);
+        bool ShouldSerializeServiceUpPath() {
+            return !String.IsNullOrEmpty(ServiceUpMethod);
         }
 
         // Method to the helper web service
@@ -59,8 +60,8 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("ServiceDownPath", value); }
         }
 
-        private bool ShouldSerializeServieDownPath() {
-            return !string.IsNullOrEmpty(ServiceDownMethod);
+        bool ShouldSerializeServieDownPath() {
+            return !String.IsNullOrEmpty(ServiceDownMethod);
         }
 
         // Method to the helper web service
@@ -69,7 +70,6 @@ namespace AjaxControlToolkit {
             get { return GetPropertyValue("ServiceDownMethod", ""); }
             set { SetPropertyValue("ServiceDownMethod", value); }
         }
-
 
         // Step used for simple numeric incrementing and decrementing
         [DefaultValue(1.0)]
@@ -114,4 +114,5 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("Tag", value); }
         }
     }
+
 }

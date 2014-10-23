@@ -6,6 +6,7 @@
         // СontextKey is an optional user specific context.
         // Returns slides to display.
         [PageMethodSignature("SlideShow", "SlideShowServicePath", "SlideShowServiceMethod", "UseContextKey")]
-        private delegate Slide[] GetSlides(string contextKey);
+        delegate Slide[] GetSlides(string contextKey);
     }
+
 }

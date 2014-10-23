@@ -1,6 +1,7 @@
-using System.Web.UI;
+using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
@@ -15,8 +16,9 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [RequiredProperty]
         public string Key {
-            get { return GetPropertyValue("Key", string.Empty); }
+            get { return GetPropertyValue("Key", String.Empty); }
             set { SetPropertyValue("Key", value); }
         }
     }
+
 }

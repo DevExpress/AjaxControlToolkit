@@ -9,4 +9,5 @@ namespace AjaxControlToolkit {
         UppercaseLetters = 0x4,
         LowercaseLetters = 0x8
     }
+
 }

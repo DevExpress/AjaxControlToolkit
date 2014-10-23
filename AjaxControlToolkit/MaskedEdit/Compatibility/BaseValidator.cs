@@ -8,7 +8,7 @@ namespace AjaxControlToolkit.MaskedEditValidatorCompatibility {
 
     [AspNetHostingPermission(SecurityAction.LinkDemand, Level = AspNetHostingPermissionLevel.Minimal)]
     [AspNetHostingPermission(SecurityAction.InheritanceDemand, Level = AspNetHostingPermissionLevel.Minimal)]
-    public abstract class BaseValidator: System.Web.UI.WebControls.BaseValidator, IBaseValidatorAccessor {
+    public abstract class BaseValidator : System.Web.UI.WebControls.BaseValidator, IBaseValidatorAccessor {
         ScriptManager _scriptManager;
         bool _scriptManagerChecked;
 

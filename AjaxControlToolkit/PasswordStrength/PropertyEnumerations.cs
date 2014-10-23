@@ -13,4 +13,5 @@ namespace AjaxControlToolkit {
         Text = 0,
         BarIndicator = 1
     }
+
 }

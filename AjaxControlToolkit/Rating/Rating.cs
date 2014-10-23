@@ -1,13 +1,10 @@
-
-
-
-using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
@@ -16,12 +13,12 @@ namespace AjaxControlToolkit {
     [NonVisualControl, ToolboxData("<{0}:Rating runat=\"server\"></{0}:Rating>")]
     [DesignerAttribute(typeof(RatingExtenderDesigner))]
     [ToolboxBitmap(typeof(Rating), "Rating.ico")]
-    public class Rating: Panel, ICallbackEventHandler, IPostBackEventHandler {
-        private static readonly object EventChange = new object();
-        private RatingExtender _extender;
-        private string _returnFromEvent;
-        private Orientation _align;
-        private RatingDirection _direction;
+    public class Rating : Panel, ICallbackEventHandler, IPostBackEventHandler {
+        static readonly object EventChange = new object();
+        RatingExtender _extender;
+        string _returnFromEvent;
+        Orientation _align;
+        RatingDirection _direction;
 
         public Rating() {
         }
@@ -55,8 +52,7 @@ namespace AjaxControlToolkit {
                 if(value <= MaxRating) {
                     EnsureChildControls();
                     _extender.Rating = value;
-                }
-                else
+                } else
                     throw new ArgumentOutOfRangeException("CurrentRating", "CurrentRating must be greater than MaxRating");
             }
         }
@@ -75,11 +71,9 @@ namespace AjaxControlToolkit {
                 if(value > 0) {
                     EnsureChildControls();
                     _extender.MaxRating = value;
-                    if(CurrentRating > value) {
+                    if(CurrentRating > value)
                         CurrentRating = MaxRating;
-                    }
-                }
-                else
+                } else
                     throw new ArgumentOutOfRangeException("MaxRating", "MaxRating must be greater than zero");
             }
         }
@@ -221,6 +215,7 @@ namespace AjaxControlToolkit {
                 _extender.RatingDirection = (int)value;
             }
         }
+
         public override string ID {
             get { return base.ID; }
             set {
@@ -230,13 +225,14 @@ namespace AjaxControlToolkit {
                 _extender.TargetControlID = value;
             }
         }
+
         protected override void CreateChildControls() {
             base.CreateChildControls();
 
             _extender = new RatingExtender();
 
             //No add Extender in design mode if not add tag Extender and Properties in control
-            if(!this.DesignMode) {
+            if(!DesignMode) {
                 Controls.Add(_extender);
             }
         }
@@ -244,17 +240,17 @@ namespace AjaxControlToolkit {
         protected override void RenderContents(HtmlTextWriter writer) {
             base.RenderContents(writer);
 
-            int currentRating = this.CurrentRating;
-            int maxRating = this.MaxRating;
+            var currentRating = CurrentRating;
+            var maxRating = MaxRating;
 
             writer.AddAttribute("href", "javascript:void(0)");
             writer.AddAttribute("style", "text-decoration:none");
-            writer.AddAttribute("id", this.ClientID + "_A");
+            writer.AddAttribute("id", ClientID + "_A");
             writer.AddAttribute("title", currentRating.ToString(CultureInfo.CurrentCulture));
             writer.RenderBeginTag(HtmlTextWriterTag.A);
             //CreateSPAN
-            for(int i = 1; i < MaxRating + 1; i++) {
-                writer.AddAttribute("id", this.ClientID + "_Star_" + i.ToString(CultureInfo.InvariantCulture));
+            for(var i = 1; i < MaxRating + 1; i++) {
+                writer.AddAttribute("id", ClientID + "_Star_" + i.ToString(CultureInfo.InvariantCulture));
                 if(_align == Orientation.Horizontal)
                     writer.AddStyleAttribute("float", "left");
                 if(_direction == RatingDirection.LeftToRightTopToBottom)
@@ -267,6 +263,7 @@ namespace AjaxControlToolkit {
                         writer.AddAttribute("class", StarCssClass + " " + EmptyStarCssClass);
                     else
                         writer.AddAttribute("class", StarCssClass + " " + FilledStarCssClass);
+
                 writer.RenderBeginTag(HtmlTextWriterTag.Span);
                 writer.Write("&nbsp;");
                 writer.RenderEndTag();
@@ -277,13 +274,13 @@ namespace AjaxControlToolkit {
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
 
-            ClientScriptManager cm = Page.ClientScript;
+            var cm = Page.ClientScript;
 
             // Create JavaScript function for ClientCallBack WebForm_DoCallBack
             // Not sure why we need it, but the callback doesn't get registered on the client
             // side properly without it.
             //
-            cm.GetCallbackEventReference(this, "", "", "");
+            cm.GetCallbackEventReference(this, String.Empty, String.Empty, String.Empty);
 
             EnsureChildControls();
 
@@ -296,7 +293,7 @@ namespace AjaxControlToolkit {
         }
 
         protected virtual void OnChanged(RatingEventArgs e) {
-            RatingEventHandler eventHandler = (RatingEventHandler)base.Events[Rating.EventChange];
+            var eventHandler = (RatingEventHandler)base.Events[Rating.EventChange];
             if(eventHandler != null) {
                 eventHandler(this, e);
             }
@@ -309,8 +306,8 @@ namespace AjaxControlToolkit {
         }
 
         public void RaiseCallbackEvent(string eventArgument) {
-            RatingEventArgs args = new RatingEventArgs(eventArgument);
-            this.OnChanged(args);
+            var args = new RatingEventArgs(eventArgument);
+            OnChanged(args);
             _returnFromEvent = args.CallbackResult;
         }
 
@@ -319,8 +316,8 @@ namespace AjaxControlToolkit {
         #region IPostBackEventHandler Members
 
         public void RaisePostBackEvent(string eventArgument) {
-            RatingEventArgs args = new RatingEventArgs(eventArgument);
-            this.OnChanged(args);
+            var args = new RatingEventArgs(eventArgument);
+            OnChanged(args);
         }
 
         #endregion
@@ -328,17 +325,16 @@ namespace AjaxControlToolkit {
 
     public delegate void RatingEventHandler(object sender, RatingEventArgs e);
 
-    public class RatingEventArgs: EventArgs {
-        private string _value;
-        private string _tag;
-        private string _callbackResult;
+    public class RatingEventArgs : EventArgs {
+        string _value;
+        string _tag;
+        string _callbackResult;
 
         public RatingEventArgs(string args) {
-            if(args == null) {
+            if(args == null)
                 throw new ArgumentNullException("args");
-            }
 
-            string[] tabArgs = args.Split(';');
+            var tabArgs = args.Split(';');
             if(tabArgs.Length == 2) {
                 _value = tabArgs[0];
                 _tag = tabArgs[1];

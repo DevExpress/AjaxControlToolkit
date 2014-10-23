@@ -14,7 +14,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(TimerScript))]
     [TargetControlType(typeof(TextBox))]
     [ToolboxBitmap(typeof(MaskedEditExtender), "MaskedEdit.ico")]
-    public class MaskedEditExtender: ExtenderControlBase {
+    public class MaskedEditExtender : ExtenderControlBase {
         // Enable client state for communicating default focus
         public MaskedEditExtender() {
             EnableClientState = true;

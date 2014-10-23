@@ -65,28 +65,23 @@ namespace AjaxControlToolkit {
                         maskConv.Append(text.Substring(i, 1));
                         qtdmask.Length = 0;
                         maskchar = text.Substring(i, 1);
-                    }
-                    else if(text.Substring(i, 1) == "9")
+                    } else if(text.Substring(i, 1) == "9")
                         qtdmask.Append("9");
                     else if(text.Substring(i, 1) == "0")
                         qtdmask.Append("0");
-                }
-                else if(_charsEditMask.IndexOf(text.Substring(i, 1), StringComparison.Ordinal) == -1 && text.Substring(i, 1) != "{" && text.Substring(i, 1) != "}") {
+                } else if(_charsEditMask.IndexOf(text.Substring(i, 1), StringComparison.Ordinal) == -1 && text.Substring(i, 1) != "{" && text.Substring(i, 1) != "}") {
                     if(qtdmask.Length == 0) {
                         maskConv.Append(text.Substring(i, 1));
                         qtdmask.Length = 0;
                         maskchar = String.Empty;
-                    }
-                    else {
+                    } else {
                         if(_charNumbers.IndexOf(text.Substring(i, 1), StringComparison.Ordinal) != -1)
                             qtdmask.Append(text.Substring(i, 1));
                     }
-                }
-                else if(text.Substring(i, 1) == "{" && qtdmask.Length == 0) {
+                } else if(text.Substring(i, 1) == "{" && qtdmask.Length == 0) {
                     qtdmask.Length = 0;
                     qtdmask.Append("0");
-                }
-                else if(text.Substring(i, 1) == "}" && qtdmask.Length != 0) {
+                } else if(text.Substring(i, 1) == "}" && qtdmask.Length != 0) {
                     var qtddup = int.Parse(qtdmask.ToString(), CultureInfo.InvariantCulture) - 1;
                     if(qtddup > 0) {
                         var q = 0;

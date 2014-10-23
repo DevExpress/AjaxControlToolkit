@@ -2,7 +2,7 @@ using System.Web.UI.Design;
 
 namespace AjaxControlToolkit.Design {
 
-    public class NoBotExtenderDesigner: ControlDesigner {
+    public class NoBotExtenderDesigner : ControlDesigner {
         public NoBotExtenderDesigner() {
         }
 

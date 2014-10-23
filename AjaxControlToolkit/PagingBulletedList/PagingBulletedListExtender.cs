@@ -1,7 +1,8 @@
-using System.Web.UI.WebControls;
-using System.Web.UI;
+using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
@@ -50,14 +51,15 @@ namespace AjaxControlToolkit {
 
         [ExtenderControlProperty()]
         public string SelectIndexCssClass {
-            get { return GetPropertyValue<string>("SelectIndexCssClass", string.Empty); }
+            get { return GetPropertyValue<string>("SelectIndexCssClass", String.Empty); }
             set { SetPropertyValue<string>("SelectIndexCssClass", value); }
         }
 
         [ExtenderControlProperty()]
         public string UnselectIndexCssClass {
-            get { return GetPropertyValue<string>("UnselectIndexCssClass", string.Empty); }
+            get { return GetPropertyValue<string>("UnselectIndexCssClass", String.Empty); }
             set { SetPropertyValue<string>("UnselectIndexCssClass", value); }
         }
     }
+
 }

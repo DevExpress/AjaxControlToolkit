@@ -5,7 +5,7 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
-    public class MaskedEditTypeConvert: StringConverter {
+    public class MaskedEditTypeConvert : StringConverter {
         public override bool GetStandardValuesSupported(ITypeDescriptorContext context) {
             return true;
         }

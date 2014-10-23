@@ -1,6 +1,6 @@
-using System.Web.UI;
 using System.ComponentModel;
 using System.Drawing;
+using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
@@ -53,4 +53,5 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("Radius", value); }
         }
     }
+
 }

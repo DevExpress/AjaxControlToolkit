@@ -1,14 +1,14 @@
 using System;
-using System.Web.UI;
 using System.ComponentModel;
 using System.Globalization;
+using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
     [ToolboxItem(false)]
     [TargetControlType(typeof(Rating))]
     [ClientScriptResource("Sys.Extended.UI.RatingBehavior", Constants.RatingName)]
-    public class RatingExtender: ExtenderControlBase {
+    public class RatingExtender : ExtenderControlBase {
         public RatingExtender() {
             EnableClientState = true;
         }
@@ -31,10 +31,10 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         public int Rating {
             get {
-                string value = ClientState;
-                if(value == null) {
+                var value = ClientState;
+                if(value == null)
                     value = "0";
-                }
+
                 return Int32.Parse(value, CultureInfo.InvariantCulture);
             }
             set { ClientState = value.ToString(CultureInfo.InvariantCulture); }
@@ -43,14 +43,14 @@ namespace AjaxControlToolkit {
         [DefaultValue("")]
         [ExtenderControlProperty]
         public string CallbackID {
-            get { return GetPropertyValue("CallbackID", string.Empty); }
+            get { return GetPropertyValue("CallbackID", String.Empty); }
             set { SetPropertyValue("CallbackID", value); }
         }
 
         [DefaultValue("")]
         [ExtenderControlProperty]
         public string Tag {
-            get { return GetPropertyValue("Tag", string.Empty); }
+            get { return GetPropertyValue("Tag", String.Empty); }
             set { SetPropertyValue("Tag", value); }
         }
 
@@ -88,7 +88,7 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [RequiredProperty]
         public string FilledStarCssClass {
-            get { return GetPropertyValue("FilledStarCssClass", string.Empty); }
+            get { return GetPropertyValue("FilledStarCssClass", String.Empty); }
             set { SetPropertyValue("FilledStarCssClass", value); }
         }
 
@@ -96,7 +96,7 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [RequiredProperty]
         public string EmptyStarCssClass {
-            get { return GetPropertyValue("EmptyStarCssClass", string.Empty); }
+            get { return GetPropertyValue("EmptyStarCssClass", String.Empty); }
             set { SetPropertyValue("EmptyStarCssClass", value); }
         }
 
@@ -104,11 +104,9 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [RequiredProperty]
         public string WaitingStarCssClass {
-            get { return GetPropertyValue("WaitingStarCssClass", string.Empty); }
+            get { return GetPropertyValue("WaitingStarCssClass", String.Empty); }
             set { SetPropertyValue("WaitingStarCssClass", value); }
         }
     }
 
 }
-
-
