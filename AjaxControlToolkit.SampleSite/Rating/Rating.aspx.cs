@@ -1,20 +1,26 @@
 ﻿using AjaxControlToolkit;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Rating_Rating: System.Web.UI.Page {
+public partial class Rating_Rating : System.Web.UI.Page {
+
     protected void Page_Load(object sender, EventArgs e) {
-        ThaiRating.RatingAlign = (lstAlign.SelectedIndex == 1) ?
-                Orientation.Vertical :
-                Orientation.Horizontal;
-        ThaiRating.RatingDirection = (lstDirection.SelectedIndex == 1) ?
-                RatingDirection.RightToLeftBottomToTop :
-                RatingDirection.LeftToRightTopToBottom;
+        ThaiRating.RatingAlign = (lstAlign.SelectedIndex == 1)
+            ? Orientation.Vertical
+            : Orientation.Horizontal;
+
+        ThaiRating.RatingDirection = (lstDirection.SelectedIndex == 1)
+            ? RatingDirection.RightToLeftBottomToTop
+            : RatingDirection.LeftToRightTopToBottom;
     }
 
     protected void Submit_Click(object sender, EventArgs e) {
-        string howSpicy = "[unknown]";
+        var howSpicy = "[unknown]";
         switch(ThaiRating.CurrentRating) {
             case 1:
                 howSpicy = "bland";

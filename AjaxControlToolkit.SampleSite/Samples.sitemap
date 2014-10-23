@@ -6,6 +6,7 @@
         <siteMapNode url="~/DropShadow/DropShadow.aspx" title="DropShadow" />
         <siteMapNode url="~/FilteredTextBox/FilteredTextBox.aspx" title="FilteredTextBox" />
         <siteMapNode url="~/MutuallyExclusiveCheckBox/MutuallyExclusiveCheckBox.aspx" title="MutuallyExclusiveCheckBox" />
+        <siteMapNode url="~/MaskedEdit/MaskedEdit.aspx" title="MaskedEdit" />
         <siteMapNode url="~/NoBot/NoBot.aspx" title="NoBot" />
         <siteMapNode url="~/NumericUpDown/NumericUpDown.aspx" title="NumericUpDown" />
         <siteMapNode url="~/PagingBulletedList/PagingBulletedList.aspx" title="PagingBulletedList" />
