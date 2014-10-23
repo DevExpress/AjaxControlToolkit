@@ -32,6 +32,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.MaskedEditName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.MaskedEditName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.MaskedEditValidatorName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.MaskedEditValidatorName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.MutuallyExclusiveCheckBoxName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.MutuallyExclusiveCheckBoxName + Constants.JsPostfix, "text/javascript")]
 

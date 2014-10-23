@@ -20,6 +20,8 @@ namespace AjaxControlToolkit {
             DragPanelName = "DragPanel",
             DropShadowName = "DropShadow",
             FilteredTextBoxName = "FilteredTextBox",
+            MaskedEditName = "MaskedEdit",
+            MaskedEditValidatorName = "MaskedEditValidator",
             MutuallyExclusiveCheckBoxName = "MutuallyExclusiveCheckBox",
             NoBotName = "NoBot",
             NumericUpDownName = "NumericUpDown",

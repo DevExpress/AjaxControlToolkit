@@ -81,6 +81,17 @@
     <Compile Include="FiteredTextBox\FilteredTextBoxExtender.cs" />
     <Compile Include="FiteredTextBox\FilterModes.cs" />
     <Compile Include="FiteredTextBox\FilterTypes.cs" />
+    <Compile Include="MaskedEdit\Compatibility\BaseValidator.cs" />
+    <Compile Include="MaskedEdit\Compatibility\IBaseCompareValidatorAccessor.cs" />
+    <Compile Include="MaskedEdit\Compatibility\IBaseValidatorAccessor.cs" />
+    <Compile Include="MaskedEdit\Compatibility\IWebControlAccessor.cs" />
+    <Compile Include="MaskedEdit\Compatibility\ValidatorHelper.cs" />
+    <Compile Include="MaskedEdit\MaskedEditCommon.cs" />
+    <Compile Include="MaskedEdit\MaskedEditExtenderDesigner.cs" />
+    <Compile Include="MaskedEdit\MaskedEditEnum.cs" />
+    <Compile Include="MaskedEdit\MaskedEditExtender.cs" />
+    <Compile Include="MaskedEdit\MaskedEditTypeConvert.cs" />
+    <Compile Include="MaskedEdit\MaskedEditValidator.cs" />
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtenderDesigner.cs" />
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtender.cs" />
     <Compile Include="NoBot\NoBot.cs" />
@@ -234,6 +245,14 @@
     <Content Include="Scripts\Localization\Resources_zh-CHT.min.js">
       <DependentUpon>Resources_zh-CHT.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\MaskedEdit.js" />
+    <Content Include="Scripts\MaskedEdit.min.js">
+      <DependentUpon>MaskedEdit.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\MaskedEditValidator.js" />
+    <Content Include="Scripts\MaskedEditValidator.min.js">
+      <DependentUpon>MaskedEditValidator.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\MutuallyExclusiveCheckBox.js" />
     <Content Include="Scripts\MutuallyExclusiveCheckBox.min.js">
       <DependentUpon>MutuallyExclusiveCheckBox.js</DependentUpon>
@@ -283,6 +302,7 @@
     <Content Include="ToolboxIcons\DragPanel.ico" />
     <Content Include="ToolboxIcons\DropShadow.ico" />
     <Content Include="ToolboxIcons\FilteredTextBox.ico" />
+    <Content Include="ToolboxIcons\MaskedEdit.ico" />
     <Content Include="ToolboxIcons\MutuallyExclusiveCheckBox.ico" />
     <Content Include="ToolboxIcons\NoBot.ico" />
     <Content Include="ToolboxIcons\PagingBulletedList.ico" />
