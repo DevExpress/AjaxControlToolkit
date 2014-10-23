@@ -10,8 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.Tests", "AjaxControlToolkit.Tests\AjaxControlToolkit.Tests.csproj", "{6B8ADD9E-818C-407D-BE71-3DC78D3D46EE}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkit.SampleSite", "AjaxControlToolkit.SampleSite\", "{5B8E3F7D-A045-46D2-9EA0-D5AEC3152504}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkit.SampleSite", "http://localhost:49290", "{5B8E3F7D-A045-46D2-9EA0-D5AEC3152504}"
 	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		ProjectReferences = "{676b3449-93f7-4102-8df0-fb51911675d6}|AjaxControlToolkit.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/AjaxControlToolkit.SampleSite"
@@ -28,7 +29,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkit.SampleSi
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "49290"
+		SlnRelativePath = "AjaxControlToolkit.SampleSite\"
 	EndProjectSection
 EndProject
 Global

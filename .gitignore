@@ -4,3 +4,5 @@
 *.user
 packages/
 StaticFiles/
+AjaxControlToolkit.SampleSite/Scripts/AjaxControlToolkit/
+AjaxControlToolkit.SampleSite/Content/AjaxControlToolkit/

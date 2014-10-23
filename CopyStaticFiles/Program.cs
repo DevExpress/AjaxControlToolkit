@@ -12,19 +12,28 @@ namespace CopyStaticFiles {
         static void Main(string[] args) {
             // NOTE paths are relative to Bin 
 
-            const string outputDir = "../StaticFiles";
-            const string scriptsPrefix = "Scripts/AjaxControlToolkit";
+            const string
+                outputDir = "../StaticFiles/",
+                samplesDir = "../AjaxControlToolkit.SampleSite",
+                contentDir = "Content/AjaxControlToolkit/",
+                scriptsDir = "Scripts/AjaxControlToolkit/",
+                stylesDir = contentDir + "Styles";
 
             foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Scripts", "*.js"))
-                LinkScript(Path.Combine(outputDir, scriptsPrefix), path);
+                LinkScript(Path.Combine(outputDir, scriptsDir), path);
 
             foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Scripts/Localization", "*.js"))
-                LinkScript(Path.Combine(outputDir, scriptsPrefix), path, TransformLocalizationScriptName);
+                LinkScript(Path.Combine(outputDir, scriptsDir), path, TransformLocalizationScriptName);
+
+            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Styles", "*.css"))
+                LinkStyle(Path.Combine(outputDir, stylesDir), path);
+
+            LinkSamples(outputDir, samplesDir, scriptsDir);
+            LinkSamples(outputDir, samplesDir, contentDir);
         }
 
         static void LinkScript(string prefix, string path, Func<string, string> fileNameTransformer = null) {
             var fileName = Path.GetFileName(path);
-
 
             if(fileNameTransformer != null)
                 fileName = fileNameTransformer(fileName);
@@ -34,28 +43,55 @@ namespace CopyStaticFiles {
             else
                 fileName = Path.Combine("Debug", fileName.Replace(".js", ".debug.js"));
 
-            CreateHardLink(path, Path.Combine(prefix, fileName));            
+            CreateHardLink(path, Path.Combine(prefix, fileName));
+        }
+
+        static void LinkStyle(string prefix, string path) {
+            var fileName = Path.GetFileName(path);
+            CreateHardLink(path, Path.Combine(prefix, fileName));
+        }
+
+        static void LinkSamples(string outputDir, string samplesDir, string filePrefix) {
+            var samplesScriptsDirName = Path.Combine(samplesDir, filePrefix);
+            var staticFilesDirName = Path.GetFullPath(Path.Combine(outputDir, filePrefix));
+
+            CreateSymbolicLink(staticFilesDirName, samplesScriptsDirName);
         }
 
         static string TransformLocalizationScriptName(string name) {
-            return "Localization." + name.Replace("Resources_", "Resources.");                            
+            return "Localization." + name.Replace("Resources_", "Resources.");
         }
 
         static void CreateHardLink(string source, string destination) {
-            var dir = Path.GetDirectoryName(destination);
-            if(!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
-
-            if(File.Exists(destination))
-                File.Delete(destination);
+            EnsurePath(destination);
 
             if(!CreateHardLink(destination, source, IntPtr.Zero))
                 throw new Exception("Failed to create hardlink");
         }
 
+        static void CreateSymbolicLink(string source, string destination) {
+            EnsurePath(destination);
+
+            Directory.Delete(destination);
+
+            if(!CreateSymbolicLink(destination, source, 1))
+                throw new Exception("Failed to create symlink");
+        }
+
+        static void EnsurePath(string path) {
+            var dir = Path.GetDirectoryName(path);
+            if(!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            if(File.Exists(path))
+                File.Delete(path);
+        }
+
         [DllImport("Kernel32.dll", CharSet = CharSet.Unicode)]
         static extern bool CreateHardLink(string lpFileName, string lpExistingFileName, IntPtr lpSecurityAttributes);
 
+        [DllImport("kernel32.dll")]
+        static extern bool CreateSymbolicLink(string lpSymlinkFileName, string lpTargetFileName, int dwFlags);
     }
 
 }

@@ -1,14 +1,22 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Layout.master.cs" Inherits="Layout" %>
+<%@ Import Namespace="System.Web.Optimization" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+    <asp:PlaceHolder runat="server">
+        <%: Styles.Render("~/bundles/AjaxControlToolkit/Styles") %>
+    </asp:PlaceHolder>
 </head>
 <body>
     <form id="MasterPageForm" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="~/bundles/AjaxControlToolkit/Scripts" />
+            </Scripts>
+        </asp:ScriptManager>
         <div id="master_header">
             <div id="master_headertop">
                 <asp:HyperLink ID="HomePageLink" runat="server" NavigateUrl="~/Default.aspx" ToolTip="Ajax Control Toolkit">
