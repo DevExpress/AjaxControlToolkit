@@ -46,6 +46,10 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlExtenderDesigner.cs" />
+    <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlExtender.cs" />
+    <Compile Include="AlwaysVisibleControl\HorizontalSide.cs" />
+    <Compile Include="AlwaysVisibleControl\VerticalSide.cs" />
     <Compile Include="Animation\Animation.cs" />
     <Compile Include="Animation\AnimationExtender.cs" />
     <Compile Include="Animation\AnimationExtenderDesigner.cs" />
@@ -154,6 +158,10 @@
       <Visible>False</Visible>
     </EmbeddedResource>
     <!-- end -->
+    <Content Include="Scripts\AlwaysVisibleControl.js" />
+    <Content Include="Scripts\AlwaysVisibleControl.min.js">
+      <DependentUpon>AlwaysVisibleControl.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Animation.js" />
     <Content Include="Scripts\Animation.min.js">
       <DependentUpon>Animation.js</DependentUpon>
@@ -319,6 +327,7 @@
     <EmbeddedResource Include="Styles\SlideShow.min.css">
       <DependentUpon>SlideShow.css</DependentUpon>
     </EmbeddedResource>
+    <Content Include="ToolboxIcons\AlwaysVisible.ico" />
     <Content Include="ToolboxIcons\Animation.ico" />
     <Content Include="ToolboxIcons\CollapsiblePanel.ico" />
     <Content Include="ToolboxIcons\DragPanel.ico" />
