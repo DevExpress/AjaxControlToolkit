@@ -18,6 +18,7 @@
         <siteMapNode url="~/Rating/Rating.aspx" title="Rating" />
         <siteMapNode url="~/ResizableControl/ResizableControl.aspx" title="ResizableControl" />
         <siteMapNode url="~/RoundedCorners/RoundedCorners.aspx" title="RoundedCorners" />
+        <siteMapNode url="~/Slider/Slider.aspx" title="Slider" />
         <siteMapNode url="~/SlideShow/SlideShow.aspx" title="SlideShow" />
         <siteMapNode url="~/TextBoxWatermark/TextBoxWatermark.aspx" title="TextBoxWatermark" />
         <siteMapNode url="~/UpdatePanelAnimation/UpdatePanelAnimation.aspx" title="UpdatePanelAnimation" />

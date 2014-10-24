@@ -7,6 +7,7 @@ namespace AjaxControlToolkit {
             CssPostfix = ".css",
             MinCssPostfix = ".min" + CssPostfix,
 
+            ImageResourcePrefix = "AjaxControlToolkit.Images.",
             ScriptStaticPrefix = "~/Scripts/AjaxControlToolkit/",
             ScriptStaticDebugPrefix = ScriptStaticPrefix + "Debug/",
             ScriptStaticReleasePrefix = ScriptStaticPrefix + "Release/",
@@ -37,6 +38,7 @@ namespace AjaxControlToolkit {
             RatingName = "Rating",
             ResizableControlName = "ResizableControl",
             RoundedCornersName = "RoundedCorners",
+            SliderName = "Slider",
             SlideShowName = "SlideShow",
             TextBoxWatermarkName = "TextBoxWatermark",
             UpdatePanelAnimationName = "UpdatePanelAnimation";

@@ -76,6 +76,15 @@ using System.Web.UI;
 [assembly: WebResource(Constants.RoundedCornersName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.RoundedCornersName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.SliderName + Constants.DebugJsPostfix, "text/javascript", PerformSubstitution = true)]
+[assembly: WebResource(Constants.SliderName + Constants.JsPostfix, "text/javascript", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.SliderName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.SliderName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderName + "Handle-H.gif", "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderName + "Handle-V.gif", "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderName + "Rail-H.gif", "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderName + "Rail-V.gif", "image/gif")]
+
 [assembly: WebResource(Constants.SlideShowName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.SlideShowName + Constants.JsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.SlideShowName + Constants.CssPostfix, "text/css")]
