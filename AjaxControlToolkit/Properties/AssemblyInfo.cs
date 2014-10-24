@@ -29,6 +29,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.CompatTimerScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CompatTimerScriptName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.CollapsiblePanel + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.CollapsiblePanel + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.DragPanelName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DragPanelName + Constants.JsPostfix, "text/javascript")]
 

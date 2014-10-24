@@ -23,6 +23,7 @@ namespace AjaxControlToolkit {
             AnimationScriptsName = "AnimationScripts",
             DragPanelName = "DragPanel",
             DropShadowName = "DropShadow",
+            CollapsiblePanel = "CollapsiblePanel",
             FilteredTextBoxName = "FilteredTextBox",
             MaskedEditName = "MaskedEdit",
             MaskedEditValidatorName = "MaskedEditValidator",
