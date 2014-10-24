@@ -138,9 +138,16 @@
     <Compile Include="TextBoxWatermark\TextBoxWatermarkExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Localization.cs" />
+    <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationExtenderDesigner.cs" />
+    <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationExtender.cs" />
   </ItemGroup>
   <ItemGroup>
     <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
+    <Content Include="Scripts\UpdatePanelAnimation.js" />
+    <Content Include="Scripts\UpdatePanelAnimation.min.js">
+      <DependentUpon>UpdatePanelAnimation.js</DependentUpon>
+    </Content>
+    <Content Include="ToolboxIcons\UpdatePanelAnimation.ico" />
     <EmbeddedResource Include="Scripts\*.min.js">
       <LogicalName>$([System.String]::Copy(%(FileName)).Replace('.min','')).js</LogicalName>
       <Visible>False</Visible>

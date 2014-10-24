@@ -19,5 +19,6 @@
         <siteMapNode url="~/RoundedCorners/RoundedCorners.aspx" title="RoundedCorners" />
         <siteMapNode url="~/SlideShow/SlideShow.aspx" title="SlideShow" />
         <siteMapNode url="~/TextBoxWatermark/TextBoxWatermark.aspx" title="TextBoxWatermark" />
+        <siteMapNode url="~/UpdatePanelAnimation/UpdatePanelAnimation.aspx" title="UpdatePanelAnimation" />
     </siteMapNode>
 </siteMap>

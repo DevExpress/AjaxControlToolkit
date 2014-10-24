@@ -81,6 +81,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.TextBoxWatermarkName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.TextBoxWatermarkName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.UpdatePanelAnimationName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.UpdatePanelAnimationName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.LocalizationScriptName + Constants.JsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.LocalizationScriptName + Constants.DebugJsPostfix, "text/javascript")]
 

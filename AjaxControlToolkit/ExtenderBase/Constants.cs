@@ -37,6 +37,7 @@ namespace AjaxControlToolkit {
             ResizableControlName = "ResizableControl",
             RoundedCornersName = "RoundedCorners",
             SlideShowName = "SlideShow",
-            TextBoxWatermarkName = "TextBoxWatermark";
+            TextBoxWatermarkName = "TextBoxWatermark",
+            UpdatePanelAnimationName = "UpdatePanelAnimation";
     }
 }
