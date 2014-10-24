@@ -19,6 +19,8 @@ namespace AjaxControlToolkit {
             CompatTimerScriptName = "Compat.Timer",
             LocalizationScriptName = "Localization.Resources",
 
+            AnimationName = "Animation",
+            AnimationScriptsName = "AnimationScripts",
             DragPanelName = "DragPanel",
             DropShadowName = "DropShadow",
             FilteredTextBoxName = "FilteredTextBox",

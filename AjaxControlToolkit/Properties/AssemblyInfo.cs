@@ -11,6 +11,12 @@ using System.Web.UI;
 [assembly: ComVisible(false)]
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 
+[assembly: WebResource(Constants.AnimationName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.AnimationName + Constants.JsPostfix, "text/javascript")]
+
+[assembly: WebResource(Constants.AnimationScriptsName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.AnimationScriptsName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.BaseScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.BaseScriptName + Constants.JsPostfix, "text/javascript")]
 

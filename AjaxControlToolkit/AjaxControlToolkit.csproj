@@ -46,6 +46,11 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Animation\Animation.cs" />
+    <Compile Include="Animation\AnimationExtender.cs" />
+    <Compile Include="Animation\AnimationExtenderDesigner.cs" />
+    <Compile Include="Animation\AnimationJavaScriptConverter.cs" />
+    <Compile Include="Animation\AnimationScripts.cs" />
     <Compile Include="Bundling\BundleResolver.cs" />
     <Compile Include="Bundling\ConfigXmlElements.cs" />
     <Compile Include="Bundling\DefaultCache.cs" />
@@ -56,6 +61,7 @@
     <Compile Include="DragPanel\DragPanelExtenderDesigner.cs" />
     <Compile Include="DropShadow\DropShadowExtenderDesigner.cs" />
     <Compile Include="DropShadow\DropShadowExtender.cs" />
+    <Compile Include="ExtenderBase\AnimationExtenderControlBase.cs" />
     <Compile Include="ExtenderBase\ClientCssResourceAttribute.cs" />
     <Compile Include="ExtenderBase\ClientPropertyNameAttribute.cs" />
     <Compile Include="ExtenderBase\ClientResourceAttribute.cs" />
@@ -145,6 +151,14 @@
       <Visible>False</Visible>
     </EmbeddedResource>
     <!-- end -->
+    <Content Include="Scripts\Animation.js" />
+    <Content Include="Scripts\Animation.min.js">
+      <DependentUpon>Animation.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\AnimationScripts.js" />
+    <Content Include="Scripts\AnimationScripts.min.js">
+      <DependentUpon>AnimationScripts.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\BaseScripts.js" />
     <Content Include="Scripts\BaseScripts.min.js">
       <DependentUpon>BaseScripts.js</DependentUpon>
@@ -298,6 +312,7 @@
     <EmbeddedResource Include="Styles\SlideShow.min.css">
       <DependentUpon>SlideShow.css</DependentUpon>
     </EmbeddedResource>
+    <Content Include="ToolboxIcons\Animation.ico" />
     <Content Include="ToolboxIcons\DragPanel.ico" />
     <Content Include="ToolboxIcons\DropShadow.ico" />
     <Content Include="ToolboxIcons\FilteredTextBox.ico" />

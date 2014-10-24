@@ -2,6 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
     <siteMapNode>
         <siteMapNode url="~/Default.aspx" title="HOME" />
+        <siteMapNode url="~/Animation/Animation.aspx" title="Animation" />
         <siteMapNode url="~/DragPanel/DragPanel.aspx" title="DragPanel" />
         <siteMapNode url="~/DropShadow/DropShadow.aspx" title="DropShadow" />
         <siteMapNode url="~/FilteredTextBox/FilteredTextBox.aspx" title="FilteredTextBox" />
