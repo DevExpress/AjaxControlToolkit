@@ -2,6 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
     <siteMapNode>
         <siteMapNode url="~/Default.aspx" title="HOME" />
+        <siteMapNode url="~/Accordion/Accordion.aspx" title="Accordion" />
         <siteMapNode url="~/AlwaysVisibleControl/AlwaysVisibleControl.aspx" title="AlwaysVisibleControl" />
         <siteMapNode url="~/Animation/Animation.aspx" title="Animation" />
         <siteMapNode url="~/CollapsiblePanel/CollapsiblePanel.aspx" title="CollapsiblePanel" />

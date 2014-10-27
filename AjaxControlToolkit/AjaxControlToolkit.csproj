@@ -46,6 +46,17 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Accordion\Accordion.cs" />
+    <Compile Include="Accordion\AccordionCommandEventArgs.cs" />
+    <Compile Include="Accordion\AccordionContentPanel.cs" />
+    <Compile Include="Accordion\AccordionDesigner.cs" />
+    <Compile Include="Accordion\AccordionExtender.cs" />
+    <Compile Include="Accordion\AccordionExtenderDesigner.cs" />
+    <Compile Include="Accordion\AccordionItemEvent.cs" />
+    <Compile Include="Accordion\AccordionItemType.cs" />
+    <Compile Include="Accordion\AccordionPane.cs" />
+    <Compile Include="Accordion\AccordionPaneCollection.cs" />
+    <Compile Include="Accordion\AutoSize.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlExtenderDesigner.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlExtender.cs" />
     <Compile Include="AlwaysVisibleControl\HorizontalSide.cs" />
@@ -143,10 +154,15 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
+    <Content Include="Scripts\Accordion.js" />
+    <Content Include="Scripts\Accordion.min.js">
+      <DependentUpon>Accordion.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\UpdatePanelAnimation.js" />
     <Content Include="Scripts\UpdatePanelAnimation.min.js">
       <DependentUpon>UpdatePanelAnimation.js</DependentUpon>
     </Content>
+    <Content Include="ToolboxIcons\Accordion.ico" />
     <Content Include="ToolboxIcons\UpdatePanelAnimation.ico" />
     <EmbeddedResource Include="Scripts\*.min.js">
       <LogicalName>$([System.String]::Copy(%(FileName)).Replace('.min','')).js</LogicalName>

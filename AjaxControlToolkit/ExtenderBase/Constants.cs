@@ -19,6 +19,7 @@ namespace AjaxControlToolkit {
             CompatTimerScriptName = "Compat.Timer",
             LocalizationScriptName = "Localization.Resources",
 
+            AccordionName = "Accordion",
             AlwaysVisibleControlName = "AlwaysVisibleControl",
             AnimationName = "Animation",
             AnimationScriptsName = "AnimationScripts",

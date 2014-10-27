@@ -11,6 +11,9 @@ using System.Web.UI;
 [assembly: ComVisible(false)]
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
 
+[assembly: WebResource(Constants.AccordionName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.AccordionName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.AlwaysVisibleControlName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.AlwaysVisibleControlName + Constants.JsPostfix, "text/javascript")]
 
