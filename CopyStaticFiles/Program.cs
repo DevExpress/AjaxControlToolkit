@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CopyStaticFiles {
 
@@ -17,7 +18,8 @@ namespace CopyStaticFiles {
                 samplesDir = "../AjaxControlToolkit.SampleSite",
                 contentDir = "Content/AjaxControlToolkit/",
                 scriptsDir = "Scripts/AjaxControlToolkit/",
-                stylesDir = contentDir + "Styles";
+                stylesDir = contentDir + "Styles",
+                imagesDir = contentDir + "Images";
 
             foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Scripts", "*.js"))
                 LinkScript(Path.Combine(outputDir, scriptsDir), path);
@@ -27,6 +29,11 @@ namespace CopyStaticFiles {
 
             foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Styles", "*.css"))
                 LinkStyle(Path.Combine(outputDir, stylesDir), path);
+
+            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Images")) {
+                if(Regex.IsMatch(path, @"\.(gif|jpg|gif)$"))
+                    LinkStyle(Path.Combine(outputDir, imagesDir), path);
+            }
 
             LinkSamples(outputDir, samplesDir, scriptsDir);
             LinkSamples(outputDir, samplesDir, contentDir);
@@ -48,6 +55,21 @@ namespace CopyStaticFiles {
 
         static void LinkStyle(string prefix, string path) {
             var fileName = Path.GetFileName(path);
+
+            switch(fileName) {
+                case "Backgrounds.css":
+                case "Backgrounds.min.css":
+                    return;
+
+                case "Backgrounds_static.css":
+                    fileName = "Backgrounds.css";
+                    break;
+
+                case "Backgrounds_static.min.css":
+                    fileName = "Backgrounds.min.css";
+                    break;
+            }
+
             CreateHardLink(path, Path.Combine(prefix, fileName));
         }
 

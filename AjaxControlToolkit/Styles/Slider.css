@@ -1,6 +1,5 @@
 ﻿.ajax__slider_h_rail {
     position: relative;
-    background: url('<%=WebResource("AjaxControlToolkit.Images.SliderRail-H.gif")%>') repeat-x;
     height: 22px;
     width: 150px;
 }
@@ -13,7 +12,6 @@
 
 .ajax__slider_v_rail {
     position: relative;
-    background: url('<%=WebResource("AjaxControlToolkit.Images.SliderRail-V.gif")%>') repeat-y;
     width: 22px;
     height: 150px;
 }

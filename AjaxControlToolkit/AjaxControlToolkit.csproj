@@ -178,6 +178,14 @@
     <EmbeddedResource Include="Styles\Slider.min.css">
       <DependentUpon>Slider.css</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Styles\Backgrounds.css" />
+    <EmbeddedResource Include="Styles\Backgrounds.min.css">
+      <DependentUpon>Backgrounds.css</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Styles\Backgrounds_static.css" />
+    <Content Include="Styles\Backgrounds_static.min.css">
+      <DependentUpon>Backgrounds_static.css</DependentUpon>
+    </Content>
     <Content Include="ToolboxIcons\Slider.ico" />
     <Content Include="ToolboxIcons\UpdatePanelAnimation.ico" />
     <EmbeddedResource Include="Scripts\*.min.js">

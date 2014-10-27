@@ -7,14 +7,14 @@
 <head id="Head1" runat="server">
     <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
     <asp:PlaceHolder runat="server">
-        <%: Styles.Render("~/bundles/AjaxControlToolkit/Styles") %>
+        <%: Styles.Render("~/Content/AjaxControlToolkit/Styles/Bundle") %>
     </asp:PlaceHolder>
 </head>
 <body>
     <form id="MasterPageForm" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
             <Scripts>
-                <asp:ScriptReference Path="~/bundles/AjaxControlToolkit/Scripts" />
+                <asp:ScriptReference Path="~/Scripts/AjaxControlToolkit/Bundle" />
             </Scripts>
         </asp:ScriptManager>
         <div id="master_header">

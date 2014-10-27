@@ -119,6 +119,15 @@ namespace AjaxControlToolkit {
             get { return GetPropertyValue("EnableKeyboard", true); }
             set { SetPropertyValue("EnableKeyboard", value); }
         }
+
+        protected override IEnumerable<string> GetImageNames() {
+            return new[] {
+                "SliderHandle-H.gif",
+                "SliderHandle-V.gif",
+                "SliderRail-H.gif",
+                "SliderRail-V.gif"
+            };
+        }
     }
 
 }

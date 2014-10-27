@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Text;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -293,16 +295,48 @@ namespace AjaxControlToolkit {
 
         protected override void OnPreRender(EventArgs e) {
             base.OnPreRender(e);
-            var localeKey = new Localization().GetLocaleKey();
 
-            if (Enabled && !String.IsNullOrEmpty(localeKey)) {
-                var script = String.Format(@"Sys.Extended.UI.Localization.SetLocale(""{0}"");", localeKey);
-                Page.ClientScript.RegisterStartupScript(GetType(), "f93b988bab7e44ffbcff635ee599ade2", script, true);
-            }
+            RegisterLocalization();
+            RegisterImagesScript();
 
             if(Enabled && TargetControl.Visible) {
                 SaveClientStateValues();
             }
+        }
+
+        void RegisterLocalization() {
+            var localeKey = new Localization().GetLocaleKey();
+            if(String.IsNullOrEmpty(localeKey))
+                return;
+
+            var script = String.Format(@"Sys.Extended.UI.Localization.SetLocale(""{0}"");", localeKey);
+            Page.ClientScript.RegisterStartupScript(GetType(), "f93b988bab7e44ffbcff635ee599ade2", script, true);
+        }
+
+        void RegisterImagesScript() {
+            var imageNames = GetImageNames().ToArray();
+            if(imageNames.Length < 1)
+                return;
+
+            Page.ClientScript.RegisterStartupScript(
+                Page.GetType(), 
+                "bb9d9f1593ff41a198714a472d603c55", 
+                "Type.registerNamespace('Sys.Extended.UI.Images');", 
+                true
+            );
+
+            var jser = new JavaScriptSerializer();
+            var builder = new StringBuilder();
+            foreach(var name in imageNames) {
+                builder.AppendLine("Sys.Extended.UI.Images[" + jser.Serialize(name) + "] = "
+                    + jser.Serialize(ToolkitResourceManager.FormatImageUrl(name, GetType(), Page)) + ";");
+            }
+            
+            Page.ClientScript.RegisterStartupScript(GetType(), "086a0778a11d433386793f72ea881602", builder.ToString(), true);
+        }
+
+        protected virtual IEnumerable<string> GetImageNames() {
+            yield break;
         }
 
         protected override void OnLoad(EventArgs e) {
@@ -322,7 +356,7 @@ namespace AjaxControlToolkit {
             // Add the link to the page header instead of inside the body which is not xhtml compliant
             var header = Page.Header;
 
-            foreach(var styleSheet in ToolkitResourceManager.GetStyleUrls(this)) {
+            foreach(var href in ToolkitResourceManager.GetStyleHrefs(this)) {
                 // It would be nice to add the required header here, but it's too late in the page
                 // lifecycle to be modifying the Page.Controls collection - throw an informative
                 // exception instead and let the page author make the simple change.
@@ -332,18 +366,18 @@ namespace AjaxControlToolkit {
                 var linkExists = false;
                 foreach(var headerControl in header.Controls) {
                     var headerLink = headerControl as HtmlLink;
-                    if(headerLink != null && styleSheet.Equals(headerLink.Href, StringComparison.OrdinalIgnoreCase)) {
+                    if(headerLink != null && href.Equals(headerLink.Href, StringComparison.OrdinalIgnoreCase)) {
                         linkExists = true;
                         break;
                     }
                 }
 
                 if(linkExists)
-                    break;
+                    continue;
 
                 // Add to HEAD even if IsInAsyncPostBack, to check duplicates on the server side
                 var link = new HtmlLink();
-                link.Href = styleSheet;
+                link.Href = href;
                 link.Attributes.Add("type", "text/css");
                 link.Attributes.Add("rel", "stylesheet");
                 header.Controls.Add(link);
@@ -356,21 +390,22 @@ namespace AjaxControlToolkit {
                     throw new InvalidOperationException("A ScriptManager is required on the page to use ASP.NET AJAX Script Components.");
 
                 if(!scriptManager.IsInAsyncPostBack)
-                    break;
+                    continue;
 
+                var resolvedUrl = link.ResolveClientUrl(href);
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "RegisterCssReferences",
                     "if (window.__ExtendedControlCssLoaded == null || typeof window.__ExtendedControlCssLoaded == 'undefined') {" +
                     "    window.__ExtendedControlCssLoaded = new Array();" +
                     "}" +
                     "var controlCssLoaded = window.__ExtendedControlCssLoaded; " +
                     "var head = document.getElementsByTagName('HEAD')[0];" +
-                    "if (head && !Array.contains(controlCssLoaded,'" + styleSheet + "')) {" +
+                    "if (head && !Array.contains(controlCssLoaded,'" + resolvedUrl + "')) {" +
                         "var linkElement = document.createElement('link');" +
                         "linkElement.type = 'text/css';" +
                         "linkElement.rel = 'stylesheet';" +
-                        "linkElement.href = '" + styleSheet + "';" +
+                        "linkElement.href = '" + resolvedUrl + "';" +
                         "head.appendChild(linkElement);" +
-                        "controlCssLoaded.push('" + styleSheet + "');" +
+                        "controlCssLoaded.push('" + resolvedUrl + "');" +
                     "}"
                     , true);
             }

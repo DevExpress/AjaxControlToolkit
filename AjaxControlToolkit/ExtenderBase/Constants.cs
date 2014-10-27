@@ -7,13 +7,17 @@ namespace AjaxControlToolkit {
             CssPostfix = ".css",
             MinCssPostfix = ".min" + CssPostfix,
 
+            ContentVirtualPath = "~/Content/AjaxControlToolkit/",
+            StylesVirtualPath = ContentVirtualPath + "Styles/",
+            ImagesVirtualPath = ContentVirtualPath + "Images/",
+            ScriptsVirtualPath = "~/Scripts/AjaxControlToolkit/",
+            ScriptsDebugVirtualPath = ScriptsVirtualPath + "Debug/",
+            ScriptsReleaseVirtualPath = ScriptsVirtualPath + "Release/",
+
             ImageResourcePrefix = "AjaxControlToolkit.Images.",
-            ScriptStaticPrefix = "~/Scripts/AjaxControlToolkit/",
-            ScriptStaticDebugPrefix = ScriptStaticPrefix + "Debug/",
-            ScriptStaticReleasePrefix = ScriptStaticPrefix + "Release/",
-            StyleStaticPrefix = "~/Content/AjaxControlToolkit/Styles/",
             StyleResourcePrefix = "AjaxControlToolkit.Styles.",
 
+            BackgroundStylesName = "Backgrounds",
             BaseScriptName = "BaseScripts",
             CommonScriptName = "Common",
             CompatDragDropScriptName = "Compat.DragDrop",

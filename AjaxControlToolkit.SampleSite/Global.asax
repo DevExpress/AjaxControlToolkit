@@ -5,10 +5,10 @@
 <script RunAt="server">
 
     void Application_Start(object sender, EventArgs e) {
-        ToolkitResourceManager.UseStaticResources = true;
+        ToolkitResourceManager.UseStaticResources();
         BundleTable.EnableOptimizations = true;
-        BundleTable.Bundles.Add(new ScriptBundle("~/bundles/AjaxControlToolkit/Scripts").Include(ToolkitResourceManager.GetScriptPaths()));
-        BundleTable.Bundles.Add(new StyleBundle("~/bundles/AjaxControlToolkit/Styles").Include(ToolkitResourceManager.GetStylePaths()));
+        BundleTable.Bundles.Add(new ScriptBundle("~/Scripts/AjaxControlToolkit/Bundle").Include(ToolkitResourceManager.GetScriptPaths()));
+        BundleTable.Bundles.Add(new StyleBundle("~/Content/AjaxControlToolkit/Styles/Bundle").Include(ToolkitResourceManager.GetStylePaths()));
     }
 
 </script>

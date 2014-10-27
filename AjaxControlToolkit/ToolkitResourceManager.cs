@@ -31,7 +31,7 @@ namespace AjaxControlToolkit {
 
         static readonly object _sync = new object();
         static bool _useStaticResources = false;
-        static readonly Dictionary<Type, List<ResourceEntry>> 
+        static readonly Dictionary<Type, List<ResourceEntry>>
             _scriptsCache = new Dictionary<Type, List<ResourceEntry>>(),
             _cssCache = new Dictionary<Type, List<ResourceEntry>>();
 
@@ -40,32 +40,18 @@ namespace AjaxControlToolkit {
             set { SetContextFlag(ContextKey_UseEmbeddedStyles, true, value); }
         }
 
-        public static bool UseStaticResources {
-            get { return _useStaticResources; }
-            set {
-                _useStaticResources = value;
-                if(_useStaticResources)
-                    RegisterScriptMappings(GetScriptNames());
-            }
+        public static void UseStaticResources() {
+            if(_useStaticResources)
+                return;
+
+            _useStaticResources = true;
+            RegisterScriptMappings(GetScriptNames());
         }
+
+        // Scripts
 
         public static string[] GetScriptPaths(params string[] toolkitBundles) {
-            return GetScriptNames(toolkitBundles).Select(FormatScriptReleasePath).ToArray();
-        }
-
-        public static string[] GetStylePaths(params string[] toolkitBundles) {
-            var result = new List<string>();
-            var bundleResolver = new Bundling.BundleResolver(new Bundling.DefaultCache());
-            var trace = new HashSet<string>();
-
-            foreach(var type in bundleResolver.GetControlTypesInBundles(new HttpContextWrapper(HttpContext.Current), toolkitBundles))
-                result.AddRange(GetStyleEntries(type).Select(entry => FormatStyleUrl(entry, true)).ToList());
-
-            return result.Distinct().ToArray();
-        }
-
-        internal static IEnumerable<string> GetStyleUrls(Control control) {
-            return GetStyleEntries(control.GetType()).Select(entry => FormatStyleUrl(entry, UseStaticResources));
+            return GetScriptNames(toolkitBundles).Select(FormatScriptReleaseVirtualPath).ToArray();
         }
 
         internal static IEnumerable<ScriptReference> GetControlScriptReferences(Type type) {
@@ -95,18 +81,73 @@ namespace AjaxControlToolkit {
             return localizationScripts.Concat(controlScripts);
         }
 
-        static string FormatStyleUrl(ResourceEntry entry, bool useStaticResources) {
-            var isStatic = useStaticResources;
-            var page = HttpContext.Current.Handler as Page;
-
-            ClientScriptManager clientScript = null;
-            if(page == null)
-                isStatic = true;
-            else
-                clientScript = page.ClientScript;
-
-            return isStatic ? FormatStyleStaticPath(entry.ResourceName) : FormatStyleResourceUrl(entry.ResourceName, entry.ComponentType, clientScript);
+        static void RegisterScriptMappings(IEnumerable<string> scriptNames) {
+            var toolkitAssembly = typeof(ToolkitResourceManager).Assembly;
+            foreach(var name in scriptNames) {
+                ScriptManager.ScriptResourceMapping.AddDefinition(name + Constants.JsPostfix, toolkitAssembly, new ScriptResourceDefinition() {
+                    Path = FormatScriptReleaseVirtualPath(name),
+                    DebugPath = FormatScriptDebugVirtualPath(name)
+                });
+            }
         }
+
+        static string FormatScriptDebugVirtualPath(string scriptName) {
+            return Constants.ScriptsDebugVirtualPath + scriptName + Constants.DebugJsPostfix;
+        }
+
+        static string FormatScriptReleaseVirtualPath(string scriptName) {
+            return Constants.ScriptsReleaseVirtualPath + scriptName + Constants.JsPostfix;
+        }
+
+        // Styles
+
+        public static string[] GetStylePaths(params string[] toolkitBundles) {
+            var controlTypes = new Bundling.BundleResolver(new Bundling.DefaultCache())
+                .GetControlTypesInBundles(new HttpContextWrapper(HttpContext.Current), toolkitBundles);
+
+            return GetStyleNames(controlTypes.ToArray())
+                .Distinct()
+                .Select(name => FormatStyleVirtualPath(name, false))
+                .ToArray();
+        }
+
+        internal static IEnumerable<string> GetStyleHrefs(Control control) {
+            var controlType = control.GetType();
+            var minified = !IsDebuggingEnabled();
+
+            return GetStyleNames(controlType).Select(name => _useStaticResources
+                ? FormatStyleVirtualPath(name, minified)
+                : control.Page.ClientScript.GetWebResourceUrl(controlType, FormatStyleResourceName(name, minified))
+            );
+        }
+
+        static IEnumerable<string> GetStyleNames(params Type[] controlTypes) {
+            foreach(var type in controlTypes) {
+                foreach(var entry in GetStyleEntries(type))
+                    yield return entry.ResourceName;
+            }
+
+            yield return Constants.BackgroundStylesName;
+        }
+
+        static string FormatStyleVirtualPath(string name, bool minified) {
+            return Constants.StylesVirtualPath + name + (minified ? Constants.MinCssPostfix : Constants.CssPostfix);
+        }
+
+        static string FormatStyleResourceName(string name, bool minified) {
+            return Constants.StyleResourcePrefix + name + (minified ? Constants.MinCssPostfix : Constants.CssPostfix);
+        }
+
+        // Images
+
+        internal static string FormatImageUrl(string imageName, Type controlType, Page page) {
+            if(_useStaticResources)
+                return page.ResolveClientUrl(Constants.ImagesVirtualPath + imageName);
+
+            return page.ClientScript.GetWebResourceUrl(controlType, Constants.ImageResourcePrefix + imageName);
+        }
+
+        // Entries
 
         static IEnumerable<ResourceEntry> GetScriptEntries(Type type) {
             return GetResourceEntries<ClientScriptResourceAttribute>(type, new HashSet<Type>(), _scriptsCache);
@@ -117,7 +158,7 @@ namespace AjaxControlToolkit {
         }
 
         // Gets the ScriptReferences for a Type and walks the Type's dependencies with circular-reference checking
-        static List<ResourceEntry> GetResourceEntries<AttributeType>(Type type, ICollection<Type> typeTrace, IDictionary<Type, List<ResourceEntry>> cache) where AttributeType : ClientResourceAttribute {
+        static IEnumerable<ResourceEntry> GetResourceEntries<AttributeType>(Type type, ICollection<Type> typeTrace, IDictionary<Type, List<ResourceEntry>> cache) where AttributeType : ClientResourceAttribute {
             if(typeTrace.Contains(type))
                 throw new InvalidOperationException("Circular reference detected.");
 
@@ -166,6 +207,8 @@ namespace AjaxControlToolkit {
             }
         }
 
+        // Utils
+
         static bool GetContextFlag(string key, bool defaultValue) {
             var context = HttpContext.Current;
             if(context == null || !context.Items.Contains(key))
@@ -183,41 +226,6 @@ namespace AjaxControlToolkit {
                 context.Items.Remove(key);
             else
                 context.Items[key] = value;
-        }
-
-        static void RegisterScriptMappings(IEnumerable<string> scriptNames) {
-            var toolkitAssembly = typeof(ToolkitResourceManager).Assembly;
-            foreach(var name in scriptNames)
-                ScriptManager.ScriptResourceMapping.AddDefinition(FormatScriptResourceName(name), toolkitAssembly, CreateScriptDefinition(name));
-        }
-
-        static ScriptResourceDefinition CreateScriptDefinition(string scriptName) {
-            return new ScriptResourceDefinition() {
-                Path = FormatScriptReleasePath(scriptName),
-                DebugPath = FormatScriptDebugPath(scriptName)
-            };
-        }
-
-        static string FormatScriptResourceName(string scriptName) {
-            return scriptName + Constants.JsPostfix;
-        }
-
-        static string FormatScriptDebugPath(string scriptName) {
-            return Constants.ScriptStaticDebugPrefix + scriptName + Constants.DebugJsPostfix;
-        }
-
-        static string FormatScriptReleasePath(string scriptName) {
-            return Constants.ScriptStaticReleasePrefix + scriptName + Constants.JsPostfix;
-        }
-
-        static string FormatStyleStaticPath(string styleName) {
-            return Constants.StyleStaticPrefix + styleName + (IsDebuggingEnabled() ? Constants.CssPostfix : Constants.MinCssPostfix);
-        }
-
-        static string FormatStyleResourceUrl(string styleName, Type controlType, ClientScriptManager clientScript) {
-            var fullName = Constants.StyleResourcePrefix + styleName + (IsDebuggingEnabled() ? Constants.CssPostfix : Constants.MinCssPostfix);
-
-            return clientScript.GetWebResourceUrl(controlType, fullName);
         }
 
         static bool IsDebuggingEnabled() {
