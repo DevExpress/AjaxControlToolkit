@@ -70,6 +70,9 @@
     <Compile Include="Bundling\ConfigXmlElements.cs" />
     <Compile Include="Bundling\DefaultCache.cs" />
     <Compile Include="Bundling\ICache.cs" />
+    <Compile Include="CascadingDropDown\CascadingDropDownExtender.cs" />
+    <Compile Include="CascadingDropDown\CascadingDropDownExtenderDesigner.cs" />
+    <Compile Include="CascadingDropDown\CascadingDropDownNameValue.cs" />
     <Compile Include="CollapsiblePanel\CollapsiblePanelExtenderDesigner.cs" />
     <Compile Include="CollapsiblePanel\CollapsiblePanelExpandDirection.cs" />
     <Compile Include="CollapsiblePanel\CollapsiblePanelExtender.cs" />
@@ -169,6 +172,10 @@
     <Content Include="Scripts\Slider.min.js">
       <DependentUpon>Slider.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\CascadingDropDown.js" />
+    <Content Include="Scripts\CascadingDropDown.min.js">
+      <DependentUpon>CascadingDropDown.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\UpdatePanelAnimation.js" />
     <Content Include="Scripts\UpdatePanelAnimation.min.js">
       <DependentUpon>UpdatePanelAnimation.js</DependentUpon>
@@ -187,6 +194,7 @@
       <DependentUpon>Backgrounds_static.css</DependentUpon>
     </Content>
     <Content Include="ToolboxIcons\Slider.ico" />
+    <Content Include="ToolboxIcons\CascadingDropDown.ico" />
     <Content Include="ToolboxIcons\UpdatePanelAnimation.ico" />
     <EmbeddedResource Include="Scripts\*.min.js">
       <LogicalName>$([System.String]::Copy(%(FileName)).Replace('.min','')).js</LogicalName>

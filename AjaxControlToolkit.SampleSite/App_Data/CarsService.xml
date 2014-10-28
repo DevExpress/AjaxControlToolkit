@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CarsService>
+  <make name="Acura" optionTitle="Honda's luxury brand">
+    <model name="Integra" optionTitle="Introduced: 1996">
+      <color name="Green" />
+      <color name="Sea Green" />
+      <color name="Pale Green" />
+    </model>
+    <model name="RL" optionTitle="Introduced: 2005">
+      <color name="Red" />
+      <color name="Bright Red" />
+    </model>
+    <model name="TL" optionTitle="Introduced: 2005">
+      <color name="Teal" />
+      <color name="Dark Teal" />
+    </model>
+  </make>
+  <make name="Audi" value="Audi (value)" optionTitle="Part of the Volkswagen Group">
+    <model name="A4" value="A4 (value)" optionTitle="Introduced: 1995">
+      <color name="Azure" value="Azure (value)" />
+      <color name="Light Azure" value="Light Azure (value)" />
+      <color name="Dark Azure" value="Dark Azure (value)" />
+    </model>
+    <model name="S4" value="S4 (value)" optionTitle="Introduced: 2006">
+      <color name="Silver" value="Silver (value)" />
+      <color name="Metallic" value="Metallic (value)" optionTitle="Additional charge for this high quality finish"/>
+    </model>
+    <model name="A6" value="A6 (value)" optionTitle="Introduced: 2009">
+      <color name="Cyan" value="Cyan (value)" />
+    </model>
+  </make>
+  <make name="BMW" value="BMW (value)" optionTitle="Bavarian Motor Works">
+    <model name="3 series" value="3 series (value)" optionTitle="Introduced: 1975">
+      <color name="Blue" value="Blue (value)" />
+      <color name="Sky Blue" value="Sky Blue (value)" />
+      <color name="Racing Blue" value="Racing Blue (value)" default="true" />
+    </model>
+    <model name="5 series" value="5 series (value)" optionTitle="Introduced: 1972">
+      <color name="Yellow" value="Yellow (value)" />
+      <color name="Banana" value="Banana (value)" />
+    </model>
+    <model name="7 series" value="7 series (value)" optionTitle="Introduced: 1977">
+      <color name="Brown" value="Brown (value)" />
+    </model>
+  </make>
+</CarsService>
