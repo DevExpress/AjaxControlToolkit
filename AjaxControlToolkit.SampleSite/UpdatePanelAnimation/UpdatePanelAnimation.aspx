@@ -1,12 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="UpdatePanelAnimation.aspx.cs" Inherits="UpdatePanelAnimation_UpdatePanelAnimation" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     UpdatePanelAnimation Demonstration
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="DemoContent" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <div style="margin-bottom: 10px;">
         <div style="border: dashed 1px #222222;">
             <div id="up_container" style="background-color: #40669A;">
@@ -93,66 +91,58 @@
     </ajaxToolkit:UpdatePanelAnimationExtender>
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="DescriptionHeaderPanelContent" runat="Server">
-    <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg" AlternateText="collapse"  />
-    UpdatePanelAnimation Description
-</asp:Content>
+<asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
+    <samples:InfoBlock runat="server" Collapsed="false">
+        <Header>UpdatePanelAnimation Description</Header>
+        <Content>
+            <p>
+                The <span class="codeReference">UpdatePanelAnimationExtender</span> is a simple extender that
+                allows you to utilize the powerful animation framework with existing pages in an easy,
+                declarative fashion.  It is used to play animations both while an
+                <span class="codeReference">UpdatePanel</span> is updating and after it has finished updating.
+            </p>
+            <br />
+            <p>
+                It is important to note that because of the <span class="codeReference">UpdatePanel</span>
+                architecture, the <span class="codeReference">OnUpdating</span> animation will always play when
+                any partial postback starts, but the <span class="codeReference">OnUpdated</span> animation will
+                only play at the end of a partial postback if its <span class="codeReference">UpdatePanel</span>
+                was changed (note: setting the <span class="codeReference">UpdatePanel</span>'s
+                <span class="codeReference">UpdateMode="Always"</span> will ensure the
+                <span class="codeReference">OnUpdated</span> animation plays when every partial postback completes).
+            </p>
+            <br />
+            <p>
+                The animations to be played are declaratively specified using XML.  You can read the
+                <a href="../Walkthrough/UsingAnimations.aspx">Using Animations</a> walkthrough for more details
+                about creating these generic animation declarations, as well as other ways to use the animation
+                framework.  The framework provides a lot of useful animations to handle movement, resizing, fading,
+                etc.  All the animations and their properties are described in the
+                <a href="../Walkthrough/AnimationReference.aspx">Animation Reference</a>.
+             </p>
+        </Content>
+    </samples:InfoBlock>
 
-<asp:Content ID="Content4" ContentPlaceHolderID="DescriptionContentPanelContent" runat="Server">
-    <p>
-        The <span class="codeReference">UpdatePanelAnimationExtender</span> is a simple extender that
-        allows you to utilize the powerful animation framework with existing pages in an easy,
-        declarative fashion.  It is used to play animations both while an
-        <span class="codeReference">UpdatePanel</span> is updating and after it has finished updating.
-    </p>
-    <br />
-    <p>
-        It is important to note that because of the <span class="codeReference">UpdatePanel</span>
-        architecture, the <span class="codeReference">OnUpdating</span> animation will always play when
-        any partial postback starts, but the <span class="codeReference">OnUpdated</span> animation will
-        only play at the end of a partial postback if its <span class="codeReference">UpdatePanel</span>
-        was changed (note: setting the <span class="codeReference">UpdatePanel</span>'s
-        <span class="codeReference">UpdateMode="Always"</span> will ensure the
-        <span class="codeReference">OnUpdated</span> animation plays when every partial postback completes).
-    </p>
-    <br />
-    <p>
-        The animations to be played are declaratively specified using XML.  You can read the
-        <a href="../Walkthrough/UsingAnimations.aspx">Using Animations</a> walkthrough for more details
-        about creating these generic animation declarations, as well as other ways to use the animation
-        framework.  The framework provides a lot of useful animations to handle movement, resizing, fading,
-        etc.  All the animations and their properties are described in the
-        <a href="../Walkthrough/AnimationReference.aspx">Animation Reference</a>.
-    </p>
-</asp:Content>
-
-<asp:Content ID="Content5" ContentPlaceHolderID="PropertiesHeaderPanelContent" runat="Server">
-    <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg" AlternateText="expand" />
-    UpdatePanelAnimation Properties
-</asp:Content>
-
-<asp:Content ID="Content6" ContentPlaceHolderID="PropertiesContentPanelContent" runat="Server">
-    The <span class="codeReference">UpdatePanel</span> animation behavior can be applied
-        with the following extender (the <em>italic</em> properties are optional, and the
-        ellipses represent a generic animation description):
-    <pre>&lt;ajaxToolkit:UpdatePanelAnimationExtender ID=&quot;ae&quot;
-  runat=&quot;server&quot; TargetControlID=&quot;up&quot; 
-  AlwaysFinishOnUpdatingAnimation=&quot;true&quot; &gt;
-     <em>&lt;Animations&gt;
+    <samples:InfoBlock runat="server">
+        <Header>UpdatePanelAnimation Properties</Header>
+        <Content>
+            The <span class="codeReference">UpdatePanel</span> animation behavior can be applied with the following extender (the <em>italic</em> properties are optional, and the ellipses represent a generic animation description):
+            <pre>
+&lt;ajaxToolkit:UpdatePanelAnimationExtender ID=&quot;ae&quot;
+    runat=&quot;server&quot; TargetControlID=&quot;up&quot; 
+    AlwaysFinishOnUpdatingAnimation=&quot;true&quot; &gt;
+        <em>&lt;Animations&gt;
         &lt;OnUpdating&gt; ... &lt;/OnUpdating&gt;
         &lt;OnUpdated&gt; ... &lt;/OnUpdated&gt;
     &lt;/Animations&gt;</em>
-&lt;/ajaxToolkit:UpdatePanelAnimationExtender&gt;</pre>
-    <ul>
-        <li><strong>TargetControlID</strong> - ID of the <span class="codeReference">UpdatePanel</span>
-            whose updates are used to play the animations (this is also the default target of the animations)</li>
-        <li><strong>OnUpdating</strong> - Generic animation played as when any
-                <span class="codeReference">UpdatePanel</span> begins updating</li>
-        <li><strong>OnUpdated</strong> - Generic animation played after the
-                <span class="codeReference">UpdatePanel</span> has finished updating (but only if the
-                <span class="codeReference">UpdatePanel</span> was changed)</li>
-        <li><b>AlwaysFinishOnUpdatingAnimation </b>- Optional property which makes sure 
-                Onupdated event will fire only after completion of onUpdating event.
-        </li>
-    </ul>
+&lt;/ajaxToolkit:UpdatePanelAnimationExtender&gt;
+            </pre>
+            <ul>
+                <li><strong>TargetControlID</strong> - ID of the <span class="codeReference">UpdatePanel</span> whose updates are used to play the animations (this is also the default target of the animations)</li>
+                <li><strong>OnUpdating</strong> - Generic animation played as when any <span class="codeReference">UpdatePanel</span> begins updating</li>
+                <li><strong>OnUpdated</strong> - Generic animation played after the <span class="codeReference">UpdatePanel</span> has finished updating (but only if the <span class="codeReference">UpdatePanel</span> was changed)</li>
+                <li><b>AlwaysFinishOnUpdatingAnimation </b>- Optional property which makes sure Onupdated event will fire only after completion of onUpdating event.</li>
+            </ul>
+        </Content>
+    </samples:InfoBlock>
 </asp:Content>

@@ -8,20 +8,5 @@
         <asp:ContentPlaceHolder ID="DemoContent" runat="server" />
     </div>
     <div class="demobottom"></div>
-    <asp:Panel ID="Description_HeaderPanel" runat="server" Style="cursor: pointer;">
-        <div class="heading">
-            <asp:ContentPlaceHolder ID="DescriptionHeaderPanelContent" runat="server"></asp:ContentPlaceHolder>
-        </div>
-    </asp:Panel>
-    <asp:Panel ID="Description_ContentPanel" runat="server" Style="overflow: hidden;">
-        <asp:ContentPlaceHolder ID="DescriptionContentPanelContent" runat="server"></asp:ContentPlaceHolder>
-    </asp:Panel>
-    <asp:Panel ID="Properties_HeaderPanel" runat="server" Style="cursor: pointer;">
-        <div class="heading">
-            <asp:ContentPlaceHolder ID="PropertiesHeaderPanelContent" runat="server"></asp:ContentPlaceHolder>
-        </div>
-    </asp:Panel>
-    <asp:Panel ID="Properties_ContentPanel" runat="server" Style="overflow: hidden;">
-        <asp:ContentPlaceHolder ID="PropertiesContentPanelContent" runat="server"></asp:ContentPlaceHolder>
-    </asp:Panel>
+    <asp:ContentPlaceHolder ID="InfoContent" runat ="server"></asp:ContentPlaceHolder>
 </asp:Content>

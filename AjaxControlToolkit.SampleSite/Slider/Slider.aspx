@@ -1,10 +1,9 @@
 ﻿<%@ Page Title="Slider Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="Slider.aspx.cs" Inherits="Slider_Slider" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     Slider Demonstration
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="DemoContent" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <table style="margin: auto">
         <tr>
             <td>Horizontal Slider ranging from -100 to +100 with 5 discrete values (5 steps),
@@ -129,73 +128,108 @@
         Minimum="0.1"
         Maximum="1" />
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="DescriptionHeaderPanelContent" runat="Server">
-    <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg" AlternateText="collapse" />
-    Slider Description
-</asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="DescriptionContentPanelContent" runat="Server">
-    <p>
-        The Slider extender allows to upgrade an asp:TextBox to a graphical slider that allows the user
-        to choose a numeric value from a finite range. The Slider's orientation can be horizontal or 
-        vertical and it can also act as a "discrete" slider, allowing only a specified number of values
-        within its range.
-        <br />
-        <br />
-        If the developer doesn't specify any parameters, the Slider is rendered with the default layout
-        shown in the demonstration and its range of values goes from 0 to 100. The Slider's layout can be
-        customized by providing CSS classes for the Slider's rail and handle. If handle animation is enabled,
-        the handle slides to the specified point on the rail with a nice animation effect.
-        <br />
-        <br />
-        When a value is chosen using the Slider, it is automatically persisted during full or partial
-        postbacks. The developer can continue to reference the asp:TextBox to get and set the Slider's value.
-        <br />
-        <br />
-        The Slider's value can be dynamically displayed in another asp:TextBox or an asp:Label. If a TextBox
-        is used, the Slider's value can be updated through the bound TextBox.
-        <br />
-        <br />
-        By declaring the extended TextBox as a trigger for an UpdatePanel, the Slider can fire the update 
-        whenever the handle is released. By setting the RaiseChangeOnlyOnMouseUp to false, the update will be 
-        fired as soon as the Slider's value changes.
-        <br />
-        <br />
-        The TooltipText property allows to display some text when the mouse pointer hovers the slider's handle.
-        A {0} placeholder in the text is replaced by the current value of the slider.
-    </p>
-</asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="PropertiesHeaderPanelContent" runat="Server">
-    <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg" AlternateText="expand" />
-    Slider Properties
-</asp:Content>
-<asp:Content ID="Content6" ContentPlaceHolderID="PropertiesContentPanelContent" runat="Server">
-    <p>
-        The controls above are initialized with this code. The <em>italic</em> properties are optional:
-    </p>
-    <pre>&lt;ajaxToolkit:SliderExtender ID="SliderExtender1" runat="server"
+<asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
+    <samples:InfoBlock runat="server" Collapsed="false">
+        <Header>Slider Description</Header>
+        <Content>
+            <p>
+                The Slider extender allows to upgrade an asp:TextBox to a graphical slider that allows the user
+                to choose a numeric value from a finite range. The Slider's orientation can be horizontal or 
+                vertical and it can also act as a "discrete" slider, allowing only a specified number of values
+                within its range.
+                <br /><br />
+            
+                If the developer doesn't specify any parameters, the Slider is rendered with the default layout
+                shown in the demonstration and its range of values goes from 0 to 100. The Slider's layout can be
+                customized by providing CSS classes for the Slider's rail and handle. If handle animation is enabled,
+                the handle slides to the specified point on the rail with a nice animation effect.
+                <br /><br />
+            
+                When a value is chosen using the Slider, it is automatically persisted during full or partial
+                postbacks. The developer can continue to reference the asp:TextBox to get and set the Slider's value.
+                <br /><br />
+            
+                The Slider's value can be dynamically displayed in another asp:TextBox or an asp:Label. If a TextBox
+                is used, the Slider's value can be updated through the bound TextBox.
+                <br /><br />
+            
+                By declaring the extended TextBox as a trigger for an UpdatePanel, the Slider can fire the update 
+                whenever the handle is released. By setting the RaiseChangeOnlyOnMouseUp to false, the update will be 
+                fired as soon as the Slider's value changes.
+                <br /><br />
+            
+                The TooltipText property allows to display some text when the mouse pointer hovers the slider's handle.
+                A {0} placeholder in the text is replaced by the current value of the slider.
+            </p>
+        </Content>
+    </samples:InfoBlock>
+
+    <samples:InfoBlock runat="server">
+        <Header>Slider Properties</Header>
+        <Content>
+            <p>
+                The controls above are initialized with this code. The <em>italic</em> properties are optional:
+            </p>
+            <pre>
+&lt;ajaxToolkit:SliderExtender ID="SliderExtender1" runat="server"
     TargetControlID="Slider1"
     <em>Minimum</em>="-100"
     <em>Maximum</em>="100"
     <em>BoundControlID</em>="Slider1_BoundControl"
-    <em>Steps</em>="5" /&gt; &lt;ajaxToolkit:SliderExtender ID="SliderExtender2" runat="server"
+    <em>Steps</em>="5" /&gt;
+&lt;ajaxToolkit:SliderExtender ID="SliderExtender2" runat="server"
     TargetControlID="Slider2"
     <em>BoundControlID</em>="Slider2_BoundControl"
     <em>Orientation</em>="Vertical"
-    <em>EnableHandleAnimation</em>="true" /&gt;</pre>
-    <ul>
-        <li><strong>Minimum</strong> - Minimum value allowed.</li>
-        <li><strong>Maximum</strong> - Maximum value allowed.</li>
-        <li><strong>Decimals</strong> - Number of decimal digits for the value.</li>
-        <li><strong>Steps</strong> - Number of discrete values inside the slider's range.</li>
-        <li><strong>Value</strong> - Current value of the slider</li>
-        <li><strong>EnableHandleAnimation</strong> - Enable/disable the handle animation.</li>
-        <li><strong>HandleAnimationDuration</strong> - Duration of the handle animation, in milliseconds.</li>
-        <li><strong>RailCssClass</strong> - CSS class for the slider's rail.</li>
-        <li><strong>HandleCssClass</strong> - CSS class for the slider's handle.</li>
-        <li><strong>HandleImageURL</strong> - URL of the image to display as the slider's handle.</li>
-        <li><strong>Length</strong> - Width/height of a horizontal/vertical slider when the default layout is used.</li>
-        <li><strong>BoundControlID</strong> - ID of the TextBox or Label that dynamically displays the slider's value.</li>
-        <li><strong>RaiseChangeOnlyOnMouseUp</strong> - If true, fires the change event on the extended TextBox only when the left mouse button is released.</li>
-        <li><strong>TooltipText</strong> - Text to display in a tooltip when the handle is hovered. The {0} placeholder in the text is replaced with the current value of the slider.</li>
-    </ul>
+    <em>EnableHandleAnimation</em>="true" /&gt;
+            </pre>
+            <ul>
+                <li><strong>Minimum</strong> - Minimum value allowed.</li>
+                <li><strong>Maximum</strong> - Maximum value allowed.</li>
+                <li><strong>Decimals</strong> - Number of decimal digits for the value.</li>
+                <li><strong>Steps</strong> - Number of discrete values inside the slider's range.</li>
+                <li><strong>Value</strong> - Current value of the slider</li>
+                <li><strong>EnableHandleAnimation</strong> - Enable/disable the handle animation.</li>
+                <li><strong>HandleAnimationDuration</strong> - Duration of the handle animation, in milliseconds.</li>
+                <li><strong>RailCssClass</strong> - CSS class for the slider's rail.</li>
+                <li><strong>HandleCssClass</strong> - CSS class for the slider's handle.</li>
+                <li><strong>HandleImageURL</strong> - URL of the image to display as the slider's handle.</li>
+                <li><strong>Length</strong> - Width/height of a horizontal/vertical slider when the sdefault layout is used.</li>
+                <li><strong>BoundControlID</strong> - ID of the TextBox or Label that dynamically displays the slider's value.</li>
+                <li><strong>RaiseChangeOnlyOnMouseUp</strong> - If true, fires the change event on the extended TextBox only when the left mouse button is released.</li>
+                <li><strong>TooltipText</strong> - Text to display in a tooltip when the handle is hovered. The {0} placeholder in the text is replaced with the current value of the slider.</li>
+            </ul>
+        </Content>
+    </samples:InfoBlock>
+
+    <samples:InfoBlock runat="server">
+        <Header>Slider Tips</Header>
+        <Content>
+            <ul>
+                <li>
+                    <strong>TextBox visibility.</strong>
+                    The asp:TextBox that the Slider is upgrading will be visible during the page loading,
+                    so it is usable if JavaScript is not enabled on the browser. Depending on your
+                    requirements, you can prevent the asp:TextBox from being visible
+                    by setting its display mode to "none".
+                </li>
+                <li>
+                    <strong>Inline - Block.</strong>
+                    While the TextBox is rendered as an inline element, the Slider will be 
+                    rendered as a block element. Consider using floats or a table when designing that 
+                    portion of layout. The CSS inline-block display mode is not supported by Internet 
+                    Explorer 6.
+                </li>
+                <li>
+                    <strong>CSS.</strong>
+                    When using custom CSS classes for the Slider's rail and handle, it's recommended to 
+                    specify positioning. The rail should have position:relative while the handle 
+                    should have position:absolute.<br />
+                    If a CSS class for the slider's rail is provided, the developer can choose to provide 
+                    a CSS class for the handle or the URL to an image to display as the handle.<br />
+                    Borders should be added to a wrapping &lt;div&gt;.
+                </li>
+            </ul>
+        </Content>
+    </samples:InfoBlock>
 </asp:Content>

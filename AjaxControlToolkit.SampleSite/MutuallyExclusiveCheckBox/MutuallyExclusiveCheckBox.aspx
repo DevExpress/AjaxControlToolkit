@@ -1,10 +1,9 @@
 ﻿<%@ Page Title="MutuallyExclusiveCheckBox Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="MutuallyExclusiveCheckBox.aspx.cs" Inherits="MutuallyExclusiveCheckBox_MutuallyExclusiveCheckBox" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     MutuallyExclusiveCheckBox Demonstration
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="DemoContent" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <table>
         <tr>
             <td>
@@ -98,33 +97,37 @@
         </tr>
     </table>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="DescriptionHeaderPanelContent" runat="Server">
-    <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg" AlternateText="collapse" />
-    MutuallyExclusiveCheckBox Description
-</asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="DescriptionContentPanelContent" runat="Server">
-    <p>
-        MutuallyExclusiveCheckBox is an ASP.NET AJAX extender that can be attached to any ASP.NET
-        CheckBox control.  By adding a number of checkboxes to the same "Key", only one checkbox
-        with the specified key can be checked at a time.  This extender is useful when a number of
-        choices are available but only one can be chosen, similar to a radio button.  The use of
-        checkboxes however allows you to choose to uncheck a value which is not possible normally
-        with radio buttons.  This also provides a more consistent and expected interface than using
-        javascript to allow the de-selection of a RadioButton item.
-    </p>
-</asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="PropertiesHeaderPanelContent" runat="Server">
-    <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg" AlternateText="expand" />
-    MutuallyExclusiveCheckBox Properties
-</asp:Content>
-<asp:Content ID="Content6" ContentPlaceHolderID="PropertiesContentPanelContent" runat="Server">
-    <p>The control above is initialized with this code.</p>
-    <pre>&lt;ajaxToolkit:MutuallyExclusiveCheckboxExtender runat="server"
+<asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
+    <samples:InfoBlock runat="server" Collapsed="false">
+        <Header>MutuallyExclusiveCheckBox Description</Header>
+        <Content>
+            <p>
+                MutuallyExclusiveCheckBox is an ASP.NET AJAX extender that can be attached to any ASP.NET
+                CheckBox control.  By adding a number of checkboxes to the same "Key", only one checkbox
+                with the specified key can be checked at a time.  This extender is useful when a number of
+                choices are available but only one can be chosen, similar to a radio button.  The use of
+                checkboxes however allows you to choose to uncheck a value which is not possible normally
+                with radio buttons.  This also provides a more consistent and expected interface than using
+                javascript to allow the de-selection of a RadioButton item.
+            </p>
+        </Content>
+    </samples:InfoBlock>
+
+    <samples:InfoBlock runat="server">
+        <Header>MutuallyExclusiveCheckBox Properties</Header>
+        <Content>
+            <p>The control above is initialized with this code.</p>
+            <pre>
+&lt;ajaxToolkit:MutuallyExclusiveCheckboxExtender runat="server"
     ID="MustHaveGuestBedroomCheckBoxEx"
     TargetControlID="MustHaveGuestBedroomCheckBox" 
-    Key="GuestBedroomCheckBoxes" /&gt;</pre>
-    <ul>
-        <li><strong>TargetControlID</strong> - The ID of the CheckBox to modify</li>
-        <li><strong>Key</strong> - The unique key to use to associate checkboxes.  This key does not respect INamingContainer renaming.</li>
-    </ul>
+    Key="GuestBedroomCheckBoxes" /&gt;
+            </pre>
+            <ul>
+                <li><strong>TargetControlID</strong> - The ID of the CheckBox to modify</li>
+                <li><strong>Key</strong> - The unique key to use to associate checkboxes.  This key does not
+                    respect INamingContainer renaming.</li>
+             </ul>
+        </Content>
+    </samples:InfoBlock>
 </asp:Content>

@@ -1,10 +1,9 @@
 ﻿<%@ Page Title="DropShadow Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="DropShadow.aspx.cs" Inherits="DropShadow_DropShadow" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     DropShadow Demonstration
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="DemoContent" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <asp:Panel ID="Panel1" runat="server" CssClass="dropShadowPanel">
         <div style="padding: 10px">
             First Name:
@@ -16,7 +15,7 @@
             <asp:Panel ID="CollapseHeader" runat="server" Style="cursor: pointer;">
                 <asp:Label ID="Label1" runat="server" Text="Label">Show Details...</asp:Label>
             </asp:Panel>
-            <%--<asp:Panel ID="Panel2" runat="server" Style="overflow: hidden; height: 0">
+            <asp:Panel ID="Panel2" runat="server" Style="overflow: hidden; height: 0">
                 Not many details here.  This is just a demo to show how the DropShadow will react
                     properly to changes in the size of the panel it is attached to.               
             </asp:Panel>
@@ -28,7 +27,7 @@
                 TextLabelID="Label1"
                 ExpandControlID="CollapseHeader"
                 CollapseControlID="CollapseHeader"
-                SuppressPostBack="true" />--%>
+                SuppressPostBack="true" />
         </div>
     </asp:Panel>
 
@@ -80,36 +79,38 @@
         </div>
     </div>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="DescriptionHeaderPanelContent" runat="Server">
-    <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg" AlternateText="collapse" />
-    DropShadow Description
-</asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="DescriptionContentPanelContent" runat="Server">
-    <p>
-        DropShadow is an extender which applies a "Drop Shadow" to a Panel.  It allows you to specify
-        how wide the shadow is as well as how opaque it is, or if you would like rounded corners.
-        For pages that allow the user to move or resize the panel, the DropShadow has a mode that
-        will resize/reposition it to match that of the target panel at run time.
-    </p>
-</asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="PropertiesHeaderPanelContent" runat="Server">
-    <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg" AlternateText="expand" />
-    DropShadow Properties
-</asp:Content>
-<asp:Content ID="Content6" ContentPlaceHolderID="PropertiesContentPanelContent" runat="Server">
-    <p>
-        The control above is initialized with this code. The properties in <em>italic</em> are optional.
-    </p>
-    <pre>&lt;ajaxToolkit:DropShadowExtender ID="dse" runat="server"
+<asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
+    <samples:InfoBlock runat="server" Collapsed="false">
+        <Header>DropShadow Description</Header>
+        <Content>
+            <p>
+                DropShadow is an extender which applies a "Drop Shadow" to a Panel.  It allows you to specify
+                how wide the shadow is as well as how opaque it is, or if you would like rounded corners.
+                For pages that allow the user to move or resize the panel, the DropShadow has a mode that
+                will resize/reposition it to match that of the target panel at run time.
+            </p>
+        </Content>
+    </samples:InfoBlock>
+
+    <samples:InfoBlock runat="server">
+        <Header>DropShadow Properties</Header>
+        <Content>
+            <p>
+                The control above is initialized with this code. The properties in <em>italic</em> are optional.
+            </p>
+            <pre>
+&lt;ajaxToolkit:DropShadowExtender ID="dse" runat="server"
     TargetControlID="Panel1" 
     <em>Opacity=".8" 
     Rounded="true"
-    TrackPosition="true"</em> /&gt;</pre>
-    <ul>
-        <li><strong>TargetControlID</strong> - The ID of the button or link for this extender to operate on</li>
-        <li><strong>Width - </strong>The width, in pixels of the drop shadow. Default value is 5.</li>
-        <li><strong>Opacity </strong>- The opacity of the drop shadow, from 0 (fully transparent) to 1.0 (fully opaque). The default value is .5.</li>
-        <li><strong>TrackPosition</strong> - Whether the drop shadow should track the position of the panel it is attached to. Use this if the panel is absolutely positioned or will otherwise move.</li>
-        <li><strong>Rounded</strong> - Set to true to set rounded corners on the target and the shadow. Default is false.</li>
-    </ul>
+    TrackPosition="true"</em> /&gt;
+            </pre>
+            <ul>
+                <li><strong>TargetControlID</strong> - The ID of the button or link for this extender to operate on</li>
+                <li><strong>Width - </strong>The width, in pixels of the drop shadow. Default value is 5.</li><li><strong>Opacity </strong> - The opacity of the drop shadow, from 0 (fully transparent) to 1.0 (fully opaque). The default value is .5.</li>
+                <li><strong>TrackPosition</strong> - Whether the drop shadow should track the position of the panel it is attached to. Use this if the panel is absolutely positioned or will otherwise move.</li>
+                <li><strong>Rounded</strong> - Set to true to set rounded corners on the target and the shadow. Default is false.</li>
+            </ul>
+        </Content>
+    </samples:InfoBlock>
 </asp:Content>

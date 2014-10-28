@@ -1,12 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="Animation.aspx.cs" Inherits="Animation_Animation" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     Animation Demonstration
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="DemoContent" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <p>
         The animation support in the Toolkit is more than just a control.  It's a pluggable, extensible
             framework for easily adding animation effects to your web pages.
@@ -206,59 +204,54 @@
     </asp:Panel>
 </asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="DescriptionHeaderPanelContent" runat="Server">
-    Animation Description
+<asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
+    <samples:InfoBlock runat="server" Collapsed="false">
+        <Header>Animation Description</Header>
+        <Content>
+            <p>
+                The <span class="codeReference">AnimationExtender</span> is a simple extender that allows you to
+                utilize the powerful animation framework with existing pages in an easy, declarative fashion.  It
+                plays animations whenever a specific event like <span class="codeReference">OnLoad</span>,
+                <span class="codeReference">OnClick</span>, <span class="codeReference">OnMouseOver</span>, or
+                <span class="codeReference">OnMouseOut</span> is raised by the target control.
+            </p>
+            <br />
+            <p>
+                The animations to be played are declaratively specified using XML.  You can read the
+                <a href="../Walkthrough/UsingAnimations.aspx">Using Animations</a> walkthrough for more details
+                about creating these generic animation declarations, as well as other ways to use the animation
+                framework.  The framework provides a lot of useful animations to handle movement, resizing, fading,
+                etc.  All the animations and their properties are described in the
+                <a href="../Walkthrough/AnimationReference.aspx">Animation Reference</a>.
+            </p>
+        </Content>
+    </samples:InfoBlock>
+    <samples:InfoBlock runat="server">
+        <Header>Animation Properties</Header>
+        <Content>
+            The animation behavior can be applied with the following extender (the <em>italic</em> properties
+            are optional, and the ellipses represent a generic animation description):
+            <br /><br />
+            <pre>&lt;ajaxToolkit:AnimationExtender ID="ae"
+              runat="server" TargetControlID="ctrl"&gt;
+                <em>&lt;Animations&gt;
+                    &lt;OnLoad&gt; ... &lt;/OnLoad&gt;
+                    &lt;OnClick&gt; ... &lt;/OnClick&gt;
+                    &lt;OnMouseOver&gt; ... &lt;/OnMouseOver&gt;
+                    &lt;OnMouseOut&gt; ... &lt;/OnMouseOut&gt;
+                    &lt;OnHoverOver&gt; ... &lt;/OnHoverOver&gt;
+                    &lt;OnHoverOut&gt; ... &lt;/OnHoverOut&gt;
+                &lt;/Animations&gt;</em>
+            &lt;/ajaxToolkit:AnimationExtender&gt;</pre>
+            <ul>
+                <li><strong>TargetControlID</strong> - ID of the target control whose events are used to animate (this is also the default target of the animations)</li>
+                <li><strong>OnLoad</strong> - Generic animation played as soon as the page is loaded</li>
+                <li><strong>OnClick</strong> - Generic animation played when the target control is clicked</li>
+                <li><strong>OnMouseOver</strong> - Generic animation played when the mouse moves over the target control</li>
+                <li><strong>OnMouseOut</strong> - Generic animation played when the mouse moves out of the target control</li>
+                <li><strong>OnHoverOver</strong> - Generic animation similar to OnMouseOver except it will stop the OnHoverOut animation before it plays</li>
+                <li><strong>OnHoverOut</strong> - Generic animation similar to OnMouseOut except it will stop the OnHoverOver animation before it plays</li>
+            </ul>
+        </Content>
+    </samples:InfoBlock>
 </asp:Content>
-
-<asp:Content ID="Content4" ContentPlaceHolderID="DescriptionContentPanelContent" runat="Server">
-    <p>
-        The <span class="codeReference">AnimationExtender</span> is a simple extender that allows you to
-            utilize the powerful animation framework with existing pages in an easy, declarative fashion.  It
-            plays animations whenever a specific event like <span class="codeReference">OnLoad</span>,
-            <span class="codeReference">OnClick</span>, <span class="codeReference">OnMouseOver</span>, or
-            <span class="codeReference">OnMouseOut</span> is raised by the target control.
-    </p>
-    <br />
-    <p>
-        The animations to be played are declaratively specified using XML.  You can read the
-            <a href="../Walkthrough/UsingAnimations.aspx">Using Animations</a> walkthrough for more details
-            about creating these generic animation declarations, as well as other ways to use the animation
-            framework.  The framework provides a lot of useful animations to handle movement, resizing, fading,
-            etc.  All the animations and their properties are described in the
-            <a href="../Walkthrough/AnimationReference.aspx">Animation Reference</a>.
-    </p>
-</asp:Content>
-
-<asp:Content ID="Content5" ContentPlaceHolderID="PropertiesHeaderPanelContent" runat="Server">
-    Animation Properties
-</asp:Content>
-
-<asp:Content ID="Content6" ContentPlaceHolderID="PropertiesContentPanelContent" runat="Server">
-    The animation behavior can be applied with the following extender (the <em>italic</em> properties
-        are optional, and the ellipses represent a generic animation description):<br />
-    <br />
-    <pre>&lt;ajaxToolkit:AnimationExtender ID="ae"
-  runat="server" TargetControlID="ctrl"&gt;
-    <em>&lt;Animations&gt;
-        &lt;OnLoad&gt; ... &lt;/OnLoad&gt;
-        &lt;OnClick&gt; ... &lt;/OnClick&gt;
-        &lt;OnMouseOver&gt; ... &lt;/OnMouseOver&gt;
-        &lt;OnMouseOut&gt; ... &lt;/OnMouseOut&gt;
-        &lt;OnHoverOver&gt; ... &lt;/OnHoverOver&gt;
-        &lt;OnHoverOut&gt; ... &lt;/OnHoverOut&gt;
-    &lt;/Animations&gt;</em>
-&lt;/ajaxToolkit:AnimationExtender&gt;</pre>
-    <ul>
-        <li><strong>TargetControlID</strong> - ID of the target control whose events are used to animate
-                (this is also the default target of the animations)</li>
-        <li><strong>OnLoad</strong> - Generic animation played as soon as the page is loaded</li>
-        <li><strong>OnClick</strong> - Generic animation played when the target control is clicked</li>
-        <li><strong>OnMouseOver</strong> - Generic animation played when the mouse moves over the target control</li>
-        <li><strong>OnMouseOut</strong> - Generic animation played when the mouse moves out of the target control</li>
-        <li><strong>OnHoverOver</strong> - Generic animation similar to OnMouseOver except it will stop
-                the OnHoverOut animation before it plays</li>
-        <li><strong>OnHoverOut</strong> - Generic animation similar to OnMouseOut except it will stop the
-                OnHoverOver animation before it plays</li>
-    </ul>
-</asp:Content>
-

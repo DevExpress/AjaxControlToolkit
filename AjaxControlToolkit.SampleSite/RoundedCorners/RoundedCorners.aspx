@@ -1,10 +1,9 @@
 ﻿<%@ Page Title="RoundedCorners Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="RoundedCorners.aspx.cs" Inherits="RoundedCorners_RoundedCorners" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     RoundedCorners Demonstration
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="DemoContent" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <asp:Panel ID="Panel1" runat="server" Width="330px" CssClass="roundedPanel">
         <div style="padding: 10px; text-align: center">
             <div style="padding: 5px; border: solid black thin; background-color: #B4B4B4;">
@@ -68,32 +67,35 @@
         <label for="color3">Aqua</label>
     </div>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="DescriptionHeaderPanelContent" runat="Server">
-    <asp:ImageButton ID="Description_ToggleImage" runat="server" ImageUrl="~/images/collapse.jpg" AlternateText="collapse" />
-    RoundedCorners Description
-</asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="DescriptionContentPanelContent" runat="Server">
-    <p>
-        The RoundedCorners extender applies rounded corners to existing elements. To accomplish
-        this it inserts elements before and after the element that is selected, so the overall
-        height of the element will change slightly. You can choose the corners of the target
-        panel that should be rounded by setting the Corners property on the extender to None, 
-        TopLeft, TopRight, BottomRight, BottomLeft, Top, Right, Bottom, Left, or All.
-    </p>
-</asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="PropertiesHeaderPanelContent" runat="Server">
-    <asp:ImageButton ID="Properties_ToggleImage" runat="server" ImageUrl="~/images/expand.jpg" AlternateText="expand" />
-    RoundedCorners Properties
-</asp:Content>
-<asp:Content ID="Content6" ContentPlaceHolderID="PropertiesContentPanelContent" runat="Server">
-    <p>The control above is initialized with this code.  The <em>italic</em> properties are optional.</p>
-    <pre>&lt;ajaxToolkit:RoundedCornersExtender ID="rce" runat="server"
+<asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
+    <samples:InfoBlock runat="server" Collapsed="false">
+        <Header>RoundedCorners Description</Header>
+        <Content>
+            <p>
+                The RoundedCorners extender applies rounded corners to existing elements. To accomplish
+                this it inserts elements before and after the element that is selected, so the overall
+                height of the element will change slightly. You can choose the corners of the target
+                panel that should be rounded by setting the Corners property on the extender to None, 
+                TopLeft, TopRight, BottomRight, BottomLeft, Top, Right, Bottom, Left, or All.
+            </p>
+        </Content>
+    </samples:InfoBlock>
+
+    <samples:InfoBlock runat="server">
+        <Header>RoundedCorners Properties</Header>
+        <Content>
+            <p>The control above is initialized with this code.  The <em>italic</em> properties are optional.</p>
+            <pre>
+&lt;ajaxToolkit:RoundedCornersExtender ID="rce" runat="server"
     TargetControlID="Panel1"
     <em>Radius</em>="6"
-    <em>Corners</em>="All" /&gt;</pre>
-    <ul>
-        <li><strong>TargetControlID</strong> - The ID of the button or link for this extender to operate on </li>
-        <li><strong>Radius</strong> - The radius of the corners (and height of the added area). Default is 5.</li>
-        <li><strong>Corners</strong> - The corners of the target panel that will be rounded (can be None, TopLeft, TopRight, BottomRight, BottomLeft, Top, Right, Bottom, Left, or All)</li>
-    </ul>
+    <em>Corners</em>="All" /&gt;
+            </pre>
+            <ul>
+                <li><strong>TargetControlID</strong> - The ID of the button or link for this extender to operate on </li>
+                <li><strong>Radius</strong> - The radius of the corners (and height of the added area). Default is 5.</li>
+                <li><strong>Corners</strong> - The corners of the target panel that will be rounded (can be None, TopLeft, TopRight, BottomRight, BottomLeft, Top, Right, Bottom, Left, or All)</li>
+            </ul>
+        </Content>
+    </samples:InfoBlock>
 </asp:Content>
