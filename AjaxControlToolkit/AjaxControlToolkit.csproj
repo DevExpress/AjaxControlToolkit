@@ -133,6 +133,9 @@
     <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
     <Compile Include="PasswordStrength\PasswordStrengthExtender.cs" />
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
+    <Compile Include="PopupExtender\PopupExtender.cs" />
+    <Compile Include="PopupExtender\PopupExtenderDesigner.cs" />
+    <Compile Include="PopupExtender\PositioningMode.cs" />
     <Compile Include="Rating\Rating.cs" />
     <Compile Include="Rating\RatingExtenderDesigner.cs" />
     <Compile Include="Rating\RatingExtender.cs" />
@@ -167,6 +170,10 @@
     <Content Include="Scripts\Accordion.js" />
     <Content Include="Scripts\Accordion.min.js">
       <DependentUpon>Accordion.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Popup.js" />
+    <Content Include="Scripts\Popup.min.js">
+      <DependentUpon>Popup.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Slider.js" />
     <Content Include="Scripts\Slider.min.js">
