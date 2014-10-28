@@ -1,8 +1,10 @@
-[Bb]in
-[Oo]bj
+/bin
+obj
 *.suo
 *.user
 packages/
 StaticFiles/
+AjaxControlToolkit.SampleSite/bin/*
+!AjaxControlToolkit.SampleSite/bin/*.refresh
 AjaxControlToolkit.SampleSite/Scripts/AjaxControlToolkit/
 AjaxControlToolkit.SampleSite/Content/AjaxControlToolkit/
