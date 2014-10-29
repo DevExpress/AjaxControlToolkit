@@ -143,7 +143,7 @@
     <Compile Include="Rating\RatingExtender.cs" />
     <Compile Include="ResizableControl\ResizableControlExtenderDesigner.cs" />
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
-    <Compile Include="Slider\SliderDesigner.cs" />
+    <Compile Include="Slider\SliderExtenderDesigner.cs" />
     <Compile Include="Slider\SliderExtender.cs" />
     <Compile Include="Slider\SliderOrientation.cs" />
     <Compile Include="ToolkitResourceManager.cs" />
@@ -167,7 +167,6 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
     <Content Include="Images\ValidatorCalloutAlert-Large.gif" />
     <Content Include="Images\ValidatorCalloutAlert-Small.gif" />
     <Content Include="Images\ValidatorCalloutClose.gif" />
@@ -225,23 +224,6 @@
     <Content Include="ToolboxIcons\Slider.ico" />
     <Content Include="ToolboxIcons\CascadingDropDown.ico" />
     <Content Include="ToolboxIcons\UpdatePanelAnimation.ico" />
-    <EmbeddedResource Include="Scripts\*.min.js">
-      <LogicalName>$([System.String]::Copy(%(FileName)).Replace('.min','')).js</LogicalName>
-      <Visible>False</Visible>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\*.js" Exclude="Scripts\*.min.js">
-      <LogicalName>%(FileName).debug.js</LogicalName>
-      <Visible>False</Visible>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\Localization\*.min.js">
-      <LogicalName>Localization.$([System.String]::Copy(%(FileName)).Replace('.min','').Replace('_','.')).js</LogicalName>
-      <Visible>False</Visible>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\Localization\*.js" Exclude="Scripts\Localization\*.min.js">
-      <LogicalName>Localization.$([System.String]::Copy(%(FileName)).Replace('_','.')).debug.js</LogicalName>
-      <Visible>False</Visible>
-    </EmbeddedResource>
-    <!-- end -->
     <Content Include="Scripts\AlwaysVisibleControl.js" />
     <Content Include="Scripts\AlwaysVisibleControl.min.js">
       <DependentUpon>AlwaysVisibleControl.js</DependentUpon>
@@ -429,7 +411,25 @@
     <Content Include="ToolboxIcons\SlideShow.ico" />
     <Content Include="ToolboxIcons\TextboxWatermark.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\*.min.js">
+      <LogicalName>$([System.String]::Copy(%(FileName)).Replace('.min','')).js</LogicalName>
+      <Visible>False</Visible>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\*.js" Exclude="Scripts\*.min.js">
+      <LogicalName>%(FileName).debug.js</LogicalName>
+      <Visible>False</Visible>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\Localization\*.min.js">
+      <LogicalName>Localization.$([System.String]::Copy(%(FileName)).Replace('.min','').Replace('_','.')).js</LogicalName>
+      <Visible>False</Visible>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\Localization\*.js" Exclude="Scripts\Localization\*.min.js">
+      <LogicalName>Localization.$([System.String]::Copy(%(FileName)).Replace('_','.')).debug.js</LogicalName>
+      <Visible>False</Visible>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

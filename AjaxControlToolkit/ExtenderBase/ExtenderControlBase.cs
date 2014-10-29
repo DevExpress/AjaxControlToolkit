@@ -30,6 +30,7 @@ namespace AjaxControlToolkit {
         // In this event, user code is given an opportunity to find the control.        
         public event ResolveControlEventHandler ResolveControlID;
 
+        [DefaultValue(true)]
         public bool Enabled {
             get {
                 if(_isDisposed)

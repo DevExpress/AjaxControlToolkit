@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AjaxControlToolkit {
+namespace AjaxControlToolkit.Design {
 
     internal class SliderDesigner : ExtenderControlBaseDesigner<SliderExtender> {
     }

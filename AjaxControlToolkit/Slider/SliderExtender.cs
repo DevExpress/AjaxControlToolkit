@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.SliderDesigner, AjaxControlToolkit")]
+    [Designer("AjaxControlToolkit.Design.SliderDesigner, AjaxControlToolkit")]
     [ClientCssResource(Constants.SliderName)]
     [ClientScriptResource("Sys.Extended.UI.SliderBehavior", Constants.SliderName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
