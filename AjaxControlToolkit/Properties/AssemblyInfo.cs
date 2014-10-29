@@ -47,6 +47,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.CollapsiblePanel + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CollapsiblePanel + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.DateTimeScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.DateTimeScriptName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.DragPanelName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DragPanelName + Constants.JsPostfix, "text/javascript")]
 
@@ -104,6 +107,9 @@ using System.Web.UI;
 
 [assembly: WebResource(Constants.TextBoxWatermarkName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.TextBoxWatermarkName + Constants.JsPostfix, "text/javascript")]
+
+[assembly: WebResource(Constants.ThreadingScriptName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.ThreadingScriptName + Constants.JsPostfix, "text/javascript")]
 
 [assembly: WebResource(Constants.UpdatePanelAnimationName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.UpdatePanelAnimationName + Constants.JsPostfix, "text/javascript")]

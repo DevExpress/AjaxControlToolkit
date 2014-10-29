@@ -22,7 +22,9 @@ namespace AjaxControlToolkit {
             CommonScriptName = "Common",
             CompatDragDropScriptName = "Compat.DragDrop",
             CompatTimerScriptName = "Compat.Timer",
+            DateTimeScriptName = "Common.DateTime",
             LocalizationScriptName = "Localization.Resources",
+            ThreadingScriptName = "Common.Threading",
 
             AccordionName = "Accordion",
             AlwaysVisibleControlName = "AlwaysVisibleControl",
