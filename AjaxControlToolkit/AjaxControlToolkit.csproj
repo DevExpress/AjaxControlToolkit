@@ -162,9 +162,24 @@
     <Compile Include="Localization.cs" />
     <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationExtenderDesigner.cs" />
     <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationExtender.cs" />
+    <Compile Include="ValidatorCallout\ValidatorCalloutExtenderDesigner.cs" />
+    <Compile Include="ValidatorCallout\ValidatorCalloutExtender.cs" />
+    <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
     <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
+    <Content Include="Images\ValidatorCalloutAlert-Large.gif" />
+    <Content Include="Images\ValidatorCalloutAlert-Small.gif" />
+    <Content Include="Images\ValidatorCalloutClose.gif" />
+    <Content Include="Scripts\ValidatorCallout.js" />
+    <Content Include="Scripts\ValidatorCallout.min.js">
+      <DependentUpon>ValidatorCallout.js</DependentUpon>
+    </Content>
+    <Content Include="Styles\ValidatorCallout.css" />
+    <Content Include="Styles\ValidatorCallout.min.css">
+      <DependentUpon>ValidatorCallout.css</DependentUpon>
+    </Content>
+    <Content Include="ToolboxIcons\ValidatorCallout.ico" />
     <EmbeddedResource Include="Images\SliderHandle-H.gif" />
     <EmbeddedResource Include="Images\SliderRail-H.gif" />
     <EmbeddedResource Include="Images\SliderHandle-V.gif" />

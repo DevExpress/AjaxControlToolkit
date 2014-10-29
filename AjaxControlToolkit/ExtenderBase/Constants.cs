@@ -53,10 +53,14 @@ namespace AjaxControlToolkit {
             SlideShowName = "SlideShow",
             TextBoxWatermarkName = "TextBoxWatermark",
             UpdatePanelAnimationName = "UpdatePanelAnimation",
+            ValidatorCalloutName = "ValidatorCallout",
 
             SliderVerticalRailImage = SliderName + "Rail-V.gif",
             SliderHorizontalRailImage = SliderName + "Rail-H.gif",
             SliderVerticalHandleImage = SliderName + "Handle-V.gif",
-            SliderHorizontalHandleImage = SliderName + "Handle-H.gif";
+            SliderHorizontalHandleImage = SliderName + "Handle-H.gif",
+            ValidatorCalloutAlertLargeImage = ValidatorCalloutName + "Alert-Large.gif",
+            ValidatorCalloutAlertSmallImage = ValidatorCalloutName + "Alert-Small.gif",
+            ValidatorCalloutCloseImage = ValidatorCalloutName + "Close.gif";
     }
 }

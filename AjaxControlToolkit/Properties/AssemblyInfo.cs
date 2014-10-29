@@ -114,6 +114,14 @@ using System.Web.UI;
 [assembly: WebResource(Constants.UpdatePanelAnimationName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.UpdatePanelAnimationName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.ValidatorCalloutName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.ValidatorCalloutName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.ValidatorCalloutName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.ValidatorCalloutName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.ValidatorCalloutAlertLargeImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.ValidatorCalloutAlertSmallImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.ValidatorCalloutCloseImage, "image/gif")]
+
 [assembly: WebResource(Constants.LocalizationScriptName + Constants.JsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.LocalizationScriptName + Constants.DebugJsPostfix, "text/javascript")]
 
