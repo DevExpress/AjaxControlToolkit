@@ -12,7 +12,7 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(System.Web.UI.WebControls.Image))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(TimerScript))]
-    [ToolboxBitmap(typeof(SlideShowExtender), "SlideShow.ico")]
+    [ToolboxBitmap(typeof(SlideShowExtender), Constants.SlideShowName + Constants.IconPostfix)]
     public class SlideShowExtender : ExtenderControlBase {
         // The webservice method that will be called to supply images. 
         [ExtenderControlProperty]

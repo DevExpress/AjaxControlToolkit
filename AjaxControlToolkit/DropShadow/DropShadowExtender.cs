@@ -10,7 +10,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(RoundedCornersExtender), 2)]
     [RequiredScript(typeof(TimerScript), 3)]
     [TargetControlType(typeof(Control))]
-    [ToolboxBitmap(typeof(DropShadowExtender), "DropShadow.ico")]
+    [ToolboxBitmap(typeof(DropShadowExtender), Constants.DropShadowName + Constants.IconPostfix)]
     public class DropShadowExtender : ExtenderControlBase {
         // The opacity of the shadow, from 0 (transparent - no shadow rendered) to 1.0, which is fully opaque black.
         // The default is .5.

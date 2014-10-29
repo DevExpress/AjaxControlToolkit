@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [ToolboxBitmap(typeof(MaskedEditValidator), "MaskedEdit.ico")]
+    [ToolboxBitmap(typeof(MaskedEditValidator), Constants.MaskedEditName + Constants.IconPostfix)]
     public class MaskedEditValidator : BaseValidator {
         bool _isValidEmpty = true;
         string _messageTip = String.Empty;

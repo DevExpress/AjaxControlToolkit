@@ -11,7 +11,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.NumericUpDownBehavior", Constants.NumericUpDownName)]
     [TargetControlType(typeof(TextBox))]
-    [ToolboxBitmap(typeof(NumericUpDownExtender), "NumericUpDown.ico")]
+    [ToolboxBitmap(typeof(NumericUpDownExtender), Constants.NumericUpDownName + Constants.IconPostfix)]
     public class NumericUpDownExtender : ExtenderControlBase {
         // Control to Up
         [IDReferenceProperty(typeof(Control))]

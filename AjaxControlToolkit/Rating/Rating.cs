@@ -12,7 +12,7 @@ namespace AjaxControlToolkit {
     [PersistChildren(true)]
     [NonVisualControl, ToolboxData("<{0}:Rating runat=\"server\"></{0}:Rating>")]
     [DesignerAttribute(typeof(RatingExtenderDesigner))]
-    [ToolboxBitmap(typeof(Rating), "Rating.ico")]
+    [ToolboxBitmap(typeof(Rating), Constants.RatingName + Constants.IconPostfix)]
     public class Rating : Panel, ICallbackEventHandler, IPostBackEventHandler {
         static readonly object EventChange = new object();
         RatingExtender _extender;

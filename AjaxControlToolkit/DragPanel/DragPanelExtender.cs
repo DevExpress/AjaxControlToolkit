@@ -14,7 +14,7 @@ namespace AjaxControlToolkit {
     [ClientScriptResource("Sys.Extended.UI.DragPanelBehavior", Constants.DragPanelName)]
     [TargetControlType(typeof(WebControl))]
     [RequiredScript(typeof(DragDropScripts))]
-    [ToolboxBitmap(typeof(DragPanelExtender), "DragPanel.ico")]
+    [ToolboxBitmap(typeof(DragPanelExtender), Constants.DragPanelName + Constants.IconPostfix)]
     public class DragPanelExtender : ExtenderControlBase {
         // The server ID of a control that will serve as the "handle" for this drag operation.
         // When the user clicks and drags on this control, the associated panel will be moved as well.

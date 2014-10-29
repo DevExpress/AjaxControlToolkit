@@ -13,7 +13,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(TimerScript))]
     [TargetControlType(typeof(TextBox))]
-    [ToolboxBitmap(typeof(MaskedEditExtender), "MaskedEdit.ico")]
+    [ToolboxBitmap(typeof(MaskedEditExtender), Constants.MaskedEditName + Constants.IconPostfix)]
     public class MaskedEditExtender : ExtenderControlBase {
         // Enable client state for communicating default focus
         public MaskedEditExtender() {

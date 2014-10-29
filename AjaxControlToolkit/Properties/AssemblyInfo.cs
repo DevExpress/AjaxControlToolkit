@@ -41,11 +41,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.CompatTimerScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CompatTimerScriptName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.CascadingDropDownScriptName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.CascadingDropDownScriptName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.CascadingDropDownName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.CascadingDropDownName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.CollapsiblePanel + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.CollapsiblePanel + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.CollapsiblePanelName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.CollapsiblePanelName + Constants.JsPostfix, "text/javascript")]
 
 [assembly: WebResource(Constants.DateTimeScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DateTimeScriptName + Constants.JsPostfix, "text/javascript")]
@@ -95,10 +95,10 @@ using System.Web.UI;
 [assembly: WebResource(Constants.SliderName + Constants.JsPostfix, "text/javascript", PerformSubstitution = true)]
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.SliderName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.SliderName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
-[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderName + "Handle-H.gif", "image/gif")]
-[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderName + "Handle-V.gif", "image/gif")]
-[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderName + "Rail-H.gif", "image/gif")]
-[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderName + "Rail-V.gif", "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderHorizontalHandleImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderVerticalHandleImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderHorizontalRailImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.SliderVerticalRailImage, "image/gif")]
 
 [assembly: WebResource(Constants.SlideShowName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.SlideShowName + Constants.JsPostfix, "text/javascript")]

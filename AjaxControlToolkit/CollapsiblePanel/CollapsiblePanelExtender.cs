@@ -11,12 +11,12 @@ namespace AjaxControlToolkit {
     // The panel that is extended can then be collapsed or expanded by the user of the page, which is handy
     // for doing things like showing or hiding content or maximizing available space.
     [Designer("AjaxControlToolkit.Design.CollapsiblePanelExtenderDesigner, AjaxControlToolkit")]
-    [ClientScriptResource("Sys.Extended.UI.CollapsiblePanelBehavior", Constants.CollapsiblePanel)]
+    [ClientScriptResource("Sys.Extended.UI.CollapsiblePanelBehavior", Constants.CollapsiblePanelName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(AnimationScripts))]
     [TargetControlType(typeof(Panel))]
     [DefaultProperty("CollapseControlID")]
-    [ToolboxBitmap(typeof(CollapsiblePanelExtender), "CollapsiblePanel.ico")]
+    [ToolboxBitmap(typeof(CollapsiblePanelExtender), Constants.CollapsiblePanelName + Constants.IconPostfix)]
     public class CollapsiblePanelExtender : ExtenderControlBase {
         public CollapsiblePanelExtender() {
             ClientStateValuesLoaded += new EventHandler(CollapsiblePanelExtender_ClientStateValuesLoaded);

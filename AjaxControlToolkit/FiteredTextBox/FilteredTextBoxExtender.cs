@@ -11,7 +11,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(TextBox))]
     [DefaultProperty("ValidChars")]
-    [ToolboxBitmap(typeof(FilteredTextBoxExtender), "FilteredTextBox.ico")]
+    [ToolboxBitmap(typeof(FilteredTextBoxExtender), Constants.FilteredTextBoxName + Constants.IconPostfix)]
     public class FilteredTextBoxExtender : ExtenderControlBase {
         [ExtenderControlProperty]
         [DefaultValue(FilterTypes.Custom)]

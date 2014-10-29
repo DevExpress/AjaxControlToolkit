@@ -1,11 +1,13 @@
 namespace AjaxControlToolkit {
     internal static class Constants {
-        internal const string            
+        internal const string
             JsPostfix = ".js",
             DebugJsPostfix = ".debug" + JsPostfix,
 
             CssPostfix = ".css",
             MinCssPostfix = ".min" + CssPostfix,
+
+            IconPostfix = ".ico",
 
             ContentVirtualPath = "~/Content/AjaxControlToolkit/",
             StylesVirtualPath = ContentVirtualPath + "Styles/",
@@ -31,8 +33,8 @@ namespace AjaxControlToolkit {
             AnimationName = "Animation",
             AnimationScriptsName = "AnimationScripts",
             AutoCompleteName = "AutoComplete",
-            CascadingDropDownScriptName = "CascadingDropDown",
-            CollapsiblePanel = "CollapsiblePanel",
+            CascadingDropDownName = "CascadingDropDown",
+            CollapsiblePanelName = "CollapsiblePanel",
             DragPanelName = "DragPanel",
             DropShadowName = "DropShadow",
             FilteredTextBoxName = "FilteredTextBox",
@@ -50,6 +52,11 @@ namespace AjaxControlToolkit {
             SliderName = "Slider",
             SlideShowName = "SlideShow",
             TextBoxWatermarkName = "TextBoxWatermark",
-            UpdatePanelAnimationName = "UpdatePanelAnimation";
+            UpdatePanelAnimationName = "UpdatePanelAnimation",
+
+            SliderVerticalRailImage = SliderName + "Rail-V.gif",
+            SliderHorizontalRailImage = SliderName + "Rail-H.gif",
+            SliderVerticalHandleImage = SliderName + "Handle-V.gif",
+            SliderHorizontalHandleImage = SliderName + "Handle-H.gif";
     }
 }

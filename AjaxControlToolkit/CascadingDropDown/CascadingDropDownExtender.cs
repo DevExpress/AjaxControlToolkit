@@ -12,10 +12,10 @@ using System.Xml;
 namespace AjaxControlToolkit {
 
     [Designer("AjaxControlToolkit.Design.CascadingDropDownExtenderDesigner, AjaxControlToolkit")]
-    [ClientScriptResource("Sys.Extended.UI.CascadingDropDownBehavior", Constants.CascadingDropDownScriptName)]
+    [ClientScriptResource("Sys.Extended.UI.CascadingDropDownBehavior", Constants.CascadingDropDownName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(DropDownList))]
-    [ToolboxBitmap(typeof(CascadingDropDown), "CascadingDropDown.ico")]
+    [ToolboxBitmap(typeof(CascadingDropDown), Constants.CascadingDropDownName + Constants.IconPostfix)]
     public class CascadingDropDown : ExtenderControlBase {
         public CascadingDropDown() {
             ClientStateValuesLoaded += new EventHandler(CascadingDropDown_ClientStateValuesLoaded);

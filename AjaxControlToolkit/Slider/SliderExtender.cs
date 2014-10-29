@@ -15,7 +15,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationScripts))]
     [RequiredScript(typeof(TimerScript))]
     [TargetControlType(typeof(TextBox))]
-    [System.Drawing.ToolboxBitmap(typeof(SliderExtender), "Slider.Slider.ico")]
+    [System.Drawing.ToolboxBitmap(typeof(SliderExtender), Constants.SliderName + Constants.IconPostfix)]
     public class SliderExtender : ExtenderControlBase {
 
         [ExtenderControlProperty]
@@ -122,10 +122,10 @@ namespace AjaxControlToolkit {
 
         protected override IEnumerable<string> GetImageNames() {
             return new[] {
-                "SliderHandle-H.gif",
-                "SliderHandle-V.gif",
-                "SliderRail-H.gif",
-                "SliderRail-V.gif"
+                Constants.SliderHorizontalHandleImage,
+                Constants.SliderVerticalHandleImage,
+                Constants.SliderHorizontalRailImage,
+                Constants.SliderVerticalRailImage
             };
         }
     }
