@@ -66,6 +66,8 @@
     <Compile Include="Animation\AnimationExtenderDesigner.cs" />
     <Compile Include="Animation\AnimationJavaScriptConverter.cs" />
     <Compile Include="Animation\AnimationScripts.cs" />
+    <Compile Include="AutoComplete\AutoCompleteExtenderDesigner.cs" />
+    <Compile Include="AutoComplete\AutoCompleteExtender.cs" />
     <Compile Include="Bundling\BundleResolver.cs" />
     <Compile Include="Bundling\ConfigXmlElements.cs" />
     <Compile Include="Bundling\DefaultCache.cs" />
@@ -171,6 +173,10 @@
     <Content Include="Scripts\Accordion.min.js">
       <DependentUpon>Accordion.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\AutoComplete.js" />
+    <Content Include="Scripts\AutoComplete.min.js">
+      <DependentUpon>AutoComplete.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Popup.js" />
     <Content Include="Scripts\Popup.min.js">
       <DependentUpon>Popup.js</DependentUpon>
@@ -200,6 +206,7 @@
     <Content Include="Styles\Backgrounds_static.min.css">
       <DependentUpon>Backgrounds_static.css</DependentUpon>
     </Content>
+    <Content Include="ToolboxIcons\AutoComplete.ico" />
     <Content Include="ToolboxIcons\Slider.ico" />
     <Content Include="ToolboxIcons\CascadingDropDown.ico" />
     <Content Include="ToolboxIcons\UpdatePanelAnimation.ico" />

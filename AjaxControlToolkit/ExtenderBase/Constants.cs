@@ -28,6 +28,7 @@ namespace AjaxControlToolkit {
             AlwaysVisibleControlName = "AlwaysVisibleControl",
             AnimationName = "Animation",
             AnimationScriptsName = "AnimationScripts",
+            AutoCompleteName = "AutoComplete",
             CascadingDropDownScriptName = "CascadingDropDown",
             CollapsiblePanel = "CollapsiblePanel",
             DragPanelName = "DragPanel",

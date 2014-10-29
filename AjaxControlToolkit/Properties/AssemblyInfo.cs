@@ -23,6 +23,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.AnimationScriptsName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.AnimationScriptsName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.AutoCompleteName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.AutoCompleteName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.BackgroundStylesName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.BackgroundStylesName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
 
