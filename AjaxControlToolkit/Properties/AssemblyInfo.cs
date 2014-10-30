@@ -50,11 +50,17 @@ using System.Web.UI;
 [assembly: WebResource(Constants.DateTimeScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DateTimeScriptName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.DraggableListItemName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.DraggableListItemName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.DragPanelName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DragPanelName + Constants.JsPostfix, "text/javascript")]
 
 [assembly: WebResource(Constants.DropShadowName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DropShadowName + Constants.JsPostfix, "text/javascript")]
+
+[assembly: WebResource(Constants.DropWatcherName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.DropWatcherName + Constants.JsPostfix, "text/javascript")]
 
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.JsPostfix, "text/javascript")]

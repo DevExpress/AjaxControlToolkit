@@ -95,6 +95,7 @@
     <Compile Include="ExtenderBase\Design\ExtenderPropertyRenameDescProv.cs" />
     <Compile Include="ExtenderBase\Design\FilterTypeDescriptionProvider.cs" />
     <Compile Include="ExtenderBase\Design\PageMethodSignatureAttribute.cs" />
+    <Compile Include="ExtenderBase\Design\TypeControlIDConverter.cs" />
     <Compile Include="ExtenderBase\ElementReferenceAttribute.cs" />
     <Compile Include="ExtenderBase\ExtenderControlEventAttribute.cs" />
     <Compile Include="ExtenderBase\ExtenderControlMethodAttribute.cs" />
@@ -141,6 +142,19 @@
     <Compile Include="Rating\Rating.cs" />
     <Compile Include="Rating\RatingExtenderDesigner.cs" />
     <Compile Include="Rating\RatingExtender.cs" />
+    <Compile Include="ReorderList\BulletedList.cs" />
+    <Compile Include="ReorderList\BulletedListItem.cs" />
+    <Compile Include="ReorderList\DraggableListItemExtender.cs" />
+    <Compile Include="ReorderList\DropWatcherExtender.cs" />
+    <Compile Include="ReorderList\ReorderHandleAlignment.cs" />
+    <Compile Include="ReorderList\ReorderList.cs" />
+    <Compile Include="ReorderList\ReorderListDesigner.cs" />
+    <Compile Include="ReorderList\ReorderListEvents.cs" />
+    <Compile Include="ReorderList\ReorderListInsertLocation.cs" />
+    <Compile Include="ReorderList\ReorderListItem.cs" />
+    <Compile Include="ReorderList\ReorderListItemCollection.cs" />
+    <Compile Include="ReorderList\ReorderListItemLayoutType.cs" />
+    <Compile Include="ReorderList\RepeatDirection.cs" />
     <Compile Include="ResizableControl\ResizableControlExtenderDesigner.cs" />
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
     <Compile Include="Slider\SliderExtenderDesigner.cs" />
@@ -195,6 +209,14 @@
     <Content Include="Scripts\Popup.min.js">
       <DependentUpon>Popup.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\DraggableListItem.js" />
+    <Content Include="Scripts\DraggableListItem.min.js">
+      <DependentUpon>DraggableListItem.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\DropWatcher.js" />
+    <Content Include="Scripts\DropWatcher.min.js">
+      <DependentUpon>DropWatcher.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Slider.js" />
     <Content Include="Scripts\Slider.min.js">
       <DependentUpon>Slider.js</DependentUpon>
@@ -221,6 +243,7 @@
       <DependentUpon>Backgrounds_static.css</DependentUpon>
     </Content>
     <Content Include="ToolboxIcons\AutoComplete.ico" />
+    <Content Include="ToolboxIcons\ReorderList.ico" />
     <Content Include="ToolboxIcons\Slider.ico" />
     <Content Include="ToolboxIcons\CascadingDropDown.ico" />
     <Content Include="ToolboxIcons\UpdatePanelAnimation.ico" />
