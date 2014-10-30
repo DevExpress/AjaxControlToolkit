@@ -92,6 +92,7 @@
     <Compile Include="ExtenderBase\CommonToolkitScripts.cs" />
     <Compile Include="ExtenderBase\ComponentReferenceAttribute.cs" />
     <Compile Include="ExtenderBase\Constants.cs" />
+    <Compile Include="ExtenderBase\DateTimeScripts.cs" />
     <Compile Include="ExtenderBase\Design\ExtenderPropertyRenameDescProv.cs" />
     <Compile Include="ExtenderBase\Design\FilterTypeDescriptionProvider.cs" />
     <Compile Include="ExtenderBase\Design\PageMethodSignatureAttribute.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="ExtenderBase\ResolveControlEventHandler.cs" />
     <Compile Include="ExtenderBase\ComponentDescriber.cs" />
     <Compile Include="ExtenderBase\ServicePathConverter.cs" />
+    <Compile Include="ExtenderBase\ThreadingScripts.cs" />
     <Compile Include="FiteredTextBox\FilteredTextBoxExtenderDesigner.cs" />
     <Compile Include="FiteredTextBox\FilteredTextBoxExtender.cs" />
     <Compile Include="FiteredTextBox\FilterModes.cs" />
@@ -184,6 +186,14 @@
     <Content Include="Images\ValidatorCalloutAlert-Large.gif" />
     <Content Include="Images\ValidatorCalloutAlert-Small.gif" />
     <Content Include="Images\ValidatorCalloutClose.gif" />
+    <Content Include="Scripts\Common.DateTime.js" />
+    <Content Include="Scripts\Common.DateTime.min.js">
+      <DependentUpon>Common.DateTime.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Common.Threading.js" />
+    <Content Include="Scripts\Common.Threading.min.js">
+      <DependentUpon>Common.Threading.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\ValidatorCallout.js" />
     <Content Include="Scripts\ValidatorCallout.min.js">
       <DependentUpon>ValidatorCallout.js</DependentUpon>
