@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="MaskedEdit.aspx.cs" Inherits="MaskedEdit_MaskedEdit" Culture="auto"
-    UICulture="auto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="MaskedEdit.aspx.cs" Inherits="MaskedEdit_MaskedEdit" Culture="auto" UICulture="auto" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     MaskedEdit Demonstration
@@ -103,7 +102,7 @@
                 MaskedEdit applies a "mask" to the input that permits only certain types of characters/text to be entered.
                 The supported data formats are: Number, Date, Time, and DateTime.
                 MaskedEdit uses the culture settings specified in the CultureName property. If none is specified
-                the culture setting will be the same as the page.
+                the culture setting will be the same as the page: <strong><%= System.Threading.Thread.CurrentThread.CurrentCulture.NativeName %></strong>.
             </p>
         </Content>
     </samples:InfoBlock>

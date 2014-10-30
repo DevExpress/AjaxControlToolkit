@@ -70,7 +70,7 @@
             <input type="submit" style="display:none;" />
 </asp:Content>
 <asp:Content ContentPlaceHolderID="InfoContent" Runat="Server">
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" Collapsed="false">
         <Header>AutoComplete Description</Header>
         <Content>
             <p>

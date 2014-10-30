@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ValidatorCallout.aspx.cs" Inherits="ValidatorCallout_ValidatorCallout" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     ValidatorCallout Demonstration
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="DemoContent" runat="Server">
+<asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <table>
         <tr>
             <td>Name:</td>
@@ -57,8 +57,8 @@
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="InfoContent" runat="Server">
-    <samples:InfoBlock runat="server">
+<asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
+    <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ValidatorCallout Description</Header>
         <Content>
             <p>
@@ -102,7 +102,7 @@
             </ul>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ValidatorCallout Known Issues</Header>
         <Content>
             <p>
