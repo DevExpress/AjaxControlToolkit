@@ -41,6 +41,7 @@ namespace AjaxControlToolkit {
             DropShadowName = "DropShadow",
             DropWatcherName = "DropWatcher",
             FilteredTextBoxName = "FilteredTextBox",
+            HoverName = "Hover",
             MaskedEditName = "MaskedEdit",
             MaskedEditValidatorName = "MaskedEditValidator",
             MutuallyExclusiveCheckBoxName = "MutuallyExclusiveCheckBox",

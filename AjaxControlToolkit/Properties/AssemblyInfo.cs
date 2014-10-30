@@ -72,6 +72,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.HoverName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.HoverName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.MaskedEditName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.MaskedEditName + Constants.JsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.MaskedEditValidatorName + Constants.DebugJsPostfix, "text/javascript")]

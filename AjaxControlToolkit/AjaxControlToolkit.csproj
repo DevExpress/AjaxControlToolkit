@@ -117,6 +117,8 @@
     <Compile Include="FiteredTextBox\FilteredTextBoxExtender.cs" />
     <Compile Include="FiteredTextBox\FilterModes.cs" />
     <Compile Include="FiteredTextBox\FilterTypes.cs" />
+    <Compile Include="HoverExtender\HoverExtender.cs" />
+    <Compile Include="HoverExtender\HoverExtenderDesigner.cs" />
     <Compile Include="MaskedEdit\Compatibility\BaseValidator.cs" />
     <Compile Include="MaskedEdit\Compatibility\IBaseCompareValidatorAccessor.cs" />
     <Compile Include="MaskedEdit\Compatibility\IBaseValidatorAccessor.cs" />
@@ -203,6 +205,10 @@
     <Content Include="Scripts\Common.Threading.js" />
     <Content Include="Scripts\Common.Threading.min.js">
       <DependentUpon>Common.Threading.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Hover.js" />
+    <Content Include="Scripts\Hover.min.js">
+      <DependentUpon>Hover.js</DependentUpon>
     </Content>
     <Content Include="Scripts\ValidatorCallout.js" />
     <Content Include="Scripts\ValidatorCallout.min.js">
