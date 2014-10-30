@@ -33,6 +33,7 @@ namespace AjaxControlToolkit {
             AnimationName = "Animation",
             AnimationScriptsName = "AnimationScripts",
             AutoCompleteName = "AutoComplete",
+            CalendarName = "Calendar",
             CascadingDropDownName = "CascadingDropDown",
             CollapsiblePanelName = "CollapsiblePanel",
             DraggableListItemName = "DraggableListItem",
@@ -58,6 +59,8 @@ namespace AjaxControlToolkit {
             UpdatePanelAnimationName = "UpdatePanelAnimation",
             ValidatorCalloutName = "ValidatorCallout",
 
+            CalendarArrowLeftImage = CalendarName + "Arrow-Left.gif",
+            CalendarArrowRightImage = CalendarName + "Arrow-Right.gif",
             SliderVerticalRailImage = SliderName + "Rail-V.gif",
             SliderHorizontalRailImage = SliderName + "Rail-H.gif",
             SliderVerticalHandleImage = SliderName + "Handle-V.gif",

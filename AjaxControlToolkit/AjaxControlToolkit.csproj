@@ -72,6 +72,10 @@
     <Compile Include="Bundling\ConfigXmlElements.cs" />
     <Compile Include="Bundling\DefaultCache.cs" />
     <Compile Include="Bundling\ICache.cs" />
+    <Compile Include="Calendar\CalendarDefaultView.cs" />
+    <Compile Include="Calendar\CalendarExtenderDesigner.cs" />
+    <Compile Include="Calendar\CalendarExtender.cs" />
+    <Compile Include="Calendar\CalendarPosition.cs" />
     <Compile Include="CascadingDropDown\CascadingDropDownExtender.cs" />
     <Compile Include="CascadingDropDown\CascadingDropDownExtenderDesigner.cs" />
     <Compile Include="CascadingDropDown\CascadingDropDownNameValue.cs" />
@@ -183,9 +187,15 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images\CalendarArrow-Left.gif" />
+    <EmbeddedResource Include="Images\CalendarArrow-Right.gif" />
     <Content Include="Images\ValidatorCalloutAlert-Large.gif" />
     <Content Include="Images\ValidatorCalloutAlert-Small.gif" />
     <Content Include="Images\ValidatorCalloutClose.gif" />
+    <Content Include="Scripts\Calendar.js" />
+    <Content Include="Scripts\Calendar.min.js">
+      <DependentUpon>Calendar.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Common.DateTime.js" />
     <Content Include="Scripts\Common.DateTime.min.js">
       <DependentUpon>Common.DateTime.js</DependentUpon>
@@ -198,6 +208,10 @@
     <Content Include="Scripts\ValidatorCallout.min.js">
       <DependentUpon>ValidatorCallout.js</DependentUpon>
     </Content>
+    <EmbeddedResource Include="Styles\Calendar.css" />
+    <EmbeddedResource Include="Styles\Calendar.min.css">
+      <DependentUpon>Calendar.css</DependentUpon>
+    </EmbeddedResource>
     <Content Include="Styles\ValidatorCallout.css" />
     <Content Include="Styles\ValidatorCallout.min.css">
       <DependentUpon>ValidatorCallout.css</DependentUpon>

@@ -6,6 +6,7 @@
         <siteMapNode url="~/AlwaysVisibleControl/AlwaysVisibleControl.aspx" title="AlwaysVisibleControl" />
         <siteMapNode url="~/Animation/Animation.aspx" title="Animation" />
         <siteMapNode url="~/AutoComplete/AutoComplete.aspx" title="AutoComplete" />
+        <siteMapNode url="~/Calendar/Calendar.aspx" title="Calendar" />
         <siteMapNode url="~/CascadingDropDown/CascadingDropDown.aspx" title="CascadingDropDown" />
         <siteMapNode url="~/CollapsiblePanel/CollapsiblePanel.aspx" title="CollapsiblePanel" />
         <siteMapNode url="~/DragPanel/DragPanel.aspx" title="DragPanel" />

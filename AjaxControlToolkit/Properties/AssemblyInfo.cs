@@ -41,6 +41,13 @@ using System.Web.UI;
 [assembly: WebResource(Constants.CompatTimerScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CompatTimerScriptName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.CalendarName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.CalendarName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.CalendarName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.CalendarName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.CalendarArrowLeftImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.CalendarArrowRightImage, "image/gif")]
+
 [assembly: WebResource(Constants.CascadingDropDownName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CascadingDropDownName + Constants.JsPostfix, "text/javascript")]
 

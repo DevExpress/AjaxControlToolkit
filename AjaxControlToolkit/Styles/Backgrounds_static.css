@@ -5,4 +5,11 @@
 .ajax__slider_v_rail {
     background: url('../Images/SliderRail-V.gif') repeat-y;
 }
- 
+
+.ajax__calendar_prev {
+    background-image:url('../Images/CalendarArrow-Left.gif');
+}
+
+.ajax__calendar_next {
+    background-image:url('../Images/CalendarArrow-Right.gif');
+}
