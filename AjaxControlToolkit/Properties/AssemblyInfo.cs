@@ -57,6 +57,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.DateTimeScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DateTimeScriptName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.DynamicPopulateName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.DynamicPopulateName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.DraggableListItemName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DraggableListItemName + Constants.JsPostfix, "text/javascript")]
 

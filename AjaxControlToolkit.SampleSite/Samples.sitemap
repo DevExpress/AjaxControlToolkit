@@ -11,6 +11,7 @@
         <siteMapNode url="~/CollapsiblePanel/CollapsiblePanel.aspx" title="CollapsiblePanel" />
         <siteMapNode url="~/DragPanel/DragPanel.aspx" title="DragPanel" />
         <siteMapNode url="~/DropShadow/DropShadow.aspx" title="DropShadow" />
+        <siteMapNode url="~/DynamicPopulate/DynamicPopulate.aspx" title="DynamicPopulate" />
         <siteMapNode url="~/FilteredTextBox/FilteredTextBox.aspx" title="FilteredTextBox" />
         <siteMapNode url="~/MaskedEdit/MaskedEdit.aspx" title="MaskedEdit" />
         <siteMapNode url="~/MutuallyExclusiveCheckBox/MutuallyExclusiveCheckBox.aspx" title="MutuallyExclusiveCheckBox" />

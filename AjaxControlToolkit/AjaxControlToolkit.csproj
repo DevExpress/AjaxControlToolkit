@@ -88,6 +88,8 @@
     <Compile Include="DragPanel\DragPanelExtenderDesigner.cs" />
     <Compile Include="DropShadow\DropShadowExtenderDesigner.cs" />
     <Compile Include="DropShadow\DropShadowExtender.cs" />
+    <Compile Include="DynamicPopulate\DynamicPopulateExtender.cs" />
+    <Compile Include="DynamicPopulate\DynamicPopulateExtenderDesigner.cs" />
     <Compile Include="ExtenderBase\AnimationExtenderControlBase.cs" />
     <Compile Include="ExtenderBase\ClientCssResourceAttribute.cs" />
     <Compile Include="ExtenderBase\ClientPropertyNameAttribute.cs" />
@@ -206,6 +208,10 @@
     <Content Include="Scripts\Common.Threading.min.js">
       <DependentUpon>Common.Threading.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\DynamicPopulate.js" />
+    <Content Include="Scripts\DynamicPopulate.min.js">
+      <DependentUpon>DynamicPopulate.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Hover.js" />
     <Content Include="Scripts\Hover.min.js">
       <DependentUpon>Hover.js</DependentUpon>
@@ -222,6 +228,7 @@
     <Content Include="Styles\ValidatorCallout.min.css">
       <DependentUpon>ValidatorCallout.css</DependentUpon>
     </Content>
+    <Content Include="ToolboxIcons\DynamicPopulate.ico" />
     <Content Include="ToolboxIcons\ValidatorCallout.ico" />
     <EmbeddedResource Include="Images\SliderHandle-H.gif" />
     <EmbeddedResource Include="Images\SliderRail-H.gif" />
@@ -483,6 +490,7 @@
       <Visible>False</Visible>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
