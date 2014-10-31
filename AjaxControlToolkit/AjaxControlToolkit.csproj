@@ -127,6 +127,10 @@
     <Compile Include="HoverMenu\HoverMenuExtender.cs" />
     <Compile Include="HoverMenu\HoverMenuExtenderDesigner.cs" />
     <Compile Include="HoverMenu\HoverMenuPopupPosition.cs" />
+    <Compile Include="ListSearch\ListSearchExtenderDesigner.cs" />
+    <Compile Include="ListSearch\ListSearchExtender.cs" />
+    <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
+    <Compile Include="ListSearch\ListSearchQueryPattern.cs" />
     <Compile Include="MaskedEdit\Compatibility\BaseValidator.cs" />
     <Compile Include="MaskedEdit\Compatibility\IBaseCompareValidatorAccessor.cs" />
     <Compile Include="MaskedEdit\Compatibility\IBaseValidatorAccessor.cs" />
@@ -205,6 +209,7 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ToolboxIcons\ListSearch.ico" />
     <EmbeddedResource Include="ToolboxIcons\PopupControl.ico" />
     <EmbeddedResource Include="ToolboxIcons\DropDown.ico" />
     <EmbeddedResource Include="ToolboxIcons\ModalPopup.ico" />
@@ -241,6 +246,10 @@
     <Content Include="Scripts\HoverMenu.js" />
     <Content Include="Scripts\HoverMenu.min.js">
       <DependentUpon>HoverMenu.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ListSearch.js" />
+    <Content Include="Scripts\ListSearch.min.js">
+      <DependentUpon>ListSearch.js</DependentUpon>
     </Content>
     <Content Include="Scripts\PopupControl.js" />
     <Content Include="Scripts\PopupControl.min.js">

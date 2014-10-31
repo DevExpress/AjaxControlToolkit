@@ -45,6 +45,7 @@ namespace AjaxControlToolkit {
             FilteredTextBoxName = "FilteredTextBox",
             HoverMenuName = "HoverMenu",
             HoverName = "Hover",
+            ListSearchName = "ListSearch",
             MaskedEditName = "MaskedEdit",
             MaskedEditValidatorName = "MaskedEditValidator",
             ModalPopup = "ModalPopup",
