@@ -58,6 +58,7 @@ namespace AjaxControlToolkit {
             SliderName = "Slider",
             SlideShowName = "SlideShow",
             TextBoxWatermarkName = "TextBoxWatermark",
+            ToggleButtonName = "ToggleButton",
             UpdatePanelAnimationName = "UpdatePanelAnimation",
             ValidatorCalloutName = "ValidatorCallout",
 

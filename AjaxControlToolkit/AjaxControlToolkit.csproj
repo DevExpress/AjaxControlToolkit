@@ -170,6 +170,8 @@
     <Compile Include="Slider\SliderExtenderDesigner.cs" />
     <Compile Include="Slider\SliderExtender.cs" />
     <Compile Include="Slider\SliderOrientation.cs" />
+    <Compile Include="ToggleButton\ToggleButtonExtender.cs" />
+    <Compile Include="ToggleButton\ToggleButtonExtenderDesigner.cs" />
     <Compile Include="ToolkitResourceManager.cs" />
     <Compile Include="RoundedCorners\BoxCorners.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtenderDesigner.cs" />
@@ -216,6 +218,10 @@
     <Content Include="Scripts\Hover.min.js">
       <DependentUpon>Hover.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\ToggleButton.js" />
+    <Content Include="Scripts\ToggleButton.min.js">
+      <DependentUpon>ToggleButton.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\ValidatorCallout.js" />
     <Content Include="Scripts\ValidatorCallout.min.js">
       <DependentUpon>ValidatorCallout.js</DependentUpon>
@@ -230,6 +236,7 @@
     </Content>
     <EmbeddedResource Include="ToolboxIcons\Calendar.ico" />
     <EmbeddedResource Include="ToolboxIcons\DynamicPopulate.ico" />
+    <EmbeddedResource Include="ToolboxIcons\ToggleButton.ico" />
     <EmbeddedResource Include="ToolboxIcons\ValidatorCallout.ico" />
     <EmbeddedResource Include="Images\SliderHandle-H.gif" />
     <EmbeddedResource Include="Images\SliderRail-H.gif" />

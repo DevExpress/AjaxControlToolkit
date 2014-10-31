@@ -130,6 +130,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.ThreadingScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.ThreadingScriptName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.ToggleButtonName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.ToggleButtonName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.UpdatePanelAnimationName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.UpdatePanelAnimationName + Constants.JsPostfix, "text/javascript")]
 
