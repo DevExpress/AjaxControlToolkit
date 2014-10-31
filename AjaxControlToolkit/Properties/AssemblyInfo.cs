@@ -92,6 +92,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.MaskedEditValidatorName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.MaskedEditValidatorName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.ModalPopup + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.ModalPopup + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.MutuallyExclusiveCheckBoxName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.MutuallyExclusiveCheckBoxName + Constants.JsPostfix, "text/javascript")]
 

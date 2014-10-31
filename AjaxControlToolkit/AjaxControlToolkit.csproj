@@ -138,6 +138,9 @@
     <Compile Include="MaskedEdit\MaskedEditExtender.cs" />
     <Compile Include="MaskedEdit\MaskedEditTypeConvert.cs" />
     <Compile Include="MaskedEdit\MaskedEditValidator.cs" />
+    <Compile Include="ModalPopup\ModalPopupDesigner.cs" />
+    <Compile Include="ModalPopup\ModalPopupExtender.cs" />
+    <Compile Include="ModalPopup\ModalPopupRepositionMode.cs" />
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtenderDesigner.cs" />
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtender.cs" />
     <Compile Include="NoBot\NoBot.cs" />
@@ -204,6 +207,7 @@
   <ItemGroup>
     <EmbeddedResource Include="ToolboxIcons\PopupControl.ico" />
     <EmbeddedResource Include="ToolboxIcons\DropDown.ico" />
+    <EmbeddedResource Include="ToolboxIcons\ModalPopup.ico" />
     <EmbeddedResource Include="Images\CalendarArrow-Left.gif" />
     <EmbeddedResource Include="Images\CalendarArrow-Right.gif" />
     <EmbeddedResource Include="Images\DropDownDrop-Arrow.gif" />
@@ -241,6 +245,10 @@
     <Content Include="Scripts\PopupControl.js" />
     <Content Include="Scripts\PopupControl.min.js">
       <DependentUpon>PopupControl.js</DependentUpon>
+    </Content>  
+    <Content Include="Scripts\ModalPopup.js" />
+    <Content Include="Scripts\ModalPopup.min.js">
+      <DependentUpon>ModalPopup.js</DependentUpon>
     </Content>
     <Content Include="Scripts\ToggleButton.js" />
     <Content Include="Scripts\ToggleButton.min.js">

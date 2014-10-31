@@ -47,6 +47,7 @@ namespace AjaxControlToolkit {
             HoverName = "Hover",
             MaskedEditName = "MaskedEdit",
             MaskedEditValidatorName = "MaskedEditValidator",
+            ModalPopup = "ModalPopup",
             MutuallyExclusiveCheckBoxName = "MutuallyExclusiveCheckBox",
             NoBotName = "NoBot",
             NumericUpDownName = "NumericUpDown",
