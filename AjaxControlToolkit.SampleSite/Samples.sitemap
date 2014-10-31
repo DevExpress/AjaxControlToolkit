@@ -10,6 +10,7 @@
         <siteMapNode url="~/CascadingDropDown/CascadingDropDown.aspx" title="CascadingDropDown" />
         <siteMapNode url="~/CollapsiblePanel/CollapsiblePanel.aspx" title="CollapsiblePanel" />
         <siteMapNode url="~/DragPanel/DragPanel.aspx" title="DragPanel" />
+        <siteMapNode url="~/DropDown/DropDown.aspx" title="DropDown" />
         <siteMapNode url="~/DropShadow/DropShadow.aspx" title="DropShadow" />
         <siteMapNode url="~/DynamicPopulate/DynamicPopulate.aspx" title="DynamicPopulate" />
         <siteMapNode url="~/FilteredTextBox/FilteredTextBox.aspx" title="FilteredTextBox" />

@@ -66,6 +66,12 @@ using System.Web.UI;
 [assembly: WebResource(Constants.DragPanelName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DragPanelName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.DropDownName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.DropDownName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.DropDownName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.DropDownName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.DropDownDropArrowImage, "image/gif")]
+
 [assembly: WebResource(Constants.DropShadowName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DropShadowName + Constants.JsPostfix, "text/javascript")]
 

@@ -13,3 +13,7 @@
 .ajax__calendar_next {
     background-image:url('<%=WebResource("AjaxControlToolkit.Images.CalendarArrow-Right.gif")%>');
 }
+
+.ajax__dropdown_arrow_image {
+    background:url('<%=WebResource("AjaxControlToolkit.Images.DropDownDrop-Arrow.gif")%>') no-repeat 50% 50%;
+}

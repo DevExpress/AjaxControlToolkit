@@ -39,6 +39,7 @@ namespace AjaxControlToolkit {
             DynamicPopulateName = "DynamicPopulate",
             DraggableListItemName = "DraggableListItem",
             DragPanelName = "DragPanel",
+            DropDownName = "DropDown",
             DropShadowName = "DropShadow",
             DropWatcherName = "DropWatcher",
             FilteredTextBoxName = "FilteredTextBox",
@@ -65,6 +66,7 @@ namespace AjaxControlToolkit {
 
             CalendarArrowLeftImage = CalendarName + "Arrow-Left.gif",
             CalendarArrowRightImage = CalendarName + "Arrow-Right.gif",
+            DropDownDropArrowImage = DropDownName + "Drop-Arrow.gif",
             SliderVerticalRailImage = SliderName + "Rail-V.gif",
             SliderHorizontalRailImage = SliderName + "Rail-H.gif",
             SliderVerticalHandleImage = SliderName + "Handle-V.gif",

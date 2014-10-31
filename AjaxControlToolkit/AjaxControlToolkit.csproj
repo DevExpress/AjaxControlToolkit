@@ -86,6 +86,8 @@
     <Compile Include="Compat\Timer\TimerScript.cs" />
     <Compile Include="DragPanel\DragPanelExtender.cs" />
     <Compile Include="DragPanel\DragPanelExtenderDesigner.cs" />
+    <Compile Include="DropDown\DropDownExtenderDesigner.cs" />
+    <Compile Include="DropDown\DropDownExtender.cs" />
     <Compile Include="DropShadow\DropShadowExtenderDesigner.cs" />
     <Compile Include="DropShadow\DropShadowExtender.cs" />
     <Compile Include="DynamicPopulate\DynamicPopulateExtender.cs" />
@@ -197,8 +199,10 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ToolboxIcons\DropDown.ico" />
     <EmbeddedResource Include="Images\CalendarArrow-Left.gif" />
     <EmbeddedResource Include="Images\CalendarArrow-Right.gif" />
+    <EmbeddedResource Include="Images\DropDownDrop-Arrow.gif" />
     <Content Include="Images\ValidatorCalloutAlert-Large.gif" />
     <Content Include="Images\ValidatorCalloutAlert-Small.gif" />
     <Content Include="Images\ValidatorCalloutClose.gif" />
@@ -214,6 +218,10 @@
     <Content Include="Scripts\Common.Threading.min.js">
       <DependentUpon>Common.Threading.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\DropDown.js" />
+    <Content Include="Scripts\DropDown.min.js">
+      <DependentUpon>DropDown.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\DynamicPopulate.js" />
     <Content Include="Scripts\DynamicPopulate.min.js">
       <DependentUpon>DynamicPopulate.js</DependentUpon>
@@ -225,7 +233,7 @@
     <Content Include="Scripts\HoverMenu.js" />
     <Content Include="Scripts\HoverMenu.min.js">
       <DependentUpon>HoverMenu.js</DependentUpon>
-    </Content>  
+    </Content>
     <Content Include="Scripts\ToggleButton.js" />
     <Content Include="Scripts\ToggleButton.min.js">
       <DependentUpon>ToggleButton.js</DependentUpon>
@@ -239,6 +247,10 @@
       <DependentUpon>Calendar.css</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Styles\ValidatorCallout.css" />
+    <EmbeddedResource Include="Styles\DropDown.css" />
+    <EmbeddedResource Include="Styles\DropDown.min.css">
+      <DependentUpon>DropDown.css</DependentUpon>
+    </EmbeddedResource>
     <Content Include="Styles\ValidatorCallout.min.css">
       <DependentUpon>ValidatorCallout.css</DependentUpon>
     </Content>
