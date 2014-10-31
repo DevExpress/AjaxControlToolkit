@@ -224,12 +224,13 @@
     <EmbeddedResource Include="Styles\Calendar.min.css">
       <DependentUpon>Calendar.css</DependentUpon>
     </EmbeddedResource>
-    <Content Include="Styles\ValidatorCallout.css" />
+    <EmbeddedResource Include="Styles\ValidatorCallout.css" />
     <Content Include="Styles\ValidatorCallout.min.css">
       <DependentUpon>ValidatorCallout.css</DependentUpon>
     </Content>
-    <Content Include="ToolboxIcons\DynamicPopulate.ico" />
-    <Content Include="ToolboxIcons\ValidatorCallout.ico" />
+    <EmbeddedResource Include="ToolboxIcons\Calendar.ico" />
+    <EmbeddedResource Include="ToolboxIcons\DynamicPopulate.ico" />
+    <EmbeddedResource Include="ToolboxIcons\ValidatorCallout.ico" />
     <EmbeddedResource Include="Images\SliderHandle-H.gif" />
     <EmbeddedResource Include="Images\SliderRail-H.gif" />
     <EmbeddedResource Include="Images\SliderHandle-V.gif" />
@@ -267,7 +268,7 @@
       <DependentUpon>UpdatePanelAnimation.js</DependentUpon>
     </Content>
     <EmbeddedResource Include="Styles\Slider.css" />
-    <Content Include="ToolboxIcons\Accordion.ico" />
+    <EmbeddedResource Include="ToolboxIcons\Accordion.ico" />
     <EmbeddedResource Include="Styles\Slider.min.css">
       <DependentUpon>Slider.css</DependentUpon>
     </EmbeddedResource>
@@ -279,11 +280,11 @@
     <Content Include="Styles\Backgrounds_static.min.css">
       <DependentUpon>Backgrounds_static.css</DependentUpon>
     </Content>
-    <Content Include="ToolboxIcons\AutoComplete.ico" />
-    <Content Include="ToolboxIcons\ReorderList.ico" />
-    <Content Include="ToolboxIcons\Slider.ico" />
-    <Content Include="ToolboxIcons\CascadingDropDown.ico" />
-    <Content Include="ToolboxIcons\UpdatePanelAnimation.ico" />
+    <EmbeddedResource Include="ToolboxIcons\AutoComplete.ico" />
+    <EmbeddedResource Include="ToolboxIcons\ReorderList.ico" />
+    <EmbeddedResource Include="ToolboxIcons\Slider.ico" />
+    <EmbeddedResource Include="ToolboxIcons\CascadingDropDown.ico" />
+    <EmbeddedResource Include="ToolboxIcons\UpdatePanelAnimation.ico" />
     <Content Include="Scripts\AlwaysVisibleControl.js" />
     <Content Include="Scripts\AlwaysVisibleControl.min.js">
       <DependentUpon>AlwaysVisibleControl.js</DependentUpon>
@@ -453,23 +454,23 @@
     <EmbeddedResource Include="Styles\SlideShow.min.css">
       <DependentUpon>SlideShow.css</DependentUpon>
     </EmbeddedResource>
-    <Content Include="ToolboxIcons\AlwaysVisible.ico" />
-    <Content Include="ToolboxIcons\Animation.ico" />
-    <Content Include="ToolboxIcons\CollapsiblePanel.ico" />
-    <Content Include="ToolboxIcons\DragPanel.ico" />
-    <Content Include="ToolboxIcons\DropShadow.ico" />
-    <Content Include="ToolboxIcons\FilteredTextBox.ico" />
-    <Content Include="ToolboxIcons\MaskedEdit.ico" />
-    <Content Include="ToolboxIcons\MutuallyExclusiveCheckBox.ico" />
-    <Content Include="ToolboxIcons\NoBot.ico" />
-    <Content Include="ToolboxIcons\PagingBulletedList.ico" />
-    <Content Include="ToolboxIcons\NumericUpDown.ico" />
-    <Content Include="ToolboxIcons\PasswordStrength.ico" />
-    <Content Include="ToolboxIcons\Rating.ico" />
-    <Content Include="ToolboxIcons\ResizableControl.ico" />
-    <Content Include="ToolboxIcons\RoundedCorners.ico" />
-    <Content Include="ToolboxIcons\SlideShow.ico" />
-    <Content Include="ToolboxIcons\TextboxWatermark.ico" />
+    <EmbeddedResource Include="ToolboxIcons\AlwaysVisible.ico" />
+    <EmbeddedResource Include="ToolboxIcons\Animation.ico" />
+    <EmbeddedResource Include="ToolboxIcons\CollapsiblePanel.ico" />
+    <EmbeddedResource Include="ToolboxIcons\DragPanel.ico" />
+    <EmbeddedResource Include="ToolboxIcons\DropShadow.ico" />
+    <EmbeddedResource Include="ToolboxIcons\FilteredTextBox.ico" />
+    <EmbeddedResource Include="ToolboxIcons\MaskedEdit.ico" />
+    <EmbeddedResource Include="ToolboxIcons\MutuallyExclusiveCheckBox.ico" />
+    <EmbeddedResource Include="ToolboxIcons\NoBot.ico" />
+    <EmbeddedResource Include="ToolboxIcons\PagingBulletedList.ico" />
+    <EmbeddedResource Include="ToolboxIcons\NumericUpDown.ico" />
+    <EmbeddedResource Include="ToolboxIcons\PasswordStrength.ico" />
+    <EmbeddedResource Include="ToolboxIcons\Rating.ico" />
+    <EmbeddedResource Include="ToolboxIcons\ResizableControl.ico" />
+    <EmbeddedResource Include="ToolboxIcons\RoundedCorners.ico" />
+    <EmbeddedResource Include="ToolboxIcons\SlideShow.ico" />
+    <EmbeddedResource Include="ToolboxIcons\TextboxWatermark.ico" />
   </ItemGroup>
   <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
   <ItemGroup>
