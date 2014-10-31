@@ -13,6 +13,7 @@
         <siteMapNode url="~/DropShadow/DropShadow.aspx" title="DropShadow" />
         <siteMapNode url="~/DynamicPopulate/DynamicPopulate.aspx" title="DynamicPopulate" />
         <siteMapNode url="~/FilteredTextBox/FilteredTextBox.aspx" title="FilteredTextBox" />
+        <siteMapNode url="~/HoverMenu/HoverMenu.aspx" title="HoverMenu" />
         <siteMapNode url="~/MaskedEdit/MaskedEdit.aspx" title="MaskedEdit" />
         <siteMapNode url="~/MutuallyExclusiveCheckBox/MutuallyExclusiveCheckBox.aspx" title="MutuallyExclusiveCheckBox" />
         <siteMapNode url="~/NoBot/NoBot.aspx" title="NoBot" />

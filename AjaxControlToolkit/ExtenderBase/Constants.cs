@@ -42,6 +42,7 @@ namespace AjaxControlToolkit {
             DropShadowName = "DropShadow",
             DropWatcherName = "DropWatcher",
             FilteredTextBoxName = "FilteredTextBox",
+            HoverMenuName = "HoverMenu",
             HoverName = "Hover",
             MaskedEditName = "MaskedEdit",
             MaskedEditValidatorName = "MaskedEditValidator",

@@ -103,6 +103,7 @@
     <Compile Include="ExtenderBase\Design\FilterTypeDescriptionProvider.cs" />
     <Compile Include="ExtenderBase\Design\PageMethodSignatureAttribute.cs" />
     <Compile Include="ExtenderBase\Design\TypeControlIDConverter.cs" />
+    <Compile Include="ExtenderBase\DynamicPopulateExtenderControlBase.cs" />
     <Compile Include="ExtenderBase\ElementReferenceAttribute.cs" />
     <Compile Include="ExtenderBase\ExtenderControlEventAttribute.cs" />
     <Compile Include="ExtenderBase\ExtenderControlMethodAttribute.cs" />
@@ -121,6 +122,9 @@
     <Compile Include="FiteredTextBox\FilterTypes.cs" />
     <Compile Include="HoverExtender\HoverExtender.cs" />
     <Compile Include="HoverExtender\HoverExtenderDesigner.cs" />
+    <Compile Include="HoverMenu\HoverMenuExtender.cs" />
+    <Compile Include="HoverMenu\HoverMenuExtenderDesigner.cs" />
+    <Compile Include="HoverMenu\HoverMenuPopupPosition.cs" />
     <Compile Include="MaskedEdit\Compatibility\BaseValidator.cs" />
     <Compile Include="MaskedEdit\Compatibility\IBaseCompareValidatorAccessor.cs" />
     <Compile Include="MaskedEdit\Compatibility\IBaseValidatorAccessor.cs" />
@@ -218,6 +222,10 @@
     <Content Include="Scripts\Hover.min.js">
       <DependentUpon>Hover.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\HoverMenu.js" />
+    <Content Include="Scripts\HoverMenu.min.js">
+      <DependentUpon>HoverMenu.js</DependentUpon>
+    </Content>  
     <Content Include="Scripts\ToggleButton.js" />
     <Content Include="Scripts\ToggleButton.min.js">
       <DependentUpon>ToggleButton.js</DependentUpon>
@@ -237,6 +245,7 @@
     <EmbeddedResource Include="ToolboxIcons\Calendar.ico" />
     <EmbeddedResource Include="ToolboxIcons\DynamicPopulate.ico" />
     <EmbeddedResource Include="ToolboxIcons\ToggleButton.ico" />
+    <EmbeddedResource Include="ToolboxIcons\HoverMenu.ico" />
     <EmbeddedResource Include="ToolboxIcons\ValidatorCallout.ico" />
     <EmbeddedResource Include="Images\SliderHandle-H.gif" />
     <EmbeddedResource Include="Images\SliderRail-H.gif" />

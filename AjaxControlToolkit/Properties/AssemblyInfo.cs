@@ -75,6 +75,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.HoverMenuName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.HoverMenuName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.HoverName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.HoverName + Constants.JsPostfix, "text/javascript")]
 
