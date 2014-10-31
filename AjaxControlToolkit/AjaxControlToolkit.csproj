@@ -152,6 +152,9 @@
     <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
     <Compile Include="PasswordStrength\PasswordStrengthExtender.cs" />
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
+    <Compile Include="PopupControl\PopupControlExtenderDesigner.cs" />
+    <Compile Include="PopupControl\PopupControlExtender.cs" />
+    <Compile Include="PopupControl\PopupControlPopupPosition.cs" />
     <Compile Include="PopupExtender\PopupExtender.cs" />
     <Compile Include="PopupExtender\PopupExtenderDesigner.cs" />
     <Compile Include="PopupExtender\PositioningMode.cs" />
@@ -199,6 +202,7 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ToolboxIcons\PopupControl.ico" />
     <EmbeddedResource Include="ToolboxIcons\DropDown.ico" />
     <EmbeddedResource Include="Images\CalendarArrow-Left.gif" />
     <EmbeddedResource Include="Images\CalendarArrow-Right.gif" />
@@ -233,6 +237,10 @@
     <Content Include="Scripts\HoverMenu.js" />
     <Content Include="Scripts\HoverMenu.min.js">
       <DependentUpon>HoverMenu.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\PopupControl.js" />
+    <Content Include="Scripts\PopupControl.min.js">
+      <DependentUpon>PopupControl.js</DependentUpon>
     </Content>
     <Content Include="Scripts\ToggleButton.js" />
     <Content Include="Scripts\ToggleButton.min.js">

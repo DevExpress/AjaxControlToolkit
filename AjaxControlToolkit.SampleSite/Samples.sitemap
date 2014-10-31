@@ -21,6 +21,7 @@
         <siteMapNode url="~/NumericUpDown/NumericUpDown.aspx" title="NumericUpDown" />
         <siteMapNode url="~/PagingBulletedList/PagingBulletedList.aspx" title="PagingBulletedList" />
         <siteMapNode url="~/PasswordStrength/PasswordStrength.aspx" title="PasswordStrength" />
+        <siteMapNode url="~/PopupControl/PopupControl.aspx" title="PopupControl" />
         <siteMapNode url="~/Rating/Rating.aspx" title="Rating" />
         <siteMapNode url="~/ReorderList/ReorderList.aspx" title="ReorderList" />
         <siteMapNode url="~/ResizableControl/ResizableControl.aspx" title="ResizableControl" />
