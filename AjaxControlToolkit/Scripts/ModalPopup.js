@@ -185,7 +185,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._dropShadowBehavior = $create(Sys.Extended.UI.DropShadowBehavior, {}, null, null, this._popupElement);
         }
         if(this._dragHandleElement && !this._dragBehavior) {
-            this._dragBehavior = $create(Sys.Extended.UI.DragPanelBehavior, { "handle": this._dragHandleElement }, null, null, this._foregroundElement);
+            this._dragBehavior = $create(Sys.Extended.UI.FloatingBehavior, { "handle": this._dragHandleElement }, null, null, this._foregroundElement);
         }
 
         $addHandler(window, 'resize', this._resizeHandler);

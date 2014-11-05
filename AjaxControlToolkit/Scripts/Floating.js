@@ -1,5 +1,5 @@
-Sys.Extended.UI.DragPanelBehavior = function(element) {
-    Sys.Extended.UI.DragPanelBehavior.initializeBase(this, [element]);
+Sys.Extended.UI.FloatingBehavior = function(element) {
+    Sys.Extended.UI.FloatingBehavior.initializeBase(this, [element]);
 
     var _handle;
     var _location;
@@ -56,7 +56,7 @@ Sys.Extended.UI.DragPanelBehavior = function(element) {
     }
 
     this.initialize = function() {
-        Sys.Extended.UI.DragPanelBehavior.callBaseMethod(this, 'initialize');
+        Sys.Extended.UI.FloatingBehavior.callBaseMethod(this, 'initialize');
         Sys.Extended.UI.DragDropManager.registerDropTarget(this);
 
         var el = this.get_element();
@@ -76,7 +76,7 @@ Sys.Extended.UI.DragPanelBehavior = function(element) {
             //_handle.detachEvent("onmousedown", _mouseDownHandler);
         }
         _mouseDownHandler = null;
-        Sys.Extended.UI.DragPanelBehavior.callBaseMethod(this, 'dispose');
+        Sys.Extended.UI.FloatingBehavior.callBaseMethod(this, 'dispose');
     }
 
     this.checkCanDrag = function(element) {
@@ -173,5 +173,5 @@ Sys.Extended.UI.DragPanelBehavior = function(element) {
     this.onDragInTarget = function(dragMode, dataType, data) { }
 }
 
-Sys.Extended.UI.DragPanelBehavior.registerClass('Sys.Extended.UI.DragPanelBehavior', Sys.Extended.UI.BehaviorBase, Sys.Extended.UI.IDragSource, Sys.Extended.UI.IDropTarget, Sys.IDisposable);
-//Sys.registerComponent(Sys.Extended.UI.DragPanelBehavior, { name: "draggable" });
+Sys.Extended.UI.FloatingBehavior.registerClass('Sys.Extended.UI.FloatingBehavior', Sys.Extended.UI.BehaviorBase, Sys.Extended.UI.IDragSource, Sys.Extended.UI.IDropTarget, Sys.IDisposable);
+//Sys.registerComponent(Sys.Extended.UI.FloatingBehavior, { name: "draggable" });

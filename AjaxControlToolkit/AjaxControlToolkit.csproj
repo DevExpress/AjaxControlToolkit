@@ -376,9 +376,9 @@
     <Content Include="Scripts\Compat.Timer.min.js">
       <DependentUpon>Compat.Timer.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\DragPanel.js" />
+    <Content Include="Scripts\Floating.js" />
     <Content Include="Scripts\DragPanel.min.js">
-      <DependentUpon>DragPanel.js</DependentUpon>
+      <DependentUpon>Floating.js</DependentUpon>
     </Content>
     <Content Include="Scripts\DropShadow.js" />
     <Content Include="Scripts\DropShadow.min.js">
