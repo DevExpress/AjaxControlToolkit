@@ -112,12 +112,14 @@
     <Compile Include="ExtenderBase\ExtenderControlEventAttribute.cs" />
     <Compile Include="ExtenderBase\ExtenderControlMethodAttribute.cs" />
     <Compile Include="ExtenderBase\ExtenderControlPropertyAttribute.cs" />
+    <Compile Include="ExtenderBase\IClientStateManager.cs" />
     <Compile Include="ExtenderBase\IControlResolver.cs" />
     <Compile Include="ExtenderBase\RequiredPropertyAttribute.cs" />
     <Compile Include="ExtenderBase\RequiredScriptAttribute.cs" />
     <Compile Include="ExtenderBase\ResolveControlEventArgs.cs" />
     <Compile Include="ExtenderBase\ResolveControlEventHandler.cs" />
     <Compile Include="ExtenderBase\ComponentDescriber.cs" />
+    <Compile Include="ExtenderBase\ScriptControlBase.cs" />
     <Compile Include="ExtenderBase\ServicePathConverter.cs" />
     <Compile Include="ExtenderBase\ThreadingScripts.cs" />
     <Compile Include="FiteredTextBox\FilteredTextBoxExtenderDesigner.cs" />

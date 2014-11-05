@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 
 namespace AjaxControlToolkit {
     // Usage:
@@ -55,10 +56,11 @@ namespace AjaxControlToolkit {
         }
 
         internal static IEnumerable<ScriptReference> GetControlScriptReferences(Type type) {
-            return GetScriptEntries(type).Select(entry => new ScriptReference {
+            return new Localization().GetLocalizationScriptReferences().Concat(
+                GetScriptEntries(type).Select(entry => new ScriptReference {
                 Assembly = entry.AssemblyName,
                 Name = entry.ResourceName + Constants.JsPostfix
-            });
+            }));
         }
 
         static IEnumerable<string> GetScriptNames(params string[] toolkitBundles) {
@@ -136,6 +138,68 @@ namespace AjaxControlToolkit {
 
         static string FormatStyleResourceName(string name, bool minified) {
             return Constants.StyleResourcePrefix + name + (minified ? Constants.MinCssPostfix : Constants.CssPostfix);
+        }
+
+        public static void RegisterCssReferences(Control control) {
+            if(!RenderStyleLinks)
+                return;
+
+            // Add the link to the page header instead of inside the body which is not xhtml compliant
+            var header = control.Page.Header;
+
+            foreach(var href in GetStyleHrefs(control)) {
+                // It would be nice to add the required header here, but it's too late in the page
+                // lifecycle to be modifying the Page.Controls collection - throw an informative
+                // exception instead and let the page author make the simple change.
+                if(header == null)
+                    throw new NotSupportedException("This page is missing a HtmlHead control which is required for the CSS stylesheet link that is being added. Please add <head runat=\"server\" />.");
+
+                var linkExists = false;
+                foreach(var headerControl in header.Controls) {
+                    var headerLink = headerControl as HtmlLink;
+                    if(headerLink != null && href.Equals(headerLink.Href, StringComparison.OrdinalIgnoreCase)) {
+                        linkExists = true;
+                        break;
+                    }
+                }
+
+                if(linkExists)
+                    continue;
+
+                // Add to HEAD even if IsInAsyncPostBack, to check duplicates on the server side
+                var link = new HtmlLink();
+                link.Href = href;
+                link.Attributes.Add("type", "text/css");
+                link.Attributes.Add("rel", "stylesheet");
+                header.Controls.Add(link);
+
+                // ASP.NET AJAX doesn't currently send a new head element down during an async postback,
+                // so we do the same thing on the client by registering the appropriate script for after
+                // the update.
+                var scriptManager = ScriptManager.GetCurrent(control.Page);
+                if(scriptManager == null)
+                    throw new InvalidOperationException("A ScriptManager is required on the page to use ASP.NET AJAX Script Components.");
+
+                if(!scriptManager.IsInAsyncPostBack)
+                    continue;
+
+                var resolvedUrl = link.ResolveClientUrl(href);
+                ScriptManager.RegisterClientScriptBlock(control, control.GetType(), "RegisterCssReferences",
+                    "if (window.__ExtendedControlCssLoaded == null || typeof window.__ExtendedControlCssLoaded == 'undefined') {" +
+                    "    window.__ExtendedControlCssLoaded = new Array();" +
+                    "}" +
+                    "var controlCssLoaded = window.__ExtendedControlCssLoaded; " +
+                    "var head = document.getElementsByTagName('HEAD')[0];" +
+                    "if (head && !Array.contains(controlCssLoaded,'" + resolvedUrl + "')) {" +
+                        "var linkElement = document.createElement('link');" +
+                        "linkElement.type = 'text/css';" +
+                        "linkElement.rel = 'stylesheet';" +
+                        "linkElement.href = '" + resolvedUrl + "';" +
+                        "head.appendChild(linkElement);" +
+                        "controlCssLoaded.push('" + resolvedUrl + "');" +
+                    "}"
+                    , true);
+            }
         }
 
         // Images
