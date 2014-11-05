@@ -84,6 +84,8 @@
     <Compile Include="CollapsiblePanel\CollapsiblePanelExtender.cs" />
     <Compile Include="Compat\DragDrop\DragDropScripts.cs" />
     <Compile Include="Compat\Timer\TimerScript.cs" />
+    <Compile Include="ConfirmButton\ConfirmButtonExtenderDesigner.cs" />
+    <Compile Include="ConfirmButton\ConfirmButtonExtender.cs" />
     <Compile Include="DragPanel\DragPanelExtender.cs" />
     <Compile Include="DragPanel\DragPanelExtenderDesigner.cs" />
     <Compile Include="DropDown\DropDownExtenderDesigner.cs" />
@@ -209,6 +211,11 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\ConfirmButton.js" />
+    <Content Include="Scripts\ConfirmButton.min.js">
+      <DependentUpon>ConfirmButton.js</DependentUpon>
+    </Content>
+    <Content Include="ToolboxIcons\ConfirmButton.ico" />
     <EmbeddedResource Include="ToolboxIcons\ListSearch.ico" />
     <EmbeddedResource Include="ToolboxIcons\PopupControl.ico" />
     <EmbeddedResource Include="ToolboxIcons\DropDown.ico" />
@@ -254,7 +261,7 @@
     <Content Include="Scripts\PopupControl.js" />
     <Content Include="Scripts\PopupControl.min.js">
       <DependentUpon>PopupControl.js</DependentUpon>
-    </Content>  
+    </Content>
     <Content Include="Scripts\ModalPopup.js" />
     <Content Include="Scripts\ModalPopup.min.js">
       <DependentUpon>ModalPopup.js</DependentUpon>

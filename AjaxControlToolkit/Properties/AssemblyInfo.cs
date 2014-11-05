@@ -54,6 +54,9 @@ using System.Web.UI;
 [assembly: WebResource(Constants.CollapsiblePanelName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CollapsiblePanelName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.ConfirmButtonName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.ConfirmButtonName + Constants.JsPostfix, "text/javascript")]
+
 [assembly: WebResource(Constants.DateTimeScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DateTimeScriptName + Constants.JsPostfix, "text/javascript")]
 
