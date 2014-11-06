@@ -10,7 +10,7 @@ namespace AjaxControlToolkit {
     [ClientScriptResource("Sys.Extended.UI.TextBoxWatermarkBehavior", Constants.TextBoxWatermarkName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(TextBox))]
-    [ToolboxBitmap(typeof(TextBoxWatermarkExtender), Constants.TextBoxWatermarkName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.TextBoxWatermarkName + Constants.IconPostfix)]
     public class TextBoxWatermarkExtender : ExtenderControlBase {
 
         const string stringWatermarkText = "WatermarkText";

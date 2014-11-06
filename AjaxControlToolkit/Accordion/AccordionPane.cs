@@ -14,7 +14,7 @@ namespace AjaxControlToolkit {
     [ParseChildren(true)]
     [PersistChildren(false)]
     [ToolboxData("<{0}:AccordionPane runat=\"server\"></{0}:AccordionPane>")]
-    [ToolboxBitmap(typeof(AccordionPane), Constants.AccordionName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AccordionName + Constants.IconPostfix)]
     public class AccordionPane : WebControl {
          AccordionContentPanel _header;
          ITemplate _headerTemplate;

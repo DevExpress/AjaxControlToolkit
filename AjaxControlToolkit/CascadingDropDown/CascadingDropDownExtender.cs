@@ -15,7 +15,7 @@ namespace AjaxControlToolkit {
     [ClientScriptResource("Sys.Extended.UI.CascadingDropDownBehavior", Constants.CascadingDropDownName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(DropDownList))]
-    [ToolboxBitmap(typeof(CascadingDropDown), Constants.CascadingDropDownName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.CascadingDropDownName + Constants.IconPostfix)]
     public class CascadingDropDown : ExtenderControlBase {
         public CascadingDropDown() {
             ClientStateValuesLoaded += new EventHandler(CascadingDropDown_ClientStateValuesLoaded);

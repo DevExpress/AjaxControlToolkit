@@ -13,7 +13,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationScripts))]
     [DefaultProperty("VerticalOffset")]
     [TargetControlType(typeof(Control))]
-    [ToolboxBitmap(typeof(AlwaysVisibleControlExtender), Constants.AlwaysVisibleControlName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AlwaysVisibleControlName + Constants.IconPostfix)]
     public class AlwaysVisibleControlExtender : ExtenderControlBase {
         // Distance to the horizontal edge of the browser in pixels from the
         // same side of the target control. The default is 0 pixels.

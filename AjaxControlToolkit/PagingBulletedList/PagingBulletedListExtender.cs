@@ -9,7 +9,7 @@ namespace AjaxControlToolkit {
     [Designer("AjaxControlToolkit.Design.PagingBulletedListExtenderDesigner, AjaxControlToolkit")]
     [ClientScriptResource("Sys.Extended.UI.PagingBulletedListBehavior", Constants.PagingBulletedListName)]
     [TargetControlType(typeof(BulletedList))]
-    [ToolboxBitmap(typeof(PagingBulletedListExtender), Constants.PagingBulletedListName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.PagingBulletedListName + Constants.IconPostfix)]
     public class PagingBulletedListExtender : ExtenderControlBase {
         public PagingBulletedListExtender() {
             EnableClientState = true;

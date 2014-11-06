@@ -16,7 +16,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationScripts))]
     [TargetControlType(typeof(Panel))]
     [DefaultProperty("CollapseControlID")]
-    [ToolboxBitmap(typeof(CollapsiblePanelExtender), Constants.CollapsiblePanelName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.CollapsiblePanelName + Constants.IconPostfix)]
     public class CollapsiblePanelExtender : ExtenderControlBase {
         public CollapsiblePanelExtender() {
             ClientStateValuesLoaded += new EventHandler(CollapsiblePanelExtender_ClientStateValuesLoaded);

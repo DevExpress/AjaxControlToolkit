@@ -12,7 +12,7 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(Control))]
     [Designer("AjaxControlToolkit.Design.PopupControlDesigner, AjaxControlToolkit")]
     [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [ToolboxBitmap(typeof(PopupControlExtender), Constants.PopupControlName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.PopupControlName + Constants.IconPostfix)]
     public class PopupControlExtender : DynamicPopulateExtenderControlBase {
         bool _shouldClose;
         string _closeString;

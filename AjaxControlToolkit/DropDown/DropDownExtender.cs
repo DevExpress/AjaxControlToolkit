@@ -15,7 +15,7 @@ namespace AjaxControlToolkit {
     [ClientScriptResource("Sys.Extended.UI.DropDownBehavior", Constants.DropDownName)]
     [Designer("AjaxControlToolkit.Designer.DropDownDesigner, AjaxControlToolkit")]
     [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [ToolboxBitmap(typeof(DropDownExtender), Constants.DropDownName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DropDownName + Constants.IconPostfix)]
     public class DropDownExtender : DynamicPopulateExtenderControlBase {
         [DefaultValue("")]
         [IDReferenceProperty(typeof(Control))]

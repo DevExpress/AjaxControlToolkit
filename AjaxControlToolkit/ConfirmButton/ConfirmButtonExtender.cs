@@ -12,7 +12,7 @@ namespace AjaxControlToolkit {
     [Designer("AjaxControlToolkit.Design.ConfirmButtonExtenderDesigner, AjaxControlToolkit")]
     [ClientScriptResource("Sys.Extended.UI.ConfirmButtonBehavior", Constants.ConfirmButtonName)]
     [TargetControlType(typeof(IButtonControl))]
-    [ToolboxBitmap(typeof(ConfirmButtonExtender), Constants.ConfirmButtonName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ConfirmButtonName + Constants.IconPostfix)]
     public class ConfirmButtonExtender : ExtenderControlBase {
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);

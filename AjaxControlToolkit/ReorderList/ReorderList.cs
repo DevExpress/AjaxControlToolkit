@@ -27,7 +27,7 @@ namespace AjaxControlToolkit {
     // column that this list can have "ownership" of.  By setting this column name into the "SortOrderField" property,
     // reorders will happen automatically.
     [Designer("AjaxControlToolkit.Design.ReorderListDesigner, AjaxControlToolkit")]
-    [ToolboxBitmap(typeof(ReorderList), Constants.ReorderListName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ReorderListName + Constants.IconPostfix)]
     public class ReorderList : CompositeDataBoundControl, IRepeatInfoUser, INamingContainer, ICallbackEventHandler, IPostBackEventHandler {
         static object ItemCommandKey = new object();
         static object CancelCommandKey = new object();

@@ -9,7 +9,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior", Constants.MutuallyExclusiveCheckBoxName)]
     [Designer("AjaxControlToolkit.Design.MutuallyExclusiveCheckBoxExtenderDesigner, AjaxControlToolkit")]
-    [ToolboxBitmap(typeof(MutuallyExclusiveCheckBoxExtender), Constants.MutuallyExclusiveCheckBoxName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.MutuallyExclusiveCheckBoxName + Constants.IconPostfix)]
     public class MutuallyExclusiveCheckBoxExtender : ExtenderControlBase {
         // The unique key to use to associate checkboxes. This key does
         // not respect INamingContainer renaming.

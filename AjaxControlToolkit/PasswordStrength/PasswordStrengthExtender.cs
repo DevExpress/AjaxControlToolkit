@@ -11,7 +11,7 @@ namespace AjaxControlToolkit {
     [Designer("AjaxControlToolkit.Design.PasswordStrengthExtenderDesigner, AjaxControlToolkit")]
     [ClientScriptResource("Sys.Extended.UI.PasswordStrengthExtenderBehavior", Constants.PasswordStrengthName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
-    [ToolboxBitmap(typeof(PasswordStrength), Constants.PasswordStrengthName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.PasswordStrengthName + Constants.IconPostfix)]
     public class PasswordStrength : ExtenderControlBase {
         const string _txtPasswordCssClass = "TextCssClass";
         const string _barBorderCssClass = "BarBorderCssClass";

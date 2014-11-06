@@ -8,7 +8,7 @@ namespace AjaxControlToolkit {
     [Designer("AjaxControlToolkit.Design.ToggleButtonExtenderDesigner, AjaxControlToolkit")]
     [ClientScriptResource("Sys.Extended.UI.ToggleButtonBehavior", Constants.ToggleButtonName)]
     [TargetControlType(typeof(ICheckBoxControl))]
-    [ToolboxBitmap(typeof(ToggleButtonExtender), Constants.ToggleButtonName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ToggleButtonName + Constants.IconPostfix)]
     public class ToggleButtonExtender : ExtenderControlBase {
         const string stringImageWidth = "ImageWidth";
         const string stringImageHeight = "ImageHeight";

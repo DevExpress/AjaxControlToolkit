@@ -8,7 +8,7 @@ namespace AjaxControlToolkit {
     [ClientScriptResource("Sys.Extended.UI.RoundedCornersBehavior", Constants.RoundedCornersName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(Control))]
-    [ToolboxBitmap(typeof(RoundedCornersExtender), Constants.RoundedCornersName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.RoundedCornersName + Constants.IconPostfix)]
     public class RoundedCornersExtender : ExtenderControlBase {
         [DefaultValue(5)]
         [ExtenderControlProperty()]

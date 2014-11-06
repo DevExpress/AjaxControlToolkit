@@ -10,7 +10,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.ResizableControlBehavior", Constants.ResizableControlName)]
     [TargetControlType(typeof(Control))]
-    [ToolboxBitmap(typeof(ResizableControlExtender), Constants.ResizableControlName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ResizableControlName + Constants.IconPostfix)]
     public class ResizableControlExtender : ExtenderControlBase {
         const int MaximumValue = 100000;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,7 +16,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationScripts))]
     [RequiredScript(typeof(TimerScript))]
     [TargetControlType(typeof(TextBox))]
-    [System.Drawing.ToolboxBitmap(typeof(SliderExtender), Constants.SliderName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.SliderName + Constants.IconPostfix)]
     public class SliderExtender : ExtenderControlBase {
 
         [ExtenderControlProperty]

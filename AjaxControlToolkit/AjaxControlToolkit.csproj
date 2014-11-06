@@ -192,6 +192,7 @@
     <Compile Include="Slider\SliderOrientation.cs" />
     <Compile Include="ToggleButton\ToggleButtonExtender.cs" />
     <Compile Include="ToggleButton\ToggleButtonExtenderDesigner.cs" />
+    <Compile Include="ToolboxIcons\Accessor.cs" />
     <Compile Include="ToolkitResourceManager.cs" />
     <Compile Include="RoundedCorners\BoxCorners.cs" />
     <Compile Include="RoundedCorners\RoundedCornersExtenderDesigner.cs" />
@@ -217,7 +218,7 @@
     <Content Include="Scripts\ConfirmButton.min.js">
       <DependentUpon>ConfirmButton.js</DependentUpon>
     </Content>
-    <Content Include="ToolboxIcons\ConfirmButton.ico" />
+    <EmbeddedResource Include="ToolboxIcons\ConfirmButton.ico" />
     <EmbeddedResource Include="ToolboxIcons\ListSearch.ico" />
     <EmbeddedResource Include="ToolboxIcons\PopupControl.ico" />
     <EmbeddedResource Include="ToolboxIcons\DropDown.ico" />
@@ -516,7 +517,7 @@
     <EmbeddedResource Include="Styles\SlideShow.min.css">
       <DependentUpon>SlideShow.css</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolboxIcons\AlwaysVisible.ico" />
+    <EmbeddedResource Include="ToolboxIcons\AlwaysVisibleControl.ico" />
     <EmbeddedResource Include="ToolboxIcons\Animation.ico" />
     <EmbeddedResource Include="ToolboxIcons\CollapsiblePanel.ico" />
     <EmbeddedResource Include="ToolboxIcons\DragPanel.ico" />

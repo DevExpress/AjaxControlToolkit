@@ -14,7 +14,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationExtender), 2)]
     [Designer(typeof(ListSearchExtenderDesigner))]
     [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [ToolboxBitmap(typeof(ListSearchExtender), Constants.ListSearchName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ListSearchName + Constants.IconPostfix)]
     public class ListSearchExtender : AnimationExtenderControlBase {
 
         public ListSearchExtender() {

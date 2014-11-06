@@ -10,7 +10,7 @@ namespace AjaxControlToolkit {
 
     [Designer("AjaxControlToolkit.NoBotExtenderDesigner, AjaxControlToolkit")]
     [DefaultEvent("GenerateChallengeAndResponse")]
-    [ToolboxBitmap(typeof(NoBot), Constants.NoBotName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.NoBotName + Constants.IconPostfix)]
     public class NoBot : WebControl, INamingContainer {
         static SortedList<DateTime, string> _pastAddresses = new SortedList<DateTime, string>();
 

@@ -11,7 +11,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.DynamicPopulateBehavior", Constants.DynamicPopulateName)]
     [TargetControlType(typeof(Control))]
-    [ToolboxBitmap(typeof(DynamicPopulateExtender), Constants.DynamicPopulateName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DynamicPopulateName + Constants.IconPostfix)]
     public class DynamicPopulateExtender : ExtenderControlBase {
 
         [DefaultValue(true)]

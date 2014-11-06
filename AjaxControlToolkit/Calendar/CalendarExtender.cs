@@ -25,7 +25,7 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(TextBox))]
     [ClientCssResource(Constants.CalendarName)]
     [ClientScriptResource("Sys.Extended.UI.CalendarBehavior", Constants.CalendarName)]
-    [ToolboxBitmap(typeof(CalendarExtender), Constants.CalendarName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.CalendarName + Constants.IconPostfix)]
     public class CalendarExtender : ExtenderControlBase {
         [DefaultValue("")]
         [ExtenderControlProperty]
