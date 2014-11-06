@@ -533,7 +533,7 @@
     <EmbeddedResource Include="ToolboxIcons\ResizableControl.ico" />
     <EmbeddedResource Include="ToolboxIcons\RoundedCorners.ico" />
     <EmbeddedResource Include="ToolboxIcons\SlideShow.ico" />
-    <EmbeddedResource Include="ToolboxIcons\TextboxWatermark.ico" />
+    <EmbeddedResource Include="ToolboxIcons\TextBoxWatermark.ico" />
   </ItemGroup>
   <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
   <ItemGroup>
