@@ -195,6 +195,13 @@
     <Compile Include="Slider\SliderExtenderDesigner.cs" />
     <Compile Include="Slider\SliderExtender.cs" />
     <Compile Include="Slider\SliderOrientation.cs" />
+    <Compile Include="Tabs\OnDemandMode.cs" />
+    <Compile Include="Tabs\TabContainer.cs" />
+    <Compile Include="Tabs\TabContainerDesigner.cs" />
+    <Compile Include="Tabs\TabPanel.cs" />
+    <Compile Include="Tabs\TabPanelCollection.cs" />
+    <Compile Include="Tabs\TabPanelDesigner.cs" />
+    <Compile Include="Tabs\TabStripPlacement.cs" />
     <Compile Include="ToggleButton\ToggleButtonExtender.cs" />
     <Compile Include="ToggleButton\ToggleButtonExtenderDesigner.cs" />
     <Compile Include="ToolboxIcons\Accessor.cs" />
@@ -227,6 +234,39 @@
     <Content Include="Scripts\BalloonPopup.min.js">
       <DependentUpon>BalloonPopup.js</DependentUpon>
     </Content>
+    <EmbeddedResource Include="Images\TabsActive-Verticalright.gif" />
+    <EmbeddedResource Include="Images\TabsActive.gif" />
+    <EmbeddedResource Include="Images\TabsBottom-Active-Left.gif" />
+    <EmbeddedResource Include="Images\TabsBottom-Active-Right.gif" />
+    <EmbeddedResource Include="Images\TabsBottom-Active.gif" />
+    <EmbeddedResource Include="Images\TabsBottom-Hover-Left.gif" />
+    <EmbeddedResource Include="Images\TabsBottom-Hover-Right.gif" />
+    <EmbeddedResource Include="Images\TabsBottom-Hover.gif" />
+    <EmbeddedResource Include="Images\TabsBottom-Left.gif" />
+    <EmbeddedResource Include="Images\TabsBottom-Right.gif" />
+    <EmbeddedResource Include="Images\TabsBottom.gif" />
+    <EmbeddedResource Include="Images\TabsHover-Left-Verticalleft.gif" />
+    <EmbeddedResource Include="Images\TabsHover-Left-Verticalright.gif" />
+    <EmbeddedResource Include="Images\TabsHover-Left.gif" />
+    <EmbeddedResource Include="Images\TabsHover-Right-Verticalleft.gif" />
+    <EmbeddedResource Include="Images\TabsHover-Right-Verticalright.gif" />
+    <EmbeddedResource Include="Images\TabsHover-Right.gif" />
+    <EmbeddedResource Include="Images\TabsHover-Verticalleft.gif" />
+    <EmbeddedResource Include="Images\TabsHover-Verticalright.gif" />
+    <EmbeddedResource Include="Images\TabsHover.gif" />
+    <EmbeddedResource Include="Images\TabsLeft-Verticalleft.gif" />
+    <EmbeddedResource Include="Images\TabsLeft-Verticalright.gif" />
+    <EmbeddedResource Include="Images\TabsLeft.gif" />
+    <EmbeddedResource Include="Images\TabsLine.gif" />
+    <EmbeddedResource Include="Images\TabsRight-Verticalleft.gif" />
+    <EmbeddedResource Include="Images\TabsRight-Verticalright.gif" />
+    <EmbeddedResource Include="Images\TabsRight.gif" />
+    <EmbeddedResource Include="Images\TabsVerticalleft.gif" />
+    <EmbeddedResource Include="Images\TabsVerticalright.gif" />
+    <Content Include="Scripts\ComponentSet.js" />
+    <Content Include="Scripts\ComponentSet.min.js">
+      <DependentUpon>ComponentSet.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\ConfirmButton.js" />
     <Content Include="Scripts\ConfirmButton.min.js">
       <DependentUpon>ConfirmButton.js</DependentUpon>
@@ -240,6 +280,15 @@
     <Content Include="Styles\BalloonPopup.Rectangle.min.css">
       <DependentUpon>BalloonPopup.Rectangle.css</DependentUpon>
     </Content>
+    <Content Include="Scripts\Tabs.min.js">
+      <DependentUpon>Tabs.js</DependentUpon>
+    </Content>
+    <Content Include="ToolboxIcons\Tabs.ico" />
+    <EmbeddedResource Include="Styles\Tabs.css" />
+    <EmbeddedResource Include="Styles\Tabs.min.css">
+      <DependentUpon>Tabs.css</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Scripts\Tabs.js" />
     <Content Include="ToolboxIcons\BalloonPopup.ico" />
     <EmbeddedResource Include="ToolboxIcons\ListSearch.ico" />
     <EmbeddedResource Include="ToolboxIcons\PopupControl.ico" />

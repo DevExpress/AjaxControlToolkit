@@ -32,6 +32,7 @@
         <siteMapNode url="~/RoundedCorners/RoundedCorners.aspx" title="RoundedCorners" />
         <siteMapNode url="~/Slider/Slider.aspx" title="Slider" />
         <siteMapNode url="~/SlideShow/SlideShow.aspx" title="SlideShow" />
+        <siteMapNode url="~/Tabs/Tabs.aspx" title="Tabs" />
         <siteMapNode url="~/TextBoxWatermark/TextBoxWatermark.aspx" title="TextBoxWatermark" />
         <siteMapNode url="~/UpdatePanelAnimation/UpdatePanelAnimation.aspx" title="UpdatePanelAnimation" />
         <siteMapNode url="~/ValidatorCallout/ValidatorCallout.aspx" title="ValidatorCallout" />

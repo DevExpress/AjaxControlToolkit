@@ -5,6 +5,7 @@ using System.Linq;
 namespace AjaxControlToolkit {
 
     [ClientScriptResource(null, Constants.CommonScriptName)]
+    [ClientScriptResource(null, Constants.ComponentSetName)]
     public static class CommonToolkitScripts {
     }
 
