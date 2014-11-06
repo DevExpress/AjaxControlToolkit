@@ -585,8 +585,10 @@ Sys.Extended.UI.TabPanel.prototype = {
         Array.add(owner.get_tabs(), this);
         var tabId = this.get_id() + "_tab";
         this._tab = document.getElementById(tabId);
-        var serverRendered = (this._tab != null);
 
+        this._makeEnabled(this._enabled);
+
+        var serverRendered = (this._tab != null);
         if(!serverRendered) {
             this._headerOuterWrapper = document.createElement('span');
             this._headerInnerWrapper = document.createElement('span');
@@ -596,21 +598,7 @@ Sys.Extended.UI.TabPanel.prototype = {
             this._tab.appendChild(this._headerOuterWrapper);
             this._headerOuterWrapper.appendChild(this._headerInnerWrapper);
             this._headerInnerWrapper.appendChild(this._header);
-        }
 
-        $addHandlers(this._header, {
-            mousedown: this._header_onmousedown$delegate,
-            dragstart: this._oncancel$delegate,
-            selectstart: this._oncancel$delegate,
-            select: this._oncancel$delegate
-        });
-        if(this._enabled) {
-            this._addHandlersOnEnabled();
-        } else {
-            Sys.UI.DomElement.addCssClass(this._tab, "ajax__tab_disabled");
-        }
-
-        if(!serverRendered) {
             Sys.UI.DomElement.addCssClass(this._headerOuterWrapper, "ajax__tab_outer");
             Sys.UI.DomElement.addCssClass(this._headerInnerWrapper, "ajax__tab_inner");
             Sys.UI.DomElement.addCssClass(this._header, "ajax__tab_tab");
@@ -653,6 +641,7 @@ Sys.Extended.UI.TabPanel.prototype = {
             mouseout: this._header_onmouseout$delegate,
             keydown: this._onkeydown$delegate
         });
+        this._isAttachedEnabledEvents = true;
     },
 
     _removeHandlersOnEnabled: function() {
@@ -716,14 +705,13 @@ Sys.Extended.UI.TabPanel.prototype = {
         var hyperlinkId = "__tab_" + this.get_element().id;
 
         if(enable) {
-            if(this.isAttachedDisabledEvents) {
+            if(this._isAttachedDisabledEvents) {
                 $common.removeHandlers(this._header, {
                     click: this._disabled_onclick
                 });
                 this._isAttachedDisabledEvents = false;
             }
             this._addHandlersOnEnabled();
-            this._isAttachedEnabledEvents = true;
             Sys.UI.DomElement.removeCssClass($get(hyperlinkId), "ajax__tab_disabled");
         } else {
             if(this._isAttachedEnabledEvents) {
@@ -733,7 +721,7 @@ Sys.Extended.UI.TabPanel.prototype = {
             $addHandlers(this._header, {
                 click: this._disabled_onclick
             });
-            this.isAttachedDisabledEvents = true;
+            this._isAttachedDisabledEvents = true;
             if(this._get_active()) {
                 var next = this._owner.getNearestTab(false);
                 if(!!next) {
