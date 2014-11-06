@@ -68,6 +68,11 @@
     <Compile Include="Animation\AnimationScripts.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtenderDesigner.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtender.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupExtenderDesigner.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupExtender.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupPosition.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupSize.cs" />
+    <Compile Include="BalloonPopup\BalloonPopupStyle.cs" />
     <Compile Include="Bundling\BundleResolver.cs" />
     <Compile Include="Bundling\ConfigXmlElements.cs" />
     <Compile Include="Bundling\DefaultCache.cs" />
@@ -214,11 +219,28 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images\BalloonPopupCloud-Sprite.gif" />
+    <EmbeddedResource Include="Images\BalloonPopupCloud-Sprite.png" />
+    <EmbeddedResource Include="Images\BalloonPopupRectangle-Sprite.gif" />
+    <EmbeddedResource Include="Images\BalloonPopupRectangle-Sprite.png" />
+    <Content Include="Scripts\BalloonPopup.js" />
+    <Content Include="Scripts\BalloonPopup.min.js">
+      <DependentUpon>BalloonPopup.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\ConfirmButton.js" />
     <Content Include="Scripts\ConfirmButton.min.js">
       <DependentUpon>ConfirmButton.js</DependentUpon>
     </Content>
     <EmbeddedResource Include="ToolboxIcons\ConfirmButton.ico" />
+    <EmbeddedResource Include="Styles\BalloonPopup.Cloud.css" />
+    <EmbeddedResource Include="Styles\BalloonPopup.Rectangle.css" />
+    <Content Include="Styles\BalloonPopup.Cloud.min.css">
+      <DependentUpon>BalloonPopup.Cloud.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\BalloonPopup.Rectangle.min.css">
+      <DependentUpon>BalloonPopup.Rectangle.css</DependentUpon>
+    </Content>
+    <Content Include="ToolboxIcons\BalloonPopup.ico" />
     <EmbeddedResource Include="ToolboxIcons\ListSearch.ico" />
     <EmbeddedResource Include="ToolboxIcons\PopupControl.ico" />
     <EmbeddedResource Include="ToolboxIcons\DropDown.ico" />

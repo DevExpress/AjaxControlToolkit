@@ -33,6 +33,7 @@ namespace AjaxControlToolkit {
             AnimationName = "Animation",
             AnimationScriptsName = "AnimationScripts",
             AutoCompleteName = "AutoComplete",
+            BalloonPopupName = "BalloonPopup",
             CalendarName = "Calendar",
             CascadingDropDownName = "CascadingDropDown",
             CollapsiblePanelName = "CollapsiblePanel",
@@ -68,6 +69,10 @@ namespace AjaxControlToolkit {
             UpdatePanelAnimationName = "UpdatePanelAnimation",
             ValidatorCalloutName = "ValidatorCallout",
 
+            BalloonPopupCloudGifSprite = BalloonPopupName + "Cloud-Sprite.gif",
+            BalloonPopupCloudPngSprite = BalloonPopupName + "Cloud-Sprite.png",
+            BalloonPopupRectangleGifSprite = BalloonPopupName + "Rectangle-Sprite.gif",
+            BalloonPopupRectanglePngSprite = BalloonPopupName + "Rectangle-Sprite.png",
             CalendarArrowLeftImage = CalendarName + "Arrow-Left.gif",
             CalendarArrowRightImage = CalendarName + "Arrow-Right.gif",
             DropDownDropArrowImage = DropDownName + "Drop-Arrow.gif",

@@ -17,3 +17,13 @@
 .ajax__dropdown_arrow_image {
     background:url('<%=WebResource("AjaxControlToolkit.Images.DropDownDrop-Arrow.gif")%>') no-repeat 50% 50%;
 }
+
+.ajax__balloon_popup .rect {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopupRectangle-Sprite.png")%>') !important;
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopupRectangle-Sprite.gif")%>');
+}
+
+.ajax__balloon_popup .cloud {
+	background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopupCloud-Sprite.png")%>') !important;
+	background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopupCloud-Sprite.gif")%>');
+}

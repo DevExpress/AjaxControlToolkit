@@ -32,6 +32,17 @@ using System.Web.UI;
 [assembly: WebResource(Constants.BaseScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.BaseScriptName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.BalloonPopupName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.BalloonPopupName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.BalloonPopupName + ".Cloud" + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.BalloonPopupName + ".Cloud" + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.BalloonPopupName + ".Rectangle" + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.BalloonPopupName + ".Rectangle" + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.BalloonPopupCloudPngSprite, "image/png")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.BalloonPopupCloudGifSprite, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.BalloonPopupRectanglePngSprite, "image/png")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.BalloonPopupRectangleGifSprite, "image/gif")]
+
 [assembly: WebResource(Constants.CommonScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CommonScriptName + Constants.JsPostfix, "text/javascript")]
 

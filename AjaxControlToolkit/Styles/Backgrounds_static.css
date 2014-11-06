@@ -17,3 +17,13 @@
 .ajax__dropdown_arrow_image {
     background:url('../Images/DropDownDrop-Arrow.gif') no-repeat 50% 50%;
 }
+
+.ajax__balloon_popup .rect {
+    background-image: url('../Images/BalloonPopupRectangle-Sprite.png') !important;
+    background-image: url('../Images/BalloonPopupRectangle-Sprite.gif');
+}
+
+.ajax__balloon_popup .cloud {
+	background-image: url('../Images/BalloonPopupCloud-Sprite.png') !important;
+	background-image: url('../Images/BalloonPopupCloud-Sprite.gif');
+}
