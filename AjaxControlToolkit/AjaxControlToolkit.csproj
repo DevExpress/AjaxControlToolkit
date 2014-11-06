@@ -230,6 +230,14 @@
     <EmbeddedResource Include="Images\BalloonPopupCloud-Sprite.png" />
     <EmbeddedResource Include="Images\BalloonPopupRectangle-Sprite.gif" />
     <EmbeddedResource Include="Images\BalloonPopupRectangle-Sprite.png" />
+    <EmbeddedResource Include="Images\Tabs.gif" />
+    <EmbeddedResource Include="Images\TabsActive-Left-Verticalleft.gif" />
+    <EmbeddedResource Include="Images\TabsActive-Left-Verticalright.gif" />
+    <EmbeddedResource Include="Images\TabsActive-Left.gif" />
+    <EmbeddedResource Include="Images\TabsActive-Right-Verticalleft.gif" />
+    <EmbeddedResource Include="Images\TabsActive-Right-Verticalright.gif" />
+    <EmbeddedResource Include="Images\TabsActive-Right.gif" />
+    <EmbeddedResource Include="Images\TabsActive-Verticalleft.gif" />
     <Content Include="Scripts\BalloonPopup.js" />
     <Content Include="Scripts\BalloonPopup.min.js">
       <DependentUpon>BalloonPopup.js</DependentUpon>
@@ -274,22 +282,22 @@
     <EmbeddedResource Include="ToolboxIcons\ConfirmButton.ico" />
     <EmbeddedResource Include="Styles\BalloonPopup.Cloud.css" />
     <EmbeddedResource Include="Styles\BalloonPopup.Rectangle.css" />
-    <Content Include="Styles\BalloonPopup.Cloud.min.css">
+    <EmbeddedResource Include="Styles\BalloonPopup.Cloud.min.css">
       <DependentUpon>BalloonPopup.Cloud.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\BalloonPopup.Rectangle.min.css">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\BalloonPopup.Rectangle.min.css">
       <DependentUpon>BalloonPopup.Rectangle.css</DependentUpon>
-    </Content>
+    </EmbeddedResource>
     <Content Include="Scripts\Tabs.min.js">
       <DependentUpon>Tabs.js</DependentUpon>
     </Content>
-    <Content Include="ToolboxIcons\Tabs.ico" />
+    <EmbeddedResource Include="ToolboxIcons\Tabs.ico" />
     <EmbeddedResource Include="Styles\Tabs.css" />
     <EmbeddedResource Include="Styles\Tabs.min.css">
       <DependentUpon>Tabs.css</DependentUpon>
     </EmbeddedResource>
     <Content Include="Scripts\Tabs.js" />
-    <Content Include="ToolboxIcons\BalloonPopup.ico" />
+    <EmbeddedResource Include="ToolboxIcons\BalloonPopup.ico" />
     <EmbeddedResource Include="ToolboxIcons\ListSearch.ico" />
     <EmbeddedResource Include="ToolboxIcons\PopupControl.ico" />
     <EmbeddedResource Include="ToolboxIcons\DropDown.ico" />
@@ -297,9 +305,9 @@
     <EmbeddedResource Include="Images\CalendarArrow-Left.gif" />
     <EmbeddedResource Include="Images\CalendarArrow-Right.gif" />
     <EmbeddedResource Include="Images\DropDownDrop-Arrow.gif" />
-    <Content Include="Images\ValidatorCalloutAlert-Large.gif" />
-    <Content Include="Images\ValidatorCalloutAlert-Small.gif" />
-    <Content Include="Images\ValidatorCalloutClose.gif" />
+    <EmbeddedResource Include="Images\ValidatorCalloutAlert-Large.gif" />
+    <EmbeddedResource Include="Images\ValidatorCalloutAlert-Small.gif" />
+    <EmbeddedResource Include="Images\ValidatorCalloutClose.gif" />
     <Content Include="Scripts\Calendar.js" />
     <Content Include="Scripts\Calendar.min.js">
       <DependentUpon>Calendar.js</DependentUpon>
@@ -357,9 +365,9 @@
     <EmbeddedResource Include="Styles\DropDown.min.css">
       <DependentUpon>DropDown.css</DependentUpon>
     </EmbeddedResource>
-    <Content Include="Styles\ValidatorCallout.min.css">
+    <EmbeddedResource Include="Styles\ValidatorCallout.min.css">
       <DependentUpon>ValidatorCallout.css</DependentUpon>
-    </Content>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolboxIcons\Calendar.ico" />
     <EmbeddedResource Include="ToolboxIcons\DynamicPopulate.ico" />
     <EmbeddedResource Include="ToolboxIcons\ToggleButton.ico" />
