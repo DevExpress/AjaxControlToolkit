@@ -20,6 +20,7 @@
         <siteMapNode url="~/ListSearch/ListSearch.aspx" title="ListSearch" />
         <siteMapNode url="~/MaskedEdit/MaskedEdit.aspx" title="MaskedEdit" />
         <siteMapNode url="~/ModalPopup/ModalPopup.aspx" title="ModalPopup" />
+        <siteMapNode url="~/MultiHandleSlider/MultiHandleSlider.aspx" title="MultiHandleSlider" />
         <siteMapNode url="~/MutuallyExclusiveCheckBox/MutuallyExclusiveCheckBox.aspx" title="MutuallyExclusiveCheckBox" />
         <siteMapNode url="~/NoBot/NoBot.aspx" title="NoBot" />
         <siteMapNode url="~/NumericUpDown/NumericUpDown.aspx" title="NumericUpDown" />

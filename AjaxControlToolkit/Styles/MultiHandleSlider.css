@@ -1,0 +1,75 @@
+.ajax__multi_slider_default .outer_rail_vertical {
+    position: absolute;
+    width: 22px;
+    height: 150px;
+    background: repeat-y;
+}
+
+.ajax__multi_slider_default .inner_rail_vertical {
+    position: absolute;
+    width: 22px;
+    z-index: 100;
+    background: repeat-y;
+}
+
+.ajax__multi_slider_default .inner_rail_horizontal {
+    position: absolute;
+    height: 22px;
+    z-index: 100;
+    background: repeat-x;
+}
+
+.ajax__multi_slider_default .outer_rail_horizontal {
+    position: absolute;
+    height: 22px;
+    width: 150px;
+    background: repeat-x;
+}
+
+.ajax__multi_slider_default .handle_horizontal {
+    position: absolute;
+    height: 22px;
+    width: 10px;
+    z-index: 200;
+    background: no-repeat;
+}
+
+.ajax__multi_slider_default .handle_horizontal_hover {
+    position: absolute;
+    height: 22px;
+    width: 10px;
+    z-index: 200;
+    background: no-repeat;
+}
+
+.ajax__multi_slider_default .handle_horizontal_down {
+    position: absolute;
+    height: 22px;
+    width: 10px;
+    z-index: 200;
+    background: no-repeat;
+}
+
+.ajax__multi_slider_default .handle_vertical {
+    position: absolute;
+    height: 10px;
+    width: 22px;
+    z-index: 200;
+    background: no-repeat;
+}
+
+.ajax__multi_slider_default .handle_vertical_hover {
+    position: absolute;
+    height: 10px;
+    width: 22px;
+    z-index: 200;
+    background: no-repeat;
+}
+
+.ajax__multi_slider_default .handle_vertical_down {
+    position: absolute;
+    height: 10px;
+    width: 22px;
+    z-index: 200;
+    background: no-repeat;
+}

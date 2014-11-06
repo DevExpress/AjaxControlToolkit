@@ -115,6 +115,21 @@ using System.Web.UI;
 [assembly: WebResource(Constants.ModalPopup + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.ModalPopup + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.MultiHandleSliderName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.MultiHandleSliderName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.MultiHandleSliderName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.MultiHandleSliderName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.MultiHandleSliderHHandleImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.MultiHandleSliderHHandleDownImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.MultiHandleSliderHHandleHoverImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.MultiHandleSliderHRailImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.MultiHandleSliderHRailOuterImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.MultiHandleSliderVHandleImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.MultiHandleSliderVHandleDownImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.MultiHandleSliderVHandleHoverImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.MultiHandleSliderVRailImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.MultiHandleSliderVRailOuterImage, "image/gif")]
+
 [assembly: WebResource(Constants.MutuallyExclusiveCheckBoxName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.MutuallyExclusiveCheckBoxName + Constants.JsPostfix, "text/javascript")]
 

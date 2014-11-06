@@ -154,6 +154,10 @@
     <Compile Include="ModalPopup\ModalPopupDesigner.cs" />
     <Compile Include="ModalPopup\ModalPopupExtender.cs" />
     <Compile Include="ModalPopup\ModalPopupRepositionMode.cs" />
+    <Compile Include="MultiHandleSlider\MultiHandleInnerRailStyle.cs" />
+    <Compile Include="MultiHandleSlider\MultiHandleSliderExtenderDesigner.cs" />
+    <Compile Include="MultiHandleSlider\MultiHandleSliderExtender.cs" />
+    <Compile Include="MultiHandleSlider\MultiHandleSliderTarget.cs" />
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtenderDesigner.cs" />
     <Compile Include="MutuallyExclusiveCheckBox\MutuallyExclusiveCheckBoxExtender.cs" />
     <Compile Include="NoBot\NoBot.cs" />
@@ -226,10 +230,19 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ToolboxIcons\MultiHandleSlider.ico" />
     <EmbeddedResource Include="Images\BalloonPopupCloud-Sprite.gif" />
     <EmbeddedResource Include="Images\BalloonPopupCloud-Sprite.png" />
     <EmbeddedResource Include="Images\BalloonPopupRectangle-Sprite.gif" />
     <EmbeddedResource Include="Images\BalloonPopupRectangle-Sprite.png" />
+    <EmbeddedResource Include="Images\MultiHandleSlider-HHandle.gif" />
+    <EmbeddedResource Include="Images\MultiHandleSlider-HHandleDown.gif" />
+    <EmbeddedResource Include="Images\MultiHandleSlider-HHandleHover.gif" />
+    <EmbeddedResource Include="Images\MultiHandleSlider-HRail.gif" />
+    <EmbeddedResource Include="Images\MultiHandleSlider-HRailOuter.gif" />
+    <EmbeddedResource Include="Images\MultiHandleSlider-VHandle.gif" />
+    <EmbeddedResource Include="Images\MultiHandleSlider-VHandleDown.gif" />
+    <EmbeddedResource Include="Images\MultiHandleSlider-VHandleHover.gif" />
     <EmbeddedResource Include="Images\Tabs.gif" />
     <EmbeddedResource Include="Images\TabsActive-Left-Verticalleft.gif" />
     <EmbeddedResource Include="Images\TabsActive-Left-Verticalright.gif" />
@@ -238,6 +251,8 @@
     <EmbeddedResource Include="Images\TabsActive-Right-Verticalright.gif" />
     <EmbeddedResource Include="Images\TabsActive-Right.gif" />
     <EmbeddedResource Include="Images\TabsActive-Verticalleft.gif" />
+    <EmbeddedResource Include="Images\MultiHandleSlider-VRail.gif" />
+    <EmbeddedResource Include="Images\MultiHandleSlider-VRailOuter.gif" />
     <Content Include="Scripts\BalloonPopup.js" />
     <Content Include="Scripts\BalloonPopup.min.js">
       <DependentUpon>BalloonPopup.js</DependentUpon>
@@ -285,6 +300,10 @@
     <EmbeddedResource Include="Styles\BalloonPopup.Cloud.min.css">
       <DependentUpon>BalloonPopup.Cloud.css</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Scripts\MultiHandleSlider.js" />
+    <Content Include="Scripts\MultiHandleSlider.min.js">
+      <DependentUpon>MultiHandleSlider.js</DependentUpon>
+    </Content>
     <EmbeddedResource Include="Styles\BalloonPopup.Rectangle.min.css">
       <DependentUpon>BalloonPopup.Rectangle.css</DependentUpon>
     </EmbeddedResource>
@@ -295,6 +314,10 @@
     <EmbeddedResource Include="Styles\Tabs.css" />
     <EmbeddedResource Include="Styles\Tabs.min.css">
       <DependentUpon>Tabs.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\MultiHandleSlider.css" />
+    <EmbeddedResource Include="Styles\MultiHandleSlider.min.css">
+      <DependentUpon>MultiHandleSlider.css</DependentUpon>
     </EmbeddedResource>
     <Content Include="Scripts\Tabs.js" />
     <EmbeddedResource Include="ToolboxIcons\BalloonPopup.ico" />

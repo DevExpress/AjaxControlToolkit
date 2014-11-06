@@ -187,3 +187,43 @@
     .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_tab {
         background-image: url('<%=WebResource(""AjaxControlToolkit.Images.TabsBottom-Active.gif"")%>');
     }
+
+.ajax__multi_slider_default .outer_rail_vertical {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-VRailOuter.gif")%>');
+}
+
+.ajax__multi_slider_default .inner_rail_vertical {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-VRail.gif")%>');
+}
+
+.ajax__multi_slider_default .inner_rail_horizontal {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-HRail.gif")%>');
+}
+
+.ajax__multi_slider_default .outer_rail_horizontal {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-HRailOuter.gif")%>');
+}
+
+.ajax__multi_slider_default .handle_horizontal {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-HHandle.gif")%>');
+}
+
+.ajax__multi_slider_default .handle_horizontal_hover {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-HHandleHover.gif")%>');
+}
+
+.ajax__multi_slider_default .handle_horizontal_down {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-HHandleDown.gif")%>');
+}
+
+.ajax__multi_slider_default .handle_vertical {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-VHandle.gif")%>');
+}
+
+.ajax__multi_slider_default .handle_vertical_hover {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-VHandleHover.gif")%>');
+}
+
+.ajax__multi_slider_default .handle_vertical_down {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-VHandleDown.gif")%>');
+}
