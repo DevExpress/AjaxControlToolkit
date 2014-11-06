@@ -7,3 +7,4 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 .ajax__dropdown_arrow_wrapper img {top:0%;}
 }
+.ajax__dropdown_arrow_image {background-repeat: no-repeat;background-position: 50% 50%;}

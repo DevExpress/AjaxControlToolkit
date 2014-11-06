@@ -1,21 +1,21 @@
 ﻿.ajax__slider_h_rail {
-    background: url('<%=WebResource("AjaxControlToolkit.Images.SliderRail-H.gif")%>') repeat-x;
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.SliderRail-H.gif")%>');
 }
 
 .ajax__slider_v_rail {
-    background: url('<%=WebResource("AjaxControlToolkit.Images.SliderRail-V.gif")%>') repeat-y;
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.SliderRail-V.gif")%>');
 }
 
 .ajax__calendar_prev {
-    background-image:url('<%=WebResource("AjaxControlToolkit.Images.CalendarArrow-Left.gif")%>');
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.CalendarArrow-Left.gif")%>');
 }
 
 .ajax__calendar_next {
-    background-image:url('<%=WebResource("AjaxControlToolkit.Images.CalendarArrow-Right.gif")%>');
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.CalendarArrow-Right.gif")%>');
 }
 
 .ajax__dropdown_arrow_image {
-    background:url('<%=WebResource("AjaxControlToolkit.Images.DropDownDrop-Arrow.gif")%>') no-repeat 50% 50%;
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.DropDownDrop-Arrow.gif")%>');
 }
 
 .ajax__balloon_popup .rect {
@@ -24,8 +24,8 @@
 }
 
 .ajax__balloon_popup .cloud {
-	background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopupCloud-Sprite.png")%>') !important;
-	background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopupCloud-Sprite.gif")%>');
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopupCloud-Sprite.png")%>') !important;
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopupCloud-Sprite.gif")%>');
 }
 
 .ajax__tab_xp .ajax__tab_header {

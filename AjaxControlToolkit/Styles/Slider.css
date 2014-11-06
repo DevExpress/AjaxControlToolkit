@@ -2,6 +2,7 @@
     position: relative;
     height: 22px;
     width: 150px;
+    background-repeat: repeat-x;
 }
 
 .ajax__slider_h_handle {
@@ -14,6 +15,7 @@
     position: relative;
     width: 22px;
     height: 150px;
+    background-repeat: repeat-y;
 }
 
 .ajax__slider_v_handle {
