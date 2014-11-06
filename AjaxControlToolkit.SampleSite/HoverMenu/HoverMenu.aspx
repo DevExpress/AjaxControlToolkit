@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="HoverMenu.aspx.cs" Inherits="HoverMenu_HoverMenu" %>
+﻿<%@ Page Title="HoverMenu Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="HoverMenu.aspx.cs" Inherits="HoverMenu_HoverMenu" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
     HoverMenu Demonstration

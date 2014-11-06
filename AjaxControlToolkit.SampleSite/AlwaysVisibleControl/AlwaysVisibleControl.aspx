@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="AlwaysVisibleControl.aspx.cs" Inherits="AlwaysVisibleControl_AlwaysVisibleControl" %>
+﻿<%@ Page Title="AlwaysVisibleControl Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="AlwaysVisibleControl.aspx.cs" Inherits="AlwaysVisibleControl_AlwaysVisibleControl" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     AlwaysVisibleControl Demonstration

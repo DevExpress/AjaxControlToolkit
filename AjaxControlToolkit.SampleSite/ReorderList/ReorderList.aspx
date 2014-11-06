@@ -1,6 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ReorderList.aspx.cs" Inherits="ReorderList_ReorderList" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+﻿<%@ Page Title="ReorderList Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ReorderList.aspx.cs" Inherits="ReorderList_ReorderList" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     ReorderList Demonstration

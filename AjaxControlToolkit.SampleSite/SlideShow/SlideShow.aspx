@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="SlideShow.aspx.cs" Inherits="SlideShow_SlideShow" %>
+﻿<%@ Page Title="SlideShow Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="SlideShow.aspx.cs" Inherits="SlideShow_SlideShow" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" Runat="Server">
     SlideShow Demonstration

@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ListSearch.aspx.cs" Inherits="ListSearch_ListSearch" %>
+﻿<%@ Page Title="ListSearch Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ListSearch.aspx.cs" Inherits="ListSearch_ListSearch" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
-    ListSearchExtender Demonstration
+    ListSearch Demonstration
 </asp:Content>
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <p>

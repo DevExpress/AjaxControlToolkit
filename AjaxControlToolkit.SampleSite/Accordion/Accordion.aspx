@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="Accordion.aspx.cs" Inherits="Accordion_Accordion" %>
+﻿<%@ Page Title="Accordion Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="Accordion.aspx.cs" Inherits="Accordion_Accordion" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     Accordion Demonstration

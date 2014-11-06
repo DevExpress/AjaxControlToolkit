@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="Animation.aspx.cs" Inherits="Animation_Animation" %>
+﻿<%@ Page Title="Animation Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="Animation.aspx.cs" Inherits="Animation_Animation" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     Animation Demonstration

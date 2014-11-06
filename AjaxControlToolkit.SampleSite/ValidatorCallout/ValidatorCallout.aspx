@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ValidatorCallout.aspx.cs" Inherits="ValidatorCallout_ValidatorCallout" %>
+﻿<%@ Page Title="ValidatorCallout Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ValidatorCallout.aspx.cs" Inherits="ValidatorCallout_ValidatorCallout" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     ValidatorCallout Demonstration

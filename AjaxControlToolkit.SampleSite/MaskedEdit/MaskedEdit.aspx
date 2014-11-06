@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="MaskedEdit.aspx.cs" Inherits="MaskedEdit_MaskedEdit" Culture="auto" UICulture="auto" %>
+﻿<%@ Page Title="MaskedEdit Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="MaskedEdit.aspx.cs" Inherits="MaskedEdit_MaskedEdit" Culture="auto" UICulture="auto" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     MaskedEdit Demonstration

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ToggleButton.aspx.cs" Inherits="ToggleButton_ToggleButton" %>
+﻿<%@ Page Title="ToggleButton Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ToggleButton.aspx.cs" Inherits="ToggleButton_ToggleButton" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
     ToggleButton Demonstration

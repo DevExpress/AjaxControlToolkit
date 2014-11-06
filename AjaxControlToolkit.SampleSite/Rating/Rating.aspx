@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="Rating.aspx.cs" Inherits="Rating_Rating" %>
+﻿<%@ Page Title="Rating Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="Rating.aspx.cs" Inherits="Rating_Rating" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" Runat="Server">
     Rating Demonstration

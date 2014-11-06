@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ModalPopup.aspx.cs" Inherits="ModalPopup_ModalPopup" %>
+﻿<%@ Page Title="ModalPopup Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ModalPopup.aspx.cs" Inherits="ModalPopup_ModalPopup" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
     ModalPopup Demonstration

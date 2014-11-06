@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="AutoComplete.aspx.cs" Inherits="AutoComplete_AutoComplete" %>
+﻿<%@ Page Title="AutoComplete Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="AutoComplete.aspx.cs" Inherits="AutoComplete_AutoComplete" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" Runat="Server">
     AutoComplete Demonstration

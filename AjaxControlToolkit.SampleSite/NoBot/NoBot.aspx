@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="NoBot.aspx.cs" Inherits="NoBot_NoBot" %>
+﻿<%@ Page Title="NoBot Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="NoBot.aspx.cs" Inherits="NoBot_NoBot" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     NoBot Demonstration

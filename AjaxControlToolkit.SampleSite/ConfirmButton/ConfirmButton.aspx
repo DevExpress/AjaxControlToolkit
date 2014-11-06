@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ConfirmButton.aspx.cs" Inherits="ConfirmButton_ConfirmButton" %>
+﻿<%@ Page Title="ConfirmButton Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="ConfirmButton.aspx.cs" Inherits="ConfirmButton_ConfirmButton" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
     ConfirmButton Demonstration

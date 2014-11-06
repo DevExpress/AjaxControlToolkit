@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="Calendar.aspx.cs" Inherits="Calendar_Calendar" Culture="auto" UICulture="auto"%>
+﻿<%@ Page Title="Calendar Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="Calendar.aspx.cs" Inherits="Calendar_Calendar" Culture="auto" UICulture="auto"%>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     Calendar Demonstration

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="DropDown.aspx.cs" Inherits="DropDown_DropDown" %>
+﻿<%@ Page Title="DropDown Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="DropDown.aspx.cs" Inherits="DropDown_DropDown" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="DemoHeading" runat="Server">
     DropDown Demonstration

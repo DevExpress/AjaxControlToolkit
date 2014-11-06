@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="CollapsiblePanel.aspx.cs" Inherits="CollapsiblePanel_CollapsiblePanel" %>
+﻿<%@ Page Title="CollapsiblePanel Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="CollapsiblePanel.aspx.cs" Inherits="CollapsiblePanel_CollapsiblePanel" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     CollapsiblePanel Demonstration

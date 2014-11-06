@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="UpdatePanelAnimation.aspx.cs" Inherits="UpdatePanelAnimation_UpdatePanelAnimation" %>
+﻿<%@ Page Title="UpdatePanelAnimation Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="UpdatePanelAnimation.aspx.cs" Inherits="UpdatePanelAnimation_UpdatePanelAnimation" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     UpdatePanelAnimation Demonstration

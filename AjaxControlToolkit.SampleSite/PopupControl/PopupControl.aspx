@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="PopupControl.aspx.cs" Inherits="PopupControl_PopupControl" %>
+﻿<%@ Page Title="PopupControl Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="PopupControl.aspx.cs" Inherits="PopupControl_PopupControl" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     PopupControl Demonstration

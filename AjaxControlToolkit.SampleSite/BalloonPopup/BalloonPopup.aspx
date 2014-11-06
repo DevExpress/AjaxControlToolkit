@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="BalloonPopup.aspx.cs" Inherits="BaloonPopup_BaloonPopup" %>
+﻿<%@ Page Title="BalloonPopup Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="BalloonPopup.aspx.cs" Inherits="BaloonPopup_BaloonPopup" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
-    BalloonPopupExtender Demonstration
+    BalloonPopup Demonstration
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="CascadingDropDown.aspx.cs" Inherits="CascadingDropDown_CascadingDropDown" EnableEventValidation="false"%>
+﻿<%@ Page Title="CascadingDropDown Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="CascadingDropDown.aspx.cs" Inherits="CascadingDropDown_CascadingDropDown" EnableEventValidation="false"%>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     CascadingDropDown Demonstration

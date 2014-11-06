@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="DynamicPopulate.aspx.cs" Inherits="DynamicPopulate_DynamicPopulate" %>
+﻿<%@ Page Title="DynamicPopulate Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="DynamicPopulate.aspx.cs" Inherits="DynamicPopulate_DynamicPopulate" %>
 
 <asp:Content ContentPlaceHolderID="DemoHeading" runat="Server">
     DynamicPopulate Demonstration
