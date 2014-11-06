@@ -31,7 +31,7 @@ namespace CopyStaticFiles {
                 LinkStyle(Path.Combine(outputDir, stylesDir), path);
 
             foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Images")) {
-                if(Regex.IsMatch(path, @"\.(gif|jpg|gif)$"))
+                if(Regex.IsMatch(path, @"\.(gif|jpg|png)$"))
                     LinkStyle(Path.Combine(outputDir, imagesDir), path);
             }
 
