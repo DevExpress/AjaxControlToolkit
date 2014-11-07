@@ -75,7 +75,7 @@ namespace CopyStaticFiles {
 
         static void LinkSamples(string outputDir, string samplesDir, string filePrefix) {
             var samplesScriptsDirName = Path.Combine(samplesDir, filePrefix);
-            var staticFilesDirName = Path.GetFullPath(Path.Combine(outputDir, filePrefix));
+            var staticFilesDirName = Path.Combine("../" + outputDir, filePrefix).Replace("/",@"\");
 
             CreateSymbolicLink(staticFilesDirName, samplesScriptsDirName);
         }
