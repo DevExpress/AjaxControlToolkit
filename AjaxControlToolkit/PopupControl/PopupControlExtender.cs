@@ -10,7 +10,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(Control))]
-    [Designer("AjaxControlToolkit.Design.PopupControlDesigner, AjaxControlToolkit")]
+    [Designer("AjaxControlToolkit.Design.PopupControlExtenderDesigner, AjaxControlToolkit")]
     [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.PopupControlName + Constants.IconPostfix)]
     public class PopupControlExtender : DynamicPopulateExtenderControlBase {

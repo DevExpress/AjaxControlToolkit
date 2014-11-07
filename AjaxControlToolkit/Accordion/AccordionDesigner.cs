@@ -9,7 +9,7 @@ using System.Web.UI.Design;
 using System.Web.UI.Design.WebControls;
 using System.Web.UI.WebControls;
 
-namespace AjaxControlToolkit {
+namespace AjaxControlToolkit.Design {
     // Simple read-only designer for the Accordion control
     public class AccordionDesigner : ControlDesigner {
         // Reference to the Accordion control we're designing

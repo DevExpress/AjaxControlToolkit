@@ -20,7 +20,7 @@ namespace AjaxControlToolkit {
     // in a way that the AccordionBehavior can understand it. 
     [ParseChildren(true)]
     [PersistChildren(false)]
-    [Designer("AjaxControlToolkit.Design.AccordionExtenderDesigner, AjaxControlToolkit")]
+    [Designer("AjaxControlToolkit.Design.AccordionDesigner, AjaxControlToolkit")]
     [ToolboxData("<{0}:Accordion runat=server></{0}:Accordion>")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AccordionName + Constants.IconPostfix)]
     public class Accordion : WebControl {

@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.TabContainerDesigner, AjaxControlToolkit")]
+    [Designer("AjaxControlToolkit.Design.TabContainerDesigner, AjaxControlToolkit")]
     [ParseChildren(typeof(TabPanel))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientCssResource(Constants.TabsName)]

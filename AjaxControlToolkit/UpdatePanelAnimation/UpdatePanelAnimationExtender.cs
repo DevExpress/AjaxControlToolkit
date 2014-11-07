@@ -7,7 +7,7 @@ using System.Web.UI;
 namespace AjaxControlToolkit {
 
     /// Extender used to play animations just before and after an UpdatePanel updates
-    [Designer("AjaxControlToolkit.UpdatePanelAnimationExtenderDesigner, AjaxControlToolkit")]
+    [Designer("AjaxControlToolkit.Design.UpdatePanelAnimationExtenderDesigner, AjaxControlToolkit")]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
     [RequiredScript(typeof(AnimationScripts), 1)]
     [RequiredScript(typeof(AnimationExtender), 2)]

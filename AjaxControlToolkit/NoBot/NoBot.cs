@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.NoBotExtenderDesigner, AjaxControlToolkit")]
+    [Designer("AjaxControlToolkit.Design.NoBotExtenderDesigner, AjaxControlToolkit")]
     [DefaultEvent("GenerateChallengeAndResponse")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.NoBotName + Constants.IconPostfix)]
     public class NoBot : WebControl, INamingContainer {

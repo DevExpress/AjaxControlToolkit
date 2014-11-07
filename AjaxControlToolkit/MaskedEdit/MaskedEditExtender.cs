@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.MaskedEditExtenderDesigner, AjaxControlToolkit")]
+    [Designer("AjaxControlToolkit.Design.MaskedEditExtenderDesigner, AjaxControlToolkit")]
     [ClientScriptResource("Sys.Extended.UI.MaskedEditBehavior", Constants.MaskedEditValidatorName)]
     [ClientScriptResource("Sys.Extended.UI.MaskedEditBehavior", Constants.MaskedEditName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
