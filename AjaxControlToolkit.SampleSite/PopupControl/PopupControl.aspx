@@ -70,7 +70,7 @@
     </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" Collapsed="false">
         <Header>
             PopupControl Description
         </Header>
@@ -86,7 +86,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock>
+    <samples:InfoBlock runat="server">
         <Header>
             PopupControl Properties
         </Header>

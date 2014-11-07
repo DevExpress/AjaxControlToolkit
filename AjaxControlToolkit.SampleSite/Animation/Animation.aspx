@@ -202,6 +202,9 @@
 &lt;/ajaxToolkit:AnimationExtender&gt;
         </pre>
     </asp:Panel>
+
+    <ajaxToolkit:HoverMenuExtender ID="hm2" runat="server" TargetControlID="lnkShow" PopupControlID="xmlShow" PopupPosition="Bottom" />
+    <ajaxToolkit:HoverMenuExtender ID="hm1" runat="server" TargetControlID="lnkClose" PopupControlID="xmlClose" PopupPosition="Bottom" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">

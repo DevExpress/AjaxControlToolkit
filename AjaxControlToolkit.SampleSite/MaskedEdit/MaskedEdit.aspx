@@ -68,6 +68,37 @@
     <br />
     <br />
 
+    <strong>Enter Date (format: <em>99/99/9999</em>):</strong>
+    <br />
+    <asp:TextBox ID="TextBox5" runat="server" Width="130px" MaxLength="1" Style="text-align: justify" ValidationGroup="MKE" />
+    <asp:ImageButton ID="ImgBntCalc" runat="server" ImageUrl="~/images/Calendar_scheduleHS.png" CausesValidation="False" />
+    <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender5" runat="server"
+        TargetControlID="TextBox5"
+        Mask="99/99/99"
+        MessageValidatorTip="true"
+        OnFocusCssClass="MaskedEditFocus"
+        OnInvalidCssClass="MaskedEditError"
+        MaskType="Date"
+        DisplayMoney="Left"
+        AcceptNegative="Left"
+        ErrorTooltipEnabled="True" />
+    <ajaxToolkit:MaskedEditValidator ID="MaskedEditValidator5" runat="server"
+        ControlExtender="MaskedEditExtender5"
+        ControlToValidate="TextBox5"
+        EmptyValueMessage="Date is required"
+        InvalidValueMessage="Date is invalid"
+        Display="Dynamic"
+        IsValidEmpty="false"
+        TooltipMessage="Input a date"
+        EmptyValueBlurredText="*"
+        InvalidValueBlurredMessage="*"
+        ValidationGroup="MKE" />
+    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="TextBox5" PopupButtonID="ImgBntCalc" />
+    <br />
+    <em><span style="font-size: 8pt">Tip: The date format is mm/dd/yyyy for this example and a Calendar is also available for date selection</span></em>
+    <br />
+    <br />
+
     <strong>Enter Date and Time (format: <em>99/99/9999 99:99:99</em>)</strong>
     <br />
     <asp:TextBox ID="TextBox6" runat="server" Width="180px" ValidationGroup="MKE" />
