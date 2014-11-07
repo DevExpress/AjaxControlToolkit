@@ -87,6 +87,8 @@
     <Compile Include="CollapsiblePanel\CollapsiblePanelExtenderDesigner.cs" />
     <Compile Include="CollapsiblePanel\CollapsiblePanelExpandDirection.cs" />
     <Compile Include="CollapsiblePanel\CollapsiblePanelExtender.cs" />
+    <Compile Include="ColorPicker\ColorPickerExtenderDesigner.cs" />
+    <Compile Include="ColorPicker\ColorPickerExtender.cs" />
     <Compile Include="Compat\DragDrop\DragDropScripts.cs" />
     <Compile Include="Compat\Timer\TimerScript.cs" />
     <Compile Include="ConfirmButton\ConfirmButtonExtenderDesigner.cs" />
@@ -230,6 +232,11 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Styles\ColorPicker.css" />
+    <EmbeddedResource Include="Styles\ColorPicker.min.css">
+      <DependentUpon>ColorPicker.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolboxIcons\ColorPicker.ico" />
     <EmbeddedResource Include="ToolboxIcons\MultiHandleSlider.ico" />
     <EmbeddedResource Include="Images\BalloonPopupCloud-Sprite.gif" />
     <EmbeddedResource Include="Images\BalloonPopupCloud-Sprite.png" />
@@ -286,6 +293,10 @@
     <EmbeddedResource Include="Images\TabsRight.gif" />
     <EmbeddedResource Include="Images\TabsVerticalleft.gif" />
     <EmbeddedResource Include="Images\TabsVerticalright.gif" />
+    <Content Include="Scripts\ColorPicker.js" />
+    <Content Include="Scripts\ColorPicker.min.js">
+      <DependentUpon>ColorPicker.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\ComponentSet.js" />
     <Content Include="Scripts\ComponentSet.min.js">
       <DependentUpon>ComponentSet.js</DependentUpon>

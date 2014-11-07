@@ -38,6 +38,7 @@ namespace AjaxControlToolkit {
             CalendarName = "Calendar",
             CascadingDropDownName = "CascadingDropDown",
             CollapsiblePanelName = "CollapsiblePanel",
+            ColorPickerName = "ColorPicker",
             ConfirmButtonName = "ConfirmButton",
             DynamicPopulateName = "DynamicPopulate",
             DraggableListItemName = "DraggableListItem",

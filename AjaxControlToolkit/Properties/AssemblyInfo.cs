@@ -68,6 +68,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.CollapsiblePanelName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CollapsiblePanelName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.ColorPickerName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.ColorPickerName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.ColorPickerName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.ColorPickerName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
+
 [assembly: WebResource(Constants.ConfirmButtonName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.ConfirmButtonName + Constants.JsPostfix, "text/javascript")]
 
