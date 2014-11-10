@@ -103,6 +103,12 @@ using System.Web.UI;
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.GravatarAnonymousImage, "image/jpeg")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.GravatarGImage, "image/jpeg")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.GravatarPGImage, "image/jpeg")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.GravatarRImage, "image/jpeg")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.GravatarXImage, "image/jpeg")]
+
 [assembly: WebResource(Constants.HoverMenuName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.HoverMenuName + Constants.JsPostfix, "text/javascript")]
 

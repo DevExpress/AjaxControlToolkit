@@ -133,6 +133,10 @@
     <Compile Include="FiteredTextBox\FilteredTextBoxExtender.cs" />
     <Compile Include="FiteredTextBox\FilterModes.cs" />
     <Compile Include="FiteredTextBox\FilterTypes.cs" />
+    <Compile Include="Gravatar\Gravatar.cs" />
+    <Compile Include="Gravatar\GravatarDefaultImageBehavior.cs" />
+    <Compile Include="Gravatar\GravatarDesigner.cs" />
+    <Compile Include="Gravatar\GravatarRating.cs" />
     <Compile Include="HoverExtender\HoverExtender.cs" />
     <Compile Include="HoverExtender\HoverExtenderDesigner.cs" />
     <Compile Include="HoverMenu\HoverMenuExtender.cs" />
@@ -232,6 +236,7 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ToolboxIcons\Gravatar.ico" />
     <EmbeddedResource Include="Styles\ColorPicker.css" />
     <EmbeddedResource Include="Styles\ColorPicker.min.css">
       <DependentUpon>ColorPicker.css</DependentUpon>
@@ -260,6 +265,11 @@
     <EmbeddedResource Include="Images\TabsActive-Verticalleft.gif" />
     <EmbeddedResource Include="Images\MultiHandleSlider-VRail.gif" />
     <EmbeddedResource Include="Images\MultiHandleSlider-VRailOuter.gif" />
+    <EmbeddedResource Include="Images\Gravatar-Anonymous.jpg" />
+    <EmbeddedResource Include="Images\Gravatar-G.jpg" />
+    <EmbeddedResource Include="Images\Gravatar-PG.jpg" />
+    <EmbeddedResource Include="Images\Gravatar-R.jpg" />
+    <EmbeddedResource Include="Images\Gravatar-X.jpg" />
     <Content Include="Scripts\BalloonPopup.js" />
     <Content Include="Scripts\BalloonPopup.min.js">
       <DependentUpon>BalloonPopup.js</DependentUpon>
