@@ -33,6 +33,7 @@ namespace AjaxControlToolkit {
             AlwaysVisibleControlName = "AlwaysVisibleControl",
             AnimationName = "Animation",
             AnimationScriptsName = "AnimationScripts",
+            AreaChartName = "AreaChart",
             AutoCompleteName = "AutoComplete",
             BalloonPopupName = "BalloonPopup",
             CalendarName = "Calendar",

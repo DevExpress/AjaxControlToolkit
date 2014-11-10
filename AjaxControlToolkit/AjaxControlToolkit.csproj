@@ -66,6 +66,13 @@
     <Compile Include="Animation\AnimationExtenderDesigner.cs" />
     <Compile Include="Animation\AnimationJavaScriptConverter.cs" />
     <Compile Include="Animation\AnimationScripts.cs" />
+    <Compile Include="AreaChart\AreaChart.cs" />
+    <Compile Include="AreaChart\AreaChartDesigner.cs" />
+    <Compile Include="AreaChart\AreaChartSeries.cs" />
+    <Compile Include="AreaChart\AreaChartSeriesCollection.cs" />
+    <Compile Include="AreaChart\AreaChartSeriesCollectionEditor.cs" />
+    <Compile Include="AreaChart\AreaChartType.cs" />
+    <Compile Include="ExtenderBase\DataConverter.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtenderDesigner.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtender.cs" />
     <Compile Include="BalloonPopup\BalloonPopupExtenderDesigner.cs" />
@@ -269,6 +276,10 @@
     <EmbeddedResource Include="Images\Gravatar-G.jpg" />
     <EmbeddedResource Include="Images\Gravatar-PG.jpg" />
     <EmbeddedResource Include="Images\Gravatar-R.jpg" />
+    <Content Include="Scripts\AreaChart.js" />
+    <Content Include="Scripts\AreaChart.min.js">
+      <DependentUpon>AreaChart.js</DependentUpon>
+    </Content>
     <EmbeddedResource Include="Images\Gravatar-X.jpg" />
     <Content Include="Scripts\BalloonPopup.js" />
     <Content Include="Scripts\BalloonPopup.min.js">
@@ -461,6 +472,10 @@
     <EmbeddedResource Include="Styles\Backgrounds.css" />
     <EmbeddedResource Include="Styles\Backgrounds.min.css">
       <DependentUpon>Backgrounds.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\AreaChart.css" />
+    <EmbeddedResource Include="Styles\AreaChart.min.css">
+      <DependentUpon>AreaChart.css</DependentUpon>
     </EmbeddedResource>
     <Content Include="Styles\Backgrounds_static.css" />
     <Content Include="Styles\Backgrounds_static.min.css">

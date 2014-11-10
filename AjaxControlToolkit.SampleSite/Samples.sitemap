@@ -5,6 +5,7 @@
         <siteMapNode url="~/Accordion/Accordion.aspx" title="Accordion" />
         <siteMapNode url="~/AlwaysVisibleControl/AlwaysVisibleControl.aspx" title="AlwaysVisibleControl" />
         <siteMapNode url="~/Animation/Animation.aspx" title="Animation" />
+        <siteMapNode url="~/AreaChart/AreaChart.aspx" title="AreaChart" />
         <siteMapNode url="~/AutoComplete/AutoComplete.aspx" title="AutoComplete" />
         <siteMapNode url="~/BalloonPopup/BalloonPopup.aspx" title="BalloonPopup" />
         <siteMapNode url="~/Calendar/Calendar.aspx" title="Calendar" />

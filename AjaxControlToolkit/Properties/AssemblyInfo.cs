@@ -23,6 +23,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.AnimationScriptsName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.AnimationScriptsName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.AreaChartName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.AreaChartName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.AreaChartName + Constants.CssPostfix, "text/css")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.AreaChartName + Constants.MinCssPostfix, "text/css")]
+
 [assembly: WebResource(Constants.AutoCompleteName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.AutoCompleteName + Constants.JsPostfix, "text/javascript")]
 
