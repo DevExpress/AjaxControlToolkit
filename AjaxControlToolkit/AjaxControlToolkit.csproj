@@ -78,6 +78,11 @@
     <Compile Include="BarChart\BarChartSeriesCollection.cs" />
     <Compile Include="BarChart\BarChartSeriesCollectionEditor.cs" />
     <Compile Include="BarChart\BarChartType.cs" />
+    <Compile Include="BubbleChart\BubbleChart.cs" />
+    <Compile Include="BubbleChart\BubbleChartDesigner.cs" />
+    <Compile Include="BubbleChart\BubbleChartValue.cs" />
+    <Compile Include="BubbleChart\BubbleChartValueCollection.cs" />
+    <Compile Include="BubbleChart\BubbleChartValueCollectionEditor.cs" />
     <Compile Include="ExtenderBase\DataConverter.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtenderDesigner.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtender.cs" />
@@ -249,6 +254,10 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Styles\BubbleChart.css" />
+    <EmbeddedResource Include="Styles\BubbleChart.min.css">
+      <DependentUpon>BubbleChart.css</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Styles\BarChart.css" />
     <EmbeddedResource Include="Styles\BarChart.min.css">
       <DependentUpon>BarChart.css</DependentUpon>
@@ -327,6 +336,10 @@
     <Content Include="Scripts\BarChart.js" />
     <Content Include="Scripts\BarChart.min.js">
       <DependentUpon>BarChart.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\BubbleChart.js" />
+    <Content Include="Scripts\BubbleChart.min.js">
+      <DependentUpon>BubbleChart.js</DependentUpon>
     </Content>
     <Content Include="Scripts\ColorPicker.js" />
     <Content Include="Scripts\ColorPicker.min.js">

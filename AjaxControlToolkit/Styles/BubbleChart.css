@@ -1,0 +1,280 @@
+﻿#LinearGradient1 {
+    stop-color: #ffffff;
+    stop-opacity: 0.10;
+}
+
+#LinearGradient-Stop2 {
+    stop-color: #ffffff;
+    stop-opacity: 0.3;
+}
+
+#LinearGradient-Stop3 {
+    stop-color: #ffffff;
+    stop-opacity: 0;
+}
+
+#ChartTitle {
+    font-size: 16px;
+    font-family: Arial,Helvetica,sans-serif;
+    fill: #711737;
+    fill-opacity: 1;
+}
+
+#VerticalLine {
+    stroke: #dfdfdf;
+    stroke-width: 1;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 0.5;
+    stroke-opacity: 0.5;
+}
+
+#HorizontalLine {
+    stroke: #dfdfdf;
+    stroke-width: 1;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 0.5;
+    stroke-opacity: 0.5;
+    fill: none;
+}
+
+#BaseLine {
+    stroke: #8e8e8e;
+    stroke-width: 1;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: none;
+}
+
+#LegendArea {
+    stroke-width: 0;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: none;
+}
+
+#Legend1 {
+    stroke: #6C1E83;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #6C1E83;
+}
+
+#Legend2 {
+    stroke: #D08AD9;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #D08AD9;
+}
+
+#Legend3 {
+    stroke: #6586A7;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #6586A7;
+}
+
+#Legend4 {
+    stroke: #0E426C;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #0E426C;
+}
+
+#Legend5 {
+    stroke: #A156AB;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #A156AB;
+}
+
+#Legend6 {
+    stroke: #990033;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #990033;
+}
+
+#Legend7 {
+    stroke: #669900;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #669900;
+}
+
+#Legend8 {
+    stroke: #B85B3E;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #B85B3E;
+}
+
+#Legend9 {
+    stroke: #FFC652;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #FFC652;
+}
+
+#Legend10 {
+    stroke: #4508A2;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #4508A2;
+}
+
+#Dot1 {
+    fill: #6C1E83;
+    stroke-opacity: 0.7;
+    fill-opacity: 0.7;
+    stroke-width: 0;
+    stroke: #6C1E83;
+}
+
+#Dot2 {
+    fill: #D08AD9;
+    stroke-opacity: 0.7;
+    fill-opacity: 0.7;
+    stroke-width: 0;
+    stroke: #D08AD9;
+}
+
+#Dot3 {
+    fill: #6586A7;
+    stroke-opacity: 0.7;
+    fill-opacity: 0.7;
+    stroke-width: 0;
+    stroke: #6586A7;
+}
+
+#Dot4 {
+    fill: #0E426C;
+    stroke-opacity: 0.7;
+    fill-opacity: 0.7;
+    stroke-width: 0;
+    stroke: #0E426C;
+}
+
+#Dot5 {
+    fill: #A156AB;
+    stroke-opacity: 0.7;
+    fill-opacity: 0.7;
+    stroke-width: 0;
+    stroke: #A156AB;
+}
+
+#Dot6 {
+    fill: #990033;
+    stroke-opacity: 0.7;
+    fill-opacity: 0.7;
+    stroke-width: 0;
+    stroke: #990033;
+}
+
+#Dot7 {
+    fill: #669900;
+    stroke-opacity: 0.7;
+    fill-opacity: 0.7;
+    stroke-width: 0;
+    stroke: #669900;
+}
+
+#Dot8 {
+    fill: #B85B3E;
+    stroke-opacity: 0.7;
+    fill-opacity: 0.7;
+    stroke-width: 0;
+    stroke: #B85B3E;
+}
+
+#Dot9 {
+    fill: #FFC652;
+    stroke-opacity: 0.7;
+    fill-opacity: 0.7;
+    stroke-width: 0;
+    stroke: #FFC652;
+}
+
+#Dot10 {
+    fill: #4508A2;
+    stroke-opacity: 0.7;
+    fill-opacity: 0.7;
+    stroke-width: 0;
+    stroke: #4508A2;
+}
+
+#SeriesAxis {
+    fill-opacity: 1;
+    font-size: 11px;
+    font-family: Arial,Helvetica,sans-serif;
+    fill: #232323;
+}
+
+#ValueAxis {
+    fill-opacity: 1;
+    font-size: 11px;
+    font-family: Arial,Helvetica,sans-serif;
+    fill: #232323;
+}
+
+#LegendText {
+    fill-opacity: 1;
+    font-size: 11px;
+    font-family: Arial,Helvetica,sans-serif;
+    fill: #232323;
+}
+
+#ChartBackGround {
+    fill: #ffffff;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 0;
+}
+
+#DotTooltip {
+    position: absolute;
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #B85B3E;
+    left: 0px;
+    top: 0px;
+    color: #0E426C;
+    visibility: hidden;
+    z-index: 10000;
+    padding: 10px;
+}
+
+#AxisLabels {
+    font-size: 11px;
+    font-family: Arial,Helvetica,sans-serif;
+    fill: #711737;
+    fill-opacity: 1;
+}

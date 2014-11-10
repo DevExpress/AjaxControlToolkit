@@ -53,6 +53,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.BarChartName + Constants.CssPostfix, "text/css")]
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.BarChartName + Constants.MinCssPostfix, "text/css")]
 
+[assembly: WebResource(Constants.BubbleChartName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.BubbleChartName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.BubbleChartName + Constants.CssPostfix, "text/css")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.BubbleChartName + Constants.MinCssPostfix, "text/css")]
+
 [assembly: WebResource(Constants.CommonScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CommonScriptName + Constants.JsPostfix, "text/javascript")]
 
