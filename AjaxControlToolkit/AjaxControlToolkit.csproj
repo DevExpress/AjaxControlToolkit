@@ -202,6 +202,11 @@
     <Compile Include="PasswordStrength\PasswordStrengthExtenderDesigner.cs" />
     <Compile Include="PasswordStrength\PasswordStrengthExtender.cs" />
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
+    <Compile Include="PieChart\PieChart.cs" />
+    <Compile Include="PieChart\PieChartDesigner.cs" />
+    <Compile Include="PieChart\PieChartValue.cs" />
+    <Compile Include="PieChart\PieChartValueCollection.cs" />
+    <Compile Include="PieChart\PieChartValueCollectionEditor.cs" />
     <Compile Include="PopupControl\PopupControlExtenderDesigner.cs" />
     <Compile Include="PopupControl\PopupControlExtender.cs" />
     <Compile Include="PopupControl\PopupControlPopupPosition.cs" />
@@ -260,6 +265,10 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Styles\PieChart.css" />
+    <EmbeddedResource Include="Styles\PieChart.min.css">
+      <DependentUpon>PieChart.css</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Styles\LineChart.css" />
     <EmbeddedResource Include="Styles\LineChart.min.css">
       <DependentUpon>LineChart.css</DependentUpon>
@@ -380,6 +389,10 @@
     <EmbeddedResource Include="Styles\BalloonPopup.Rectangle.min.css">
       <DependentUpon>BalloonPopup.Rectangle.css</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Scripts\PieChart.js" />
+    <Content Include="Scripts\PieChart.min.js">
+      <DependentUpon>PieChart.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\Tabs.min.js">
       <DependentUpon>Tabs.js</DependentUpon>
     </Content>

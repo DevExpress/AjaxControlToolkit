@@ -64,6 +64,7 @@ namespace AjaxControlToolkit {
             NumericUpDownName = "NumericUpDown",
             PagingBulletedListName = "PagingBulletedList",
             PasswordStrengthName = "PasswordStrength",
+            PieChartName = "PieChart",
             PopupControlName = "PopupControl",
             PopupName = "Popup",
             RatingName = "Rating",

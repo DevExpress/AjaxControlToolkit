@@ -176,6 +176,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.PasswordStrengthName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.PasswordStrengthName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.PieChartName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.PieChartName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.PieChartName + Constants.CssPostfix, "text/css")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.PieChartName + Constants.MinCssPostfix, "text/css")]
+
 [assembly: WebResource(Constants.PopupControlName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.PopupControlName + Constants.JsPostfix, "text/javascript")]
 
