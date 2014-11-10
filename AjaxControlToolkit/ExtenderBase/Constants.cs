@@ -36,6 +36,7 @@ namespace AjaxControlToolkit {
             AreaChartName = "AreaChart",
             AutoCompleteName = "AutoComplete",
             BalloonPopupName = "BalloonPopup",
+            BarChartName = "BarChart",
             CalendarName = "Calendar",
             CascadingDropDownName = "CascadingDropDown",
             CollapsiblePanelName = "CollapsiblePanel",

@@ -8,6 +8,7 @@
         <siteMapNode url="~/AreaChart/AreaChart.aspx" title="AreaChart" />
         <siteMapNode url="~/AutoComplete/AutoComplete.aspx" title="AutoComplete" />
         <siteMapNode url="~/BalloonPopup/BalloonPopup.aspx" title="BalloonPopup" />
+        <siteMapNode url="~/BarChart/BarChart.aspx" title="BarChart" />
         <siteMapNode url="~/Calendar/Calendar.aspx" title="Calendar" />
         <siteMapNode url="~/CascadingDropDown/CascadingDropDown.aspx" title="CascadingDropDown" />
         <siteMapNode url="~/CollapsiblePanel/CollapsiblePanel.aspx" title="CollapsiblePanel" />

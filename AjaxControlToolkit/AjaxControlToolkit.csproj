@@ -72,6 +72,12 @@
     <Compile Include="AreaChart\AreaChartSeriesCollection.cs" />
     <Compile Include="AreaChart\AreaChartSeriesCollectionEditor.cs" />
     <Compile Include="AreaChart\AreaChartType.cs" />
+    <Compile Include="BarChart\BarChart.cs" />
+    <Compile Include="BarChart\BarChartDesigner.cs" />
+    <Compile Include="BarChart\BarChartSeries.cs" />
+    <Compile Include="BarChart\BarChartSeriesCollection.cs" />
+    <Compile Include="BarChart\BarChartSeriesCollectionEditor.cs" />
+    <Compile Include="BarChart\BarChartType.cs" />
     <Compile Include="ExtenderBase\DataConverter.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtenderDesigner.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtender.cs" />
@@ -243,6 +249,10 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Styles\BarChart.css" />
+    <EmbeddedResource Include="Styles\BarChart.min.css">
+      <DependentUpon>BarChart.css</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolboxIcons\Gravatar.ico" />
     <EmbeddedResource Include="Styles\ColorPicker.css" />
     <EmbeddedResource Include="Styles\ColorPicker.min.css">
@@ -314,6 +324,10 @@
     <EmbeddedResource Include="Images\TabsRight.gif" />
     <EmbeddedResource Include="Images\TabsVerticalleft.gif" />
     <EmbeddedResource Include="Images\TabsVerticalright.gif" />
+    <Content Include="Scripts\BarChart.js" />
+    <Content Include="Scripts\BarChart.min.js">
+      <DependentUpon>BarChart.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\ColorPicker.js" />
     <Content Include="Scripts\ColorPicker.min.js">
       <DependentUpon>ColorPicker.js</DependentUpon>

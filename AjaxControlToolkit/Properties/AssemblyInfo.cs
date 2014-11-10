@@ -48,6 +48,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.ImageResourcePrefix + Constants.BalloonPopupRectanglePngSprite, "image/png")]
 [assembly: WebResource(Constants.ImageResourcePrefix + Constants.BalloonPopupRectangleGifSprite, "image/gif")]
 
+[assembly: WebResource(Constants.BarChartName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.BarChartName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.BarChartName + Constants.CssPostfix, "text/css")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.BarChartName + Constants.MinCssPostfix, "text/css")]
+
 [assembly: WebResource(Constants.CommonScriptName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.CommonScriptName + Constants.JsPostfix, "text/javascript")]
 
