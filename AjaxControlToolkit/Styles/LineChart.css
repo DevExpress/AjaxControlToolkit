@@ -1,0 +1,359 @@
+﻿#LinearGradient-Stop1 {
+    stop-color: #ffffff;
+    stop-opacity: 0;
+}
+
+#LinearGradient-Stop2 {
+    stop-color: #ffffff;
+    stop-opacity: 0.4;
+}
+
+#LinearGradient-Stop3 {
+    stop-color: #ffffff;
+    stop-opacity: 0;
+}
+
+#ChartTitle {
+    font-size: 16px;
+    font-family: Arial,Helvetica,sans-serif;
+    fill: #711737;
+    fill-opacity: 1;
+}
+
+#VerticalLine {
+    stroke: #dfdfdf;
+    stroke-width: 1;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 0.5;
+    stroke-opacity: 0.5;
+}
+
+#HorizontalLine {
+    stroke: #dfdfdf;
+    stroke-width: 1;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 0.5;
+    stroke-opacity: 0.5;
+    fill: none;
+}
+
+#BaseLine {
+    stroke: #8e8e8e;
+    stroke-width: 1;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: none;
+}
+
+#LegendArea {
+    stroke-width: 0;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: none;
+}
+
+#Legend1 {
+    stroke: #ff6800;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #ff6800;
+}
+
+#Legend2 {
+    stroke: #a0a700;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #a0a700;
+}
+
+#Legend3 {
+    stroke: #711737;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #711737;
+}
+
+#Legend4 {
+    stroke: #B85B3E;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #B85B3E;
+}
+
+#Legend5 {
+    stroke: #4508A2;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #4508A2;
+}
+
+#Legend6 {
+    stroke: #669900;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #669900;
+}
+
+#Legend7 {
+    stroke: #6C1E83;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #6C1E83;
+}
+
+#Legend8 {
+    stroke: #0E426C;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #0E426C;
+}
+
+#Legend9 {
+    stroke: #A156AB;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #A156AB;
+}
+
+#Legend10 {
+    stroke: #FFC652;
+    stroke-linecap: square;
+    stroke-linejoin: round;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+    fill: #FFC652;
+}
+
+#Dot1 {
+    fill: #ff6800;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-width: 2;
+    stroke: #ff6800;
+}
+
+#Dot2 {
+    fill: #a0a700;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-width: 2;
+    stroke: #a0a700;
+}
+
+#Dot3 {
+    fill: #711737;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-width: 2;
+    stroke: #711737;
+}
+
+#Dot4 {
+    fill: #B85B3E;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-width: 2;
+    stroke: #B85B3E;
+}
+
+#Dot5 {
+    fill: #4508A2;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-width: 2;
+    stroke: #4508A2;
+}
+
+#Dot6 {
+    fill: #669900;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-width: 2;
+    stroke: #669900;
+}
+
+#Dot7 {
+    fill: #6C1E83;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-width: 2;
+    stroke: #6C1E83;
+}
+
+#Dot8 {
+    fill: #0E426C;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-width: 2;
+    stroke: #0E426C;
+}
+
+#Dot9 {
+    fill: #A156AB;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-width: 2;
+    stroke: #A156AB;
+}
+
+#Dot10 {
+    fill: #FFC652;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-width: 2;
+    stroke: #FFC652;
+}
+
+#Line1 {
+    fill: none;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 2;
+    stroke: #ff6800;
+}
+
+#Line2 {
+    fill: none;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 2;
+    stroke: #a0a700;
+}
+
+#Line3 {
+    fill: none;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 2;
+    stroke: #711737;
+}
+
+#Line4 {
+    fill: none;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 2;
+    stroke: #B85B3E;
+}
+
+#Line5 {
+    fill: none;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 2;
+    stroke: #4508A2;
+}
+
+#Line6 {
+    fill: none;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 2;
+    stroke: #669900;
+}
+
+#Line7 {
+    fill: none;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 2;
+    stroke: #6C1E83;
+}
+
+#Line8 {
+    fill: none;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 2;
+    stroke: #0E426C;
+}
+
+#Line9 {
+    fill: none;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 2;
+    stroke: #A156AB;
+}
+
+#Line10 {
+    fill: none;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 2;
+    stroke: #FFC652;
+}
+
+#SeriesAxis {
+    fill-opacity: 1;
+    font-size: 11px;
+    font-family: Arial,Helvetica,sans-serif;
+    fill: #232323;
+}
+
+#ValueAxis {
+    fill-opacity: 1;
+    font-size: 11px;
+    font-family: Arial,Helvetica,sans-serif;
+    fill: #232323;
+}
+
+#LegendText {
+    fill-opacity: 1;
+    font-size: 11px;
+    font-family: Arial,Helvetica,sans-serif;
+    fill: #232323;
+}
+
+#ChartBackGround {
+    fill: #fff;
+    stroke-opacity: 1;
+    fill-opacity: 1;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+    stroke-width: 0;
+}

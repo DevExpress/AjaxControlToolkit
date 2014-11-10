@@ -160,6 +160,12 @@
     <Compile Include="HoverMenu\HoverMenuExtender.cs" />
     <Compile Include="HoverMenu\HoverMenuExtenderDesigner.cs" />
     <Compile Include="HoverMenu\HoverMenuPopupPosition.cs" />
+    <Compile Include="LineChart\LineChart.cs" />
+    <Compile Include="LineChart\LineChartDesigner.cs" />
+    <Compile Include="LineChart\LineChartSeries.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollection.cs" />
+    <Compile Include="LineChart\LineChartSeriesCollectionEditor.cs" />
+    <Compile Include="LineChart\LineChartType.cs" />
     <Compile Include="ListSearch\ListSearchExtenderDesigner.cs" />
     <Compile Include="ListSearch\ListSearchExtender.cs" />
     <Compile Include="ListSearch\ListSearchPromptPosition.cs" />
@@ -254,6 +260,10 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Styles\LineChart.css" />
+    <EmbeddedResource Include="Styles\LineChart.min.css">
+      <DependentUpon>LineChart.css</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Styles\BubbleChart.css" />
     <EmbeddedResource Include="Styles\BubbleChart.min.css">
       <DependentUpon>BubbleChart.css</DependentUpon>
@@ -359,6 +369,10 @@
     <EmbeddedResource Include="Styles\BalloonPopup.Cloud.min.css">
       <DependentUpon>BalloonPopup.Cloud.css</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Scripts\LineChart.js" />
+    <Content Include="Scripts\LineChart.min.js">
+      <DependentUpon>LineChart.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\MultiHandleSlider.js" />
     <Content Include="Scripts\MultiHandleSlider.min.js">
       <DependentUpon>MultiHandleSlider.js</DependentUpon>

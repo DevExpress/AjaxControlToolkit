@@ -53,6 +53,7 @@ namespace AjaxControlToolkit {
             GravatarName = "Gravatar",
             HoverMenuName = "HoverMenu",
             HoverName = "Hover",
+            LineChartName = "LineChart",
             ListSearchName = "ListSearch",
             MaskedEditName = "MaskedEdit",
             MaskedEditValidatorName = "MaskedEditValidator",

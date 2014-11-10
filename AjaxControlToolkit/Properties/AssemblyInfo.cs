@@ -130,6 +130,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.HoverName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.HoverName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.LineChartName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.LineChartName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.LineChartName + Constants.CssPostfix, "text/css")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.LineChartName + Constants.MinCssPostfix, "text/css")]
+
 [assembly: WebResource(Constants.ListSearchName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.ListSearchName + Constants.JsPostfix, "text/javascript")]
 
