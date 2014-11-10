@@ -5,41 +5,15 @@ using System.ComponentModel;
 using System.Drawing.Design;
 using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.BubbleChartDesigner, AjaxControlToolkit")]
-    [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientCssResource(Constants.BubbleChartName)]
     [ClientScriptResource("Sys.Extended.UI.BubbleChart", Constants.BubbleChartName)]
-    public class BubbleChart : ScriptControlBase {
+    public class BubbleChart : ChartBase {
         BubbleChartValueCollection bubbleChartValueList = null;
-
-        public BubbleChart()
-            : base(true, HtmlTextWriterTag.Div) {
-        }
-
-        bool IsDesignMode {
-            get { return (HttpContext.Current == null); }
-        }
-
-        [ExtenderControlProperty]
-        [DefaultValue(null)]
-        [ClientPropertyName("chartWidth")]
-        public string ChartWidth { get; set; }
-
-        [ExtenderControlProperty]
-        [DefaultValue(null)]
-        [ClientPropertyName("chartHeight")]
-        public string ChartHeight { get; set; }
-
-        [ExtenderControlProperty]
-        [DefaultValue("")]
-        [ClientPropertyName("chartTitle")]
-        public string ChartTitle { get; set; }
 
         // Provide list of values to client side. Need help from Values property 
         // for designer experience support, cause Editor always blocks the property
@@ -67,11 +41,6 @@ namespace AjaxControlToolkit {
         }
 
         [ExtenderControlProperty]
-        [DefaultValue("BubbleChart")]
-        [ClientPropertyName("theme")]
-        public string Theme { get; set; }
-
-        [ExtenderControlProperty]
         [DefaultValue(6)]
         [ClientPropertyName("yAxisLines")]
         public int YAxisLines { get; set; }
@@ -85,11 +54,6 @@ namespace AjaxControlToolkit {
         [DefaultValue(5)]
         [ClientPropertyName("bubbleSizes")]
         public int BubbleSizes { get; set; }
-
-        [ExtenderControlProperty]
-        [DefaultValue("")]
-        [ClientPropertyName("chartTitleColor")]
-        public string ChartTitleColor { get; set; }
 
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -155,16 +119,7 @@ namespace AjaxControlToolkit {
             }
         }
 
-        internal void CreateChilds() {
-            Controls.Clear();
-            CreateChildControls();
-        }
-
         protected override void CreateChildControls() {
-            GenerateHtmlInputControls();
-        }
-
-        protected string GenerateHtmlInputControls() {
             var parent = new HtmlGenericControl("div");
             parent.ID = "_ParentDiv";
             parent.Attributes.Add("style", String.Format("border-style:solid; border-width:1px;width:{0};height:{1};", ChartWidth, ChartHeight));
@@ -200,7 +155,6 @@ namespace AjaxControlToolkit {
             sbScript.Append("</script>");
             parent.InnerHtml = sbScript.ToString();
             Controls.Add(parent);
-            return parent.ClientID;
         }
     }
 

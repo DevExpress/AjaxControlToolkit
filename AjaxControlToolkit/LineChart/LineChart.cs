@@ -5,41 +5,15 @@ using System.ComponentModel;
 using System.Drawing.Design;
 using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.LineChartDesigner, AjaxControlToolkit")]
-    [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientCssResource(Constants.LineChartName)]
     [ClientScriptResource("Sys.Extended.UI.LineChart", Constants.LineChartName)]
-    public class LineChart : ScriptControlBase {
+    public class LineChart : ChartBase {
         LineChartSeriesCollection lineChartSeriesList = null;
-
-        public LineChart()
-            : base(true, HtmlTextWriterTag.Div) {
-        }
-
-        bool IsDesignMode {
-            get { return (HttpContext.Current == null); }
-        }
-
-        [ExtenderControlProperty]
-        [DefaultValue(null)]
-        [ClientPropertyName("chartWidth")]
-        public string ChartWidth { get; set; }
-
-        [ExtenderControlProperty]
-        [DefaultValue(null)]
-        [ClientPropertyName("chartHeight")]
-        public string ChartHeight { get; set; }
-
-        [ExtenderControlProperty]
-        [DefaultValue("")]
-        [ClientPropertyName("chartTitle")]
-        public string ChartTitle { get; set; }
 
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -77,19 +51,9 @@ namespace AjaxControlToolkit {
         public LineChartType ChartType { get; set; }
 
         [ExtenderControlProperty]
-        [DefaultValue("LineChart")]
-        [ClientPropertyName("theme")]
-        public string Theme { get; set; }
-
-        [ExtenderControlProperty]
         [DefaultValue(9)]
         [ClientPropertyName("valueAxisLines")]
         public int ValueAxisLines { get; set; }
-
-        [ExtenderControlProperty]
-        [DefaultValue("")]
-        [ClientPropertyName("chartTitleColor")]
-        public string ChartTitleColor { get; set; }
 
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -137,16 +101,7 @@ namespace AjaxControlToolkit {
             }
         }
 
-        internal void CreateChilds() {
-            Controls.Clear();
-            CreateChildControls();
-        }
-
         protected override void CreateChildControls() {
-            GenerateHtmlInputControls();
-        }
-
-        protected string GenerateHtmlInputControls() {
             var parent = new HtmlGenericControl("div");
             parent.ID = "_ParentDiv";
             parent.Attributes.Add("style", "border-style:solid; border-width:1px;");
@@ -178,8 +133,6 @@ namespace AjaxControlToolkit {
             sbScript.Append("</script>");
             parent.InnerHtml = sbScript.ToString();
             Controls.Add(parent);
-
-            return parent.InnerHtml;
         }
     }
 
