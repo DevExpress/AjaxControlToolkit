@@ -70,15 +70,9 @@ namespace AjaxControlToolkit {
                 return;
 
             foreach(AreaChartSeries areaChartSeries in Series) {
-                if(areaChartSeries.Name == null || areaChartSeries.Name.Trim() == "") {
+                if(String.IsNullOrWhiteSpace(areaChartSeries.Name))
                     throw new Exception("Name is missing in the AreaChartSeries. Please provide a name in the AreaChartSeries.");
-                }
             }
-        }
-
-        // DescribeComponent creates propreties in ScriptComponentDescriptor for child controls in AreaChart.
-        protected override void DescribeComponent(ScriptComponentDescriptor descriptor) {
-            base.DescribeComponent(descriptor);
         }
     }
 

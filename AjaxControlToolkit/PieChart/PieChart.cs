@@ -40,11 +40,8 @@ namespace AjaxControlToolkit {
                 return;
 
             foreach(PieChartValue pieChartValue in PieChartValues) {
-                if(pieChartValue.Category == null || pieChartValue.Category.Trim() == String.Empty)
+                if(String.IsNullOrWhiteSpace(pieChartValue.Category))
                     throw new Exception("Category is missing in the PieChartValue. Please provide a Category in the PieChartValue.");
-
-                if(pieChartValue.Data == null)
-                    throw new Exception("Data is missing in the PieChartValue. Please provide a Data in the PieChartValue.");
             }
         }
     }

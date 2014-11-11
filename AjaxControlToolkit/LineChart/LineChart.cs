@@ -92,7 +92,7 @@ namespace AjaxControlToolkit {
                 return;
 
             foreach(LineChartSeries lineChartSeries in Series) {
-                if(lineChartSeries.Name == null || lineChartSeries.Name.Trim() == "")
+                if(String.IsNullOrWhiteSpace(lineChartSeries.Name))
                     throw new Exception("Name is missing in the LineChartSeries. Please provide a name in the LineChartSeries.");
             }
         }

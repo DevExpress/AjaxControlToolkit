@@ -107,7 +107,7 @@ namespace AjaxControlToolkit {
                 return;
 
             foreach(BubbleChartValue bubbleChartValue in BubbleChartValues) {
-                if(bubbleChartValue.Category == null || bubbleChartValue.Category.Trim() == "")
+                if(String.IsNullOrWhiteSpace(bubbleChartValue.Category))
                     throw new Exception("Category is missing the BubbleChartValue. Please provide a Category in the BubbleChartValue.");
 
                 if(bubbleChartValue.Data == 0)

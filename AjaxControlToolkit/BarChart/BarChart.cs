@@ -70,7 +70,7 @@ namespace AjaxControlToolkit {
                 return;
 
             foreach(BarChartSeries barChartSeries in Series) {
-                if(barChartSeries.Name == null || barChartSeries.Name.Trim() == "")
+                if(String.IsNullOrWhiteSpace(barChartSeries.Name))
                     throw new Exception("Name is missing the BarChartSeries. Please provide a name in the BarChartSeries.");
             }
         }
