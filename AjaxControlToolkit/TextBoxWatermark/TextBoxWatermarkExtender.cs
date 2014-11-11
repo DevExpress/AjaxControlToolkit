@@ -3,10 +3,11 @@ using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System;
+using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.TextBoxWatermarkExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(TextBoxWatermarkExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.TextBoxWatermarkBehavior", Constants.TextBoxWatermarkName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(TextBox))]

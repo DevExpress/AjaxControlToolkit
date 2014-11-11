@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -18,7 +19,7 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(Control))]
     [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.HoverMenuName + Constants.IconPostfix)]
-    [Designer("AjaxControlToolkit.Design.HoverMenuExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(HoverMenuExtenderDesigner))]
     public class HoverMenuExtender : DynamicPopulateExtenderControlBase {
         [ExtenderControlProperty]
         [RequiredProperty]

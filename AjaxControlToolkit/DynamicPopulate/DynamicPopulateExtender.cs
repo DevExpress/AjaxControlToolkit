@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AjaxControlToolkit.Design;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -7,7 +8,7 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.DynamicPopulateExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(DynamicPopulateExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.DynamicPopulateBehavior", Constants.DynamicPopulateName)]
     [TargetControlType(typeof(Control))]

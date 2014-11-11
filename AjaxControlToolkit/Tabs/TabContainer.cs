@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -12,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.TabContainerDesigner, AjaxControlToolkit")]
+    [Designer(typeof(TabContainerDesigner))]
     [ParseChildren(typeof(TabPanel))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientCssResource(Constants.TabsName)]

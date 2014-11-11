@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,7 +9,7 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(ICheckBoxControl))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior", Constants.MutuallyExclusiveCheckBoxName)]
-    [Designer("AjaxControlToolkit.Design.MutuallyExclusiveCheckBoxExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(MutuallyExclusiveCheckBoxExtenderDesigner))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.MutuallyExclusiveCheckBoxName + Constants.IconPostfix)]
     public class MutuallyExclusiveCheckBoxExtender : ExtenderControlBase {
         // The unique key to use to associate checkboxes. This key does

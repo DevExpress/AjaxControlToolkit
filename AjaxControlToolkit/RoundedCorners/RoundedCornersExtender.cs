@@ -1,10 +1,11 @@
 using System.Web.UI;
 using System.ComponentModel;
 using System.Drawing;
+using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.RoundedCornersExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(RoundedCornersExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.RoundedCornersBehavior", Constants.RoundedCornersName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(Control))]

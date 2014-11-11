@@ -26,7 +26,7 @@ namespace AjaxControlToolkit {
     // it will automatically update the sort order of the items.  The database must have an integer-typed
     // column that this list can have "ownership" of.  By setting this column name into the "SortOrderField" property,
     // reorders will happen automatically.
-    [Designer("AjaxControlToolkit.Design.ReorderListDesigner, AjaxControlToolkit")]
+    [Designer(typeof(ReorderListDesigner))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ReorderListName + Constants.IconPostfix)]
     public class ReorderList : CompositeDataBoundControl, IRepeatInfoUser, INamingContainer, ICallbackEventHandler, IPostBackEventHandler {
         static object ItemCommandKey = new object();

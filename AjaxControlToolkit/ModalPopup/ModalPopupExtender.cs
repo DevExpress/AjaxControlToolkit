@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -7,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.ModalPopupExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(ModalPopupExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.ModalPopupBehavior", Constants.ModalPopup)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(DragPanelExtender))]

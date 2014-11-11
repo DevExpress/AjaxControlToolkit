@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AjaxControlToolkit.Design;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.SliderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(SliderDesigner))]
     [ClientCssResource(Constants.SliderName)]
     [ClientScriptResource("Sys.Extended.UI.SliderBehavior", Constants.SliderName)]
     [RequiredScript(typeof(CommonToolkitScripts))]

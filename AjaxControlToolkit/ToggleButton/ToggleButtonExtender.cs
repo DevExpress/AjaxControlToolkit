@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -5,7 +6,7 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.ToggleButtonExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(ToggleButtonExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.ToggleButtonBehavior", Constants.ToggleButtonName)]
     [TargetControlType(typeof(ICheckBoxControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ToggleButtonName + Constants.IconPostfix)]

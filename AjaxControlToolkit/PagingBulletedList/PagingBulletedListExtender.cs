@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -6,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.PagingBulletedListExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(PagingBulletedListExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.PagingBulletedListBehavior", Constants.PagingBulletedListName)]
     [TargetControlType(typeof(BulletedList))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.PagingBulletedListName + Constants.IconPostfix)]

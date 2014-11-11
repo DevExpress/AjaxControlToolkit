@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.ValidatorCalloutExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(ValidatorCalloutExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(AnimationExtender))]

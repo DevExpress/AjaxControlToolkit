@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -13,7 +14,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationExtender))]
     [ClientCssResource(Constants.DropDownName)]
     [ClientScriptResource("Sys.Extended.UI.DropDownBehavior", Constants.DropDownName)]
-    [Designer("AjaxControlToolkit.Design.DropDownExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(DropDownExtenderDesigner))]
     [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DropDownName + Constants.IconPostfix)]
     public class DropDownExtender : DynamicPopulateExtenderControlBase {

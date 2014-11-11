@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.AutoCompleteExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(AutoCompleteExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.AutoCompleteBehavior", Constants.AutoCompleteName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(PopupExtender))]

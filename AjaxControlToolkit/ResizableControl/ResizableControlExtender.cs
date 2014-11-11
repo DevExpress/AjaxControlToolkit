@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -6,7 +7,7 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.ResizableControlExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(ResizableControlExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.ResizableControlBehavior", Constants.ResizableControlName)]
     [TargetControlType(typeof(Control))]

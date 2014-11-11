@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -11,7 +12,7 @@ using System.Xml;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.CascadingDropDownExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(CascadingDropDownExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.CascadingDropDownBehavior", Constants.CascadingDropDownName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(DropDownList))]

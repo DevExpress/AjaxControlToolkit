@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -10,7 +11,7 @@ namespace AjaxControlToolkit {
     // of wrapping an existing behavior with an extender.
     // When attached to a Panel, the user can then drag that panel around the browser rendering surface
     // using the mouse.
-    [Designer("AjaxControlToolkit.Design.DragPanelExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(DragPanelExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.FloatingBehavior", Constants.DragPanelName)]
     [TargetControlType(typeof(WebControl))]
     [RequiredScript(typeof(DragDropScripts))]

@@ -1,10 +1,11 @@
+using AjaxControlToolkit.Design;
 using System.ComponentModel;
 using System.Drawing;
 using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.DropShadowExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(DropShadowExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.DropShadowBehavior", Constants.DropShadowName)]
     [RequiredScript(typeof(CommonToolkitScripts), 1)]
     [RequiredScript(typeof(RoundedCornersExtender), 2)]

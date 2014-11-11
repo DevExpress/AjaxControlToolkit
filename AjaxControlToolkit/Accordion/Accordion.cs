@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace AjaxControlToolkit {
     // in a way that the AccordionBehavior can understand it. 
     [ParseChildren(true)]
     [PersistChildren(false)]
-    [Designer("AjaxControlToolkit.Design.AccordionDesigner, AjaxControlToolkit")]
+    [Designer(typeof(AccordionDesigner))]
     [ToolboxData("<{0}:Accordion runat=server></{0}:Accordion>")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AccordionName + Constants.IconPostfix)]
     public class Accordion : WebControl {

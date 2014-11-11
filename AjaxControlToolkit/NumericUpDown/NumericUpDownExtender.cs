@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -7,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.NumericUpDownExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(NumericUpDownExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.NumericUpDownBehavior", Constants.NumericUpDownName)]
     [TargetControlType(typeof(TextBox))]

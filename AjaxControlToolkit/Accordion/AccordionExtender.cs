@@ -4,6 +4,7 @@ using System.Web.UI;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Globalization;
+using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
@@ -13,7 +14,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationScripts))]
     [ClientScriptResource("Sys.Extended.UI.AccordionBehavior", Constants.AccordionName)]
     [ToolboxItem(false)]
-    [Designer("AjaxControlToolkit.Design.AccordionExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(AccordionExtenderDesigner))]
     [TargetControlType(typeof(Accordion))]
     public class AccordionExtender : ExtenderControlBase {        
         public AccordionExtender() {

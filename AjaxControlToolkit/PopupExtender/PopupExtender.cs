@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Web.UI;
@@ -10,7 +11,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(AnimationExtender))]
     [TargetControlType(typeof(Control))]
-    [Designer("AjaxControlToolkit.PopupExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(PopupExtenderDesigner))]
     public class PopupExtender : AnimationExtenderControlBase {
         // Position the target with respect to this element
         [ExtenderControlProperty]

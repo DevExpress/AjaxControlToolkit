@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.NoBotExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(NoBotExtenderDesigner))]
     [DefaultEvent("GenerateChallengeAndResponse")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.NoBotName + Constants.IconPostfix)]
     public class NoBot : WebControl, INamingContainer {

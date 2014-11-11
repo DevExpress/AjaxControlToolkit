@@ -6,10 +6,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing;
+using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.ConfirmButtonExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(ConfirmButtonExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.ConfirmButtonBehavior", Constants.ConfirmButtonName)]
     [TargetControlType(typeof(IButtonControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ConfirmButtonName + Constants.IconPostfix)]

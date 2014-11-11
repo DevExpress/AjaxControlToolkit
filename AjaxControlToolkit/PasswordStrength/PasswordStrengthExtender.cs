@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,7 +9,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     [TargetControlType(typeof(TextBox))]
-    [Designer("AjaxControlToolkit.Design.PasswordStrengthExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(PasswordStrengthExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.PasswordStrengthExtenderBehavior", Constants.PasswordStrengthName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.PasswordStrengthName + Constants.IconPostfix)]

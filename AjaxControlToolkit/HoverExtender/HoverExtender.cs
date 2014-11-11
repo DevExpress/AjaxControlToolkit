@@ -1,10 +1,11 @@
 using System;
 using System.Web.UI;
 using System.ComponentModel;
+using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.HoverExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(HoverExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.HoverBehavior", Constants.HoverName)]
     [TargetControlType(typeof(Control))]
     [RequiredScript(typeof(CommonToolkitScripts))]

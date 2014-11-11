@@ -4,6 +4,7 @@ using System.Web.UI;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Drawing;
+using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
@@ -16,7 +17,7 @@ namespace AjaxControlToolkit {
     // to Months in the current year. Another click will switch to Years in the current Decade. 
     // This action allows you to easily jump to dates in the past or the future from within 
     // the calendar control. 
-    [Designer("AjaxControlToolkit.Design.CalendarExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(CalendarExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
     [RequiredScript(typeof(DateTimeScripts), 1)]
     [RequiredScript(typeof(PopupExtender), 2)]

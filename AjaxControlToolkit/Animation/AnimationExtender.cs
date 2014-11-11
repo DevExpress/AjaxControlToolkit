@@ -2,11 +2,12 @@ using System;
 using System.Web.UI;
 using System.ComponentModel;
 using System.Drawing;
+using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
     // Extender used to play animations when a control's events fire
-    [Designer("AjaxControlToolkit.Design.AnimationExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(AnimationExtenderDesigner))]
     [RequiredScript(typeof(AnimationScripts))]
     [ClientScriptResource("Sys.Extended.UI.Animation.AnimationBehavior", Constants.AnimationName)]
     [TargetControlType(typeof(Control))]

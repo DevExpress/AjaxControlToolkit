@@ -3,10 +3,11 @@ using System.Web.UI;
 using System.ComponentModel;
 using System.Drawing;
 using System.Web.UI.WebControls;
+using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.SlideShowExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(SlideShowExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.SlideShowBehavior", Constants.SlideShowName)]
     [ClientCssResource(Constants.SlideShowName)]
     [TargetControlType(typeof(System.Web.UI.WebControls.Image))]

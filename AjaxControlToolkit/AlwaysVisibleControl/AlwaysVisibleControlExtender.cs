@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -8,7 +9,7 @@ namespace AjaxControlToolkit {
 
     // Extender used to add constant visibility to an ASP.NET control.  The control that is extended
     // then always moves to fixed position in the page regardless of how the body is resized or scrolled.
-    [Designer("AjaxControlToolkit.Design.AlwaysVisibleControlExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(AlwaysVisibleControlExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.AlwaysVisibleControlBehavior", Constants.AlwaysVisibleControlName)]
     [RequiredScript(typeof(AnimationScripts))]
     [DefaultProperty("VerticalOffset")]

@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -6,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [Designer("AjaxControlToolkit.Design.FilteredTextBoxExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(FilteredTextBoxExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.FilteredTextBoxBehavior", Constants.FilteredTextBoxName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(TextBox))]

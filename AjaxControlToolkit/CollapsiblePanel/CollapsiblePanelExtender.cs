@@ -1,3 +1,4 @@
+using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -10,7 +11,7 @@ namespace AjaxControlToolkit {
     // An extender class which adds collapse/expand behavior to an ASP.NET Panel control.
     // The panel that is extended can then be collapsed or expanded by the user of the page, which is handy
     // for doing things like showing or hiding content or maximizing available space.
-    [Designer("AjaxControlToolkit.Design.CollapsiblePanelExtenderDesigner, AjaxControlToolkit")]
+    [Designer(typeof(CollapsiblePanelExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.CollapsiblePanelBehavior", Constants.CollapsiblePanelName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(AnimationScripts))]
