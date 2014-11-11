@@ -88,6 +88,12 @@ using System.Web.UI;
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.ColorPickerName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.ColorPickerName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
 
+[assembly: WebResource(Constants.ComboBoxName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.ComboBoxName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.ComboBoxName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.ComboBoxName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.ComboBoxArrowDownImage, "image/gif")]
+
 [assembly: WebResource(Constants.ConfirmButtonName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.ConfirmButtonName + Constants.JsPostfix, "text/javascript")]
 

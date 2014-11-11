@@ -102,6 +102,15 @@
     <Compile Include="CollapsiblePanel\CollapsiblePanelExtender.cs" />
     <Compile Include="ColorPicker\ColorPickerExtenderDesigner.cs" />
     <Compile Include="ColorPicker\ColorPickerExtender.cs" />
+    <Compile Include="ComboBox\ComboBox.cs" />
+    <Compile Include="ComboBox\ComboBoxAutoCompleteMode.cs" />
+    <Compile Include="ComboBox\ComboBoxButton.cs" />
+    <Compile Include="ComboBox\ComboBoxDesigner.cs" />
+    <Compile Include="ComboBox\ComboBoxDesignerActionList.cs" />
+    <Compile Include="ComboBox\ComboBoxInputMode.cs" />
+    <Compile Include="ComboBox\ComboBoxItemInsertEventArgs.cs" />
+    <Compile Include="ComboBox\ComboBoxItemInsertLocation.cs" />
+    <Compile Include="ComboBox\ComboBoxRenderMode.cs" />
     <Compile Include="Compat\DragDrop\DragDropScripts.cs" />
     <Compile Include="Compat\Timer\TimerScript.cs" />
     <Compile Include="ConfirmButton\ConfirmButtonExtenderDesigner.cs" />
@@ -260,6 +269,11 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Styles\ComboBox.min.css">
+      <DependentUpon>ComboBox.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\ComboBox.css" />
+    <EmbeddedResource Include="ToolboxIcons\ComboBox.ico" />
     <EmbeddedResource Include="Styles\Twitter.min.css">
       <DependentUpon>Twitter.css</DependentUpon>
     </EmbeddedResource>
@@ -314,6 +328,7 @@
     <EmbeddedResource Include="Images\Gravatar-G.jpg" />
     <EmbeddedResource Include="Images\Gravatar-PG.jpg" />
     <EmbeddedResource Include="Images\Gravatar-R.jpg" />
+    <EmbeddedResource Include="Images\ComboBoxArrow-Down.gif" />
     <Content Include="Scripts\AreaChart.js" />
     <Content Include="Scripts\AreaChart.min.js">
       <DependentUpon>AreaChart.js</DependentUpon>
@@ -365,6 +380,10 @@
     <Content Include="Scripts\ColorPicker.js" />
     <Content Include="Scripts\ColorPicker.min.js">
       <DependentUpon>ColorPicker.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\ComboBox.js" />
+    <Content Include="Scripts\ComboBox.min.js">
+      <DependentUpon>ComboBox.js</DependentUpon>
     </Content>
     <Content Include="Scripts\ComponentSet.js" />
     <Content Include="Scripts\ComponentSet.min.js">

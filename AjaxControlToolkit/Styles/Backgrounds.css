@@ -227,3 +227,7 @@
 .ajax__multi_slider_default .handle_vertical_down {
     background-image: url('<%=WebResource("AjaxControlToolkit.Images.MultiHandleSlider-VHandleDown.gif")%>');
 }
+
+.ajax__combobox_buttoncontainer button {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.ComboBoxArrow-Down.gif")%>');
+}
