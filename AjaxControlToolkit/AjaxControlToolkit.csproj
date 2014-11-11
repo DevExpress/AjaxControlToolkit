@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
@@ -246,6 +247,12 @@
     <Compile Include="TextBoxWatermark\TextBoxWatermarkExtender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Localization.cs" />
+    <Compile Include="Twitter\Twitter.cs" />
+    <Compile Include="Twitter\TwitterAPI.cs" />
+    <Compile Include="Twitter\TwitterDesigner.cs" />
+    <Compile Include="Twitter\TwitterMode.cs" />
+    <Compile Include="Twitter\TwitterStatus.cs" />
+    <Compile Include="Twitter\TwitterUser.cs" />
     <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationExtenderDesigner.cs" />
     <Compile Include="UpdatePanelAnimation\UpdatePanelAnimationExtender.cs" />
     <Compile Include="ValidatorCallout\ValidatorCalloutExtenderDesigner.cs" />
@@ -253,6 +260,11 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Styles\Twitter.min.css">
+      <DependentUpon>Twitter.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\Twitter.css" />
+    <EmbeddedResource Include="ToolboxIcons\Twitter.ico" />
     <EmbeddedResource Include="Styles\PieChart.css" />
     <EmbeddedResource Include="Styles\PieChart.min.css">
       <DependentUpon>PieChart.css</DependentUpon>
@@ -307,6 +319,8 @@
       <DependentUpon>AreaChart.js</DependentUpon>
     </Content>
     <EmbeddedResource Include="Images\Gravatar-X.jpg" />
+    <EmbeddedResource Include="Images\Twitter24.png" />
+    <EmbeddedResource Include="Images\Twitter32.png" />
     <Content Include="Scripts\BalloonPopup.js" />
     <Content Include="Scripts\BalloonPopup.min.js">
       <DependentUpon>BalloonPopup.js</DependentUpon>

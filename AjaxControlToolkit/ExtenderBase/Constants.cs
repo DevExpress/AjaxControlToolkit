@@ -76,6 +76,7 @@ namespace AjaxControlToolkit {
             TabsName = "Tabs",
             TextBoxWatermarkName = "TextBoxWatermark",
             ToggleButtonName = "ToggleButton",
+            TwitterName = "Twitter",
             UpdatePanelAnimationName = "UpdatePanelAnimation",
             ValidatorCalloutName = "ValidatorCallout",
 
@@ -142,6 +143,8 @@ namespace AjaxControlToolkit {
             TabsRightImage = TabsName + "Right.gif",
             TabsVerticalleftImage = TabsName + "Verticalleft.gif",
             TabsVerticalrightImage = TabsName + "Verticalright.gif",
+            Twitter24Image = TwitterName + "24.png",
+            Twitter32Image = TwitterName + "32.png",
             ValidatorCalloutAlertLargeImage = ValidatorCalloutName + "Alert-Large.gif",
             ValidatorCalloutAlertSmallImage = ValidatorCalloutName + "Alert-Small.gif",
             ValidatorCalloutCloseImage = ValidatorCalloutName + "Close.gif";

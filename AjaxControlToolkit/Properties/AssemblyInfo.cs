@@ -262,6 +262,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.ToggleButtonName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.ToggleButtonName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.TwitterName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.TwitterName + Constants.MinCssPostfix, "text/css", PerformSubstitution = true)]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.Twitter24Image, "image/png")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.Twitter32Image, "image/png")]
+
 [assembly: WebResource(Constants.UpdatePanelAnimationName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.UpdatePanelAnimationName + Constants.JsPostfix, "text/javascript")]
 
