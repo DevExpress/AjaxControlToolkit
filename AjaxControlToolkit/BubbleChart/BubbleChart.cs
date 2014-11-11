@@ -1,4 +1,4 @@
-﻿using AjaxControlToolkit.Desgin;
+﻿using AjaxControlToolkit.Design;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +31,7 @@ namespace AjaxControlToolkit {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
-        [Editor(typeof(BubbleChartValueCollectionEditor), typeof(UITypeEditor))]
+        [Editor(typeof(ChartBaseSeriesEditor<BubbleChartValue>), typeof(UITypeEditor))]
         public List<BubbleChartValue> BubbleChartValues {
             get { return _values; }
         }

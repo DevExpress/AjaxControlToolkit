@@ -29,7 +29,7 @@ namespace AjaxControlToolkit {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
-        [Editor(typeof(PieChartValueCollectionEditor), typeof(UITypeEditor))]
+        [Editor(typeof(ChartBaseSeriesEditor<PieChartValue>), typeof(UITypeEditor))]
         public List<PieChartValue> PieChartValues {
             get { return _values; }
         }

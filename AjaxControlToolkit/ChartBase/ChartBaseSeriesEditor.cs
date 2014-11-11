@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
-using System.Text;
 
 namespace AjaxControlToolkit.Design {
 
-    public class AreaChartSeriesCollectionEditor : CollectionEditor {
+    public class ChartBaseSeriesEditor<T> : CollectionEditor {
 
-        public AreaChartSeriesCollectionEditor(Type type)
+        public ChartBaseSeriesEditor(Type type)
             : base(type) {
         }
 
         protected override Type[] CreateNewItemTypes() {
-            return new[] { typeof(AreaChartSeries) };
+            return new[] { typeof(T) };
         }
 
         protected override bool CanSelectMultipleInstances() {
             return false;
         }
     }
+
 }
