@@ -11,7 +11,7 @@ namespace AjaxControlToolkit {
     [ClientCssResource(Constants.AreaChartName)]
     [ClientScriptResource("Sys.Extended.UI.AreaChart", Constants.AreaChartName)]
     public class AreaChart : ChartBase {
-        AreaChartSeriesCollection areaChartSeriesList = null;
+        List<AreaChartSeries> _series = new List<AreaChartSeries>();
 
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -26,8 +26,8 @@ namespace AjaxControlToolkit {
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
-        public AreaChartSeriesCollection ClientSeries {
-            get { return areaChartSeriesList; }
+        public List<AreaChartSeries> ClientSeries {
+            get { return _series; }
         }
 
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -35,12 +35,8 @@ namespace AjaxControlToolkit {
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
         [Editor(typeof(AreaChartSeriesCollectionEditor), typeof(UITypeEditor))]
-        public AreaChartSeriesCollection Series {
-            get {
-                if(areaChartSeriesList == null)
-                    areaChartSeriesList = new AreaChartSeriesCollection();
-                return areaChartSeriesList;
-            }
+        public List<AreaChartSeries> Series {
+            get { return _series; }
         }
 
         [ExtenderControlProperty]

@@ -11,7 +11,7 @@ namespace AjaxControlToolkit {
     [ClientCssResource(Constants.BarChartName)]
     [ClientScriptResource("Sys.Extended.UI.BarChart", Constants.BarChartName)]
     public class BarChart : ChartBase {
-        BarChartSeriesCollection barChartSeriesList = null;
+        List<BarChartSeries> _series = new List<BarChartSeries>();
 
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -26,8 +26,8 @@ namespace AjaxControlToolkit {
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
-        public BarChartSeriesCollection ClientSeries {
-            get { return barChartSeriesList; }
+        public List<BarChartSeries> ClientSeries {
+            get { return _series; }
         }
 
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -35,12 +35,8 @@ namespace AjaxControlToolkit {
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
         [Editor(typeof(BarChartSeriesCollectionEditor), typeof(UITypeEditor))]
-        public BarChartSeriesCollection Series {
-            get {
-                if(barChartSeriesList == null)
-                    barChartSeriesList = new BarChartSeriesCollection();
-                return barChartSeriesList;
-            }
+        public List<BarChartSeries> Series {
+            get { return _series; }
         }
 
         [ExtenderControlProperty]

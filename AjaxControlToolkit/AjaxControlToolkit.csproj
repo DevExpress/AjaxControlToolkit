@@ -68,17 +68,14 @@
     <Compile Include="Animation\AnimationScripts.cs" />
     <Compile Include="AreaChart\AreaChart.cs" />
     <Compile Include="AreaChart\AreaChartSeries.cs" />
-    <Compile Include="AreaChart\AreaChartSeriesCollection.cs" />
     <Compile Include="AreaChart\AreaChartSeriesCollectionEditor.cs" />
     <Compile Include="AreaChart\AreaChartType.cs" />
     <Compile Include="BarChart\BarChart.cs" />
     <Compile Include="BarChart\BarChartSeries.cs" />
-    <Compile Include="BarChart\BarChartSeriesCollection.cs" />
     <Compile Include="BarChart\BarChartSeriesCollectionEditor.cs" />
     <Compile Include="BarChart\BarChartType.cs" />
     <Compile Include="BubbleChart\BubbleChart.cs" />
     <Compile Include="BubbleChart\BubbleChartValue.cs" />
-    <Compile Include="BubbleChart\BubbleChartValueCollection.cs" />
     <Compile Include="BubbleChart\BubbleChartValueCollectionEditor.cs" />
     <Compile Include="ChartBase\ChartBase.cs" />
     <Compile Include="ChartBase\ChartBaseDesigner.cs" />
@@ -161,7 +158,6 @@
     <Compile Include="HoverMenu\HoverMenuPopupPosition.cs" />
     <Compile Include="LineChart\LineChart.cs" />
     <Compile Include="LineChart\LineChartSeries.cs" />
-    <Compile Include="LineChart\LineChartSeriesCollection.cs" />
     <Compile Include="LineChart\LineChartSeriesCollectionEditor.cs" />
     <Compile Include="LineChart\LineChartType.cs" />
     <Compile Include="ListSearch\ListSearchExtenderDesigner.cs" />
@@ -202,7 +198,6 @@
     <Compile Include="PasswordStrength\PropertyEnumerations.cs" />
     <Compile Include="PieChart\PieChart.cs" />
     <Compile Include="PieChart\PieChartValue.cs" />
-    <Compile Include="PieChart\PieChartValueCollection.cs" />
     <Compile Include="PieChart\PieChartValueCollectionEditor.cs" />
     <Compile Include="PopupControl\PopupControlExtenderDesigner.cs" />
     <Compile Include="PopupControl\PopupControlExtender.cs" />

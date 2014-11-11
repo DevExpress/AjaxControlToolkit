@@ -11,7 +11,7 @@ namespace AjaxControlToolkit {
     [ClientCssResource(Constants.PieChartName)]
     [ClientScriptResource("Sys.Extended.UI.PieChart", Constants.PieChartName)]
     public class PieChart : ChartBase {
-        PieChartValueCollection pieChartValueList = null;
+        List<PieChartValue> _values = new List<PieChartValue>();
 
         // Provide list of PieChartValue to client side. Need help from PieChartValues property 
         // for designer experience support, cause Editor always blocks the property
@@ -21,8 +21,8 @@ namespace AjaxControlToolkit {
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
-        public PieChartValueCollection PieChartClientValues {
-            get { return pieChartValueList; }
+        public List<PieChartValue> PieChartClientValues {
+            get { return _values; }
         }
 
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -30,12 +30,8 @@ namespace AjaxControlToolkit {
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
         [Editor(typeof(PieChartValueCollectionEditor), typeof(UITypeEditor))]
-        public PieChartValueCollection PieChartValues {
-            get {
-                if(pieChartValueList == null)
-                    pieChartValueList = new PieChartValueCollection();
-                return pieChartValueList;
-            }
+        public List<PieChartValue> PieChartValues {
+            get { return _values; }
         }
 
         protected override void OnInit(EventArgs e) {

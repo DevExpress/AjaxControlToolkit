@@ -13,7 +13,7 @@ namespace AjaxControlToolkit {
     [ClientCssResource(Constants.LineChartName)]
     [ClientScriptResource("Sys.Extended.UI.LineChart", Constants.LineChartName)]
     public class LineChart : ChartBase {
-        LineChartSeriesCollection lineChartSeriesList = null;
+        List<LineChartSeries> _series = new List<LineChartSeries>();
 
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -28,8 +28,8 @@ namespace AjaxControlToolkit {
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
-        public LineChartSeriesCollection ClientSeries {
-            get { return lineChartSeriesList; }
+        public List<LineChartSeries> ClientSeries {
+            get { return _series; }
         }
 
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -37,12 +37,8 @@ namespace AjaxControlToolkit {
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
         [Editor(typeof(LineChartSeriesCollectionEditor), typeof(UITypeEditor))]
-        public LineChartSeriesCollection Series {
-            get {
-                if(lineChartSeriesList == null)
-                    lineChartSeriesList = new LineChartSeriesCollection();
-                return lineChartSeriesList;
-            }
+        public List<LineChartSeries> Series {
+            get { return _series; }
         }
 
         [ExtenderControlProperty]

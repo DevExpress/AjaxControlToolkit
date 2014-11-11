@@ -13,7 +13,7 @@ namespace AjaxControlToolkit {
     [ClientCssResource(Constants.BubbleChartName)]
     [ClientScriptResource("Sys.Extended.UI.BubbleChart", Constants.BubbleChartName)]
     public class BubbleChart : ChartBase {
-        BubbleChartValueCollection bubbleChartValueList = null;
+        List<BubbleChartValue> _values = new List<BubbleChartValue>();
 
         // Provide list of values to client side. Need help from Values property 
         // for designer experience support, cause Editor always blocks the property
@@ -23,8 +23,8 @@ namespace AjaxControlToolkit {
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
-        public BubbleChartValueCollection BubbleChartClientValues {
-            get { return bubbleChartValueList; }
+        public List<BubbleChartValue> BubbleChartClientValues {
+            get { return _values; }
         }
 
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -32,12 +32,8 @@ namespace AjaxControlToolkit {
         [DefaultValue(null)]
         [NotifyParentProperty(true)]
         [Editor(typeof(BubbleChartValueCollectionEditor), typeof(UITypeEditor))]
-        public BubbleChartValueCollection BubbleChartValues {
-            get {
-                if(bubbleChartValueList == null)
-                    bubbleChartValueList = new BubbleChartValueCollection();
-                return bubbleChartValueList;
-            }
+        public List<BubbleChartValue> BubbleChartValues {
+            get { return _values; }
         }
 
         [ExtenderControlProperty]
