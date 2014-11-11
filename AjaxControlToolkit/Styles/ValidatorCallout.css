@@ -53,28 +53,28 @@
     background-color: transparent !important;
 }
 
-    .ajax__validatorcallout_callout_arrow_cell .ajax__validatorcallout_innerdiv {
-        font-size: 1px;
-        position: relative;
-        left: 1px;
-        border-bottom: none !important;
-        border-right: none !important;
-        border-left: none !important;
-        width: 15px;
-        background-color: transparent !important;
-        padding: 0px;
-        margin: 0px;
-    }
+.ajax__validatorcallout_callout_arrow_cell .ajax__validatorcallout_innerdiv {
+    font-size: 1px;
+    position: relative;
+    left: 1px;
+    border-bottom: none !important;
+    border-right: none !important;
+    border-left: none !important;
+    width: 15px;
+    background-color: transparent !important;
+    padding: 0px;
+    margin: 0px;
+}
 
-        .ajax__validatorcallout_callout_arrow_cell .ajax__validatorcallout_innerdiv div {
-            height: 1px;
-            overflow: hidden;
-            border-top: none !important;
-            border-bottom: none !important;
-            border-right: none !important;
-            padding: 0px;
-            margin: 0px 0px 0px auto;
-        }
+.ajax__validatorcallout_callout_arrow_cell .ajax__validatorcallout_innerdiv div {
+    height: 1px;
+    overflow: hidden;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-right: none !important;
+    padding: 0px;
+    margin: 0px 0px 0px auto;
+}
 
 .ajax__validatorcallout_callout_arrow_cell_leftpos {
     padding: 8px 0px 0px 0px;
@@ -86,28 +86,28 @@
     background-color: transparent !important;
 }
 
-    .ajax__validatorcallout_callout_arrow_cell_leftpos .ajax__validatorcallout_innerdiv {
-        font-size: 1px;
-        position: relative;
-        left: -1px;
-        border-bottom: none !important;
-        border-right: none !important;
-        border-left: none !important;
-        width: 15px;
-        background-color: transparent !important;
-        padding: 0px;
-        margin: 0px;
-    }
+.ajax__validatorcallout_callout_arrow_cell_leftpos .ajax__validatorcallout_innerdiv {
+    font-size: 1px;
+    position: relative;
+    left: -1px;
+    border-bottom: none !important;
+    border-right: none !important;
+    border-left: none !important;
+    width: 15px;
+    background-color: transparent !important;
+    padding: 0px;
+    margin: 0px;
+}
 
-        .ajax__validatorcallout_callout_arrow_cell_leftpos .ajax__validatorcallout_innerdiv div {
-            height: 1px;
-            overflow: hidden;
-            border-top: none !important;
-            border-bottom: none !important;
-            border-left: none !important;
-            padding: 0px;
-            margin: 0px auto 0px 0px;
-        }
+.ajax__validatorcallout_callout_arrow_cell_leftpos .ajax__validatorcallout_innerdiv div {
+    height: 1px;
+    overflow: hidden;
+    border-top: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    padding: 0px;
+    margin: 0px auto 0px 0px;
+}
 
 .ajax__validatorcallout_callout_arrow_cell_bottomleftpos, .ajax__validatorcallout_callout_arrow_cell_topleftpos {
     padding: 0px 0px 0px 8px;
@@ -173,27 +173,27 @@
     margin: 0px 0px 0px auto;
 }
 
-    .ajax__validatorcallout_callout_arrow_cell_bottomleftpos .ajax__validatorcallout_innerdiv div, .ajax__validatorcallout_callout_arrow_cell_bottomrightpos .ajax__validatorcallout_innerdiv div, .ajax__validatorcallout_callout_arrow_cell_topleftpos .ajax__validatorcallout_innerdiv div, .ajax__validatorcallout_callout_arrow_cell_toprightpos .ajax__validatorcallout_innerdiv div {
-        height: 1px;
-        overflow: hidden;
-        border-top: none !important;
-        border-bottom: none !important;
-        padding: 0px;
-        margin: 0px auto 0px auto;
-    }
+.ajax__validatorcallout_callout_arrow_cell_bottomleftpos .ajax__validatorcallout_innerdiv div, .ajax__validatorcallout_callout_arrow_cell_bottomrightpos .ajax__validatorcallout_innerdiv div, .ajax__validatorcallout_callout_arrow_cell_topleftpos .ajax__validatorcallout_innerdiv div, .ajax__validatorcallout_callout_arrow_cell_toprightpos .ajax__validatorcallout_innerdiv div {
+    height: 1px;
+    overflow: hidden;
+    border-top: none !important;
+    border-bottom: none !important;
+    padding: 0px;
+    margin: 0px auto 0px auto;
+}
 
-    .ajax__validatorcallout_callout_arrow_cell_bottomleftpos .ajax__validatorcallout_innerdiv .arrowpixel, .ajax__validatorcallout_callout_arrow_cell_bottomrightpos .ajax__validatorcallout_innerdiv .arrowpixel, .ajax__validatorcallout_callout_arrow_cell_topleftpos .ajax__validatorcallout_innerdiv .arrowpixel, .ajax__validatorcallout_callout_arrow_cell_toprightpos .ajax__validatorcallout_innerdiv .arrowpixel {
-        height: 0px;
-        overflow: hidden;
-        border-top: none !important;
-        border-right: none !important;
-        border-left: none !important;
-        border-bottom-style: solid !important;
-        border-bottom-width: 1px !important;
-        background-color: transparent !important;
-        padding: 0px;
-        margin: 0px auto 0px auto;
-    }
+.ajax__validatorcallout_callout_arrow_cell_bottomleftpos .ajax__validatorcallout_innerdiv .arrowpixel, .ajax__validatorcallout_callout_arrow_cell_bottomrightpos .ajax__validatorcallout_innerdiv .arrowpixel, .ajax__validatorcallout_callout_arrow_cell_topleftpos .ajax__validatorcallout_innerdiv .arrowpixel, .ajax__validatorcallout_callout_arrow_cell_toprightpos .ajax__validatorcallout_innerdiv .arrowpixel {
+    height: 0px;
+    overflow: hidden;
+    border-top: none !important;
+    border-right: none !important;
+    border-left: none !important;
+    border-bottom-style: solid !important;
+    border-bottom-width: 1px !important;
+    background-color: transparent !important;
+    padding: 0px;
+    margin: 0px auto 0px auto;
+}
 
 .ajax__validatorcallout_error_message_cell {
     font-family: Verdana;
@@ -219,10 +219,10 @@
     border-left: none !important;
 }
 
-    .ajax__validatorcallout_close_button_cell .ajax__validatorcallout_innerdiv {
-        border: none !important;
-        text-align: center;
-        width: 10px;
-        padding: 2px;
-        cursor: pointer;
-    }
+.ajax__validatorcallout_close_button_cell .ajax__validatorcallout_innerdiv {
+    border: none !important;
+    text-align: center;
+    width: 10px;
+    padding: 2px;
+    cursor: pointer;
+}

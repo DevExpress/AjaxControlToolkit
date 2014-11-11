@@ -8,12 +8,12 @@
     overflow: hidden;
 }
 
-    .ajax__colorPicker_container table {
-        border: 1px solid #646464;
-    }
+.ajax__colorPicker_container table {
+    border: 1px solid #646464;
+}
 
-        .ajax__colorPicker_container table td div {
-            width: 10px;
-            height: 11px;
-            cursor: crosshair;
-        }
+.ajax__colorPicker_container table td div {
+    width: 10px;
+    height: 11px;
+    cursor: crosshair;
+}

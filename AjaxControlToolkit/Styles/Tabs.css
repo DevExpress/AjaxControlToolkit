@@ -34,53 +34,53 @@
     background-position: bottom;
 }
 
-    .ajax__tab_xp .ajax__tab_header .ajax__tab_outer {
-        padding-right: 4px;
-        background-repeat: no-repeat;
-        background-position: right;
-        height: 21px;
-    }
+.ajax__tab_xp .ajax__tab_header .ajax__tab_outer {
+    padding-right: 4px;
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 21px;
+}
 
-    .ajax__tab_xp .ajax__tab_header .ajax__tab_inner {
-        padding-left: 3px;
-        background-repeat: no-repeat;
-    }
+.ajax__tab_xp .ajax__tab_header .ajax__tab_inner {
+    padding-left: 3px;
+    background-repeat: no-repeat;
+}
 
-    .ajax__tab_xp .ajax__tab_header .ajax__tab_tab {
-        height: 13px;
-        padding: 4px;
-        margin: 0px;
-        background-repeat: repeat-x;
-    }
+.ajax__tab_xp .ajax__tab_header .ajax__tab_tab {
+    height: 13px;
+    padding: 4px;
+    margin: 0px;
+    background-repeat: repeat-x;
+}
 
-    .ajax__tab_xp .ajax__tab_header .ajax__tab_hover .ajax__tab_outer {
-        cursor: pointer;
-        background-repeat: no-repeat;
-        background-position: right;
-    }
+.ajax__tab_xp .ajax__tab_header .ajax__tab_hover .ajax__tab_outer {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: right;
+}
 
-    .ajax__tab_xp .ajax__tab_header .ajax__tab_hover .ajax__tab_inner {
-        cursor: pointer;
-        background-repeat: no-repeat;
-    }
+.ajax__tab_xp .ajax__tab_header .ajax__tab_hover .ajax__tab_inner {
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
 
-    .ajax__tab_xp .ajax__tab_header .ajax__tab_hover .ajax__tab_tab {
-        cursor: pointer;
-        background-repeat: repeat-x;
-    }
-    /*.ajax__tab_xp .ajax__tab_header .ajax__tab_active { margin-top: 1px; } */
-    .ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_outer {
-        background-repeat: no-repeat;
-        background-position: right;
-    }
+.ajax__tab_xp .ajax__tab_header .ajax__tab_hover .ajax__tab_tab {
+    cursor: pointer;
+    background-repeat: repeat-x;
+}
+/*.ajax__tab_xp .ajax__tab_header .ajax__tab_active { margin-top: 1px; } */
+.ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_outer {
+    background-repeat: no-repeat;
+    background-position: right;
+}
 
-    .ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_inner {
-        background-repeat: no-repeat;
-    }
+.ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_inner {
+    background-repeat: no-repeat;
+}
 
-    .ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_tab {
-        background-repeat: repeat-x;
-    }
+.ajax__tab_xp .ajax__tab_header .ajax__tab_active .ajax__tab_tab {
+    background-repeat: repeat-x;
+}
 
 .ajax__tab_xp .ajax__tab_body {
     font-family: verdana,tahoma,helvetica;
@@ -99,57 +99,57 @@
     background-position: right;
 }
 
-    .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_outer {
-        padding-right: 4px;
-        background-repeat: no-repeat;
-        background-position: right;
-        height: 21px;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_outer {
+    padding-right: 4px;
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 21px;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_inner {
-        padding-left: 3px;
-        background-repeat: no-repeat;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_inner {
+    padding-left: 3px;
+    background-repeat: no-repeat;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_tab {
-        height: 13px;
-        padding: 4px;
-        margin: 0px;
-        background-repeat: repeat-x;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_tab {
+    height: 13px;
+    padding: 4px;
+    margin: 0px;
+    background-repeat: repeat-x;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_outer {
-        cursor: pointer;
-        background-repeat: no-repeat;
-        background-position: right;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_outer {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: right;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_inner {
-        cursor: pointer;
-        background-repeat: no-repeat;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_inner {
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_tab {
-        cursor: pointer;
-        background-repeat: repeat-x;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_tab {
+    cursor: pointer;
+    background-repeat: repeat-x;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active {
-        margin-top: 1px;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active {
+    margin-top: 1px;
+}
 
-        .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_outer {
-            background-repeat: no-repeat;
-            background-position: right;
-        }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_outer {
+    background-repeat: no-repeat;
+    background-position: right;
+}
 
-        .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_inner {
-            background-repeat: no-repeat;
-        }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_inner {
+    background-repeat: no-repeat;
+}
 
-        .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_tab {
-            background-repeat: repeat-x;
-        }
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_tab {
+    background-repeat: repeat-x;
+}
 
 .ajax__tab_xp .ajax__tab_body_verticalleft {
     font-family: verdana,tahoma,helvetica;
@@ -168,57 +168,57 @@
     background-position: left;
 }
 
-    .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_outer {
-        padding-right: 4px;
-        background-repeat: no-repeat;
-        background-position: right;
-        height: 21px;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_outer {
+    padding-right: 4px;
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 21px;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_inner {
-        padding-left: 3px;
-        background-repeat: no-repeat;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_inner {
+    padding-left: 3px;
+    background-repeat: no-repeat;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_tab {
-        height: 13px;
-        padding: 4px;
-        margin: 0px;
-        background-repeat: repeat-x;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_tab {
+    height: 13px;
+    padding: 4px;
+    margin: 0px;
+    background-repeat: repeat-x;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_outer {
-        cursor: pointer;
-        background-repeat: no-repeat;
-        background-position: right;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_outer {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: right;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_inner {
-        cursor: pointer;
-        background-repeat: no-repeat;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_inner {
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_tab {
-        cursor: pointer;
-        background-repeat: repeat-x;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_tab {
+    cursor: pointer;
+    background-repeat: repeat-x;
+}
 
-    .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active {
-        margin-top: 1px;
-    }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active {
+    margin-top: 1px;
+}
 
-        .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_outer {
-            background-repeat: no-repeat;
-            background-position: right;
-        }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_outer {
+    background-repeat: no-repeat;
+    background-position: right;
+}
 
-        .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_inner {
-            background-repeat: no-repeat;
-        }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_inner {
+    background-repeat: no-repeat;
+}
 
-        .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_tab {
-            background-repeat: repeat-x;
-        }
+.ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_tab {
+    background-repeat: repeat-x;
+}
 
 .ajax__tab_xp .ajax__tab_body_verticalright {
     font-family: verdana,tahoma,helvetica;
@@ -237,53 +237,53 @@
     background-position: top;
 }
 
-    .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_outer {
-        padding-right: 4px;
-        background-repeat: no-repeat;
-        background-position: right;
-        height: 21px;
-    }
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_outer {
+    padding-right: 4px;
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 21px;
+}
 
-    .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_inner {
-        padding-left: 3px;
-        background-repeat: no-repeat;
-    }
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_inner {
+    padding-left: 3px;
+    background-repeat: no-repeat;
+}
 
-    .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_tab {
-        height: 17px;
-        padding: 0px 4px 4px 4px;
-        margin: 0px;
-        background-repeat: repeat-x;
-    }
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_tab {
+    height: 17px;
+    padding: 0px 4px 4px 4px;
+    margin: 0px;
+    background-repeat: repeat-x;
+}
 
-    .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_outer {
-        cursor: pointer;
-        background-repeat: no-repeat;
-        background-position: right;
-    }
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_outer {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: right;
+}
 
-    .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_inner {
-        cursor: pointer;
-        background-repeat: no-repeat;
-    }
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_inner {
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
 
-    .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_tab {
-        cursor: pointer;
-        background-repeat: repeat-x;
-    }
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_tab {
+    cursor: pointer;
+    background-repeat: repeat-x;
+}
 
-    .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_outer {
-        background-repeat: no-repeat;
-        background-position: right;
-    }
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_outer {
+    background-repeat: no-repeat;
+    background-position: right;
+}
 
-    .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_inner {
-        background-repeat: no-repeat;
-    }
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_inner {
+    background-repeat: no-repeat;
+}
 
-    .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_tab {
-        background-repeat: repeat-x;
-    }
+.ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_tab {
+    background-repeat: repeat-x;
+}
 
 .ajax__tab_xp .ajax__tab_body_bottom {
     font-family: verdana,tahoma,helvetica;
