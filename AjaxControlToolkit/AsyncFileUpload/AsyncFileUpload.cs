@@ -63,7 +63,7 @@ namespace AjaxControlToolkit {
         }
 
         HttpPostedFile CurrentFile {
-            get { return _persistFile ? AfuPersistedStoreManager.Instance.GetFileFromSession(ClientID) : _postedFile; }
+            get { return _persistFile ? PersistentStoreManager.Instance.GetFileFromSession(ClientID) : _postedFile; }
         }
 
         [DefaultValue("")]
@@ -177,7 +177,7 @@ namespace AjaxControlToolkit {
             get {
                 PopulateObjectPriorToRender(ClientID);
                 if(_persistFile) {
-                    return AfuPersistedStoreManager.Instance.FileExists(ClientID);
+                    return PersistentStoreManager.Instance.FileExists(ClientID);
                 }
                 return (_postedFile != null);
             }
@@ -188,7 +188,7 @@ namespace AjaxControlToolkit {
             get {
                 PopulateObjectPriorToRender(ClientID);
                 if(_persistFile) {
-                    return Path.GetFileName(AfuPersistedStoreManager.Instance.GetFileName(ClientID));
+                    return Path.GetFileName(PersistentStoreManager.Instance.GetFileName(ClientID));
                 } else if(_postedFile != null) {
                     return Path.GetFileName(_postedFile.FileName);
                 }
@@ -201,7 +201,7 @@ namespace AjaxControlToolkit {
             get {
                 PopulateObjectPriorToRender(ClientID);
                 if(_persistFile) {
-                    return AfuPersistedStoreManager.Instance.GetContentType(ClientID);
+                    return PersistentStoreManager.Instance.GetContentType(ClientID);
                 } else if(_postedFile != null) {
                     return _postedFile.ContentType;
                 }
@@ -235,11 +235,11 @@ namespace AjaxControlToolkit {
         }
 
         public void ClearAllFilesFromPersistedStore() {
-            AfuPersistedStoreManager.Instance.ClearAllFilesFromSession(this.ClientID);
+            PersistentStoreManager.Instance.ClearAllFilesFromSession(this.ClientID);
         }
 
         public void ClearFileFromPersistedStore() {
-            AfuPersistedStoreManager.Instance.RemoveFileFromSession(this.ClientID);
+            PersistentStoreManager.Instance.RemoveFileFromSession(this.ClientID);
         }
 
         public void SaveAs(string fileName) {
@@ -251,7 +251,7 @@ namespace AjaxControlToolkit {
         void PopulateObjectPriorToRender(string controlId) {
             bool exists;
             if(_persistFile)
-                exists = AfuPersistedStoreManager.Instance.FileExists(controlId);
+                exists = PersistentStoreManager.Instance.FileExists(controlId);
             else
                 exists = (_postedFile != null);
 
@@ -343,7 +343,7 @@ namespace AjaxControlToolkit {
 
                     if(_persistFile) {
                         GC.SuppressFinalize(file);
-                        AfuPersistedStoreManager.Instance.AddFileToSession(this.ClientID, file.FileName, file);
+                        PersistentStoreManager.Instance.AddFileToSession(this.ClientID, file.FileName, file);
                     } else {
                         _postedFile = file;
                     }
@@ -399,7 +399,7 @@ namespace AjaxControlToolkit {
         }
 
         protected override void CreateChildControls() {
-            AfuPersistedStoreManager.Instance.ExtendedFileUploadGUID = Constants.fileUploadGUID;
+            PersistentStoreManager.Instance.ExtendedFileUploadGUID = Constants.fileUploadGUID;
             string sendingControlID = null;
             if(!IsDesignMode)
                 sendingControlID = this.Page.Request.QueryString[Constants.FileUploadIDKey];
@@ -408,8 +408,8 @@ namespace AjaxControlToolkit {
                 this._hiddenFieldID = GenerateHtmlInputHiddenControl();
                 string lastFileName = String.Empty;
                 if(_persistFile) {
-                    if(AfuPersistedStoreManager.Instance.FileExists(this.ClientID))
-                        lastFileName = AfuPersistedStoreManager.Instance.GetFileName(this.ClientID);
+                    if(PersistentStoreManager.Instance.FileExists(this.ClientID))
+                        lastFileName = PersistentStoreManager.Instance.GetFileName(this.ClientID);
                 } else if(_postedFile != null) {
                     lastFileName = _postedFile.FileName;
                 }
