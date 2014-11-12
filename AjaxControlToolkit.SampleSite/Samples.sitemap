@@ -6,6 +6,7 @@
         <siteMapNode url="~/AlwaysVisibleControl/AlwaysVisibleControl.aspx" title="AlwaysVisibleControl" />
         <siteMapNode url="~/Animation/Animation.aspx" title="Animation" />
         <siteMapNode url="~/AreaChart/AreaChart.aspx" title="AreaChart" />
+        <siteMapNode url="~/AsyncFileUpload/AsyncFileUpload.aspx" title="AsyncFileUpload" />
         <siteMapNode url="~/AutoComplete/AutoComplete.aspx" title="AutoComplete" />
         <siteMapNode url="~/BalloonPopup/BalloonPopup.aspx" title="BalloonPopup" />
         <siteMapNode url="~/BarChart/BarChart.aspx" title="BarChart" />

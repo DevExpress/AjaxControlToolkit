@@ -34,6 +34,7 @@ namespace AjaxControlToolkit {
             AnimationName = "Animation",
             AnimationScriptsName = "AnimationScripts",
             AreaChartName = "AreaChart",
+            AsyncFileUploadName = "AsyncFileUpload",
             AutoCompleteName = "AutoComplete",
             BalloonPopupName = "BalloonPopup",
             BarChartName = "BarChart",
@@ -81,6 +82,7 @@ namespace AjaxControlToolkit {
             UpdatePanelAnimationName = "UpdatePanelAnimation",
             ValidatorCalloutName = "ValidatorCallout",
 
+            AsyncFileUploadImage = AsyncFileUploadName + ".png",
             BalloonPopupCloudGifSprite = BalloonPopupName + "Cloud-Sprite.gif",
             BalloonPopupCloudPngSprite = BalloonPopupName + "Cloud-Sprite.png",
             BalloonPopupRectangleGifSprite = BalloonPopupName + "Rectangle-Sprite.gif",
