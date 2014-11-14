@@ -1522,3 +1522,68 @@ Sys.Extended.UI.ScrollBars.prototype = {
     Auto: 0x04
 }
 Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", false);
+
+//Sys.Component._setProperties = 
+function Sys$Component$_setProperties(target, properties) {
+    /// <summary locid="M:J#Sys.Component._setProperties">Recursively sets properties on an object.</summary>
+    /// <param name="target">The object on which to set the property values.</param>
+    /// <param name="properties">A JSON object containing the property values.</param>
+    //#if DEBUG
+    var e = Function._validateParams(arguments, [
+        {name: "target"},
+        {name: "properties"}
+    ]);
+    if (e) throw e;
+    //#endif
+    var current;
+    var targetType = Object.getType(target);
+    var isObject = (targetType === Object) || (targetType === Sys.UI.DomElement);
+    var isComponent = Sys.Component.isInstanceOfType(target) && !target.get_isUpdating();
+    if (isComponent) target.beginUpdate();
+    for (var name in properties) {
+        var val = properties[name];
+        var getter = isObject ? null : target["get_" + name];
+        if (isObject || typeof(getter) !== 'function') {
+            // No getter, looking for an existing field.
+            var targetVal = target[name];
+            if (!val || (typeof(val) !== 'object') || (isObject && !targetVal)) {
+                target[name] = val;
+            }
+            else {
+                this._setProperties(targetVal, val);
+            }
+        }
+        else {
+            var setter = target["set_" + name];
+            if (typeof(setter) === 'function') {
+                // The setter exists, using it in all cases.
+                setter.apply(target, [val]);
+            }
+            else if (val instanceof Array) {
+                // There is a getter but no setter and the value to set is an array. Adding to the existing array.
+                current = getter.apply(target);
+                //#if DEBUG
+                if (!(current instanceof Array)) throw new Error.invalidOperation(String.format(Sys.Res.propertyNotAnArray, name));
+                //#endif
+                for (var i = 0, j = current.length, l= val.length; i < l; i++, j++) {
+                    current[j] = val[i];
+                }
+            }
+            else if ((typeof(val) === 'object') && (Object.getType(val) === Object)) {
+                // There is a getter but no setter and the value to set is a plain object. Adding to the existing object.
+                current = getter.apply(target);
+                //#if DEBUG
+                if ((typeof(current) === 'undefined') || (current === null)) throw new Error.invalidOperation(String.format(Sys.Res.propertyNullOrUndefined, name));
+                //#endif
+                this._setProperties(current, val);
+            }
+            //#if DEBUG
+            else {
+                // No setter, and the value is not an array or object, throwing.
+                throw new Error.invalidOperation(String.format(Sys.Res.propertyNotWritable, name));
+            }
+            //#endif
+        }
+    }
+    if (isComponent) target.endUpdate();
+}

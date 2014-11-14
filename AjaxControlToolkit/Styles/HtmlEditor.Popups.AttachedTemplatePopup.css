@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #DFDFDF;
+    color: #404040;
+}
+
+html, body {
+    border-width: 0;
+}
+
+div.ajax__htmleditor_attachedpopup_default {
+    padding: 5px;
+    border: 1px solid #B0B0B0;
+    font-size: 11px;
+    font-family: Arial;
+}
+
+.ajax__htmleditor_attachedpopup_default label, button, div, input, select, td, fieldset {
+    font-size: 11px;
+    font-family: Tahoma;
+}
+
+.ajax__htmleditor_attachedpopup_default input {
+    height: 14px;
+}
+
+.ajax__htmleditor_attachedpopup_default img {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.ajax__htmleditor_attachedpopup_default div.ajax__htmleditor_popup_boxbutton {
+    margin: 0;
+    padding: 0;
+    padding: 1px;
+    border-width: 0;
+    background-color: #C2C2C2;
+}
+
+.ajax__htmleditor_attachedpopup_default div.ajax__htmleditor_popup_boxbutton_hover {
+    background-color: #3C8AFF;
+    cursor: pointer;
+}
+
+.ajax__htmleditor_attachedpopup_default div.ajax__htmleditor_popup_boxbutton_mousedown {
+}
+
+.ajax__htmleditor_attachedpopup_default div.ajax__htmleditor_popup_boxbutton table {
+    width: 100%;
+    border-width: 0;
+}
+
+.ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton {
+    overflow: hidden;
+    width: 100%;
+    height: 19px;
+    border-width: 0;
+    background-repeat: repeat-x;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+}
+
+.ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton_hover {
+    cursor: pointer;
+}
+
+.ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton_mousedown {
+}
+
+.ajax__htmleditor_attachedpopup_default div.ajax__htmleditor_popup_confirmbutton {
+    float: right;
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 60px;
+}
+
+.ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton_hover span {
+    cursor: pointer;
+}

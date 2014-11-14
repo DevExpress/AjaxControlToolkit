@@ -1,0 +1,105 @@
+/* base layout */
+.ajax__htmleditor_editor_base .ajax__htmleditor_editor_container {
+    width: 100%;
+    height: 100%;
+    border-collapse: separate;
+    empty-cells: show;
+}
+
+.ajax__htmleditor_editor_base .ajax__htmleditor_editor_toptoolbar {
+    cursor: text;
+}
+
+.ajax__htmleditor_editor_base .ajax__htmleditor_toolbar_button {
+    float: left;
+    padding: 0;
+    height: 21px;
+    border-width: 0;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.ajax__htmleditor_editor_base img.ajax__htmleditor_toolbar_button {
+    width: 23px;
+}
+
+.ajax__htmleditor_editor_base div.ajax__htmleditor_toolbar_button span.ajax__htmleditor_toolbar_selectlable {
+    padding: 0 2px;
+    vertical-align: middle;
+    cursor: text;
+}
+
+.ajax__htmleditor_editor_base div.ajax__htmleditor_toolbar_button select.ajax__htmleditor_toolbar_selectbutton {
+    margin: 0;
+    padding: 0;
+    width: 120px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.ajax__htmleditor_editor_base div.ajax__htmleditor_toolbar_button select.ajax__htmleditor_toolbar_selectbutton option {
+    vertical-align: middle;
+}
+
+.ajax__htmleditor_editor_base .ajax__htmleditor_editor_editpanel {
+    height: 100%;
+}
+
+.ajax__htmleditor_editor_base .ajax__htmleditor_editor_bottomtoolbar {
+    cursor: text;
+}
+
+/* default theme */
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_container {
+    border: 1px solid #C2C2C2;
+}
+
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_toptoolbar {
+    padding: 0 2px 2px 2px;
+    background-color: #F0F0F0;
+}
+
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_toptoolbar .ajax__htmleditor_toolbar_button {
+    margin: 2px 0 0 0;
+    background-color: #C2C2C2;
+}
+
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_toptoolbar .ajax__htmleditor_toolbar_button_hover {
+    background-color: #3C8AFF;
+}
+
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_toptoolbar div.ajax__htmleditor_toolbar_button span.ajax__htmleditor_toolbar_selectlable {
+    font-weight: bold;
+    font-size: 12px;
+    font-family: Arial;
+}
+
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_toptoolbar div.ajax__htmleditor_toolbar_button select.ajax__htmleditor_toolbar_selectbutton {
+    font-size: 12px;
+    font-family: arial;
+    cursor: pointer;
+}
+
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_toptoolbar div.ajax__htmleditor_toolbar_button select.ajax__htmleditor_toolbar_selectbutton option {
+    font-size: 12px;
+}
+
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_editpanel {
+    border-width: 0;
+    border-top: 1px solid #C2C2C2;
+    border-bottom: 1px solid #C2C2C2;
+}
+
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_bottomtoolbar {
+    padding: 0 0 2px 2px;
+    background-color: #F0F0F0;
+}
+
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_bottomtoolbar .ajax__htmleditor_toolbar_button {
+    margin: 0 4px 0 0;
+    background-color: #C2C2C2;
+}
+
+.ajax__htmleditor_editor_default .ajax__htmleditor_editor_bottomtoolbar .ajax__htmleditor_toolbar_button_hover {
+    background-color: #3C8AFF;
+}

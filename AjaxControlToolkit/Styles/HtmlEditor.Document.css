@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    padding: 2px;
+    border-width: 0;
+    background-color: #fff;
+    color: #404040;
+}
+
+body, table td {
+    font-size: 10pt;
+    font-family: verdana,sans-serif;
+}
+
+h1 {
+    font-size: 24pt;
+}
+
+h2 {
+    font-size: 18pt;
+}
+
+h3 {
+    font-size: 14pt;
+}
+
+h4 {
+    font-size: 12pt;
+}
+
+h5 {
+    font-size: 10pt;
+}
+
+h6 {
+    font-size: 8pt;
+}

@@ -17,7 +17,7 @@ namespace AjaxControlToolkit {
         ArrayList _controlsDescriptor;
         ArrayList _overlaysDescriptor;
 
-        readonly string[] ImageNames = new[] {
+        readonly string[] _imageNames = new[] {
             Constants.SeadragonFullpageGrouphoverImage,
             Constants.SeadragonFullpageHoverImage,
             Constants.SeadragonFullpagePressedImage,
@@ -343,7 +343,7 @@ namespace AjaxControlToolkit {
 
         protected override void OnPreRender(EventArgs e) {
             base.OnPreRender(e);
-            ToolkitResourceManager.RegisterImagePaths(ImageNames, this);
+            ToolkitResourceManager.RegisterImagePaths(_imageNames, this);
         }
     }
 

@@ -184,6 +184,92 @@
     <Compile Include="HoverMenu\HoverMenuExtender.cs" />
     <Compile Include="HoverMenu\HoverMenuExtenderDesigner.cs" />
     <Compile Include="HoverMenu\HoverMenuPopupPosition.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtender.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollection.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtonCollectionEditor.cs" />
+    <Compile Include="HtmlEditorExtender\HtmlEditorExtenderButtons.cs" />
+    <Compile Include="HtmlEditor\DesignPanel.cs" />
+    <Compile Include="HtmlEditor\DesignPanelEventHandler.cs" />
+    <Compile Include="HtmlEditor\Editor.cs" />
+    <Compile Include="HtmlEditor\EditorDesigner.cs" />
+    <Compile Include="HtmlEditor\EditPanel.cs" />
+    <Compile Include="HtmlEditor\EditPanelInstance.cs" />
+    <Compile Include="HtmlEditor\Enums.cs" />
+    <Compile Include="HtmlEditor\Events.cs" />
+    <Compile Include="HtmlEditor\ExecCommandEmulation.cs" />
+    <Compile Include="HtmlEditor\HtmlEditor.cs" />
+    <Compile Include="HtmlEditor\HtmlPanel.cs" />
+    <Compile Include="HtmlEditor\ModePanel.cs" />
+    <Compile Include="HtmlEditor\Popups\AttachedPopup.cs" />
+    <Compile Include="HtmlEditor\Popups\AttachedTemplatePopup.cs" />
+    <Compile Include="HtmlEditor\Popups\BaseColorsPopup.cs" />
+    <Compile Include="HtmlEditor\Popups\LinkProperties.cs" />
+    <Compile Include="HtmlEditor\Popups\OkCancelAttachedTemplatePopup.cs" />
+    <Compile Include="HtmlEditor\Popups\Popup.cs" />
+    <Compile Include="HtmlEditor\Popups\PopupBGIButton.cs" />
+    <Compile Include="HtmlEditor\Popups\PopupBoxButton.cs" />
+    <Compile Include="HtmlEditor\Popups\PopupCommonButton.cs" />
+    <Compile Include="HtmlEditor\PreviewPanel.cs" />
+    <Compile Include="HtmlEditor\Toolbar.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\BackColorClear.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\BackColorSelector.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Bold.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\BoxButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\BulletedList.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\ColorButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\ColorSelector.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\CommonButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Copy.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Cut.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\DecreaseIndent.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\DesignMode.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\DesignModeBoxButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\DesignModeImageButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\DesignModePopupImageButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\DesignModeSelectButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\EditorToggleButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\FixedBackColor.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\FixedColorButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\FixedForeColor.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\FontName.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\FontSize.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\ForeColor.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\ForeColorClear.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\ForeColorSelector.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\HorizontalSeparator.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\HtmlMode.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\ImageButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\IncreaseIndent.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\InsertHR.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\InsertLink.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Italic.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\JustifyCenter.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\JustifyFull.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\JustifyLeft.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\JustifyRight.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Ltr.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\MethodButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\ModeButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\OkCancelPopupButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\OrderedList.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Paragraph.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Paste.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\PasteText.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\PasteWord.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\PreviewMode.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Redo.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\RemoveAlignment.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\RemoveLink.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\RemoveStyles.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Rtl.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\SelectButton.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Selector.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\StrikeThrough.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\SubScript.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\SuperScript.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Underline.cs" />
+    <Compile Include="HtmlEditor\ToolbarButtons\Undo.cs" />
+    <Compile Include="HtmlEditor\ToolbarInstance.cs" />
     <Compile Include="LineChart\LineChart.cs" />
     <Compile Include="LineChart\LineChartSeries.cs" />
     <Compile Include="LineChart\LineChartType.cs" />
@@ -307,6 +393,38 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images\HtmlEditorExtenderButtons.png" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.JustifyCenter.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.JustifyCenter.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.RemoveLink.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.RemoveLink.js</DependentUpon>
+    </Content>
+    <Content Include="Styles\HtmlEditorExtender.css" />
+    <Content Include="Styles\HtmlEditorExtender.min.css">
+      <DependentUpon>HtmlEditorExtender.css</DependentUpon>
+    </Content>
+    <EmbeddedResource Include="ToolboxIcons\HtmlEditorExtender.ico" />
+    <EmbeddedResource Include="Styles\HtmlEditor.DesignPanel.css" />
+    <EmbeddedResource Include="Styles\HtmlEditor.DesignPanel.min.css">
+      <DependentUpon>HtmlEditor.DesignPanel.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\HtmlEditor.HtmlPanel.min.css">
+      <DependentUpon>HtmlEditor.HtmlPanel.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\HtmlEditor.HtmlPanel.css" />
+    <EmbeddedResource Include="Styles\HtmlEditor.Document.css" />
+    <EmbeddedResource Include="Styles\HtmlEditor.Document.min.css">
+      <DependentUpon>HtmlEditor.Document.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolboxIcons\HtmlEditor.ico" />
+    <EmbeddedResource Include="Styles\HtmlEditor.Editor.min.css">
+      <DependentUpon>HtmlEditor.Editor.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\HtmlEditor.Editor.css" />
+    <EmbeddedResource Include="Styles\HtmlEditor.Popups.AttachedTemplatePopup.min.css">
+      <DependentUpon>HtmlEditor.Popups.AttachedTemplatePopup.css</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images\SeadragonFullpage-Grouphover.png" />
     <EmbeddedResource Include="Images\SeadragonFullpage-Hover.png" />
     <EmbeddedResource Include="Images\SeadragonFullpage-Pressed.png" />
@@ -384,10 +502,93 @@
     <EmbeddedResource Include="Images\Gravatar-R.jpg" />
     <EmbeddedResource Include="Images\ComboBoxArrow-Down.gif" />
     <EmbeddedResource Include="Images\AsyncFileUpload.png" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdPreviewA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdPreviewN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdRedoA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdRedoN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdRemoveAlignA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdRemoveAlignN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdUnlinkA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdUnlinkN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdUnformatA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdUnformatN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatRtlA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatRtlN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdSelectorA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdSelectorN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatStrikeA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatStrikeN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatSubA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatSubN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatSupA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatSupN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatUnderlineA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatUnderlineN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdUndoA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdUndoN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-Ed1x1.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdAnchor.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFlash.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdMedia.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdPlaceHolder.gif" />
     <Content Include="Scripts\AjaxFileUpload.js" />
     <Content Include="Scripts\AjaxFileUpload.min.js">
       <DependentUpon>AjaxFileUpload.js</DependentUpon>
     </Content>
+    <EmbeddedResource Include="Images\HtmlEditor-BgiButton.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdColorBgClearA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdColorBgClearN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatBoldA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatBoldN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdListBulletA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdListBulletN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdCopyA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdCopyN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdCutA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdCutN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdIndentLessA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdIndentLessN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdDesignA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdDesignN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdBackColorA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdBackColorN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdForeColorA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdForeColorN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdColorFgA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdColorFgN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdColorFgClearA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdColorFgClearN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdSep.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdHtmlA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdHtmlN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdIndentMoreA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdIndentMoreN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdRuleA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdRuleN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdLinkA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdLinkN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatItalicA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatItalicN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdAlignCenterA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdAlignCenterN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdAlignJustifyA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdAlignJustifyN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdAlignLeftA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdAlignLeftN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdAlignRightA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdAlignRightN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatLtrA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatLtrN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdListNumA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdListNumN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdPasteA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdPasteN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatParagraphA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdFormatParagraphN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdPasteTextA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdPasteTextN.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdPasteWordA.gif" />
+    <EmbeddedResource Include="Images\HtmlEditor-EdPasteWordN.gif" />
     <Content Include="Scripts\AreaChart.js" />
     <Content Include="Scripts\AreaChart.min.js">
       <DependentUpon>AreaChart.js</DependentUpon>
@@ -399,6 +600,91 @@
     <Content Include="Scripts\AsyncFileUpload.min.js">
       <DependentUpon>AsyncFileUpload.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\HtmlEditor.DesignPanel.js" />
+    <Content Include="Scripts\HtmlEditor.DesignPanel.min.js">
+      <DependentUpon>HtmlEditor.DesignPanel.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DecreaseIndent.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DecreaseIndent.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.DecreaseIndent.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.FontSize.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DesignModeBoxButton.js" />
+    <Content Include="Scripts\HtmlEditor.DesignPanelEventHandler.js" />
+    <Content Include="Scripts\HtmlEditor.DesignPanelEventHandler.min.js">
+      <DependentUpon>HtmlEditor.DesignPanelEventHandler.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ExecCommandEmulation.js" />
+    <Content Include="Scripts\HtmlEditor.EditPanel.js" />
+    <Content Include="Scripts\HtmlEditor.EditPanel.min.js">
+      <DependentUpon>HtmlEditor.EditPanel.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Events.js" />
+    <Content Include="Scripts\HtmlEditor.Editor.js" />
+    <Content Include="Scripts\HtmlEditor.Editor.min.js">
+      <DependentUpon>HtmlEditor.Editor.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Events.min.js">
+      <DependentUpon>HtmlEditor.Events.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ExecCommandEmulation.min.js">
+      <DependentUpon>HtmlEditor.ExecCommandEmulation.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.HtmlEditor.min.js">
+      <DependentUpon>HtmlEditor.HtmlEditor.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.HtmlPanel.min.js">
+      <DependentUpon>HtmlEditor.HtmlPanel.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ModePanel.min.js">
+      <DependentUpon>HtmlEditor.ModePanel.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.HtmlEditor.js" />
+    <Content Include="Scripts\HtmlEditor.PreviewPanel.min.js">
+      <DependentUpon>HtmlEditor.PreviewPanel.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Toolbar.min.js">
+      <DependentUpon>HtmlEditor.Toolbar.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DesignModeBoxButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.DesignModeBoxButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.FontSize.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.FontSize.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.HorizontalSeparator.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ForeColorSelector.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ForeColorClear.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ForeColor.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.FontName.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.FixedForeColor.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.FixedColorButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.FixedBackColor.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.EditorToggleButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DesignModeSelectButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DesignModePopupImageButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DesignModeImageButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DesignMode.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Cut.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Copy.js" />
+    <Content Include="Scripts\HtmlEditor.Enums.js" />
+    <Content Include="Scripts\HtmlEditor.Enums.min.js">
+      <DependentUpon>HtmlEditor.Enums.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.CommonButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ColorSelector.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ColorButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.BulletedList.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.BoxButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Bold.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.BackColorSelector.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.BackColorClear.js" />
+    <Content Include="Scripts\HtmlEditor.Popups.AttachedTemplatePopup.js" />
+    <Content Include="Scripts\HtmlEditor.Popups.AttachedTemplatePopup.min.js">
+      <DependentUpon>HtmlEditor.Popups.AttachedTemplatePopup.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.BaseColorsPopup.js" />
+    <Content Include="Scripts\HtmlEditor.Popups.AttachedPopup.js" />
     <Content Include="Scripts\BalloonPopup.js" />
     <Content Include="Scripts\BalloonPopup.min.js">
       <DependentUpon>BalloonPopup.js</DependentUpon>
@@ -462,10 +748,213 @@
     <EmbeddedResource Include="Styles\BalloonPopup.Cloud.min.css">
       <DependentUpon>BalloonPopup.Cloud.css</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Scripts\HtmlEditorExtender.js" />
+    <Content Include="Scripts\HtmlEditorExtender.min.js">
+      <DependentUpon>HtmlEditorExtender.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.AttachedPopup.min.js">
+      <DependentUpon>HtmlEditor.Popups.AttachedPopup.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.BaseColorsPopup.min.js">
+      <DependentUpon>HtmlEditor.Popups.BaseColorsPopup.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.LinkProperties.min.js">
+      <DependentUpon>HtmlEditor.Popups.LinkProperties.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.OkCancelAttachedTemplatePopup.min.js">
+      <DependentUpon>HtmlEditor.Popups.OkCancelAttachedTemplatePopup.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.Popup.min.js">
+      <DependentUpon>HtmlEditor.Popups.Popup.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.PopupBGIButton.min.js">
+      <DependentUpon>HtmlEditor.Popups.PopupBGIButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.PopupBoxButton.min.js">
+      <DependentUpon>HtmlEditor.Popups.PopupBoxButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.PopupCommonButton.min.js">
+      <DependentUpon>HtmlEditor.Popups.PopupCommonButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.BackColorClear.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.BackColorClear.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.BackColorSelector.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.BackColorSelector.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Bold.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Bold.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.BoxButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.BoxButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.BulletedList.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.BulletedList.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ColorButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.ColorButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ColorSelector.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.ColorSelector.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.CommonButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.CommonButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Copy.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Copy.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Cut.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Cut.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DesignMode.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.DesignMode.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DesignModeImageButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.DesignModeImageButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DesignModePopupImageButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.DesignModePopupImageButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.DesignModeSelectButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.DesignModeSelectButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.EditorToggleButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.EditorToggleButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.FixedBackColor.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.FixedBackColor.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.FixedColorButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.FixedColorButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.FixedForeColor.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.FixedForeColor.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.FontName.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.FontName.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ForeColor.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.ForeColor.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ForeColorClear.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.ForeColorClear.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ForeColorSelector.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.ForeColorSelector.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.HorizontalSeparator.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.HorizontalSeparator.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.HtmlMode.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.HtmlMode.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ImageButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.ImageButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.IncreaseIndent.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.IncreaseIndent.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.InsertHR.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.InsertHR.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.InsertLink.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.InsertLink.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Italic.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Italic.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.JustifyFull.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.JustifyFull.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.JustifyLeft.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.JustifyLeft.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.JustifyRight.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.JustifyRight.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Ltr.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Ltr.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.MethodButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.MethodButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ModeButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.ModeButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ImageButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.IncreaseIndent.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.InsertHR.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.InsertLink.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Italic.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.JustifyCenter.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.JustifyFull.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.JustifyLeft.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.JustifyRight.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.OkCancelPopupButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.OkCancelPopupButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.OrderedList.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.OrderedList.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Paragraph.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Paragraph.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Paste.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Paste.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.PasteText.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.PasteText.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.PasteWord.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.PasteWord.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.PreviewMode.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.PreviewMode.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Redo.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Redo.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.RemoveAlignment.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.RemoveAlignment.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.RemoveStyles.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.RemoveStyles.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Rtl.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Rtl.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.SelectButton.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.SelectButton.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Selector.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Selector.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.StrikeThrough.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.StrikeThrough.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.SubScript.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.SubScript.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.SuperScript.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.SuperScript.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Underline.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Underline.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Undo.min.js">
+      <DependentUpon>HtmlEditor.ToolbarButtons.Undo.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\HtmlEditor.HtmlPanel.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.HtmlMode.js" />
     <Content Include="Scripts\LineChart.js" />
     <Content Include="Scripts\LineChart.min.js">
       <DependentUpon>LineChart.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.LinkProperties.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.ModeButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Ltr.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.MethodButton.js" />
+    <Content Include="Scripts\HtmlEditor.ModePanel.js" />
     <Content Include="Scripts\MultiHandleSlider.js" />
     <Content Include="Scripts\MultiHandleSlider.min.js">
       <DependentUpon>MultiHandleSlider.js</DependentUpon>
@@ -473,6 +962,13 @@
     <EmbeddedResource Include="Styles\BalloonPopup.Rectangle.min.css">
       <DependentUpon>BalloonPopup.Rectangle.css</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Scripts\HtmlEditor.Popups.OkCancelAttachedTemplatePopup.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.OkCancelPopupButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.OrderedList.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Paragraph.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Paste.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.PasteText.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.PasteWord.js" />
     <Content Include="Scripts\PieChart.js" />
     <Content Include="Scripts\PieChart.min.js">
       <DependentUpon>PieChart.js</DependentUpon>
@@ -481,6 +977,22 @@
     <Content Include="Scripts\Seadragon.min.js">
       <DependentUpon>Seadragon.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\HtmlEditor.Popups.PopupBoxButton.js" />
+    <Content Include="Scripts\HtmlEditor.Popups.PopupCommonButton.js" />
+    <Content Include="Scripts\HtmlEditor.Popups.PopupBGIButton.js" />
+    <Content Include="Scripts\HtmlEditor.Popups.Popup.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.PreviewMode.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Redo.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.RemoveAlignment.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.RemoveLink.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.RemoveStyles.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Rtl.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.SelectButton.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Selector.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.StrikeThrough.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.SubScript.js" />
+    <Content Include="Scripts\HtmlEditor.PreviewPanel.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.SuperScript.js" />
     <Content Include="Scripts\Tabs.min.js">
       <DependentUpon>Tabs.js</DependentUpon>
     </Content>
@@ -549,6 +1061,9 @@
     <Content Include="Scripts\ToggleButton.min.js">
       <DependentUpon>ToggleButton.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\HtmlEditor.Toolbar.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Underline.js" />
+    <Content Include="Scripts\HtmlEditor.ToolbarButtons.Undo.js" />
     <Content Include="Scripts\ValidatorCallout.js" />
     <Content Include="Scripts\ValidatorCallout.min.js">
       <DependentUpon>ValidatorCallout.js</DependentUpon>
@@ -619,6 +1134,7 @@
     <EmbeddedResource Include="Styles\AreaChart.min.css">
       <DependentUpon>AreaChart.css</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Styles\HtmlEditor.Popups.AttachedTemplatePopup.css" />
     <EmbeddedResource Include="Styles\AjaxFileUpload.css" />
     <EmbeddedResource Include="Styles\AjaxFileUpload.min.css">
       <DependentUpon>AjaxFileUpload.css</DependentUpon>

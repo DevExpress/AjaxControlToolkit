@@ -1,0 +1,10 @@
+.ajax__htmleditor_htmlpanel_default {
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    background-color: #fff;
+    color: #000;
+    font-size: 10pt;
+    font-family: verdana,sans-serif;
+}

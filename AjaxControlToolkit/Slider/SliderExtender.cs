@@ -19,7 +19,7 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(TextBox))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.SliderName + Constants.IconPostfix)]
     public class SliderExtender : ExtenderControlBase {
-        readonly string[] ImageNames = new[] {
+        readonly string[] _imageNames = new[] {
             Constants.SliderHorizontalHandleImage,
             Constants.SliderVerticalHandleImage,
             Constants.SliderHorizontalRailImage,
@@ -130,7 +130,7 @@ namespace AjaxControlToolkit {
 
         protected override void OnPreRender(EventArgs e) {
             base.OnPreRender(e);
-            ToolkitResourceManager.RegisterImagePaths(ImageNames, this);
+            ToolkitResourceManager.RegisterImagePaths(_imageNames, this);
         }
     }
 

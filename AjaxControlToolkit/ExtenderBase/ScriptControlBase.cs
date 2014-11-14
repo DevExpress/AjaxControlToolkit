@@ -44,6 +44,10 @@ namespace AjaxControlToolkit {
             return null;
         }
 
+        protected override HtmlTextWriterTag TagKey {
+            get { return _tagKey; }
+        }
+
         protected string ClientStateFieldID {
             get {
                 if(_cachedClientStateFieldID == null) {

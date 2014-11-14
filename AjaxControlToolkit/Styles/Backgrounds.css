@@ -231,3 +231,16 @@
 .ajax__combobox_buttoncontainer button {
     background-image: url('<%=WebResource("AjaxControlToolkit.Images.ComboBoxArrow-Down.gif")%>');
 }
+
+.ajax__htmleditor_attachedpopup_default td.ajax__htmleditor_popup_bgibutton {
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.HtmlEditor-BgiButton.gif")%>');
+}
+
+.ajax__html_editor_extender_button { 
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.HtmlEditorExtenderButtons.png")%>');   
+}
+
+.ajax__html_editor_extender_separator
+{
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.HtmlEditorExtenderButtons.png")%>');
+}
