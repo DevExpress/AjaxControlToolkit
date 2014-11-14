@@ -58,6 +58,20 @@
     <Compile Include="Accordion\AccordionPane.cs" />
     <Compile Include="Accordion\AccordionPaneCollection.cs" />
     <Compile Include="Accordion\AutoSize.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadCompleteAllEventArgs.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadCompleteAllReason.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadDesigner.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadEventArgs.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadHandler.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadHelper.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadMode.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadStartEventArgs.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadState.cs" />
+    <Compile Include="AjaxFileUpload\AjaxFileUploadStates.cs" />
+    <Compile Include="AjaxFileUpload\FileHeaderInfo.cs" />
+    <Compile Include="AjaxFileUpload\MultipartFormDataParser.cs" />
+    <Compile Include="AjaxFileUpload\XhrType.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlExtenderDesigner.cs" />
     <Compile Include="AlwaysVisibleControl\AlwaysVisibleControlExtender.cs" />
     <Compile Include="AlwaysVisibleControl\HorizontalSide.cs" />
@@ -336,6 +350,10 @@
     <EmbeddedResource Include="Images\Gravatar-R.jpg" />
     <EmbeddedResource Include="Images\ComboBoxArrow-Down.gif" />
     <EmbeddedResource Include="Images\AsyncFileUpload.png" />
+    <Content Include="Scripts\AjaxFileUpload.js" />
+    <Content Include="Scripts\AjaxFileUpload.min.js">
+      <DependentUpon>AjaxFileUpload.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\AreaChart.js" />
     <Content Include="Scripts\AreaChart.min.js">
       <DependentUpon>AreaChart.js</DependentUpon>
@@ -563,6 +581,10 @@
     <EmbeddedResource Include="Styles\AreaChart.min.css">
       <DependentUpon>AreaChart.css</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Styles\AjaxFileUpload.css" />
+    <EmbeddedResource Include="Styles\AjaxFileUpload.min.css">
+      <DependentUpon>AjaxFileUpload.css</DependentUpon>
+    </EmbeddedResource>
     <Content Include="Styles\Backgrounds_static.css" />
     <Content Include="Styles\Backgrounds_static.min.css">
       <DependentUpon>Backgrounds_static.css</DependentUpon>
@@ -778,7 +800,6 @@
       <Visible>False</Visible>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

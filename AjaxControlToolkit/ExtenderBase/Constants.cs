@@ -30,6 +30,7 @@ namespace AjaxControlToolkit {
             ThreadingScriptName = "Common.Threading",
 
             AccordionName = "Accordion",
+            AjaxFileUploadName = "AjaxFileUpload",
             AlwaysVisibleControlName = "AlwaysVisibleControl",
             AnimationName = "Animation",
             AnimationScriptsName = "AnimationScripts",

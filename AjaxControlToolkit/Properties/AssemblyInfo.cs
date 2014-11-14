@@ -14,6 +14,11 @@ using System.Web.UI;
 [assembly: WebResource(Constants.AccordionName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.AccordionName + Constants.JsPostfix, "text/javascript")]
 
+[assembly: WebResource(Constants.AjaxFileUploadName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.AjaxFileUploadName + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.AjaxFileUploadName + Constants.CssPostfix, "text/css")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.AjaxFileUploadName + Constants.MinCssPostfix, "text/css")]
+
 [assembly: WebResource(Constants.AlwaysVisibleControlName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.AlwaysVisibleControlName + Constants.JsPostfix, "text/javascript")]
 
