@@ -249,6 +249,13 @@
     <Compile Include="ReorderList\RepeatDirection.cs" />
     <Compile Include="ResizableControl\ResizableControlExtenderDesigner.cs" />
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
+    <Compile Include="Sanitizer\HtmlSanitizer.cs" />
+    <Compile Include="Sanitizer\HtmlSanitizerProviderSection.cs" />
+    <Compile Include="Sanitizer\Provider.cs" />
+    <Compile Include="Sanitizer\IHtmlAttribute.cs" />
+    <Compile Include="Sanitizer\IHtmlNode.cs" />
+    <Compile Include="Sanitizer\HtmlSanitizerProvider.cs" />
+    <Compile Include="Sanitizer\HtmlSanitizerProviderCollection.cs" />
     <Compile Include="Seadragon\ControlAnchor.cs" />
     <Compile Include="Seadragon\OverlayCollectionEditor.cs" />
     <Compile Include="Seadragon\Seadragon.cs" />
