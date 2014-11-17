@@ -159,7 +159,7 @@ namespace AjaxControlToolkit {
         }
 
         private class Status {
-            public List<Response> Statuses;
+            public List<Response> Statuses { get; set; }
         }
 
         private class Response {
