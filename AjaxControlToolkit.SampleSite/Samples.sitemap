@@ -16,6 +16,7 @@
         <siteMapNode url="~/CascadingDropDown/CascadingDropDown.aspx" title="CascadingDropDown" />
         <siteMapNode url="~/CollapsiblePanel/CollapsiblePanel.aspx" title="CollapsiblePanel" />
         <siteMapNode url="~/ColorPicker/ColorPicker.aspx" title="ColorPicker" />
+        <siteMapNode url="~/ComboBox/ComboBox.aspx" title="ComboBox" />
         <siteMapNode url="~/ConfirmButton/ConfirmButton.aspx" title="ConfirmButton" />
         <siteMapNode url="~/DragPanel/DragPanel.aspx" title="DragPanel" />
         <siteMapNode url="~/DropDown/DropDown.aspx" title="DropDown" />
@@ -40,10 +41,12 @@
         <siteMapNode url="~/ReorderList/ReorderList.aspx" title="ReorderList" />
         <siteMapNode url="~/ResizableControl/ResizableControl.aspx" title="ResizableControl" />
         <siteMapNode url="~/RoundedCorners/RoundedCorners.aspx" title="RoundedCorners" />
+        <siteMapNode url="~/Seadragon/Seadragon.aspx" title="Seadragon" />
         <siteMapNode url="~/Slider/Slider.aspx" title="Slider" />
         <siteMapNode url="~/SlideShow/SlideShow.aspx" title="SlideShow" />
         <siteMapNode url="~/Tabs/Tabs.aspx" title="Tabs" />
         <siteMapNode url="~/TextBoxWatermark/TextBoxWatermark.aspx" title="TextBoxWatermark" />
+        <siteMapNode url="~/ToggleButton/ToggleButton.aspx" title="ToggleButton" />
         <siteMapNode url="~/Twitter/Twitter.aspx" title="Twitter" />
         <siteMapNode url="~/UpdatePanelAnimation/UpdatePanelAnimation.aspx" title="UpdatePanelAnimation" />
         <siteMapNode url="~/ValidatorCallout/ValidatorCallout.aspx" title="ValidatorCallout" />
