@@ -322,7 +322,7 @@ namespace AjaxControlToolkit {
                 ctlList.Controls.Add(plhItem);
 
                 var ctlFooter = new HtmlGenericControl("div");
-                var smallLogoUrl = ToolkitResourceManager.FormatImageUrl(Constants.Twitter24Image, _twitter.GetType(), _twitter.Page);
+                var smallLogoUrl = ToolkitResourceManager.GetImageHref(Constants.Twitter24Image, _twitter);
                 ctlFooter.Attributes.Add("class", "ajax__twitter_footer");
                 ctlFooter.Controls.Add(new Image() { ImageUrl = smallLogoUrl });
                 container.Controls.Add(ctlFooter);
@@ -397,7 +397,7 @@ namespace AjaxControlToolkit {
                 ctlList.Controls.Add(plhItem);
 
                 var ctlFooter = new HtmlGenericControl("div");
-                var smallLogoUrl = ToolkitResourceManager.FormatImageUrl(Constants.Twitter24Image, _twitter.GetType(), _twitter.Page);
+                var smallLogoUrl = ToolkitResourceManager.GetImageHref(Constants.Twitter24Image, _twitter);
                 ctlFooter.Attributes.Add("class", "ajax__twitter_footer");
                 ctlFooter.Controls.Add(new Image() { ImageUrl = smallLogoUrl });
                 container.Controls.Add(ctlFooter);

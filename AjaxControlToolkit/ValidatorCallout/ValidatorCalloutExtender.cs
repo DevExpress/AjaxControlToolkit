@@ -27,7 +27,7 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [ClientPropertyName("warningIconImageUrl")]
         public string WarningIconImageUrl {
-            get { return GetPropertyValue("WarningIconImageUrl", (string)null) ?? (DesignMode ? String.Empty : ToolkitResourceManager.FormatImageUrl(Constants.ValidatorCalloutAlertLargeImage, typeof(ValidatorCalloutExtender), Page)); }
+            get { return GetPropertyValue("WarningIconImageUrl", (string)null) ?? (DesignMode ? String.Empty : ToolkitResourceManager.GetImageHref(Constants.ValidatorCalloutAlertLargeImage, this)); }
             set { SetPropertyValue("WarningIconImageUrl", value); }
         }
 
@@ -36,7 +36,7 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [ClientPropertyName("closeImageUrl")]
         public string CloseImageUrl {
-            get { return GetPropertyValue("CloseImageUrl", (string)null) ?? (DesignMode ? String.Empty : ToolkitResourceManager.FormatImageUrl(Constants.ValidatorCalloutCloseImage, typeof(ValidatorCalloutExtender), Page)); }
+            get { return GetPropertyValue("CloseImageUrl", (string)null) ?? (DesignMode ? String.Empty : ToolkitResourceManager.GetImageHref(Constants.ValidatorCalloutCloseImage, this)); }
             set { SetPropertyValue("CloseImageUrl", value); }
         }
 
@@ -108,14 +108,6 @@ namespace AjaxControlToolkit {
 
             ResolveControlIDs(_onShow);
             ResolveControlIDs(_onHide);
-        }
-
-        protected override IEnumerable<string> GetImageNames() {
-            return new[] {
-                Constants.ValidatorCalloutAlertLargeImage,
-                Constants.ValidatorCalloutAlertSmallImage,
-                Constants.ValidatorCalloutCloseImage
-            };
         }
     }
 

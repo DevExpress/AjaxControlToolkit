@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
@@ -114,13 +115,16 @@ namespace AjaxControlToolkit {
         }
 
         internal static IEnumerable<string> GetStyleHrefs(Control control) {
-            var controlType = control.GetType();
-            var minified = !IsDebuggingEnabled();
+            return GetStyleNames(control.GetType()).Select(name => GetStyleHref(name, control));
+        }
 
-            return GetStyleNames(controlType).Select(name => _useStaticResources
+        internal static string GetStyleHref(string name, Control control) {
+            var minified = !IsDebuggingEnabled();
+            var controlType = control.GetType();
+
+            return _useStaticResources
                 ? FormatStyleVirtualPath(name, minified)
-                : control.Page.ClientScript.GetWebResourceUrl(controlType, FormatStyleResourceName(name, minified))
-            );
+                : control.Page.ClientScript.GetWebResourceUrl(controlType, FormatStyleResourceName(name, minified));
         }
 
         static IEnumerable<string> GetStyleNames(params Type[] controlTypes) {
@@ -204,11 +208,32 @@ namespace AjaxControlToolkit {
 
         // Images
 
-        internal static string FormatImageUrl(string imageName, Type controlType, Page page) {
+        internal static string GetImageHref(string imageName, Control control) {
             if(_useStaticResources)
-                return page.ResolveClientUrl(Constants.ImagesVirtualPath + imageName);
+                return control.Page.ResolveClientUrl(Constants.ImagesVirtualPath + imageName);
 
-            return page.ClientScript.GetWebResourceUrl(controlType, Constants.ImageResourcePrefix + imageName);
+            return control.Page.ClientScript.GetWebResourceUrl(control.GetType(), Constants.ImageResourcePrefix + imageName);
+        }
+
+        internal static void RegisterImagePaths(string[] imageNames, Control control) {
+            if(imageNames.Length < 1)
+                return;
+
+            control.Page.ClientScript.RegisterStartupScript(
+                control.Page.GetType(),
+                "bb9d9f1593ff41a198714a472d603c55",
+                "Type.registerNamespace('Sys.Extended.UI.Images');",
+                true
+            );
+
+            var jser = new JavaScriptSerializer();
+            var builder = new StringBuilder();
+            foreach(var name in imageNames) {
+                builder.AppendLine("Sys.Extended.UI.Images[" + jser.Serialize(name) + "] = "
+                    + jser.Serialize(ToolkitResourceManager.GetImageHref(name, control)) + ";");
+            }
+
+            control.Page.ClientScript.RegisterStartupScript(control.GetType(), "086a0778a11d433386793f72ea881602", builder.ToString(), true);
         }
 
         // Entries

@@ -428,7 +428,7 @@ namespace AjaxControlToolkit {
             Controls.Add(div);
 
             if(this.UploaderStyle == AsyncFileUploaderStyle.Modern) {
-                var bgImageUrl = ToolkitResourceManager.FormatImageUrl(AjaxControlToolkit.Constants.AsyncFileUploadImage, GetType(), Page);
+                var bgImageUrl = ToolkitResourceManager.GetImageHref(AjaxControlToolkit.Constants.AsyncFileUploadImage, this);
 
                 var style = "background:url(" + bgImageUrl + ") no-repeat 100% 1px; height:24px; margin:0px; text-align:right;";
                 if(!Width.IsEmpty)

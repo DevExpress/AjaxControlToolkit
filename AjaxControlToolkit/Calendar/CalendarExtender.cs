@@ -217,13 +217,6 @@ namespace AjaxControlToolkit {
                 SetPropertyValue<DateTime?>("EndDate", value != null ? (DateTime?)DateTime.SpecifyKind(value.Value, DateTimeKind.Utc) : null);
             }
         }
-
-        protected override IEnumerable<string> GetImageNames() {
-            return new[] {
-                Constants.CalendarArrowLeftImage,
-                Constants.CalendarArrowRightImage
-            };
-        }
     }
 
 }

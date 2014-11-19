@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -290,7 +289,6 @@ namespace AjaxControlToolkit {
             base.OnPreRender(e);
 
             RegisterLocalization();
-            RegisterImagesScript();
 
             if(Enabled && TargetControl.Visible) {
                 SaveClientStateValues();
@@ -304,32 +302,6 @@ namespace AjaxControlToolkit {
 
             var script = String.Format(@"Sys.Extended.UI.Localization.SetLocale(""{0}"");", localeKey);
             Page.ClientScript.RegisterStartupScript(GetType(), "f93b988bab7e44ffbcff635ee599ade2", script, true);
-        }
-
-        void RegisterImagesScript() {
-            var imageNames = GetImageNames().ToArray();
-            if(imageNames.Length < 1)
-                return;
-
-            Page.ClientScript.RegisterStartupScript(
-                Page.GetType(), 
-                "bb9d9f1593ff41a198714a472d603c55", 
-                "Type.registerNamespace('Sys.Extended.UI.Images');", 
-                true
-            );
-
-            var jser = new JavaScriptSerializer();
-            var builder = new StringBuilder();
-            foreach(var name in imageNames) {
-                builder.AppendLine("Sys.Extended.UI.Images[" + jser.Serialize(name) + "] = "
-                    + jser.Serialize(ToolkitResourceManager.FormatImageUrl(name, GetType(), Page)) + ";");
-            }
-            
-            Page.ClientScript.RegisterStartupScript(GetType(), "086a0778a11d433386793f72ea881602", builder.ToString(), true);
-        }
-
-        protected virtual IEnumerable<string> GetImageNames() {
-            yield break;
         }
 
         protected override void OnLoad(EventArgs e) {

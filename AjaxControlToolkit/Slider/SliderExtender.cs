@@ -19,6 +19,12 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(TextBox))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.SliderName + Constants.IconPostfix)]
     public class SliderExtender : ExtenderControlBase {
+        readonly string[] ImageNames = new[] {
+            Constants.SliderHorizontalHandleImage,
+            Constants.SliderVerticalHandleImage,
+            Constants.SliderHorizontalRailImage,
+            Constants.SliderVerticalRailImage
+        };
 
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -122,13 +128,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("EnableKeyboard", value); }
         }
 
-        protected override IEnumerable<string> GetImageNames() {
-            return new[] {
-                Constants.SliderHorizontalHandleImage,
-                Constants.SliderVerticalHandleImage,
-                Constants.SliderHorizontalRailImage,
-                Constants.SliderVerticalRailImage
-            };
+        protected override void OnPreRender(EventArgs e) {
+            base.OnPreRender(e);
+            ToolkitResourceManager.RegisterImagePaths(ImageNames, this);
         }
     }
 
