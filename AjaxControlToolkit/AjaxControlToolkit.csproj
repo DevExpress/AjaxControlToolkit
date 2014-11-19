@@ -249,6 +249,17 @@
     <Compile Include="ReorderList\RepeatDirection.cs" />
     <Compile Include="ResizableControl\ResizableControlExtenderDesigner.cs" />
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
+    <Compile Include="Seadragon\ControlAnchor.cs" />
+    <Compile Include="Seadragon\OverlayCollectionEditor.cs" />
+    <Compile Include="Seadragon\Seadragon.cs" />
+    <Compile Include="Seadragon\SeadragonControl.cs" />
+    <Compile Include="Seadragon\SeadragonFixedOverlay.cs" />
+    <Compile Include="Seadragon\SeadragonOverlay.cs" />
+    <Compile Include="Seadragon\SeadragonOverlayPlacement.cs" />
+    <Compile Include="Seadragon\SeadragonPoint.cs" />
+    <Compile Include="Seadragon\SeadragonRect.cs" />
+    <Compile Include="Seadragon\SeadragonScalableOverlay.cs" />
+    <Compile Include="Seadragon\UrlEditor.cs" />
     <Compile Include="Slider\SliderExtenderDesigner.cs" />
     <Compile Include="Slider\SliderExtender.cs" />
     <Compile Include="Slider\SliderOrientation.cs" />
@@ -289,6 +300,22 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Images\SeadragonFullpage-Grouphover.png" />
+    <EmbeddedResource Include="Images\SeadragonFullpage-Hover.png" />
+    <EmbeddedResource Include="Images\SeadragonFullpage-Pressed.png" />
+    <EmbeddedResource Include="Images\SeadragonFullpage-Rest.png" />
+    <EmbeddedResource Include="Images\SeadragonHome-Grouphover.png" />
+    <EmbeddedResource Include="Images\SeadragonHome-Hover.png" />
+    <EmbeddedResource Include="Images\SeadragonHome-Pressed.png" />
+    <EmbeddedResource Include="Images\SeadragonHome-Rest.png" />
+    <EmbeddedResource Include="Images\SeadragonZoomin-Grouphover.png" />
+    <EmbeddedResource Include="Images\SeadragonZoomin-Hover.png" />
+    <EmbeddedResource Include="Images\SeadragonZoomin-Pressed.png" />
+    <EmbeddedResource Include="Images\SeadragonZoomin-Rest.png" />
+    <EmbeddedResource Include="Images\SeadragonZoomout-Grouphover.png" />
+    <EmbeddedResource Include="Images\SeadragonZoomout-Hover.png" />
+    <EmbeddedResource Include="Images\SeadragonZoomout-Pressed.png" />
+    <EmbeddedResource Include="Images\SeadragonZoomout-Rest.png" />
     <EmbeddedResource Include="Styles\ComboBox.min.css">
       <DependentUpon>ComboBox.css</DependentUpon>
     </EmbeddedResource>
@@ -442,6 +469,10 @@
     <Content Include="Scripts\PieChart.js" />
     <Content Include="Scripts\PieChart.min.js">
       <DependentUpon>PieChart.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Seadragon.js" />
+    <Content Include="Scripts\Seadragon.min.js">
+      <DependentUpon>Seadragon.js</DependentUpon>
     </Content>
     <Content Include="Scripts\Tabs.min.js">
       <DependentUpon>Tabs.js</DependentUpon>
