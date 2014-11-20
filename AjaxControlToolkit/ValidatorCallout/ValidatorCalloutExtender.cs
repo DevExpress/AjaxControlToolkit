@@ -15,7 +15,7 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(IValidator))]
     [ClientCssResource(Constants.ValidatorCalloutName)]
     [ClientScriptResource("Sys.Extended.UI.ValidatorCalloutBehavior", Constants.ValidatorCalloutName)]
-    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), "ValidatorCallout.ico")]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ValidatorCalloutName + Constants.IconPostfix)]
     public class ValidatorCalloutExtender : AnimationExtenderControlBase {
         public ValidatorCalloutExtender() {
             EnableClientState = true;
