@@ -16,7 +16,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(HoverExtender))]
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(AnimationExtender))]
-    [TargetControlType(typeof(Control))]
+    [TargetControlType(typeof(WebControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.HoverMenuName + Constants.IconPostfix)]
     [Designer(typeof(HoverMenuExtenderDesigner))]
     public class HoverMenuExtender : DynamicPopulateExtenderControlBase {

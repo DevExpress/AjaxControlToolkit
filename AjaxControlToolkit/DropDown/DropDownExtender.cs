@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [TargetControlType(typeof(Control))]
+    [TargetControlType(typeof(WebControl))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(HoverExtender))]

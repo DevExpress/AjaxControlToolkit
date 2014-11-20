@@ -4,7 +4,6 @@ using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit.Design {
 
-    [TargetControlType(typeof(WebControl))]
     class HoverExtenderDesigner : ExtenderControlBaseDesigner<HoverExtender> {
     }
 }

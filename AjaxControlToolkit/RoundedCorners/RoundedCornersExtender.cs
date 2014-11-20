@@ -2,13 +2,14 @@ using System.Web.UI;
 using System.ComponentModel;
 using System.Drawing;
 using AjaxControlToolkit.Design;
+using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
     [Designer(typeof(RoundedCornersExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.RoundedCornersBehavior", Constants.RoundedCornersName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
-    [TargetControlType(typeof(Control))]
+    [TargetControlType(typeof(WebControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.RoundedCornersName + Constants.IconPostfix)]
     public class RoundedCornersExtender : ExtenderControlBase {
         [DefaultValue(5)]

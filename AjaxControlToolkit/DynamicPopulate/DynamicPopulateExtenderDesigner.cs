@@ -6,7 +6,6 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.Design {
 
-    [TargetControlType(typeof(WebControl))]
     public class DynamicPopulateExtenderDesigner : ExtenderControlBaseDesigner<DynamicPopulateExtender> {
 
         [PageMethodSignature("Dynamic Populate", "ServicePath", "ServiceMethod")]

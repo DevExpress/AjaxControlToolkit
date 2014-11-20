@@ -3,6 +3,7 @@ using System.Web.UI;
 using System.ComponentModel;
 using System.Drawing;
 using AjaxControlToolkit.Design;
+using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
@@ -10,7 +11,7 @@ namespace AjaxControlToolkit {
     [Designer(typeof(AnimationExtenderDesigner))]
     [RequiredScript(typeof(AnimationScripts))]
     [ClientScriptResource("Sys.Extended.UI.Animation.AnimationBehavior", Constants.AnimationName)]
-    [TargetControlType(typeof(Control))]
+    [TargetControlType(typeof(WebControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AnimationName + Constants.IconPostfix)]
     public class AnimationExtender : AnimationExtenderControlBase {
         Animation _onLoad;

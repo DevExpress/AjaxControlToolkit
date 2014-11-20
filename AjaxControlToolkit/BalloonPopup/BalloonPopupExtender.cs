@@ -11,7 +11,7 @@ namespace AjaxControlToolkit {
     [ClientScriptResource("Sys.Extended.UI.BalloonPopupControlBehavior", Constants.BalloonPopupName)]
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(CommonToolkitScripts))]
-    [TargetControlType(typeof(Control))]
+    [TargetControlType(typeof(WebControl))]
     [ClientCssResource(Constants.BalloonPopupName + ".Cloud")]
     [ClientCssResource(Constants.BalloonPopupName + ".Rectangle")]
     [Designer(typeof(BalloonPopupExtenderDesigner))]

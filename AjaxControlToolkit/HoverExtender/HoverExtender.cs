@@ -2,12 +2,13 @@ using System;
 using System.Web.UI;
 using System.ComponentModel;
 using AjaxControlToolkit.Design;
+using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
     [Designer(typeof(HoverExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.HoverBehavior", Constants.HoverName)]
-    [TargetControlType(typeof(Control))]
+    [TargetControlType(typeof(WebControl))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ToolboxItem(false)]
     public class HoverExtender : ExtenderControlBase {
