@@ -14,7 +14,6 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationExtender), 2)]
     [ClientScriptResource("Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior", Constants.UpdatePanelAnimationName)]
     [TargetControlType(typeof(UpdatePanel))]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.UpdatePanelAnimationName + Constants.IconPostfix)]
     public class UpdatePanelAnimationExtender : AnimationExtenderControlBase {
         // Animations

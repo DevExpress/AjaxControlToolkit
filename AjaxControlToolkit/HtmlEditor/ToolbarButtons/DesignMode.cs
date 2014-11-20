@@ -5,7 +5,6 @@ using System.Drawing.Design;
 
 namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
 
-    [ToolboxItem(false)]
     [ParseChildren(true)]
     [PersistChildren(false)]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignMode", Constants.HtmlEditorDesignModeButtonName)]

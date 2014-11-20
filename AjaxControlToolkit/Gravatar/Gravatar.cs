@@ -16,7 +16,6 @@ namespace AjaxControlToolkit {
     [ToolboxData("<{0}:Gravatar runat=\"server\"></{0}:Gravatar>")]
     [RequiredScript(typeof(ScriptControlBase), 1)]
     [RequiredScript(typeof(CommonToolkitScripts), 2)]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [ToolboxBitmap(typeof(Gravatar), Constants.GravatarName + Constants.IconPostfix)]
     public class Gravatar : WebControl {
         

@@ -6,7 +6,6 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
 
-    [ToolboxItem(false)]
     [ParseChildren(true)]
     [PersistChildren(false)]
     [RequiredScript(typeof(CommonToolkitScripts))]

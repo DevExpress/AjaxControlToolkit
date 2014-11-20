@@ -15,7 +15,6 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(DropShadowExtender))]
     [RequiredScript(typeof(AnimationExtender))]
     [TargetControlType(typeof(Control))]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ModalPopup + Constants.IconPostfix)]
     public class ModalPopupExtender : DynamicPopulateExtenderControlBase {
         // Desired visibility state: true, false or none

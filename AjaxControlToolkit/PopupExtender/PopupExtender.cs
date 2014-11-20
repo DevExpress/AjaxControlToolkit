@@ -11,6 +11,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(AnimationExtender))]
     [TargetControlType(typeof(Control))]
+    [ToolboxItem(false)]
     [Designer(typeof(PopupExtenderDesigner))]
     public class PopupExtender : AnimationExtenderControlBase {
         // Position the target with respect to this element

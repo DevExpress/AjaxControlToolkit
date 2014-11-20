@@ -34,7 +34,6 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(ScriptControlBase), 2)]
     [RequiredScript(typeof(PopupExtender), 3)]
     [RequiredScript(typeof(CommonToolkitScripts), 4)]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [ToolboxBitmap(typeof(ComboBox), Constants.ComboBoxName + Constants.IconPostfix)]
     public class ComboBox : ListControl, IScriptControl, IPostBackDataHandler, INamingContainer, IControlResolver {
         TextBox _textBoxControl;

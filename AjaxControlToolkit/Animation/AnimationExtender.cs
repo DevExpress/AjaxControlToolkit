@@ -11,7 +11,6 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationScripts))]
     [ClientScriptResource("Sys.Extended.UI.Animation.AnimationBehavior", Constants.AnimationName)]
     [TargetControlType(typeof(Control))]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AnimationName + Constants.IconPostfix)]
     public class AnimationExtender : AnimationExtenderControlBase {
         Animation _onLoad;

@@ -14,6 +14,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [PersistChildren(false)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.CommonButton", Constants.HtmlEditorCommonButtonName)]
+    [ToolboxItem(false)]
     public abstract class CommonButton : ScriptControlBase {
         Collection<ActiveModeType> _activeModes;
         Collection<Control> _exportedControls;

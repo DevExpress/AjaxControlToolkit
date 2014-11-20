@@ -18,7 +18,6 @@ namespace AjaxControlToolkit {
     [ClientCssResource(Constants.TwitterName)]
     [ParseChildren(ChildrenAsProperties = true), PersistChildren(false)]
     [Designer(typeof(TwitterDesigner))]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [System.Drawing.ToolboxBitmap(typeof(Accessor), Constants.TwitterName + Constants.IconPostfix)]
     public class Twitter : CompositeControl {
 

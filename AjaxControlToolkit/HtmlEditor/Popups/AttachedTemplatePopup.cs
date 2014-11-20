@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.HtmlEditor.Popups {
 
-    [ToolboxItem(false)]
     [ParseChildren(true)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.Popups.AttachedTemplatePopup", Constants.HtmlEditorAttachedTemplatePopupName)]

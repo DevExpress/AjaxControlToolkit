@@ -16,7 +16,6 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(TimerScript))]
     [RequiredScript(typeof(AnimationExtender))]
     [TargetControlType(typeof(TextBox))]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AutoCompleteName + Constants.IconPostfix)]
     public class AutoCompleteExtender : AnimationExtenderControlBase {
         // Minimum length of text before the webservice provides suggestions.

@@ -15,7 +15,6 @@ namespace AjaxControlToolkit {
     [ClientCssResource(Constants.BalloonPopupName + ".Cloud")]
     [ClientCssResource(Constants.BalloonPopupName + ".Rectangle")]
     [Designer(typeof(BalloonPopupExtenderDesigner))]
-    [ToolboxItem("System.Web.UI.Design.WebControlToolboxItem, System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [ToolboxBitmap(typeof(BalloonPopupExtender), Constants.BalloonPopupName + Constants.IconPostfix)]
     public class BalloonPopupExtender : DynamicPopulateExtenderControlBase {
         Animation _onHide;
