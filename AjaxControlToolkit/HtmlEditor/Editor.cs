@@ -10,8 +10,6 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit.HtmlEditor {
 
     [Designer("AjaxControlToolkit.Design.EditorDesigner, AjaxControlToolkit")]
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [ToolboxItem(false)]
     [ValidationPropertyAttribute("Content")]
     [ClientCssResource(Constants.HtmlEditorEditorName)]

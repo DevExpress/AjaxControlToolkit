@@ -8,8 +8,6 @@ using System;
 namespace AjaxControlToolkit {
 
     [ClientScriptResource("Sys.Extended.UI.Seadragon.Viewer", Constants.SeadragonName)]
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [ToolboxData("<{0}:Seadragon runat=server></{0}:Seadragon>")]
     public class Seadragon : ScriptControlBase {
         List<SeadragonControl> _controls;

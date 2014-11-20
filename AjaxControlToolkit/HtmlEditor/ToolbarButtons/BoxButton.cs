@@ -6,8 +6,6 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.BoxButton", Constants.HtmlEditorBoxButtonName)]
     public abstract class BoxButton : CommonButton {

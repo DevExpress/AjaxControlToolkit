@@ -4,8 +4,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
+    [ParseChildren(true), PersistChildren(false)]
     public class MultiHandleSliderTarget {
         string _controlID,
                 _handleCssClass;

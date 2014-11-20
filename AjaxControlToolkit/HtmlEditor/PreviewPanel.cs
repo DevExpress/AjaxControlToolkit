@@ -4,8 +4,6 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.HtmlEditor {
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(AjaxControlToolkit.HtmlEditor.HtmlEditor))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.PreviewPanel", Constants.HtmlEditorPreviewPanelName)]

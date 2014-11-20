@@ -8,8 +8,6 @@ using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
-    [ParseChildren(false)]
-    [PersistChildren(true)]
     [NonVisualControl, ToolboxData("<{0}:Rating runat=\"server\"></{0}:Rating>")]
     [DesignerAttribute(typeof(RatingExtenderDesigner))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.RatingName + Constants.IconPostfix)]

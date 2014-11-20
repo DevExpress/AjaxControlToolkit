@@ -8,8 +8,6 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit.HtmlEditor {
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.Toolbar", Constants.HtmlEditorToolbarName)]
     public abstract class Toolbar : ScriptControlBase {

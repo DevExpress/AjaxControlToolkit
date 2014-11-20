@@ -4,8 +4,6 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.ColorSelector", Constants.HtmlEditorColorSelectorName)]
     public abstract class ColorSelector : Selector {

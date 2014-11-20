@@ -6,8 +6,6 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.HtmlEditor.Popups {
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.Popups.PopupBoxButton", Constants.HtmlEditorPopupBoxButtonName)]
     internal class PopupBoxButton : PopupCommonButton {

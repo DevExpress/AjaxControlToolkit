@@ -14,8 +14,6 @@ namespace AjaxControlToolkit {
     // 2) It manages interacting with the ScriptManager to get the right scripts loaded
     // 3) It adds some debugging features like ValidationScript and ScriptPath
     [Themeable(true)]
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [ClientScriptResource(null, Constants.BaseScriptName)]
     public abstract class ExtenderControlBase : ExtenderControl, IControlResolver {
         private Dictionary<string, Control> _findControlHelperCache = new Dictionary<string, Control>();

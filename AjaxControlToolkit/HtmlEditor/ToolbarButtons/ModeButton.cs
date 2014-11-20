@@ -3,8 +3,6 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(Enums))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.ModeButton", Constants.HtmlEditorModeButtonName)]

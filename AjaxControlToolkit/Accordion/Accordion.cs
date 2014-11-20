@@ -19,8 +19,6 @@ namespace AjaxControlToolkit {
     // one at a time.  The control is used to create "strongly typed" access
     // to the AccordionBehavior.  Its major purpose is to structure the content
     // in a way that the AccordionBehavior can understand it. 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [Designer(typeof(AccordionDesigner))]
     [ToolboxData("<{0}:Accordion runat=server></{0}:Accordion>")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AccordionName + Constants.IconPostfix)]

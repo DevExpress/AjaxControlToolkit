@@ -8,8 +8,6 @@ namespace AjaxControlToolkit {
 
     // Extender that provides support for generic animations.  It includes an Animations
     // property that will be filled with the markup for all of its child Animations.
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [DefaultProperty("Animations")]
     [ToolboxItem(false)]
     public class AnimationExtenderControlBase : ExtenderControlBase {

@@ -4,7 +4,6 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.HtmlEditor.Popups {
 
-    [ParseChildren(true)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.Popups.BaseColorsPopup", Constants.HtmlEditorBaseColorsPopupName)]
     internal class BaseColorsPopup : AttachedTemplatePopup {

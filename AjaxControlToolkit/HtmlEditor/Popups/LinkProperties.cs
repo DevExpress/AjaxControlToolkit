@@ -6,7 +6,6 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.HtmlEditor.Popups {
 
-    [ParseChildren(true)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.Popups.LinkProperties", Constants.HtmlEditorLinkPropertiesName)]
     internal class LinkProperties : OkCancelAttachedTemplatePopup {

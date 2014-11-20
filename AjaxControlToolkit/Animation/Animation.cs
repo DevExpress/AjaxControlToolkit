@@ -15,8 +15,7 @@ namespace AjaxControlToolkit {
     // It is used primarily as an intermediate representation when converting from XML animation
     // descriptions to JSON objects, but it can also be used to dynamically create and manipulate
     // animations.
-    [ParseChildren(true)]
-    [PersistChildren(false)]
+    [ParseChildren(true), PersistChildren(false)]
     [DefaultProperty("Name")]
     public class Animation {
         // JavaScript serializer to read/write JSON animations descriptions

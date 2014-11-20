@@ -3,8 +3,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 namespace AjaxControlToolkit.HtmlEditor {
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
     [RequiredScript(typeof(AjaxControlToolkit.HtmlEditor.HtmlEditor), 1)]
     [RequiredScript(typeof(AjaxControlToolkit.HtmlEditor.ExecCommandEmulation), 2)]

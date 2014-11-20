@@ -7,8 +7,6 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.SelectButton", Constants.HtmlEditorSelectButtonName)]
     public abstract class SelectButton : CommonButton {

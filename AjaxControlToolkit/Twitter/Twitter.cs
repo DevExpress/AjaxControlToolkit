@@ -16,7 +16,6 @@ namespace AjaxControlToolkit {
     // for a particular user and Search mode for showing tweets which match a 
     // search string.
     [ClientCssResource(Constants.TwitterName)]
-    [ParseChildren(ChildrenAsProperties = true), PersistChildren(false)]
     [Designer(typeof(TwitterDesigner))]
     [System.Drawing.ToolboxBitmap(typeof(Accessor), Constants.TwitterName + Constants.IconPostfix)]
     public class Twitter : CompositeControl {

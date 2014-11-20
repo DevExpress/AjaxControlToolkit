@@ -13,8 +13,6 @@ namespace AjaxControlToolkit.HtmlEditor {
 
     public delegate void ContentChangedEventHandler(object sender, EventArgs e);
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [ValidationPropertyAttribute("Content")]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(AjaxControlToolkit.HtmlEditor.Events))]

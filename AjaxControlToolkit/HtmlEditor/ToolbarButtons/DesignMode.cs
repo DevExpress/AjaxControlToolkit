@@ -5,8 +5,6 @@ using System.Drawing.Design;
 
 namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
 
-    [ParseChildren(true)]
-    [PersistChildren(false)]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignMode", Constants.HtmlEditorDesignModeButtonName)]
     public class DesignMode : ModeButton {
         #region [ Methods ]

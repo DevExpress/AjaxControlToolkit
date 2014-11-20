@@ -6,7 +6,6 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    [ParseChildren(true)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(DynamicPopulateExtender))]
     [RequiredScript(typeof(TabContainer))]
