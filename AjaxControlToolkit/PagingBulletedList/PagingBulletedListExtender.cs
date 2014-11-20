@@ -9,7 +9,7 @@ namespace AjaxControlToolkit {
 
     [Designer(typeof(PagingBulletedListExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.PagingBulletedListBehavior", Constants.PagingBulletedListName)]
-    [TargetControlType(typeof(BulletedList))]
+    [TargetControlType(typeof(System.Web.UI.WebControls.BulletedList))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.PagingBulletedListName + Constants.IconPostfix)]
     public class PagingBulletedListExtender : ExtenderControlBase {
         public PagingBulletedListExtender() {
