@@ -20,9 +20,8 @@ Sys.Extended.UI.PieChart.prototype = {
     initialize: function() {
         Sys.Extended.UI.PieChart.callBaseMethod(this, "initialize");
 
-        if(!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1")) {
+        if(!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1"))
             throw 'Current version of browser does not support SVG.';
-        }
 
         this.generatePieChart();
     },
@@ -32,10 +31,9 @@ Sys.Extended.UI.PieChart.prototype = {
     },
 
     generatePieChart: function() {
-
-        var radius = parseInt(this._chartWidth) > parseInt(this._chartHeight) ? (parseInt(this._chartHeight) - 10) / 3 : (parseInt(this._chartWidth) - 10) / 3;
-        var startX = parseInt(this._chartWidth) / 2;
-        var startY = parseInt(this._chartHeight) / 2.25;
+        var radius = parseInt(this._chartWidth) > parseInt(this._chartHeight) ? (parseInt(this._chartHeight) - 10) / 3 : (parseInt(this._chartWidth) - 10) / 3,
+            startX = parseInt(this._chartWidth) / 2,
+            startY = parseInt(this._chartHeight) / 2.25;
 
         // initialize SVG
         var svgContents = String.format('<?xml-stylesheet type="text/css" href="{0}.css"?>', this._theme);
@@ -53,19 +51,19 @@ Sys.Extended.UI.PieChart.prototype = {
         svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="ChartTitle" style="fill:{3}">{2}</text>', parseInt(this._chartWidth) / 2 - (this._chartTitle.length * this.charLength), parseInt(this._chartHeight) * 5 / 100, this._chartTitle, this._chartTitleColor);
 
         // Legend Area
-        var legendAreaStartHeight = (parseInt(this._chartHeight) * 82 / 100) + 5;
-        var legendBoxWidth = 7.5;
-        var legendBoxHeight = 7.5;
-        var spaceInLegendContents = 5;
+        var legendAreaStartHeight = (parseInt(this._chartHeight) * 82 / 100) + 5,
+            legendBoxWidth = 7.5,
+            legendBoxHeight = 7.5,
+            spaceInLegendContents = 5;
 
         // Get length of text to display in legend
         var legendCharLength = 0;
-        for(var i = 0; i < this._pieChartClientValues.length; i++) {
+        for(var i = 0; i < this._pieChartClientValues.length; i++)
             legendCharLength = legendCharLength + this._pieChartClientValues[i].Category.length;
-        }
 
-        var legendAreaWidth = Math.round((legendCharLength * 5) / 2) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._pieChartClientValues.length);
-        var isLegendNextLine = false;
+        var legendAreaWidth = Math.round((legendCharLength * 5) / 2) + Math.round((legendBoxWidth + (spaceInLegendContents * 2)) * this._pieChartClientValues.length),
+            isLegendNextLine = false;
+
         if(legendAreaWidth > parseInt(this._chartWidth) / 2) {
             legendAreaWidth = legendAreaWidth / 2;
             isLegendNextLine = true;
@@ -74,10 +72,10 @@ Sys.Extended.UI.PieChart.prototype = {
         svgContents = svgContents + '<g>';
         svgContents = svgContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="LegendArea" stroke=""></path>', parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2), legendAreaStartHeight, parseInt(this._chartWidth) * 40 / 100 + (legendAreaWidth / 2), Math.round(parseInt(this._chartHeight) * 97.5 / 100));
 
-        var startText = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + 5 + legendBoxWidth + spaceInLegendContents;
-        var nextStartText = startText;
-        var startLegend = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + 5;
-        var nextStartLegend = startLegend;
+        var startText = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + 5 + legendBoxWidth + spaceInLegendContents,
+            nextStartText = startText,
+            startLegend = parseInt(this._chartWidth) * 40 / 100 - (legendAreaWidth / 2) + 5,
+            nextStartLegend = startLegend;
 
         for(var i = 0; i < this._pieChartClientValues.length; i++) {
             if(isLegendNextLine && i == Math.round(this._pieChartClientValues.length / 2)) {
@@ -88,15 +86,16 @@ Sys.Extended.UI.PieChart.prototype = {
                 legendAreaStartHeight = (parseInt(this._chartHeight) * 89 / 100) + 5;
                 isLegendNextLine = false;
             }
+
             startLegend = nextStartLegend;
             startText = nextStartText;
             svgContents = svgContents + String.format('<path d="M{0} {1} {2} {1} {2} {3} {0} {3} z" id="Legend{4}" style="stroke:{6};fill:{5}"></path>', startLegend, legendAreaStartHeight + legendBoxHeight, startLegend + legendBoxWidth, legendAreaStartHeight + 15, i + 1, this._pieChartClientValues[i].PieChartValueColor, this._pieChartClientValues[i].PieChartValueStrokeColor);
             svgContents = svgContents + String.format('<text x="{0}" y="{1}" id="LegendText">{2}</text>', startText, legendAreaStartHeight + 15, this._pieChartClientValues[i].Category);
+
             if(this._pieChartClientValues[i].Category.length > 10) {
                 nextStartLegend = startLegend + (this._pieChartClientValues[i].Category.length * 5.5) + legendBoxWidth + (spaceInLegendContents * 2);
                 nextStartText = startText + (this._pieChartClientValues[i].Category.length * 5.5) + legendBoxWidth + (spaceInLegendContents * 2);
-            }
-            else {
+            } else {
                 nextStartLegend = nextStartLegend + (this._pieChartClientValues[i].Category.length * 6) + legendBoxWidth + (spaceInLegendContents * 2);
                 nextStartText = nextStartText + (this._pieChartClientValues[i].Category.length * 6) + legendBoxWidth + (spaceInLegendContents * 2);
             }
@@ -104,24 +103,23 @@ Sys.Extended.UI.PieChart.prototype = {
         svgContents = svgContents + '</g>';
 
         // Draw PieChart
-        var categoryValue = 0;
-        var totalValue = 0;
-        var angle = 0;
-        var radAngle = 0;
-        var textRadAngle = 0;
-        var endX = 0;
-        var endY = 0;
-        var arc = 0;
-        var lastEndX = startX;
-        var lastEndY = startY - radius;
-        var textX = startX;
-        var textY = startY - radius;
-        for(var i = 0; i < this._pieChartClientValues.length; i++) {
+        var categoryValue = 0,
+            totalValue = 0,
+            angle = 0,
+            radAngle = 0,
+            textRadAngle = 0,
+            endX = 0,
+            endY = 0,
+            arc = 0,
+            lastEndX = startX,
+            lastEndY = startY - radius,
+            textX = startX,
+            textY = startY - radius;
+
+        for(var i = 0; i < this._pieChartClientValues.length; i++)
             totalValue = totalValue + Math.abs(parseFloat(this._pieChartClientValues[i].Data));
-        }
 
         this._parentDiv.innerHTML = svgContents;
-
         this.drawSegments(this, 0, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc);
     },
 
@@ -144,16 +142,16 @@ Sys.Extended.UI.PieChart.prototype = {
         lastEndY = startY + (-1 * endY);
         index++;
 
-        if(index < me._pieChartClientValues.length) {            //  if the counter < series length, call the loop function
+        if(index < me._pieChartClientValues.length) //  if the counter < series length, call the loop function
             setTimeout(function() {
                 me.drawSegments(me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc);
             }, 400);
-        }
     },
 
     get_chartWidth: function() {
         return this._chartWidth;
     },
+
     set_chartWidth: function(value) {
         this._chartWidth = value;
     },
@@ -161,6 +159,7 @@ Sys.Extended.UI.PieChart.prototype = {
     get_chartHeight: function() {
         return this._chartHeight;
     },
+
     set_chartHeight: function(value) {
         this._chartHeight = value;
     },
@@ -168,6 +167,7 @@ Sys.Extended.UI.PieChart.prototype = {
     get_chartTitle: function() {
         return this._chartTitle;
     },
+
     set_chartTitle: function(value) {
         this._chartTitle = value;
     },
@@ -175,6 +175,7 @@ Sys.Extended.UI.PieChart.prototype = {
     get_PieChartClientValues: function() {
         return this._pieChartClientValues;
     },
+
     set_PieChartClientValues: function(value) {
         this._pieChartClientValues = value;
     },
@@ -182,6 +183,7 @@ Sys.Extended.UI.PieChart.prototype = {
     get_theme: function() {
         return this._theme;
     },
+
     set_theme: function(value) {
         this._theme = value;
     },
@@ -189,6 +191,7 @@ Sys.Extended.UI.PieChart.prototype = {
     get_chartTitleColor: function() {
         return this._chartTitleColor;
     },
+
     set_chartTitleColor: function(value) {
         this._chartTitleColor = value;
     }

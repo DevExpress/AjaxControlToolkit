@@ -5,28 +5,32 @@ Sys.Extended.UI.NoBotBehavior = function(element) {
 
     this._ChallengeScript = "";
 }
+
 Sys.Extended.UI.NoBotBehavior.prototype = {
-    initialize : function() {
+
+    initialize: function() {
         Sys.Extended.UI.NoBotBehavior.callBaseMethod(this, "initialize");
-        
+
         // Evaluate challenge script and store response in ClientState
         var response = eval(this._ChallengeScript);
         Sys.Extended.UI.NoBotBehavior.callBaseMethod(this, "set_ClientState", [response]);
     },
 
-    dispose : function() {
+    dispose: function() {
         Sys.Extended.UI.NoBotBehavior.callBaseMethod(this, "dispose");
     },
 
-    get_ChallengeScript : function() {
+    get_ChallengeScript: function() {
         // JavaScript to be evaluated
         return this._ChallengeScript;
     },
-    set_ChallengeScript : function(value) {
-        if (this._ChallengeScript != value) { 
+
+    set_ChallengeScript: function(value) {
+        if(this._ChallengeScript != value) {
             this._ChallengeScript = value;
             this.raisePropertyChanged('ChallengeScript');
         }
     }
 }
+
 Sys.Extended.UI.NoBotBehavior.registerClass("Sys.Extended.UI.NoBotBehavior", Sys.Extended.UI.BehaviorBase);

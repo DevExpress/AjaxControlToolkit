@@ -22,13 +22,16 @@ Sys.Extended.UI.DynamicPopulateBehavior = function(element) {
 
     this._populated = false;
 }
+
 Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
+
     initialize: function() {
         Sys.Extended.UI.DynamicPopulateBehavior.callBaseMethod(this, 'initialize');
         $common.prepareHiddenElementForATDeviceUpdate();
 
         if(this._populateTriggerID) {
             var populateTrigger = $get(this._populateTriggerID);
+
             if(populateTrigger) {
                 this._clickHandler = Function.createDelegate(this, this._onPopulateTriggerClick);
                 $addHandler(populateTrigger, "click", this._clickHandler);
@@ -39,9 +42,10 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     dispose: function() {
         if(this._populateTriggerID && this._clickHandler) {
             var populateTrigger = $get(this._populateTriggerID);
-            if(populateTrigger) {
+
+            if(populateTrigger)
                 $removeHandler(populateTrigger, "click", this._clickHandler);
-            }
+
             this._populateTriggerID = null;
             this._clickHandler = null;
         }
@@ -61,14 +65,16 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
         if(this._currentCallID == -1) {
             var eventArgs = new Sys.CancelEventArgs();
             this.raisePopulating(eventArgs);
-            if(eventArgs.get_cancel()) {
+
+            if(eventArgs.get_cancel())
                 return;
-            }
+
             this._setUpdating(true);
         }
 
         if(this._customScript) {
             var scriptResult = eval(this._customScript);
+
             this._setTargetHtml(scriptResult);
             this._setUpdating(false);
         } else {
@@ -87,24 +93,22 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
 
     _onMethodComplete: function(result, userContext, methodName) {
         // Callback used when the populating service returns successfully
-
-        if(userContext != this._currentCallID) return;
+        if(userContext != this._currentCallID)
+            return;
 
         this._setTargetHtml(result);
-
         this._setUpdating(false);
     },
 
     _onMethodError: function(webServiceError, userContext, methodName) {
         // Callback used when the populating service fails
+        if(userContext != this._currentCallID)
+            return;
 
-        if(userContext != this._currentCallID) return;
-
-        if(webServiceError.get_timedOut()) {
+        if(webServiceError.get_timedOut())
             this._setTargetHtml(Sys.Extended.UI.Resources.DynamicPopulate_WebServiceTimeout);
-        } else {
+        else
             this._setTargetHtml(String.format(Sys.Extended.UI.Resources.DynamicPopulate_WebServiceError, webServiceError.get_statusCode()));
-        }
 
         this._setUpdating(false);
     },
@@ -116,7 +120,6 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     _setUpdating: function(updating) {
         // Toggle the display elements to indicate if they are being updated or not
         // updating - Whether or not the display should indicated it is being updated
-
         this.setStyle(updating);
 
         if(!updating) {
@@ -127,21 +130,18 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     _setTargetHtml: function(value) {
-
         var e = this.get_element()
         if(e) {
-            if(e.tagName == "INPUT") {
+            if(e.tagName == "INPUT")
                 e.value = value;
-            } else {
+            else
                 e.innerHTML = value;
-            }
         }
     },
 
     setStyle: function(updating) {
         // Set the style of the display
         // updating - Whether or not the display is being updated
-
         var e = this.get_element();
         if(this._setUpdatingCssClass) {
             if(!updating) {
@@ -153,17 +153,15 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
             }
         }
 
-        if(updating && this._clearDuringUpdate) {
+        if(updating && this._clearDuringUpdate)
             this._setTargetHtml("");
-        }
     },
 
     get_ClearContentsDuringUpdate: function() {
-        /// <value type="Boolean">
-        /// Whether the contents of the target should be cleared when an update begins
-        /// </value>
+        // Whether the contents of the target should be cleared when an update begins
         return this._clearDuringUpdate;
     },
+
     set_ClearContentsDuringUpdate: function(value) {
         if(this._clearDuringUpdate != value) {
             this._clearDuringUpdate = value;
@@ -172,13 +170,12 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     get_ContextKey: function() {
-        /// <value type="String">
-        /// An arbitrary string value to be passed to the web method.
-        /// For example, if the element to be populated is within a
-        /// data-bound repeater, this could be the ID of the current row.
-        /// </value>
+        // An arbitrary string value to be passed to the web method.
+        // For example, if the element to be populated is within a
+        // data-bound repeater, this could be the ID of the current row.
         return this._contextKey;
     },
+
     set_ContextKey: function(value) {
         if(this._contextKey != value) {
             this._contextKey = value;
@@ -202,6 +199,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
         // If the ServicePath is not defined, then we will invoke a PageMethod instead of a web service.
         return this._servicePath;
     },
+
     set_ServicePath: function(value) {
         if(this._servicePath != value) {
             this._servicePath = value;
@@ -217,6 +215,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
         //    }
         return this._serviceMethod;
     },
+
     set_ServiceMethod: function(value) {
         if(this._serviceMethod != value) {
             this._serviceMethod = value;
@@ -250,6 +249,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
         // The script to invoke instead of calling a Web or Page method. This script must evaluate to a string value.
         return this._customScript;
     },
+
     set_CustomScript: function(value) {
         if(this._customScript != value) {
             this._customScript = value;
@@ -267,9 +267,8 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
 
     raisePopulating: function(eventArgs) {
         var handler = this.get_events().getHandler('populating');
-        if(handler) {
+        if(handler)
             handler(this, eventArgs);
-        }
     },
 
     add_populated: function(handler) {
@@ -282,9 +281,8 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
 
     raisePopulated: function(eventArgs) {
         var handler = this.get_events().getHandler('populated');
-        if(handler) {
+        if(handler)
             handler(this, eventArgs);
-        }
     }
 }
 

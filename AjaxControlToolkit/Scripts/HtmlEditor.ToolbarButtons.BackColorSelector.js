@@ -5,8 +5,10 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.BackColorSelector = function(element) 
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.BackColorSelector.prototype = {
+
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.BackColorSelector.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.BackColorSelector.callBaseMethod(this, "callMethod"))
+            return false;
     },
 
     setColor: function(color) {

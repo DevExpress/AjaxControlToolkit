@@ -5,6 +5,7 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.FixedBackColor = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.FixedBackColor.prototype = {
+
     setColor: function(color) {
         this._designPanel._execCommand("backcolor", false, color);
     }

@@ -16,11 +16,11 @@ Sys.Extended.UI.HtmlEditor.Toolbar.prototype = {
     get_alwaysVisible: function() {
         return this._alwaysVisible;
     },
+
     set_alwaysVisible: function(value) {
         this._alwaysVisible = value;
-        if(this.get_isInitialized()) {
+        if(this.get_isInitialized())
             this.raisePropertyChanged("alwaysVisible");
-        }
     },
 
     set_activeEditPanel: function(value) {
@@ -28,45 +28,45 @@ Sys.Extended.UI.HtmlEditor.Toolbar.prototype = {
             this._cachedEditPanel = value;
             return;
         }
-        for(var i = 0; i < this.get_buttons().length; i++) {
+
+        for(var i = 0; i < this.get_buttons().length; i++)
             this.get_buttons()[i].set_activeEditPanel(value);
-        }
     },
 
     disable: function() {
         if(this.get_isInitialized()) {
-            if(this._alwaysVisible) {
+            if(this._alwaysVisible)
                 return;
-            }
-            for(var i = 0; i < this.get_buttons().length; i++) {
+
+            for(var i = 0; i < this.get_buttons().length; i++)
                 this.get_buttons()[i].set_activeEditPanel(null);
-            }
         }
     },
 
     get_buttons: function() {
-        if(this._buttons == null) {
+        if(this._buttons == null)
             this._buttons = [];
-        }
+
         return this._buttons;
     },
+
     set_buttons: function(value) {
         this.get_buttons().push(value);
     },
 
     get_buttonIds: function() {
     },
+
     set_buttonIds: function(value) {
         if(!this.get_isInitialized()) {
             this._cachedButtonIds = value;
             return;
         }
+
         var arr = value.split(";");
-        for(var i = 0; i < arr.length; i++) {
-            if(arr[i].length > 0) {
+        for(var i = 0; i < arr.length; i++)
+            if(arr[i].length > 0)
                 this.set_buttons($find(arr[i]));
-            }
-        }
     },
 
     initialize: function() {
@@ -76,6 +76,7 @@ Sys.Extended.UI.HtmlEditor.Toolbar.prototype = {
 
     dispose: function() {
         this._loaded = false;
+
         Sys.Application.remove_load(this._app_onload$delegate);
         Sys.Extended.UI.HtmlEditor.Toolbar.callBaseMethod(this, "dispose");
     },

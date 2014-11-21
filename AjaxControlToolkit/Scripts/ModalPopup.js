@@ -4,12 +4,14 @@ Sys.Extended.UI.ModalPopupRepositionMode = function() {
     // The ModalPopupRepositionMode enumeration describes how the modal popup repositions
     throw Error.invalidOperation();
 };
+
 Sys.Extended.UI.ModalPopupRepositionMode.prototype = {
     None: 0,
     RepositionOnWindowResize: 1,
     RepositionOnWindowScroll: 2,
     RepositionOnWindowResizeAndScroll: 3
 };
+
 Sys.Extended.UI.ModalPopupRepositionMode.registerEnum('Sys.Extended.UI.ModalPopupRepositionMode');
 
 Sys.Extended.UI.ModalPopupBehavior = function(element) {
@@ -59,12 +61,13 @@ Sys.Extended.UI.ModalPopupBehavior = function(element) {
     this._showingAnimationEndedHandler = null;
 
 };
+
 Sys.Extended.UI.ModalPopupBehavior.prototype = {
+
     initialize: function() {
-        /*
-        <div superpopup - drag container resizable><div -- drag handle\dropshadow foreground></div></div>
-        */
+        // <div superpopup - drag container resizable><div -- drag handle\dropshadow foreground></div></div>
         Sys.Extended.UI.ModalPopupBehavior.callBaseMethod(this, 'initialize');
+
         this._isIE6 = (Sys.Browser.agent == Sys.Browser.InternetExplorer && Sys.Browser.version < 7);
         if(this._PopupDragHandleControlID)
             this._dragHandleElement = $get(this._PopupDragHandleControlID);
@@ -75,24 +78,24 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._foregroundElement.id = this.get_id() + '_foregroundElement';
             this._popupElement.parentNode.appendChild(this._foregroundElement);
             this._foregroundElement.appendChild(this._popupElement);
-        }
-        else {
+        } else {
             this._foregroundElement = this._popupElement;
         }
+
         this._backgroundElement = document.createElement('div');
         this._backgroundElement.id = this.get_id() + '_backgroundElement';
         this._backgroundElement.style.display = 'none';
         this._backgroundElement.style.position = 'fixed';
         this._backgroundElement.style.left = '0px';
         this._backgroundElement.style.top = '0px';
+
         // Want zIndex to big enough that the background sits above everything else
         // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
         this._backgroundElement.style.zIndex = 10000;
-        if(this._BackgroundCssClass) {
+        if(this._BackgroundCssClass)
             this._backgroundElement.className = this._BackgroundCssClass;
-        }
-        this._foregroundElement.parentNode.appendChild(this._backgroundElement);
 
+        this._foregroundElement.parentNode.appendChild(this._backgroundElement);
         this._foregroundElement.style.display = 'none';
         this._foregroundElement.style.position = 'fixed';
         this._foregroundElement.style.zIndex = $common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex) + 1;
@@ -156,14 +159,17 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
         this._scrollHandler = null;
         this._resizeHandler = null;
+
         if(this._cancelHandler && $get(this._CancelControlID)) {
             $removeHandler($get(this._CancelControlID), 'click', this._cancelHandler);
             this._cancelHandler = null;
         }
+
         if(this._okHandler && $get(this._OkControlID)) {
             $removeHandler($get(this._OkControlID), 'click', this._okHandler);
             this._okHandler = null;
         }
+
         if(this._showHandler) {
             $removeHandler(this.get_element(), 'click', this._showHandler);
             this._showHandler = null;
@@ -181,26 +187,26 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     _attachPopup: function() {
-        if(this._DropShadow && !this._dropShadowBehavior) {
+        if(this._DropShadow && !this._dropShadowBehavior)
             this._dropShadowBehavior = $create(Sys.Extended.UI.DropShadowBehavior, {}, null, null, this._popupElement);
-        }
-        if(this._dragHandleElement && !this._dragBehavior) {
+
+        if(this._dragHandleElement && !this._dragBehavior)
             this._dragBehavior = $create(Sys.Extended.UI.FloatingBehavior, { "handle": this._dragHandleElement }, null, null, this._foregroundElement);
-        }
 
         $addHandler(window, 'resize', this._resizeHandler);
         $addHandler(window, 'scroll', this._scrollHandler);
+
         this._windowHandlersAttached = true;
     },
 
     _detachPopup: function() {
         if(this._windowHandlersAttached) {
-            if(this._scrollHandler) {
+            if(this._scrollHandler)
                 $removeHandler(window, 'scroll', this._scrollHandler);
-            }
-            if(this._resizeHandler) {
+
+            if(this._resizeHandler)
                 $removeHandler(window, 'resize', this._resizeHandler);
-            }
+
             this._windowHandlersAttached = false;
         }
 
@@ -220,6 +226,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if(!this.get_element().disabled) {
             this.show();
             e.preventDefault();
+
             return false;
         }
     },
@@ -227,11 +234,13 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     _onOk: function(e) {
         // Handler for the modal dialog's OK button click
         var element = $get(this._OkControlID);
+
         if(element && !element.disabled) {
-            if(this.hide() && this._OnOkScript) {
+            if(this.hide() && this._OnOkScript)
                 window.setTimeout(this._OnOkScript, 0);
-            }
+
             e.preventDefault();
+
             return false;
         }
     },
@@ -239,11 +248,13 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     _onCancel: function(e) {
         // Handler for the modal dialog's Cancel button click
         var element = $get(this._CancelControlID);
+
         if(element && !element.disabled) {
-            if(this.hide() && this._OnCancelScript) {
+            if(this.hide() && this._OnCancelScript)
                 window.setTimeout(this._OnCancelScript, 0);
-            }
+
             e.preventDefault();
+
             return false;
         }
     },
@@ -251,6 +262,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     _onLayout: function(e) {
         // Handler for scrolling and resizing events that would require a repositioning of the modal dialog
         var positioning = this.get_repositionMode();
+
         if(((positioning === Sys.Extended.UI.ModalPopupRepositionMode.RepositionOnWindowScroll) ||
             (positioning === Sys.Extended.UI.ModalPopupRepositionMode.RepositionOnWindowResizeAndScroll)) && (e.type === 'scroll')) {
             this._layout();
@@ -271,15 +283,14 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if(!this._isAnimationJustEnded) {
             var eventArgs = new Sys.CancelEventArgs();
             this.raiseShowing(eventArgs);
+
             if(eventArgs.get_cancel()) {
                 return;
-            }
-            else if(this._onShowing.get_animation()) {
+            } else if(this._onShowing.get_animation()) {
                 this._onShowing.play();
                 return;
             }
-        }
-        else {
+        } else {
             this._isAnimationJustEnded = false;
         }
 
@@ -289,9 +300,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._backgroundElement.style.display = '';
         this._foregroundElement.style.display = '';
         this._popupElement.style.display = '';
+
         if(this._isIE6) {
             this._foregroundElement.style.position = 'absolute';
             this._backgroundElement.style.position = 'absolute';
+
             // find the relative or absolute parent
             var tempRelativeOrAbsoluteParent = this._foregroundElement.parentNode;
             while(tempRelativeOrAbsoluteParent && (tempRelativeOrAbsoluteParent != document.documentElement)) {
@@ -324,14 +337,16 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // Change the tab indices so we only tab through the modal popup
         // (and hide SELECT tags in IE6)
 
-        var i = 0;
-        var tagElements;
-        var tagElementsInPopUp = new Array();
+        var i = 0,
+            tagElements,
+            tagElementsInPopUp = new Array();
+
         Array.clear(this._saveTabIndexes);
 
         //Save all popup's tag in tagElementsInPopUp
         for(var j = 0; j < this._tagWithTabIndex.length; j++) {
             tagElements = this._foregroundElement.getElementsByTagName(this._tagWithTabIndex[j]);
+
             for(var k = 0; k < tagElements.length; k++) {
                 tagElementsInPopUp[i] = tagElements[k];
                 i++;
@@ -341,11 +356,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         i = 0;
         for(var j = 0; j < this._tagWithTabIndex.length; j++) {
             tagElements = document.getElementsByTagName(this._tagWithTabIndex[j]);
+
             for(var k = 0; k < tagElements.length; k++) {
                 if(Array.indexOf(tagElementsInPopUp, tagElements[k]) == -1) {
-                    this._saveTabIndexes[i] = { tag: tagElements[k], index: tagElements[k].tabIndex };
+                    this._saveTabIndexes[i++] = { tag: tagElements[k], index: tagElements[k].tabIndex };
                     tagElements[k].tabIndex = "-1";
-                    i++;
                 }
             }
         }
@@ -355,8 +370,10 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if((Sys.Browser.agent === Sys.Browser.InternetExplorer) && (Sys.Browser.version < 7)) {
             //Save SELECT in PopUp
             var tagSelectInPopUp = new Array();
+
             for(var j = 0; j < this._tagWithTabIndex.length; j++) {
                 tagElements = this._foregroundElement.getElementsByTagName('SELECT');
+
                 for(var k = 0; k < tagElements.length; k++) {
                     tagSelectInPopUp[i] = tagElements[k];
                     i++;
@@ -366,20 +383,18 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             i = 0;
             Array.clear(this._saveDesableSelect);
             tagElements = document.getElementsByTagName('SELECT');
-            for(var k = 0; k < tagElements.length; k++) {
+
+            for(var k = 0; k < tagElements.length; k++)
                 if(Array.indexOf(tagSelectInPopUp, tagElements[k]) == -1) {
-                    this._saveDesableSelect[i] = { tag: tagElements[k], visib: $common.getCurrentStyle(tagElements[k], 'visibility') };
+                    this._saveDesableSelect[i++] = { tag: tagElements[k], visib: $common.getCurrentStyle(tagElements[k], 'visibility') };
                     tagElements[k].style.visibility = 'hidden';
-                    i++;
                 }
-            }
         }
     },
 
     restoreTab: function() {
         // Restore the tab indices so we tab through the page like normal
         // (and restore SELECT tags in IE6)
-
         for(var i = 0; i < this._saveTabIndexes.length; i++) {
             this._saveTabIndexes[i].tag.tabIndex = this._saveTabIndexes[i].index;
         }
@@ -387,9 +402,9 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
         //IE6 Bug with SELECT element always showing up on top
         if((Sys.Browser.agent === Sys.Browser.InternetExplorer) && (Sys.Browser.version < 7)) {
-            for(var k = 0; k < this._saveDesableSelect.length; k++) {
+            for(var k = 0; k < this._saveDesableSelect.length; k++)
                 this._saveDesableSelect[k].tag.style.visibility = this._saveDesableSelect[k].visib;
-            }
+
             Array.clear(this._saveDesableSelect);
         }
     },
@@ -399,22 +414,19 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if(!this._isAnimationJustEnded) {
             var eventArgs = new Sys.CancelEventArgs();
             this.raiseHiding(eventArgs);
-            if(eventArgs.get_cancel()) {
+
+            if(eventArgs.get_cancel())
                 return false;
-            }
             else if(this._onHiding.get_animation()) {
                 this._onHiding.play();
                 return true;
             }
-        }
-        else {
+        } else {
             this._isAnimationJustEnded = false;
         }
 
         this._hideImplementation();
-
         this.raiseHidden(Sys.EventArgs.Empty);
-
         this._onHidden.play();
 
         return true;
@@ -422,22 +434,20 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
     _hideImplementation: function() {
         // Internal implementation to hide the modal dialog
-
         this._backgroundElement.style.display = 'none';
         this._foregroundElement.style.display = 'none';
 
         this.restoreTab();
-
         this._detachPopup();
     },
 
     _layout: function() {
-        var scrollLeft = (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
-        var scrollTop = (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+        var scrollLeft = (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft),
+            scrollTop = (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
 
-        var clientBounds = $common.getClientBounds();
-        var clientWidth = clientBounds.width;
-        var clientHeight = clientBounds.height;
+        var clientBounds = $common.getClientBounds(),
+            clientWidth = clientBounds.width,
+            clientHeight = clientBounds.height;
 
         // Setup the location of the background element
         this._layoutBackgroundElement();
@@ -447,41 +457,40 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if(this._xCoordinate < 0) {
             var foregroundelementwidth = this._foregroundElement.offsetWidth ? this._foregroundElement.offsetWidth : this._foregroundElement.scrollWidth;
             xCoord = ((clientWidth - foregroundelementwidth) / 2);
+
             // workaround for drag behavior which calls setlocation which in turn
             // changes the position of the panel to be absolute and requiring us
             // to add the scrollLeft so that it is positioned correctly.
-            if(this._foregroundElement.style.position == 'absolute') {
+            if(this._foregroundElement.style.position == 'absolute')
                 xCoord += scrollLeft;
-            }
-            this._foregroundElement.style.left = xCoord + 'px';
 
+            this._foregroundElement.style.left = xCoord + 'px';
         } else {
             if(this._isIE6) {
                 this._foregroundElement.style.left = (this._xCoordinate + scrollLeft) + 'px';
                 xCoord = this._xCoordinate + scrollLeft;
-            }
-            else {
+            } else {
                 this._foregroundElement.style.left = this._xCoordinate + 'px';
                 xCoord = this._xCoordinate;
             }
         }
+
         if(this._yCoordinate < 0) {
             var foregroundelementheight = this._foregroundElement.offsetHeight ? this._foregroundElement.offsetHeight : this._foregroundElement.scrollHeight;
             yCoord = ((clientHeight - foregroundelementheight) / 2);
+
             // workaround for drag behavior which calls setlocation which in turn
             // changes the position of the panel to be absolute and requiring us
             // to add the scrollLeft so that it is positioned correctly.
-            if(this._foregroundElement.style.position == 'absolute') {
+            if(this._foregroundElement.style.position == 'absolute')
                 yCoord += scrollTop;
-            }
-            this._foregroundElement.style.top = yCoord + 'px';
 
+            this._foregroundElement.style.top = yCoord + 'px';
         } else {
             if(this._isIE6) {
                 this._foregroundElement.style.top = (this._yCoordinate + scrollTop) + 'px';
                 yCoord = this._yCoordinate + scrollTop;
-            }
-            else {
+            } else {
                 this._foregroundElement.style.top = this._yCoordinate + 'px';
                 yCoord = this._yCoordinate;
             }
@@ -507,19 +516,18 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // is not supported by IE 6. Hence we manually compute the right location of the popup.
 
         if(this._isIE6 && this._relativeOrAbsoluteParentElement) {
-            var foregroundLocation = $common.getLocation(this._foregroundElement);
-            var relativeParentLocation = $common.getLocation(this._relativeOrAbsoluteParentElement);
-            var getLocationXCoord = foregroundLocation.x;
-            if(getLocationXCoord != xCoord) {
+            var foregroundLocation = $common.getLocation(this._foregroundElement),
+                relativeParentLocation = $common.getLocation(this._relativeOrAbsoluteParentElement),
+                getLocationXCoord = foregroundLocation.x;
+
+            if(getLocationXCoord != xCoord)
                 // offset it by that amount
                 this._foregroundElement.style.left = (xCoord - relativeParentLocation.x) + 'px';
-            }
 
             var getLocationYCoord = foregroundLocation.y;
-            if(getLocationYCoord != yCoord) {
+            if(getLocationYCoord != yCoord)
                 // offset it by that amount
                 this._foregroundElement.style.top = (yCoord - relativeParentLocation.y) + 'px';
-            }
         }
     },
 
@@ -531,26 +539,27 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // top and left coordinates need to be 0, and if relatively positioned its getlocation
         // value needs to be 0.
         if(this._isIE6) {
-            var backgroundLocation = $common.getLocation(this._backgroundElement);
-            var backgroundXCoord = backgroundLocation.x;
-            if(backgroundXCoord != 0) {
+            var backgroundLocation = $common.getLocation(this._backgroundElement),
+                backgroundXCoord = backgroundLocation.x;
+
+            if(backgroundXCoord != 0)
                 // offset it by that amount. This is assuming only one level of nesting. If
                 // multiple parents with absolute/relative positioning are setup this may not 
                 // cover the whole background.
                 this._backgroundElement.style.left = (-backgroundXCoord) + 'px';
-            }
 
             var backgroundYCoord = backgroundLocation.y;
-            if(backgroundYCoord != 0) {
+            if(backgroundYCoord != 0)
                 // offset it by that amount. This is assuming only one level of nesting. If
                 // multiple parents with absolute/relative positioning are setup this may not 
                 // cover the whole background.
                 this._backgroundElement.style.top = (-backgroundYCoord) + 'px';
-            }
         }
-        var clientBounds = $common.getClientBounds();
-        var clientWidth = clientBounds.width;
-        var clientHeight = clientBounds.height;
+
+        var clientBounds = $common.getClientBounds(),
+            clientWidth = clientBounds.width,
+            clientHeight = clientBounds.height;
+
         this._backgroundElement.style.width = Math.max(Math.max(document.documentElement.scrollWidth, document.body.scrollWidth), clientWidth) + 'px';
         this._backgroundElement.style.height = Math.max(Math.max(document.documentElement.scrollHeight, document.body.scrollHeight), clientHeight) + 'px';
     },
@@ -559,10 +568,8 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // Some browsers don't update the location values immediately, so
         // the location of the drop shadow would always be a step behind
         // without this method
-
-        if(this._dropShadowBehavior) {
+        if(this._dropShadowBehavior)
             this._dropShadowBehavior.setShadow();
-        }
     },
 
     _partialUpdateEndRequest: function(sender, endRequestEventArgs) {
@@ -572,11 +579,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if(this.get_element()) {
             // Look up result by element's ID
             var action = endRequestEventArgs.get_dataItems()[this.get_element().id];
-            if("show" == action) {
+
+            if("show" == action)
                 this.show();
-            } else if("hide" == action) {
+            else if("hide" == action)
                 this.hide();
-            }
         }
 
         // Async postback may have added content; re-layout to accomodate it
@@ -593,13 +600,13 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
     _replaceAnimationTarget: function(memberName, target) {
         var json = this[memberName].get_json();
+
         this[memberName] = new Sys.Extended.UI.Animation.GenericAnimationBehavior(target);
         this[memberName].set_json(json);
         this[memberName].initialize();
     },
 
     _resetAnimationsTarget: function() {
-
         var target = $get(this.get_PopupControlID());
 
         this._replaceAnimationTarget('_onShowing', target);
@@ -611,6 +618,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     get_PopupControlID: function() {
         return this._PopupControlID;
     },
+
     set_PopupControlID: function(value) {
         if(this._PopupControlID != value) {
             this._PopupControlID = value;
@@ -622,6 +630,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // The number of pixels from the left of the browser to position the modal popup.
         return this._xCoordinate;
     },
+
     set_X: function(value) {
         if(this._xCoordinate != value) {
             this._xCoordinate = value;
@@ -633,6 +642,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // The number of pixels from the top of the browser to position the modal popup.
         return this._yCoordinate;
     },
+
     set_Y: function(value) {
         if(this._yCoordinate != value) {
             this._yCoordinate = value;
@@ -643,6 +653,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     get_PopupDragHandleControlID: function() {
         return this._PopupDragHandleControlID;
     },
+
     set_PopupDragHandleControlID: function(value) {
         if(this._PopupDragHandleControlID != value) {
             this._PopupDragHandleControlID = value;
@@ -653,6 +664,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     get_BackgroundCssClass: function() {
         return this._BackgroundCssClass;
     },
+
     set_BackgroundCssClass: function(value) {
         if(this._BackgroundCssClass != value) {
             this._BackgroundCssClass = value;
@@ -664,6 +676,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // Whether or not a drop-shadow should be added to the modal popup
         return this._DropShadow;
     },
+
     set_DropShadow: function(value) {
         if(this._DropShadow != value) {
             this._DropShadow = value;
@@ -675,6 +688,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // Obsolete: Setting the _Drag property is a noop
         return this._Drag;
     },
+
     set_Drag: function(value) {
         if(this._Drag != value) {
             this._Drag = value;
@@ -685,6 +699,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     get_OkControlID: function() {
         return this._OkControlID;
     },
+
     set_OkControlID: function(value) {
         if(this._OkControlID != value) {
             this._OkControlID = value;
@@ -695,6 +710,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     get_CancelControlID: function() {
         return this._CancelControlID;
     },
+
     set_CancelControlID: function(value) {
         if(this._CancelControlID != value) {
             this._CancelControlID = value;
@@ -705,6 +721,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     get_OnOkScript: function() {
         return this._OnOkScript;
     },
+
     set_OnOkScript: function(value) {
         if(this._OnOkScript != value) {
             this._OnOkScript = value;
@@ -715,6 +732,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     get_OnCancelScript: function() {
         return this._OnCancelScript;
     },
+
     set_OnCancelScript: function(value) {
         if(this._OnCancelScript != value) {
             this._OnCancelScript = value;
@@ -726,6 +744,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // Determines if the ModalPopup should be repositioned on window resize/scroll
         return this._repositionMode;
     },
+
     set_repositionMode: function(value) {
         if(this._repositionMode !== value) {
             this._repositionMode = value;
@@ -777,56 +796,65 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // Add an event handler for the showing event
         this.get_events().addHandler('showing', handler);
     },
+
     remove_showing: function(handler) {
         // Remove an event handler from the showing event
         this.get_events().removeHandler('showing', handler);
     },
+
     raiseShowing: function(eventArgs) {
         var handler = this.get_events().getHandler('showing');
-        if(handler) {
+
+        if(handler)
             handler(this, eventArgs);
-        }
     },
 
     add_shown: function(handler) {
         this.get_events().addHandler('shown', handler);
     },
+
     remove_shown: function(handler) {
         this.get_events().removeHandler('shown', handler);
     },
+
     raiseShown: function(eventArgs) {
         var handler = this.get_events().getHandler('shown');
-        if(handler) {
+
+        if(handler)
             handler(this, eventArgs);
-        }
     },
 
     add_hiding: function(handler) {
         this.get_events().addHandler('hiding', handler);
     },
+
     remove_hiding: function(handler) {
         this.get_events().removeHandler('hiding', handler);
     },
+
     raiseHiding: function(eventArgs) {
         var handler = this.get_events().getHandler('hiding');
-        if(handler) {
+
+        if(handler)
             handler(this, eventArgs);
-        }
     },
 
     add_hidden: function(handler) {
         this.get_events().addHandler('hidden', handler);
     },
+
     remove_hidden: function(handler) {
         this.get_events().removeHandler('hidden', handler);
     },
+
     raiseHidden: function(eventArgs) {
         var handler = this.get_events().getHandler('hidden');
-        if(handler) {
+
+        if(handler)
             handler(this, eventArgs);
-        }
     }
 };
+
 Sys.Extended.UI.ModalPopupBehavior.registerClass('Sys.Extended.UI.ModalPopupBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
 
 Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function(behaviorID, show) {
@@ -835,11 +863,11 @@ Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function(behaviorID, show) 
     // (i.e. to use this, the ModalPopupExtender must have an ID or BehaviorID) and
     // will either show or hide depending on the show parameter.
     var behavior = $find(behaviorID);
+
     if(behavior) {
-        if(show) {
+        if(show)
             behavior.show();
-        } else {
+        else
             behavior.hide();
-        }
     }
 };

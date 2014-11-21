@@ -46,18 +46,15 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
     raiseActiveTabChanged: function() {
         var eh = this.get_events().getHandler("activeTabChanged");
-        if(eh) {
+        if(eh)
             eh(this, Sys.EventArgs.Empty);
-        }
-        if(this._autoPostBackId) {
+        if(this._autoPostBackId)
             __doPostBack(this._autoPostBackId, "activeTabChanged:" + this.get_activeTabIndex());
-        }
     },
 
     get_activeTabIndex: function() {
-        if(this._cachedActiveTabIndex > -1) {
+        if(this._cachedActiveTabIndex > -1)
             return this._cachedActiveTabIndex;
-        }
         return this._activeTabIndex;
     },
     set_activeTabIndex: function(valuePassed) {
@@ -65,16 +62,13 @@ Sys.Extended.UI.TabContainer.prototype = {
         if(!this.get_isInitialized()) {
             this._cachedActiveTabIndex = value;
         } else {
-            if(value < -1) {
+            if(value < -1)
                 throw Error.argumentOutOfRange("value");
-            }
-            if(value >= this.get_tabs().length) {
+            if(value >= this.get_tabs().length)
                 value = this.get_tabs().length - 1;
-            }
             if(value != this._activeTabIndex) {
                 if(this._activeTabIndex != -1) {
                     var oldTab = this.get_tabs()[this._activeTabIndex];
-                    /*this._body.style.height = this._body.offsetHeight + "px";*/
                     oldTab._set_active(false);
                 }
 
@@ -82,10 +76,9 @@ Sys.Extended.UI.TabContainer.prototype = {
 
                 this._activeTabIndex = value;
 
-                if(this._activeTabIndex != -1) {
+                if(this._activeTabIndex != -1)
                     this.get_tabs()[this._activeTabIndex]._set_active(true);
-                }
-                /*this._body.style.height = "auto";*/
+
                 if(this._loaded && changed) {
                     if(this._onDemand) {
                         var activeTab = this.get_tabs()[this._activeTabIndex];
@@ -105,23 +98,20 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     get_tabs: function() {
-        if(this._tabs == null) {
+        if(this._tabs == null)
             this._tabs = [];
-        }
         return this._tabs;
     },
 
     get_activeTab: function() {
-        if(this._activeTabIndex > -1) {
+        if(this._activeTabIndex > -1)
             return this.get_tabs()[this._activeTabIndex];
-        }
         return null;
     },
     set_activeTab: function(value) {
         var i = Array.indexOf(this.get_tabs(), value);
-        if(i == -1) {
+        if(i == -1)
             throw Error.argument("value", Sys.Extended.UI.Resources.Tabs_ActiveTabArgumentOutOfRange);
-        }
         this.set_activeTabIndex(i);
     },
 
@@ -189,7 +179,8 @@ Sys.Extended.UI.TabContainer.prototype = {
         ]);
 
         this._invalidate();
-        if(this._onDemand) this._pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
+        if(this._onDemand)
+            this._pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
         Sys.Application.add_load(this._app_onload$delegate);
     },
     dispose: function() {
@@ -199,20 +190,16 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
     getFirstTab: function(includeDisabled) {
         var tabs = this.get_tabs();
-        for(var i = 0; i < tabs.length; i++) {
-            if(includeDisabled || tabs[i].get_enabled()) {
+        for(var i = 0; i < tabs.length; i++)
+            if(includeDisabled || tabs[i].get_enabled())
                 return tabs[i];
-            }
-        }
         return null;
     },
     getLastTab: function(includeDisabled) {
         var tabs = this.get_tabs();
-        for(var i = tabs.length - 1; i >= 0; i--) {
-            if(includeDisabled || tabs[i].get_enabled()) {
+        for(var i = tabs.length - 1; i >= 0; i--)
+            if(includeDisabled || tabs[i].get_enabled())
                 return tabs[i];
-            }
-        }
         return null;
     },
     getNextTab: function(includeDisabled) {
@@ -240,26 +227,23 @@ Sys.Extended.UI.TabContainer.prototype = {
     getNearestTab: function(includeDisabled) {
         var prev = this.getPreviousTab(includeDisabled);
         var next = this.getNextTab(includeDisabled);
-        if(prev && prev.get_tabIndex() < this._activeTabIndex) {
+        if(prev && prev.get_tabIndex() < this._activeTabIndex)
             return prev;
-        } else if(next && next.get_tabIndex() > this._activeTabIndex) {
+        else if(next && next.get_tabIndex() > this._activeTabIndex)
             return next;
-        }
         return null;
     },
     saveClientState: function() {
         var tabs = this.get_tabs();
-        //var tabState = [];
+
         var tabEnabledState = [];
         var tabWasLoadedOnceState = [];
         for(var i = 0; i < tabs.length; i++) {
-            //Array.add(tabState, tabs[i].get_enabled());
             Array.add(tabEnabledState, tabs[i].get_enabled());
             Array.add(tabWasLoadedOnceState, tabs[i].get_wasLoadedOnce());
         }
         var state = {
             ActiveTabIndex: this._activeTabIndex,
-            //TabState: tabState
             TabEnabledState: tabEnabledState,
             TabWasLoadedOnceState: tabWasLoadedOnceState
         };
@@ -328,7 +312,6 @@ Sys.Extended.UI.TabContainer.prototype = {
 
             var activeTab = this.get_tabs()[this._activeTabIndex];
             if(activeTab) {
-                //activeTab._wasLoaded = true;
                 activeTab.set_wasLoadedOnce(true);
                 activeTab._setFocus(activeTab);
             }
@@ -379,9 +362,8 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
     raiseClick: function() {
         var eh = this.get_events().getHandler("click");
-        if(eh) {
+        if(eh)
             eh(this, Sys.EventArgs.Empty);
-        }
     },
 
     add_populating: function(handler) {
@@ -392,9 +374,8 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
     raisePopulating: function() {
         var eh = this.get_events().getHandler("populating");
-        if(eh) {
+        if(eh)
             eh(this, Sys.EventArgs.Empty);
-        }
     },
 
     add_populated: function(handler) {
@@ -405,21 +386,18 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
     raisePopulated: function() {
         var eh = this.get_events().getHandler("populated");
-        if(eh) {
+        if(eh)
             eh(this, Sys.EventArgs.Empty);
-        }
     },
 
     get_headerText: function() {
-        if(this.get_isInitialized()) {
+        if(this.get_isInitialized())
             return this._header.innerHTML;
-        }
         return "";
     },
     set_headerText: function(value) {
-        if(!this.get_isInitialized()) {
+        if(!this.get_isInitialized())
             throw Error.invalidOperation(String.format(Sys.Extended.UI.Resources.Tabs_PropertySetBeforeInitialization, 'headerText'));
-        }
         if(this.get_headerText() != value) {
             this._header.innerHTML = value;
             this.raisePropertyChanged("headerText");
@@ -432,14 +410,12 @@ Sys.Extended.UI.TabPanel.prototype = {
     set_headerTab: function(value) {
         if(typeof (value) === "string") {
             value = Sys.get(value);
-            if(!value) {
+            if(!value)
                 throw new Error.argumentNull("value");
-            }
         }
         if(this._header != value) {
-            if(this.get_isInitialized()) {
+            if(this.get_isInitialized())
                 throw Error.invalidOperation(String.format(Sys.Extended.UI.Resources.Tabs_PropertySetAfterInitialization, 'headerTab'));
-            }
             this._header = value;
             this.raisePropertyChanged("value");
         }
@@ -451,9 +427,8 @@ Sys.Extended.UI.TabPanel.prototype = {
     set_enabled: function(value) {
         if(value != this._enabled) {
             this._enabled = value;
-            if(this.get_isInitialized()) {
+            if(this.get_isInitialized())
                 this._makeEnabled(this._enabled);
-            }
             this.raisePropertyChanged("enabled");
         }
     },
@@ -464,9 +439,8 @@ Sys.Extended.UI.TabPanel.prototype = {
     set_owner: function(value) {
         if(value instanceof Sys.ComponentSet) value = value.get(0);
         if(this._owner != value) {
-            if(this.get_isInitialized()) {
+            if(this.get_isInitialized())
                 throw Error.invalidOperation(String.format(Sys.Extended.UI.Resources.Tabs_PropertySetAfterInitialization, 'owner'));
-            }
             this._owner = value;
             this.raisePropertyChanged("owner");
         }
@@ -576,9 +550,8 @@ Sys.Extended.UI.TabPanel.prototype = {
 
         Sys.Extended.UI.TabPanel.callBaseMethod(this, "initialize");
 
-        if(!owner) {
+        if(!owner)
             throw Error.invalidOperation(Sys.Extended.UI.Resources.Tabs_OwnerExpected);
-        }
 
         this._tabIndex = owner.get_tabs().length;
 
@@ -618,18 +591,14 @@ Sys.Extended.UI.TabPanel.prototype = {
             select: this._oncancel$delegate
         });
 
-
-        if(this._enabled) {
-            if(this._isAttachedEnabledEvents) {
+        if(this._enabled)
+            if(this._isAttachedEnabledEvents)
                 this._removeHandlersOnEnabled();
-            }
-        } else {
-            if(this._isAttachedDisabledEvents) {
-                $common.removeHandlers(this._header, {
-                    click: this._disabled_onclick
-                });
-            }
-        }
+            else
+                if(this._isAttachedDisabledEvents)
+                    $common.removeHandlers(this._header, {
+                        click: this._disabled_onclick
+                    });
 
         Sys.Extended.UI.TabPanel.callBaseMethod(this, "dispose");
     },
@@ -658,9 +627,12 @@ Sys.Extended.UI.TabPanel.prototype = {
             this._dynamicPopulateBehavior.dispose();
             this._dynamicPopulateBehavior = null;
         }
-        if(!this._dynamicPopulateBehavior && this._dynamicServiceMethod) {
-            this._dynamicPopulateBehavior = $create(Sys.Extended.UI.DynamicPopulateBehavior, { "ContextKey": this._dynamicContextKey, "ServicePath": this._dynamicServicePath, "ServiceMethod": this._dynamicServiceMethod }, { "populated": this._dynamicPopulate_onpopulated$delegate }, null, this.get_element());
-        }
+
+        if(!this._dynamicPopulateBehavior && this._dynamicServiceMethod)
+            this._dynamicPopulateBehavior = $create(Sys.Extended.UI.DynamicPopulateBehavior,
+                { "ContextKey": this._dynamicContextKey, "ServicePath": this._dynamicServicePath, "ServiceMethod": this._dynamicServiceMethod },
+                { "populated": this._dynamicPopulate_onpopulated$delegate }, null, this.get_element());
+
         if(this._dynamicPopulateBehavior) {
             this.raisePopulating();
             this._dynamicPopulateBehavior.populate(contextKeyOverride ? contextKeyOverride : this._dynamicContextKey);
@@ -676,9 +648,8 @@ Sys.Extended.UI.TabPanel.prototype = {
             this.populate();
         } else if(this._get_active()) {
             var next = this._owner.getNearestTab(false);
-            if(!!next) {
+            if(!!next)
                 this._owner.set_activeTab(next);
-            }
         }
         this._owner.get_element().style.visibility = 'visible';
     },
@@ -694,9 +665,8 @@ Sys.Extended.UI.TabPanel.prototype = {
         this._tab.style.display = 'none';
         if(this._get_active()) {
             var next = this._owner.getNearestTab(false);
-            if(!!next) {
+            if(!!next)
                 this._owner.set_activeTab(next);
-            }
         }
         this._deactivate();
     },
@@ -724,9 +694,8 @@ Sys.Extended.UI.TabPanel.prototype = {
             this._isAttachedDisabledEvents = true;
             if(this._get_active()) {
                 var next = this._owner.getNearestTab(false);
-                if(!!next) {
+                if(!!next)
                     this._owner.set_activeTab(next);
-                }
             }
             this._deactivate();
             Sys.UI.DomElement.addCssClass($get(hyperlinkId), "ajax__tab_disabled");
@@ -756,8 +725,8 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
     _onkeydown: function(e) {
         var keyCode = ('which' in e) ? e.which : e.keyCode;
-        if((keyCode == "39" && !this._owner._useVerticalStripPlacement) || (keyCode == "40" && this._owner._useVerticalStripPlacement))//right or down
-        {
+        //right or down
+        if((keyCode == "39" && !this._owner._useVerticalStripPlacement) || (keyCode == "40" && this._owner._useVerticalStripPlacement))  {
             e.preventDefault();
             var next = this._owner.getNextTab(false);
             if(next) {
@@ -765,8 +734,8 @@ Sys.Extended.UI.TabPanel.prototype = {
                 this._setFocus(next);
             }
         }
-        else if((keyCode == "37" && !this._owner._useVerticalStripPlacement) || (keyCode == "38" && this._owner._useVerticalStripPlacement))//left or up
-        {
+        //left or up
+        else if((keyCode == "37" && !this._owner._useVerticalStripPlacement) || (keyCode == "38" && this._owner._useVerticalStripPlacement)) {
             e.preventDefault();
             var next = this._owner.getPreviousTab(false);
             if(next) {
@@ -774,8 +743,8 @@ Sys.Extended.UI.TabPanel.prototype = {
                 this._setFocus(next);
             }
         }
-        else if(keyCode == "35")//end
-        {
+        // end   
+        else if(keyCode == "35") {
             e.preventDefault();
             var next = this._owner.getLastTab(false);
             if(next) {
@@ -783,8 +752,8 @@ Sys.Extended.UI.TabPanel.prototype = {
                 this._setFocus(next);
             }
         }
-        else if(keyCode == "36")//home
-        {
+        //home
+        else if(keyCode == "36") {
             e.preventDefault();
             var next = this._owner.getFirstTab(false);
             if(next) {

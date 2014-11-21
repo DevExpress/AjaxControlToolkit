@@ -17,4 +17,3 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.SuperScript.prototype = {
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.SuperScript.registerClass("Sys.Extended.UI.HtmlEditor.ToolbarButtons.SuperScript", Sys.Extended.UI.HtmlEditor.ToolbarButtons.EditorToggleButton);
-

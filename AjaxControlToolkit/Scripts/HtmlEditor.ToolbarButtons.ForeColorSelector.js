@@ -5,8 +5,10 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.ForeColorSelector = function(element) 
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.ForeColorSelector.prototype = {
+
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.ForeColorSelector.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.ForeColorSelector.callBaseMethod(this, "callMethod"))
+            return false;
     },
 
     setColor: function(color) {

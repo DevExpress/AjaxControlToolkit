@@ -59,9 +59,8 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         this._elementImage = e;
 
         // check if browser supports animation or not.
-        if(!this.supportsAnimation('transition')) {
+        if(!this.supportsAnimation('transition'))
             this._slideShowAnimationType = Sys.Extended.UI.SlideShowAnimationType.None;
-        }
 
         if(this._slideShowAnimationType != Sys.Extended.UI.SlideShowAnimationType.SlideRight ||
             this._slideShowAnimationType != Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
@@ -102,7 +101,6 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     dispose: function() {
-        
         if(this._clickNextHandler) {
             $removeHandler(this._bNext, 'click', this._clickNextHandler);
             this._clickNextHandler = null;
@@ -135,9 +133,8 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     raiseSlideChanged: function(eventArgs) {
         var handler = this.get_events().getHandler('slideChanged');
         if(handler) {
-            if(!eventArgs) {
+            if(!eventArgs)
                 eventArgs = Sys.EventArgs.Empty;
-            }
             handler(this, eventArgs);
         }
     },
@@ -171,9 +168,8 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
             this.set_useContextKey(true);
             // if initialize has not been called
             // then do not reset the slideshow.
-            if(this._elementImage) {
+            if(this._elementImage)
                 this._slideShowInit();
-            }
             this.raisePropertyChanged('contextKey');
         }
     },
@@ -244,29 +240,37 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                 if(this._bNext) this._bNext.disabled = true;
                 if(this._bPlay) this._bPlay.disabled = true;
                 if(this._bPrevious) this._bPrevious.disabled = false;
+
                 // turn off play mode if on
                 this._inPlayMode = false;
-                if(this._timer) {
+                if(this._timer)
                     this._timer.set_enabled(false);
-                }
-                if(this._bPlay) this._bPlay.value = this._playButtonValue;
+                if(this._bPlay)
+                    this._bPlay.value = this._playButtonValue;
 
             } else {
-                if(this._bNext) this._bNext.disabled = false;
-                if(this._bPlay) this._bPlay.disabled = false;
+                if(this._bNext)
+                    this._bNext.disabled = false;
+                if(this._bPlay)
+                    this._bPlay.disabled = false;
             }
             // at the first slide
             if(this._currentIndex <= 0) {
-                if(this._bPrevious) this._bPrevious.disabled = true;
+                if(this._bPrevious)
+                    this._bPrevious.disabled = true;
             } else {
-                if(this._bPrevious) this._bPrevious.disabled = false;
+                if(this._bPrevious)
+                    this._bPrevious.disabled = false;
             }
         }
         else {
             if(this._slides.length == 0) {
-                if(this._bPrevious) this._bPrevious.disabled = true;
-                if(this._bNext) this._bNext.disabled = true;
-                if(this._bPlay) this._bPlay.disabled = true;
+                if(this._bPrevious)
+                    this._bPrevious.disabled = true;
+                if(this._bNext)
+                    this._bNext.disabled = true;
+                if(this._bPlay)
+                    this._bPlay.disabled = true;
             }
         }
         if(this._inPlayMode) {
@@ -280,11 +284,13 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         // Maintain the play button state to reflect whether the slide show is in play mode.
 
         if(this._inPlayMode) {
-            if(this._bPlay) this._bPlay.value = this._stopButtonValue;
+            if(this._bPlay)
+                this._bPlay.value = this._stopButtonValue;
         }
         else {
             this.resetButtons();
-            if(this._bPlay) this._bPlay.value = this._playButtonValue;
+            if(this._bPlay)
+                this._bPlay.value = this._playButtonValue;
         }
     },
 
@@ -310,9 +316,8 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
 
     updateImage: function(value) {        
         if(value) {
-            if(this.raiseSlideChanging(this._currentValue, value)) {
+            if(this.raiseSlideChanging(this._currentValue, value))
                 return;
-            }
             if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.FadeInOut) {
                 this._elementImage.className = "ajax__slide_show_fadeIn";
                 var me = this;
@@ -364,12 +369,10 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         this._elementImage.src = value.ImagePath;
         this._elementImage.alt = value.Name;
 
-        if(this._imageDescriptionLabel) {
+        if(this._imageDescriptionLabel)
             this._imageDescriptionLabel.innerHTML = value.Description ? value.Description : "";
-        }
-        if(this._imageTitleLabel) {
+        if(this._imageTitleLabel)
             this._imageTitleLabel.innerHTML = value.Name ? value.Name : "";
-        }
 
         if(value.Url != null) {
             this._elementImage.style.cursor = 'pointer';
@@ -531,15 +534,15 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
 
     _clickNext: function() {
         if(this._slides) {
-            if((this._currentIndex + 1) < this._slides.length) {
+            if((this._currentIndex + 1) < this._slides.length)
                 ++this._currentIndex;
-            } else if(this._loop) {
+            else if(this._loop)
                 this._currentIndex = 0;
-            } else {
+            else
                 return false;
-            }
 
-            if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
+            if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight ||
+                this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                 this._isNext = true;
                 this.setCurrentSlide();
             }
@@ -556,20 +559,19 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         e.preventDefault();
         e.stopPropagation();
         this._clickPrevious();
-
     },
 
     _clickPrevious: function() {
         if(this._slides) {
-            if((this._currentIndex - 1) >= 0) {
+            if((this._currentIndex - 1) >= 0)
                 --this._currentIndex;
-            }
-            else if(this._loop) {
+            else if(this._loop)
                 this._currentIndex = this._slides.length - 1;
-            } else {
+            else
                 return false;
-            }
-            if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
+
+            if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight ||
+                this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                 this._isNext = false;
                 this.setCurrentSlide();
             }
@@ -594,8 +596,10 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
             this._timer.set_enabled(false);
             this.resetSlideShowButtonState();
             if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
-                if(this._bNext) this._bNext.disabled = false;
-                if(this._bPrevious) this._bPrevious.disabled = false;
+                if(this._bNext)
+                    this._bNext.disabled = false;
+                if(this._bPrevious)
+                    this._bPrevious.disabled = false;
             }
         } else {
             // play the side show
@@ -607,8 +611,10 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                 this._timer.add_tick(this._tickHandler);
             }
             if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
-                if(this._bNext) this._bNext.disabled = true;
-                if(this._bPrevious) this._bPrevious.disabled = true;
+                if(this._bNext)
+                    this._bNext.disabled = true;
+                if(this._bPrevious)
+                    this._bPrevious.disabled = true;
             }
             this.resetSlideShowButtonState();
             this._timer.set_enabled(true);
@@ -619,7 +625,8 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         if(this._slides) {
             if((this._currentIndex + 1) < this._slides.length) {
                 ++this._currentIndex;
-                if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
+                if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight ||
+                    this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                     this._isNext = true;
                     this.setCurrentSlide();
                 }
@@ -629,7 +636,8 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                 return true;
             } else if(this._loop) {
                 this._currentIndex = 0;
-                if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight || this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
+                if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight ||
+                    this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideDown) {
                     this._isNext = true;
                     this.setCurrentSlide();
                 }
@@ -659,19 +667,18 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         // Create the service parameters and optionally add the context parameter
         // (thereby determining which method signature we're expecting...)
         var params = null;
-        if(this._useContextKey) {
+        if(this._useContextKey)
             params = { contextKey: this._contextKey };
-        }
 
         Sys.Net.WebServiceProxy.invoke(
-        this._slideShowServicePath,
-        this._slideShowServiceMethod,
-        false,
-        params,
-        Function.createDelegate(this, this._initSlides),
-        null,
-        null);
-    },
+            this._slideShowServicePath,
+            this._slideShowServiceMethod,
+            false,
+            params,
+            Function.createDelegate(this, this._initSlides),
+            null,
+            null);
+        },
 
     _initSlides: function(sender, eventArgs) {
         this._slides = sender;
@@ -702,17 +709,16 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         // cache if current index is divisible by 3
         if((this._currentIndex) % 3 == 0) {
             var oldCachedImageIndex = this._cachedImageIndex;
-            for(var i = this._cachedImageIndex + 1; i < this._slides.length; i++) {
+            for(var i = this._cachedImageIndex + 1; i < this._slides.length; i++)
                 if(this._slides[i]) {
                     this._images[i] = new Image();
                     this._images[i].src = this._slides[i].ImagePath;
                     this._cachedImageIndex = i;
-                    if((oldCachedImageIndex + 4) <= i) {
+
+                    if((oldCachedImageIndex + 4) <= i)
                         // cached 4 slides
                         break;
-                    }
                 }
-            }
         }
     },
 
@@ -763,6 +769,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                 _imageLink.appendChild(_imageElement);
             else
                 _divImage.appendChild(_imageElement);
+
             this._images[i] = _divImage;
         }
     },
@@ -813,10 +820,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
             _imageElement.style.width = this._imageWidth + 'px';
             _imageElement.style.height = this._imageHeight + 'px';
             _imageElement.src = this._slides[i].ImagePath;
+
             if(this._slides[i].Url != null)
                 _imageLink.appendChild(_imageElement);
             else
                 _LIImage.appendChild(_imageElement);
+
             this._images[i] = _LIImage;
         }
     },
@@ -828,15 +837,13 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
 
         if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.SlideRight) {
             this._currentImage.style.left = '0px';
-            for(var i = 1; i < this._images.length; i++) {
+            for(var i = 1; i < this._images.length; i++)
                 this._images[i].style.left = '-' + (this._imageWidth + 5) + 'px';
-            }
         }
         else {
             this._currentImage.style.top = '0px';
-            for(var i = 0; i < this._images.length; i++) {
+            for(var i = 0; i < this._images.length; i++)
                 this._images[i].style.left = '0px';
-            }
         }
 
         this._previousImage = this._images[this._images.length - 1];
@@ -849,12 +856,10 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         this._nextImage.style.height = this._imageHeight + 'px';
         this._previousImage.style.height = this._imageHeight + 'px';
 
-        if(this._imageDescriptionLabel) {
+        if(this._imageDescriptionLabel)
             this._imageDescriptionLabel.innerHTML = this._slides[this._currentIndex].Description ? this._slides[this._currentIndex].Description : "";
-        }
-        if(this._imageTitleLabel) {
+        if(this._imageTitleLabel)
             this._imageTitleLabel.innerHTML = this._slides[this._currentIndex].Name ? this._slides[this._currentIndex].Name : "";
-        }
     },
 
     setCurrentSlide: function() {
@@ -869,12 +874,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                 var me = this;
                 setTimeout(function() {
                     me._nextImage.className = 'ajax__slide_show_slideAnimation';
-                    if(me._imageDescriptionLabel) {
+
+                    if(me._imageDescriptionLabel)
                         me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
-                    }
-                    if(me._imageTitleLabel) {
+                    if(me._imageTitleLabel)
                         me._imageTitleLabel.innerHTML = me._slides[me._currentIndex].Name ? me._slides[me._currentIndex].Name : "";
-                    }
+
                     me._currentImage.style.left = me._imageWidth + 'px';
                     me._nextImage.style.left = '0px';
                 }, 200);
@@ -898,12 +903,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                 var me = this;
                 setTimeout(function() {
                     me._nextImage.className = 'ajax__slide_show_slideAnimation';
-                    if(me._imageDescriptionLabel) {
+                    
+                    if(me._imageDescriptionLabel)
                         me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
-                    }
-                    if(me._imageTitleLabel) {
+                    if(me._imageTitleLabel)
                         me._imageTitleLabel.innerHTML = me._slides[me._currentIndex].Name ? me._slides[me._currentIndex].Name : "";
-                    }
+
                     me._currentImage.style.top = me._imageHeight + 'px';
                     me._nextImage.style.top = '0px';
                 }, 200);
@@ -929,12 +934,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                 var me = this;
                 setTimeout(function() {
                     me._previousImage.className = 'ajax__slide_show_slideAnimation';
-                    if(me._imageDescriptionLabel) {
+
+                    if(me._imageDescriptionLabel)
                         me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
-                    }
-                    if(me._imageTitleLabel) {
+                    if(me._imageTitleLabel)
                         me._imageTitleLabel.innerHTML = me._slides[me._currentIndex].Name ? me._slides[me._currentIndex].Name : "";
-                    }
+
                     me._currentImage.style.left = '-' + (me._imageWidth + 5) + 'px';
                     me._previousImage.style.left = '0px';
                 }, 200);
@@ -958,12 +963,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                 var me = this;
                 setTimeout(function() {
                     me._previousImage.className = 'ajax__slide_show_slideAnimation';
-                    if(me._imageDescriptionLabel) {
+
+                    if(me._imageDescriptionLabel)
                         me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
-                    }
-                    if(me._imageTitleLabel) {
+                    if(me._imageTitleLabel)
                         me._imageTitleLabel.innerHTML = me._slides[me._currentIndex].Name ? me._slides[me._currentIndex].Name : "";
-                    }
+
                     me._currentImage.style.top = '-' + (me._imageHeight + 5) + 'px';
                     me._previousImage.style.top = '0px';
                 }, 200);
@@ -990,16 +995,16 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
 
         animationName = animationName.toLowerCase();
 
-        if(elm.style[animationName]) { isSupport = true; }
+        if(elm.style[animationName])
+            isSupport = true;
 
         if(isSupport === false) {
             animationNameCapital = animationName.charAt(0).toUpperCase() + animationName.substr(1);
-            for(var i = 0; i < domPrefixes.length; i++) {
+            for(var i = 0; i < domPrefixes.length; i++)
                 if(elm.style[domPrefixes[i] + animationNameCapital] !== undefined) {
                     isSupport = true;
                     break;
                 }
-            }
         }
         return isSupport;
     }

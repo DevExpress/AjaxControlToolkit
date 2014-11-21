@@ -17,7 +17,9 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.ColorSelector.prototype = {
     },
 
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.ColorSelector.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.ColorSelector.callBaseMethod(this, "callMethod"))
+            return false;
+
         this.openPopup(Function.createDelegate(this, this._onopened));
 
         return true;
@@ -29,9 +31,8 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.ColorSelector.prototype = {
 
     setColor: function(color) {
         this.closePopup();
-        if(this._fixedColorButton != null) {
+        if(this._fixedColorButton != null)
             this._fixedColorButton.set_defaultColor(color);
-        }
     }
 }
 

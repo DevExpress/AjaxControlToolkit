@@ -9,6 +9,7 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.OkCancelPopupButton.prototype = {
     set_activeEditPanel: function(value) {
         if(this._editPanel != value && this._editPanel != null) {
             var relatedPopup = this.get_relatedPopup();
+
             if(typeof relatedPopup._forceImClose == "function") {
                 var func = relatedPopup._forceImClose;
                 func(relatedPopup._iframe.contentWindow);
@@ -18,17 +19,22 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.OkCancelPopupButton.prototype = {
     },
 
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.OkCancelPopupButton.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.OkCancelPopupButton.callBaseMethod(this, "callMethod"))
+            return false;
+
         this.openPopup(Function.createDelegate(this, this._onopened));
+
         return true;
     },
 
     _onopened: function(contentWindow) {
         contentWindow.popupMediator.set_callMethodByName("OK", Function.createDelegate(this, this._onOK));
         contentWindow.popupMediator.set_callMethodByName("Cancel", Function.createDelegate(this, this._onCancel));
+
         var relatedPopup = this.get_relatedPopup();
         relatedPopup._popup = this._designPanel._popup;
         relatedPopup._forceImClose = Function.createDelegate(this, this._onCancel);
+
         this._designPanel._popup = this.get_relatedPopup();
         this.opened(contentWindow);
     },
@@ -51,6 +57,7 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.OkCancelPopupButton.prototype = {
         this._designPanel._popup = this.get_relatedPopup()._popup;
         this.get_relatedPopup()._popup = null;
         this.get_relatedPopup()._forceImClose = null;
+
         callback(contentWindow);
     },
 

@@ -3,24 +3,17 @@
 Type.registerNamespace('Sys.Extended.UI');
 
 Sys.Extended.UI.AutoSize = function() {
-    // <summary>
     // The AutoSize enumeration is used to specify how the AccordionBehavior limits
     // the growth of the accordion when panes are expanded and collapsed.  It must
     // correspond to the AutoSize CLR enumeration in AutoSize.cs.
-    // </summary>
-    // <field name="None" type="Number" integer="true">
-    // Allow the accordion to expand/collapse without restriction.
-    // </field>
-    // <field name="Fill" type="Number" integer="true">
-    // Keep the accordion the same size as its specified size.  If any
+    //
+    // "None" - allows the accordion to expand/collapse without restriction.
+    // "Fill" - keeps the accordion the same size as its specified size.  If any
     // panes are larger or smaller than the available space, grow or shrink
-    // them to the available space.
-    // </field>
-    // <field name="Limit" type="Number" integer="true">
-    // Prevent the accordion from growing any larger than its specified size.
+    // them to the available space.    
+    // "Limit" - prevents the accordion from growing any larger than its specified size.
     // If the content of a pane is too large to fit, grow it to fill the
     // remaining space.
-    // </field>
     throw Error.invalidOperation();
 }
 Sys.Extended.UI.AutoSize.prototype = {
@@ -31,20 +24,15 @@ Sys.Extended.UI.AutoSize.prototype = {
 Sys.Extended.UI.AutoSize.registerEnum("Sys.Extended.UI.AutoSize", false);
 
 Sys.Extended.UI.AccordionSelectedIndexChangeEventArgs = function(oldIndex, selectedIndex) {
-    // <summary>
     // Event arguments used to provide notification when an accordion's selected
     // index is changed.  The same event argument type is used for both the
     // selectedIndexChanging event and the selectedIndexChanged events.  If you set
     // the cancel property to true during the selectedIndexChanging event, the
     // accordion will not change panes.  The cancel property has no effect during
     // the selectedIndexChanged event.
-    // </summary>
-    // <param name="oldIndex" type="Number" integer="true" mayBeNull="false">
-    // Last selected index
-    // </param>
-    // <param name="selectedIndex" type="Number" integer="true" mayBeNull="false">
-    // New selected index
-    // </param>
+    //
+    // "oldIndex" - Last selected index
+    // "selectedIndex" - new selected index
     Sys.Extended.UI.AccordionSelectedIndexChangeEventArgs.initializeBase(this);
 
     this._oldIndex = oldIndex;
@@ -212,15 +200,12 @@ Sys.Extended.UI.AccordionSelectedIndexChangeEventArgs.registerClass('Sys.Extende
 // states 3 and 7 are intialized and played in the _changePanes function.
 
 Sys.Extended.UI.AccordionBehavior = function(element) {
-    // <summary>
     // The AccordionBehavior is used to turn properly structured XHTML into an
     // Accordion with panes that can expand one at a time.
-    // </summary>
-    // <param name="element" type="Sys.UI.DomElement" domElement="true">
-    // The DOM element the behavior is associated with.  It should contain an
+    //
+    // "element" - the DOM element the behavior is associated with.  It should contain an
     // even number of child divs (such that ith pane has a header at div 2i and
     // has content at div 2i+1).
-    // </param>
     Sys.Extended.UI.AccordionBehavior.initializeBase(this, [element]);
 
     // The _selectedIndex variable is used to track the currently visible content
@@ -303,14 +288,11 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
 }
 Sys.Extended.UI.AccordionBehavior.prototype = {
     initialize: function() {
-        // <summary>
         // The initialize function is responsible for getting the selected index from
         // the ClientState mechanism and walking the children of the behavior's target
         // to find all of the accordion's child panes.  It builds up a collection of the
         // panes from the headers and content sections.  Then we hide all the content
         // sections that aren't selected and initialize the layout.
-        // </summary>
-        // <returns />
         Sys.Extended.UI.AccordionBehavior.callBaseMethod(this, 'initialize');
 
         // Create the onclick handler used by the accordion's headers
@@ -362,23 +344,13 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _getNextDiv: function(nodes, index) {
-        // <summary>
         // Get the next div in a sequence of child nodes starting at the
         // given index
-        // </summary>
-        // <param name="nodes" type="Array" mayBeNull="false" elementMayBeNull="true"
-        //   elementType="Sys.UI.DomElement" elementDomElement="true">
-        // Array of child nodes (i.e. element.childNodes)
-        // </param>
-        // <param name="index" type="Object" mayBeNull="false">
-        // The index is an object of the form { value } where index.value represents
+        //
+        // "nodes" - array of child nodes (i.e. element.childNodes)
+        // "index" - The index is an object of the form { value } where index.value represents
         // the current index in the collection of nodes.  We wrap the index in an object
         // to perform the .NET equivalent of boxing so it can be passed by reference.
-        // </param>
-        // <returns type="Sys.UI.DomElement" DomElement="true" mayBeNull="true">
-        // The next DOM element representing a div tag, starting at the provided index.
-        // </returns>
-
         var div = null;
         while (index.value < nodes.length && (div = nodes[index.value++])) {
             if (div.tagName && (div.tagName.toLowerCase() === 'div')) {
@@ -389,18 +361,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     addPane: function(header, content) {
-        // <summary>
         // Create a new Accordion pane given references to its header and content divs
         // and add it to the _panes collection.  We also wrap the content div in a new
         // container div, add a click handler to the header div, etc.
-        // </summary>
-        // <param name="header" type="Sys.UI.DomElement" domElement="true" mayBeNull="false">
-        // Header element of the new Accordion pane
-        // </param>
-        // <param name="content" type="Sys.UI.DomElement" domElement="true" mayBeNull="false">
-        // Content element of the new Accordion pane
-        // </param>
-        // <returns type="Object" mayBeNull="false">
         // New pane object added to the end of the Accordion's pane collection.  The pane
         // is an object of the form {header, content, animation} corresponding to that
         // pane's header section, content section, and the animation used to open and
@@ -418,7 +381,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // property to indicate whether the animation was opening or closing the pane, and
         // a dynamic _pane property to provide a reference to the pane that was being
         // animated.
-        // </returns>
+        //
+        // "header" - header element of the new Accordion pane
+        // "content" - content element of the new Accordion pane
 
         // Create the new pane object
         var pane = {};
@@ -461,12 +426,10 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _getAnimation: function(pane) {
-        // <summary>
         // Get the animation for the specified accordion section or demand create
         // the animation if it doesn't already exist.
-        // </summary>
-        // <param name="pane" type="Object" mayBeNull="false">
-        // The pane is an object of the form {header, content, animation} corresponding to
+        //
+        // "pane"- the pane is an object of the form {header, content, animation} corresponding to
         // that pane's header section, content section, and the animation used to open and
         // close its content section.  The content element is a new div that has been created
         // to wrap the original div (so we can completely collapse it - even if it has
@@ -482,10 +445,6 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // a dynamic _opening property to indicate whether the animation was opening or
         // closing the pane, and a dynamic _pane property to provide a reference to the pane
         // that was being animated.
-        // </param>
-        // <returns type="Sys.Extended.UI.Animation.Animation">
-        // Animation for the desired section
-        // </returns>
 
         var animation = pane.animation;
         if (!animation) {
@@ -585,14 +544,11 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
 
     _initializePane: function(index) {
-        // <summary>
         // Setup the layout attributes for the pane so that it will be in a proper opened or
         // closed.  This will be called when adding a new pane for the first time or when
         // changing the AutoSize mode.
-        // </summary>
-        // <param name="index" type="Number" integer="true">
-        // Index of the pane to initialize
-        // </param>
+        //
+        // "index" - index of the pane to initialize
 
         var pane = this.get_Pane(index);
         if (!pane) {
@@ -630,13 +586,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _addResizeHandler: function() {
-        // <summary>
         // Attach the resize handler
-        // </summary>
-        // <remarks>
         // This has been pulled out into its own method since we need to selectively wire
         // up the resize handler depending on the AutoSize mode.
-        // </remarks>
 
         if (!this._resizeHandler) {
             this._resizeHandler = Function.createDelegate(this, this._resizeSelectedPane);
@@ -676,13 +628,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _disposeResizeHandler: function() {
-        // <summary>
         // Remove the resize handler
-        // </summary>
-        // <remarks>
         // This has been pulled out into its own method since we need to selectively wire
         // up the resize handler depending on the AutoSize mode.
-        // </remarks>
 
         if (this._resizeHandler) {
             $removeHandler(window, "resize", this._resizeHandler);
@@ -691,12 +639,10 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _disposeAnimations: function() {
-        // <summary>
         // Dispose all the animations.  This method was pulled out of dispose so we could
         // allow the user to change the FadeTransitions property after the behavior was
         // already initialized.  We can merge it back into dispose once we support generic
         // animations on the Accordion.
-        // </summary>
 
         for (var i = 0; i < this._panes.length; i++) {
             var animation = this._panes[i].animation;
@@ -782,22 +728,15 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _changeSelectedIndex: function(index, animate, force) {
-        // <summary>
         // Change the accordion's selected pane to a new index (and optionally show the change).
-        // </summary>
-        // <param name="index" type="Number" integer="true" mayBeNull="false">
-        // Index of the new selected pane
-        // </param>
-        // <param name="animate" type="Boolean" mayBeNull="false">
-        // Whether or not to show the pane change (this is primarily intended to support
+        //
+        // "index" - index of the new selected pane
+        // "animate" - whether or not to show the pane change (this is primarily intended to support
         // restoring _selectedIndex in initialize before any panes have been added)
-        // </param>
-        // <param name="force" type="Boolean" mayBeNull="true" optional="true">
-        // We perform no action (i.e. raising events, animating, etc.) if the two indices represent
+        // "force" - we perform no action (i.e. raising events, animating, etc.) if the two indices represent
         // the same pane (including the case when we have two different "no pane selected values"
         // like -1 and -500).  The force flag is used during initialization to skip this check since
         // we aren't able to determine invalid values yet.
-        // </param>
 
         // Don't bother doing anything if the index didn't change (we actually check the
         // panes so any invalid indices will match because get_Pane() will return null for
@@ -846,7 +785,6 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _changePanes: function(lastIndex) {
-        // <summary>
         // The _changePanes function is used to animate the change between two panes when
         // the selected index changes.  We will loop through each pane and get its
         // animation (or demand create it if it doesn't have one yet), stop playing it if
@@ -854,10 +792,8 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // animate it.  Because we have an animation for each pane and we stop them if they
         // were already playing, the Accordion has the ability to nicely change panes
         // again before the animation is finished.
-        // </summary>
-        // <param name="lastIndex" type="Number" integer="true" mayBeNull="false">
-        // Index of the last selected Accordion pane
-        // </param>
+        //
+        // "lastIndex" - index of the last selected Accordion pane
 
         if (!this.get_isInitialized()) {
             return;
@@ -1025,20 +961,15 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _getRemainingHeight: function(includeGutter) {
-        // <summary>
         // Determine how much remaining height we have to fill with the currently selected
         // pane's content section after taking into account all the headers.  This is primarily
         // used for the Limit and Fill AutoSize modes.
-        // </summary>
-        // <param name="includeGutter" type="Boolean" mayBeNull="false">
-        // Whether or not we should include the gutter (padding, borders, margins) of the
+        // Returns remaining height after all the headers have been accounted for.
+        //
+        // "includeGutter" - whether or not we should include the gutter (padding, borders, margins) of the
         // selected pane's original content section.  This should be true whenever we're
         // getting the remaining height for the original content section and false whenever
         // we're getting the remaining height for its wrapper.
-        // </param>
-        // <returns type="Number" integer="true">
-        // Remaining height after all the headers have been accounted for
-        // </returns>    
 
         var height = 0;
         var pane = this.get_Pane();
@@ -1075,15 +1006,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _getTotalSize: function(element) {
-        // <summary>
-        // Get the total size of an element, including its margins
-        // </summary>
-        // <param name="element" type="Sys.UI.DomElement" domElement="true">
-        // Element
-        // </param>
-        // <returns type="Object">
-        // Total size of the element (in the form {width, height})
-        // </returns>
+        // Get the total size of an element, including its margins, in the form {width, height}
 
         var size = $common.getSize(element);
         var box = $common.getMarginBox(element);
@@ -1093,16 +1016,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _getGutterSize: function(element) {
-        // <summary>
         // Get the extra "gutter" size around an element made up of its padding,
         // borders, and margins.
-        // </summary>
-        // <param name="element" type="Sys.UI.DomElement" domElement="true">
-        // Element
-        // </param>
-        // <returns type="Object">
-        // Size of the extra space (in the form of {height, width})
-        // </returns>
+        // Returns size of the extra space (in the form of {height, width})
 
         var gutter = { width: 0, height: 0 };
 
@@ -1153,16 +1069,8 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     get_Pane: function(index) {
-        // <summary>
         // Get a specific Accordion pane given its index.  If no index is provided, get
         // the currently selected pane.
-        // </summary>
-        // <param name="index" type="Number" integer="true" mayBeNull="true">
-        // Index of the desired Accordion pane.  If the index is not provided, we use
-        // the currently selected index.  In the event the provided index (or the currently
-        // selected index) is outside the bounds of the panes collection, we return null.
-        // </param>
-        // <returns type="Object" mayBeNull="true">
         // The desired pane object, or null if outside the the bounds of the _panes array.
         // The pane is an object of the form {header, content, animation} corresponding to
         // that pane's header section, content section, and the animation used to open and
@@ -1180,7 +1088,10 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // property to indicate whether the animation was opening or closing the pane, and
         // a dynamic _pane property to provide a reference to the pane that was being
         // animated.
-        // </returns>
+        //
+        // "index"- index of the desired Accordion pane.  If the index is not provided, we use
+        // the currently selected index.  In the event the provided index (or the currently
+        // selected index) is outside the bounds of the panes collection, we return null.
 
         if (index === undefined || index === null) {
             index = this._selectedIndex;

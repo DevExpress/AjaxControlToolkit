@@ -1,13 +1,8 @@
 Type.registerNamespace('Sys.Extended.UI');
 
 Sys.Extended.UI.AutoCompleteBehavior = function(element) {
-    // <summary>
     // This behavior can be attached to a textbox to enable auto-complete/auto-suggest scenarios.
-    // </summary>
-    // <param name="element" type="Sys.UI.DomElement" DomElement="true" mayBeNull="false">
-    // DOM Element the behavior is associated with
-    // </param>
-    // <returns />
+    // "element" - DOM Element the behavior is associated with
     Sys.Extended.UI.AutoCompleteBehavior.initializeBase(this, [element]);
     
     // Path to the web service, or null if a page method

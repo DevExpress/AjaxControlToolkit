@@ -1251,8 +1251,8 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
     _isSelected: function(date, part) {
         // Gets whether the supplied date is the currently selected date
-        // param name "date" of type "Date" is the date to match
-        // param name "part" of type "String" is the most significant part of the date to test
+        // "date" - the date to match
+        // "part" - the most significant part of the date to test
 
         var value = this.get_selectedDate();
         if(!value) return false;
@@ -1272,8 +1272,8 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
 
     _isOther: function(date, part) {
         // Gets whether the supplied date is in a different view from the current visible month
-        // param name "date" of type "Date" is the date to match
-        // param name "part" of type "String" is the most significant part of the date to test
+        // "date" - the date to match
+        // "part" - the most significant part of the date to test
 
         var value = this._getEffectiveVisibleDate();
         switch(part) {
@@ -1294,8 +1294,8 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
 
     _getCssClass: function(date, part) {
         // Gets the cssClass to apply to a cell based on a supplied date
-        // param "date" of type "Date" is the date to match
-        // param "part" of type "String" is the most significant part of the date to test
+        // "date" - is the date to match
+        // "part" - the most significant part of the date to test
 
         if(this._isSelected(date, part)) {
             return "ajax__calendar_active";

@@ -1,13 +1,9 @@
 Type.registerNamespace('Sys.Extended.UI');
 
 Sys.Extended.UI.PopupBehavior = function(element) {
-    //<summary>
-    //The PopupBehavior is used to show/hide an element at a position
-    //relative to another element
-    //</summary>
-    //<param name="element" type="Sys.UI.DomElement" mayBeNull="false" domElement="true">
-    //The DOM element the behavior is associated with
-    //</param>
+    // The PopupBehavior is used to show/hide an element at a position
+    // relative to another element
+    // "element" - the DOM element the behavior is associated with
     Sys.Extended.UI.PopupBehavior.initializeBase(this, [element]);
 
     this._x = 0;
@@ -16,7 +12,7 @@ Sys.Extended.UI.PopupBehavior = function(element) {
     this._parentElement = null;
     this._parentElementID = null;
     this._moveHandler = null;
-    this._firstPopup = true;    
+    this._firstPopup = true;
     this._originalParent = null;
     this._visible = false;
 
@@ -30,19 +26,22 @@ Sys.Extended.UI.PopupBehavior = function(element) {
 }
 
 Sys.Extended.UI.PopupBehavior.prototype = {
+
     initialize: function() {
         Sys.Extended.UI.PopupBehavior.callBaseMethod(this, 'initialize');
+
         this._hidePopup();
         this.get_element().style.position = "absolute";
     },
 
     dispose: function() {
         var element = this.get_element();
-        if (element) {
-            if (this._visible) {
+
+        if(element) {
+            if(this._visible)
                 this.hide();
-            }
-            if (this._originalParent) {
+
+            if(this._originalParent) {
                 element.parentNode.removeChild(element);
                 this._originalParent.appendChild(element);
                 this._originalParent = null;
@@ -56,13 +55,13 @@ Sys.Extended.UI.PopupBehavior.prototype = {
         // Remove the animation ended events and wipe the animations
         // (we don't need to dispose them because that will happen
         // automatically in our base dispose)
-        if (this._onShow && this._onShow.get_animation()) {
+        if(this._onShow && this._onShow.get_animation())
             this._onShow.get_animation().remove_ended(this._onShowEndedHandler);
-        }
+
         this._onShow = null;
-        if (this._onHide && this._onHide.get_animation()) {
+        if(this._onHide && this._onHide.get_animation())
             this._onHide.get_animation().remove_ended(this._onHideEndedHandler);
-        }
+
         this._onHide = null;
 
         Sys.Extended.UI.PopupBehavior.callBaseMethod(this, 'dispose');
@@ -70,15 +69,14 @@ Sys.Extended.UI.PopupBehavior.prototype = {
 
     show: function() {
         // Ignore requests to hide multiple times
-        if (this._visible) {
+        if(this._visible)
             return;
-        }
 
         var eventArgs = new Sys.CancelEventArgs();
         this.raiseShowing(eventArgs);
-        if (eventArgs.get_cancel()) {
+
+        if(eventArgs.get_cancel())
             return;
-        }
 
         // Either show the popup or play an animation that does
         // (note: even if we're animating, we still show and position
@@ -88,7 +86,8 @@ Sys.Extended.UI.PopupBehavior.prototype = {
         var element = this.get_element();
         $common.setVisible(element, true);
         this.setupPopup();
-        if (this._onShow) {
+
+        if(this._onShow) {
             $common.setVisible(element, false);
             this.onShow();
         } else {
@@ -98,19 +97,17 @@ Sys.Extended.UI.PopupBehavior.prototype = {
 
     hide: function() {
         // Ignore requests to hide multiple times
-        if (!this._visible) {
+        if(!this._visible)
             return;
-        }
 
         var eventArgs = new Sys.CancelEventArgs();
         this.raiseHiding(eventArgs);
-        if (eventArgs.get_cancel()) {
+        if(eventArgs.get_cancel())
             return;
-        }
 
         // Either hide the popup or play an animation that does
         this._visible = false;
-        if (this._onHide) {
+        if(this._onHide) {
             this.onHide();
         } else {
             this._hidePopup();
@@ -119,17 +116,12 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     },
 
     getBounds: function() {
-        //<summary>
-        //Get the expected bounds of the popup relative to its parent
-        //</summary>
-        //<returns type="Sys.UI.Bounds" mayBeNull="false">
-        //Bounds of the popup relative to its parent
-        //</returns>
-        //<remarks>
-        //The actual final position can only be calculated after it is
-        //initially set and we can verify it doesn't bleed off the edge
-        //of the screen.
+        // Get the expected bounds of the popup relative to its parent
+        // returns bounds of the popup relative to its parent
 
+        // The actual final position can only be calculated after it is
+        // initially set and we can verify it doesn't bleed off the edge
+        // of the screen.
         var element = this.get_element();
 
         // offsetParent (doc element if absolutely positioned or no offsetparent available)
@@ -139,7 +131,8 @@ Sys.Extended.UI.PopupBehavior.prototype = {
         // this is basically so we can position the popup in the right spot even though it may not be absolutely positioned
         var diff;
         var parentBounds;
-        if (this.get_parentElement()) {
+
+        if(this.get_parentElement()) {
             // we will be positioning the element against the assigned parent
             parentBounds = $common.getBounds(this.get_parentElement());
             var offsetParentLocation = $common.getLocation(offsetParent);
@@ -151,18 +144,18 @@ Sys.Extended.UI.PopupBehavior.prototype = {
         }
 
         // width/height of the element, needed for calculations that involve width like centering
-        var width = element.offsetWidth - (element.clientLeft ? element.clientLeft * 2 : 0);
-        var height = element.offsetHeight - (element.clientTop ? element.clientTop * 2 : 0);
+        var width = element.offsetWidth - (element.clientLeft ? element.clientLeft * 2 : 0),
+            height = element.offsetHeight - (element.clientTop ? element.clientTop * 2 : 0);
 
         // Setting the width causes the element to grow by border+passing every
         // time.  But not setting it causes strange behavior in safari. Just set it once.
-        if (this._firstpopup) {
+        if(this._firstpopup) {
             element.style.width = width + "px";
             this._firstpopup = false;
         }
 
         var position, pos;
-        switch (this._positioningMode) {
+        switch(this._positioningMode) {
             case Sys.Extended.UI.PositioningMode.Center:
                 pos = {
                     x: Math.round(parentBounds.width / 2 - width / 2),
@@ -234,46 +227,38 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     },
 
     _verifyPosition: function(pos, elementWidth, elementHeight, parentBounds) {
-        //<summary>
         //Checks whether the popup is entirely visible and attempts to change its position to make it entirely visible.
-        //</summary>
-
         var newX = 0, newY = 0;
-
         var windowBounds = this._getWindowBounds();
 
         // Check horizontal positioning
-        if (!((pos.x + elementWidth > windowBounds.x + windowBounds.width) || (pos.x < windowBounds.x))) {
+        if(!((pos.x + elementWidth > windowBounds.x + windowBounds.width) || (pos.x < windowBounds.x))) {
             newX = pos.x;
         } else {
             newX = pos.altX;
 
-            if (pos.altX < windowBounds.x) {
-                if (pos.x > pos.altX) {
+            if(pos.altX < windowBounds.x) {
+                if(pos.x > pos.altX)
                     newX = pos.x;
-                }
-            } else if (windowBounds.width + windowBounds.x - pos.altX < elementWidth) {
+            } else if(windowBounds.width + windowBounds.x - pos.altX < elementWidth) {
                 var xDiff = pos.x > pos.altX ? Math.abs(windowBounds.x - pos.x) : (windowBounds.x - pos.x);
-                if (xDiff < elementWidth - windowBounds.width - windowBounds.x + pos.altX) {
+                if(xDiff < elementWidth - windowBounds.width - windowBounds.x + pos.altX)
                     newX = pos.x;
-                }
             }
         }
 
         // Check vertical positioning
-        if (!((pos.y + elementHeight > windowBounds.y + windowBounds.height) || (pos.y < windowBounds.y))) {
+        if(!((pos.y + elementHeight > windowBounds.y + windowBounds.height) || (pos.y < windowBounds.y))) {
             newY = pos.y;
         } else {
             newY = pos.altY;
 
-            if (pos.altY < windowBounds.y) {
-                if (windowBounds.y - pos.altY > elementHeight - windowBounds.height - windowBounds.y + pos.y) {
+            if(pos.altY < windowBounds.y) {
+                if(windowBounds.y - pos.altY > elementHeight - windowBounds.height - windowBounds.y + pos.y)
                     newY = pos.y;
-                }
-            } else if (windowBounds.height + windowBounds.y - pos.altY < elementHeight) {
-                if (windowBounds.y - pos.y < elementHeight - windowBounds.height - windowBounds.y + pos.altY) {
+            } else if(windowBounds.height + windowBounds.y - pos.altY < elementHeight) {
+                if(windowBounds.y - pos.y < elementHeight - windowBounds.height - windowBounds.y + pos.altY)
                     newY = pos.y;
-                }
             }
         }
 
@@ -281,121 +266,101 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     },
 
     _getWindowBounds: function() {
-
         var bounds = {
             x: this._getWindowScrollLeft(),
             y: this._getWindowScrollTop(),
             width: this._getWindowWidth(),
             height: this._getWindowHeight()
         };
-        return bounds;
 
+        return bounds;
     },
 
     _getWindowHeight: function() {
-
         var windowHeight = 0;
-        if (document.documentElement && document.documentElement.clientHeight) {
-            windowHeight = document.documentElement.clientHeight;
-        }
-        else if (document.body && document.body.clientHeight) {
-            windowHeight = document.body.clientHeight;
-        }
-        return windowHeight;
 
+        if(document.documentElement && document.documentElement.clientHeight)
+            windowHeight = document.documentElement.clientHeight;
+        else if(document.body && document.body.clientHeight)
+            windowHeight = document.body.clientHeight;
+
+        return windowHeight;
     },
 
     _getWindowWidth: function() {
-
         var windowWidth = 0;
-        if (document.documentElement && document.documentElement.clientWidth) {
-            windowWidth = document.documentElement.clientWidth;
-        }
-        else if (document.body && document.body.clientWidth) {
-            windowWidth = document.body.clientWidth;
-        }
-        return windowWidth;
 
+        if(document.documentElement && document.documentElement.clientWidth)
+            windowWidth = document.documentElement.clientWidth;
+        else if(document.body && document.body.clientWidth)
+            windowWidth = document.body.clientWidth;
+
+        return windowWidth;
     },
 
     _getWindowScrollTop: function() {
-
         var scrollTop = 0;
-        if (typeof (window.pageYOffset) == 'number') {
-            scrollTop = window.pageYOffset;
-        }
-        if (document.body && document.body.scrollTop) {
-            scrollTop = document.body.scrollTop;
-        }
-        else if (document.documentElement && document.documentElement.scrollTop) {
-            scrollTop = document.documentElement.scrollTop;
-        }
-        return scrollTop;
 
+        if(typeof (window.pageYOffset) == 'number')
+            scrollTop = window.pageYOffset;
+        if(document.body && document.body.scrollTop)
+            scrollTop = document.body.scrollTop;
+        else if(document.documentElement && document.documentElement.scrollTop)
+            scrollTop = document.documentElement.scrollTop;
+
+        return scrollTop;
     },
 
     _getWindowScrollLeft: function() {
-
         var scrollLeft = 0;
-        if (typeof (window.pageXOffset) == 'number') {
-            scrollLeft = window.pageXOffset;
-        }
-        else if (document.body && document.body.scrollLeft) {
-            scrollLeft = document.body.scrollLeft;
-        }
-        else if (document.documentElement && document.documentElement.scrollLeft) {
-            scrollLeft = document.documentElement.scrollLeft;
-        }
-        return scrollLeft;
 
+        if(typeof (window.pageXOffset) == 'number')
+            scrollLeft = window.pageXOffset;
+        else if(document.body && document.body.scrollLeft)
+            scrollLeft = document.body.scrollLeft;
+        else if(document.documentElement && document.documentElement.scrollLeft)
+            scrollLeft = document.documentElement.scrollLeft;
+
+        return scrollLeft;
     },
 
     adjustPopupPosition: function(bounds) {
-        //<summary>
-        //Adjust the position of the popup after it's originally bet set
-        //to make sure that it's visible on the page.
-        //</summary>
-        //<param name="bounds" type="Sys.UI.Bounds" mayBeNull="true" optional="true">
-        //Original bounds of the parent element
-        //</param>
-
+        // Adjust the position of the popup after it's originally bet set
+        // to make sure that it's visible on the page.
+        // "bounds" - original bounds of the parent element
         var element = this.get_element();
-        if (!bounds) {
+        if(!bounds)
             bounds = this.getBounds();
-        }
 
         // Get the new bounds now that we've shown the popup
-        var newPosition = $common.getBounds(element);
-        var updateNeeded = false;
+        var newPosition = $common.getBounds(element),
+            updateNeeded = false;
 
-        if (newPosition.x < 0) {
+        if(newPosition.x < 0) {
             bounds.x -= newPosition.x;
             updateNeeded = true;
         }
-        if (newPosition.y < 0) {
+        if(newPosition.y < 0) {
             bounds.y -= newPosition.y;
             updateNeeded = true;
         }
 
         // If the popup was off the screen, reposition it
-        if (updateNeeded) {
+        if(updateNeeded)
             $common.setLocation(element, bounds);
-        }
     },
 
     addBackgroundIFrame: function() {
-        //<summary>
-        //Add an empty IFRAME behind the popup (for IE6 only) so that SELECT, etc., won't
-        //show through the popup.
-        //</summary>
+        // Add an empty IFRAME behind the popup (for IE6 only) so that SELECT, etc., won't
+        // show through the popup.
 
         // Get the child frame
         var element = this.get_element();
-        if ((Sys.Browser.agent === Sys.Browser.InternetExplorer) && (Sys.Browser.version < 7)) {
+        if((Sys.Browser.agent === Sys.Browser.InternetExplorer) && (Sys.Browser.version < 7)) {
             var childFrame = element._hideWindowedElementsIFrame;
 
             // Create the child frame if it wasn't found
-            if (!childFrame) {
+            if(!childFrame) {
                 childFrame = document.createElement("iframe");
                 childFrame.src = "javascript:'<html></html>';";
                 childFrame.style.position = "absolute";
@@ -415,22 +380,17 @@ Sys.Extended.UI.PopupBehavior.prototype = {
 
             childFrame.style.left = element.style.left;
             childFrame.style.top = element.style.top;
-
             childFrame.style.display = element.style.display;
 
-            if (element.currentStyle && element.currentStyle.zIndex) {
+            if(element.currentStyle && element.currentStyle.zIndex)
                 childFrame.style.zIndex = element.currentStyle.zIndex;
-            } else if (element.style.zIndex) {
+            else if(element.style.zIndex)
                 childFrame.style.zIndex = element.style.zIndex;
-            }
         }
     },
 
     setupPopup: function() {
-        //<summary>
-        //Position the popup relative to its parent
-        //</summary>
-
+        // Position the popup relative to its parent
         var element = this.get_element();
         var bounds = this.getBounds();
         $common.setLocation(element, bounds);
@@ -444,44 +404,39 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     _hidePopup: function() {
         var element = this.get_element();
         $common.setVisible(element, false);
-        if (element.originalWidth) {
+        
+        if(element.originalWidth) {
             element.style.width = element.originalWidth + "px";
             element.originalWidth = null;
         }
     },
 
     _hideCleanup: function() {
-        //<summary>
-        //Perform cleanup after hiding the element
-        //</summary>
-
+        // Perform cleanup after hiding the element
         var element = this.get_element();
 
         // Remove the tracking handler
-        if (this._moveHandler) {
+        if(this._moveHandler) {
             Sys.UI.DomEvent.removeHandler(element, "move", this._moveHandler);
             this._moveHandler = null;
         }
 
         // Hide the child frame
-        if (Sys.Browser.agent === Sys.Browser.InternetExplorer) {
+        if(Sys.Browser.agent === Sys.Browser.InternetExplorer) {
             var childFrame = element._hideWindowedElementsIFrame;
-            if (childFrame) {
+            if(childFrame)
                 childFrame.style.display = "none";
-            }
         }
 
         this.raiseHidden(Sys.EventArgs.Empty);
     },
 
     _onMove: function() {
-        //<summary>
-        //Track the popup's movements so the hidden IFrame (IE6 only) can
-        //be moved along with it
-        //</summary>
+        // Track the popup's movements so the hidden IFrame (IE6 only) can
+        // be moved along with it
 
         var element = this.get_element();
-        if (element._hideWindowedElementsIFrame) {
+        if(element._hideWindowedElementsIFrame) {
             element.parentNode.insertBefore(element._hideWindowedElementsIFrame, element);
             element._hideWindowedElementsIFrame.style.top = element.style.top;
             element._hideWindowedElementsIFrame.style.left = element.style.left;
@@ -489,37 +444,39 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     },
 
     get_onShow: function() {
-        //<value type="String" mayBeNull="true">
-        //Generic OnShow Animation's JSON definition
-        //</value>
+        // Generic OnShow Animation's JSON definition
         return this._onShow ? this._onShow.get_json() : null;
     },
+
     set_onShow: function(value) {
-        if (!this._onShow) {
+        if(!this._onShow) {
             this._onShow = new Sys.Extended.UI.Animation.GenericAnimationBehavior(this.get_element());
             this._onShow.initialize();
         }
+
         this._onShow.set_json(value);
         var animation = this._onShow.get_animation();
-        if (animation) {
+
+        if(animation)
             animation.add_ended(this._onShowEndedHandler);
-        }
+
         this.raisePropertyChanged('onShow');
     },
+
     get_onShowBehavior: function() {
-        //<value type="Sys.Extended.UI.Animation.GenericAnimationBehavior">
-        //Generic OnShow Animation's behavior
-        //</value>
+        // Generic OnShow Animation's behavior
         return this._onShow;
     },
+
     onShow: function() {
-        if (this._onShow) {
-            if (this._onHide) {
+        if(this._onShow) {
+            if(this._onHide)
                 this._onHide.quit();
-            }
+
             this._onShow.play();
         }
     },
+
     _onShowEnded: function() {
         // Make sure the popup is where it belongs
         this.adjustPopupPosition();
@@ -529,69 +486,73 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     },
 
     get_onHide: function() {
-        //<value type="String" mayBeNull="true">
-        //Generic OnHide Animation's JSON definition
-        //</value>
+        // Generic OnHide Animation's JSON definition
         return this._onHide ? this._onHide.get_json() : null;
     },
+
     set_onHide: function(value) {
-        if (!this._onHide) {
+        if(!this._onHide) {
             this._onHide = new Sys.Extended.UI.Animation.GenericAnimationBehavior(this.get_element());
             this._onHide.initialize();
         }
+
         this._onHide.set_json(value);
         var animation = this._onHide.get_animation();
-        if (animation) {
+
+        if(animation)
             animation.add_ended(this._onHideEndedHandler);
-        }
+
         this.raisePropertyChanged('onHide');
     },
+
     get_onHideBehavior: function() {
-        //<value type="Sys.Extended.UI.Animation.GenericAnimationBehavior">
-        //Generic OnHide Animation's behavior
-        //</value>
+        // Generic OnHide Animation's behavior
         return this._onHide;
     },
+
     onHide: function() {
-        if (this._onHide) {
-            if (this._onShow) {
+        if(this._onHide) {
+            if(this._onShow)
                 this._onShow.quit();
-            }
+
             this._onHide.play();
         }
     },
+
     _onHideEnded: function() {
         this._hideCleanup();
     },
 
     get_parentElement: function() {
-        if (!this._parentElement && this._parentElementID) {
+        if(!this._parentElement && this._parentElementID)
             this.set_parentElement($get(this._parentElementID));
-            //Sys.Debug.assert(this._parentElement != null, String.format(Sys.Extended.UI.Resources.PopupExtender_NoParentElement, this._parentElementID));
-        }
+
         return this._parentElement;
     },
+
     set_parentElement: function(element) {
         this._parentElement = element;
         this.raisePropertyChanged('parentElement');
     },
 
     get_parentElementID: function() {
-        if (this._parentElement) {
+        if(this._parentElement)
             return this._parentElement.id
-        }
+
         return this._parentElementID;
     },
+
     set_parentElementID: function(elementID) {
         this._parentElementID = elementID;
-        if (this.get_isInitialized()) {
+
+        if(this.get_isInitialized())
             this.set_parentElement($get(elementID));
-        }
     },
 
     get_positioningMode: function() {
         return this._positioningMode;
     },
+
     set_positioningMode: function(mode) {
         this._positioningMode = mode;
         this.raisePropertyChanged('positioningMode');
@@ -600,14 +561,15 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     get_x: function() {
         return this._x;
     },
+
     set_x: function(value) {
-        if (value != this._x) {
+        if(value != this._x) {
             this._x = value;
 
             // Reposition the popup if it's already showing
-            if (this._visible) {
+            if(this._visible)
                 this.setupPopup();
-            }
+
             this.raisePropertyChanged('x');
         }
     },
@@ -615,14 +577,15 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     get_y: function() {
         return this._y;
     },
+
     set_y: function(value) {
-        if (value != this._y) {
+        if(value != this._y) {
             this._y = value;
 
             // Reposition the popup if it's already showing
-            if (this._visible) {
+            if(this._visible)
                 this.setupPopup();
-            }
+
             this.raisePropertyChanged('y');
         }
     },
@@ -634,61 +597,66 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     add_showing: function(handler) {
         this.get_events().addHandler('showing', handler);
     },
+
     remove_showing: function(handler) {
         this.get_events().removeHandler('showing', handler);
     },
+
     raiseShowing: function(eventArgs) {
         var handler = this.get_events().getHandler('showing');
-        if (handler) {
+        if(handler)
             handler(this, eventArgs);
-        }
     },
 
     add_shown: function(handler) {
         this.get_events().addHandler('shown', handler);
     },
+
     remove_shown: function(handler) {
         this.get_events().removeHandler('shown', handler);
     },
+
     raiseShown: function(eventArgs) {
         var handler = this.get_events().getHandler('shown');
-        if (handler) {
+        if(handler)
             handler(this, eventArgs);
-        }
     },
 
     add_hiding: function(handler) {
         this.get_events().addHandler('hiding', handler);
     },
+
     remove_hiding: function(handler) {
         this.get_events().removeHandler('hiding', handler);
     },
+
     raiseHiding: function(eventArgs) {
         var handler = this.get_events().getHandler('hiding');
-        if (handler) {
+        if(handler)
             handler(this, eventArgs);
-        }
     },
 
     add_hidden: function(handler) {
         this.get_events().addHandler('hidden', handler);
     },
+
     remove_hidden: function(handler) {
         this.get_events().removeHandler('hidden', handler);
     },
+
     raiseHidden: function(eventArgs) {
         var handler = this.get_events().getHandler('hidden');
-        if (handler) {
+        if(handler)
             handler(this, eventArgs);
-        }
     }
 }
 Sys.Extended.UI.PopupBehavior.registerClass('Sys.Extended.UI.PopupBehavior', Sys.Extended.UI.BehaviorBase);
 //Sys.registerComponent(Sys.Extended.UI.PopupBehavior, { name: "popup" });
 
-Sys.Extended.UI.PositioningMode = function() {  
+Sys.Extended.UI.PositioningMode = function() {
     throw Error.invalidOperation();
 }
+
 Sys.Extended.UI.PositioningMode.prototype = {
     Absolute: 0,
     Center: 1,
@@ -699,4 +667,5 @@ Sys.Extended.UI.PositioningMode.prototype = {
     Right: 6,
     Left: 7
 }
+
 Sys.Extended.UI.PositioningMode.registerEnum('Sys.Extended.UI.PositioningMode');

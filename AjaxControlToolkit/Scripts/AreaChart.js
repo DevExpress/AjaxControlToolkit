@@ -476,11 +476,6 @@ Sys.Extended.UI.AreaChart.registerClass("Sys.Extended.UI.AreaChart", Sys.Extende
 //Sys.registerComponent(Sys.Extended.UI.AreaChart, { name: 'AreaChart', parameters: [{ name: 'ClientSeries', type: 'AreaChartSeries[]' }] });
 
 Sys.Extended.UI.AreaChartType = function() {
-    /// <summary>
-    /// Type of Area Chart
-    /// </summary>
-    /// <field name="Basic" type="Number" integer="true" />
-    /// <field name="Stacked" type="Number" integer="true" />
     throw Error.invalidOperation();
 }
 Sys.Extended.UI.AreaChartType.prototype = {

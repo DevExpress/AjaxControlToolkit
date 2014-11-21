@@ -30,6 +30,7 @@ Sys.Extended.UI.ResizableControlBehavior = function(element) {
     this._onmouseupDelegate = null;
     this._onselectstartDelegate = null;
 }
+
 Sys.Extended.UI.ResizableControlBehavior.prototype = {
     initialize: function() {
         Sys.Extended.UI.ResizableControlBehavior.callBaseMethod(this, 'initialize');
@@ -103,25 +104,25 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         }
 
         if(this._onmousemoveDelegate) {
-            if(this.tracking) {
+            if(this.tracking)
                 $removeHandler(document, 'mousemove', this._onmousemoveDelegate);
-            }
+
             this._onmousemoveDelegate = null;
         }
 
         if(this._onmouseupDelegate) {
-            if(this.tracking) {
+            if(this.tracking)
                 $removeHandler(document, 'mouseup', this._onmouseupDelegate);
-            }
+
             this._onmouseupDelegate = null;
         }
 
         if(this._onselectstartDelegate) {
             if(this.tracking) {
                 $removeHandler(document, 'selectstart', this._onselectstartDelegate);
-                if(Sys.Browser.agent === Sys.Browser.Opera) {
+
+                if(Sys.Browser.agent === Sys.Browser.Opera)
                     $removeHandler(document, 'mousedown', this._onselectstartDelegate);
-                }
             }
             this._onselectstartDelegate = null;
         }
@@ -134,16 +135,14 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     _onmouseout: function() {
-        if(!this._tracking) {
+        if(!this._tracking)
             Sys.UI.DomElement.removeCssClass(this._frame, this._ResizableCssClass);
-        }
     },
 
     _onmousedown: function(e) {
         // TODO: Fix for new event model
-        if(!e) {
-            e = event;
-        }
+        if(!e) e = event;
+
         this._onmousedownImplementation(e.clientX, e.clientY);
     },
 
@@ -151,20 +150,21 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         this._tracking = true;
         this._resizeControl(clientX, clientY, 0, 0);
         this._lining.style.visibility = 'visible';  // Overlay resizing control to avoid interacting with it (ex: IFRAME)
+
         $addHandler(document, 'mousemove', this._onmousemoveDelegate);
         $addHandler(document, 'mouseup', this._onmouseupDelegate);
         $addHandler(document, 'selectstart', this._onselectstartDelegate);
-        if(Sys.Browser.agent === Sys.Browser.Opera) {
+
+        if(Sys.Browser.agent === Sys.Browser.Opera)
             $addHandler(document, 'mousedown', this._onselectstartDelegate);
-        }
+
         this.raiseResizeBegin();
     },
 
     _onmousemove: function(e) {
         // TODO: Fix for new event model
-        if(!e) {
-            e = event;
-        }
+        if(!e) e = event;
+
         this._onmousemoveImplementation(e.clientX, e.clientY);
     },
 
@@ -180,18 +180,21 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         this._tracking = false;
         this._rememberSize();
         this._lining.style.visibility = 'hidden';
+
         $removeHandler(document, 'mousemove', this._onmousemoveDelegate);
         $removeHandler(document, 'mouseup', this._onmouseupDelegate);
         $removeHandler(document, 'selectstart', this._onselectstartDelegate);
-        if(Sys.Browser.agent === Sys.Browser.Opera) {
+
+        if(Sys.Browser.agent === Sys.Browser.Opera)
             $removeHandler(document, 'mousedown', this._onselectstartDelegate);
-        }
+
         Sys.UI.DomElement.removeCssClass(this._frame, this._ResizableCssClass);
     },
 
     _onselectstart: function(e) {
         // Don't allow selection during drag
         e.preventDefault();
+
         return false;
     },
 
@@ -199,20 +202,25 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         // Save last client X/Y
         this._lastClientX = clientX;
         this._lastClientY = clientY;
+
         // Calculate new lining/frame width/height
-        var _liningWidth = Math.min(Math.max(this._lining.offsetWidth + deltaX, Math.max(this._MinimumWidth, this._handle.offsetWidth)), this._MaximumWidth);
-        var _liningHeight = Math.min(Math.max(this._lining.offsetHeight + deltaY, Math.max(this._MinimumHeight, this._handle.offsetHeight)), this._MaximumHeight);
+        var _liningWidth = Math.min(Math.max(this._lining.offsetWidth + deltaX, Math.max(this._MinimumWidth, this._handle.offsetWidth)), this._MaximumWidth),
+            _liningHeight = Math.min(Math.max(this._lining.offsetHeight + deltaY, Math.max(this._MinimumHeight, this._handle.offsetHeight)), this._MaximumHeight);
+
         // Set new lining/frame width/height
         this._lining.style.width = _liningWidth + 'px';
         this._lining.style.height = _liningHeight + 'px';
         this._frame.style.width = _liningWidth + 'px';
         this._frame.style.height = _liningHeight + 'px';
+
         // Calculate new handle left/top
-        var _handleLeft = this._lining.offsetWidth - this._handle.offsetWidth + this._HandleOffsetX;
-        var _handleTop = this._lining.offsetHeight - this._handle.offsetHeight + this._HandleOffsetY;
+        var _handleLeft = this._lining.offsetWidth - this._handle.offsetWidth + this._HandleOffsetX,
+            _handleTop = this._lining.offsetHeight - this._handle.offsetHeight + this._HandleOffsetY;
+
         // Set new handle left/top
         this._handle.style.left = _handleLeft + 'px';
         this._handle.style.top = _handleTop + 'px';
+
         // Raise the resizing event
         this.raiseResizing();
     },
@@ -226,25 +234,20 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     _measurementToNumber: function(m) {
-        /// <summary>
-        /// Get the magnitude of a measurement
-        /// </summary>
-        /// <param name="m" type="String">
-        /// Measurement
-        /// </param>
-        /// <returns type="String">
-        /// Magnitude of a measurement
-        /// </returns>
+        // Get the magnitude of a measurement
+        // "m" - Measurement
+        // returns - magnitude of a measurement
         return m.replace('px', '');
     },
 
     get_HandleCssClass: function() {
         return this._HandleCssClass;
     },
+
     set_HandleCssClass: function(value) {
-        if(this._HandleCssClass) {
+        if(this._HandleCssClass)
             throw String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_CannotChangeProperty, 'HandleCssClass');
-        }
+
         this._HandleCssClass = value;
         this.raisePropertyChanged('HandleCssClass');
     },
@@ -252,10 +255,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     get_ResizableCssClass: function() {
         return this._ResizableCssClass;
     },
+
     set_ResizableCssClass: function(value) {
-        if(this._ResizableCssClass) {
+        if(this._ResizableCssClass)
             throw String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_CannotChangeProperty, 'ResizableCssClass');
-        }
+
         this._ResizableCssClass = value;
         this.raisePropertyChanged('ResizableCssClass');
     },
@@ -263,6 +267,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     get_HandleOffsetX: function() {
         return this._HandleOffsetX;
     },
+
     set_HandleOffsetX: function(value) {
         if(this._HandleOffsetX != value) {
             this._HandleOffsetX = value;
@@ -273,6 +278,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     get_HandleOffsetY: function() {
         return this._HandleOffsetY;
     },
+
     set_HandleOffsetY: function(value) {
         if(this._HandleOffsetY != value) {
             this._HandleOffsetY = value;
@@ -283,6 +289,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     get_MinimumWidth: function() {
         return this._MinimumWidth;
     },
+
     set_MinimumWidth: function(value) {
         if(this._MinimumWidth != value) {
             this._MinimumWidth = value;
@@ -293,6 +300,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     get_MinimumHeight: function() {
         return this._MinimumHeight;
     },
+
     set_MinimumHeight: function(value) {
         if(this._MinimumHeight != value) {
             this._MinimumHeight = value;
@@ -303,6 +311,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     get_MaximumWidth: function() {
         return this._MaximumWidth;
     },
+
     set_MaximumWidth: function(value) {
         if(this._MaximumWidth != value) {
             this._MaximumWidth = value;
@@ -313,6 +322,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     get_MaximumHeight: function() {
         return this._MaximumHeight;
     },
+
     set_MaximumHeight: function(value) {
         if(this._MaximumHeight != value) {
             this._MaximumHeight = value;
@@ -323,109 +333,111 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     add_resizing: function(handler) {
         this.get_events().addHandler("resizing", handler);
     },
+
     remove_resizing: function(handler) {
         this.get_events().removeHandler("resizing", handler);
     },
+
     raiseResizing: function() {
         var onResizingHandler = this.get_events().getHandler("resizing");
-        if(onResizingHandler) {
+        if(onResizingHandler)
             onResizingHandler(this, Sys.EventArgs.Empty);
-        }
     },
 
     get_resizing: function() {
-        /// <value type="Object">
-        /// Function to invoke on resizing (can a Function, name of a Function, or expression that evaluates to a Function)
-        /// </value>
+        // Function to invoke on resizing (can a Function, name of a Function, or expression that evaluates to a Function)
         return this.get_events().getHandler("resizing");
     },
+
     set_resizing: function(value) {
         if(value && (0 < value.length)) {
             var func = $common.resolveFunction(value);
-            if(func) {
+
+            if(func)
                 this.add_resizing(func);
-            } else {
+            else
                 throw Error.argumentType('value', typeof (value), 'Function', String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_InvalidHandler, 'resizing'));
-            }
         }
     },
 
     add_resize: function(handler) {
         this.get_events().addHandler("resize", handler);
     },
+
     remove_resize: function(handler) {
         this.get_events().removeHandler("resize", handler);
     },
+
     raiseResize: function() {
         var onResizeHandler = this.get_events().getHandler("resize");
-        if(onResizeHandler) {
+        if(onResizeHandler)
             onResizeHandler(this, Sys.EventArgs.Empty);
-        }
     },
 
     get_resize: function() {
-        /// <value type="Object">
-        /// Function to invoke on resize (can be a Function, name of a Function, or expression that evaluates to a Function)
-        /// </value>
+        // Function to invoke on resize (can be a Function, name of a Function, or expression that evaluates to a Function)
         return this.get_events().getHandler("resize");
     },
+
     set_resize: function(value) {
         if(value && (0 < value.length)) {
             var func = $common.resolveFunction(value);
-            if(func) {
+
+            if(func)
                 this.add_resize(func);
-            } else {
+            else
                 throw Error.argumentType('value', typeof (value), 'Function', String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_InvalidHandler, 'resize'));
-            }
         }
     },
 
     add_resizebegin: function(handler) {
         this.get_events().addHandler("resizebegin", handler);
     },
+
     remove_resizebegin: function(handler) {
         this.get_events().removeHandler("resizebegin", handler);
     },
+
     raiseResizeBegin: function() {
         var onresizebeginHandler = this.get_events().getHandler("resizebegin");
-        if(onresizebeginHandler) {
+
+        if(onresizebeginHandler)
             onresizebeginHandler(this, Sys.EventArgs.Empty);
-        }
     },
 
     get_resizebegin: function() {
-        /// <value type="Object">
-        /// Function to invoke on resizebegin (can be a Function, name of a Function, or expression that evaluates to a Function)
-        /// </value>
+        // Function to invoke on resizebegin (can be a Function, name of a Function, or expression that evaluates to a Function)
         return this.get_events().getHandler("resizebegin");
     },
+
     set_resizebegin: function(value) {
         if(value && (0 < value.length)) {
             var func = $common.resolveFunction(value);
-            if(func) {
+
+            if(func)
                 this.add_resizebegin(func);
-            } else {
+            else
                 throw Error.argumentType('value', typeof (value), 'Function', String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_InvalidHandler, 'resizebegin'));
-            }
         }
     },
 
     get_Size: function() {
-        /// <value type="Object">
-        /// Size of the target (of the form {width, height})
-        /// </value>
+        // Size of the target (of the form {width, height})
         return {
             width: this._measurementToNumber($common.getCurrentStyle(this._lining, 'width')),
             height: this._measurementToNumber($common.getCurrentStyle(this._lining, 'height'))
         };
     },
+
     set_Size: function(value) {
-        var deltaX = value.width - this._measurementToNumber($common.getCurrentStyle(this._lining, 'width'));
-        var deltaY = value.height - this._measurementToNumber($common.getCurrentStyle(this._lining, 'height'));
+        var deltaX = value.width - this._measurementToNumber($common.getCurrentStyle(this._lining, 'width')),
+            deltaY = value.height - this._measurementToNumber($common.getCurrentStyle(this._lining, 'height'));
+
         this._resizeControl(0, 0, deltaX, deltaY);
         this._rememberSize();
         this.raisePropertyChanged('Size');
     }
 }
+
 Sys.Extended.UI.ResizableControlBehavior.registerClass('Sys.Extended.UI.ResizableControlBehavior', Sys.Extended.UI.BehaviorBase);
 //Sys.registerComponent(Sys.Extended.UI.ResizableControlBehavior, { name: "resizable" });

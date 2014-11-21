@@ -6,7 +6,9 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.OrderedList = function(element) {
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.OrderedList.prototype = {
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.OrderedList.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.OrderedList.callBaseMethod(this, "callMethod"))
+            return false;
+
         this._designPanel._execCommand("InsertOrderedList");
     }
 }

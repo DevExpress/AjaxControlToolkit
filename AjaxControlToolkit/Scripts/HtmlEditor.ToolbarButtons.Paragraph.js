@@ -6,12 +6,16 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.Paragraph = function(element) {
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.Paragraph.prototype = {
     checkState: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.Paragraph.callBaseMethod(this, "checkState")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.Paragraph.callBaseMethod(this, "checkState"))
+            return false;
+
         return this._designPanel._textAlignState("");
     },
 
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.Paragraph.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.Paragraph.callBaseMethod(this, "callMethod"))
+            return false;
+
         this._designPanel._execCommand("Paragraph");
     }
 }

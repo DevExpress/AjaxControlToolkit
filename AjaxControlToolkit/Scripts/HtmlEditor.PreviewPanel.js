@@ -2,6 +2,7 @@ Type.registerNamespace("Sys.Extended.UI.HtmlEditor");
 
 Sys.Extended.UI.HtmlEditor.PreviewPanel = function(element) {
     Sys.Extended.UI.HtmlEditor.PreviewPanel.initializeBase(this, [element]);
+
     this._focus$delegate = Function.createDelegate(this, this._focus_event);
     this._blur$delegate = Function.createDelegate(this, this._blur_event);
     this._doc = null;
@@ -10,10 +11,12 @@ Sys.Extended.UI.HtmlEditor.PreviewPanel = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.PreviewPanel.prototype = {
+
     _focus: function() {
         try { // some browsers fail when invisible
             this.get_element().contentWindow.focus();
         } catch(e) { }
+
         this._focused();
     },
 
@@ -21,9 +24,11 @@ Sys.Extended.UI.HtmlEditor.PreviewPanel.prototype = {
         if(this._panel_timer == null) {
             var contentWindow = this.get_element().contentWindow;
             var panel = this;
+
             this._really_focused();
             this._panel_timer = setTimeout(function() { contentWindow.focus(); panel._really_focused(); panel._panel_timer = null; }, 0);
         }
+
         return true;
     },
 
@@ -32,24 +37,27 @@ Sys.Extended.UI.HtmlEditor.PreviewPanel.prototype = {
             clearTimeout(this._panel_timer);
             this._panel_timer = null;
         }
+
         return true;
     },
 
     _activate: function(value) {
         Sys.Extended.UI.HtmlEditor.PreviewPanel.callBaseMethod(this, "_activate");
+
         this._content = value;
         this._wasFocused = false;
         this._initIframe(value);
-        //Sys.Extended.UI.HtmlEditor._addEvents(this._doc.body, ["mousedown"], this._focus$delegate);
+
         Sys.Extended.UI.HtmlEditor._addEvents(this.get_element().contentWindow, ["focus"], this._focus$delegate);
         Sys.Extended.UI.HtmlEditor._addEvents(this.get_element().contentWindow, ["blur"], this._blur$delegate);
+
         this._activateFinished();
     },
 
     _deactivate: function() {
         Sys.Extended.UI.HtmlEditor._removeEvents(this.get_element().contentWindow, ["blur"], this._blur$delegate);
         Sys.Extended.UI.HtmlEditor._removeEvents(this.get_element().contentWindow, ["focus"], this._focus$delegate);
-        //Sys.Extended.UI.HtmlEditor._removeEvents(this._doc.body, ["mousedown"], this._focus$delegate);
+
         if(Sys.Extended.UI.HtmlEditor.isIE) {
             try { // if src changed (with link in document) - security exception can occur in IE
                 this._doc.open();
@@ -58,8 +66,10 @@ Sys.Extended.UI.HtmlEditor.PreviewPanel.prototype = {
                 this.get_element().src = "javascript:false;";
             } catch(ex) { }
         }
+
         this._doc = null;
         this._content = "";
+
         Sys.Extended.UI.HtmlEditor.PreviewPanel.callBaseMethod(this, "_deactivate");
     },
 
@@ -67,10 +77,8 @@ Sys.Extended.UI.HtmlEditor.PreviewPanel.prototype = {
         var str = Sys.Extended.UI.HtmlEditor.Trim(value);
         this._doc = this.get_element().contentWindow.document;
 
-        if(!Sys.Extended.UI.HtmlEditor.isIE) {
-        } else {
+        if(Sys.Extended.UI.HtmlEditor.isIE)
             str = str.replace(/&amp;/ig, "&");
-        }
 
         this._doc.open();
         this._doc.write("<html><head><link rel=\"stylesheet\" href=\"" + this._editPanel.get_documentCssPath() + "\" media=\"all\" /></head><body>" + str + "</body></html>");

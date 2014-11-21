@@ -7,8 +7,11 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.ColorButton = function(element) {
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.ColorButton.prototype = {
 
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.ColorButton.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.ColorButton.callBaseMethod(this, "callMethod"))
+            return false;
+
         this.openPopup(Function.createDelegate(this, this._onopened));
+
         return true;
     },
 

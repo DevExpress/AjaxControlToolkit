@@ -5,6 +5,7 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.BoxButton = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.BoxButton.prototype = {
+
     initialize: function() {
         Sys.Extended.UI.HtmlEditor.ToolbarButtons.BoxButton.callBaseMethod(this, "initialize");
     }

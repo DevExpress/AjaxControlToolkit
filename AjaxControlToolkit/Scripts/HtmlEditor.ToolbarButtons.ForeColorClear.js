@@ -5,8 +5,11 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.ForeColorClear = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.ForeColorClear.prototype = {
+
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.ForeColorClear.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.ForeColorClear.callBaseMethod(this, "callMethod"))
+            return false;
+
         this._designPanel._execCommand("forecolor", false, "");
     }
 }

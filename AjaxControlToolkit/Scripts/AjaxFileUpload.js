@@ -1,5 +1,4 @@
 ﻿Type.registerNamespace("Sys.Extended.UI.AjaxFileUpload");
-//Type.registerNamespace("AjaxFileUpload");
 
 // Utils
 Sys.Extended.UI.AjaxFileUpload.Utils = function() {
@@ -87,9 +86,6 @@ Sys.Extended.UI.AjaxFileUpload.Utils = function() {
 
 // Item
 Sys.Extended.UI.AjaxFileUpload.Item = function(parentId, fileItem, onRemoveItem) {
-
-
-
     this._deleteButton = null;
     this._parentId = parentId;
     this._inputElementValue = fileItem.value;
@@ -302,11 +298,8 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     },
 
     this.onFileSelectedHandler = function(e) {
-        /// <summary>
         /// User selects file through browser open file dialog. 
         /// We generate file item and add it into file list, and recreate new element for next file.
-        /// </summary>
-        /// <param name="e"></param>
 
         // generate file item to be uploaded
         var fileItem = {
@@ -326,10 +319,6 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     };
 
     this.createInputFileElement = function() {
-        /// <summary>
-        /// Create hidden input element file.
-        /// </summary>
-
         var currentInputFile = elements.inputFile;
 
         // disfunction current input file element
@@ -361,9 +350,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     };
 
     this.startUpload = function() {
-        /// <summary>
-        /// Get un-uploaded file on the top from queue and start upload it.
-        /// </summary>
+        // Get un-uploaded file on the top from queue and start upload it.
 
         var form = this._form,
             fileItem = control.getNextFile();
@@ -401,10 +388,6 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     };
 
     this.cancelUpload = function() {
-        /// <summary>
-        /// Send request to server to abort current upload progress.
-        /// </summary>
-
         // send message to server to cancel this upload
         var xhr = new XMLHttpRequest(),
             self = this;
@@ -438,7 +421,6 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         iframe.height = "0";
         iframe.style.display = "none";
         iframe.src = "about:blank";
-        //iframe.src = "javascript:'<script>window.onload=function(){document.write(\\'<script>document.domain=\\\"" + document.domain + "\\\";<\\\\/script>\\');document.close();};<\/script>'";
         iframe.id = name;
         iframe.name = name;
         iframe.security = "restricted";
@@ -452,10 +434,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     };
 
     this.onIFrameLoadedHandler = function(e) {
-        /// <summary>
-        /// Event handler to capture when iframe receive response from server.
-        /// </summary>
-        /// <param name="e"></param>
+        // Event handler to capture when iframe receive response from server.
 
         if(!control._currentFileId)
             return;
@@ -493,10 +472,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     };
 
     this.setThrobber = function(value) {
-        /// <summary>
-        /// Show or hide throbber when processing upload.
-        /// </summary>
-        /// <param name="value"></param>
+        // Show or hide throbber when processing upload.
 
         if(control.get_serverPollingSupport()) {
             control.setPercent(0);
@@ -512,10 +488,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     };
 
     this.pollingServerProgress = function(value) {
-        /// <summary>
-        /// Get percentage of uploading progress from server.
-        /// </summary>
-        /// <param name="value"></param>
+        // Get percentage of uploading progress from server.
 
         if(!value || !control._currentFileId)
             return;
@@ -525,9 +498,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     };
 
     this.createForm = function() {
-        /// <summary>
-        /// Create form that we use to upload file one by one taken from queue.
-        /// </summary>
+        // Create form that we use to upload file one by one taken from queue.
 
         var form,
             formId = "___postForm" + control.get_id();
@@ -608,10 +579,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
     // #endregion
 
     this.addFilesToQueue = function(files) {
-        /// <summary>
-        /// Validate and generate file item from HTML5 files.
-        /// </summary>
-        /// <param name="files">HTML5 files.</param>
+        // Validate and generate file item from HTML5 files.
 
         for(var i = 0; i < files.length; i++) {
 
@@ -654,9 +622,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
     },
 
     this.startUpload = function() {
-        /// <summary>
-        /// Get un-uploaded file on the top from queue and start upload it.
-        /// </summary>
+        // Get un-uploaded file on the top from queue and start upload it.
 
         var fileItem = control.getNextFile();
 
@@ -674,11 +640,6 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
     };
 
     this.upload = function(fileItem) {
-        /// <summary>
-        /// Process file item for uploading.
-        /// </summary>
-        /// <param name="fileItem">file item to be uploaded</param>
-
         if(!control._isUploading)
             return;
 
@@ -717,12 +678,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
     };
 
     this.onProgressHandler = function(id, xhr) {
-        /// <summary>
-        /// if lengthComputable is available, then let's provide progress bar animation.
-        /// </summary>
-        /// <param name="id">fileId</param>
-        /// <param name="xhr"></param>
-
+        // if lengthComputable is available, then let's provide progress bar animation.
 
         if(!control._isUploading)
             return;
@@ -755,12 +711,6 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
     };
 
     this.onUploadCompleteHandler = function(id, xhr) {
-        /// <summary>
-        /// This handler invoked once all stream are uploaded.
-        /// </summary>
-        /// <param name="id">File Id</param>
-        /// <param name="xhr">XHR sender</param>
-
         var self = this,
             fileItem = control.getFileItem(id),
             file = fileItem.get_inputElementValue();
@@ -790,11 +740,6 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
     };
 
     this.onUploadFailedHandler = function(id, xhr) {
-        /// <summary>
-        /// Event handler when ajax request for upload is error.
-        /// </summary>
-        /// <param name="id">file id</param>
-        /// <param name="xhr">xhr</param>
         var fileItem = control.getFileItem(id);
         fileItem._isUploading = false;
         control.setFileStatus(id, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
@@ -802,11 +747,6 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
     };
 
     this.onUploadCanceledHandler = function(id, xhr) {
-        /// <summary>
-        /// Event handler when ajax request for upload is aborted.
-        /// </summary>
-        /// <param name="id">file id</param>
-        /// <param name="xhr">xhr</param>
         var fileItem = control.getFileItem(id);
         fileItem._isUploading = false;
         control.setFileStatus(fileItem, 'canceled', Sys.Extended.UI.Resources.AjaxFileUpload_Canceled);
@@ -1019,11 +959,8 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     onUploadOrCancelButtonClickedHandler: function(e) {
-        /// <summary>
-        /// Event handler for click event on upload button. Upload button will act as a toggle driven by _isUploading field, for Upload and Cancel action.
-        /// if _isUploading set to true, it indicates that this button will act as Cancel, otherwise is Upload.
-        /// </summary>
-        /// <param name="e"></param>
+        // Event handler for click event on upload button. Upload button will act as a toggle driven by _isUploading field, for Upload and Cancel action.
+        // if _isUploading set to true, it indicates that this button will act as Cancel, otherwise is Upload.
 
         var files = this._filesInQueue;
         if(!files.length) {
@@ -1083,11 +1020,8 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     enableControls: function(enable) {
-        /// <summary>
-        /// If set to true, it will set control state to be enable (ready to upload), 
-        /// otherwise control will disable and button state turns to Cancel button.
-        /// </summary>
-        /// <param name="enable"></param>
+        // If set to true, it will set control state to be enable (ready to upload), 
+        // otherwise control will disable and button state turns to Cancel button.
 
         var btn = this._elements.uploadOrCancelButton;
         $common.setText(btn, enable ? Sys.Extended.UI.Resources.AjaxFileUpload_Upload : Sys.Extended.UI.Resources.AjaxFileUpload_Cancel);
@@ -1103,10 +1037,8 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     done: function() {
-        /// <summary>
-        /// Call this method when all files has been uploaded.
-        /// This method will reset states of control.
-        /// </summary>
+        // Call this method when all files has been uploaded.
+        // This method will reset states of control.
 
         this._isUploading = false;
         this.enableControls(true);
@@ -1141,11 +1073,6 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     removeFileFromQueueHandler: function(e) {
-        /// <summary>
-        /// Event handler of file item when user clicks remove button.
-        /// </summary>
-        /// <param name="e">FileItem to be removed.</param>
-
         // never remove file being uploaded.
         if(!e || e._isUploading)
             return;
@@ -1167,11 +1094,8 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     addFileToQueue: function(item) {
-        /// <summary>
-        /// Processor will call this method to add selected file to queue.
-        /// Will return true if file item successfully added, otherwise are false.
-        /// </summary>
-        /// <param name="inputElementValue">Value from input file element</param>
+        // Processor will call this method to add selected file to queue.
+        // Will return true if file item successfully added, otherwise are false.
 
         var max = this.get_maximumNumberOfFiles();
         if(max > 0 && this._filesInQueue.length >= max) {
@@ -1203,9 +1127,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     _showFilesCount: function() {
-        /// <summary>
-        /// This will show number of files in queue or message to select file(s) when there is no file in queue.
-        /// </summary>
+        // This will show number of files in queue or message to select file(s) when there is no file in queue.
 
         var empty = (this._filesInQueue.length == 0);
 
@@ -1216,11 +1138,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
 
 
     fileTypeIsValid: function(fileType) {
-        /// <summary>
-        /// Check whether file type is allowed to be uploaded by checking it against <code>AllowedFileTypes</code> property
-        /// </summary>
-        /// <param name="fileType"></param>
-        /// <returns type=""></returns>
+        // Check whether file type is allowed to be uploaded by checking it against "AlowedFileTypes" property
 
         if(!this._allowedFileTypes)
             return true;
@@ -1237,20 +1155,14 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     confirmFileIsInvalid: function(fileItem) {
-        /// <summary>
-        /// Send alert to user that file type is not acceptable. Processor uses this method after validation.
-        /// </summary>
-        /// <param name="fileItem"></param>
+        // Send alert to user that file type is not acceptable. Processor uses this method after validation.
 
         var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
         alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_WrongFileType, utils.getFileName(fileItem.value), fileItem.type));
     },
 
     doneAndUploadNextFile: function(fileItem) {
-        /// <summary>
-        /// Mark fileItem as uploaded, and upload next file in queue.
-        /// </summary>
-        /// <param name="fileItem">Uploaded File</param>
+        // Mark fileItem as uploaded, and upload next file in queue.
 
         // send message to server to finalize this upload
         var xhr = new XMLHttpRequest(),
@@ -1299,10 +1211,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     setAsUploading: function(fileItem) {
-        /// <summary>
-        /// Set file item status is uploading.
-        /// </summary>
-        /// <param name="fileItem"></param>
+        // Set file item status is uploading.
 
         fileItem._isUploading = true;
         fileItem._isUploaded = false;
@@ -1314,13 +1223,6 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     setFileStatus: function(fileItem, fileStatusText, text) {
-        /// <summary>
-        /// Set file item status
-        /// </summary>
-        /// <param name="fileItem">file item or id</param>
-        /// <param name="fileStatusText">status text</param>
-        /// <param name="text">status resource</param>
-
         if(typeof (fileItem) === "string")
             fileItem = this.getFileItem(fileItem);
         if(fileItem)
@@ -1328,18 +1230,10 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     setStatusMessage: function(msg) {
-        /// <summary>
-        /// Set status message.
-        /// </summary>
-        /// <param name="msg"></param>
         this._elements.fileStatusContainer.innerHTML = msg;
     },
 
     setPercent: function(percent) {
-        /// <summary>
-        /// Set percentage of progress bar.
-        /// </summary>
-        /// <param name="percent">percentage</param>
         var progressBar = this._elements.progressBar;
         if(percent <= 0)
             percent = "0";
@@ -1437,11 +1331,6 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     raiseUploadComplete: function(e) {
-        /// <summary>
-        /// This method called once file is succesfully uploaded.
-        /// </summary>
-        /// <param name="e">Uploaded file information</param>
-
         var fileItem = this.getCurrentFileItem();
 
         if(!fileItem || !e || e.FileId !== fileItem._id)
@@ -1494,18 +1383,11 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     getCurrentFileItem: function() {
-        /// <summary>
-        /// Get file item based on current file id.
-        /// </summary>
-        /// <returns type=""></returns>
+        // Get file item based on current file id.
         return this.getFileItem(this._currentFileId);
     },
 
     getNextFile: function() {
-        /// <summary>
-        /// Get next file in queue for upload.
-        /// </summary>
-        /// <returns type="">Will returns null if all files has been uploaded.</returns>
         if(!this._isUploading)
             return null;
 
@@ -1519,12 +1401,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         return null;
     },
 
-    getFileItem: function(id) {
-        /// <summary>
-        /// Get file item based on id.
-        /// </summary>
-        /// <param name="id">id of file item to find.</param>
-        /// <returns type="">File Item</returns>
+    getFileItem: function(id) {        
         for(var i = 0; i < this._filesInQueue.length; i++) {
             var file = this._filesInQueue[i];
             if(file._id === id) {

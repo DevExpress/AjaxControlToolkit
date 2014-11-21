@@ -1,21 +1,9 @@
 Type.registerNamespace('Sys.Extended.UI');
 
 Sys.Extended.UI.BoxCorners = function() {
-    /// <summary>
-    /// Corners of an element
-    /// </summary>
-    /// <field name="None" type="Number" integer="true" />
-    /// <field name="TopLeft" type="Number" integer="true" />
-    /// <field name="TopRight" type="Number" integer="true" />
-    /// <field name="BottomRight" type="Number" integer="true" />
-    /// <field name="BottomLeft" type="Number" integer="true" />
-    /// <field name="Top" type="Number" integer="true" />
-    /// <field name="Right" type="Number" integer="true" />
-    /// <field name="Bottom" type="Number" integer="true" />
-    /// <field name="Left" type="Number" integer="true" />
-    /// <field name="All" type="Number" integer="true" />
     throw Error.invalidOperation();
 }
+
 Sys.Extended.UI.BoxCorners.prototype = {
     None: 0x00,
 
@@ -30,16 +18,12 @@ Sys.Extended.UI.BoxCorners.prototype = {
     Left: 0x08 | 0x01,
     All: 0x01 | 0x02 | 0x04 | 0x08
 }
+
 Sys.Extended.UI.BoxCorners.registerEnum("Sys.Extended.UI.BoxCorners", true);
 
-
 Sys.Extended.UI.RoundedCornersBehavior = function(element) {
-    /// <summary>
-    /// The RoundedCornersBehavior rounds the corners of its target element
-    /// </summary>
-    /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-    /// DOM element associated with the behavior
-    /// </param>
+    // The RoundedCornersBehavior rounds the corners of its target element
+    // "element" - DOM element associated with the behavior
     Sys.Extended.UI.RoundedCornersBehavior.initializeBase(this, [element]);
 
     this._corners = Sys.Extended.UI.BoxCorners.All;
@@ -50,6 +34,7 @@ Sys.Extended.UI.RoundedCornersBehavior = function(element) {
     this._borderColor = null;
     this._isDirty = true;
 }
+
 Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     initialize: function() {
         Sys.Extended.UI.RoundedCornersBehavior.callBaseMethod(this, 'initialize');
@@ -62,24 +47,13 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     update: function() {
-        /// <summary>
-        /// Create the surrounding div that will have rounded corners
-        /// </summary>
+        // Create the surrounding div that will have rounded corners
         var e = this.get_element();
 
-        if(!e || !this._isDirty || this.get_isUpdating()) return;
+        if(!e || !this._isDirty || this.get_isUpdating())
+            return;
 
         this.disposeParentDiv();
-
-        // Check if current browser supports css3 or not
-        //                if (e.style.borderRadius != undefined)
-        //                    alert('support css3 for IE/Chrome');
-        //                else if (e.style.MozBorderRadius != undefined)
-        //                    alert('support css3 MoZ');
-        //                else if (e.style.WebkitBorderRadius != undefined)
-        //                    alert('support css3 Chrome');
-        //                else
-        //                    alert('not support css3');
 
         // This works with IE and latest versions of Chrome
         if(e.style.borderRadius != undefined) {
@@ -94,29 +68,24 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
             }
             else {
                 e.style.border = "none";
-                e.style.borderWidth = "0px";
+                e.style.borderWidth = "0";
             }
 
             // if TopLeft corner is unchecked then Top left corner will not be round
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopLeft)) {
-                e.style.borderTopLeftRadius = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopLeft))
+                e.style.borderTopLeftRadius = "0";
 
             // if BottomLeft corner is unchecked then Bottom left corner will not be round
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomLeft)) {
-                e.style.borderBottomLeftRadius = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomLeft))
+                e.style.borderBottomLeftRadius = "0";
 
             // if TopRight corner is unchecked then Top right corner will not be round
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopRight)) {
-                e.style.borderTopRightRadius = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopRight))
+                e.style.borderTopRightRadius = "0";
 
             // if BottomRight corner is unchecked then Bottom Right corner will not be round
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomRight)) {
-                e.style.borderBottomRightRadius = "0px";
-            }
-
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomRight))
+                e.style.borderBottomRightRadius = "0";
         }
             // This works with FireFox
         else if(e.style.MozBorderRadius != undefined) {
@@ -128,31 +97,26 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
                 e.style.border = "solid";
                 e.style.borderWidth = "1px";
                 e.style.borderColor = this._borderColor;
-            }
-            else {
+            } else {
                 e.style.border = "none";
-                e.style.borderWidth = "0px";
+                e.style.borderWidth = "0";
             }
 
             // if TopLeft corner is unchecked then Top left corner will not be round                                        
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopLeft)) {
-                e.style.MozBorderRadiusTopleft = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopLeft))
+                e.style.MozBorderRadiusTopleft = "0";
 
             // if BottomLeft corner is unchecked then Bottom left corner will not be round
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomLeft)) {
-                e.style.MozBorderRadiusBottomleft = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomLeft))
+                e.style.MozBorderRadiusBottomleft = "0";
 
             // if TopRight corner is unchecked then Top right corner will not be round
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopRight)) {
-                e.style.MozBorderRadiusTopright = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopRight))
+                e.style.MozBorderRadiusTopright = "0";
 
             // if BottomRight corner is unchecked then Bottom Right corner will not be round
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomRight)) {
-                e.style.MozBorderRadiusBottomright = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomRight))
+                e.style.MozBorderRadiusBottomright = "0";
 
         }
             // This works with older versions of google Chrome
@@ -165,38 +129,32 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
                 e.style.border = "solid";
                 e.style.borderWidth = "1px";
                 e.style.borderColor = this._borderColor;
-            }
-            else {
+            } else {
                 e.style.border = "none";
-                e.style.borderWidth = "0px";
+                e.style.borderWidth = "0";
             }
 
             // if TopLeft corner is unchecked then Top left corner will not be round                                        
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopLeft)) {
-                e.style.WebkitBorderRadiusTopLeft = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopLeft))
+                e.style.WebkitBorderRadiusTopLeft = "0";
 
             // if BottomLeft corner is unchecked then Bottom left corner will not be round
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomLeft)) {
-                e.style.WebkitBorderRadiusBottomLeft = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomLeft))
+                e.style.WebkitBorderRadiusBottomLeft = "0";
 
             // if TopRight corner is unchecked then Top right corner will not be round
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopRight)) {
-                e.style.WebkitBorderRadiusTopRight = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopRight))
+                e.style.WebkitBorderRadiusTopRight = "0";
 
             // if BottomRight corner is unchecked then Bottom Right corner will not be round
-            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomRight)) {
-                e.style.WebkitBorderRadiusBottomRight = "0px";
-            }
+            if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomRight))
+                e.style.WebkitBorderRadiusBottomRight = "0";
         }
             // if browser does not support css3 then continue old way to make corners round
         else {
-
-            var color = this.getBackgroundColor();
-            var originalWidth = e.offsetWidth;
-            var newParent = e.cloneNode(false);
+            var color = this.getBackgroundColor(),
+                originalWidth = e.offsetWidth,
+                newParent = e.cloneNode(false);
 
             // move all children into the new div.
             this.moveChildren(e, newParent);
@@ -209,32 +167,31 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
             e.style.padding = "0";
             e.style.overflow = "";
             e.style.className = "";
+
             // Don't assume there is a numerical value for height.  A height of "auto" is possible.
-            if(e.style.height && e.style.height != "auto") {
+            if(e.style.height && e.style.height != "auto")
                 // Increase the height to account for the rounded corners
                 e.style.height = parseInt($common.getCurrentStyle(e, 'height')) + (this._radius * 2) + "px";
-            } else {
+            else
                 // Note: Do NOT use $common.getCurrentStyle in the check below
                 // because that breaks the work-around
-                if(!e.style.width && (0 < originalWidth)) {
+                if(!e.style.width && (0 < originalWidth))
                     // The following line works around a problem where IE renders the first
                     // rounded DIV about 6 pixels too high if e doesn't have a width or height
                     e.style.width = originalWidth + "px";
-                }
-            }
 
             // these are properties we don't want cloned down to the new parent
             newParent.style.position = "";
             newParent.style.border = "";
             newParent.style.margin = "";
             newParent.style.width = "100%";
-            if((newParent.style.overflow == "") && ($common.getCurrentStyle(e, "overflow") == "visible")) {
+            if((newParent.style.overflow == "") && ($common.getCurrentStyle(e, "overflow") == "visible"))
                 // If the style of the target element has not been set inline, 
                 // and has not been set in a stylesheet to something other than "visible" 
                 // (which is the default), then set it to "auto", so that any child block elements
                 // do not cause the rounded corner divs to display as separated from the target div  
                 newParent.style.overflow = "auto";
-            }
+
             newParent.id = "";
             newParent.removeAttribute("control");
 
@@ -247,6 +204,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
                 newParent.style.borderRightColor = this._borderColor;
                 newParent.style.borderLeftWidth = "1px";
                 newParent.style.borderRightWidth = "1px";
+
                 if(this._radius == 0) {
                     newParent.style.borderTopStyle = "solid";
                     newParent.style.borderBottomStyle = "solid";
@@ -272,16 +230,15 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
             //  --------  (bottom step n-1)
             //  ------    (bottom step 0)
 
-            var lastDiv = null;
-            var radius = this._radius;
-            var lines = this._radius;
-            var lastDelta = 0;
+            var lastDiv = null,
+                radius = this._radius,
+                lines = this._radius,
+                lastDelta = 0;
 
             for(var i = lines; i > 0; i--) {
-
                 // figure out how much we'll need to subtract from each item
-                var angle = Math.acos(i / radius);
-                var delta = radius - Math.round(Math.sin(angle) * radius);
+                var angle = Math.acos(i / radius),
+                    delta = radius - Math.round(Math.sin(angle) * radius);
 
                 // build a 1 pixel tall div
                 // that's delta pixels shorter on each end.
@@ -329,9 +286,8 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
 
                 if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopLeft)) {
                     topDiv.style.marginLeft = "0";
-                    if(this._borderColor) {
+                    if(this._borderColor)
                         topDiv.style.borderLeftWidth = "1px";
-                    }
                 }
                 if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.TopRight)) {
                     topDiv.style.marginRight = "0";
@@ -342,9 +298,8 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
                 }
                 if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomLeft)) {
                     bottomDiv.style.marginLeft = "0";
-                    if(this._borderColor) {
+                    if(this._borderColor)
                         bottomDiv.style.borderLeftWidth = "1px";
-                    }
                 }
                 if(!this.isCornerSet(Sys.Extended.UI.BoxCorners.BottomRight)) {
                     bottomDiv.style.marginRight = "0";
@@ -364,20 +319,19 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     disposeParentDiv: function() {
-        /// <summary>
-        /// Dispose the surrounding div with rounded corners
-        /// </summary>
+        // Dispose the surrounding div with rounded corners
 
         if(this._parentDiv) {
             // clean up the divs we added.
-            var e = this.get_element();
-            var children = e.childNodes;
+            var e = this.get_element(),
+                children = e.childNodes;
+
             for(var i = children.length - 1; i >= 0; i--) {
                 var child = children[i];
                 if(child) {
-                    if(child == this._parentDiv) {
+                    if(child == this._parentDiv)
                         this.moveChildren(child, e);
-                    }
+
                     try {
                         e.removeChild(child);
                     } catch(e) {
@@ -397,23 +351,15 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     getBackgroundColor: function() {
-        if(this._color) {
+        if(this._color)
             return this._color;
-        }
         return $common.getCurrentStyle(this.get_element(), 'backgroundColor');
     },
 
     moveChildren: function(src, dest) {
-        /// <summary>
-        /// Move the child nodes from one element to another
-        /// </summary>
-        /// <param name="src" type="Sys.UI.DomElement" domElement="true">
-        /// DOM Element
-        /// </param>
-        /// <param name="dest" type="Sys.UI.DomElement" domElement="true">
-        /// DOM Element
-        /// </param>
-
+        // Move the child nodes from one element to another
+        // "src" - DOM Element
+        // "dest" - DOM Element
         var moveCount = 0;
         while(src.hasChildNodes()) {
             var child = src.childNodes[0];
@@ -425,39 +371,24 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     isCornerSet: function(corner) {
-        /// <summary>
-        /// Check whether the a flag for this corner has been set
-        /// </summary>
-        /// <param name="corner" type="AjaxControlTooolkit.BoxCorners">
-        /// Corner to check
-        /// </param>
-        /// <returns type="Boolean">
-        /// True if it is included in the flags, false otherwise
-        /// </returns>
+        // Check whether the a flag for this corner has been set
+        // "corner" - Corner to check
+        // returns true if it is included in the flags, false otherwise
         return (this._corners & corner) != Sys.Extended.UI.BoxCorners.None;
     },
 
     setCorner: function(corner, value) {
-        /// <summary>
-        /// Set a corner as one that should be rounded
-        /// </summary>
-        /// <param name="corner" type="Sys.Extended.UI.BoxCorners">
-        /// Corner to set
-        /// </param>
-        /// <param name="value" type="Boolean">
-        /// True to set the value, False to clear it
-        /// </param>
-        if(value) {
+        // Set a corner as one that should be rounded
+        // "corner" - Corner to set
+        // "value" - True to set the value, False to clear it
+        if(value)
             this.set_Corners(this._corners | corner);
-        } else {
+        else
             this.set_Corners(this._corners & ~corner);
-        }
     },
 
     get_Color: function() {
-        /// <value type="String">
-        /// The background color of the rounded area an corners.  By default this picks up the background color of the panel that it is attached to.
-        /// </value>
+        // The background color of the rounded area an corners.  By default this picks up the background color of the panel that it is attached to.
         return this._color;
     },
     set_Color: function(value) {
@@ -470,9 +401,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     get_Radius: function() {
-        /// <value type="Number" integer="true">
-        /// The radius of the corners (and height of the added area).  Default is 5.
-        /// </value>
+        // The radius of the corners (and height of the added area).  Default is 5.
         return this._radius;
     },
     set_Radius: function(value) {
@@ -485,9 +414,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     get_Corners: function() {
-        /// <value type="Sys.Extended.UI.BoxCorners">
-        /// Corners that should be rounded
-        /// </value>
+        // Corners that should be rounded
         return this._corners;
     },
     set_Corners: function(value) {
@@ -500,9 +427,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     get_BorderColor: function() {
-        /// <value type="String">
-        /// Color of the border (and hence the rounded corners)
-        /// </value>
+        // Color of the border (and hence the rounded corners)
         return this._borderColor;
     },
     set_BorderColor: function(value) {

@@ -2,6 +2,7 @@ Type.registerNamespace("Sys.Extended.UI.HtmlEditor");
 
 Sys.Extended.UI.HtmlEditor.ModePanel = function(element) {
     Sys.Extended.UI.HtmlEditor.ModePanel.initializeBase(this, [element]);
+
     this._activated = false;
     this._isActivating = false;
     this._editPanel = null;
@@ -10,6 +11,7 @@ Sys.Extended.UI.HtmlEditor.ModePanel = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.ModePanel.prototype = {
+
     set_editPanel: function(value) {
         this._editPanel = value;
     },
@@ -18,15 +20,16 @@ Sys.Extended.UI.HtmlEditor.ModePanel.prototype = {
         if(this._activated) {
             return this._getContent();
         } else {
-            if(this._cachedContent != null) {
+            if(this._cachedContent != null)
                 return this._cachedContent;
-            } else {
+            else
                 return "";
-            }
         }
     },
+
     set_content: function(value) {
         this._cachedContent = value;
+
         if(!this._activated && !this._isActivating) {
             this._activate(value);
         } else {
@@ -34,7 +37,10 @@ Sys.Extended.UI.HtmlEditor.ModePanel.prototype = {
                 this._setContent(value);
             } else {
                 var panel = this;
-                setTimeout(function() { panel.set_content(value); }, 10);
+                setTimeout(function() {
+                    panel.set_content(value);
+                }, 10);
+
                 return false;
             }
         }
@@ -50,9 +56,9 @@ Sys.Extended.UI.HtmlEditor.ModePanel.prototype = {
         this._activated = true;
         this._isActivating = false;
         this._editPanel._setActive();
-        if(this._editPanel.get_autofocus()) {
+
+        if(this._editPanel.get_autofocus())
             this._focus();
-        }
     },
 
     _deactivate: function() {
@@ -63,39 +69,37 @@ Sys.Extended.UI.HtmlEditor.ModePanel.prototype = {
 
     initialize: function() {
         Sys.Extended.UI.HtmlEditor.ModePanel.callBaseMethod(this, "initialize");
-        if(Sys.Extended.UI.HtmlEditor.isIE) {
+        if(Sys.Extended.UI.HtmlEditor.isIE)
             $addHandlers(window, { beforeunload: this._onbeforeunload$delegate });
-        }
     },
 
     dispose: function() {
-        if(Sys.Extended.UI.HtmlEditor.isIE) {
+        if(Sys.Extended.UI.HtmlEditor.isIE)
             $common.removeHandlers(window, { beforeunload: this._onbeforeunload$delegate });
-        }
+
         if(this._activated) {
-            if(Sys.Extended.UI.HtmlEditor.isIE) {
+            if(Sys.Extended.UI.HtmlEditor.isIE)
                 this._onbeforeunload();
-            }
+
             this._deactivate();
         }
+
         Sys.Extended.UI.HtmlEditor.ModePanel.callBaseMethod(this, "dispose");
     },
 
     _onbeforeunload: function() {
-        if(this._activated) {
+        if(this._activated)
             if(!this._editPanel._contentPrepared) {
                 this._editPanel._prepareContentForPostback(this.get_content());
                 this._editPanel._contentPrepared = true;
             }
-        }
     },
 
     _getContent: function() {
-        if(this._cachedContent != null) {
+        if(this._cachedContent != null)
             return this._cachedContent;
-        } else {
+        else
             return "";
-        }
     },
 
     _setContent: function(value) {
@@ -117,4 +121,3 @@ Sys.Extended.UI.HtmlEditor.ModePanel.prototype = {
 }
 
 Sys.Extended.UI.HtmlEditor.ModePanel.registerClass("Sys.Extended.UI.HtmlEditor.ModePanel", Sys.UI.Control);
-

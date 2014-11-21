@@ -5,6 +5,7 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.FixedForeColor = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.FixedForeColor.prototype = {
+
     setColor: function(color) {
         this._designPanel._execCommand("forecolor", false, color);
     }

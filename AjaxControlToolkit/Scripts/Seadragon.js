@@ -4,7 +4,6 @@ Type.registerNamespace('Seadragon');
 Seadragon.Utils = function() {
 
     // Enumerations
-
     var Browser = {
         UNKNOWN: 0,
         IE: 1,
@@ -17,7 +16,6 @@ Seadragon.Utils = function() {
     Seadragon.Browser = Browser;
 
     // Fields
-
     var self = this;
 
     var arrActiveX = ["Msxml2.XMLHTTP", "Msxml3.XMLHTTP", "Microsoft.XMLHTTP"];
@@ -32,16 +30,14 @@ Seadragon.Utils = function() {
 
     var browser = Browser.UNKNOWN;
     var browserVersion = 0;
-    var badAlphaBrowser = false;    // updated in constructor
+    var badAlphaBrowser = false; // updated in constructor
 
     var urlParams = {};
 
     // Constructor
-
     (function() {
 
         // Browser detect
-
         var app = navigator.appName;
         var ver = navigator.appVersion;
         var ua = navigator.userAgent;
@@ -53,7 +49,6 @@ Seadragon.Utils = function() {
             browser = Browser.IE;
             browserVersion = parseFloat(
                     ua.substring(ieOffset + 5, ua.indexOf(";", ieOffset)));
-
         } else if(app == "Netscape" && !!window.addEventListener) {
 
             var ffOffset = ua.indexOf("Firefox");
@@ -68,35 +63,27 @@ Seadragon.Utils = function() {
                 browser = (chOffset >= 0) ? Browser.CHROME : Browser.SAFARI;
                 browserVersion = parseFloat(ua.substring(slash + 1, saOffset));
             }
-
         } else if(app == "Opera" && !!window.opera && !!window.attachEvent) {
-
             browser = Browser.OPERA;
             browserVersion = parseFloat(ver);
-
         }
 
         // Url parameters
-
-        var query = window.location.search.substring(1);    // ignore '?'
+        var query = window.location.search.substring(1); // ignore '?'
         var parts = query.split('&');
 
         for(var i = 0; i < parts.length; i++) {
             var part = parts[i];
             var sep = part.indexOf('=');
 
-            if(sep > 0) {
-                urlParams[part.substring(0, sep)] =
-                        decodeURIComponent(part.substring(sep + 1));
-            }
+            if(sep > 0)
+                urlParams[part.substring(0, sep)] = decodeURIComponent(part.substring(sep + 1));
         }
 
         // Browser behaviors
 
         // update: chrome 2 no longer has this problem!
-        badAlphaBrowser = (browser == Browser.IE ||
-                (browser == Browser.CHROME && browserVersion < 2));
-
+        badAlphaBrowser = (browser == Browser.IE || (browser == Browser.CHROME && browserVersion < 2));
     })();
 
     // Helpers
@@ -104,11 +91,10 @@ Seadragon.Utils = function() {
     function getOffsetParent(elmt, isFixed) {
         // IE and Opera "fixed" position elements don't have offset parents.
         // regardless, if it's fixed, its offset parent is the body.
-        if(isFixed && elmt != document.body) {
+        if(isFixed && elmt != document.body)
             return document.body;
-        } else {
+        else
             return elmt.offsetParent;
-        }
     }
 
     // Methods
@@ -122,9 +108,8 @@ Seadragon.Utils = function() {
     };
 
     this.getElement = function(elmt) {
-        if(typeof (elmt) == "string") {
+        if(typeof (elmt) == "string")
             elmt = document.getElementById(elmt);
-        }
 
         return elmt;
     };
@@ -144,9 +129,8 @@ Seadragon.Utils = function() {
             result.x += elmt.offsetLeft;
             result.y += elmt.offsetTop;
 
-            if(isFixed) {
+            if(isFixed)
                 result = result.plus(self.getPageScroll());
-            }
 
             elmt = offsetParent;
             isFixed = self.getElementStyle(elmt).position == "fixed";
@@ -164,13 +148,12 @@ Seadragon.Utils = function() {
     this.getElementStyle = function(elmt) {
         var elmt = self.getElement(elmt);
 
-        if(elmt.currentStyle) {
+        if(elmt.currentStyle)
             return elmt.currentStyle;
-        } else if(window.getComputedStyle) {
+        else if(window.getComputedStyle)
             return window.getComputedStyle(elmt, "");
-        } else {
+        else
             Seadragon.Debug.fail("Unknown element style, no known technique.");
-        }
     };
 
     this.getEvent = function(event) {
@@ -346,17 +329,15 @@ Seadragon.Utils = function() {
     this.setElementOpacity = function(elmt, opacity, usesAlpha) {
         var elmt = self.getElement(elmt);
 
-        if(usesAlpha && badAlphaBrowser) {
+        if(usesAlpha && badAlphaBrowser)
             // images with alpha channels won't fade well, so round
             opacity = Math.round(opacity);
-        }
 
         // for CSS opacity browsers, remove opacity value if it's unnecessary
-        if(opacity < 1) {
+        if(opacity < 1)
             elmt.style.opacity = opacity;
-        } else {
+        else
             elmt.style.opacity = "";
-        }
 
         // for CSS filter browsers (IE), remove alpha filter if it's unnecessary
         if(opacity == 1) {
@@ -373,11 +354,10 @@ Seadragon.Utils = function() {
         // check if this element has filters associated with it (IE only),
         // but prevent bug where IE throws error "Member not found" sometimes.
         try {
-            if(elmt.filters && elmt.filters.alpha) {
+            if(elmt.filters && elmt.filters.alpha)
                 elmt.filters.alpha.opacity = ieOpacity;
-            } else {
+            else
                 elmt.style.filter += ieFilter;
-            }
         } catch(e) {
             elmt.style.filter += ieFilter;
         }
@@ -393,9 +373,8 @@ Seadragon.Utils = function() {
             elmt.addEventListener(eventName, handler, useCapture);
         } else if(elmt.attachEvent) {
             elmt.attachEvent("on" + eventName, handler);
-            if(useCapture && elmt.setCapture) {
+            if(useCapture && elmt.setCapture)
                 elmt.setCapture();
-            }
         } else {
             Seadragon.Debug.fail("Unable to attach event handler, no known technique.");
         }
@@ -411,9 +390,8 @@ Seadragon.Utils = function() {
             elmt.removeEventListener(eventName, handler, useCapture);
         } else if(elmt.detachEvent) {
             elmt.detachEvent("on" + eventName, handler);
-            if(useCapture && elmt.releaseCapture) {
+            if(useCapture && elmt.releaseCapture)
                 elmt.releaseCapture();
-            }
         } else {
             Seadragon.Debug.fail("Unable to detach event handler, no known technique.");
         }
@@ -425,9 +403,8 @@ Seadragon.Utils = function() {
         // technique from:
         // http://blog.paranoidferret.com/index.php/2007/08/10/javascript-working-with-events/
 
-        if(event.preventDefault) {
+        if(event.preventDefault)
             event.preventDefault();     // W3C for preventing default
-        }
 
         event.cancel = true;            // legacy for preventing default
         event.returnValue = false;      // IE for preventing default
@@ -449,17 +426,15 @@ Seadragon.Utils = function() {
     this.createCallback = function(object, method) {
         // create callback args
         var initialArgs = [];
-        for(var i = 2; i < arguments.length; i++) {
+        for(var i = 2; i < arguments.length; i++)
             initialArgs.push(arguments[i]);
-        }
 
         // create closure to apply method
         return function() {
             // concatenate new args, but make a copy of initialArgs first
             var args = initialArgs.concat([]);
-            for(var i = 0; i < arguments.length; i++) {
+            for(var i = 0; i < arguments.length; i++)
                 args.push(arguments[i]);
-            }
 
             return method.apply(object, args);
         };
@@ -481,29 +456,21 @@ Seadragon.Utils = function() {
             };
         }
 
-        if(window.ActiveXObject) {
-            for(var i = 0; i < arrActiveX.length; i++) {
+        if(window.ActiveXObject)
+            for(var i = 0; i < arrActiveX.length; i++)
                 try {
                     req = new ActiveXObject(arrActiveX[i]);
                     break;
                 } catch(e) {
                     continue;
                 }
-            }
-        } else if(window.XMLHttpRequest) {
+        else if(window.XMLHttpRequest)
             req = new XMLHttpRequest();
-        }
 
-        if(!req) {
+        if(!req)
             Seadragon.Debug.fail("Browser doesn't support XMLHttpRequest.");
-        }
 
-        // Proxy support
-        //        if (Seadragon.Config.proxyUrl) {
-        //            url = Seadragon.Config.proxyUrl + url;
-        //        }
-
-        if(async) {
+        if(async)
             req.onreadystatechange = function() {
                 if(req.readyState == 4) {
                     // prevent memory leaks by breaking circular reference now
@@ -511,7 +478,6 @@ Seadragon.Utils = function() {
                     callback();
                 }
             };
-        }
 
         try {
             req.open("GET", url, async);
@@ -522,9 +488,8 @@ Seadragon.Utils = function() {
             req.onreadystatechange = null;
             req = null;
 
-            if(async) {
+            if(async)
                 callback();
-            }
         }
 
         return async ? null : req;
@@ -533,7 +498,7 @@ Seadragon.Utils = function() {
     this.parseXml = function(string) {
         var xmlDoc = null;
 
-        if(window.ActiveXObject) {
+        if(window.ActiveXObject)
             try {
                 xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
                 xmlDoc.async = false;
@@ -541,16 +506,15 @@ Seadragon.Utils = function() {
             } catch(e) {
                 Seadragon.Debug.log(e.name + " while parsing XML (ActiveX): " + e.message);
             }
-        } else if(window.DOMParser) {
+        else if(window.DOMParser)
             try {
                 var parser = new DOMParser();
                 xmlDoc = parser.parseFromString(string, "text/xml");
             } catch(e) {
                 Seadragon.Debug.log(e.name + " while parsing XML (DOMParser): " + e.message);
             }
-        } else {
+        else
             Seadragon.Debug.fail("Browser doesn't support XML DOM.");
-        }
 
         return xmlDoc;
     };
@@ -595,8 +559,8 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this._imgHover = Seadragon.Utils.makeTransparentImage(this._srcHover);
         this._imgDown = Seadragon.Utils.makeTransparentImage(this._srcDown);
 
-        this._fadeDelay = 0;      // begin fading immediately
-        this._fadeLength = 2000;  // fade over a period of 2 seconds
+        this._fadeDelay = 0; // begin fading immediately
+        this._fadeLength = 2000; // fade over a period of 2 seconds
         this._fadeBeginTime = null;
         this._shouldFade = false;
 
@@ -628,9 +592,8 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         // breaks the buttons in every other browser, so we're not clearing
         // the "top" style by default...)
         if(Seadragon.Utils.getBrowser() == Seadragon.Browser.FIREFOX &&
-                    Seadragon.Utils.getBrowserVersion() < 3) {
+                    Seadragon.Utils.getBrowserVersion() < 3)
             styleGroup.top = styleHover.top = styleDown.top = "";
-        }
 
         this._tracker.enterHandler = Function.createDelegate(this, this._enterHandler);
         this._tracker.exitHandler = Function.createDelegate(this, this._exitHandler);
@@ -656,9 +619,8 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
             opacity = Math.max(0.0, opacity);
 
             Seadragon.Utils.setElementOpacity(this._imgGroup, opacity, true);
-            if(opacity > 0) {
-                this._scheduleFade();    // fade again
-            }
+            if(opacity > 0)
+                this._scheduleFade(); // fade again
         }
     },
     _beginFading: function() {
@@ -716,9 +678,8 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
     },
     _exitHandler: function(tracker, position, buttonDownElmt, buttonDownAny) {
         this._outTo(Sys.Extended.UI.Seadragon.ButtonState.GROUP);
-        if(buttonDownElmt) {
+        if(buttonDownElmt)
             this._raiseEvent("onExit", this);
-        }
     },
     _pressHandler: function(tracker, position) {
         this._inTo(Sys.Extended.UI.Seadragon.ButtonState.DOWN);
@@ -737,18 +698,16 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         }
     },
     _clickHandler: function(tracker, position, quick, shift) {
-        if(quick) {
+        if(quick)
             this._raiseEvent("onClick", this);
-        }
     },
     _raiseEvent: function(eventName, eventArgs) {
         // Get handler for event.
         var handler = this.get_events().getHandler(eventName);
 
         if(handler) {
-            if(!eventArgs) {
+            if(!eventArgs)
                 eventArgs = Sys.EventArgs.Empty;
-            }
 
             // Fire event.
             handler(this, eventArgs);
@@ -848,9 +807,8 @@ Sys.Extended.UI.Seadragon.ButtonGroup.prototype = {
         var tracker = new Seadragon.MouseTracker(this._group, this.config.clickTimeThreshold, this.config.clickDistThreshold);
         this._group.style.display = "inline-block";
 
-        for(var i = 0; i < buttons.length; i++) {
+        for(var i = 0; i < buttons.length; i++)
             this._group.appendChild(buttons[i].get_element());
-        }
 
         tracker.enterHandler = Function.createDelegate(this, this._enterHandler);
         tracker.exitHandler = Function.createDelegate(this, this._exitHandler);
@@ -878,29 +836,24 @@ Sys.Extended.UI.Seadragon.ButtonGroup.prototype = {
     _enterHandler: function(tracker, position, buttonDownElmt, buttonDownAny) {
         // somewhat office ribbon style -- we do this regardless of whether
         // the mouse is down from elsewhere. it's a nice soft glow effect.
-        for(var i = 0; i < this._buttons.length; i++) {
+        for(var i = 0; i < this._buttons.length; i++)
             this._buttons[i].notifyGroupEnter();
-        }
     },
     _exitHandler: function(tracker, position, buttonDownElmt, buttonDownAny) {
-        if(!buttonDownElmt) {
+        if(!buttonDownElmt)
             // only go to rest if the mouse isn't down from a button
-            for(var i = 0; i < this._buttons.length; i++) {
+            for(var i = 0; i < this._buttons.length; i++)
                 this._buttons[i].notifyGroupExit();
-            }
-        }
     },
     _releaseHandler: function(tracker, position, insideElmtPress, insideElmtRelease) {
 
-        if(!insideElmtRelease) {
+        if(!insideElmtRelease)
             // this means was the mouse was inside the div during press, so
             // since it's no longer inside the div during release, it left
             // the div. but onDivExit() ignored it since the mouse was down
             // from the div, so we'll go out to rest state now.
-            for(var i = 0; i < this._buttons.length; i++) {
+            for(var i = 0; i < this._buttons.length; i++)
                 this._buttons[i].notifyGroupExit();
-            }
-        }
     },
     emulateEnter: function() {
         this._enterHandler();
@@ -1096,17 +1049,15 @@ Sys.Extended.UI.Seadragon.NavControl.prototype = {
         this._group.emulateExit();
     },
     _onHome: function() {
-        if(this._viewer.viewport) {
+        if(this._viewer.viewport)
             this._viewer.viewport.goHome();
-        }
     },
     _onFullPage: function() {
         this._viewer.setFullPage(!this._viewer.isFullPage());
         this._group.emulateExit();  // correct for no mouseout event on change
 
-        if(this._viewer.viewport) {
+        if(this._viewer.viewport)
             this._viewer.viewport.applyConstraints();
-        }
     }
 };
 Sys.Extended.UI.Seadragon.NavControl.registerClass('Sys.Extended.UI.Seadragon.NavControl', null, Sys.IDisposable);
@@ -1125,17 +1076,15 @@ Sys.Extended.UI.Seadragon.Control.prototype = {
         // Constructor
         this.wrapper.style.display = "inline-block";
         this.wrapper.appendChild(this.elmt);
-        if(this.anchor == Seadragon.ControlAnchor.NONE) {
+        if(this.anchor == Seadragon.ControlAnchor.NONE)
             this.wrapper.style.width = this.wrapper.style.height = "100%";    // IE6 fix
-        }
         this.addToAnchor();
     },
     addToAnchor: function() {
-        if(this.anchor == Seadragon.ControlAnchor.TOP_RIGHT || this.anchor == Seadragon.ControlAnchor.BOTTOM_RIGHT) {
+        if(this.anchor == Seadragon.ControlAnchor.TOP_RIGHT || this.anchor == Seadragon.ControlAnchor.BOTTOM_RIGHT)
             this.container.insertBefore(this.elmt, this.container.firstChild);
-        } else {
+        else
             this.container.appendChild(this.elmt);
-        }
     },
     destroy: function() {
         this.wrapper.removeChild(this.elmt);
@@ -1155,19 +1104,18 @@ Sys.Extended.UI.Seadragon.Control.prototype = {
         // wrapper element and not the passed in element directly, so that we
         // don't conflict with the developer's own opacity settings. but this
         // doesn't work in IE always, so for our controls, use a hack for now...
-        if(this.elmt[SIGNAL] && Seadragon.Utils.getBrowser() == Seadragon.Browser.IE) {
+        if(this.elmt[SIGNAL] && Seadragon.Utils.getBrowser() == Seadragon.Browser.IE)
             Seadragon.Utils.setElementOpacity(this.elmt, opacity, true);
-        } else {
+        else
             Seadragon.Utils.setElementOpacity(this.wrapper, opacity, true);
-        }
     }
 };
 Sys.Extended.UI.Seadragon.Control.registerClass('Sys.Extended.UI.Seadragon.Control', null, Sys.IDisposable);
 
 Sys.Extended.UI.Seadragon.Viewer = function(element) {
     Sys.Extended.UI.Seadragon.Viewer.initializeBase(this, [element]);
-    //Fields
 
+    //Fields
     this.config = new Sys.Extended.UI.Seadragon.Config();
     this._prefixUrl = null;
 
@@ -1267,9 +1215,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             navControl.style.marginBottom = "4px";
             this.addControl(navControl, Sys.Extended.UI.Seadragon.ControlAnchor.BOTTOM_RIGHT);
         }
-        for(var i = 0; i < this._customControls.length; i++) {
+        for(var i = 0; i < this._customControls.length; i++)
             this.addControl(this._customControls[i].id, this._customControls[i].anchor);
-        }
 
         // mouse tracker handler for container (controls fading)
         outerTracker.enterHandler = Function.createDelegate(this, this._onContainerEnter);
@@ -1284,7 +1231,6 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         this._container.appendChild(this._controlsTR);
         this._container.appendChild(this._controlsBR);
         this._container.appendChild(this._controlsBL);
-        //this.get_element().innerHTML = "";          // clear any existing content...
         this.get_element().appendChild(this._container);
 
         if(this._xmlPath)
@@ -1295,18 +1241,16 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         var handler = this.get_events().getHandler(eventName);
 
         if(handler) {
-            if(!eventArgs) {
+            if(!eventArgs)
                 eventArgs = Sys.EventArgs.Empty;
-            }
 
             // Fire event.                          
             handler(this, eventArgs);
         }
     },
     _beginControlsAutoHide: function() {
-        if(!this.config.autoHideControls) {
+        if(!this.config.autoHideControls)
             return;
-        }
 
         this._controlsShouldFade = true;
         this._controlsFadeBeginTime = new Date().getTime() + this._controlsFadeDelay;
@@ -1324,13 +1268,11 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             opacity = Math.min(1.0, opacity);
             opacity = Math.max(0.0, opacity);
 
-            for(var i = this._controls.length - 1; i >= 0; i--) {
+            for(var i = this._controls.length - 1; i >= 0; i--)
                 this._controls[i].setOpacity(opacity);
-            }
 
-            if(opacity > 0) {
+            if(opacity > 0)
                 this._scheduleControlsFade();    // fade again
-            }
         }
     },
     _onCanvasClick: function(tracker, position, quick, shift) {
@@ -1342,25 +1284,22 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         }
     },
     _onCanvasDrag: function(tracker, position, delta, shift) {
-        if(this.viewport) {
+        if(this.viewport)
             // negate since dragging is opposite of panning.
             // analogy: in adobe pdf, dragging vs using scrollbars.
             this.viewport.panBy(this.viewport.deltaPointsFromPixels(delta.negate()));
-        }
     },
     _onCanvasRelease: function(tracker, position, insideElmtPress, insideElmtRelease) {
-        if(insideElmtPress && this.viewport) {
+        if(insideElmtPress && this.viewport)
             this.viewport.applyConstraints();
-        }
     },
     _onContainerExit: function(tracker, position, buttonDownElmt, buttonDownAny) {
         // fade controls out over time, only if the mouse isn't down from
         // within the container (e.g. panning, or using a control)
         if(!buttonDownElmt) {
             this._mouseInside = false;
-            if(!this._animating) {
+            if(!this._animating)
                 this._beginControlsAutoHide();
-            }
         }
     },
     _onContainerRelease: function(tracker, position, insideElmtPress, insideElmtRelease) {
@@ -1369,34 +1308,29 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         // released, we should fade the controls out now.
         if(!insideElmtRelease) {
             this._mouseInside = false;
-            if(!this._animating) {
+            if(!this._animating)
                 this._beginControlsAutoHide();
-            }
         }
     },
     _getControlIndex: function(elmt) {
-        for(var i = this._controls.length - 1; i >= 0; i--) {
-            if(this._controls[i].elmt == elmt) {
+        for(var i = this._controls.length - 1; i >= 0; i--)
+            if(this._controls[i].elmt == elmt)
                 return i;
-            }
-        }
 
         return -1;
     },
     _abortControlsAutoHide: function() {
         this._controlsShouldFade = false;
-        for(var i = this._controls.length - 1; i >= 0; i--) {
+        for(var i = this._controls.length - 1; i >= 0; i--)
             this._controls[i].setOpacity(1.0);
-        }
     },
     _onContainerEnter: function(tracker, position, buttonDownElmt, buttonDownAny) {
         this._mouseInside = true;
         this._abortControlsAutoHide();
     },
     _updateOnce: function() {
-        if(!this.source) {
+        if(!this.source)
             return;
-        }
 
         this.profiler.beginUpdate();
 
@@ -1434,13 +1368,11 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             this._raiseEvent("animationfinish", this);
 
             // if the mouse has left the container, begin fading controls
-            if(!this._mouseInside) {
+            if(!this._mouseInside)
                 this._beginControlsAutoHide();
-            }
         }
 
         this._animating = animated;
-
         this.profiler.endUpdate();
     },
     _onClose: function() {
@@ -1456,17 +1388,15 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         this._canvas.innerHTML = "";
     },
     _beforeOpen: function() {
-        if(this.source) {
+        if(this.source)
             this._onClose();
-        }
 
         this._lastOpenStartTime = new Date().getTime();   // to ignore earlier opens
 
         // show loading message after a delay if it still hasn't loaded
         window.setTimeout(Function.createDelegate(this, function() {
-            if(this._lastOpenStartTime > this._lastOpenEndTime) {
+            if(this._lastOpenStartTime > this._lastOpenEndTime)
                 this._setMessage(Seadragon.Strings.getString("Messages.Loading"));
-            }
         }), 2000);
 
         return this._lastOpenStartTime;
@@ -1522,20 +1452,17 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
 
         for(var i = 0; i < this._overlayControls.length; i++) {
             var overlay = this._overlayControls[i];
-            if(overlay.point != null) {
+            if(overlay.point != null)
                 this.drawer.addOverlay(overlay.id, new Sys.Extended.UI.Seadragon.Point(overlay.point.X, overlay.point.Y), Sys.Extended.UI.Seadragon.OverlayPlacement.TOP_LEFT);
-            }
-            else {
+            else
                 this.drawer.addOverlay(overlay.id, new Sys.Extended.UI.Seadragon.Rect(overlay.rect.Point.X, overlay.rect.Point.Y, overlay.rect.Width, overlay.rect.Height), overlay.placement);
-            }
         }
         this._raiseEvent("open");
     },
     _scheduleUpdate: function(updateFunc, prevUpdateTime) {
         // if we're animating, update as fast as possible to stay smooth
-        if(this._animating) {
+        if(this._animating)
             return window.setTimeout(Function.createDelegate(this, updateFunc), 1);
-        }
 
         // if no previous update, consider this an update
         var currentTime = new Date().getTime();
@@ -1547,9 +1474,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         return window.setTimeout(Function.createDelegate(this, updateFunc), deltaTime);
     },
     _updateMulti: function() {
-        if(!this.source) {
+        if(!this.source)
             return;
-        }
 
         var beginTime = new Date().getTime();
 
@@ -1557,9 +1483,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         this._scheduleUpdate(arguments.callee, beginTime);
     },
     _updateOnce: function() {
-        if(!this.source) {
+        if(!this.source)
             return;
-        }
 
         this.profiler.beginUpdate();
 
@@ -1597,13 +1522,11 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             this._raiseEvent("animationfinish");
 
             // if the mouse has left the container, begin fading controls
-            if(!this._mouseInside) {
+            if(!this._mouseInside)
                 this._beginControlsAutoHide();
-            }
         }
 
         this._animating = animated;
-
         this.profiler.endUpdate();
     },
 
@@ -1799,9 +1722,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     addControl: function(elmt, anchor) {
         var elmt = Seadragon.Utils.getElement(elmt);
 
-        if(this._getControlIndex(elmt) >= 0) {
+        if(this._getControlIndex(elmt) >= 0)
             return;     // they're trying to add a duplicate control
-        }
 
         var div = null;
 
@@ -1846,9 +1768,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         }), 1);
     },
     close: function() {
-        if(!this.source) {
+        if(!this.source)
             return;
-        }
 
         this._onClose();
     },
@@ -1862,16 +1783,13 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         }
     },
     clearControls: function() {
-        while(this._controls.length > 0) {
+        while(this._controls.length > 0)
             this._controls.pop().destroy();
-        }
     },
     isDashboardEnabled: function() {
-        for(var i = this._controls.length - 1; i >= 0; i--) {
-            if(this._controls[i].isVisible()) {
+        for(var i = this._controls.length - 1; i >= 0; i--)
+            if(this._controls[i].isVisible())
                 return true;
-            }
-        }
 
         return false;
     },
@@ -1889,15 +1807,13 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     setDashboardEnabled: function(enabled) {
-        for(var i = this._controls.length - 1; i >= 0; i--) {
+        for(var i = this._controls.length - 1; i >= 0; i--)
             this._controls[i].setVisible(enabled);
-        }
     },
 
     setFullPage: function(fullPage) {
-        if(fullPage == this.isFullPage()) {
+        if(fullPage == this.isFullPage())
             return;
-        }
 
         // copy locally to improve perf
         var body = document.body;
@@ -1999,18 +1915,15 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
 (function() {
 
     // DUPLICATION CHECK -- necessary here because of private static state
-    if(Seadragon.MouseTracker) {
+    if(Seadragon.MouseTracker)
         return;
-    }
 
     // Constants
-
     var isIE = Seadragon.Utils.getBrowser() == Seadragon.Browser.IE;
 
     // Static fields
 
     var buttonDownAny = false;
-
     var ieCapturingAny = false;
     var ieTrackersActive = {};      // dictionary from hash to MouseTracker
     var ieTrackersCapturing = [];   // list of trackers interested in capture
@@ -2033,15 +1946,15 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
 	*/
     function isChild(elmtA, elmtB) {
         var body = document.body;
-        while(elmtB && elmtA != elmtB && body != elmtB) {
+        while(elmtB && elmtA != elmtB && body != elmtB)
             try {
                 elmtB = elmtB.parentNode;
             } catch(e) {
-                // Firefox sometimes fires events for XUL elements, which throws
-                // a "permission denied" error. so this is not a child.
+            // Firefox sometimes fires events for XUL elements, which throws
+            // a "permission denied" error. so this is not a child.
                 return false;
             }
-        }
+
         return elmtA == elmtB;
     }
 
@@ -2102,7 +2015,6 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
         this.releaseHandler = null;     // function(tracker, position, insideElmtPress, insideElmtRelease)
         this.clickHandler = null;       // function(tracker, position, quick, shift)
         this.dragHandler = null;        // function(tracker, position, delta, shift)
-
 
         // Helpers
 
@@ -2176,11 +2088,9 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
             // update: protecting against properties added to the Object class's
             // prototype, which can and does happen (e.g. through js libraries)
             var trackers = ieTrackersActive;
-            for(var otherHash in trackers) {
-                if(trackers.hasOwnProperty(otherHash) && hash != otherHash) {
+            for(var otherHash in trackers)
+                if(trackers.hasOwnProperty(otherHash) && hash != otherHash)
                     trackers[otherHash][eventName](event);
-                }
-            }
         }
 
         function hasMouse() {
@@ -2198,40 +2108,36 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
             // was from them or from a child. however, IE seems to always fire
             // events originating from parents to those parents, so don't double
             // fire the event if the event originated from a parent.
-            if(isIE && capturing && !isChild(event.srcElement, elmt)) {
+            if(isIE && capturing && !isChild(event.srcElement, elmt))
                 triggerOthers("onMouseOver", event);
-            }
 
             // similar to onMouseOut() tricky bubbling case...
             var to = event.target ? event.target : event.srcElement;
             var from = event.relatedTarget ? event.relatedTarget : event.fromElement;
-            if(!isChild(elmt, to) || isChild(elmt, from)) {
+            if(!isChild(elmt, to) || isChild(elmt, from))
                 // the mouseover needs to end on this or a child node, and it
                 // needs to start from this or an outer node.
                 return;
-            }
 
             insideElmt = true;
 
-            if(typeof (self.enterHandler) == "function") {
+            if(typeof (self.enterHandler) == "function")
                 try {
                     self.enterHandler(self, getMouseRelative(event, elmt),
                             buttonDownElmt, buttonDownAny);
                 } catch(e) {
-                    // handler threw an error, ignore
+                // handler threw an error, ignore
                     Seadragon.Debug.error(e.name +
                             " while executing enter handler: " + e.message, e);
                 }
-            }
         }
 
         function onMouseOut(event) {
             var event = Seadragon.Utils.getEvent(event);
 
             // similar to onMouseOver() case for IE capture model
-            if(isIE && capturing && !isChild(event.srcElement, elmt)) {
+            if(isIE && capturing && !isChild(event.srcElement, elmt))
                 triggerOthers("onMouseOut", event);
-            }
 
             // we have to watch out for a tricky case: a mouseout occurs on a
             // child element, but the mouse is still inside the parent element.
@@ -2240,33 +2146,30 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
             // http://www.quirksmode.org/js/events_mouse.html
             var from = event.target ? event.target : event.srcElement;
             var to = event.relatedTarget ? event.relatedTarget : event.toElement;
-            if(!isChild(elmt, from) || isChild(elmt, to)) {
+            if(!isChild(elmt, from) || isChild(elmt, to))
                 // the mouseout needs to start from this or a child node, and it
                 // needs to end on this or an outer node.
                 return;
-            }
 
             insideElmt = false;
 
-            if(typeof (self.exitHandler) == "function") {
+            if(typeof (self.exitHandler) == "function")
                 try {
                     self.exitHandler(self, getMouseRelative(event, elmt),
                             buttonDownElmt, buttonDownAny);
                 } catch(e) {
-                    // handler threw an error, ignore
+                // handler threw an error, ignore
                     Seadragon.Debug.error(e.name +
                             " while executing exit handler: " + e.message, e);
                 }
-            }
         }
 
         function onMouseDown(event) {
             var event = Seadragon.Utils.getEvent(event);
 
             // don't consider right-clicks (fortunately this is cross-browser)
-            if(event.button == 2) {
+            if(event.button == 2)
                 return;
-            }
 
             buttonDownElmt = true;
 
@@ -2274,20 +2177,18 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
             lastMouseDownPoint = lastPoint;
             lastMouseDownTime = new Date().getTime();
 
-            if(typeof (self.pressHandler) == "function") {
+            if(typeof (self.pressHandler) == "function")
                 try {
                     self.pressHandler(self, getMouseRelative(event, elmt));
                 } catch(e) {
-                    // handler threw an error, ignore
+                // handler threw an error, ignore
                     Seadragon.Debug.error(e.name +
                             " while executing press handler: " + e.message, e);
                 }
-            }
 
-            if(self.pressHandler || self.dragHandler) {
+            if(self.pressHandler || self.dragHandler)
                 // if a press or drag handler is registered, don't drag-drop images, etc.
                 Seadragon.Utils.cancelEvent(event);
-            }
 
             if(!isIE || !ieCapturingAny) {
                 captureMouse();
@@ -2304,29 +2205,26 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
             var insideElmtRelease = insideElmt;
 
             // don't consider right-clicks (fortunately this is cross-browser)
-            if(event.button == 2) {
+            if(event.button == 2)
                 return;
-            }
 
             buttonDownElmt = false;
 
-            if(typeof (self.releaseHandler) == "function") {
+            if(typeof (self.releaseHandler) == "function")
                 try {
                     self.releaseHandler(self, getMouseRelative(event, elmt),
                             insideElmtPress, insideElmtRelease);
                 } catch(e) {
-                    // handler threw an error, ignore
+                // handler threw an error, ignore
                     Seadragon.Debug.error(e.name +
                             " while executing release handler: " + e.message, e);
                 }
-            }
 
             // some browsers sometimes don't fire click events when we're also
             // listening for mouseup events. i'm not sure why, it could be
             // something i'm doing. in the meantime, this is a temporary fix.
-            if(insideElmtPress && insideElmtRelease) {
+            if(insideElmtPress && insideElmtRelease)
                 handleMouseClick(event);
-            }
         }
 
         /**
@@ -2341,23 +2239,20 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
             var event = Seadragon.Utils.getEvent(event);
 
             // don't consider right-clicks (fortunately this is cross-browser)
-            if(event.button == 2) {
+            if(event.button == 2)
                 return;
-            }
 
             // first trigger those that were capturing
             for(var i = 0; i < ieTrackersCapturing.length; i++) {
                 var tracker = ieTrackersCapturing[i];
-                if(!tracker.hasMouse()) {
+                if(!tracker.hasMouse())
                     tracker.onMouseUp(event);
-                }
             }
 
             // then release capture and emulate a regular event
             releaseMouse();
             ieCapturingAny = false;
-            event.srcElement.fireEvent("on" + event.type,
-                    document.createEventObject(event));
+            event.srcElement.fireEvent("on" + event.type, document.createEventObject(event));
 
             // make sure to stop this event -- shouldn't bubble up
             Seadragon.Utils.stopEvent(event);
@@ -2371,9 +2266,8 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
 		* mouseup handler will still fire.
 		*/
         function onMouseUpWindow(event) {
-            if(!insideElmt) {
+            if(!insideElmt)
                 onMouseUp(event);
-            }
 
             releaseMouse();
         }
@@ -2382,36 +2276,32 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
             // see onMouseUp() bug -- handleClick() is already called by
             // onMouseUp() as a temporary fix, so don't duplicate the call here.
 
-            if(self.clickHandler) {
+            if(self.clickHandler)
                 // since a click handler was registered, don't follow href's, etc.
                 Seadragon.Utils.cancelEvent(event);
-            }
         }
 
         function handleMouseClick(event) {
             var event = Seadragon.Utils.getEvent(event);
 
             // don't consider right-clicks (fortunately this is cross-browser)
-            if(event.button == 2) {
+            if(event.button == 2)
                 return;
-            }
 
             var time = new Date().getTime() - lastMouseDownTime;
             var point = getMouseAbsolute(event);
             var distance = lastMouseDownPoint.distanceTo(point);
-            var quick = time <= clickTimeThreshold &&
-                    distance <= clickDistThreshold;
+            var quick = time <= clickTimeThreshold && distance <= clickDistThreshold;
 
-            if(typeof (self.clickHandler) == "function") {
+            if(typeof (self.clickHandler) == "function")
                 try {
                     self.clickHandler(self, getMouseRelative(event, elmt),
                             quick, event.shiftKey);
                 } catch(e) {
-                    // handler threw an error, ignore
+                // handler threw an error, ignore
                     Seadragon.Debug.error(e.name +
                             " while executing click handler: " + e.message, e);
                 }
-            }
         }
 
         function onMouseMove(event) {
@@ -2423,12 +2313,10 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
 
             if(typeof (self.dragHandler) == "function") {
                 try {
-                    self.dragHandler(self, getMouseRelative(event, elmt),
-                            delta, event.shiftKey);
+                    self.dragHandler(self, getMouseRelative(event, elmt), delta, event.shiftKey);
                 } catch(e) {
                     // handler threw an error, ignore
-                    Seadragon.Debug.error(e.name +
-                            " while executing drag handler: " + e.message, e);
+                    Seadragon.Debug.error(e.name + " while executing drag handler: " + e.message, e);
                 }
 
                 // since a drag handler was registered, don't allow highlighting, etc.
@@ -2444,9 +2332,8 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
 		*/
         function onMouseMoveIE(event) {
             // manually trigger those that are capturing
-            for(var i = 0; i < ieTrackersCapturing.length; i++) {
+            for(var i = 0; i < ieTrackersCapturing.length; i++)
                 ieTrackersCapturing[i].onMouseMove(event);
-            }
 
             // make sure to stop this event -- shouldn't bubble up. note that at
             // the time of this writing, there is no harm in letting it bubble,
@@ -2473,15 +2360,12 @@ Sys.Extended.UI.Seadragon.Viewer.registerClass('Sys.Extended.UI.Seadragon.Viewer
         };
 
         this.setTracking = function(track) {
-            if(track) {
+            if(track)
                 startTracking();
-            } else {
+            else
                 stopTracking();
-            }
         };
-
     };
-
 })();
 
 Seadragon.Point = Sys.Extended.UI.Seadragon.Point = function(x, y) {
@@ -2512,8 +2396,7 @@ Sys.Extended.UI.Seadragon.Point.prototype = {
     },
 
     distanceTo: function(point) {
-        return Math.sqrt(Math.pow(this.x - point.x, 2) +
-                        Math.pow(this.y - point.y, 2));
+        return Math.sqrt(Math.pow(this.x - point.x, 2) + Math.pow(this.y - point.y, 2));
     },
 
     apply: function(func) {
@@ -2521,8 +2404,7 @@ Sys.Extended.UI.Seadragon.Point.prototype = {
     },
 
     equals: function(point) {
-        return (point instanceof Sys.Extended.UI.Seadragon.Point) &&
-                (this.x === point.x) && (this.y === point.y);
+        return (point instanceof Sys.Extended.UI.Seadragon.Point) && (this.x === point.x) && (this.y === point.y);
     },
 
     toString: function() {
@@ -2561,14 +2443,12 @@ Sys.Extended.UI.Seadragon.Strings = {
         var string = Sys.Extended.UI.Seadragon.Strings;
 
         // get property, which may contain dots, meaning subproperty
-        for(var i = 0; i < props.length; i++) {
+        for(var i = 0; i < props.length; i++)
             string = string[props[i]] || {};    // in case not a subproperty
-        }
 
         // in case the string didn't exist
-        if(typeof (string) != "string") {
+        if(typeof (string) != "string")
             string = "";
-        }
 
         // regular expression and lambda technique from:
         // http://frogsbrain.wordpress.com/2007/04/28/javascript-stringformat-method/#comment-236
@@ -2584,12 +2464,10 @@ Sys.Extended.UI.Seadragon.Strings = {
         var container = Seadragon.Strings;
 
         // get property's container, up to but not after last dot
-        for(var i = 0; i < props.length - 1; i++) {
-            if(!container[props[i]]) {
+        for(var i = 0; i < props.length - 1; i++)
+            if(!container[props[i]])
                 container[props[i]] = {};
-            }
-            container = container[props[i]];
-        }
+        container = container[props[i]];
 
         container[props[i]] = value;
     }
@@ -2629,13 +2507,10 @@ Sys.Extended.UI.Seadragon.Tile = function(level, x, y, bounds, exists, url) {
     this.loaded = false;    // is this tile loaded?
     this.loading = false;   // or is this tile loading?
 
-
-
     // Image
     this.elmt = null;       // the HTML element for this tile
     this.image = null;      // the Image object for this tile
     this.url = url;         // the URL of this tile's image
-
 
     // Drawing
     this.style = null;      // alias of this.elmt.style
@@ -2657,14 +2532,14 @@ Sys.Extended.UI.Seadragon.Tile.prototype = {
         return this.level + "/" + this.x + "_" + this.y;
     },
     drawHTML: function(container) {
-        if (!this.loaded) {
+        if(!this.loaded) {
             Seadragon.Debug.error("Attempting to draw tile " + this.toString() +
                     " when it's not yet loaded.");
             return;
         }
 
         // initialize if first time
-        if (!this.elmt) {
+        if(!this.elmt) {
             this.elmt = Seadragon.Utils.makeNeutralElement("img");
             this.elmt.src = this.url;
             this.style = this.elmt.style;
@@ -2688,9 +2563,8 @@ Sys.Extended.UI.Seadragon.Tile.prototype = {
         //var position = topLeft.apply(Math.floor);
         //var size = bottomRight.minus(topLeft).apply(Math.floor);
 
-        if (elmt.parentNode != container) {
+        if(elmt.parentNode != container)
             container.appendChild(elmt);
-        }
 
         style.left = position.x + "px";
         style.top = position.y + "px";
@@ -2700,7 +2574,7 @@ Sys.Extended.UI.Seadragon.Tile.prototype = {
         Seadragon.Utils.setElementOpacity(elmt, this.opacity);
     },
     drawCanvas: function(context) {
-        if (!this.loaded) {
+        if(!this.loaded) {
             Seadragon.Debug.error("Attempting to draw tile " + this.toString() +
                     " when it's not yet loaded.");
             return;
@@ -2713,9 +2587,8 @@ Sys.Extended.UI.Seadragon.Tile.prototype = {
         context.drawImage(this.image, position.x, position.y, size.x, size.y);
     },
     unload: function() {
-        if (this.elmt && this.elmt.parentNode) {
+        if(this.elmt && this.elmt.parentNode)
             this.elmt.parentNode.removeChild(this.elmt);
-        }
 
         this.elmt = null;
         this.image = null;
@@ -2739,7 +2612,7 @@ Sys.Extended.UI.Seadragon.Overlay = function(elmt, loc, placement) {
 Sys.Extended.UI.Seadragon.Overlay.prototype = {
 
     adjust: function(position, size) {
-        switch (this.placement) {
+        switch(this.placement) {
             case Sys.Extended.UI.Seadragon.OverlayPlacement.TOP_LEFT:
                 break;
             case Sys.Extended.UI.Seadragon.OverlayPlacement.TOP:
@@ -2777,15 +2650,14 @@ Sys.Extended.UI.Seadragon.Overlay.prototype = {
         var elmt = this.elmt;
         var style = this.style;
 
-        if (elmt.parentNode) {
+        if(elmt.parentNode)
             elmt.parentNode.removeChild(elmt);
-        }
 
         style.top = "";
         style.left = "";
         style.position = "";
 
-        if (this.scales) {
+        if(this.scales) {
             style.width = "";
             style.height = "";
         }
@@ -2795,14 +2667,12 @@ Sys.Extended.UI.Seadragon.Overlay.prototype = {
         var style = this.style;
         var scales = this.scales;
 
-        if (elmt.parentNode != container) {
+        if(elmt.parentNode != container)
             container.appendChild(elmt);
-        }
 
         // override calculated size if this element doesn't scale with image
-        if (!scales) {
+        if(!scales)
             this.size = Seadragon.Utils.getElementSize(elmt);
-        }
 
         var position = this.position;
         var size = this.size;
@@ -2817,7 +2687,7 @@ Sys.Extended.UI.Seadragon.Overlay.prototype = {
         style.top = position.y + "px";
         style.position = "absolute";
 
-        if (scales) {
+        if(scales) {
             style.width = size.x + "px";
             style.height = size.y + "px";
         }
@@ -2826,53 +2696,49 @@ Sys.Extended.UI.Seadragon.Overlay.prototype = {
         this.scales = (loc instanceof Sys.Extended.UI.Seadragon.Rect);
         this.bounds = new Sys.Extended.UI.Seadragon.Rect(loc.x, loc.y, loc.width, loc.height);
         this.placement = loc instanceof Sys.Extended.UI.Seadragon.Point ?
-                placement : Sys.Extended.UI.Seadragon.OverlayPlacement.TOP_LEFT;    // rects are always top-left
+            placement : Sys.Extended.UI.Seadragon.OverlayPlacement.TOP_LEFT;    // rects are always top-left
     }
 
 };
 Sys.Extended.UI.Seadragon.Overlay.registerClass('Sys.Extended.UI.Seadragon.Overlay', null, Sys.IDisposable);
 
 Sys.Extended.UI.Seadragon.Drawer = function(source, viewport, elmt) {
+    this._container = Seadragon.Utils.getElement(elmt);
+    this._canvas = Seadragon.Utils.makeNeutralElement(useCanvas ? "canvas" : "div");
+    this._context = useCanvas ? this._canvas.getContext("2d") : null;
+    this._viewport = viewport;
+    this._source = source;
+    this.config = this._viewport.config;
 
-	this._container = Seadragon.Utils.getElement(elmt);
-	this._canvas = Seadragon.Utils.makeNeutralElement(useCanvas ? "canvas" : "div");
-	this._context = useCanvas ? this._canvas.getContext("2d") : null;
-	this._viewport = viewport;
-	this._source = source;
-	this.config = this._viewport.config;
+    this._imageLoader = new Sys.Extended.UI.Seadragon.ImageLoader(this.config.imageLoaderLimit);
+    this._profiler = new Sys.Extended.UI.Seadragon.Profiler();
 
-	this._imageLoader = new Sys.Extended.UI.Seadragon.ImageLoader(this.config.imageLoaderLimit);
-	this._profiler = new Sys.Extended.UI.Seadragon.Profiler();
+    this._minLevel = source.minLevel;
+    this._maxLevel = source.maxLevel;
+    this._tileSize = source.tileSize;
+    this._tileOverlap = source.tileOverlap;
+    this._normHeight = source.dimensions.y / source.dimensions.x;
 
-	this._minLevel = source.minLevel;
-	this._maxLevel = source.maxLevel;
-	this._tileSize = source.tileSize;
-	this._tileOverlap = source.tileOverlap;
-	this._normHeight = source.dimensions.y / source.dimensions.x;
+    this._cacheNumTiles = {};     // 1d dictionary [level] --> Point
+    this._cachePixelRatios = {};  // 1d dictionary [level] --> Point
+    this._tilesMatrix = {};       // 3d dictionary [level][x][y] --> Tile
+    this._tilesLoaded = [];       // unordered list of Tiles with loaded images
+    this._coverage = {};          // 3d dictionary [level][x][y] --> Boolean
 
-	this._cacheNumTiles = {};     // 1d dictionary [level] --> Point
-	this._cachePixelRatios = {};  // 1d dictionary [level] --> Point
-	this._tilesMatrix = {};       // 3d dictionary [level][x][y] --> Tile
-	this._tilesLoaded = [];       // unordered list of Tiles with loaded images
-	this._coverage = {};          // 3d dictionary [level][x][y] --> Boolean
+    this._overlays = [];          // unordered list of Overlays added
+    this._lastDrawn = [];         // unordered list of Tiles drawn last frame
+    this._lastResetTime = 0;
+    this._midUpdate = false;
+    this._updateAgain = true;
 
-	this._overlays = [];          // unordered list of Overlays added
-	this._lastDrawn = [];         // unordered list of Tiles drawn last frame
-	this._lastResetTime = 0;
-	this._midUpdate = false;
-	this._updateAgain = true;
+    // Properties
+    this.elmt = this._container;
 
-	// Properties
-
-	this.elmt = this._container;
-
-	// Constructor
-
-	this._init();
+    // Constructor
+    this._init();
 };
 Sys.Extended.UI.Seadragon.Drawer.prototype = {
     dispose: function() {
-        //ToDO:
     },
     _init: function() {
         this._canvas.style.width = "100%";
@@ -2884,32 +2750,27 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
     _compareTiles: function(prevBest, tile) {
         // figure out if this tile is better than the previous best tile...
         // note that if there is no prevBest, this is automatically better.
-        if (!prevBest) {
+        if(!prevBest)
             return tile;
-        }
 
-        if (tile.visibility > prevBest.visibility) {
+        if(tile.visibility > prevBest.visibility)
             return tile;
-        } else if (tile.visibility == prevBest.visibility) {
-            if (tile.distance < prevBest.distance) {
+        else if(tile.visibility == prevBest.visibility)
+            if(tile.distance < prevBest.distance)
                 return tile;
-            }
-        }
 
         return prevBest;
     },
     _getNumTiles: function(level) {
-        if (!this._cacheNumTiles[level]) {
+        if(!this._cacheNumTiles[level])
             this._cacheNumTiles[level] = this._source.getNumTiles(level);
-        }
 
         return this._cacheNumTiles[level];
     },
 
     _getPixelRatio: function(level) {
-        if (!this._cachePixelRatios[level]) {
+        if(!this._cachePixelRatios[level])
             this._cachePixelRatios[level] = this._source.getPixelRatio(level);
-        }
 
         return this._cachePixelRatios[level];
     },
@@ -2917,15 +2778,14 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
     // Helpers -- TILES
 
     _getTile: function(level, x, y, time, numTilesX, numTilesY) {
-        if (!this._tilesMatrix[level]) {
+        if(!this._tilesMatrix[level])
             this._tilesMatrix[level] = {};
-        }
-        if (!this._tilesMatrix[level][x]) {
+
+        if(!this._tilesMatrix[level][x])
             this._tilesMatrix[level][x] = {};
-        }
 
         // initialize tile object if first time
-        if (!this._tilesMatrix[level][x][y]) {
+        if(!this._tilesMatrix[level][x][y]) {
             // where applicable, adjust x and y to support wrapping.
             var xMod = (numTilesX + (x % numTilesX)) % numTilesX;
             var yMod = (numTilesY + (y % numTilesY)) % numTilesY;
@@ -2956,14 +2816,14 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
     _onTileLoad: function(tile, time, image) {
         tile.loading = false;
 
-        if (this._midUpdate) {
+        if(this._midUpdate) {
             Seadragon.Debug.error("Tile load callback in middle of drawing routine.");
             return;
-        } else if (!image) {
+        } else if(!image) {
             Seadragon.Debug.log("Tile " + tile + " failed to load: " + tile.url);
             tile.exists = false;
             return;
-        } else if (time < this._lastResetTime) {
+        } else if(time < this._lastResetTime) {
             Seadragon.Debug.log("Ignoring tile " + tile + " loaded before reset: " + tile.url);
             return;
         }
@@ -2973,19 +2833,19 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
 
         var insertionIndex = this._tilesLoaded.length;
 
-        if (this._tilesLoaded.length >= QUOTA) {
+        if(this._tilesLoaded.length >= QUOTA) {
             var cutoff = Math.ceil(Math.log(this._tileSize) / Math.log(2));
             // don't delete any single-tile levels. this takes priority.
 
             var worstTile = null;
             var worstTileIndex = -1;
 
-            for (var i = this._tilesLoaded.length - 1; i >= 0; i--) {
+            for(var i = this._tilesLoaded.length - 1; i >= 0; i--) {
                 var prevTile = this._tilesLoaded[i];
 
-                if (prevTile.level <= this._cutoff || prevTile.beingDrawn) {
+                if(prevTile.level <= this._cutoff || prevTile.beingDrawn) {
                     continue;
-                } else if (!worstTile) {
+                } else if(!worstTile) {
                     worstTile = prevTile;
                     worstTileIndex = i;
                     continue;
@@ -2996,14 +2856,14 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
                 var prevLevel = prevTile.level;
                 var worstLevel = worstTile.level;
 
-                if (prevTime < worstTime ||
+                if(prevTime < worstTime ||
                             (prevTime == worstTime && prevLevel > worstLevel)) {
                     worstTile = prevTile;
                     worstTileIndex = i;
                 }
             }
 
-            if (worstTile && worstTileIndex >= 0) {
+            if(worstTile && worstTileIndex >= 0) {
                 worstTile.unload();
                 insertionIndex = worstTileIndex;
                 // note: we don't want or need to delete the actual Tile
@@ -3029,35 +2889,29 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
     // there's no content needed to be covered). And if every tile that is found
     // does provide coverage, the entire visible level provides coverage.
 
-    /**
-    * Returns true if the given tile provides coverage to lower-level tiles of
-    * lower resolution representing the same content. If neither x nor y is
-    * given, returns true if the entire visible level provides coverage.
-    * 
-    * Note that out-of-bounds tiles provide coverage in this sense, since
-    * there's no content that they would need to cover. Tiles at non-existent
-    * levels that are within the image bounds, however, do not.
-    */
+    // Returns true if the given tile provides coverage to lower-level tiles of
+    // lower resolution representing the same content. If neither x nor y is
+    // given, returns true if the entire visible level provides coverage.
+    // 
+    // Note that out-of-bounds tiles provide coverage in this sense, since
+    // there's no content that they would need to cover. Tiles at non-existent
+    // levels that are within the image bounds, however, do not.
     _providesCoverage: function(level, x, y) {
-        if (!this._coverage[level]) {
+        if(!this._coverage[level])
             return false;
-        }
 
-        if (x === undefined || y === undefined) {
+        if(x === undefined || y === undefined) {
             // check that every visible tile provides coverage.
             // update: protecting against properties added to the Object
             // class's prototype, which can definitely (and does) happen.
             var rows = this._coverage[level];
-            for (var i in rows) {
-                if (rows.hasOwnProperty(i)) {
+            for(var i in rows)
+                if(rows.hasOwnProperty(i)) {
                     var cols = rows[i];
-                    for (var j in cols) {
-                        if (cols.hasOwnProperty(j) && !cols[j]) {
+                    for(var j in cols)
+                        if(cols.hasOwnProperty(j) && !cols[j])
                             return false;
-                        }
-                    }
                 }
-            }
 
             return true;
         }
@@ -3067,44 +2921,36 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
                     this._coverage[level][x][y] === true);
     },
 
-    /**
-    * Returns true if the given tile is completely covered by higher-level
-    * tiles of higher resolution representing the same content. If neither x
-    * nor y is given, returns true if the entire visible level is covered.
-    */
+    // Returns true if the given tile is completely covered by higher-level
+    // tiles of higher resolution representing the same content. If neither x
+    // nor y is given, returns true if the entire visible level is covered.
     _isCovered: function(level, x, y) {
-        if (x === undefined || y === undefined) {
+        if(x === undefined || y === undefined)
             return this._providesCoverage(level + 1);
-        } else {
+        else
             return (this._providesCoverage(level + 1, 2 * x, 2 * y) &&
                         this._providesCoverage(level + 1, 2 * x, 2 * y + 1) &&
                         this._providesCoverage(level + 1, 2 * x + 1, 2 * y) &&
                         this._providesCoverage(level + 1, 2 * x + 1, 2 * y + 1));
-        }
     },
 
-    /**
-    * Sets whether the given tile provides coverage or not.
-    */
+    // Sets whether the given tile provides coverage or not.
     _setCoverage: function(level, x, y, covers) {
-        if (!this._coverage[level]) {
+        if(!this._coverage[level]) {
             Seadragon.Debug.error("Setting coverage for a tile before its " +
                         "level's coverage has been reset: " + level);
             return;
         }
 
-        if (!this._coverage[level][x]) {
+        if(!this._coverage[level][x])
             this._coverage[level][x] = {};
-        }
 
         this._coverage[level][x][y] = covers;
     },
 
-    /**
-    * Resets coverage information for the given level. This should be called
-    * after every draw routine. Note that at the beginning of the next draw
-    * routine, coverage for every visible tile should be explicitly set. 
-    */
+    // Resets coverage information for the given level. This should be called
+    // after every draw routine. Note that at the beginning of the next draw
+    // routine, coverage for every visible tile should be explicitly set. 
     _resetCoverage: function(level) {
         this._coverage[level] = {};
     },
@@ -3114,17 +2960,14 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
     _compareTiles: function(prevBest, tile) {
         // figure out if this tile is better than the previous best tile...
         // note that if there is no prevBest, this is automatically better.
-        if (!prevBest) {
+        if(!prevBest)
             return tile;
-        }
 
-        if (tile.visibility > prevBest.visibility) {
+        if(tile.visibility > prevBest.visibility)
             return tile;
-        } else if (tile.visibility == prevBest.visibility) {
-            if (tile.distance < prevBest.distance) {
+        else if(tile.visibility == prevBest.visibility)
+            if(tile.distance < prevBest.distance)
                 return tile;
-            }
-        }
 
         return prevBest;
     },
@@ -3132,11 +2975,9 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
     // Helpers -- OVERLAYS
 
     _getOverlayIndex: function(elmt) {
-        for (var i = this._overlays.length - 1; i >= 0; i--) {
-            if (this._overlays[i].elmt == elmt) {
+        for(var i = this._overlays.length - 1; i >= 0; i--)
+            if(this._overlays[i].elmt == elmt)
                 return i;
-            }
-        }
 
         return -1;
     },
@@ -3150,28 +2991,28 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
 
         // make local references to variables & functions referenced in
         // loops in order to improve perf
-        var _canvas = this._canvas;
-        var _context = this._context;
-        var _container = this._container;
-        var _useCanvas = useCanvas;
-        var _lastDrawn = this._lastDrawn;
+        var _canvas = this._canvas,
+            _context = this._context,
+            _container = this._container,
+            _useCanvas = useCanvas,
+            _lastDrawn = this._lastDrawn;
 
         // the tiles that were drawn last frame, but won't be this frame,
         // can be cleared from the cache, so they should be marked as such.
-        while (_lastDrawn.length > 0) {
+        while(_lastDrawn.length > 0) {
             var tile = _lastDrawn.pop();
             tile.beingDrawn = false;
         }
 
         // we need the size of the viewport (in pixels) in multiple places
-        var viewportSize = this._viewport.getContainerSize();
-        var viewportWidth = viewportSize.x;
-        var viewportHeight = viewportSize.y;
+        var viewportSize = this._viewport.getContainerSize(),
+            viewportWidth = viewportSize.x,
+            viewportHeight = viewportSize.y;
 
         // clear canvas, whether in <canvas> mode or HTML mode.
         // this is important as scene may be empty this frame.
         _canvas.innerHTML = "";
-        if (_useCanvas) {
+        if(_useCanvas) {
             _canvas.width = viewportWidth;
             _canvas.height = viewportHeight;
             _context.clearRect(0, 0, viewportWidth, viewportHeight);
@@ -3181,97 +3022,77 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
 
         // if viewport is off image entirely, don't bother drawing.
         // UPDATE: logic modified to support horizontal/vertical wrapping.
-        var viewportBounds = this._viewport.getBounds(true);
-        var viewportTL = viewportBounds.getTopLeft();
-        var viewportBR = viewportBounds.getBottomRight();
-        if (!this.config.wrapHorizontal &&
-                    (viewportBR.x < 0 || viewportTL.x > 1)) {
+        var viewportBounds = this._viewport.getBounds(true),
+            viewportTL = viewportBounds.getTopLeft(),
+            viewportBR = viewportBounds.getBottomRight();
+        if(!this.config.wrapHorizontal && (viewportBR.x < 0 || viewportTL.x > 1))
             // we're not wrapping horizontally, and viewport is off in x
             return;
-        } else if (!this.config.wrapVertical &&
-                    (viewportBR.y < 0 || viewportTL.y > this._normHeight)) {
+        else if(!this.config.wrapVertical && (viewportBR.y < 0 || viewportTL.y > this._normHeight))
             // we're not wrapping vertically, and viewport is off in y
             return;
-        }
 
         // the below section is commented out because it's more relevant to
         // collections, where you don't want 10 items to all load their xml
         // at the same time when 9 of them won't be in the viewport soon.
 
-        //            // but even if the viewport is currently on the image, don't force
-        //            // tiles to load if the viewport target is off the image
-        //            var viewportTargetBounds = getViewportBounds(false);
-        //            var viewportTargetTL = viewportTargetBounds.getTopLeft();
-        //            var viewportTargetBR = viewportTargetBounds.getBottomRight();
-        //            var willBeOff = viewportTargetBR.x < 0 || viewportTargetBR.y < 0 ||
-        //                    viewportTargetTL.x > 1 || viewportTargetTL.y > normHeight;
-
-
         // same for Math functions
-        var _abs = Math.abs;
-        var _ceil = Math.ceil;
-        var _floor = Math.floor;
-        var _log = Math.log;
-        var _max = Math.max;
-        var _min = Math.min;
-        // and Viewport functions
-        //var _deltaPixelsFromPoints = this._viewport.deltaPixelsFromPoints;
-        //var _pixelFromPoint = this._viewport.pixelFromPoint;
-        // and TileSource functions
-        //var _getTileAtPoint = this._source.getTileAtPoint;
-        // and Config properties
-        var alwaysBlend = this.config.alwaysBlend;
-        var blendTimeMillis = 1000 * this.config.blendTime;
-        var immediateRender = this.config.immediateRender;
-        var minDimension = this.config.minZoomDimension;   // for backwards compatibility
-        var minImageRatio = this.config.minImageRatio;
-        var wrapHorizontal = this.config.wrapHorizontal;
-        var wrapVertical = this.config.wrapVertical;
+        var _abs = Math.abs,
+            _ceil = Math.ceil,
+            _floor = Math.floor,
+            _log = Math.log,
+            _max = Math.max,
+            _min = Math.min;
+
+        var alwaysBlend = this.config.alwaysBlend,
+            blendTimeMillis = 1000 * this.config.blendTime,
+            immediateRender = this.config.immediateRender,
+            minDimension = this.config.minZoomDimension,   // for backwards compatibility
+            minImageRatio = this.config.minImageRatio,
+            wrapHorizontal = this.config.wrapHorizontal,
+            wrapVertical = this.config.wrapVertical;
 
         // restrain bounds of viewport relative to image.
         // UPDATE: logic modified to support horizontal/vertical wrapping.
-        if (!wrapHorizontal) {
+        if(!wrapHorizontal) {
             viewportTL.x = _max(viewportTL.x, 0);
             viewportBR.x = _min(viewportBR.x, 1);
         }
-        if (!wrapVertical) {
+        if(!wrapVertical) {
             viewportTL.y = _max(viewportTL.y, 0);
             viewportBR.y = _min(viewportBR.y, this._normHeight);
         }
 
-        var best = null;
-        var haveDrawn = false;
-        var currentTime = new Date().getTime();
+        var best = null,
+            haveDrawn = false,
+            currentTime = new Date().getTime();
 
         // calculate values for scoring -- this is based on TARGET values
-        var viewportCenter = this._viewport.pixelFromPoint(this._viewport.getCenter());
-        var zeroRatioT = this._viewport.deltaPixelsFromPoints(this._source.getPixelRatio(0), false).x;
-        var optimalPixelRatio = immediateRender ? 1 : zeroRatioT;
+        var viewportCenter = this._viewport.pixelFromPoint(this._viewport.getCenter()),
+            zeroRatioT = this._viewport.deltaPixelsFromPoints(this._source.getPixelRatio(0), false).x,
+            optimalPixelRatio = immediateRender ? 1 : zeroRatioT;
 
         // adjust levels to iterate over -- this is based on CURRENT values
         // TODO change this logic to use minImageRatio, but for backwards
         // compatibility, use minDimension if it's been explicitly set.
         // TEMP for now, original minDimension logic with default 64.
         minDimension = minDimension || 64;
-        var lowestLevel = _max(this._minLevel, _floor(_log(minDimension) / _log(2)));
-        var zeroRatioC = this._viewport.deltaPixelsFromPoints(this._source.getPixelRatio(0), true).x;
-        var highestLevel = _min(this._maxLevel,
-                    _floor(_log(zeroRatioC / MIN_PIXEL_RATIO) / _log(2)));
+        var lowestLevel = _max(this._minLevel, _floor(_log(minDimension) / _log(2))),
+            zeroRatioC = this._viewport.deltaPixelsFromPoints(this._source.getPixelRatio(0), true).x,
+            highestLevel = _min(this._maxLevel, _floor(_log(zeroRatioC / MIN_PIXEL_RATIO) / _log(2)));
 
         // with very small images, this edge case can occur...
         lowestLevel = _min(lowestLevel, highestLevel);
 
-        for (var level = highestLevel; level >= lowestLevel; level--) {
+        for(var level = highestLevel; level >= lowestLevel; level--) {
             var drawLevel = false;
-            var renderPixelRatioC = this._viewport.deltaPixelsFromPoints(
-                        this._source.getPixelRatio(level), true).x;     // note the .x!
+            var renderPixelRatioC = this._viewport.deltaPixelsFromPoints(this._source.getPixelRatio(level), true).x; // note the .x!
 
             // if we haven't drawn yet, only draw level if tiles are big enough
-            if ((!haveDrawn && renderPixelRatioC >= MIN_PIXEL_RATIO) ||
-                        level == lowestLevel) {
+            if((!haveDrawn && renderPixelRatioC >= MIN_PIXEL_RATIO) || level == lowestLevel) {
                 drawLevel = true;
                 haveDrawn = true;
-            } else if (!haveDrawn) {
+            } else if(!haveDrawn) {
                 continue;
             }
 
@@ -3279,74 +3100,66 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
 
             // calculate scores applicable to all tiles on this level --
             // note that we're basing visibility on the TARGET pixel ratio
-            var levelOpacity = _min(1, (renderPixelRatioC - 0.5) / 0.5);
-            var renderPixelRatioT = this._viewport.deltaPixelsFromPoints(
-                        this._source.getPixelRatio(level), false).x;
-            var levelVisibility = optimalPixelRatio /
-                        _abs(optimalPixelRatio - renderPixelRatioT);
+            var levelOpacity = _min(1, (renderPixelRatioC - 0.5) / 0.5),
+                renderPixelRatioT = this._viewport.deltaPixelsFromPoints(this._source.getPixelRatio(level), false).x,
+                levelVisibility = optimalPixelRatio / _abs(optimalPixelRatio - renderPixelRatioT);
 
             // only iterate over visible tiles
-            var tileTL = this._source.getTileAtPoint(level, viewportTL);
-            var tileBR = this._source.getTileAtPoint(level, viewportBR);
-            var numTiles = this._getNumTiles(level);
-            var numTilesX = numTiles.x;
-            var numTilesY = numTiles.y;
-            if (!wrapHorizontal) {
-                tileBR.x = _min(tileBR.x, numTilesX - 1);
-            }
-            if (!wrapVertical) {
-                tileBR.y = _min(tileBR.y, numTilesY - 1);
-            }
+            var tileTL = this._source.getTileAtPoint(level, viewportTL),
+                tileBR = this._source.getTileAtPoint(level, viewportBR),
+                numTiles = this._getNumTiles(level),
+                numTilesX = numTiles.x,
+                numTilesY = numTiles.y;
 
-            for (var x = tileTL.x; x <= tileBR.x; x++) {
-                for (var y = tileTL.y; y <= tileBR.y; y++) {
+            if(!wrapHorizontal)
+                tileBR.x = _min(tileBR.x, numTilesX - 1);
+            if(!wrapVertical)
+                tileBR.y = _min(tileBR.y, numTilesY - 1);
+
+            for(var x = tileTL.x; x <= tileBR.x; x++) {
+                for(var y = tileTL.y; y <= tileBR.y; y++) {
                     var tile = this._getTile(level, x, y, currentTime, numTilesX, numTilesY);
                     var drawTile = drawLevel;
 
                     // assume this tile doesn't cover initially
                     this._setCoverage(level, x, y, false);
 
-                    if (!tile.exists) {
+                    if(!tile.exists)
                         // not part of sparse image, or failed to load
                         continue;
-                    }
 
                     // if we've drawn a higher-resolution level and we're not
                     // going to draw this level, then say this tile does cover
                     // if it's covered by higher-resolution tiles. if we're not
                     // covered, then we should draw this tile regardless.
-                    if (haveDrawn && !drawTile) {
-                        if (this._isCovered(level, x, y)) {
+                    if(haveDrawn && !drawTile)
+                        if(this._isCovered(level, x, y))
                             this._setCoverage(level, x, y, true);
-                        } else {
+                        else
                             drawTile = true;
-                        }
-                    }
 
-                    if (!drawTile) {
+                    if(!drawTile)
                         continue;
-                    }
 
                     // calculate tile's position and size in pixels
-                    var boundsTL = tile.bounds.getTopLeft();
-                    var boundsSize = tile.bounds.getSize();
-                    var positionC = this._viewport.pixelFromPoint(boundsTL, true);
-                    var sizeC = this._viewport.deltaPixelsFromPoints(boundsSize, true);
+                    var boundsTL = tile.bounds.getTopLeft(),
+                        boundsSize = tile.bounds.getSize(),
+                        positionC = this._viewport.pixelFromPoint(boundsTL, true),
+                        sizeC = this._viewport.deltaPixelsFromPoints(boundsSize, true);
 
                     // if there is no tile overlap, we need to oversize the
                     // tiles by 1px to prevent seams at imperfect zooms.
                     // fortunately, this is not an issue with regular dzi's
                     // created from Deep Zoom Composer, which uses overlap.
-                    if (!this._tileOverlap) {
+                    if(!this._tileOverlap)
                         sizeC = sizeC.plus(new Sys.Extended.UI.Seadragon.Point(1, 1));
-                    }
 
                     // calculate distance from center of viewport -- note
                     // that this is based on tile's TARGET position
-                    var positionT = this._viewport.pixelFromPoint(boundsTL, false);
-                    var sizeT = this._viewport.deltaPixelsFromPoints(boundsSize, false);
-                    var tileCenter = positionT.plus(sizeT.divide(2));
-                    var tileDistance = viewportCenter.distanceTo(tileCenter);
+                    var positionT = this._viewport.pixelFromPoint(boundsTL, false),
+                        sizeT = this._viewport.deltaPixelsFromPoints(boundsSize, false),
+                        tileCenter = positionT.plus(sizeT.divide(2)),
+                        tileDistance = viewportCenter.distanceTo(tileCenter);
 
                     // update tile's scores and values
                     tile.position = positionC;
@@ -3354,18 +3167,16 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
                     tile.distance = tileDistance;
                     tile.visibility = levelVisibility;
 
-                    if (tile.loaded) {
-                        if (!tile.blendStart) {
+                    if(tile.loaded) {
+                        if(!tile.blendStart)
                             // image was just added, blend it
                             tile.blendStart = currentTime;
-                        }
 
                         var deltaTime = currentTime - tile.blendStart;
                         var opacity = _min(1, deltaTime / blendTimeMillis);
-                        
-                        if (alwaysBlend) {
+
+                        if(alwaysBlend)
                             opacity *= levelOpacity;
-                        }
 
                         tile.opacity = opacity;
 
@@ -3374,12 +3185,11 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
 
                         // if fully blended in, this tile now provides coverage,
                         // otherwise we need to update again to keep blending
-                        if (opacity == 1) {
+                        if(opacity == 1)
                             this._setCoverage(level, x, y, true);
-                        } else if (deltaTime < blendTimeMillis) {
+                        else if(deltaTime < blendTimeMillis)
                             updateAgain = true;
-                        }
-                    } else if (tile.Loading) {
+                    } else if(tile.Loading) {
                         // nothing to see here, move on
                     } else {
                         // means tile isn't loaded yet, so score it
@@ -3389,22 +3199,20 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
             }
 
             // we may not need to draw any more lower-res levels
-            if (this._providesCoverage(level)) {
+            if(this._providesCoverage(level))
                 break;
-            }
         }
 
         // now draw the tiles, but in reverse order since we want higher-res
         // tiles to be drawn on top of lower-res ones. also mark each tile
         // as being drawn so it won't get cleared from the cache.
-        for (var i = _lastDrawn.length - 1; i >= 0; i--) {
+        for(var i = _lastDrawn.length - 1; i >= 0; i--) {
             var tile = _lastDrawn[i];
 
-            if (_useCanvas) {
+            if(_useCanvas)
                 tile.drawCanvas(_context);
-            } else {
+            else
                 tile.drawHTML(_canvas);
-            }
 
             tile.beingDrawn = true;
         }
@@ -3412,9 +3220,9 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
         // draw the overlays -- TODO optimize based on viewport like tiles,
         // but this is tricky for non-scaling overlays like pins...
         var numOverlays = this._overlays.length;
-        for (var i = 0; i < numOverlays; i++) {
-            var overlay = this._overlays[i];
-            var bounds = overlay.bounds;
+        for(var i = 0; i < numOverlays; i++) {
+            var overlay = this._overlays[i],
+                bounds = overlay.bounds;
 
             overlay.position = this._viewport.pixelFromPoint(bounds.getTopLeft(), true);
             overlay.size = this._viewport.deltaPixelsFromPoints(bounds.getSize(), true);
@@ -3422,7 +3230,7 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
         }
 
         // load next tile if there is one to load
-        if (best) {
+        if(best) {
             this._loadTile(best, currentTime);
             this._updateAgain = true; // because we haven't finished drawing, so
             // we should be re-evaluating and re-scoring
@@ -3434,29 +3242,28 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
     addOverlay: function(elmt, loc, placement) {
         var elmt = Seadragon.Utils.getElement(elmt);
 
-        if (this._getOverlayIndex(elmt) >= 0) {
+        if(this._getOverlayIndex(elmt) >= 0)
             return;     // they're trying to add a duplicate overlay
-        }
 
         this._overlays.push(new Sys.Extended.UI.Seadragon.Overlay(elmt, loc, placement));
         this._updateAgain = true;
     },
 
     updateOverlay: function(elmt, loc, placement) {
-        var elmt = Seadragon.Utils.getElement(elmt);
-        var i = this._getOverlayIndex(elmt);
+        var elmt = Seadragon.Utils.getElement(elmt),
+            i = this._getOverlayIndex(elmt);
 
-        if (i >= 0) {
+        if(i >= 0) {
             this._overlays[i].update(loc, placement);
             this._updateAgain = true;
         }
     },
 
     removeOverlay: function(elmt) {
-        var elmt = Seadragon.Utils.getElement(elmt);
-        var i = this._getOverlayIndex(elmt);
+        var elmt = Seadragon.Utils.getElement(elmt),
+            i = this._getOverlayIndex(elmt);
 
-        if (i >= 0) {
+        if(i >= 0) {
             this._overlays[i].destroy();
             this._overlays.splice(i, 1);
             this._updateAgain = true;
@@ -3464,7 +3271,7 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
     },
 
     clearOverlays: function() {
-        while (this._overlays.length > 0) {
+        while(this._overlays.length > 0) {
             this._overlays.pop().destroy();
             this._updateAgain = true;
         }
@@ -3504,8 +3311,7 @@ Sys.Extended.UI.Seadragon.TileSource = function(width, height, tileSize, tileOve
     this.aspectRatio = width / height;
     this.dimensions = new Sys.Extended.UI.Seadragon.Point(width, height);
     this.minLevel = minLevel ? minLevel : 0;
-    this.maxLevel = maxLevel ? maxLevel :
-            Math.ceil(Math.log(Math.max(width, height)) / Math.log(2));
+    this.maxLevel = maxLevel ? maxLevel : Math.ceil(Math.log(Math.max(width, height)) / Math.log(2));
     this.tileSize = tileSize ? tileSize : 0;
     this.tileOverlap = tileOverlap ? tileOverlap : 0;
 };
@@ -3516,17 +3322,17 @@ Sys.Extended.UI.Seadragon.TileSource.prototype = {
     },
 
     getNumTiles: function(level) {
-        var scale = this.getLevelScale(level);
-        var x = Math.ceil(scale * this.dimensions.x / this.tileSize);
-        var y = Math.ceil(scale * this.dimensions.y / this.tileSize);
+        var scale = this.getLevelScale(level),
+            x = Math.ceil(scale * this.dimensions.x / this.tileSize),
+            y = Math.ceil(scale * this.dimensions.y / this.tileSize);
 
         return new Sys.Extended.UI.Seadragon.Point(x, y);
     },
 
     getPixelRatio: function(level) {
-        var imageSizeScaled = this.dimensions.times(this.getLevelScale(level));
-        var rx = 1.0 / imageSizeScaled.x;
-        var ry = 1.0 / imageSizeScaled.y;
+        var imageSizeScaled = this.dimensions.times(this.getLevelScale(level)),
+            rx = 1.0 / imageSizeScaled.x,
+            ry = 1.0 / imageSizeScaled.y;
 
         return new Sys.Extended.UI.Seadragon.Point(rx, ry);
     },
@@ -3534,8 +3340,8 @@ Sys.Extended.UI.Seadragon.TileSource.prototype = {
     getTileAtPoint: function(level, point) {
         var pixel = point.times(this.dimensions.x).times(this.getLevelScale(level));
 
-        var tx = Math.floor(pixel.x / this.tileSize);
-        var ty = Math.floor(pixel.y / this.tileSize);
+        var tx = Math.floor(pixel.x / this.tileSize),
+            ty = Math.floor(pixel.y / this.tileSize);
 
         return new Sys.Extended.UI.Seadragon.Point(tx, ty);
     },
@@ -3545,12 +3351,12 @@ Sys.Extended.UI.Seadragon.TileSource.prototype = {
         var dimensionsScaled = this.dimensions.times(this.getLevelScale(level));
 
         // find position, adjust for no overlap data on top and left edges
-        var px = (x === 0) ? 0 : this.tileSize * x - this.tileOverlap;
-        var py = (y === 0) ? 0 : this.tileSize * y - this.tileOverlap;
+        var px = (x === 0) ? 0 : this.tileSize * x - this.tileOverlap,
+            py = (y === 0) ? 0 : this.tileSize * y - this.tileOverlap;
 
         // find size, adjust for no overlap data on top and left edges
-        var sx = this.tileSize + (x === 0 ? 1 : 2) * this.tileOverlap;
-        var sy = this.tileSize + (y === 0 ? 1 : 2) * this.tileOverlap;
+        var sx = this.tileSize + (x === 0 ? 1 : 2) * this.tileOverlap,
+            sy = this.tileSize + (y === 0 ? 1 : 2) * this.tileOverlap;
 
         // adjust size for single-tile levels where the image size is smaller
         // than the regular tile size, and for tiles on the bottom and right
@@ -3561,6 +3367,7 @@ Sys.Extended.UI.Seadragon.TileSource.prototype = {
         // finally, normalize...
         // note that isotropic coordinates ==> only dividing by scaled x!
         var scale = 1.0 / dimensionsScaled.x;
+
         return new Sys.Extended.UI.Seadragon.Rect(px * scale, py * scale, sx * scale, sy * scale);
     },
 
@@ -3593,16 +3400,14 @@ Sys.Extended.UI.Seadragon.DziTileSource = function(width, height, tileSize, tile
 };
 Sys.Extended.UI.Seadragon.DziTileSource.prototype = {
     _init: function() {
-        if (!this.displayRects) {
+        if(!this.displayRects)
             return;
-        }
 
-        for (var i = this.displayRects.length - 1; i >= 0; i--) {
+        for(var i = this.displayRects.length - 1; i >= 0; i--) {
             var rect = this.displayRects[i];
-            for (var level = rect.minLevel; level <= rect.maxLevel; level++) {
-                if (!this._levelRects[level]) {
+            for(var level = rect.minLevel; level <= rect.maxLevel; level++) {
+                if(!this._levelRects[level])
                     this._levelRects[level] = [];
-                }
                 this._levelRects[level].push(rect);
             }
         }
@@ -3615,24 +3420,22 @@ Sys.Extended.UI.Seadragon.DziTileSource.prototype = {
     tileExists: function(level, x, y) {
         var rects = this._levelRects[level];
 
-        if (!rects || !rects.length) {
+        if(!rects || !rects.length)
             return true;
-        }
 
-        for (var i = rects.length - 1; i >= 0; i--) {
+        for(var i = rects.length - 1; i >= 0; i--) {
             var rect = rects[i];
 
             // check level
-            if (level < rect.minLevel || level > rect.maxLevel) {
+            if(level < rect.minLevel || level > rect.maxLevel)
                 continue;
-            }
 
             // transform rectangle coordinates to this level
-            var scale = this.getLevelScale(level);
-            var xMin = rect.x * scale;
-            var yMin = rect.y * scale;
-            var xMax = xMin + rect.width * scale;
-            var yMax = yMin + rect.height * scale;
+            var scale = this.getLevelScale(level),
+                xMin = rect.x * scale,
+                yMin = rect.y * scale,
+                xMax = xMin + rect.width * scale,
+                yMax = yMin + rect.height * scale;
 
             // convert to rows and columns -- note that we're ignoring tile
             // overlap, but it's a reasonable approximation. it errs on the side
@@ -3642,9 +3445,8 @@ Sys.Extended.UI.Seadragon.DziTileSource.prototype = {
             xMax = Math.ceil(xMax / this.tileSize);
             yMax = Math.ceil(yMax / this.tileSize);
 
-            if (xMin <= x && x < xMax && yMin <= y && y < yMax) {
+            if(xMin <= x && x < xMax && yMin <= y && y < yMax)
                 return true;
-            }
         }
 
         return false;
@@ -3656,12 +3458,12 @@ Sys.Extended.UI.Seadragon._DziTileSourceHelper = function() {
 };
 Sys.Extended.UI.Seadragon._DziTileSourceHelper.prototype = {
     createFromXml: function(xmlUrl, xmlString, callback) {
-        var async = typeof (callback) == "function";
-        var error = null;
+        var async = typeof (callback) == "function",
+            error = null;
 
-        if (!xmlUrl) {
+        if(!xmlUrl) {
             this.error = Seadragon.Strings.getString("Errors.Empty");
-            if (async) {
+            if(async) {
                 window.setTimeout(function() {
                     callback(null, error);
                 }, 1);
@@ -3671,20 +3473,19 @@ Sys.Extended.UI.Seadragon._DziTileSourceHelper.prototype = {
         }
 
         // extract tile url
-        var urlParts = xmlUrl.split('/');
-        var filename = urlParts[urlParts.length - 1];
-        var lastDot = filename.lastIndexOf('.');
+        var urlParts = xmlUrl.split('/'),
+            filename = urlParts[urlParts.length - 1],
+            lastDot = filename.lastIndexOf('.');
 
-        if (lastDot > -1) {
+        if(lastDot > -1)
             urlParts[urlParts.length - 1] = filename.slice(0, lastDot);
-        }
 
         var tilesUrl = urlParts.join('/') + "_files/";
         function finish(func, obj) {
             try {
                 return func(obj, tilesUrl);
-            } catch (e) {
-                if (async) {
+            } catch(e) {
+                if(async) {
                     error = this.getError(e).message;
                     return null;
                 } else {
@@ -3692,8 +3493,9 @@ Sys.Extended.UI.Seadragon._DziTileSourceHelper.prototype = {
                 }
             }
         }
-        if (async) {
-            if (xmlString) {
+
+        if(async) {
+            if(xmlString) {
                 var handler = Function.createDelegate(this, this.processResponse);
                 window.setTimeout(function() {
                     var source = finish(handler, Seadragon.Utils.parseXml(xmlString));
@@ -3711,16 +3513,15 @@ Sys.Extended.UI.Seadragon._DziTileSourceHelper.prototype = {
         }
 
         // synchronous version
-        if (xmlString) {
+        if(xmlString)
             return finish(Function.createDelegate(this, this.processXml), Seadragon.Utils.parseXml(xmlString));
-        } else {
+        else
             return finish(Function.createDelegate(this, this.processResponse), Seadragon.Utils.makeAjaxRequest(xmlUrl));
-        }
     },
     processResponse: function(xhr, tilesUrl) {
-        if (!xhr) {
+        if(!xhr) {
             throw new Sys.Extended.UI.Seadragon.DziError(Seadragon.Strings.getString("Errors.Security"));
-        } else if (xhr.status !== 200 && xhr.status !== 0) {
+        } else if(xhr.status !== 200 && xhr.status !== 0) {
             // chrome has bug where it sends "OK" for 404
             var status = xhr.status;
             var statusText = (status == 404) ? "Not Found" : xhr.statusText;
@@ -3729,35 +3530,32 @@ Sys.Extended.UI.Seadragon._DziTileSourceHelper.prototype = {
 
         var doc = null;
 
-        if (xhr.responseXML && xhr.responseXML.documentElement) {
+        if(xhr.responseXML && xhr.responseXML.documentElement)
             doc = xhr.responseXML;
-        } else if (xhr.responseText) {
+        else if(xhr.responseText)
             doc = Seadragon.Utils.parseXml(xhr.responseText);
-        }
 
         return this.processXml(doc, tilesUrl);
     },
 
     processXml: function(xmlDoc, tilesUrl) {
-        if (!xmlDoc || !xmlDoc.documentElement) {
+        if(!xmlDoc || !xmlDoc.documentElement)
             throw new Sys.Extended.UI.Seadragon.DziError(Seadragon.Strings.getString("Errors.Xml"));
-        }
 
-        var root = xmlDoc.documentElement;
-        var rootName = root.tagName;
+        var root = xmlDoc.documentElement,
+            rootName = root.tagName;
 
-        if (rootName == "Image") {
+        if(rootName == "Image")
             try {
                 return this.processDzi(root, tilesUrl);
-            } catch (e) {
+            } catch(e) {
                 var defMsg = Seadragon.Strings.getString("Errors.Dzi");
                 throw (e instanceof Sys.Extended.UI.Seadragon.DziError) ? e : new Sys.Extended.UI.Seadragon.DziError(defMsg);
             }
-        } else if (rootName == "Collection") {
+        else if(rootName == "Collection")
             throw new Sys.Extended.UI.Seadragon.DziError(Seadragon.Strings.getString("Errors.Dzc"));
-        } else if (rootName == "Error") {
+        else if(rootName == "Error")
             return this.processError(root);
-        }
 
         throw new Sys.Extended.UI.Seadragon.DziError(Seadragon.Strings.getString("Errors.Dzi"));
     },
@@ -3765,23 +3563,21 @@ Sys.Extended.UI.Seadragon._DziTileSourceHelper.prototype = {
     processDzi: function(imageNode, tilesUrl) {
         var fileFormat = imageNode.getAttribute("Format");
 
-        if (!Seadragon.Utils.imageFormatSupported(fileFormat)) {
-            throw new Sys.Extended.UI.Seadragon.DziError(Seadragon.Strings.getString("Errors.ImageFormat",
-                    fileFormat.toUpperCase()));
-        }
+        if(!Seadragon.Utils.imageFormatSupported(fileFormat))
+            throw new Sys.Extended.UI.Seadragon.DziError(Seadragon.Strings.getString("Errors.ImageFormat", fileFormat.toUpperCase()));
 
-        var sizeNode = imageNode.getElementsByTagName("Size")[0];
-        var dispRectNodes = imageNode.getElementsByTagName("DisplayRect");
+        var sizeNode = imageNode.getElementsByTagName("Size")[0],
+            dispRectNodes = imageNode.getElementsByTagName("DisplayRect");
 
-        var width = parseInt(sizeNode.getAttribute("Width"), 10);
-        var height = parseInt(sizeNode.getAttribute("Height"), 10);
-        var tileSize = parseInt(imageNode.getAttribute("TileSize"));
-        var tileOverlap = parseInt(imageNode.getAttribute("Overlap"));
-        var dispRects = [];
+        var width = parseInt(sizeNode.getAttribute("Width"), 10),
+            height = parseInt(sizeNode.getAttribute("Height"), 10),
+            tileSize = parseInt(imageNode.getAttribute("TileSize")),
+            tileOverlap = parseInt(imageNode.getAttribute("Overlap")),
+            dispRects = [];
 
-        for (var i = 0; i < dispRectNodes.length; i++) {
-            var dispRectNode = dispRectNodes[i];
-            var rectNode = dispRectNode.getElementsByTagName("Rect")[0];
+        for(var i = 0; i < dispRectNodes.length; i++) {
+            var dispRectNode = dispRectNodes[i],
+                rectNode = dispRectNode.getElementsByTagName("Rect")[0];
 
             dispRects.push(new Seadragon.DisplayRect(
                 parseInt(rectNode.getAttribute("X"), 10),
@@ -3797,13 +3593,13 @@ Sys.Extended.UI.Seadragon._DziTileSourceHelper.prototype = {
     },
 
     processError: function(errorNode) {
-        var messageNode = errorNode.getElementsByTagName("Message")[0];
-        var message = messageNode.firstChild.nodeValue;
+        var messageNode = errorNode.getElementsByTagName("Message")[0],
+            message = messageNode.firstChild.nodeValue;
 
         throw new Sys.Extended.UI.Seadragon.DziError(message);
     },
     getError: function(e) {
-        if (!(e instanceof DziError)) {
+        if(!(e instanceof DziError)) {
             // shouldn't happen, but if it does, fail fast or at least log it
             Seadragon.Debug.error(e.name + " while creating DZI from XML: " + e.message);
             e = new Sys.Extended.UI.Seadragon.DziError(Seadragon.Strings.getString("Errors.Unknown"));
@@ -3816,7 +3612,6 @@ Sys.Extended.UI.Seadragon.DziTileSourceHelper = new Sys.Extended.UI.Seadragon._D
 
 Sys.Extended.UI.Seadragon.Rect = function(x, y, width, height) {
     // Properties
-
     this.x = typeof (x) == "number" ? x : 0;
     this.y = typeof (y) == "number" ? y : 0;
     this.width = typeof (width) == "number" ? width : 0;
@@ -3828,20 +3623,19 @@ Sys.Extended.UI.Seadragon.Rect.prototype = {
     },
 
     getTopLeft: function() {
-    return new Sys.Extended.UI.Seadragon.Point(this.x, this.y);
+        return new Sys.Extended.UI.Seadragon.Point(this.x, this.y);
     },
 
     getBottomRight: function() {
-    return new Sys.Extended.UI.Seadragon.Point(this.x + this.width, this.y + this.height);
+        return new Sys.Extended.UI.Seadragon.Point(this.x + this.width, this.y + this.height);
     },
 
     getCenter: function() {
-    return new Sys.Extended.UI.Seadragon.Point(this.x + this.width / 2.0,
-                        this.y + this.height / 2.0);
+        return new Sys.Extended.UI.Seadragon.Point(this.x + this.width / 2.0, this.y + this.height / 2.0);
     },
 
     getSize: function() {
-    return new Sys.Extended.UI.Seadragon.Point(this.width, this.height);
+        return new Sys.Extended.UI.Seadragon.Point(this.width, this.height);
     },
 
     equals: function(other) {
@@ -3851,8 +3645,7 @@ Sys.Extended.UI.Seadragon.Rect.prototype = {
     },
 
     toString: function() {
-        return "[" + this.x + "," + this.y + "," + this.width + "x" +
-                this.height + "]";
+        return "[" + this.x + "," + this.y + "," + this.width + "x" + this.height + "]";
     }
 };
 Sys.Extended.UI.Seadragon.Rect.registerClass('Sys.Extended.UI.Seadragon.Rect', null, Sys.IDisposable);
@@ -3870,14 +3663,13 @@ Sys.Extended.UI.Seadragon.Job.prototype = {
         this._image.onabort = null;
         this._image.onerror = null;
 
-
-        if (this._timeout) {
+        if(this._timeout)
             window.clearTimeout(this._timeout);
-        }
 
         // call on a timeout to ensure asynchronous behavior
-        var image = this._image;
-        var callback = this._callback;
+        var image = this._image,
+            callback = this._callback;
+
         window.setTimeout(function() {
             callback(this._src, success ? image : null);
         }, 1);
@@ -3902,30 +3694,26 @@ Sys.Extended.UI.Seadragon.Job.prototype = {
 };
 Sys.Extended.UI.Seadragon.Job.registerClass('Sys.Extended.UI.Seadragon.Job', null, Sys.IDisposable);
 
-
 Sys.Extended.UI.Seadragon.ImageLoader = function(imageLoaderLimit) {
-	this._downloading = 0;
-	this.imageLoaderLimit = imageLoaderLimit;
+    this._downloading = 0;
+    this.imageLoaderLimit = imageLoaderLimit;
 };
 Sys.Extended.UI.Seadragon.ImageLoader.prototype = {
     _onComplete: function(callback, src, image) {
         this._downloading--;
-        if (typeof (callback) == "function") {
+        if(typeof (callback) == "function")
             try {
                 callback(image);
-            } catch (e) {
-                Seadragon.Debug.error(e.name + " while executing " + src +
-                            " callback: " + e.message, e);
+            } catch(e) {
+                Seadragon.Debug.error(e.name + " while executing " + src + " callback: " + e.message, e);
             }
-        }
     },
     loadImage: function(src, callback) {
-        if (this._downloading >= this.imageLoaderLimit) {
+        if(this._downloading >= this.imageLoaderLimit)
             return false;
-        }
 
-        var func = Seadragon.Utils.createCallback(null, Function.createDelegate(this, this._onComplete), callback);
-        var job = new Sys.Extended.UI.Seadragon.Job(src, func);
+        var func = Seadragon.Utils.createCallback(null, Function.createDelegate(this, this._onComplete), callback),
+            job = new Sys.Extended.UI.Seadragon.Job(src, func);
 
         this._downloading++;
         job.start();
@@ -3936,7 +3724,6 @@ Sys.Extended.UI.Seadragon.ImageLoader.prototype = {
 Sys.Extended.UI.Seadragon.ImageLoader.registerClass('Sys.Extended.UI.Seadragon.ImageLoader', null, Sys.IDisposable);
 
 Sys.Extended.UI.Seadragon.Profiler = function() {
-
     this._midUpdate = false;
     this._numUpdates = 0;
 
@@ -3993,33 +3780,28 @@ Sys.Extended.UI.Seadragon.Profiler.prototype = {
     // Methods -- MODIFIERS
 
     beginUpdate: function() {
-        if (this._midUpdate) {
+        if(this._midUpdate)
             this.endUpdate();
-        }
 
         this._midUpdate = true;
         this._lastBeginTime = new Date().getTime();
 
-        if (this._numUpdates < 1) {
-            return;     // this is the first update
-        }
+        if(this._numUpdates < 1)
+            return; // this is the first update
 
         var time = this._lastBeginTime - this._lastEndTime;
 
         this._avgIdleTime = (this._avgIdleTime * (this._numUpdates - 1) + time) / this._numUpdates;
 
-        if (time < this._minIdleTime) {
+        if(time < this._minIdleTime)
             this._minIdleTime = time;
-        }
-        if (time > this._maxIdleTime) {
+        if(time > this._maxIdleTime)
             this._maxIdleTime = time;
-        }
     },
 
     endUpdate: function() {
-        if (!this._midUpdate) {
+        if(!this._midUpdate)
             return;
-        }
 
         this._lastEndTime = new Date().getTime();
         this._midUpdate = false;
@@ -4029,12 +3811,10 @@ Sys.Extended.UI.Seadragon.Profiler.prototype = {
         this._numUpdates++;
         this._avgUpdateTime = (this._avgUpdateTime * (this._numUpdates - 1) + time) / this._numUpdates;
 
-        if (time < this._minUpdateTime) {
+        if(time < this._minUpdateTime)
             this._minUpdateTime = time;
-        }
-        if (time > this._maxUpdateTime) {
+        if(time > this._maxUpdateTime)
             this._maxUpdateTime = time;
-        }
     },
 
     clearProfile: function() {
@@ -4056,405 +3836,392 @@ Sys.Extended.UI.Seadragon.Profiler.prototype = {
 Sys.Extended.UI.Seadragon.Profiler.registerClass('Sys.Extended.UI.Seadragon.Profiler', null, Sys.IDisposable);
 
 Seadragon.Spring = Sys.Extended.UI.Seadragon.Spring = function(initialValue, config) {
-	this._currentValue = typeof (initialValue) == "number" ? initialValue : 0;
-	this._startValue = this._currentValue;
-	this._targetValue = this._currentValue;
-	this.config = config;
+    this._currentValue = typeof (initialValue) == "number" ? initialValue : 0;
+    this._startValue = this._currentValue;
+    this._targetValue = this._currentValue;
+    this.config = config;
 
-	this._currentTime = new Date().getTime(); // always work in milliseconds
-	this._startTime = this._currentTime;
-	this._targetTime = this._currentTime;
+    this._currentTime = new Date().getTime(); // always work in milliseconds
+    this._startTime = this._currentTime;
+    this._targetTime = this._currentTime;
 };
 Sys.Extended.UI.Seadragon.Spring.prototype = {
-	_transform: function(x) {
-		var s = this.config.springStiffness;
-		return (1.0 - Math.exp(-x * s)) / (1.0 - Math.exp(-s));
-	},
-	getCurrent: function() {
-		return this._currentValue;
-	},
+    _transform: function(x) {
+        var s = this.config.springStiffness;
+        return (1.0 - Math.exp(-x * s)) / (1.0 - Math.exp(-s));
+    },
+    getCurrent: function() {
+        return this._currentValue;
+    },
 
-	getTarget: function() {
-		return this._targetValue;
-	},
+    getTarget: function() {
+        return this._targetValue;
+    },
 
-	resetTo: function(target) {
-		this._targetValue = target;
-		this._targetTime = this._currentTime;
-		this._startValue = this._targetValue;
-		this._startTime = this._targetTime;
-	},
+    resetTo: function(target) {
+        this._targetValue = target;
+        this._targetTime = this._currentTime;
+        this._startValue = this._targetValue;
+        this._startTime = this._targetTime;
+    },
 
-	springTo: function(target) {
-		this._startValue = this._currentValue;
-		this._startTime = this._currentTime;
-		this._targetValue = target;
-		this._targetTime = this._startTime + 1000 * this.config.animationTime;
-	},
+    springTo: function(target) {
+        this._startValue = this._currentValue;
+        this._startTime = this._currentTime;
+        this._targetValue = target;
+        this._targetTime = this._startTime + 1000 * this.config.animationTime;
+    },
 
-	shiftBy: function(delta) {
-		this._startValue += delta;
-		this._targetValue += delta;
-	},
+    shiftBy: function(delta) {
+        this._startValue += delta;
+        this._targetValue += delta;
+    },
 
-	update: function() {
-		this._currentTime = new Date().getTime();
-		this._currentValue = (this._currentTime >= this._targetTime) ? this._targetValue :
+    update: function() {
+        this._currentTime = new Date().getTime();
+        this._currentValue = (this._currentTime >= this._targetTime) ? this._targetValue :
                 this._startValue + (this._targetValue - this._startValue) *
                 this._transform((this._currentTime - this._startTime) / (this._targetTime - this._startTime));
-	}
+    }
 };
 Sys.Extended.UI.Seadragon.Spring.registerClass('Sys.Extended.UI.Seadragon.Spring', null, Sys.IDisposable);
 
 Sys.Extended.UI.Seadragon.Viewport = function(containerSize, contentSize, config) {
-	this.zoomPoint = null;
-	this.config = config;
-	this._containerSize = containerSize;
-	this._contentSize = contentSize;
-	this._contentAspect = contentSize.x / contentSize.y;
-	this._contentHeight = contentSize.y / contentSize.x;
-	this._centerSpringX = new Seadragon.Spring(0, this.config);
-	this._centerSpringY = new Seadragon.Spring(0, this.config);
-	this._zoomSpring = new Seadragon.Spring(1, this.config);
-	this._homeBounds = new Sys.Extended.UI.Seadragon.Rect(0, 0, 1, this._contentHeight);
-	this.goHome(true);
-	this.update();
+    this.zoomPoint = null;
+    this.config = config;
+    this._containerSize = containerSize;
+    this._contentSize = contentSize;
+    this._contentAspect = contentSize.x / contentSize.y;
+    this._contentHeight = contentSize.y / contentSize.x;
+    this._centerSpringX = new Seadragon.Spring(0, this.config);
+    this._centerSpringY = new Seadragon.Spring(0, this.config);
+    this._zoomSpring = new Seadragon.Spring(1, this.config);
+    this._homeBounds = new Sys.Extended.UI.Seadragon.Rect(0, 0, 1, this._contentHeight);
+    this.goHome(true);
+    this.update();
 };
 Sys.Extended.UI.Seadragon.Viewport.prototype = {
-	_getHomeZoom: function() {
-		var aspectFactor = this._contentAspect / this.getAspectRatio();
-		// if content is wider, we'll fit width, otherwise height
-		return (aspectFactor >= 1) ? 1 : aspectFactor;
-	},
+    _getHomeZoom: function() {
+        var aspectFactor = this._contentAspect / this.getAspectRatio();
+        // if content is wider, we'll fit width, otherwise height
+        return (aspectFactor >= 1) ? 1 : aspectFactor;
+    },
 
-	_getMinZoom: function() {
-		var homeZoom = this._getHomeZoom();
+    _getMinZoom: function() {
+        var homeZoom = this._getHomeZoom();
 
-		// for backwards compatibility, respect minZoomDimension if present
-		if (this.config.minZoomDimension) {
-			var zoom = (this._contentSize.x <= this._contentSize.y) ?
+        // for backwards compatibility, respect minZoomDimension if present
+        if(this.config.minZoomDimension)
+            var zoom = (this._contentSize.x <= this._contentSize.y) ?
                 this.config.minZoomDimension / this._containerSize.x :
                 this.config.minZoomDimension / (this._containerSize.x * this._contentHeight);
-		} else {
-			var zoom = this.config.minZoomImageRatio * homeZoom;
-		}
+        else
+            var zoom = this.config.minZoomImageRatio * homeZoom;
 
-		return Math.min(zoom, homeZoom);
-	},
+        return Math.min(zoom, homeZoom);
+    },
 
-	_getMaxZoom: function() {
-		var zoom = this._contentSize.x * this.config.maxZoomPixelRatio / this._containerSize.x;
-		return Math.max(zoom, this._getHomeZoom());
-	},
-	getAspectRatio: function() {
-		return this._containerSize.x / this._containerSize.y;
-	},
-	getContainerSize: function() {
-		return new Sys.Extended.UI.Seadragon.Point(this._containerSize.x, this._containerSize.y);
-	},
+    _getMaxZoom: function() {
+        var zoom = this._contentSize.x * this.config.maxZoomPixelRatio / this._containerSize.x;
+        return Math.max(zoom, this._getHomeZoom());
+    },
+    getAspectRatio: function() {
+        return this._containerSize.x / this._containerSize.y;
+    },
+    getContainerSize: function() {
+        return new Sys.Extended.UI.Seadragon.Point(this._containerSize.x, this._containerSize.y);
+    },
 
-	getBounds: function(current) {
-		var center = this.getCenter(current);
-		var width = 1.0 / this.getZoom(current);
-		var height = width / this.getAspectRatio();
+    getBounds: function(current) {
+        var center = this.getCenter(current),
+            width = 1.0 / this.getZoom(current),
+            height = width / this.getAspectRatio();
 
-		return new Sys.Extended.UI.Seadragon.Rect(center.x - width / 2.0, center.y - height / 2.0,
-            width, height);
-	},
+        return new Sys.Extended.UI.Seadragon.Rect(center.x - width / 2.0, center.y - height / 2.0, width, height);
+    },
 
-	getCenter: function(current) {
-		var centerCurrent = new Sys.Extended.UI.Seadragon.Point(this._centerSpringX.getCurrent(),
-                this._centerSpringY.getCurrent());
-		var centerTarget = new Sys.Extended.UI.Seadragon.Point(this._centerSpringX.getTarget(),
-                this._centerSpringY.getTarget());
+    getCenter: function(current) {
+        var centerCurrent = new Sys.Extended.UI.Seadragon.Point(this._centerSpringX.getCurrent(), this._centerSpringY.getCurrent()),
+            centerTarget = new Sys.Extended.UI.Seadragon.Point(this._centerSpringX.getTarget(), this._centerSpringY.getTarget());
 
-		if (current) {
-			return centerCurrent;
-		} else if (!this.zoomPoint) {
-			// no adjustment necessary since we're not zooming
-			return centerTarget;
-		}
+        if(current)
+            return centerCurrent;
+        else if(!this.zoomPoint)
+            // no adjustment necessary since we're not zooming
+            return centerTarget;
 
-		// to get the target center, we need to adjust for the zoom point.
-		// we'll do this in the same way as the update() method.
-		var oldZoomPixel = this.pixelFromPoint(this.zoomPoint, true);
+        // to get the target center, we need to adjust for the zoom point.
+        // we'll do this in the same way as the update() method.
+        var oldZoomPixel = this.pixelFromPoint(this.zoomPoint, true);
 
-		// manually calculate bounds based on this unadjusted target center.
-		// this is mostly a duplicate of getBounds() above. note that this is
-		// based on the TARGET zoom but the CURRENT center.
-		var zoom = this.getZoom();
-		var width = 1.0 / zoom;
-		var height = width / this.getAspectRatio();
-		var bounds = new Sys.Extended.UI.Seadragon.Rect(centerCurrent.x - width / 2.0,
-                centerCurrent.y - height / 2.0, width, height);
+        // manually calculate bounds based on this unadjusted target center.
+        // this is mostly a duplicate of getBounds() above. note that this is
+        // based on the TARGET zoom but the CURRENT center.
+        var zoom = this.getZoom(),
+            width = 1.0 / zoom,
+            height = width / this.getAspectRatio(),
+            bounds = new Sys.Extended.UI.Seadragon.Rect(centerCurrent.x - width / 2.0, centerCurrent.y - height / 2.0, width, height);
 
-		// the conversions here are identical to the pixelFromPoint() and
-		// deltaPointsFromPixels() methods.
-		var newZoomPixel = this.zoomPoint.minus(bounds.getTopLeft()).times(this._containerSize.x / bounds.width);
-		var deltaZoomPixels = newZoomPixel.minus(oldZoomPixel);
-		var deltaZoomPoints = deltaZoomPixels.divide(this._containerSize.x * zoom);
+        // the conversions here are identical to the pixelFromPoint() and
+        // deltaPointsFromPixels() methods.
+        var newZoomPixel = this.zoomPoint.minus(bounds.getTopLeft()).times(this._containerSize.x / bounds.width),
+            deltaZoomPixels = newZoomPixel.minus(oldZoomPixel),
+            deltaZoomPoints = deltaZoomPixels.divide(this._containerSize.x * zoom);
 
-		// finally, shift center to negate the change.
-		return centerTarget.plus(deltaZoomPoints);
-	},
+        // finally, shift center to negate the change.
+        return centerTarget.plus(deltaZoomPoints);
+    },
 
-	getZoom: function(current) {
-		if (current) {
-			return this._zoomSpring.getCurrent();
-		} else {
-			return this._zoomSpring.getTarget();
-		}
-	},
+    getZoom: function(current) {
+        if(current)
+            return this._zoomSpring.getCurrent();
+        else
+            return this._zoomSpring.getTarget();
+    },
 
-	// Methods -- MODIFIERS
+    // Methods -- MODIFIERS
 
-	applyConstraints: function(immediately) {
-		// first, apply zoom constraints
-		var actualZoom = this.getZoom();
-		var constrainedZoom = Math.max(Math.min(actualZoom, this._getMaxZoom()), this._getMinZoom());
-		if (actualZoom != constrainedZoom) {
-			this.zoomTo(constrainedZoom, this.zoomPoint, immediately);
-		}
+    applyConstraints: function(immediately) {
+        // first, apply zoom constraints
+        var actualZoom = this.getZoom();
+        var constrainedZoom = Math.max(Math.min(actualZoom, this._getMaxZoom()), this._getMinZoom());
+        if(actualZoom != constrainedZoom)
+            this.zoomTo(constrainedZoom, this.zoomPoint, immediately);
 
-		// then, apply pan constraints
-		var bounds = this.getBounds();
-		var visibilityRatio = this.config.visibilityRatio;
+        // then, apply pan constraints
+        var bounds = this.getBounds(),
+            visibilityRatio = this.config.visibilityRatio;
 
-		// threshold in normalized coordinates
-		var horThres = visibilityRatio * bounds.width;
-		var verThres = visibilityRatio * bounds.height;
+        // threshold in normalized coordinates
+        var horThres = visibilityRatio * bounds.width,
+            verThres = visibilityRatio * bounds.height;
 
-		// amount visible in normalized coordinates
-		var left = bounds.x + bounds.width;
-		var right = 1 - bounds.x;
-		var top = bounds.y + bounds.height;
-		var bottom = this._contentHeight - bounds.y;
+        // amount visible in normalized coordinates
+        var left = bounds.x + bounds.width,
+            right = 1 - bounds.x,
+            top = bounds.y + bounds.height,
+            bottom = this._contentHeight - bounds.y;
 
-		// adjust viewport horizontally -- in normalized coordinates!
-		var dx = 0;
-		if (this.config.wrapHorizontal) {
-			// nothing to constrain
-		} else if (left < horThres) {
-			dx = horThres - left;
-		} else if (right < horThres) {
-			dx = right - horThres;
-		}
+        // adjust viewport horizontally -- in normalized coordinates!
+        var dx = 0;
+        if(this.config.wrapHorizontal) { }
+            // nothing to constrain
+        else if(left < horThres)
+            dx = horThres - left;
+        else if(right < horThres)
+            dx = right - horThres;
 
-		// adjust viewport vertically -- in normalized coordinates!
-		var dy = 0;
-		if (this.config.wrapVertical) {
-			// nothing to constrain
-		} else if (top < verThres) {
-			dy = verThres - top;
-		} else if (bottom < verThres) {
-			dy = bottom - verThres;
-		}
+        // adjust viewport vertically -- in normalized coordinates!
+        var dy = 0;
+        if(this.config.wrapVertical) { }
+            // nothing to constrain
+        else if(top < verThres)
+            dy = verThres - top;
+        else if(bottom < verThres)
+            dy = bottom - verThres;
 
-		// pan if we aren't zooming, otherwise set the zoom point if we are.
-		// we've already implemented logic in fitBounds() for this.
-		if (dx || dy) {
-			bounds.x += dx;
-			bounds.y += dy;
-			this.fitBounds(bounds, immediately);
-		}
-	},
+        // pan if we aren't zooming, otherwise set the zoom point if we are.
+        // we've already implemented logic in fitBounds() for this.
+        if(dx || dy) {
+            bounds.x += dx;
+            bounds.y += dy;
+            this.fitBounds(bounds, immediately);
+        }
+    },
 
-	ensureVisible: function(immediately) {
-		// for backwards compatibility
-		this.applyConstraints(immediately);
-	},
+    ensureVisible: function(immediately) {
+        // for backwards compatibility
+        this.applyConstraints(immediately);
+    },
 
-	fitBounds: function(bounds, immediately) {
-		var aspect = this.getAspectRatio();
-		var center = bounds.getCenter();
+    fitBounds: function(bounds, immediately) {
+        var aspect = this.getAspectRatio(),
+            center = bounds.getCenter();
 
-		// resize bounds to match viewport's aspect ratio, maintaining center.
-		// note that zoom = 1/width, and width = height*aspect.
-		var newBounds = new Sys.Extended.UI.Seadragon.Rect(bounds.x, bounds.y, bounds.width, bounds.height);
-		if (newBounds.getAspectRatio() >= aspect) {
-			// width is bigger relative to viewport, resize height
-			newBounds.height = bounds.width / aspect;
-			newBounds.y = center.y - newBounds.height / 2;
-		} else {
-			// height is bigger relative to viewport, resize width
-			newBounds.width = bounds.height * aspect;
-			newBounds.x = center.x - newBounds.width / 2;
-		}
+        // resize bounds to match viewport's aspect ratio, maintaining center.
+        // note that zoom = 1/width, and width = height*aspect.
+        var newBounds = new Sys.Extended.UI.Seadragon.Rect(bounds.x, bounds.y, bounds.width, bounds.height);
+        if(newBounds.getAspectRatio() >= aspect) {
+            // width is bigger relative to viewport, resize height
+            newBounds.height = bounds.width / aspect;
+            newBounds.y = center.y - newBounds.height / 2;
+        } else {
+            // height is bigger relative to viewport, resize width
+            newBounds.width = bounds.height * aspect;
+            newBounds.x = center.x - newBounds.width / 2;
+        }
 
-		// stop movement first! this prevents the operation from missing
-		this.panTo(this.getCenter(true), true);
-		this.zoomTo(this.getZoom(true), null, true);
+        // stop movement first! this prevents the operation from missing
+        this.panTo(this.getCenter(true), true);
+        this.zoomTo(this.getZoom(true), null, true);
 
-		// capture old values for bounds and width. we need both, but we'll
-		// also use both for redundancy, to protect against precision errors.
-		// note: use target bounds, since update() hasn't been called yet!
-		var oldBounds = this.getBounds();
-		var oldZoom = this.getZoom();
+        // capture old values for bounds and width. we need both, but we'll
+        // also use both for redundancy, to protect against precision errors.
+        // note: use target bounds, since update() hasn't been called yet!
+        var oldBounds = this.getBounds(),
+            oldZoom = this.getZoom();
 
-		// if we're already at the correct zoom, just pan and we're done.
-		// we'll check both zoom and bounds for redundancy, to protect against
-		// precision errors (see note below).
-		var newZoom = 1.0 / newBounds.width;
-		if (newZoom == oldZoom || newBounds.width == oldBounds.width) {
-			this.panTo(center, immediately);
-			return;
-		}
+        // if we're already at the correct zoom, just pan and we're done.
+        // we'll check both zoom and bounds for redundancy, to protect against
+        // precision errors (see note below).
+        var newZoom = 1.0 / newBounds.width;
+        if(newZoom == oldZoom || newBounds.width == oldBounds.width) {
+            this.panTo(center, immediately);
+            return;
+        }
 
-		// otherwise, we need to zoom about the only point whose pixel transform
-		// is constant between the old and new bounds. this is just tricky math.
-		var refPoint = oldBounds.getTopLeft().times(this._containerSize.x / oldBounds.width).minus(
+        // otherwise, we need to zoom about the only point whose pixel transform
+        // is constant between the old and new bounds. this is just tricky math.
+        var refPoint = oldBounds.getTopLeft().times(this._containerSize.x / oldBounds.width).minus(
                 newBounds.getTopLeft().times(this._containerSize.x / newBounds.width)).divide(
                 this._containerSize.x / oldBounds.width - this._containerSize.x / newBounds.width);
 
-		// note: that last line (cS.x / oldB.w - cS.x / newB.w) was causing a
-		// divide by 0 in the case that oldBounds.width == newBounds.width.
-		// that should have been picked up by the zoom check, but in certain
-		// cases, the math is slightly off and the zooms are different. so now,
-		// the zoom check has an extra check added.
+        // note: that last line (cS.x / oldB.w - cS.x / newB.w) was causing a
+        // divide by 0 in the case that oldBounds.width == newBounds.width.
+        // that should have been picked up by the zoom check, but in certain
+        // cases, the math is slightly off and the zooms are different. so now,
+        // the zoom check has an extra check added.
+        this.zoomTo(newZoom, refPoint, immediately);
+    },
 
-		this.zoomTo(newZoom, refPoint, immediately);
-	},
+    goHome: function(immediately) {
+        // calculate center adjusted for zooming
+        var center = this.getCenter();
 
-	goHome: function(immediately) {
-		// calculate center adjusted for zooming
-		var center = this.getCenter();
+        // if we're wrapping horizontally, "unwind" the horizontal spring
+        if(this.config.wrapHorizontal) {
+            // this puts center.x into the range [0, 1) always
+            center.x = (1 + (center.x % 1)) % 1;
+            this._centerSpringX.resetTo(center.x);
+            this._centerSpringX.update();
+        }
 
-		// if we're wrapping horizontally, "unwind" the horizontal spring
-		if (this.config.wrapHorizontal) {
-			// this puts center.x into the range [0, 1) always
-			center.x = (1 + (center.x % 1)) % 1;
-			this._centerSpringX.resetTo(center.x);
-			this._centerSpringX.update();
-		}
+        // if we're wrapping vertically, "unwind" the vertical spring
+        if(this.config.wrapVertical) {
+            // this puts center.y into the range e.g. [0, 0.75) always
+            center.y = (this._contentHeight + (center.y % this._contentHeight)) % this._contentHeight;
+            this._centerSpringY.resetTo(center.y);
+            this._centerSpringY.update();
+        }
 
-		// if we're wrapping vertically, "unwind" the vertical spring
-		if (this.config.wrapVertical) {
-			// this puts center.y into the range e.g. [0, 0.75) always
-			center.y = (this._contentHeight + (center.y % this._contentHeight)) % this._contentHeight;
-			this._centerSpringY.resetTo(center.y);
-			this._centerSpringY.update();
-		}
+        this.fitBounds(this._homeBounds, immediately);
+    },
 
-		this.fitBounds(this._homeBounds, immediately);
-	},
-
-	panBy: function(delta, immediately) {
-		// this breaks if we call self.getCenter(), since that adjusts the
-		// center for zoom. we don't want that, so use the unadjusted center.
-		var center = new Sys.Extended.UI.Seadragon.Point(this._centerSpringX.getTarget(),
+    panBy: function(delta, immediately) {
+        // this breaks if we call self.getCenter(), since that adjusts the
+        // center for zoom. we don't want that, so use the unadjusted center.
+        var center = new Sys.Extended.UI.Seadragon.Point(this._centerSpringX.getTarget(),
                 this._centerSpringY.getTarget());
-		this.panTo(center.plus(delta), immediately);
-	},
+        this.panTo(center.plus(delta), immediately);
+    },
 
-	panTo: function(center, immediately) {
-		if (immediately) {
-			this._centerSpringX.resetTo(center.x);
-			this._centerSpringY.resetTo(center.y);
-		} else {
-			this._centerSpringX.springTo(center.x);
-			this._centerSpringY.springTo(center.y);
-		}
-	},
+    panTo: function(center, immediately) {
+        if(immediately) {
+            this._centerSpringX.resetTo(center.x);
+            this._centerSpringY.resetTo(center.y);
+        } else {
+            this._centerSpringX.springTo(center.x);
+            this._centerSpringY.springTo(center.y);
+        }
+    },
 
-	zoomBy: function(factor, refPoint, immediately) {
-		this.zoomTo(this._zoomSpring.getTarget() * factor, refPoint, immediately);
-	},
+    zoomBy: function(factor, refPoint, immediately) {
+        this.zoomTo(this._zoomSpring.getTarget() * factor, refPoint, immediately);
+    },
 
-	zoomTo: function(zoom, refPoint, immediately) {
-		// we used to constrain zoom automatically here; now it needs to be
-		// explicitly constrained, via applyConstraints().
-		//zoom = Math.max(zoom, getMinZoom());
-		//zoom = Math.min(zoom, getMaxZoom());
+    zoomTo: function(zoom, refPoint, immediately) {
+        // we used to constrain zoom automatically here; now it needs to be
+        // explicitly constrained, via applyConstraints().
+        //zoom = Math.max(zoom, getMinZoom());
+        //zoom = Math.min(zoom, getMaxZoom());
 
-		if (immediately) {
-			this._zoomSpring.resetTo(zoom);
-		} else {		
-			this._zoomSpring.springTo(zoom);
-		}
+        if(immediately)
+            this._zoomSpring.resetTo(zoom);
+        else
+            this._zoomSpring.springTo(zoom);
 
-		this.zoomPoint = refPoint instanceof Sys.Extended.UI.Seadragon.Point ? refPoint : null;
-	},
+        this.zoomPoint = refPoint instanceof Sys.Extended.UI.Seadragon.Point ? refPoint : null;
+    },
 
-	resize: function(newContainerSize, maintain) {
-		// default behavior: just ensure the visible content remains visible.
-		// note that this keeps the center (relative to the content) constant.
-		var oldBounds = this.getBounds();
-		var newBounds = oldBounds;
-		var widthDeltaFactor = newContainerSize.x / this._containerSize.x;
+    resize: function(newContainerSize, maintain) {
+        // default behavior: just ensure the visible content remains visible.
+        // note that this keeps the center (relative to the content) constant.
+        var oldBounds = this.getBounds(),
+            newBounds = oldBounds,
+            widthDeltaFactor = newContainerSize.x / this._containerSize.x;
 
-		// update container size, but make copy first
-		this._containerSize = new Sys.Extended.UI.Seadragon.Point(newContainerSize.x, newContainerSize.y);
+        // update container size, but make copy first
+        this._containerSize = new Sys.Extended.UI.Seadragon.Point(newContainerSize.x, newContainerSize.y);
 
-		if (maintain) {
-			// no resize relative to screen, resize relative to viewport.
-			// keep origin constant, zoom out (increase bounds) by delta factor.
-			newBounds.width = oldBounds.width * widthDeltaFactor;
-			newBounds.height = newBounds.width / this.getAspectRatio();
-		}
+        if(maintain) {
+            // no resize relative to screen, resize relative to viewport.
+            // keep origin constant, zoom out (increase bounds) by delta factor.
+            newBounds.width = oldBounds.width * widthDeltaFactor;
+            newBounds.height = newBounds.width / this.getAspectRatio();
+        }
 
-		this.fitBounds(newBounds, true);
-	},
+        this.fitBounds(newBounds, true);
+    },
 
-	update: function() {
-		var oldCenterX = this._centerSpringX.getCurrent();
-		var oldCenterY = this._centerSpringY.getCurrent();
-		var oldZoom = this._zoomSpring.getCurrent();
+    update: function() {
+        var oldCenterX = this._centerSpringX.getCurrent(),
+            oldCenterY = this._centerSpringY.getCurrent(),
+            oldZoom = this._zoomSpring.getCurrent();
 
-		// remember position of zoom point
-		if (this.zoomPoint) {
-			var oldZoomPixel = this.pixelFromPoint(this.zoomPoint, true);
-		}
+        // remember position of zoom point
+        if(this.zoomPoint)
+            var oldZoomPixel = this.pixelFromPoint(this.zoomPoint, true);
 
-		// now update zoom only, don't update pan yet
-		this._zoomSpring.update();
+        // now update zoom only, don't update pan yet
+        this._zoomSpring.update();
 
-		// adjust for change in position of zoom point, if we've zoomed
-		if (this.zoomPoint && this._zoomSpring.getCurrent() != oldZoom) {
-			var newZoomPixel = this.pixelFromPoint(this.zoomPoint, true);
-			var deltaZoomPixels = newZoomPixel.minus(oldZoomPixel);
-			var deltaZoomPoints = this.deltaPointsFromPixels(deltaZoomPixels, true);
+        // adjust for change in position of zoom point, if we've zoomed
+        if(this.zoomPoint && this._zoomSpring.getCurrent() != oldZoom) {
+            var newZoomPixel = this.pixelFromPoint(this.zoomPoint, true),
+                deltaZoomPixels = newZoomPixel.minus(oldZoomPixel),
+                deltaZoomPoints = this.deltaPointsFromPixels(deltaZoomPixels, true);
 
-			// shift pan to negate the change
-			this._centerSpringX.shiftBy(deltaZoomPoints.x);
-			this._centerSpringY.shiftBy(deltaZoomPoints.y);
-		} else {
-			// don't try to adjust next time; this improves performance
-			this.zoomPoint = null;
-		}
+            // shift pan to negate the change
+            this._centerSpringX.shiftBy(deltaZoomPoints.x);
+            this._centerSpringY.shiftBy(deltaZoomPoints.y);
+        } else {
+            // don't try to adjust next time; this improves performance
+            this.zoomPoint = null;
+        }
 
-		// now after adjustment, update pan
-		this._centerSpringX.update();
-		this._centerSpringY.update();
+        // now after adjustment, update pan
+        this._centerSpringX.update();
+        this._centerSpringY.update();
 
-		return this._centerSpringX.getCurrent() != oldCenterX ||
+        return this._centerSpringX.getCurrent() != oldCenterX ||
                 this._centerSpringY.getCurrent() != oldCenterY ||
                 this._zoomSpring.getCurrent() != oldZoom;
-	},
+    },
 
-	// Methods -- CONVERSION HELPERS
+    // Methods -- CONVERSION HELPERS
 
-	deltaPixelsFromPoints: function(deltaPoints, current) {
-		return deltaPoints.times(this._containerSize.x * this.getZoom(current));
-	},
+    deltaPixelsFromPoints: function(deltaPoints, current) {
+        return deltaPoints.times(this._containerSize.x * this.getZoom(current));
+    },
 
-	deltaPointsFromPixels: function(deltaPixels, current) {
-		return deltaPixels.divide(this._containerSize.x * this.getZoom(current));
-	},
+    deltaPointsFromPixels: function(deltaPixels, current) {
+        return deltaPixels.divide(this._containerSize.x * this.getZoom(current));
+    },
 
-	pixelFromPoint: function(point, current) {
-		var bounds = this.getBounds(current);
-		return point.minus(bounds.getTopLeft()).times(this._containerSize.x / bounds.width);
-	},
+    pixelFromPoint: function(point, current) {
+        var bounds = this.getBounds(current);
+        return point.minus(bounds.getTopLeft()).times(this._containerSize.x / bounds.width);
+    },
 
-	pointFromPixel: function(pixel, current) {
-		var bounds = this.getBounds(current);
-		return pixel.divide(this._containerSize.x / bounds.width).plus(bounds.getTopLeft());
-	}
+    pointFromPixel: function(pixel, current) {
+        var bounds = this.getBounds(current);
+        return pixel.divide(this._containerSize.x / bounds.width).plus(bounds.getTopLeft());
+    }
 };
 Sys.Extended.UI.Seadragon.Viewport.registerClass('Sys.Extended.UI.Seadragon.Viewport', null, Sys.IDisposable);
 
 Sys.Extended.UI.Seadragon.DisplayRect = function(x, y, width, height, minLevel, maxLevel) {
-Sys.Extended.UI.Seadragon.DisplayRect.initializeBase(this, [x, y, width, height]);
+    Sys.Extended.UI.Seadragon.DisplayRect.initializeBase(this, [x, y, width, height]);
 
     this.minLevel = minLevel;
     this.maxLevel = maxLevel;

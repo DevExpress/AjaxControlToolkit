@@ -5,8 +5,11 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.DecreaseIndent = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.DecreaseIndent.prototype = {
-    callMethod : function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.DecreaseIndent.callBaseMethod(this, "callMethod")) return false;
+
+    callMethod: function() {
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.DecreaseIndent.callBaseMethod(this, "callMethod"))
+            return false;
+
         this._designPanel._execCommand("Outdent");
     }
 }

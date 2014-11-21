@@ -5,13 +5,16 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.EditorToggleButton = function(element)
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.EditorToggleButton.prototype = {
+
     onEditPanelActivity: function() {
         Sys.Extended.UI.HtmlEditor.ToolbarButtons.EditorToggleButton.callBaseMethod(this, "onEditPanelActivity");
         this.setActivity(this.checkState());
     },
 
     checkState: function() {
-        if(!this.checkRangeInDesign()) return false;
+        if(!this.checkRangeInDesign())
+            return false;
+
         return true;
     }
 }

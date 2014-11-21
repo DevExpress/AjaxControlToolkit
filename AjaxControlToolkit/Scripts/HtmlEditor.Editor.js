@@ -5,15 +5,17 @@ Sys.Extended.UI.HtmlEditor.Editor = function(element) {
 
     this._editPanel = null;
     this._changingToolbar = null;
-    if(Sys.Extended.UI.HtmlEditor.isIE && Sys.Browser.version == 8 && document.compatMode != "BackCompat" || Sys.Extended.UI.HtmlEditor.isOpera) {
+
+    if(Sys.Extended.UI.HtmlEditor.isIE && Sys.Browser.version == 8 && document.compatMode != "BackCompat" || Sys.Extended.UI.HtmlEditor.isOpera)
         this._onresize$delegate = Function.createDelegate(this, this._onresize);
-    }
 }
 
 Sys.Extended.UI.HtmlEditor.Editor.prototype = {
+
     get_autofocus: function() {
         return this._editPanel.get_autofocus();
     },
+
     set_autofocus: function(value) {
         this._editPanel.set_autofocus(value);
     },
@@ -21,6 +23,7 @@ Sys.Extended.UI.HtmlEditor.Editor.prototype = {
     get_content: function() {
         return this._editPanel.get_content();
     },
+
     set_content: function(value) {
         this._editPanel.set_content(value);
     },
@@ -28,6 +31,7 @@ Sys.Extended.UI.HtmlEditor.Editor.prototype = {
     get_activeMode: function() {
         return this._editPanel.get_activeMode();
     },
+
     set_activeMode: function(value) {
         this._editPanel.set_activeMode(value);
     },
@@ -35,6 +39,7 @@ Sys.Extended.UI.HtmlEditor.Editor.prototype = {
     get_editPanel: function() {
         return this._editPanel;
     },
+
     set_editPanel: function(value) {
         this._editPanel = value;
     },
@@ -42,6 +47,7 @@ Sys.Extended.UI.HtmlEditor.Editor.prototype = {
     get_changingToolbar: function() {
         return this._changingToolbar;
     },
+
     set_changingToolbar: function(value) {
         this._changingToolbar = value;
     },
@@ -49,6 +55,7 @@ Sys.Extended.UI.HtmlEditor.Editor.prototype = {
     add_propertyChanged: function(handler) {
         this._editPanel.add_propertyChanged(handler);
     },
+
     remove_propertyChanged: function(handler) {
         this._editPanel.remove_propertyChanged(handler);
     },
@@ -56,25 +63,26 @@ Sys.Extended.UI.HtmlEditor.Editor.prototype = {
     initialize: function() {
         Sys.Extended.UI.HtmlEditor.Editor.callBaseMethod(this, "initialize");
 
-        var element = this.get_element();
-        var oldStyle = element.className;
+        var element = this.get_element(),
+            oldStyle = element.className;
 
         Sys.UI.DomElement.removeCssClass(element, oldStyle);
         Sys.UI.DomElement.addCssClass(element, "ajax__htmleditor_editor_base");
         Sys.UI.DomElement.addCssClass(element, oldStyle);
 
-        if(!Sys.Extended.UI.HtmlEditor.isIE && document.compatMode != "BackCompat") {
+        if(!Sys.Extended.UI.HtmlEditor.isIE && document.compatMode != "BackCompat")
             this.get_element().style.height = "100%";
-        }
 
         if(Sys.Extended.UI.HtmlEditor.isIE && Sys.Browser.version == 8 && document.compatMode != "BackCompat" || Sys.Extended.UI.HtmlEditor.isOpera) {
             $addHandlers(element, {
                 resize: this._onresize$delegate
             });
+
             var editPanel = this.get_editPanel();
             this._saved_setActive = editPanel._setActive;
             editPanel._setActive = Function.createDelegate(this, this._setActive);
             var editor = this;
+
             if(Sys.Extended.UI.HtmlEditor.isOpera) {
                 setTimeout(function() {
                     editor._ensureVisibleResize();
@@ -99,8 +107,9 @@ Sys.Extended.UI.HtmlEditor.Editor.prototype = {
     },
 
     _ensureVisibleResize: function() {
-        var invisible = false;
-        var save;
+        var invisible = false,
+            save;
+
         if(!Sys.Extended.UI.HtmlEditor.isReallyVisible(this.get_element())) {
             invisible = true;
             save = Sys.Extended.UI.HtmlEditor.setElementVisibility(this.get_element());
@@ -118,6 +127,7 @@ Sys.Extended.UI.HtmlEditor.Editor.prototype = {
             $common.removeHandlers(this.get_element(), {
                 resize: this._onresize$delegate
             });
+
             this.get_editPanel()._setActive = this._saved_setActive;
         }
 
@@ -127,17 +137,16 @@ Sys.Extended.UI.HtmlEditor.Editor.prototype = {
     _onresize: function(e) {
         try {
             var editPanelTD = this.get_editPanel().get_element().parentNode;
-            if(typeof e == "undefined" || e == null) {
+            if(typeof e == "undefined" || e == null)
                 editPanelTD.style.height = "";
-            }
+
             var height = Sys.Extended.UI.HtmlEditor.Editor.MidleCellHeightForIE(editPanelTD.parentNode.parentNode.parentNode, editPanelTD.parentNode);
             editPanelTD.style.height = height;
 
-            if(typeof this.get_editPanel().get_activePanel()._onresize != "undefined") {
+            if(typeof this.get_editPanel().get_activePanel()._onresize != "undefined")
                 this.get_editPanel().get_activePanel()._onresize();
-            }
-        } catch(ex) {
-        }
+        } catch(ex) { }
+
         return true;
     }
 }
@@ -146,28 +155,31 @@ Sys.Extended.UI.HtmlEditor.Editor.registerClass("Sys.Extended.UI.HtmlEditor.Edit
 
 Sys.Extended.UI.HtmlEditor.Editor.MidleCellHeightForIE = function(table, row) {
     var height = "100%";
+
     if(Sys.Extended.UI.HtmlEditor.isIE && document.compatMode != "BackCompat" || Sys.Extended.UI.HtmlEditor.isOpera) {
         try {
             var decrease = 2;
-            for(var i = 0; i < table.rows.length; i++) {
-                if(table.rows[i] != row) {
+
+            for(var i = 0; i < table.rows.length; i++)
+                if(table.rows[i] != row)
                     decrease += (table.rows[i].offsetHeight + 1);
-                }
-            }
+
             var clientHeight = table.clientHeight;
             if(Sys.Browser.version == 8 || Sys.Extended.UI.HtmlEditor.isOpera) {
-                var styleHeight = table.style.height;
-                var parentStyleHeight = table.parentNode.style.height;
-                if(styleHeight.indexOf("px") > 0) {
+                var styleHeight = table.style.height,
+                    parentStyleHeight = table.parentNode.style.height;
+
+                if(styleHeight.indexOf("px") > 0)
                     clientHeight = parseInt(styleHeight);
-                } else if(styleHeight == "100%" && parentStyleHeight.indexOf("px") > 0) {
+                else if(styleHeight == "100%" && parentStyleHeight.indexOf("px") > 0)
                     clientHeight = parseInt(parentStyleHeight);
-                }
             }
+
             height = ((clientHeight - decrease) * 100.00 / (clientHeight * 1.00)) + '%';
         } catch(e) {
             height = "";
         }
     }
+
     return height;
 }

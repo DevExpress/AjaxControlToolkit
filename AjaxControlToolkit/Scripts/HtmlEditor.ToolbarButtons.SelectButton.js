@@ -35,30 +35,34 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.SelectButton.prototype = {
         return false;
     },
 
-
     callMethod: function(select, e) {
         return true;
     },
 
     _onclick_option: function(e) {
-        if(!this.isEnable()) {
+        if(!this.isEnable())
             return false;
-        }
+
         var option = e.target;
         option.parentNode.value = option.value;
         Sys.Extended.UI.HtmlEditor._stopEvent(e);
-        if(!Sys.Extended.UI.HtmlEditor.isSafari) return false;
+
+        if(!Sys.Extended.UI.HtmlEditor.isSafari)
+            return false;
+
         this.callMethod(option.parentNode, e);
+
         return true;
     },
 
     _onchange: function(e) {
-        if(!this.isEnable()) {
+        if(!this.isEnable())
             return false;
-        }
+
         var select = e.target;
         Sys.Extended.UI.HtmlEditor._stopEvent(e);
         this.callMethod(select, e);
+
         return true;
     }
 }

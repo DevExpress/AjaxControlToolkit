@@ -2,9 +2,7 @@ Type.registerNamespace('Sys.Extended.UI.Animation');
 
 Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior = function(element) {
     // Play animations just before and just after an UpdatePanel updates
-    // <param name="element" type="Sys.UI.DomElement" domElement="true">
-    // UpdatePanel associated with the behavior
-    // </param>
+    // "element" - updatePanel associated with the behavior
     Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.initializeBase(this, [element]);
 
     // Generic animation behaviors that automatically build animations from JSON descriptions
@@ -63,12 +61,8 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     _partialUpdateBeginRequest: function(sender, beginRequestEventArgs) {
         // Method that will be called when a partial update (via an UpdatePanel) begins,
         // if registerPartialUpdateEvents() has been called.
-        // <param name="sender" type="Object">
-        // Sender
-        // </param>
-        // <param name="beginRequestEventArgs" type="Sys.WebForms.BeginRequestEventArgs">
-        // Event arguments
-        // </param>
+        // "sender" - sender
+        // "beginRequestEventArgs" - event arguments
         Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.callBaseMethod(this, '_partialUpdateBeginRequest', [sender, beginRequestEventArgs]);
 
         if(!this._postBackPending) {
@@ -80,20 +74,15 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
 
     _pageLoaded: function(sender, args) {
         // Method that will be called when a partial update (via an UpdatePanel) finishes
-        // <param name="sender" type="Object">
-        // Sender
-        // </param>
-        // <param name="args" type="Sys.WebForms.PageLoadedEventArgs">
-        // Event arguments
-        // </param>
-
+        // "sender" - sender
+        // "args" - event arguments
         if(this._postBackPending) {
             this._postBackPending = false;
 
             var element = this.get_element();
             var panels = args.get_panelsUpdated();
             for(var i = 0; i < panels.length; i++) {
-                if(panels[i].parentNode == element) {
+                if(panels[i].parentNode == element)
                     if(this._AlwaysFinishOnUpdatingAnimation) {
                         this._tryAndStopOnUpdating();
                     }
@@ -102,7 +91,6 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
                         this._onUpdated.play();
                     }
                     break;
-                }
             }
         }
     },
@@ -128,9 +116,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     get_OnUpdatingBehavior: function() {
-        // <value type="Sys.Extended.UI.Animation.GenericAnimationBehavior">
         // Generic OnUpdating Animation's behavior
-        // </value>
         return this._onUpdating;
     },
 
@@ -145,9 +131,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     get_OnUpdatedBehavior: function() {
-        // <value type="Sys.Extended.UI.Animation.GenericAnimationBehavior">
         // Generic OnUpdated Animation's behavior
-        // </value>
         return this._onUpdated;
     },
 

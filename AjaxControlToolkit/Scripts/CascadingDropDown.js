@@ -18,12 +18,8 @@ Sys.Extended.UI.CascadingDropDownSelectionChangedEventArgs.prototype = {
 Sys.Extended.UI.CascadingDropDownSelectionChangedEventArgs.registerClass('Sys.Extended.UI.CascadingDropDownSelectionChangedEventArgs', Sys.EventArgs);
 
 Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
-    // <summary>
     // The CascadingDropDownBehavior is used to populate drop downs with values from a web service
-    // </summary>
-    // <param name="e" type="Sys.UI.DomElement" domElement="true">
-    // The DOM element the behavior is associated with
-    // </param>
+    // "e" - the DOM element the behavior is associated with
     Sys.Extended.UI.CascadingDropDownBehavior.initializeBase(this, [e]);
 
     // Properties
@@ -150,19 +146,10 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     _setOptions: function(list, inInit, gettingList) {
-        // <summary>
         // Set the contents of the DropDownList to the specified list
-        // </summary>
-        // <param name="list" mayBeNull="true" elementType="Object">
-        // Array of options (where each option has name and value properties)
-        // </param>
-        // <param name="inInit" type="Boolean" optional="true">
-        // Whether this is being called from the initialize method
-        // </param>
-        // <param name="gettingList" type="Boolean" optional="true">
-        // Whether we are fetching the list of options from the web service
-        // </param>
-        // <returns />
+        // "list" - array of options (where each option has name and value properties)
+        // "inInit" - whether this is being called from the initialize method
+        // "gettingList" - whether we are fetching the list of options from the web service
         if(!this.get_isInitialized()) {
             return;
         }
@@ -299,16 +286,9 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     _onParentChange: function(evt, inInit) {
-        // <summary>
         // Handler for the parent drop down's change event
-        // </summary>
-        // <param name="evt" type="Object">
-        // Set by the browser when called as an event handler (unused here)
-        // </param>
-        // <param name="inInit" type="Boolean">
-        // Whether this is being called from the initialize method
-        // </param>
-        // <returns />
+        // "evt" - set by the browser when called as an event handler (unused here)
+        // "inInit" - whether this is being called from the initialize method
 
         var e = this.get_element();
 
@@ -384,15 +364,9 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     _makeNameValueObject: function(message) {
-        // <summary>
         // Create an object with name and value properties set to the provided message
-        // </summary>
-        // <param name="message" type="String">
-        // Message
-        // </param>
-        // <returns type="Object">
-        // Object with name and value properties set to the message
-        // </returns>
+        // "message" - message
+        // "Object" - object with name and value properties set to the message
 
         return { 'name': message, 'value': message };
     },
@@ -418,9 +392,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     get_PromptText: function() {
-        // <value type="String">
         // Prompt text displayed as the first entry in the drop down
-        // </value>
         return this._promptText;
     },
     set_PromptText: function(value) {
@@ -431,9 +403,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     get_PromptValue: function() {
-        // <value type="String">
         // Value for the option displayed by a DropDownList showing the PromptText
-        // </value>
         return this._promptValue;
     },
     set_PromptValue: function(value) {
@@ -444,9 +414,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     get_EmptyText: function() {
-        // <value type="String">
         // Text for the option displayed when the list is empty
-        // </value>
         return this._emptyText;
     },
     set_EmptyText: function(value) {
@@ -457,9 +425,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     get_EmptyValue: function() {
-        // <value type="String">
         // Value for the option displayed when the list is empty
-        // </value>
         return this._emptyValue;
     },
     set_EmptyValue: function(value) {
@@ -527,12 +493,10 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     get_contextKey: function() {
-        // <value type="String" mayBeNull="true">
         // User/page specific context provided to an optional overload of the
         // web method described by ServiceMethod/ServicePath.  If the context
         // key is used, it should have the same signature with an additional
         // parameter named contextKey of type string.
-        // </value>
         return this._contextKey;
     },
     set_contextKey: function(value) {
@@ -544,13 +508,11 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     get_useContextKey: function() {
-        // <value type="Boolean">
         // Whether or not the ContextKey property should be used.  This will be
         // automatically enabled if the ContextKey property is ever set
         // (on either the client or the server).  If the context key is used,
         // it should have the same signature with an additional parameter
         // named contextKey of type string.
-        // </value>
         return this._useContextKey;
     },
     set_useContextKey: function(value) {
@@ -571,11 +533,9 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     get_enableAtLoading: function() {
-        // <value type="Boolean">
         // Whether or not disable the dropdownlist control when this is waiting to 
         // get data from the service so at the time of loading user can use keyboard 
         // to navigate to the dropdown control.
-        // </value>
         return this._enableAtLoading;
     },
     set_enableAtLoading: function(value) {

@@ -170,14 +170,14 @@ Sys.Extended.UI.ComboBox.prototype = {
         var optionListControl = this.get_optionListControl();
 
         $addHandlers(optionListControl,
-		{
-		    'mouseover': this._listMouseOverHandler,
-		    'mouseout': this._listMouseOutHandler,
-		    'mousedown': this._listMouseDownHandler,
-		    'click': this._listClickHandler,
-		    'drag': this._listDragHandler,
-		    'selectstart': this._listSelectStartHandler
-		}, this);
+        {
+            'mouseover': this._listMouseOverHandler,
+            'mouseout': this._listMouseOutHandler,
+            'mousedown': this._listMouseDownHandler,
+            'click': this._listClickHandler,
+            'drag': this._listDragHandler,
+            'selectstart': this._listSelectStartHandler
+        }, this);
 
         $addHandlers(this.get_textBoxControl(),
         {
@@ -193,12 +193,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
         $addHandlers(this.get_buttonControl(),
-		{
-		    'click': this._buttonClickHandler,
-		    'blur': this._buttonBlurHandler,
-		    'keydown': this._buttonKeyDownHandler,
-		    'keypress': this._buttonKeyPressHandler
-		}, this);
+        {
+            'click': this._buttonClickHandler,
+            'blur': this._buttonBlurHandler,
+            'keydown': this._buttonKeyDownHandler,
+            'keypress': this._buttonKeyPressHandler
+        }, this);
 
         $addHandler(document, 'click', this._documentClickHandler);
 
@@ -339,11 +339,11 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // add the popup behavior to the master container, targeting the option list
         this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior,
-		{
-		    'id': this.get_id() + '_PopupBehavior'
-			, 'parentElement': this.get_textBoxControl()
-			, "positioningMode": Sys.Extended.UI.PositioningMode.BottomLeft
-		}, null, null, optionListControl);
+        {
+            'id': this.get_id() + '_PopupBehavior'
+            , 'parentElement': this.get_textBoxControl()
+            , "positioningMode": Sys.Extended.UI.PositioningMode.BottomLeft
+        }, null, null, optionListControl);
         this._popupBehavior.add_showing(this._popupShowingHandler);
         this._popupBehavior.add_shown(this._popupShownHandler);
         this._popupBehavior.add_hiding(this._popupHidingHandler);
@@ -1794,8 +1794,6 @@ Sys.Extended.UI.ComboBox.prototype = {
 
 };
 Sys.Extended.UI.ComboBox.registerClass('Sys.Extended.UI.ComboBox', Sys.UI.Control);
-
-//if (typeof (Sys) !== 'undefined') Sys.Application.notifyScriptLoaded();
 
 var ComboBox_Elements = new Array();
 

@@ -5,12 +5,14 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize.prototype = {
+
     initialize: function() {
         Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize.callBaseMethod(this, "initialize");
     },
 
     callMethod: function(select, event) {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize.callBaseMethod(this, "callMethod"))
+            return false;
 
         try {
             var editor = this._designPanel;
@@ -19,16 +21,20 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize.prototype = {
     },
 
     checkState: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize.callBaseMethod(this, "checkState")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize.callBaseMethod(this, "checkState"))
+            return false;
 
         var editor = this._designPanel;
 
-        var param = null;
-        var _id = this._select.id;
+        var param = null,
+            _id = this._select.id;
 
-        try { param = (Function.createDelegate(editor, Sys.Extended.UI.HtmlEditor._queryCommandValue))("fontsize", _id); } catch(e) { }
+        try {
+            param = (Function.createDelegate(editor, Sys.Extended.UI.HtmlEditor._queryCommandValue))("fontsize", _id);
+        } catch(e) { }
 
-        if(param) param = param.toString();
+        if(param)
+            param = param.toString();
 
         if(!editor._FontNotSet)
             if(!param || param.length == 0) {
@@ -37,18 +43,23 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize.prototype = {
             }
 
         try {
-            var el = this._select;
-            var i = 0;
+            var el = this._select,
+                i = 0;
+
             if(param && param.length > 0) {
                 var seek = param.toLowerCase().split(",")[0];
+
                 for(i = 0; i < el.options.length; i++) {
                     var cur = Sys.Extended.UI.HtmlEditor.fontSizeSeek(el.options.item(i).value.toLowerCase().split(",")[0]);
 
-                    if(cur == seek) break;
+                    if(cur == seek)
+                        break;
                 }
+
                 if(i == el.options.length) {
                     try {
                         var newopt = document.createElement("OPTION");
+
                         newopt.value = param;
                         newopt.text = param;
                         el.add(newopt, (Sys.Extended.UI.HtmlEditor.isIE) ? i : null);
@@ -58,10 +69,10 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize.prototype = {
                     }
                 }
             }
+
             el.selectedIndex = i;
         } catch(e) { }
     }
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize.registerClass("Sys.Extended.UI.HtmlEditor.ToolbarButtons.FontSize", Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeSelectButton);
-

@@ -22,12 +22,14 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.CommonButton.prototype = {
     get_preservePlace: function() {
         return this._preservePlace;
     },
+
     set_preservePlace: function(value) {
         this._preservePlace = value;
     },
 
     set_activeEditPanel: function(value) {
         this._editPanel = value;
+
         if(this._editPanel == null) {
             this.hideButton();
         } else {
@@ -45,30 +47,40 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.CommonButton.prototype = {
     },
 
     checkRangeInDesign: function() {
-        if(typeof this._designPanel == "undefined") return false;
-        if(this._designPanel == null) return false;
-        if(this._designPanel.isPopup()) return false;
+        if(typeof this._designPanel == "undefined")
+            return false;
+
+        if(this._designPanel == null)
+            return false;
+        if(this._designPanel.isPopup())
+            return false;
 
         var parent = Sys.Extended.UI.HtmlEditor.getSelParent(this._designPanel);
-        if(parent.nodeType == 3) parent = parent.parentNode;
+        if(parent.nodeType == 3)
+            parent = parent.parentNode;
+
         return (parent.ownerDocument == this._designPanel._doc);
     },
 
     get_buttonName: function() {
         var name = Object.getType(this).getName();
         name = name.substring(name.lastIndexOf(".") + 1);
+
         return name;
     },
 
     get_message: function(messageName) {
         var expression = "Sys.Extended.UI.Resources.HtmlEditor_toolbar_button_" + this.get_buttonName() + "_message_" + messageName;
+
         return eval(expression);
     },
 
     isDisplayed: function() {
         var element = this.get_element();
+
         if(element) {
             var style = element.style;
+
             return (style.display != "none" && style.visibility != "hidden");
         } else {
             return false;
@@ -77,24 +89,24 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.CommonButton.prototype = {
 
     hideButton: function() {
         var element = this.get_element();
+
         if(element) {
-            if(!this._preservePlace) {
+            if(!this._preservePlace)
                 element.style.display = "none";
-            } else {
+            else
                 element.style.visibility = "hidden";
-            }
         }
     },
 
     showButton: function() {
         var element = this.get_element();
+
         if(element) {
-            if(element.style.display == "none") {
+            if(element.style.display == "none")
                 element.style.display = "";
-            }
-            if(this._preservePlace) {
+
+            if(this._preservePlace)
                 element.style.visibility = "visible";
-            }
         }
     },
 
@@ -106,37 +118,39 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.CommonButton.prototype = {
     },
 
     get_activeModes: function() {
-        if(this._activeModes == null) {
+        if(this._activeModes == null)
             this._activeModes = [];
-        }
+
         return this._activeModes;
     },
+
     set_activeModes: function(value) {
         this.get_activeModes().push(value);
     },
 
     get_activeModesIds: function() {
     },
+
     set_activeModesIds: function(value) {
         var arr = value.split(";");
-        for(var i = 0; i < arr.length; i++) {
+
+        for(var i = 0; i < arr.length; i++)
             this.set_activeModes(parseInt(arr[i]));
-        }
     },
 
     set_toolTip: function(value) {
         this.get_element().title = value;
     },
+
     get_toolTip: function() {
         return this.get_element().title;
     },
 
     isAllowedActiveMode: function(value) {
-        for(var i = 0; i < this.get_activeModes().length; i++) {
-            if(this.get_activeModes()[i] == value) {
+        for(var i = 0; i < this.get_activeModes().length; i++)
+            if(this.get_activeModes()[i] == value)
                 return true;
-            }
-        }
+
         return false;
     },
 
@@ -146,13 +160,12 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.CommonButton.prototype = {
         Sys.Application.add_load(this._app_onload$delegate);
         var element = this.get_element();
 
-        if(this._preservePlace && !this.canBeShown()) {
+        if(this._preservePlace && !this.canBeShown())
             element.style.display = "none";
-        }
 
         this._cssClass = element.className;
 
-        if(this.isImage()) {
+        if(this.isImage())
             $addHandlers(element, {
                 mouseover: this._onmouseover$delegate,
                 mouseout: this._onmouseout$delegate,
@@ -160,18 +173,17 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.CommonButton.prototype = {
                 mouseup: this._onmouseup$delegate,
                 click: this._onclick$delegate
             });
-        }
 
         if(Sys.Extended.UI.HtmlEditor.isIE) {
             function diveSelectable(el) {
                 if(el.nodeType == 1 && el.tagName) {
                     var tag = el.tagName.toUpperCase();
-                    if(tag != "INPUT" && tag != "TEXTAREA" && tag != "IFRAME") {
+
+                    if(tag != "INPUT" && tag != "TEXTAREA" && tag != "IFRAME")
                         el.unselectable = "on";
-                    }
-                    for(var k = 0; k < el.childNodes.length; k++) {
+
+                    for(var k = 0; k < el.childNodes.length; k++)
                         diveSelectable(el.childNodes.item(k));
-                    }
                 }
             }
 
@@ -209,61 +221,64 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.CommonButton.prototype = {
     },
 
     _onmouseover: function(e) {
-        if(!this.isEnable()) {
+        if(!this.isEnable())
             return false;
-        }
+
         Sys.UI.DomElement.addCssClass(this.get_element(), this._cssClass + "_hover");
+
         return true;
     },
 
     _onmouseout: function(e) {
-        if(!this.isEnable()) {
+        if(!this.isEnable())
             return false;
-        }
+
         Sys.UI.DomElement.removeCssClass(this.get_element(), this._cssClass + "_hover");
         Sys.UI.DomElement.removeCssClass(this.get_element(), this._cssClass + "_mousedown");
+
         return true;
     },
 
     _onmousedown: function(e) {
-        if(!this.isEnable()) {
+        if(!this.isEnable())
             return null;
-        }
+
         Sys.UI.DomElement.addCssClass(this.get_element(), this._cssClass + "_mousedown");
+
         return false;
     },
 
     _onmouseup: function(e) {
-        if(!this.isEnable()) {
+        if(!this.isEnable())
             return false;
-        }
+
         Sys.UI.DomElement.removeCssClass(this.get_element(), this._cssClass + "_mousedown");
+
         return true;
     },
 
     _onclick: function(e) {
-        if(!this.isEnable()) {
+        if(!this.isEnable())
             return false;
-        }
+
         return true;
     },
 
     isEnable: function() {
-        if(!this._loaded) {
+        if(!this._loaded)
             return false;
-        }
-        if(this._editPanel == null) {
+
+        if(this._editPanel == null)
             return false;
-        }
+
         return true;
     },
 
     setActivity: function(value) {
-        if(value) {
+        if(value)
             Sys.UI.DomElement.addCssClass(this.get_element(), this._cssClass + "_active");
-        } else {
+        else
             Sys.UI.DomElement.removeCssClass(this.get_element(), this._cssClass + "_active");
-        }
     }
 }
 

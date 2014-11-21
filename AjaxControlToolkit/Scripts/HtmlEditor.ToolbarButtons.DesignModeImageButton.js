@@ -6,11 +6,19 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeImageButton = function(eleme
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeImageButton.prototype = {
+
     _onmousedown: function(e) {
-        if(this._designPanel == null) return false;
-        if(this._designPanel.isPopup()) return false;
-        if(Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeImageButton.callBaseMethod(this, "_onmousedown", [e]) === null) return false;
+        if(this._designPanel == null)
+            return false;
+
+        if(this._designPanel.isPopup())
+            return false;
+
+        if(Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeImageButton.callBaseMethod(this, "_onmousedown", [e]) === null)
+            return false;
+
         this.callMethod();
+
         return false;
     },
 
@@ -19,8 +27,12 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeImageButton.prototype = {
     },
 
     callMethod: function() {
-        if(this._designPanel == null) return false;
-        if(this._designPanel.isPopup()) return false;
+        if(this._designPanel == null)
+            return false;
+
+        if(this._designPanel.isPopup())
+            return false;
+
         return true;
     }
 }

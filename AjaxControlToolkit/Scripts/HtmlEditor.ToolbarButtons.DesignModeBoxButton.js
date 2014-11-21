@@ -7,11 +7,19 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeBoxButton = function(element
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeBoxButton.prototype = {
+
     _onmousedown: function(e) {
-        if(this._designPanel == null) return false;
-        if(this._designPanel.isPopup()) return false;
-        if(Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeBoxButton.callBaseMethod(this, "_onmousedown", [e]) === null) return false;
+        if(this._designPanel == null)
+            return false;
+
+        if(this._designPanel.isPopup())
+            return false;
+
+        if(Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeBoxButton.callBaseMethod(this, "_onmousedown", [e]) === null)
+            return false;
+
         this.callMethod();
+
         return false;
     },
 
@@ -20,8 +28,12 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeBoxButton.prototype = {
     },
 
     callMethod: function() {
-        if(this._designPanel == null) return false;
-        if(this._designPanel.isPopup()) return false;
+        if(this._designPanel == null)
+            return false;
+
+        if(this._designPanel.isPopup())
+            return false;
+
         return true;
     }
 }

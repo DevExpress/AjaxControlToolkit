@@ -10,7 +10,9 @@ Sys.Extended.UI.DraggableListItem = function(e) {
     this._dragVisualTemplateInstance = null;
     this._mouseDownHandler = null;
 }
+
 Sys.Extended.UI.DraggableListItem.prototype = {
+
     dispose: function() {
         var e = this.get_element();
         this.set_handle(null);
@@ -20,6 +22,7 @@ Sys.Extended.UI.DraggableListItem.prototype = {
     get_data: function() {
         if(this._data == null) {
             var dragSource = this._findDragSource();
+
             if(dragSource != null && Sys.Extended.UI.DragDropList.IsValidDataType(dragSource.get_dragDataType()))
                 return this.get_element();
         }
@@ -86,9 +89,10 @@ Sys.Extended.UI.DraggableListItem.prototype = {
         var ev = window.testEvent ? window.testEvent : ev;
         if(ev.button <= 1) {
             var dragSource = this._findDragSource();
-            if(dragSource != null) {
 
+            if(dragSource != null) {
                 var dragVisual = this._createDragVisual();
+
                 dragSource.startDragDrop(this.get_element(), this.get_data(), dragVisual);
                 ev.returnValue = false;
             }
@@ -97,9 +101,10 @@ Sys.Extended.UI.DraggableListItem.prototype = {
 
     _createDragVisual: function() {
         var ev = window.testEvent ? window.testEvent : window.event;
+
         if(this._dragVisualTemplate != null) {
             if(this._dragVisualTemplateInstance == null)
-                this._dragVisualTemplateInstance = this._dragVisualTemplate.cloneElement();            
+                this._dragVisualTemplateInstance = this._dragVisualTemplate.cloneElement();
             else if(!Sys.UI.DragDropManager._getInstance().hasParent(this._dragVisualTemplateInstance))
                 this.get_element().appendChild(this._dragVisualTemplateInstance);
 
@@ -107,6 +112,7 @@ Sys.Extended.UI.DraggableListItem.prototype = {
             location = Sys.UI.DragDropManager._getInstance().addPoints(location, Sys.UI.DragDropManager._getInstance().getScrollOffset(document.body, true));
             $common.setLocation(this._dragVisualTemplateInstance, location);
         }
+
         return this._dragVisualTemplateInstance;
     },
 
@@ -115,9 +121,12 @@ Sys.Extended.UI.DraggableListItem.prototype = {
         while(element != null) {
             if(element.__dragDropList != null)
                 return element.__dragDropList;
+
             element = element.parentNode;
         }
+
         return null;
     }
 }
+
 Sys.Extended.UI.DraggableListItem.registerClass('Sys.Extended.UI.DraggableListItem', Sys.Extended.UI.BehaviorBase);

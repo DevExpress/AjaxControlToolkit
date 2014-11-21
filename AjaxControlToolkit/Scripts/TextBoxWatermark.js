@@ -1,12 +1,8 @@
 Type.registerNamespace('Sys.Extended.UI');
 
 Sys.Extended.UI.TextBoxWatermarkBehavior = function(element) {
-    /// <summary>
-    /// The TextBoxWatermarkBehavior applies a watermark to a textbox
-    /// </summary>
-    /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-    /// Textbox associated with the behavior
-    /// </param>
+    // The TextBoxWatermarkBehavior applies a watermark to a textbox
+    // "element" - textbox associated with the behavior
     Sys.Extended.UI.TextBoxWatermarkBehavior.initializeBase(this, [element]);
     
     // Properties
@@ -31,9 +27,7 @@ Sys.Extended.UI.TextBoxWatermarkBehavior = function(element) {
 }
 Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     initialize : function() {
-        /// <summary>
-        /// Initialize the behavior
-        /// </summary>
+        // Initialize the behavior
         Sys.Extended.UI.TextBoxWatermarkBehavior.callBaseMethod(this, 'initialize');
 
         var e = this.get_element();
@@ -88,9 +82,7 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     dispose : function() {
-        /// <summary>
-        /// Dispose the behavior
-        /// </summary>
+        // Dispose the behavior
         var e = this.get_element();
 
         if (this._watermarkChangedHandler) {
@@ -119,33 +111,23 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
         }
 
         // Clear watermark text to avoid confusion during Refresh/Back/Forward
-        if(Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked()) {
+        if(Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked())
             this.clearText(false);
-        }
 
         Sys.Extended.UI.TextBoxWatermarkBehavior.callBaseMethod(this, 'dispose');
     },
 
     _onWatermarkChanged : function(sender, eventArgs) {
-        /// <summary>
-        /// Handler invoked when the watermark changes
-        /// </summary>
-        /// <param name="sender" type="Object" mayBeNull="true"/>
-        /// <param name="eventArgs" type="Sys.EventArgs" mayBeNull="true" />
-        if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked()) {
+        // Handler invoked when the watermark changes
+        if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked())
             this._onBlur();
-        } else {
+        else
             this._onFocus();
-        }
     },
 
     clearText : function(focusing) {
-        /// <summary>
-        /// Clear the text from the target
-        /// </summary>
-        /// <param name="focusing" type="Boolean">
-        /// Whether or not we are focusing on the textbox
-        /// </param>
+        // Clear the text from the target
+        // "focusing" - whether or not we are focusing on the textbox
         var element = this.get_element();
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
         wrapper.set_Value("");
@@ -157,13 +139,8 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     _onFocus : function(evt) {
-        /// <summary>
-        /// Handler for the textbox's focus event
-        /// </summary>
-        /// <param name="evt" type="Sys.UI.DomEvent">
-        /// Event info
-        /// </param>
-        
+        // Handler for the textbox's focus event
+        // "evt" - event info
         var e = this.get_element();
         if(Sys.Extended.UI.TextBoxWrapper.get_Wrapper(e).get_IsWatermarked()) {
             // Clear watermark
@@ -180,9 +157,7 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     _onBlur : function() {
-        /// <summary>
-        /// Handle the textbox's blur event
-        /// </summary>
+        // Handle the textbox's blur event
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
         if(("" == wrapper.get_Current()) || wrapper.get_IsWatermarked()) {
             // Enlarge the TextBox's MaxLength if it's not big enough
@@ -197,30 +172,23 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     _applyWatermark : function() {
-        /// <summary>
-        /// Apply the watermark to the textbox
-        /// </summary>
+        // Apply the watermark to the textbox
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
         wrapper.set_Watermark(this._watermarkText);
         wrapper.set_IsWatermarked(true);
-        if(this._watermarkCssClass) {
+        if(this._watermarkCssClass)
             this.get_element().className = this._watermarkCssClass;
-        }
     },
 
     _onKeyPress : function() {
-        /// <summary>
-        /// Handle the textbox's keypress event
-        /// </summary>
+        // Handle the textbox's keypress event
         Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).set_IsWatermarked(false);
     },
 
     registerPropertyChanged : function() {
-        /// <summary>
-        /// Method called to hook up to Sys.Preview.UI.TextBox if present
-        /// Note: This method must be called manually if the Sys.Preview.UI.TextBox
-        ///       is added after the TextBoxWatermarkBehavior is initialized.
-        /// </summary>
+        // Method called to hook up to Sys.Preview.UI.TextBox if present
+        // Note: This method must be called manually if the Sys.Preview.UI.TextBox
+        //       is added after the TextBoxWatermarkBehavior is initialized.
 
         var e = this.get_element();
         if(e.control && !this._propertyChangedHandler) {
@@ -230,24 +198,15 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     _onPropertyChanged : function(sender, propertyChangedEventArgs) {
-        /// <summary>
-        /// Handler called automatically when a property change event is fired
-        /// </summary>
-        /// <param name="sender" type="Object">
-        /// Sender
-        /// </param>
-        /// <param name="propertyChangedEventArgs" type="Sys.PropertyChangedEventArgs">
-        /// Event arguments
-        /// </param>
-        if("text" == propertyChangedEventArgs.get_propertyName()) {
+        // Handler called automatically when a property change event is fired
+        // "sender" - sender
+        // "propertyChangedEventArgs" - event arguments
+        if("text" == propertyChangedEventArgs.get_propertyName())
             this.set_Text(Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_Current());
-        }
     },
 
     _onSubmit : function() {
-        /// <summary>
-        /// Handler Called automatically when a submit happens to clear the watermark before posting back
-        /// </summary>
+        // Handler Called automatically when a submit happens to clear the watermark before posting back
         if(Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked()) {
             // Clear watermark text before page is submitted
             this.clearText(false);
@@ -256,15 +215,9 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     _partialUpdateEndRequest : function(sender, endRequestEventArgs) {
-        /// <summary>
-        /// Handler Called automatically when a partial postback ends
-        /// </summary>
-        /// <param name="sender" type="Object">
-        /// Sender
-        /// </param>
-        /// <param name="endRequestEventArgs" type="Sys.WebForms.EndRequestEventArgs">
-        /// Event arguments
-        /// </param>
+        // Handler Called automatically when a partial postback ends
+        // "sender" - sender
+        // "endRequestEventArgs" - event arguments
         Sys.Extended.UI.TextBoxWatermarkBehavior.callBaseMethod(this, '_partialUpdateEndRequest', [sender, endRequestEventArgs]);
 
         if (this.get_element() && this._clearedForSubmit) {
@@ -276,41 +229,33 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     get_WatermarkText : function() {
-        /// <value type="String">
-        /// The text to show when the control has no value
-        /// </value>
+        // The text to show when the control has no value
         return this._watermarkText;
     },
     set_WatermarkText : function(value) {
         if (this._watermarkText != value) {
             this._watermarkText = value;
-            if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked()) {
+            if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked())
                 this._applyWatermark();
-            }
             this.raisePropertyChanged('WatermarkText');
         }
     },
 
     get_WatermarkCssClass : function() {
-        /// <value type="String">
-        /// The CSS class to apply to the TextBox when it has no value (e.g. the watermark text is shown).
-        /// </value>
+        // The CSS class to apply to the TextBox when it has no value (e.g. the watermark text is shown).
         return this._watermarkCssClass;
     },
     set_WatermarkCssClass : function(value) {
         if (this._watermarkCssClass != value) {
             this._watermarkCssClass = value;
-            if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked()) {
+            if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked())
                 this._applyWatermark();
-            }
             this.raisePropertyChanged('WatermarkCssClass');
         }
     },
 
     get_Text : function() {
-        /// <value type="String">
-        /// Wrapper for the textbox's text that will ignore or create the watermark as appropriate
-        /// </value>
+        // Wrapper for the textbox's text that will ignore or create the watermark as appropriate
         return Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_Value();
     },
     set_Text : function(value) {
@@ -328,20 +273,15 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.registerClass('Sys.Extended.UI.TextBoxW
 //Sys.registerComponent(Sys.Extended.UI.TextBoxWatermarkBehavior, { name: "watermark", parameters: [{name:"WatermarkText",type:"String"}, {name:"WatermarkCssClass",type:"String"}] });
 
 Sys.Extended.UI.TextBoxWatermarkBehavior.WebForm_OnSubmit = function() {
-    /// <summary>
-    /// Wraps ASP.NET's WebForm_OnSubmit in order to strip all watermarks prior to submission
-    /// </summary>
-    /// <returns type="Boolean">
-    /// Result of original WebForm_OnSubmit
-    /// </returns>
+    // Wraps ASP.NET's WebForm_OnSubmit in order to strip all watermarks prior to submission
+    // returns - result of original WebForm_OnSubmit
     var result = Sys.Extended.UI.TextBoxWatermarkBehavior._originalWebForm_OnSubmit();
     if (result) {
         var components = Sys.Application.getComponents();
         for(var i = 0 ; i < components.length ; i++) {
             var component = components[i];
-            if (Sys.Extended.UI.TextBoxWatermarkBehavior.isInstanceOfType(component)) {
+            if (Sys.Extended.UI.TextBoxWatermarkBehavior.isInstanceOfType(component))
                 component._onSubmit();
-            }
         }
     }
     return result;

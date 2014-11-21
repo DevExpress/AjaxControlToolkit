@@ -4,6 +4,7 @@ Sys.Extended.UI._MultiHandleSliderDragDropInternal = function() {
     Sys.Extended.UI._MultiHandleSliderDragDropInternal.initializeBase(this);
     this._instance = null;
 };
+
 Sys.Extended.UI._MultiHandleSliderDragDropInternal.prototype = {
     _getInstance: function() {
         // Do not use singleton pattern here; it will break the DragDropScripts.js implementation!
@@ -15,23 +16,28 @@ Sys.Extended.UI._MultiHandleSliderDragDropInternal.prototype = {
         return this._instance;
     }
 };
+
 Sys.Extended.UI._MultiHandleSliderDragDropInternal.registerClass('Sys.Extended.UI._MultiHandleSliderDragDropInternal', Sys.Extended.UI._DragDropManager);
 Sys.Extended.UI.DragDrop = new Sys.Extended.UI._MultiHandleSliderDragDropInternal();
 
 Sys.Extended.UI.MultiHandleInnerRailStyle = function() {
 };
+
 Sys.Extended.UI.MultiHandleInnerRailStyle.prototype = {
     AsIs: 0,
     SlidingDoors: 1
 };
+
 Sys.Extended.UI.MultiHandleInnerRailStyle.registerEnum('Sys.Extended.UI.MultiHandleInnerRailStyle', false);
 
 Sys.Extended.UI.MultiHandleSliderOrientation = function() {
 };
+
 Sys.Extended.UI.MultiHandleSliderOrientation.prototype = {
     Horizontal: 0,
     Vertical: 1
 };
+
 Sys.Extended.UI.MultiHandleSliderOrientation.registerEnum('Sys.Extended.UI.MultiHandleSliderOrientation', false);
 
 Sys.Extended.UI.MultiHandleSliderBehavior = function(element) {
@@ -115,6 +121,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
                 "Decimals": this._decimals
             }];
         }
+
         this._handles = this._multiHandleSliderTargets ? this._multiHandleSliderTargets.length : 0;
         if(this._handles === 0) {
             // Support a boundless extender
@@ -143,15 +150,12 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         this._createInnerRail();
         this._setRailStyles();
 
-        if(this._length) {
-            if(!this._cssClass && this._innerRailStyle !== Sys.Extended.UI.MultiHandleInnerRailStyle.SlidingDoors) {
-                if(this._isVertical) {
+        if(this._length)
+            if(!this._cssClass && this._innerRailStyle !== Sys.Extended.UI.MultiHandleInnerRailStyle.SlidingDoors)
+                if(this._isVertical)
                     this._outer.style.height = this._length + "px";
-                } else {
+                else
                     this._outer.style.width = this._length + "px";
-                }
-            }
-        }
 
         this._build();
         this._enforceElementPositioning();
@@ -164,9 +168,9 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         this._disposeHandlers();
         this._disposeMultiHandleSliderTargets();
 
-        if(this._enableHandleAnimation && this._handleAnimation) {
+        if(this._enableHandleAnimation && this._handleAnimation)
             this._handleAnimation.dispose();
-        }
+
         Sys.Extended.UI.MultiHandleSliderBehavior.callBaseMethod(this, 'dispose');
     },
 
@@ -181,6 +185,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         var multiHandleSliderTarget = $get(this._multiHandleSliderTargets[index].ControlID);
         return multiHandleSliderTarget.value;
     },
+
     setValue: function(index, value) {
         // Sets the value of a specific slider handle programmatically by index.
         var multiHandleSliderTarget = $get(this._multiHandleSliderTargets[index].ControlID);
@@ -201,6 +206,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             var control = this._multiHandleSliderTargets[i];
             values[i] = control.value;
         }
+
         return values.join(',');
     },
 
@@ -213,9 +219,9 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         this._textBox.parentNode.insertBefore(this._wrapper, this._textBox);
         this._wrapper.appendChild(this._outer);
 
-        if(this._inner && this._showInnerRail) {
+        if(this._inner && this._showInnerRail)
             this._outer.appendChild(this._inner);
-        }
+
         this._textBox.style.display = 'none';
     },
 
@@ -238,8 +244,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         var handleBounds = this._getBoundsInternal(closestHandle);
         closestHandle = this._calculateClosestHandle(offset);
 
-        var minOffset = handleBounds.width / 2;
-        var maxOffset = railBounds.width - minOffset;
+        var minOffset = handleBounds.width / 2,
+            maxOffset = railBounds.width - minOffset;
 
         offset = (offset < minOffset) ? minOffset : (offset > maxOffset) ? maxOffset : offset;
 
@@ -266,6 +272,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         var delta = distances[0];
         for(i = 0; i < this._handles; i++) {
             var d = distances[i];
+
             if(d < delta) {
                 handle = this._handleData[i];
                 delta = d;
@@ -275,16 +282,16 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
         // Determine precedent inner range
         if(this._innerDrag) {
-            var index = Array.indexOf(this._handleData, closestHandle);
-            var location = Sys.UI.DomElement.getLocation(closestHandle);
-            var locationOffset = this._isVertical ? location.y : location.x - outer.x;
+            var index = Array.indexOf(this._handleData, closestHandle),
+                location = Sys.UI.DomElement.getLocation(closestHandle),
+                locationOffset = this._isVertical ? location.y : location.x - outer.x;
 
             if(locationOffset >= (offset + distances[index])) {
                 // Get the handle before the one we chose
                 var newHandle = this._handleData[index - 1];
-                if(newHandle) {
+
+                if(newHandle)
                     closestHandle = newHandle;
-                }
             }
         }
 
@@ -301,13 +308,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         if(this._handleUnderDrag && !multiHandleSliderTarget) {
             handle = this._handleUnderDrag;
             multiHandleSliderTarget = $get(this._handleUnderDrag.multiHandleSliderTargetID);
+
             if(this._innerDrag) {
                 var primary = Array.indexOf(this._handleData, handle);
                 secondaryHandle = this._handleData[primary + 1];
-                if(!secondaryHandle) {
+
+                if(!secondaryHandle)
                     // On the last handle; use the previous instead
                     secondaryHandle = this._handleData[primary - 1];
-                }
+
                 secondaryMultiHandleSliderTarget = $get(secondaryHandle.multiHandleSliderTargetID);
             }
         }
@@ -315,17 +324,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         var handle = multiHandleSliderTarget.Handle, value = multiHandleSliderTarget.value;
 
         if(value && !computed) {
-            if(typeof (value) !== 'number') {
+            if(typeof (value) !== 'number')
                 try {
                     value = parseFloat(value);
                 } catch(ex) {
                     value = Number.NaN;
                 }
-            }
 
-            if(isNaN(value)) {
+            if(isNaN(value))
                 value = this._minimum;
-            }
 
             // Range constraints
             val = Math.max(Math.min(value, max), min);
@@ -340,9 +347,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
 
         // Steps
-        if(this._steps > 0) {
+        if(this._steps > 0)
             val = this._getNearestStepValue(val);
-        }
 
         // Range constraints
         val = Math.max(Math.min(val, max), min);
@@ -357,6 +363,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
         for(var i = 0; i < this._handles; i++) {
             var vc = this._multiHandleSliderTargets[i];
+
             if(!vc.ControlID.match(multiHandleSliderTarget.id)) {
                 if(prev) {
                     previousControls[cp] = this._multiHandleSliderTargets[i];
@@ -389,15 +396,14 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
             // Find next maximum if there are other handles
             var nextIndex = Array.indexOf(this._handleData, secondaryHandle) + 1;
-            if(nextIndex < this._multiHandleSliderTargets.length) {
+            if(nextIndex < this._multiHandleSliderTargets.length)
                 var nextMultiHandleSliderTargetID = this._multiHandleSliderTargets[nextIndex].ControlID;
-            }
-            if(nextMultiHandleSliderTargetID) {
+
+            if(nextMultiHandleSliderTargetID)
                 var nextMultiHandleSliderTarget = $get(nextMultiHandleSliderTargetID);
-            }
-            if(nextMultiHandleSliderTarget) {
+
+            if(nextMultiHandleSliderTarget)
                 var nextValue = nextMultiHandleSliderTarget.value;
-            }
 
             if(secondaryVal > (nextValue || max)) {
                 secondaryVal = secondaryValue;
@@ -412,9 +418,9 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             val = Math.max(Math.min(val, max), min);
             this._setMultiHandleSliderTargetValue(multiHandleSliderTarget, val);
 
-            if(secondaryHandle) {
+            if(secondaryHandle)
                 this._setMultiHandleSliderTargetValue(secondaryMultiHandleSliderTarget, secondaryVal);
-            }
+
             this.endUpdate();
         } else {
             this.beginUpdate();
@@ -435,15 +441,16 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
             this.endUpdate();
         }
+
         return val;
     },
 
     _cancelDrag: function() {
         if(Sys.Extended.UI.MultiHandleSliderBehavior.DropPending === this) {
             Sys.Extended.UI.MultiHandleSliderBehavior.DropPending = null;
-            if(this._selectStartPending) {
+
+            if(this._selectStartPending)
                 $removeHandler(document, 'selectstart', this._selectStartHandler);
-            }
         }
     },
 
@@ -460,14 +467,14 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
                 dragStyle = '';
 
             // Backwards compatibility: Single handled slider image by URL
-            if(this._handles === 1 && this._handleImageUrl) {
+            if(this._handles === 1 && this._handleImageUrl)
                 var img = "<img id='" + this.get_id() + "_handleImage' src='" + this._handleImageUrl + "' alt='' />";
-            }
 
             // Assemble the handle markup
-            var anchorStart = "<a id='" + handleName + "' ";
-            var innerImg = img ? img : "";
-            var anchorEnd = "><div>" + innerImg + "</div></a>";
+            var anchorStart = "<a id='" + handleName + "' ",
+                innerImg = img ? img : "",
+                anchorEnd = "><div>" + innerImg + "</div></a>";
+
             this._outer.innerHTML += anchorStart + anchorEnd;
         }
 
@@ -476,8 +483,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
         for(i = 0; i < this._handles; i++) {
             // Detect handle style and events
-            var styleInfo = this._cssClass ? this._cssClass : "ajax__multi_slider_default";
-            var handleCss = this._multiHandleSliderTargets[i].HandleCssClass;
+            var styleInfo = this._cssClass ? this._cssClass : "ajax__multi_slider_default",
+                handleCss = this._multiHandleSliderTargets[i].HandleCssClass;
 
             if(handleCss || this._cssClass) {
                 // Resolve custom class
@@ -574,29 +581,27 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
             if(this._outer) {
                 // Mouse wheel support
-                if(this._outer.addEventListener) {
+                if(this._outer.addEventListener)
                     this._outer.removeEventListener('DOMMouseScroll', this._mouseWheelHandler, false);
-                } else {
+                else
                     this._outer.detachEvent('onmousewheel', this._mouseWheelHandler);
-                }
+
                 $common.removeHandlers(this._outer, this._outerDelegates);
             }
 
             for(var i = 0; i < this._handles; i++) {
-                if(this._handleDelegates) {
+                if(this._handleDelegates)
                     $common.removeHandlers(this._handleData[i], this._handleDelegates);
-                }
-                if(this._handleCallbacks) {
+
+                if(this._handleCallbacks)
                     $clearHandlers(this._handleData[i]);
-                }
             }
 
             this._handleDelegates = null;
             this._handleCallbacks = null;
 
-            if(this._inner && this._showInnerRail && this._innerDelegates) {
+            if(this._inner && this._showInnerRail && this._innerDelegates)
                 $common.removeHandlers(this._inner, this._innerDelegates);
-            }
 
             // Global Handlers
             this._selectStartHandler = null;
@@ -634,11 +639,10 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             if(value >= this._minimum || value <= this._maximum) {
                 var isInputElement = multiHandleSliderTarget && multiHandleSliderTarget.nodeName === 'INPUT';
 
-                if(isInputElement) {
+                if(isInputElement)
                     multiHandleSliderTarget.value = value;
-                } else if(multiHandleSliderTarget) {
+                else if(multiHandleSliderTarget)
                     multiHandleSliderTarget.innerHTML = value;
-                }
             }
         }
     },
@@ -654,21 +658,20 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             left: this.get_element().style.left
         };
 
-        if(tbPosition.position !== '') {
+        if(tbPosition.position !== '')
             this._wrapper.style.position = tbPosition.position;
-        }
-        if(tbPosition.top !== '') {
+
+        if(tbPosition.top !== '')
             this._wrapper.style.top = tbPosition.top;
-        }
-        if(tbPosition.right !== '') {
+
+        if(tbPosition.right !== '')
             this._wrapper.style.right = tbPosition.right;
-        }
-        if(tbPosition.bottom !== '') {
+
+        if(tbPosition.bottom !== '')
             this._wrapper.style.bottom = tbPosition.bottom;
-        }
-        if(tbPosition.left !== '') {
+
+        if(tbPosition.left !== '')
             this._wrapper.style.left = tbPosition.left;
-        }
     },
 
     _getNearestStepValue: function(value) {
@@ -676,16 +679,17 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         // param valueis the value to check against steps
         // returns the nearest discrete step value from the specified value.
 
-        if(this._steps === 0) return value;
+        if(this._steps === 0)
+            return value;
 
         var extent = this._maximum - this._minimum;
-        if(extent === 0) return value;
-
-        if((this._steps - 1) !== 0) {
-            var delta = extent / (this._steps - 1);
-        } else {
+        if(extent === 0)
             return value;
-        }
+
+        if((this._steps - 1) !== 0)
+            var delta = extent / (this._steps - 1);
+        else
+            return value;
 
         return Math.round(value / delta) * delta;
     },
@@ -699,9 +703,9 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         var increment = extent / (this._steps - 1);
         steps[0] = this._minimum;
 
-        for(var i = 1; i < this._steps; i++) {
+        for(var i = 1; i < this._steps; i++)
             steps[i] = this._minimum + (increment * i);
-        }
+
         return steps;
     },
 
@@ -761,25 +765,23 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
                 dragEnd: Function.createDelegate(this, this._IEDragDropHandler)
             };
 
-            for(var i = 0; i < this._handles; i++) {
+            for(var i = 0; i < this._handles; i++)
                 $addHandlers(this._handleData[i], this._handleDelegates);
-            }
 
             if(this._outer) {
                 // Mouse wheel support
-                if(this._enableMouseWheel) {
-                    if(this._outer.addEventListener) {
+                if(this._enableMouseWheel)
+                    if(this._outer.addEventListener)
                         this._outer.addEventListener('DOMMouseScroll', this._mouseWheelHandler, false);
-                    } else {
+                    else
                         this._outer.attachEvent('onmousewheel', this._mouseWheelHandler);
-                    }
-                }
 
                 this._outerDelegates = {
                     click: Function.createDelegate(this, this._onOuterRailClick),
                     mouseover: Function.createDelegate(this, this._mouseOverHandler),
                     keydown: Function.createDelegate(this, this._keyDownHandler)
                 };
+
                 $addHandlers(this._outer, this._outerDelegates);
             }
 
@@ -794,6 +796,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
                     drag: Function.createDelegate(this, this._IEDragDropHandler),
                     dragEnd: Function.createDelegate(this, this._IEDragDropHandler)
                 };
+
                 $addHandlers(this._inner, this._innerDelegates);
             }
         }
@@ -804,17 +807,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
         // Restore client state
         var state = this.get_ClientState();
-        if(state) {
+        if(state)
             var handleStates = state.split(',', this._handles);
-        }
 
         for(var i = 0; i < this._handles; i++) {
             var handle = this._handleData[i],
                 decimalPlaces = this._multiHandleSliderTargets[i].Decimals;
 
-            if(handleStates) {
+            if(handleStates)
                 handle.Value = parseFloat(handleStates[i]);
-            }
 
             this._initializeMultiHandleSliderTarget(handle.multiHandleSliderTargetID, decimalPlaces, handle);
             this._initializeHandleValue(handle);
@@ -839,11 +840,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             // Differentiate between a label and a textbox
             if(isNaN(handleValue)) {
                 handle.Value = this._minimum;
-                if(isInput) {
+
+                if(isInput)
                     multiHandleSliderTarget.value = handle.Value;
-                } else {
+                else
                     multiHandleSliderTarget.innerHTML = handle.Value;
-                }
             } else {
                 handle.Value = handleValue;
             }
@@ -861,7 +862,6 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
             // Set the inner rail
             if(lastHandle) {
-
                 // firstOffset and lastOffset account for user-defined offset handle width
                 var handleWidth = parseInt(this._getBoundsInternal(handle).width, 10),
                     handleLeft = parseInt(this._isVertical ? handle.style.top : handle.style.left, 10),
@@ -881,9 +881,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
                 }
 
                 // Slide the door
-                if(this._innerRailStyle === Sys.Extended.UI.MultiHandleInnerRailStyle.SlidingDoors) {
+                if(this._innerRailStyle === Sys.Extended.UI.MultiHandleInnerRailStyle.SlidingDoors)
                     this._inner.style.backgroundPosition = this._isVertical ? "0 -" + handleLeft + "px" : "-" + handleLeft + "px 0";
-                }
             }
         }
     },
@@ -894,19 +893,17 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         if(multiHandleSliderTargetID) {
             var multiHandleSliderTarget = $get(multiHandleSliderTargetID);
 
-            if(handle.Value) {
+            if(handle.Value)
                 // Set from state
                 multiHandleSliderTarget.value = handle.Value;
-            }
 
             multiHandleSliderTarget.Handle = handle;
             multiHandleSliderTarget.Decimals = decimalPlaces;
             multiHandleSliderTarget.OldValue = multiHandleSliderTarget.value;
             multiHandleSliderTarget.onchange = "setValue(this, " + multiHandleSliderTarget.value + ")";
 
-            if(!multiHandleSliderTarget.Decimals) {
+            if(!multiHandleSliderTarget.Decimals)
                 multiHandleSliderTarget.Decimals = 0;
-            }
 
             var isInput = multiHandleSliderTarget && multiHandleSliderTarget.nodeName === 'INPUT';
             if(isInput) {
@@ -934,8 +931,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     _resetDragHandle: function(handle) {
         // Resets the position of the hidden drag handle.
-
         var handleBounds = $common.getBounds(handle);
+
         $common.setLocation(handle.DragHandle, {
             x: handleBounds.x,
             y: handleBounds.y
@@ -944,24 +941,20 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     _resolveNamingContainer: function() {
         // Uses the behavior name and client state to resolve the inner control IDs.
-
         if(this._isServerControl && this._multiHandleSliderTargets && !this._boundControlID) {
             var index = this._clientStateFieldID.lastIndexOf(this._id),
                 token = this._clientStateFieldID.substring(0, index);
 
-            for(var i = 0; i < this._handles; i++) {
+            for(var i = 0; i < this._handles; i++)
                 this._multiHandleSliderTargets[i].ControlID = token + this._multiHandleSliderTargets[i].ControlID;
-            }
         }
     },
 
     _saveState: function() {
         // Sets the values of all handle controls in client state.
-
         var state = [this._handles];
-        for(var i = 0; i < this._handles; i++) {
+        for(var i = 0; i < this._handles; i++)
             state[i] = $get(this._multiHandleSliderTargets[i].ControlID).value;
-        }
 
         this.set_ClientState(state.join(','));
     },
@@ -978,14 +971,13 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             handleBounds.width = parseInt($common.getCurrentStyle(handle, 'width'), 10);
             railBounds.width = parseInt($common.getCurrentStyle(this._outer, 'width'), 10);
 
-            if(handleBounds.width <= 0 || railBounds.width <= 0) {
+            if(handleBounds.width <= 0 || railBounds.width <= 0)
                 throw Error.argument('width', Sys.Extended.UI.Resources.MultiHandleSlider_CssHeightWidthRequired);
-            }
         }
 
-        var extent = max - min, fraction = (value - min) / extent;
-        var o = Math.round(fraction * (railBounds.width - handleBounds.width));
-        var offset = (value === min) ? 0 : (value === max) ? (railBounds.width - handleBounds.width) : o;
+        var extent = max - min, fraction = (value - min) / extent,
+            o = Math.round(fraction * (railBounds.width - handleBounds.width)),
+            offset = (value === min) ? 0 : (value === max) ? (railBounds.width - handleBounds.width) : o;
 
         if(animate) {
             handle.Animation.set_startValue(handleBounds.x - railBounds.x);
@@ -996,11 +988,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             this._animationPending = false;
         } else {
             o = offset + 'px';
-            if(this._isVertical) {
+
+            if(this._isVertical)
                 handle.style.top = o;
-            } else {
+            else
                 handle.style.left = o;
-            }
         }
     },
 
@@ -1035,26 +1027,23 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     _setMultiHandleSliderTargetValue: function(multiHandleSliderTarget, value) {
         // Sets the value of a bound control.
-
         var oldValue = multiHandleSliderTarget.OldValue, newValue = value;
 
         if(oldValue === newValue && this._isReadOnly) {
             multiHandleSliderTarget.value = oldValue;
         } else {
-            if(!this.get_isUpdating()) {
+            if(!this.get_isUpdating())
                 newValue = this._calculateMultiHandleSliderTargetValue(multiHandleSliderTarget);
-            }
 
             multiHandleSliderTarget.value = newValue.toFixed(multiHandleSliderTarget.Decimals);
             this._ensureBinding(multiHandleSliderTarget);
 
-            if(!Number.isInstanceOfType(multiHandleSliderTarget.value)) {
+            if(!Number.isInstanceOfType(multiHandleSliderTarget.value))
                 try {
                     multiHandleSliderTarget.value = parseFloat(multiHandleSliderTarget.value);
                 } catch(ex) {
                     multiHandleSliderTarget.value = Number.NaN;
                 }
-            }
 
             if(this._tooltipText) {
                 var handle = multiHandleSliderTarget.Handle;
@@ -1064,26 +1053,24 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             if(this._initialized) {
                 multiHandleSliderTarget.Handle.Value = newValue;
                 this._setHandlePosition(multiHandleSliderTarget.Handle, true);
+
                 // Backwards compatibility for single-handled slider: set element value
-                if(this._handles === 1) {
+                if(this._handles === 1)
                     this.get_element().value = newValue;
-                }
 
                 if(multiHandleSliderTarget.value !== oldValue) {
                     multiHandleSliderTarget.OldValue = multiHandleSliderTarget.value;
                     this._initializeInnerRail();
 
                     // Prevent click after drag
-                    if(this._innerDrag) {
+                    if(this._innerDrag)
                         this._blockInnerClick = true;
-                    }
+
                     this._raiseEvent('valueChanged');
 
-                    if(this.get_isUpdating()) {
-                        if(!this._raiseChangeOnlyOnMouseUp) {
+                    if(this.get_isUpdating())
+                        if(!this._raiseChangeOnlyOnMouseUp)
                             $common.tryFireEvent(this.get_element(), "change");
-                        }
-                    }
                 }
             }
         }
@@ -1098,15 +1085,16 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         this.beginUpdate();
         if(multiHandleSliderTarget) {
             if(!this._isReadOnly) {
-                if(this._handles === 1 && this._steps > 0) {
+                if(this._handles === 1 && this._steps > 0)
                     // Bypass all the calculations since we already know the discrete value
                     this._setMultiHandleSliderTargetValue(multiHandleSliderTarget, multiHandleSliderTarget.value);
-                }
+
                 this._calculateMultiHandleSliderTargetValue(multiHandleSliderTarget);
             } else {
                 this._setMultiHandleSliderTargetValue(multiHandleSliderTarget, multiHandleSliderTarget.OldValue);
             }
         }
+
         this.endUpdate();
     },
 
@@ -1125,20 +1113,18 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
             if(decrement) {
                 // Decrement
-                for(i = this._steps - 1; i > -1; i--) {
+                for(i = this._steps - 1; i > -1; i--)
                     if(stepValues[i] < oldStep) {
                         newValue = stepValues[i];
                         break;
                     }
-                }
             } else {
                 // Increment
-                for(i = 0; i < this._steps; i++) {
+                for(i = 0; i < this._steps; i++)
                     if(stepValues[i] > oldStep) {
                         newValue = stepValues[i];
                         break;
                     }
-                }
             }
         } else {
             var prevValue = parseFloat(multiHandleSliderTarget.value);
@@ -1153,7 +1139,6 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     _startDragDrop: function(handle) {
         // Begins a drag and drop operation on the specified handle. Drag operations
         // affect the hidden drag handle on the element, not the element itself.
-
         this._resetDragHandle(handle);
         this._handleUnderDrag = handle;
 
@@ -1173,20 +1158,17 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     _onHideDrag: function(e, p) {
         // Reverses the class name used for drag effects when the callback event is raised.
         // param p is the callback parameter object, containing custom style and orientation fields.
-
         this.className = p.custom && p.custom.length > 0 ? p.custom : p.vertical ? 'handle_vertical' : 'handle_horizontal';
     },
 
     _onHideHover: function(e, p) {
         // Reverses the class name used for hover effects when the callback event is raised.
         // param p is the callback parameter object, containing custom style and orientation fields.
-
         this.className = p.custom && p.custom.length > 0 ? p.custom : p.vertical ? 'ajax__multi_slider_default handle_vertical' : 'ajax__multi_slider_default handle_horizontal';
     },
 
     _onInnerRailClick: function(e) {
         // Handler for the inner rail's click event.
-
         if(this._enableRailClick) {
             var target = e.target;
 
@@ -1201,7 +1183,6 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     _onInnerRailClicked: function(e) {
         // Called when the inner rail's click event is handled.
-
         var offset = this._calculateInnerRailOffset(e);
         this._calculateClick(offset);
     },
@@ -1240,22 +1221,22 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     _onMouseWheel: function(e) {
         var delta = 0;
+
         if(e.wheelDelta) {
             delta = e.wheelDelta / 120;
-            if(Sys.Browser.agent === Sys.Browser.Opera) {
+
+            if(Sys.Browser.agent === Sys.Browser.Opera)
                 delta = -delta;
-            }
         } else if(e.detail) {
             delta = -e.detail / 3;
         }
 
-        if(delta) {
+        if(delta)
             this._handleSlide(delta <= 0);
-        }
 
-        if(e.preventDefault) {
+        if(e.preventDefault)
             e.preventDefault();
-        }
+
         return false;
     },
 
@@ -1271,9 +1252,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         e.preventDefault();
 
         this._outer.blur();
-        if(this._handleUnderDrag) {
+        if(this._handleUnderDrag)
             this._cancelDrag();
-        }
     },
 
     _onMouseOutInner: function(e) {
@@ -1281,9 +1261,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         e.preventDefault();
 
         this._inner.blur();
-        if(this._innerDrag) {
+        if(this._innerDrag)
             this._cancelDrag();
-        }
     },
 
     _onMouseDown: function(e) {
@@ -1305,17 +1284,14 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         window._event = e;
         e.preventDefault();
 
-        if(this._enableInnerRangeDrag) {
-            if(!this._innerDragFlag) {
+        if(this._enableInnerRangeDrag)
+            if(!this._innerDragFlag)
                 this._innerDragFlag = true;
-            }
-        }
     },
 
     _onMouseUpInner: function(e) {
-        if(this._enableInnerRangeDrag) {
+        if(this._enableInnerRangeDrag)
             this._innerDragFlag = false;
-        }
     },
 
     _onMouseMoveInner: function(e) {
@@ -1349,7 +1325,6 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     _onMultiHandleSliderTargetChange: function(e) {
         // Handler for when a slider value changes programmatically.
-
         this._animationPending = true;
         var multiHandleSliderTarget = e.target;
         this._setValueFromMultiHandleSliderTarget(multiHandleSliderTarget);
@@ -1360,11 +1335,13 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     _onMultiHandleSliderTargetKeyPressed: function(e) {
         var evt = new Sys.UI.DomEvent(e);
+
         if(evt.charCode === 13) {
             this._animationPending = true;
             var multiHandleSliderTarget = evt.target;
             this._setValueFromMultiHandleSliderTarget(multiHandleSliderTarget);
             this._initializeInnerRail();
+
             evt.preventDefault();
         }
     },
@@ -1388,14 +1365,12 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     _onShowDrag: function(e, p) {
         // Sets the class name used for drag effects when the callback event is raised.
         // param p is the callback parameter object, containing custom style and orientation fields
-
         this.className = p.custom && p.custom.length > 0 ? p.custom : p.vertical ? 'ajax__multi_slider_default handle_vertical_down' : 'ajax__multi_slider_default handle_horizontal_down';
     },
 
     _onShowHover: function(e, p) {
         // Sets the class name used for hover effects when the callback event is raised.
         // param p the callback parameter object, containing custom style and orientation fields.
-
         this.className = p.custom && p.custom.length > 0 ? p.custom : p.vertical ? 'ajax__multi_slider_default handle_vertical_hover' : 'ajax__multi_slider_default handle_horizontal_hover';
     },
 
@@ -1440,17 +1415,18 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
         this._calculateMultiHandleSliderTargetValue(null, null, true);
 
-        if(this._steps > 1) {
+        if(this._steps > 1)
             this._setHandlePosition(this._handleUnderDrag, false);
-        }
+
         this._raiseEvent('drag');
     },
 
     onDragEnd: function() {
         this._initializeInnerRail();
-        if(this._raiseChangeOnlyOnMouseUp) {
+
+        if(this._raiseChangeOnlyOnMouseUp)
             $common.tryFireEvent(this.get_element(), "change");
-        }
+
         this._innerDrag = false;
         this._handleUnderDrag = null;
         this._raiseEvent('dragEnd');
@@ -1478,8 +1454,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     _onSelectStart: function(e) {
         // Handler for when the parent element is selected.
-
         e.preventDefault();
+
         return false;
     },
 
@@ -1495,6 +1471,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     _getBoundsInternal: function(element) {
         var bounds = $common.getBounds(element);
+
         if(this._isVertical) {
             bounds = {
                 x: bounds.y,
@@ -1532,15 +1509,17 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
                 }
             };
         }
+
         return bounds;
     },
 
     _raiseEvent: function(eventName, eventArgs) {
         var handler = this.get_events().getHandler(eventName);
+
         if(handler) {
-            if(!eventArgs) {
+            if(!eventArgs)
                 eventArgs = Sys.EventArgs.Empty;
-            }
+
             handler(this, eventArgs);
         }
     },
@@ -1550,14 +1529,13 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_Value: function() {
         // Gets the value of a single bound control for backwards compatibility
         // of existing slider and tests. Only to be used in this context.
-
         var bound = $get(this._boundControlID);
         return bound.value ? bound.value : 0;
     },
+
     set_Value: function(value) {
         // Sets the value of a single bound control for backwards compatibility
         // of existing slider and tests. Only to be used in this context.
-
         var multiHandleSliderTarget = $get(this._multiHandleSliderTargets[0].ControlID);
 
         this.beginUpdate();
@@ -1573,6 +1551,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_minimum: function() {
         return this._minimum;
     },
+
     set_minimum: function(value) {
         if(value !== this._minimum) {
             this._minimum = value;
@@ -1583,6 +1562,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_maximum: function() {
         return this._maximum;
     },
+
     set_maximum: function(value) {
         if(value !== this._maximum) {
             this._maximum = value;
@@ -1593,6 +1573,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_length: function() {
         return this._length;
     },
+
     set_length: function(value) {
         if(value !== this._length) {
             this._length = value;
@@ -1602,23 +1583,23 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_steps: function() {
         // Determines number of discrete locations on the slider; otherwise, the slider is continous.
-
         return this._steps;
     },
+
     set_steps: function(value) {
         // Determines number of discrete locations on the slider; otherwise, the slider is continous.
-
         var oldValue = this._steps;
         this._steps = Math.abs(value);
         this._steps = (this._steps === 1) ? 2 : this._steps;
-        if(oldValue !== this._steps) {
+
+        if(oldValue !== this._steps)
             this.raisePropertyChanged('steps');
-        }
     },
 
     get_orientation: function() {
         return this._isVertical;
     },
+
     set_orientation: function(value) {
         if(value !== this._isVertical) {
             this._orientation = value;
@@ -1628,12 +1609,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_enableHandleAnimation: function() {
         // Determines if the slider handles display an animation effect when changing position.
-
         return this._enableHandleAnimation;
     },
+
     set_enableHandleAnimation: function(value) {
         // Determines if the slider handles display an animation effect when changing position.
-
         if(value !== this._enableHandleAnimation) {
             this._enableHandleAnimation = value;
             this.raisePropertyChanged('enableHandleAnimation');
@@ -1642,12 +1622,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_handleAnimationDuration: function() {
         // Determines the total duration of the animation effect, in seconds.
-
         return this._handleAnimationDuration;
     },
+
     set_handleAnimationDuration: function(value) {
         // Determines the total duration of the animation effect, in seconds.
-
         if(value !== this._handleAnimationDuration) {
             this._handleAnimationDuration = value;
             this.raisePropertyChanged('handleAnimationDuration');
@@ -1656,12 +1635,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_raiseChangeOnlyOnMouseUp: function() {
         // Determines if changes to the slider's values are raised as an event when dragging; otherwise, they are raised on drag end.
-
         return this._raiseChangeOnlyOnMouseUp;
     },
+
     set_raiseChangeOnlyOnMouseUp: function(value) {
         // Determines if changes to the slider's values are raised as an event when dragging; otherwise, they are raised on drag end.
-
         if(value !== this._raiseChangeOnlyOnMouseUp) {
             this._raiseChangeOnlyOnMouseUp = value;
             this.raisePropertyChanged('raiseChangeOnlyOnMouseUp');
@@ -1670,12 +1648,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_showInnerRail: function() {
         // Determines if the slider will show an inner selected range rail; otherwise, it will display as a uniform rail.
-
         return this._showInnerRail;
     },
+
     set_showInnerRail: function(value) {
         // Determines if the slider will show an inner selected range rail; otherwise, it will display as a uniform rail.
-
         if(value !== this._showInnerRail) {
             this._showInnerRail = value;
             this.raisePropertyChanged('showInnerRail');
@@ -1684,12 +1661,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_showHandleHoverStyle: function() {
         // Determines if the slider handles will show a style effect when they are hovered over.
-
         return this._showHoverStyle;
     },
+
     set_showHandleHoverStyle: function(value) {
         // Determines if the slider handles will show a style effect when they are hovered over.
-
         if(value !== this._showHoverStyle) {
             this._showHoverStyle = value;
             this.raisePropertyChanged('showHoverStyle');
@@ -1698,12 +1674,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_showHandleDragStyle: function() {
         // Determines if the slider handles will show a style effect when they are being dragged.
-
         return this._showDragStyle;
     },
+
     set_showHandleDragStyle: function(value) {
         // Determines if the slider handles will show a style effect when they are being dragged.
-
         if(value !== this._showDragStyle) {
             this._showDragStyle = value;
             this.raisePropertyChanged('showDragStyle');
@@ -1712,12 +1687,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_innerRailStyle: function() {
         // Determines how the inner rail style is handled.
-
         return this._innerRailStyle;
     },
+
     set_innerRailStyle: function(value) {
         // Determines how the inner rail style is handled.
-
         if(value !== this._innerRailStyle) {
             this._innerRailStyle = value;
             this.raisePropertyChanged('innerRailStyle');
@@ -1726,12 +1700,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_enableInnerRangeDrag: function() {
         // Determines if the inner rail range can be dragged as a whole, moving both handles defining it.
-
         return this._enableInnerRangeDrag;
     },
+
     set_enableInnerRangeDrag: function(value) {
         // Determines if the inner rail range can be dragged as a whole, moving both handles defining it.
-
         if(value !== this._enableInnerRangeDrag) {
             this._enableInnerRangeDrag = value;
             this.raisePropertyChanged('allowInnerRangeDrag');
@@ -1740,12 +1713,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_enableRailClick: function() {
         // Determines if clicking on the rail will detect and move the closest handle.
-
         return this._enableRailClick;
     },
+
     set_enableRailClick: function(value) {
         // Determines if clicking on the rail will detect and move the closest handle.
-
         if(value !== this._enableRailClick) {
             this._enableRailClick = value;
             this.raisePropertyChanged('allowRailClick');
@@ -1755,6 +1727,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_isReadOnly: function() {
         return this._isReadOnly;
     },
+
     set_isReadOnly: function(value) {
         if(value !== this._isReadOnly) {
             this._isReadOnly = value;
@@ -1765,6 +1738,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_enableKeyboard: function() {
         return this._enableKeyboard;
     },
+
     set_enableKeyboard: function(value) {
         if(value !== this._enableKeyboard) {
             this._enableKeyboard = value;
@@ -1775,6 +1749,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_enableMouseWheel: function() {
         return this._enableMouseWheel;
     },
+
     set_enableMouseWheel: function(value) {
         if(value !== this._enableMouseWheel) {
             this._enableMouseWheel = value;
@@ -1784,12 +1759,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_increment: function() {
         // Determines the number of points to increment or decrement the slider using the keyboard or mousewheel; ignored if steps is used.
-
         return this._increment;
     },
+
     set_increment: function(value) {
         // Determines the number of points to increment or decrement the slider using the keyboard or mousewheel; ignored if steps is used.
-
         if(value !== this._increment) {
             this._increment = value;
             this.raisePropertyChanged('increment');
@@ -1798,12 +1772,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_tooltipText: function() {
         // {0} denotes the current handle's value in the format string.
-
         return this._tooltipText;
     },
+
     set_tooltipText: function(value) {
         // {0} denotes the current handle's value in the format string.
-
         if(value !== this._tooltipText) {
             this._tooltipText = value;
             this.raisePropertyChanged('tooltipText');
@@ -1813,6 +1786,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_multiHandleSliderTargets: function() {
         return this._multiHandleSliderTargets;
     },
+
     set_multiHandleSliderTargets: function(value) {
         if(value !== this._multiHandleSliderTargets) {
             this._multiHandleSliderTargets = value;
@@ -1823,6 +1797,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_cssClass: function() {
         return this._cssClass;
     },
+
     set_cssClass: function(value) {
         if(value !== this._cssClass) {
             this._cssClass = value;
@@ -1832,23 +1807,23 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     get_boundControlID: function() {
         // Gets the ID of a control to use for a single handle.
-
         return this._boundControlID;
     },
+
     set_boundControlID: function(value) {
         // Sets the ID of a control to use for a single handle.
-
         this._boundControlID = value;
-        if(this._boundControlID) {
+
+        if(this._boundControlID)
             this._boundControl = $get(this._boundControlID);
-        } else {
+        else
             this._boundControl = null;
-        }
     },
 
     get_handleCssClass: function() {
         return this._handleCssClass;
     },
+
     set_handleCssClass: function(value) {
         this._handleCssClass = value;
     },
@@ -1856,6 +1831,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_handleImageUrl: function() {
         return this._handleImageUrl;
     },
+
     set_handleImageUrl: function(value) {
         this._handleImageUrl = value;
     },
@@ -1863,18 +1839,18 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     get_railCssClass: function() {
         return this._railCssClass;
     },
+
     set_railCssClass: function(value) {
         this._railCssClass = value;
     },
 
     get_decimals: function() {
         // Get the number of decimal digits in a single slider's value.
-
         return this._decimals;
     },
+
     set_decimals: function(value) {
         // Set the number of decimal digits in a single slider's value.
-
         this._decimals = value;
     },
 
@@ -1883,6 +1859,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     add_load: function(handler) {
         this.get_events().addHandler('load', handler);
     },
+
     remove_load: function(handler) {
         this.get_events().removeHandler('load', handler);
     },
@@ -1890,6 +1867,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     add_dragStart: function(handler) {
         this.get_events().addHandler('dragStart', handler);
     },
+
     remove_dragStart: function(handler) {
         this.get_events().removeHandler('dragStart', handler);
     },
@@ -1897,6 +1875,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     add_drag: function(handler) {
         this.get_events().addHandler('drag', handler);
     },
+
     remove_drag: function(handler) {
         this.get_events().removeHandler('drag', handler);
     },
@@ -1904,6 +1883,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     add_dragEnd: function(handler) {
         this.get_events().addHandler('dragEnd', handler);
     },
+
     remove_dragEnd: function(handler) {
         this.get_events().removeHandler('dragEnd', handler);
     },
@@ -1911,6 +1891,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     add_valueChanged: function(handler) {
         this.get_events().addHandler('valueChanged', handler);
     },
+
     remove_valueChanged: function(handler) {
         this.get_events().removeHandler('valueChanged', handler);
     }

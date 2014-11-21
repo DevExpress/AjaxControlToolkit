@@ -9,9 +9,11 @@ Sys.Extended.UI.HtmlEditor.Popups.LinkProperties = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.Popups.LinkProperties.prototype = {
+
     get_defaultTarget: function() {
         return this._defaultTarget;
     },
+
     set_defaultTarget: function(value) {
         this._defaultTarget = value;
     }

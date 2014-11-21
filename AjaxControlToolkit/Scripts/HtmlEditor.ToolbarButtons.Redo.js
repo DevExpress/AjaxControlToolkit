@@ -6,7 +6,9 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.Redo = function(element) {
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.Redo.prototype = {
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.Redo.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.Redo.callBaseMethod(this, "callMethod"))
+            return false;
+
         this._designPanel.redo();
     }
 }

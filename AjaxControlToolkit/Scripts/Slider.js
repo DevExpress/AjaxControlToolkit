@@ -80,9 +80,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
         this._disposeBoundControl();
 
-        if(this._enableHandleAnimation && this._handleAnimation) {
+        if(this._enableHandleAnimation && this._handleAnimation)
             this._handleAnimation.dispose();
-        }
 
         Sys.Extended.UI.SliderBehavior.callBaseMethod(this, 'dispose');
     },
@@ -117,49 +116,43 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
         this._railElement.className = (this._railCssClass) ? this._railCssClass : defaultRailCssClass;
         this._handle.className = (this._handleCssClass) ? this._handleCssClass : defaultHandleCssClass;
-        if(!this._handleImageUrl) this._handleImageUrl = defaultHandleImageUrl;
+        if(!this._handleImageUrl)
+            this._handleImageUrl = defaultHandleImageUrl;
 
         if(this._isHorizontal) {
-            if(this._length) this._railElement.style.width = this._length;
+            if(this._length)
+                this._railElement.style.width = this._length;
         }
         else {
-            if(this._length) this._railElement.style.height = this._length;
+            if(this._length)
+                this._railElement.style.height = this._length;
         }
 
         this._loadHandleImage();
-
         this._enforceTextBoxElementPositioning();
-
         this._hideTextBoxElement();
-
         this._initializeSlider();
     },
 
     _enforceTextBoxElementPositioning: function() {
-        var tbPosition =
-            {
-                position: this.get_element().style.position,
-                top: this.get_element().style.top,
-                right: this.get_element().style.right,
-                bottom: this.get_element().style.bottom,
-                left: this.get_element().style.left
-            };
+        var tbPosition = {
+            position: this.get_element().style.position,
+            top: this.get_element().style.top,
+            right: this.get_element().style.right,
+            bottom: this.get_element().style.bottom,
+            left: this.get_element().style.left
+        };
 
-        if(tbPosition.position != '') {
+        if(tbPosition.position != '')
             this._railElement.style.position = tbPosition.position;
-        }
-        if(tbPosition.top != '') {
+        if(tbPosition.top != '')
             this._railElement.style.top = tbPosition.top;
-        }
-        if(tbPosition.right != '') {
+        if(tbPosition.right != '')
             this._railElement.style.right = tbPosition.right;
-        }
-        if(tbPosition.bottom != '') {
+        if(tbPosition.bottom != '')
             this._railElement.style.bottom = tbPosition.bottom;
-        }
-        if(tbPosition.left != '') {
+        if(tbPosition.left != '')
             this._railElement.style.left = tbPosition.left;
-        }
     },
 
     _hideTextBoxElement: function() {
@@ -169,9 +162,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
         var dimension = '0px';
 
-        if(Sys.Browser.agent == Sys.Browser.Safari) {
+        if(Sys.Browser.agent == Sys.Browser.Safari)
             dimension = '1px';
-        }
 
         textBoxElement.style.width = dimension;
         textBoxElement.style.height = dimension;
@@ -203,19 +195,15 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         }
 
         this.set_Value(_elementValue);
-
         this._setHandleOffset(this._value);
-
         this._initializeDragHandle();
 
         Sys.Extended.UI.SliderDragDropManagerInternal.registerDropTarget(this);
 
         this._initializeHandlers();
-
         this._initializeHandleAnimation();
 
         this._isInitializedInternal = true;
-
         this._raiseEvent('sliderInitialized');
     },
 
@@ -260,9 +248,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     _setValueFromBoundControl: function() {
         this._isUpdatingInternal = true;
 
-        if(this._boundControlID) {
+        if(this._boundControlID)
             this._calcValue($get(this._boundControlID).value);
-        }
 
         this._isUpdatingInternal = false;
     },
@@ -273,10 +260,9 @@ Sys.Extended.UI.SliderBehavior.prototype = {
             return;
         }
 
-        if(this._enableHandleAnimation) {
+        if(this._enableHandleAnimation)
             this._handleAnimation = new Sys.Extended.UI.Animation.LengthAnimation(
                     this._handle, this._handleAnimationDuration, 100, 'style');
-        }
     },
 
     _ensureBinding: function() {
@@ -286,12 +272,10 @@ Sys.Extended.UI.SliderBehavior.prototype = {
             if(value >= this._minimum || value <= this._maximum) {
                 var isInputElement = this._boundControl.nodeName == 'INPUT';
 
-                if(isInputElement) {
+                if(isInputElement)
                     this._boundControl.value = value;
-                }
-                else if(this._boundControl) {
+                else if(this._boundControl)
                     this._boundControl.innerHTML = value;
-                }
             }
         }
     },
@@ -316,9 +300,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
                 bounds.height = parseInt($common.getCurrentStyle(tempNode, 'height'));
                 document.body.removeChild(tempNode);
 
-                if(!hasSize()) {
+                if(!hasSize())
                     throw Error.argument('element size', Sys.Extended.UI.Resources.Slider_NoSizeProvided);
-                }
             }
         }
 
@@ -377,19 +360,17 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
         $addHandler(this.get_element(), 'keydown', this._keyDownHandler);
 
-        $addHandlers(this._handle,
-            {
-                'mousedown': this._onMouseDown,
-                'dragstart': this._IEDragDropHandler,
-                'drag': this._IEDragDropHandler,
-                'dragend': this._IEDragDropHandler
-            },
+        $addHandlers(this._handle, {
+            'mousedown': this._onMouseDown,
+            'dragstart': this._IEDragDropHandler,
+            'drag': this._IEDragDropHandler,
+            'dragend': this._IEDragDropHandler
+        },
             this);
 
-        $addHandlers(this._railElement,
-            {
-                'click': this._onRailClick
-            },
+        $addHandlers(this._railElement, {
+            'click': this._onRailClick
+        },
             this);
     },
 
@@ -432,9 +413,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         if(Sys.Extended.UI.SliderBehavior.DropPending == this) {
             Sys.Extended.UI.SliderBehavior.DropPending = null;
 
-            if(this._selectstartPending) {
+            if(this._selectstartPending)
                 $removeHandler(document, 'selectstart', this._selectstartHandler);
-            }
         }
     },
 
@@ -477,14 +457,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
             increment = this._decimals == 0 ? 1 : 1 / Math.pow(10, this._decimals);
         }
 
-        if(decrement) {
+        if(decrement)
             increment = 0 - increment
-        }
 
         this._calcValue(parseFloat(currentValue) + parseFloat(increment));
-
         this._isUpdatingInternal = false;
-
         this._fireTextBoxChangeEvent();
     },
 
@@ -515,9 +492,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
                 }
             }
 
-            if(isNaN(value)) {
+            if(isNaN(value))
                 value = this._minimum;
-            }
 
             val = (value < this._minimum) ? this._minimum
                 : (value > this._maximum) ? this._maximum
@@ -538,9 +514,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
                 : _minimum + percent * (_maximum - _minimum);
         }
 
-        if(this._steps > 0) {
+        if(this._steps > 0)
             val = this._getNearestStepValue(val);
-        }
 
         val = (val < this._minimum) ? this._minimum
             : (val > this._maximum) ? this._maximum
@@ -576,20 +551,20 @@ Sys.Extended.UI.SliderBehavior.prototype = {
             this._animationPending = false;
         }
         else {
-            if(this._isHorizontal) {
+            if(this._isHorizontal)
                 this._handle.style.left = offset + 'px';
-            }
-            else {
+            else
                 this._handle.style.top = offset + 'px';
-            }
         }
     },
 
     _getNearestStepValue: function(value) {
-        if(this._steps == 0) return value;
+        if(this._steps == 0)
+            return value;
 
         var extent = this._maximum - this._minimum;
-        if(extent == 0) return value;
+        if(extent == 0)
+            return value;
 
         var delta = extent / (this._steps - 1);
 
@@ -597,9 +572,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     _onHandleReleased: function() {
-        if(this._raiseChangeOnlyOnMouseUp) {
+        if(this._raiseChangeOnlyOnMouseUp)
             this._fireTextBoxChangeEvent();
-        }
 
         this._raiseEvent('slideEnd');
     },
@@ -659,20 +633,17 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         var sliderBounds = this._getRailBounds();
 
         var handlePosition;
-        if(this._isHorizontal) {
+        if(this._isHorizontal)
             handlePosition = { x: dragHandleBounds.x - sliderBounds.x, y: 0 };
-        }
-        else {
+        else
             handlePosition = { y: dragHandleBounds.x - sliderBounds.x, x: 0 };
-        }
 
         $common.setLocation(this._handle, handlePosition);
 
         this._calcValue(null, null);
 
-        if(this._steps > 1) {
+        if(this._steps > 1)
             this._setHandleOffset(this.get_Value(), false);
-        }
     },
 
     onDragEnd: function() {
@@ -730,9 +701,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     _raiseEvent: function(eventName, eventArgs) {
         var handler = this.get_events().getHandler(eventName);
         if(handler) {
-            if(!eventArgs) {
+            if(!eventArgs)
                 eventArgs = Sys.EventArgs.Empty;
-            }
             handler(this, eventArgs);
         }
     },
@@ -745,9 +715,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         var oldValue = this._value;
         var newValue = value;
 
-        if(!this._isUpdatingInternal) {
+        if(!this._isUpdatingInternal)
             newValue = this._calcValue(value);
-        }
 
         this.get_element().value = this._value = newValue.toFixed(this._decimals);
 
@@ -761,23 +730,18 @@ Sys.Extended.UI.SliderBehavior.prototype = {
             }
         }
 
-        if(this._tooltipText) {
-            this._handle.alt = this._handle.title =
-                String.format(this._tooltipText, this._value);
-        }
+        if(this._tooltipText)
+            this._handle.alt = this._handle.title = String.format(this._tooltipText, this._value);
 
         if(this._isInitializedInternal) {
             this._setHandleOffset(newValue, this._enableHandleAnimation && this._animationPending);
 
-            if(this._isUpdatingInternal) {
-                if(!this._raiseChangeOnlyOnMouseUp) {
+            if(this._isUpdatingInternal)
+                if(!this._raiseChangeOnlyOnMouseUp)
                     this._fireTextBoxChangeEvent();
-                }
-            }
 
-            if(this._value != oldValue) {
+            if(this._value != oldValue)
                 this._raiseEvent('valueChanged');
-            }
         }
     },
 
@@ -868,11 +832,10 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
     set_BoundControlID: function(value) {
         this._boundControlID = value;
-        if(this._boundControlID) {
+        if(this._boundControlID)
             this._boundControl = $get(this._boundControlID);
-        } else {
+        else
             this._boundControl = null;
-        }
     },
 
     get_Length: function() {
@@ -904,17 +867,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_enableKeyboard: function() {
-        /// <value type="Boolean">
-        /// Determines if the slider will respond to arrow keys when it has focus.
-        /// </value>
-
+        // Determines if the slider will respond to arrow keys when it has focus.
         return this._enableKeyboard;
     },
     set_enableKeyboard: function(value) {
-        /// <value type="Boolean">
-        /// Determines if the slider will respond to arrow keys when it has focus.
-        /// </value>
-
+        // Determines if the slider will respond to arrow keys when it has focus.
         if(value !== this._enableKeyboard) {
             this._enableKeyboard = value;
             this.raisePropertyChanged('enableKeyboard');
@@ -923,7 +880,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
     getClientState: function() {
         var value = Sys.Extended.UI.SliderBehavior.callBaseMethod(this, 'get_ClientState');
-        if(value == '') value = null;
+        if(value == '')
+            value = null;
         return value;
     },
 

@@ -1,11 +1,7 @@
 Type.registerNamespace('Sys.Extended.UI');
 
 Sys.Extended.UI.BoxSide = function() {
-    /// The BoxSide enumeration describes the sides of a DOM element
-    // <field name="Top" type="Number" integer="true" static="true" />
-    // <field name="Right" type="Number" integer="true" static="true" />
-    // <field name="Bottom" type="Number" integer="true" static="true" />
-    // <field name="Left" type="Number" integer="true" static="true" />
+    // The BoxSide enumeration describes the sides of a DOM element
 }
 Sys.Extended.UI.BoxSide.prototype = {
     Top : 0,
@@ -17,13 +13,9 @@ Sys.Extended.UI.BoxSide.registerEnum("Sys.Extended.UI.BoxSide", false);
 
 
 Sys.Extended.UI._CommonToolkitScripts = function() {
-    /// <summary>
-    /// The _CommonToolkitScripts class contains functionality utilized across a number
-    /// of controls (but not universally)
-    /// </summary>
-    /// <remarks>
-    /// You should not create new instances of _CommonToolkitScripts.  Instead you should use the shared instance CommonToolkitScripts (or Sys.Extended.UI.CommonToolkitScripts).
-    /// </remarks>
+    // The _CommonToolkitScripts class contains functionality utilized across a number
+    // of controls (but not universally)
+    // You should not create new instances of _CommonToolkitScripts.  Instead you should use the shared instance CommonToolkitScripts (or Sys.Extended.UI.CommonToolkitScripts).
 }
 Sys.Extended.UI._CommonToolkitScripts.prototype = {
     // The order of these lookup tables is directly linked to the BoxSide enum defined above
@@ -33,27 +25,17 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     _marginWidthNames: ["marginTop", "marginRight", "marginBottom", "marginLeft"],
 
     getCurrentStyle: function(element, attribute, defaultValue) {
-        /// <summary>
-        /// CommonToolkitScripts.getCurrentStyle is used to compute the value of a style attribute on an
-        /// element that is currently being displayed.  This is especially useful for scenarios where
-        /// several CSS classes and style attributes are merged, or when you need information about the
-        /// size of an element (such as its padding or margins) that is not exposed in any other fashion.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// Live DOM element to check style of
-        /// </param>
-        /// <param name="attribute" type="String">
-        /// The style attribute's name is expected to be in a camel-cased form that you would use when
-        /// accessing a JavaScript property instead of the hyphenated form you would use in a CSS
-        /// stylesheet (i.e. it should be "backgroundColor" and not "background-color").
-        /// </param>
-        /// <param name="defaultValue" type="Object" mayBeNull="true" optional="true">
-        /// In the event of a problem (i.e. a null element or an attribute that cannot be found) we
-        /// return this object (or null if none if not specified).
-        /// </param>
-        /// <returns type="Object">
-        /// Current style of the element's attribute
-        /// </returns>
+        // CommonToolkitScripts.getCurrentStyle is used to compute the value of a style attribute on an
+        // element that is currently being displayed.  This is especially useful for scenarios where
+        // several CSS classes and style attributes are merged, or when you need information about the
+        // size of an element (such as its padding or margins) that is not exposed in any other fashion.
+        // "element" - live DOM element to check style of
+        // "attribute" - the style attribute's name is expected to be in a camel-cased form that you would use when
+        // accessing a JavaScript property instead of the hyphenated form you would use in a CSS
+        // stylesheet (i.e. it should be "backgroundColor" and not "background-color").
+        // "defaultValue" - in the event of a problem (i.e. a null element or an attribute that cannot be found) we
+        // return this object (or null if none if not specified).
+        // "Object" - ñurrent style of the element's attribute
 
         var currentValue = null;
         if (element) {
@@ -86,22 +68,16 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getInheritedBackgroundColor: function(element) {
-        /// <summary>
-        /// CommonToolkitScripts.getInheritedBackgroundColor provides the ability to get the displayed
-        /// background-color of an element.  In most cases calling CommonToolkitScripts.getCurrentStyle
-        /// won't do the job because it will return "transparent" unless the element has been given a
-        /// specific background color.  This function will walk up the element's parents until it finds
-        /// a non-transparent color.  If we get all the way to the top of the document or have any other
-        /// problem finding a color, we will return the default value '#FFFFFF'.  This function is
-        /// especially important when we're using opacity in IE (because ClearType will make text look
-        /// horrendous if you fade it with a transparent background color).
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// Live DOM element to get the background color of
-        /// </param>
-        /// <returns type="String">
-        /// Background color of the element
-        /// </returns>
+        // CommonToolkitScripts.getInheritedBackgroundColor provides the ability to get the displayed
+        // background-color of an element.  In most cases calling CommonToolkitScripts.getCurrentStyle
+        // won't do the job because it will return "transparent" unless the element has been given a
+        // specific background color.  This function will walk up the element's parents until it finds
+        // a non-transparent color.  If we get all the way to the top of the document or have any other
+        // problem finding a color, we will return the default value '#FFFFFF'.  This function is
+        // especially important when we're using opacity in IE (because ClearType will make text look
+        // horrendous if you fade it with a transparent background color).
+        // Returns background color of the element.
+        // "element" - live DOM element to get the background color of
 
         if (!element) return '#FFFFFF';
         var background = this.getCurrentStyle(element, 'backgroundColor');
@@ -121,47 +97,29 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getLocation: function(element) {
-        /// <summary>Gets the coordinates of a DOM element.</summary>
-        /// <param name="element" domElement="true"/>
-        /// <returns type="Sys.UI.Point">
-        ///   A Point object with two fields, x and y, which contain the pixel coordinates of the element.
-        /// </returns>
+        // Gets the coordinates of a DOM element.
+        // Returns a Point object with two fields, x and y, which contain the pixel coordinates of the element.
         return Sys.UI.DomElement.getLocation(element);
     },
 
     setLocation: function(element, point) {
-        /// <summary>
-        /// Sets the current location for an element.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <param name="point" type="Object">
-        /// Point object (of the form {x,y})
-        /// </param>
-        /// <remarks>
-        /// This method does not attempt to set the positioning mode of an element.
-        /// The position is relative from the elements nearest position:relative or
-        /// position:absolute element.
-        /// </remarks>
+        // Sets the current location for an element.
+        // This method does not attempt to set the positioning mode of an element.
+        // The position is relative from the elements nearest position:relative or
+        // position:absolute element.
+        // "element" - DOM element
+        // "point" - Point object (of the form {x,y})
+
         Sys.UI.DomElement.setLocation(element, point.x, point.y);
     },
 
     getContentSize: function(element) {
-        /// <summary>
-        /// Gets the "content-box" size of an element.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <returns type="Object">
-        /// Size of the element (in the form {width,height})
-        /// </returns>
-        /// <remarks>
-        /// The "content-box" is the size of the content area *inside* of the borders and
-        /// padding of an element. The "content-box" size does not include the margins around
-        /// the element.
-        /// </remarks>
+        // Gets the "content-box" size of an element.
+        // The "content-box" is the size of the content area *inside* of the borders and
+        // padding of an element. The "content-box" size does not include the margins around
+        // the element.
+        // "element" - DOM element
+        // Returns size of the element (in the form {width,height})
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -176,20 +134,12 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getSize: function(element) {
-        /// <summary>
-        /// Gets the "border-box" size of an element.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <returns type="Object">
-        /// Size of the element (in the form {width,height})
-        /// </returns>
-        /// <remarks>
-        /// The "border-box" is the size of the content area *outside* of the borders and
-        /// padding of an element.  The "border-box" size does not include the margins around
-        /// the element.
-        /// </remarks>
+        // Gets the "border-box" size of an element.
+        // The "border-box" is the size of the content area *outside* of the borders and
+        // padding of an element.  The "border-box" size does not include the margins around
+        // the element.
+        // "element" - DOM element
+        // Returns size of the element (in the form {width,height})
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -201,20 +151,12 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     setContentSize: function(element, size) {
-        /// <summary>
-        /// Sets the "content-box" size of an element.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <param name="size" type="Object">
-        /// Size of the element (in the form {width,height})
-        /// </param>
-        /// <remarks>
-        /// The "content-box" is the size of the content area *inside* of the borders and
-        /// padding of an element. The "content-box" size does not include the margins around
-        /// the element.
-        /// </remarks>
+        // Sets the "content-box" size of an element.
+        // The "content-box" is the size of the content area *inside* of the borders and
+        // padding of an element. The "content-box" size does not include the margins around
+        // the element.
+        // "element" - DOM element
+        // "size" - size of the element (in the form {width,height})
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -236,17 +178,12 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     setSize: function(element, size) {
-        /// <summary>
-        /// Sets the "border-box" size of an element.
-        /// </summary>
-        /// <remarks>
-        /// The "border-box" is the size of the content area *outside* of the borders and 
-        /// padding of an element.  The "border-box" size does not include the margins around
-        /// the element.
-        /// </remarks>
-        /// <param name="element" type="Sys.UI.DomElement">DOM element</param>
-        /// <param name="size" type="Object">Size of the element (in the form {width,height})</param>
-        /// <returns />
+        // Sets the "border-box" size of an element.
+        // The "border-box" is the size of the content area *outside* of the borders and 
+        // padding of an element.  The "border-box" size does not include the margins around
+        // the element.
+        // "element" - DOM element
+        // "size" - size of the element (in the form {width,height})</param>
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -264,30 +201,19 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getBounds: function(element) {
-        /// <summary>Gets the coordinates, width and height of an element.</summary>
-        /// <param name="element" domElement="true"/>
-        /// <returns type="Sys.UI.Bounds">
-        ///   A Bounds object with four fields, x, y, width and height, which contain the pixel coordinates,
-        ///   width and height of the element.
-        /// </returns>
+        // Gets the coordinates, width and height of an element.
+        // Returns a Bounds object with four fields, x, y, width and height, which contain the pixel coordinates,
+        // width and height of the element.
         return Sys.UI.DomElement.getBounds(element);
     },
 
     setBounds: function(element, bounds) {
-        /// <summary>
-        /// Sets the "border-box" bounds of an element
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <param name="bounds" type="Object">
-        /// Bounds of the element (of the form {x,y,width,height})
-        /// </param>
-        /// <remarks>
-        /// The "border-box" is the size of the content area *outside* of the borders and
-        /// padding of an element.  The "border-box" size does not include the margins around
-        /// the element.
-        /// </remarks>
+        // Sets the "border-box" bounds of an element
+        // The "border-box" is the size of the content area *outside* of the borders and
+        // padding of an element.  The "border-box" size does not include the margins around
+        // the element.
+        // "element" - DOM element
+        // "bounds" - bounds of the element (of the form {x,y,width,height})
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -300,12 +226,8 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getClientBounds: function() {
-        /// <summary>
-        /// Gets the width and height of the browser client window (excluding scrollbars)
-        /// </summary>
-        /// <returns type="Sys.UI.Bounds">
-        /// Browser's client width and height
-        /// </returns>
+        // Gets the width and height of the browser client window (excluding scrollbars)
+        // Returns browser's client width and height
 
         var clientWidth;
         var clientHeight;
@@ -325,15 +247,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getMarginBox: function(element) {
-        /// <summary>
-        /// Gets the entire margin box sizes.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <returns type="Object">
-        /// Element's margin box sizes (of the form {top,left,bottom,right,horizontal,vertical})
-        /// </returns>
+        // Gets the entire margin box sizes.
+        // "element" - DOM element
+        // Returns - element's margin box sizes (of the form {top,left,bottom,right,horizontal,vertical})
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -350,15 +266,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getBorderBox: function(element) {
-        /// <summary>
-        /// Gets the entire border box sizes.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <returns type="Object">
-        /// Element's border box sizes (of the form {top,left,bottom,right,horizontal,vertical})
-        /// </returns>
+        // Gets the entire border box sizes.
+        // Returns element's border box sizes (of the form {top,left,bottom,right,horizontal,vertical})
+        // "element" - DOM element
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -375,15 +285,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getPaddingBox: function(element) {
-        /// <summary>
-        /// Gets the entire padding box sizes.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <returns type="Object">
-        /// Element's padding box sizes (of the form {top,left,bottom,right,horizontal,vertical})
-        /// </returns>
+        // Gets the entire padding box sizes.
+        // Returns element's padding box sizes (of the form {top,left,bottom,right,horizontal,vertical})
+        // "element" - DOM element
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -400,18 +304,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     isBorderVisible: function(element, boxSide) {
-        /// <summary>
-        /// Gets whether the current border style for an element on a specific boxSide is not 'none'.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <param name="boxSide" type="Sys.Extended.UI.BoxSide">
-        /// Side of the element
-        /// </param>
-        /// <returns type="Boolean">
-        /// Whether the current border style for an element on a specific boxSide is not 'none'.
-        /// </returns>
+        // Gets whether the current border style for an element on a specific boxSide is not 'none'.
+        // "element" - DOM element
+        // "boxSide" - side of the element
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -425,18 +320,10 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getMargin: function(element, boxSide) {
-        /// <summary>
-        /// Gets the margin thickness of an element on a specific boxSide.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <param name="boxSide" type="Sys.Extended.UI.BoxSide">
-        /// Side of the element
-        /// </param>
-        /// <returns type="Number" integer="true">
-        /// Margin thickness on the element's specified side
-        /// </returns>
+        // Gets the margin thickness of an element on a specific boxSide.
+        // "element" - DOM element
+        // "boxSide" - side of the element
+        // Returns margin thickness on the element's specified side
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -450,18 +337,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getBorderWidth: function(element, boxSide) {
-        /// <summary>
-        /// Gets the border thickness of an element on a specific boxSide.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <param name="boxSide" type="Sys.Extended.UI.BoxSide">
-        /// Side of the element
-        /// </param>
-        /// <returns type="Number" integer="true">
-        /// Border thickness on the element's specified side
-        /// </returns>
+        // Gets the border thickness of an element on a specific boxSide.
+        // "element" - DOM element
+        // "boxSide" - side of the element
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -478,18 +356,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getPadding: function(element, boxSide) {
-        /// <summary>
-        /// Gets the padding thickness of an element on a specific boxSide.
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// DOM element
-        /// </param>
-        /// <param name="boxSide" type="Sys.Extended.UI.BoxSide">
-        /// Side of the element
-        /// </param>
-        /// <returns type="Number" integer="true">
-        /// Padding on the element's specified side
-        /// </returns>
+        // Gets the padding thickness of an element on a specific boxSide.
+        // "element" - DOM element        
+        // "boxSide" - side of the element
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -503,15 +372,10 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     parseBorderWidth: function(borderWidth) {
-        /// <summary>
-        /// Parses a border-width string into a pixel size
-        /// </summary>
-        /// <param name="borderWidth" type="String" mayBeNull="true">
-        /// Type of border ('thin','medium','thick','inherit',px unit,null,'')
-        /// </param>
-        /// <returns type="Number" integer="true">
-        /// Number of pixels in the border-width
-        /// </returns>
+        // Parses a border-width string into a pixel size
+        // Returns number of pixels in the border-width
+        // "borderWidth" - type of border ('thin','medium','thick','inherit',px unit,null,'')
+
         if (!this._borderThicknesses) {
 
             // Populate the borderThicknesses lookup table
@@ -555,15 +419,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     parsePadding: function(padding) {
-        /// <summary>
-        /// Parses a padding string into a pixel size
-        /// </summary>
-        /// <param name="padding" type="String" mayBeNull="true">
-        /// Padding to parse ('inherit',px unit,null,'')
-        /// </param>
-        /// <returns type="Number" integer="true">
-        /// Number of pixels in the padding
-        /// </returns>
+        // Parses a padding string into a pixel size
+        // "padding" - padding to parse ('inherit',px unit,null,'')
+        // Returns number of pixels in the padding
 
         if (padding) {
             if (padding == 'inherit') {
@@ -579,16 +437,10 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     parseUnit: function(value) {
-        /// <summary>
-        /// Parses a unit string into a unit object
-        /// </summary>
-        /// <param name="value" type="String" mayBeNull="true">
-        /// Value to parse (of the form px unit,% unit,em unit,...)
-        /// </param>
-        /// <returns type="Object">
-        /// Parsed unit (of the form {size,type})
-        /// </returns>
-
+        // Parses a unit string into a unit object
+        // Returns parsed unit (of the form {size,type})
+        // "value" - value to parse (of the form px unit,% unit,em unit,...)
+        
         if (!value) {
             throw Error.argumentNull('value');
         }
@@ -624,15 +476,8 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getElementOpacity: function(element) {
-        /// <summary>
-        /// Get the element's opacity
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// Element
-        /// </param>
-        /// <returns type="Number">
-        /// Opacity of the element
-        /// </returns>
+        // Get the element's opacity
+        // "element" - element
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -663,15 +508,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     setElementOpacity: function(element, value) {
-        /// <summary>
-        /// Set the element's opacity
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// Element
-        /// </param>
-        /// <param name="value" type="Number">
-        /// Opacity of the element
-        /// </param>
+        // Set the element's opacity
+        // "element" - element
+        // "value" -  opacity of the element
 
         if (!element) {
             throw Error.argumentNull('element');
@@ -697,16 +536,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     getVisible: function(element) {
-        /// <summary>
-        /// Check if an element is visible
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// Element
-        /// </param>
-        /// <returns type="Boolean" mayBeNull="false">
-        /// True if the element is visible, false otherwise
-        /// </returns>
-
+        // Check if an element is visible
+        // Returns true if the element is visible, false otherwise
+        // element"- element
         // Note: reference to CommonToolkitScripts must be left intact (i.e. don't
         // replace with 'this') because this function will be aliased
 
@@ -716,16 +548,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     setVisible: function(element, value) {
-        /// <summary>
-        /// Check if an element is visible
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-        /// Element
-        /// </param>
-        /// <param name="value" type="Boolean" mayBeNull="false">
-        /// True to make the element visible, false to hide it
-        /// </param>
-
+        // Check if an element is visible
+        // "element" - element
+        // "value" - true to make the element visible, false to hide it
         // Note: reference to CommonToolkitScripts must be left intact (i.e. don't
         // replace with 'this') because this function will be aliased
 
@@ -744,16 +569,10 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     resolveFunction: function(value) {
-        /// <summary>
-        /// Returns a function reference that corresponds to the provided value
-        /// </summary>
-        /// <param name="value" type="Object">
-        /// The value can either be a Function, the name of a function (that can be found using window['name']),
-        /// or an expression that evaluates to a function.
-        /// </param>
-        /// <returns type="Function">
-        /// Reference to the function, or null if not found
-        /// </returns>
+        // Returns a function reference that corresponds to the provided value
+        // Returns reference to the function, or null if not found
+        // "value" - the value can either be a Function, the name of a function (that can be found using window['name']),
+        // or an expression that evaluates to a function.
 
         if (value) {
             if (value instanceof Function) {
@@ -771,64 +590,47 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     addCssClasses: function(element, classNames) {
-        /// <summary>
-        /// Adds multiple css classes to a DomElement
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement">The element to modify</param>
-        /// <param name="classNames" type="Array">The class names to add</param>
+        // Adds multiple css classes to a DomElement
+        // "element"- the element to modify
+        // "classNames" - the class names to add
 
         for (var i = 0; i < classNames.length; i++) {
             Sys.UI.DomElement.addCssClass(element, classNames[i]);
         }
     },
     removeCssClasses: function(element, classNames) {
-        /// <summary>
-        /// Removes multiple css classes to a DomElement
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement">The element to modify</param>
-        /// <param name="classNames" type="Array">The class names to remove</param>
+        // Removes multiple css classes to a DomElement
+        // "element" - the element to modify
+        // "classNames" - the class names to remove
 
         for (var i = 0; i < classNames.length; i++) {
             Sys.UI.DomElement.removeCssClass(element, classNames[i]);
         }
     },
     setStyle: function(element, style) {
-        /// <summary>
-        /// Sets the style of the element using the supplied style template object
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement">The element to modify</param>
-        /// <param name="style" type="Object">The template</param>
+        // Sets the style of the element using the supplied style template object
+        // "element" - the element to modify
+        // "style" - the template
 
         $common.applyProperties(element.style, style);
     },
     removeHandlers: function(element, events) {
-        /// <summary>
-        /// Removes a set of event handlers from an element
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement">The element to modify</param>
-        /// <param name="events" type="Object">The template object that contains event names and delegates</param>
-        /// <remarks>
-        /// This is NOT the same as $clearHandlers which removes all delegates from a DomElement.  This rather removes select delegates 
-        /// from a specified element and has a matching signature as $addHandlers
-        /// </remarks>
+        // Removes a set of event handlers from an element
+        // This is NOT the same as $clearHandlers which removes all delegates from a DomElement. This rather removes select delegates 
+        // from a specified element and has a matching signature as $addHandlers
+        // "element" - the element to modify
+        // "events" - the template object that contains event names and delegates
+
         for (var name in events) {
             $removeHandler(element, name, events[name]);
         }
     },
 
     overlaps: function(r1, r2) {
-        /// <summary>
-        /// Determine if two rectangles overlap
-        /// </summary>
-        /// <param name="r1" type="Object">
-        /// Rectangle
-        /// </param>
-        /// <param name="r2" type="Object">
-        /// Rectangle
-        /// </param>
-        /// <returns type="Boolean">
-        /// True if the rectangles overlap, false otherwise
-        /// </returns>
+        // Determine if two rectangles overlap
+        // "r1" - rectangle
+        // "r2" - rectangle
+        // Returns true if the rectangles overlap, false otherwise
 
         return r1.x < (r2.x + r2.width)
                 && r2.x < (r1.x + r1.width)
@@ -837,69 +639,55 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     containsPoint: function(rect, x, y) {
-        /// <summary>
-        /// Tests whether a point (x,y) is contained within a rectangle
-        /// </summary>
-        /// <param name="rect" type="Object">The rectangle</param>
-        /// <param name="x" type="Number">The x coordinate of the point</param>
-        /// <param name="y" type="Number">The y coordinate of the point</param>
+        // Tests whether a point (x,y) is contained within a rectangle
+        // "rect" - the rectangle
+        // "x" - the x coordinate of the point
+        // "y" - the y coordinate of the point
 
         return x >= rect.x && x < (rect.x + rect.width) && y >= rect.y && y < (rect.y + rect.height);
     },
 
     isKeyDigit: function(keyCode) {
-        /// <summary>
-        /// Gets whether the supplied key-code is a digit
-        /// </summary>
-        /// <param name="keyCode" type="Number" integer="true">The key code of the event (from Sys.UI.DomEvent)</param>
-        /// <returns type="Boolean" />
+        // Gets whether the supplied key-code is a digit
+        // "keyCode" - the key code of the event (from Sys.UI.DomEvent)
 
         return (0x30 <= keyCode && keyCode <= 0x39);
     },
 
     isKeyNavigation: function(keyCode) {
-        /// <summary>
-        /// Gets whether the supplied key-code is a navigation key
-        /// </summary>
-        /// <param name="keyCode" type="Number" integer="true">The key code of the event (from Sys.UI.DomEvent)</param>
-        /// <returns type="Boolean" />
+        // Gets whether the supplied key-code is a navigation key
+        // "keyCode" - the key code of the event (from Sys.UI.DomEvent)
 
         return (Sys.UI.Key.left <= keyCode && keyCode <= Sys.UI.Key.down);
     },
 
     padLeft: function(text, size, ch, truncate) {
-        /// <summary>
-        /// Pads the left hand side of the supplied text with the specified pad character up to the requested size
-        /// </summary>
-        /// <param name="text" type="String">The text to pad</param>
-        /// <param name="size" type="Number" integer="true" optional="true">The size to pad the text (default is 2)</param>
-        /// <param name="ch" type="String" optional="true">The single character to use as the pad character (default is ' ')</param>
-        /// <param name="truncate" type="Boolean" optional="true">Whether to truncate the text to size (default is false)</param>
+        // Pads the left hand side of the supplied text with the specified pad character up to the requested size
+        // "text" - the text to pad
+        // "size" - the size to pad the text (default is 2)
+        // "ch" - the single character to use as the pad character (default is ' ')
+        // "truncate" - whether to truncate the text to size (default is false)
 
         return $common._pad(text, size || 2, ch || ' ', 'l', truncate || false);
     },
 
     padRight: function(text, size, ch, truncate) {
-        /// <summary>
-        /// Pads the right hand side of the supplied text with the specified pad character up to the requested size
-        /// </summary>
-        /// <param name="text" type="String">The text to pad</param>
-        /// <param name="size" type="Number" integer="true" optional="true">The size to pad the text (default is 2)</param>
-        /// <param name="ch" type="String" optional="true">The single character to use as the pad character (default is ' ')</param>
-        /// <param name="truncate" type="Boolean" optional="true">Whether to truncate the text to size (default is false)</param>
+        // Pads the right hand side of the supplied text with the specified pad character up to the requested size
+        // "text" - the text to pad
+        // "size" - the size to pad the text (default is 2)
+        // "ch" - the single character to use as the pad character (default is ' ')
+        // "truncate" - whether to truncate the text to size (default is false)
 
         return $common._pad(text, size || 2, ch || ' ', 'r', truncate || false);
     },
 
     _pad: function(text, size, ch, side, truncate) {
-        /// <summary>
-        /// Pads supplied text with the specified pad character up to the requested size
-        /// </summary>
-        /// <param name="text" type="String">The text to pad</param>
-        /// <param name="size" type="Number" integer="true">The size to pad the text</param>
-        /// <param name="ch" type="String">The single character to use as the pad character</param>
-        /// <param name="side" type="String">Either 'l' or 'r' to siginfy whether to pad the Left or Right side respectively</param>
-        /// <param name="truncate" type="Boolean">Whether to truncate the text to size</param>
+        // Pads supplied text with the specified pad character up to the requested size
+        // "text" - the text to pad<
+        // "size" - the size to pad the text
+        // "ch" - the single character to use as the pad character
+        // "side" - either 'l' or 'r' to siginfy whether to pad the Left or Right side respectively
+        // "truncate" - whether to truncate the text to size
 
         text = text.toString();
         var length = text.length;
@@ -949,12 +737,10 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     tryFireRawEvent: function(element, rawEvent) {
-        /// <summary>
-        /// Attempts to fire a raw DOM event on an element
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement">The element to fire the event</param>
-        /// <param name="rawEvent" type="Object">The raw DOM event object to fire. Must not be Sys.UI.DomEvent</param>
-        /// <returns type="Boolean">True if the event was successfully fired, otherwise false</returns>
+        // Attempts to fire a raw DOM event on an element
+        // Returns true if the event was successfully fired, otherwise false
+        // "element" - the element to fire the event
+        // "rawEvent" - the raw DOM event object to fire. Must not be Sys.UI.DomEvent
 
         try {
             if (element.fireEvent) {
@@ -970,13 +756,11 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     tryFireEvent: function(element, eventName, properties) {
-        /// <summary>
-        /// Attempts to fire a DOM event on an element
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement">The element to fire the event</param>
-        /// <param name="eventName" type="String">The name of the event to fire (without an 'on' prefix)</param>
-        /// <param name="properties" type="Object">Properties to add to the event</param>
-        /// <returns type="Boolean">True if the event was successfully fired, otherwise false</returns>
+        // Attempts to fire a DOM event on an element
+        // Returns true if the event was successfully fired, otherwise false<
+        // "element" - the element to fire the event
+        // "eventName" - the name of the event to fire (without an 'on' prefix)
+        // "properties"- properties to add to the event
 
         try {
             if (document.createEventObject) {
@@ -999,12 +783,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     wrapElement: function(innerElement, newOuterElement, newInnerParentElement) {
-        /// <summary>
-        /// Wraps an inner element with a new outer element at the same DOM location as the inner element
-        /// </summary>
-        /// <param name="innerElement" type="Sys.UI.DomElement">The element to be wrapped</param>
-        /// <param name="newOuterElement" type="Sys.UI.DomElement">The new parent for the element</param>
-        /// <returns />
+        // Wraps an inner element with a new outer element at the same DOM location as the inner element
+        // "innerElement" - the element to be wrapped
+        // "newOuterElement" - the new parent for the element
 
         var parent = innerElement.parentNode;
         parent.replaceChild(newOuterElement, innerElement);
@@ -1012,12 +793,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     unwrapElement: function(innerElement, oldOuterElement) {
-        /// <summary>
-        /// Unwraps an inner element from an outer element at the same DOM location as the outer element
-        /// </summary>
-        /// <param name="innerElement" type="Sys.UI.DomElement">The element to be wrapped</param>
-        /// <param name="newOuterElement" type="Sys.UI.DomElement">The new parent for the element</param>
-        /// <returns />
+        // Unwraps an inner element from an outer element at the same DOM location as the outer element
+        // "innerElement" - the element to be wrapped
+        // "newOuterElement" - the new parent for the element
 
         var parent = oldOuterElement.parentNode;
         if (parent != null) {
@@ -1027,11 +805,8 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     removeElement: function(element) {
-        /// <summary>
-        /// Removes an element from the DOM tree
-        /// </summary>
-        /// <param name="element" type="Sys.UI.DomElement">The element to be removed</param>
-        /// <returns />
+        // Removes an element from the DOM tree
+        // "element" - the element to be removed
 
         var parent = element.parentNode;
         if (parent != null) {
@@ -1040,11 +815,9 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     applyProperties: function(target, properties) {
-        /// <summary>
-        /// Quick utility method to copy properties from a template object to a target object
-        /// </summary>
-        /// <param name="target" type="Object">The object to apply to</param>
-        /// <param name="properties" type="Object">The template to copy values from</param>
+        // Quick utility method to copy properties from a template object to a target object
+        // "target" - the object to apply to
+        // "properties" - the template to copy values from<
 
         for (var p in properties) {
             var pv = properties[p];
@@ -1058,38 +831,33 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     createElementFromTemplate: function(template, appendToParent, nameTable) {
-        /// <summary>
-        /// Creates an element for the current document based on a template object
-        /// </summary>
-        /// <param name="template" type="Object">The template from which to create the element</param>
-        /// <param name="appendToParent" type="Sys.UI.DomElement" optional="true" mayBeNull="true">A DomElement under which to append this element</param>
-        /// <param name="nameTable" type="Object" optional="true" mayBeNull="true">An object to use as the storage for the element using template.name as the key</param>
-        /// <returns type="Sys.UI.DomElement" />
-        /// <remarks>
-        /// This method is useful if you find yourself using the same or similar DomElement constructions throughout a class.  You can even set the templates
-        /// as static properties for a type to cut down on overhead.  This method is often called with a JSON style template:
-        /// <code>
-        /// var elt = $common.createElementFromTemplate({
-        ///     nodeName : "div",
-        ///     properties : {
-        ///         style : {
-        ///             height : "100px",
-        ///             width : "100px",
-        ///             backgroundColor : "white"
-        ///         },
-        ///         expandoAttribute : "foo"
-        ///     },
-        ///     events : {
-        ///         click : function() { alert("foo"); },
-        ///         mouseover : function() { elt.backgroundColor = "silver"; },
-        ///         mouseout : function() { elt.backgroundColor = "white"; }
-        ///     },
-        ///     cssClasses : [ "class0", "class1" ],
-        ///     visible : true,
-        ///     opacity : .5
-        /// }, someParent);
-        /// </code>
-        /// </remarks>
+        // Creates an element for the current document based on a template object
+        // "template" - the template from which to create the element
+        // "appendToParent" - a DomElement under which to append this element
+        // "nameTable" - an object to use as the storage for the element using template.name as the key
+        // This method is useful if you find yourself using the same or similar DomElement constructions throughout a class.  You can even set the templates
+        // as static properties for a type to cut down on overhead.  This method is often called with a JSON style template:
+        // <code>
+        // var elt = $common.createElementFromTemplate({
+        //     nodeName : "div",
+        //     properties : {
+        //         style : {
+        //             height : "100px",
+        //             width : "100px",
+        //             backgroundColor : "white"
+        //         },
+        //         expandoAttribute : "foo"
+        //     },
+        //     events : {
+        //         click : function() { alert("foo"); },
+        //         mouseover : function() { elt.backgroundColor = "silver"; },
+        //         mouseout : function() { elt.backgroundColor = "white"; }
+        //     },
+        //     cssClasses : [ "class0", "class1" ],
+        //     visible : true,
+        //     opacity : .5
+        // }, someParent);
+        // </code>
 
         // if we wish to override the name table we do so here
         if (typeof (template.nameTable) != 'undefined') {
@@ -1189,17 +957,15 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     prepareHiddenElementForATDeviceUpdate: function() {
-        /// <summary>
-        /// JAWS, an Assistive Technology device responds to updates to form elements 
-        /// and refreshes its document buffer to what is showing live
-        /// in the browser. To ensure that Toolkit controls that make XmlHttpRequests to
-        /// retrieve content are useful to users with visual disabilities, we update a
-        /// hidden form element to ensure that JAWS conveys what is in
-        /// the browser. See this article for more details: 
-        /// http://juicystudio.com/article/improving-ajax-applications-for-jaws-users.php
-        /// This method creates a hidden input on the screen for any page that uses a Toolkit
-        /// control that will perform an XmlHttpRequest.
-        /// </summary>   
+        // JAWS, an Assistive Technology device responds to updates to form elements 
+        // and refreshes its document buffer to what is showing live
+        // in the browser. To ensure that Toolkit controls that make XmlHttpRequests to
+        // retrieve content are useful to users with visual disabilities, we update a
+        // hidden form element to ensure that JAWS conveys what is in
+        // the browser. See this article for more details: 
+        // http://juicystudio.com/article/improving-ajax-applications-for-jaws-users.php
+        // This method creates a hidden input on the screen for any page that uses a Toolkit
+        // control that will perform an XmlHttpRequest.
         var objHidden = document.getElementById('hiddenInputToUpdateATBuffer_CommonToolkitScripts');
         if (!objHidden) {
             var objHidden = document.createElement('input');
@@ -1214,10 +980,8 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     updateFormToRefreshATDeviceBuffer: function() {
-        /// <summary>
-        /// Updates the hidden buffer to ensure that the latest document stream is picked up
-        /// by the screen reader.
-        /// </summary>
+        // Updates the hidden buffer to ensure that the latest document stream is picked up
+        // by the screen reader.
         var objHidden = document.getElementById('hiddenInputToUpdateATBuffer_CommonToolkitScripts');
 
         if (objHidden) {
@@ -1230,10 +994,8 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
     },
 
     appendElementToFormOrBody: function(element) {
-        /// <summary>
-        /// Tries to append an element to the current form. If no form exists, the element will be appended to the body element.
-        /// </summary>
-        /// <param name="element" type="Object">The element to append.</param>
+        // Tries to append an element to the current form. If no form exists, the element will be appended to the body element.
+        // "element" - the element to append.
         if (document.forms && document.forms[0]) {
             document.forms[0].appendChild(element);
         } else {
@@ -1259,18 +1021,13 @@ Sys.UI.DomElement.setVisible = $common.setVisible;
 Sys.UI.Control.overlaps = $common.overlaps;
 
 Sys.Extended.UI._DomUtility = function() {
-    /// <summary>
-    /// Utility functions for manipulating the DOM
-    /// </summary>
+    // Utility functions for manipulating the DOM
 }
 Sys.Extended.UI._DomUtility.prototype = {
     isDescendant : function(ancestor, descendant) {
-        /// <summary>
-        /// Whether the specified element is a descendant of the ancestor
-        /// </summary>
-        /// <param name="ancestor" type="Sys.UI.DomElement">Ancestor node</param>
-        /// <param name="descendant" type="Sys.UI.DomElement">Possible descendant node</param>
-        /// <returns type="Boolean" />
+        // Whether the specified element is a descendant of the ancestor
+        // "ancestor" - ancestor node
+        // "descendant" - possible descendant node
         
         for (var n = descendant.parentNode; n != null; n = n.parentNode) {
             if (n == ancestor) return true;
@@ -1278,34 +1035,25 @@ Sys.Extended.UI._DomUtility.prototype = {
         return false;
     },
     isDescendantOrSelf : function(ancestor, descendant) {
-        /// <summary>
-        /// Whether the specified element is a descendant of the ancestor or the same as the ancestor
-        /// </summary>
-        /// <param name="ancestor" type="Sys.UI.DomElement">Ancestor node</param>
-        /// <param name="descendant" type="Sys.UI.DomElement">Possible descendant node</param>
-        /// <returns type="Boolean" />
+        // Whether the specified element is a descendant of the ancestor or the same as the ancestor
+        // "ancestor" - ancestor node
+        // "descendant" - possible descendant node
 
         if (ancestor === descendant) 
             return true;
         return Sys.Extended.UI.DomUtility.isDescendant(ancestor, descendant);
     },
     isAncestor : function(descendant, ancestor) {
-        /// <summary>
-        /// Whether the specified element is an ancestor of the descendant
-        /// </summary>
-        /// <param name="descendant" type="Sys.UI.DomElement">Descendant node</param>
-        /// <param name="ancestor" type="Sys.UI.DomElement">Possible ancestor node</param>
-        /// <returns type="Boolean" />
+        // Whether the specified element is an ancestor of the descendant
+        // "descendant" - descendant node
+        // "ancestor" - possible ancestor node
 
         return Sys.Extended.UI.DomUtility.isDescendant(ancestor, descendant);
     },
     isAncestorOrSelf : function(descendant, ancestor) {
-        /// <summary>
-        /// Whether the specified element is an ancestor of the descendant or the same as the descendant
-        /// </summary>
-        /// <param name="descendant" type="Sys.UI.DomElement">Descendant node</param>
-        /// <param name="ancestor" type="Sys.UI.DomElement">Possible ancestor node</param>
-        /// <returns type="Boolean" />
+        // Whether the specified element is an ancestor of the descendant or the same as the descendant
+        // "descendant" - descendant node
+        // "ancestor" - possible ancestor node
         
         if (descendant === ancestor)
             return true;
@@ -1313,12 +1061,9 @@ Sys.Extended.UI._DomUtility.prototype = {
         return Sys.Extended.UI.DomUtility.isDescendant(ancestor, descendant);
     },
     isSibling : function(self, sibling) {
-        /// <summary>
-        /// Whether the specified element is a sibling of the self element
-        /// </summary>
-        /// <param name="self" type="Sys.UI.DomElement">Self node</param>
-        /// <param name="sibling" type="Sys.UI.DomElement">Possible sibling node</param>
-        /// <returns type="Boolean" />
+        // Whether the specified element is a sibling of the self element
+        // "self" - self node
+        // "sibling" - possible sibling node        
         
         var parent = self.parentNode;
         for (var i = 0; i < parent.childNodes.length; i++) {
@@ -1332,14 +1077,10 @@ Sys.Extended.UI.DomUtility = new Sys.Extended.UI._DomUtility();
 
 
 Sys.Extended.UI.TextBoxWrapper = function(element) {
-    /// <summary>
-    /// Class that wraps a TextBox (INPUT type="text") to abstract-out the
-    /// presence of a watermark (which may be visible to the user but which
-    /// should never be read by script.
-    /// </summary>
-    /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-    /// The DOM element the behavior is associated with
-    /// </param>
+    // Class that wraps a TextBox (INPUT type="text") to abstract-out the
+    // presence of a watermark (which may be visible to the user but which
+    // should never be read by script.
+    // "element" - the DOM element the behavior is associated with
     Sys.Extended.UI.TextBoxWrapper.initializeBase(this, [element]);
     this._current = element.value;
     this._watermark = null;
@@ -1349,17 +1090,12 @@ Sys.Extended.UI.TextBoxWrapper = function(element) {
 Sys.Extended.UI.TextBoxWrapper.prototype = {
 
     dispose : function() {
-        /// <summary>
-        /// Dispose the behavior
-        /// </summary>
         this.get_element().TextBoxWrapper = null;
         Sys.Extended.UI.TextBoxWrapper.callBaseMethod(this, 'dispose');
     },
 
     get_Current : function() {
-        /// <value type="String">
-        /// Current value actually in the TextBox (i.e., TextBox.value)
-        /// </value>
+        // Current value actually in the TextBox (i.e., TextBox.value)
         this._current = this.get_element().value;
         return this._current;
     },
@@ -1369,10 +1105,8 @@ Sys.Extended.UI.TextBoxWrapper.prototype = {
     },
 
     get_Value : function() {
-        /// <value type="String">
-        /// Conceptual "value" of the TextBox - its contents if no watermark is present
-        /// or "" if one is
-        /// </value>
+        // Conceptual "value" of the TextBox - its contents if no watermark is present
+        // or "" if one is
         if (this.get_IsWatermarked()) {
             return "";
         } else {
@@ -1391,9 +1125,7 @@ Sys.Extended.UI.TextBoxWrapper.prototype = {
     },
 
     get_Watermark : function() {
-        /// <value type="String">
-        /// Text of the watermark for the TextBox
-        /// </value>
+        // Text of the watermark for the TextBox
         return this._watermark;
     },
     set_Watermark : function(value) {
@@ -1402,9 +1134,7 @@ Sys.Extended.UI.TextBoxWrapper.prototype = {
     },
 
     get_IsWatermarked : function() {
-        /// <value type="Boolean">
-        /// true iff the TextBox is watermarked
-        /// </value>
+        // true iff the TextBox is watermarked
         return this._isWatermarked;
     },
     set_IsWatermarked : function(isWatermarked) {
@@ -1416,9 +1146,7 @@ Sys.Extended.UI.TextBoxWrapper.prototype = {
     },
 
     _updateElement : function() {
-        /// <summary>
-        /// Updates the actual contents of the TextBox according to what should be there
-        /// </summary>
+        // Updates the actual contents of the TextBox according to what should be there
         var element = this.get_element();
         if (this._isWatermarked) {
             if (element.value != this._watermark) {
@@ -1432,27 +1160,17 @@ Sys.Extended.UI.TextBoxWrapper.prototype = {
     },
 
     add_WatermarkChanged : function(handler) {
-        /// <summary>
-        /// Adds a handler for the WatermarkChanged event
-        /// </summary>
-        /// <param name="handler" type="Function">
-        /// Handler
-        /// </param>
+        // Adds a handler for the WatermarkChanged event
+        // "handler" - handler
         this.get_events().addHandler("WatermarkChanged", handler);
     },
     remove_WatermarkChanged : function(handler) {
-        /// <summary>
-        /// Removes a handler for the WatermarkChanged event
-        /// </summary>
-        /// <param name="handler" type="Function">
-        /// Handler
-        /// </param>
+        // Removes a handler for the WatermarkChanged event
+        // "handler" - handler
         this.get_events().removeHandler("WatermarkChanged", handler);
     },
     _raiseWatermarkChanged : function() {
-        /// <summary>
-        /// Raises the WatermarkChanged event
-        /// </summary>
+        // Raises the WatermarkChanged event
         var onWatermarkChangedHandler = this.get_events().getHandler("WatermarkChanged");
         if (onWatermarkChangedHandler) {
             onWatermarkChangedHandler(this, Sys.EventArgs.Empty);
@@ -1460,15 +1178,10 @@ Sys.Extended.UI.TextBoxWrapper.prototype = {
     }
 }
 Sys.Extended.UI.TextBoxWrapper.get_Wrapper = function(element) {
-    /// <summary>
-    /// Gets (creating one if necessary) the TextBoxWrapper for the specified TextBox
-    /// </summary>
-    /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-    /// TextBox for which to get the wrapper
-    /// </param>
-    /// <returns type="Sys.Extended.UI.TextBoxWrapper">
-    /// TextBoxWrapper instance
-    /// </returns>
+    // Gets (creating one if necessary) the TextBoxWrapper for the specified TextBox
+    // Returns - TextBoxWrapper instance
+    // "element" - textBox for which to get the wrapper
+    
     if (null == element.TextBoxWrapper) {
         element.TextBoxWrapper = new Sys.Extended.UI.TextBoxWrapper(element);
     }
@@ -1477,15 +1190,10 @@ Sys.Extended.UI.TextBoxWrapper.get_Wrapper = function(element) {
 Sys.Extended.UI.TextBoxWrapper.registerClass('Sys.Extended.UI.TextBoxWrapper', Sys.UI.Behavior);
 
 Sys.Extended.UI.TextBoxWrapper.validatorGetValue = function(id) {
-    /// <summary>
-    /// Wrapper for ASP.NET's validatorGetValue to return the value from the wrapper if present
-    /// </summary>
-    /// <param name="id" type="String">
-    /// id of the element
-    /// </param>
-    /// <returns type="Object">
-    /// Value from the wrapper or result of original ValidatorGetValue
-    /// </returns>
+    // Wrapper for ASP.NET's validatorGetValue to return the value from the wrapper if present
+    // Returns value from the wrapper or result of original ValidatorGetValue
+    // "id" - id of the element
+    
     var control = $get(id);
     if (control && control.TextBoxWrapper) {
         return control.TextBoxWrapper.get_Value();
@@ -1525,9 +1233,9 @@ Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", false);
 
 //Sys.Component._setProperties = 
 function Sys$Component$_setProperties(target, properties) {
-    /// <summary locid="M:J#Sys.Component._setProperties">Recursively sets properties on an object.</summary>
-    /// <param name="target">The object on which to set the property values.</param>
-    /// <param name="properties">A JSON object containing the property values.</param>
+    // Recursively sets properties on an object.
+    // "target" - the object on which to set the property values.
+    // "properties" - A JSON object containing the property values.
     //#if DEBUG
     var e = Function._validateParams(arguments, [
         {name: "target"},

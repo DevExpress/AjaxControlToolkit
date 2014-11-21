@@ -13,9 +13,7 @@ Sys.Extended.UI.CollapsiblePanelExpandDirection.registerEnum("Sys.Extended.UI.Co
 
 Sys.Extended.UI.CollapsiblePanelBehavior = function(element) {
     // The CollapsiblePanelBehavior allows you to add collapsible sections to your page
-    // <param name="element" type="Sys.UI.DomElement" domElement="true">
-    // Element to associate the behavior with
-    // </param>
+    // "element" - element to associate the behavior with
     Sys.Extended.UI.CollapsiblePanelBehavior.initializeBase(this, [element]);
     
     // property values
@@ -48,6 +46,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior = function(element) {
     // Animation used to open/close the panel
     this._animation = null;
 }
+
 Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {    
     initialize : function() {
         Sys.Extended.UI.CollapsiblePanelBehavior.callBaseMethod(this, 'initialize');
@@ -73,7 +72,6 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
                 this.raisePropertyChanged('SuppressPostBack');
             }
         }
-        
         
         // Check our client state.  If it's present,
         // that means this is a postback, so we restore the state.
@@ -133,7 +131,6 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
                 } else {
                     $addHandler(expandElement, 'click', this._expandClickHandler);
                 }
-               
             }
         }
     },
@@ -177,9 +174,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
         // Event handler to epxand or collapse the panel (based on its current state)
         // This is the public function that should be called instead of _toggle if
         // you wish to programmatically open and close the collapsible panel.
-        // <param name="eventObj" type="Sys.UI.DomEvent" mayBeNull="true" optional="true">
-        // Event Info
-        // </param>
+        // "eventObj" - event Info
         this._toggle(eventObj);
     },    
     
@@ -188,9 +183,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
         // wish to operate the collapsible panel programmatically.
         // _doOpen should be treated as private since it has an underscore 
         // to begin the function name.
-        // <param name="eventObj" type="Sys.UI.DomEvent" mayBeNull="true" optional="true">
-        // Event Info
-        // </param>
+        // "eventObj" - event Info
         this._doOpen(eventObj);    
     },
     
@@ -199,18 +192,14 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
         // wish to operate the collapsible panel programmatically.
         // _doClose should be treated as private since it has an underscore 
         // to begin the function name.
-        // <param name="eventObj" type="Sys.UI.DomEvent" mayBeNull="true" optional="true">
-        // Event Info
-        // </param>
+        // "eventObj" - event Info
         this._doClose(eventObj);
     },
     
     _checkCollapseHide : function() {
         // Check if a control is collapsed and hidden
         // (and set its display to none if it is supposed to be hidden)
-        // <returns type="Boolean">
-        // Whether the control is collapsed and hidden
-        // </returns>
+        // returns whether the control is collapsed and hidden
         if (this._collapsed && this._getTargetSize() == 0) {
             var e = this.get_element();
             var display = $common.getCurrentStyle(e, 'display');
@@ -225,9 +214,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     
     _doClose : function(eventObj) {
         // Collapse the panel. Internal function, to close call "collapsePanel".
-        // <param name="eventObj" type="Sys.UI.DomEvent" mayBeNull="true" optional="true">
-        // Event Info
-        // </param>
+        // "eventObj" - event Info
         var eventArgs = new Sys.CancelEventArgs();
         this.raiseCollapsing(eventArgs);
         if (eventArgs.get_cancel()) {
@@ -261,9 +248,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     
     _doOpen : function(eventObj) {
         // Expand the Panel. Internal function, to close call "expandPanel".
-        // <param name="eventObj" type="Sys.UI.DomEvent" mayBeNull="true" optional="true">
-        // Event Info
-        // </param>
+        // "eventObj" - event Info
         var eventArgs = new Sys.CancelEventArgs();
         this.raiseExpanding(eventArgs);
         if (eventArgs.get_cancel()) {
@@ -551,9 +536,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     
     _setupState : function(isCollapsed) {
         // Get all the state set consistently when we change modes
-        // <param name="isCollapsed" type="Boolean">
-        // True to setup the state as if we're collapsed, false to setup the state as if we're expanded
-        // </param>
+        // "isCollapsed" - true to setup the state as if we're collapsed, false to setup the state as if we're expanded
     
         if (isCollapsed) {           
         
@@ -650,16 +633,16 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
 
     add_collapseComplete : function(handler) {
         // Add a handler to the collapseComplete event
-        // <obsolete>Use the collapsed event instead</obsolete>
+        // Obsolete: Use the collapsed event instead
     	this.get_events().addHandler('collapseComplete', handler);
     },
     remove_collapseComplete : function(handler) {
         // Remove a handler from the collapseComplete event
-        // <obsolete>Use the collapsed event instead</obsolete>
+        // Obsolete: Use the collapsed event instead
     	this.get_events().removeHandler('collapseComplete', handler);
     },
     raiseCollapseComplete : function() {
-        // <obsolete>Use the collapsed event instead</obsolete>
+        // Obsolete: Use the collapsed event instead
     	var handlers = this.get_events().getHandler('collapseComplete');
     	if (handlers) {
     		handlers(this, Sys.EventArgs.Empty);
@@ -700,16 +683,16 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     
     add_expandComplete : function(handler) {
         // Add a handler to the expandComplete event
-        // <obsolete>Use the expanded event instead</obsolete>
+        // Obsolete: Use the expanded event instead
     	this.get_events().addHandler('expandComplete', handler);
     },
     remove_expandComplete : function(handler) {
         // Remove a handler from the expandComplete event
-        // <obsolete>Use the expanded event instead</obsolete>
+        // Obsolete: Use the expanded event instead
     	this.get_events().removeHandler('expandComplete', handler);
     },
     raiseExpandComplete : function() {
-        // <obsolete>Use the expanded event instead</obsolete>
+        // Obsolete: Use the expanded event instead
     	var handlers = this.get_events().getHandler('expandComplete');
     	if (handlers) {
     		handlers(this, Sys.EventArgs.Empty);

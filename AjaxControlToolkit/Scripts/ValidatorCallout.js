@@ -2,7 +2,7 @@ Type.registerNamespace('Sys.Extended.UI');
 
 Sys.Extended.UI.ValidatorCalloutBehavior = function Sys$Extended$UI$ValidatorCalloutBehavior(element) {
     Sys.Extended.UI.ValidatorCalloutBehavior.initializeBase(this, [element]);
-    
+
     this._warningIconImageUrl = null;
     this._closeImageUrl = null;
     this._cssClass = "ajax__validatorcallout";
@@ -27,13 +27,13 @@ Sys.Extended.UI.ValidatorCalloutBehavior = function Sys$Extended$UI$ValidatorCal
     this._focusHandler = Function.createDelegate(this, this._onfocus);
     this._closeClickHandler = Function.createDelegate(this, this._oncloseClick);
 };
+
 Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
-    initialize : function() {
+    initialize: function() {
         Sys.Extended.UI.ValidatorCalloutBehavior.callBaseMethod(this, 'initialize');
         var elt = this.get_element();
-        //
+
         // Override the evaluation method of the current validator
-        //
         if(elt.evaluationfunction) {
             this._originalValidationMethod = Function.createDelegate(elt, elt.evaluationfunction);
             this._validationMethodOverride = Function.createDelegate(this, this._onvalidate);
@@ -42,23 +42,20 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
 
         // Check for failed server-side validation (indicated by non-empty ClientState)
         var clientState = this.get_ClientState();
-        if ((null != clientState) && ("" !== clientState)) {
+        if((null != clientState) && ("" !== clientState)) {
             this._ensureCallout();
             // Apply HightLightCssClass for failed server-side validation
-            if(this._highlightCssClass) {
+            if(this._highlightCssClass)
                 Sys.UI.DomElement.addCssClass(this._elementToValidate, this._highlightCssClass);
-            }
             this.show();
         }
     },
 
-    _ensureCallout : function() {
-        if (!this._isBuilt) {
-              
+    _ensureCallout: function() {
+        if(!this._isBuilt) {
             var elt = this.get_element();
-            //
+
             // create the DOM elements
-            //
             var elementToValidate = this._elementToValidate = $get(elt.controltovalidate);
             var popupTableBody = document.createElement("tbody");
             var popupTableRow = document.createElement("tr");
@@ -74,75 +71,63 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             var warningIconImage = this._warningIconImage = document.createElement("img");
             var closeImage = this._closeImage = document.createElement("img");
             var errorMessageCell = this._errorMessageCell = document.createElement("td");
-            //
+
             // popupTable
-            //
             popupTable.id = this.get_id() + "_popupTable";
             popupTable.cellPadding = 0;
             popupTable.cellSpacing = 0;
             popupTable.border = 0;
             popupTable.width = this.get_width();
             popupTable.className = this._cssClass + " ajax__validatorcallout_popup_table";
-            //
+
             // popupTableRow
-            //
             popupTableRow.className = "ajax__validatorcallout_popup_table_row";
-            //
+
             // calloutCell
-            //
             calloutCell.className = "ajax__validatorcallout_callout_cell";
-            //
+
             // calloutTable
-            //
             calloutTable.cellPadding = 0;
             calloutTable.cellSpacing = 0;
             calloutTable.border = 0;
             calloutTable.className = "ajax__validatorcallout_callout_table";
-            //
+
             // calloutTableRow
-            //
             calloutTableRow.className = "ajax__validatorcallout_callout_table_row";
-            //
+
             // calloutArrowCell
-            //
-            if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomLeft)
+            if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomLeft)
                 calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_bottomleftpos";
-            else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomRight)
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomRight)
                 calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_bottomrightpos";
-            else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopLeft)
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopLeft)
                 calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_topleftpos";
-            else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopRight)
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopRight)
                 calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_toprightpos";
-            else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.Left)
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.Left)
                 calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell_leftpos";
             else
                 calloutArrowCell.className = "ajax__validatorcallout_callout_arrow_cell";
-            //
+
             // iconCell
-            //
             iconCell.className = "ajax__validatorcallout_icon_cell";
-            //
+
             // _warningIconImage
-            //
             warningIconImage.border = 0;
             warningIconImage.src = this.get_warningIconImageUrl();
-            //
+
             // _errorMessageCell
-            //
             errorMessageCell.className = "ajax__validatorcallout_error_message_cell";
             errorMessageCell.innerHTML = this._getErrorMessage();
-            //
+
             // closeCell
-            //
             closeCell.className = "ajax__validatorcallout_close_button_cell";
-            //
+
             // closeImage
-            //
             closeCellInnerDiv.className = "ajax__validatorcallout_innerdiv";
             closeImage.src = this.get_closeImageUrl();
-            //
+
             // Create the DOM tree
-            //
             elt.parentNode.appendChild(popupTable);
             popupTable.appendChild(popupTableBody);
             popupTableBody.appendChild(popupTableRow);
@@ -157,7 +142,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             popupTableRow.appendChild(closeCell);
             closeCellInnerDiv.appendChild(closeImage);
             closeCell.appendChild(closeCellInnerDiv);
-            if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomLeft ||
+            if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomLeft ||
             this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomRight) {
                 var calloutExtraTableRow = document.createElement("tr");
                 popupTableBody.insertBefore(calloutExtraTableRow, popupTableRow);
@@ -167,7 +152,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
                 popupTableRow.appendChild(errorMessageCell);
                 popupTableRow.appendChild(closeCell);
             }
-            else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopLeft ||
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopLeft ||
                 this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopRight) {
                 var calloutExtraTableRow = document.createElement("tr");
                 popupTableBody.appendChild(calloutExtraTableRow);
@@ -176,7 +161,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
                 popupTableRow.appendChild(iconCell);
                 popupTableRow.appendChild(errorMessageCell);
                 popupTableRow.appendChild(closeCell);
-            } else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.Left) {
+            } else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.Left) {
                 popupTableRow.appendChild(iconCell);
                 popupTableRow.appendChild(errorMessageCell);
                 popupTableRow.appendChild(closeCell);
@@ -188,27 +173,26 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
                 popupTableRow.appendChild(errorMessageCell);
                 popupTableRow.appendChild(closeCell);
             }
-            //
+
             // initialize callout arrow
-            //
             var div = document.createElement("div");
             div.className = "ajax__validatorcallout_innerdiv";
             calloutArrowCell.appendChild(div);
-            if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomLeft ||
+            if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomLeft ||
                 this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomRight) {
                 var pixel = document.createElement("div");
                 pixel.style.width = "1px";
                 pixel.className = "arrowpixel";
                 div.appendChild(pixel);
-                for (var i = 1; i < 22; i += 2) {
+                for(var i = 1; i < 22; i += 2) {
                     var line = document.createElement("div");
                     line.style.width = i.toString() + "px";
                     div.appendChild(line);
                 }
             }
-            else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopLeft ||
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopLeft ||
                 this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopRight) {
-                for (var i = 23; i > 0; i -= 2) {
+                for(var i = 23; i > 0; i -= 2) {
                     var line = document.createElement("div");
                     line.style.width = i.toString() + "px";
                     div.appendChild(line);
@@ -219,76 +203,71 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
                 div.appendChild(pixel);
             }
             else {
-                for (var i = 14; i > 0; i--) {
+                for(var i = 14; i > 0; i--) {
                     var line = document.createElement("div");
                     line.style.width = i.toString() + "px";
                     div.appendChild(line);
                 }
             }
-            
-            //
+
             // initialize behaviors
-            //
             this._popupBehavior = $create(
-                Sys.Extended.UI.PopupBehavior, 
-                { 
+                Sys.Extended.UI.PopupBehavior,
+                {
                     //positioningMode : Sys.Extended.UI.PositioningMode.Absolute,
-                    parentElement : elementToValidate
-                }, 
-                { }, 
+                    parentElement: elementToValidate
+                },
+                {},
                 null,
                 this._popupTable);
-            if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopLeft) {
+            
+            if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopLeft)
                 this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.TopLeft);
-            } else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopRight) {
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopRight)
                 this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.TopRight);
-            } else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomLeft) {
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomLeft)
                 this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.BottomLeft);
-            } else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomRight) {
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.BottomRight)
                 this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.BottomRight);
-            } else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.Right) {
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.Right)
                 this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.Right);
-            } else if (this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.Left) {
+            else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.Left)
                 this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.Left);
-            } else {
+            else
                 this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.Right);
-            }
-            
+
             // Create the animations (if they were set before initialize was called)
-            if (this._onShowJson) {
+            if(this._onShowJson)
                 this._popupBehavior.set_onShow(this._onShowJson);
-            }
-            if (this._onHideJson) {
+            if(this._onHideJson)
                 this._popupBehavior.set_onHide(this._onHideJson);
-            }
-            
+
             $addHandler(this._closeCellInnerDiv, "click", this._closeClickHandler);
             this._isBuilt = true;
         }
     },
-    
-    dispose : function() {
-        
-        if (this._isBuilt) {
+
+    dispose: function() {
+        if(this._isBuilt) {
             this.hide();
-            
-            if (this._focusAttached) {
+
+            if(this._focusAttached) {
                 $removeHandler(this._elementToValidate, "focus", this._focusHandler);
                 this._focusAttached = false;
             }
             $removeHandler(this._closeCellInnerDiv, "click", this._closeClickHandler);
-            
+
             this._onShowJson = null;
             this._onHideJson = null;
-            if (this._popupBehavior) {
+            if(this._popupBehavior) {
                 this._popupBehavior.dispose();
                 this._popupBehavior = null;
             }
-            if (this._closeBehavior) {
+            if(this._closeBehavior) {
                 this._closeBehavior.dispose();
                 this._closeBehavior = null;
             }
-            if (this._popupTable) {
+            if(this._popupTable) {
                 this._popupTable.parentNode.removeChild(this._popupTable);
                 this._popupTable = null;
                 this._errorMessageCell = null;
@@ -301,42 +280,36 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             this._isBuilt = false;
         }
         Sys.Extended.UI.ValidatorCalloutBehavior.callBaseMethod(this, 'dispose');
-    },    
-    
-    _getErrorMessage : function() {
+    },
+
+    _getErrorMessage: function() {
         return this.get_element().errormessage || Sys.Extended.UI.Resources.ValidatorCallout_DefaultErrorMessage;
     },
-        
-    show : function(force) {        
-        if (force || !this.get_isOpen()) {
-            if(force && Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout) {
+
+    show: function(force) {
+        if(force || !this.get_isOpen()) {
+            if(force && Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout)
                 Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout.hide();
-            }
-            if(Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout != null) {
+            if(Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout != null)
                 return;
-            }
             Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout = this;
             this._errorMessageCell.innerHTML = this._getErrorMessage();
-            //this._popupBehavior.set_x($common.getSize(this._elementToValidate).width);
             this._popupBehavior.show();
         }
     },
-    
-    hide : function() {
-        if(Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout == this) {
+
+    hide: function() {
+        if(Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout == this)
             Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout = null;
-        }
-        if (this.get_isOpen()) {
+        if(this.get_isOpen())
             this._popupBehavior.hide();
-        }
     },
 
-    _onfocus : function(e) {
+    _onfocus: function(e) {
         if(!this._originalValidationMethod(this.get_element())) {
             this._ensureCallout();
-             if(this._highlightCssClass) {
+            if(this._highlightCssClass)
                 Sys.UI.DomElement.addCssClass(this._elementToValidate, this._highlightCssClass);
-            }
             this.show(true);
             return false;
         } else {
@@ -344,18 +317,17 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             return true;
         }
     },
-    
-    _oncloseClick : function(e) {
+
+    _oncloseClick: function(e) {
         this.hide();
     },
-    
-    _onvalidate : function(val) {
+
+    _onvalidate: function(val) {
         if(!this._originalValidationMethod(val)) {
             this._ensureCallout();
-            if(this._highlightCssClass) {
+            if(this._highlightCssClass)
                 Sys.UI.DomElement.addCssClass(this._elementToValidate, this._highlightCssClass);
-            }
-            if (!this._focusAttached) {
+            if(!this._focusAttached) {
                 $addHandler(this._elementToValidate, "focus", this._focusHandler);
                 this._focusAttached = true;
             }
@@ -363,97 +335,86 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             this._invalid = true;
             return false;
         } else {
-            if(this._highlightCssClass && this._invalid) {
+            if(this._highlightCssClass && this._invalid)
                 Sys.UI.DomElement.removeCssClass(this._elementToValidate, this._highlightCssClass);
-            }
             this._invalid = false;
             this.hide();
             return true;
         }
     },
-    
-    get_onShow : function() {
+
+    get_onShow: function() {
         // Generic OnShow Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onShow() : this._onShowJson;
     },
-    set_onShow : function(value) {
-        if (this._popupBehavior) {
+    set_onShow: function(value) {
+        if(this._popupBehavior)
             this._popupBehavior.set_onShow(value);
-        } else {
+        else
             this._onShowJson = value;
-        }
         this.raisePropertyChanged('onShow');
     },
-    get_onShowBehavior : function() {
+    get_onShowBehavior: function() {
         // Generic OnShow Animation's behavior
         return this._popupBehavior ? this._popupBehavior.get_onShowBehavior() : null;
     },
-    onShow : function() {
-        if (this._popupBehavior) {
+    onShow: function() {
+        if(this._popupBehavior)
             this._popupBehavior.onShow();
-        }
     },
-        
-    get_onHide : function() {
+
+    get_onHide: function() {
         // Generic OnHide Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onHide() : this._onHideJson;
     },
-    set_onHide : function(value) {
-        if (this._popupBehavior) {
+    set_onHide: function(value) {
+        if(this._popupBehavior)
             this._popupBehavior.set_onHide(value);
-        } else {
+        else
             this._onHideJson = value;
-        }
         this.raisePropertyChanged('onHide');
     },
-    get_onHideBehavior : function() {
+    get_onHideBehavior: function() {
         // Generic OnHide Animation's behavior
         return this._popupBehavior ? this._popupBehavior.get_onHideBehavior() : null;
     },
-    onHide : function() {
-        if (this._popupBehavior) {
+    onHide: function() {
+        if(this._popupBehavior)
             this._popupBehavior.onHide();
-        }
     },
-    
-    get_warningIconImageUrl : function() {
+
+    get_warningIconImageUrl: function() {
         return this._warningIconImageUrl;
     },
-    set_warningIconImageUrl : function(value) {
-        
-        if (this._warningIconImageUrl != value) {
+    set_warningIconImageUrl: function(value) {
+        if(this._warningIconImageUrl != value) {
             this._warningIconImageUrl = value;
-            if (this.get_isInitialized()) {
+            if(this.get_isInitialized())
                 this._warningIconImage.src = value;
-            }
             this.raisePropertyChanged("warningIconImageUrl");
         }
     },
 
-    get_closeImageUrl : function() {
+    get_closeImageUrl: function() {
         return this._closeImageUrl;
     },
-    set_closeImageUrl : function(value) {
-
-        if (this._closeImageUrl != value) {
+    set_closeImageUrl: function(value) {
+        if(this._closeImageUrl != value) {
             this._closeImageUrl = value;
-            if (this.get_isInitialized()) {
+            if(this.get_isInitialized())
                 this._closeImage.src = value;
-            }
             this.raisePropertyChanged("closeImageUrl");
         }
     },
-        
-    get_width : function() {
+
+    get_width: function() {
         return this._width;
     },
-    set_width : function(value) {
-
-        if (this._width != value) { 
+    set_width: function(value) {
+        if(this._width != value) {
             this._width = value;
-            if (this.get_isInitialized()) {
+            if(this.get_isInitialized())
                 this._popupTable.style.width = _width;
-            }
             this.raisePropertyChanged("width");
         }
     },
@@ -462,35 +423,33 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         return this._popupPosition;
     },
     set_popupPosition: function(value) {
-        if (this._popupPosition != value) {
+        if(this._popupPosition != value) {
             this._popupPosition = value;
             this.raisePropertyChanged('popupPosition');
         }
     },
 
-    get_cssClass : function() {
+    get_cssClass: function() {
         return this._cssClass;
     },
-    set_cssClass : function(value) {
-
-        if (this._cssClass != value) {
+    set_cssClass: function(value) {
+        if(this._cssClass != value) {
             this._cssClass = value;
             this.raisePropertyChanged("cssClass");
         }
     },
 
-    get_highlightCssClass : function() {
+    get_highlightCssClass: function() {
         return this._highlightCssClass;
     },
-    set_highlightCssClass : function(value) {
-
-        if (this._highlightCssClass != value) {
+    set_highlightCssClass: function(value) {
+        if(this._highlightCssClass != value) {
             this._highlightCssClass = value;
             this.raisePropertyChanged("highlightCssClass");
         }
     },
-    
-    get_isOpen : function() {
+
+    get_isOpen: function() {
         return $common.getVisible(this._popupTable);
     }
 };

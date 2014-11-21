@@ -1,17 +1,18 @@
 Sys.Extended.UI.FloatingBehavior = function(element) {
     Sys.Extended.UI.FloatingBehavior.initializeBase(this, [element]);
 
-    var _handle;
-    var _location;
-    var _dragStartLocation;
-    var _profileProperty;
-    var _profileComponent;
+    var _handle,
+        _location,
+        _dragStartLocation,
+        _profileProperty,
+        _profileComponent;
 
     var _mouseDownHandler = Function.createDelegate(this, mouseDownHandler);
 
     this.add_move = function(handler) {
         this.get_events().addHandler('move', handler);
     }
+
     this.remove_move = function(handler) {
         this.get_events().removeHandler('move', handler);
     }
@@ -19,10 +20,10 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     this.get_handle = function() {
         return _handle;
     }
+
     this.set_handle = function(value) {
-        if(_handle != null) {
+        if(_handle != null)
             $removeHandler(_handle, "mousedown", _mouseDownHandler);
-        }
 
         _handle = value;
         $addHandler(_handle, "mousedown", _mouseDownHandler);
@@ -31,6 +32,7 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     this.get_profileProperty = function() {
         return _profileProperty;
     }
+
     this.set_profileProperty = function(value) {
         _profileProperty = value;
     }
@@ -38,6 +40,7 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     this.get_profileComponent = function() {
         return _profileComponent;
     }
+
     this.set_profileComponent = function(value) {
         _profileComponent = value;
     }
@@ -45,12 +48,14 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     this.get_location = function() {
         return _location;
     }
+
     this.set_location = function(value) {
         if(_location != value) {
             _location = value;
-            if(this.get_isInitialized()) {
+
+            if(this.get_isInitialized())
                 $common.setLocation(this.get_element(), _location);
-            }
+
             this.raisePropertyChanged('location');
         }
     }
@@ -61,9 +66,8 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
 
         var el = this.get_element();
 
-        if(!_location) {
+        if(!_location)
             _location = $common.getLocation(el);
-        }
 
         el.style.position = "fixed";
         $common.setLocation(el, _location);
@@ -71,24 +75,23 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
 
     this.dispose = function() {
         Sys.Extended.UI.DragDropManager.unregisterDropTarget(this);
-        if(_handle && _mouseDownHandler) {
+        if(_handle && _mouseDownHandler)
             $removeHandler(_handle, "mousedown", _mouseDownHandler);
-            //_handle.detachEvent("onmousedown", _mouseDownHandler);
-        }
+
         _mouseDownHandler = null;
         Sys.Extended.UI.FloatingBehavior.callBaseMethod(this, 'dispose');
     }
 
     this.checkCanDrag = function(element) {
-        var undraggableTagNames = ["input", "button", "select", "textarea", "label"];
-        var tagName = element.tagName;
+        var undraggableTagNames = ["input", "button", "select", "textarea", "label"],
+            tagName = element.tagName;
 
-        if((tagName.toLowerCase() == "a") && (element.href != null) && (element.href.length > 0)) {
+        if((tagName.toLowerCase() == "a") && (element.href != null) && (element.href.length > 0))
             return false;
-        }
-        if(Array.indexOf(undraggableTagNames, tagName.toLowerCase()) > -1) {
+
+        if(Array.indexOf(undraggableTagNames, tagName.toLowerCase()) > -1)
             return false;
-        }
+
         return true;
     }
 
@@ -130,8 +133,10 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     this.onDragEnd = function(canceled) {
         if(!canceled) {
             var handler = this.get_events().getHandler('move');
+
             if(handler) {
                 var cancelArgs = new Sys.CancelEventArgs();
+
                 handler(this, cancelArgs);
                 canceled = cancelArgs.get_cancel();
             }

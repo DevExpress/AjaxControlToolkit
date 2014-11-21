@@ -11,16 +11,20 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.ModeButton.prototype = {
     get_activeMode: function() {
         return this._activeMode;
     },
+
     set_activeMode: function(value) {
         this._activeMode = value;
     },
 
     _onclick: function(e) {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.ModeButton.callBaseMethod(this, "_onclick")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.ModeButton.callBaseMethod(this, "_onclick"))
+            return false;
+
         var modeButton = this;
         setTimeout(function() {
             modeButton._editPanel.set_activeMode(modeButton._activeMode);
         }, 0);
+
         return true;
     },
 

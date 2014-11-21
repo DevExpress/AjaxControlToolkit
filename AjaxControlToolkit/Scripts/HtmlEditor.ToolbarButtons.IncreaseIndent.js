@@ -5,8 +5,10 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.IncreaseIndent = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.IncreaseIndent.prototype = {
+
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.IncreaseIndent.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.IncreaseIndent.callBaseMethod(this, "callMethod"))
+            return false;
         this._designPanel._execCommand("Indent");
     }
 }

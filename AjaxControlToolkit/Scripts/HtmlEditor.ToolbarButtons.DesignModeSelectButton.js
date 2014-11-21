@@ -6,6 +6,7 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeSelectButton = function(elem
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeSelectButton.prototype = {
+
     onEditPanelActivity: function() {
         this._designPanel = this._editPanel.get_activePanel();
         this.checkState()
@@ -13,14 +14,20 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeSelectButton.prototype = {
 
 
     checkState: function() {
-        if(!this.checkRangeInDesign()) return false;
+        if(!this.checkRangeInDesign())
+            return false;
+
         return true;
     },
 
     callMethod: function(select, e) {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeSelectButton.callBaseMethod(this, "callMethod")) return false;
-        if(this._designPanel == null) return false;
-        if(this._designPanel.isPopup()) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.DesignModeSelectButton.callBaseMethod(this, "callMethod"))
+            return false;
+
+        if(this._designPanel == null)
+            return false;
+        if(this._designPanel.isPopup())
+            return false;
 
         return true;
     }

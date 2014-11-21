@@ -1,12 +1,8 @@
 Type.registerNamespace('Sys.Extended.UI');
 
 Sys.Extended.UI.BehaviorBase = function(element) {
-    /// <summary>
-    /// Base behavior for all extender behaviors
-    /// </summary>
-    /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-    /// Element the behavior is associated with
-    /// </param>
+    // Base behavior for all extender behaviors
+    // "element" - element the behavior is associated with
     Sys.Extended.UI.BehaviorBase.initializeBase(this,[element]);
     
     this._clientStateFieldID = null;
@@ -16,17 +12,10 @@ Sys.Extended.UI.BehaviorBase = function(element) {
 }
 Sys.Extended.UI.BehaviorBase.prototype = {
     initialize : function() {
-        /// <summary>
-        /// Initialize the behavior
-        /// </summary>
-
         Sys.Extended.UI.BehaviorBase.callBaseMethod(this, 'initialize');
     },
 
     dispose : function() {
-        /// <summary>
-        /// Dispose the behavior
-        /// </summary>
         Sys.Extended.UI.BehaviorBase.callBaseMethod(this, 'dispose');
 
         if (this._pageRequestManager) {
@@ -43,9 +32,7 @@ Sys.Extended.UI.BehaviorBase.prototype = {
     },
 
     get_ClientStateFieldID : function() {
-        /// <value type="String">
-        /// ID of the hidden field used to store client state
-        /// </value>
+        // ID of the hidden field used to store client state
         return this._clientStateFieldID;
     },
     set_ClientStateFieldID : function(value) {
@@ -56,9 +43,6 @@ Sys.Extended.UI.BehaviorBase.prototype = {
     },
 
     get_ClientState : function() {
-        /// <value type="String">
-        /// Client state
-        /// </value>
         if (this._clientStateFieldID) {
             var input = document.getElementById(this._clientStateFieldID);
             if (input) {
@@ -77,11 +61,9 @@ Sys.Extended.UI.BehaviorBase.prototype = {
     },
 
     registerPartialUpdateEvents : function() {
-        /// <summary>
-        /// Register for beginRequest and endRequest events on the PageRequestManager,
-        /// (which cause _partialUpdateBeginRequest and _partialUpdateEndRequest to be
-        /// called when an UpdatePanel refreshes)
-        /// </summary>
+        // Register for beginRequest and endRequest events on the PageRequestManager,
+        // (which cause _partialUpdateBeginRequest and _partialUpdateEndRequest to be
+        // called when an UpdatePanel refreshes)
 
         if (Sys && Sys.WebForms && Sys.WebForms.PageRequestManager){
             this._pageRequestManager = Sys.WebForms.PageRequestManager.getInstance();
@@ -95,45 +77,27 @@ Sys.Extended.UI.BehaviorBase.prototype = {
     },
 
     _partialUpdateBeginRequest : function(sender, beginRequestEventArgs) {
-        /// <summary>
-        /// Method that will be called when a partial update (via an UpdatePanel) begins,
-        /// if registerPartialUpdateEvents() has been called.
-        /// </summary>
-        /// <param name="sender" type="Object">
-        /// Sender
-        /// </param>
-        /// <param name="beginRequestEventArgs" type="Sys.WebForms.BeginRequestEventArgs">
-        /// Event arguments
-        /// </param>
-
+        // Method that will be called when a partial update (via an UpdatePanel) begins,
+        // if registerPartialUpdateEvents() has been called.
+        // "sender" - sender
+        // "beginRequestEventArgs" - event arguments
     },
     
     _partialUpdateEndRequest : function(sender, endRequestEventArgs) {
-        /// <summary>
-        /// Method that will be called when a partial update (via an UpdatePanel) finishes,
-        /// if registerPartialUpdateEvents() has been called.
-        /// </summary>
-        /// <param name="sender" type="Object">
-        /// Sender
-        /// </param>
-        /// <param name="endRequestEventArgs" type="Sys.WebForms.EndRequestEventArgs">
-        /// Event arguments
-        /// </param>
-
+        // Method that will be called when a partial update (via an UpdatePanel) finishes,
+        // if registerPartialUpdateEvents() has been called.
+        // "sender" - sender
+        // "endRequestEventArgs" - event arguments
     }
 }
 Sys.Extended.UI.BehaviorBase.registerClass('Sys.Extended.UI.BehaviorBase', Sys.UI.Behavior);
 
 
 Sys.Extended.UI.DynamicPopulateBehaviorBase = function(element) {
-    /// <summary>
     /// DynamicPopulateBehaviorBase is used to add DynamicPopulateBehavior funcitonality
     /// to other extenders.  It will dynamically populate the contents of the target element
     /// when its populate method is called.
-    /// </summary>
-    /// <param name="element" type="Sys.UI.DomElement" domElement="true">
-    /// DOM Element the behavior is associated with
-    /// </param>
+    /// "element" - DOM Element the behavior is associated with
     Sys.Extended.UI.DynamicPopulateBehaviorBase.initializeBase(this, [element]);
     
     this._DynamicControlID = null;
@@ -147,10 +111,6 @@ Sys.Extended.UI.DynamicPopulateBehaviorBase = function(element) {
 }
 Sys.Extended.UI.DynamicPopulateBehaviorBase.prototype = {
     initialize : function() {
-        /// <summary>
-        /// Initialize the behavior
-        /// </summary>
-
         Sys.Extended.UI.DynamicPopulateBehaviorBase.callBaseMethod(this, 'initialize');
 
         this._populatingHandler = Function.createDelegate(this, this._onPopulating);
@@ -158,10 +118,6 @@ Sys.Extended.UI.DynamicPopulateBehaviorBase.prototype = {
     },
 
     dispose : function() {
-        /// <summary>
-        /// Dispose the behavior
-        /// </summary>
-
         if (this._populatedHandler) {
             if (this._dynamicPopulateBehavior) {
                 this._dynamicPopulateBehavior.remove_populated(this._populatedHandler);
@@ -183,12 +139,9 @@ Sys.Extended.UI.DynamicPopulateBehaviorBase.prototype = {
     },
 
     populate : function(contextKeyOverride) {
-        /// <summary>
-        /// Demand-create the DynamicPopulateBehavior and use it to populate the target element
-        /// </summary>
-        /// <param name="contextKeyOverride" type="String" mayBeNull="true" optional="true">
-        /// An arbitrary string value to be passed to the web method. For example, if the element to be populated is within a data-bound repeater, this could be the ID of the current row.
-        /// </param>
+        // Demand-create the DynamicPopulateBehavior and use it to populate the target element
+        // "contextKeyOverride"  - an arbitrary string value to be passed to the web method.
+        // For example, if the element to be populated is within a data-bound repeater, this could be the ID of the current row.
 
         if (this._dynamicPopulateBehavior && (this._dynamicPopulateBehavior.get_element() != $get(this._DynamicControlID))) {
             this._dynamicPopulateBehavior.dispose();
@@ -215,35 +168,21 @@ Sys.Extended.UI.DynamicPopulateBehaviorBase.prototype = {
     },
 
     _onPopulating : function(sender, eventArgs) {
-        /// <summary>
-        /// Handler for DynamicPopulate behavior's Populating event
-        /// </summary>
-        /// <param name="sender" type="Object">
-        /// DynamicPopulate behavior
-        /// </param>
-        /// <param name="eventArgs" type="Sys.CancelEventArgs" mayBeNull="false">
-        /// Event args
-        /// </param>
+        // Handler for DynamicPopulate behavior's Populating event
+        // "sender" - DynamicPopulate behavior
+        // "eventArgs" - event args
         this.raisePopulating(eventArgs);
     },
 
     _onPopulated : function(sender, eventArgs) {
-        /// <summary>
-        /// Handler for DynamicPopulate behavior's Populated event
-        /// </summary>
-        /// <param name="sender" type="Object">
-        /// DynamicPopulate behavior
-        /// </param>
-        /// <param name="eventArgs" type="Sys.EventArgs" mayBeNull="false">
-        /// Event args
-        /// </param>
+        // Handler for DynamicPopulate behavior's Populated event
+        // "sender" - DynamicPopulate behavior
+        // "eventArgs" - event args
         this.raisePopulated(eventArgs);
     },
 
     get_dynamicControlID : function() {
-        /// <value type="String">
-        /// ID of the element to populate with dynamic content
-        /// </value>
+        // ID of the element to populate with dynamic content
         return this._DynamicControlID;
     },
     get_DynamicControlID : this.get_dynamicControlID,
@@ -257,11 +196,9 @@ Sys.Extended.UI.DynamicPopulateBehaviorBase.prototype = {
     set_DynamicControlID : this.set_dynamicControlID,
 
     get_dynamicContextKey : function() {
-        /// <value type="String">
-        /// An arbitrary string value to be passed to the web method.
-        /// For example, if the element to be populated is within a
-        /// data-bound repeater, this could be the ID of the current row.
-        /// </value>
+        // An arbitrary string value to be passed to the web method.
+        // For example, if the element to be populated is within a
+        // data-bound repeater, this could be the ID of the current row.
         return this._DynamicContextKey;
     },
     get_DynamicContextKey : this.get_dynamicContextKey,
@@ -275,9 +212,7 @@ Sys.Extended.UI.DynamicPopulateBehaviorBase.prototype = {
     set_DynamicContextKey : this.set_dynamicContextKey,
 
     get_dynamicServicePath : function() {
-        /// <value type="String" mayBeNull="true" optional="true">
-        /// The URL of the web service to call.  If the ServicePath is not defined, then we will invoke a PageMethod instead of a web service.
-        /// </value>
+        // The URL of the web service to call.  If the ServicePath is not defined, then we will invoke a PageMethod instead of a web service.
         return this._DynamicServicePath;
     },
     get_DynamicServicePath : this.get_dynamicServicePath,
@@ -291,17 +226,13 @@ Sys.Extended.UI.DynamicPopulateBehaviorBase.prototype = {
     set_DynamicServicePath : this.set_dynamicServicePath,
 
     get_dynamicServiceMethod : function() {
-        /// <value type="String">
-        /// The name of the method to call on the page or web service
-        /// </value>
-        /// <remarks>
-        /// The signature of the method must exactly match the following:
-        ///     [WebMethod]
-        ///     string DynamicPopulateMethod(string contextKey)
-        ///     {
-        ///         ...
-        ///     }
-        /// </remarks>
+        // The name of the method to call on the page or web service
+        // The signature of the method must exactly match the following:
+        //     [WebMethod]
+        //     string DynamicPopulateMethod(string contextKey)
+        //     {
+        //         ...
+        //     }
         return this._DynamicServiceMethod;
     },
     get_DynamicServiceMethod : this.get_dynamicServiceMethod,
@@ -315,10 +246,8 @@ Sys.Extended.UI.DynamicPopulateBehaviorBase.prototype = {
     set_DynamicServiceMethod : this.set_dynamicServiceMethod,
     
     get_cacheDynamicResults : function() {
-        /// <value type="Boolean" mayBeNull="false">
-        /// Whether the results of the dynamic population should be cached and
-        /// not fetched again after the first load
-        /// </value>
+        // Whether the results of the dynamic population should be cached and
+        // not fetched again after the first load
         return this._cacheDynamicResults;
     },
     set_cacheDynamicResults : function(value) {
@@ -329,62 +258,35 @@ Sys.Extended.UI.DynamicPopulateBehaviorBase.prototype = {
     },
     
     add_populated : function(handler) {
-        /// <summary>
-        /// Add a handler on the populated event
-        /// </summary>
-        /// <param name="handler" type="Function">
-        /// Handler
-        /// </param>
+        // Add a handler on the populated event
+        // "handler" - handler
         this.get_events().addHandler("populated", handler);
     },
     remove_populated : function(handler) {
-        /// <summary>
-        /// Remove a handler from the populated event
-        /// </summary>
-        /// <param name="handler" type="Function">
-        /// Handler
-        /// </param>
+        // Remove a handler from the populated event
+        // "handler" - handler
         this.get_events().removeHandler("populated", handler);
     },
     raisePopulated : function(arg) {
-        /// <summary>
-        /// Raise the populated event
-        /// </summary>
-        /// <param name="arg" type="Sys.EventArgs">
-        /// Event arguments
-        /// </param>
+        // Raise the populated event
+        // "arg" - event arguments
         var handler = this.get_events().getHandler("populated");  
         if (handler) handler(this, arg);
     },
     
     add_populating : function(handler) {
-        /// <summary>
-        /// Add an event handler for the populating event
-        /// </summary>
-        /// <param name="handler" type="Function" mayBeNull="false">
-        /// Event handler
-        /// </param>
-        /// <returns />
+        // Add an event handler for the populating event
+        // "handler" - event handler
         this.get_events().addHandler('populating', handler);
     },
     remove_populating : function(handler) {
-        /// <summary>
-        /// Remove an event handler from the populating event
-        /// </summary>
-        /// <param name="handler" type="Function" mayBeNull="false">
-        /// Event handler
-        /// </param>
-        /// <returns />
+        // Remove an event handler from the populating event
+        // "handler" - event handler
         this.get_events().removeHandler('populating', handler);
     },
     raisePopulating : function(eventArgs) {
-        /// <summary>
-        /// Raise the populating event
-        /// </summary>
-        /// <param name="eventArgs" type="Sys.CancelEventArgs" mayBeNull="false">
-        /// Event arguments for the populating event
-        /// </param>
-        /// <returns />
+        // Raise the populating event
+        // "eventArgs" - event arguments for the populating event
         
         var handler = this.get_events().getHandler('populating');
         if (handler) {
@@ -455,14 +357,14 @@ Sys.Extended.UI.ControlBase.prototype = {
         }
     },
     loadClientState: function(value) {
-        /// <remarks>override this method to intercept client state loading after a callback</remarks>
+        // override this method to intercept client state loading after a callback
     },
     saveClientState: function() {
-        /// <remarks>override this method to intercept client state acquisition before a callback</remarks>
+        // override this method to intercept client state acquisition before a callback
         return null;
     },
     _invoke: function(name, args, cb) {
-        /// <summary>invokes a callback method on the server control</summary>        
+        // invokes a callback method on the server control
         if (!this._callbackTarget) {
             throw Error.invalidOperation(Sys.Extended.UI.Resources.ExtenderBase_ControlNotRegisteredForCallbacks);
         }

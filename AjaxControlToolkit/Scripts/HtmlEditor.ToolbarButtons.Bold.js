@@ -5,13 +5,18 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.Bold = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.Bold.prototype = {
+
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.Bold.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.Bold.callBaseMethod(this, "callMethod"))
+            return false;
+
         this._designPanel._execCommand("bold", false, null);
     },
 
     checkState: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.Bold.callBaseMethod(this, "checkState")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.Bold.callBaseMethod(this, "checkState"))
+            return false;
+
         return this._designPanel._queryCommandState("bold");
     }
 }

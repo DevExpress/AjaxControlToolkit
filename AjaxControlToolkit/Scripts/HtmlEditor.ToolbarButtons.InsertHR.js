@@ -5,8 +5,11 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.InsertHR = function(element) {
 }
 
 Sys.Extended.UI.HtmlEditor.ToolbarButtons.InsertHR.prototype = {
+
     callMethod: function() {
-        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.InsertHR.callBaseMethod(this, "callMethod")) return false;
+        if(!Sys.Extended.UI.HtmlEditor.ToolbarButtons.InsertHR.callBaseMethod(this, "callMethod"))
+            return false;
+
         var editor = this._designPanel;
 
         try {
@@ -15,9 +18,11 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.InsertHR.prototype = {
             var _div = editor._doc.createElement("div");
             _div.innerHTML = "<hr>";
 
-            var el = _div.firstChild;
-            var place = editor._getSafePlace();
-            if(!place) return;
+            var el = _div.firstChild,
+                place = editor._getSafePlace();
+
+            if(!place)
+                return;
 
             var parent = place.parentNode;
 
@@ -26,9 +31,13 @@ Sys.Extended.UI.HtmlEditor.ToolbarButtons.InsertHR.prototype = {
 
             el = (el.nextSibling) ? el.nextSibling : el;
             Sys.Extended.UI.HtmlEditor._setCursor(el, editor);
-            setTimeout(function() { editor.onContentChanged(); editor._editPanel.updateToolbar(); }, 0);
+
+            setTimeout(function() {
+                editor.onContentChanged(); editor._editPanel.updateToolbar();
+            }, 0);
 
             editor.focusEditor();
+
             return true;
         } catch(e) { }
     }

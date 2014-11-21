@@ -1,50 +1,47 @@
 Sys.Timer = function() {
     Sys.Timer.initializeBase(this);
-    
+
     this._interval = 1000;
     this._enabled = false;
     this._timer = null;
 }
 
 Sys.Timer.prototype = {
+
     get_interval: function() {
-        
+
         return this._interval;
     },
+
     set_interval: function(value) {
-        
-        if (this._interval !== value) {
+        if(this._interval !== value) {
             this._interval = value;
             this.raisePropertyChanged('interval');
-            
-            if (!this.get_isUpdating() && (this._timer !== null)) {
+
+            if(!this.get_isUpdating() && (this._timer !== null)) {
                 this._stopTimer();
                 this._startTimer();
             }
         }
     },
-    
+
     get_enabled: function() {
-        
         return this._enabled;
     },
+
     set_enabled: function(value) {
-        
-        if (value !== this.get_enabled()) {
+        if(value !== this.get_enabled()) {
             this._enabled = value;
             this.raisePropertyChanged('enabled');
-            if (!this.get_isUpdating()) {
-                if (value) {
+
+            if(!this.get_isUpdating())
+                if(value)
                     this._startTimer();
-                }
-                else {
+                else
                     this._stopTimer();
-                }
-            }
         }
     },
 
-    
     add_tick: function(handler) {
         this.get_events().addHandler("tick", handler);
     },
@@ -56,14 +53,14 @@ Sys.Timer.prototype = {
     dispose: function() {
         this.set_enabled(false);
         this._stopTimer();
-        
+
         Sys.Timer.callBaseMethod(this, 'dispose');
     },
-    
+
     updated: function() {
         Sys.Timer.callBaseMethod(this, 'updated');
 
-        if (this._enabled) {
+        if(this._enabled) {
             this._stopTimer();
             this._startTimer();
         }
@@ -71,9 +68,8 @@ Sys.Timer.prototype = {
 
     _timerCallback: function() {
         var handler = this.get_events().getHandler("tick");
-        if (handler) {
+        if(handler)
             handler(this, Sys.EventArgs.Empty);
-        }
     },
 
     _startTimer: function() {
@@ -87,9 +83,9 @@ Sys.Timer.prototype = {
 }
 
 Sys.Timer.descriptor = {
-    properties: [   {name: 'interval', type: Number},
-                    {name: 'enabled', type: Boolean} ],
-    events: [ {name: 'tick'} ]
+    properties: [{ name: 'interval', type: Number },
+                    { name: 'enabled', type: Boolean }],
+    events: [{ name: 'tick' }]
 }
 
 Sys.Timer.registerClass('Sys.Timer', Sys.Component);
