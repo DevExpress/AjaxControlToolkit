@@ -608,6 +608,7 @@ namespace AjaxControlToolkit {
                 throw new ArgumentException("Unknown value", "itemType");
 
             var item = new ReorderListItem(dataItem, index, itemType);
+            item.ClientIDMode = ClientIDMode.AutoID;
 
             OnItemCreated(new ReorderListItemEventArgs(item));
 

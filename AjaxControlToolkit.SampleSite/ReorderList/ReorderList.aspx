@@ -15,8 +15,7 @@
                     DragHandleAlignment="Left"
                     ItemInsertLocation="Beginning"
                     DataKeyField="ItemID"
-                    SortOrderField="Priority"
-                    ClientIDMode="AutoID">
+                    SortOrderField="Priority">
                     <ItemTemplate>
                         <div class="itemArea">
                             <asp:Label ID="Label1" runat="server"
