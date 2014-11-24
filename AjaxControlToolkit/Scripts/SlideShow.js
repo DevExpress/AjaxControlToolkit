@@ -314,42 +314,42 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                 return;
             }
             if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.FadeInOut) {
-                this._elementImage.className = "fadeIn";
+                this._elementImage.className = "ajax__slide_show_fadeIn";
                 var me = this;
                 setTimeout(function() {
-                    me._elementImage.className = "fadeOut";
+                    me._elementImage.className = "ajax__slide_show_fadeOut";
                     me.setImage(value);
                 }, 1000);
             }
             else if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.ScaleX) {
-                this._elementImage.className = "Animation scaleX";
+                this._elementImage.className = "ajax__slide_show_Animation ajax__slide_show_scaleX";
                 var me = this;
                 setTimeout(function() {
-                    me._elementImage.className = "Animation";
+                    me._elementImage.className = "ajax__slide_show_Animation";
                     me.setImage(value);
                 }, 1000);
             }
             else if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.ScaleY) {
-                this._elementImage.className = "Animation scaleY";
+                this._elementImage.className = "ajax__slide_show_Animation ajax__slide_show_scaleY";
                 var me = this;
                 setTimeout(function() {
-                    me._elementImage.className = "Animation";
+                    me._elementImage.className = "ajax__slide_show_Animation";
                     me.setImage(value);
                 }, 1000);
             }
             else if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.ZoomInOut) {
-                this._elementImage.className = "Animation zoomOut";
+                this._elementImage.className = "ajax__slide_show_Animation ajax__slide_show_zoomOut";
                 var me = this;
                 setTimeout(function() {
-                    me._elementImage.className = "Animation zoomIn";
+                    me._elementImage.className = "ajax__slide_show_Animation ajax__slide_show_zoomIn";
                     me.setImage(value);
                 }, 1000);
             }
             else if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.Rotate) {
-                this._elementImage.className = "Animation rotate";
+                this._elementImage.className = "ajax__slide_show_Animation ajax__slide_show_rotate";
                 var me = this;
                 setTimeout(function() {
-                    me._elementImage.className = "Animation";
+                    me._elementImage.className = "ajax__slide_show_Animation";
                     me.setImage(value);
                 }, 1000);
             }
@@ -721,7 +721,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         // create parent container
         var _divContainer = document.createElement('DIV');
         _divContainer.id = e.id + '_slider';
-        _divContainer.className = 'container';
+        _divContainer.className = 'ajax__slide_show_container';
         _divContainer.style.width = this._imageWidth + 'px';
         _divContainer.style.height = this._imageHeight + 'px';
         e.parentNode.insertBefore(_divContainer, e);
@@ -743,7 +743,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
             _divImage.id = e.id + '_imageDiv' + i;
             _divImage.style.position = 'absolute';
             _divImage.style.top = '0px';
-            _divImage.className = 'slideAnimation';
+            _divImage.className = 'ajax__slide_show_slideAnimation';
             _divMask.appendChild(_divImage);
 
             // create hyperlink for image
@@ -773,7 +773,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         // create parent container
         var _divContainer = document.createElement('DIV');
         _divContainer.id = e.id + '_slider';
-        _divContainer.className = 'container';
+        _divContainer.className = 'ajax__slide_show_container';
         _divContainer.style.width = this._imageWidth + 'px';
         _divContainer.style.height = this._imageHeight + 'px';
         e.parentNode.insertBefore(_divContainer, e);
@@ -787,7 +787,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         _divContainer.appendChild(_divMask);
 
         var _ULContainer = document.createElement('UL');
-        _ULContainer.style.className = 'sliderUL';
+        _ULContainer.style.className = 'ajax__slide_show_sliderUL';
         _divMask.appendChild(_ULContainer);
 
         // create array to keep all images
@@ -797,7 +797,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
             var _LIImage = document.createElement('LI');
             _LIImage.id = e.id + '_imageDiv' + i;
             _LIImage.style.position = 'absolute';
-            _LIImage.className = 'slideAnimation';
+            _LIImage.className = 'ajax__slide_show_slideAnimation';
             _ULContainer.appendChild(_LIImage);
 
             // create hyperlink for image
@@ -868,7 +868,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
 
                 var me = this;
                 setTimeout(function() {
-                    me._nextImage.className = 'slideAnimation';
+                    me._nextImage.className = 'ajax__slide_show_slideAnimation';
                     if(me._imageDescriptionLabel) {
                         me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
                     }
@@ -885,7 +885,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                     me._previousImage.className = '';
                     me._previousImage.style.left = '-' + (me._imageWidth + 5) + 'px';
                     setTimeout(function() {
-                        me._previousImage.className = 'slideAnimation';
+                        me._previousImage.className = 'ajax__slide_show_slideAnimation';
                         this._isNext = false;
                     }, 1000);
                 }, 1200);
@@ -897,7 +897,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
 
                 var me = this;
                 setTimeout(function() {
-                    me._nextImage.className = 'slideAnimation';
+                    me._nextImage.className = 'ajax__slide_show_slideAnimation';
                     if(me._imageDescriptionLabel) {
                         me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
                     }
@@ -914,7 +914,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                     me._previousImage.className = '';
                     me._previousImage.style.top = '-' + (me._imageHeight + 5) + 'px';
                     setTimeout(function() {
-                        me._previousImage.className = 'slideAnimation';
+                        me._previousImage.className = 'ajax__slide_show_slideAnimation';
                         this._isNext = false;
                     }, 1000);
                 }, 1200);
@@ -928,7 +928,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
 
                 var me = this;
                 setTimeout(function() {
-                    me._previousImage.className = 'slideAnimation';
+                    me._previousImage.className = 'ajax__slide_show_slideAnimation';
                     if(me._imageDescriptionLabel) {
                         me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
                     }
@@ -945,7 +945,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                     me._nextImage.className = '';
                     me._nextImage.style.left = (me._imageWidth + 5) + 'px';
                     setTimeout(function() {
-                        me._nextImage.className = 'slideAnimation';
+                        me._nextImage.className = 'ajax__slide_show_slideAnimation';
                         this._isNext = false;
                     }, 1000);
                 }, 1200);
@@ -957,7 +957,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
 
                 var me = this;
                 setTimeout(function() {
-                    me._previousImage.className = 'slideAnimation';
+                    me._previousImage.className = 'ajax__slide_show_slideAnimation';
                     if(me._imageDescriptionLabel) {
                         me._imageDescriptionLabel.innerHTML = me._slides[me._currentIndex].Description ? me._slides[me._currentIndex].Description : "";
                     }
@@ -974,7 +974,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
                     me._nextImage.className = '';
                     me._nextImage.style.top = (me._imageHeight + 5) + 'px';
                     setTimeout(function() {
-                        me._nextImage.className = 'slideAnimation';
+                        me._nextImage.className = 'ajax__slide_show_slideAnimation';
                         this._isNext = false;
                     }, 1000);
                 }, 1200);

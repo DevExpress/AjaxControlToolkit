@@ -153,7 +153,7 @@ namespace AjaxControlToolkit {
                 var popupdiv = new HtmlGenericControl("div");
                 popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
                 popupdiv.Attributes.Add("style", "opacity: 0;");
-                popupdiv.Attributes.Add("class", "popupDiv");
+                popupdiv.Attributes.Add("class", "ajax__html_editor_extender_popupDiv");
 
                 ajaxFileUpload = new AjaxFileUpload();
                 ajaxFileUpload.ID = this.ID + "_ajaxFileUpload";

@@ -290,7 +290,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                             fontSize: '11px'
                         }
                     },
-                    cssClasses: ['fontnameclass'],
+                    cssClasses: ['ajax__html_editor_extender_fontnameclass'],
                     children: [{
                         nodeName: "span",
                         properties: {
@@ -362,7 +362,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                             fontSize: '11px'
                         }
                     },
-                    cssClasses: ['fontsizeclass'],
+                    cssClasses: ['ajax__html_editor_extender_fontsizeclass'],
                     children: [{
                         nodeName: "span",
                         properties: {
@@ -436,7 +436,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                             cssFloat: 'left'
                         }
                     },
-                    cssClasses: ['forecolorclass']
+                    cssClasses: ['ajax__html_editor_extender_forecolorclass']
                 }, this._topButtonContainer);
                 _btn.setAttribute('unselectable', 'on');
 
@@ -484,7 +484,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                             cssFloat: 'left'
                         }
                     },
-                    cssClasses: ['backcolorclass']
+                    cssClasses: ['ajax__html_editor_extender_backcolorclass']
                 }, this._topButtonContainer);
                 _btn.setAttribute('unselectable', 'on');
 

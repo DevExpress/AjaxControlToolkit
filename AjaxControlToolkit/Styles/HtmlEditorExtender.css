@@ -52,22 +52,22 @@
 {
 }
 
-.backcolorclass
+.ajax__html_editor_extender_backcolorclass
 {
     float: left;
 }
 
-.forecolorclass
+.ajax__html_editor_extender_forecolorclass
 {
     float: left;
 }
 
-.fontnameclass
+.ajax__html_editor_extender_fontnameclass
 {
     float: left;
 }
 
-.fontsizeclass
+.ajax__html_editor_extender_fontsizeclass
 {
     float: left;
 }
@@ -260,7 +260,7 @@
     height: 21px;
 }
 
-.popupDiv
+.ajax__html_editor_extender_popupDiv
 {
     border-color: black;
     border: 1px solid #555555;
@@ -277,7 +277,7 @@
     padding: 10px;
 }
 
-.popupCancelButton
+.ajax__html_editor_extender_popupCancelButton
 {
     border: 1px solid #BBBBBB;
     color: #464646;
@@ -288,7 +288,7 @@
     width: 75px;
 }
 
-.popupCancelButton:hover
+.ajax__html_editor_extender_popupCancelButton:hover
 {
     border: 1px solid #666666;
     color: #000000;

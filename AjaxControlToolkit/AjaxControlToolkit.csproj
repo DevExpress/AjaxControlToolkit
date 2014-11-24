@@ -405,10 +405,6 @@
       <DependentUpon>HtmlEditorExtender.css</DependentUpon>
     </Content>
     <EmbeddedResource Include="ToolboxIcons\HtmlEditorExtender.ico" />
-    <EmbeddedResource Include="Styles\HtmlEditor.DesignPanel.css" />
-    <EmbeddedResource Include="Styles\HtmlEditor.DesignPanel.min.css">
-      <DependentUpon>HtmlEditor.DesignPanel.css</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Styles\HtmlEditor.HtmlPanel.min.css">
       <DependentUpon>HtmlEditor.HtmlPanel.css</DependentUpon>
     </EmbeddedResource>
