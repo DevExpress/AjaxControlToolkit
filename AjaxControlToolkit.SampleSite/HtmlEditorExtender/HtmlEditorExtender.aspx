@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="HtmlEditorExtender.aspx.cs" Inherits="HtmlEditorExtender_HtmlEditorExtender" %>
+﻿<%@ Page Title="HTMLEditorExtender Sample" Language="C#" MasterPageFile="~/Samples.master" AutoEventWireup="true" CodeFile="HtmlEditorExtender.aspx.cs" Inherits="HtmlEditorExtender_HtmlEditorExtender" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit.HtmlEditor.Sanitizer" TagPrefix="ajaxToolkit" %>
 
@@ -12,7 +12,6 @@
                 Text="Hello <b>world!</b>" /><br />
             <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1" runat="server" DisplaySourceTab="true">
             </ajaxToolkit:HtmlEditorExtender>
-            <br />
             <br />
 
             <b>HtmlEditorExtender with a custom toolbar which includes support for uploading an image:</b>
@@ -40,9 +39,14 @@
             <asp:Button runat="server" Text="Submit content" ID="submit" OnClick="btnsubmit_click" />
         </ContentTemplate>
     </asp:UpdatePanel>
+    <br />
+    <br />
+    <p>
+        To see how to implement client side onchange event on HtmlEditorExtender see <a href="HtmlEditorExtenderCustomEvents.aspx">Custom events sample</a>
+    </p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="InfoContent" runat="Server">
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" Collapsed="false">
         <Header>HTMLEditorExtender Description</Header>
         <Content>
             <p>
@@ -76,7 +80,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock>
+    <samples:InfoBlock runat="server" Collapsed="false">
         <Header>HTMLEditorExtender Properties</Header>
         <Content>
             <p>
@@ -138,7 +142,7 @@
             </ul>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock>
+    <samples:InfoBlock runat="server" Collapsed="false">
         <Header>HtmlEditorExtender Security</Header>
         <Content>
             <p>
