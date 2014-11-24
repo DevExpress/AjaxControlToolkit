@@ -1,4 +1,4 @@
-﻿Sys.Extended.UI.Localization["tr-TR"] = {
+﻿Sys.Extended.UI.Localization["tr"] = {
     "AlwaysVisible_ElementRequired": "Sys.Extended.UI.AlwaysVisibleControlBehavior element içermek zorundadır",
     "Animation_CannotNestSequence": "Sys.Extended.UI.Animation.SequenceAnimation Sys.Extended.UI.Animation.ParallelAnimation içinde yer alamaz",
     "Animation_ChildrenNotAllowed": "Sys.Extended.UI.Animation.createAnimation Sys.Extended.UI.Animation.ParentAnimation dan türetilmeyen alt animasyonları \"{0}\" tipine ekleyemez",

@@ -624,8 +624,8 @@ using System.Web.UI;
 [assembly: WebResource(Constants.LocalizationScriptName + ".ru" + Constants.JsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.LocalizationScriptName + ".ru" + Constants.DebugJsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.LocalizationScriptName + ".tr-TR" + Constants.JsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.LocalizationScriptName + ".tr-TR" + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.LocalizationScriptName + ".tr" + Constants.JsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.LocalizationScriptName + ".tr" + Constants.DebugJsPostfix, "text/javascript")]
 
 [assembly: WebResource(Constants.LocalizationScriptName + ".zh-CHS" + Constants.JsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.LocalizationScriptName + ".zh-CHS" + Constants.DebugJsPostfix, "text/javascript")]

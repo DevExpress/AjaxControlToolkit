@@ -400,6 +400,9 @@
     <Content Include="Scripts\HtmlEditor.ToolbarButtons.RemoveLink.min.js">
       <DependentUpon>HtmlEditor.ToolbarButtons.RemoveLink.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\Localization\Resources_tr.min.js">
+      <DependentUpon>Resources_tr.js</DependentUpon>
+    </Content>
     <Content Include="Styles\HtmlEditorExtender.css" />
     <Content Include="Styles\HtmlEditorExtender.min.css">
       <DependentUpon>HtmlEditorExtender.css</DependentUpon>
@@ -1247,10 +1250,7 @@
     <Content Include="Scripts\Localization\Resources_ru.min.js">
       <DependentUpon>Resources_ru.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\Localization\Resources_tr-TR.js" />
-    <Content Include="Scripts\Localization\Resources_tr-TR.min.js">
-      <DependentUpon>Resources_tr-TR.js</DependentUpon>
-    </Content>
+    <Content Include="Scripts\Localization\Resources_tr.js" />
     <Content Include="Scripts\Localization\Resources_zh-CHS.js" />
     <Content Include="Scripts\Localization\Resources_zh-CHS.min.js">
       <DependentUpon>Resources_zh-CHS.js</DependentUpon>
