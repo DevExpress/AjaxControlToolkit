@@ -107,6 +107,9 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
 
             _innerTable.style.display = 'inline';
             _innerTable.style.position = 'relative';
+            // http://stackoverflow.com/questions/8782060/how-to-adjust-table-row-height-in-html5
+            _innerTable.style.fontSize = '1px';
+            _innerTable.style.lineHeight = '0';
 
             _textboxCell.style.padding = '0';
             _upButtonCell.style.padding = '0';
