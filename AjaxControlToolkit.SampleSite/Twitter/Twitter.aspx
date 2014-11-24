@@ -102,7 +102,7 @@
             <br />
             <p>
                 Twitter limits the number of times that you can interact with their API in an hour. Twitter recommends that you cache
-                results on the server (<a href="https://dev.twitter.com/docs/rate-limiting">https://dev.twitter.com/docs/rate-limiting</a>). By default, the Twitter control caches 
+                results on the server (<a href="https://dev.twitter.com/rest/public/rate-limiting">https://dev.twitter.com/rest/public/rate-limiting</a>). By default, the Twitter control caches 
                 results on the server a duration of 5 minutes. You can modify the cache duration by assigning a value (in seconds) to the 
                 Twitter control's CacheDuration property.              
             </p>
@@ -140,7 +140,7 @@
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="true">
-        <Header>Twitter API</Header>
+        <Header><span id="twitterAPI">Twitter API</span></Header>
         <Content>
             <p>
                 AjaxControlToolkit Twitter Control using Twitter API v1.1. The Twitter API v1.1 requiring us to provide API keys which are <b>Consumer Key</b>, <b>Consumer Secret</b>, <b>Access token</b> and <b>Access token secret</b>. 

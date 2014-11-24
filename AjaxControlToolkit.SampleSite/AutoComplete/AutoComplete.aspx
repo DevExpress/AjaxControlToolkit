@@ -156,7 +156,7 @@ public string[] GetCompletionList(
                 <li><strong>FirstRowSelected</strong> - Determines if the first option in the AutoComplete list will be selected by default.</li>
                 <li><strong>ShowOnlyCurrentWordInCompletionListItem</strong> - If true and DelimiterCharacters are specified, then the
                 AutoComplete list items display suggestions for the current word to be completed and do not display the rest of the tokens.</li>
-                <li><strong>Animations</strong> - Generic animations for the AutoComplete extender.  See the <a href="../Walkthrough/UsingAnimations.aspx">Using Animations</a> walkthrough and <a href="../Walkthrough/AnimationReference.aspx">Animation Reference</a> for more details.
+                <li><strong>Animations</strong> - Generic animations for the AutoComplete extender. See the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a> for more details.
                 <ul>
                     <li><strong>OnShow</strong> - The OnShow animation will be played each time the AutoComplete completion list is displayed. The completion list will be positioned correctly but hidden. The animation can use <span class="codeReference">&lt;HideAction Visible="true" /&gt;</span> to display the completion list along with any other visual effects.</li>
                     <li><strong>OnHide</strong> - The OnHide animation will be played each time the AutoComplete completion list is hidden.</li>

@@ -68,7 +68,7 @@
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the control which needs a drop-down.</li>
                 <li><strong>DropDownControlID</strong> - The ID of the control which will be displayed as the dropdown.</li>
-                <li><strong>Animations</strong> - Generic animations for the DropDown extender.  See the <a href="../Walkthrough/UsingAnimations.aspx">Using Animations</a> walkthrough and <a href="../Walkthrough/AnimationReference.aspx">Animation Reference</a> for more details.
+                <li><strong>Animations</strong> - Generic animations for the DropDown extender.  See the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a> for more details.
                 <ul>
                     <li><strong>OnShow</strong> - The OnShow animation will be played each time the dropdowns displayed.  The dropdown will be positioned correctly but hidden.  The animation can use <span class="codeReference">&lt;HideAction Visible="true" /&gt;</span> to display the dropdown along with any other visual effects.</li>
                     <li><strong>OnHide</strong> - The OnHide animation will be played each time the dropdown is hidden.</li>

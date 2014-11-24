@@ -220,12 +220,8 @@
             </p>
             <br />
             <p>
-                The animations to be played are declaratively specified using XML.  You can read the
-                <a href="../Walkthrough/UsingAnimations.aspx">Using Animations</a> walkthrough for more details
-                about creating these generic animation declarations, as well as other ways to use the animation
-                framework.  The framework provides a lot of useful animations to handle movement, resizing, fading,
-                etc.  All the animations and their properties are described in the
-                <a href="../Walkthrough/AnimationReference.aspx">Animation Reference</a>.
+                The framework provides a lot of useful animations to handle movement, resizing, fading,
+                etc. All the animations and their properties are described in the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a>.
             </p>
         </Content>
     </samples:InfoBlock>

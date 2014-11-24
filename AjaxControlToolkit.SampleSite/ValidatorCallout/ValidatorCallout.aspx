@@ -93,7 +93,7 @@
                 <li><strong>WarningIconImageUrl</strong> - The path to a custom warning icon image</li>
                 <li><strong>CloseImageUrl</strong> - The path to a custom close image</li>
                 <li><strong>PopupPosition</strong> - Indicates where the ValidatorCallout popup should appear at the BottomLeft, BottomRight, TopLeft, TopRight, Left or Right (default) of the control to validate.</li>
-                <li><strong>Animations</strong> - Generic animations for the ValidatorCallout extender.  See the <a href="../Walkthrough/UsingAnimations.aspx">Using Animations</a> walkthrough and <a href="../Walkthrough/AnimationReference.aspx">Animation Reference</a> for more details.
+                <li><strong>Animations</strong> - Generic animations for the ValidatorCallout extender.  See the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a> for more details.
                     <ul>
                         <li><strong>OnShow</strong> - The OnShow animation will be played each time the validation popup is displayed.  The popup will be positioned correctly but hidden.  The animation can use <span class="codeReference">&lt;HideAction Visible="true" /&gt;</span> to display the popup along with any other visual effects.</li>
                         <li><strong>OnHide</strong> - The OnHide animation will be played each time the validation popup is hidden.</li>

@@ -77,10 +77,6 @@
                 selected by default. In the XML file, the Racing Blue option for the BMW is selected by default.  
             </p>
             <br />
-            <p>
-            There is also a walkthrough showing how to use a 
-                <a href="../Walkthrough/CCDWithDB.aspx">CascadingDropDown with a database</a>.        
-            </p>
         </Content>
     </samples:InfoBlock>
 
