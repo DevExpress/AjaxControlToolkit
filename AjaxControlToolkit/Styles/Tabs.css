@@ -32,6 +32,7 @@
     font-size: 11px;
     background-repeat: repeat-x;
     background-position: bottom;
+    height: 21px;
 }
 
 .ajax__tab_xp .ajax__tab_header .ajax__tab_outer {
@@ -134,7 +135,7 @@
     background-repeat: repeat-x;
 }
 
-.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active {
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active:not(:first-child) {
     margin-top: 1px;
 }
 
