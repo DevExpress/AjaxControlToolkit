@@ -1,6 +1,6 @@
 using System;
 
-namespace AjaxControlToolkit.MaskedEditValidatorCompatibility {
+namespace AjaxControlToolkit {
 
     internal interface IBaseCompareValidatorAccessor : IBaseValidatorAccessor {
         int CutoffYear { get; }

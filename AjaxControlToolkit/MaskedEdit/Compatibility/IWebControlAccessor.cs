@@ -1,6 +1,6 @@
 using System.Web.UI;
 
-namespace AjaxControlToolkit.MaskedEditValidatorCompatibility {
+namespace AjaxControlToolkit {
 
     internal interface IWebControlAccessor {
         HtmlTextWriterTag TagKey { get; }

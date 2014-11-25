@@ -1,6 +1,6 @@
 using System.Web.UI;
 
-namespace AjaxControlToolkit.MaskedEditValidatorCompatibility {
+namespace AjaxControlToolkit {
 
     internal interface IBaseValidatorAccessor : IWebControlAccessor {
         bool RenderUpLevel { get; }

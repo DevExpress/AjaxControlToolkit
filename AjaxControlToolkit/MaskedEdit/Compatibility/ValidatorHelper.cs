@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WhidbeyBaseValidator = System.Web.UI.WebControls.BaseValidator;
 
-namespace AjaxControlToolkit.MaskedEditValidatorCompatibility {
+namespace AjaxControlToolkit {
 
     internal static class ValidatorHelper {
         const string ValidatorFileName = "WebUIValidation.js";
