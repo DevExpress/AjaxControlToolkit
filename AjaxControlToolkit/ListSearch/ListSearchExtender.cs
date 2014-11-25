@@ -13,6 +13,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(PopupControlExtender), 1)]
     [RequiredScript(typeof(AnimationExtender), 2)]
     [Designer(typeof(ListSearchExtenderDesigner))]
+    [Description("Lets users search incrementally within ListBoxes")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ListSearchName + Constants.IconPostfix)]
     public class ListSearchExtender : AnimationExtenderControlBase {
 
@@ -52,6 +53,7 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [ClientPropertyName("promptPosition")]
         [DefaultValue(ListSearchPromptPosition.Top)]
+        [Description("Indicates where you want the prompt message displayed when the user clicks on the list.")]
         public ListSearchPromptPosition PromptPosition {
             get { return GetPropertyValue("promptPosition", ListSearchPromptPosition.Top); }
             set { SetPropertyValue("promptPosition", value); }
@@ -100,6 +102,7 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [ClientPropertyName("queryPattern")]
         [DefaultValue(ListSearchQueryPattern.StartsWith)]
+        [Description("Indicates search criteria to be used to find items.")]
         public ListSearchQueryPattern QueryPattern {
             get { return GetPropertyValue("QueryPattern", ListSearchQueryPattern.StartsWith); }
             set { SetPropertyValue("QueryPattern", value); }

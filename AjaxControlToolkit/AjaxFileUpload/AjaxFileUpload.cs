@@ -36,6 +36,7 @@ namespace AjaxControlToolkit {
         [ClientPropertyName("contextKeys")]
         public string ContextKeys { get; set; }
 
+        [Description("ID of Throbber")]
         [Category("Behavior")]
         [DefaultValue("")]
         public string ThrobberID {
