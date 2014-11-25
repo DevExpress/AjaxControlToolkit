@@ -124,7 +124,7 @@ namespace AjaxControlToolkit {
         [Browsable(true)]
         [Category("Behavior")]
         [Description("Number of frames per second used in the transition animation")]
-        [DefaultValue(15)]
+        [DefaultValue(30)]
         public int FramesPerSecond {
             get { return AccordionExtender.FramesPerSecond; }
             set { AccordionExtender.FramesPerSecond = value; }
