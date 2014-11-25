@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.Copy", Constants.HtmlEditorCopyButtonName)]
     public class Copy : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdCopy");
+            RegisterButtonImages("Ed-Copy");
             base.OnPreRender(e);
         }
     }

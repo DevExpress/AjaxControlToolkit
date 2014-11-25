@@ -10,7 +10,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.HorizontalSeparator", Constants.HtmlEditorHorizontalSepearatorButtonName)]
     public class HorizontalSeparator : DesignModeImageButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdSep");
+            RegisterButtonImages("Ed-Separator");
             base.OnPreRender(e);
         }
 

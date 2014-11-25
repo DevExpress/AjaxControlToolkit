@@ -101,8 +101,8 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
                 NormalSrc = getImagePath(BaseImageButtonType, name, ext, toolbar);
             }
             else {
-                NormalSrc = getImagePath(BaseImageButtonType, name + "N", ext, toolbar);
-                DownSrc = getImagePath(BaseImageButtonType, name + "A", ext, toolbar);
+                NormalSrc = getImagePath(BaseImageButtonType, name + "-Inactive", ext, toolbar);
+                DownSrc = getImagePath(BaseImageButtonType, name + "-Active", ext, toolbar);
             }
 
             var isStatus = false;
@@ -129,7 +129,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
 
         string getImagePath(Type type, string name, string ext, Toolbar toolbar) {
             var folder = toolbar.ButtonImagesFolder;
-            var result = ToolkitResourceManager.GetImageHref("HtmlEditor-" + name + "." + ext, this);
+            var result = ToolkitResourceManager.GetImageHref("HtmlEditor." + name + "." + ext, this);
 
             if(folder.Length > 0) {
                 var path = folder + name + "." + ext;

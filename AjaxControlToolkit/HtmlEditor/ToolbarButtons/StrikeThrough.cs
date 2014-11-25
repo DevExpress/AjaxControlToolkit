@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.StrikeThrough", Constants.HtmlEditorStrikeThroughButtonName)]
     public class StrikeThrough : EditorToggleButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdFormatStrike");
+            RegisterButtonImages("Ed-FormatStrike");
             base.OnPreRender(e);
         }
     }

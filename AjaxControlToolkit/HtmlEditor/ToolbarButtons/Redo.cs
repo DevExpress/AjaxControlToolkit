@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.Redo", Constants.HtmlEditorRedoButtonMode)]
     public class Redo : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdRedo");
+            RegisterButtonImages("Ed-Redo");
             base.OnPreRender(e);
         }
     }

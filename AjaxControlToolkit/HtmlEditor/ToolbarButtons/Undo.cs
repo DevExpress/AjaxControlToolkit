@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.Undo", Constants.HtmlEditorUndoButtonName)]
     public class Undo : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdUndo");
+            RegisterButtonImages("Ed-Undo");
             base.OnPreRender(e);
         }
     }

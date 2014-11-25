@@ -16,7 +16,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
         }
 
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdLink");
+            RegisterButtonImages("Ed-Link");
             base.OnPreRender(e);
         }
     }

@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.Underline", Constants.HtmlEditorUnderlineButtonName)]
     public class Underline : EditorToggleButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdFormatUnderline");
+            RegisterButtonImages("Ed-FormatUnderline");
             base.OnPreRender(e);
         }
     }

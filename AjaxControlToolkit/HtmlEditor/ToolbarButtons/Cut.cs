@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.Cut", Constants.HtmlEditorCutButtonName)]
     public class Cut : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdCut");
+            RegisterButtonImages("Ed-Cut");
             base.OnPreRender(e);
         }
     }

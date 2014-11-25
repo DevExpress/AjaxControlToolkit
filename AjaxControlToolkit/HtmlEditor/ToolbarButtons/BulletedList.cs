@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.BulletedList", Constants.HtmlEditorBulletedListButtonName)]
     public class BulletedList : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdListBullet");
+            RegisterButtonImages("Ed-ListBullet");
             base.OnPreRender(e);
         }
     }

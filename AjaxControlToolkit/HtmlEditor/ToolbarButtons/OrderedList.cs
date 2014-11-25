@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.OrderedList", Constants.HtmlEditorOrderedListButtonName)]
     public class OrderedList : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdListNum");
+            RegisterButtonImages("Ed-ListNum");
             base.OnPreRender(e);
         }
     }

@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.InsertHR", Constants.HtmlEditorInsertHRButtonName)]
     public class InsertHR : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdRule");
+            RegisterButtonImages("Ed-Rule");
             base.OnPreRender(e);
         }
     }

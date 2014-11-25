@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.Bold", Constants.HtmlEditorBoldButtonName)]
     public class Bold : EditorToggleButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdFormatBold");
+            RegisterButtonImages("Ed-FormatBold");
             base.OnPreRender(e);
         }
     }

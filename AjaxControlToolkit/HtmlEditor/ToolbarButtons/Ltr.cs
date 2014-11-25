@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.Ltr", Constants.HtmlEditorLtrButtonName)]
     public class Ltr : EditorToggleButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdFormatLtr");
+            RegisterButtonImages("Ed-FormatLtr");
             base.OnPreRender(e);
         }
     }

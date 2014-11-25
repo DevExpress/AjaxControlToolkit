@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.SubScript", Constants.HtmlEditorSubScriptButtonName)]
     public class SubScript : EditorToggleButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdFormatSub");
+            RegisterButtonImages("Ed-FormatSub");
             base.OnPreRender(e);
         }
     }

@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.RemoveStyles", Constants.HtmlEditorRemoveStylesButtonName)]
     public class RemoveStyles : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdUnformat");
+            RegisterButtonImages("Ed-Unformat");
             base.OnPreRender(e);
         }
     }

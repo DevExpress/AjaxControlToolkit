@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.Italic", Constants.HtmlEditorItalicButtonName)]
     public class Italic : EditorToggleButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdFormatItalic");
+            RegisterButtonImages("Ed-FormatItalic");
             base.OnPreRender(e);
         }
     }

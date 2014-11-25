@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.RemoveAlignment", Constants.HtmlEditorRemoveAlignmentButtonName)]
     public class RemoveAlignment : EditorToggleButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdRemoveAlign");
+            RegisterButtonImages("Ed-AlignRemove");
             base.OnPreRender(e);
         }
     }

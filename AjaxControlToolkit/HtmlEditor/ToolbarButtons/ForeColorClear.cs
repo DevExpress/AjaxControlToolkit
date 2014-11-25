@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.ForeColorClear", Constants.HtmlEditorForeColorClearButtonName)]
     public class ForeColorClear : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdColorFgClear");
+            RegisterButtonImages("Ed-ColorFgClear");
             base.OnPreRender(e);
         }
     }

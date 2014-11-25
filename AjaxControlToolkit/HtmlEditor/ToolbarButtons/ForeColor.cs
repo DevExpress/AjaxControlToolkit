@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.ForeColor", Constants.HtmlEditorForeColorButtonName)]
     public class ForeColor : ColorButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdColorFg");
+            RegisterButtonImages("Ed-ColorFg");
             base.OnPreRender(e);
         }
     }

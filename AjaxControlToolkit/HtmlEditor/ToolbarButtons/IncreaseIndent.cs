@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.IncreaseIndent", Constants.HtmlEditorIncreaseIndentButtonName)]
     public class IncreaseIndent : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdIndentMore");
+            RegisterButtonImages("Ed-IndentMore");
             base.OnPreRender(e);
         }
     }

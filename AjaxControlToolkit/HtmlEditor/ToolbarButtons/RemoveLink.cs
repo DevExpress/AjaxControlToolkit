@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.RemoveLink", Constants.HtmlEditorRemoveLinkButtonName)]
     public class RemoveLink : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdUnlink");
+            RegisterButtonImages("Ed-Unlink");
             base.OnPreRender(e);
         }
     }

@@ -10,7 +10,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     public class BackColorClear : MethodButton {
 
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdColorBgClear");
+            RegisterButtonImages("Ed-ColorBgClear");
             base.OnPreRender(e);
         }
     }

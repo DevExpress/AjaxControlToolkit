@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.PasteText", Constants.HtmlEditorPasteTextButtonName)]
     public class PasteText : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdPasteText");
+            RegisterButtonImages("Ed-PasteText");
             base.OnPreRender(e);
         }
     }

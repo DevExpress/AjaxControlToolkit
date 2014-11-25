@@ -112,8 +112,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         var defaultRailCssClass = (this._isHorizontal) ? 'ajax__slider_h_rail' : 'ajax__slider_v_rail';
         var defaultHandleCssClass = (this._isHorizontal) ? 'ajax__slider_h_handle' : 'ajax__slider_v_handle';
         var defaultHandleImageUrl = (this._isHorizontal)
-            ? Sys.Extended.UI.Images["SliderHandle-H.gif"]
-            : Sys.Extended.UI.Images["SliderHandle-V.gif"];
+            ? Sys.Extended.UI.Images["Slider.Handle-Horizontal.gif"]
+            : Sys.Extended.UI.Images["Slider.Handle-Vertical.gif"];
 
         this._railElement.className = (this._railCssClass) ? this._railCssClass : defaultRailCssClass;
         this._handle.className = (this._handleCssClass) ? this._handleCssClass : defaultHandleCssClass;

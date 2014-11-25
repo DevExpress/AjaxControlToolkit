@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.DecreaseIndent", Constants.HtmlEditorDecreaseIndentButtonName)]
     public class DecreaseIndent : MethodButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdIndentLess");
+            RegisterButtonImages("Ed-IndentLess");
             base.OnPreRender(e);
         }
     }

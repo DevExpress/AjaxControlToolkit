@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.JustifyRight", Constants.HtmlEditorJustifyRightButtonName)]
     public class JustifyRight : EditorToggleButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdAlignRight");
+            RegisterButtonImages("Ed-AlignRight");
             base.OnPreRender(e);
         }
     }

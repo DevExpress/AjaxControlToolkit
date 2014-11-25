@@ -938,28 +938,28 @@ Sys.Extended.UI.Seadragon.Config = function() {
 
     this.navImages = {
         zoomIn: {
-            REST: Sys.Extended.UI.Images["SeadragonZoomin-Rest.png"],
-            GROUP: Sys.Extended.UI.Images["SeadragonZoomin-Grouphover.png"],
-            HOVER: Sys.Extended.UI.Images["SeadragonZoomin-Hover.png"],
-            DOWN: Sys.Extended.UI.Images["SeadragonZoomin-Pressed.png"]
+            REST: Sys.Extended.UI.Images["Seadragon.ZoomIn-Rest.png"],
+            GROUP: Sys.Extended.UI.Images["Seadragon.ZoomIn-Grouphover.png"],
+            HOVER: Sys.Extended.UI.Images["Seadragon.ZoomIn-Hover.png"],
+            DOWN: Sys.Extended.UI.Images["Seadragon.ZoomIn-Pressed.png"]
         },
         zoomOut: {
-            REST: Sys.Extended.UI.Images["SeadragonZoomout-Rest.png"],
-            GROUP: Sys.Extended.UI.Images["SeadragonZoomout-Grouphover.png"],
-            HOVER: Sys.Extended.UI.Images["SeadragonZoomout-Hover.png"],
-            DOWN: Sys.Extended.UI.Images["SeadragonZoomout-Pressed.png"]
+            REST: Sys.Extended.UI.Images["Seadragon.ZoomOut-Rest.png"],
+            GROUP: Sys.Extended.UI.Images["Seadragon.ZoomOut-Grouphover.png"],
+            HOVER: Sys.Extended.UI.Images["Seadragon.ZoomOut-Hover.png"],
+            DOWN: Sys.Extended.UI.Images["Seadragon.ZoomOut-Pressed.png"]
         },
         home: {
-            REST: Sys.Extended.UI.Images["SeadragonHome-Rest.png"],
-            GROUP: Sys.Extended.UI.Images["SeadragonHome-Grouphover.png"],
-            HOVER: Sys.Extended.UI.Images["SeadragonHome-Hover.png"],
-            DOWN: Sys.Extended.UI.Images["SeadragonHome-Pressed.png"]
+            REST: Sys.Extended.UI.Images["Seadragon.Home-Rest.png"],
+            GROUP: Sys.Extended.UI.Images["Seadragon.Home-Grouphover.png"],
+            HOVER: Sys.Extended.UI.Images["Seadragon.Home-Hover.png"],
+            DOWN: Sys.Extended.UI.Images["Seadragon.Home-Pressed.png"]
         },
         fullpage: {
-            REST: Sys.Extended.UI.Images["SeadragonFullpage-Rest.png"],
-            GROUP: Sys.Extended.UI.Images["SeadragonFullpage-Grouphover.png"],
-            HOVER: Sys.Extended.UI.Images["SeadragonFullpage-Hover.png"],
-            DOWN: Sys.Extended.UI.Images["SeadragonFullpage-Pressed.png"]
+            REST: Sys.Extended.UI.Images["Seadragon.Fullscreen-Rest.png"],
+            GROUP: Sys.Extended.UI.Images["Seadragon.Fullscreen-Grouphover.png"],
+            HOVER: Sys.Extended.UI.Images["Seadragon.Fullscreen-Hover.png"],
+            DOWN: Sys.Extended.UI.Images["Seadragon.Fullscreen-Pressed.png"]
         }
     };
 };

@@ -8,7 +8,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.Selector", Constants.HtmlEditorSelectorButtonName)]
     public abstract class Selector : DesignModePopupImageButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdSelector");
+            RegisterButtonImages("Ed-Selector");
             base.OnPreRender(e);
         }
 

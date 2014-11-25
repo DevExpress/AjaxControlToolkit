@@ -16,7 +16,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
         }
 
         protected override void OnPreRender(EventArgs e) {
-            MethodButton.InternalRegisterButtonImages("EdForeColor");
+            MethodButton.InternalRegisterButtonImages("Ed-ForeColor");
             base.OnPreRender(e);
         }
     }

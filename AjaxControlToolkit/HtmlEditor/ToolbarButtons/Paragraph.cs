@@ -9,7 +9,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.ToolbarButtons.Paragraph", Constants.HtmlEditorParagraphButtonName)]
     public class Paragraph : EditorToggleButton {
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdFormatParagraph");
+            RegisterButtonImages("Ed-FormatParagraph");
             base.OnPreRender(e);
         }
     }

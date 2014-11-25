@@ -10,7 +10,7 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
         #region [ Methods ]
 
         protected override void OnPreRender(EventArgs e) {
-            RegisterButtonImages("EdDesign");
+            RegisterButtonImages("Ed-Design");
             ActiveMode = ActiveModeType.Design;
             base.OnPreRender(e);
         }
