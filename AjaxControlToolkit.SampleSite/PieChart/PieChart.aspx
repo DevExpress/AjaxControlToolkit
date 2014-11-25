@@ -14,7 +14,7 @@
             <ajaxToolkit:PieChartValue Category="Germany" Data="9" PieChartValueColor="#FFC652" />
             <ajaxToolkit:PieChartValue Category="United Kingdom" Data="22" PieChartValueColor="#6586A7" />
             <ajaxToolkit:PieChartValue Category="Australia" Data="18" PieChartValueColor="#669900" />
-            <ajaxToolkit:PieChartValue Category="Rusia" Data="8" PieChartValueColor="#4508A2" />
+            <ajaxToolkit:PieChartValue Category="Russia" Data="8" PieChartValueColor="#4508A2" />
         </PieChartValues>
     </ajaxToolkit:PieChart>
     <br />
