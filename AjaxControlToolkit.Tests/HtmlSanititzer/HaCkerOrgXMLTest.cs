@@ -4,39 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using System.Reflection;
-using System.Web.UI;
 
 namespace AjaxControlToolkit.Tests.HtmlSanititzer {
 
     [TestFixture]
     public class HaCkerOrgXMLTest {
-
-        [Test]
-        public void CheckParseChildrenAttributes() {
-            Assembly assembly = typeof(ExtenderControlBase).Assembly;
-            foreach(var type in assembly.GetTypes()) {
-                var attrs = type.GetCustomAttributes(typeof(ParseChildrenAttribute), false);
-
-                if(attrs.Length == 0)
-                    continue;
-
-                var parentAttrs = type.BaseType.GetCustomAttributes(typeof(ParseChildrenAttribute), true);
-
-
-                if(parentAttrs.Length == 0) {
-                    Console.WriteLine("+    {0} ", type.Name);
-                    continue;
-                }
-
-                if(parentAttrs.Length == 1) {
-                    Console.WriteLine("{1}    {0} ", type.Name, ((ParseChildrenAttribute)parentAttrs[0]).ChildrenAsProperties);
-                    continue;
-                }
-
-                throw new Exception("AHTUNG!");
-            }
-        }
 
         // Make sure all code from http://ha.ckers.org/xssAttacks.xml sanitized
         [Test]
