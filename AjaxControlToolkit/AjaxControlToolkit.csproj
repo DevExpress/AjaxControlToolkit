@@ -572,6 +572,9 @@
     <Content Include="Scripts\Localization\Resources_tr.min.js">
       <DependentUpon>Resources_tr.js</DependentUpon>
     </Content>
+    <Content Include="Styles\HtmlEditor.DesignPanel.min.css">
+      <DependentUpon>HtmlEditor.DesignPanel.css</DependentUpon>
+    </Content>
     <Content Include="Styles\HtmlEditorExtender.css" />
     <Content Include="Styles\HtmlEditorExtender.min.css">
       <DependentUpon>HtmlEditorExtender.css</DependentUpon>
@@ -1349,6 +1352,9 @@
       <LogicalName>Localization.$([System.String]::Copy(%(FileName)).Replace('_','.')).debug.js</LogicalName>
       <Visible>False</Visible>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\HtmlEditor.DesignPanel.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
