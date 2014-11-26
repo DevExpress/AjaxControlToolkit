@@ -85,10 +85,10 @@
                                 EnableMouseWheel="false"
                                 ShowHandleDragStyle="true"
                                 ShowHandleHoverStyle="true">
-                                <ajaxToolkit:MultiHandleSliderTargets>
+                                <MultiHandleSliderTargets>
                                     <ajaxToolkit:MultiHandleSliderTarget ControlID="multiHandle2_1_BoundControl" />
                                     <ajaxToolkit:MultiHandleSliderTarget ControlID="multiHandle2_2_BoundControl" />
-                                </ajaxToolkit:MultiHandleSliderTargets>
+                                </MultiHandleSliderTargets>
                             </ajaxToolkit:MultiHandleSliderExtender>
                         </td>
                         <td style="padding-left: 21px">
@@ -125,11 +125,11 @@
                     ShowInnerRail="true"
                     ShowHandleDragStyle="true"
                     ShowHandleHoverStyle="true">
-                    <ajaxToolkit:MultiHandleSliderTargets>
+                    <MultiHandleSliderTargets>
                         <ajaxToolkit:MultiHandleSliderTarget ControlID="multiHandle3_1_BoundControl" />
                         <ajaxToolkit:MultiHandleSliderTarget ControlID="multiHandle3_2_BoundControl" />
                         <ajaxToolkit:MultiHandleSliderTarget ControlID="multiHandle3_3_BoundControl" />
-                    </ajaxToolkit:MultiHandleSliderTargets>
+                    </MultiHandleSliderTargets>
                 </ajaxToolkit:MultiHandleSliderExtender>
             </td>
         </tr>
@@ -168,7 +168,7 @@
                                 InnerRailStyle="SlidingDoors"
                                 CssClass="ajax__multi_slider_custom"
                                 Increment="4">
-                                <ajaxToolkit:MultiHandleSliderTargets>
+                                <MultiHandleSliderTargets>
                                     <ajaxToolkit:MultiHandleSliderTarget
                                         ControlID="multiHandle4_1_BoundControl"
                                         HandleCssClass="handle_horizontal_left"
@@ -177,7 +177,7 @@
                                         ControlID="multiHandle4_2_BoundControl"
                                         HandleCssClass="handle_horizontal_right"
                                         Offset="-6" />
-                                </ajaxToolkit:MultiHandleSliderTargets>
+                                </MultiHandleSliderTargets>
                             </ajaxToolkit:MultiHandleSliderExtender>
                         </td>
                     </tr>
