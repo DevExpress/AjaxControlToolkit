@@ -53,9 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BundleResolverTests.cs" />
-    <Compile Include="HtmlSanititzer\HaCkerOrgXMLTest.cs" />
+    <Compile Include="HtmlSanitizer\HaCkerOrgXMLTest.cs" />
     <Compile Include="LocalizationTests.cs" />
-    <Compile Include="HtmlSanititzer\HtmlAgilityPackSanitizerProviderTests.cs" />
+    <Compile Include="HtmlSanitizer\DefaultHtmlSanitizerProviderTests.cs" />
     <Compile Include="MultipartFormDataParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,7 +75,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HtmlSanititzer\XssAttacks.xml" />
+    <Content Include="HtmlSanitizer\XssAttacks.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

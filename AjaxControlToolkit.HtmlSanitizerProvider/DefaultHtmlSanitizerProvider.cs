@@ -6,10 +6,10 @@ using System.Text;
 
 namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
 
-    public class HtmlAgilityPackSanitizerProvider : HtmlSanitizerProvider {
+    public class DefaultHtmlSanitizerProvider : HtmlSanitizerProvider {
         HtmlSanitizer _sanitizer;
 
-        public HtmlAgilityPackSanitizerProvider() {
+        public DefaultHtmlSanitizerProvider() {
             _sanitizer = new HtmlSanitizer();
         }
 

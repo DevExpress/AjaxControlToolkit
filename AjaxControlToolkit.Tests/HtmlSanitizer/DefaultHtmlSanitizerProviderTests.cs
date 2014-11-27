@@ -7,13 +7,13 @@ using System.Linq;
 namespace AjaxControlToolkit.Tests.HtmlSanititzer {
 
     [TestFixture]
-    public class HtmlAgilityPackSanitizerProviderTests {
+    public class DefaultHtmlSanitizerProviderTests {
 
         // A test for Xss locator
         [Test]
         public void XSSLocatorTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -29,7 +29,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageXSS1Test() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Action
@@ -45,7 +45,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageXSS2Test() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -61,7 +61,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageCaseInsensitiveXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -77,7 +77,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageHtmlEntitiesXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -93,7 +93,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageGraveAccentXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -109,7 +109,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageMalformedXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -125,7 +125,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageFromCharCodeXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -141,7 +141,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageUTF8UnicodeXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -157,7 +157,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageLongUTF8UnicodeXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -173,7 +173,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageHexEncodeXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -189,7 +189,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageEmbeddedTabXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -205,7 +205,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageEmbeddedEncodedTabXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -221,7 +221,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageEmbeddedNewLineXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -237,7 +237,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageEmbeddedCarriageReturnXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -281,7 +281,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         public void ImageMultilineInjectedXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -327,7 +327,7 @@ S
         [Test]
         public void ImageNullBreaksUpXSSTest1() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -343,7 +343,7 @@ S
         [Test]
         public void ImageNullBreaksUpXSSTest2() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -359,7 +359,7 @@ S
         [Test]
         public void ImageSpaceAndMetaCharXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -375,7 +375,7 @@ S
         [Test]
         public void ImageHalfOpenHtmlXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -391,7 +391,7 @@ S
         [Test]
         public void ImageDoubleOpenAngleBracketXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -407,7 +407,7 @@ S
         [Test]
         public void DivJavascriptEscapingXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -423,7 +423,7 @@ S
         [Test]
         public void ImageInputXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -439,7 +439,7 @@ S
         [Test]
         public void ImageDynsrcXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -455,7 +455,7 @@ S
         [Test]
         public void ImageLowsrcXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -471,7 +471,7 @@ S
         [Test]
         public void BGSoundXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -487,7 +487,7 @@ S
         [Test]
         public void BRJavascriptIncludeXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -503,7 +503,7 @@ S
         [Test]
         public void PWithUrlInStyleXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -520,7 +520,7 @@ S
         [Test]
         public void ImageWithVBScriptXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -536,7 +536,7 @@ S
         [Test]
         public void ImageWithMochaXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -552,7 +552,7 @@ S
         [Test]
         public void ImageWithLivescriptXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -568,7 +568,7 @@ S
         [Test]
         public void IframeXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -584,7 +584,7 @@ S
         [Test]
         public void FrameXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -600,7 +600,7 @@ S
         [Test]
         public void TableXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -616,7 +616,7 @@ S
         [Test]
         public void TDXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -632,7 +632,7 @@ S
         [Test]
         public void DivBackgroundImageXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -648,7 +648,7 @@ S
         [Test]
         public void DivBackgroundImageWithUnicodedXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -664,7 +664,7 @@ S
         [Test]
         public void DivBackgroundImageWithExtraCharactersXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -680,7 +680,7 @@ S
         [Test]
         public void DivExpressionXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -696,7 +696,7 @@ S
         [Test]
         public void ImageStyleExpressionXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -712,7 +712,7 @@ S
         [Test]
         public void AnchorTagStyleExpressionXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -728,7 +728,7 @@ S
         [Test]
         public void BaseTagXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -744,7 +744,7 @@ S
         [Test]
         public void EmbedTagXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -760,7 +760,7 @@ S
         [Test]
         public void EmbedSVGXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -776,7 +776,7 @@ S
         [Test]
         public void XmlNamespaceXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -792,7 +792,7 @@ S
         [Test]
         public void XmlWithCDataXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -808,7 +808,7 @@ S
         [Test]
         public void XmlWithCommentObfuscationXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -824,7 +824,7 @@ S
         [Test]
         public void XmlWithEmbeddedScriptXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -840,7 +840,7 @@ S
         [Test]
         public void HtmlPlusTimeXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -856,7 +856,7 @@ S
         [Test]
         public void ImageWithEmbeddedCommandXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -872,7 +872,7 @@ S
         [Test]
         public void ImageWithEmbeddedCommand2XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -888,7 +888,7 @@ S
         [Test]
         public void AnchorTagIPVersesHostnameXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -904,7 +904,7 @@ S
         [Test]
         public void AnchorTagUrlEncodingXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -920,7 +920,7 @@ S
         [Test]
         public void AnchorTagDwordEncodingXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -936,7 +936,7 @@ S
         [Test]
         public void AnchorTagHexEncodingXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -952,7 +952,7 @@ S
         [Test]
         public void AnchorTagOctalEncodingXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -968,7 +968,7 @@ S
         [Test]
         public void AnchorTagMixedEncodingXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -985,7 +985,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagProtocolResolutionXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1001,7 +1001,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagGoogleFeelingLucky1XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1017,7 +1017,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagGoogleFeelingLucky2XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1033,7 +1033,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagGoogleFeelingLucky3XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1049,7 +1049,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagRemovingCNamesXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1065,7 +1065,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagAbsoluteDNSXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1081,7 +1081,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagJavascriptLinkLocationXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1097,7 +1097,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagContentReplaceXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1113,7 +1113,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagNoFilterEvasionXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1129,7 +1129,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivNoFilterEvasionXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1145,7 +1145,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionNoFilterEvasionXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1161,7 +1161,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagNonAlphaNonDigitXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1177,7 +1177,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivNonAlphaNonDigitXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1193,7 +1193,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionNonAlphaNonDigitXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1209,7 +1209,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagNonAlphaNonDigit3XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1225,7 +1225,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivNonAlphaNonDigit3XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1241,7 +1241,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionNonAlphaNonDigit3XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1257,7 +1257,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagExtraneousOpenBracketsXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1273,7 +1273,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivExtraneousOpenBracketsXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1289,7 +1289,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionExtraneousOpenBracketsXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1305,7 +1305,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagNoClosingScriptTagsXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1321,7 +1321,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivNoClosingScriptTagsXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1337,7 +1337,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionNoClosingScriptTagsXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1353,7 +1353,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagProtocolResolutionScriptXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1369,7 +1369,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivProtocolResolutionScriptXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1385,7 +1385,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionProtocolResolutionScriptXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1401,7 +1401,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagNoQuotesXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1417,7 +1417,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivNoQuotesXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1433,7 +1433,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionNoQuotesXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1449,7 +1449,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagUSASCIIEncodingXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1465,7 +1465,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivUSASCIIEncodingXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1481,7 +1481,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionUSASCIIEncodingXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1497,7 +1497,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagDownlevelHiddenBlockXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1513,7 +1513,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivDownlevelHiddenBlockXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1529,7 +1529,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionDownlevelHiddenBlockXSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1545,7 +1545,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagHtmlQuotesEncapsulation1XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1561,7 +1561,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivHtmlQuotesEncapsulation1XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1577,7 +1577,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionHtmlQuotesEncapsulation1XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1593,7 +1593,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagHtmlQuotesEncapsulation2XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1609,7 +1609,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivHtmlQuotesEncapsulation2XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1625,7 +1625,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionHtmlQuotesEncapsulation2XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1641,7 +1641,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagHtmlQuotesEncapsulation3XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1657,7 +1657,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivHtmlQuotesEncapsulation3XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1673,7 +1673,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionHtmlQuotesEncapsulation3XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1689,7 +1689,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagHtmlQuotesEncapsulation4XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1705,7 +1705,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivHtmlQuotesEncapsulation4XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1721,7 +1721,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionHtmlQuotesEncapsulation4XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1737,7 +1737,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagHtmlQuotesEncapsulation5XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1753,7 +1753,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivHtmlQuotesEncapsulation5XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1769,7 +1769,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionHtmlQuotesEncapsulation5XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1785,7 +1785,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagHtmlQuotesEncapsulation6XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1801,7 +1801,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivHtmlQuotesEncapsulation6XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1817,7 +1817,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionHtmlQuotesEncapsulation6XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1833,7 +1833,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void AnchorTagHtmlQuotesEncapsulation7XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1849,7 +1849,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivHtmlQuotesEncapsulation7XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1865,7 +1865,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleExpressionHtmlQuotesEncapsulation7XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1879,7 +1879,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
 
         [Test]
         public void HtmlEncode() {
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1895,7 +1895,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivDoubleSuspiciousWordHtmlQuotesEncapsulation7XSSTest() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1911,7 +1911,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void ImageWithStyleAttribute() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1927,7 +1927,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleWithBrokenExpression() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1943,7 +1943,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivStyleWithMozBinding() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1959,7 +1959,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void LinkWithWebKitCSS() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1975,7 +1975,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivWithWebKitStyle() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -1992,7 +1992,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivWithMSExtension() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -2008,7 +2008,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivWithKHtmlExtension() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -2024,7 +2024,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void DivWithOExtension() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act
@@ -2040,7 +2040,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
         [Test]
         public void PWithWapExtension() {
             // Arrange
-            HtmlAgilityPackSanitizerProvider target = new HtmlAgilityPackSanitizerProvider();
+            DefaultHtmlSanitizerProvider target = new DefaultHtmlSanitizerProvider();
             Dictionary<string, string[]> elementWhiteList = CreateElementWhiteList();
 
             // Act

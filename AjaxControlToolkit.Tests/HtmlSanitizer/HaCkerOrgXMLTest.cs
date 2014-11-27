@@ -14,7 +14,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         [TestCaseSource("TestCases")]
         public void MakeSureItSanitized(string htmlFragment, string message) {
-            var target = new HtmlAgilityPackSanitizerProvider();
+            var target = new DefaultHtmlSanitizerProvider();
             var elementWhiteList = CreateElementWhiteList();
 
             var actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
@@ -26,7 +26,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         IEnumerable<TestCaseData> TestCases {
             get {
                 var source = new XmlDocument();
-                source.Load("../AjaxControlToolkit.Tests/HtmlSanititzer/XssAttacks.xml");
+                source.Load("../AjaxControlToolkit.Tests/HtmlSanitizer/XssAttacks.xml");
 
                 foreach(XmlNode node in source.SelectNodes("/xss/attack"))
                     yield return new TestCaseData(node["code"].InnerText, " ---> " + node["label"].InnerText);
