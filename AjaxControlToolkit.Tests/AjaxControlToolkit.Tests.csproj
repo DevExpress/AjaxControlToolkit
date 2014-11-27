@@ -59,9 +59,9 @@
     <Compile Include="MultipartFormDataParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AjaxControlToolkit.HtmlSanitizerProvider\AjaxControlToolkit.HtmlSanitizerProvider.csproj">
+    <ProjectReference Include="..\AjaxControlToolkit.HtmlSanitizerProvider\AjaxControlToolkit.HtmlEditor.Sanitizer.csproj">
       <Project>{4f19469b-3352-4d93-89e2-4b79fd7086a6}</Project>
-      <Name>AjaxControlToolkit.HtmlSanitizerProvider</Name>
+      <Name>AjaxControlToolkit.HtmlEditor.Sanitizer</Name>
     </ProjectReference>
     <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.csproj">
       <Project>{676b3449-93f7-4102-8df0-fb51911675d6}</Project>

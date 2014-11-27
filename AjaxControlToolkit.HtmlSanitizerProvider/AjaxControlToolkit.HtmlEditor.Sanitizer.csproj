@@ -7,8 +7,8 @@
     <ProjectGuid>{4F19469B-3352-4D93-89E2-4B79FD7086A6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AjaxControlToolkit.HtmlSanitizerProvider</RootNamespace>
-    <AssemblyName>AjaxControlToolkit.HtmlSanitizerProvider</AssemblyName>
+    <RootNamespace>AjaxControlToolkit.HtmlEditor.Sanitizer</RootNamespace>
+    <AssemblyName>AjaxControlToolkit.HtmlEditor.Sanitizer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,6 +38,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="WrapedHtmlAttribute.cs" />
     <Compile Include="WrapedHtmlNode.cs" />
     <Compile Include="HtmlAgilityPackSanitizerProvider.cs" />

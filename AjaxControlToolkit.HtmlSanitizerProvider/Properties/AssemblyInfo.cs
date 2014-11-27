@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Ajax Control Toolkit HTML Sanitizer Provider")]
+[assembly: AssemblyTitle("Ajax Control Toolkit HtmlEditor Sanitizer")]
 [assembly: ComVisible(false)]

@@ -32,7 +32,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkit.SampleSi
 		SlnRelativePath = "AjaxControlToolkit.SampleSite\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.HtmlSanitizerProvider", "AjaxControlToolkit.HtmlSanitizerProvider\AjaxControlToolkit.HtmlSanitizerProvider.csproj", "{4F19469B-3352-4D93-89E2-4B79FD7086A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.HtmlEditor.Sanitizer", "AjaxControlToolkit.HtmlSanitizerProvider\AjaxControlToolkit.HtmlEditor.Sanitizer.csproj", "{4F19469B-3352-4D93-89E2-4B79FD7086A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
