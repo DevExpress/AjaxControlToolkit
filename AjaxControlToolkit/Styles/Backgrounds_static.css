@@ -85,11 +85,11 @@
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_outer {
-    background-image: url('../Images/TabsHover-Right-verticalleft.gif');
+    background-image: url('../Images/Tabs.HoverRight-VerticalLeft.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_inner {
-    background-image: url('../Images/TabsHover-Left-verticalleft.gif');
+    background-image: url('../Images/Tabs.HoverLeft-VerticalLeft.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_hover .ajax__tab_tab {
@@ -97,11 +97,11 @@
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_outer {
-    background-image: url('../Images/TabsActive-Right-verticalleft.gif');
+    background-image: url('../Images/Tabs.ActiveRight-VerticalLeft.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_inner {
-    background-image: url('../Images/TabsActive-Left-verticalleft.gif');
+    background-image: url('../Images/Tabs.ActiveLeft-VerticalLeft.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_tab {
@@ -125,11 +125,11 @@
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_outer {
-    background-image: url('../Images/TabsHover-Right-verticalright.gif');
+    background-image: url('../Images/Tabs.HoverRight-VerticalRight.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_inner {
-    background-image: url('../Images/TabsHover-Left-verticalright.gif');
+    background-image: url('../Images/Tabs.HoverLeft-VerticalRight.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_hover .ajax__tab_tab {
@@ -137,11 +137,11 @@
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_outer {
-    background-image: url('../Images/TabsActive-Right-verticalright.gif');
+    background-image: url('../Images/Tabs.ActiveRight-VerticalRight.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_inner {
-    background-image: url('../Images/TabsActive-Left-verticalright.gif');
+    background-image: url('../Images/Tabs.ActiveLeft-VerticalRight.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalright .ajax__tab_active .ajax__tab_tab {
@@ -165,11 +165,11 @@
 }
 
 .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_outer {
-    background-image: url('../Images/TabsBottom-Hover-right.gif');
+    background-image: url('../Images/Tabs.Bottom-HoverRight.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_inner {
-    background-image: url('../Images/TabsBottom-Hover-left.gif');
+    background-image: url('../Images/Tabs.Bottom-HoverLeft.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_hover .ajax__tab_tab {
@@ -177,7 +177,7 @@
 }
 
 .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_outer {
-    background-image: url('../Images/TabsBottom-Active-right.gif');
+    background-image: url('../Images/Tabs.Bottom-ActiveRight.gif');
 }
 
 .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_inner {
