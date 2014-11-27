@@ -6,10 +6,10 @@ using System.Web.Configuration;
 namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
 
     public static class Provider {
-        static Lazy<HtmlSanitizerProvider> _sanitizer;
+        static Lazy<HtmlSanitizerProviderBase> _sanitizer;
 
         static Provider() {
-            _sanitizer = new Lazy<HtmlSanitizerProvider>(() => {
+            _sanitizer = new Lazy<HtmlSanitizerProviderBase>(() => {
                 var sanitizerConfig = (HtmlSanitizerProviderSection)WebConfigurationManager.GetSection("system.web/sanitizer");
 
                 if(sanitizerConfig == null)
@@ -18,14 +18,14 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
                 var providers = new HtmlSanitizerProviderCollection();
 
                 // use the ProvidersHelper class to call Initialize on each configured provider
-                ProvidersHelper.InstantiateProviders(sanitizerConfig.Providers, providers, typeof(HtmlSanitizerProvider));
+                ProvidersHelper.InstantiateProviders(sanitizerConfig.Providers, providers, typeof(HtmlSanitizerProviderBase));
 
                 // set a reference to the default provider
                 return providers[sanitizerConfig.DefaultProvider];
             });
         }
 
-        public static HtmlSanitizerProvider Sanitizer {
+        public static HtmlSanitizerProviderBase Sanitizer {
             get { return _sanitizer.Value; }
         }
     }

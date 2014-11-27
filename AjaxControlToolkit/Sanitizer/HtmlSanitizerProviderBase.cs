@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
 
-    public abstract class HtmlSanitizerProvider : ProviderBase {
+    public abstract class HtmlSanitizerProviderBase : ProviderBase {
 
         public abstract string GetSafeHtmlFragment(string htmlFragment, Dictionary<string, string[]> whiteList);
     }

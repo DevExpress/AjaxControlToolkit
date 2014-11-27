@@ -23,7 +23,7 @@ namespace AjaxControlToolkit {
         internal const int ButtonWidthDef = 23;
         internal const int ButtonHeightDef = 21;
         HtmlEditorExtenderButtonCollection buttonList = null;
-        HtmlSanitizerProvider sanitizerProvider = null;
+        HtmlSanitizerProviderBase sanitizerProvider = null;
         AjaxFileUpload ajaxFileUpload = null;
         bool enableSanitization = true;
 
@@ -32,7 +32,7 @@ namespace AjaxControlToolkit {
             sanitizerProvider = Provider.Sanitizer;
         }
 
-        public HtmlSanitizerProvider SanitizerProvider {
+        public HtmlSanitizerProviderBase SanitizerProvider {
             get { return this.sanitizerProvider; }
             set { this.sanitizerProvider = value; }
         }

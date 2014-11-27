@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
 
-    internal class WrapedHtmlNode : IHtmlNode {
+    internal class HtmlNodeWrapper : IHtmlNode {
         HtmlNode _wrappedNode;
 
-        public WrapedHtmlNode(HtmlNode wrappedNode) {
+        public HtmlNodeWrapper(HtmlNode wrappedNode) {
             if(wrappedNode == null)
                 throw new ArgumentNullException("agilityPackNode");
 
@@ -23,12 +23,12 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
             get {
                 return _wrappedNode.ChildNodes
                     .Where(n => n.NodeType == HtmlNodeType.Element)
-                    .Select(n => new WrapedHtmlNode(n));
+                    .Select(n => new HtmlNodeWrapper(n));
             }
         }
 
         public IEnumerable<IHtmlAttribute> Attributes {
-            get { return _wrappedNode.Attributes.Select(a => new WrapedHtmlAttribute(a)); }
+            get { return _wrappedNode.Attributes.Select(a => new HtmlAttributeWrapper(a)); }
         }
 
         public void Remove() {

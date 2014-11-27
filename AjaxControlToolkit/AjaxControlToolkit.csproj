@@ -340,7 +340,7 @@
     <Compile Include="Sanitizer\Provider.cs" />
     <Compile Include="Sanitizer\IHtmlAttribute.cs" />
     <Compile Include="Sanitizer\IHtmlNode.cs" />
-    <Compile Include="Sanitizer\HtmlSanitizerProvider.cs" />
+    <Compile Include="Sanitizer\HtmlSanitizerProviderBase.cs" />
     <Compile Include="Sanitizer\HtmlSanitizerProviderCollection.cs" />
     <Compile Include="Seadragon\ControlAnchor.cs" />
     <Compile Include="Seadragon\OverlayCollectionEditor.cs" />

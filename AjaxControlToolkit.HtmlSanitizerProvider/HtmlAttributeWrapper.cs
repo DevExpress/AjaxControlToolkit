@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
 
-    internal class WrapedHtmlAttribute : IHtmlAttribute {
+    internal class HtmlAttributeWrapper : IHtmlAttribute {
         HtmlAttribute _wrappedAttribute;
 
-        public WrapedHtmlAttribute(HtmlAttribute wrappedAttribute) {
+        public HtmlAttributeWrapper(HtmlAttribute wrappedAttribute) {
             if(wrappedAttribute == null)
                 throw new ArgumentNullException("wrappedAttribute");
 

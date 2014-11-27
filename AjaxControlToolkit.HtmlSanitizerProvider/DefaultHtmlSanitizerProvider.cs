@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
 
-    public class DefaultHtmlSanitizerProvider : HtmlSanitizerProvider {
+    public class DefaultHtmlSanitizerProvider : HtmlSanitizerProviderBase {
         HtmlSanitizer _sanitizer;
 
         public DefaultHtmlSanitizerProvider() {
@@ -23,7 +23,7 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
             if(html == null)
                 return String.Empty;
 
-            _sanitizer.Sanitize(new WrapedHtmlNode(html.DocumentNode), tagsWhiteList);
+            _sanitizer.Sanitize(new HtmlNodeWrapper(html.DocumentNode), tagsWhiteList);
 
             return html.DocumentNode.InnerHtml;
         }

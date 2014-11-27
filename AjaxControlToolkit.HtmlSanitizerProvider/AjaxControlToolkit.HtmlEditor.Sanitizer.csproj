@@ -41,8 +41,8 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="WrapedHtmlAttribute.cs" />
-    <Compile Include="WrapedHtmlNode.cs" />
+    <Compile Include="HtmlAttributeWrapper.cs" />
+    <Compile Include="HtmlNodeWrapper.cs" />
     <Compile Include="DefaultHtmlSanitizerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
