@@ -337,7 +337,6 @@
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
     <Compile Include="HtmlEditor\Sanitizer\HtmlSanitizer.cs" />
     <Compile Include="HtmlEditor\Sanitizer\HtmlSanitizerProviderSection.cs" />
-    <Compile Include="HtmlEditor\Sanitizer\Provider.cs" />
     <Compile Include="HtmlEditor\Sanitizer\IHtmlAttribute.cs" />
     <Compile Include="HtmlEditor\Sanitizer\IHtmlNode.cs" />
     <Compile Include="HtmlEditor\Sanitizer\HtmlSanitizerProviderBase.cs" />

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web.UI.HtmlControls;
 using System.Drawing;
 using AjaxControlToolkit.HtmlEditor.Sanitizer;
+using System.Web.Configuration;
 
 namespace AjaxControlToolkit {
     // HtmlEditorExtender extends to a textbox and creates and renders an editable div 
@@ -22,21 +23,35 @@ namespace AjaxControlToolkit {
     public class HtmlEditorExtender : ExtenderControlBase {
         internal const int ButtonWidthDef = 23;
         internal const int ButtonHeightDef = 21;
+
+        static Lazy<HtmlSanitizerProviderBase> sanitizerProvider = new Lazy<HtmlSanitizerProviderBase>(CreateSanitizerProvider, true);
+
         HtmlEditorExtenderButtonCollection buttonList = null;
-        HtmlSanitizerProviderBase sanitizerProvider = null;
         AjaxFileUpload ajaxFileUpload = null;
         bool enableSanitization = true;
 
+        static HtmlSanitizerProviderBase CreateSanitizerProvider() {
+            var sanitizerConfig = (HtmlSanitizerProviderSection)WebConfigurationManager.GetSection("system.web/sanitizer");
+
+            if(sanitizerConfig == null)
+                return null;
+
+            var providers = new HtmlSanitizerProviderCollection();
+
+            // use the ProvidersHelper class to call Initialize on each configured provider
+            ProvidersHelper.InstantiateProviders(sanitizerConfig.Providers, providers, typeof(HtmlSanitizerProviderBase));
+
+            // set a reference to the default provider
+            return providers[sanitizerConfig.DefaultProvider];
+        }
+
         public HtmlEditorExtender() {
             EnableClientState = true;
-            sanitizerProvider = Provider.Sanitizer;
         }
 
         public HtmlSanitizerProviderBase SanitizerProvider {
-            get { return this.sanitizerProvider; }
-            set { this.sanitizerProvider = value; }
+            get { return sanitizerProvider.Value; }
         }
-
 
         // Provide button list to client side. Need help from Toolbar property 
         // for designer experience support, cause Editor always blocks the property
@@ -136,7 +151,7 @@ namespace AjaxControlToolkit {
             // Check Whether EnableSanitization is disabled or not.
             if(EnableSanitization && sanitizerProvider != null) {
                 var elementWhiteList = MakeCombinedElementList();
-                result = sanitizerProvider.GetSafeHtmlFragment(result, elementWhiteList);
+                result = SanitizerProvider.GetSafeHtmlFragment(result, elementWhiteList);
             }
 
             return result;
