@@ -19,8 +19,6 @@ namespace AjaxControlToolkit {
         private Dictionary<string, Control> _findControlHelperCache = new Dictionary<string, Control>();
         private string _clientState;
         private bool _enableClientState;
-        private bool _isDisposed;
-        private bool _renderingScript;
         private bool _loadedClientStateValues;
 
         // Called when the ExtenderControlBase fails to locate a control referenced by a TargetControlID.
@@ -30,9 +28,6 @@ namespace AjaxControlToolkit {
         [DefaultValue(true)]
         public bool Enabled {
             get {
-                if(_isDisposed)
-                    return false;
-
                 return GetPropertyValue("Enabled", true);
             }
             set {
@@ -254,11 +249,8 @@ namespace AjaxControlToolkit {
         // Walks each of the properties in the TargetProperties object and renders script for them.
         protected virtual void RenderScriptAttributes(ScriptBehaviorDescriptor descriptor) {
             try {
-                _renderingScript = true;
                 ComponentDescriber.DescribeComponent(this, descriptor, this, this);
-            } finally {
-                _renderingScript = false;
-            }
+            } finally { }
         }
 
         // Allows generation of markup within the behavior declaration in XML script

@@ -549,7 +549,6 @@ Sys.Extended.UI.LineChart.prototype = {
 };
 
 Sys.Extended.UI.LineChart.registerClass("Sys.Extended.UI.LineChart", Sys.Extended.UI.ControlBase);
-//Sys.registerComponent(Sys.Extended.UI.LineChart, { name: 'LineChart', parameters: [{ name: 'ClientSeries', type: 'LineChartSeries[]' }] });
 
 Sys.Extended.UI.LineChartType = function() {
     /// Type of Line Chart

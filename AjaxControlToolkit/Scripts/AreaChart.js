@@ -473,7 +473,6 @@ Sys.Extended.UI.AreaChart.prototype = {
 };
 
 Sys.Extended.UI.AreaChart.registerClass("Sys.Extended.UI.AreaChart", Sys.Extended.UI.ControlBase);
-//Sys.registerComponent(Sys.Extended.UI.AreaChart, { name: 'AreaChart', parameters: [{ name: 'ClientSeries', type: 'AreaChartSeries[]' }] });
 
 Sys.Extended.UI.AreaChartType = function() {
     throw Error.invalidOperation();

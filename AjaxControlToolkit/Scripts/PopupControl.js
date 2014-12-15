@@ -433,7 +433,6 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
 };
 
 Sys.Extended.UI.PopupControlBehavior.registerClass('Sys.Extended.UI.PopupControlBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.PopupControlBehavior, { name: "popupBehavior" });
 
 // This global variable tracks the currently visible popup.  Automatically
 // hiding the popup when focus is lost does not work with our mechanism to

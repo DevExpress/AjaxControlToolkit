@@ -665,4 +665,3 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
 }
 
 Sys.Extended.UI.DropDownBehavior.registerClass('Sys.Extended.UI.DropDownBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.DropDownBehavior, { name: "dropDown" });

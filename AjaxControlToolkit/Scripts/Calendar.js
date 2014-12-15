@@ -1541,7 +1541,6 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     }
 }
 Sys.Extended.UI.CalendarBehavior.registerClass("Sys.Extended.UI.CalendarBehavior", Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.CalendarBehavior, { name: "calendar" });
 
 Sys.Extended.UI.CalendarPosition = function() {
     // Position of the popup relative to the target control

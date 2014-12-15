@@ -898,4 +898,3 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     }
 }
 Sys.Extended.UI.CollapsiblePanelBehavior.registerClass('Sys.Extended.UI.CollapsiblePanelBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.CollapsiblePanelBehavior, { name: "collapsiblePanel" });

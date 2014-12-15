@@ -763,7 +763,6 @@ Sys.Extended.UI.BarChart.prototype = {
 };
 
 Sys.Extended.UI.BarChart.registerClass("Sys.Extended.UI.BarChart", Sys.Extended.UI.ControlBase);
-//Sys.registerComponent(Sys.Extended.UI.BarChart, { name: 'BarChart', parameters: [{ name: 'ClientSeries', type: 'BarChartSeries[]' }] });
 
 Sys.Extended.UI.BarChartType = function() {    
     throw Error.invalidOperation();

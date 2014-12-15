@@ -270,7 +270,6 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     }
 }
 Sys.Extended.UI.TextBoxWatermarkBehavior.registerClass('Sys.Extended.UI.TextBoxWatermarkBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.TextBoxWatermarkBehavior, { name: "watermark", parameters: [{name:"WatermarkText",type:"String"}, {name:"WatermarkCssClass",type:"String"}] });
 
 Sys.Extended.UI.TextBoxWatermarkBehavior.WebForm_OnSubmit = function() {
     // Wraps ASP.NET's WebForm_OnSubmit in order to strip all watermarks prior to submission

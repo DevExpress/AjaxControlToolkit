@@ -846,7 +846,6 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
 }
 
 Sys.Extended.UI.PasswordStrengthExtenderBehavior.registerClass('Sys.Extended.UI.PasswordStrengthExtenderBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.PasswordStrengthExtenderBehavior, { name: "passwordStrength" });
 
 // Register enumerations  
 

@@ -1899,4 +1899,3 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
 Sys.Extended.UI.MultiHandleSliderBehavior.DropPending = null;
 Sys.Extended.UI.MultiHandleSliderBehavior.registerClass('Sys.Extended.UI.MultiHandleSliderBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.MultiHandleSliderBehavior, { name: "multiHandleSlider" });

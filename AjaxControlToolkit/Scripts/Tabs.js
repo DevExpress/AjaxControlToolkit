@@ -320,7 +320,6 @@ Sys.Extended.UI.TabContainer.prototype = {
     }
 }
 Sys.Extended.UI.TabContainer.registerClass("Sys.Extended.UI.TabContainer", Sys.Extended.UI.ControlBase);
-//Sys.registerComponent(Sys.Extended.UI.TabContainer, { name: "tabContainer", parameters: [{ name: "activeTabIndex", type: "Number" }] });
 
 Sys.Extended.UI.TabPanel = function(element) {
     Sys.Extended.UI.TabPanel.initializeBase(this, [element]);
@@ -770,4 +769,3 @@ Sys.Extended.UI.TabPanel.prototype = {
     }
 }
 Sys.Extended.UI.TabPanel.registerClass("Sys.Extended.UI.TabPanel", Sys.UI.Control);
-//Sys.registerComponent(Sys.Extended.UI.TabPanel, { name: "tabPanel", parameters: [{ name: "owner", type: "Sys.Extended.UI.TabContainer" }, { name: "headerTab", type: "String" }] });

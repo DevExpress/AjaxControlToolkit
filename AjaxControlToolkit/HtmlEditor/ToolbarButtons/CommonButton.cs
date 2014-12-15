@@ -19,7 +19,6 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
         bool _wasPreRender;
         bool _ignoreTab;
         internal DesignerWithMapPath _designer;
-        private ResourceManager _rm;
 
         protected CommonButton(HtmlTextWriterTag tag)
             : base(false, tag) {

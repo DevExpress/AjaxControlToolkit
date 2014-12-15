@@ -577,4 +577,3 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
 }
 
 Sys.Extended.UI.NumericUpDownBehavior.registerClass('Sys.Extended.UI.NumericUpDownBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.NumericUpDownBehavior, { name: "upDown", parameters: ["Minimum", "Maximum", "Width"] });

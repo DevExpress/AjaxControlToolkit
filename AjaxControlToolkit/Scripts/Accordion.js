@@ -1241,4 +1241,3 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     }
 }
 Sys.Extended.UI.AccordionBehavior.registerClass('Sys.Extended.UI.AccordionBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.AccordionBehavior, { name: "accordion" });

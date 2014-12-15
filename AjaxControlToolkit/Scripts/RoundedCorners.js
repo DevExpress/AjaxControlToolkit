@@ -441,4 +441,3 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
 }
 
 Sys.Extended.UI.RoundedCornersBehavior.registerClass('Sys.Extended.UI.RoundedCornersBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.RoundedCornersBehavior, { name: "rounded" });

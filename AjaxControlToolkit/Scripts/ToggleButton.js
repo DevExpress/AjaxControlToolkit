@@ -273,4 +273,3 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     }
 }
 Sys.Extended.UI.ToggleButtonBehavior.registerClass('Sys.Extended.UI.ToggleButtonBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.ToggleButtonBehavior, { name: "toggleButton" });

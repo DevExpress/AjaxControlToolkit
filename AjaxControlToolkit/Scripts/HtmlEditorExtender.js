@@ -1036,7 +1036,6 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 };
 
 Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEditorExtenderBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.HtmlEditorExtenderBehavior, { name: 'HtmlEditorExtender', parameters: [{ name: 'ToolbarButtons', type: 'HtmlEditorExtenderButton[]' }] });
 
 var HtmlEditorExtender_editableDivs = new Array();
 

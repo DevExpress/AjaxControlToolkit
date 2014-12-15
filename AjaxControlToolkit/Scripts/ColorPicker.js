@@ -528,4 +528,3 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     }
 }
 Sys.Extended.UI.ColorPickerBehavior.registerClass('Sys.Extended.UI.ColorPickerBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.ColorPickerBehavior, { name: "colorPicker" });

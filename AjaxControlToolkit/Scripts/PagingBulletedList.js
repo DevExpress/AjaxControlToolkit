@@ -509,4 +509,3 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
 }
 
 Sys.Extended.UI.PagingBulletedListBehavior.registerClass('Sys.Extended.UI.PagingBulletedListBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.PagingBulletedListBehavior, { name: "pagedList" });

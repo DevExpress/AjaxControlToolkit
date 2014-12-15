@@ -781,7 +781,6 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     }
 }
 Sys.Extended.UI.BalloonPopupControlBehavior.registerClass("Sys.Extended.UI.BalloonPopupControlBehavior", Sys.Extended.UI.DynamicPopulateBehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.BalloonPopupControlBehavior, { name: "balloonPopupBehavior" });
 
 // This global variable tracks the currently visible popup.  Automatically
 // hiding the popup when focus is lost does not work with our mechanism to

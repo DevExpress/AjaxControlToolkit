@@ -179,4 +179,3 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
 }
 
 Sys.Extended.UI.FloatingBehavior.registerClass('Sys.Extended.UI.FloatingBehavior', Sys.Extended.UI.BehaviorBase, Sys.Extended.UI.IDragSource, Sys.Extended.UI.IDropTarget, Sys.IDisposable);
-//Sys.registerComponent(Sys.Extended.UI.FloatingBehavior, { name: "draggable" });

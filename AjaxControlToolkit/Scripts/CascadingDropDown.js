@@ -589,4 +589,3 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     }
 }
 Sys.Extended.UI.CascadingDropDownBehavior.registerClass('Sys.Extended.UI.CascadingDropDownBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.CascadingDropDownBehavior, { name: "cascadingDropDown" });

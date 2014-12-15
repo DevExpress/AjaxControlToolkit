@@ -603,7 +603,6 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
 }
 
 Sys.Extended.UI.ListSearchBehavior.registerClass('Sys.Extended.UI.ListSearchBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.ListSearchBehavior, { name: "listSearch" });
 
 Sys.Extended.UI.ListSearchPromptPosition = function() {
     throw Error.invalidOperation();

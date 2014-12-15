@@ -1011,7 +1011,6 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
 
 }
 Sys.Extended.UI.SlideShowBehavior.registerClass('Sys.Extended.UI.SlideShowBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.SlideShowBehavior, { name: "slideShow" });
 
 Sys.Extended.UI.SlideShowEventArgs = function(previousSlide, nextSlide, slideIndex) {    
     Sys.Extended.UI.SlideShowEventArgs.initializeBase(this);

@@ -399,7 +399,6 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
 }
 
 Sys.Extended.UI.HoverMenuBehavior.registerClass('Sys.Extended.UI.HoverMenuBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.HoverMenuBehavior, { name: "hoverMenu" });
 
 Sys.Extended.UI.HoverMenuPopupPosition = function() {
     // Where the popup should be positioned relative to the target control

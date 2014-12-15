@@ -241,7 +241,6 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
 }
 
 Sys.Extended.UI.ConfirmButtonBehavior.registerClass('Sys.Extended.UI.ConfirmButtonBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.ConfirmButtonBehavior, { name: "confirmButton", parameters: [{name: "ConfirmText", type: "String"}] });
 
 Sys.Extended.UI.ConfirmButtonBehavior.WebForm_OnSubmit = function() {
     // Wraps ASP.NET's WebForm_OnSubmit in order to display the confirm dialog prior to submission    

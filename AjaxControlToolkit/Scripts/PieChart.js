@@ -198,4 +198,3 @@ Sys.Extended.UI.PieChart.prototype = {
 };
 
 Sys.Extended.UI.PieChart.registerClass("Sys.Extended.UI.PieChart", Sys.Extended.UI.ControlBase);
-//Sys.registerComponent(Sys.Extended.UI.PieChart, { name: 'PieChart', parameters: [{ name: 'PieChartValues', type: 'PieChartValue[]' }] });

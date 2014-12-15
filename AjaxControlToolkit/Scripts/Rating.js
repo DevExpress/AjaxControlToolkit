@@ -398,7 +398,6 @@ Sys.Extended.UI.RatingBehavior.prototype = {
 }
 
 Sys.Extended.UI.RatingBehavior.registerClass('Sys.Extended.UI.RatingBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.RatingBehavior, { name: "rating" });
 
 Sys.Extended.UI.RatingEventArgs = function(rating) {
     Sys.Extended.UI.RatingEventArgs.initializeBase(this);

@@ -440,4 +440,3 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
 }
 
 Sys.Extended.UI.ResizableControlBehavior.registerClass('Sys.Extended.UI.ResizableControlBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.ResizableControlBehavior, { name: "resizable" });

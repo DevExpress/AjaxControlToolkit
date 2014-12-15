@@ -651,7 +651,6 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     }
 }
 Sys.Extended.UI.PopupBehavior.registerClass('Sys.Extended.UI.PopupBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.PopupBehavior, { name: "popup" });
 
 Sys.Extended.UI.PositioningMode = function() {
     throw Error.invalidOperation();

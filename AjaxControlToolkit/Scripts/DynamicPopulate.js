@@ -287,4 +287,3 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
 }
 
 Sys.Extended.UI.DynamicPopulateBehavior.registerClass('Sys.Extended.UI.DynamicPopulateBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.DynamicPopulateBehavior, { name: "dynamicPopulate" });

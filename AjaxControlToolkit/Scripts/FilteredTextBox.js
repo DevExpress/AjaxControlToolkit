@@ -308,7 +308,6 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
 }
 
 Sys.Extended.UI.FilteredTextBoxBehavior.registerClass('Sys.Extended.UI.FilteredTextBoxBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.FilteredTextBoxBehavior, { name: "filteredTextBox" });
 
 Sys.Extended.UI.FilterTypes = function() {
     // Character filter to be applied to a textbox

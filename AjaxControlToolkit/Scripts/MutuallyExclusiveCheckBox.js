@@ -97,7 +97,6 @@ Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.prototype = {
 
 Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.registerClass('Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior', Sys.Extended.UI.BehaviorBase);
 Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.Keys = {};
-//Sys.registerComponent(Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior, { name: "mutuallyExclusiveCheckBox", parameters: ["Key"] });
 
 Sys.Extended.UI.MutuallyExclusiveCheckBoxEventArgs = function(checkbox, key) {
     // Event arguments used when the checked event is raised

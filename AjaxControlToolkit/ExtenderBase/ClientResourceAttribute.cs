@@ -7,7 +7,7 @@ namespace AjaxControlToolkit {
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public abstract class ClientResourceAttribute : Attribute {
-        private int _loadOrder;
+        private int _loadOrder = 0;
         private string _resourcePath;
 
         public ClientResourceAttribute(string resourcePath) {

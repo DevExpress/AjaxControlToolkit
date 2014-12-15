@@ -3590,7 +3590,6 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     }
 }
 Sys.Extended.UI.MaskedEditBehavior.registerClass('Sys.Extended.UI.MaskedEditBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.MaskedEditBehavior, { name: "maskedEdit" });
 
 // Register enumerations  
 Sys.Extended.UI.MaskedEditType = function() {

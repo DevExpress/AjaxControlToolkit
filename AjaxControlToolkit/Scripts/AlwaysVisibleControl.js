@@ -291,4 +291,3 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
     }
 }
 Sys.Extended.UI.AlwaysVisibleControlBehavior.registerClass('Sys.Extended.UI.AlwaysVisibleControlBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.AlwaysVisibleControlBehavior, { name: "alwaysVisible" });

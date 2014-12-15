@@ -222,4 +222,3 @@ Sys.Extended.UI.HoverBehavior.descriptor = {
 }
 
 Sys.Extended.UI.HoverBehavior.registerClass('Sys.Extended.UI.HoverBehavior', Sys.Extended.UI.BehaviorBase);
-//Sys.registerComponent(Sys.Extended.UI.HoverBehavior, { name: "hover" });

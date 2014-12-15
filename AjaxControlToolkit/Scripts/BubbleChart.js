@@ -544,4 +544,3 @@ Sys.Extended.UI.BubbleChart.prototype = {
 };
 
 Sys.Extended.UI.BubbleChart.registerClass("Sys.Extended.UI.BubbleChart", Sys.Extended.UI.ControlBase);
-//Sys.registerComponent(Sys.Extended.UI.BubbleChart, { name: 'BubbleChart', parameters: [{ name: 'BubbleChartClientValues', type: 'BubbleChartValue[]' }] });
