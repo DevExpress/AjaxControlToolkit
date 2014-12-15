@@ -257,6 +257,7 @@ namespace AjaxControlToolkit {
             HtmlEditorEdFlashImage = HtmlEditorName + ".Ed-Flash.gif",
             HtmlEditorEdMediaImage = HtmlEditorName + ".Ed-Media.gif",
             HtmlEditorEdPlaceHolderImage = HtmlEditorName + ".Ed-Placeholder.gif",
+            HtmlEditorExtenderButtonsImage = HtmlEditorName + "Extender.Buttons.png",
 
             BalloonPopupCloudGifSprite = BalloonPopupName + ".CloudSprite.gif",
             BalloonPopupCloudPngSprite = BalloonPopupName + ".CloudSprite.png",

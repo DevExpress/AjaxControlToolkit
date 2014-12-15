@@ -149,10 +149,7 @@ using System.Web.UI;
 [assembly: WebResource(Constants.HtmlEditorExtenderName + Constants.JsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.HtmlEditorExtenderName + Constants.CssPostfix, "text/css")]
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.HtmlEditorExtenderName + Constants.MinCssPostfix, "text/css")]
-[assembly: WebResource(Constants.ImageResourcePrefix + Constants.HtmlEditorExtenderName, "img/png")]
-
-
-
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.HtmlEditorExtenderName, "image/png")]
 
 [assembly: WebResource(Constants.HtmlEditorEditorName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.HtmlEditorEditorName + Constants.JsPostfix, "text/javascript")]
@@ -411,6 +408,7 @@ using System.Web.UI;
 [assembly: WebResource(Constants.ImageResourcePrefix + Constants.HtmlEditorEdFlashImage, "image/gif")]
 [assembly: WebResource(Constants.ImageResourcePrefix + Constants.HtmlEditorEdMediaImage, "image/gif")]
 [assembly: WebResource(Constants.ImageResourcePrefix + Constants.HtmlEditorEdPlaceHolderImage, "image/gif")]
+[assembly: WebResource(Constants.ImageResourcePrefix + Constants.HtmlEditorExtenderButtonsImage, "image/png")]
 
 [assembly: WebResource(Constants.LineChartName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.LineChartName + Constants.JsPostfix, "text/javascript")]

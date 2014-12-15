@@ -489,7 +489,7 @@
     <EmbeddedResource Include="Images\HtmlEditor.Ed-Unformat-Inactive.gif" />
     <EmbeddedResource Include="Images\HtmlEditor.Ed-Unlink-Active.gif" />
     <EmbeddedResource Include="Images\HtmlEditor.Ed-Unlink-Inactive.gif" />
-    <EmbeddedResource Include="Images\HtmlEditor.Extender.Buttons.png" />
+    <EmbeddedResource Include="Images\HtmlEditorExtender.Buttons.png" />
     <EmbeddedResource Include="Images\MultiHandleSlider.Handle-Horizontal.gif" />
     <EmbeddedResource Include="Images\MultiHandleSlider.Handle-Vertical.gif" />
     <EmbeddedResource Include="Images\MultiHandleSlider.HandleDown-Horizontal.gif" />
@@ -571,13 +571,13 @@
     <Content Include="Scripts\Localization\Resources_tr.min.js">
       <DependentUpon>Resources_tr.js</DependentUpon>
     </Content>
-    <Content Include="Styles\HtmlEditor.DesignPanel.min.css">
+    <EmbeddedResource Include="Styles\HtmlEditor.DesignPanel.min.css">
       <DependentUpon>HtmlEditor.DesignPanel.css</DependentUpon>
-    </Content>
-    <Content Include="Styles\HtmlEditorExtender.css" />
-    <Content Include="Styles\HtmlEditorExtender.min.css">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Styles\HtmlEditorExtender.css" />
+    <EmbeddedResource Include="Styles\HtmlEditorExtender.min.css">
       <DependentUpon>HtmlEditorExtender.css</DependentUpon>
-    </Content>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolboxIcons\HtmlEditorExtender.ico" />
     <EmbeddedResource Include="Styles\HtmlEditor.HtmlPanel.min.css">
       <DependentUpon>HtmlEditor.HtmlPanel.css</DependentUpon>
@@ -1353,7 +1353,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\HtmlEditor.DesignPanel.css" />
+    <EmbeddedResource Include="Styles\HtmlEditor.DesignPanel.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
