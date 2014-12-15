@@ -149,7 +149,7 @@ namespace AjaxControlToolkit {
             result = Regex.Replace(result, "<[^>]*position\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
             // Check Whether EnableSanitization is disabled or not.
-            if(EnableSanitization && sanitizerProvider != null) {
+            if(EnableSanitization && SanitizerProvider != null) {
                 var elementWhiteList = MakeCombinedElementList();
                 result = SanitizerProvider.GetSafeHtmlFragment(result, elementWhiteList);
             }
@@ -162,7 +162,7 @@ namespace AjaxControlToolkit {
             base.OnInit(e);
             if(!DesignMode) {
                 // Check if EnableSanitization is enabled and sanitizer provider is not configured.
-                if(EnableSanitization && sanitizerProvider == null)
+                if(EnableSanitization && SanitizerProvider == null)
                     throw new Exception("Sanitizer provider is not configured in the web.config file. If you are using the HtmlEditorExtender with a public website then please configure a Sanitizer provider. Otherwise, set the EnableSanitization property to false.");
 
                 var popupdiv = new HtmlGenericControl("div");
