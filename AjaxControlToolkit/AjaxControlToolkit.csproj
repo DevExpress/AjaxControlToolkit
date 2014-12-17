@@ -562,6 +562,9 @@
     <EmbeddedResource Include="Images\ValidatorCallout.Alert-Large.gif" />
     <EmbeddedResource Include="Images\ValidatorCallout.Alert-Small.gif" />
     <EmbeddedResource Include="Images\ValidatorCallout.Close.gif" />
+    <Content Include="Scripts\FloatingBehavior.min.js">
+      <DependentUpon>FloatingBehavior.js</DependentUpon>
+    </Content>
     <Content Include="Scripts\HtmlEditor.ToolbarButtons.JustifyCenter.min.js">
       <DependentUpon>HtmlEditor.ToolbarButtons.JustifyCenter.js</DependentUpon>
     </Content>
@@ -1180,10 +1183,7 @@
     <Content Include="Scripts\Compat.Timer.min.js">
       <DependentUpon>Compat.Timer.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\Floating.js" />
-    <Content Include="Scripts\DragPanel.min.js">
-      <DependentUpon>Floating.js</DependentUpon>
-    </Content>
+    <Content Include="Scripts\FloatingBehavior.js" />
     <Content Include="Scripts\DropShadow.js" />
     <Content Include="Scripts\DropShadow.min.js">
       <DependentUpon>DropShadow.js</DependentUpon>

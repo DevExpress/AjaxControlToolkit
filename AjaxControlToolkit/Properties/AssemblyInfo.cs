@@ -115,9 +115,6 @@ using System.Web.UI;
 [assembly: WebResource(Constants.DraggableListItemName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DraggableListItemName + Constants.JsPostfix, "text/javascript")]
 
-[assembly: WebResource(Constants.DragPanelName + Constants.DebugJsPostfix, "text/javascript")]
-[assembly: WebResource(Constants.DragPanelName + Constants.JsPostfix, "text/javascript")]
-
 [assembly: WebResource(Constants.DropDownName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.DropDownName + Constants.JsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.StyleResourcePrefix + Constants.DropDownName + Constants.CssPostfix, "text/css", PerformSubstitution = true)]
@@ -132,6 +129,9 @@ using System.Web.UI;
 
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.DebugJsPostfix, "text/javascript")]
 [assembly: WebResource(Constants.FilteredTextBoxName + Constants.JsPostfix, "text/javascript")]
+
+[assembly: WebResource(Constants.FloatingBehaviorName + Constants.DebugJsPostfix, "text/javascript")]
+[assembly: WebResource(Constants.FloatingBehaviorName + Constants.JsPostfix, "text/javascript")]
 
 [assembly: WebResource(Constants.ImageResourcePrefix + Constants.GravatarAnonymousImage, "image/jpeg")]
 [assembly: WebResource(Constants.ImageResourcePrefix + Constants.GravatarGImage, "image/jpeg")]

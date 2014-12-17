@@ -12,7 +12,7 @@ namespace AjaxControlToolkit {
     // When attached to a Panel, the user can then drag that panel around the browser rendering surface
     // using the mouse.
     [Designer(typeof(DragPanelExtenderDesigner))]
-    [ClientScriptResource("Sys.Extended.UI.FloatingBehavior", Constants.DragPanelName)]
+    [ClientScriptResource("Sys.Extended.UI.FloatingBehavior", Constants.FloatingBehaviorName)]
     [TargetControlType(typeof(Panel))]
     [RequiredScript(typeof(DragDropScripts))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DragPanelName + Constants.IconPostfix)]

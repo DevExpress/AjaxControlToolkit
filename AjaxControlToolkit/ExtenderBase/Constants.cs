@@ -53,6 +53,7 @@ namespace AjaxControlToolkit {
             DropShadowName = "DropShadow",
             DropWatcherName = "DropWatcher",
             FilteredTextBoxName = "FilteredTextBox",
+            FloatingBehaviorName = "FloatingBehavior",
             GravatarName = "Gravatar",
             HoverMenuName = "HoverMenu",
             HoverName = "Hover",
