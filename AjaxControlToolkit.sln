@@ -6,6 +6,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F7861071-5C79-4824-AF48-EBDD553F1D13}"
 	ProjectSection(SolutionItems) = preProject
 		WE-settings.xml = WE-settings.xml
+		WebEssentials-Settings.json = WebEssentials-Settings.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.Tests", "AjaxControlToolkit.Tests\AjaxControlToolkit.Tests.csproj", "{6B8ADD9E-818C-407D-BE71-3DC78D3D46EE}"

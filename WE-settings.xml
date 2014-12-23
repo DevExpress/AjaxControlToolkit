@@ -4,5 +4,6 @@
     <CssEnableMinification>true</CssEnableMinification>
     <JavaScriptEnableMinification>true</JavaScriptEnableMinification>
     <JavaScriptGenerateSourceMaps>false</JavaScriptGenerateSourceMaps>
+    <UseBom>true</UseBom>
   </settings>
 </webessentials>
