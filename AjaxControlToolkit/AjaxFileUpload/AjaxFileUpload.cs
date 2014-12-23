@@ -263,10 +263,14 @@ namespace AjaxControlToolkit {
             AjaxFileUploadEventArgs args;
 
             var tempFolder = BuildTempFolder(fileId);
-            var fileName = Directory.GetFiles(tempFolder)[0];
-            var fileInfo = new FileInfo(fileName);
+            if(!Directory.Exists(tempFolder))
+                return;
 
-            _uploadedFilePath = fileName;
+            var files = Directory.GetFiles(tempFolder);
+            if(files.Length == 0)
+                return;
+
+            var fileInfo = new FileInfo(files[0]);
 
             args = new AjaxFileUploadEventArgs(
                 fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,

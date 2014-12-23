@@ -111,6 +111,9 @@ namespace AjaxControlToolkit {
                                 // Build temporary file path.
                                 var tmpFilePath = Path.Combine(tempFolder, fileName);
 
+                                if(!IsSubDirectory(AjaxFileUpload.BuildRootTempFolder(), Path.GetDirectoryName(tmpFilePath)))
+                                    throw new Exception("Insecure operation prevented");
+
                                 if(!chunked || isFirstChunk)
                                     // Create new file, if this is a first chunk or file is not chunked.
                                     destination = new FileStream(tmpFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
@@ -145,6 +148,17 @@ namespace AjaxControlToolkit {
                 }
             }
             return true;
+        }
+
+        static bool IsSubDirectory(string parentDirectory, string childDirectory) {
+            var directoryInfo = new DirectoryInfo(childDirectory).Parent;
+            while(directoryInfo != null) {
+                if(directoryInfo.FullName == parentDirectory)
+                    return true;
+                directoryInfo = directoryInfo.Parent;
+            }
+
+            return false;
         }
     }
 
