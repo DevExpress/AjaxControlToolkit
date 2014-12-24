@@ -10,6 +10,8 @@ using System.Web.UI.HtmlControls;
 using System.Drawing;
 using AjaxControlToolkit.HtmlEditor.Sanitizer;
 using System.Web.Configuration;
+using System.Configuration;
+using System.Configuration.Provider;
 
 namespace AjaxControlToolkit {
     // HtmlEditorExtender extends to a textbox and creates and renders an editable div 
@@ -31,18 +33,14 @@ namespace AjaxControlToolkit {
         bool enableSanitization = true;
 
         static HtmlSanitizerProviderBase CreateSanitizerProvider() {
-            var sanitizerConfig = (HtmlSanitizerProviderSection)WebConfigurationManager.GetSection("system.web/sanitizer");
 
-            if(sanitizerConfig == null)
+            if(String.IsNullOrEmpty(AjaxControlToolkitConfigSection.Current.HtmlSanitizerProvider))
                 return null;
 
-            var providers = new HtmlSanitizerProviderCollection();
+            var providerSettings = new ProviderSettings("SanitizerProvider", AjaxControlToolkitConfigSection.Current.HtmlSanitizerProvider);
+            var providerBase = ProvidersHelper.InstantiateProvider(providerSettings, typeof(HtmlSanitizerProviderBase));
 
-            // use the ProvidersHelper class to call Initialize on each configured provider
-            ProvidersHelper.InstantiateProviders(sanitizerConfig.Providers, providers, typeof(HtmlSanitizerProviderBase));
-
-            // set a reference to the default provider
-            return providers[sanitizerConfig.DefaultProvider];
+            return (HtmlSanitizerProviderBase)providerBase;
         }
 
         public HtmlEditorExtender() {

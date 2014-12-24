@@ -58,6 +58,7 @@
     <Compile Include="Accordion\AccordionPane.cs" />
     <Compile Include="Accordion\AccordionPaneCollection.cs" />
     <Compile Include="Accordion\AutoSize.cs" />
+    <Compile Include="AjaxControlToolkitConfigSection.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadCompleteAllEventArgs.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadCompleteAllReason.cs" />
@@ -336,11 +337,9 @@
     <Compile Include="ResizableControl\ResizableControlExtenderDesigner.cs" />
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
     <Compile Include="HtmlEditor\Sanitizer\HtmlSanitizer.cs" />
-    <Compile Include="HtmlEditor\Sanitizer\HtmlSanitizerProviderSection.cs" />
     <Compile Include="HtmlEditor\Sanitizer\IHtmlAttribute.cs" />
     <Compile Include="HtmlEditor\Sanitizer\IHtmlNode.cs" />
     <Compile Include="HtmlEditor\Sanitizer\HtmlSanitizerProviderBase.cs" />
-    <Compile Include="HtmlEditor\Sanitizer\HtmlSanitizerProviderCollection.cs" />
     <Compile Include="Seadragon\ControlAnchor.cs" />
     <Compile Include="Seadragon\OverlayCollectionEditor.cs" />
     <Compile Include="Seadragon\Seadragon.cs" />

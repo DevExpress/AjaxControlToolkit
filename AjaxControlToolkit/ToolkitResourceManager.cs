@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -32,22 +33,18 @@ namespace AjaxControlToolkit {
         const string ContextKey_UseEmbeddedStyles = "3ca56b9cc998439ca4894b076783cfc9";
 
         static readonly object _sync = new object();
-        static bool _useStaticResources = false;
         static readonly Dictionary<Type, List<ResourceEntry>>
             _scriptsCache = new Dictionary<Type, List<ResourceEntry>>(),
             _cssCache = new Dictionary<Type, List<ResourceEntry>>();
 
-        public static bool RenderStyleLinks {
-            get { return GetContextFlag(ContextKey_UseEmbeddedStyles, true); }
-            set { SetContextFlag(ContextKey_UseEmbeddedStyles, true, value); }
+        static ToolkitResourceManager() {
+            if(AjaxControlToolkitConfigSection.Current.UseStaticResources)
+                RegisterScriptMappings(GetScriptNames());
         }
 
-        public static void UseStaticResources() {
-            if(_useStaticResources)
-                return;
-
-            _useStaticResources = true;
-            RegisterScriptMappings(GetScriptNames());
+        public static bool RenderStyleLinks {
+            get { return GetContextFlag(ContextKey_UseEmbeddedStyles, AjaxControlToolkitConfigSection.Current.RenderStyleLinks); }
+            set { SetContextFlag(ContextKey_UseEmbeddedStyles, AjaxControlToolkitConfigSection.Current.RenderStyleLinks, value); }
         }
 
         // Scripts
@@ -122,7 +119,7 @@ namespace AjaxControlToolkit {
             var minified = !IsDebuggingEnabled();
             var controlType = control.GetType();
 
-            return _useStaticResources
+            return AjaxControlToolkitConfigSection.Current.UseStaticResources
                 ? FormatStyleVirtualPath(name, minified)
                 : control.Page.ClientScript.GetWebResourceUrl(controlType, FormatStyleResourceName(name, minified));
         }
@@ -209,7 +206,7 @@ namespace AjaxControlToolkit {
         // Images
 
         internal static string GetImageHref(string imageName, Control control) {
-            if(_useStaticResources)
+            if(AjaxControlToolkitConfigSection.Current.UseStaticResources)
                 return control.Page.ResolveClientUrl(Constants.ImagesVirtualPath + imageName);
 
             return control.Page.ClientScript.GetWebResourceUrl(control.GetType(), Constants.ImageResourcePrefix + imageName);
