@@ -13,7 +13,7 @@ namespace AjaxControlToolkit {
     // using the mouse.
     [Designer(typeof(DragPanelExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.FloatingBehavior", Constants.FloatingBehaviorName)]
-    [TargetControlType(typeof(Panel))]
+    [TargetControlType(typeof(WebControl))]
     [RequiredScript(typeof(DragDropScripts))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DragPanelName + Constants.IconPostfix)]
     public class DragPanelExtender : ExtenderControlBase {
