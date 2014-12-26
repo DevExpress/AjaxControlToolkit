@@ -15,7 +15,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkit.SampleSi
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{676b3449-93f7-4102-8df0-fb51911675d6}|AjaxControlToolkit.dll;{4f19469b-3352-4d93-89e2-4b79fd7086a6}|AjaxControlToolkit.HtmlEditor.Sanitizer.dll;"
+		ProjectReferences = "{676b3449-93f7-4102-8df0-fb51911675d6}|AjaxControlToolkit.dll;{4f19469b-3352-4d93-89e2-4b79fd7086a6}|AjaxControlToolkit.HtmlEditor.Sanitizer.dll;{820694df-c225-46b6-ba38-c5fefbd79aeb}|AjaxControlToolkit.StaticResources.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/AjaxControlToolkit.SampleSite"
 		Debug.AspNetCompiler.PhysicalPath = "AjaxControlToolkit.SampleSite\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\AjaxControlToolkit.SampleSite\"
@@ -34,6 +34,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkit.SampleSi
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.HtmlEditor.Sanitizer", "AjaxControlToolkit.HtmlEditor.Sanitizer\AjaxControlToolkit.HtmlEditor.Sanitizer.csproj", "{4F19469B-3352-4D93-89E2-4B79FD7086A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.StaticResources", "AjaxControlToolkit.StaticResources\AjaxControlToolkit.StaticResources.csproj", "{820694DF-C225-46B6-BA38-C5FEFBD79AEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,8 @@ Global
 		{4F19469B-3352-4D93-89E2-4B79FD7086A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F19469B-3352-4D93-89E2-4B79FD7086A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F19469B-3352-4D93-89E2-4B79FD7086A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820694DF-C225-46B6-BA38-C5FEFBD79AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820694DF-C225-46B6-BA38-C5FEFBD79AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

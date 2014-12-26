@@ -12,8 +12,6 @@
             "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
 
         BundleTable.EnableOptimizations = true;
-        BundleTable.Bundles.Add(new ScriptBundle("~/Scripts/AjaxControlToolkit/Bundle").Include(ToolkitResourceManager.GetScriptPaths()));
-        BundleTable.Bundles.Add(new StyleBundle("~/Content/AjaxControlToolkit/Styles/Bundle").Include(ToolkitResourceManager.GetStylePaths()));
     }
 
 </script>

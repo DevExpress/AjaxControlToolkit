@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -68,7 +69,7 @@ namespace AjaxControlToolkit {
             var trace = new HashSet<string>();
             var bundleResolver = new Bundling.BundleResolver(new Bundling.DefaultCache());
 
-            foreach(var type in bundleResolver.GetControlTypesInBundles(new HttpContextWrapper(HttpContext.Current), toolkitBundles)) {
+            foreach(var type in bundleResolver.GetControlTypesInBundles(toolkitBundles, Path.Combine(HttpRuntime.AppDomainAppPath, AjaxControlToolkit.Bundling.BundleResolver.ConfigFileVirtualPath))) {
                 foreach(var name in GetScriptEntries(type).Select(entry => entry.ResourceName)) {
                     if(trace.Contains(name))
                         continue;
@@ -103,7 +104,7 @@ namespace AjaxControlToolkit {
 
         public static string[] GetStylePaths(params string[] toolkitBundles) {
             var controlTypes = new Bundling.BundleResolver(new Bundling.DefaultCache())
-                .GetControlTypesInBundles(new HttpContextWrapper(HttpContext.Current), toolkitBundles);
+                .GetControlTypesInBundles(toolkitBundles, Path.Combine(HttpRuntime.AppDomainAppPath, AjaxControlToolkit.Bundling.BundleResolver.ConfigFileVirtualPath));
 
             return GetStyleNames(controlTypes.ToArray())
                 .Distinct()

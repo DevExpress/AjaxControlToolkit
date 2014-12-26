@@ -12,16 +12,13 @@ namespace AjaxControlToolkit.Tests {
     [TestFixture]
     public class BundleResolverTests {
         Mock<HttpContextBase> _moqContext;
-        Mock<HttpServerUtilityBase> _moqServer;
         Mock<ICache> _moqCache;
         const string CacheConfigName = "e3e5a62a67434f0aa62901759726f470";
 
         [SetUp]        
         public void Init() {
             _moqContext = new Mock<HttpContextBase>();
-            _moqServer = new Mock<HttpServerUtilityBase>();
             _moqCache = new Mock<ICache>();
-            _moqContext.Setup(s => s.Server).Returns(_moqServer.Object);
         }
 
         [TearDown]
@@ -31,10 +28,8 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void DefaultBundleTest() {
-            UseConfigFile(true);
-
             var configManager = new BundleResolver(_moqCache.Object);
-            var results = configManager.GetControlTypesInBundles(_moqContext.Object, null);
+            var results = configManager.GetControlTypesInBundles(null, TestConfigPath);
 
             // Assert all controls in default bundle group
             AssertResults(results, new[] {
@@ -46,10 +41,8 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void MultipleControlsInBundleTest() {
-            UseConfigFile(true);
-
             var resolver = new BundleResolver(_moqCache.Object);
-            var results = resolver.GetControlTypesInBundles(_moqContext.Object, new[] { "MultiBundle" });
+            var results = resolver.GetControlTypesInBundles(new[] { "MultiBundle" }, TestConfigPath);
 
             // Assert all controls in MultiBundle group
             AssertResults(results, new[] {
@@ -61,10 +54,8 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void SingleControlInBundleTest() {
-            UseConfigFile(true);
-
             var resolver = new BundleResolver(_moqCache.Object);
-            var results = resolver.GetControlTypesInBundles(_moqContext.Object, new[] { "SingleBundle" });
+            var results = resolver.GetControlTypesInBundles(new[] { "SingleBundle" }, TestConfigPath);
 
             // Assert all controls in SingleBundle group
             AssertResults(results, new[] { "TextBoxWatermarkExtender" });
@@ -72,10 +63,8 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void WithoutConfigShouldReturnsAllActControlsTest() {
-            UseConfigFile(false);
-
             var resolver = new BundleResolver(_moqCache.Object);
-            var results = resolver.GetControlTypesInBundles(_moqContext.Object, null);
+            var results = resolver.GetControlTypesInBundles(null, "nonexistantfile");
 
             var bundleTypes = new List<string>();
             foreach(var bundleControl in BundleResolver.ControlDependencyTypeMaps) {
@@ -89,42 +78,32 @@ namespace AjaxControlToolkit.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(Exception), MatchType=MessageMatch.Contains, ExpectedMessage="AjaxControlToolkit.config file is not defined")]
+        [ExpectedException(typeof(Exception), MatchType = MessageMatch.Contains, ExpectedMessage = "AjaxControlToolkit.config file is not defined")]
         public void CustomBundleWithoutConfigFileShouldErrorTest() {
-            UseConfigFile(false);
-
             var resolver = new BundleResolver(_moqCache.Object);
-            resolver.GetControlTypesInBundles(_moqContext.Object, new[] { "Accordion" });
+            resolver.GetControlTypesInBundles(new[] { "Accordion" }, "nonexistantfile");
         }
 
         [Test]
         public void Caching_SetMethodIsCalledIfCacheIsEmpty() {
-            UseConfigFile(true);
-
             _moqCache.Setup(c => c.Get<string>(CacheConfigName)).Returns("");
 
             var resolver = new BundleResolver(_moqCache.Object);
-            resolver.GetControlTypesInBundles(_moqContext.Object, null);
+            resolver.GetControlTypesInBundles(null, TestConfigPath);
             _moqCache.Verify(c => c.Set(CacheConfigName, It.IsAny<string>(), It.IsAny<string>()), Times.Once());
         }
 
         [Test]
         public void Caching_SetMethodIsNotCalledIfCacheIsFull() {
-            UseConfigFile(true);
-
-            _moqCache.Setup(c => c.Get<string>(CacheConfigName)).Returns(File.ReadAllText(GetTestConfigPath()));
+            _moqCache.Setup(c => c.Get<string>(CacheConfigName)).Returns(File.ReadAllText(TestConfigPath));
 
             var resolver = new BundleResolver(_moqCache.Object);
-            resolver.GetControlTypesInBundles(_moqContext.Object, null);
+            resolver.GetControlTypesInBundles(null, TestConfigPath);
             _moqCache.Verify(c => c.Set(CacheConfigName, It.IsAny<string>(), It.IsAny<string>()), Times.Never());
         }
 
-        void UseConfigFile(bool use) {
-            _moqServer.Setup(a => a.MapPath(It.IsAny<string>())).Returns(use ? GetTestConfigPath() : "nonexists.file");
-        }
-
-        static string GetTestConfigPath() {
-            return Path.GetDirectoryName(typeof(BundleResolverTests).Assembly.Location) + "\\TestData\\AjaxControlToolkit.config";
+        static string TestConfigPath {
+            get { return Path.GetDirectoryName(typeof(BundleResolverTests).Assembly.Location) + "\\TestData\\AjaxControlToolkit.config"; }
         }
 
         static void AssertResults(List<Type> results, string[] maps) {

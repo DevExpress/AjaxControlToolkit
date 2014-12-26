@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 namespace AjaxControlToolkit.Bundling {
 
     public class BundleResolver {
-        const string ConfigFileVirtualPath = "~/AjaxControlToolkit.config";
+        public const string ConfigFileVirtualPath = "AjaxControlToolkit.config";
         const string ConfigCacheKey = "e3e5a62a67434f0aa62901759726f470";
 
         // TODO justify necessity: caching text file content is not that useful
@@ -115,12 +115,12 @@ namespace AjaxControlToolkit.Bundling {
         /// Get all types of controls referenced by control bundle names. 
         /// If control bundle names is empty then default control bundle defined in AjaxControlToolkit.config will be use to retrieved control types.
         /// If AjaxControlToolkit.config file is not found then all standard control types of AjaxControlToolkit will be retrieved and if control bundle names is defined exception will thrown.
-        public virtual List<Type> GetControlTypesInBundles(HttpContextBase context, string[] bundles) {
+        public virtual List<Type> GetControlTypesInBundles(string[] bundles, string fileName) {
             // TODO reduce complexity
 
             var registeredControls = new List<Type>();
             var registeredBundles = new List<string>();
-            var fileName = context.Server.MapPath(ConfigFileVirtualPath);
+            //var fileName = Path.Combine(HttpRuntime.AppDomainAppPath, ConfigFileVirtualPath);
 
             if(!File.Exists(fileName)) {
 
