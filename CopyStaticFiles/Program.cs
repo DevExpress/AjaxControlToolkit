@@ -14,7 +14,7 @@ namespace CopyStaticFiles {
             // NOTE paths are relative to Bin 
 
             const string
-                outputDir = "../StaticFiles/",
+                outputDir = "../AjaxControlToolkit.StaticResources/Content",
                 samplesDir = "../AjaxControlToolkit.SampleSite",
                 contentDir = "Content/AjaxControlToolkit/",
                 scriptsDir = "Scripts/AjaxControlToolkit/",
