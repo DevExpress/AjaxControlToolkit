@@ -16,7 +16,7 @@ namespace AjaxControlToolkit {
     [ToolboxItem(false)]
     [Designer(typeof(AccordionExtenderDesigner))]
     [TargetControlType(typeof(Accordion))]
-    public class AccordionExtender : ExtenderControlBase {        
+    public class AccordionExtender : ExtenderControlBase {
         public AccordionExtender() {
             EnableClientState = true;
         }
