@@ -2,9 +2,9 @@
 
 namespace AjaxControlToolkit.StaticResources {
 
-    public class BundleConfig {
+    public class PreApplicationStartCode {
 
-        public static void Register() {
+        public static void Start() {
             BundleTable.Bundles.Add(new ScriptBundle("~/Scripts/AjaxControlToolkit/Bundle").Include(ToolkitResourceManager.GetScriptPaths()));
             BundleTable.Bundles.Add(new StyleBundle("~/Content/AjaxControlToolkit/Styles/Bundle").Include(ToolkitResourceManager.GetStylePaths()));
         }

@@ -4,4 +4,4 @@ using System.Web;
 
 [assembly: AssemblyTitle("Ajax Control Toolkit Static Resources")]
 [assembly: ComVisible(false)]
-[assembly: PreApplicationStartMethod(typeof(AjaxControlToolkit.StaticResources.BundleConfig), "Register")]
+[assembly: PreApplicationStartMethod(typeof(AjaxControlToolkit.StaticResources.PreApplicationStartCode), "Start")]
