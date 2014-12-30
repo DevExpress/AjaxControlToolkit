@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace CopyStaticFiles {
+namespace AjaxControlToolkit.LinkStaticResources {
 
     class Program {
 
@@ -21,22 +21,27 @@ namespace CopyStaticFiles {
                 stylesDir = contentDir + "Styles",
                 imagesDir = contentDir + "Images";
 
-            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Scripts", "*.js"))
+            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Scripts", "*.js")) {
+                LinkScript(Path.Combine(samplesDir, scriptsDir), path);
                 LinkScript(Path.Combine(outputDir, scriptsDir), path);
-
-            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Scripts/Localization", "*.js"))
-                LinkScript(Path.Combine(outputDir, scriptsDir), path, TransformLocalizationScriptName);
-
-            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Styles", "*.css"))
-                LinkStyle(Path.Combine(outputDir, stylesDir), path);
-
-            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Images")) {
-                if(Regex.IsMatch(path, @"\.(gif|jpg|png)$"))
-                    LinkStyle(Path.Combine(outputDir, imagesDir), path);
             }
 
-            LinkSamples(outputDir, samplesDir, scriptsDir);
-            LinkSamples(outputDir, samplesDir, contentDir);
+            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Scripts/Localization", "*.js")) {
+                LinkScript(Path.Combine(samplesDir, scriptsDir), path, TransformLocalizationScriptName);
+                LinkScript(Path.Combine(outputDir, scriptsDir), path, TransformLocalizationScriptName);
+            }
+
+            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Styles", "*.css")) {
+                LinkStyle(Path.Combine(samplesDir, stylesDir), path);
+                LinkStyle(Path.Combine(outputDir, stylesDir), path);
+            }
+
+            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Images")) {
+                if(Regex.IsMatch(path, @"\.(gif|jpg|png)$")) {
+                    LinkStyle(Path.Combine(samplesDir, imagesDir), path);
+                    LinkStyle(Path.Combine(outputDir, imagesDir), path);
+                }
+            }
         }
 
         static void LinkScript(string prefix, string path, Func<string, string> fileNameTransformer = null) {
@@ -73,13 +78,6 @@ namespace CopyStaticFiles {
             CreateHardLink(path, Path.Combine(prefix, fileName));
         }
 
-        static void LinkSamples(string outputDir, string samplesDir, string filePrefix) {
-            var samplesScriptsDirName = Path.Combine(samplesDir, filePrefix);
-            var staticFilesDirName = Path.Combine("../" + outputDir, filePrefix).Replace("/",@"\");
-
-            CreateSymbolicLink(staticFilesDirName, samplesScriptsDirName);
-        }
-
         static string TransformLocalizationScriptName(string name) {
             return "Localization." + name.Replace("Resources_", "Resources.");
         }
@@ -89,15 +87,6 @@ namespace CopyStaticFiles {
 
             if(!CreateHardLink(destination, source, IntPtr.Zero))
                 throw new Exception("Failed to create hardlink");
-        }
-
-        static void CreateSymbolicLink(string source, string destination) {
-            EnsurePath(destination);
-
-            Directory.Delete(destination);
-
-            if(!CreateSymbolicLink(destination, source, 1))
-                throw new Exception("Failed to create symlink");
         }
 
         static void EnsurePath(string path) {
@@ -111,9 +100,6 @@ namespace CopyStaticFiles {
 
         [DllImport("Kernel32.dll", CharSet = CharSet.Unicode)]
         static extern bool CreateHardLink(string lpFileName, string lpExistingFileName, IntPtr lpSecurityAttributes);
-
-        [DllImport("kernel32.dll")]
-        static extern bool CreateSymbolicLink(string lpSymlinkFileName, string lpTargetFileName, int dwFlags);
     }
 
 }

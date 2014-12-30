@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.HtmlEdit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.StaticResources", "AjaxControlToolkit.StaticResources\AjaxControlToolkit.StaticResources.csproj", "{820694DF-C225-46B6-BA38-C5FEFBD79AEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.LinkStaticResources", "AjaxControlToolkit.LinkStaticResources\AjaxControlToolkit.LinkStaticResources.csproj", "{F1C801FB-5232-4355-BD08-2BADF2C94818}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,7 +60,13 @@ Global
 		{4F19469B-3352-4D93-89E2-4B79FD7086A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F19469B-3352-4D93-89E2-4B79FD7086A6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{820694DF-C225-46B6-BA38-C5FEFBD79AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820694DF-C225-46B6-BA38-C5FEFBD79AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{820694DF-C225-46B6-BA38-C5FEFBD79AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820694DF-C225-46B6-BA38-C5FEFBD79AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1C801FB-5232-4355-BD08-2BADF2C94818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1C801FB-5232-4355-BD08-2BADF2C94818}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1C801FB-5232-4355-BD08-2BADF2C94818}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1C801FB-5232-4355-BD08-2BADF2C94818}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
