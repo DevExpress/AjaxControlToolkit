@@ -146,46 +146,17 @@
         <Header>HtmlEditorExtender Security</Header>
         <Content>
             <p>
-                We strongly recommend that you do not use the HtmlEditorExtender on a public website
-               without using the Sanitizer Provider. If you do not use the Sanitizer
-               Provider then your website will be open to Cross-Site Scripting (XSS) Attacks. 
+               We strongly recommend that you do not use the HtmlEditorExtender on a public website
+               without using a sanitizer. If you do not use a sanitizer
+               your website will be open to Cross-Site Scripting (XSS) Attacks. 
             </p>
             <br />
             <p>
-                The HtmlAgilityPack Sanitizer Provider is included in the SanitizerProviders folder with the 
-                CodePlex release of the Ajax Control Toolkit. You need to add a reference to assemblies contained 
-                in the folder: SanitizerProviders.dll and HtmlAgilityPack.dll.
+                To use AjaxControlToolkit Sanitizer install AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package. You can add this package to your project using NuGet Package Manager.
             </p>
             <br />
             <p>
-                You must add the following configuration sections to your Web.config file to enable the provider:
-            </p>
-            <br />
-            <pre>
-&lt;configuration&gt;
-&lt;configSections&gt;
-  &lt;sectionGroup name="system.web"&gt;
-	&lt;section name="sanitizer" 
-      requirePermission="false" 
-      type="AjaxControlToolkit.Sanitizer.ProviderSanitizerSection, 
-        AjaxControlToolkit"/&gt;
-      &lt;/sectionGroup&gt;
-&lt;/configSections&gt;
-&lt;system.web&gt;
-	&lt;compilation targetFramework="4.0" debug="true"/&gt;
-	&lt;sanitizer defaultProvider="HtmlAgilityPackSanitizerProvider"&gt;
-		&lt;providers&gt;			
-            &lt;add name="HtmlAgilityPackSanitizerProvider" 
-            type="AjaxControlToolkit.Sanitizer.
-            HtmlAgilityPackSanitizerProvider"&gt;&lt;/add&gt;
-		&lt;/providers&gt;
-	&lt;/sanitizer&gt;
-&lt;/system.web&gt;
-&lt;/configuration&gt;
-        </pre>
-            <br />
-            <p>
-                The AjaxControlToolkitSampleSite is configured to use the HtmlAgilityPack 
+                The AjaxControlToolkitSampleSite is configured to use the HtmlAgilityPack
                 Sanitizer Provider.
             </p>
 
