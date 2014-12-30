@@ -10,7 +10,7 @@
         TransitionDuration="250" AutoSize="None" RequireOpenedPane="false" SuppressHeaderPostbacks="true">
         <Panes>
             <ajaxToolkit:AccordionPane ID="AccordionPane1" runat="server">
-                <Header><a href="" class="accordionLink">1. Accordion</a></Header>
+                <Header><a href="#" class="accordionLink">1. Accordion</a></Header>
                 <Content>
                     The Accordion is a web control that allows you to provide multiple panes and display them one at a time.
                     It is like having several
@@ -21,7 +21,7 @@
                 </Content>
             </ajaxToolkit:AccordionPane>
             <ajaxToolkit:AccordionPane ID="AccordionPane2" runat="server">
-                <Header><a href="" class="accordionLink">2. AutoSize</a></Header>
+                <Header><a href="#" class="accordionLink">2. AutoSize</a></Header>
                 <Content>
                     <p>It also supports three AutoSize modes so it can fit in a variety of layouts.</p>
                     <ul>
@@ -36,7 +36,7 @@
                 </Content>
             </ajaxToolkit:AccordionPane>
             <ajaxToolkit:AccordionPane ID="AccordionPane3" runat="server">
-                <Header><a href="" class="accordionLink">3. Control or Extender</a></Header>
+                <Header><a href="#" class="accordionLink">3. Control or Extender</a></Header>
                 <Content>
                     The Accordion is written using an extender like most of the other extenders in the AJAX Control Toolkit.
                     The extender expects its input in a very specific hierarchy of container elements (like divs), so
@@ -45,7 +45,7 @@
                 </Content>
             </ajaxToolkit:AccordionPane>
             <ajaxToolkit:AccordionPane ID="AccordionPane4" runat="server">
-                <Header><a href="" class="accordionLink">4. What is ASP.NET AJAX?</a></Header>
+                <Header><a href="#" class="accordionLink">4. What is ASP.NET AJAX?</a></Header>
                 <Content>
                     <asp:Image ID="Image1" runat="server" ImageUrl="~/images/AJAX.gif" AlternateText="ASP.NET AJAX" ImageAlign="right" />
                     <%= DemoData.ContentFillerText%>
@@ -63,7 +63,7 @@
         <option>Fill</option>
     </select>
 
-    <script language="javascript" type="text/javascript">
+    <script type="text/javascript">
         function toggleFade() {
             var behavior = $find('Content_DemoContent_MyAccordion_AccordionExtender');
             if(behavior) {

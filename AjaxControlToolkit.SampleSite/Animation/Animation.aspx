@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript">
         // Move an element directly on top of another element (and optionally
         // make it the same size)
         function Cover(bottom, top, ignoreSize) {
