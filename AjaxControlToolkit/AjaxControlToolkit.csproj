@@ -391,6 +391,7 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Styles\README.txt" />
     <EmbeddedResource Include="Images\AsyncFileUpload.Button.png" />
     <EmbeddedResource Include="Images\BalloonPopup.CloudSprite.gif" />
     <EmbeddedResource Include="Images\BalloonPopup.CloudSprite.png" />

@@ -1,0 +1,1 @@
+﻿Web Essentials is used for style minification on save
