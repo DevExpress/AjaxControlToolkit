@@ -3,7 +3,9 @@ obj
 *.suo
 *.user
 packages/
-AjaxControlToolkit.StaticResources/Content/
+AjaxControlToolkit.StaticResources/Scripts/
+AjaxControlToolkit.StaticResources/Styles/
+AjaxControlToolkit.StaticResources/Images/
 AjaxControlToolkit.SampleSite/bin/*
 !AjaxControlToolkit.SampleSite/bin/*.refresh
 AjaxControlToolkit.SampleSite/Scripts/AjaxControlToolkit/
