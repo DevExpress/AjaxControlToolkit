@@ -26,29 +26,29 @@ namespace AjaxControlToolkit {
         internal const int ButtonWidthDef = 23;
         internal const int ButtonHeightDef = 21;
 
-        static Lazy<HtmlSanitizerProviderBase> sanitizerProvider = new Lazy<HtmlSanitizerProviderBase>(CreateSanitizerProvider, true);
+        static Lazy<IHtmlSanitizer> _sanitizer = new Lazy<IHtmlSanitizer>(CreateSanitizer, true);
 
         HtmlEditorExtenderButtonCollection buttonList = null;
         AjaxFileUpload ajaxFileUpload = null;
         bool enableSanitization = true;
 
-        static HtmlSanitizerProviderBase CreateSanitizerProvider() {
+        static IHtmlSanitizer CreateSanitizer() {
 
-            if(String.IsNullOrEmpty(AjaxControlToolkitConfigSection.Current.HtmlSanitizerProvider))
+            if(String.IsNullOrEmpty(AjaxControlToolkitConfigSection.Current.HtmlSanitizer))
                 return null;
 
-            var providerSettings = new ProviderSettings("SanitizerProvider", AjaxControlToolkitConfigSection.Current.HtmlSanitizerProvider);
-            var providerBase = ProvidersHelper.InstantiateProvider(providerSettings, typeof(HtmlSanitizerProviderBase));
+            var sanitizerType = Type.GetType(AjaxControlToolkitConfigSection.Current.HtmlSanitizer);
+            var sanitizer = Activator.CreateInstance(sanitizerType);
 
-            return (HtmlSanitizerProviderBase)providerBase;
+            return (IHtmlSanitizer)sanitizer;
         }
 
         public HtmlEditorExtender() {
             EnableClientState = true;
         }
 
-        public HtmlSanitizerProviderBase SanitizerProvider {
-            get { return sanitizerProvider.Value; }
+        public IHtmlSanitizer Sanitizer {
+            get { return _sanitizer.Value; }
         }
 
         // Provide button list to client side. Need help from Toolbar property 
@@ -147,9 +147,9 @@ namespace AjaxControlToolkit {
             result = Regex.Replace(result, "<[^>]*position\\:[^>]*>", "_", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
             // Check Whether EnableSanitization is disabled or not.
-            if(EnableSanitization && SanitizerProvider != null) {
+            if(EnableSanitization && Sanitizer != null) {
                 var elementWhiteList = MakeCombinedElementList();
-                result = SanitizerProvider.GetSafeHtmlFragment(result, elementWhiteList);
+                result = Sanitizer.GetSafeHtmlFragment(result, elementWhiteList);
             }
 
             return result;
@@ -160,7 +160,7 @@ namespace AjaxControlToolkit {
             base.OnInit(e);
             if(!DesignMode) {
                 // Check if EnableSanitization is enabled and sanitizer provider is not configured.
-                if(EnableSanitization && SanitizerProvider == null)
+                if(EnableSanitization && Sanitizer == null)
                     throw new Exception("Sanitizer provider is not configured in the web.config file. If you are using the HtmlEditorExtender with a public website then please configure a Sanitizer provider. Otherwise, set the EnableSanitization property to false.");
 
                 var popupdiv = new HtmlGenericControl("div");

@@ -55,7 +55,7 @@
     <Compile Include="BundleResolverTests.cs" />
     <Compile Include="HtmlSanitizer\HaCkerOrgXMLTest.cs" />
     <Compile Include="LocalizationTests.cs" />
-    <Compile Include="HtmlSanitizer\DefaultHtmlSanitizerProviderTests.cs" />
+    <Compile Include="HtmlSanitizer\DefaultHtmlSanitizerTests.cs" />
     <Compile Include="MultipartFormDataParserTests.cs" />
   </ItemGroup>
   <ItemGroup>

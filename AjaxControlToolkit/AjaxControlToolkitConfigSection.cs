@@ -35,10 +35,10 @@ namespace AjaxControlToolkit {
             set { base["renderStyleLinks"] = value; }
         }
 
-        [ConfigurationProperty("htmlSanitizerProvider")]
-        public string HtmlSanitizerProvider {
-            get { return (string)base["htmlSanitizerProvider"]; }
-            set { base["htmlSanitizerProvider"] = value; }
+        [ConfigurationProperty("htmlSanitizer")]
+        public string HtmlSanitizer {
+            get { return (string)base["htmlSanitizer"]; }
+            set { base["htmlSanitizer"] = value; }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,25 @@ using System.Web;
 
 namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
 
-    public class HtmlSanitizer {
+    public class DefaultHtmlSanitizer : IHtmlSanitizer {
 
-        public void Sanitize(IHtmlNode rootNode, IDictionary<string, string[]> whiteList) {
+        public string GetSafeHtmlFragment(string htmlText, Dictionary<string, string[]> tagsWhiteList) {
+            var html = new HtmlDocument();
+            html.OptionFixNestedTags = true;
+            html.OptionAutoCloseOnEnd = true;
+            html.OptionDefaultStreamEncoding = Encoding.UTF8;
+            html.LoadHtml(htmlText);
+
+            if(html == null)
+                return String.Empty;
+
+            Sanitize(new HtmlNodeWrapper(html.DocumentNode), tagsWhiteList);
+
+            return html.DocumentNode.InnerHtml;
+        }
+
+
+        static void Sanitize(IHtmlNode rootNode, IDictionary<string, string[]> whiteList) {
             CleanNodes(rootNode.Children, whiteList);
 
             if(whiteList.ContainsKey(rootNode.Name))

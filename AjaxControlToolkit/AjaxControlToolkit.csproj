@@ -211,6 +211,7 @@
     <Compile Include="HtmlEditor\Popups\PopupBoxButton.cs" />
     <Compile Include="HtmlEditor\Popups\PopupCommonButton.cs" />
     <Compile Include="HtmlEditor\PreviewPanel.cs" />
+    <Compile Include="HtmlEditor\Sanitizer\IHtmlSanitizer.cs" />
     <Compile Include="HtmlEditor\Toolbar.cs" />
     <Compile Include="HtmlEditor\ToolbarButtons\BackColorClear.cs" />
     <Compile Include="HtmlEditor\ToolbarButtons\BackColorSelector.cs" />
@@ -336,10 +337,6 @@
     <Compile Include="ReorderList\RepeatDirection.cs" />
     <Compile Include="ResizableControl\ResizableControlExtenderDesigner.cs" />
     <Compile Include="ResizableControl\ResizableControlExtender.cs" />
-    <Compile Include="HtmlEditor\Sanitizer\HtmlSanitizer.cs" />
-    <Compile Include="HtmlEditor\Sanitizer\IHtmlAttribute.cs" />
-    <Compile Include="HtmlEditor\Sanitizer\IHtmlNode.cs" />
-    <Compile Include="HtmlEditor\Sanitizer\HtmlSanitizerProviderBase.cs" />
     <Compile Include="Seadragon\ControlAnchor.cs" />
     <Compile Include="Seadragon\OverlayCollectionEditor.cs" />
     <Compile Include="Seadragon\Seadragon.cs" />

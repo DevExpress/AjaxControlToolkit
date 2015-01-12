@@ -14,7 +14,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
         [Test]
         [TestCaseSource("TestCases")]
         public void MakeSureItSanitized(string htmlFragment, string message) {
-            var target = new DefaultHtmlSanitizerProvider();
+            var target = new DefaultHtmlSanitizer();
             var elementWhiteList = CreateElementWhiteList();
 
             var actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
