@@ -10,25 +10,6 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 
 namespace AjaxControlToolkit {
-    // Usage:
-    //
-    // Application_Start:
-    // ToolkitResourceManager.UseStaticResources = true;
-    // BundleTable.Bundles.Add(new ScriptBundle("~/bundles/AjaxControlToolkit/Scripts").Include(ToolkitResourceManager.GetScriptPaths()));
-    // BundleTable.Bundles.Add(new StyleBundle("~/bundles/AjaxControlToolkit/Styles").Include(ToolkitResourceManager.GetStylePaths()));
-    // 
-    // Page_Init:
-    // AjaxControlToolkit.ToolkitResourceManager.RenderStyleLinks = false;
-    //
-    // ScriptManager:
-    // <asp:ScriptReference Path="~/bundles/AjaxControlToolkit" />
-    //
-    // Head:
-    // <head runat="server">
-    //     <asp:PlaceHolder runat="server">
-    //         <%: Styles.Render("~/bundles/AjaxControlToolkit/Styles") %>
-    //     </asp:PlaceHolder>
-    // </head>
 
     public static class ToolkitResourceManager {
         const string ContextKey_UseEmbeddedStyles = "3ca56b9cc998439ca4894b076783cfc9";
