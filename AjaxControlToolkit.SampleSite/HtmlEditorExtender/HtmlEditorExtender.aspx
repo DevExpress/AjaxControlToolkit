@@ -146,18 +146,15 @@
         <Header>HtmlEditorExtender Security</Header>
         <Content>
             <p>
-               We strongly recommend that you do not use the HtmlEditorExtender on a public website
-               without using a sanitizer. If you do not use a sanitizer
-               your website will be open to Cross-Site Scripting (XSS) Attacks. 
+               We strongly advise against using HtmlEditorExtender on a public website without the sanitizer. If you do not use a sanitizer, your website will be open to Cross-Site Scripting (XSS) Attacks.
             </p>
             <br />
             <p>
-                To use AjaxControlToolkit Sanitizer install AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package. You can add this package to your project using NuGet Package Manager.
+                To use AjaxControlToolkit Sanitizer, install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package.
             </p>
             <br />
             <p>
-                The AjaxControlToolkitSampleSite is configured to use the HtmlAgilityPack
-                Sanitizer Provider.
+                The AjaxControlToolkit.SampleSite is configured to use the HtmlAgilityPack Sanitizer Provider.
             </p>
 
             <p>
@@ -167,28 +164,8 @@
                 <b>Disclaimer:</b>
             </p>
             <p>
-                The HTMLEditorExtender enables people to post arbitrary HTML to the server. We 
-                have made every effort to make this safe by following the recommendations made 
-                by OWASP (Open Web Security Project). In the spirit of open source 
-                collaboration, the user may use this entirely at their own risk.
-            </p>
-
-            <p>
-                &nbsp;
-            </p>
-            <p>
-                These are the references we used to prepare this work:
-            </p>
-            <p>
-                J Williams, J Manico. (2012, May 16). XSS (Cross Site Scripting) Prevention 
-                Cheat Sheet [Web log article]. Retrieved from
-                <a href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet">https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet</a>
-            </p>
-            <p>
-                R Snake. (2012, June 17). XSS (Cross Site Scripting) Cheat Sheet Esp: for filter 
-                evasion [Web log article]. Retrieved from http://ha.ckers.org/xss.html
+                The HtmlEditorExtender allows posting an arbitrary HTML to the server. We have made this safe by following OWASP (Open Web Security Project) recommendations. However, we cannot guarantee 100% security of your site even with the enabled sanitizer.
             </p>
         </Content>
     </samples:InfoBlock>
 </asp:Content>
-
