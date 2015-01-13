@@ -6,25 +6,6 @@ namespace AjaxControlToolkit.Bundling {
     public class Settings {
         [XmlElement("controlBundles", IsNullable = false)]
         public ControlBundleSection[] ControlBundleSections { get; set; }
-
-        [XmlElement("scripts", IsNullable = true)]
-        public ScriptsSection[] ScriptsSections { get; set; }
-    }
-
-    public class ScriptsSection {
-        [XmlElement("add", IsNullable = false)]
-        public ScriptSection[] AddScripts { get; set; }
-
-        [XmlElement("remove", IsNullable = false)]
-        public ScriptSection[] RemoveScripts { get; set; }
-    }
-
-    public class ScriptSection {
-        [XmlAttribute("name")]
-        public string Name { get; set; }
-
-        [XmlAttribute("assembly")]
-        public string Assembly { get; set; }
     }
 
     public class ControlBundleSection {

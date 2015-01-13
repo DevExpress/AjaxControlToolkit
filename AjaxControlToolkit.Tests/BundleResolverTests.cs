@@ -27,19 +27,6 @@ namespace AjaxControlToolkit.Tests {
         }
 
         [Test]
-        public void DefaultBundleTest() {
-            var configManager = new BundleResolver(_moqCache.Object);
-            var results = configManager.GetControlTypesInBundles(null, TestConfigPath);
-
-            // Assert all controls in default bundle group
-            AssertResults(results, new[] {
-                "TextBoxWatermarkExtender",
-                "RoundedCornersExtender",
-                "DropShadowExtender"
-            });
-        }
-
-        [Test]
         public void MultipleControlsInBundleTest() {
             var resolver = new BundleResolver(_moqCache.Object);
             var results = resolver.GetControlTypesInBundles(new[] { "MultiBundle" }, TestConfigPath);
@@ -89,7 +76,7 @@ namespace AjaxControlToolkit.Tests {
             _moqCache.Setup(c => c.Get<string>(CacheConfigName)).Returns("");
 
             var resolver = new BundleResolver(_moqCache.Object);
-            resolver.GetControlTypesInBundles(null, TestConfigPath);
+            resolver.GetControlTypesInBundles(new[] { "SingleBundle" }, TestConfigPath);
             _moqCache.Verify(c => c.Set(CacheConfigName, It.IsAny<string>(), It.IsAny<string>()), Times.Once());
         }
 

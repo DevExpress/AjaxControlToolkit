@@ -122,7 +122,7 @@ namespace AjaxControlToolkit.Bundling {
             var registeredBundles = new List<string>();
             //var fileName = Path.Combine(HttpRuntime.AppDomainAppPath, ConfigFileVirtualPath);
 
-            if(!File.Exists(fileName)) {
+            if(!File.Exists(fileName) || bundles == null || bundles.Length == 0) {
 
                 // No configuration config (AjaxControlToolkit.config) is specified
 
@@ -143,28 +143,7 @@ namespace AjaxControlToolkit.Bundling {
             } else {
 
                 var actConfig = ParseConfiguration(ReadConfiguration(fileName));
-                if(actConfig.ScriptsSections != null && actConfig.ScriptsSections.Length > 0) {
-                    var addScripts = new List<ScriptReference>();
-                    var removeScripts = new List<ScriptReference>();
-                    var actAssembly = Assembly.GetCallingAssembly().ToString();
-
-                    foreach(var scriptsSection in actConfig.ScriptsSections) {
-                        if(scriptsSection.AddScripts != null) {
-                            foreach(var script in scriptsSection.AddScripts) {
-                                addScripts.Add(new ScriptReference(script.Name,
-                                    string.IsNullOrEmpty(script.Assembly) ? actAssembly : script.Assembly));
-                            }
-                        }
-
-                        if(scriptsSection.RemoveScripts != null) {
-                            foreach(var script in scriptsSection.RemoveScripts) {
-                                removeScripts.Add(new ScriptReference(script.Name,
-                                    string.IsNullOrEmpty(script.Assembly) ? actAssembly : script.Assembly));
-                            }
-                        }
-                    }
-                }
-
+                
                 if(actConfig.ControlBundleSections != null && actConfig.ControlBundleSections.Length > 0) {
                     // Iterate all control bundle sections. Normaly, there will be only 1 section.
                     foreach(var bundle in actConfig.ControlBundleSections) {
@@ -178,10 +157,6 @@ namespace AjaxControlToolkit.Bundling {
 
                                     // ... bundle contains control(s) and ...
                                     (controlBundle.Controls != null && controlBundle.Controls.Length > 0) && (
-
-                                    // ... this is default control bundle and requested bundle not specified.
-                                    (string.IsNullOrEmpty(controlBundle.Name) &&
-                                     (bundles == null || bundles.Length == 0)) ||
 
                                     // .. or this is not default bundle and its specified in requested bundle
                                     (bundles != null && bundles.Contains(controlBundle.Name))
@@ -254,6 +229,14 @@ namespace AjaxControlToolkit.Bundling {
             if(!LoadedAssemblies.ContainsKey(name))
                 LoadedAssemblies.Add(name, Assembly.Load(name));
             return LoadedAssemblies[name];
+        }
+
+        public IEnumerable<string> GetControlBundles() {
+            var settings = ParseConfiguration(ReadConfiguration(Path.Combine(HttpRuntime.AppDomainAppPath, BundleResolver.ConfigFileVirtualPath)));
+
+            foreach(var section in settings.ControlBundleSections)
+                foreach(var bundle in section.ControlBundles)
+                    yield return bundle.Name;
         }
     }
 
