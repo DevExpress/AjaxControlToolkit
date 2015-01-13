@@ -161,7 +161,7 @@ namespace AjaxControlToolkit {
             if(!DesignMode) {
                 // Check if EnableSanitization is enabled and sanitizer provider is not configured.
                 if(EnableSanitization && Sanitizer == null)
-                    throw new Exception("Sanitizer provider is not configured in the web.config file. If you are using the HtmlEditorExtender with a public website then please configure a Sanitizer provider. Otherwise, set the EnableSanitization property to false.");
+                    throw new Exception("The Sanitizer provider is not configured in the web.config file. Either install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package or set the EnableSanitization property to False (insecure).");
 
                 var popupdiv = new HtmlGenericControl("div");
                 popupdiv.Attributes.Add("Id", this.ClientID + "_popupDiv");
