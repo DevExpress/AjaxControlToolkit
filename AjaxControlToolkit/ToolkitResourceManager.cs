@@ -194,6 +194,9 @@ namespace AjaxControlToolkit {
         // Images
 
         internal static string GetImageHref(string imageName, Control control) {
+            if(IsCdnEnabled())
+                return (Constants.ImagesVirtualPath + imageName).Replace("~/", Constants.CdnPrefix);
+
             if(AjaxControlToolkitConfigSection.Current.UseStaticResources)
                 return control.Page.ResolveClientUrl(Constants.ImagesVirtualPath + imageName);
 
