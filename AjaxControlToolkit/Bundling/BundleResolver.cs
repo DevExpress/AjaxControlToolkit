@@ -122,7 +122,7 @@ namespace AjaxControlToolkit.Bundling {
             var registeredBundles = new List<string>();
             //var fileName = Path.Combine(HttpRuntime.AppDomainAppPath, ConfigFileVirtualPath);
 
-            if(!File.Exists(fileName) || bundles == null || bundles.Length == 0) {
+            if(!File.Exists(fileName)) {
 
                 // No configuration config (AjaxControlToolkit.config) is specified
 
@@ -157,6 +157,10 @@ namespace AjaxControlToolkit.Bundling {
 
                                     // ... bundle contains control(s) and ...
                                     (controlBundle.Controls != null && controlBundle.Controls.Length > 0) && (
+
+                                    // ... this is default control bundle and requested bundle not specified.
+                                    (string.IsNullOrEmpty(controlBundle.Name) &&
+                                     (bundles == null || bundles.Length == 0)) ||
 
                                     // .. or this is not default bundle and its specified in requested bundle
                                     (bundles != null && bundles.Contains(controlBundle.Name))
@@ -232,7 +236,11 @@ namespace AjaxControlToolkit.Bundling {
         }
 
         public IEnumerable<string> GetControlBundles() {
-            var settings = ParseConfiguration(ReadConfiguration(Path.Combine(HttpRuntime.AppDomainAppPath, BundleResolver.ConfigFileVirtualPath)));
+            var fileName = Path.Combine(HttpRuntime.AppDomainAppPath, BundleResolver.ConfigFileVirtualPath);
+            if(!File.Exists(fileName))
+                yield break;
+
+            var settings = ParseConfiguration(ReadConfiguration(fileName));
 
             foreach(var section in settings.ControlBundleSections)
                 foreach(var bundle in section.ControlBundles)
