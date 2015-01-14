@@ -68,7 +68,10 @@ namespace AjaxControlToolkit {
             foreach(var name in scriptNames) {
                 ScriptManager.ScriptResourceMapping.AddDefinition(name + Constants.JsPostfix, toolkitAssembly, new ScriptResourceDefinition() {
                     Path = FormatScriptReleaseVirtualPath(name),
-                    DebugPath = FormatScriptDebugVirtualPath(name)
+                    DebugPath = FormatScriptDebugVirtualPath(name),
+                    CdnPath = Constants.CdnScriptReleasePrefix + name + Constants.JsPostfix,
+                    CdnDebugPath = Constants.CdnScriptDebugPrefix + name + Constants.DebugJsPostfix,
+                    CdnSupportsSecureConnection = true
                 });
             }
         }

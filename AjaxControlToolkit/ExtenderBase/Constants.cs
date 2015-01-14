@@ -1,6 +1,10 @@
 namespace AjaxControlToolkit {
     internal static class Constants {
         internal const string
+            CdnPrefix = "http://ajax.aspnetcdn.com/ajax/act/15_1/",
+            CdnScriptDebugPrefix = CdnPrefix + "Scripts/AjaxControlToolkit/Debug/",
+            CdnScriptReleasePrefix = CdnPrefix + "Scripts/AjaxControlToolkit/Release/",
+
             JsPostfix = ".js",
             DebugJsPostfix = ".debug" + JsPostfix,
 
