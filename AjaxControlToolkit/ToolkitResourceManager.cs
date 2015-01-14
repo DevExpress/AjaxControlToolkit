@@ -104,6 +104,9 @@ namespace AjaxControlToolkit {
             var minified = !IsDebuggingEnabled();
             var controlType = control.GetType();
 
+            if(IsCdnEnabled())
+                return FormatStyleVirtualPath(name, minified).Replace("~/", Constants.CdnPrefix);
+
             return AjaxControlToolkitConfigSection.Current.UseStaticResources
                 ? FormatStyleVirtualPath(name, minified)
                 : control.Page.ClientScript.GetWebResourceUrl(controlType, FormatStyleResourceName(name, minified));
@@ -300,19 +303,29 @@ namespace AjaxControlToolkit {
         }
 
         static bool IsDebuggingEnabled() {
+            var scriptManager = GetCurrentScriptManager();
+            if(scriptManager != null)
+                return scriptManager.IsDebuggingEnabled;
+
+            var context = HttpContext.Current;
+            return context != null && context.IsDebuggingEnabled;
+        }
+
+        static bool IsCdnEnabled() {
+            var scriptManager = GetCurrentScriptManager();
+            return scriptManager != null && scriptManager.EnableCdn;
+        }
+
+        static ScriptManager GetCurrentScriptManager() {
             var context = HttpContext.Current;
             if(context == null)
-                return false;
-
+                return null;
+            
             var page = context.Handler as Page;
             if(page == null)
-                return context.IsDebuggingEnabled;
+                return null;
 
-            var scriptManager = ScriptManager.GetCurrent(page);
-            if(scriptManager == null)
-                return context.IsDebuggingEnabled;
-
-            return scriptManager.IsDebuggingEnabled;
+            return ScriptManager.GetCurrent(page);
         }
 
         struct ResourceEntry : IEquatable<ResourceEntry> {
