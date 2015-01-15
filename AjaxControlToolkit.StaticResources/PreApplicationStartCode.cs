@@ -18,7 +18,7 @@ namespace AjaxControlToolkit.StaticResources {
 
         static void CreateScriptBundle(string bundleName) {
             if(String.IsNullOrWhiteSpace(bundleName))
-                BundleTable.Bundles.Add(new ScriptBundle("~/Scripts/AjaxControlToolkit/Bundle")
+                BundleTable.Bundles.Add(new ScriptBundle("~/Scripts/AjaxControlToolkit/Bundle", Constants.CdnPrefix + "Scripts/AjaxControlToolkit/Bundle.js")
                     .Include(ToolkitResourceManager.GetScriptPaths()));
             else
                 BundleTable.Bundles.Add(new ScriptBundle("~/Scripts/AjaxControlToolkit/" + bundleName + "Bundle")
@@ -27,7 +27,7 @@ namespace AjaxControlToolkit.StaticResources {
 
         static void CreateStyleBundle(string bundleName) {
             if(String.IsNullOrWhiteSpace(bundleName))
-                BundleTable.Bundles.Add(new StyleBundle("~/Content/AjaxControlToolkit/Styles/Bundle")
+                BundleTable.Bundles.Add(new StyleBundle("~/Content/AjaxControlToolkit/Styles/Bundle", Constants.CdnPrefix + "Content/AjaxControlToolkit/Styles/Bundle.css")
                     .Include(ToolkitResourceManager.GetStylePaths()));
             else
                 BundleTable.Bundles.Add(new StyleBundle("~/Content/AjaxControlToolkit/Styles/" + bundleName + "Bundle")

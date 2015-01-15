@@ -50,7 +50,7 @@ namespace AjaxControlToolkit {
             var trace = new HashSet<string>();
             var bundleResolver = new Bundling.BundleResolver(new Bundling.DefaultCache());
 
-            foreach(var type in bundleResolver.GetControlTypesInBundles(toolkitBundles, Path.Combine(HttpRuntime.AppDomainAppPath, AjaxControlToolkit.Bundling.BundleResolver.ConfigFileVirtualPath))) {
+            foreach(var type in bundleResolver.GetControlTypesInBundles(toolkitBundles, GetConfigPath())) {
                 foreach(var name in GetScriptEntries(type).Select(entry => entry.ResourceName)) {
                     if(trace.Contains(name))
                         continue;
@@ -61,6 +61,13 @@ namespace AjaxControlToolkit {
             }
 
             return localizationScripts.Concat(controlScripts);
+        }
+
+        static string GetConfigPath() {
+            if(String.IsNullOrEmpty(HttpRuntime.AppDomainAppVirtualPath))
+                return null;
+
+            return Path.Combine(HttpRuntime.AppDomainAppPath, AjaxControlToolkit.Bundling.BundleResolver.ConfigFileVirtualPath);
         }
 
         static void RegisterScriptMappings(IEnumerable<string> scriptNames) {
@@ -88,7 +95,7 @@ namespace AjaxControlToolkit {
 
         public static string[] GetStylePaths(params string[] toolkitBundles) {
             var controlTypes = new Bundling.BundleResolver(new Bundling.DefaultCache())
-                .GetControlTypesInBundles(toolkitBundles, Path.Combine(HttpRuntime.AppDomainAppPath, AjaxControlToolkit.Bundling.BundleResolver.ConfigFileVirtualPath));
+                .GetControlTypesInBundles(toolkitBundles, GetConfigPath());
 
             return GetStyleNames(controlTypes.ToArray())
                 .Distinct()
