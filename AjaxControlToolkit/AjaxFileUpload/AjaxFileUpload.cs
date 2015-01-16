@@ -271,6 +271,7 @@ namespace AjaxControlToolkit {
                 return;
 
             var fileInfo = new FileInfo(files[0]);
+            _uploadedFilePath = fileInfo.FullName;
 
             args = new AjaxFileUploadEventArgs(
                 fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
