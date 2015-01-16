@@ -45,7 +45,7 @@
                 <div id="master_contentplaceholder">
                     <asp:ContentPlaceHolder ID="Content" runat="server" />
                 </div>
-                <div id="master_contentfooter">Copyright &#169; 2012-2014 CodePlex Foundation. All Rights Reserved.</div>
+                <div id="master_contentfooter">Copyright &#169; 2012-2015 CodePlex Foundation. All Rights Reserved.</div>
             </div>
         </div>
     </form>
