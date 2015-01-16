@@ -87,8 +87,10 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
             _textboxCell.rowSpan = '2';
 
             _textboxCell.style.verticalAlign = 'middle';
-            _upButtonCell.style.verticalAlign = 'middle';
-            _downButtonCell.style.verticalAlign = 'middle';
+            _upButtonCell.style.verticalAlign = 'bottom';
+            _upButtonCell.style.lineHeight = '0';
+            _downButtonCell.style.verticalAlign = 'top';
+            _downButtonCell.style.lineHeight = '0';
 
             _innerRow1.appendChild(_textboxCell);
             _innerRow1.appendChild(_upButtonCell);
@@ -107,9 +109,6 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
 
             _innerTable.style.display = 'inline';
             _innerTable.style.position = 'relative';
-            // http://stackoverflow.com/questions/8782060/how-to-adjust-table-row-height-in-html5
-            _innerTable.style.fontSize = '1px';
-            _innerTable.style.lineHeight = '0';
 
             _textboxCell.style.padding = '0';
             _upButtonCell.style.padding = '0';
@@ -141,7 +140,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
             this._bUp.style.height = '12px';
             this._bUp.style.width = '24px';
             this._bUp.style.overflow = 'hidden';
-            this._bUp.style.lineHeight = '1em';
+            this._bUp.style.margin = '0';
 
             _upButtonCell.appendChild(this._bUp);
         }
@@ -165,9 +164,9 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
             }
 
             this._bDown.style.height = '12px';
-            this._bDown.style.lineHeight = '3pt';
             this._bDown.style.width = '24px';
             this._bDown.style.overflow = 'hidden';
+            this._bDown.style.margin = '0';
 
             _downButtonCell.appendChild(this._bDown);
         }
