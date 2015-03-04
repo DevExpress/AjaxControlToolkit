@@ -15,6 +15,7 @@ namespace AjaxControlToolkit {
     [Designer(typeof(AsyncFileUploadDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.AsyncFileUpload", AjaxControlToolkit.Constants.AsyncFileUploadName)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), AjaxControlToolkit.Constants.AsyncFileUploadName + AjaxControlToolkit.Constants.IconPostfix)]
     public class AsyncFileUpload : ScriptControlBase {
 
         public static class Constants {

@@ -143,7 +143,7 @@
         <Header><span id="twitterAPI">Twitter API</span></Header>
         <Content>
             <p>
-                AjaxControlToolkit Twitter Control using Twitter API v1.1. The Twitter API v1.1 requiring us to provide API keys which are <b>Consumer Key</b>, <b>Consumer Secret</b>, <b>Access token</b> and <b>Access token secret</b>. 
+                The Toolkit Twitter Control uses Twitter API v1.1. The Twitter API v1.1 which is required to provide API keys which are <b>Consumer Key</b>, <b>Consumer Secret</b>, <b>Access token</b> and <b>Access token secret</b>. 
                 You will need to create those keys through <a href="https://dev.twitter.com/apps/new">https://dev.twitter.com/apps/new</a> and supply those information into 
                 your web config under <b>appSettings</b> tag. It should looks like this:
             </p>

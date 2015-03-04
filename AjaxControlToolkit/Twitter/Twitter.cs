@@ -17,7 +17,7 @@ namespace AjaxControlToolkit {
     // search string.
     [ClientCssResource(Constants.TwitterName)]
     [Designer(typeof(TwitterDesigner))]
-    [System.Drawing.ToolboxBitmap(typeof(Accessor), Constants.TwitterName + Constants.IconPostfix)]
+    [System.Drawing.ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.TwitterName + Constants.IconPostfix)]
     public class Twitter : CompositeControl {
 
         ListView _listView;

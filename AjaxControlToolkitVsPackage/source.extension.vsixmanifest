@@ -6,10 +6,10 @@
     Version="1.0.0">
     
     <Identifier Id="e79bade7-6755-466f-9788-3d8243bdcc5f">
-        <Name>AjaxControlToolkit</Name>
+        <Name>ASP.NET AJAX Control Toolkit</Name>
         <Author>CodePlex Foundation</Author>
         <Version>15.1</Version>
-        <Description xml:space="preserve">AjaxControlToolkit Visual Studio integration package</Description>
+        <Description xml:space="preserve">ASP.NET AJAX Control Toolkit Visual Studio integration package</Description>
         <License>LICENSE.txt</License>
         <Locale>1033</Locale>
         <InstalledByMsi>false</InstalledByMsi>
@@ -32,14 +32,8 @@
         </SupportedProducts>
         <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.5" />    
     </Identifier>
-    
-    <References>
-        <Reference Id="Microsoft.VisualStudio.MPF" MinVersion="10.0">
-            <Name>Visual Studio MPF</Name>
-        </Reference>
-    </References>
-    
+        
     <Content>
-        <VsPackage>|%CurrentProject%;PkgdefProjectOutputGroup|</VsPackage>
+        <ToolboxControl>|%CurrentProject%;PkgdefProjectOutputGroup|</ToolboxControl>
     </Content>
 </Vsix>

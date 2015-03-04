@@ -21,7 +21,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(ColorPickerExtender), 1)]
     [ClientScriptResource("Sys.Extended.UI.HtmlEditorExtenderBehavior", Constants.HtmlEditorExtenderName)]
     [ClientCssResource(Constants.HtmlEditorExtenderName)]
-    [ToolboxBitmap(typeof(HtmlEditorExtender), Constants.HtmlEditorExtenderName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.HtmlEditorExtenderName + Constants.IconPostfix)]
     public class HtmlEditorExtender : ExtenderControlBase {
         internal const int ButtonWidthDef = 23;
         internal const int ButtonHeightDef = 21;

@@ -5,40 +5,41 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace AjaxControlToolkit.LinkStaticResources {
 
     class Program {
 
         static void Main(string[] args) {
-            // NOTE paths are relative to Bin 
+            string solutionDirPath = Directory.GetParent(Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName).FullName;
 
-            const string
-                outputDir = "../AjaxControlToolkit.StaticResources/",
+            string
+                outputDir = Path.Combine(solutionDirPath, @"AjaxControlToolkit.StaticResources\"),
                 scriptsDir = outputDir + "Scripts",
                 stylesDir = outputDir + "Styles",
                 imagesDir = outputDir + "Images",
-                samplesDir = "../AjaxControlToolkit.SampleSite/",
-                samplesScriptsDir = samplesDir + "Scripts/AjaxControlToolkit/",
-                samplesStylesDir = samplesDir + "Content/AjaxControlToolkit/Styles/",
-                samplesImagesDir = samplesDir + "Content/AjaxControlToolkit/Images/";
+                samplesDir = Path.Combine(solutionDirPath, @"AjaxControlToolkit.SampleSite\"),
+                samplesScriptsDir = samplesDir + @"Scripts\AjaxControlToolkit\",
+                samplesStylesDir = samplesDir + @"Content\AjaxControlToolkit\Styles\",
+                samplesImagesDir = samplesDir + @"Content\AjaxControlToolkit\Images\";
 
-            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Scripts", "*.js")) {
+            foreach(var path in Directory.EnumerateFiles(Path.Combine(solutionDirPath, @"AjaxControlToolkit\Scripts"), "*.js")) {
                 LinkScript(scriptsDir, path);
                 LinkScript(samplesScriptsDir, path);
             }
 
-            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Scripts/Localization", "*.js")) {
+            foreach(var path in Directory.EnumerateFiles(Path.Combine(solutionDirPath, @"AjaxControlToolkit\Scripts\Localization"), "*.js")) {
                 LinkScript(scriptsDir, path, TransformLocalizationScriptName);
                 LinkScript(samplesScriptsDir, path, TransformLocalizationScriptName);
             }
 
-            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Styles", "*.css")) {
+            foreach(var path in Directory.EnumerateFiles(Path.Combine(solutionDirPath, @"AjaxControlToolkit\Styles"), "*.css")) {
                 LinkStyle(stylesDir, path);
                 LinkStyle(samplesStylesDir, path);
             }
 
-            foreach(var path in Directory.EnumerateFiles("../AjaxControlToolkit/Images")) {
+            foreach(var path in Directory.EnumerateFiles(Path.Combine(solutionDirPath, @"AjaxControlToolkit\Images"))) {
                 if(Regex.IsMatch(path, @"\.(gif|jpg|png)$")) {
                     LinkStyle(imagesDir, path);
                     LinkStyle(samplesImagesDir, path);

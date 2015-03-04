@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
+using System.Drawing;
 
 namespace AjaxControlToolkit {
 
     [ClientCssResource(Constants.BubbleChartName)]
     [ClientScriptResource("Sys.Extended.UI.BubbleChart", Constants.BubbleChartName)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.BubbleChartName + Constants.IconPostfix)]
     public class BubbleChart : ChartBase {
         List<BubbleChartValue> _values = new List<BubbleChartValue>();
 

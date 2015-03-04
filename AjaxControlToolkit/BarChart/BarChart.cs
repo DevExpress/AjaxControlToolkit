@@ -5,11 +5,13 @@ using System.Linq;
 using System.Web.UI;
 using System.Drawing.Design;
 using AjaxControlToolkit.Design;
+using System.Drawing;
 
 namespace AjaxControlToolkit {
 
     [ClientCssResource(Constants.BarChartName)]
     [ClientScriptResource("Sys.Extended.UI.BarChart", Constants.BarChartName)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.BarChartName + Constants.IconPostfix)]
     public class BarChart : ChartBase {
         List<BarChartSeries> _series = new List<BarChartSeries>();
 

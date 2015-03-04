@@ -5,11 +5,13 @@ using System.Linq;
 using System.Web.UI;
 using System.Drawing.Design;
 using AjaxControlToolkit.Design;
+using System.Drawing;
 
 namespace AjaxControlToolkit {
 
     [ClientCssResource(Constants.PieChartName)]
     [ClientScriptResource("Sys.Extended.UI.PieChart", Constants.PieChartName)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.PieChartName + Constants.IconPostfix)]
     public class PieChart : ChartBase {
         List<PieChartValue> _values = new List<PieChartValue>();
 

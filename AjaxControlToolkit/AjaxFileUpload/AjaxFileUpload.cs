@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
+using System.Drawing;
 
 namespace AjaxControlToolkit {
 
@@ -15,6 +16,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientCssResource(Constants.AjaxFileUploadName)]
     [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", Constants.AjaxFileUploadName)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AjaxFileUploadName + Constants.IconPostfix)]
     public class AjaxFileUpload : ScriptControlBase {
         internal const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";
         const string TemporaryUploadFolderName = "_AjaxFileUpload";

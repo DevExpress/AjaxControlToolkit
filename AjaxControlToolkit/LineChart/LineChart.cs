@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
+using System.Drawing;
 
 namespace AjaxControlToolkit {
 
     [ClientCssResource(Constants.LineChartName)]
     [ClientScriptResource("Sys.Extended.UI.LineChart", Constants.LineChartName)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.LineChartName + Constants.IconPostfix)]
     public class LineChart : ChartBase {
         List<LineChartSeries> _series = new List<LineChartSeries>();
 

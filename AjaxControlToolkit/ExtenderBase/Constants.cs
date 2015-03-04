@@ -1,7 +1,11 @@
 namespace AjaxControlToolkit {
-    internal static class Constants {
+
+    public static class Constants {
+
+        public const string
+            CdnPrefix = "http://ajax.aspnetcdn.com/ajax/act/15.1.1/";
+
         internal const string
-            CdnPrefix = "http://ajax.aspnetcdn.com/ajax/act/15_1/",
             CdnScriptDebugPrefix = CdnPrefix + "Scripts/AjaxControlToolkit/Debug/",
             CdnScriptReleasePrefix = CdnPrefix + "Scripts/AjaxControlToolkit/Release/",
 
@@ -350,4 +354,5 @@ namespace AjaxControlToolkit {
             ValidatorCalloutAlertSmallImage = ValidatorCalloutName + ".Alert-Small.gif",
             ValidatorCalloutCloseImage = ValidatorCalloutName + ".Close.gif";
     }
+
 }

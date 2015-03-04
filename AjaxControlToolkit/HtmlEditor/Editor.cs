@@ -86,7 +86,7 @@ namespace AjaxControlToolkit.HtmlEditor {
     [RequiredScript(typeof(AjaxControlToolkit.HtmlEditor.Popups.RegisteredField))]
 
     [ClientScriptResource("Sys.Extended.UI.HtmlEditor.Editor", Constants.HtmlEditorEditorName)]
-    [ToolboxBitmap(typeof(AjaxControlToolkit.HtmlEditor.Editor), Constants.HtmlEditorName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.HtmlEditorName + Constants.IconPostfix)]
 
     public class Editor : ScriptControlBase {
         internal Toolbar _bottomToolbar;

@@ -5,11 +5,13 @@ using System.ComponentModel;
 using System.Drawing.Design;
 using System.Linq;
 using System.Web.UI;
+using System.Drawing;
 
 namespace AjaxControlToolkit {
 
     [ClientCssResource(Constants.AreaChartName)]
     [ClientScriptResource("Sys.Extended.UI.AreaChart", Constants.AreaChartName)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AreaChartName + Constants.IconPostfix)]
     public class AreaChart : ChartBase {
         List<AreaChartSeries> _series = new List<AreaChartSeries>();
 

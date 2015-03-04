@@ -18,7 +18,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientCssResource(Constants.TabsName)]
     [ClientScriptResource("Sys.Extended.UI.TabContainer", Constants.TabsName)]
-    [ToolboxBitmap(typeof(TabContainer), Constants.TabsName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.TabsName + Constants.IconPostfix)]
     public class TabContainer : ScriptControlBase, IPostBackEventHandler {
         static readonly object EventActiveTabChanged = new object();
 

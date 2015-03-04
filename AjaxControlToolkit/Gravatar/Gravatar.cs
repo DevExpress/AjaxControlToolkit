@@ -16,7 +16,7 @@ namespace AjaxControlToolkit {
     [ToolboxData("<{0}:Gravatar runat=\"server\"></{0}:Gravatar>")]
     [RequiredScript(typeof(ScriptControlBase), 1)]
     [RequiredScript(typeof(CommonToolkitScripts), 2)]
-    [ToolboxBitmap(typeof(Gravatar), Constants.GravatarName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.GravatarName + Constants.IconPostfix)]
     public class Gravatar : WebControl {
         
         public Gravatar() : base(HtmlTextWriterTag.Img) {

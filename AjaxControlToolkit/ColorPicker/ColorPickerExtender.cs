@@ -1,5 +1,4 @@
 using AjaxControlToolkit.Design;
-using AjaxControlToolkit.ToolboxIcons;
 using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
@@ -15,7 +14,7 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(TextBox))]
     [ClientCssResource(Constants.ColorPickerName)]
     [ClientScriptResource("Sys.Extended.UI.ColorPickerBehavior", Constants.ColorPickerName)]
-    [ToolboxBitmap(typeof(Accessor), Constants.ColorPickerName + Constants.IconPostfix)]
+    [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ColorPickerName + Constants.IconPostfix)]
     [Designer(typeof(ColorPickerExtenderDesigner))]
     public class ColorPickerExtender : ExtenderControlBase {
         [DefaultValue(true)]

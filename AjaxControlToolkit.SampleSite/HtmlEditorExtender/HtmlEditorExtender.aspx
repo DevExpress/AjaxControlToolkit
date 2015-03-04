@@ -150,7 +150,7 @@
             </p>
             <br />
             <p>
-                To use AjaxControlToolkit Sanitizer, install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package.
+                To use the Toolkit Sanitizer, install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package.
             </p>
             <br />
             <p>
