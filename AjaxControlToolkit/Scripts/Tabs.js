@@ -342,15 +342,23 @@ Sys.Extended.UI.TabPanel = function(element) {
     this._updatePanelID = "";
     this.isAttachedDisabledEvents = false;
     this.isAttachedEnabledEvents = false;
-    this._header_onclick$delegate = Function.createDelegate(this, this._header_onclick);
-    this._header_onmouseover$delegate = Function.createDelegate(this, this._header_onmouseover);
-    this._header_onmouseout$delegate = Function.createDelegate(this, this._header_onmouseout);
-    this._header_onmousedown$delegate = Function.createDelegate(this, this._header_onmousedown);
     this._dynamicPopulate_onpopulated$delegate = Function.createDelegate(this, this._dynamicPopulate_onpopulated);
-    this._oncancel$delegate = Function.createDelegate(this, this._oncancel);
-    this._onkeydown$delegate = Function.createDelegate(this, this._onkeydown);
-    this._disabled_onclick$delegate = Function.createDelegate(this, this._disabled_onclick);
+
+    _oncancel$delegate = Function.createDelegate(this, this._oncancel);
+
+    this._headerEventHandlers = {
+        click: Function.createDelegate(this, this._header_onclick),
+        mouseover: Function.createDelegate(this, this._header_onmouseover),
+        mouseout: Function.createDelegate(this, this._header_onmouseout),
+        keydown: Function.createDelegate(this, this._onkeydown),
+
+        mousedown: Function.createDelegate(this, this._header_onmousedown),
+        dragstart: _oncancel$delegate,
+        selectstart: _oncancel$delegate,
+        select: _oncancel$delegate
+    };
 }
+
 Sys.Extended.UI.TabPanel.prototype = {
 
     add_click: function(handler) {
@@ -583,12 +591,6 @@ Sys.Extended.UI.TabPanel.prototype = {
             this._dynamicPopulateBehavior.dispose();
             this._dynamicPopulateBehavior = null;
         }
-        $common.removeHandlers(this._header, {
-            mousedown: this._header_onmousedown$delegate,
-            dragstart: this._oncancel$delegate,
-            selectstart: this._oncancel$delegate,
-            select: this._oncancel$delegate
-        });
 
         if(this._enabled)
             if(this._isAttachedEnabledEvents)
@@ -603,22 +605,12 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     _addHandlersOnEnabled: function() {
-        $addHandlers(this._header, {
-            click: this._header_onclick$delegate,
-            mouseover: this._header_onmouseover$delegate,
-            mouseout: this._header_onmouseout$delegate,
-            keydown: this._onkeydown$delegate
-        });
+        $addHandlers(this._header, this._headerEventHandlers);
         this._isAttachedEnabledEvents = true;
     },
 
     _removeHandlersOnEnabled: function() {
-        $common.removeHandlers(this._header, {
-            click: this._header_onclick$delegate,
-            mouseover: this._header_onmouseover$delegate,
-            mouseout: this._header_onmouseout$delegate,
-            keydown: this._onkeydown$delegate
-        });
+        $common.removeHandlers(this._header, this._headerEventHandlers);
     },
 
     populate: function(contextKeyOverride) {
