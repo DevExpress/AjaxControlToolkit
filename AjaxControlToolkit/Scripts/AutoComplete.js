@@ -370,6 +370,9 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     _onListMouseUp: function(ev) {
+        if(this._flyoutHasFocus)
+            return;
+
         try { this.get_element().focus(); } catch (e) { }
     },
 
