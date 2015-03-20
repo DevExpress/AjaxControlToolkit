@@ -14,7 +14,6 @@
     <form id="MasterPageForm" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="true">
             <Scripts>
-                <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Path="~/Scripts/AjaxControlToolkit/Bundle" />
             </Scripts>
         </asp:ScriptManager>
