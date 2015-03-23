@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.LinkStat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.CdnBundleBuilder", "AjaxControlToolkit.CdnBundleBuilder\AjaxControlToolkit.CdnBundleBuilder.csproj", "{C6EE3B82-A099-426E-A7FD-2990E532F840}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.Jasmine", "AjaxControlToolkit.Jasmine\AjaxControlToolkit.Jasmine.csproj", "{EE3C80EA-AF91-41CF-9CFB-33E2EC7CC50D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,10 @@ Global
 		{C6EE3B82-A099-426E-A7FD-2990E532F840}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6EE3B82-A099-426E-A7FD-2990E532F840}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6EE3B82-A099-426E-A7FD-2990E532F840}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE3C80EA-AF91-41CF-9CFB-33E2EC7CC50D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE3C80EA-AF91-41CF-9CFB-33E2EC7CC50D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE3C80EA-AF91-41CF-9CFB-33E2EC7CC50D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE3C80EA-AF91-41CF-9CFB-33E2EC7CC50D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
