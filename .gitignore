@@ -10,3 +10,4 @@ AjaxControlToolkit.SampleSite/bin/*
 !AjaxControlToolkit.SampleSite/bin/*.refresh
 AjaxControlToolkit.SampleSite/Scripts/AjaxControlToolkit/
 AjaxControlToolkit.SampleSite/Content/AjaxControlToolkit/
+AjaxControlToolkit.Jasmine/bin/
