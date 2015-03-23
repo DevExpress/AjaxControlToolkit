@@ -32,7 +32,7 @@ namespace AjaxControlToolkitVsPackage {
 
             var service = (IToolboxService)GetService(typeof(IToolboxService));
             foreach(var item in EnumerateToolboxItems(assembly))
-                service.AddToolboxItem(item, "AjaxControlToolkit." + version);
+                service.AddToolboxItem(item, "AJAX Control Toolkit v" + version);
         }
 
         void RemoveToolboxItems() {
