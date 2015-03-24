@@ -111,8 +111,10 @@ namespace AjaxControlToolkit {
             var minified = !IsDebuggingEnabled();
             var controlType = control.GetType();
 
-            if(IsCdnEnabled())
-                return FormatStyleVirtualPath(name, minified).Replace("~/", Constants.CdnPrefix);
+            if(IsCdnEnabled()) {
+                var prefix = IsSecureConnection() ? Constants.CdnSecurePrefix : Constants.CdnPrefix;
+                return FormatStyleVirtualPath(name, minified).Replace("~/", prefix);
+            }
 
             return AjaxControlToolkitConfigSection.Current.UseStaticResources
                 ? FormatStyleVirtualPath(name, minified)
@@ -324,6 +326,11 @@ namespace AjaxControlToolkit {
         static bool IsCdnEnabled() {
             var scriptManager = GetCurrentScriptManager();
             return scriptManager != null && scriptManager.EnableCdn;
+        }
+
+        static bool IsSecureConnection() {
+            var context = HttpContext.Current;
+            return context != null && context.Request != null && context.Request.IsSecureConnection;
         }
 
         static ScriptManager GetCurrentScriptManager() {
