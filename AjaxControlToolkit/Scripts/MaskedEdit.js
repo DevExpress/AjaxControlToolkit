@@ -101,7 +101,6 @@ Sys.Extended.UI.MaskedEditBehavior = function(element) {
     this._CurrentMessageError = ""; // Save local Current MessageError
     this._FiringOnChange = false;  // true when OnChange is being fired
     this._ErroOnEnter = false; // Flag Erro validate with Enter
-    this._beforeClearMaskText = '';
 
     // local chars ANSI
     this._charLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -381,10 +380,8 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             this.AutoFormatNumber();
 
         // clear mask and set CSS
-        if(ClearText != "" || isblur) {
-            this._beforeClearMaskText = wrapper.get_Value();
+         if ((this._ClearMaskOnLostfocus && ClearText != "") || (isblur && this._ClearMaskOnLostfocus) )
             wrapper.set_Value(this._getClearMask(wrapper.get_Value()));
-        }
 
         this.AddCssClassMaskedEdit("");
         if(this._MaskType == Sys.Extended.UI.MaskedEditType.Number && this._LogicSymbol == "-" && this._OnBlurCssNegative != "")
@@ -410,17 +407,15 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
 
     _onBlur: function(evt) {
         this._InLostfocus = true;
-
-        var IsValid = this._PeforformValidLostFocus(true),
-            wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
+        var IsValid = this._PeforformValidLostFocus(true);
 
         if(IsValid)
-            // trigger TextChanged with postback            
+        {
+            var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
+            // trigger TextChanged with postback
             if(!this.get_element().readOnly && (this._initialvalue != wrapper.get_Value()) && evt)
                 this._fireChanged();
-
-        if(this._beforeClearMaskText != '')
-            wrapper.set_Value(this._beforeClearMaskText);
+        }
     },
 
     _fireChanged: function() {

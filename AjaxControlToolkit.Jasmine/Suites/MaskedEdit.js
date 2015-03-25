@@ -32,6 +32,21 @@
         expect(Testing.Target.value).toBe("AB");
     });
 
+    it("must clear mask on blur", function() {
+        // Arrange
+        var testDocument = document.getElementById("test-frame").contentWindow.document;
+        var focusStealer = testDocument.createElement("input");
+        focusStealer.type = "text";
+        testDocument.getElementById("TestForm").appendChild(focusStealer);
+        Testing.Target.value = "ABC";
+        setCaretPosition(Testing.Target, 0);
+
+        //Act
+        focusStealer.focus();
+
+        // Assert
+        expect(Testing.Target.value).toBe("ABC");
+    });
 });
 
 // http://stackoverflow.com/questions/512528/set-cursor-position-in-html-textbox
@@ -41,27 +56,22 @@ function setCaretPosition(el, caretPos) {
     // to make sure we don't have it everything -selected-
     // (it causes an issue in chrome, and having it doesn't hurt any other browser)
 
-    if (el !== null) {
-
-        if (el.createTextRange) {
-            var range = el.createTextRange();
-            range.move('character', caretPos);
-            range.select();
+    if(el.createTextRange) {
+        var range = el.createTextRange();
+        range.move('character', caretPos);
+        range.select();
+        return true;
+    }
+    else {
+        // (el.selectionStart === 0 added for Firefox bug)
+        if(el.selectionStart || el.selectionStart === 0) {
+            el.focus();
+            el.setSelectionRange(caretPos, caretPos);
             return true;
         }
-
         else {
-            // (el.selectionStart === 0 added for Firefox bug)
-            if (el.selectionStart || el.selectionStart === 0) {
-                el.focus();
-                el.setSelectionRange(caretPos, caretPos);
-                return true;
-            }
-
-            else  { // fail city, fortunately this never happens (as far as I've tested) :)
-                el.focus();
-                return false;
-            }
+            el.focus();
+            return false;
         }
     }
 }
