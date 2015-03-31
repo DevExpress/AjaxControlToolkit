@@ -1,5 +1,9 @@
 ﻿{
     "JavaScript": {
         "GenerateSourceMaps": false
+    },
+
+    "BrowserLink": {
+        "EnableMenu": false
     }
 }
