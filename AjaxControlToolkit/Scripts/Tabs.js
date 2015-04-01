@@ -347,15 +347,17 @@ Sys.Extended.UI.TabPanel = function(element) {
     _oncancel$delegate = Function.createDelegate(this, this._oncancel);
 
     this._headerEventHandlers = {
-        click: Function.createDelegate(this, this._header_onclick),
-        mouseover: Function.createDelegate(this, this._header_onmouseover),
-        mouseout: Function.createDelegate(this, this._header_onmouseout),
-        keydown: Function.createDelegate(this, this._onkeydown),
-
         mousedown: Function.createDelegate(this, this._header_onmousedown),
         dragstart: _oncancel$delegate,
         selectstart: _oncancel$delegate,
         select: _oncancel$delegate
+    };
+
+    this._enabledHeaderEventHandlers = {
+        click: Function.createDelegate(this, this._header_onclick),
+        mouseover: Function.createDelegate(this, this._header_onmouseover),
+        mouseout: Function.createDelegate(this, this._header_onmouseout),
+        keydown: Function.createDelegate(this, this._onkeydown),
     };
 }
 
@@ -568,6 +570,8 @@ Sys.Extended.UI.TabPanel.prototype = {
 
         this._makeEnabled(this._enabled);
 
+        $addHandlers(this._header, this._headerEventHandlers);
+
         var serverRendered = (this._tab != null);
         if(!serverRendered) {
             this._headerOuterWrapper = document.createElement('span');
@@ -592,6 +596,8 @@ Sys.Extended.UI.TabPanel.prototype = {
             this._dynamicPopulateBehavior = null;
         }
 
+        $common.removeHandlers(this._header, this._headerEventHandlers);
+        
         if(this._enabled)
             if(this._isAttachedEnabledEvents)
                 this._removeHandlersOnEnabled();
@@ -605,12 +611,12 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     _addHandlersOnEnabled: function() {
-        $addHandlers(this._header, this._headerEventHandlers);
+        $addHandlers(this._header, this._enabledHeaderEventHandlers);
         this._isAttachedEnabledEvents = true;
     },
 
     _removeHandlersOnEnabled: function() {
-        $common.removeHandlers(this._header, this._headerEventHandlers);
+        $common.removeHandlers(this._header, this._enabledHeaderEventHandlers);
     },
 
     populate: function(contextKeyOverride) {
