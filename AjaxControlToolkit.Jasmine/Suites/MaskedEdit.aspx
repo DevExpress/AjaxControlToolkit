@@ -14,6 +14,7 @@
         <act:MaskedEditExtender ID="TargetExtender" runat="server"
             TargetControlID="Target"
             Mask="LLLLL"
+            CultureName="en-US"
             ClientIDMode="Static"/>
     </form>
 </body>
