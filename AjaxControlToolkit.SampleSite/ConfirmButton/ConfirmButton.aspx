@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="DemoContent" runat="Server">
     <script type='text/javascript'>
         function cancelClick() {
-            var label = $get('ctl00_SampleContent_Label1');
+            var label = $get('Content_DemoContent_Button');
             label.innerHTML = 'You hit cancel in the Confirm dialog on ' + (new Date()).localeFormat("T") + '.';
         }
     </script>
