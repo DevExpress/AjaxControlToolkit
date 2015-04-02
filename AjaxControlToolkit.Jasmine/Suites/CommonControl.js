@@ -1,7 +1,7 @@
-﻿describe("TextBoxWatermark", function () {
+﻿describe("CommonControl", function () {
 
     beforeEach(function (done) {
-        Testing.LoadSpec("TextBoxWatermark", done);
+        Testing.LoadSpec("CommonControl", done);
     });
 
     it("must have init value", function () {

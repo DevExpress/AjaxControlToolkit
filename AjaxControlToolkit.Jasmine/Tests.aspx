@@ -25,7 +25,7 @@
         };
     </script>
 
-    <script src="Suites/TextBoxWatermark.js"></script>
+    <script src="Suites/CommonControl.js"></script>
     <script src="Suites/MaskedEdit.js"></script>
 </body>
 </html>

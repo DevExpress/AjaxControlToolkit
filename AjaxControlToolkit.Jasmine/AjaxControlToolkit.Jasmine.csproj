@@ -49,8 +49,8 @@
   <ItemGroup>
     <Content Include="Suites\MaskedEdit.aspx" />
     <Content Include="Suites\MaskedEdit.js" />
-    <Content Include="Suites\TextBoxWatermark.aspx" />
-    <Content Include="Suites\TextBoxWatermark.js" />
+    <Content Include="Suites\CommonControl.aspx" />
+    <Content Include="Suites\CommonControl.js" />
     <Content Include="Vendor\jasmine-2.2.0\boot.js" />
     <Content Include="Vendor\jasmine-2.2.0\console.js" />
     <Content Include="Vendor\jasmine-2.2.0\jasmine-html.js" />
@@ -72,12 +72,12 @@
     <Compile Include="Suites\MaskedEdit.aspx.designer.cs">
       <DependentUpon>MaskedEdit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\TextBoxWatermark.aspx.cs">
-      <DependentUpon>TextBoxWatermark.aspx</DependentUpon>
+    <Compile Include="Suites\CommonControl.aspx.cs">
+      <DependentUpon>CommonControl.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\TextBoxWatermark.aspx.designer.cs">
-      <DependentUpon>TextBoxWatermark.aspx</DependentUpon>
+    <Compile Include="Suites\CommonControl.aspx.designer.cs">
+      <DependentUpon>CommonControl.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests.aspx.cs">
       <DependentUpon>Tests.aspx</DependentUpon>
