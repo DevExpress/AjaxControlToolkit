@@ -47,8 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Suites\AnotherSpec.aspx" />
-    <Content Include="Suites\AnotherSpec.js" />
     <Content Include="Suites\MaskedEdit.aspx" />
     <Content Include="Suites\MaskedEdit.js" />
     <Content Include="Suites\TextBoxWatermark.aspx" />
@@ -66,13 +64,6 @@
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Suites\AnotherSpec.aspx.cs">
-      <DependentUpon>AnotherSpec.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Suites\AnotherSpec.aspx.designer.cs">
-      <DependentUpon>AnotherSpec.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\MaskedEdit.aspx.cs">
       <DependentUpon>MaskedEdit.aspx</DependentUpon>
