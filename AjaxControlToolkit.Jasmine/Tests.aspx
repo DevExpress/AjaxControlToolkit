@@ -26,7 +26,6 @@
     </script>
 
     <script src="Suites/TextBoxWatermark.js"></script>
-    <script src="Suites/AnotherSpec.js"></script>
     <script src="Suites/MaskedEdit.js"></script>
 </body>
 </html>
