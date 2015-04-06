@@ -59,7 +59,7 @@ public abstract class TodoXmlDataObject {
     }
 
     string XsdFile {
-        get { return Path.Combine(RootPath, @"App_Code\TodoItems.xsd"); }
+        get { return Path.Combine(RootPath, @"App_Data\TodoItems.xsd"); }
     }
 
     [DataObjectMethod(DataObjectMethodType.Select)]
