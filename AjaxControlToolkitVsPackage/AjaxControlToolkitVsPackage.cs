@@ -14,6 +14,7 @@ namespace AjaxControlToolkitVsPackage {
     [Guid("e79bade7-6755-466f-9788-3d8243bdcc5f")]
     [ProvideToolboxItems(1)]
     public sealed class AjaxControlToolkitVsPackage : Package {
+        const string _actAssemblyName = "AjaxControlToolkit.dll";
 
         public AjaxControlToolkitVsPackage() {
             this.ToolboxInitialized += (s, e) => {
@@ -49,9 +50,17 @@ namespace AjaxControlToolkitVsPackage {
             var path = new Uri(typeof(AjaxControlToolkitVsPackage).Assembly.CodeBase).AbsolutePath;
             path = Uri.UnescapeDataString(path);
             path = Path.GetDirectoryName(path);
-            path = Path.Combine(path, "AjaxControlToolkit.dll"); 
+            path = Path.Combine(path, _actAssemblyName);
 
-            return Assembly.LoadFrom(path);
+            var dir = Path.Combine(Directory.GetParent(path).Parent.FullName, "ASP.NET AJAX Control Toolkit");
+            Directory.CreateDirectory(dir);
+            var newPath = Path.Combine(dir, _actAssemblyName);
+
+            try {
+                File.Copy(path, newPath, true);
+            } catch { }
+
+            return Assembly.LoadFrom(newPath);
         }
 
 
