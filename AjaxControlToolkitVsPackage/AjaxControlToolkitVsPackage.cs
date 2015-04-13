@@ -14,7 +14,11 @@ namespace AjaxControlToolkitVsPackage {
     [Guid("e79bade7-6755-466f-9788-3d8243bdcc5f")]
     [ProvideToolboxItems(1)]
     public sealed class AjaxControlToolkitVsPackage : Package {
-        const string _actAssemblyName = "AjaxControlToolkit.dll";
+
+        const string
+            _actAssemblyName = "AjaxControlToolkit.dll",
+            _actName = "ASP.NET AJAX Control Toolkit";
+
 
         public AjaxControlToolkitVsPackage() {
             this.ToolboxInitialized += (s, e) => {
@@ -27,7 +31,7 @@ namespace AjaxControlToolkitVsPackage {
             };
         }
 
-        void InstallToolboxItems() {                        
+        void InstallToolboxItems() {
             var assembly = LoadToolkitAssembly();
             var version = assembly.GetName().Version.ToString(2);
 
@@ -47,22 +51,55 @@ namespace AjaxControlToolkitVsPackage {
         }
 
         static Assembly LoadToolkitAssembly() {
-            var path = new Uri(typeof(AjaxControlToolkitVsPackage).Assembly.CodeBase).AbsolutePath;
-            path = Uri.UnescapeDataString(path);
-            path = Path.GetDirectoryName(path);
-            path = Path.Combine(path, _actAssemblyName);
+            var result = GetAssemblyFromUserDocs();
+            if(result != null)
+                return result;
 
-            var dir = Path.Combine(Directory.GetParent(path).Parent.FullName, "ASP.NET AJAX Control Toolkit");
-            Directory.CreateDirectory(dir);
-            var newPath = Path.Combine(dir, _actAssemblyName);
+            result = GetAssemblyFromVsExtensions();
+            if(result != null)
+                return result;
 
-            try {
-                File.Copy(path, newPath, true);
-            } catch { }
-
-            return Assembly.LoadFrom(newPath);
+            return GetAssemblyFromCurrentDir();
         }
 
+        static Assembly GetAssemblyFromUserDocs() {
+            var path = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                _actName,
+                "Bin",
+                _actAssemblyName);
 
+            return TryLoadAssembly(path);
+        }
+
+        static Assembly GetAssemblyFromVsExtensions() {
+            var path = Path.Combine(Directory.GetParent(GetCurrentAssemblyPath()).FullName, _actName, _actAssemblyName);
+
+            return TryLoadAssembly(path);
+        }
+
+        static Assembly GetAssemblyFromCurrentDir() {
+            var path = Path.Combine(GetCurrentAssemblyPath(), _actAssemblyName);
+
+            return TryLoadAssembly(path);
+        }
+
+        static string GetCurrentAssemblyPath() {
+            var path = new Uri(typeof(AjaxControlToolkitVsPackage).Assembly.CodeBase).AbsolutePath;
+            path = Uri.UnescapeDataString(path);
+
+            return Path.GetDirectoryName(path);
+        }
+
+        static Assembly TryLoadAssembly(string path) {
+            if(!File.Exists(path))
+                return null;
+
+            try {
+                return Assembly.LoadFrom(path);
+            } catch {
+                return null;
+            }
+        }
     }
 }
