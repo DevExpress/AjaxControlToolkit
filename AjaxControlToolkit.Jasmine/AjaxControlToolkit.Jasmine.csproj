@@ -51,6 +51,8 @@
     <Content Include="Suites\MaskedEdit\MaskedEdit.js" />
     <Content Include="Suites\TestSetup\TestSetup.aspx" />
     <Content Include="Suites\TestSetup\TestSetup.js" />
+    <Content Include="Suites\ToolkitResourceManager\ToolkitResourceManager.aspx" />
+    <Content Include="Suites\ToolkitResourceManager\ToolkitResourceManager.js" />
     <Content Include="Vendor\jasmine-2.2.0\boot.js" />
     <Content Include="Vendor\jasmine-2.2.0\console.js" />
     <Content Include="Vendor\jasmine-2.2.0\jasmine-html.js" />
@@ -60,6 +62,11 @@
     <Content Include="Global.asax" />
     <Content Include="Tests.aspx" />
     <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Suites\ToolkitResourceManager\TestExtender.js">
+      <LogicalName>TestExtender.js</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -78,6 +85,14 @@
     </Compile>
     <Compile Include="Suites\TestSetup\TestSetup.aspx.designer.cs">
       <DependentUpon>TestSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManager\TestExtenderControl.cs" />
+    <Compile Include="Suites\ToolkitResourceManager\ToolkitResourceManager.aspx.cs">
+      <DependentUpon>ToolkitResourceManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManager\ToolkitResourceManager.aspx.designer.cs">
+      <DependentUpon>ToolkitResourceManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests.aspx.cs">
       <DependentUpon>Tests.aspx</DependentUpon>

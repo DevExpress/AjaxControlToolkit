@@ -27,5 +27,6 @@
 
     <script src="Suites/TestSetup/TestSetup.js"></script>
     <script src="Suites/MaskedEdit/MaskedEdit.js"></script>
+    <script src="Suites/ToolkitResourceManager/ToolkitResourceManager.js"></script>
 </body>
 </html>
