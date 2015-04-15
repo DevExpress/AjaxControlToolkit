@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CommonControl.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.TextBoxWatermark" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestSetup.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.TextBoxWatermark" %>
 
 <!DOCTYPE html>
 

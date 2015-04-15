@@ -1,7 +1,7 @@
-﻿describe("CommonControl", function () {
+﻿describe("TestSetup", function () {
 
     beforeEach(function (done) {
-        Testing.LoadSpec("CommonControl", done);
+        Testing.LoadSpec("TestSetup", done);
     });
 
     it("must have init value", function () {
@@ -13,7 +13,7 @@
         expect(Testing.Target.value).toBe("DEF");
     });
 
-    it("must have init value agin", function () {
+    it("must have init value again", function () {
         expect(Testing.Target.value).toBe("ABC");
     });
 
