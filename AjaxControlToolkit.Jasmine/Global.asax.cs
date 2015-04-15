@@ -19,8 +19,8 @@ namespace AjaxControlToolkit.Jasmine {
                                         "~/Tests.aspx");
 
             routeCollection.MapPageRoute("SuiteRoute",
-                            "Suite/{suiteName}",
-                            "~/Suites/{suiteName}.aspx");
+                            "Suite/{suiteDirName}/{suiteName}",
+                            "~/Suites/{suiteDirName}/{suiteName}.aspx");
         }
 
         protected void Session_Start(object sender, EventArgs e) {

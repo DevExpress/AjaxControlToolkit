@@ -21,11 +21,11 @@
         window.Testing = {};
         window.Testing.LoadSpec = function (specName, callback) {
             window.Testing.LoadSpecCallback = callback;
-            document.getElementById("test-frame").src = "/Suite/" + specName;
+            document.getElementById("test-frame").src = "/Suite/" + specName + "/" + specName;
         };
     </script>
 
-    <script src="Suites/TestSetup.js"></script>
-    <script src="Suites/MaskedEdit.js"></script>
+    <script src="Suites/TestSetup/TestSetup.js"></script>
+    <script src="Suites/MaskedEdit/MaskedEdit.js"></script>
 </body>
 </html>

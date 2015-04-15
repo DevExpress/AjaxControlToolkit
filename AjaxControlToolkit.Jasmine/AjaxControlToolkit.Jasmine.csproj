@@ -47,10 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Suites\MaskedEdit.aspx" />
-    <Content Include="Suites\MaskedEdit.js" />
-    <Content Include="Suites\TestSetup.aspx" />
-    <Content Include="Suites\TestSetup.js" />
+    <Content Include="Suites\MaskedEdit\MaskedEdit.aspx" />
+    <Content Include="Suites\MaskedEdit\MaskedEdit.js" />
+    <Content Include="Suites\TestSetup\TestSetup.aspx" />
+    <Content Include="Suites\TestSetup\TestSetup.js" />
     <Content Include="Vendor\jasmine-2.2.0\boot.js" />
     <Content Include="Vendor\jasmine-2.2.0\console.js" />
     <Content Include="Vendor\jasmine-2.2.0\jasmine-html.js" />
@@ -65,18 +65,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Suites\MaskedEdit.aspx.cs">
+    <Compile Include="Suites\MaskedEdit\MaskedEdit.aspx.cs">
       <DependentUpon>MaskedEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\MaskedEdit.aspx.designer.cs">
+    <Compile Include="Suites\MaskedEdit\MaskedEdit.aspx.designer.cs">
       <DependentUpon>MaskedEdit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\TestSetup.aspx.cs">
+    <Compile Include="Suites\TestSetup\TestSetup.aspx.cs">
       <DependentUpon>TestSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\TestSetup.aspx.designer.cs">
+    <Compile Include="Suites\TestSetup\TestSetup.aspx.designer.cs">
       <DependentUpon>TestSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests.aspx.cs">
