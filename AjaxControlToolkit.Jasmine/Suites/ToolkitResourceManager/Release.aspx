@@ -10,7 +10,7 @@
 </head>
 <body onload="onLoad()">
     <form runat="server">
-        <asp:ScriptManager runat="server" ScriptMode="Release" />
+        <asp:ScriptManager runat="server" ScriptMode="Release" EnableCdn="true" />
 
         <asp:TextBox runat="server" ID="Target" />
         <test:TestExtenderControl runat="server" TargetControlID="Target" />

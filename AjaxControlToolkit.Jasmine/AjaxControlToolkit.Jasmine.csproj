@@ -51,6 +51,8 @@
     <Content Include="Suites\MaskedEdit\MaskedEdit.js" />
     <Content Include="Suites\TestSetup\TestSetup.aspx" />
     <Content Include="Suites\TestSetup\TestSetup.js" />
+    <EmbeddedResource Include="Suites\ToolkitResourceManager\Scripts\TestExtender.cdn.debug.js" />
+    <EmbeddedResource Include="Suites\ToolkitResourceManager\Scripts\TestExtender.cdn.js" />
     <Content Include="Suites\ToolkitResourceManager\Scripts\TestExtender.static.js" />
     <Content Include="Suites\ToolkitResourceManager\Scripts\TestExtender.static.debug.js" />
     <Content Include="Suites\ToolkitResourceManager\Debug.aspx" />
@@ -72,6 +74,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Suites\ToolkitResourceManager\Scripts\TestExtender.embedded.debug.js">
       <LogicalName>TestExtender.embedded.debug.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suites\ToolkitResourceManager\Scripts\TestExtender.cdn.stub.js">
+      <LogicalName>TestExtender.cdn.stub.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suites\ToolkitResourceManager\Scripts\TestExtender.cdn.stub.debug.js">
+      <LogicalName>TestExtender.cdn.stub.debug.js</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

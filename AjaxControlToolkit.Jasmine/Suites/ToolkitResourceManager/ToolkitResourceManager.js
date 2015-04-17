@@ -12,6 +12,10 @@
         it("has static script loaded", function() {
             expect(Testing.TestExtenderBehavior.Release.Static).not.toBeUndefined();
         });
+
+        it("has CDN script loaded", function() {
+            expect(Testing.TestExtenderBehavior.Release.Cdn).not.toBeUndefined();
+        });
     });
 
     describe("in Debug mode", function() {
@@ -25,6 +29,10 @@
 
         it("has static script loaded", function() {
             expect(Testing.TestExtenderBehavior.Debug.Static).not.toBeUndefined();
+        });
+
+        it("has CDN script loaded", function() {
+            expect(Testing.TestExtenderBehavior.Debug.Cdn).not.toBeUndefined();
         });
     });
 });

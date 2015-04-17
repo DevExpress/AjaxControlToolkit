@@ -9,8 +9,8 @@
     <title></title>
 </head>
 <body onload="onLoad()">
-    <form id="Form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server" ScriptMode="Debug" />
+    <form runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" ScriptMode="Debug" EnableCdn="true"/>
 
         <asp:TextBox runat="server" ID="Target" />
         <test:TestExtenderControl ID="TestExtenderControl1" runat="server" TargetControlID="Target" />
