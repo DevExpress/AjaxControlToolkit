@@ -1,7 +1,7 @@
 ﻿describe("MaskedEdit", function() {
 
     beforeEach(function(done) {
-        Testing.LoadSpec("MaskedEdit", done);
+        Testing.LoadSpec(done, "MaskedEdit");
     });
 
     it("must remove symbol on backspace", function() {

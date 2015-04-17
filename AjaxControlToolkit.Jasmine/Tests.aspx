@@ -19,9 +19,12 @@
 
     <script>
         window.Testing = {};
-        window.Testing.LoadSpec = function (specName, callback) {
+        window.Testing.LoadSpec = function (callback, suiteDirName, suiteName) {
+            if(!suiteName)
+                suiteName = suiteDirName;
+
+            document.getElementById("test-frame").src = "/Suite/" + suiteDirName + "/" + suiteName;
             window.Testing.LoadSpecCallback = callback;
-            document.getElementById("test-frame").src = "/Suite/" + specName + "/" + specName;
         };
     </script>
 

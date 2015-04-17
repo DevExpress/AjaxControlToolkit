@@ -1,7 +1,7 @@
 ﻿describe("TestSetup", function () {
 
     beforeEach(function (done) {
-        Testing.LoadSpec("TestSetup", done);
+        Testing.LoadSpec(done, "TestSetup");
     });
 
     it("must have init value", function () {
