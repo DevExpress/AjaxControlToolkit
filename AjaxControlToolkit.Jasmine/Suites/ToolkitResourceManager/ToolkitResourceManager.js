@@ -2,7 +2,7 @@
 
     describe("in Release mode", function() {
         beforeEach(function(done) {
-            Testing.LoadSpec(done, "ToolkitResourceManager", "Release");
+            Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Release");
         });
 
         it("has embedded script loaded", function() {
@@ -20,7 +20,7 @@
 
     describe("in Debug mode", function() {
         beforeEach(function(done) {
-            Testing.LoadSpec(done, "ToolkitResourceManager", "Debug");
+            Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Debug");
         });
 
         it("has embedded script loaded", function() {
