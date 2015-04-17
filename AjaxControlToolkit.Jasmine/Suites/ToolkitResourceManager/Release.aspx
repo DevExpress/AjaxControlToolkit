@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ToolkitResourceManager.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager.ToolkitResourceManager" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Release.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager.ToolkitResourceManager" %>
 
 <%@ Register Assembly="AjaxControlToolkit.Jasmine" Namespace="AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager" TagPrefix="test" %>
 
@@ -10,7 +10,7 @@
 </head>
 <body onload="onLoad()">
     <form runat="server">
-        <asp:ScriptManager runat="server" />
+        <asp:ScriptManager runat="server" ScriptMode="Release" />
 
         <asp:TextBox runat="server" ID="Target" />
         <test:TestExtenderControl runat="server" TargetControlID="Target" />
