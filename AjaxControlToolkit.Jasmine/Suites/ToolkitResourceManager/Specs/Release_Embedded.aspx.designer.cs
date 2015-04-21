@@ -10,7 +10,7 @@
 namespace AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager {
     
     
-    public partial class ToolkitResourceManager {
+    public partial class Release_Embedded {
         
         /// <summary>
         /// Target control.

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Release.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager.ToolkitResourceManager" %>
+﻿<%@ Page Language="C#" AutoEventWireup="True" CodeBehind="Debug_Embedded.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager.Debug_Embedded" %>
 
 <%@ Register Assembly="AjaxControlToolkit.Jasmine" Namespace="AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager" TagPrefix="test" %>
 
@@ -10,17 +10,17 @@
 </head>
 <body onload="onLoad()">
     <form runat="server">
-        <asp:ScriptManager runat="server" ScriptMode="Release" EnableCdn="true" />
+        <asp:ScriptManager runat="server" ScriptMode="Debug" EnableCdn="false"/>
 
         <asp:TextBox runat="server" ID="Target" />
-        <test:TestExtenderControl runat="server" TargetControlID="Target" />
+        <test:TestExtenderEmbeddedControl runat="server" TargetControlID="Target" />
     </form>
 </body>
 </html>
 
 <script>
     function onLoad() {
-        parent.Testing.TestExtenderBehavior = Sys.Extended.UI.TestExtenderBehavior;
+        parent.Testing.TestExtender = Sys.Extended.UI.TestExtender;
         parent.Testing.LoadSpecCallback();
     }
 </script>

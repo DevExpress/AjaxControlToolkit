@@ -2,37 +2,65 @@
 
     describe("in Release mode", function() {
         beforeEach(function(done) {
-            Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Release");
+            Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Release_Embedded");
         });
 
         it("has embedded script loaded", function() {
-            expect(Testing.TestExtenderBehavior.Release.Embedded).not.toBeUndefined();
+            expect(Testing.TestExtender.Release.Embedded).not.toBeUndefined();
+        });
+
+    });
+
+    describe("in Release mode", function() {
+        beforeEach(function(done) {
+            Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Release_Static");
         });
 
         it("has static script loaded", function() {
-            expect(Testing.TestExtenderBehavior.Release.Static).not.toBeUndefined();
+            expect(Testing.TestExtender.Release.Static).not.toBeUndefined();
+        });
+
+
+    });
+
+    describe("in Release mode", function() {
+        beforeEach(function(done) {
+            Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Release_Cdn");
         });
 
         it("has CDN script loaded", function() {
-            expect(Testing.TestExtenderBehavior.Release.Cdn).not.toBeUndefined();
+            expect(Testing.TestExtender.Release.Cdn).not.toBeUndefined();
+        });
+
+    });
+
+    describe("in Debug mode", function() {
+        beforeEach(function(done) {
+            Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Debug_Embedded");
+        });
+
+        it("has embedded script loaded", function() {
+            expect(Testing.TestExtender.Debug.Embedded).not.toBeUndefined();
         });
     });
 
     describe("in Debug mode", function() {
         beforeEach(function(done) {
-            Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Debug");
-        });
-
-        it("has embedded script loaded", function() {
-            expect(Testing.TestExtenderBehavior.Debug.Embedded).not.toBeUndefined();
+            Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Debug_Static");
         });
 
         it("has static script loaded", function() {
-            expect(Testing.TestExtenderBehavior.Debug.Static).not.toBeUndefined();
+            expect(Testing.TestExtender.Debug.Static).not.toBeUndefined();
+        });
+    });
+
+    describe("in Debug mode", function() {
+        beforeEach(function(done) {
+            Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Debug_Cdn");
         });
 
         it("has CDN script loaded", function() {
-            expect(Testing.TestExtenderBehavior.Debug.Cdn).not.toBeUndefined();
+            expect(Testing.TestExtender.Debug.Cdn).not.toBeUndefined();
         });
     });
 });

@@ -55,8 +55,12 @@
     <EmbeddedResource Include="Suites\ToolkitResourceManager\Scripts\TestExtender.cdn.js" />
     <Content Include="Suites\ToolkitResourceManager\Scripts\TestExtender.static.js" />
     <Content Include="Suites\ToolkitResourceManager\Scripts\TestExtender.static.debug.js" />
-    <Content Include="Suites\ToolkitResourceManager\Specs\Debug.aspx" />
-    <Content Include="Suites\ToolkitResourceManager\Specs\Release.aspx" />
+    <Content Include="Suites\ToolkitResourceManager\Specs\Release_Cdn.aspx" />
+    <Content Include="Suites\ToolkitResourceManager\Specs\Debug_Cdn.aspx" />
+    <Content Include="Suites\ToolkitResourceManager\Specs\Release_Static.aspx" />
+    <Content Include="Suites\ToolkitResourceManager\Specs\Debug_Static.aspx" />
+    <Content Include="Suites\ToolkitResourceManager\Specs\Debug_Embedded.aspx" />
+    <Content Include="Suites\ToolkitResourceManager\Specs\Release_Embedded.aspx" />
     <Content Include="Suites\ToolkitResourceManager\ToolkitResourceManager.js" />
     <Content Include="Vendor\jasmine-2.2.0\boot.js" />
     <Content Include="Vendor\jasmine-2.2.0\console.js" />
@@ -100,20 +104,50 @@
     <Compile Include="Suites\TestSetup\TestSetup.aspx.designer.cs">
       <DependentUpon>TestSetup.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManager\Specs\Debug.aspx.cs">
-      <DependentUpon>Debug.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Release_Cdn.aspx.cs">
+      <DependentUpon>Release_Cdn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManager\Specs\Debug.aspx.designer.cs">
-      <DependentUpon>Debug.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Release_Cdn.aspx.designer.cs">
+      <DependentUpon>Release_Cdn.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManager\TestExtenderControl.cs" />
-    <Compile Include="Suites\ToolkitResourceManager\Specs\Release.aspx.cs">
-      <DependentUpon>Release.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManager\TestExtenderCdnControl.cs" />
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Debug_Cdn.aspx.cs">
+      <DependentUpon>Debug_Cdn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManager\Specs\Release.aspx.designer.cs">
-      <DependentUpon>Release.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Debug_Cdn.aspx.designer.cs">
+      <DependentUpon>Debug_Cdn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Debug_Embedded.aspx.designer.cs">
+      <DependentUpon>Debug_Embedded.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Release_Static.aspx.cs">
+      <DependentUpon>Release_Static.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Release_Static.aspx.designer.cs">
+      <DependentUpon>Release_Static.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Debug_Static.aspx.cs">
+      <DependentUpon>Debug_Static.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Debug_Static.aspx.designer.cs">
+      <DependentUpon>Debug_Static.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManager\TestExtenderEmbeddedControl.cs" />
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Debug_Embedded.aspx.cs">
+      <DependentUpon>Debug_Embedded.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManager\TestExtenderStaticControl.cs" />
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Release_Embedded.aspx.cs">
+      <DependentUpon>Release_Embedded.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManager\Specs\Release_Embedded.aspx.designer.cs">
+      <DependentUpon>Release_Embedded.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests.aspx.cs">
       <DependentUpon>Tests.aspx</DependentUpon>
