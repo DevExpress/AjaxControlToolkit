@@ -143,7 +143,7 @@ namespace AjaxControlToolkit {
         protected virtual void DescribeComponent(ScriptComponentDescriptor descriptor) {
             try {
                 _renderingScript = true;
-                ComponentDescriber.DescribeComponent(this, descriptor, this, this);
+                ComponentDescriber.DescribeComponent(this, descriptor, this.Page, this);
             } finally {
                 _renderingScript = false;
             }

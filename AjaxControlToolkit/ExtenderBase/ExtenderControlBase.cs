@@ -249,7 +249,7 @@ namespace AjaxControlToolkit {
         // Walks each of the properties in the TargetProperties object and renders script for them.
         protected virtual void RenderScriptAttributes(ScriptBehaviorDescriptor descriptor) {
             try {
-                ComponentDescriber.DescribeComponent(this, descriptor, this, this);
+                ComponentDescriber.DescribeComponent(this, descriptor, this.Page, this);
             } finally { }
         }
 
