@@ -1425,7 +1425,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // different browsers have different API's for selecting text
         if (this._textSelectionStrategy == null) {
-            if (this.get_textBoxControl().createTextRange) {
+            if(Sys.Browser.agent === Sys.Browser.InternetExplorer && Sys.Browser.version <= 8) {
                 this._textSelectionStrategy =
                     Sys.Extended.UI.ComboBoxTextSelectionStrategy.Microsoft;
             }
