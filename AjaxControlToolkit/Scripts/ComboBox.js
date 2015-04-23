@@ -828,7 +828,11 @@ Sys.Extended.UI.ComboBox.prototype = {
         var allText = info.selectionPrefix + info.typedCharacter
             + info.selectionText.substring(1) + info.selectionSuffix;
         var userText = info.selectionPrefix + info.typedCharacter;
-        if (userText.length > this.get_textBoxControl().maxLength) {
+        var textBoxMaxLength =this.get_textBoxControl().maxLength;
+        if(textBoxMaxLength < 0)
+            textBoxMaxLength = Number.MAX_VALUE;
+
+        if (userText.length > textBoxMaxLength) {
             userText = userText.substring(0, this.get_textBoxControl().maxLength);
         }
         var suggestedIndex = this._suggestIndex(allText, userText);
