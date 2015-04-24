@@ -223,7 +223,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
     set_selectedDate: function(value) {
         if(value && (String.isInstanceOfType(value)) && (value.length != 0)) {
-            value = new Date(value);
+            value = Date.fromISO(value);
         }
 
         if(this._selectedDate != value) {
