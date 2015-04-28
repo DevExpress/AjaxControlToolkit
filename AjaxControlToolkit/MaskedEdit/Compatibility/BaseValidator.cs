@@ -4,7 +4,7 @@ using System.Security.Permissions;
 using System.Web;
 using System.Web.UI;
 
-namespace AjaxControlToolkit {
+namespace AjaxControlToolkit.MaskedEditValidatorCompatibility {
 
     [AspNetHostingPermission(SecurityAction.LinkDemand, Level = AspNetHostingPermissionLevel.Minimal)]
     [AspNetHostingPermission(SecurityAction.InheritanceDemand, Level = AspNetHostingPermissionLevel.Minimal)]
