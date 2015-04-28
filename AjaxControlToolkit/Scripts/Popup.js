@@ -15,6 +15,7 @@ Sys.Extended.UI.PopupBehavior = function(element) {
     this._firstPopup = true;
     this._originalParent = null;
     this._visible = false;
+    this._unselectable = null;
 
     // Generic animation behaviors that automatically build animations
     // from JSON descriptions
@@ -648,6 +649,18 @@ Sys.Extended.UI.PopupBehavior.prototype = {
         var handler = this.get_events().getHandler('hidden');
         if(handler)
             handler(this, eventArgs);
+    },
+
+    get_unselectable: function()
+    {
+        return this._unselectable;
+    },
+
+    set_unselectable: function(value)
+    {
+        this._unselectable = value;
+        // TODO: _this.setAttribute('unselectable', 'on');
+        this.raisePropertyChanged('unselectable');
     }
 }
 Sys.Extended.UI.PopupBehavior.registerClass('Sys.Extended.UI.PopupBehavior', Sys.Extended.UI.BehaviorBase);
