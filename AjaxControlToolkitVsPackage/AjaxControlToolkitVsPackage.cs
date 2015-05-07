@@ -17,7 +17,8 @@ namespace AjaxControlToolkitVsPackage {
 
         const string
             _actAssemblyName = "AjaxControlToolkit.dll",
-            _actName = "ASP.NET AJAX Control Toolkit";
+            _actName = "ASP.NET AJAX Control Toolkit",
+            _extensionsDirName = "Extensions";
 
 
         public AjaxControlToolkitVsPackage() {
@@ -73,9 +74,22 @@ namespace AjaxControlToolkitVsPackage {
         }
 
         static Assembly GetAssemblyFromVsExtensions() {
-            var path = Path.Combine(Directory.GetParent(GetCurrentAssemblyPath()).FullName, _actName, _actAssemblyName);
+            var path = Path.Combine(GetParentDirByName(GetCurrentAssemblyPath(), _extensionsDirName), _actName, _actAssemblyName);
 
             return TryLoadAssembly(path);
+        }
+
+        static string GetParentDirByName(string path, string parentName) {
+            var current = new DirectoryInfo(path);
+
+            while (current != null) {
+                if(String.Compare(current.Name, parentName, true) == 0)
+                    return current.FullName;
+
+                current = current.Parent;
+            }
+
+            return String.Empty;
         }
 
         static Assembly GetAssemblyFromCurrentDir() {
