@@ -21,7 +21,7 @@ namespace AjaxControlToolkit {
 
         static ToolkitResourceManager() {
             if(AjaxControlToolkitConfigSection.Current.UseStaticResources)
-                RegisterScriptMappings(GetScriptNames());
+                RegisterScriptMappings();
         }
 
         public static bool RenderStyleLinks {
@@ -70,9 +70,9 @@ namespace AjaxControlToolkit {
             return Path.Combine(HttpRuntime.AppDomainAppPath, AjaxControlToolkit.Bundling.BundleResolver.ConfigFileVirtualPath);
         }
 
-        static void RegisterScriptMappings(IEnumerable<string> scriptNames) {
+        public static void RegisterScriptMappings() {
             var toolkitAssembly = typeof(ToolkitResourceManager).Assembly;
-            foreach(var name in scriptNames) {
+            foreach(var name in GetScriptNames()) {
                 ScriptManager.ScriptResourceMapping.AddDefinition(name + Constants.JsPostfix, toolkitAssembly, new ScriptResourceDefinition() {
                     Path = FormatScriptReleaseVirtualPath(name),
                     DebugPath = FormatScriptDebugVirtualPath(name),
@@ -80,6 +80,13 @@ namespace AjaxControlToolkit {
                     CdnDebugPath = Constants.CdnScriptDebugPrefix + name + Constants.DebugJsPostfix,
                     CdnSupportsSecureConnection = true
                 });
+            }
+        }
+
+        public static void RemoveScriptMappingsRegistration() {
+            var toolkitAssembly = typeof(ToolkitResourceManager).Assembly;
+            foreach(var name in GetScriptNames()) {
+                ScriptManager.ScriptResourceMapping.RemoveDefinition(name + Constants.JsPostfix, toolkitAssembly);
             }
         }
 
