@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\AjaxControlToolkit\Debug\BaseScripts.debug.js" />
     <Content Include="Suites\CascadingDropDownTests.aspx" />
     <Content Include="Suites\HtmlEditorExtenderTests.aspx" />
     <Content Include="Suites\HtmlEditor\HtmlEditor.aspx" />
@@ -64,8 +65,9 @@
     <Content Include="Suites\TestSetup\TestSetup.js" />
     <EmbeddedResource Include="Suites\ToolkitResourceManager\Scripts\TestExtender.cdn.debug.js" />
     <EmbeddedResource Include="Suites\ToolkitResourceManager\Scripts\TestExtender.cdn.js" />
-    <Content Include="Suites\ToolkitResourceManager\Scripts\TestExtender.static.js" />
-    <Content Include="Suites\ToolkitResourceManager\Scripts\TestExtender.static.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\BaseScripts.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\TestExtender.static.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Debug\TestExtender.static.debug.js" />
     <Content Include="Suites\ToolkitResourceManager\Specs\Release_Cdn.aspx" />
     <Content Include="Suites\ToolkitResourceManager\Specs\Debug_Cdn.aspx" />
     <Content Include="Suites\ToolkitResourceManager\Specs\Release_Static.aspx" />

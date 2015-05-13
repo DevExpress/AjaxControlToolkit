@@ -53,14 +53,14 @@ namespace AjaxControlToolkit.Tests {
             var resolver = new BundleResolver(_moqCache.Object);
             var results = resolver.GetControlTypesInBundles(null, "nonexistantfile");
 
-            var bundleTypes = new List<string>();
-            foreach(var bundleControl in BundleResolver.ControlDependencyTypeMaps) {
-                bundleTypes.AddRange(bundleControl.Value);
+            var bundleTypes = new List<Type>();
+            foreach(var bundleControl in ControlDependencyMap.Maps.Values) {
+                bundleTypes.AddRange(bundleControl.Dependecies);
             }
 
             Assert.AreEqual(results.Count, bundleTypes.Distinct().Count());
-            foreach(string type in bundleTypes) {
-                Assert.IsTrue(results.Select(r => r.FullName).Contains(type), "Can't resolve {0}", type);
+            foreach(var type in bundleTypes) {
+                Assert.IsTrue(results.Contains(type), "Can't resolve {0}", type);
             }
         }
 
@@ -95,15 +95,17 @@ namespace AjaxControlToolkit.Tests {
 
         static void AssertResults(List<Type> results, string[] maps) {
             // Get dependency in standard ACT control dependency maps based on maps
-            var bundleControls = BundleResolver.ControlDependencyTypeMaps.Where(c => maps.Contains(c.Key.Remove(0, "AjaxControlToolkit.".Length)));
-            var bundleTypes = new List<string>();
+            var bundleControls = ControlDependencyMap.Maps
+                .Where(c => maps.Contains(c.Key.Remove(0, "AjaxControlToolkit.".Length)))
+                .Select(p => p.Value);
+            var bundleTypes = new List<Type>();
             foreach (var bundleControl in bundleControls) {
-                bundleTypes.AddRange(bundleControl.Value);
+                bundleTypes.AddRange(bundleControl.Dependecies);
             }
 
             Assert.AreEqual(results.Count, bundleTypes.Count);
-            foreach (string type in bundleTypes) {
-                Assert.IsTrue(results.Select(r => r.FullName).Contains(type));
+            foreach (var type in bundleTypes) {
+                Assert.IsTrue(results.Contains(type));
             }
         }            
     }

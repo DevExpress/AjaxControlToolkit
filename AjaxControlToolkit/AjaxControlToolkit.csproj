@@ -99,6 +99,7 @@
     <Compile Include="ChartBase\ChartBase.cs" />
     <Compile Include="ChartBase\ChartBaseDesigner.cs" />
     <Compile Include="ChartBase\ChartBaseSeriesEditor.cs" />
+    <Compile Include="ControlDependencyMap.cs" />
     <Compile Include="ExtenderBase\DataConverter.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtenderDesigner.cs" />
     <Compile Include="AutoComplete\AutoCompleteExtender.cs" />

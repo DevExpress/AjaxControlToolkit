@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Web;
 using System.Web.Configuration;
@@ -24,6 +25,10 @@ namespace AjaxControlToolkit {
                 RegisterScriptMappings();
         }
 
+        public static void RegisterControl(Type type) {
+            ControlDependencyMap.Maps[type.FullName] = ControlDependencyMap.BuildDependencyMap(type);
+        }
+
         public static bool RenderStyleLinks {
             get { return GetContextFlag(ContextKey_UseEmbeddedStyles, AjaxControlToolkitConfigSection.Current.RenderStyleLinks); }
             set { SetContextFlag(ContextKey_UseEmbeddedStyles, AjaxControlToolkitConfigSection.Current.RenderStyleLinks, value); }
@@ -32,7 +37,9 @@ namespace AjaxControlToolkit {
         // Scripts
 
         public static string[] GetScriptPaths(params string[] toolkitBundles) {
-            return GetScriptNames(toolkitBundles).Select(FormatScriptReleaseVirtualPath).ToArray();
+            return GetEmbeddedScripts(toolkitBundles)
+                .Select(script => FormatScriptReleaseVirtualPath(script.Name))
+                .ToArray();
         }
 
         internal static IEnumerable<ScriptReference> GetControlScriptReferences(Type type) {
@@ -43,10 +50,14 @@ namespace AjaxControlToolkit {
             }));
         }
 
-        static IEnumerable<string> GetScriptNames(params string[] toolkitBundles) {
-            var localizationScripts = new Localization().GetAllLocalizationScripts();
+        static IEnumerable<EmbeddedScript> GetEmbeddedScripts(params string[] toolkitBundles) {
+            var result = new List<EmbeddedScript>();
 
-            var controlScripts = new List<string>();
+            var toolkitAssembly = typeof(ToolkitResourceManager).Assembly;
+            foreach(var scriptName in new Localization().GetAllLocalizationScripts()) {
+                result.Add(new EmbeddedScript(scriptName, toolkitAssembly));
+            }
+
             var trace = new HashSet<string>();
             var bundleResolver = new Bundling.BundleResolver(new Bundling.DefaultCache());
 
@@ -55,12 +66,12 @@ namespace AjaxControlToolkit {
                     if(trace.Contains(name))
                         continue;
 
-                    controlScripts.Add(name);
+                    result.Add(new EmbeddedScript(name, type.Assembly));
                     trace.Add(name);
                 }
             }
 
-            return localizationScripts.Concat(controlScripts);
+            return result;
         }
 
         static string GetConfigPath() {
@@ -71,13 +82,12 @@ namespace AjaxControlToolkit {
         }
 
         public static void RegisterScriptMappings() {
-            var toolkitAssembly = typeof(ToolkitResourceManager).Assembly;
-            foreach(var name in GetScriptNames()) {
-                ScriptManager.ScriptResourceMapping.AddDefinition(name + Constants.JsPostfix, toolkitAssembly, new ScriptResourceDefinition() {
-                    Path = FormatScriptReleaseVirtualPath(name),
-                    DebugPath = FormatScriptDebugVirtualPath(name),
-                    CdnPath = Constants.CdnScriptReleasePrefix + name + Constants.JsPostfix,
-                    CdnDebugPath = Constants.CdnScriptDebugPrefix + name + Constants.DebugJsPostfix,
+            foreach(var script in GetEmbeddedScripts()) {
+                ScriptManager.ScriptResourceMapping.AddDefinition(script.Name + Constants.JsPostfix, script.SourceAssemlby, new ScriptResourceDefinition() {
+                    Path = FormatScriptReleaseVirtualPath(script.Name),
+                    DebugPath = FormatScriptDebugVirtualPath(script.Name),
+                    CdnPath = Constants.CdnScriptReleasePrefix + script.Name + Constants.JsPostfix,
+                    CdnDebugPath = Constants.CdnScriptDebugPrefix + script.Name + Constants.DebugJsPostfix,
                     CdnSupportsSecureConnection = true
                 });
             }
@@ -85,8 +95,8 @@ namespace AjaxControlToolkit {
 
         public static void RemoveScriptMappingsRegistration() {
             var toolkitAssembly = typeof(ToolkitResourceManager).Assembly;
-            foreach(var name in GetScriptNames()) {
-                ScriptManager.ScriptResourceMapping.RemoveDefinition(name + Constants.JsPostfix, toolkitAssembly);
+            foreach(var script in GetEmbeddedScripts()) {
+                ScriptManager.ScriptResourceMapping.RemoveDefinition(script.Name + Constants.JsPostfix, toolkitAssembly);
             }
         }
 
@@ -381,6 +391,16 @@ namespace AjaxControlToolkit {
             public bool Equals(ResourceEntry other) {
                 return ResourceName.Equals(other.ResourceName, StringComparison.OrdinalIgnoreCase)
                     && ComponentType == other.ComponentType;
+            }
+        }
+
+        class EmbeddedScript {
+            public Assembly SourceAssemlby { get; private set; }
+            public string Name { get; private set; }
+
+            public EmbeddedScript(string name, Assembly sourceAssembly) {
+                Name = name;
+                SourceAssemlby = sourceAssembly;
             }
         }
     }
