@@ -10,6 +10,9 @@ namespace AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager {
     [ClientScriptResource("Sys.Extended.UI.TestExtenderBehavior", "TestExtender.static")]
     [TargetControlType(typeof(TextBox))]
     public class TestExtenderStaticControl : ExtenderControlBase {
+        static TestExtenderStaticControl() {
+            AjaxControlToolkit.ToolkitResourceManager.RegisterControl(typeof(TestExtenderStaticControl));
+        }
     }
 
 }

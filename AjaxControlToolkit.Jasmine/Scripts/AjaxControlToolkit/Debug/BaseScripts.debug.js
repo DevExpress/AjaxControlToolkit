@@ -1,0 +1,1 @@
+﻿// BaseScripts.debug.js mock

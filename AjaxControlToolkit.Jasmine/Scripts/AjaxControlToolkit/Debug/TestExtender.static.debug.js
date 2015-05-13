@@ -14,8 +14,8 @@ if(!Type.isClass(Sys.Extended.UI.TestExtenderBehavior)) {
 //    dispose: function() { }
 //}
 
-if(!Type.isClass(Sys.Extended.UI.TestExtenderBehavior))
-    Sys.Extended.UI.TestExtenderBehavior.registerClass('Sys.Extended.UI.TestExtenderBehavior', Sys.Extended.UI.BehaviorBase);
+//if(!Type.isClass(Sys.Extended.UI.TestExtenderBehavior))
+//    Sys.Extended.UI.TestExtenderBehavior.registerClass('Sys.Extended.UI.TestExtenderBehavior', Sys.Extended.UI.BehaviorBase);
 
 Sys.Extended.UI.TestExtender = {};
 Sys.Extended.UI.TestExtender.Debug = {};
