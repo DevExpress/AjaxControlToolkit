@@ -13,8 +13,8 @@
     <script src="/Vendor/jasmine-2.2.0/boot.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <iframe id="test-frame"></iframe>
+    <form id="MainForm" runat="server">
+        <iframe id="test-frame" width="1000" height="500"></iframe>
     </form>
 
     <script>
@@ -30,6 +30,7 @@
 
     <script src="Suites/TestSetup/TestSetup.js"></script>
     <script src="Suites/MaskedEdit/MaskedEdit.js"></script>
+    <script src="Suites/HtmlEditor/HtmlEditor.js"></script>
     <script src="Suites/ToolkitResourceManager/ToolkitResourceManager.js"></script>
 </body>
 </html>

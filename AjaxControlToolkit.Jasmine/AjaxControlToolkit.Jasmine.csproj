@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Suites\HtmlEditor\HtmlEditor.aspx" />
+    <Content Include="Suites\HtmlEditor\HtmlEditor.js" />
     <Content Include="Suites\MaskedEdit\MaskedEdit.aspx" />
     <Content Include="Suites\MaskedEdit\MaskedEdit.js" />
     <Content Include="Suites\TestSetup\TestSetup.aspx" />
@@ -89,6 +91,13 @@
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\HtmlEditor\HtmlEditor.aspx.cs">
+      <DependentUpon>HtmlEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\HtmlEditor\HtmlEditor.aspx.designer.cs">
+      <DependentUpon>HtmlEditor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\MaskedEdit\MaskedEdit.aspx.cs">
       <DependentUpon>MaskedEdit.aspx</DependentUpon>

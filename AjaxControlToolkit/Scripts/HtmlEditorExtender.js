@@ -738,9 +738,8 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     _editableDiv_submit: function() {
-        //html encode
         var char = 3,
-            sel = null;
+            selection = null;
 
         setTimeout(function() {
             if(this._editableDiv != null)
@@ -749,16 +748,16 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 
         if(Sys.Browser.agent != Sys.Browser.Firefox) {
             if(document.selection) {
-                sel = document.selection.createRange();
-                sel.moveStart('character', char);
-                sel.select();
+                selection = document.selection.createRange();
+                selection.moveStart('character', char);
+                selection.select();
             } else {
-                sel = window.getSelection();
-                sel.collapse(this._editableDiv.firstChild, char);
+                selection = window.getSelection();
+                if (selection.type !== "None")
+                    selection.collapse(this._editableDiv.firstChild, char);
             }
         }
 
-        //Encode html tags
         this._textbox._element.value = this._encodeHtml();
     },
 
