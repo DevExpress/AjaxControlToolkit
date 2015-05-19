@@ -5,8 +5,14 @@
             Testing.LoadSpec(done, "ToolkitResourceManager", "Specs/Release_Embedded");
         });
 
-        it("has embedded script loaded", function() {
+        it("has embedded custom script loaded (from custom assembly)", function() {
             expect(Testing.TestExtender.Release.Embedded).not.toBeUndefined();
+            debugger;
+        });
+
+        it("has embedded script loaded (BaseScrips from core assembly)", function() {
+            expect(Testing.Sys.Extended.UI.BehaviorBase).not.toBeUndefined();
+            debugger;
         });
 
     });

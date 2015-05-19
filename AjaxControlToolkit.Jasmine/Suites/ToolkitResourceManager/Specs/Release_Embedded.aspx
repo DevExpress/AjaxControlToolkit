@@ -20,6 +20,7 @@
 
 <script>
     function onLoad() {
+        parent.Testing.Sys = Sys;
         parent.Testing.TestExtender = Sys.Extended.UI.TestExtender;
         parent.Testing.LoadSpecCallback();
     }
