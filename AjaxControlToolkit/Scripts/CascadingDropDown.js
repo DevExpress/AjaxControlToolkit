@@ -264,10 +264,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             if(this._actualDisabledStatus)
                 e.disabled = this._actualDisabledStatus;
         }
-
-        if(gettingList) {
-            this.raisePopulated(Sys.EventArgs.Empty);
-        }
     },
 
     _onChange: function() {
@@ -352,6 +348,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     _onMethodComplete: function(result, userContext, methodName) {
         // Success, update the DropDownList
         this._setOptions(result);
+        this.raisePopulated(Sys.EventArgs.Empty);
     },
 
     _onMethodError: function(webServiceError, userContext, methodName) {
