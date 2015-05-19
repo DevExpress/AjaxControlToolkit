@@ -699,7 +699,11 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
     _setFocus: function(obj) {
-        $get("__tab_" + obj.get_element().id).focus();
+        var tabEl = $get("__tab_" + obj.get_element().id);
+        if(tabEl.offsetHeight === 0)
+            return;
+        
+        tabEl.focus();
     },
     _header_onclick: function(e) {
         e.preventDefault();
