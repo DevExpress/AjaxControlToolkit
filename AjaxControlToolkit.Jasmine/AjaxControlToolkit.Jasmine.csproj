@@ -72,6 +72,7 @@
     <Content Include="Vendor\jasmine-2.2.0\jasmine_favicon.png" />
     <Content Include="Global.asax" />
     <Content Include="Tests.aspx" />
+    <Content Include="Vendor\jquery-2.1.4\jquery.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
