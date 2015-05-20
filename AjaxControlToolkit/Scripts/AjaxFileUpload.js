@@ -381,7 +381,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
 
         // only add 1 file input element to be uploaded
         form.appendChild(inputElement);
-        form.setAttribute("action", control._uploadUrl + '?contextKey=' + control._contextKey + '&fileId=' + control._currentFileId + '&fileName=' + fileItem._fileName + '&usePoll=' + (control.get_serverPollingSupport() ? "true" : "false"));
+        form.setAttribute("action", control._uploadUrl + '?contextKey=' + control.get_id() + '&fileId=' + control._currentFileId + '&fileName=' + fileItem._fileName + '&usePoll=' + (control.get_serverPollingSupport() ? "true" : "false"));
 
         // upload it now
         form.submit();
@@ -396,7 +396,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         if(xhrPoll)
             xhrPoll.abort();
 
-        xhr.open("POST", '?contextKey=' + control._contextKey + "&cancel=1&guid=" + control._currentFileId, true);
+        xhr.open("POST", '?contextKey=' + control.get_id() + "&cancel=1&guid=" + control._currentFileId, true);
         xhr.onreadystatechange = function() {
             self.setThrobber(false);
             if(xhr.readyState == 4) {
@@ -493,7 +493,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         if(!value || !control._currentFileId)
             return;
 
-        xhrPoll.open("GET", '?contextKey=' + control._contextKey + "&poll=1&guid=" + control._currentFileId, true);
+        xhrPoll.open("GET", '?contextKey=' + control.get_id() + "&poll=1&guid=" + control._currentFileId, true);
         xhrPoll.send(null);
     };
 
@@ -672,7 +672,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         xhrReq.addEventListener("load", xhrDelegate(this.onUploadCompleteHandler), false);
         xhrReq.addEventListener("error", xhrDelegate(this.onUploadFailedHandler), false);
         xhrReq.addEventListener("abort", xhrDelegate(this.onUploadCanceledHandler), false);
-        xhrReq.open("POST", control._uploadUrl + '?contextKey=' + control._contextKey + '&fileId=' + id + '&fileName=' + fileName + '&chunked=' + (chunked ? "true" : "false") + '&firstChunk=' + firstChunk, true);
+        xhrReq.open("POST", control._uploadUrl + '?contextKey=' + control.get_id() + '&fileId=' + id + '&fileName=' + fileName + '&chunked=' + (chunked ? "true" : "false") + '&firstChunk=' + firstChunk, true);
         form.append("act-file-data", blob);
         xhrReq.send(form);
     };
@@ -857,7 +857,7 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
 
     // properties 
     this._allowedFileTypes = null;
-    this._contextKey = null;
+    this.get_id() = null;
     this._postBackUrl = null;
     this._mode = 0;
     this._serverPollingSupport = false;
@@ -991,7 +991,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             var xhr = new XMLHttpRequest(),
                 self = this;
 
-            xhr.open("POST", '?contextKey=' + this._contextKey
+            xhr.open("POST", '?contextKey=' + this.get_id()
                 + "&start=1&queue=" + this._filesInQueue.length);
             xhr.onreadystatechange = function() {
                 if(xhr.readyState == 4) {
@@ -1050,7 +1050,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             self = this,
             currentFile = this._filesInQueue[this._currentQueueIndex - 1];
 
-        xhr.open("POST", '?contextKey=' + this._contextKey
+        xhr.open("POST", '?contextKey=' + this.get_id()
             + "&complete=1&queue=" + this._filesInQueue.length
             + "&uploaded=" + (this._currentQueueIndex - (currentFile._isUploaded ? 0 : 1))
             + "&reason=" + (this._canceled ? "cancel" : "done"));
@@ -1168,7 +1168,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         var xhr = new XMLHttpRequest(),
             self = this;
 
-        xhr.open("POST", "?contextKey=" + this._contextKey + "&done=1&guid=" + fileItem._id, true);
+        xhr.open("POST", "?contextKey=" + this.get_id() + "&done=1&guid=" + fileItem._id, true);
         xhr.onreadystatechange = function(e) {
             if(xhr.readyState == 4) {
                 if(xhr.status == 200) {

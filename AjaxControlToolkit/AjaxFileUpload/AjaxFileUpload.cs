@@ -9,6 +9,7 @@ using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Drawing;
+using System.Collections.ObjectModel;
 
 namespace AjaxControlToolkit {
 
@@ -18,7 +19,8 @@ namespace AjaxControlToolkit {
     [ClientScriptResource("Sys.Extended.UI.AjaxFileUpload.Control", Constants.AjaxFileUploadName)]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AjaxFileUploadName + Constants.IconPostfix)]
     public class AjaxFileUpload : ScriptControlBase {
-        internal const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";
+
+        static List<string> _contextKeys = new List<string>();
         const string TemporaryUploadFolderName = "_AjaxFileUpload";
 
         // Location of uploaded temporary file path
@@ -26,6 +28,10 @@ namespace AjaxControlToolkit {
 
         public AjaxFileUpload()
             : base(true, HtmlTextWriterTag.Div) {
+        }
+
+        internal static ReadOnlyCollection<string> ContextKeyCollection {
+            get { return _contextKeys.AsReadOnly(); }
         }
 
         bool IsDesignMode {
@@ -147,7 +153,7 @@ namespace AjaxControlToolkit {
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
             if(!IsDesignMode) {
-                if(!string.IsNullOrEmpty(Page.Request.QueryString["contextkey"]) && Page.Request.QueryString["contextkey"] == ContextKey)
+                if(!string.IsNullOrEmpty(Page.Request.QueryString["contextkey"]) && Page.Request.QueryString["contextkey"] == ClientID)
                     IsInFileUploadPostBack = true;
             }
         }
@@ -158,12 +164,15 @@ namespace AjaxControlToolkit {
             // Register an empty OnSubmit statement so the ASP.NET WebForm_OnSubmit method will be automatically
             // created and our behavior will be able to disable input file controls prior to submission
             ScriptManager.RegisterOnSubmitStatement(this, typeof(AjaxFileUpload), "AjaxFileUploadOnSubmit", "null;");
+
+            if(!_contextKeys.Contains(ClientID))
+                _contextKeys.Add(ClientID);
         }
 
         XhrType ParseRequest(out string fileId) {
             fileId = Page.Request.QueryString["guid"];
 
-            if(Page.Request.QueryString["contextkey"] != ContextKey)
+            if(Page.Request.QueryString["contextkey"] != ClientID)
                 return XhrType.None;
 
             if(!string.IsNullOrEmpty(fileId)) {
@@ -465,7 +474,7 @@ namespace AjaxControlToolkit {
             if(IsDesignMode)
                 return;
 
-            descriptor.AddProperty("contextKey", ContextKey);
+            descriptor.AddProperty("contextKey", ClientID);
             descriptor.AddProperty("postBackUrl", Page.Request.RawUrl);
             descriptor.AddProperty("serverPollingSupport", ServerPollingSupport);
 
