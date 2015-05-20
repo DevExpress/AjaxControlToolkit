@@ -857,7 +857,7 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
 
     // properties 
     this._allowedFileTypes = null;
-    this.get_id() = null;
+    this._contextKey = null;
     this._postBackUrl = null;
     this._mode = 0;
     this._serverPollingSupport = false;
