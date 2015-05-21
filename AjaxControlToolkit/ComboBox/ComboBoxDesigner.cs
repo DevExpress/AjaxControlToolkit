@@ -9,31 +9,31 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit.Design {
 
     public class ComboBoxDesigner : ListControlDesigner {
+        const string substitutionPattern = @"(<%=)\s*(WebResource\("")(?<resourceName>.+)\s*(""\)%>)";
+
         public override string GetDesignTimeHtml() {
-            // first, save current items before the base method resets them
             var control = (ListControl)base.ViewControl;
             var originalItems = new ListItem[control.Items.Count];
             control.Items.CopyTo(originalItems, 0);
 
-            // now, let the base method reset them
             var baseHtml = base.GetDesignTimeHtml();
 
-            // repopulate with original items
             control.Items.Clear();
             control.Items.AddRange(originalItems);
 
-            // try to render as much resourced CSS as possible in the designer
-            var assembly = Assembly.GetExecutingAssembly();
-            var cssStream = assembly.GetManifestResourceStream(Constants.ComboBoxName);
-            var cssReader = new StreamReader(cssStream);
-            var cssString = cssReader.ReadToEnd();
-
-            // perform CSS substitution for the designer 
-            const string SUBSTITUTION_PATTERN = @"(<%=)\s*(WebResource\("")(?<resourceName>.+)\s*(""\)%>)";
-            var regex = new Regex(SUBSTITUTION_PATTERN);
+            var cssString = GetStringFromResourceStream(Constants.StyleResourcePrefix + Constants.ComboBoxName + Constants.CssPostfix) +
+                GetStringFromResourceStream(Constants.StyleResourcePrefix + Constants.BackgroundStylesName + Constants.CssPostfix);
+            
+            var regex = new Regex(substitutionPattern);
             cssString = regex.Replace(cssString, new MatchEvaluator(PerformWebResourceSubstitution));
 
             return "<style>" + cssString + "</style>" + baseHtml;
+        }
+
+        string GetStringFromResourceStream(string resourceName) {
+            var resourceStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+
+            return (new StreamReader(resourceStream)).ReadToEnd();
         }
 
         protected virtual string PerformWebResourceSubstitution(Match match) {
