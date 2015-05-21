@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.SessionState;
 
 namespace AjaxControlToolkit {
 
     // Map this handler as AjaxFileUploadHandler.axd
-    public class AjaxFileUploadHandler : IHttpHandler {
+    public class AjaxFileUploadHandler : IHttpHandler, IReadOnlySessionState {
 
         public bool IsReusable {
             get { return true; }
