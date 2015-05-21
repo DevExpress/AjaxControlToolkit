@@ -51,6 +51,8 @@
     <Content Include="Suites\HtmlEditor\HtmlEditor.js" />
     <Content Include="Suites\MaskedEdit\MaskedEdit.aspx" />
     <Content Include="Suites\MaskedEdit\MaskedEdit.js" />
+    <Content Include="Suites\Tabs\Tabs.aspx" />
+    <Content Include="Suites\Tabs\Tabs.js" />
     <Content Include="Suites\TestSetup\TestSetup.aspx" />
     <Content Include="Suites\TestSetup\TestSetup.js" />
     <EmbeddedResource Include="Suites\ToolkitResourceManager\Scripts\TestExtender.cdn.debug.js" />
@@ -106,6 +108,13 @@
     </Compile>
     <Compile Include="Suites\MaskedEdit\MaskedEdit.aspx.designer.cs">
       <DependentUpon>MaskedEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\Tabs\Tabs.aspx.cs">
+      <DependentUpon>Tabs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\Tabs\Tabs.aspx.designer.cs">
+      <DependentUpon>Tabs.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\TestSetup\TestSetup.aspx.cs">
       <DependentUpon>TestSetup.aspx</DependentUpon>
