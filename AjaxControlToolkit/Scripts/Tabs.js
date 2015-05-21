@@ -638,8 +638,8 @@ Sys.Extended.UI.TabPanel.prototype = {
 
     _activate: function() {
         if(this._enabled) {
-            var elt = this.get_element();
-            $common.setVisible(elt, true);
+            $common.setVisible(this.get_element(), true);
+
             Sys.UI.DomElement.addCssClass(this._tab, "ajax__tab_active");
 
             this.populate();
@@ -650,11 +650,14 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
         this._owner.get_element().style.visibility = 'visible';
     },
+
     _deactivate: function() {
-        var elt = this.get_element();
-        $common.setVisible(elt, false);
+        $common.setVisible(this.get_element(), false);
+
+        Sys.UI.DomElement.addCssClass(this._tab, "ajax__tab_disabled");
         Sys.UI.DomElement.removeCssClass(this._tab, "ajax__tab_active");
     },
+
     _show: function() {
         this._tab.style.display = '';
     },
