@@ -68,6 +68,7 @@
     <Content Include="Suites\ToolkitResourceManager\Specs\Debug_Embedded.aspx" />
     <Content Include="Suites\ToolkitResourceManager\Specs\Release_Embedded.aspx" />
     <Content Include="Suites\ToolkitResourceManager\ToolkitResourceManager.js" />
+    <Content Include="TestUtils\customMatchers.js" />
     <Content Include="Vendor\jasmine-2.2.0\boot.js" />
     <Content Include="Vendor\jasmine-2.2.0\console.js" />
     <Content Include="Vendor\jasmine-2.2.0\jasmine-html.js" />

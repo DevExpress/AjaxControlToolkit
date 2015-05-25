@@ -11,6 +11,7 @@
     <script src="/Vendor/jasmine-2.2.0/jasmine.js"></script>
     <script src="/Vendor/jasmine-2.2.0/jasmine-html.js"></script>
     <script src="/Vendor/jasmine-2.2.0/boot.js"></script>
+    <script src="/TestUtils/customMatchers.js"></script>
 
     <script src="/Vendor/jquery-2.1.4/jquery.js"></script>
 
