@@ -241,8 +241,6 @@ Sys.Extended.UI.ComboBox.prototype = {
             style.width = style.height;
 
         // zero margins & padding (helps particularly in firefox)
-        if (style.margin == '')
-            style.margin = '1px 0 0 0';
         if (style.padding == '')
             style.padding = '0px';
 

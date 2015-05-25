@@ -926,11 +926,17 @@ pre, code {
     border: 0px none;
     height: 23px;
     width: 23px;
+    vertical-align: top;
 }
 
 .AjaxToolkitStyle .ajax__combobox_itemlist {
     border-color: #0F2543;
     background-color: #EFEFEF;
+}
+
+td.ajax__combobox_textboxcontainer, td.ajax__combobox_buttoncontainer {
+    vertical-align: top;
+    line-height: 1px;
 }
 
 .AquaStyle .ajax__combobox_inputcontainer .ajax__combobox_textboxcontainer input {
@@ -950,6 +956,7 @@ pre, code {
     border: 0px none;
     height: 19px;
     width: 19px;
+    vertical-align: top;
 }
 
 .AquaStyle .ajax__combobox_itemlist {
@@ -974,6 +981,7 @@ pre, code {
     border: 0px none;
     height: 21px;
     width: 21px;
+    vertical-align: top;
 }
 
 .WindowsStyle .ajax__combobox_itemlist {
