@@ -75,6 +75,7 @@
     <Content Include="Global.asax" />
     <Content Include="Tests.aspx" />
     <Content Include="Vendor\jquery-2.1.4\jquery.js" />
+    <Content Include="Vendor\jquery.simulate.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,8 @@
     <script src="/Vendor/jasmine-2.2.0/boot.js"></script>
 
     <script src="/Vendor/jquery-2.1.4/jquery.js"></script>
+
+    <script src="/Vendor/jquery.simulate.js"></script>
 </head>
 <body>
     <form id="MainForm" runat="server">
