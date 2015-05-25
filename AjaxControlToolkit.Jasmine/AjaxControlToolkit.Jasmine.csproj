@@ -51,6 +51,8 @@
     <Content Include="Suites\HtmlEditor\HtmlEditor.js" />
     <Content Include="Suites\MaskedEdit\MaskedEdit.aspx" />
     <Content Include="Suites\MaskedEdit\MaskedEdit.js" />
+    <Content Include="Suites\Slider\Slider.aspx" />
+    <Content Include="Suites\Slider\Slider.js" />
     <Content Include="Suites\Tabs\Tabs.aspx" />
     <Content Include="Suites\Tabs\Tabs.js" />
     <Content Include="Suites\TestSetup\TestSetup.aspx" />
@@ -109,6 +111,13 @@
     </Compile>
     <Compile Include="Suites\MaskedEdit\MaskedEdit.aspx.designer.cs">
       <DependentUpon>MaskedEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\Slider\Slider.aspx.cs">
+      <DependentUpon>Slider.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\Slider\Slider.aspx.designer.cs">
+      <DependentUpon>Slider.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\Tabs\Tabs.aspx.cs">
       <DependentUpon>Tabs.aspx</DependentUpon>

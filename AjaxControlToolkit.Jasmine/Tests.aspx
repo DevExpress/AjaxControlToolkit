@@ -36,6 +36,7 @@
     <script src="Suites/MaskedEdit/MaskedEdit.js"></script>
     <script src="Suites/HtmlEditor/HtmlEditor.js"></script>
     <script src="Suites/Tabs/Tabs.js"></script>
+    <script src="Suites/Slider/Slider.js"></script>
     <script src="Suites/ToolkitResourceManager/ToolkitResourceManager.js"></script>
 </body>
 </html>
