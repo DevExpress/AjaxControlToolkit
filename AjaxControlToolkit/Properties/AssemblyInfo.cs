@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Web.UI;
 
+[assembly: TagPrefix("AjaxControlToolkit", "ajaxToolkit")]
 [assembly: AssemblyTitle("ASP.NET AJAX Control Toolkit")]
 
 [assembly: AllowPartiallyTrustedCallers]
