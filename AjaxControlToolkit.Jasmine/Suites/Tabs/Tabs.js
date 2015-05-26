@@ -26,16 +26,15 @@
         }, "Tabs");
     });
 
-    it("base div element should have proper classes", function() {
+    it("root div has proper classes", function() {
         var classList = this.element.classList,
             expectedClassList = ["ajax__tab_xp", "ajax__tab_container", "ajax__tab_default"];
 
-        for(var i = 0; i < expectedClassList.length; i++) {
-            expect($.inArray(expectedClassList[i], classList) != -1).toBeTruthy();
-        }
+        for(var i = 0; i < expectedClassList.length; i++)
+            expect(expectedClassList[i]).toBeAnyOf(classList);
     });
 
-    it("base div should contains 2 div elements", function () {
+    it("root div contains 2 div elements", function () {
         var $element = $(this.element),
             innerElements = $element.children();
 
@@ -45,7 +44,7 @@
         expect($(innerElements).last().is("div")).toBeTruthy();
     });
 
-    it("header div should have correct ID and class", function() {
+    it("header div has proper id and class", function() {
         var headerElements = $(this.element).find(toClassSelector(TAB_HEADER_CLASS_NAME));
         expect(headerElements.length).toBe(1);
 
@@ -53,7 +52,7 @@
         expect(headerId).toBe(this.element.id + "_header");
     });
 
-    it("body div should have correct ID and class", function() {
+    it("body div has proper id and class", function() {
         var bodyElements = $(this.element).find(toClassSelector(TAB_BODY_CLASS_NAME));
         expect(bodyElements.length).toBe(1);
 
@@ -61,7 +60,7 @@
         expect(bodyId).toBe(this.element.id + "_body");
     });
 
-    it("header div should contain " + TABS_COUNT + " span elements", function() {
+    it("header div contains " + TABS_COUNT + " span elements", function() {
         var header = $(this.element).find(toClassSelector(TAB_HEADER_CLASS_NAME));
 
         expect($(header).children().length).toBe(TABS_COUNT);
@@ -69,23 +68,23 @@
         expect($(header).children().eq(1).is("span")).toBeTruthy();
     });
 
-    it("first(active) tab header should have proper ID and class", function() {
+    it("first(active) tab header has proper id and class", function() {
         var header = $(this.element).find(toClassSelector(TAB_HEADER_CLASS_NAME)),
             firstHeader = header.children()[0];
 
         expect(firstHeader.id).toBe(this.element.id + "_ActiveTabPanel_tab");
-        expect($.inArray(ACTIVE_TAB_CLASS_NAME, firstHeader.classList) != -1).toBeTruthy();
+        expect(ACTIVE_TAB_CLASS_NAME).toBeAnyOf(firstHeader.classList);
     });
 
-    it("second(disabled) tab header should have proper ID and class", function() {
+    it("second(disabled) tab header has proper id and class", function() {
         var header = $(this.element).find(toClassSelector(TAB_HEADER_CLASS_NAME)),
             secondHeader = header.children()[1];
 
         expect(secondHeader.id).toBe(this.element.id + "_DisabledTabPanel_tab");
-        expect($.inArray(DISABLED_TAB_CLASS_NAME, secondHeader.classList) != -1).toBeTruthy();
+        expect(DISABLED_TAB_CLASS_NAME).toBeAnyOf(secondHeader.classList);
     });
 
-    it("boby div should contain " + TABS_COUNT + " div elements", function() {
+    it("boby div contains " + TABS_COUNT + " div elements", function() {
         var body = $(this.element).find(toClassSelector(TAB_BODY_CLASS_NAME));
 
         expect($(body).children().length).toBe(TABS_COUNT);
@@ -93,23 +92,23 @@
         expect($(body).children().eq(1).is("div")).toBeTruthy();
     });
 
-    it("first(active) tab body should have proper ID and class", function() {
+    it("first(active) tab body has proper id and class", function() {
         var body = $(this.element).find(toClassSelector(TAB_BODY_CLASS_NAME)),
             firstTabBody = body.children()[0];
 
         expect(firstTabBody.id).toBe(this.element.id + "_ActiveTabPanel");
-        expect($.inArray(ACTIVE_TAB_PANEL_CLASS_NAME, firstTabBody.classList) != -1).toBeTruthy();
+        expect(ACTIVE_TAB_PANEL_CLASS_NAME).toBeAnyOf(firstTabBody.classList);
     });
 
-    it("second(disabled) tab body should have proper ID and class", function() {
+    it("second(disabled) tab body has proper id and class", function() {
         var body = $(this.element).find(toClassSelector(TAB_BODY_CLASS_NAME)),
             secondTabBody = body.children()[1];
 
         expect(secondTabBody.id).toBe(this.element.id + "_DisabledTabPanel");
-        expect($.inArray(DISABLED_TAB_PANEL_CLASS_NAME, secondTabBody.classList) != -1).toBeTruthy();
+        expect(DISABLED_TAB_PANEL_CLASS_NAME).toBeAnyOf(secondTabBody.classList);
     });
 
-    it("any tab header should contain outer and inner inserted spans", function() {
+    it("any tab header contains outer and inner inserted spans", function() {
         var header = $(this.element).find(toClassSelector(TAB_HEADER_CLASS_NAME)),
             $headerTab = header.children("span").eq(0);
 
