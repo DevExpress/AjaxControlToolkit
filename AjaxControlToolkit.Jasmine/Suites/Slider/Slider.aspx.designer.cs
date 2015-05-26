@@ -31,21 +31,39 @@ namespace AjaxControlToolkit.Jasmine.Suites.Slider {
         protected global::System.Web.UI.ScriptManager TestScriptManager;
         
         /// <summary>
-        /// Target control.
+        /// HorizontalTarget control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Target;
+        protected global::System.Web.UI.WebControls.TextBox HorizontalTarget;
         
         /// <summary>
-        /// TargetExtender control.
+        /// HorizontalTargetExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.SliderExtender TargetExtender;
+        protected global::AjaxControlToolkit.SliderExtender HorizontalTargetExtender;
+        
+        /// <summary>
+        /// VerticalTarget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox VerticalTarget;
+        
+        /// <summary>
+        /// VerticalTargetExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.SliderExtender VerticalTargetExtender;
     }
 }
