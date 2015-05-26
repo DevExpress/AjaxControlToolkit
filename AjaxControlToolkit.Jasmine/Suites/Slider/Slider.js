@@ -96,4 +96,11 @@
 
         expect($handle.css("top")).toBeAnyOf(["0", "0px"]);
     });
+
+    // CodePlex item 27857
+    it("vertical handle css property 'display' is 'block'", function() {
+        var $handle = $(this.vHandle);
+
+        expect($handle.css("display")).toBe("block");
+    });
 });
