@@ -591,8 +591,6 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
         this._calcValue(null, offset, true);
 
-        this.get_element().focus();
-
         this._fireTextBoxChangeEvent();
     },
 
@@ -621,8 +619,6 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     onDragStart: function() {
-        this.get_element().focus();
-
         this._resetDragHandle();
         this._raiseEvent('slideStart');
     },
