@@ -10,12 +10,6 @@
             resize: both;
         }
 
-        .report-line {
-            background-color: cornflowerblue;
-            padding: 10px 20px;
-            margin: 10px 0;
-        }
-
         .testing-container {
             border: 1px solid red;
             background-color: lightgray;
@@ -38,7 +32,7 @@
             background-color: cornflowerblue;
         }
 
-        .stack-trace {
+        .testing-spec-stackTrace {
             font-size: 11px;
             font-family: Monaco, "Lucida Console", monospace;
             border: 1px solid #ddd;
@@ -46,7 +40,7 @@
             margin: 5px 0 0 0;
         }
 
-        .failure {
+        .testing-spec-failed {
             white-space: pre;
         }
     </style>
@@ -86,14 +80,16 @@
                         .appendTo($parent);
 
                     var $link = createSpecLink(name, result.fullName);
-                    $container.$header.html($link);
+                    $container.$head.html($link);
+
+                    return $container;
                 }
 
                 function createContainer() {
                     var $container = $("<div>").addClass("testing-container");
 
-                    $container.$header = $("<div>").addClass("testing-container-head");
-                    $container.append($container.$header);
+                    $container.$head = $("<div>").addClass("testing-container-head");
+                    $container.append($container.$head);
 
                     return $container;
                 }
@@ -114,26 +110,21 @@
                     },
 
                     specStarted: function(result) {
-                        appendContainer(result);
                     },
 
                     specDone: function(result) {
-                        var $container = $root.find(makeCssSelector(result.fullName)),
-                            $head = $container.find(".testing-container-head");
-
+                        var $container = appendContainer(result);
                         $container.addClass("testing-spec-" + result.status);
 
-                        var $link = createSpecLink('Spec: ' + result.description + ' was ' + result.status, result.fullName);
-                        $head.html($link);
+                        $container.$head.append(createSpecLink('Spec: ' + result.description + ' was ' + result.status, result.fullName));
+
                         for(var i = 0; i < result.failedExpectations.length; i++) {
-                            var $failure = $("<div></div>");
-                            $failure.text('Failure: ' + result.failedExpectations[i].message);
-                            $failure.addClass("failure");
-                            $container.append($failure);
-                            var $stackTrace = $("<div></div>");
-                            $stackTrace.addClass("stack-trace");
-                            $stackTrace.text(result.failedExpectations[i].stack);
-                            $failure.append($stackTrace);
+                            $container.append($("<div>")
+                                .text('Failure: ' + result.failedExpectations[i].message)
+                                .addClass("testing-spec-failed")
+                                .append($("<div>")
+                                    .addClass("testing-spec-stackTrace")
+                                    .text(result.failedExpectations[i].stack)));
                         }
                     },
                 };
