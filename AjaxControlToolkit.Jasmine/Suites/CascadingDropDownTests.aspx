@@ -45,6 +45,22 @@
             it("runs3", function() {
                 expect(1).toBe(1);
             });
+
+            it("runs4", function() {
+                expect(1).toBe(1);
+            });
+
+            it("runs5", function() {
+                expect(1).toBe(1);
+            });
+
+            it("runs6", function() {
+                expect(1).toBe(1);
+            });
+
+            it("runs7", function() {
+                expect(1).toBe(1);
+            });
         });
     </script>
 

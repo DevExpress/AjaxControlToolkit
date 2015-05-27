@@ -6,15 +6,15 @@
 <head runat="server">
     <title></title>
     <style>
+
         iframe {
             resize: both;
         }
 
         .testing-container {
-            border: 1px solid red;
+            border: 1px solid black;
             background-color: lightgray;
-            padding: 10px;
-            padding-top: 0;
+            padding: 0 10px;
             margin: 10px;
         }
 
@@ -22,6 +22,13 @@
             padding: 10px;
             margin-left: -10px;
             margin-right: -10px;
+            background-color: gray;
+
+            cursor: pointer;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
 
         .testing-container.testing-spec-failed .testing-container-head {
@@ -37,7 +44,8 @@
             font-family: Monaco, "Lucida Console", monospace;
             border: 1px solid #ddd;
             background: white;
-            margin: 5px 0 0 0;
+            padding: 5px;
+            margin: 5px 0;
         }
 
         .testing-spec-failed {
@@ -62,14 +70,16 @@
                     return fullName                     // CSS selector should
                         .replace(/[^\w- ]/g, "_")       // contain only a-zA-z0-9_- symbols
                         .replace(/(^| )(\d)/g, "_$2")   // start with number
-                        .replace(/( )/g, ">.")
+                        .replace(/( )/g, ">.testing-container-body>.")
                         .replace(/^(.)/g, ".$1");
                 }
 
                 function appendContainer(result) {
 
                     var $parent = $(makeCssSelector(result.fullName.replace(/ ?[^ ]+$/, "")));
-                    if(!$parent.length)
+                    if($parent.length)
+                        $parent = $parent.find(".testing-container-body").first();
+                    else
                         $parent = $root;
 
                     var $container = createContainer();
@@ -88,8 +98,15 @@
                 function createContainer() {
                     var $container = $("<div>").addClass("testing-container");
 
+                    $container.$body = $("<div>").addClass("testing-container-body");
+
                     $container.$head = $("<div>").addClass("testing-container-head");
+                    $container.$head.click(function() {
+                        $container.$body.slideToggle();
+                    });
+
                     $container.append($container.$head);
+                    $container.append($container.$body);
 
                     return $container;
                 }
@@ -117,17 +134,17 @@
                         $container.addClass("testing-spec-" + result.status);
 
                         $container.$head.append(createSpecLink('Spec: ' + result.description + ' was ' + result.status, result.fullName));
-
+                        debugger;
                         for(var i = 0; i < result.failedExpectations.length; i++) {
-                            $container.append($("<div>")
+                            $container.$body.append($("<div>")
                                 .text('Failure: ' + result.failedExpectations[i].message)
-                                .addClass("testing-spec-failed")
                                 .append($("<div>")
                                     .addClass("testing-spec-stackTrace")
                                     .text(result.failedExpectations[i].stack)));
                         }
                     },
                 };
+
             })($("#results"));
         </script>
     </form>
