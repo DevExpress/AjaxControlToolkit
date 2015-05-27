@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Suites\CascadingDropDownTests.aspx" />
     <Content Include="Suites\HtmlEditor\HtmlEditor.aspx" />
     <Content Include="Suites\HtmlEditor\HtmlEditor.js" />
     <Content Include="Suites\MaskedEdit\MaskedEdit.aspx" />
@@ -69,6 +70,7 @@
     <Content Include="Suites\ToolkitResourceManager\Specs\Release_Embedded.aspx" />
     <Content Include="Suites\ToolkitResourceManager\ToolkitResourceManager.js" />
     <Content Include="TestUtils\customMatchers.js" />
+    <Content Include="Testing.aspx" />
     <Content Include="Vendor\jasmine-2.2.0\boot.js" />
     <Content Include="Vendor\jasmine-2.2.0\console.js" />
     <Content Include="Vendor\jasmine-2.2.0\jasmine-html.js" />
@@ -98,6 +100,13 @@
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\CascadingDropDownTests.aspx.cs">
+      <DependentUpon>CascadingDropDownTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\CascadingDropDownTests.aspx.designer.cs">
+      <DependentUpon>CascadingDropDownTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\HtmlEditor\HtmlEditor.aspx.cs">
       <DependentUpon>HtmlEditor.aspx</DependentUpon>
@@ -178,6 +187,13 @@
     </Compile>
     <Compile Include="Suites\ToolkitResourceManager\Specs\Release_Embedded.aspx.designer.cs">
       <DependentUpon>Release_Embedded.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing.aspx.cs">
+      <DependentUpon>Testing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing.aspx.designer.cs">
+      <DependentUpon>Testing.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tests.aspx.cs">
       <DependentUpon>Tests.aspx</DependentUpon>
