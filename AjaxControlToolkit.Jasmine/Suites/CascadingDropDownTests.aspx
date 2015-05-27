@@ -32,8 +32,8 @@
                     expect(1).toBe(1);
                 });
 
-                it(".runs2", function() {
-                    expect(1).toBe(1);
+                it(".runs1", function() {
+                    expect(1).toBe(2);
                 });
 
             });

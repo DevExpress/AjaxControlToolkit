@@ -58,11 +58,12 @@
                     return $container;
                 }
 
-                function appendContainer(result) {
+                function containerExists(result) {
                     var cssPath = result.fullName.replace(/ /g, ">");
+                    return !!$root.find(cssPath).length;
+                }
 
-                    if($root.find(cssPath).length)
-                        return;
+                function appendContainer(result) {
 
                     var $parent = $(result.fullName
                         .replace(/\.[^ ]+$/, "")
@@ -85,6 +86,9 @@
                 window.reporter = {
 
                     suiteStarted: function(result) {
+                        if(containerExists(result))
+                            return;
+
                         appendContainer(result);
                     },
 
