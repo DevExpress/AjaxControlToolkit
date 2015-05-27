@@ -85,7 +85,7 @@
                         .addClass(name)
                         .appendTo($parent);
 
-                    var $link = getSpecLink(name, result.fullName);
+                    var $link = createSpecLink(name, result.fullName);
                     $container.$header.html($link);
                 }
 
@@ -98,12 +98,10 @@
                     return $container;
                 }
 
-                function getSpecLink(text, specFullName) {
-                    var path = "Suites/CascadingDropDownTests.aspx?spec=" + specFullName;
-                    var $a = $("<a></a>");
-                    $a.text(text);
-                    $a.attr("href", path);
-                    return $a;
+                function createSpecLink(text, specFullName) {
+                    return $("<a>")
+                        .text(text)
+                        .attr("href", "Suites/CascadingDropDownTests.aspx?spec=" + specFullName);
                 }
 
                 window.reporter = {
@@ -125,7 +123,7 @@
 
                         $container.addClass("testing-spec-" + result.status);
 
-                        var $link = getSpecLink('Spec: ' + result.description + ' was ' + result.status, result.fullName);
+                        var $link = createSpecLink('Spec: ' + result.description + ' was ' + result.status, result.fullName);
                         $head.html($link);
                         for(var i = 0; i < result.failedExpectations.length; i++) {
                             var $failure = $("<div></div>");
