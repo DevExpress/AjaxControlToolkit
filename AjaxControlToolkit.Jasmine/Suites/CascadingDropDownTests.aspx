@@ -24,25 +24,25 @@
     </form>
 
     <script>
-        describe(".Cascading-Drop-Down", function() {
+        describe("Cascading-Drop-Down", function() {
 
-            describe(".Inner-Suite", function() {
+            describe("Inner-Suite", function() {
 
-                it(".runs1", function() {
+                it("runs1", function() {
                     expect(1).toBe(1);
                 });
 
-                it(".runs1", function() {
+                it("runs1", function() {
                     expect(1).toBe(2);
                 });
 
             });
 
-            it(".fails", function() {
+            it("fails", function() {
                 expect(1).toBe(2);
             });
 
-            it(".runs3", function() {
+            it("runs3", function() {
                 expect(1).toBe(1);
             });
         });

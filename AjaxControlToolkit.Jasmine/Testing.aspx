@@ -60,28 +60,21 @@
         <script>
             (function($root) {
 
-                function createContainer() {
-                    var $container = $("<div>").addClass("testing-container");
-
-                    $container.$header = $("<div>").addClass("testing-container-head");
-
-                    $container.append($container.$header);
-
-                    return $container;
+                function containerExists(result) {
+                    return !!$root.find(makeCssSelector(result.fullName)).length;
                 }
 
-                function containerExists(result) {
-                    var cssPath = result.fullName.replace(/ /g, ">");
-                    return !!$root.find(cssPath).length;
+                function makeCssSelector(fullName) {
+                    return fullName                     // CSS selector should
+                        .replace(/[^\w- ]/g, "_")       // contain only a-zA-z0-9_- symbols
+                        .replace(/(^| )(\d)/g, "_$2")   // start with number
+                        .replace(/( )/g, ">.")
+                        .replace(/^(.)/g, ".$1");
                 }
 
                 function appendContainer(result) {
 
-                    var $parent = $(result.fullName
-                        .replace(/\.[^ ]+$/, "")
-                        .trim()
-                        .replace(/ /g, ">"));
-
+                    var $parent = $(makeCssSelector(result.fullName.replace(/ ?[^ ]+$/, "")));
                     if(!$parent.length)
                         $parent = $root;
 
@@ -96,8 +89,16 @@
                     $container.$header.html($link);
                 }
 
-                function getSpecLink(text, specFullName)
-                {
+                function createContainer() {
+                    var $container = $("<div>").addClass("testing-container");
+
+                    $container.$header = $("<div>").addClass("testing-container-head");
+                    $container.append($container.$header);
+
+                    return $container;
+                }
+
+                function getSpecLink(text, specFullName) {
                     var path = "Suites/CascadingDropDownTests.aspx?spec=" + specFullName;
                     var $a = $("<a></a>");
                     $a.text(text);
@@ -119,7 +120,7 @@
                     },
 
                     specDone: function(result) {
-                        var $container = $root.find(result.fullName.replace(/ /g, ">")),
+                        var $container = $root.find(makeCssSelector(result.fullName)),
                             $head = $container.find(".testing-container-head");
 
                         $container.addClass("testing-spec-" + result.status);
