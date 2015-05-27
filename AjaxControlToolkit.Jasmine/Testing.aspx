@@ -37,6 +37,18 @@
         .testing-container.testing-spec-passed .testing-container-head {
             background-color: cornflowerblue;
         }
+
+        .stack-trace {
+            font-size: 11px;
+            font-family: Monaco, "Lucida Console", monospace;
+            border: 1px solid #ddd;
+            background: white;
+            margin: 5px 0 0 0;
+        }
+
+        .failure {
+            white-space: pre;
+        }
     </style>
     <script src="/Vendor/jquery-2.1.4/jquery.js"></script>
 </head>
@@ -87,7 +99,8 @@
                 function getSpecLink(text, specFullName)
                 {
                     var path = "Suites/CascadingDropDownTests.aspx?spec=" + specFullName;
-                    var $a = $("<a>" + text + "</a>");
+                    var $a = $("<a></a>");
+                    $a.text(text);
                     $a.attr("href", path);
                     return $a;
                 }
@@ -114,8 +127,14 @@
                         var $link = getSpecLink('Spec: ' + result.description + ' was ' + result.status, result.fullName);
                         $head.html($link);
                         for(var i = 0; i < result.failedExpectations.length; i++) {
-                            $container.append('Failure: ' + result.failedExpectations[i].message);
-                            $container.append(result.failedExpectations[i].stack);
+                            var $failure = $("<div></div>");
+                            $failure.text('Failure: ' + result.failedExpectations[i].message);
+                            $failure.addClass("failure");
+                            $container.append($failure);
+                            var $stackTrace = $("<div></div>");
+                            $stackTrace.addClass("stack-trace");
+                            $stackTrace.text(result.failedExpectations[i].stack);
+                            $failure.append($stackTrace);
                         }
                     },
                 };
