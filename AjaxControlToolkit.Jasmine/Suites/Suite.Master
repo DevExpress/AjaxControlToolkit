@@ -1,0 +1,37 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Suite.master.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.Suite" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder runat="server" ID="TestSuiteName" />
+    </title>
+
+    <link rel="stylesheet" href="/Vendor/jasmine-2.2.0/jasmine.css" />
+
+    <script src="/Vendor/jasmine-2.2.0/jasmine.js"></script>
+    <script src="/Vendor/jasmine-2.2.0/jasmine-html.js"></script>
+    <script src="/Vendor/jasmine-2.2.0/boot.js"></script>
+    <script>
+        if(parent && parent.Testing) {      // Run as an iframe
+            var queryString = new jasmine.QueryString({
+                getWindowLocation: function() { return window.location; }
+            });
+            var specIndex = +queryString.getParam("specIndex");
+
+            var env = jasmine.getEnv();
+            env.addReporter(parent.Testing.Reporter);
+            env.specFilter = function(spec) {
+                return spec.id === "spec" + specIndex;
+            };
+        }
+    </script>
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ContentPlaceHolder runat="server" ID="TestSuite" />
+    </form>
+</body>
+</html>

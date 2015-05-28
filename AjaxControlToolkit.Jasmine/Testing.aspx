@@ -6,7 +6,6 @@
 <head runat="server">
     <title></title>
     <style>
-
         iframe {
             resize: both;
         }
@@ -23,7 +22,6 @@
             margin-left: -10px;
             margin-right: -10px;
             background-color: gray;
-
             cursor: pointer;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -62,7 +60,7 @@
         <script>
             (function($root, $iframe) {
 
-                window.Testing = { };
+                window.Testing = {};
 
                 function containerExists(result) {
                     return !!$root.find(makeCssSelector(result.fullName)).length;
@@ -118,14 +116,33 @@
                         .attr("href", "Suites/CascadingDropDownTests.aspx?spec=" + specFullName);
                 }
 
-                var nextSpecId = 1;
+                var suites = [
+                    {
+                        name: "CascadingDropDownTests",
+                        specQty: 10
+                    },
+                    {
+                        name: "HtmlEditorExtenderTests",
+                        specQty: 1
+                    }];
+
+                var suiteIndex = -1,
+                    specIndex = 0,
+                    specQty = 0;
+
                 function goToNextSpec() {
-                    if(nextSpecId > 8)
+                    if(specIndex >= specQty) {
+                        suiteIndex += 1;
+                        specIndex = 0;
+                        specQty = suites[suiteIndex].specQty;
+                    }
+
+                    if(suiteIndex >= suites.length)
                         return;
 
-                    $iframe.attr("src", "Suites/CascadingDropDownTests.aspx?specIndex=" + nextSpecId);
+                    $iframe.attr("src", "Suites/" + suites[suiteIndex].name + ".aspx?specIndex=" + specIndex);
 
-                    nextSpecId += 1;
+                    specIndex += 1;
                 }
 
                 window.Testing.Reporter = {

@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.Jasmine.Suites {
-    public partial class CascadingDropDownTests : System.Web.UI.Page {
+    public partial class Suite : System.Web.UI.MasterPage {
         protected void Page_Load(object sender, EventArgs e) {
 
         }

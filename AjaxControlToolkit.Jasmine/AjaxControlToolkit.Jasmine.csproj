@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Suites\CascadingDropDownTests.aspx" />
+    <Content Include="Suites\HtmlEditorExtenderTests.aspx" />
     <Content Include="Suites\HtmlEditor\HtmlEditor.aspx" />
     <Content Include="Suites\HtmlEditor\HtmlEditor.js" />
     <Content Include="Suites\MaskedEdit\MaskedEdit.aspx" />
@@ -108,6 +109,13 @@
     <Compile Include="Suites\CascadingDropDownTests.aspx.designer.cs">
       <DependentUpon>CascadingDropDownTests.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Suites\HtmlEditorExtenderTests.aspx.cs">
+      <DependentUpon>HtmlEditorExtenderTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\HtmlEditorExtenderTests.aspx.designer.cs">
+      <DependentUpon>HtmlEditorExtenderTests.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Suites\HtmlEditor\HtmlEditor.aspx.cs">
       <DependentUpon>HtmlEditor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -128,6 +136,13 @@
     </Compile>
     <Compile Include="Suites\Slider\Slider.aspx.designer.cs">
       <DependentUpon>Slider.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\Suite.Master.cs">
+      <DependentUpon>Suite.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\Suite.Master.designer.cs">
+      <DependentUpon>Suite.Master</DependentUpon>
     </Compile>
     <Compile Include="Suites\Tabs\Tabs.aspx.cs">
       <DependentUpon>Tabs.aspx</DependentUpon>
@@ -204,6 +219,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Suites\Suite.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
