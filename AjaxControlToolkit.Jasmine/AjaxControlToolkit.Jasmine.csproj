@@ -102,6 +102,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="SuiteCount.cs" />
     <Compile Include="Suites\CascadingDropDownTests.aspx.cs">
       <DependentUpon>CascadingDropDownTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

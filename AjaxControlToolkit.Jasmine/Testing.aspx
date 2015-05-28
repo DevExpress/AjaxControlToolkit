@@ -60,8 +60,6 @@
         <script>
             (function($root, $iframe) {
 
-                window.Testing = {};
-
                 function containerExists(result) {
                     return !!$root.find(makeCssSelector(result.fullName)).length;
                 }
@@ -116,16 +114,6 @@
                         .attr("href", "Suites/CascadingDropDownTests.aspx?spec=" + specFullName);
                 }
 
-                var suites = [
-                    {
-                        name: "CascadingDropDownTests",
-                        specQty: 10
-                    },
-                    {
-                        name: "HtmlEditorExtenderTests",
-                        specQty: 1
-                    }];
-
                 var suiteIndex = -1,
                     specIndex = 0,
                     specQty = 0;
@@ -134,13 +122,13 @@
                     if(specIndex >= specQty) {
                         suiteIndex += 1;
                         specIndex = 0;
-                        specQty = suites[suiteIndex].specQty;
+                        specQty = window.Testing.Suites[suiteIndex].specQty;
                     }
 
-                    if(suiteIndex >= suites.length)
+                    if(suiteIndex >= window.Testing.Suites.length)
                         return;
 
-                    $iframe.attr("src", "Suites/" + suites[suiteIndex].name + ".aspx?specIndex=" + specIndex);
+                    $iframe.attr("src", "Suites/" + window.Testing.Suites[suiteIndex].name + "?specIndex=" + specIndex);
 
                     specIndex += 1;
                 }
