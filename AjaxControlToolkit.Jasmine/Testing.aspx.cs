@@ -21,7 +21,7 @@ namespace AjaxControlToolkit.Jasmine {
             var suitesCount = new List<SuiteCount>();
             foreach(var path in pagePaths) {
                 var fileContent = File.ReadAllText(path);
-                var count = Regex.Matches(fileContent, "it\\(").Count;
+                var count = Regex.Matches(fileContent, "\\s+it\\(").Count;
                 suitesCount.Add(new SuiteCount(Path.GetFileName(path), count));
             }
 
