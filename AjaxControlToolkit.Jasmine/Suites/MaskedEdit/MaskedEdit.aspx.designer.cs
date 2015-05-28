@@ -22,30 +22,30 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         protected global::System.Web.UI.HtmlControls.HtmlForm TestForm;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// TestScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.ScriptManager TestScriptManager;
         
         /// <summary>
-        /// Target control.
+        /// CommonTarget control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Target;
+        protected global::System.Web.UI.WebControls.TextBox CommonTarget;
         
         /// <summary>
-        /// TargetExtender control.
+        /// CommonTargetExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditExtender TargetExtender;
+        protected global::AjaxControlToolkit.MaskedEditExtender CommonTargetExtender;
     }
 }

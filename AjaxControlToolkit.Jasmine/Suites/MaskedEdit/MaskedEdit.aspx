@@ -8,22 +8,19 @@
 </head>
 <body onload="onLoad()">
     <form id="TestForm" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:ScriptManager ID="TestScriptManager" runat="server"></asp:ScriptManager>
 
-        <asp:TextBox ID="Target" runat="server" />
-        <act:MaskedEditExtender ID="TargetExtender" runat="server"
-            TargetControlID="Target"
-            Mask="LLLLL"
-            CultureName="en-US"
-            ClientIDMode="Static"/>
+        <asp:TextBox ID="CommonTarget" runat="server" Text="ABC" />
+        <act:MaskedEditExtender ID="CommonTargetExtender" runat="server" TargetControlID="CommonTarget" Mask="LLLLL" />
     </form>
 </body>
 </html>
 
 <script>
     function onLoad() {
-        parent.Testing.Component = $find("<%= TargetExtender.ClientID %>");
-        parent.Testing.Target = document.getElementById("<%= Target.ClientID %>");
+        parent.Testing.CommonTarget = document.getElementById("<%= CommonTarget.ClientID %>");
+        parent.Testing.CommonExtender = $find("<%= CommonTargetExtender.ClientID %>");
+        
         parent.Testing.Sys = Sys;
         parent.Testing.LoadSpecCallback();
     }
