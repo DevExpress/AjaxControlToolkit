@@ -12,8 +12,17 @@
     <script src="/Vendor/jasmine-2.2.0/jasmine-html.js"></script>
     <script src="/Vendor/jasmine-2.2.0/boot.js"></script>
     <script>
-        if(parent && parent.reporter) {
-            jasmine.getEnv().addReporter(parent.reporter);
+        if(parent && parent.Testing) {      // Run as an iframe
+            var queryString = new jasmine.QueryString({
+                getWindowLocation: function() { return window.location; }
+            });
+            var specIndex = +queryString.getParam("specIndex");
+
+            var env = jasmine.getEnv();
+            env.addReporter(parent.Testing.Reporter);
+            env.specFilter = function(spec) {
+                return spec.id === "spec" + (specIndex - 1);
+            };
         }
     </script>
 

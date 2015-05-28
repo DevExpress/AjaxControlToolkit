@@ -56,11 +56,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <iframe src="Suites/CascadingDropDownTests.aspx"></iframe>
+        <iframe id="testFrame"></iframe>
         <div id="results">
         </div>
         <script>
-            (function($root) {
+            (function($root, $iframe) {
+
+                window.Testing = { };
 
                 function containerExists(result) {
                     return !!$root.find(makeCssSelector(result.fullName)).length;
@@ -75,7 +77,6 @@
                 }
 
                 function appendContainer(result) {
-
                     var $parent = $(makeCssSelector(result.fullName.replace(/ ?[^ ]+$/, "")));
                     if($parent.length)
                         $parent = $parent.find(".testing-container-body").first();
@@ -117,7 +118,17 @@
                         .attr("href", "Suites/CascadingDropDownTests.aspx?spec=" + specFullName);
                 }
 
-                window.reporter = {
+                var nextSpecId = 1;
+                function goToNextSpec() {
+                    if(nextSpecId > 8)
+                        return;
+
+                    $iframe.attr("src", "Suites/CascadingDropDownTests.aspx?specIndex=" + nextSpecId);
+
+                    nextSpecId += 1;
+                }
+
+                window.Testing.Reporter = {
 
                     suiteStarted: function(result) {
                         if(containerExists(result))
@@ -126,15 +137,14 @@
                         appendContainer(result);
                     },
 
-                    specStarted: function(result) {
-                    },
-
                     specDone: function(result) {
+                        if(result.status === "disabled")
+                            return;
+
                         var $container = appendContainer(result);
                         $container.addClass("testing-spec-" + result.status);
-
                         $container.$head.append(createSpecLink('Spec: ' + result.description + ' was ' + result.status, result.fullName));
-                        debugger;
+
                         for(var i = 0; i < result.failedExpectations.length; i++) {
                             $container.$body.append($("<div>")
                                 .text('Failure: ' + result.failedExpectations[i].message)
@@ -142,10 +152,14 @@
                                     .addClass("testing-spec-stackTrace")
                                     .text(result.failedExpectations[i].stack)));
                         }
+
+                        goToNextSpec();
                     },
                 };
 
-            })($("#results"));
+                goToNextSpec();
+
+            })($("#results"), $("#testFrame"));
         </script>
     </form>
 </body>
