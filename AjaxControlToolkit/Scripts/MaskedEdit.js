@@ -2495,8 +2495,13 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 m_arrDate[this.get_CultureDateFormat().indexOf("Y")] = m_arrDateLD[this._CultureDateFormat.indexOf("Y")];
             }
         } else {
-            // split value (not load) 
-            m_arrDate = input.split(this.get_CultureDatePlaceholder());
+            m_arrDate = input.split(this.get_CultureDatePlaceholder()).filter(function(element) {
+                return element != "";
+            });
+
+            m_arrDate = m_arrDate.map(function(element) {
+                return element.replace(/[^\/\d]/g, '')
+            });
         }
 
         var m_mask = this._maskvalid;
@@ -2525,7 +2530,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
 
         m_arrDate[this.get_CultureDateFormat().indexOf("Y")] = Y;
 
-        return m_arrDate[0] + this.get_CultureDatePlaceholder() + m_arrDate[1] + this._CultureDatePlaceholder + m_arrDate[2];
+        return m_arrDate[0] + this.get_CultureDatePlaceholder() + m_arrDate[1] + this.get_CultureDatePlaceholder() + m_arrDate[2];
     },
 
     // Set/Remove CssClass

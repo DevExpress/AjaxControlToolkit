@@ -12,6 +12,9 @@
 
         <asp:TextBox ID="CommonTarget" runat="server" Text="ABC" />
         <act:MaskedEditExtender ID="CommonTargetExtender" runat="server" TargetControlID="CommonTarget" Mask="LLLLL" />
+
+        <asp:TextBox ID="DateTarget" runat="server" />
+        <act:MaskedEditExtender ID="DateTargetExtender" TargetControlID="DateTarget" runat="server" CultureName="en-US" MaskType="Date" Mask="99/99/9999" />
     </form>
 </body>
 </html>
@@ -20,6 +23,9 @@
     function onLoad() {
         parent.Testing.CommonTarget = document.getElementById("<%= CommonTarget.ClientID %>");
         parent.Testing.CommonExtender = $find("<%= CommonTargetExtender.ClientID %>");
+
+        parent.Testing.DateTarget = document.getElementById("<%= DateTarget.ClientID %>");
+        parent.Testing.DateExtender = $find("<%= DateTargetExtender.ClientID %>");
         
         parent.Testing.Sys = Sys;
         parent.Testing.LoadSpecCallback();
