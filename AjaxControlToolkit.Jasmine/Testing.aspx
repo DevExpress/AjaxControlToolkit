@@ -148,7 +148,6 @@
 
                         var $container = appendContainer(result);
                         $container.addClass("testing-spec-" + result.status);
-                        $container.$head.append(createSpecLink('Spec: ' + result.description + ' was ' + result.status, result.fullName));
 
                         for(var i = 0; i < result.failedExpectations.length; i++) {
                             $container.$body.append($("<div>")

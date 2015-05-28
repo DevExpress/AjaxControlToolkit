@@ -21,10 +21,21 @@
             var specIndex = +queryString.getParam("specIndex");
 
             var env = jasmine.getEnv();
-            env.addReporter(parent.Testing.Reporter);
             env.specFilter = function(spec) {
                 return spec.id === "spec" + specIndex;
             };
+
+            env.addReporter(parent.Testing.Reporter);
+
+            funcNames = ["it", "xit", "fit", "describe", "xdescribe", "fdescribe"];
+            for(var index in funcNames) {
+                (function(funcName, jasmineNativeFunc) {
+                    window[funcName] = function(name, callback) {
+                        jasmineNativeFunc(name.replace(/ /g, "-"), callback);
+                    }
+                })(funcNames[index], window[funcNames[index]]);
+            }
+
         }
     </script>
 
