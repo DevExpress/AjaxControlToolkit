@@ -2467,15 +2467,14 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         var m_arrDateLD,
             m_arrDate;
 
-        // perform convert for loading of a page 
+        m_arrDate = input.split(this.get_CultureDatePlaceholder()).filter(function(element) {
+            return element != "";
+        });
+        m_arrDate = m_arrDate.map(function(element) {
+            return element.replace(/[^\/\d]/g, '')
+        });
+
         if(loadFirst) {
-            // split values for perform convert load 
-            m_arrDateLD = input.split(this.get_CultureDatePlaceholder());
-
-            // split destination value
-            m_arrDate = input.split(this.get_CultureDatePlaceholder());
-
-            // convert current Culture to user culture format
             if(this.get_UserDateFormat() != Sys.Extended.UI.MaskedEditUserDateFormat.None) {
                 if(this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.DayMonthYear)
                     this._CultureDateFormat = 'DMY';
@@ -2494,14 +2493,6 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 m_arrDate[this.get_CultureDateFormat().indexOf("M")] = m_arrDateLD[this._CultureDateFormat.indexOf("M")];
                 m_arrDate[this.get_CultureDateFormat().indexOf("Y")] = m_arrDateLD[this._CultureDateFormat.indexOf("Y")];
             }
-        } else {
-            m_arrDate = input.split(this.get_CultureDatePlaceholder()).filter(function(element) {
-                return element != "";
-            });
-
-            m_arrDate = m_arrDate.map(function(element) {
-                return element.replace(/[^\/\d]/g, '')
-            });
         }
 
         var m_mask = this._maskvalid;

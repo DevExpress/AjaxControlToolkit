@@ -85,8 +85,16 @@
             }
 
             var convertedDate = Testing.DateExtender.ConvFmtDate(cultures[i].localeDateString, false);
+            expect(convertedDate).toBe(cultures[i].convertedDate);
 
+            convertedDate = Testing.DateExtender.ConvFmtDate(cultures[i].localeDateString, true);
             expect(convertedDate).toBe(cultures[i].convertedDate);
         }
+    });
+
+    it("date formating returns empty string for non-data values", function() {
+        var convertedDate = Testing.DateExtender.ConvFmtDate("non-data string", false);
+
+        expect(convertedDate).toBe("");
     });
 });
