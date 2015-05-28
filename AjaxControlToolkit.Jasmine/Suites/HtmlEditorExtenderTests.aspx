@@ -4,8 +4,6 @@
     HtmlEditorExtender
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TestSuite" runat="server">
-    <asp:ScriptManager runat="server"></asp:ScriptManager>
-
     <asp:TextBox ID="Target" runat="server" Width="500" Height="300" />
     <act:HtmlEditorExtender runat="server" TargetControlID="Target" ID="TargetExtender" EnableSanitization="false" />
 

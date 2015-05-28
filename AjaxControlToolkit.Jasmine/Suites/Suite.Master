@@ -42,6 +42,7 @@
 </head>
 <body>
     <form runat="server">
+        <asp:ScriptManager runat="server" />
         <asp:ContentPlaceHolder runat="server" ID="TestSuite" />
     </form>
 </body>
