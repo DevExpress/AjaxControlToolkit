@@ -4,93 +4,132 @@
     MaskedEdit
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TestSuite" runat="server">
-    <asp:TextBox ID="Target" runat="server" />
-    <act:MaskedEditExtender ID="TargetExtender" runat="server"
-        TargetControlID="Target"
-        Mask="LLLLL"
-        CultureName="en-US"
-        ClientIDMode="Static" />
+    <asp:TextBox ID="CommonTarget" runat="server" Text="ABC" />
+    <act:MaskedEditExtender ID="CommonTargetExtender" runat="server" TargetControlID="CommonTarget" Mask="LLLLL" CultureName="en-US" />
 
-    <input type="text" id="focusStealer" />
+    <asp:TextBox ID="DateTarget" runat="server" />
+    <act:MaskedEditExtender ID="DateTargetExtender" TargetControlID="DateTarget" runat="server" CultureName="en-US" MaskType="Date" Mask="99/99/9999" />
 
     <script>
+
         describe("MaskedEdit", function() {
 
             beforeEach(function() {
-                this.component = $find("<%= TargetExtender.ClientID %>");
-                this.target = document.getElementById("<%= Target.ClientID %>");
+                this.commonTarget = document.getElementById("<%= CommonTarget.ClientID %>");
+                this.commonExtender = $find("<%= CommonTargetExtender.ClientID %>");
+
+                this.dateTarget = document.getElementById("<%= DateTarget.ClientID %>");
+                this.dateExtender = $find("<%= DateTargetExtender.ClientID %>");
             });
 
-            it("must remove symbol on backspace", function() {
-                // Arrange
+            var getKeyboardEvent = function(prefs) {
                 var keyboardEvent = document.createEvent("KeyboardEvent");
                 var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
 
                 keyboardEvent[initMethod](
-                                   "keydown", // event type : keydown, keyup, keypress
-                                    true, // bubbles
-                                    true, // cancelable
-                                    window, // viewArg: should be window
-                                    false, // ctrlKeyArg
-                                    false, // altKeyArg
-                                    false, // shiftKeyArg
-                                    false, // metaKeyArg
-                                    8, // keyCodeArg : unsigned long the virtual key code, else 0
-                                    0 // charCodeArgs : unsigned long the Unicode character associated with the depressed key, else 0
+                    prefs.typeArg,
+                    prefs.canBubbleArg,
+                    prefs.cancelableArg,
+                    prefs.viewArg,
+                    prefs.ctrlKeyArg,
+                    prefs.altKeyArg,
+                    prefs.shiftKeyArg,
+                    prefs.metaKeyArg,
+                    prefs.keyCodeArg,
+                    prefs.charCodeArg
                 );
-                
-                this.target.value = "ABC";
-                this.component._PromptChar = "";
-                setCaretPosition(this.target, 3);
 
-                // Act
-                this.component._ExecuteNav(new Sys.UI.DomEvent(keyboardEvent), 8);
+                return keyboardEvent;
+            };
 
-                // Assert
-                expect(this.target.value).toBe("AB");
-                console.log("1");
+            var setSelectionRange = function(input, selectionStart, selectionEnd) {
+                if(input.setSelectionRange) {
+                    input.focus();
+                    input.setSelectionRange(selectionStart, selectionEnd);
+                } else if(input.createTextRange) {
+                    var range = input.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd('character', selectionEnd);
+                    range.moveStart('character', selectionStart);
+                    range.select();
+                }
+            };
+
+            var setCaretToPosition = function(input, pos) {
+                setSelectionRange(input, pos, pos);
+            };
+
+            it("removes symbol on backspace", function() {
+                var keyboardEvent = getKeyboardEvent({
+                    typeArg: "keydown",
+                    canBubbleArg: true,
+                    cancelableArg: true,
+                    viewArg: window,
+                    ctrlKeyArg: false,
+                    altKeyArg: false,
+                    shiftKeyArg: false,
+                    metaKeyArg: false,
+                    keyCodeArg: 8,
+                    charCodeArg: 0
+                });
+                this.commonExtender._PromptChar = "";
+                setCaretToPosition(this.commonTarget, 3);
+
+                this.commonExtender._ExecuteNav(new Sys.UI.DomEvent(keyboardEvent), 8);
+
+                expect(this.commonTarget.value).toBe("AB");
             });
 
-            it("must clear mask on blur", function() {
-                // Arrange
-                var focusStealer = document.getElementById("focusStealer");
-                console.log("2");
-                this.target.value = "ZZZ";
-                setCaretPosition(this.target, 0);
+            it("clears mask on blur", function() {
+                this.commonTarget.blur();
 
-                //Act
-                focusStealer.focus();
+                expect(this.commonTarget.value).toBe("ABC");
+            });
 
-                // Assert
-                expect(this.target.value).toBe("ZZZ");
+            // CodePlex item 27764
+            it("formats date properly for different cultures", function() {
+                var cultures = [
+                    {
+                        name: "en-US",
+                        dateSeparator: "/",
+                        localeDateString: "02/01/2015",
+                        convertedDate: "02/01/2015"
+                    },
+                    {
+                        name: "hu-HU",
+                        dateSeparator: ".",
+                        localeDateString: "01.02.2015.",
+                        convertedDate: "01.02.2015"
+                    },
+                    {
+                        name: "hy-AM",
+                        dateSeparator: ".",
+                        localeDateString: "(01.02.2015)",
+                        convertedDate: "01.02.2015"
+                    },
+                ];
+
+                for(var i = 0; i < cultures.length; i++) {
+                    this.dateExtender.get_CultureDatePlaceholder = function() {
+                        return cultures[i].dateSeparator;
+                    }
+
+                    var convertedDate = this.dateExtender.ConvFmtDate(cultures[i].localeDateString, false);
+                    expect(convertedDate).toBe(cultures[i].convertedDate);
+
+                    convertedDate = this.dateExtender.ConvFmtDate(cultures[i].localeDateString, true);
+                    expect(convertedDate).toBe(cultures[i].convertedDate);
+                }
+            });
+
+            it("date formating returns empty string for non-data values", function() {
+                var convertedDate = this.dateExtender.ConvFmtDate("non-data string", false);
+                expect(convertedDate).toBe("");
+
+                convertedDate = this.dateExtender.ConvFmtDate("non-data string", true);
+                expect(convertedDate).toBe("");
             });
         });
 
-        // http://stackoverflow.com/questions/512528/set-cursor-position-in-html-textbox
-        function setCaretPosition(el, caretPos) {
-            el.value = el.value;
-            // ^ this is used to not only get "focus", but
-            // to make sure we don't have it everything -selected-
-            // (it causes an issue in chrome, and having it doesn't hurt any other browser)
-
-            if(el.createTextRange) {
-                var range = el.createTextRange();
-                range.move('character', caretPos);
-                range.select();
-                return true;
-            }
-            else {
-                // (el.selectionStart === 0 added for Firefox bug)
-                if(el.selectionStart || el.selectionStart === 0) {
-                    el.focus();
-                    el.setSelectionRange(caretPos, caretPos);
-                    return true;
-                }
-                else {
-                    el.focus();
-                    return false;
-                }
-            }
-        }
     </script>
 </asp:Content>

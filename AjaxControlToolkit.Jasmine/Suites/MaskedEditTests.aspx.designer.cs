@@ -13,21 +13,39 @@ namespace AjaxControlToolkit.Jasmine.Suites {
     public partial class MaskedEditTests {
         
         /// <summary>
-        /// Target control.
+        /// CommonTarget control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Target;
+        protected global::System.Web.UI.WebControls.TextBox CommonTarget;
         
         /// <summary>
-        /// TargetExtender control.
+        /// CommonTargetExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditExtender TargetExtender;
+        protected global::AjaxControlToolkit.MaskedEditExtender CommonTargetExtender;
+        
+        /// <summary>
+        /// DateTarget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DateTarget;
+        
+        /// <summary>
+        /// DateTargetExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender DateTargetExtender;
     }
 }
