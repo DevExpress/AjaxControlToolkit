@@ -49,11 +49,21 @@
         .testing-spec-failed {
             white-space: pre;
         }
+
+        .testing-run-counter {
+            background-color: #ddd;
+            border: 1px solid black;
+            margin-bottom: 3px;
+            padding: 3px;
+            font-family: Monaco, "Lucida Console", monospace;
+        }
     </style>
     <script src="/Vendor/jquery-2.1.4/jquery.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
+        <div id="testPageCounter" class="testing-run-counter"></div>
+        <div id="specCounter" class="testing-run-counter"></div>
         <iframe id="testFrame"></iframe>
         <div id="results">
         </div>
@@ -116,7 +126,11 @@
 
                 var suiteIndex = -1,
                     specIndex = 0,
-                    specQty = 0;
+                    specQty = 0,
+                    totalSpecCounter = -1,
+                    totalSpecQty = getTotalSpecQty(),
+                    testPagesCounter = -1,
+                    testPagesQty = getTestPagesQty();
 
                 function goToNextSpec() {
                     if(specIndex >= specQty) {
@@ -128,9 +142,34 @@
                     if(suiteIndex >= window.Testing.Suites.length)
                         return;
 
+                    totalSpecCounter += 1;
+
+                    $("#testPageCounter").text("Running test page " + suiteIndex + " of " + testPagesQty);
+                    $("#specCounter").text("Running spec " + totalSpecCounter + " of " + totalSpecQty);
                     $iframe.attr("src", "Suites/" + window.Testing.Suites[suiteIndex].name + "?specIndex=" + specIndex);
 
                     specIndex += 1;
+                }
+
+                function getTotalSpecQty(){
+                    var count = 0;
+
+                    for(var i = 0; i < window.Testing.Suites.length; i++) {
+                        count += window.Testing.Suites[i].specQty;
+                    }
+
+                    return count;
+                }
+
+                function getTestPagesQty(){
+                    var count = 0;
+
+                    for(var i = 0; i < window.Testing.Suites.length; i++) {
+                        if(window.Testing.Suites[i].specQty > 0)
+                            count += 1;
+                    }
+
+                    return count;
                 }
 
                 window.Testing.Reporter = {
