@@ -1,14 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Suites/Suite.Master" AutoEventWireup="true" CodeBehind="MaskedEditTests.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.MaskedEditTests" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TestSuiteName" runat="server">
-    MaskedEdit
-</asp:Content>
+<asp:Content ID="Content1" ContentPlaceHolderID="TestSuiteName" runat="server">MaskedEdit</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="TestSuite" runat="server">
-    <asp:TextBox ID="CommonTarget" runat="server" Text="ABC" />
-    <act:MaskedEditExtender ID="CommonTargetExtender" runat="server" TargetControlID="CommonTarget" Mask="LLLLL" CultureName="en-US" />
 
-    <asp:TextBox ID="DateTarget" runat="server" />
-    <act:MaskedEditExtender ID="DateTargetExtender" TargetControlID="DateTarget" runat="server" CultureName="en-US" MaskType="Date" Mask="99/99/9999" />
+    <asp:TextBox runat="server"
+        ID="CommonTarget"
+        Text="ABC" />
+    <act:MaskedEditExtender runat="server"
+        ID="CommonTargetExtender"
+        TargetControlID="CommonTarget"
+        Mask="LLLLL"
+        CultureName="en-US" />
+
+    <asp:TextBox runat="server"
+        ID="DateTarget" />
+    <act:MaskedEditExtender runat="server"
+        ID="DateTargetExtender"
+        TargetControlID="DateTarget"
+        MaskType="Date"
+        Mask="99/99/9999"
+        CultureName="en-US" />
 
     <script>
 
@@ -21,43 +32,6 @@
                 this.dateTarget = document.getElementById("<%= DateTarget.ClientID %>");
                 this.dateExtender = $find("<%= DateTargetExtender.ClientID %>");
             });
-
-            var getKeyboardEvent = function(prefs) {
-                var keyboardEvent = document.createEvent("KeyboardEvent");
-                var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
-
-                keyboardEvent[initMethod](
-                    prefs.typeArg,
-                    prefs.canBubbleArg,
-                    prefs.cancelableArg,
-                    prefs.viewArg,
-                    prefs.ctrlKeyArg,
-                    prefs.altKeyArg,
-                    prefs.shiftKeyArg,
-                    prefs.metaKeyArg,
-                    prefs.keyCodeArg,
-                    prefs.charCodeArg
-                );
-
-                return keyboardEvent;
-            };
-
-            var setSelectionRange = function(input, selectionStart, selectionEnd) {
-                if(input.setSelectionRange) {
-                    input.focus();
-                    input.setSelectionRange(selectionStart, selectionEnd);
-                } else if(input.createTextRange) {
-                    var range = input.createTextRange();
-                    range.collapse(true);
-                    range.moveEnd('character', selectionEnd);
-                    range.moveStart('character', selectionStart);
-                    range.select();
-                }
-            };
-
-            var setCaretToPosition = function(input, pos) {
-                setSelectionRange(input, pos, pos);
-            };
 
             it("removes symbol on backspace", function() {
                 var keyboardEvent = getKeyboardEvent({
@@ -130,6 +104,43 @@
                 expect(convertedDate).toBe("");
             });
         });
+
+        function getKeyboardEvent(prefs) {
+            var keyboardEvent = document.createEvent("KeyboardEvent");
+            var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
+
+            keyboardEvent[initMethod](
+                prefs.typeArg,
+                prefs.canBubbleArg,
+                prefs.cancelableArg,
+                prefs.viewArg,
+                prefs.ctrlKeyArg,
+                prefs.altKeyArg,
+                prefs.shiftKeyArg,
+                prefs.metaKeyArg,
+                prefs.keyCodeArg,
+                prefs.charCodeArg
+            );
+
+            return keyboardEvent;
+        };
+
+        function setCaretToPosition(input, pos) {
+            setSelectionRange(input, pos, pos);
+        };
+
+        function setSelectionRange(input, selectionStart, selectionEnd) {
+            if(input.setSelectionRange) {
+                input.focus();
+                input.setSelectionRange(selectionStart, selectionEnd);
+            } else if(input.createTextRange) {
+                var range = input.createTextRange();
+                range.collapse(true);
+                range.moveEnd('character', selectionEnd);
+                range.moveStart('character', selectionStart);
+                range.select();
+            }
+        };
 
     </script>
 </asp:Content>
