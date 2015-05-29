@@ -121,7 +121,7 @@
                 function createSpecLink(text, specFullName) {
                     return $("<a>")
                         .text(text)
-                        .attr("href", "Suites/CascadingDropDownTests.aspx?spec=" + specFullName);
+                        .attr("href", "Suites/" + currentPageName +"?spec=" + specFullName);
                 }
 
                 var suiteIndex = -1,
@@ -130,7 +130,8 @@
                     totalSpecCounter = -1,
                     totalSpecQty = getTotalSpecQty(),
                     testPagesCounter = -1,
-                    testPagesQty = getTestPagesQty();
+                    testPagesQty = getTestPagesQty(),
+                    currentPageName = "";
 
                 function goToNextSpec() {
                     if(specIndex >= specQty) {
@@ -146,6 +147,8 @@
 
                     $("#testPageCounter").text("Running test page " + suiteIndex + " of " + testPagesQty);
                     $("#specCounter").text("Running spec " + totalSpecCounter + " of " + totalSpecQty);
+
+                    currentPageName = window.Testing.Suites[suiteIndex].name;
                     $iframe.attr("src", "Suites/" + window.Testing.Suites[suiteIndex].name + "?specIndex=" + specIndex);
 
                     specIndex += 1;
