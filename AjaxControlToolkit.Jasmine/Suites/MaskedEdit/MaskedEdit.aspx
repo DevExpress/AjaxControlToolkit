@@ -11,7 +11,7 @@
         <asp:ScriptManager ID="TestScriptManager" runat="server"></asp:ScriptManager>
 
         <asp:TextBox ID="CommonTarget" runat="server" Text="ABC" />
-        <act:MaskedEditExtender ID="CommonTargetExtender" runat="server" TargetControlID="CommonTarget" Mask="LLLLL" />
+        <act:MaskedEditExtender ID="CommonTargetExtender" runat="server" TargetControlID="CommonTarget" Mask="LLLLL" CultureName="en-US"/>
 
         <asp:TextBox ID="DateTarget" runat="server" />
         <act:MaskedEditExtender ID="DateTargetExtender" TargetControlID="DateTarget" runat="server" CultureName="en-US" MaskType="Date" Mask="99/99/9999" />
