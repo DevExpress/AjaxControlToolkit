@@ -5,7 +5,7 @@
     });
 
     it("should not throw exception on submit if text is empty", function () {
-        expect(function () {
+        expect(function() {
             Testing.Component._editableDiv_submit();
         }).not.toThrow();
     });

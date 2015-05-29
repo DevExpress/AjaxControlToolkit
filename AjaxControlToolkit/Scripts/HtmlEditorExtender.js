@@ -753,6 +753,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                 selection.select();
             } else {
                 selection = window.getSelection();
+                selection.type = selection.type || "None";
                 if (selection.type !== "None")
                     selection.collapse(this._editableDiv.firstChild, char);
             }
