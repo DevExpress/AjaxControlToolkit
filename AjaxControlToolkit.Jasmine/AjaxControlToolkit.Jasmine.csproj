@@ -108,6 +108,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="SuiteInfo.cs" />
     <Compile Include="Suites\AjaxFileUploadTests.aspx.cs">
       <DependentUpon>AjaxFileUploadTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

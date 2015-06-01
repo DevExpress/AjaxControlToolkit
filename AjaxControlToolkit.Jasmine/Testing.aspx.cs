@@ -13,24 +13,33 @@ namespace AjaxControlToolkit.Jasmine {
     public partial class Testing : System.Web.UI.Page {
 
         protected void Page_Load(object sender, EventArgs e) {
-            RendertSpecsQty();
+            var suites = GetSuites();
+            var targetSuite = Request.Params["suite"];
+
+            if(!String.IsNullOrWhiteSpace(targetSuite))
+                suites = suites.Where(s => s.name == targetSuite);
+
+            RenderSpecsQty(suites);
         }
 
-        void RendertSpecsQty() {
-            var suitesDir = Server.MapPath("~/Suites");
-
-            var suites = GetTestPagePaths(suitesDir)
-                .Select(path => new {
-                    name = GetRelativePath(path, suitesDir),
-                    specQty = CountSpecsInFile(path)
-                })
-                .Where(s => s.specQty > 0);
-
+        void RenderSpecsQty(IEnumerable<SuiteInfo> suites) {
+            
             ClientScript.RegisterClientScriptBlock(
                 typeof(Testing),
                 "SuitesCount",
                 "window.Testing = {}; window.Testing.Suites=" + new JavaScriptSerializer().Serialize(suites),
                 true);
+        }
+
+        private IEnumerable<SuiteInfo> GetSuites() {
+            var suitesDir = Server.MapPath("~/Suites");
+
+            return GetTestPagePaths(suitesDir)
+                .Select(path => new SuiteInfo{
+                    name = GetRelativePath(path, suitesDir),
+                    specQty = CountSpecsInFile(path)
+                })
+                .Where(s => s.specQty > 0);
         }
 
         IEnumerable<string> GetTestPagePaths(string suitesDirectory) {

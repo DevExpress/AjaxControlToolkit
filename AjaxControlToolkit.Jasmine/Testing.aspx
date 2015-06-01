@@ -57,6 +57,18 @@
             padding: 3px;
             font-family: Monaco, "Lucida Console", monospace;
         }
+
+        .testing-button {
+            display: inline-block;
+            width: 70px;
+            height: 20px;
+            background: lightgray;
+            padding: 3px;
+            margin: 5px;
+            text-align: center;
+            color: black;
+            text-decoration: none;
+        }
     </style>
     <script src="/Vendor/jquery-2.1.4/jquery.js"></script>
 </head>
@@ -82,7 +94,7 @@
                         .replace(/^(.)/g, ".$1");
                 }
 
-                function appendContainer(result) {
+                function appendContainer(result, isSuite) {
                     var $parent = $(makeCssSelector(result.fullName.replace(/ ?[^ ]+$/, "")));
                     if($parent.length)
                         $parent = $parent.find(".testing-container-body").first();
@@ -99,7 +111,19 @@
                     var $link = createSpecLink(name, result.fullName);
                     $container.$head.html($link);
 
+                    if(isSuite) {
+                        var $runThisButton = createRunThisButton();
+                        $container.$head.append($runThisButton);
+                    }
+
                     return $container;
+                }
+
+                function createRunThisButton() {
+                    return $("<a>")
+                    .text("run suite")
+                    .attr("href", "?suite=" + currentPageName)
+                    .addClass("testing-button");
                 }
 
                 function createContainer() {
@@ -121,7 +145,7 @@
                 function createSpecLink(text, specFullName) {
                     return $("<a>")
                         .text(text)
-                        .attr("href", "Suites/" + currentPageName +"?spec=" + specFullName);
+                        .attr("href", "Suites/" + currentPageName + "?spec=" + specFullName);
                 }
 
                 var suiteIndex = -1,
@@ -143,7 +167,6 @@
                         specQty = window.Testing.Suites[suiteIndex].specQty;
                     }
 
-
                     totalSpecCounter += 1;
 
                     $("#testPageCounter").text("Running test page " + (suiteIndex + 1) + " of " + testPagesQty);
@@ -155,7 +178,7 @@
                     specIndex += 1;
                 }
 
-                function getTotalSpecQty(){
+                function getTotalSpecQty() {
                     var count = 0;
 
                     for(var i = 0; i < window.Testing.Suites.length; i++) {
@@ -165,7 +188,7 @@
                     return count;
                 }
 
-                function getTestPagesQty(){
+                function getTestPagesQty() {
                     var count = 0;
 
                     for(var i = 0; i < window.Testing.Suites.length; i++) {
@@ -182,7 +205,7 @@
                         if(containerExists(result))
                             return;
 
-                        appendContainer(result);
+                        appendContainer(result, true);
                     },
 
                     specDone: function(result) {
