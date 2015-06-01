@@ -136,17 +136,18 @@
                 function goToNextSpec() {
                     if(specIndex >= specQty) {
                         suiteIndex += 1;
+                        if(suiteIndex >= window.Testing.Suites.length)
+                            return;
+
                         specIndex = 0;
                         specQty = window.Testing.Suites[suiteIndex].specQty;
                     }
 
-                    if(suiteIndex >= window.Testing.Suites.length)
-                        return;
 
                     totalSpecCounter += 1;
 
-                    $("#testPageCounter").text("Running test page " + suiteIndex + " of " + testPagesQty);
-                    $("#specCounter").text("Running spec " + totalSpecCounter + " of " + totalSpecQty);
+                    $("#testPageCounter").text("Running test page " + (suiteIndex + 1) + " of " + testPagesQty);
+                    $("#specCounter").text("Running spec " + (totalSpecCounter + 1) + " of " + totalSpecQty);
 
                     currentPageName = window.Testing.Suites[suiteIndex].name;
                     $iframe.attr("src", "Suites/" + window.Testing.Suites[suiteIndex].name + "?specIndex=" + specIndex);

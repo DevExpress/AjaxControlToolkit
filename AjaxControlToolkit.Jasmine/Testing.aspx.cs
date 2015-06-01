@@ -9,26 +9,37 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.Jasmine {
+
     public partial class Testing : System.Web.UI.Page {
+
         protected void Page_Load(object sender, EventArgs e) {
-            CountSuits();
+            RendertSpecsQty();
         }
 
-        void CountSuits() {
+        void RendertSpecsQty() {
+            var suites = GetTestPagePaths()
+                .Select(path => new {
+                    name = Path.GetFileName(path),
+                    specQty = CountSpecsInFile(path)
+                })
+                .Where(s => s.specQty > 0);
+
+            ClientScript.RegisterClientScriptBlock(
+                typeof(Testing),
+                "SuitesCount",
+                "window.Testing = {}; window.Testing.Suites=" + new JavaScriptSerializer().Serialize(suites),
+                true);
+        }
+
+        IEnumerable<string> GetTestPagePaths() {
             var suitesDirectory = Server.MapPath("~/Suites");
-            var pagePaths = Directory.EnumerateFiles(suitesDirectory, "*.aspx", SearchOption.AllDirectories);
 
-            var suitesCount = new List<SuiteCount>();
-            foreach(var path in pagePaths) {
-                var fileContent = File.ReadAllText(path);
-                var count = Regex.Matches(fileContent, "\\s+it\\(").Count;
-                suitesCount.Add(new SuiteCount(Path.GetFileName(path), count));
-            }
+            return Directory.EnumerateFiles(suitesDirectory, "*.aspx", SearchOption.AllDirectories);
+        }
 
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            var serializedDictionary = serializer.Serialize((object)suitesCount);
-
-            ClientScript.RegisterClientScriptBlock(typeof(Testing), "SuitesCount", "<script type='text/javascript'>window.Testing = {};window.Testing.Suites=" + serializedDictionary + "</script>");
+        int CountSpecsInFile(string filePath) {
+            return Regex.Matches(File.ReadAllText(filePath), "\\s+it\\(").Count;
         }
     }
+
 }
