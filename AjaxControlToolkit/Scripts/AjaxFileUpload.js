@@ -944,7 +944,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     setDefaultElementsLayout: function(elements) {
 
         $common.setVisible(elements.inputFile, true);
-        $common.setVisible(elements.uploadOrCancelButton, false);
+        elements.uploadOrCancelButton.style.visibility = "hidden";
         $common.setVisible(elements.fileStatusContainer, true);
 
         elements.selectFileButton.innerHTML = Sys.Extended.UI.Resources.AjaxFileUpload_SelectFile;

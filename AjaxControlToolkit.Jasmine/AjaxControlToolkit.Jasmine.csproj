@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\AjaxControlToolkit\Debug\BaseScripts.debug.js" />
+    <Content Include="Suites\AjaxFileUploadTests.aspx" />
     <Content Include="Suites\CascadingDropDownTests.aspx" />
     <Content Include="Suites\HtmlEditorExtenderTests.aspx" />
     <Content Include="Suites\HtmlEditor\HtmlEditor.aspx" />
@@ -106,6 +107,13 @@
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\AjaxFileUploadTests.aspx.cs">
+      <DependentUpon>AjaxFileUploadTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\AjaxFileUploadTests.aspx.designer.cs">
+      <DependentUpon>AjaxFileUploadTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\CascadingDropDownTests.aspx.cs">
       <DependentUpon>CascadingDropDownTests.aspx</DependentUpon>
