@@ -17,9 +17,11 @@ namespace AjaxControlToolkit.Jasmine {
         }
 
         void RendertSpecsQty() {
-            var suites = GetTestPagePaths()
+            var suitesDir = Server.MapPath("~/Suites");
+
+            var suites = GetTestPagePaths(suitesDir)
                 .Select(path => new {
-                    name = Path.GetFileName(path),
+                    name = GetRelativePath(path, suitesDir),
                     specQty = CountSpecsInFile(path)
                 })
                 .Where(s => s.specQty > 0);
@@ -31,14 +33,21 @@ namespace AjaxControlToolkit.Jasmine {
                 true);
         }
 
-        IEnumerable<string> GetTestPagePaths() {
-            var suitesDirectory = Server.MapPath("~/Suites");
-
+        IEnumerable<string> GetTestPagePaths(string suitesDirectory) {
             return Directory.EnumerateFiles(suitesDirectory, "*.aspx", SearchOption.AllDirectories);
         }
 
         int CountSpecsInFile(string filePath) {
             return Regex.Matches(File.ReadAllText(filePath), "\\s+it\\(").Count;
+        }
+
+        string GetRelativePath(string fullPath, string basePath) {
+            if(!basePath.EndsWith(@"\"))
+                basePath += @"\";
+
+            var relativeUri = new Uri(basePath).MakeRelativeUri(new Uri(fullPath));
+
+            return relativeUri.ToString().Replace("/", @"\");
         }
     }
 
