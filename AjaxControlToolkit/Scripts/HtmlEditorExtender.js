@@ -753,12 +753,24 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                 selection.select();
             } else {
                 selection = window.getSelection();
+
+                var elementToCollapse = this._editableDiv.firstChild;
+                while(this._isHtmlElement(elementToCollapse))
+                    elementToCollapse = elementToCollapse.firstChild;
+
                 if(selection.rangeCount != 0)
-                    selection.collapse(this._editableDiv.firstChild, char);
+                    selection.collapse(elementToCollapse, char);
             }
         }
 
         this._textbox._element.value = this._encodeHtml();
+    },
+
+    _isHtmlElement: function (obj) {
+        if(obj instanceof HTMLElement)
+            return true;
+
+        return false;
     },
 
     _executeCommand: function(command) {
