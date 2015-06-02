@@ -12,12 +12,19 @@
 
             describe("Static", function() {
 
-                it("loads static release script", function() {
+                it("loads static release custom script", function() {
                     var extender = Sys.Extended.UI.TestExtender;
 
                     expect(extender.ScriptMode).toBe("Release");
                     expect(extender.ScriptSource).toBe("Static");
                 });
+
+                it("loads static release script", function() {
+                    var base = Sys.Extended.UI.BehaviorBase;
+
+                    expect(base.ScriptMode).toBe("Release");
+                    expect(base.ScriptSource).toBe("Static");
+                })
 
             });
 

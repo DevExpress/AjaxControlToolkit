@@ -12,12 +12,19 @@
 
             describe("Static", function() {
 
-                it("loads static debug script", function() {
+                it("loads static debug custom script", function() {
                     var extender = Sys.Extended.UI.TestExtender;
 
                     expect(extender.ScriptMode).toBe("Debug");
                     expect(extender.ScriptSource).toBe("Static");
                 });
+
+                it("loads static debug script", function() {
+                    var base = Sys.Extended.UI.BehaviorBase;
+
+                    expect(base.ScriptMode).toBe("Debug");
+                    expect(base.ScriptSource).toBe("Static");
+                })
 
             });
 

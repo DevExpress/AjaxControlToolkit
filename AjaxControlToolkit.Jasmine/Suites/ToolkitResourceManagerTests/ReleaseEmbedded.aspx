@@ -12,12 +12,16 @@
 
             describe("Embedded", function() {
 
-                it("loads embedded release script", function() {
+                it("loads embedded release custom script", function() {
                     var extender = Sys.Extended.UI.TestExtender;
 
                     expect(extender.ScriptMode).toBe("Release");
                     expect(extender.ScriptSource).toBe("Embedded");
                 });
+
+                it("loads embedded release script", function() {
+                    expect(Sys.Extended.UI.BehaviorBase).not.toBeUndefined();
+                })
 
             });
 
