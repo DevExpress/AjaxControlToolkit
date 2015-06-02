@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager {
+namespace AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManagerTests {
     
     
-    public partial class Release_Embedded {
+    public partial class DebugStatic {
         
         /// <summary>
         /// Target control.
