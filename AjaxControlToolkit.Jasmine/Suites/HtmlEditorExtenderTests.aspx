@@ -10,7 +10,7 @@
     <script>
         describe("HtmlEditorExtender", function() {
 
-            it("should not throw exception on submit if text is empty", function() {
+            it("does not throw exception on submit if text is empty", function() {
                 expect(function() {
                     $find("<%= TargetExtender.ClientID %>")._editableDiv_submit();
                 }).not.toThrow();
