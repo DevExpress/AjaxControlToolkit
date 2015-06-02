@@ -96,7 +96,7 @@ namespace AjaxControlToolkit {
         public static void RemoveScriptMappingsRegistration() {
             var toolkitAssembly = typeof(ToolkitResourceManager).Assembly;
             foreach(var script in GetEmbeddedScripts()) {
-                ScriptManager.ScriptResourceMapping.RemoveDefinition(script.Name + Constants.JsPostfix, toolkitAssembly);
+                ScriptManager.ScriptResourceMapping.RemoveDefinition(script.Name + Constants.JsPostfix, script.SourceAssemlby);
             }
         }
 
