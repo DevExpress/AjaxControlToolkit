@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AjaxControlToolkit.Jasmine.Suites {
-    public partial class CascadingDropDownTests : System.Web.UI.Page {
+namespace AjaxControlToolkit.Jasmine.Suites.CascadingDropDownTests {
+    public partial class CascadingDropDown : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
 
         }

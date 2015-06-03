@@ -44,14 +44,16 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\AjaxControlToolkit\Debug\BaseScripts.debug.js" />
     <Content Include="Suites\AjaxFileUploadTests.aspx" />
-    <Content Include="Suites\CascadingDropDownTests.aspx" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.js" />
+    <Content Include="Suites\CascadingDropDownTests\CascadingDropDown.aspx" />
+    <Content Include="Suites\CascadingDropDownTests\TestWebService.asmx" />
     <Content Include="Suites\HtmlEditorExtenderTests.aspx" />
     <Content Include="Suites\MaskedEditTests.aspx" />
     <Content Include="Suites\SliderTests.aspx" />
@@ -101,12 +103,16 @@
     <Compile Include="Suites\AjaxFileUploadTests.aspx.designer.cs">
       <DependentUpon>AjaxFileUploadTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\CascadingDropDownTests.aspx.cs">
-      <DependentUpon>CascadingDropDownTests.aspx</DependentUpon>
+    <Compile Include="Suites\CascadingDropDownTests\CascadingDropDown.aspx.cs">
+      <DependentUpon>CascadingDropDown.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\CascadingDropDownTests.aspx.designer.cs">
-      <DependentUpon>CascadingDropDownTests.aspx</DependentUpon>
+    <Compile Include="Suites\CascadingDropDownTests\CascadingDropDown.aspx.designer.cs">
+      <DependentUpon>CascadingDropDown.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\CascadingDropDownTests\TestWebService.asmx.cs">
+      <DependentUpon>TestWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Suites\HtmlEditorExtenderTests.aspx.cs">
       <DependentUpon>HtmlEditorExtenderTests.aspx</DependentUpon>
