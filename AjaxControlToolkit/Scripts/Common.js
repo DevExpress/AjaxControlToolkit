@@ -1238,6 +1238,7 @@ Sys.Extended.UI.zIndex.DropWatcherDragVisual= 99999;
 Sys.Extended.UI.zIndex.LineChartTooltip= 10000;
 Sys.Extended.UI.zIndex.MaskedEditDivTip = 99999;
 Sys.Extended.UI.zIndex.ModalPopupBackground = 10000;
+Sys.Extended.UI.zIndex.PasswordStrengthTextDisplay = 10001;
 Sys.Extended.UI.zIndex.Popup = 1000;
 Sys.Extended.UI.zIndex.SeadragonContainer = 99999999;
 Sys.Extended.UI.zIndex.SliderDragHandle = 999;

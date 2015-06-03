@@ -136,6 +136,7 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
         p.style.position = "absolute";
         p.style.visibility = "hidden";
         p.style.display = "none";
+        p.style.zIndex = Sys.Extended.UI.zIndex.PasswordStrengthTextDisplay;
 
         // Create the control id        
         if(this.get_element().id)
