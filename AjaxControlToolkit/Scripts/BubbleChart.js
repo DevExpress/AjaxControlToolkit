@@ -90,7 +90,7 @@ Sys.Extended.UI.BubbleChart.prototype = {
                     top: '0px',
                     color: this._tooltipFontColor,
                     visibility: 'hidden',
-                    zIndex: '10000',
+                    zIndex: Sys.Extended.UI.zIndex.BubbleChartTooltip,
                     padding: '10px'
                 }
             }

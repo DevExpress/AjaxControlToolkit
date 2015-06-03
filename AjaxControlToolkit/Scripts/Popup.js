@@ -398,7 +398,7 @@ Sys.Extended.UI.PopupBehavior.prototype = {
 
         // Tweak the position, set the zIndex, and add the background iframe in IE6
         this.adjustPopupPosition(bounds);
-        element.style.zIndex = 1000;
+        element.style.zIndex = Sys.Extended.UI.zIndex.Popup;
         this.addBackgroundIFrame();
     },
 

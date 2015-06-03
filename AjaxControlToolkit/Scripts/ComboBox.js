@@ -280,7 +280,7 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // option list is originally display-none to force inline rendering
         style.display = 'block';
-        style.zIndex = '10000';
+        style.zIndex = Sys.Extended.UI.zIndex.ComboBoxList;
 
         // build an array of list items
         this._optionListItems = new Array();

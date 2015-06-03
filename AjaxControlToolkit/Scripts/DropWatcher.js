@@ -96,7 +96,7 @@ Sys.Extended.UI.DragDropList.prototype = {
         this._dragVisual.style.opacity = "0.4";
         this._dragVisual.style.filter = "progid:DXImageTransform.Microsoft.BasicImage(opacity=0.4);";
         this._originalZIndex = this._dragVisual.style.zIndex;
-        this._dragVisual.style.zIndex = 99999;
+        this._dragVisual.style.zIndex = Sys.Extended.UI.zIndex.DropWatcherDragVisual;
 
         this._originalParent = this._dragVisual.parentNode;
         this._originalNextSibling = Sys.Extended.UI.DragDropManager._getInstance().getNextSibling(this._dragVisual);

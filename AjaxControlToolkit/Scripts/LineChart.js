@@ -74,7 +74,7 @@ Sys.Extended.UI.LineChart.prototype = {
                     top: '0px',
                     color: this._tooltipFontColor,
                     visibility: 'hidden',
-                    zIndex: '10000',
+                    zIndex: Sys.Extended.UI.zIndex.LineChartTooltip,
                     padding: '10px'
                 }
             }

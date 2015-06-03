@@ -1230,3 +1230,14 @@ Sys.Extended.UI.ScrollBars.prototype = {
     Auto: 0x04
 }
 Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", false);
+
+Sys.Extended.UI.zIndex = function() {};
+Sys.Extended.UI.zIndex.BubbleChartTooltip = 10000;
+Sys.Extended.UI.zIndex.ComboBoxList = 10000;
+Sys.Extended.UI.zIndex.DropWatcherDragVisual= 99999;
+Sys.Extended.UI.zIndex.LineChartTooltip= 10000;
+Sys.Extended.UI.zIndex.MaskedEditDivTip = 99999;
+Sys.Extended.UI.zIndex.ModalPopupBackground = 10000;
+Sys.Extended.UI.zIndex.Popup = 1000;
+Sys.Extended.UI.zIndex.SeadragonContainer = 99999999;
+Sys.Extended.UI.zIndex.SliderDragHandle = 999;

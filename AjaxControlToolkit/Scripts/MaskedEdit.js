@@ -691,7 +691,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             DivTp.style.position = "absolute";
             DivTp.style.left = mousepos.x + 2 /* offset */ + "px";
             DivTp.style.top = mousepos.y + 2 /* offset */ + "px";
-            DivTp.style.zIndex = 99999;
+            DivTp.style.zIndex = Sys.Extended.UI.zIndex.MaskedEditDivTip;
 
             if(this._CssMessageErrorFloat == "") {
                 DivTp.style.padding = "3px 3px 3px 3px";

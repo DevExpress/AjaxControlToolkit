@@ -1842,7 +1842,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             // make container attached to the window, immune to scrolling,
             // and above any other things with a z-index set.
             containerStyle.position = "fixed";
-            containerStyle.zIndex = "99999999";
+            containerStyle.zIndex = Sys.Extended.UI.zIndex.SeadragonContainer;
 
             body.appendChild(this._container);
             this._prevContainerSize = Seadragon.Utils.getWindowSize();

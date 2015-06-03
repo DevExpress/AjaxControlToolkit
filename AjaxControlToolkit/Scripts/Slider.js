@@ -338,7 +338,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         dh.style.width = '1px';
         dh.style.height = '1px';
         dh.style.overflow = 'hidden';
-        dh.style.zIndex = '999';
+        dh.style.zIndex = Sys.Extended.UI.zIndex.SliderDragHandle;
         dh.style.background = 'none';
 
         document.body.appendChild(this._dragHandle);

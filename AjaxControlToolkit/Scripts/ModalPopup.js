@@ -91,7 +91,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
         // Want zIndex to big enough that the background sits above everything else
         // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
-        this._backgroundElement.style.zIndex = 10000;
+        this._backgroundElement.style.zIndex = Sys.Extended.UI.zIndex.ModalPopupBackground;
         if(this._BackgroundCssClass)
             this._backgroundElement.className = this._BackgroundCssClass;
 
