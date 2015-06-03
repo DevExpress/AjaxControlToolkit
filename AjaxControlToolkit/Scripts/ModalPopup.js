@@ -98,7 +98,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._foregroundElement.parentNode.appendChild(this._backgroundElement);
         this._foregroundElement.style.display = 'none';
         this._foregroundElement.style.position = 'fixed';
-        this._foregroundElement.style.zIndex = $common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex) + 1;
+        this._foregroundElement.style.zIndex = parseInt($common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex)) + 1;
 
         this._showHandler = Function.createDelegate(this, this._onShow);
         $addHandler(this.get_element(), 'click', this._showHandler);
