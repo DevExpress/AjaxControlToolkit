@@ -34,9 +34,10 @@
 
                 selectHtmlEditorText(this.extender, 0, text.length);
 
-                $(toClassSelector(HTML_EDITOR_BOLD_BUTTON_CLASS_NAME)).click();
-                $(toClassSelector(HTML_EDITOR_ITALIC_BUTTON_CLASS_NAME)).click();
-                $(toClassSelector(HTML_EDITOR_UNDERLINE_BUTTON_CLASS_NAME)).click();
+                var $container = $(this.extender._container);
+                $container.find(toClassSelector(HTML_EDITOR_BOLD_BUTTON_CLASS_NAME)).click();
+                $container.find(toClassSelector(HTML_EDITOR_ITALIC_BUTTON_CLASS_NAME)).click();
+                $container.find(toClassSelector(HTML_EDITOR_UNDERLINE_BUTTON_CLASS_NAME)).click();
 
                 expect($.proxy(function() {
                     this.extender._editableDiv_submit();
