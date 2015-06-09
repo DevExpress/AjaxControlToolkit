@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Suites/Suite.Master" AutoEventWireup="true" CodeBehind="SliderTests.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.SliderTests" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TestSuiteName" runat="server">Slider</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="TestSuite" runat="server">
+<asp:Content ContentPlaceHolderID="TestSuiteName" runat="server">
+    Slider
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="TestSuite" runat="server">
 
     <asp:TextBox runat="server"
         ID="HorizontalTarget" />
