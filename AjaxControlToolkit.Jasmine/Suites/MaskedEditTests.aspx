@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Suites/Suite.Master" AutoEventWireup="true" CodeBehind="MaskedEditTests.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.MaskedEditTests" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TestSuiteName" runat="server">MaskedEdit</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="TestSuite" runat="server">
+<asp:Content ContentPlaceHolderID="TestSuiteName" runat="server">
+    MaskedEdit
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="TestSuite" runat="server">
 
     <asp:TextBox runat="server"
         ID="CommonTarget"
@@ -25,12 +28,17 @@
 
         describe("MaskedEdit", function() {
 
-            beforeEach(function() {
-                this.commonTarget = document.getElementById("<%= CommonTarget.ClientID %>");
-                this.commonExtender = $find("<%= CommonTargetExtender.ClientID %>");
+            var COMMON_TARGET_CLIENT_ID = "<%= CommonTarget.ClientID %>",
+                COMMON_EXTENDER_CLIENT_ID = "<%= CommonTargetExtender.ClientID %>",
+                DATE_TARGET_CLIENT_ID = "<%= DateTarget.ClientID %>",
+                DATE_EXTENDER_CLIENT_ID = "<%= DateTargetExtender.ClientID %>";
 
-                this.dateTarget = document.getElementById("<%= DateTarget.ClientID %>");
-                this.dateExtender = $find("<%= DateTargetExtender.ClientID %>");
+            beforeEach(function() {
+                this.$commonTarget = $(COMMON_TARGET_CLIENT_ID.toIdSelector());
+                this.commonExtender = $find(COMMON_EXTENDER_CLIENT_ID);
+
+                this.$dateTarget = $(DATE_TARGET_CLIENT_ID.toIdSelector());
+                this.dateExtender = $find(DATE_EXTENDER_CLIENT_ID);
             });
 
             it("removes symbol on backspace", function() {
@@ -47,17 +55,17 @@
                     charCodeArg: 0
                 });
                 this.commonExtender._PromptChar = "";
-                setCaretToPosition(this.commonTarget, 3);
+                setCaretToPosition(this.$commonTarget.get(0), 3);
 
                 this.commonExtender._ExecuteNav(new Sys.UI.DomEvent(keyboardEvent), 8);
 
-                expect(this.commonTarget.value).toBe("AB");
+                expect(this.$commonTarget.val()).toBe("AB");
             });
 
             it("clears mask on blur", function() {
-                this.commonTarget.blur();
+                this.$commonTarget.blur();
 
-                expect(this.commonTarget.value).toBe("ABC");
+                expect(this.$commonTarget.val()).toBe("ABC");
             });
 
             // CodePlex item 27764
