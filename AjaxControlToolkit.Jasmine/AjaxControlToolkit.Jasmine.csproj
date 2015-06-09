@@ -56,6 +56,7 @@
     <Content Include="Suites\CascadingDropDownTests\TestWebService.asmx" />
     <Content Include="Suites\HtmlEditorExtenderTests.aspx" />
     <Content Include="Suites\MaskedEditTests.aspx" />
+    <Content Include="Suites\MaskedEditValidatorTests.aspx" />
     <Content Include="Suites\PasswordStrengthTests.aspx" />
     <Content Include="Suites\SliderTests.aspx" />
     <Content Include="Suites\TabsTests.aspx" />
@@ -128,6 +129,13 @@
     </Compile>
     <Compile Include="Suites\MaskedEditTests.aspx.designer.cs">
       <DependentUpon>MaskedEditTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\MaskedEditValidatorTests.aspx.cs">
+      <DependentUpon>MaskedEditValidatorTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\MaskedEditValidatorTests.aspx.designer.cs">
+      <DependentUpon>MaskedEditValidatorTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\PasswordStrengthTests.aspx.cs">
       <DependentUpon>PasswordStrengthTests.aspx</DependentUpon>

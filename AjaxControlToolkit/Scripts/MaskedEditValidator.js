@@ -244,21 +244,27 @@ function MaskedEditValidatorPartDate(value, mask, MinVl, MaxVl) {
 
     switch(value.DateFormat) {
         case "DayMonthYear":
+        case "DMY":
             AttibDtFmt = "DMY";
             break;
         case "DayYearMonth":
+        case "DYM":
             AttibDtFmt = "DYM";
             break;
         case "MonthDayYear":
+        case "MDY":
             AttibDtFmt = "MDY";
             break;
         case "MonthYearDay":
+        case "MYD":
             AttibDtFmt = "MYD";
             break;
         case "YearDayMonth":
+        case "YDM":
             AttibDtFmt = "YDM";
             break;
         case "YearMonthDay":
+        case "YMD":
             AttibDtFmt = "YMD";
             break;
     }
