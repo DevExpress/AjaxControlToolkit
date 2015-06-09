@@ -1,5 +1,9 @@
 ﻿(function() {
 
+    $.fn.zIndex = function() {
+        return this.css("zIndex");
+    };
+
     String.prototype.toIdSelector = function() {
         return "#" + this.toString();
     };

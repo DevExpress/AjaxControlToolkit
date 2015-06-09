@@ -13,48 +13,39 @@ namespace AjaxControlToolkit.Jasmine.Suites {
     public partial class PasswordStrengthTests {
         
         /// <summary>
-        /// LinkButton1 control.
+        /// Target control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.LinkButton Target;
         
         /// <summary>
-        /// Panel1 control.
+        /// PopupPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Panel PopupPanel;
         
         /// <summary>
-        /// TextBox1 control.
+        /// PasswordTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox PasswordTextBox;
         
         /// <summary>
-        /// PasswordStrength1 control.
+        /// TestModalPopup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.PasswordStrength PasswordStrength1;
-        
-        /// <summary>
-        /// ModalPopup1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopup1;
+        protected global::AjaxControlToolkit.ModalPopupExtender TestModalPopup;
     }
 }
