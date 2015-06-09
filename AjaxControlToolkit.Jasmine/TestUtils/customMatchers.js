@@ -17,4 +17,28 @@
             }
         }
     });
+
+    jasmine.addMatchers({
+        toBeGreaterThanOrEqualTo: function() {
+            return {
+                compare: function(actual, expected) {
+                    return {
+                        pass: actual >= expected
+                    }
+                }
+            }
+        }
+    });
+
+    jasmine.addMatchers({
+        toBeLessThanOrEqualTo: function() {
+            return {
+                compare: function(actual, expected) {
+                    return {
+                        pass: actual <= expected
+                    }
+                }
+            }
+        }
+    })
 });
