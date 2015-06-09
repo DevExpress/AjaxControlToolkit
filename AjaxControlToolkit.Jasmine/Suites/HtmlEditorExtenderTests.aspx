@@ -1,17 +1,29 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Suites/Suite.Master" AutoEventWireup="true" CodeBehind="HtmlEditorExtenderTests.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.HtmlEditorExtenderTests" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TestSuiteName" runat="server">
+<asp:Content ContentPlaceHolderID="TestSuiteName" runat="server">
     HtmlEditorExtender
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="TestSuite" runat="server">
-    <asp:TextBox ID="Target" runat="server" Width="500" Height="300" />
-    <act:HtmlEditorExtender runat="server" TargetControlID="Target" ID="TargetExtender" EnableSanitization="false" DisplaySourceTab="true" />
+
+<asp:Content ContentPlaceHolderID="TestSuite" runat="server">
+
+    <asp:TextBox runat="server"
+        ID="Target"
+        Width="500"
+        Height="300" />
+
+    <act:HtmlEditorExtender runat="server"
+        TargetControlID="Target"
+        ID="TargetExtender"
+        EnableSanitization="false"
+        DisplaySourceTab="true" />
 
     <script>
         describe("HtmlEditorExtender", function() {
 
+            var HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= TargetExtender.ClientID %>";
+
             beforeEach(function() {
-                this.extender = $find("<%= TargetExtender.ClientID %>");
+                this.extender = $find(HTML_EDITOR_EXTENDER_CLIENT_ID);
             });
 
             it("does not throw exception on submit if text is empty", function() {
@@ -35,9 +47,9 @@
                 selectHtmlEditorText(this.extender, 0, text.length);
 
                 var $container = $(this.extender._container);
-                $container.find(toClassSelector(HTML_EDITOR_BOLD_BUTTON_CLASS_NAME)).click();
-                $container.find(toClassSelector(HTML_EDITOR_ITALIC_BUTTON_CLASS_NAME)).click();
-                $container.find(toClassSelector(HTML_EDITOR_UNDERLINE_BUTTON_CLASS_NAME)).click();
+                $container.find(HTML_EDITOR_BOLD_BUTTON_CLASS_NAME.toClassSelector()).click();
+                $container.find(HTML_EDITOR_ITALIC_BUTTON_CLASS_NAME.toClassSelector()).click();
+                $container.find(HTML_EDITOR_UNDERLINE_BUTTON_CLASS_NAME.toClassSelector()).click();
 
                 expect($.proxy(function() {
                     this.extender._editableDiv_submit();
@@ -47,10 +59,6 @@
             var HTML_EDITOR_BOLD_BUTTON_CLASS_NAME = "ajax__html_editor_extender_Bold",
                 HTML_EDITOR_ITALIC_BUTTON_CLASS_NAME = "ajax__html_editor_extender_Italic",
                 HTML_EDITOR_UNDERLINE_BUTTON_CLASS_NAME = "ajax__html_editor_extender_Underline";
-
-            var toClassSelector = function(className) {
-                return "." + className;
-            };
 
             var selectHtmlEditorText = function(htmlExtender, startOffset, endOffset) {
                 var range = document.createRange();
