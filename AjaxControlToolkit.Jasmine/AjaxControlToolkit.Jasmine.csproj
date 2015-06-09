@@ -72,6 +72,7 @@
     <Content Include="Suites\ToolkitResourceManagerTests\ReleaseEmbedded.aspx" />
     <Content Include="TestUtils\customMatchers.js" />
     <Content Include="Testing.aspx" />
+    <Content Include="TestUtils\extensionMethods.js" />
     <Content Include="Vendor\jasmine-2.2.0\boot.js" />
     <Content Include="Vendor\jasmine-2.2.0\console.js" />
     <Content Include="Vendor\jasmine-2.2.0\jasmine-html.js" />

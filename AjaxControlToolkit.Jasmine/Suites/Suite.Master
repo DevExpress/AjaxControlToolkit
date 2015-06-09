@@ -18,6 +18,8 @@
     <script src="/Vendor/jasmine-2.2.0/boot.js"></script>
     <script src="/TestUtils/customMatchers.js"></script>
 
+    <script src="/TestUtils/extensionMethods.js"></script>
+
     <script>
         if(parent && parent.Testing) {      // Run as an iframe
             var queryString = new jasmine.QueryString({
