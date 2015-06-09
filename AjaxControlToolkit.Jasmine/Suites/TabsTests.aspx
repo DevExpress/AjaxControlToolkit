@@ -1,13 +1,26 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Suites/Suite.Master" AutoEventWireup="true" CodeBehind="TabsTests.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.TabsTests" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TestSuiteName" runat="server">
+<asp:Content ContentPlaceHolderID="TestSuiteName" runat="server">
     Tabs
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="TestSuite" runat="server">
+
+<asp:Content ContentPlaceHolderID="TestSuite" runat="server">
+
     <act:TabContainer ID="TestTabContainer" runat="server">
-        <act:TabPanel ID="ActiveTabPanel" runat="server" HeaderText="Active Tab Panel"></act:TabPanel>
-        <act:TabPanel ID="DisabledTabPanel" runat="server" HeaderText="Disabled Tab Panel" Enabled="false"></act:TabPanel>
+
+        <act:TabPanel runat="server"
+            ID="ActiveTabPanel"
+            HeaderText="Active Tab Panel">
+        </act:TabPanel>
+
+        <act:TabPanel  runat="server" 
+            ID="DisabledTabPanel"
+            HeaderText="Disabled Tab Panel"
+            Enabled="false">
+        </act:TabPanel>
+
     </act:TabContainer>
+
     <script>
         describe("Tabs", function() {
             var TABS_COUNT = 2,
@@ -24,33 +37,12 @@
                 TAB_OUTER_CLASS_NAME = "ajax__tab_outer",
                 TAB_INNER_CLASS_NAME = "ajax__tab_inner";
 
-            var toClassSelector = function(className) {
-                return "." + className;
-            }
+            var TEST_TAB_CONTAINER_CLIENT_ID = "<%= TestTabContainer.ClientID %>";
 
             describe("Rendering", function() {
 
                 beforeEach(function() {
-                    this.element = $find("<%= TestTabContainer.ClientID %>")._element;
-
-                    jasmine.addMatchers({
-                        toBeAnyOf: function() {
-                            return {
-                                compare: function(actual, expected) {
-                                    var result = { pass: false }
-
-                                    for(var i = 0, length = expected.length; i < length; i++) {
-                                        if(actual === expected[i]) {
-                                            result.pass = true;
-                                            break;
-                                        }
-                                    }
-
-                                    return result;
-                                }
-                            }
-                        }
-                    });
+                    this.element = $find(TEST_TAB_CONTAINER_CLIENT_ID)._element;
                 });
 
                 it("root div has proper classes", function() {
@@ -72,7 +64,7 @@
                 });
 
                 it("header div has proper id and class", function() {
-                    var headerElements = $(this.element).find(toClassSelector(TAB_HEADER_CLASS_NAME));
+                    var headerElements = $(this.element).find(TAB_HEADER_CLASS_NAME.toClassSelector());
                     expect(headerElements.length).toBe(1);
 
                     var headerId = headerElements[0].id;
@@ -80,7 +72,7 @@
                 });
 
                 it("body div has proper id and class", function() {
-                    var bodyElements = $(this.element).find(toClassSelector(TAB_BODY_CLASS_NAME));
+                    var bodyElements = $(this.element).find(TAB_BODY_CLASS_NAME.toClassSelector());
                     expect(bodyElements.length).toBe(1);
 
                     var bodyId = bodyElements[0].id;
@@ -88,7 +80,7 @@
                 });
 
                 it("header div contains " + TABS_COUNT + " span elements", function() {
-                    var header = $(this.element).find(toClassSelector(TAB_HEADER_CLASS_NAME));
+                    var header = $(this.element).find(TAB_HEADER_CLASS_NAME.toClassSelector());
 
                     expect($(header).children().length).toBe(TABS_COUNT);
                     expect($(header).children().eq(0).is("span")).toBeTruthy();
@@ -96,7 +88,7 @@
                 });
 
                 it("first(active) tab header has proper id and class", function() {
-                    var header = $(this.element).find(toClassSelector(TAB_HEADER_CLASS_NAME)),
+                    var header = $(this.element).find(TAB_HEADER_CLASS_NAME.toClassSelector()),
                         firstHeader = header.children()[0];
 
                     expect(firstHeader.id).toBe(this.element.id + "_ActiveTabPanel_tab");
@@ -104,7 +96,7 @@
                 });
 
                 it("second(disabled) tab header has proper id and class", function() {
-                    var header = $(this.element).find(toClassSelector(TAB_HEADER_CLASS_NAME)),
+                    var header = $(this.element).find(TAB_HEADER_CLASS_NAME.toClassSelector()),
                         secondHeader = header.children()[1];
 
                     expect(secondHeader.id).toBe(this.element.id + "_DisabledTabPanel_tab");
@@ -112,7 +104,7 @@
                 });
 
                 it("boby div contains " + TABS_COUNT + " div elements", function() {
-                    var body = $(this.element).find(toClassSelector(TAB_BODY_CLASS_NAME));
+                    var body = $(this.element).find(TAB_BODY_CLASS_NAME.toClassSelector());
 
                     expect($(body).children().length).toBe(TABS_COUNT);
                     expect($(body).children().eq(0).is("div")).toBeTruthy();
@@ -120,7 +112,7 @@
                 });
 
                 it("first(active) tab body has proper id and class", function() {
-                    var body = $(this.element).find(toClassSelector(TAB_BODY_CLASS_NAME)),
+                    var body = $(this.element).find(TAB_BODY_CLASS_NAME.toClassSelector()),
                         firstTabBody = body.children()[0];
 
                     expect(firstTabBody.id).toBe(this.element.id + "_ActiveTabPanel");
@@ -128,7 +120,7 @@
                 });
 
                 it("second(disabled) tab body has proper id and class", function() {
-                    var body = $(this.element).find(toClassSelector(TAB_BODY_CLASS_NAME)),
+                    var body = $(this.element).find(TAB_BODY_CLASS_NAME.toClassSelector()),
                         secondTabBody = body.children()[1];
 
                     expect(secondTabBody.id).toBe(this.element.id + "_DisabledTabPanel");
@@ -136,7 +128,7 @@
                 });
 
                 it("any tab header contains outer and inner inserted spans", function() {
-                    var header = $(this.element).find(toClassSelector(TAB_HEADER_CLASS_NAME)),
+                    var header = $(this.element).find(TAB_HEADER_CLASS_NAME.toClassSelector()),
                         $headerTab = header.children("span").eq(0);
 
                     expect($headerTab.children().length).toBe(1);
@@ -153,12 +145,13 @@
             describe("Regression", function() {
 
                 beforeEach(function() {
-                    this.target = $find("<%= TestTabContainer.ClientID %>");
+                    this.target = $find(TEST_TAB_CONTAINER_CLIENT_ID);
                 });
 
                 // CodePlex item 27775
                 it("throws no exceptions on dispose", function() {
                     var tab = this.target.getFirstTab();
+
                     expect(function() { tab.dispose(); }).not.toThrow();
                 });
 
