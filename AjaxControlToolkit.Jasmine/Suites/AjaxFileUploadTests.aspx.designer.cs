@@ -13,30 +13,30 @@ namespace AjaxControlToolkit.Jasmine.Suites {
     public partial class AjaxFileUploadTests {
         
         /// <summary>
-        /// Panel2 control.
+        /// ExpandCollapseButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.Button ExpandCollapseButton;
         
         /// <summary>
-        /// Panel1 control.
+        /// ExpandablePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
+        protected global::System.Web.UI.WebControls.Panel ExpandablePanel;
         
         /// <summary>
-        /// AjaxFileUpload1 control.
+        /// TestAjaxFileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.AjaxFileUpload AjaxFileUpload1;
+        protected global::AjaxControlToolkit.AjaxFileUpload TestAjaxFileUpload;
     }
 }
