@@ -5,17 +5,55 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="TestSuite" runat="server">
+    <asp:UpdatePanel runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <asp:TextBox runat="server"
+                ID="Target"
+                Width="500"
+                Height="300" />
 
-    <asp:TextBox runat="server"
-        ID="Target"
-        Width="500"
-        Height="300" />
-
-    <act:HtmlEditorExtender runat="server"
-        TargetControlID="Target"
-        ID="TargetExtender"
-        EnableSanitization="false"
-        DisplaySourceTab="true" />
+            <act:HtmlEditorExtender runat="server"
+                TargetControlID="Target" 
+                ID="TargetExtender" 
+                EnableSanitization="false" 
+                DisplaySourceTab="true">
+                <Toolbar>
+                    <act:Undo />
+                    <act:Redo />
+                    <act:Bold />
+                    <act:Italic />
+                    <act:Underline />
+                    <act:StrikeThrough />
+                    <act:Subscript />
+                    <act:Superscript />
+                    <act:JustifyLeft />
+                    <act:JustifyCenter />
+                    <act:JustifyRight />
+                    <act:JustifyFull />
+                    <act:InsertOrderedList />
+                    <act:InsertUnorderedList />
+                    <act:CreateLink />
+                    <act:UnLink />
+                    <act:RemoveFormat />
+                    <act:SelectAll />
+                    <act:UnSelect />
+                    <act:Delete />
+                    <act:Cut />
+                    <act:Copy />
+                    <act:Paste />
+                    <act:BackgroundColorSelector />
+                    <act:ForeColorSelector />
+                    <act:FontNameSelector />
+                    <act:FontSizeSelector />
+                    <act:Indent />
+                    <act:Outdent />
+                    <act:InsertHorizontalRule />
+                    <act:HorizontalSeparator />
+                    <act:InsertImage />
+                </Toolbar>
+            </act:HtmlEditorExtender>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 
     <script>
         describe("HtmlEditorExtender", function() {
