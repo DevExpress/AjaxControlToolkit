@@ -1,4 +1,4 @@
-﻿(function() {
+﻿(function($) {
 
     $.fn.zIndex = function() {
         return this.css("zIndex");
@@ -12,4 +12,4 @@
         return "." + this.toString();
     };
 
-}());
+}(jQuery));
