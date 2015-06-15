@@ -19,6 +19,7 @@
     <script src="/TestUtils/customMatchers.js"></script>
 
     <script src="/TestUtils/extensionMethods.js"></script>
+    <script src="/TestUtils/htmlEditorMock.js"></script>
 
     <script>
         if(parent && parent.Testing) {      // Run as an iframe
