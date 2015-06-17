@@ -109,20 +109,48 @@
                 }
             });
 
-            it("keeps html code after submit if link contains title attribute", function(done) {
+            //CodePlex item 27860
+            it("does not break html markup after submit if link contains title attribute", function(done) {
                 var sourceText = 'lorem <a href="lipsum.com" title="Lorem ipsum">ipsum</a>';
 
                 var mock = new HtmlEditorMock(this.extender);
                 mock.setContent(sourceText, "source");
 
-                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+                var endRequestHandler = function() {
                     var extender = $find("<%= TargetExtender.ClientID %>"),
                         mock = new HtmlEditorMock(extender);
 
                     expect(mock.currentState.editorContent()).toEqual("lorem ipsum");
 
+                    Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
+
                     done();
-                });
+                };
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+
+                $("#SubmitButton").click();
+            });
+
+            //CodePlex item 27860
+            it("does not break html markup after submit if link contains style attribute with [*-]position property", function(done) {
+                var sourceText = "<a href='lipsum.com' style='position: absolute; background-position: initial;'>dolor sit amet</a>";
+
+                var mock = new HtmlEditorMock(this.extender);
+                mock.setContent(sourceText, "source");
+
+                var endRequestHandler = function() {
+                    var extender = $find("<%= TargetExtender.ClientID %>"),
+                        mock = new HtmlEditorMock(extender);
+
+                    expect(mock.currentState.editorContent()).toEqual("dolor sit amet");
+
+                    Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
+
+                    done();
+                };
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
 
                 $("#SubmitButton").click();
             });
