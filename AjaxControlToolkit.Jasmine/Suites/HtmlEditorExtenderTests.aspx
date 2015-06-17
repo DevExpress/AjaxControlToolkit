@@ -52,6 +52,8 @@
                     <act:InsertImage />
                 </Toolbar>
             </act:HtmlEditorExtender>
+
+            <asp:Button ID="SubmitButton" runat="server" Text="Submit button" ClientIDMode="Static"/>
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -62,6 +64,8 @@
 
             beforeEach(function() {
                 this.extender = $find(HTML_EDITOR_EXTENDER_CLIENT_ID);
+
+                this.ua = detect.parse(navigator.userAgent);
             });
 
             it("does not throw exception on submit if text is empty", function() {
@@ -79,34 +83,151 @@
 
             // CodePlex items 27744, 27717, 27745
             it("does not throw exception on submit if editor has HTML content", function() {
-                var text = "lorem ipsum dolor sit amet";
-                this.extender._editableDiv.textContent = text;
-
-                selectHtmlEditorText(this.extender, 0, text.length);
-
-                var $container = $(this.extender._container);
-                $container.find(HTML_EDITOR_BOLD_BUTTON_CLASS_NAME.toClassSelector()).click();
-                $container.find(HTML_EDITOR_ITALIC_BUTTON_CLASS_NAME.toClassSelector()).click();
-                $container.find(HTML_EDITOR_UNDERLINE_BUTTON_CLASS_NAME.toClassSelector()).click();
+                var mock = new HtmlEditorMock(this.extender);
+                mock.setContent("lorem ipsum dolor sit amet").selectText().pressToolbarButtons(["bold", "italic", "underline"]);
 
                 expect($.proxy(function() {
                     this.extender._editableDiv_submit();
                 }, this)).not.toThrow();
             });
 
-            var HTML_EDITOR_BOLD_BUTTON_CLASS_NAME = "ajax__html_editor_extender_Bold",
-                HTML_EDITOR_ITALIC_BUTTON_CLASS_NAME = "ajax__html_editor_extender_Italic",
-                HTML_EDITOR_UNDERLINE_BUTTON_CLASS_NAME = "ajax__html_editor_extender_Underline";
+            it("does not throw exception on submit if editor has HTML content with extremely short text", function() {
+                var mock = new HtmlEditorMock(this.extender);
+                mock.setContent("a").selectText().pressToolbarButtons(["bold", "italic", "underline"]);
 
-            var selectHtmlEditorText = function(htmlExtender, startOffset, endOffset) {
-                var range = document.createRange();
-                range.setStart(htmlExtender._editableDiv.firstChild, startOffset);
-                range.setEnd(htmlExtender._editableDiv.firstChild, endOffset);
+                expect($.proxy(function() {
+                    this.extender._editableDiv_submit();
+                }, this)).not.toThrow();
+            });
 
-                var selection = window.getSelection();
-                selection.removeAllRanges();
-                selection.addRange(range);
-            };
+            it("renders all buttons", function() {
+                var mock = new HtmlEditorMock(this.extender);
+
+                for(var button in mock.TOOLBAR_BUTTONS) {
+                    var $button = $(mock.TOOLBAR_BUTTONS[button].toClassSelector());
+                    expect(mock.currentState.containsElement($button)).toBeTruthy("button name <" + button + ">");
+                }
+            });
+
+            it("keeps html code after submit if link contains title attribute", function(done) {
+                var sourceText = 'lorem <a href="lipsum.com" title="Lorem ipsum">ipsum</a>';
+
+                var mock = new HtmlEditorMock(this.extender);
+                mock.setContent(sourceText, "source");
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+                    var extender = $find("<%= TargetExtender.ClientID %>"),
+                        mock = new HtmlEditorMock(extender);
+
+                    expect(mock.currentState.editorContent()).toEqual("lorem ipsum");
+
+                    done();
+                });
+
+                $("#SubmitButton").click();
+            });
+
+            it("bold button works properly", function() {
+                var testContentText = "lorem ipsum dolor sit amet",
+                    expectedSourceText = this.ua.browser.family === "IE" ? "<strong>lorem</strong> ipsum dolor sit amet" : "<b>lorem</b> ipsum dolor sit amet",
+                    actualSourceText;
+
+                var mock = new HtmlEditorMock(this.extender);
+                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["bold"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(expectedSourceText);
+
+                mock.pressToolbarButtons(["bold"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(testContentText);
+            });
+
+            it("italic button works properly", function() {
+                var testContentText = "lorem ipsum dolor sit amet",
+                    expectedSourceText = this.ua.browser.family === "IE" ? "<em>lorem</em> ipsum dolor sit amet" : "<i>lorem</i> ipsum dolor sit amet",
+                    actualSourceText;
+
+                var mock = new HtmlEditorMock(this.extender);
+                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["italic"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(expectedSourceText);
+
+                mock.pressToolbarButtons(["italic"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(testContentText);
+            });
+
+            it("underline button works properly", function() {
+                var testContentText = "lorem ipsum dolor sit amet",
+                    expectedSourceText = "<u>lorem</u> ipsum dolor sit amet",
+                    actualSourceText;
+
+                var mock = new HtmlEditorMock(this.extender);
+                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["underline"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(expectedSourceText);
+
+                mock.pressToolbarButtons(["underline"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(testContentText);
+            });
+
+            it("strike through button works properly", function() {
+                var testContentText = "lorem ipsum dolor sit amet",
+                    expectedSourceText = "<strike>lorem</strike> ipsum dolor sit amet",
+                    actualSourceText;
+
+                var mock = new HtmlEditorMock(this.extender);
+                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["strike-through"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(expectedSourceText);
+
+                mock.pressToolbarButtons(["strike-through"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(testContentText);
+            });
+
+            it("subscript button works properly", function() {
+                var testContentText = "lorem ipsum dolor sit amet",
+                    expectedSourceText = "<sub>lorem</sub> ipsum dolor sit amet",
+                    actualSourceText;
+
+                var mock = new HtmlEditorMock(this.extender);
+                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["subscript"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(expectedSourceText);
+
+                mock.pressToolbarButtons(["subscript"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(testContentText);
+            });
+
+            it("superscript button works properly", function() {
+                var testContentText = "lorem ipsum dolor sit amet",
+                    expectedSourceText = "<sup>lorem</sup> ipsum dolor sit amet",
+                    actualSourceText;
+
+                var mock = new HtmlEditorMock(this.extender);
+                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["superscript"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(expectedSourceText);
+
+                mock.pressToolbarButtons(["superscript"]);
+
+                actualSourceText = mock.currentState.editorContent("source");
+                expect(actualSourceText).toEqual(testContentText);
+            });
         });
     </script>
 
