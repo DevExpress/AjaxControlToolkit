@@ -74,10 +74,12 @@
                 var result = extender[tab === "source" ? "_sourceViewDiv" : "_editableDiv"].textContent;
                 that.switchTab(currentTab);
 
-                var selectionParams = getSelectionParams(relativeOffsets.start, relativeOffsets.end);
-                range = createRangeFromSelectionParams(selectionParams);
+                if(selection.rangeCount !== 0) {
+                    var selectionParams = getSelectionParams(relativeOffsets.start, relativeOffsets.end);
+                    range = createRangeFromSelectionParams(selectionParams);
 
-                setSelectionRange(range);
+                    setSelectionRange(range);
+                }
 
                 return result;
             },
