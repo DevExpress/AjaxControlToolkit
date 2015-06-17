@@ -738,7 +738,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     _editableDiv_submit: function() {
-        var char = 3,
+        var char = 0,
             selection = null;
 
         setTimeout(function() {
@@ -754,12 +754,8 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             } else {
                 selection = window.getSelection();
 
-                var elementToCollapse = this._editableDiv.firstChild;
-                while(this._isHtmlElement(elementToCollapse))
-                    elementToCollapse = elementToCollapse.firstChild;
-
-                if(selection.rangeCount != 0)
-                    selection.collapse(elementToCollapse, char);
+                if(this._editableDiv.firstChild !== null)
+                    selection.collapse(this._editableDiv.firstChild, char);
             }
         }
 
