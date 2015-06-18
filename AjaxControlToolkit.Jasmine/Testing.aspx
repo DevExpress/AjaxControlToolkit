@@ -6,40 +6,53 @@
 <head runat="server">
     <title></title>
     <style>
-        iframe {
-            resize: both;
+        body {
+            font-family: Calibri, Helvetica, Arial, sans-serif;
+            margin: 0;
         }
 
-        .testing-container {
-            border: 1px solid black;
-            background-color: lightgray;
-            padding: 0 10px;
+        iframe {
+            resize: both;
+            border: 1px solid #008cba;
             margin: 10px;
         }
 
+        .testing-container {
+            border: 1px solid #d8d8d8;
+            background: #f2f2f2;
+            padding: 6px;
+        }
+
         .testing-container-head {
-            padding: 10px;
-            margin-left: -10px;
-            margin-right: -10px;
-            background-color: gray;
             cursor: pointer;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            -webkit-user-select: none;
-            user-select: none;
         }
 
-        .testing-container.testing-spec-failed .testing-container-head {
-            background-color: palevioletred;
+        .testing-container-head-link {
+            font-size: 14px;
+            font-weight: bold;
         }
 
-        .testing-container.testing-spec-passed .testing-container-head {
-            background-color: cornflowerblue;
+        .testing-container.testing-spec-failed {
+            background-color: #ED6753;
+        }
+
+        .testing-container.testing-spec-passed {
+            background-color: #68AA7D;
+        }
+
+            .testing-container.testing-spec-passed .testing-container-head a {
+                color: white;
+                text-decoration: none;
+            }
+
+        .testing-container.testing-spec-failed .testing-container-head a {
+            color: black;
+            text-decoration: none;
         }
 
         .testing-spec-stackTrace {
             font-size: 11px;
-            font-family: Monaco, "Lucida Console", monospace;
+            font-family: Consolas, "Courier New", monospace;
             border: 1px solid #ddd;
             background: white;
             padding: 5px;
@@ -51,36 +64,77 @@
         }
 
         .testing-run-counter {
-            background-color: #ddd;
-            border: 1px solid black;
-            margin-bottom: 3px;
-            padding: 3px;
-            font-family: Monaco, "Lucida Console", monospace;
+            background-color: #333;
+            color: white;
+            padding: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
         }
 
         .testing-button {
+            background: #008cba;
             display: inline-block;
-            width: 70px;
-            height: 20px;
-            background: lightgray;
-            padding: 3px;
-            margin: 5px;
-            text-align: center;
-            color: black;
+            height: 30px;
+            width: 100px;
+            font-size: 16px;
             text-decoration: none;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            margin: 10px;
+        }
+
+        .assertion-counter {
+            display: inline-block;
+            height: 18px;
+            width: 30px;
+            background-color: lightgray;
+            vertical-align: middle;
+            text-align: center;
+            font-weight: bold;
+            color: black;
+            border-radius: 10px;
+            float: right;
+            font-size: 14px;
+            padding: 0 3px 0 3px;
+        }
+
+        .user-agent-info {
+            background-color: #333;
+            color: lightblue;
+            padding: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            height: 3px;
+            background-color: orange;
+        }
+
+        .total-time {
+            float: right;
+            font-size: 12px;
         }
     </style>
     <script src="/Vendor/jquery-2.1.4/jquery.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div id="testPageCounter" class="testing-run-counter"></div>
-        <div id="specCounter" class="testing-run-counter"></div>
-        <iframe id="testFrame"></iframe>
-        <div id="results">
-        </div>
+    <form runat="server">
+        <div id="TestPageCounter" class="testing-run-counter"></div>
+        <div id="SpecCounter" class="testing-run-counter"></div>
+
+        <iframe id="TestFrame"></iframe>
+
+        <div id="results"></div>
+
         <script>
             (function($root, $iframe) {
+
+                function insertUserAgentInfo() {
+                    var $userAgentInfoContainer = $("<div>").text(navigator.userAgent).addClass("user-agent-info");
+                    $("body").prepend($userAgentInfoContainer);
+                }
 
                 function containerExists(result) {
                     return !!$root.find(makeCssSelector(result.fullName)).length;
@@ -121,9 +175,9 @@
 
                 function createRunThisButton() {
                     return $("<a>")
-                    .text("run suite")
-                    .attr("href", "?suite=" + currentPageName)
-                    .addClass("testing-button");
+                        .text("run suite")
+                        .attr("href", "?suite=" + currentPageName)
+                        .addClass("testing-button");
                 }
 
                 function createContainer() {
@@ -157,6 +211,13 @@
                     testPagesQty = getTestPagesQty(),
                     currentPageName = "";
 
+                insertUserAgentInfo();
+
+                var $progressBar = $("<div>").addClass("progress-bar").width(0);
+                $("body").prepend($progressBar);
+
+                var step = 100 / getTotalSpecQty();
+
                 function goToNextSpec() {
                     if(specIndex >= specQty) {
                         suiteIndex += 1;
@@ -169,8 +230,12 @@
 
                     totalSpecCounter += 1;
 
-                    $("#testPageCounter").text("Running test page " + (suiteIndex + 1) + " of " + testPagesQty);
-                    $("#specCounter").text("Running spec " + (totalSpecCounter + 1) + " of " + totalSpecQty);
+                    $("#TestPageCounter").text("Running test page " + (suiteIndex + 1) + " of " + testPagesQty);
+                    $("#SpecCounter").text("Running spec " + (totalSpecCounter + 1) + " of " + totalSpecQty);
+
+                    $progressBar.animate({
+                        width: "+=" + step + "%"
+                    }, 50);
 
                     currentPageName = window.Testing.Suites[suiteIndex].name;
                     $iframe.attr("src", "Suites/" + window.Testing.Suites[suiteIndex].name + "?specIndex=" + specIndex);
@@ -179,27 +244,31 @@
                 }
 
                 function getTotalSpecQty() {
-                    var count = 0;
-
-                    for(var i = 0; i < window.Testing.Suites.length; i++) {
+                    for(var i = 0, count = 0; i < window.Testing.Suites.length; i++)
                         count += window.Testing.Suites[i].specQty;
-                    }
 
                     return count;
                 }
 
                 function getTestPagesQty() {
-                    var count = 0;
-
-                    for(var i = 0; i < window.Testing.Suites.length; i++) {
-                        if(window.Testing.Suites[i].specQty > 0)
-                            count += 1;
-                    }
+                    for(var i = 0, count = 0; i < window.Testing.Suites.length; i++)
+                        if(window.Testing.Suites[i].specQty) count += 1;
 
                     return count;
                 }
 
+                function insertExecutionTimeLabel(startExecutionTime) {
+                    var endExecutionTime = new Date().getTime();
+                    var totalExecutionTime = (endExecutionTime - startExecutionTime) / 1000;
+
+                    var $timeContainer = $("<div>").text("Total execution time: " + totalExecutionTime + " sec").addClass("total-time");
+                    $("#SpecCounter").append($timeContainer);
+                }
+
                 window.Testing.Reporter = {
+
+                    specIndex: 0,
+                    startExecutionTime: new Date().getTime(),
 
                     suiteStarted: function(result) {
                         if(containerExists(result))
@@ -215,6 +284,14 @@
                         var $container = appendContainer(result);
                         $container.addClass("testing-spec-" + result.status);
 
+                        this.specIndex++;
+                        var $testHeadLink = $container.find(".testing-container-head").find("a");
+                        $testHeadLink.addClass("testing-container-head-link").text(this.specIndex + ". " + $testHeadLink.text().split("-").join(" "));
+
+                        var $assertCountLabel = $("<span>").addClass("assertion-counter");
+                        $assertCountLabel.text(result.passedExpectations.length + "/" + result.failedExpectations.length);
+                        $container.find(".testing-container-head").append($assertCountLabel);
+
                         for(var i = 0; i < result.failedExpectations.length; i++) {
                             $container.$body.append($("<div>")
                                 .text('Failure: ' + result.failedExpectations[i].message)
@@ -223,13 +300,16 @@
                                     .text(result.failedExpectations[i].stack)));
                         }
 
+                        if(this.specIndex === getTotalSpecQty())
+                            insertExecutionTimeLabel(this.startExecutionTime);
+
                         goToNextSpec();
                     },
                 };
 
                 goToNextSpec();
 
-            })($("#results"), $("#testFrame"));
+            })($("#results"), $("#TestFrame"));
         </script>
     </form>
 </body>
