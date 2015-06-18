@@ -98,10 +98,6 @@
                 });
 
                 for(var i = 0; i < cultures.length; i++) {
-                    this.dateExtender.get_CultureDatePlaceholder = function() {
-                        return cultures[i].dateSeparator;
-                    }
-
                     var convertedDate = this.dateExtender.ConvFmtDate(cultures[i].localeDateString, false);
                     expect(convertedDate).toBe(cultures[i].convertedDate);
 
