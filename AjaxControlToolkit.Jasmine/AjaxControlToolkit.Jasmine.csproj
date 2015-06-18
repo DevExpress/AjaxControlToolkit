@@ -75,6 +75,7 @@
     <Content Include="Testing.aspx" />
     <Content Include="TestUtils\extensionMethods.js" />
     <Content Include="TestUtils\htmlEditorMock.js" />
+    <Content Include="Vendor\sinon.js" />
     <Content Include="Vendor\detect.js" />
     <Content Include="Vendor\jasmine-2.2.0\boot.js" />
     <Content Include="Vendor\jasmine-2.2.0\console.js" />

@@ -63,9 +63,11 @@
             });
 
             it("clears mask on blur", function() {
+                var expectedValue = this.$commonTarget.val();
+
                 this.$commonTarget.blur();
 
-                expect(this.$commonTarget.val()).toBe("ABC");
+                expect(this.$commonTarget.val()).toBe(expectedValue);
             });
 
             // CodePlex item 27764
@@ -91,6 +93,10 @@
                     },
                 ];
 
+                var stub = sinon.stub(this.dateExtender, "get_CultureDatePlaceholder", function() {
+                    return cultures[i].dateSeparator;
+                });
+
                 for(var i = 0; i < cultures.length; i++) {
                     this.dateExtender.get_CultureDatePlaceholder = function() {
                         return cultures[i].dateSeparator;
@@ -102,6 +108,8 @@
                     convertedDate = this.dateExtender.ConvFmtDate(cultures[i].localeDateString, true);
                     expect(convertedDate).toBe(cultures[i].convertedDate);
                 }
+
+                stub.restore();
             });
 
             it("date formating returns empty string for non-data values", function() {
