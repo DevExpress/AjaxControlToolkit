@@ -219,12 +219,15 @@ namespace AjaxControlToolkit {
 
         // Images
 
-        internal static string GetImageHref(string imageName, Control control) {
+        internal static string GetImageHref(string imageName, Control control, bool resolveClientUrlForStatic = true) {
             if(IsCdnEnabled())
                 return (Constants.ImagesVirtualPath + imageName).Replace("~/", Constants.CdnPrefix);
 
             if(AjaxControlToolkitConfigSection.Current.UseStaticResources)
-                return control.Page.ResolveClientUrl(Constants.ImagesVirtualPath + imageName);
+                if(resolveClientUrlForStatic)
+                    return control.Page.ResolveClientUrl(Constants.ImagesVirtualPath + imageName);
+                else
+                    return Constants.ImagesVirtualPath + imageName;
 
             return control.Page.ClientScript.GetWebResourceUrl(control.GetType(), Constants.ImageResourcePrefix + imageName);
         }

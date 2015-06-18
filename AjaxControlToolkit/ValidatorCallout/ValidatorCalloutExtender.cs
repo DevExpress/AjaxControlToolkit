@@ -26,7 +26,7 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [ClientPropertyName("warningIconImageUrl")]
         public string WarningIconImageUrl {
-            get { return GetPropertyValue("WarningIconImageUrl", (string)null) ?? (DesignMode ? String.Empty : ToolkitResourceManager.GetImageHref(Constants.ValidatorCalloutAlertLargeImage, this)); }
+            get { return GetPropertyValue("WarningIconImageUrl", (string)null) ?? (DesignMode ? String.Empty : ToolkitResourceManager.GetImageHref(Constants.ValidatorCalloutAlertLargeImage, this, false)); }
             set { SetPropertyValue("WarningIconImageUrl", value); }
         }
 
@@ -35,7 +35,7 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [ClientPropertyName("closeImageUrl")]
         public string CloseImageUrl {
-            get { return GetPropertyValue("CloseImageUrl", (string)null) ?? (DesignMode ? String.Empty : ToolkitResourceManager.GetImageHref(Constants.ValidatorCalloutCloseImage, this)); }
+            get { return GetPropertyValue("CloseImageUrl", (string)null) ?? (DesignMode ? String.Empty : ToolkitResourceManager.GetImageHref(Constants.ValidatorCalloutCloseImage, this, false)); }
             set { SetPropertyValue("CloseImageUrl", value); }
         }
 
