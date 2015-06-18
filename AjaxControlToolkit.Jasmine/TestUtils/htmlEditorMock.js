@@ -65,7 +65,7 @@
                     range,
                     relativeOffsets;
 
-                if(selection.rangeCount !== 0) {
+                if(selection.rangeCount) {
                     range = selection.getRangeAt(0);
                     relativeOffsets = getRelativeOffsetsFromRange(range, currentTab == "content" ? $editableDiv.text() : $sourceViewDiv.text());
                 }
@@ -74,7 +74,7 @@
                 var result = extender[tab === "source" ? "_sourceViewDiv" : "_editableDiv"].textContent;
                 that.switchTab(currentTab);
 
-                if(selection.rangeCount !== 0) {
+                if(selection.rangeCount) {
                     var selectionParams = getSelectionParams(relativeOffsets.start, relativeOffsets.end);
                     range = createRangeFromSelectionParams(selectionParams);
 
@@ -84,7 +84,7 @@
                 return result;
             },
             containsElement: function($element) {
-                return $container.find($element).length > 0;
+                return !!$container.find($element).length;
             }
         };
 
