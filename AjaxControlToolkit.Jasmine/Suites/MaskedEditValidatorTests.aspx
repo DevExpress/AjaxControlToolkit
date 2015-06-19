@@ -9,7 +9,8 @@
         ID="MaskedEditExtender1"
         TargetControlID="TextBox1"
         Mask="9999/99/99"
-        MaskType="Date" />
+        MaskType="Date" 
+        CultureName="en-US"/>
     <act:MaskedEditValidator runat="server"
         ID="MaskedEditValidator1"
         ControlExtender="MaskedEditExtender1"
