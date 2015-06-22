@@ -137,6 +137,12 @@ Sys.Extended.UI.PieChart.prototype = {
 
         textX = (startX + textX) > startX ? startX + textX : (startX + textX) - (me._pieChartClientValues[index].Data.toString().length * this.charLength);
         textY = (startY + (-1 * textY)) < startY ? startY + (-1 * textY) : startY + (-1 * textY) + 10;
+        if (absClientValues > totalValue / 2) {
+            arc = 1;
+        }
+        else {
+            arc = 0;
+        }
         me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<g><path id="Segment{8}" d="M{0} {1} A {2} {2} 0 {3},1 {4} {5} L {6} {7} z" style="stroke:{10};fill:{9};"></path>', lastEndX, lastEndY, radius, arc, startX + endX, startY + (-1 * endY), startX, startY, index + 1, me._pieChartClientValues[index].PieChartValueColor, me._pieChartClientValues[index].PieChartValueStrokeColor) + String.format('<text fill="#000000" style="font: 11px Arial,Helvetica,sans-serif" fill-opacity="1" y="{1}" x="{0}">{2}</text></g>', textX, textY, me._pieChartClientValues[index].Data) + '</svg>';
 
         lastEndX = startX + endX;
