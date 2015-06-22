@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,17 +39,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\AjaxControlToolkit\Debug\BaseScripts.debug.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\MicrosoftAjaxWebForms.debug.js" />
     <Content Include="Suites\AjaxFileUploadTests.aspx" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.js" />
@@ -65,6 +87,7 @@
     <Content Include="Scripts\AjaxControlToolkit\Release\BaseScripts.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\TestExtender.js" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\TestExtender.debug.js" />
+    <Content Include="Suites\ToolkitResourceManagerTests\Bundling.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\DebugCdn.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\DebugStatic.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\ReleaseCdn.aspx" />
@@ -168,6 +191,13 @@
     <Compile Include="Suites\TabsTests.aspx.designer.cs">
       <DependentUpon>TabsTests.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Suites\ToolkitResourceManagerTests\Bundling.aspx.cs">
+      <DependentUpon>Bundling.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManagerTests\Bundling.aspx.designer.cs">
+      <DependentUpon>Bundling.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Suites\ToolkitResourceManagerTests\DebugCdn.aspx.cs">
       <DependentUpon>DebugCdn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -221,6 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Suites\Suite.Master" />
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -229,6 +260,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AjaxControlToolkit.StaticResources\AjaxControlToolkit.StaticResources.csproj">
+      <Project>{820694df-c225-46b6-ba38-c5fefbd79aeb}</Project>
+      <Name>AjaxControlToolkit.StaticResources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.csproj">
       <Project>{676b3449-93f7-4102-8df0-fb51911675d6}</Project>
       <Name>AjaxControlToolkit</Name>
