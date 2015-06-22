@@ -14,23 +14,19 @@
             describe("Bundling", function() {
 
                 it("loads only static for testing purposes", function() {
-                    var embeddedScriptsQty = 0;
-                    $.each(document.scripts, function() {
-                        if(this.attributes["src"] && this.attributes["src"].value.startsWith("/ScriptResource"))
-                            embeddedScriptsQty += 1;
+                    var embeddedScripts = [].filter.call(document.scripts, function(script) {
+                        return script.attributes["src"] && script.attributes["src"].value.startsWith("/ScriptResource");
                     });
 
-                    expect(embeddedScriptsQty).toBe(0);
+                    expect(embeddedScripts.length).toBe(0);
                 });
 
                 it("loads one bundle", function() {
-                    var bundlesQty = 0;
-                    $.each(document.scripts, function() {
-                        if(this.attributes["src"] && /\/Scripts\/AjaxControlToolkit\/Bundle\?v=.+/.test(this.attributes["src"].value))
-                            bundlesQty += 1;
+                    var bundles = [].filter.call(document.scripts, function(script) {
+                        return script.attributes["src"] && /\/Scripts\/AjaxControlToolkit\/Bundle\?v=.+/.test(script.attributes["src"].value);
                     });
 
-                    expect(bundlesQty).toBe(1);
+                    expect(bundles.length).toBe(1);
                 });
 
                 it("loads static debug custom script", function() {
