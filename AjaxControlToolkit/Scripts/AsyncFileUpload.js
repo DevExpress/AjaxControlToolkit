@@ -146,7 +146,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     initialize: function() {
         Sys.Extended.UI.AsyncFileUpload.callBaseMethod(this, "initialize");
         Sys.Application.add_load(this._app_onload$delegate);
-        this._iframeName = this.get_element() + "_iframe";
+        this._iframeName = this.get_element().id + "_iframe";
         this.setThrobber(false);
     },
 
