@@ -123,11 +123,12 @@ Sys.Extended.UI.PieChart.prototype = {
         this.drawSegments(this, 0, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc);
     },
 
-    drawSegments: function(me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc) {
-        categoryValue = categoryValue + Math.abs(parseFloat(me._pieChartClientValues[index].Data));
+    drawSegments: function (me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc) {
+        var absClientValues = Math.abs(parseFloat(me._pieChartClientValues[index].Data));
+        categoryValue = categoryValue + absClientValues;
         angle = (categoryValue / totalValue) * 360;
         radAngle = angle * (Math.PI / 180);
-        textRadAngle = (categoryValue - Math.abs(parseFloat(me._pieChartClientValues[index].Data)) + Math.abs(parseFloat(me._pieChartClientValues[index].Data)) / 2) / totalValue * 360;
+        textRadAngle = (categoryValue - absClientValues / 2) / totalValue * 360;
         textRadAngle = textRadAngle * (Math.PI / 180);
         endX = parseFloat(Math.sin(radAngle) * radius);
         endY = parseFloat(Math.cos(radAngle) * radius);
