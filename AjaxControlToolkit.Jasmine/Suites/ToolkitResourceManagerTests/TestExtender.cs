@@ -13,10 +13,6 @@ namespace AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager {
     [ClientScriptResource("Sys.Extended.UI.TestExtenderBehavior", "TestExtender")]
     [TargetControlType(typeof(TextBox))]
     public class TestExtender : ExtenderControlBase {
-
-        static TestExtender() {
-            AjaxControlToolkit.ToolkitResourceManager.RegisterControl(typeof(TestExtender));
-        }
     }
 
 }

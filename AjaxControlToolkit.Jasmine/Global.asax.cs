@@ -11,6 +11,7 @@ namespace AjaxControlToolkit.Jasmine {
 
         protected void Application_Start(object sender, EventArgs e) {
             RegisterRoutes(RouteTable.Routes);
+            AjaxControlToolkit.ToolkitResourceManager.RegisterControl(typeof(Suites.ToolkitResourceManager.TestExtender));
         }
 
         void RegisterRoutes(RouteCollection routeCollection) {
