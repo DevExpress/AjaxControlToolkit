@@ -3,8 +3,8 @@
 
 /* SMALL SIZE */
 .ajax__balloon_popup .rect .small {
-    width: 200px;
     height: 150px;
+    width: 200px;
 }
 
 .ajax__balloon_popup .rect .small .bottom_right {
@@ -38,7 +38,6 @@
 .ajax__balloon_popup .rect .small .bottom_left_shadow {
     background-position: -950px -150px;
 }
-
 
 .ajax__balloon_popup .rect .small .top_right {
     background-position: 0 -300px;
@@ -75,8 +74,8 @@
 
 /* MEDIUM SIZE */
 .ajax__balloon_popup .rect .medium {
-    width: 250px;
     height: 200px;
+    width: 250px;
 }
 
 .ajax__balloon_popup .rect .medium .bottom_right {
@@ -146,8 +145,8 @@
 
 /* LARGE SIZE */
 .ajax__balloon_popup .rect .large {
-    width: 500px;
     height: 300px;
+    width: 500px;
 }
 
 .ajax__balloon_popup .rect .large .bottom_right {

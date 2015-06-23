@@ -1,40 +1,40 @@
 .ajax__calendar_container {
-    padding: 4px;
     cursor: default;
-    width: 170px;
-    font-size: 11px;
-    text-align: center;
     font-family: tahoma,verdana,helvetica;
+    font-size: 11px;
+    padding: 4px;
+    text-align: center;
+    width: 170px;
 }
 
 .ajax__calendar_body {
     height: 139px;
-    width: 170px;
-    position: relative;
-    overflow: hidden;
     margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 170px;
 }
 
 .ajax__calendar_days, .ajax__calendar_months, .ajax__calendar_years {
-    top: 0px;
-    left: 0px;
     height: 139px;
-    width: 170px;
+    left: 0;
+    margin: auto;
     position: absolute;
     text-align: center;
-    margin: auto;
+    top: 0;
+    width: 170px;
 }
 
 .ajax__calendar_container TABLE {
-    padding: 0px;
-    margin: 0px;
     font-size: 11px;
+    margin: 0;
+    padding: 0;
 }
 
 .ajax__calendar_container TD {
-    padding: 0px;
-    margin: 0px;
     font-size: 11px;
+    margin: 0;
+    padding: 0;
 }
 
 .ajax__calendar_header {
@@ -43,21 +43,21 @@
 }
 
 .ajax__calendar_prev {
-    cursor: pointer;
-    width: 15px;
-    height: 15px;
-    float: left;
-    background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    float: left;
+    height: 15px;
+    width: 15px;
 }
 
 .ajax__calendar_next {
-    cursor: pointer;
-    width: 15px;
-    height: 15px;
-    float: right;
-    background-repeat: no-repeat;
     background-position: 50% 50%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    float: right;
+    height: 15px;
+    width: 15px;
 }
 
 .ajax__calendar_title {
@@ -78,38 +78,38 @@
 
 .ajax__calendar_dayname {
     height: 17px;
-    width: 17px;
-    text-align: right;
     padding: 0 2px;
+    text-align: right;
+    width: 17px;
 }
 
 .ajax__calendar_day {
-    height: 17px;
-    width: 18px;
-    text-align: right;
-    padding: 0 2px;
     cursor: pointer;
+    height: 17px;
+    padding: 0 2px;
+    text-align: right;
+    width: 18px;
 }
 
 .ajax__calendar_month {
-    height: 44px;
-    width: 40px;
-    text-align: center;
     cursor: pointer;
+    height: 44px;
     overflow: hidden;
+    text-align: center;
+    width: 40px;
 }
 
 .ajax__calendar_year {
-    height: 44px;
-    width: 40px;
-    text-align: center;
     cursor: pointer;
+    height: 44px;
     overflow: hidden;
+    text-align: center;
+    width: 40px;
 }
 
 .ajax__calendar .ajax__calendar_container {
-    border: 1px solid #646464;
     background-color: #ffffff;
+    border: 1px solid #646464;
     color: #000000;
 }
 
@@ -206,27 +206,27 @@
     background-color: #ffffff;
     border-color: #ffffff;
     color: #646464;
-    text-decoration: line-through;
     cursor: default;
+    text-decoration: line-through;
 }
 
 .ajax__calendar .ajax__calendar_invalid .ajax__calendar_month {
     background-color: #ffffff;
     border-color: #ffffff;
     color: #646464;
-    text-decoration: line-through;
     cursor: default;
+    text-decoration: line-through;
 }
 
 .ajax__calendar .ajax__calendar_invalid .ajax__calendar_year {
     background-color: #ffffff;
     border-color: #ffffff;
     color: #646464;
-    text-decoration: line-through;
     cursor: default;
+    text-decoration: line-through;
 }
 
 .ajax__calendar .ajax__calendar_invalid .ajax__calendar_today {
-    visibility: hidden;
     cursor: default;
+    visibility: hidden;
 }

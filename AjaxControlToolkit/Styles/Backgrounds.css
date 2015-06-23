@@ -19,13 +19,13 @@
 }
 
 .ajax__balloon_popup .rect {
-    background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopup.RectangleSprite.png")%>') !important;
     background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopup.RectangleSprite.gif")%>');
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopup.RectangleSprite.png")%>') !important;
 }
 
 .ajax__balloon_popup .cloud {
-    background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopup.CloudSprite.png")%>') !important;
     background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopup.CloudSprite.gif")%>');
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.BalloonPopup.CloudSprite.png")%>') !important;
 }
 
 .ajax__tab_xp .ajax__tab_header {
@@ -240,7 +240,6 @@
     background-image: url('<%=WebResource("AjaxControlToolkit.Images.HtmlEditorExtender.Buttons.png")%>');   
 }
 
-.ajax__html_editor_extender_separator
-{
+.ajax__html_editor_extender_separator {
     background-image: url('<%=WebResource("AjaxControlToolkit.Images.HtmlEditorExtender.Buttons.png")%>');
 }

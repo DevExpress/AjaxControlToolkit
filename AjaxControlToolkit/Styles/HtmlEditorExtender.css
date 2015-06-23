@@ -1,284 +1,232 @@
-﻿.ajax__html_editor_extender_button
-{
+﻿.ajax__html_editor_extender_button {
+    background-color: #c2c2c2;
     background-repeat: no-repeat;
+    border: none;
     cursor: pointer;
     display: block;
     float: left;
-    border: none;
-    background-color: #c2c2c2;
 }
 
-.ajax__html_editor_extender_button:hover
-{
+.ajax__html_editor_extender_button:hover {
     background-color: #3c8aff;
 }
 
-.ajax__html_editor_extender_buttoncontainer
-{
+.ajax__html_editor_extender_buttoncontainer {
     background-color: #F0F0F0;
-    padding: 2px 2px 2px 2px;
     border: 1px solid #c2c2c2;
-    overflow: auto;
     border-bottom: none;
+    overflow: auto;
+    padding: 2px 2px 2px 2px;
 }
 
-.ajax__html_editor_extender_buttoncontainer2
-{
+.ajax__html_editor_extender_buttoncontainer2 {
     background-color: #F0F0F0;
-    padding: 2px 2px 2px 2px;
+    border-bottom: 1px solid #c2c2c2;
     border-left: 1px solid #c2c2c2;
     border-right: 1px solid #c2c2c2;
-    border-bottom: 1px solid #c2c2c2;
     overflow: auto;
+    padding: 2px 2px 2px 2px;
 }
 
-.ajax__html_editor_extender_texteditor
-{
-    border-width: 1px;
+.ajax__html_editor_extender_texteditor {
     border-color: #c2c2c2;
     border-style: solid;
+    border-width: 1px;
     padding: 2px 2px 2px 2px;
 }
 
-.ajax__html_editor_extender_footercontainer
-{
+.ajax__html_editor_extender_footercontainer {
     background-color: #F0F0F0;
-    padding: 2px 2px 2px 2px;
     border: 1px solid #c2c2c2;
     height: 10px;
+    padding: 2px 2px 2px 2px;
 }
 
-.ajax__html_editor_extender_container
-{
-}
-
-.ajax__html_editor_extender_backcolorclass
-{
+.ajax__html_editor_extender_backcolorclass {
     float: left;
 }
 
-.ajax__html_editor_extender_forecolorclass
-{
+.ajax__html_editor_extender_forecolorclass {
     float: left;
 }
 
-.ajax__html_editor_extender_fontnameclass
-{
+.ajax__html_editor_extender_fontnameclass {
     float: left;
 }
 
-.ajax__html_editor_extender_fontsizeclass
-{
+.ajax__html_editor_extender_fontsizeclass {
     float: left;
 }
 
-.ajax__html_editor_extender_Undo
-{
-    background-position: -0px 0px;
+.ajax__html_editor_extender_Undo {
+    background-position: -0px 0;
 }
 
-.ajax__html_editor_extender_Redo
-{
-    background-position: -23px 0px;
+.ajax__html_editor_extender_Redo {
+    background-position: -23px 0;
 }
 
-.ajax__html_editor_extender_Bold
-{
-    background-position: -46px 0px;
+.ajax__html_editor_extender_Bold {
+    background-position: -46px 0;
 }
 
-.ajax__html_editor_extender_Italic
-{
-    background-position: -69px 0px;
+.ajax__html_editor_extender_Italic {
+    background-position: -69px 0;
 }
 
-.ajax__html_editor_extender_Underline
-{
-    background-position: -92px 0px;
+.ajax__html_editor_extender_Underline {
+    background-position: -92px 0;
 }
 
-.ajax__html_editor_extender_StrikeThrough
-{
-    background-position: -115px 0px;
+.ajax__html_editor_extender_StrikeThrough {
+    background-position: -115px 0;
 }
 
-.ajax__html_editor_extender_Subscript
-{
-    background-position: -138px 0px;
+.ajax__html_editor_extender_Subscript {
+    background-position: -138px 0;
 }
 
-.ajax__html_editor_extender_Superscript
-{
-    background-position: -161px 0px;
+.ajax__html_editor_extender_Superscript {
+    background-position: -161px 0;
 }
 
-.ajax__html_editor_extender_JustifyLeft
-{
-    background-position: -230px 0px;
+.ajax__html_editor_extender_JustifyLeft {
+    background-position: -230px 0;
 }
 
-.ajax__html_editor_extender_JustifyRight
-{
-    background-position: -276px 0px;
+.ajax__html_editor_extender_JustifyRight {
+    background-position: -276px 0;
 }
 
-.ajax__html_editor_extender_JustifyCenter
-{
-    background-position: -253px 0px;
+.ajax__html_editor_extender_JustifyCenter {
+    background-position: -253px 0;
 }
 
-.ajax__html_editor_extender_JustifyFull
-{
-    background-position: -299px 0px;
+.ajax__html_editor_extender_JustifyFull {
+    background-position: -299px 0;
 }
 
-.ajax__html_editor_extender_insertOrderedList
-{
-    background-position: -345px 0px;
+.ajax__html_editor_extender_insertOrderedList {
+    background-position: -345px 0;
 }
 
-.ajax__html_editor_extender_insertUnorderedList
-{
-    background-position: -368px 0px;
+.ajax__html_editor_extender_insertUnorderedList {
+    background-position: -368px 0;
 }
 
-.ajax__html_editor_extender_createLink
-{
-    background-position: -414px 0px;
+.ajax__html_editor_extender_createLink {
+    background-position: -414px 0;
 }
 
-.ajax__html_editor_extender_UnLink
-{
-    background-position: -437px 0px;
+.ajax__html_editor_extender_UnLink {
+    background-position: -437px 0;
 }
 
-.ajax__html_editor_extender_FormatBlock
-{
-    background-position: -897px 0px;
+.ajax__html_editor_extender_FormatBlock {
+    background-position: -897px 0;
 }
 
-.ajax__html_editor_extender_RemoveFormat
-{
-    background-position: -460px 0px;
+.ajax__html_editor_extender_RemoveFormat {
+    background-position: -460px 0;
 }
 
-.ajax__html_editor_extender_InsertImage
-{
-    background-position: -621px 0px;
+.ajax__html_editor_extender_InsertImage {
+    background-position: -621px 0;
 }
 
-.ajax__html_editor_extender_SelectAll
-{
-    background-position: -644px 0px;
+.ajax__html_editor_extender_SelectAll {
+    background-position: -644px 0;
 }
 
-.ajax__html_editor_extender_UnSelect
-{
-    background-position: -667px 0px;
+.ajax__html_editor_extender_UnSelect {
+    background-position: -667px 0;
 }
 
-.ajax__html_editor_extender_Delete
-{
-    background-position: -690px 0px;
+.ajax__html_editor_extender_Delete {
+    background-position: -690px 0;
 }
 
-.ajax__html_editor_extender_Cut
-{
-    background-position: -483px 0px;
+.ajax__html_editor_extender_Cut {
+    background-position: -483px 0;
 }
 
-.ajax__html_editor_extender_Copy
-{
-    background-position: -713px 0px;
+.ajax__html_editor_extender_Copy {
+    background-position: -713px 0;
 }
 
-.ajax__html_editor_extender_Paste
-{
-    background-position: -736px 0px;
+.ajax__html_editor_extender_Paste {
+    background-position: -736px 0;
 }
 
-.ajax__html_editor_extender_BackColor
-{
+.ajax__html_editor_extender_BackColor {
     background-position: -760px -1px;
     text-indent: -9999px;
 }
 
-.ajax__html_editor_extender_ForeColor
-{
+.ajax__html_editor_extender_ForeColor {
     background-position: -783px -1px;
     text-indent: -9999px;
 }
 
-.ajax__html_editor_extender_FontName
-{
+.ajax__html_editor_extender_FontName {
     background-position: -0px 48px;
 }
 
-.ajax__html_editor_extender_Indent
-{
-    background-position: -575px 0px;
+.ajax__html_editor_extender_Indent {
+    background-position: -575px 0;
 }
 
-.ajax__html_editor_extender_Outdent
-{
-    background-position: -552px 0px;
+.ajax__html_editor_extender_Outdent {
+    background-position: -552px 0;
 }
 
-.ajax__html_editor_extender_InsertHorizontalRule
-{
-    background-position: -391px 0px;
+.ajax__html_editor_extender_InsertHorizontalRule {
+    background-position: -391px 0;
 }
 
-.ajax__html_editor_extender_content
-{
-    background-position: -920px 0px;
+.ajax__html_editor_extender_content {
+    background-position: -920px 0;
 }
 
-.ajax__html_editor_extender_source
-{
-    background-position: -943px 0px;
+.ajax__html_editor_extender_source {
+    background-position: -943px 0;
 }
 
-.ajax__html_editor_extender_content:active
-{
+.ajax__html_editor_extender_content:active {
     background-position: -920px -21px;
 }
 
-.ajax__html_editor_extender_source:active
-{
+.ajax__html_editor_extender_source:active {
     background-position: -943px -21px;
 }
 
-.ajax__html_editor_extender_separator
-{
-    background-repeat:no-repeat;
+.ajax__html_editor_extender_separator {
     background-position: -966px 0;
+    background-repeat:no-repeat;
+    border: none;
     display: block;
     float: left;
-    border: none;
-    width: 13px;
     height: 21px;
+    width: 13px;
 }
 
-.ajax__html_editor_extender_popupDiv
-{
-    border-color: black;
-    border: 1px solid #555555;
-    box-shadow: 0 4px 30px #000000;
-    overflow: auto;
+.ajax__html_editor_extender_popupDiv {
     background-color: white;
-    width: 500px;
+    border: 1px solid #555555;
+    border-color: black;
+    box-shadow: 0 4px 30px #000000;
     height: 290px;
-    position: fixed;
     left: 50%;
-    top: 50%;
     margin-left: -250px;
     margin-top: -145px;
+    overflow: auto;
     padding: 10px;
+    position: fixed;
+    top: 50%;
+    width: 500px;
 }
 
-.ajax__html_editor_extender_popupCancelButton
-{
+.ajax__html_editor_extender_popupCancelButton {
     border: 1px solid #BBBBBB;
     color: #464646;
     cursor: pointer;
@@ -288,8 +236,7 @@
     width: 75px;
 }
 
-.ajax__html_editor_extender_popupCancelButton:hover
-{
+.ajax__html_editor_extender_popupCancelButton:hover {
     border: 1px solid #666666;
     color: #000000;
 }

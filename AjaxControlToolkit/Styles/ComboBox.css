@@ -7,18 +7,18 @@
 }
 
 .ajax__combobox_itemlist {
-    margin: 0px;
-    padding: 0px;
+    background-color: Window;
+    border: solid 1px ButtonShadow;
+    color: WindowText;
     cursor: default;
     list-style-type: none;
+    margin: 0;
+    padding: 0;
     text-align: left;
-    border: solid 1px ButtonShadow;
-    background-color: Window;
-    color: WindowText;
 }
 
 .ajax__combobox_itemlist li {
+    padding: 0 3px 0 2px;
     white-space: nowrap;
     width: 100%;
-    padding: 0 3px 0 2px;
 }

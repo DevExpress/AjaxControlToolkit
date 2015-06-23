@@ -1,14 +1,14 @@
 body {
+    background-color: #fff;
+    border-width: 0;
+    color: #404040;
     margin: 0;
     padding: 2px;
-    border-width: 0;
-    background-color: #fff;
-    color: #404040;
 }
 
 body, table td {
-    font-size: 10pt;
     font-family: verdana,sans-serif;
+    font-size: 10pt;
 }
 
 h1 {
