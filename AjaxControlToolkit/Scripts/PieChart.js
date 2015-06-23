@@ -123,11 +123,12 @@ Sys.Extended.UI.PieChart.prototype = {
         this.drawSegments(this, 0, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc);
     },
 
-    drawSegments: function(me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc) {
-        categoryValue = categoryValue + Math.abs(parseFloat(me._pieChartClientValues[index].Data));
+    drawSegments: function (me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc) {
+        var absClientValues = Math.abs(parseFloat(me._pieChartClientValues[index].Data));
+        categoryValue = categoryValue + absClientValues;
         angle = (categoryValue / totalValue) * 360;
         radAngle = angle * (Math.PI / 180);
-        textRadAngle = (categoryValue - Math.abs(parseFloat(me._pieChartClientValues[index].Data)) + Math.abs(parseFloat(me._pieChartClientValues[index].Data)) / 2) / totalValue * 360;
+        textRadAngle = (categoryValue - absClientValues / 2) / totalValue * 360;
         textRadAngle = textRadAngle * (Math.PI / 180);
         endX = parseFloat(Math.sin(radAngle) * radius);
         endY = parseFloat(Math.cos(radAngle) * radius);
@@ -136,6 +137,12 @@ Sys.Extended.UI.PieChart.prototype = {
 
         textX = (startX + textX) > startX ? startX + textX : (startX + textX) - (me._pieChartClientValues[index].Data.toString().length * this.charLength);
         textY = (startY + (-1 * textY)) < startY ? startY + (-1 * textY) : startY + (-1 * textY) + 10;
+        if (absClientValues > totalValue / 2) {
+            arc = 1;
+        }
+        else {
+            arc = 0;
+        }
         me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<g><path id="Segment{8}" d="M{0} {1} A {2} {2} 0 {3},1 {4} {5} L {6} {7} z" style="stroke:{10};fill:{9};"></path>', lastEndX, lastEndY, radius, arc, startX + endX, startY + (-1 * endY), startX, startY, index + 1, me._pieChartClientValues[index].PieChartValueColor, me._pieChartClientValues[index].PieChartValueStrokeColor) + String.format('<text fill="#000000" style="font: 11px Arial,Helvetica,sans-serif" fill-opacity="1" y="{1}" x="{0}">{2}</text></g>', textX, textY, me._pieChartClientValues[index].Data) + '</svg>';
 
         lastEndX = startX + endX;
