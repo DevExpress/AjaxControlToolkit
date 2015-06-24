@@ -93,7 +93,7 @@
                     },
                 ];
 
-                var stub = sinon.stub(this.dateExtender, "get_CultureDatePlaceholder", function() {
+                spyOn(this.dateExtender, "get_CultureDatePlaceholder").and.callFake(function() {
                     return cultures[i].dateSeparator;
                 });
 
@@ -104,8 +104,6 @@
                     convertedDate = this.dateExtender.ConvFmtDate(cultures[i].localeDateString, true);
                     expect(convertedDate).toBe(cultures[i].convertedDate);
                 }
-
-                stub.restore();
             });
 
             it("date formating returns empty string for non-data values", function() {
