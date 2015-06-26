@@ -1,0 +1,123 @@
+﻿@model AjaxControlToolkit.Reference.Core.TypeDoc
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<h3>@Model.Name</h3>
+<p>@Model.Summary</p>
+@if(!String.IsNullOrWhiteSpace(Model.Remarks)) { 
+    <p><b>Note: </b>@Model.Remarks</p>
+}
+
+<i>Namespace:</i> <b>@Model.Namespace</b>
+
+<br />
+<br />
+<i>Methods:</i>
+<br />
+@foreach(var method in Model.Methods) {
+    <fieldset>
+        <legend><b>@method.Name</b></legend>
+        @method.Summary
+
+        @if(!String.IsNullOrWhiteSpace(method.Remarks)) { 
+            <p><b>Note: </b>@method.Remarks</p>
+        }
+
+        @if(method.Params.Any()) { 
+            <fieldset>
+                <legend><i>Params</i></legend>
+                @foreach(var param in method.Params) {
+                    <p>
+                        <b>@param.Name: </b>@param.Description
+                        @if(!String.IsNullOrWhiteSpace(param.TypeName)) { 
+                            <br />
+                            <i>Type: </i>@param.TypeName
+                        }
+                    </p>
+                }
+            </fieldset>
+        }
+    </fieldset>
+}
+
+<br />
+<i>Properties:</i>
+<br />
+@foreach(var property in Model.Properties) {
+    <fieldset>
+        <legend><b>@property.Name</b></legend>
+        @property.Summary
+
+        @if(!String.IsNullOrWhiteSpace(property.Remarks)) { 
+            <p><b>Note: </b>@property.Remarks</p>
+        }
+    </fieldset>
+}
+
+<br />
+<i>Events:</i>
+<br />
+@foreach(var _event in Model.Events) {
+    <fieldset>
+        <legend><b>@_event.Name</b></legend>
+        @_event.Summary
+
+        @if(!String.IsNullOrWhiteSpace(_event.Remarks)) { 
+            <p><b>Note: </b>@_event.Remarks</p>
+        }
+    </fieldset>
+}
+
+<br />
+<i>Client Methods:</i>
+<br />
+
+@foreach(var method in Model.ClientMethods) {
+    <fieldset>
+        <legend><b>@method.Name</b></legend>
+        @method.Summary
+
+        @if(!String.IsNullOrWhiteSpace(method.Remarks)) { 
+            <p><b>Note: </b>@method.Remarks</p>
+        }
+
+        @if(method.Params.Any()) { 
+            <fieldset>
+                <legend><i>Params</i></legend>
+                @foreach(var param in method.Params) {
+                    <p>
+                        <b>@param.Name: </b>@param.Description
+                        @if(!String.IsNullOrWhiteSpace(param.TypeName)) { 
+                            <br />
+                            <i>Type: </i>@param.TypeName
+                        }
+                    </p>
+                }
+            </fieldset>
+        }
+    </fieldset>
+}
+<br />
+<i>Client Properties:</i>
+<br />
+@foreach(var property in Model.ClientProperties) {
+    <fieldset>
+        <legend><b>@property.Name</b></legend>
+        @property.Summary
+
+        @if(!String.IsNullOrWhiteSpace(property.Remarks)) { 
+            <p><b>Note: </b>@property.Remarks</p>
+        }
+
+        @if(!String.IsNullOrWhiteSpace(property.GetterName)) {
+            <p><b>getter: </b>@property.GetterName</p>
+        }
+
+        @if(!String.IsNullOrWhiteSpace(property.SetterName)) {
+            <p><b>setter: </b>@property.SetterName</p>
+        }
+    </fieldset>
+}

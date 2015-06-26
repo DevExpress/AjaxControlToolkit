@@ -6,6 +6,11 @@ Sys.Extended.UI.TextBoxWatermarkBehavior = function(element) {
     Sys.Extended.UI.TextBoxWatermarkBehavior.initializeBase(this, [element]);
     
     // Properties
+    ///<summary> The text to show when the control 
+    ///has no value</summary>
+    ///<getter>get_WatermarkText</getter>
+    ///<setter>set_WatermarkText</setter>
+    ///<member name="cP:AjaxControlToolkit.TextBoxWatermarkExtender.watermarkText" />
     this._watermarkText = null;
     this._watermarkCssClass = null;
 
@@ -125,9 +130,12 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
             this._onFocus();
     },
 
+    /// <summary>
+    /// Clear the text from the target
+    /// </summary>
+    /// <param name="focusing" type="Boolean">whether or not we are focusing on the textbox</param>
+    /// <member name="cM:AjaxControlToolkit.TextBoxWatermarkExtender.clearText" />
     clearText : function(focusing) {
-        // Clear the text from the target
-        // "focusing" - whether or not we are focusing on the textbox
         var element = this.get_element();
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
         wrapper.set_Value("");
@@ -185,11 +193,12 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
         Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).set_IsWatermarked(false);
     },
 
+    /// <summary>Method called to hook up to Sys.Preview.UI.TextBox if present</summary>
+    /// <remarks>This method must be called manually if the Sys.Preview.UI.TextBox
+    /// is added after the TextBoxWatermarkBehavior is initialized.
+    /// </remarks>
+    /// <member name="cM:AjaxControlToolkit.TextBoxWatermarkExtender.registerPropertyChanged" />
     registerPropertyChanged : function() {
-        // Method called to hook up to Sys.Preview.UI.TextBox if present
-        // Note: This method must be called manually if the Sys.Preview.UI.TextBox
-        //       is added after the TextBoxWatermarkBehavior is initialized.
-
         var e = this.get_element();
         if(e.control && !this._propertyChangedHandler) {
             this._propertyChangedHandler = Function.createDelegate(this, this._onPropertyChanged);
@@ -227,11 +236,12 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
             this._clearedForSubmit = false;
         }
     },
-
+    
     get_WatermarkText : function() {
-        // The text to show when the control has no value
+        
         return this._watermarkText;
     },
+    
     set_WatermarkText : function(value) {
         if (this._watermarkText != value) {
             this._watermarkText = value;

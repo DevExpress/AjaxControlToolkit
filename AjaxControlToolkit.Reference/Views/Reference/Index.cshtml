@@ -1,0 +1,11 @@
+﻿@model IEnumerable<string>
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<ul>
+    @foreach(var typeName in Model) {
+        <li><a href="/Reference/Type/@typeName">@typeName</a></li>
+    }
+</ul>

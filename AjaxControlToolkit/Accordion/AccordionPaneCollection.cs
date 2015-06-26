@@ -8,8 +8,10 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
-    // The AccordionPaneCollection is used to wrap the Accordion.Controls collection
-    // and provide an AccordionPane only view.
+    ///<summary>
+    /// The AccordionPaneCollection is used to wrap the Accordion.Controls collection
+    /// and provide an AccordionPane only view.
+    ///</summary>
     public sealed class AccordionPaneCollection : IList, IEnumerable<AccordionPane> {
         // Parent Accordion whose Controls collection we are filtering
         Accordion _parent;

@@ -15,10 +15,12 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    // The Accordion control represents a series of panes that can be viewed
-    // one at a time.  The control is used to create "strongly typed" access
-    // to the AccordionBehavior.  Its major purpose is to structure the content
-    // in a way that the AccordionBehavior can understand it. 
+    /// <summary>
+    /// The Accordion control represents a series of panes that can be viewed
+    /// one at a time.  The control is used to create "strongly typed" access
+    /// to the AccordionBehavior.  Its major purpose is to structure the content
+    /// in a way that the AccordionBehavior can understand it. 
+    /// </summary>
     [Designer(typeof(AccordionDesigner))]
     [ToolboxData("<{0}:Accordion runat=server></{0}:Accordion>")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AccordionName + Constants.IconPostfix)]
@@ -26,20 +28,26 @@ namespace AjaxControlToolkit {
         // ViewState key for tracking the number of panes in the Accordion
         internal const string ItemCountViewStateKey = "_!ItemCount";
 
-        // Event to raise when an item (i.e. Pane's Header or Content) is
-        // created during data binding
+        /// <summary>
+        /// Event to raise when an item (i.e. Pane's Header or Content) is
+        /// created during data binding
+        /// </summary>
         public event EventHandler<AccordionItemEventArgs> ItemCreated;
 
-        // Event to raise when an item (i.e. Pane's Header or Content) is
-        // data bound
+        /// <summary>
+        /// Event to raise when an item (i.e. Pane's Header or Content) is
+        /// data bound
+        /// </summary>
         public event EventHandler<AccordionItemEventArgs> ItemDataBound;
 
-        // Event to raise when a command is fired
+        /// <summary>
+        /// Event to raise when a command is fired
+        /// </summary>
         public event CommandEventHandler ItemCommand;
 
         // AccordionExtender to attach
         AccordionExtender _extender;
-
+        
         // The Accordion's child panes
         AccordionPaneCollection _panes;
 
@@ -93,7 +101,7 @@ namespace AjaxControlToolkit {
             : base(HtmlTextWriterTag.Div) {
         }
 
-        // Reference to the AccordionExtender wrapped by the Accordion control
+        // Reference to the AccordionExtender wrapped by the Accordion control.
         // This will be referenced in CreateChildControls so that the extender
         // will always be created by any calls to EnsureChildControls.
         AccordionExtender AccordionExtender {
@@ -109,6 +117,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Length of the transition animation in milliseconds
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("Length of the transition animation in milliseconds")]
@@ -118,9 +129,11 @@ namespace AjaxControlToolkit {
             set { AccordionExtender.TransitionDuration = value; }
         }
 
-        // The number of frames per second used in the transition animation effects.
-        // This is used to tune performance when using FadeTransition, a large number
-        // of Accordion Panes, etc.
+        /// <summary>
+        /// The number of frames per second used in the transition animation effects.
+        /// This is used to tune performance when using FadeTransition, a large number
+        /// of Accordion Panes, etc.
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("Number of frames per second used in the transition animation")]
@@ -130,8 +143,10 @@ namespace AjaxControlToolkit {
             set { AccordionExtender.FramesPerSecond = value; }
         }
 
-        // Whether or not to use a fade effect when transitioning between selected
-        // Accordion Panes
+        /// <summary>
+        /// Whether or not to use a fade effect when transitioning between selected
+        /// Accordion Panes
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("Whether or not to use a fade effect in the transition animations")]
@@ -141,6 +156,9 @@ namespace AjaxControlToolkit {
             set { AccordionExtender.FadeTransitions = value; }
         }
 
+        /// <summary>
+        /// Default Header CSS Class
+        /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
         [Description("Default CSS class for Accordion Pane Headers")]
@@ -149,6 +167,9 @@ namespace AjaxControlToolkit {
             set { AccordionExtender.HeaderCssClass = value; }
         }
 
+        /// <summary>
+        /// Default selected Header CSS Class
+        /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
         [Description("Default CSS class for the selected Accordion Pane Headers")]
@@ -157,6 +178,9 @@ namespace AjaxControlToolkit {
             set { AccordionExtender.HeaderSelectedCssClass = value; }
         }
 
+        /// <summary>
+        /// Default Content CSS Class
+        /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
         [Description("Default CSS class for Accordion Pane Content")]
@@ -165,10 +189,12 @@ namespace AjaxControlToolkit {
             set { AccordionExtender.ContentCssClass = value; }
         }
 
-        // Determine how growth of the Accordion will be controlled.  If it is set to
-        // None, then the Accordion can grow as large or as small as necessary.  If it is
-        // set to Limit, then the Accordion will always be less than or equal to its
-        // Height.  If it is set to Fill then it will always be equal to its height.
+        /// <summary> 
+        /// Determine how growth of the Accordion will be controlled.  If it is set to
+        /// None, then the Accordion can grow as large or as small as necessary.  If it is
+        /// set to Limit, then the Accordion will always be less than or equal to its
+        /// Height.  If it is set to Fill then it will always be equal to its height.
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("Determine how the growth of the Accordion will be controlled")]
@@ -178,8 +204,10 @@ namespace AjaxControlToolkit {
             set { AccordionExtender.AutoSize = value; }
         }
 
-        // Index of the AccordionPane to be displayed
-        // (this property must be set before OnPreRender)
+        /// <summary>
+        /// Index of the AccordionPane to be displayed
+        /// (this property must be set before OnPreRender)
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("Index of the AccordionPane to be displayed")]
@@ -202,8 +230,10 @@ namespace AjaxControlToolkit {
             set { AccordionExtender.RequireOpenedPane = value; }
         }
 
-        // Whether or not we suppress the client-side click handlers of any elements (including server
-        // controls like Button or HTML elements like anchor) in the header sections of the Accordion.
+        /// <summary> 
+        /// Whether or not we suppress the client-side click handlers of any elements (including server
+        /// controls like Button or HTML elements like anchor) in the header sections of the Accordion.
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("Whether or not we suppress the client-side click handlers of any elements in the header sections")]
@@ -213,7 +243,9 @@ namespace AjaxControlToolkit {
             set { AccordionExtender.SuppressHeaderPostbacks = value; }
         }
 
-        // Collection of child panes in the Accordion
+        /// <summary> 
+        /// Collection of child panes in the Accordion
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public AccordionPaneCollection Panes {
@@ -224,8 +256,11 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // Prevent the Controls property from appearing in the editor (so
-        // that people will use the Panes collection instead)
+        
+        /// <summary>
+        ///  Prevent the Controls property from appearing in the editor (so
+        /// that people will use the Panes collection instead)
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override ControlCollection Controls {
             get { return base.Controls; }
@@ -233,7 +268,9 @@ namespace AjaxControlToolkit {
 
         #region DataBinding Properties
 
-        // Template for the Header of databound panes
+        /// <summary>
+        /// Template for the Header of databound panes
+        /// </summary>
         [Browsable(false)]
         [DefaultValue(null)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -243,7 +280,9 @@ namespace AjaxControlToolkit {
             set { _headerTemplate = value; }
         }
 
-        // Template for the Content of databound panes
+        /// <summary>
+        /// Template for the Content of databound panes 
+        /// </summary>
         [Browsable(false)]
         [DefaultValue(null)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -253,8 +292,10 @@ namespace AjaxControlToolkit {
             set { _contentTemplate = value; }
         }
 
-        // Gets or sets the data source that provides data for populating
-        // the list of AccordionPanes.
+        /// <summary>
+        /// Gets or sets the data source that provides data for populating 
+        /// the list of AccordionPanes.
+        /// </summary>
         [Bindable(true)]
         [Category("Data")]
         [DefaultValue(null)]
@@ -271,10 +312,13 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // The ID of the DataControl that this control should use to retrieve
-        // its data source. When the control is bound to a DataControl, it
-        // can retrieve a data source instance on-demand, and thereby attempt
-        // to work in auto-DataBind mode.
+        
+        /// <summary>
+        /// The ID of the DataControl that this control should use to retrieve
+        /// its data source. When the control is bound to a DataControl, it
+        /// can retrieve a data source instance on-demand, and thereby attempt
+        /// to work in auto-DataBind mode.
+        /// </summary>
         [DefaultValue("")]
         [IDReferenceProperty(typeof(DataSourceControl))]
         [Category("Data")]
@@ -286,7 +330,9 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // Member in the DataSource to bind to
+        /// <summary>
+        /// Member in the DataSource to bind to 
+        /// </summary>
         [DefaultValue("")]
         [Category("Data")]
         public virtual string DataMember {
@@ -322,7 +368,7 @@ namespace AjaxControlToolkit {
 
         #endregion
 
-        // OnInit handler to wireup the Page's PreLoad event
+        //OnInit handler to wireup the Page's PreLoad event
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
 
@@ -402,7 +448,7 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // Mark the selected AccordionPane so it does not appear collapsed
+        // Mark the selected AccordionPane so it does not appear collapsed 
         protected override void OnPreRender(EventArgs e) {
             EnsureDataBound();
             base.OnPreRender(e);
@@ -447,8 +493,13 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // Override FindControl to look first at this control, then check each
-        // of its child AccordionPanes for the control
+        
+        /// <summary>
+        /// Override FindControl to look first at this control, then check each
+        /// of its child AccordionPanes for the control
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public override Control FindControl(string id) {
             var ctrl = base.FindControl(id);
             if(ctrl == null)
@@ -460,7 +511,7 @@ namespace AjaxControlToolkit {
             return ctrl;
         }
 
-        // Empty out the child Pane's collection
+        //Empty out the child Pane's collection 
         internal void ClearPanes() {
             for(var i = Controls.Count - 1; i >= 0; i--)
                 if(Controls[i] is AccordionPane)
@@ -689,7 +740,7 @@ namespace AjaxControlToolkit {
         protected virtual void OnDataSourceViewChanged(object sender, EventArgs args) {
             RequiresDataBinding = true;
         }
-        
+
         protected virtual void OnItemCommand(AccordionCommandEventArgs args) {
             if(ItemCommand != null)
                 ItemCommand(this, args);

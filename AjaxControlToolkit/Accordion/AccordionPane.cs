@@ -9,8 +9,10 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    // The AccordionPane control represents a child header/content pair
-    // of the AccordionControl.
+    ///<summary>
+    /// The AccordionPane control represents a child header/content pair
+    /// of the AccordionControl.
+    ///</summary>
     [ToolboxData("<{0}:AccordionPane runat=\"server\"></{0}:AccordionPane>")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AccordionName + Constants.IconPostfix)]
     public class AccordionPane : WebControl {

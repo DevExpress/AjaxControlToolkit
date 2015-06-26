@@ -63,7 +63,7 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("DaysModeTitleFormat", value); }
         }
 
-        /// Whether time should be cleared in edited date/time
+        /// <summary>Whether time should be cleared in edited date/time</summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
         [ClientPropertyName("clearTime")]
@@ -99,7 +99,7 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("FirstDayOfWeek", value); }
         }
 
-        /// The ID of a control to show the calendar popup when clicked. If this value is not set, the calendar will pop up when the textbox receives focus
+        /// <summary>The ID of a control to show the calendar popup when clicked. If this value is not set, the calendar will pop up when the textbox receives focus</summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("button")]
@@ -135,7 +135,7 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // Gets or sets the default view of the calender. The default value is Days.
+        /// Gets or sets the default view of the calender. The default value is Days.
         [DefaultValue(CalendarDefaultView.Days)]
         [ExtenderControlProperty]
         [ClientPropertyName("defaultView")]
