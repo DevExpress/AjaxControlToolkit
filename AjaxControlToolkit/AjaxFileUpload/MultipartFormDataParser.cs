@@ -26,7 +26,8 @@ namespace AjaxControlToolkit {
                             return null;
 
                         // Find start index position of file contents. That should be 2 lines after Content Type.
-                        var startIndex = contentTypeMatch.Index + contentTypeMatch.Length + (EOF + EOF).Length;
+                        var startIndexOld = contentTypeMatch.Index + contentTypeMatch.Length + (EOF + EOF).Length;
+                        var startIndex = GetContentTypeIndex(bytes, encoding, contentTypeMatch.Value) + contentTypeMatch.Length + (EOF + EOF).Length;
 
                         result = new FileHeaderInfo {
                             StartIndex = startIndex,
@@ -40,6 +41,11 @@ namespace AjaxControlToolkit {
             }
 
             return result;
+        }
+
+        static int GetContentTypeIndex(byte[] bytes,  Encoding encoding, string contentTypeString) {
+            var contentTypeBytes = encoding.GetBytes(contentTypeString);
+            return bytes.StartingIndex(contentTypeBytes).First();
         }
 
         static MultipartFormData Parse(byte[] bytes, Encoding encoding) {

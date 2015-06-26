@@ -42,7 +42,7 @@ Uploaded data value
 
             Assert.AreEqual("ºªãõ.txt", result.FileName);
             Assert.AreEqual("text/plain", result.ContentType);
-            Assert.AreEqual(bytes.StartingIndex(dataValueBytes), result.StartIndex);
+            Assert.AreEqual(bytes.StartingIndex(dataValueBytes).First(), result.StartIndex);
         }
 
         [Test]
