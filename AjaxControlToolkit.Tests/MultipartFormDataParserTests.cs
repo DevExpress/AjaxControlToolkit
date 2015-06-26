@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AjaxControlToolkit;
 
 namespace AjaxControlToolkit.Tests {
 
@@ -23,6 +24,25 @@ Uploaded data value
             Assert.AreEqual("AjaxFileUploadTest.txt", result.FileName);
             Assert.AreEqual("text/plain", result.ContentType);
             Assert.AreEqual("Uploaded data value", ieSource.Substring(result.StartIndex, ieSource.Length - result.StartIndex - result.BoundaryDelimiterLength + ("\r\n").Length));
+        }
+
+        [Test]
+        public void ParseHeaderInfoWithUnicode() {
+            const string ieSource = @"-----------------------------7dd312236107a0
+Content-Disposition: form-data; name=""act-file-data""; filename=""ºªãõ.txt""
+Content-Type: text/plain
+
+Uploaded data value
+-----------------------------7dd312236107a0--";
+            var encoding = Encoding.UTF8;
+            var bytes = encoding.GetBytes(ieSource);
+
+            var result = MultipartFormDataParser.ParseHeaderInfo(bytes, encoding);
+            var dataValueBytes = encoding.GetBytes("Uploaded data value");
+
+            Assert.AreEqual("ºªãõ.txt", result.FileName);
+            Assert.AreEqual("text/plain", result.ContentType);
+            Assert.AreEqual(bytes.StartingIndex(dataValueBytes), result.StartIndex);
         }
 
         [Test]
