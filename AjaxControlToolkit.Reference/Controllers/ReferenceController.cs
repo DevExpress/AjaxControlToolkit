@@ -113,7 +113,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
             var types = doc.Types.FirstOrDefault(t => t.Name == typeName);
 
-            return Content(Template.ToString(types));
+            return Content(Template.Render(types));
         }
 
         Documentation GetDoc() {

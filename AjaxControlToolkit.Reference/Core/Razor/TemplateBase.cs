@@ -35,7 +35,7 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
             Buffer.Append(suffix.Value);
         }
 
-        public override string ToString() {
+        public virtual string Render() {
             Buffer.Clear();
             Execute();
 
@@ -47,7 +47,7 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
                 _cachedLayout = Layout;
             }
 
-            return _cachedLayoutInstance.ToString(Buffer.ToString());
+            return _cachedLayoutInstance.Render(Buffer.ToString());
         }
 
         public abstract void Execute();

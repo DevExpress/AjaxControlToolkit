@@ -9,9 +9,9 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
 
         public T Model { get; private set; }
 
-        public string ToString(T model) {
+        public string Render(T model) {
             Model = model;
-            return base.ToString();
+            return Render();
         }
     }
 

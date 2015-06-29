@@ -13,9 +13,9 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
             return _body;
         }
 
-        public string ToString(string body) {
+        public string Render(string body) {
             _body = body;
-            return base.ToString();
+            return Render();
         }
     }
 
