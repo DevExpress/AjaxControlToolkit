@@ -7,11 +7,15 @@ using System.Web.WebPages;
 namespace AjaxControlToolkit.Reference.Core.Razor {
 
     public abstract class LayoutTemplateBase : TemplateBase {
-
-        public string Body { get; set; }
+        string _body;
 
         public string RenderBody() {
-            return Body;
+            return _body;
+        }
+
+        public string ToString(string body) {
+            _body = body;
+            return base.ToString();
         }
     }
 

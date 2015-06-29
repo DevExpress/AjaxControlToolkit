@@ -84,7 +84,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ReferenceController.cs" />
     <Compile Include="Core\ClientMethodDoc.cs" />
     <Compile Include="Core\ClientPropertyDoc.cs" />

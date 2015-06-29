@@ -12,6 +12,8 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
 
         protected StringBuilder Buffer { get; private set; }
         public string Layout { get; set; }
+        string _cachedLayout;
+        LayoutTemplateBase _cachedLayoutInstance;
 
         public TemplateBase() {
             Buffer = new StringBuilder();
@@ -40,7 +42,12 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
             if(String.IsNullOrWhiteSpace(Layout))
                 return Buffer.ToString();
 
-            return Engine.Instance.RenderLayoutFromFile(Layout, Buffer.ToString());
+            if(_cachedLayoutInstance == null || Layout != _cachedLayout) {
+                _cachedLayoutInstance = Engine.Instance.CreateLayoutInstance(Layout);
+                _cachedLayout = Layout;
+            }
+
+            return _cachedLayoutInstance.ToString(Buffer.ToString());
         }
 
         public abstract void Execute();

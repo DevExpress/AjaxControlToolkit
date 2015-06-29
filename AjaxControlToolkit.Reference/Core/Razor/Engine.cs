@@ -24,44 +24,24 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
             get { return _instance.Value; }
         }
 
-        public string LoadFile(string path) {
-            return File.ReadAllText(path.Replace("~", _rootDir));
-        }
-
-        public string RenderLayoutFromFile(string path, string body) {
-            return RenderLayout(LoadFile(path), body);
-        }
-
-        public string RenderPageFromFile<T>(string path, T model) {
-            return RenderPage(LoadFile(path), model);
-        }
-
-        public string RenderLayout(string layout, string body) {
-            var instance = CreateTemplateInstance<LayoutTemplateBase>(layout,
-                GetReferencedAssemblies(typeof(LayoutTemplateBase)),
-                GetTypeName(typeof(LayoutTemplateBase)));
-
-            instance.Body = body;
-
-            return instance.ToString();
-        }
-
-        public string RenderPage<T>(string template, T model) {
+        public PageTemplateBase<T> CreateTemplateInstance<T>(string templateFileName) {
             var referencedAssemblies = new List<string>();
             referencedAssemblies.Add(Assembly.GetExecutingAssembly().Location);
             referencedAssemblies.AddRange(GetReferencedAssemblies(typeof(PageTemplateBase<T>)));
 
-            var instance = CreateTemplateInstance<PageTemplateBase<T>>(
-                CleanTemplate(template),
+            return CreateTemplateInstance<PageTemplateBase<T>>(
+                templateFileName,
                 referencedAssemblies,
                 GetTypeName(typeof(PageTemplateBase<T>)));
-
-            instance.Model = model;
-
-            return instance.ToString();
         }
 
-        T CreateTemplateInstance<T>(string template, IEnumerable<string> referencedAssemblies, string baseClassName) where T : TemplateBase {
+        public LayoutTemplateBase CreateLayoutInstance(string layoutFileName) {
+            return CreateTemplateInstance<LayoutTemplateBase>(layoutFileName,
+                GetReferencedAssemblies(typeof(LayoutTemplateBase)),
+                GetTypeName(typeof(LayoutTemplateBase)));
+        }
+
+        T CreateTemplateInstance<T>(string templateFileName, IEnumerable<string> referencedAssemblies, string baseClassName) where T : TemplateBase {
             var templateClassName = "Template";
             var templateNamespace = "Razor";
 
@@ -73,7 +53,8 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
 
             AddNamespaces(host);
 
-            var razorResult = new RazorTemplateEngine(host).GenerateCode(template);
+            var template = File.ReadAllText(templateFileName.Replace("~", _rootDir));
+            var razorResult = new RazorTemplateEngine(host).GenerateCode(CleanTemplate(template));
 
             var codeProvider = new CSharpCodeProvider();
             var compilerResults = codeProvider.CompileAssemblyFromDom(new CompilerParameters(referencedAssemblies.Distinct().ToArray()), razorResult.GeneratedCode);

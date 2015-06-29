@@ -10,12 +10,28 @@ using System.Web.Mvc;
 using System.Xml.Linq;
 
 namespace AjaxControlToolkit.Reference.Controllers {
-    public class ReferenceController : BaseController {
-        const string ActNamespace = "AjaxControlToolkit";
-        //
-        // GET: /Reference/
 
-        public ContentResult Index() {
+    public class ReferenceController : Controller {
+        const string ActNamespace = "AjaxControlToolkit";
+
+        static Lazy<PageTemplateBase<TypeDoc>> _templateLazy = new Lazy<PageTemplateBase<TypeDoc>>(CreateTemplate);
+        static PageTemplateBase<TypeDoc> Template {
+            get { return _templateLazy.Value; }
+        }
+
+        static PageTemplateBase<TypeDoc> CreateTemplate() {
+            var context = System.Web.HttpContext.Current;
+
+            var path = Path.Combine(
+                context.Server.MapPath("~/Views"),
+                "Reference",
+                "Type.cshtml");
+
+            var engine = new Engine(context.ApplicationInstance.Request.PhysicalPath);
+            return engine.CreateTemplateInstance<TypeDoc>(path);
+        }
+
+        public ActionResult Index() {
             var typeNames = new string[] {
                 "Accordion",
                 "AjaxFileUpload",
@@ -71,7 +87,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
             var types = doc.Types.Where(t => typeNames.Contains(t.Name)).Select(t => t.Name);
 
-            return CustomContent(types);
+            return View(types);
         }
 
         public ContentResult Type(string typeName) {
@@ -95,9 +111,9 @@ namespace AjaxControlToolkit.Reference.Controllers {
                 doc.Add(clientMembers);
             }
 
-            var model = doc.Types.FirstOrDefault(t => t.Name == typeName);
+            var types = doc.Types.FirstOrDefault(t => t.Name == typeName);
 
-            return CustomContent(model);
+            return Content(Template.ToString(types));
         }
 
         Documentation GetDoc() {
@@ -106,7 +122,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
             var members = xml.Root.Element("members").Elements().Select(el => new RawDoc(el.Attribute("name").Value) {
                 Elements = el.Elements()
-            }).OrderBy(el=>el.TargetFullName);
+            }).OrderBy(el => el.TargetFullName);
 
             doc.Add(members);
             return doc;
@@ -123,6 +139,6 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
             return xml;
         }
-
     }
+
 }
