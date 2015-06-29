@@ -37,14 +37,13 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
         }
 
         public string RenderLayout(string layout, string body) {
-            var instance = CreateTemplateInstance(layout,
+            var instance = CreateTemplateInstance<LayoutTemplateBase>(layout,
                 GetReferencedAssemblies(typeof(LayoutTemplateBase)),
                 GetTypeName(typeof(LayoutTemplateBase)));
 
-            var templateInstance = (LayoutTemplateBase)instance;
-            templateInstance.Body = body;
+            instance.Body = body;
 
-            return templateInstance.ToString();
+            return instance.ToString();
         }
 
         public string RenderPage<T>(string template, T model) {
@@ -52,18 +51,17 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
             referencedAssemblies.Add(Assembly.GetExecutingAssembly().Location);
             referencedAssemblies.AddRange(GetReferencedAssemblies(typeof(PageTemplateBase<T>)));
 
-            var instance = CreateTemplateInstance(
+            var instance = CreateTemplateInstance<PageTemplateBase<T>>(
                 CleanTemplate(template),
                 referencedAssemblies,
                 GetTypeName(typeof(PageTemplateBase<T>)));
 
-            var templateInstance = (PageTemplateBase<T>)instance;
-            templateInstance.Model = model;
+            instance.Model = model;
 
-            return templateInstance.ToString();
+            return instance.ToString();
         }
 
-        object CreateTemplateInstance(string template, IEnumerable<string> referencedAssemblies, string baseClassName) {
+        T CreateTemplateInstance<T>(string template, IEnumerable<string> referencedAssemblies, string baseClassName) where T : TemplateBase {
             var templateClassName = "Template";
             var templateNamespace = "Razor";
 
@@ -83,7 +81,7 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
             if(compilerResults.Errors.HasErrors)
                 throw new CompileException(compilerResults.Errors, codeProvider.GetGeneratedCode(razorResult));
 
-            return compilerResults.CompiledAssembly.CreateInstance(String.Format("{0}.{1}", templateNamespace, templateClassName));
+            return compilerResults.CompiledAssembly.CreateInstance(String.Format("{0}.{1}", templateNamespace, templateClassName)) as T;
         }
 
         IEnumerable<string> GetReferencedAssemblies(Type type) {
