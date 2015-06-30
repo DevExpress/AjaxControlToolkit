@@ -22,13 +22,14 @@ namespace AjaxControlToolkit.Reference.Controllers {
         static PageTemplateBase<TypeDoc> CreateTemplate() {
             var context = System.Web.HttpContext.Current;
 
-            var path = Path.Combine(
-                context.Server.MapPath("~/Views"),
-                "Reference",
-                "Type.cshtml");
+            var rootDir = Path.Combine(
+                Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName,
+                "AjaxControlToolkit.Reference"
+            );
 
-            var engine = new Engine(context.ApplicationInstance.Request.PhysicalPath);
-            return engine.CreateTemplateInstance<TypeDoc>(path);
+            var engine = new Engine(rootDir);
+#warning hardcoded!
+            return engine.CreateTemplateInstance<TypeDoc>("~/Views/Reference/Type.cshtml");
         }
 
         public ActionResult Index() {

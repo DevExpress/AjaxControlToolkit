@@ -19,11 +19,6 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
             _rootDir = rootDir;
         }
 
-        static Lazy<Engine> _instance = new Lazy<Engine>(() => new Engine(AppDomain.CurrentDomain.BaseDirectory), true);
-        public static Engine Instance {
-            get { return _instance.Value; }
-        }
-
         public PageTemplateBase<T> CreateTemplateInstance<T>(string templateFileName) {
             var referencedAssemblies = new List<string>();
             referencedAssemblies.Add(Assembly.GetExecutingAssembly().Location);
@@ -62,7 +57,11 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
             if(compilerResults.Errors.HasErrors)
                 throw new CompileException(compilerResults.Errors, codeProvider.GetGeneratedCode(razorResult));
 
-            return compilerResults.CompiledAssembly.CreateInstance(String.Format("{0}.{1}", templateNamespace, templateClassName)) as T;
+            var result = compilerResults.CompiledAssembly.CreateInstance(String.Format("{0}.{1}", templateNamespace, templateClassName)) as T;
+
+            result.RootDir = _rootDir;
+
+            return result;
         }
 
         IEnumerable<string> GetReferencedAssemblies(Type type) {

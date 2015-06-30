@@ -44,6 +44,13 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AjaxControlToolkit.Reference\AjaxControlToolkit.Reference.csproj">
+      <Project>{f59259df-e8b8-483c-8019-67a9c78bb6ec}</Project>
+      <Name>AjaxControlToolkit.Reference</Name>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

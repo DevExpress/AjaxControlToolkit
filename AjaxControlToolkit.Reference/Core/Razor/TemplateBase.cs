@@ -9,11 +9,12 @@ using System.Web.WebPages.Instrumentation;
 namespace AjaxControlToolkit.Reference.Core.Razor {
 
     public abstract class TemplateBase {
+        string _cachedLayout;
+        LayoutTemplateBase _cachedLayoutInstance;
 
         protected StringBuilder Buffer { get; private set; }
         public string Layout { get; set; }
-        string _cachedLayout;
-        LayoutTemplateBase _cachedLayoutInstance;
+        public string RootDir { get; set; }
 
         public TemplateBase() {
             Buffer = new StringBuilder();
@@ -35,7 +36,7 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
             Buffer.Append(suffix.Value);
         }
 
-        public virtual string Render() {
+        protected string Render() {
             Buffer.Clear();
             Execute();
 
@@ -43,7 +44,8 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
                 return Buffer.ToString();
 
             if(_cachedLayoutInstance == null || Layout != _cachedLayout) {
-                _cachedLayoutInstance = Engine.Instance.CreateLayoutInstance(Layout);
+                var engine = new Engine(RootDir);
+                _cachedLayoutInstance = engine.CreateLayoutInstance(Layout);
                 _cachedLayout = Layout;
             }
 
