@@ -314,16 +314,48 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         }
     },
 
+    _placeImageOver: function(underImage, overImage) {
+        overImage.style.border = null;
+        overImage.style.position = "absolute";
+        overImage.style.marginLeft = "-" + (underImage.width + 1) + "px";
+        overImage.style.marginTop = "1px";
+        overImage.alt = "";
+
+        underImage.parentNode.insertBefore(overImage, underImage.nextSibling);
+    },
+
+    _fadeIn: function(image) {
+        image.className += " invisible";
+        setTimeout(function() {
+            image.className = "ajax__slide_show_fadeIn";
+        }, 20);
+    },
+
+    _fadeOut: function(image) {
+        image.className += " visible";
+        setTimeout(function() {
+            image.className = "ajax__slide_show_fadeOut";
+        }, 20);
+    },
+
     updateImage: function(value) {        
         if(value) {
             if(this.raiseSlideChanging(this._currentValue, value))
                 return;
+
             if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.FadeInOut) {
-                this._elementImage.className = "ajax__slide_show_fadeIn";
-                var me = this;
+                var fadeOutImage = this._elementImage.cloneNode(),
+                    fadeInImage = this._elementImage;
+
+                this._placeImageOver(fadeInImage, fadeOutImage);
+
+                this.setImage(value);
+
+                this._fadeIn(fadeInImage);
+                this._fadeOut(fadeOutImage);
+
                 setTimeout(function() {
-                    me._elementImage.className = "ajax__slide_show_fadeOut";
-                    me.setImage(value);
+                    fadeInImage.parentNode.removeChild(fadeOutImage);
                 }, 1000);
             }
             else if(this._slideShowAnimationType == Sys.Extended.UI.SlideShowAnimationType.ScaleX) {
