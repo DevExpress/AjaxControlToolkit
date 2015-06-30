@@ -398,19 +398,20 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
 
     setImage: function(value) {
         this._currentValue = value;
+
         this._elementImage.src = value.ImagePath;
         this._elementImage.alt = value.Name;
 
         if(this._imageDescriptionLabel)
-            this._imageDescriptionLabel.innerHTML = value.Description ? value.Description : "";
-        if(this._imageTitleLabel)
-            this._imageTitleLabel.innerHTML = value.Name ? value.Name : "";
+            this._imageDescriptionLabel.innerHTML = value.Description || "";
 
-        if(value.Url != null) {
+        if(this._imageTitleLabel)
+            this._imageTitleLabel.innerHTML = value.Name || "";
+
+        if(value.Url) {
             this._elementImage.style.cursor = 'pointer';
             this._elementImage.onclick = function() { window.open(value.Url); }
-        }
-        else {
+        } else {
             this._elementImage.style.cursor = 'auto';
             this._elementImage.onclick = function() { }
         }
