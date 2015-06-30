@@ -31,13 +31,13 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         protected global::System.Web.UI.WebControls.Image TestImage;
         
         /// <summary>
-        /// imageDescription control.
+        /// ImageDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label imageDescription;
+        protected global::System.Web.UI.WebControls.Label ImageDescription;
         
         /// <summary>
         /// PrevButton control.
@@ -49,13 +49,13 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         protected global::System.Web.UI.WebControls.Button PrevButton;
         
         /// <summary>
-        /// PlayButton control.
+        /// PlayStopButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button PlayButton;
+        protected global::System.Web.UI.WebControls.Button PlayStopButton;
         
         /// <summary>
         /// NextButton control.

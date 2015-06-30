@@ -28,43 +28,226 @@
         Style="border: 1px solid black;"
         AlternateText="Blue Hills image" />
 
-    <asp:Label runat="server" ID="imageDescription" CssClass="slide-description"></asp:Label>
+    <asp:Label runat="server" ID="ImageDescription" CssClass="slide-description"></asp:Label>
     <br />
     <br />
     <asp:Button runat="Server" ID="PrevButton" Text="Previous" Font-Size="Larger" />
-    <asp:Button runat="Server" ID="PlayButton" Text="Play" Font-Size="Larger" />
+    <asp:Button runat="Server" ID="PlayStopButton" Text="Play" Font-Size="Larger" />
     <asp:Button runat="Server" ID="NextButton" Text="Next" Font-Size="Larger" />
 
-    <act:SlideShowExtender id="TestSlideShow" runat="server"
-        TargetControlId="TestImage"
+    <act:SlideShowExtender ID="TestSlideShow" runat="server"
+        TargetControlID="TestImage"
         SlideShowServiceMethod="GetSlides"
         AutoPlay="true"
-        ImageTitleLabelID="imageTitle"
-        ImageDescriptionLabelID="imageDescription"
-        NextButtonId="nextButton"
+        ImageTitleLabelID="ImageTitle"
+        ImageDescriptionLabelID="ImageDescription"
+        NextButtonID="NextButton"
         PlayButtonText="Play"
         StopButtonText="Stop"
-        PreviousButtonID="prevButton"
-        PlayButtonId="playButton"
+        PreviousButtonID="PrevButton"
+        PlayButtonID="PlayStopButton"
         Loop="true" SlideShowAnimationType="SlideRight" />
 
     <script>
         describe("SlideShow", function() {
 
-            beforeEach(function() {
+            var PLAY_BUTTON_TEXT = "Play",
+                STOP_BUTTON_TEXT = "Stop",
+                ANIMATION_SPEED = 1000;
+
+            var IMAGES = [
+                new CreateImage("Images/blue_hills.jpg", "Blue Hills", "Go Blue", "Images/blue_hills.jpg"),
+                new CreateImage("Images/sunset.jpg", "Sunset", "Setting sun", "Images/sunset.jpg"),
+                new CreateImage("Images/winter.jpg", "Winter", "Wintery...", "Images/winter.jpg"),
+                new CreateImage("Images/water_lillies.jpg", "Water Lillies", "Lillies in the water", "Images/water_lillies.jpg"),
+                new CreateImage("Images/vertical_picture.jpg", "Sedona", "Portrait style picture", "Images/vertical_picture.jpg")
+            ];
+
+            function CreateImage(path, name, description, url) {
+                this.path = path;
+                this.name = name;
+                this.description = description;
+                this.url = url;
+            }
+
+            beforeEach(function(done) {
                 this.extender = $find("<%= TestSlideShow.ClientID %>");
                 this.element = this.extender._element;
-                
-                this.$playButton = $("#<%= PlayButton.ClientID %>");
+
+                this.$playStopButton = $("#<%= PlayStopButton.ClientID %>");
                 this.$prevButton = $("#<%= PrevButton.ClientID %>");
                 this.$nextButton = $("#<%= NextButton.ClientID %>");
+
+                this.imageTitleLabel = this.extender._imageTitleLabel;
+                this.imageDescriptionLabel = this.extender._imageDescriptionLabel;
+
+                var that = this;
+                setTimeout(function() {
+                    that.images = that.extender._images;
+
+                    done();
+                }, 20); // for control initialization
             });
 
-            it("disables prev and next buttons after play button pressed", function() {
-                this.$playButton.click();
-                
-                expect(this.$prevButton.is(":disabled")).toBeTruthy();
-                expect(this.$nextButton.is(":disabled")).toBeTruthy();
+            it("enables/disables prev and next buttons after play/stop button pressed", function(done) {
+                this.$playStopButton.click();
+
+                expect(this.$playStopButton.val()).toBe(PLAY_BUTTON_TEXT);
+
+                expect(this.$prevButton.is(":enabled")).toBeTruthy();
+                expect(this.$nextButton.is(":enabled")).toBeTruthy();
+
+                var that = this;
+                setTimeout(function() { //TODO: check if this needed
+                    that.$playStopButton.click();
+
+                    expect(that.$playStopButton.val()).toBe(STOP_BUTTON_TEXT);
+
+                    expect(that.$prevButton.is(":disabled")).toBeTruthy();
+                    expect(that.$nextButton.is(":disabled")).toBeTruthy();
+
+                    done();
+                }, 20);
+            });
+
+            it("gets all images from service method in proper order with correct attributes", function() {
+                expect(IMAGES.length).toBe(this.images.length);
+
+                for(var i = 0; i < IMAGES.length; i++) {
+                    var imageLink = $(this.images[i]).find("a");
+                    var img = $(imageLink).find("img");
+
+                    expect(IMAGES[i].url).toBe($(imageLink).attr("href"));
+                    expect(IMAGES[i].path).toBe($(img).attr("src"));
+                }
+            });
+
+            it("calls raisePropertyChanged event", function() {
+                var MethodValuePair = function(methodName, newValue) {
+                    this.methodName = methodName;
+                    this.newValue = newValue;
+                };
+
+                var changePropertyMethods = [
+                    new MethodValuePair("set_contextKey", "_" + this.extender.get_contextKey()),
+                    new MethodValuePair("set_useContextKey", !this.extender.get_useContextKey()),
+                    new MethodValuePair("set_imageHeight", this.extender.get_imageHeight() + 1),
+                    new MethodValuePair("set_imageWidth", this.extender.get_imageWidth() + 1),
+                    new MethodValuePair("set_imageDescriptionLabelID", "_" + this.extender.get_imageDescriptionLabelID()),
+                    new MethodValuePair("set_imageTitleLabelID", "_" + this.extender.get_imageTitleLabelID()),
+                    new MethodValuePair("set_nextButtonID", "_" + this.extender.get_nextButtonID()),
+                    new MethodValuePair("set_playButtonID", "_" + this.extender.get_playButtonID()),
+                    new MethodValuePair("set_playButtonText", "_" + this.extender.get_playButtonText()),
+                    new MethodValuePair("set_stopButtonText", "_" + this.extender.get_stopButtonText()),
+                    new MethodValuePair("set_playInterval", this.extender.get_playInterval() + 1),
+                    new MethodValuePair("set_previousButtonID", "_" + this.extender.get_previousButtonID()),
+                    new MethodValuePair("set_slideShowServicePath", "_" + this.extender.get_slideShowServicePath()),
+                    new MethodValuePair("set_slideShowServiceMethod", "_" + this.extender.get_slideShowServiceMethod()),
+                    new MethodValuePair("set_loop", !this.extender.get_loop()),
+                    new MethodValuePair("set_autoPlay", !this.extender.get_autoPlay()),
+                    new MethodValuePair("set_slideShowAnimationType", this.extender.get_slideShowAnimationType() + 1)
+                ]
+
+                spyOn(this.extender, "raisePropertyChanged");
+
+                for(var i = 0; i < changePropertyMethods.length; i++) {
+                    this.extender[changePropertyMethods[i].methodName](changePropertyMethods[i].newValue);
+
+                    expect(this.extender.raisePropertyChanged).toHaveBeenCalled();
+                }
+            });
+
+            it("next button invokes '_clickNext' method", function() {
+                this.$playStopButton.click();
+
+                spyOn(this.extender, "_clickNext");
+                this.$nextButton.click();
+
+                expect(this.extender._clickNext).toHaveBeenCalled();
+            });
+
+            it("next button replaces image with the next one", function(done) {
+                this.$playStopButton.click();
+
+                var nextIndex = this.extender._currentIndex + 1;
+
+                this.$nextButton.click();
+
+                var that = this;
+                setTimeout(function() {
+                    expect(that.extender._currentIndex).toBe(nextIndex);
+
+                    var imageLink = $(that.extender._currentImage).find("a"),
+				        img = $(imageLink).find("img");
+
+                    expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
+                    expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
+
+                    expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
+                    expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
+
+                    done();
+                }, ANIMATION_SPEED + 200);
+            });
+
+            it("previous button invokes '_clickPrevious' method", function() {
+                this.$playStopButton.click();
+
+                spyOn(this.extender, "_clickPrevious");
+                this.$prevButton.click();
+
+                expect(this.extender._clickPrevious).toHaveBeenCalled();
+            });
+
+            it("previous button replaces image with the previous one", function(done) {
+                this.$playStopButton.click();
+
+                var prevIndex = this.extender._currentIndex - 1;
+                if(prevIndex < 0)
+                    prevIndex = this.extender._slides.length - 1;
+
+                this.$prevButton.click();
+
+                var that = this;
+                setTimeout(function() {
+                    expect(that.extender._currentIndex).toBe(prevIndex);
+
+                    var imageLink = $(that.extender._currentImage).find("a"),
+				        img = $(imageLink).find("img");
+
+                    expect(IMAGES[prevIndex].url).toBe($(imageLink).attr("href"));
+                    expect(IMAGES[prevIndex].path).toBe($(img).attr("src"));
+
+                    expect(IMAGES[prevIndex].name).toBe($(that.imageTitleLabel).text());
+                    expect(IMAGES[prevIndex].description).toBe($(that.imageDescriptionLabel).text());
+
+                    done();
+                }, ANIMATION_SPEED + 200);
+            });
+
+            it("play button invokes play function when clicked", function() {
+                spyOn(this.extender, "_play");
+                this.$playStopButton.click();
+
+                expect(this.extender._play).toHaveBeenCalled();
+            });
+
+            it("play button replaces image with the next one", function(done) {
+                var nextIndex = this.extender._currentIndex + 1;
+
+                var that = this;
+                setTimeout(function() {
+                    var imageLink = $(that.extender._currentImage).find("a"),
+				        img = $(imageLink).find("img");
+
+                    expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
+                    expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
+
+                    expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
+                    expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
+
+                    done();
+                }, ANIMATION_SPEED + this.extender._playInterval + 300);
             });
         });
     </script>
