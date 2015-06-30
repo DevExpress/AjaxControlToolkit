@@ -314,14 +314,38 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         }
     },
 
+    _getXYPosition: function(element) {
+        if (!element)
+           return { x : 0, y : 0 };
+
+        var xy = {
+            "x" : element.offsetLeft,
+            "y" : element.offsetTop
+        }
+
+        var parent = this._getXYPosition(element.offsetParent);
+        for (var key in parent)
+           xy[key] += parent[key];
+
+        return xy;
+    },
+
     _placeImageOver: function(underImage, overImage) {
         overImage.style.border = null;
         overImage.style.position = "absolute";
-        overImage.style.marginLeft = "-" + (underImage.width + 1) + "px";
-        overImage.style.marginTop = "1px";
+
+        var coordinates = this._getXYPosition(underImage);
+        var x = coordinates.x;
+        var y = coordinates.y;
+
+        overImage.style.left = x + "px";
+        overImage.style.top = y + "px";
         overImage.alt = "";
 
-        underImage.parentNode.insertBefore(overImage, underImage.nextSibling);
+        overImage.style.marginLeft = "1px";
+        overImage.style.marginTop = "1px";
+
+        underImage.parentNode.appendChild(overImage);
     },
 
     _fadeIn: function(image) {
@@ -338,7 +362,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         }, 20);
     },
 
-    updateImage: function(value) {        
+    updateImage: function(value) { 
         if(value) {
             if(this.raiseSlideChanging(this._currentValue, value))
                 return;
