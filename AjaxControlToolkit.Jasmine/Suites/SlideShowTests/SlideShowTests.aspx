@@ -122,7 +122,7 @@
                 }
             });
 
-            it("calls raisePropertyChanged event", function() {
+            it("calls 'raisePropertyChanged' method", function() {
                 var MethodValuePair = function(methodName, newValue) {
                     this.methodName = methodName;
                     this.newValue = newValue;
@@ -157,7 +157,7 @@
                 }
             });
 
-            it("next button invokes '_clickNext' method", function() {
+            it("next button calls '_clickNext' method", function() {
                 this.$playStopButton.click();
 
                 spyOn(this.extender, "_clickNext");
@@ -190,7 +190,7 @@
                 }, ANIMATION_SPEED + 200);
             });
 
-            it("previous button invokes '_clickPrevious' method", function() {
+            it("previous button calls '_clickPrevious' method", function() {
                 this.$playStopButton.click();
 
                 spyOn(this.extender, "_clickPrevious");
@@ -225,7 +225,7 @@
                 }, ANIMATION_SPEED + 200);
             });
 
-            it("play button invokes play function when clicked", function() {
+            it("play button calls '_play' function when clicked", function() {
                 spyOn(this.extender, "_play");
                 this.$playStopButton.click();
 
@@ -248,6 +248,50 @@
 
                     done();
                 }, ANIMATION_SPEED + this.extender._playInterval + 300);
+            });
+
+            it("'setImage' method calls 'raiseSlideChanged' and 'resetButtons'method", function() {
+                spyOn(this.extender, "raiseSlideChanged");
+                spyOn(this.extender, "resetButtons");
+
+                var slide = this.extender._slides[1];
+                this.extender.setImage(slide);
+
+                expect(this.extender.raiseSlideChanged).toHaveBeenCalled();
+                expect(this.extender.resetButtons).toHaveBeenCalled();
+            });
+
+            it("'setImage' method sets pointer cursor to its '_elementImage'", function() {
+                var slide = this.extender._slides[1];
+                slide.Url = null;
+
+                this.extender.setImage(slide);
+
+                expect(this.extender._elementImage.style.cursor).toBe("auto");
+
+                slide.Url = "http://someurl.com";
+
+                this.extender.setImage(slide);
+
+                expect(this.extender._elementImage.style.cursor).toBe("pointer");
+            });
+
+            it("'setImage' method sets description label properly", function() {
+                var slide = this.extender._slides[1];
+                slide.Description = "some description text";
+
+                this.extender.setImage(slide);
+
+                expect(this.imageDescriptionLabel.innerHTML).toBe(slide.Description);
+            });
+
+            it("'setImage' method sets title label properly", function() {
+                var slide = this.extender._slides[1];
+                slide.Name = "some name";
+
+                this.extender.setImage(slide);
+
+                expect(this.imageTitleLabel.innerHTML).toBe(slide.Name);
             });
         });
     </script>
