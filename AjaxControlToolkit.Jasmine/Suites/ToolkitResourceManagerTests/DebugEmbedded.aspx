@@ -19,7 +19,7 @@
                     expect(extender.ScriptSource).toBe("Embedded");
                 });
 
-                it("loads embedded release script", function() {
+                it("loads embedded debug script", function() {
                     expect(Sys.Extended.UI.BehaviorBase).not.toBeUndefined();
                 })
 
