@@ -21,7 +21,7 @@ namespace AjaxControlToolkit {
             _cssCache = new Dictionary<Type, List<ResourceEntry>>();
 
         static ToolkitResourceManager() {
-            if(AjaxControlToolkitConfigSection.Current.UseStaticResources)
+            if(ToolkitConfig.UseStaticResources)
                 RegisterScriptMappings();
         }
 
@@ -30,8 +30,8 @@ namespace AjaxControlToolkit {
         }
 
         public static bool RenderStyleLinks {
-            get { return GetContextFlag(ContextKey_UseEmbeddedStyles, AjaxControlToolkitConfigSection.Current.RenderStyleLinks); }
-            set { SetContextFlag(ContextKey_UseEmbeddedStyles, AjaxControlToolkitConfigSection.Current.RenderStyleLinks, value); }
+            get { return GetContextFlag(ContextKey_UseEmbeddedStyles, ToolkitConfig.RenderStyleLinks); }
+            set { SetContextFlag(ContextKey_UseEmbeddedStyles, ToolkitConfig.RenderStyleLinks, value); }
         }
 
         // Scripts
@@ -133,7 +133,7 @@ namespace AjaxControlToolkit {
                 return FormatStyleVirtualPath(name, minified).Replace("~/", prefix);
             }
 
-            return AjaxControlToolkitConfigSection.Current.UseStaticResources
+            return ToolkitConfig.UseStaticResources
                 ? FormatStyleVirtualPath(name, minified)
                 : control.Page.ClientScript.GetWebResourceUrl(controlType, FormatStyleResourceName(name, minified));
         }
@@ -223,7 +223,7 @@ namespace AjaxControlToolkit {
             if(IsCdnEnabled())
                 return (Constants.ImagesVirtualPath + imageName).Replace("~/", Constants.CdnPrefix);
 
-            if(AjaxControlToolkitConfigSection.Current.UseStaticResources)
+            if(ToolkitConfig.UseStaticResources)
                 if(resolveClientUrlForStatic)
                     return control.Page.ResolveClientUrl(Constants.ImagesVirtualPath + imageName);
                 else

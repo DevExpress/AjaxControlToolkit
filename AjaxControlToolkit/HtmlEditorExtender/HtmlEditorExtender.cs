@@ -34,10 +34,10 @@ namespace AjaxControlToolkit {
 
         static IHtmlSanitizer CreateSanitizer() {
 
-            if(String.IsNullOrEmpty(AjaxControlToolkitConfigSection.Current.HtmlSanitizer))
+            if(String.IsNullOrEmpty(ToolkitConfig.HtmlSanitizer))
                 return null;
 
-            var sanitizerType = Type.GetType(AjaxControlToolkitConfigSection.Current.HtmlSanitizer);
+            var sanitizerType = Type.GetType(ToolkitConfig.HtmlSanitizer);
             var sanitizer = Activator.CreateInstance(sanitizerType);
 
             return (IHtmlSanitizer)sanitizer;

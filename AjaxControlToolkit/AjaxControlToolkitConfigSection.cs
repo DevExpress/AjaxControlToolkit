@@ -2,26 +2,10 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
-using System.Web.Configuration;
 
 namespace AjaxControlToolkit {
 
     public class AjaxControlToolkitConfigSection : ConfigurationSection {
-        static Lazy<AjaxControlToolkitConfigSection> _configSection = new Lazy<AjaxControlToolkitConfigSection>(GetSection, true);
-
-        static AjaxControlToolkitConfigSection GetSection() {
-            var ajaxControlToolkitConfig = (AjaxControlToolkitConfigSection)WebConfigurationManager.GetSection("ajaxControlToolkit");
-
-            if(ajaxControlToolkitConfig == null)
-                return new AjaxControlToolkitConfigSection();
-
-            return ajaxControlToolkitConfig;
-        }
-
-        public static AjaxControlToolkitConfigSection Current {
-            get { return _configSection.Value; }
-        }
 
         [ConfigurationProperty("useStaticResources", DefaultValue = false)]
         public bool UseStaticResources {
