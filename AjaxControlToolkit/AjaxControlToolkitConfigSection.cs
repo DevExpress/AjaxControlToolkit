@@ -24,5 +24,11 @@ namespace AjaxControlToolkit {
             get { return (string)base["htmlSanitizer"]; }
             set { base["htmlSanitizer"] = value; }
         }
+
+        [ConfigurationProperty("customControls", IsDefaultCollection = false)]
+        [ConfigurationCollection(typeof(CustomControlsCollection))]
+        public CustomControlsCollection CustomControls {
+            get { return (CustomControlsCollection)base["customControls"]; }
+        }
     }
 }
