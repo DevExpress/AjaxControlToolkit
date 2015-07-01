@@ -21,6 +21,21 @@
                     expect(embeddedScripts.length).toBe(0);
                 });
 
+                it("does not load unbundled scripts", function() {
+                    var scripts = [].filter.call(document.scripts, function(script) {
+                        return script.attributes["src"] &&
+                            !/\/Scripts\/AjaxControlToolkit\/Bundle\?v=.+/.test(script.attributes["src"].value) &&
+                            !/\/ScriptResource/.test(script.attributes["src"].value) &&
+                            !/\/Vendor/.test(script.attributes["src"].value) &&
+                            !/\/TestUtils/.test(script.attributes["src"].value) &&
+                            !/MicrosoftAjax.js$/.test(script.attributes["src"].value) &&
+                            !/MicrosoftAjaxWebForms.js$/.test(script.attributes["src"].value) &&
+                            !/\/WebResource.axd\?d=/.test(script.attributes["src"].value);
+                    });
+
+                    expect(scripts.length).toBe(0);
+                });
+
                 it("loads one bundle", function() {
                     var bundles = [].filter.call(document.scripts, function(script) {
                         return script.attributes["src"] && /\/Scripts\/AjaxControlToolkit\/Bundle\?v=.+/.test(script.attributes["src"].value);
@@ -29,14 +44,14 @@
                     expect(bundles.length).toBe(1);
                 });
 
-                it("loads static debug custom script", function() {
+                it("includes custom script in bundle", function() {
                     var extender = Sys.Extended.UI.TestExtender;
 
                     expect(extender.ScriptMode).toBe("Debug");
                     expect(extender.ScriptSource).toBe("Static");
                 });
 
-                it("loads debug base script", function() {
+                it("includes base script in bundle", function() {
                     var base = Sys.Extended.UI.BehaviorBase;
 
                     expect(base.ScriptSource).toBe("Static");
