@@ -47,7 +47,7 @@
                 it("includes custom script in bundle", function() {
                     var extender = Sys.Extended.UI.TestExtender;
 
-                    expect(extender.ScriptMode).toBe("Debug");
+                    expect(extender.ScriptMode).toBe("Release");
                     expect(extender.ScriptSource).toBe("Static");
                 });
 

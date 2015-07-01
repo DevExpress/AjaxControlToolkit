@@ -42,6 +42,9 @@ namespace AjaxControlToolkit {
             foreach(var type in allActControls)
                 result[type.FullName] = BuildDependencyMap(type);
 
+            foreach(var type in ToolkitConfig.CustomControls)
+                result[type.FullName] = BuildDependencyMap(type);
+
             return result;
         }
 
