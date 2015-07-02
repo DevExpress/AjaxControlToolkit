@@ -66,7 +66,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\AjaxControlToolkit\Debug\Accordion.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\BaseScripts.debug.js" />
+    <Content Include="Scripts\AjaxControlToolkit\Release\Accordion.js" />
     <Content Include="Scripts\MicrosoftAjax.js" />
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjaxWebForms.js" />
@@ -98,6 +100,7 @@
     <Content Include="Suites\ToolkitResourceManagerTests\Bundling.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\DebugCdn.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\DebugStatic.aspx" />
+    <Content Include="Suites\ToolkitResourceManagerTests\NamedBundling.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\ReleaseCdn.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\ReleaseStatic.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\DebugEmbedded.aspx" />
@@ -276,6 +279,13 @@
     <Compile Include="Suites\ToolkitResourceManagerTests\DebugStatic.aspx.designer.cs">
       <DependentUpon>DebugStatic.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Suites\ToolkitResourceManagerTests\NamedBundling.aspx.cs">
+      <DependentUpon>NamedBundling.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ToolkitResourceManagerTests\NamedBundling.aspx.designer.cs">
+      <DependentUpon>NamedBundling.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseCdn.aspx.cs">
       <DependentUpon>ReleaseCdn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -316,6 +326,7 @@
   <ItemGroup>
     <Content Include="Suites\Suite.Master" />
     <Content Include="packages.config" />
+    <Content Include="AjaxControlToolkit.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
