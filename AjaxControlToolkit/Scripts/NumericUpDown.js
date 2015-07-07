@@ -104,8 +104,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
             _textboxCell.appendChild(e);
 
             _innerTable.style.borderCollapse = 'collapse';
-            _innerTable.cellSpacing = '0';
-            _innerTable.cellPadding = '0';
+            _innerTable.className += "ajax__numericupdown_container";
 
             _innerTable.style.display = 'inline';
             _innerTable.style.position = 'relative';

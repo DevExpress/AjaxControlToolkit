@@ -451,6 +451,8 @@ using System.Web.UI;
 
 [assembly: WebResource(Constants.NumericUpDownName + Constants.DebugJsPostfix, "text/javascript", CdnPath = Constants.CdnScriptDebugPrefix + Constants.NumericUpDownName + Constants.DebugJsPostfix, CdnSupportsSecureConnection = true)]
 [assembly: WebResource(Constants.NumericUpDownName + Constants.JsPostfix, "text/javascript", CdnPath = Constants.CdnScriptReleasePrefix + Constants.NumericUpDownName + Constants.JsPostfix, CdnSupportsSecureConnection = true)]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.NumericUpDownName + Constants.CssPostfix, "text/css")]
+[assembly: WebResource(Constants.StyleResourcePrefix + Constants.NumericUpDownName + Constants.MinCssPostfix, "text/css")]
 
 [assembly: WebResource(Constants.PagingBulletedListName + Constants.DebugJsPostfix, "text/javascript", CdnPath = Constants.CdnScriptDebugPrefix + Constants.PagingBulletedListName + Constants.DebugJsPostfix, CdnSupportsSecureConnection = true)]
 [assembly: WebResource(Constants.PagingBulletedListName + Constants.JsPostfix, "text/javascript", CdnPath = Constants.CdnScriptReleasePrefix + Constants.PagingBulletedListName + Constants.JsPostfix, CdnSupportsSecureConnection = true)]

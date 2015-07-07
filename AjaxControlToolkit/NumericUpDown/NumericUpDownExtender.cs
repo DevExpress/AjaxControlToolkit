@@ -10,6 +10,7 @@ namespace AjaxControlToolkit {
 
     [Designer(typeof(NumericUpDownExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
+    [ClientCssResource(Constants.NumericUpDownName)]
     [ClientScriptResource("Sys.Extended.UI.NumericUpDownBehavior", Constants.NumericUpDownName)]
     [TargetControlType(typeof(TextBox))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.NumericUpDownName + Constants.IconPostfix)]

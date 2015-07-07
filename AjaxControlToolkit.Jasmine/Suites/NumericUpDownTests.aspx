@@ -44,6 +44,29 @@
                 it("text input element has proper initial value", function() {
                     expect(this.$container.find("input[type=text]").val()).toBe(TEXT_BOX_INITIAL_VALUE);
                 });
+
+                it("container hasn't cellpadding attribute", function() {
+                    expect(this.$container.attr("cellpadding")).toBeFalsy();
+                });
+
+                it("container hasn't cellspacing attribute", function() {
+                    expect(this.$container.attr("cellspacing")).toBeFalsy();
+                });
+
+                it("container has proper border spacing", function() {
+                    expect(this.$container.css("border-spacing")).toBeAnyOf(["0 0", "0px 0px"]);
+                });
+
+                it("container cells has proper padding", function() {
+                    var cells = this.$container.find("td");
+
+                    for(var i = 0; i < cells.length; i++) {
+                        expect($(cells[i]).css("padding-top")).toBeAnyOf(["0", "0px"]);
+                        expect($(cells[i]).css("padding-right")).toBeAnyOf(["0", "0px"]);
+                        expect($(cells[i]).css("padding-bottom")).toBeAnyOf(["0", "0px"]);
+                        expect($(cells[i]).css("padding-left")).toBeAnyOf(["0", "0px"]);
+                    }
+                });
             });
         });
     </script>

@@ -394,6 +394,10 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Styles\NumericUpDown.css" />
+    <EmbeddedResource Include="Styles\NumericUpDown.min.css">
+      <DependentUpon>NumericUpDown.css</DependentUpon>
+    </EmbeddedResource>
     <Content Include="Styles\README.txt" />
     <EmbeddedResource Include="ToolboxIcons\AjaxFileUpload.ico" />
     <EmbeddedResource Include="ToolboxIcons\AreaChart.ico" />
