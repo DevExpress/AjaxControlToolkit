@@ -128,6 +128,108 @@
 
                 	expect($closeButtonImage.width()).toBe(VALIDATOR_CALLOUT_CLOSE_BUTTON_IMAGE_WIDTH);
                 	expect($closeButtonImage.height()).toBe(VALIDATOR_CALLOUT_CLOSE_BUTTON_IMAGE_HEIGHT);
+                });	
+
+                it("popup table hasn't cellpadding attribute", function() {
+                	expect(this.$container.attr("cellpadding")).toBeFalsy();
+                });
+
+                it("callout cell has proper padding", function() {
+                	var $calloutCell = this.$container.find(VALIDATOR_CALLOUT_CALLOUT_CELL_CLASS_NAME.toClassSelector());
+
+                	//expect($calloutCell.css("padding")).toBeAnyOf(["0", "0px"]);
+                	expect($calloutCell.css("padding-top")).toBeAnyOf(["0", "0px"]);
+                	expect($calloutCell.css("padding-right")).toBeAnyOf(["0", "0px"]);
+                	expect($calloutCell.css("padding-bottom")).toBeAnyOf(["0", "0px"]);
+                	expect($calloutCell.css("padding-left")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("icon cell has proper padding", function() {
+                	var $iconCell = this.$container.find(VALIDATOR_CALLOUT_ICON_CELL_CLASS_NAME.toClassSelector());
+
+                	expect($iconCell.css("padding-top")).toBe("5px");
+                	expect($iconCell.css("padding-right")).toBe("5px");
+                	expect($iconCell.css("padding-bottom")).toBe("5px");
+                	expect($iconCell.css("padding-left")).toBe("5px");
+                });
+
+                it("error message cell has proper padding", function() {
+                	var $errorMessageCell = this.$container.find(VALIDATOR_CALLOUT_ERROR_MESSAGE_CELL_CLASS_NAME.toClassSelector());
+
+                	expect($errorMessageCell.css("padding-top")).toBe("5px");
+                	expect($errorMessageCell.css("padding-right")).toBe("5px");
+                	expect($errorMessageCell.css("padding-bottom")).toBe("5px");
+                	expect($errorMessageCell.css("padding-left")).toBe("5px");
+                });
+
+                it("close button cell has proper padding", function() {
+                	var $closeButtonCell = this.$container.find(VALIDATOR_CALLOUT_CLOSE_BUTTON_CELL_CLASS_NAME.toClassSelector());
+
+                	expect($closeButtonCell.css("padding-top")).toBeAnyOf(["0", "0px"]);
+                	expect($closeButtonCell.css("padding-right")).toBeAnyOf(["0", "0px"]);
+                	expect($closeButtonCell.css("padding-bottom")).toBeAnyOf(["0", "0px"]);
+                	expect($closeButtonCell.css("padding-left")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("popup table hasn't cellspacing attribute", function() {
+                	expect(this.$container.attr("cellspacing")).toBeFalsy();
+                });
+
+                it("popup table has proper border spacing", function() {
+                	expect(this.$container.css("border-spacing")).toBeAnyOf(["0 0", "0px 0px"]);
+                });
+
+                it("popup table hasn't border attribute", function() {
+                	expect(this.$container.attr("border")).toBeFalsy();
+                });
+
+                it("popup table has proper border width", function() {
+                	expect(this.$container.css("border-top-width")).toBeAnyOf(["0", "0px"]);
+                	expect(this.$container.css("border-right-width")).toBeAnyOf(["0", "0px"]);
+                	expect(this.$container.css("border-bottom-width")).toBeAnyOf(["0", "0px"]);
+                	expect(this.$container.css("border-left-width")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("callout table hasn't cellpadding attribute", function() {
+                	var $calloutTable = this.$container.find(VALIDATOR_CALLOUT_CALLOUT_TABLE_CLASS_NAME.toClassSelector());
+
+                	expect($calloutTable.attr("cellpadding")).toBeFalsy();
+                });
+
+                it("callout arrow cell has proper paddings", function() {
+                	var $calloutArrowCell = this.$container.find(VALIDATOR_CALLOUT_CALLOUT_ARROW_CELL_CLASS_NAME.toClassSelector());
+
+                	expect($calloutArrowCell.css("padding-top")).toBe("8px");
+                	expect($calloutArrowCell.css("padding-right")).toBeAnyOf(["0", "0px"]);
+                	expect($calloutArrowCell.css("padding-bottom")).toBeAnyOf(["0", "0px"]);
+                	expect($calloutArrowCell.css("padding-left")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("callout table hasn't cellspacing attribute", function() {
+                	var $calloutTable = this.$container.find(VALIDATOR_CALLOUT_CALLOUT_TABLE_CLASS_NAME.toClassSelector());
+
+                	expect($calloutTable.attr("cellspacing")).toBeFalsy();
+                });
+
+                it("callout table has proper border spacing", function() {
+                	var $calloutTable = this.$container.find(VALIDATOR_CALLOUT_CALLOUT_TABLE_CLASS_NAME.toClassSelector());
+
+                	expect($calloutTable.css("border-spacing")).toBeAnyOf(["0 0", "0px 0px"]);
+                });
+
+                it("callout table hasn't border attribute", function() {
+					var $calloutTable = this.$container.find(VALIDATOR_CALLOUT_CALLOUT_TABLE_CLASS_NAME.toClassSelector());
+
+					expect($calloutTable.attr("border")).toBeFalsy();
+                });
+
+                it("callout table has proper border width", function() {
+                	var $calloutTable = this.$container.find(VALIDATOR_CALLOUT_CALLOUT_TABLE_CLASS_NAME.toClassSelector());
+
+                	expect($calloutTable.css("border-top-width")).toBeAnyOf(["0", "0px"]);
+                	expect($calloutTable.css("border-right-width")).toBeAnyOf(["0", "0px"]);
+                	expect($calloutTable.css("border-bottom-width")).toBeAnyOf(["0", "0px"]);
+                	expect($calloutTable.css("border-left-width")).toBeAnyOf(["0", "0px"]);
                 });
             });
         });

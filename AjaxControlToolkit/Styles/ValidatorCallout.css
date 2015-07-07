@@ -8,6 +8,7 @@
     border: none 0;
     margin: 0;
     padding: 0;
+    border-spacing: 0;
 }
 
 .ajax__validatorcallout_popup_table_row {
@@ -31,10 +32,11 @@
 
 .ajax__validatorcallout_callout_table {
     background-color: transparent;
-    border: none;
+    border: none 0;
     height: 100%;
     margin: 0;
     padding: 0;
+    border-spacing: 0;
 }
 
 .ajax__validatorcallout_callout_table_row {

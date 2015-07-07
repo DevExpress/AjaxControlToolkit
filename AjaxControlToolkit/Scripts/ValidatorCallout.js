@@ -74,9 +74,6 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
 
             // popupTable
             popupTable.id = this.get_id() + "_popupTable";
-            popupTable.cellPadding = 0;
-            popupTable.cellSpacing = 0;
-            popupTable.border = 0;
             popupTable.width = this.get_width();
             popupTable.className = this._cssClass + " ajax__validatorcallout_popup_table";
 
@@ -87,9 +84,6 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             calloutCell.className = "ajax__validatorcallout_callout_cell";
 
             // calloutTable
-            calloutTable.cellPadding = 0;
-            calloutTable.cellSpacing = 0;
-            calloutTable.border = 0;
             calloutTable.className = "ajax__validatorcallout_callout_table";
 
             // calloutTableRow
