@@ -335,9 +335,6 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
             nodeName: "table",
             properties: {
                 id: id + "_colorsTable",
-                cellPadding: 0,
-                cellSpacing: 1,
-                border: 0,
                 style: { margin: "auto" }
             }
         }, this._popupDiv);

@@ -50,6 +50,48 @@
                     expect($colorPickerTable.find("tr").length).toBe(COLOR_PICKER_ROW_COUNT);
                     expect($colorPickerTable.find("td").length).toBe(COLOR_PICKER_ROW_COUNT * COLOR_PICKER_COLUMN_COUNT);
                 });
+
+                it("table hasn't cellpadding attribute", function() {
+                    var $colorPickerTable = this.$container.find("table");
+
+                    expect($colorPickerTable.attr("cellpadding")).toBeFalsy();
+                });
+
+                it("table cell has proper padding", function() {
+                    var $colorPickerTableCell = this.$container.find("table td").first();
+
+                    expect($colorPickerTableCell.css("padding-top")).toBeAnyOf(["0", "0px"]);
+                    expect($colorPickerTableCell.css("padding-right")).toBeAnyOf(["0", "0px"]);
+                    expect($colorPickerTableCell.css("padding-bottom")).toBeAnyOf(["0", "0px"]);
+                    expect($colorPickerTableCell.css("padding-left")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("table hasn't cellspacing attribute", function() {
+                    var $colorPickerTable = this.$container.find("table");
+
+                    expect($colorPickerTable.attr("cellspacing")).toBeFalsy();
+                });
+
+                it("table has proper border spacing", function() {
+                    var $colorPickerTable = this.$container.find("table");
+
+                    expect($colorPickerTable.css("border-spacing")).toBe("1px 1px");
+                });
+
+                it("table hasn't border attribute", function() {
+                    var $colorPickerTable = this.$container.find("table");
+
+                    expect($colorPickerTable.attr("border")).toBeFalsy();
+                });
+
+                it("table has proper border width", function() {
+                    var $colorPickerTable = this.$container.find("table");
+
+                    expect($colorPickerTable.css("border-top-width")).toBe("1px");
+                    expect($colorPickerTable.css("border-right-width")).toBe("1px");
+                    expect($colorPickerTable.css("border-bottom-width")).toBe("1px");
+                    expect($colorPickerTable.css("border-left-width")).toBe("1px");
+                });
             });
         });
     </script>
