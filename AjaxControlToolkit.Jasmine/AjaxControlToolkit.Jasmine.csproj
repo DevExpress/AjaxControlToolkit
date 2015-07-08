@@ -79,6 +79,7 @@
     <Content Include="Suites\HtmlEditorExtenderTests.aspx" />
     <Content Include="Suites\MaskedEditTests.aspx" />
     <Content Include="Suites\MaskedEditValidatorTests.aspx" />
+    <Content Include="Suites\ColorPickerTests.aspx" />
     <Content Include="Suites\NumericUpDownTests.aspx" />
     <Content Include="Suites\ValidatorCalloutTests.aspx" />
     <Content Include="Suites\PasswordStrengthTests.aspx" />
@@ -164,6 +165,13 @@
     </Compile>
     <Compile Include="Suites\MaskedEditValidatorTests.aspx.designer.cs">
       <DependentUpon>MaskedEditValidatorTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\ColorPickerTests.aspx.cs">
+      <DependentUpon>ColorPickerTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ColorPickerTests.aspx.designer.cs">
+      <DependentUpon>ColorPickerTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\NumericUpDownTests.aspx.cs">
       <DependentUpon>NumericUpDownTests.aspx</DependentUpon>
