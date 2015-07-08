@@ -89,6 +89,108 @@
                 it("container body contains years element", function() {
                     expect(this.$body.children(CALENDAR_BODY_YEARS_CLASS_NAME.toClassSelector()).length).toBe(1);
                 });
+
+                beforeEach(function() {
+                    this.$daysTable = this.$body.children(CALENDAR_BODY_DAYS_CLASS_NAME.toClassSelector()).children("table");
+                    this.$monthsTable = this.$body.children(CALENDAR_BODY_MONTHS_CLASS_NAME.toClassSelector()).children("table");
+                    this.$yearsTable = this.$body.children(CALENDAR_BODY_YEARS_CLASS_NAME.toClassSelector()).children("table");
+                });
+
+                it("days table hasn't cellpadding attribute", function() {
+                    expect(this.$daysTable.attr("cellpadding")).toBeFalsy();
+                });
+
+                it("days table cell has proper paddings", function() {
+                    var $dayCell = this.$daysTable.find("td").first();
+
+                    expect($dayCell.css("padding-top")).toBeAnyOf(["0", "0px"]);
+                    expect($dayCell.css("padding-right")).toBeAnyOf(["0", "0px"]);
+                    expect($dayCell.css("padding-bottom")).toBeAnyOf(["0", "0px"]);
+                    expect($dayCell.css("padding-left")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("days table hasn't cellspacing attribute", function() {
+                    expect(this.$daysTable.attr("cellspacing")).toBeFalsy();
+                });
+
+                it("days table has proper border spacing", function() {
+                    expect(this.$daysTable.css("border-spacing")).toBeAnyOf(["0 0", "0px 0px"]);
+                });
+
+                it("days table hasn't border attribute", function() {
+                    expect(this.$daysTable.attr("border")).toBeFalsy();
+                });
+
+                it("days table has proper border width", function() {
+                    expect(this.$daysTable.css("border-top-width")).toBeAnyOf(["0", "0px"]);
+                    expect(this.$daysTable.css("border-right-width")).toBeAnyOf(["0", "0px"]);
+                    expect(this.$daysTable.css("border-bottom-width")).toBeAnyOf(["0", "0px"]);
+                    expect(this.$daysTable.css("border-left-width")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("months table hasn't cellpadding attribute", function() {
+                    expect(this.$monthsTable.attr("cellpadding")).toBeFalsy();
+                });
+
+                it("month table cells has proper paddings", function() {
+                    var $monthCell = this.$monthsTable.find("td").first();
+
+                    expect($monthCell.css("padding-top")).toBeAnyOf(["0", "0px"]);
+                    expect($monthCell.css("padding-right")).toBeAnyOf(["0", "0px"]);
+                    expect($monthCell.css("padding-bottom")).toBeAnyOf(["0", "0px"]);
+                    expect($monthCell.css("padding-left")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("months table hasn't cellspacing attribute", function() {
+                    expect(this.$monthsTable.attr("cellspacing")).toBeFalsy();
+                });
+
+                it("months table hasn proper border spacing", function() {
+                    expect(this.$monthsTable.css("border-spacing")).toBeAnyOf(["0 0", "0px 0px"]);
+                });
+
+                it("months table hasn't border attribute", function() {
+                    expect(this.$monthsTable.attr("border")).toBeFalsy();
+                });
+
+                it("months table has proper border width", function() {
+                    expect(this.$monthsTable.css("border-top-width")).toBeAnyOf(["0", "0px"]);
+                    expect(this.$monthsTable.css("border-right-width")).toBeAnyOf(["0", "0px"]);
+                    expect(this.$monthsTable.css("border-bottom-width")).toBeAnyOf(["0", "0px"]);
+                    expect(this.$monthsTable.css("border-left-width")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("years table hasn't cellpadding attribute", function() {
+                    expect(this.$yearsTable.attr("cellpadding")).toBeFalsy();
+                });
+
+                it("years table cell has proper paddings", function() {
+                    var $yearCell = this.$yearsTable.find("td").first();
+
+                    expect($yearCell.css("padding-top")).toBeAnyOf(["0", "0px"]);
+                    expect($yearCell.css("padding-right")).toBeAnyOf(["0", "0px"]);
+                    expect($yearCell.css("padding-bottom")).toBeAnyOf(["0", "0px"]);
+                    expect($yearCell.css("padding-left")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("years table hasn't cellspacing attribute", function() {
+                    expect(this.$yearsTable.attr("cellspacing")).toBeFalsy();
+                });
+
+                it("years table has proper border spacing", function() {
+                    expect(this.$yearsTable.css("border-spacing")).toBeAnyOf(["0 0", "0px 0px"]);
+                });
+
+                it("years table hasn't border attribute", function() {
+                    expect(this.$yearsTable.attr("border")).toBeFalsy();
+                });
+
+                it("years table has proper border width", function() {
+                    expect(this.$yearsTable.css("border-top-width")).toBeAnyOf(["0", "0px"]);
+                    expect(this.$yearsTable.css("border-right-width")).toBeAnyOf(["0", "0px"]);
+                    expect(this.$yearsTable.css("border-bottom-width")).toBeAnyOf(["0", "0px"]);
+                    expect(this.$yearsTable.css("border-left-width")).toBeAnyOf(["0", "0px"]);
+                });
             });
         });
     </script>

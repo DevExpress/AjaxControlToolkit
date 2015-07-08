@@ -711,9 +711,6 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
             nodeName: "table",
             properties: {
                 id: id + "_daysTable",
-                cellPadding: 0,
-                cellSpacing: 0,
-                border: 0,
                 style: { margin: "auto" }
             }
         }, this._days);
@@ -764,9 +761,6 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
             nodeName: "table",
             properties: {
                 id: id + "_monthsTable",
-                cellPadding: 0,
-                cellSpacing: 0,
-                border: 0,
                 style: { margin: "auto" }
             }
         }, this._months);
@@ -807,9 +801,6 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
             nodeName: "table",
             properties: {
                 id: id + "_yearsTable",
-                cellPadding: 0,
-                cellSpacing: 0,
-                border: 0,
                 style: { margin: "auto" }
             }
         }, this._years);

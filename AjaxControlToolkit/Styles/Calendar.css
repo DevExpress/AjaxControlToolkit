@@ -25,6 +25,10 @@
     width: 170px;
 }
 
+.ajax__calendar_days table, .ajax__calendar_months table, .ajax__calendar_years table {
+    border-spacing: 0;
+}
+
 .ajax__calendar_container TABLE {
     font-size: 11px;
     margin: 0;
