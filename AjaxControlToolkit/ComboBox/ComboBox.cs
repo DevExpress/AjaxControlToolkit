@@ -381,8 +381,6 @@ namespace AjaxControlToolkit {
         }
 
         protected virtual void AddTableAttributesToRender(HtmlTextWriter writer) {
-            ComboTable.CellPadding = 0;
-            ComboTable.CellSpacing = 0;
             ComboTable.CssClass = "ajax__combobox_inputcontainer";
             ComboTableTextBoxCell.CssClass = "ajax__combobox_textboxcontainer";
             ComboTableButtonCell.CssClass = "ajax__combobox_buttoncontainer";

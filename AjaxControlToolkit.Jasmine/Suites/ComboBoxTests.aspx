@@ -77,12 +77,35 @@
                 beforeEach(function() {
                     this.$input = this.$element.find("input[type=text]");
                     this.$button = this.$element.find("button[type=button]");
+
+                    this.$inputContainer = this.$element.children(COMBOBOX_INPUT_CONTAINER_CLASS_NAME.toClassSelector());
                 })
 
                 it("items container is visible after clicking on dropdown button", function() {
                     this.$button.click();
 
                     expect(this.$itemsContainer.is(":visible")).toBeTruthy();
+                });
+
+                it("input container hasn't cellpadding attribute", function() {
+                    expect(this.$inputContainer.attr("cellpadding")).toBeFalsy();
+                });
+
+                it("input container cell has proper padding", function() {
+                    var $cell = this.$inputContainer.find("td").first();
+
+                    expect($cell.css("padding-top")).toBeAnyOf(["0", "0px"]);
+                    expect($cell.css("padding-left")).toBeAnyOf(["0", "0px"]);
+                    expect($cell.css("padding-bottom")).toBeAnyOf(["0", "0px"]);
+                    expect($cell.css("padding-left")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("input container hasn't cellspacing attribute", function() {
+                    expect(this.$inputContainer.attr("cellspacing")).toBeFalsy();
+                });
+
+                it("input container has proper border spacing", function() {
+                    expect(this.$inputContainer.css("border-spacing")).toBeAnyOf(["0 0", "0px 0px"]);
                 });
             });
         });

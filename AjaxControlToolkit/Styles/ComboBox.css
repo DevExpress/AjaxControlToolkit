@@ -22,3 +22,11 @@
     white-space: nowrap;
     width: 100%;
 }
+
+.ajax__combobox_inputcontainer {
+    border-spacing: 0;
+}
+
+.ajax__combobox_inputcontainer td {
+    padding: 0;
+}
