@@ -74,6 +74,7 @@
     <Content Include="Suites\AjaxFileUploadTests.aspx" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.js" />
+    <Content Include="Suites\ComboBoxTests.aspx" />
     <Content Include="Suites\CascadingDropDownTests\CascadingDropDown.aspx" />
     <Content Include="Suites\CascadingDropDownTests\TestWebService.asmx" />
     <Content Include="Suites\CalendarTests.aspx" />
@@ -134,6 +135,13 @@
     </Compile>
     <Compile Include="Suites\AjaxFileUploadTests.aspx.designer.cs">
       <DependentUpon>AjaxFileUploadTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\ComboBoxTests.aspx.cs">
+      <DependentUpon>ComboBoxTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ComboBoxTests.aspx.designer.cs">
+      <DependentUpon>ComboBoxTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\CascadingDropDownTests\CascadingDropDown.aspx.cs">
       <DependentUpon>CascadingDropDown.aspx</DependentUpon>
