@@ -1054,18 +1054,18 @@ Sys.Extended.UI.ComboBox.prototype = {
 
         // cycle through items when up & down arrow keys are used
         if (code == Sys.UI.Key.up || code == Sys.UI.Key.down) {
-            if (this._popupBehavior._visible) {
-                var vector = code - 39;
-                if ((vector == -1 && this._highlightedIndex > 0) || (vector == 1 && this._highlightedIndex < this._optionListItems.length - 1)) {
-                    var newIndex = (this._highlightedIndex + vector);
-                    this.get_textBoxControl().value = this._optionListItems[newIndex].text;
-                    this._highlightListItem(newIndex, true);
-                    this.set_selectedIndex(newIndex);
-                    this._ensureScrollTop();
-                }
-            }
-            else {
+            if (!this._popupBehavior._visible) {
                 this._popupBehavior.show();
+                this._highlightedIndex = this._highlightedIndex || -1;
+            }
+
+            var vector = code - 39;
+            if ((vector == -1 && this._highlightedIndex > 0) || (vector == 1 && this._highlightedIndex < this._optionListItems.length - 1)) {
+                var newIndex = (this._highlightedIndex + vector);
+                this.get_textBoxControl().value = this._optionListItems[newIndex].text;
+                this._highlightListItem(newIndex, true);
+                this.set_selectedIndex(newIndex);
+                this._ensureScrollTop();
             }
 
             if (e.type == 'keypress') {

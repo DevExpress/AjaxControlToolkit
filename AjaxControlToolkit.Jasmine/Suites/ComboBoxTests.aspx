@@ -21,6 +21,8 @@
                 COMBOBOX_BUTTON_CONTAINER_CLASS_NAME = "ajax__combobox_buttoncontainer",
                 COMBOBOX_ITEM_LIST_CLASS_NAME = "ajax__combobox_itemlist";
 
+            var COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE = "color: highlighttext; background-color: highlight;";
+
             describe("Rendering", function() {
                
                 beforeEach(function() {
@@ -28,6 +30,15 @@
 
                     this.$element = $(this.extender._element);
                     this.$itemsContainer = $(this.extender._optionListControl);
+
+                    this.keyDownEvent = new Sys.UI.DomEvent({
+                        keyCode: 40,
+                        type: "keydown"
+                    });
+                    this.keyUpEvent = new Sys.UI.DomEvent({
+                        keyCode: 38,
+                        type: "keyup"
+                    });
                 });
 
                 it("contains input container", function() {
@@ -106,6 +117,55 @@
 
                 it("input container has proper border spacing", function() {
                     expect(this.$inputContainer.css("border-spacing")).toBeAnyOf(["0 0", "0px 0px"]);
+                });
+
+                it("items container is shown after keydown/keyup events", function() {
+                    this.extender._handleArrowKey(this.keyDownEvent);
+                    expect(this.$itemsContainer.is(":visible")).toBeTruthy();
+
+                    this.extender._handleArrowKey(this.keyUpEvent);
+                    expect(this.$itemsContainer.is(":visible")).toBeTruthy();
+                });
+
+                it("items container isn't shown after keydown/keyup events with shift key", function() {
+                    this.extender._handleArrowKey($.extend(this.keyDownEvent, { shiftKey: true }));
+                    expect(this.$itemsContainer.is(":visible")).toBeFalsy();
+
+                    this.extender._handleArrowKey($.extend(this.keyUpEvent, { shiftKey: true }));
+                    expect(this.$itemsContainer.is(":visible")).toBeFalsy();
+                });
+
+                it("first list item is selected after first keydown", function() {
+                    this.extender._handleArrowKey(this.keyDownEvent);
+
+                    expect(this.$itemsContainer.children("li").first().attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                });
+
+                it("appropriate list item is selected after some keydowns", function() {
+                    var itemsCount = this.extender._optionListItems.length;
+
+                    for(var i = 0; i < itemsCount; i += 1) {
+                        this.extender._handleArrowKey(this.keyDownEvent);
+                    }
+
+                    expect(this.$itemsContainer.children("li").eq(itemsCount - 1).attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                });
+
+                it("highlight list item is not changed after keyup, if it were the first one", function() {
+                    this.extender._handleArrowKey(this.keyDownEvent);
+                    this.extender._handleArrowKey(this.keyUpEvent);
+
+                    expect(this.$itemsContainer.children("li").eq(0).attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                });
+
+                it("highlight list item is not changed after keydown, if it were the last one", function() {
+                    var itemsCount = this.extender._optionListItems.length;
+
+                    for(var i = 0; i < itemsCount; i += 1) {
+                        this.extender._handleArrowKey(this.keyDownEvent);
+                    }
+
+                    expect(this.$itemsContainer.children("li").eq(itemsCount - 1).attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
                 });
             });
         });
