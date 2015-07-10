@@ -74,6 +74,7 @@
     <Content Include="Suites\AjaxFileUploadTests.aspx" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.js" />
+    <Content Include="Suites\ReorderListTests\ReorderListTests.aspx" />
     <Content Include="Suites\ComboBoxTests.aspx" />
     <Content Include="Suites\CascadingDropDownTests\CascadingDropDown.aspx" />
     <Content Include="Suites\CascadingDropDownTests\TestWebService.asmx" />
@@ -136,6 +137,13 @@
     <Compile Include="Suites\AjaxFileUploadTests.aspx.designer.cs">
       <DependentUpon>AjaxFileUploadTests.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Suites\ReorderListTests\ReorderListTests.aspx.cs">
+      <DependentUpon>ReorderListTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ReorderListTests\ReorderListTests.aspx.designer.cs">
+      <DependentUpon>ReorderListTests.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Suites\ComboBoxTests.aspx.cs">
       <DependentUpon>ComboBoxTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -196,6 +204,7 @@
     <Compile Include="Suites\NumericUpDownTests.aspx.designer.cs">
       <DependentUpon>NumericUpDownTests.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Suites\ReorderListTests\ReorderListItems.cs" />
     <Compile Include="Suites\ValidatorCalloutTests.aspx.cs">
       <DependentUpon>ValidatorCalloutTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

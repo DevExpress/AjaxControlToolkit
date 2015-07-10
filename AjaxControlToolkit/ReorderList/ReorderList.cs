@@ -516,8 +516,7 @@ namespace AjaxControlToolkit {
                     var itemTable = new Table();
                     outerItem = itemTable;
                     itemTable.BorderWidth = 0;
-                    itemTable.CellPadding = 0;
-                    itemTable.CellSpacing = 0;
+                    itemTable.Style.Add("border-spacing", "0 0");
 
                     // we keep track of two cells: one to put the item in,
                     // on to put the handle in.
@@ -525,8 +524,10 @@ namespace AjaxControlToolkit {
                     var itemCell = new TableCell();
                     itemParent = itemCell;
                     itemCell.Width = new Unit(100, UnitType.Percentage);
+                    itemCell.Style.Add("padding", "0");
 
                     var handleCell = new TableCell();
+                    handleCell.Style.Add("padding", "0");
                     dragHolder = handleCell;
 
                     // based on the alignment value, we set up the cells in the table.
