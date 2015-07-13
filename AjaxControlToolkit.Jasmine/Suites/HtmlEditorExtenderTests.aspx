@@ -62,6 +62,8 @@
 
             var HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= TargetExtender.ClientID %>";
 
+            var HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME = "ajax__colorPicker";
+
             beforeEach(function() {
                 this.extender = $find(HTML_EDITOR_EXTENDER_CLIENT_ID);
 
@@ -255,6 +257,58 @@
 
                 actualSourceText = mock.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(testContentText);
+            });
+
+            it("saveSelection method doesn't throw exception if no text selected", function() {
+            	expect(this.extender.saveSelection).not.toThrow();
+            });
+
+            it("_executeCommand method doesn't throw exception if forecolor button is pressed", function() {
+            	var command = new Sys.UI.DomEvent({
+            		type: "click",
+            		target: (new HtmlEditorMock(this.extender).getButtonElement("fore-color-selector"))
+            	});
+
+            	var that = this;
+            	expect(function() {
+            		that.extender._executeCommand(command);
+            	}).not.toThrow();
+            });
+
+            it("shows color selector after forecolor button is pressed", function() {
+            	var foreColorButtonName = "fore-color-selector",
+					mock = new HtmlEditorMock(this.extender);
+
+            	mock.setContent("lorem ipsum").selectText(0, 5).pressToolbarButtons([foreColorButtonName]);
+
+            	var $parent = $(mock.getButtonElement(foreColorButtonName)).parent();
+
+            	expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector())).toBeTruthy();
+            	expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector()).is(":visible")).toBeTruthy();
+            });
+
+            it("_executeCommand method doesn't throw exception if backcolor button is pressed", function() {
+            	var command = new Sys.UI.DomEvent({
+            		type: "click",
+            		target: (new HtmlEditorMock(this.extender).getButtonElement("back-color-selector"))
+            	});
+
+            	var that = this;
+            	expect(function() {
+            		that.extender._executeCommand(command);
+            	}).not.toThrow();
+            });
+
+            it("show color selector after backcolor button is pressed", function() {
+            	var backColorButtonName = "back-color-selector",
+            		mock = new HtmlEditorMock(this.extender);
+
+            	mock.setContent("lorem ipsum").selectText(0, 5).pressToolbarButtons([backColorButtonName]);
+
+            	var $parent = $(mock.getButtonElement(backColorButtonName)).parent();
+
+            	expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector())).toBeTruthy();
+            	expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector()).is(":visible")).toBeTruthy();
             });
         });
     </script>

@@ -836,7 +836,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             this.saveSelection();
 
             if(!this._foreColorPicker) {
-                this._foreColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, { 'unselectable': 'on' }, {}, {}, this._foreColor);
+                this._foreColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, {}, {}, {}, this._foreColor);
                 this._foreColorPicker.set_sample(this._foreColor.parentNode);
                 this._foreColorPicker.add_colorSelectionChanged(delcolorPicker_onchange);
             }
@@ -846,7 +846,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             this.saveSelection();
 
             if(!this._backColorPicker) {
-                this._backColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, { 'unselectable': 'on' }, {}, {}, this._backColor);
+                this._backColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, {}, {}, {}, this._backColor);
                 this._backColorPicker.set_sample(this._backColor.parentNode);
                 this._backColorPicker.add_colorSelectionChanged(delcolorPicker_onchange);
             }
@@ -910,7 +910,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     // Save selected text
     saveSelection: function() {
         if(window.getSelection) //non IE Browsers
-            this._savedRange = window.getSelection().getRangeAt(0);
+            this._savedRange = window.getSelection().rangeCount && window.getSelection().getRangeAt(0);
         else if(document.selection) //IE
             this._savedRange = document.selection.createRange();
     },

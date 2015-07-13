@@ -88,6 +88,10 @@
             }
         };
 
+        this.getButtonElement = function(buttonName) {
+            return $container.find(HTML_EDITOR_BUTTONS[buttonName].toClassSelector()).get(0);
+        }
+
         this.pressToolbarButtons = function(buttonNames) {
             var $container = $(extender._container);
 
