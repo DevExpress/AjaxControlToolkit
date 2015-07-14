@@ -85,8 +85,8 @@
 
             // CodePlex items 27744, 27717, 27745
             it("does not throw exception on submit if editor has HTML content", function() {
-                var mock = new HtmlEditorMock(this.extender);
-                mock.setContent("lorem ipsum dolor sit amet").selectText().pressToolbarButtons(["bold", "italic", "underline"]);
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent("lorem ipsum dolor sit amet").selectText().pressToolbarButtons(["bold", "italic", "underline"]);
 
                 expect($.proxy(function() {
                     this.extender._editableDiv_submit();
@@ -94,8 +94,8 @@
             });
 
             it("does not throw exception on submit if editor has HTML content with extremely short text", function() {
-                var mock = new HtmlEditorMock(this.extender);
-                mock.setContent("a").selectText().pressToolbarButtons(["bold", "italic", "underline"]);
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent("a").selectText().pressToolbarButtons(["bold", "italic", "underline"]);
 
                 expect($.proxy(function() {
                     this.extender._editableDiv_submit();
@@ -103,11 +103,11 @@
             });
 
             it("renders all buttons", function() {
-                var mock = new HtmlEditorMock(this.extender);
+                var wrapper = new HtmlEditorWrapper(this.extender);
 
-                for(var button in mock.TOOLBAR_BUTTONS) {
-                    var $button = $(mock.TOOLBAR_BUTTONS[button].toClassSelector());
-                    expect(mock.currentState.containsElement($button)).toBeTruthy("button name <" + button + ">");
+                for(var button in wrapper.TOOLBAR_BUTTONS) {
+                    var $button = $(wrapper.TOOLBAR_BUTTONS[button].toClassSelector());
+                    expect(wrapper.currentState.containsElement($button)).toBeTruthy("button name <" + button + ">");
                 }
             });
 
@@ -115,14 +115,14 @@
             it("does not break html markup after submit if link contains title attribute", function(done) {
                 var sourceText = 'lorem <a href="lipsum.com" title="Lorem ipsum">ipsum</a>';
 
-                var mock = new HtmlEditorMock(this.extender);
-                mock.setContent(sourceText, "source");
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent(sourceText, "source");
 
                 var endRequestHandler = function() {
                     var extender = $find("<%= TargetExtender.ClientID %>"),
-                        mock = new HtmlEditorMock(extender);
+                        wrapper = new HtmlEditorWrapper(extender);
 
-                    expect(mock.currentState.editorContent()).toEqual("lorem ipsum");
+                    expect(wrapper.currentState.editorContent()).toEqual("lorem ipsum");
 
                     Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
 
@@ -138,14 +138,14 @@
             it("does not break html markup after submit if link contains style attribute with [*-]position property", function(done) {
                 var sourceText = "<a href='lipsum.com' style='position: absolute; background-position: initial;'>dolor sit amet</a>";
 
-                var mock = new HtmlEditorMock(this.extender);
-                mock.setContent(sourceText, "source");
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent(sourceText, "source");
 
                 var endRequestHandler = function() {
                     var extender = $find("<%= TargetExtender.ClientID %>"),
-                        mock = new HtmlEditorMock(extender);
+                        wrapper = new HtmlEditorWrapper(extender);
 
-                    expect(mock.currentState.editorContent()).toEqual("dolor sit amet");
+                    expect(wrapper.currentState.editorContent()).toEqual("dolor sit amet");
 
                     Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
 
@@ -162,15 +162,15 @@
                     expectedSourceText = this.ua.browser.family === "IE" ? "<strong>lorem</strong> ipsum dolor sit amet" : "<b>lorem</b> ipsum dolor sit amet",
                     actualSourceText;
 
-                var mock = new HtmlEditorMock(this.extender);
-                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["bold"]);
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["bold"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(expectedSourceText);
 
-                mock.pressToolbarButtons(["bold"]);
+                wrapper.pressToolbarButtons(["bold"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(testContentText);
             });
 
@@ -179,15 +179,15 @@
                     expectedSourceText = this.ua.browser.family === "IE" ? "<em>lorem</em> ipsum dolor sit amet" : "<i>lorem</i> ipsum dolor sit amet",
                     actualSourceText;
 
-                var mock = new HtmlEditorMock(this.extender);
-                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["italic"]);
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["italic"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(expectedSourceText);
 
-                mock.pressToolbarButtons(["italic"]);
+                wrapper.pressToolbarButtons(["italic"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(testContentText);
             });
 
@@ -196,15 +196,15 @@
                     expectedSourceText = "<u>lorem</u> ipsum dolor sit amet",
                     actualSourceText;
 
-                var mock = new HtmlEditorMock(this.extender);
-                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["underline"]);
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["underline"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(expectedSourceText);
 
-                mock.pressToolbarButtons(["underline"]);
+                wrapper.pressToolbarButtons(["underline"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(testContentText);
             });
 
@@ -213,15 +213,15 @@
                     expectedSourceText = "<strike>lorem</strike> ipsum dolor sit amet",
                     actualSourceText;
 
-                var mock = new HtmlEditorMock(this.extender);
-                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["strike-through"]);
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["strike-through"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(expectedSourceText);
 
-                mock.pressToolbarButtons(["strike-through"]);
+                wrapper.pressToolbarButtons(["strike-through"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(testContentText);
             });
 
@@ -230,15 +230,15 @@
                     expectedSourceText = "<sub>lorem</sub> ipsum dolor sit amet",
                     actualSourceText;
 
-                var mock = new HtmlEditorMock(this.extender);
-                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["subscript"]);
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["subscript"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(expectedSourceText);
 
-                mock.pressToolbarButtons(["subscript"]);
+                wrapper.pressToolbarButtons(["subscript"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(testContentText);
             });
 
@@ -247,15 +247,15 @@
                     expectedSourceText = "<sup>lorem</sup> ipsum dolor sit amet",
                     actualSourceText;
 
-                var mock = new HtmlEditorMock(this.extender);
-                mock.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["superscript"]);
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["superscript"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(expectedSourceText);
 
-                mock.pressToolbarButtons(["superscript"]);
+                wrapper.pressToolbarButtons(["superscript"]);
 
-                actualSourceText = mock.currentState.editorContent("source");
+                actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(testContentText);
             });
 
@@ -264,51 +264,51 @@
             });
 
             it("_executeCommand method doesn't throw exception if forecolor button is pressed", function() {
-            	var command = new Sys.UI.DomEvent({
-            		type: "click",
-            		target: (new HtmlEditorMock(this.extender).getButtonElement("fore-color-selector"))
-            	});
+                var command = new Sys.UI.DomEvent({
+                    type: "click",
+                    target: (new HtmlEditorWrapper(this.extender).getButtonElement("fore-color-selector"))
+                });
 
-            	var that = this;
-            	expect(function() {
-            		that.extender._executeCommand(command);
-            	}).not.toThrow();
+                var that = this;
+                expect(function() {
+                    that.extender._executeCommand(command);
+                }).not.toThrow();
             });
 
             it("shows color selector after forecolor button is pressed", function() {
-            	var foreColorButtonName = "fore-color-selector",
-					mock = new HtmlEditorMock(this.extender);
+                var foreColorButtonName = "fore-color-selector",
+                    wrapper = new HtmlEditorWrapper(this.extender);
 
-            	mock.setContent("lorem ipsum").selectText(0, 5).pressToolbarButtons([foreColorButtonName]);
+                wrapper.setContent("lorem ipsum").selectText(0, 5).pressToolbarButtons([foreColorButtonName]);
 
-            	var $parent = $(mock.getButtonElement(foreColorButtonName)).parent();
+                var $parent = $(wrapper.getButtonElement(foreColorButtonName)).parent();
 
-            	expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector())).toBeTruthy();
-            	expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector()).is(":visible")).toBeTruthy();
+                expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector())).toBeTruthy();
+                expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector()).is(":visible")).toBeTruthy();
             });
 
             it("_executeCommand method doesn't throw exception if backcolor button is pressed", function() {
-            	var command = new Sys.UI.DomEvent({
-            		type: "click",
-            		target: (new HtmlEditorMock(this.extender).getButtonElement("back-color-selector"))
-            	});
+                var command = new Sys.UI.DomEvent({
+                    type: "click",
+                    target: (new HtmlEditorWrapper(this.extender).getButtonElement("back-color-selector"))
+                });
 
-            	var that = this;
-            	expect(function() {
-            		that.extender._executeCommand(command);
-            	}).not.toThrow();
+                var that = this;
+                expect(function() {
+                    that.extender._executeCommand(command);
+                }).not.toThrow();
             });
 
             it("show color selector after backcolor button is pressed", function() {
-            	var backColorButtonName = "back-color-selector",
-            		mock = new HtmlEditorMock(this.extender);
+                var backColorButtonName = "back-color-selector",
+                    wrapper = new HtmlEditorWrapper(this.extender);
 
-            	mock.setContent("lorem ipsum").selectText(0, 5).pressToolbarButtons([backColorButtonName]);
+                wrapper.setContent("lorem ipsum").selectText(0, 5).pressToolbarButtons([backColorButtonName]);
 
-            	var $parent = $(mock.getButtonElement(backColorButtonName)).parent();
+                var $parent = $(wrapper.getButtonElement(backColorButtonName)).parent();
 
-            	expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector())).toBeTruthy();
-            	expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector()).is(":visible")).toBeTruthy();
+                expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector())).toBeTruthy();
+                expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector()).is(":visible")).toBeTruthy();
             });
         });
     </script>

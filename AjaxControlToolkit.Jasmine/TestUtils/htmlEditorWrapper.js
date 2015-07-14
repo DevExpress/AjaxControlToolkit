@@ -1,4 +1,4 @@
-﻿var HtmlEditorMock = (function($) {
+﻿var HtmlEditorWrapper = (function($) {
 
     var HTML_EDITOR_TABS = {
         "source": "ajax__html_editor_extender_source",
@@ -38,7 +38,7 @@
         "insert-image": HTML_EDITOR_BUTTON_CLASS_NAME_PREFIX + "InsertImage",
     };
 
-    function HtmlEditorMock(htmlEditorExtender) {
+    function HtmlEditorWrapper(htmlEditorExtender) {
         var that = this;
 
         var extender = htmlEditorExtender,
@@ -223,5 +223,5 @@
         return this;
     };
 
-    return HtmlEditorMock;
+    return HtmlEditorWrapper;
 }(jQuery));

@@ -21,7 +21,7 @@
     <script src="/Vendor/detect.js"></script>
 
     <script src="/TestUtils/extensionMethods.js"></script>
-    <script src="/TestUtils/htmlEditorMock.js"></script>
+    <script src="/TestUtils/htmlEditorWrapper.js"></script>
 
     <script>
         if(parent && parent.Testing) {      // Run as an iframe
