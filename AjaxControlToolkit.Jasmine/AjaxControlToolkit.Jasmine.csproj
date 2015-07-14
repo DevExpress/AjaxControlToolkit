@@ -74,6 +74,7 @@
     <Content Include="Suites\AjaxFileUploadTests.aspx" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.js" />
+    <Content Include="Suites\TextBoxWatermarkTests.aspx" />
     <Content Include="Suites\ReorderListTests\ReorderListTests.aspx" />
     <Content Include="Suites\ComboBoxTests.aspx" />
     <Content Include="Suites\CascadingDropDownTests\CascadingDropDown.aspx" />
@@ -136,6 +137,13 @@
     </Compile>
     <Compile Include="Suites\AjaxFileUploadTests.aspx.designer.cs">
       <DependentUpon>AjaxFileUploadTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\TextBoxWatermarkTests.aspx.cs">
+      <DependentUpon>TextBoxWatermarkTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\TextBoxWatermarkTests.aspx.designer.cs">
+      <DependentUpon>TextBoxWatermarkTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\ReorderListTests\ReorderListTests.aspx.cs">
       <DependentUpon>ReorderListTests.aspx</DependentUpon>

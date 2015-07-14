@@ -140,10 +140,8 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
         wrapper.set_Value("");
         wrapper.set_IsWatermarked(false);
-        if(focusing) {
-            element.setAttribute("autocomplete","off");  // Avoid NS_ERROR_XPC_JS_THREW_STRING error in Firefox
+        if(focusing)
             element.select();  // This fix displays the blinking cursor in a focused, empty text box in IE
-        }
     },
 
     _onFocus : function(evt) {
