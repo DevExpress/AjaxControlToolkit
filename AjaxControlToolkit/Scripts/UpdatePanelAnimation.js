@@ -12,6 +12,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior = function(element) {
     this._postBackPending = null;
     this._pageLoadedHandler = null;
     this._AlwaysFinishOnUpdatingAnimation = null;
+    this._TriggerControlsClientID = null;
 };
 Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     initialize: function() {
@@ -66,9 +67,12 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
         Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.callBaseMethod(this, '_partialUpdateBeginRequest', [sender, beginRequestEventArgs]);
 
         if(!this._postBackPending) {
-            this._postBackPending = true;
-            this._onUpdated.quit();
-            this._onUpdating.play();
+            if(this._TriggerControlsClientID.indexOf(sender._activeElement.id) != -1)
+            {
+                this._postBackPending = true;
+                this._onUpdated.quit();
+                this._onUpdating.play();
+            }
         }
     },
 
@@ -90,7 +94,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
                         this._onUpdating.quit();
                         this._onUpdated.play();
                     }
-                    break;
+                break;
             }
         }
     },
@@ -144,6 +148,16 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
         if(this._AlwaysFinishOnUpdatingAnimation != value) {
             this._AlwaysFinishOnUpdatingAnimation = value;
             this.raisePropertyChanged('AlwaysFinishOnUpdatingAnimation');
+        }
+    },
+
+    get_TriggerControlsClientID: function(){
+        return this._TriggerControlsClientID;
+    },
+    set_TriggerControlsClientID: function(value) {
+        if(this._TriggerControlsClientID != value) {
+            this._TriggerControlsClientID = value;
+            this.raisePropertyChanged('TriggerControlsClientID');
         }
     }
 };

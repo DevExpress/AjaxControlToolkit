@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Web.UI;
+using System.Collections.Generic;
 
 namespace AjaxControlToolkit {
 
@@ -19,6 +20,7 @@ namespace AjaxControlToolkit {
         // Animations
         Animation _updating;
         Animation _updated;
+        List<string> _triggerControlsClientID = new List<string>();
 
         // Animation played when an update begins
         [DefaultValue(null)]
@@ -50,6 +52,13 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("AlwaysFinishOnUpdatingAnimation", value); }
         }
 
+        [DefaultValue(null)]
+        [Browsable(false)]
+        [ExtenderControlProperty(true, true)]
+        public string[] TriggerControlsClientID {
+            get { return _triggerControlsClientID.ToArray(); }
+        }
+
         // Change any AnimationTarget references from server control IDs into the ClientIDs
         // that the animation scripts are expecting.  We also replace any static AnimationTargets
         // of the Updated animation with dynamic properties.
@@ -60,6 +69,13 @@ namespace AjaxControlToolkit {
             ResolveControlIDs(_updated);
             ReplaceStaticAnimationTargets(_updating);
             ReplaceStaticAnimationTargets(_updated);
+
+            var targetPanel = TargetControl as UpdatePanel;
+            var triggers = targetPanel.Triggers;
+            foreach(var trigger in triggers) {
+                var triggerControlClientID = FindControl((trigger as AsyncPostBackTrigger).ControlID).ClientID;
+                _triggerControlsClientID.Add(triggerControlClientID);
+            }
         }
 
         // Replace any statically defined AnimationTarget properties with a corresponding
@@ -84,6 +100,14 @@ namespace AjaxControlToolkit {
             // Replace any static animation targets on this Animation's children
             foreach(Animation child in animation.Children)
                 ReplaceStaticAnimationTargets(child);
+        }
+
+        public Control GetTargetControl() {
+            return TargetControl;
+        }
+
+        public Control GetControl(string id) {
+            return FindControl(id);
         }
     }
 
