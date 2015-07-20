@@ -66,6 +66,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Infrastructure\Images\loader.GIF" />
+    <Content Include="Infrastructure\Scripts\Libs\detect.js" />
+    <Content Include="Infrastructure\Scripts\Libs\jasmine-2.2.0\boot.js" />
+    <Content Include="Infrastructure\Scripts\Libs\jasmine-2.2.0\console.js" />
+    <Content Include="Infrastructure\Scripts\Libs\jasmine-2.2.0\jasmine-html.js" />
+    <Content Include="Infrastructure\Scripts\Libs\jasmine-2.2.0\jasmine.css" />
+    <Content Include="Infrastructure\Scripts\Libs\jasmine-2.2.0\jasmine.js" />
+    <Content Include="Infrastructure\Scripts\Libs\jasmine-2.2.0\jasmine_favicon.png" />
+    <Content Include="Infrastructure\Scripts\Libs\jquery-2.1.4.js" />
+    <Content Include="Infrastructure\Scripts\Libs\jquery.simulate.js" />
+    <Content Include="Infrastructure\Scripts\TestRunner.js" />
+    <Content Include="Infrastructure\Scripts\TestUtils\CustomMatchers.js" />
+    <Content Include="Infrastructure\Scripts\TestUtils\ExtensionMethods.js" />
+    <Content Include="Infrastructure\Scripts\TestUtils\HtmlEditorWrapper.js" />
+    <Content Include="Infrastructure\Styles\TestRunner.css">
+      <DependentUpon>TestRunner.less</DependentUpon>
+    </Content>
+    <Content Include="Infrastructure\Styles\TestRunner.min.css">
+      <DependentUpon>TestRunner.css</DependentUpon>
+    </Content>
     <Content Include="Scripts\AjaxControlToolkit\Debug\Accordion.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\BaseScripts.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\Accordion.js" />
@@ -80,7 +100,7 @@
     <Content Include="Suites\TextBoxWatermarkTests.aspx" />
     <Content Include="Suites\ReorderListTests\ReorderListTests.aspx" />
     <Content Include="Suites\ComboBoxTests.aspx" />
-    <Content Include="Suites\CascadingDropDownTests\CascadingDropDown.aspx" />
+    <Content Include="Suites\CascadingDropDownTests\CascadingDropDownTests.aspx" />
     <Content Include="Suites\CascadingDropDownTests\TestWebService.asmx" />
     <Content Include="Suites\CalendarTests.aspx" />
     <Content Include="Suites\HtmlEditorExtenderTests.aspx" />
@@ -98,16 +118,16 @@
     <Content Include="Scripts\AjaxControlToolkit\Release\BaseScripts.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\TestExtender.js" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\TestExtender.debug.js" />
-    <Content Include="Suites\ToolkitResourceManagerTests\Bundling.aspx" />
-    <Content Include="Suites\ToolkitResourceManagerTests\DebugCdn.aspx" />
-    <Content Include="Suites\ToolkitResourceManagerTests\DebugStatic.aspx" />
-    <Content Include="Suites\ToolkitResourceManagerTests\NamedBundling.aspx" />
-    <Content Include="Suites\ToolkitResourceManagerTests\ReleaseCdn.aspx" />
-    <Content Include="Suites\ToolkitResourceManagerTests\ReleaseStatic.aspx" />
-    <Content Include="Suites\ToolkitResourceManagerTests\DebugEmbedded.aspx" />
-    <Content Include="Suites\ToolkitResourceManagerTests\ReleaseEmbedded.aspx" />
+    <Content Include="Suites\ToolkitResourceManagerTests\BundlingTests.aspx" />
+    <Content Include="Suites\ToolkitResourceManagerTests\DebugCdnTests.aspx" />
+    <Content Include="Suites\ToolkitResourceManagerTests\DebugStaticTests.aspx" />
+    <Content Include="Suites\ToolkitResourceManagerTests\NamedBundlingTests.aspx" />
+    <Content Include="Suites\ToolkitResourceManagerTests\ReleaseCdnTests.aspx" />
+    <Content Include="Suites\ToolkitResourceManagerTests\ReleaseStaticTests.aspx" />
+    <Content Include="Suites\ToolkitResourceManagerTests\DebugEmbeddedTests.aspx" />
+    <Content Include="Suites\ToolkitResourceManagerTests\ReleaseEmbeddedTests.aspx" />
     <Content Include="TestUtils\customMatchers.js" />
-    <Content Include="Testing.aspx" />
+    <Content Include="TestRunner.aspx" />
     <Content Include="TestUtils\extensionMethods.js" />
     <Content Include="TestUtils\htmlEditorWrapper.js" />
     <Content Include="Vendor\detect.js" />
@@ -131,10 +151,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="SuiteInfo.cs" />
     <Compile Include="Suites\AjaxFileUploadTests.aspx.cs">
       <DependentUpon>AjaxFileUploadTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -170,12 +190,12 @@
     <Compile Include="Suites\ComboBoxTests.aspx.designer.cs">
       <DependentUpon>ComboBoxTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\CascadingDropDownTests\CascadingDropDown.aspx.cs">
-      <DependentUpon>CascadingDropDown.aspx</DependentUpon>
+    <Compile Include="Suites\CascadingDropDownTests\CascadingDropDownTests.aspx.cs">
+      <DependentUpon>CascadingDropDownTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\CascadingDropDownTests\CascadingDropDown.aspx.designer.cs">
-      <DependentUpon>CascadingDropDown.aspx</DependentUpon>
+    <Compile Include="Suites\CascadingDropDownTests\CascadingDropDownTests.aspx.designer.cs">
+      <DependentUpon>CascadingDropDownTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\CascadingDropDownTests\TestWebService.asmx.cs">
       <DependentUpon>TestWebService.asmx</DependentUpon>
@@ -266,75 +286,79 @@
     <Compile Include="Suites\TabsTests.aspx.designer.cs">
       <DependentUpon>TabsTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\Bundling.aspx.cs">
-      <DependentUpon>Bundling.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\BundlingTests.aspx.cs">
+      <DependentUpon>BundlingTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\Bundling.aspx.designer.cs">
-      <DependentUpon>Bundling.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\BundlingTests.aspx.designer.cs">
+      <DependentUpon>BundlingTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\DebugCdn.aspx.cs">
-      <DependentUpon>DebugCdn.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\DebugCdnTests.aspx.cs">
+      <DependentUpon>DebugCdnTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\DebugCdn.aspx.designer.cs">
-      <DependentUpon>DebugCdn.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\DebugCdnTests.aspx.designer.cs">
+      <DependentUpon>DebugCdnTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\DebugStatic.aspx.cs">
-      <DependentUpon>DebugStatic.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\DebugStaticTests.aspx.cs">
+      <DependentUpon>DebugStaticTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\DebugStatic.aspx.designer.cs">
-      <DependentUpon>DebugStatic.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\DebugStaticTests.aspx.designer.cs">
+      <DependentUpon>DebugStaticTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\NamedBundling.aspx.cs">
-      <DependentUpon>NamedBundling.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\NamedBundlingTests.aspx.cs">
+      <DependentUpon>NamedBundlingTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\NamedBundling.aspx.designer.cs">
-      <DependentUpon>NamedBundling.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\NamedBundlingTests.aspx.designer.cs">
+      <DependentUpon>NamedBundlingTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseCdn.aspx.cs">
-      <DependentUpon>ReleaseCdn.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseCdnTests.aspx.cs">
+      <DependentUpon>ReleaseCdnTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseCdn.aspx.designer.cs">
-      <DependentUpon>ReleaseCdn.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseCdnTests.aspx.designer.cs">
+      <DependentUpon>ReleaseCdnTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseStatic.aspx.cs">
-      <DependentUpon>ReleaseStatic.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseStaticTests.aspx.cs">
+      <DependentUpon>ReleaseStaticTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseStatic.aspx.designer.cs">
-      <DependentUpon>ReleaseStatic.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseStaticTests.aspx.designer.cs">
+      <DependentUpon>ReleaseStaticTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\ToolkitResourceManagerTests\TestExtender.cs" />
-    <Compile Include="Suites\ToolkitResourceManagerTests\DebugEmbedded.aspx.cs">
-      <DependentUpon>DebugEmbedded.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\DebugEmbeddedTests.aspx.cs">
+      <DependentUpon>DebugEmbeddedTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\DebugEmbedded.aspx.designer.cs">
-      <DependentUpon>DebugEmbedded.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\DebugEmbeddedTests.aspx.designer.cs">
+      <DependentUpon>DebugEmbeddedTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseEmbedded.aspx.cs">
-      <DependentUpon>ReleaseEmbedded.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseEmbeddedTests.aspx.cs">
+      <DependentUpon>ReleaseEmbeddedTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseEmbedded.aspx.designer.cs">
-      <DependentUpon>ReleaseEmbedded.aspx</DependentUpon>
+    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseEmbeddedTests.aspx.designer.cs">
+      <DependentUpon>ReleaseEmbeddedTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Testing.aspx.cs">
-      <DependentUpon>Testing.aspx</DependentUpon>
+    <Compile Include="TestRunner.aspx.cs">
+      <DependentUpon>TestRunner.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Testing.aspx.designer.cs">
-      <DependentUpon>Testing.aspx</DependentUpon>
+    <Compile Include="TestRunner.aspx.designer.cs">
+      <DependentUpon>TestRunner.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Suites\Suite.Master" />
     <Content Include="packages.config" />
     <Content Include="AjaxControlToolkit.config" />
+    <Content Include="Infrastructure\Styles\TestRunner.less" />
+    <Content Include="Infrastructure\Styles\TestRunner.css.map">
+      <DependentUpon>TestRunner.css</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

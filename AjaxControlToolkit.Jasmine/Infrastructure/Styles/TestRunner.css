@@ -1,0 +1,200 @@
+﻿html,
+body {
+  margin: 0;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 12px;
+  height: calc(100% - 6px);
+  padding: 3px;
+  width: 1200px;
+}
+body {
+  padding: 0;
+  border: 1px solid #aaaaaa;
+  border-radius: 3px;
+}
+form {
+  height: 100%;
+}
+.test-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.header {
+  border-bottom: 1px solid #aaaaaa;
+  font-weight: bold;
+  text-indent: 10px;
+}
+.header .useragent-info {
+  height: 20px;
+  line-height: 24px;
+}
+.header .suite-counter {
+  height: 20px;
+}
+.header .suite-counter .total-execution-time {
+  background-color: #5622a1;
+  border-radius: 10px;
+  color: white;
+  display: inline-block;
+  float: right;
+  margin-right: 10px;
+  margin-top: -3px;
+  padding: 3px 10px;
+  text-indent: 0;
+}
+.header hr {
+  background-color: #AAA;
+  border: none;
+  color: #AAA;
+  height: 1px;
+}
+.header .run-progress {
+  background-color: orange;
+  height: 4px;
+  margin-bottom: -1px;
+  width: 0;
+}
+.suite-list {
+  border-right: 1px solid #aaaaaa;
+  float: left;
+  font-family: Arial, Tahoma, Verdana, sans-serif;
+  font-size: 13px;
+  height: 100%;
+  width: 200px;
+}
+.suite-list .suite-item {
+  padding: 6px 5px 5px;
+  cursor: pointer;
+}
+.suite-list .suite-item:hover {
+  background-color: #ffeba0;
+}
+.suite-list .suite-item .link {
+  color: #333;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 2px;
+  vertical-align: top;
+  margin-left: 5px;
+}
+.suite-list .suite-item .link:hover {
+  text-decoration: underline;
+}
+.suite-list .run-button {
+  width: 190px;
+  padding: 10px;
+  margin: 5px;
+}
+.suite-list .select-all {
+  padding: 6px 5px 5px;
+  cursor: pointer;
+}
+.suite-list .select-all:hover {
+  background-color: #ffeba0;
+}
+.suite-list .select-all label {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 2px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+.test-output {
+  height: 100%;
+  float: right;
+  width: 999px;
+}
+.test-output .spec-counter {
+  background: linear-gradient(to top, #cccccc, white);
+  border-bottom: 1px solid #aaaaaa;
+  font-weight: bold;
+  padding: 6px;
+  text-indent: 10px;
+}
+.test-output .spec-counter .loader {
+  display: none;
+  float: right;
+}
+.test-output .spec-counter .done {
+  border-radius: 10px;
+  color: white;
+  display: none;
+  float: right;
+  margin-top: -3px;
+  padding: 3px 10px;
+}
+.test-output .spec-counter .done.success {
+  background-color: #5cb85c;
+}
+.test-output .spec-counter .done.failure {
+  background-color: #d9534f;
+}
+.test-output .test-result-container {
+  height: calc(100% - 105px);
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 10px;
+}
+.test-output .test-result-container .test-result-success,
+.test-output .test-result-container .test-result-failure {
+  background-color: #5cb85c;
+  border-radius: 5px;
+  font-weight: bold;
+  margin: 2px;
+  padding: 5px;
+}
+.test-output .test-result-container .test-result-success .suite-name-badge,
+.test-output .test-result-container .test-result-failure .suite-name-badge {
+  background-color: orange;
+  border-radius: 15px;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 3px 10px;
+}
+.test-output .test-result-container .test-result-success .count-badge,
+.test-output .test-result-container .test-result-failure .count-badge {
+  background-color: lightblue;
+  border-radius: 17px;
+  float: right;
+  padding: 3px;
+  text-align: center;
+  width: 40px;
+}
+.test-output .test-result-container .test-result-failure {
+  background-color: #d9534f;
+}
+.test-output .test-result-container .test-result-failure .stack-trace {
+  background-color: white;
+  border-radius: 5px;
+  font-family: Consolas, "Courier New", monospace;
+  font-weight: normal;
+  margin-top: 10px;
+  padding: 5px 3px;
+}
+.test-output .test-result-container .test-result-failure .stack-trace .header {
+  background-color: lightblue;
+  font-weight: bold;
+  margin-bottom: 3px;
+  margin-top: 10px;
+  padding: 3px;
+  text-indent: 10px;
+}
+.test-output .test-result-container .test-result-failure .stack-trace .header:first-child {
+  margin-top: 0;
+}
+.test-output .test-result-container .test-result-failure .stack-trace .text {
+  margin-left: 10px;
+}
+.control-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 1px solid #aaaaaa;
+  border-radius: 6px;
+  height: calc(100% - 22px);
+  margin: 3px;
+  padding: 5px;
+  width: calc(100% - 1200px - 30px);
+}
+/*# sourceMappingURL=TestRunner.css.map */

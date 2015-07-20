@@ -1,0 +1,264 @@
+﻿@TEST-CONTAINER-WIDTH: 1200px;
+
+@SUITE-LIST-WIDTH: 200px;
+@TEST-OUTPUT-CONTAINER-WIDTH: @TEST-CONTAINER-WIDTH - @SUITE-LIST-WIDTH - 1;
+@HEADER-HEIGHT: 40px;
+
+@BACKGROUND_COLOR-COMMON: #F7F7F9;
+@BORDER-COLOR-COMMON: #AAA;
+@BORDER-COMMON: 1px solid @BORDER-COLOR-COMMON;
+
+@SUITE-ITEM-BACKGROUND-COLOR: #FFEBA0;
+
+@SUCCESS-BACKGROUND-COLOR: #5CB85C;
+@FAILURE-BACKGROUND-COLOR: #D9534F;
+
+@FONTS-COMMON: Tahoma, Verdana, sans-serif;
+@FONTS-MONOSPACE: Consolas, "Courier New", monospace;
+@FONT-SIZE-COMMON: 12px;
+
+@TEXT-INDENT-COMMON: 10px;
+
+.reset(@property){
+    @{property}: 0;
+}
+
+.fill(@property) {
+    @{property}: 100%;
+}
+
+html, body {
+    .reset(margin);
+
+    font-family: @FONTS-COMMON;
+    font-size: @FONT-SIZE-COMMON;
+
+    height: calc(~'100% - 6px');
+    padding: 3px;
+    width: @TEST-CONTAINER-WIDTH;
+}
+
+body {
+    .reset(padding);
+
+    border: @BORDER-COMMON;
+    border-radius: 3px;
+}
+
+form {
+    .fill(height);
+}
+
+.test-container {
+    .fill(height);
+    .fill(width);
+
+    overflow: hidden;
+}
+
+.header {
+    border-bottom: @BORDER-COMMON;
+    font-weight: bold;
+    text-indent: @TEXT-INDENT-COMMON;
+
+    .useragent-info {
+        height: @HEADER-HEIGHT / 2;
+        line-height: @HEADER-HEIGHT / 2 + 4;
+    }
+
+    .suite-counter {
+        height: @HEADER-HEIGHT / 2;
+
+        .total-execution-time {
+            background-color: #5622a1;
+            border-radius: 10px;
+            color: white;
+            display: inline-block;
+            float: right;
+            margin-right: 10px;
+            margin-top: -3px;
+            padding: 3px 10px;
+            text-indent: 0;
+        }
+    }
+
+    hr {
+        background-color: #AAA;
+        border: none;
+        color: #AAA;
+        height: 1px;
+    }
+
+    .run-progress {
+        background-color: orange;
+        height: 4px;
+        margin-bottom: -1px;
+        width: 0;
+    }
+}
+
+.suite-list {
+    border-right: @BORDER-COMMON;
+    float: left;
+    font-family: Arial, @FONTS-COMMON;
+    font-size: 13px;
+    height: 100%;
+    width: @SUITE-LIST-WIDTH;
+
+    .suite-item {
+        padding: 6px 5px 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: @SUITE-ITEM-BACKGROUND-COLOR;
+        }
+
+        .link {
+            color: #333;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 2px;
+            vertical-align: top;
+            margin-left: 5px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .run-button {
+        width: @SUITE-LIST-WIDTH - 10;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .select-all {
+        padding: 6px 5px 5px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #ffeba0;
+        }
+
+        label {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 2px;
+            margin-left: 4px;
+            cursor: pointer;
+        }
+    }
+}
+
+.test-output {
+    .fill(height);
+
+    float: right;
+    width: @TEST-OUTPUT-CONTAINER-WIDTH;
+
+    .spec-counter {
+        background: linear-gradient(to top, #ccc, white);
+        border-bottom: @BORDER-COMMON;
+        font-weight: bold;
+        padding: 6px;
+        text-indent: 10px;
+
+        .loader {
+            display: none;
+            float: right;
+        }
+
+        .done {
+            border-radius: 10px;
+            color: white;
+            display: none;
+            float: right;
+            margin-top: -3px;
+            padding: 3px 10px;
+
+            &.success {
+                background-color: @SUCCESS-BACKGROUND-COLOR;
+            }
+
+            &.failure {
+                background-color: @FAILURE-BACKGROUND-COLOR;
+            }
+        }
+    }
+
+    .test-result-container {
+        height: calc(~'100% - 105px');
+        overflow: hidden;
+        overflow-y: scroll;
+        padding: 10px;
+
+        .test-result-success, .test-result-failure {
+            background-color: @SUCCESS-BACKGROUND-COLOR;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 2px;
+            padding: 5px;
+
+            .suite-name-badge {
+                background-color: orange;
+                border-radius: 15px;
+                display: inline-block;
+                margin-right: 10px;
+                padding: 3px 10px;
+            }
+
+            .count-badge {
+                background-color: lightblue;
+                border-radius: 17px;
+                float: right;
+                padding: 3px;
+                text-align: center;
+                width: 40px;
+            }
+        }
+
+        .test-result-failure {
+            background-color: @FAILURE-BACKGROUND-COLOR;
+
+            .stack-trace {
+                background-color: white;
+                border-radius: 5px;
+                font-family: @FONTS-MONOSPACE;
+                font-weight: normal;
+                margin-top: 10px;
+                padding: 5px 3px;
+
+                .header {
+                    background-color: lightblue;
+                    font-weight: bold;
+                    margin-bottom: 3px;
+                    margin-top: 10px;
+                    padding: 3px;
+                    text-indent: 10px;
+
+                    &:first-child {
+                        .reset(margin-top);
+                    }
+                }
+
+                .text {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+}
+
+.control-container {
+    position: absolute;
+    .reset(right);
+    .reset(top);
+
+    border: @BORDER-COMMON;
+    border-radius: 6px;
+    height: calc(~'100% - 22px');
+    margin: 3px;
+    padding: 5px;
+    width: calc(~'100% - @{TEST-CONTAINER-WIDTH} - 30px');
+}

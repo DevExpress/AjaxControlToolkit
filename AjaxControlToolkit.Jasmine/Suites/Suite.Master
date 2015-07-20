@@ -1,30 +1,26 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Suite.master.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.Suite" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head runat="server">
     <title>
         <asp:ContentPlaceHolder runat="server" ID="TestSuiteName" />
     </title>
 
-    <link rel="stylesheet" href="/Vendor/jasmine-2.2.0/jasmine.css" />
+    <asp:PlaceHolder runat="server">
+        <%: Styles.Render("~/Infrastructure/Scripts/Libs/jasmine-2.2.0/jasmine.css") %>
+    </asp:PlaceHolder>
 
-    <script src="/Vendor/jquery-2.1.4/jquery.js"></script>
-    <script src="/Vendor/jquery.simulate.js"></script>
-    
-    <script src="/Vendor/jasmine-2.2.0/jasmine.js"></script>
-    <script src="/Vendor/jasmine-2.2.0/jasmine-html.js"></script>
-    <script src="/Vendor/jasmine-2.2.0/boot.js"></script>
-    <script src="/TestUtils/customMatchers.js"></script>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/jquery") %>
+        <%: Scripts.Render("~/bundles/jasmine") %>
+        <%: Scripts.Render("~/bundles/testUtils") %>
 
-    <script src="/Vendor/detect.js"></script>
-
-    <script src="/TestUtils/extensionMethods.js"></script>
-    <script src="/TestUtils/htmlEditorWrapper.js"></script>
+        <%: Scripts.Render("~/Infrastructure/Scripts/Libs/detect.js") %>
+    </asp:PlaceHolder>
 
     <script>
-        if(parent && parent.Testing) {      // Run as an iframe
+        if(parent && parent.TestRunner) {
             var queryString = new jasmine.QueryString({
                 getWindowLocation: function() { return window.location; }
             });
@@ -35,7 +31,7 @@
                 return spec.id === "spec" + specIndex;
             };
 
-            env.addReporter(parent.Testing.Reporter);
+            env.addReporter(parent.TestRunner.Reporter);
 
             funcNames = ["it", "xit", "fit", "describe", "xdescribe", "fdescribe"];
             for(var index in funcNames) {
@@ -45,10 +41,8 @@
                     }
                 })(funcNames[index], window[funcNames[index]]);
             }
-
         }
     </script>
-
 </head>
 <body>
     <form runat="server">

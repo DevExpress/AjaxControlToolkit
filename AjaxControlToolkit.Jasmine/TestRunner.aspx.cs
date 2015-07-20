@@ -10,36 +10,38 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.Jasmine {
 
-    public partial class Testing : System.Web.UI.Page {
+    public struct SuiteInfo {
+        public string path;
+        public int specCount;
+    }
+
+    public partial class TestRunner : System.Web.UI.Page {
 
         protected void Page_Load(object sender, EventArgs e) {
             var suites = GetSuites();
             var targetSuite = Request.Params["suite"];
 
-            if(!String.IsNullOrWhiteSpace(targetSuite))
-                suites = suites.Where(s => s.name == targetSuite);
-
-            RenderSpecsQty(suites);
+            RenderSpecs(suites);
         }
 
-        void RenderSpecsQty(IEnumerable<SuiteInfo> suites) {
+        void RenderSpecs(IEnumerable<SuiteInfo> suites) {
             
             ClientScript.RegisterClientScriptBlock(
-                typeof(Testing),
-                "SuitesCount",
-                "window.Testing = {}; window.Testing.Suites=" + new JavaScriptSerializer().Serialize(suites),
+                typeof(TestRunner),
+                "Suites",
+                "window.TestRunner = {}; window.TestRunner.Suites=" + new JavaScriptSerializer().Serialize(suites),
                 true);
         }
 
-        private IEnumerable<SuiteInfo> GetSuites() {
+        IEnumerable<SuiteInfo> GetSuites() {
             var suitesDir = Server.MapPath("~/Suites");
 
             return GetTestPagePaths(suitesDir)
-                .Select(path => new SuiteInfo{
-                    name = GetRelativePath(path, suitesDir),
-                    specQty = CountSpecsInFile(path)
+                .Select(path => new SuiteInfo {
+                    path = GetRelativePath(path, suitesDir),
+                    specCount = CountSpecsInFile(path)
                 })
-                .Where(s => s.specQty > 0);
+                .Where(s => s.specCount > 0);
         }
 
         IEnumerable<string> GetTestPagePaths(string suitesDirectory) {
@@ -59,5 +61,4 @@ namespace AjaxControlToolkit.Jasmine {
             return relativeUri.ToString().Replace("/", @"\");
         }
     }
-
 }

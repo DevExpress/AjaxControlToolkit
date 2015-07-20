@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Suites/Suite.Master" AutoEventWireup="true" CodeBehind="ReleaseStatic.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManagerTests.ReleaseStatic" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Suites/Suite.Master" AutoEventWireup="true" CodeBehind="DebugStaticTests.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManagerTests.DebugStatic" %>
 
 <%@ Register Assembly="AjaxControlToolkit.Jasmine" Namespace="AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager" TagPrefix="test" %>
 
@@ -12,17 +12,17 @@
 
             describe("Static", function() {
 
-                it("loads static release custom script", function() {
+                it("loads static debug custom script", function() {
                     var extender = Sys.Extended.UI.TestExtender;
 
-                    expect(extender.ScriptMode).toBe("Release");
+                    expect(extender.ScriptMode).toBe("Debug");
                     expect(extender.ScriptSource).toBe("Static");
                 });
 
-                it("loads static release script", function() {
+                it("loads static debug script", function() {
                     var base = Sys.Extended.UI.BehaviorBase;
 
-                    expect(base.ScriptMode).toBe("Release");
+                    expect(base.ScriptMode).toBe("Debug");
                     expect(base.ScriptSource).toBe("Static");
                 })
 

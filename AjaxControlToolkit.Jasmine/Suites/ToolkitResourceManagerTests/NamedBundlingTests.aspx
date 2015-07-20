@@ -26,8 +26,7 @@
                         return script.attributes["src"] &&
                             !/\/Scripts\/AjaxControlToolkit\/TestExtenderBundle\?v=.+/.test(script.attributes["src"].value) &&
                             !/\/ScriptResource/.test(script.attributes["src"].value) &&
-                            !/\/Vendor/.test(script.attributes["src"].value) &&
-                            !/\/TestUtils/.test(script.attributes["src"].value) &&
+                            !/\/Infrastructure/.test(script.attributes["src"].value) &&
                             !/MicrosoftAjax.js$/.test(script.attributes["src"].value) &&
                             !/MicrosoftAjaxWebForms.js$/.test(script.attributes["src"].value) &&
                             !/\/WebResource.axd\?d=/.test(script.attributes["src"].value);
