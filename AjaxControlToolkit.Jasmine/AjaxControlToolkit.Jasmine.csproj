@@ -126,20 +126,8 @@
     <Content Include="Suites\ToolkitResourceManagerTests\ReleaseStaticTests.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\DebugEmbeddedTests.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\ReleaseEmbeddedTests.aspx" />
-    <Content Include="TestUtils\customMatchers.js" />
     <Content Include="TestRunner.aspx" />
-    <Content Include="TestUtils\extensionMethods.js" />
-    <Content Include="TestUtils\htmlEditorWrapper.js" />
-    <Content Include="Vendor\detect.js" />
-    <Content Include="Vendor\jasmine-2.2.0\boot.js" />
-    <Content Include="Vendor\jasmine-2.2.0\console.js" />
-    <Content Include="Vendor\jasmine-2.2.0\jasmine-html.js" />
-    <Content Include="Vendor\jasmine-2.2.0\jasmine.css" />
-    <Content Include="Vendor\jasmine-2.2.0\jasmine.js" />
-    <Content Include="Vendor\jasmine-2.2.0\jasmine_favicon.png" />
     <Content Include="Global.asax" />
-    <Content Include="Vendor\jquery-2.1.4\jquery.js" />
-    <Content Include="Vendor\jquery.simulate.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
