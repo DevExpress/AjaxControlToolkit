@@ -86,7 +86,7 @@
                     that.images = that.extender._images;
 
                     done();
-                }, 20); // for control initialization
+                }, 100); // for control initialization
             });
 
             it("enables/disables prev and next buttons after play/stop button pressed", function(done) {
