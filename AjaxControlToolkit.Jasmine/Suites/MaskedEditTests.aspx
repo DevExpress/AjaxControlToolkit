@@ -24,6 +24,15 @@
         Mask="99/99/9999"
         CultureName="en-US" />
 
+    <asp:TextBox runat="server"
+        ID="NumberWithZeroTarget" />
+    <act:MaskedEditExtender runat="server"
+        ID="NumberWithZeroTargetExtender"
+        TargetControlID="NumberWithZeroTarget"
+        MaskType="Number"
+        ClearMaskOnLostFocus="false"
+        Mask="09999" />
+
     <script>
 
         describe("MaskedEdit", function() {
@@ -31,7 +40,9 @@
             var COMMON_TARGET_CLIENT_ID = "<%= CommonTarget.ClientID %>",
                 COMMON_EXTENDER_CLIENT_ID = "<%= CommonTargetExtender.ClientID %>",
                 DATE_TARGET_CLIENT_ID = "<%= DateTarget.ClientID %>",
-                DATE_EXTENDER_CLIENT_ID = "<%= DateTargetExtender.ClientID %>";
+                DATE_EXTENDER_CLIENT_ID = "<%= DateTargetExtender.ClientID %>",
+                NUMBER_WITH_ZERO_TARGET_CLIENT_ID = "<%= NumberWithZeroTarget.ClientID %>",
+                NUMBER_WITH_ZERO_CLIENT_ID = "<%= NumberWithZeroTargetExtender.ClientID %>";
 
             beforeEach(function() {
                 this.$commonTarget = $(COMMON_TARGET_CLIENT_ID.toIdSelector());
@@ -39,6 +50,9 @@
 
                 this.$dateTarget = $(DATE_TARGET_CLIENT_ID.toIdSelector());
                 this.dateExtender = $find(DATE_EXTENDER_CLIENT_ID);
+
+                this.$numberWithZeroTarget = $(NUMBER_WITH_ZERO_TARGET_CLIENT_ID.toIdSelector());
+                this.numberWithZeroExtender = $find(NUMBER_WITH_ZERO_CLIENT_ID);
             });
 
             it("removes symbol on backspace", function() {
@@ -112,6 +126,15 @@
 
                 convertedDate = this.dateExtender.ConvFmtDate("non-data string", true);
                 expect(convertedDate).toBe("");
+            });
+
+            it("does not add zero when focusing", function() {
+                var expectedValue = this.$numberWithZeroTarget.val();
+
+                this.$numberWithZeroTarget.blur();
+                this.$numberWithZeroTarget.focus();
+
+                expect(this.$numberWithZeroTarget.val()).toBe(expectedValue);
             });
         });
 

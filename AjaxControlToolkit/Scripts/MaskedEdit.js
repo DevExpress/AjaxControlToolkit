@@ -380,7 +380,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             this.AutoFormatNumber();
 
         // clear mask and set CSS
-         if ((this._ClearMaskOnLostfocus && ClearText != "") || (isblur && this._ClearMaskOnLostfocus) )
+        if((this._ClearMaskOnLostfocus && ClearText != "") || (isblur && this._ClearMaskOnLostfocus))
             wrapper.set_Value(this._getClearMask(wrapper.get_Value()));
 
         this.AddCssClassMaskedEdit("");
@@ -409,8 +409,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         this._InLostfocus = true;
         var IsValid = this._PeforformValidLostFocus(true);
 
-        if(IsValid)
-        {
+        if(IsValid) {
             var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
             // trigger TextChanged with postback
             if(!this.get_element().readOnly && (this._initialvalue != wrapper.get_Value()) && evt)
@@ -1993,7 +1992,8 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 }
 
                 if(this._processKey(logicPosition, c)) {
-                    this._insertContent(c, logicPosition);
+                    if(this._MaskType != Sys.Extended.UI.MaskedEditType.Number)
+                        this._insertContent(c, logicPosition);
                     logicPosition = this._getNextPosition(logicPosition + 1);
                 }
             }
@@ -2043,7 +2043,8 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                     }
 
                     if(this._processKey(logicPosition, c)) {
-                        this._insertContent(c, logicPosition);
+                        if(this._MaskType != Sys.Extended.UI.MaskedEditType.Number)
+                            this._insertContent(c, logicPosition);
                         logicPosition = this._getPreviousPosition(logicPosition - 1);
                     }
                 }
