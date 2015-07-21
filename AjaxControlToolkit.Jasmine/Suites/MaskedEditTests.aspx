@@ -31,7 +31,8 @@
         TargetControlID="NumberWithZeroTarget"
         MaskType="Number"
         ClearMaskOnLostFocus="false"
-        Mask="09999" />
+        Mask="09999"
+        CultureName="en-US" />
 
     <script>
 
