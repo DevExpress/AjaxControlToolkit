@@ -1109,16 +1109,5 @@ ajaxClientUploadComplete = function(sender, e) {
             node.src = postedUrl;
             htmlEditorExtender._savedRange.insertNode(node);
         }
-
-        if(sender._filesInQueue.length == sender._currentQueueIndex + 1) {
-            while(sender._filesInQueue.length >= 1) {
-                sender._filesInQueue[0].removeNodeFrom(sender._queueContainer);
-                Array.removeAt(sender._filesInQueue, 0);
-            }
-
-            sender._showFilesCount();
-            sender._reset();
-            htmlEditorExtender._popupBehavior.hide();
-        }
     }
 };

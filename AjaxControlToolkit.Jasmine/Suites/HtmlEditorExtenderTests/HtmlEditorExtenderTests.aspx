@@ -310,6 +310,67 @@
                 expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector())).toBeTruthy();
                 expect($parent.children(HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME.toClassSelector()).is(":visible")).toBeTruthy();
             });
+
+            it("doesn't throw exception on multiple file upload", function(done) {
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.pressToolbarButtons(["insert-image"]);
+
+                var ajaxFileUpload = $find(this.extender._id + "_ajaxFileUpload");
+                
+                var ua = detect.parse(navigator.userAgent);
+                    imageUrl = (ua.browser.family === "Firefox" ? "HtmlEditorExtenderTests/" : "") + "superhero.png";
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", imageUrl, true);
+                xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                xhr.responseType = 'blob';
+
+                var that = this;
+                xhr.onload = function(e) {
+                    if(this.status == 200) {
+                        var file = this.response;
+                        file.lastModifiedDate = new Date();
+                        file.name = "superhero.png";
+
+                        var fakeFile1 = {
+                            id: "4c378c77-efc1-40b2-9e63-a6921d55f4d3",
+                            value: file,
+                            type: "png",
+                            uploaded: false,
+                            slices: 0
+                        };
+                        var fakeFile2 = {
+                            id: "13596832-a7ba-40d5-81fc-b6354a82515d",
+                            value: file,
+                            type: "png",
+                            uploaded: false,
+                            slices: 0
+                        };
+
+                        ajaxFileUpload.addFileToQueue(fakeFile1);
+                        ajaxFileUpload.addFileToQueue(fakeFile2);
+
+                        var $uploadButton = $(that.extender._popupDiv).find(".ajax__fileupload_uploadbutton");
+                        $uploadButton.click();
+
+                        var handlerCallCount = 0;
+
+                        ajaxFileUpload._events._list.uploadComplete = []
+                        ajaxFileUpload._events._list["uploadComplete"].push(function(sender, e) {
+                            handlerCallCount += 1;
+
+                            expect(function() {
+                                window.ajaxClientUploadComplete(sender, e);
+                            }).not.toThrow();
+
+                            if(handlerCallCount === 2)
+                                done();
+                        });
+                    }
+                };
+
+                xhr.send();
+            });
         });
     </script>
 
