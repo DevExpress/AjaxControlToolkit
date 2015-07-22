@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BundleResolverTests.cs" />
     <Compile Include="BaseValidatorTests.cs" />
+    <Compile Include="TabPanelTests.cs" />
     <Compile Include="HtmlSanitizer\HaCkerOrgXMLTest.cs" />
     <Compile Include="LocalizationTests.cs" />
     <Compile Include="HtmlSanitizer\DefaultHtmlSanitizerTests.cs" />

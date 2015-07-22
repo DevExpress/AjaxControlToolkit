@@ -244,7 +244,6 @@ namespace AjaxControlToolkit {
                 _headerControl.Visible = false;
 
             base.AddAttributesToRender(writer);
-            writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID);
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_panel");
             if(!Active || !Enabled) {
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "none");
@@ -253,6 +252,10 @@ namespace AjaxControlToolkit {
             writer.RenderBeginTag(HtmlTextWriterTag.Div);
             RenderChildren(writer);
             writer.RenderEndTag();
+            RegisterScriptDescriptors();
+        }
+
+        protected virtual void RegisterScriptDescriptors() {
             ScriptManager.RegisterScriptDescriptors(this);
         }
 
