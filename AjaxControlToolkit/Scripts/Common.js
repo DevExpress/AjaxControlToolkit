@@ -554,7 +554,7 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
         // Note: reference to CommonToolkitScripts must be left intact (i.e. don't
         // replace with 'this') because this function will be aliased
 
-        if (element && value != $common.getVisible(element)) {
+        if (element) {
             if (value) {
                 if (element.style.removeAttribute) {
                     element.style.removeAttribute("display");
