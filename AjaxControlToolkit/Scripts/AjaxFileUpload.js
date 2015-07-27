@@ -567,7 +567,43 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
 
     this.onFileSelectedHandler = function(e) {
         this.addFilesToQueue(e.target.files);
+        this.createInputFileElement();
     };
+
+    this.createInputFileElement = function() {
+        var currentInputFile = elements.inputFile;
+        
+        delete currentInputFile;
+
+        // create new input file element in same location
+        var id = control.get_id() + '_file_' + utils.generateGuid(),
+            newInputFile = $common.createElementFromTemplate({
+                nodeName: 'input',
+                properties: {
+                    id: id,
+                    name: "act-file-data",
+                    type: 'file',
+                    style: {
+                        zIndex: 0,
+                        cursor: 'pointer',
+                        position: 'absolute'
+                    }
+                }
+            }, currentInputFile.parentNode);
+
+        $common.setElementOpacity(newInputFile, 0);
+        this.attachFileInputEvents(newInputFile, true);
+
+        // set current input file with the new one
+        elements.inputFile = newInputFile;
+    };
+
+    this.attachFileInputEvents = function(fileInput, attach) {
+        if(attach)
+            $addHandlers(fileInput, { 'change': this.onFileSelected$delegate });
+        else
+            $common.removeHandlers(fileInput, { 'change': this.onFileSelected$delegate });
+    },
 
     // #endregion
 
