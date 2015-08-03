@@ -46,7 +46,7 @@
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server" EnablePartialRendering="true" />
+        <asp:ScriptManager runat="server" EnablePartialRendering="true" ScriptMode="Release" />
         <asp:ContentPlaceHolder runat="server" ID="TestSuite" />
     </form>
 </body>
