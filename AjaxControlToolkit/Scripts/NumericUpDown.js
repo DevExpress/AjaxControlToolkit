@@ -317,7 +317,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
         // returns fractional precision of the number
 
         if(value == Number.Nan)
-            return this._min;
+            return 0;
 
         // Call toString which does not localize, according to ECMA 262
         var str = value.toString();
@@ -328,7 +328,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
                 return matches[1].length;
         }
 
-        return this._min;
+        return 0;
     },
 
     get_Width: function() {
