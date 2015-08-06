@@ -90,6 +90,7 @@
     <Compile Include="Core\EventDoc.cs" />
     <Compile Include="Core\DocBase.cs" />
     <Compile Include="Core\Documentation.cs" />
+    <Compile Include="Core\IMethodDoc.cs" />
     <Compile Include="Core\MethodDoc.cs" />
     <Compile Include="Core\ParamInfo.cs" />
     <Compile Include="Core\Parsing\CommentBlock.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="Core\Razor\TemplateBase.cs" />
     <Compile Include="Core\Rendering\ExtenderDoc.cs" />
     <Compile Include="Core\Rendering\IDocRenderer.cs" />
-    <Compile Include="Core\Rendering\ListItem.cs" />
+    <Compile Include="Core\Rendering\DocListItem.cs" />
     <Compile Include="Core\TypeDoc.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

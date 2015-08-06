@@ -1,78 +1,99 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Web;
 
 namespace AjaxControlToolkit.Reference.Core.Rendering {
+
     public class ExtenderDoc {
         IDocRenderer _renderer;
+        StringBuilder _docStringBuilder = new StringBuilder();
 
         public ExtenderDoc(IDocRenderer renderer) {
             _renderer = renderer;
         }
 
         public string BuildDoc(IEnumerable<TypeDoc> typeDocs) {
-            var sb = new StringBuilder();
-
             foreach(var typeDoc in typeDocs) {
-                sb.AppendLine(RenderTypeName(typeDoc));
-                sb.AppendLine(RenderTypeDescription(typeDoc));
-                sb.AppendLine(RenderMethods(typeDoc));
-                sb.AppendLine(RenderEvents(typeDoc));
-                sb.AppendLine(RenderProperties(typeDoc));
-                sb.AppendLine(RenderClientMethods(typeDoc));
-                sb.AppendLine(RenderClientProperties(typeDoc));
+                RenderTypeName(typeDoc);
+                RenderTypeDescription(typeDoc);
+                RenderMethods(typeDoc);
+                RenderEvents(typeDoc);
+                RenderProperties(typeDoc);
+                RenderClientMethods(typeDoc);
+                RenderClientProperties(typeDoc);
             }
 
-            return sb.ToString();
+            return _docStringBuilder.ToString();
         }
 
-        string RenderClientProperties(TypeDoc typeDoc) {
-            throw new NotImplementedException();
+        void RenderTypeName(TypeDoc typeDoc) {
+            _docStringBuilder.AppendLine(_renderer.RenderHeader(typeDoc.Name));
         }
 
-        string RenderClientMethods(TypeDoc typeDoc) {
-            throw new NotImplementedException();
+        void RenderTypeDescription(TypeDoc typeDoc) {
+            _docStringBuilder.AppendLine(_renderer.RenderText(typeDoc.Summary));
         }
 
-        string RenderProperties(TypeDoc typeDoc) {
-            throw new NotImplementedException();
-        }
-
-        string RenderEvents(TypeDoc typeDoc) {
-            throw new NotImplementedException();
-        }
-
-        string RenderMethods(TypeDoc typeDoc) {
-            var sb = new StringBuilder();
-            sb.AppendLine(_renderer.RenderHeader("Methods", 2) + Environment.NewLine);
+        void RenderMethods(TypeDoc typeDoc) {
+            var methodsStringBuilder = new StringBuilder();
+            methodsStringBuilder.AppendLine(_renderer.RenderHeader("Methods"));
 
             foreach(var methodDoc in typeDoc.Methods) {
-                sb.AppendLine(_renderer.RenderText(methodDoc.Name, true, false) + Environment.NewLine);
-                sb.AppendLine(_renderer.RenderText(methodDoc.Summary, false, false) + Environment.NewLine);
-                sb.AppendLine(_renderer.RenderText("Params", false, true) + Environment.NewLine);
+                methodsStringBuilder.AppendLine(_renderer.RenderText(methodDoc.Name, bold: true));
+                methodsStringBuilder.AppendLine(_renderer.RenderText(methodDoc.Summary));
 
-                var list = new List<ListItem>();
-                foreach(var param in methodDoc.Params) {
-                    var header = _renderer.RenderText(param.Name, true, false);
-                    var description = _renderer.RenderText("Type: ", false, true) + _renderer.RenderText(param.TypeName, false, false) + Environment.NewLine;
-                    description += _renderer.RenderText(param.Description, false, false);
-                    list.Add(new ListItem() { Header = header, Description = description });
+                methodsStringBuilder.AppendLine(_renderer.RenderText("Params", italic: true));
 
-                }
-                sb.AppendLine(_renderer.RenderList(list));
+                var docList = new List<DocListItem>();
+                foreach(var docListItem in GetMethodParams(methodDoc))
+                    docList.Add(docListItem);
+                methodsStringBuilder.AppendLine(_renderer.RenderList(docList));
             }
 
-            return sb.ToString();
+            _docStringBuilder.AppendLine(methodsStringBuilder.ToString());
         }
 
-        string RenderTypeDescription(TypeDoc typeDoc) {
-            return _renderer.RenderText(typeDoc.Summary, false, false);
+        IEnumerable<DocListItem> GetMethodParams(IMethodDoc methodDoc) {
+            foreach(var param in methodDoc.Params) {
+                var header = _renderer.RenderText(param.Name, bold: true);
+                var description = _renderer.RenderText("Type: ", italic: true) +
+                    _renderer.RenderText(param.TypeName) +
+                    _renderer.RenderText(param.Description);
+
+                yield return new DocListItem() {
+                    Header = header,
+                    Description = description
+                };
+            }
         }
 
-        string RenderTypeName(TypeDoc typeDoc) {
-            return _renderer.RenderHeader(typeDoc.Name, 1);
+        void RenderEvents(TypeDoc typeDoc) {
+            throw new NotImplementedException();
         }
+
+        void RenderClientProperties(TypeDoc typeDoc) {
+            throw new NotImplementedException();
+        }
+
+        void RenderClientMethods(TypeDoc typeDoc) {
+            var methodsStringBuilder = new StringBuilder();
+            methodsStringBuilder.AppendLine(_renderer.RenderHeader("Client methods: "));
+
+            foreach(var methodDoc in typeDoc.ClientMethods) {
+                methodsStringBuilder.AppendLine(_renderer.RenderText(methodDoc.Name, bold: true));
+                methodsStringBuilder.AppendLine(_renderer.RenderText(methodDoc.Summary));
+
+                var docList = new List<DocListItem>();
+                foreach(var docListItem in GetMethodParams(methodDoc))
+                    docList.Add(docListItem);
+                methodsStringBuilder.AppendLine(_renderer.RenderList(docList));
+            }
+
+            _docStringBuilder.AppendLine(methodsStringBuilder.ToString());
+        }
+
+        void RenderProperties(TypeDoc typeDoc) {
+            throw new NotImplementedException();
+        }    
     }
 }

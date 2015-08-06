@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace AjaxControlToolkit.Reference.Core.Rendering {
 
     public interface IDocRenderer {
-        string RenderText(string text, bool isBold, bool isItalic);
-        string RenderListItem(string text, bool isNumbered);
-        string RenderAnchor(string text, string url);
-        string RenderHeader(string text, int level);
-
-        string RenderList(IEnumerable<ListItem> items);
+        string RenderHeader(string text, int level = 1);
+        string RenderText(string text, bool bold = false, bool italic = false);
+        string RenderLink(string text, string url);
+        
+        string RenderList(IEnumerable<DocListItem> items);
+        string RenderListItem(string text, bool ordered = false);
     }
-
 }

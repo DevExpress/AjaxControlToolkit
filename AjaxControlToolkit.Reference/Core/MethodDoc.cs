@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace AjaxControlToolkit.Reference.Core {
 
-    public class MethodDoc : DocBase {
+    public class MethodDoc : DocBase, IMethodDoc{
         List<ParamInfo> _params = new List<ParamInfo>();
 
         public IEnumerable<ParamInfo> Params {
