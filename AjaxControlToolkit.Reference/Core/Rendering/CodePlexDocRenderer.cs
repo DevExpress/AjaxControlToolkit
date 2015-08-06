@@ -9,17 +9,25 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         #region IDocRenderer Members
 
         public string RenderHeader(string text, int level = 1) {
+            if(String.IsNullOrWhiteSpace(text))
+                return String.Empty;
+
             return new String('!', level) + " " + text;
         }
 
         public string RenderText(string text, bool bold = false, bool italic = false) {
+            if(String.IsNullOrWhiteSpace(text))
+                return String.Empty;
+
+            var result = text;
+
             if(bold)
-                return String.Format("*{0}*", text);
+                result = String.Format("*{0}*", result);
 
             if(italic)
-                return String.Format("_{0}_", text);
+                result= String.Format("_{0}_", result);
 
-            return text;
+            return result;
         }
 
         public string RenderLink(string text, string url) {
@@ -27,7 +35,7 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         }
 
         public string RenderTextBlock(string text, bool bold = false, bool italic = false) {
-            return RenderText(text, bold, false);
+            return RenderText(text, bold, italic);
         }
 
         public string RenderList(IEnumerable<DocListItem> items) {
@@ -42,6 +50,9 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         }
 
         public string RenderListItem(string text, bool ordered = false, int level = 1) {
+            if(String.IsNullOrWhiteSpace(text))
+                return String.Empty;
+
             return new String(ordered ? '#' : '*', level) + " " + text;
         }
 
