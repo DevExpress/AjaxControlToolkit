@@ -10,6 +10,8 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         string RenderListItem(string text, bool isNumbered);
         string RenderAnchor(string text, string url);
         string RenderHeader(string text, int level);
+
+        string RenderList(IEnumerable<ListItem> items);
     }
 
 }
