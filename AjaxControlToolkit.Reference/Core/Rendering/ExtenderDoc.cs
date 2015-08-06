@@ -31,7 +31,7 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         }
 
         void RenderTypeDescription(string typeDescription) {
-            _docStringBuilder.AppendLine(_renderer.RenderText(typeDescription));
+            _docStringBuilder.AppendLine(_renderer.RenderTextBlock(typeDescription));
         }
 
         void RenderMethods<T>(IEnumerable<T> methods, string headerText) where T : IMethodDoc {
@@ -39,10 +39,10 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             methodsStringBuilder.AppendLine(_renderer.RenderHeader(headerText));
 
             foreach(var methodDoc in methods) {
-                methodsStringBuilder.AppendLine(_renderer.RenderText(methodDoc.Name, bold: true));
-                methodsStringBuilder.AppendLine(_renderer.RenderText(methodDoc.Summary));
+                methodsStringBuilder.AppendLine(_renderer.RenderTextBlock(methodDoc.Name, bold: true));
+                methodsStringBuilder.AppendLine(_renderer.RenderTextBlock(methodDoc.Summary));
 
-                methodsStringBuilder.AppendLine(_renderer.RenderText("Params:", italic: true));
+                methodsStringBuilder.AppendLine(_renderer.RenderTextBlock("Params:", italic: true));
 
                 var docList = new List<DocListItem>();
                 foreach(var docListItem in GetMethodParams(methodDoc))
@@ -55,10 +55,9 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
         IEnumerable<DocListItem> GetMethodParams(IMethodDoc methodDoc) {
             foreach(var param in methodDoc.Params) {
-                var header = _renderer.RenderText(param.Name, bold: true);
-                var description = _renderer.RenderText("Type: ", italic: true) +
-                    _renderer.RenderText(param.TypeName) +
-                    _renderer.RenderText(param.Description);
+                var header = _renderer.RenderTextBlock(param.Name, bold: true);
+                var description = _renderer.RenderTextBlock(_renderer.RenderText("Type: ", italic: true) + _renderer.RenderText(param.TypeName)) +
+                    _renderer.RenderTextBlock(param.Description);
 
                 yield return new DocListItem() {
                     Header = header,
@@ -72,8 +71,8 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             eventsStringBuilder.AppendLine(_renderer.RenderHeader("Events"));
 
             foreach(var eventDoc in events) {
-                eventsStringBuilder.AppendLine(_renderer.RenderText(eventDoc.Name, bold: true));
-                eventsStringBuilder.AppendLine(_renderer.RenderText(eventDoc.Summary));
+                eventsStringBuilder.AppendLine(_renderer.RenderTextBlock(eventDoc.Name, bold: true));
+                eventsStringBuilder.AppendLine(_renderer.RenderTextBlock(eventDoc.Summary));
             }
 
             _docStringBuilder.AppendLine(eventsStringBuilder.ToString());
@@ -84,11 +83,10 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             propertiesStringBuilder.AppendLine(_renderer.RenderHeader("Client properties"));
 
             foreach(var clientPropertyDoc in clientProperties) {
-                propertiesStringBuilder.AppendLine(_renderer.RenderText(clientPropertyDoc.Name, bold: true));
-                propertiesStringBuilder.AppendLine(_renderer.RenderText(clientPropertyDoc.Summary));
-                propertiesStringBuilder.AppendLine(_renderer.RenderText("Getter name: ", bold: true) + _renderer.RenderText(clientPropertyDoc.GetterName));
-                propertiesStringBuilder.AppendLine(_renderer.RenderText("Setter name: ", bold: true) + _renderer.RenderText(clientPropertyDoc.SetterName));
-
+                propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(clientPropertyDoc.Name, bold: true));
+                propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(clientPropertyDoc.Summary));
+                propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(_renderer.RenderText("Getter name: ", bold: true) + _renderer.RenderText(clientPropertyDoc.GetterName)));
+                propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(_renderer.RenderText("Setter name: ", bold: true) + _renderer.RenderText(clientPropertyDoc.SetterName)));
             }
 
             _docStringBuilder.AppendLine(propertiesStringBuilder.ToString());
@@ -99,11 +97,11 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             propertiesStringBuilder.AppendLine(_renderer.RenderHeader("Properties"));
 
             foreach(var propertyDoc in properties) {
-                propertiesStringBuilder.AppendLine(_renderer.RenderText(propertyDoc.Name, bold: true));
-                propertiesStringBuilder.AppendLine(_renderer.RenderText(propertyDoc.Summary));
+                propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(propertyDoc.Name, bold: true));
+                propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(propertyDoc.Summary));
             }
 
             _docStringBuilder.AppendLine(propertiesStringBuilder.ToString());
-        }    
+        }
     }
 }

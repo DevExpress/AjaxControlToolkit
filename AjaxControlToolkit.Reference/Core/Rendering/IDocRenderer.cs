@@ -6,7 +6,8 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         string RenderHeader(string text, int level = 1);
         string RenderText(string text, bool bold = false, bool italic = false);
         string RenderLink(string text, string url);
-        
+
+        string RenderTextBlock(string text, bool bold = false, bool italic = false); 
         string RenderList(IEnumerable<DocListItem> items);
         string RenderListItem(string text, bool ordered = false);
     }
