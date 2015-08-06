@@ -52,7 +52,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.Referenc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.ReferenceExporter", "AjaxControlToolkit.ReferenceExporter\AjaxControlToolkit.ReferenceExporter.csproj", "{7834E0E4-2915-4F1D-8E43-7222B5E45284}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceCore", "ReferenceCore\ReferenceCore.csproj", "{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.ReferenceCore", "ReferenceCore\AjaxControlToolkit.ReferenceCore.csproj", "{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

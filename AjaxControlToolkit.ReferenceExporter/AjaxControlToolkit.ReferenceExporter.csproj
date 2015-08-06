@@ -47,9 +47,9 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReferenceCore\ReferenceCore.csproj">
+    <ProjectReference Include="..\ReferenceCore\AjaxControlToolkit.ReferenceCore.csproj">
       <Project>{e55f6c8f-46e6-49a7-8b25-7c779bc7682b}</Project>
-      <Name>ReferenceCore</Name>
+      <Name>AjaxControlToolkit.ReferenceCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,8 +7,8 @@
     <ProjectGuid>{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReferenceCore</RootNamespace>
-    <AssemblyName>ReferenceCore</AssemblyName>
+    <RootNamespace>AjaxControlToolkit.ReferenceCore</RootNamespace>
+    <AssemblyName>AjaxControlToolkit.ReferenceCore</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
