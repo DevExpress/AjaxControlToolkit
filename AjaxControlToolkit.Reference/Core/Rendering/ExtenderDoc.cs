@@ -14,35 +14,35 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
         public string BuildDoc(IEnumerable<TypeDoc> typeDocs) {
             foreach(var typeDoc in typeDocs) {
-                RenderTypeName(typeDoc);
-                RenderTypeDescription(typeDoc);
-                RenderMethods(typeDoc);
-                RenderEvents(typeDoc);
-                RenderProperties(typeDoc);
-                RenderClientMethods(typeDoc);
-                RenderClientProperties(typeDoc);
+                RenderTypeName(typeDoc.Name);
+                RenderTypeDescription(typeDoc.Summary);
+                RenderMethods(typeDoc.Methods, "Methods");
+                RenderEvents(typeDoc.Events);
+                RenderProperties(typeDoc.Properties);
+                RenderClientProperties(typeDoc.ClientProperties);
+                RenderMethods(typeDoc.ClientMethods, "Client methods");
             }
 
             return _docStringBuilder.ToString();
         }
 
-        void RenderTypeName(TypeDoc typeDoc) {
-            _docStringBuilder.AppendLine(_renderer.RenderHeader(typeDoc.Name));
+        void RenderTypeName(string typeName) {
+            _docStringBuilder.AppendLine(_renderer.RenderHeader(typeName));
         }
 
-        void RenderTypeDescription(TypeDoc typeDoc) {
-            _docStringBuilder.AppendLine(_renderer.RenderText(typeDoc.Summary));
+        void RenderTypeDescription(string typeDescription) {
+            _docStringBuilder.AppendLine(_renderer.RenderText(typeDescription));
         }
 
-        void RenderMethods(TypeDoc typeDoc) {
+        void RenderMethods<T>(IEnumerable<T> methods, string headerText) where T : IMethodDoc {
             var methodsStringBuilder = new StringBuilder();
-            methodsStringBuilder.AppendLine(_renderer.RenderHeader("Methods"));
+            methodsStringBuilder.AppendLine(_renderer.RenderHeader(headerText));
 
-            foreach(var methodDoc in typeDoc.Methods) {
+            foreach(var methodDoc in methods) {
                 methodsStringBuilder.AppendLine(_renderer.RenderText(methodDoc.Name, bold: true));
                 methodsStringBuilder.AppendLine(_renderer.RenderText(methodDoc.Summary));
 
-                methodsStringBuilder.AppendLine(_renderer.RenderText("Params", italic: true));
+                methodsStringBuilder.AppendLine(_renderer.RenderText("Params:", italic: true));
 
                 var docList = new List<DocListItem>();
                 foreach(var docListItem in GetMethodParams(methodDoc))
@@ -67,33 +67,43 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             }
         }
 
-        void RenderEvents(TypeDoc typeDoc) {
-            throw new NotImplementedException();
-        }
+        void RenderEvents(IEnumerable<EventDoc> events) {
+            var eventsStringBuilder = new StringBuilder();
+            eventsStringBuilder.AppendLine(_renderer.RenderHeader("Events"));
 
-        void RenderClientProperties(TypeDoc typeDoc) {
-            throw new NotImplementedException();
-        }
-
-        void RenderClientMethods(TypeDoc typeDoc) {
-            var methodsStringBuilder = new StringBuilder();
-            methodsStringBuilder.AppendLine(_renderer.RenderHeader("Client methods: "));
-
-            foreach(var methodDoc in typeDoc.ClientMethods) {
-                methodsStringBuilder.AppendLine(_renderer.RenderText(methodDoc.Name, bold: true));
-                methodsStringBuilder.AppendLine(_renderer.RenderText(methodDoc.Summary));
-
-                var docList = new List<DocListItem>();
-                foreach(var docListItem in GetMethodParams(methodDoc))
-                    docList.Add(docListItem);
-                methodsStringBuilder.AppendLine(_renderer.RenderList(docList));
+            foreach(var eventDoc in events) {
+                eventsStringBuilder.AppendLine(_renderer.RenderText(eventDoc.Name, bold: true));
+                eventsStringBuilder.AppendLine(_renderer.RenderText(eventDoc.Summary));
             }
 
-            _docStringBuilder.AppendLine(methodsStringBuilder.ToString());
+            _docStringBuilder.AppendLine(eventsStringBuilder.ToString());
         }
 
-        void RenderProperties(TypeDoc typeDoc) {
-            throw new NotImplementedException();
+        void RenderClientProperties(IEnumerable<ClientPropertyDoc> clientProperties) {
+            var propertiesStringBuilder = new StringBuilder();
+            propertiesStringBuilder.AppendLine(_renderer.RenderHeader("Client properties"));
+
+            foreach(var clientPropertyDoc in clientProperties) {
+                propertiesStringBuilder.AppendLine(_renderer.RenderText(clientPropertyDoc.Name, bold: true));
+                propertiesStringBuilder.AppendLine(_renderer.RenderText(clientPropertyDoc.Summary));
+                propertiesStringBuilder.AppendLine(_renderer.RenderText("Getter name: ", bold: true) + _renderer.RenderText(clientPropertyDoc.GetterName));
+                propertiesStringBuilder.AppendLine(_renderer.RenderText("Setter name: ", bold: true) + _renderer.RenderText(clientPropertyDoc.SetterName));
+
+            }
+
+            _docStringBuilder.AppendLine(propertiesStringBuilder.ToString());
+        }
+
+        void RenderProperties(IEnumerable<PropertyDoc> properties) {
+            var propertiesStringBuilder = new StringBuilder();
+            propertiesStringBuilder.AppendLine(_renderer.RenderHeader("Properties"));
+
+            foreach(var propertyDoc in properties) {
+                propertiesStringBuilder.AppendLine(_renderer.RenderText(propertyDoc.Name, bold: true));
+                propertiesStringBuilder.AppendLine(_renderer.RenderText(propertyDoc.Summary));
+            }
+
+            _docStringBuilder.AppendLine(propertiesStringBuilder.ToString());
         }    
     }
 }
