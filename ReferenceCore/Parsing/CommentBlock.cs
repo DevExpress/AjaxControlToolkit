@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace AjaxControlToolkit.Reference.Core.Parsing {
 
@@ -20,5 +18,4 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
             _lines.Add(line);
         }
     }
-
 }

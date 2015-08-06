@@ -1,8 +1,6 @@
 ﻿using AjaxControlToolkit.Reference.Core.Parsing;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace AjaxControlToolkit.Reference.Core {
 
@@ -66,5 +64,4 @@ namespace AjaxControlToolkit.Reference.Core {
             get { return _types.Values; }
         }
     }
-
 }

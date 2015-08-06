@@ -112,5 +112,4 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
             return sb.ToString();
         }
     }
-
 }

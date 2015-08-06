@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Web;
 
 namespace AjaxControlToolkit.Reference.Core.Rendering {
-    public class CodePlexDocRenderer : IDocRenderer {
-        #region IDocRenderer Members
 
+    public class CodePlexDocRenderer : IDocRenderer {
         public string RenderHeader(string text, int level = 1) {
             if(String.IsNullOrWhiteSpace(text))
                 return String.Empty;
@@ -55,7 +52,5 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
             return new String(ordered ? '#' : '*', level) + " " + text;
         }
-
-        #endregion
     }
 }

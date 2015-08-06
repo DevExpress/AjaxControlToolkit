@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Xml.Linq;
 
 namespace AjaxControlToolkit.Reference.Core.Parsing {
@@ -83,7 +82,5 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
         string CleanSpaces(string value) {
             return Regex.Replace(value, @"\s+", " ");
         }
-
     }
-
 }

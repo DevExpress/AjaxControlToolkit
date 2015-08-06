@@ -3,7 +3,6 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Web;
 
 namespace AjaxControlToolkit.Reference.Core.Razor {
 
@@ -20,14 +19,13 @@ namespace AjaxControlToolkit.Reference.Core.Razor {
         }
 
         public override string ToString() {
-            var builder = new StringBuilder();
-            builder.AppendLine(base.ToString()).AppendLine();
+            var sb = new StringBuilder();
+            sb.AppendLine(base.ToString()).AppendLine();
 
             foreach(var error in CompilerErrors)
-                builder.Append(error).AppendLine().AppendLine();
+                sb.Append(error).AppendLine().AppendLine();
 
-            return builder.ToString();
+            return sb.ToString();
         }
     }
-
 }

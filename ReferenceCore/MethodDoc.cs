@@ -1,20 +1,17 @@
 ﻿using AjaxControlToolkit.Reference.Core.Parsing;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Xml.Linq;
 
 namespace AjaxControlToolkit.Reference.Core {
 
-    public class ClientMethodDoc : DocBase, IMethodDoc {
+    public class MethodDoc : DocBase, IMethodDoc{
         List<ParamInfo> _params = new List<ParamInfo>();
 
         public IEnumerable<ParamInfo> Params {
             get { return _params; }
         }
 
-        public ClientMethodDoc(string fullName) : base(fullName) { }
+        public MethodDoc(string fullName) : base(fullName) { }
 
         public override DocBase Fill(IEnumerable<XElement> values) {
             DocParser.Instance.FillInfo(this, values);
@@ -25,5 +22,4 @@ namespace AjaxControlToolkit.Reference.Core {
             _params.Add(new ParamInfo() { Name = name, Description = description, TypeName = typeName });
         }
     }
-
 }
