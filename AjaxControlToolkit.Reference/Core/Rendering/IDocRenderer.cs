@@ -9,6 +9,6 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
         string RenderTextBlock(string text, bool bold = false, bool italic = false); 
         string RenderList(IEnumerable<DocListItem> items);
-        string RenderListItem(string text, bool ordered = false);
+        string RenderListItem(string text, bool ordered = false, int level = 1);
     }
 }

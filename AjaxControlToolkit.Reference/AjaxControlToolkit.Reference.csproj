@@ -104,6 +104,7 @@
     <Compile Include="Core\Razor\LayoutTemplateBase.cs" />
     <Compile Include="Core\Razor\PageTemplateBase.cs" />
     <Compile Include="Core\Razor\TemplateBase.cs" />
+    <Compile Include="Core\Rendering\CodePlexDocRenderer.cs" />
     <Compile Include="Core\Rendering\ExtenderDoc.cs" />
     <Compile Include="Core\Rendering\IDocRenderer.cs" />
     <Compile Include="Core\Rendering\DocListItem.cs" />

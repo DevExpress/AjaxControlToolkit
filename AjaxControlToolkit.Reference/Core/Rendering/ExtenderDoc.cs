@@ -56,11 +56,12 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         IEnumerable<DocListItem> GetMethodParams(IMethodDoc methodDoc) {
             foreach(var param in methodDoc.Params) {
                 var header = _renderer.RenderTextBlock(param.Name, bold: true);
-                var description = _renderer.RenderTextBlock(_renderer.RenderText("Type: ", italic: true) + _renderer.RenderText(param.TypeName)) +
-                    _renderer.RenderTextBlock(param.Description);
+                var type = _renderer.RenderTextBlock(_renderer.RenderText("Type: ", italic: true) + _renderer.RenderText(param.TypeName));
+                var description = _renderer.RenderTextBlock(param.Description);
 
                 yield return new DocListItem() {
                     Header = header,
+                    Type = type,
                     Description = description
                 };
             }
