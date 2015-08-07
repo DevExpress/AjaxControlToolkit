@@ -113,8 +113,10 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
             var codeplexDocRenderer = new CodePlexDocRenderer();
             var extenderDoc = new ExtenderDoc(codeplexDocRenderer);
+            var markup = extenderDoc.BuildDoc(doc.Types);
+            var wikiEngine = new WikiPlex.WikiEngine();
 
-            return Content(extenderDoc.BuildDoc(doc.Types));
+            return Content(wikiEngine.Render(markup));
         }
 
         void FillClientMembers(Documentation doc, string typeFullName) {
