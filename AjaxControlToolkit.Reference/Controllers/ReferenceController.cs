@@ -1,6 +1,7 @@
 ﻿using AjaxControlToolkit.Reference.Core;
 using AjaxControlToolkit.Reference.Core.Parsing;
 using AjaxControlToolkit.Reference.Core.Razor;
+using AjaxControlToolkit.Reference.Core.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -95,6 +96,28 @@ namespace AjaxControlToolkit.Reference.Controllers {
             var doc = GetDoc();
 
             var typeFullName = ActNamespace + "." + typeName;
+            FillClientMembers(doc, typeFullName);
+
+            var types = doc.Types.FirstOrDefault(t => t.Name == typeName);
+
+            return Content(Template.Render(types));
+        }
+
+        public ContentResult Markup() {
+            var doc = GetDoc();
+
+            foreach(var docType in doc.Types) {
+                var typeFullName = docType.Namespace + "." + docType.Name;
+                FillClientMembers(doc, typeFullName);
+            }
+
+            var codeplexDocRenderer = new CodePlexDocRenderer();
+            var extenderDoc = new ExtenderDoc(codeplexDocRenderer);
+
+            return Content(extenderDoc.BuildDoc(doc.Types));
+        }
+
+        void FillClientMembers(Documentation doc, string typeFullName) {
             var actAssembly = typeof(ToolkitResourceManager).Assembly;
             var type = actAssembly.GetType(typeFullName, true);
 
@@ -111,10 +134,6 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
                 doc.Add(clientMembers);
             }
-
-            var types = doc.Types.FirstOrDefault(t => t.Name == typeName);
-
-            return Content(Template.Render(types));
         }
 
         Documentation GetDoc() {
