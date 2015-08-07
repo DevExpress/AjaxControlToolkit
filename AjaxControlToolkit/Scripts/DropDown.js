@@ -284,7 +284,11 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
             if(!this._oldBackgroundColor)
                 this._oldBackgroundColor = $common.getCurrentStyle(elt, 'backgroundColor');
 
-            elt.style.backgroundColor = this._highlightBackgroundColor;
+            var rgbColorRegEx = /\d{0,3},\s*\d{0,3},\s*\d{0,3}/;
+            if(rgbColorRegEx.test(this._highlightBackgroundColor))
+                elt.style.backgroundColor = "rgb(" + this._highlightBackgroundColor + ")";
+            else
+                elt.style.backgroundColor = this._highlightBackgroundColor;
         }
     },
 

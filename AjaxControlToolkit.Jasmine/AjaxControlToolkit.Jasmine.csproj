@@ -97,6 +97,7 @@
     <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.js" />
     <Content Include="Suites\BalloonPopupTests.aspx" />
+    <Content Include="Suites\DropDownTests.aspx" />
     <Content Include="Suites\HtmlEditorExtenderTests\superhero.png" />
     <Content Include="Suites\UpdatePanelAnimationTests.aspx" />
     <Content Include="Suites\TextBoxWatermarkTests.aspx" />
@@ -158,6 +159,13 @@
     </Compile>
     <Compile Include="Suites\BalloonPopupTests.aspx.designer.cs">
       <DependentUpon>BalloonPopupTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\DropDownTests.aspx.cs">
+      <DependentUpon>DropDownTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\DropDownTests.aspx.designer.cs">
+      <DependentUpon>DropDownTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\UpdatePanelAnimationTests.aspx.cs">
       <DependentUpon>UpdatePanelAnimationTests.aspx</DependentUpon>
