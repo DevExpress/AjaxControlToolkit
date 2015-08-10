@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
+using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.Reference.Controllers {
 
@@ -35,7 +36,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
         public ActionResult Index() {
             var typeNames = new string[] {
-                "Accordion",
+                "AccordionExtender",
                 "AjaxFileUpload",
                 "AlwaysVisibleControlExtender",
                 "Animation",
