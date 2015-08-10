@@ -1,6 +1,5 @@
 ﻿using AjaxControlToolkit.Reference.Core;
 using AjaxControlToolkit.Reference.Core.Parsing;
-using AjaxControlToolkit.Reference.Core.Razor;
 using AjaxControlToolkit.Reference.Core.Rendering;
 using System;
 using System.Collections.Generic;
@@ -15,24 +14,6 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
     public class ReferenceController : Controller {
         const string ActNamespace = "AjaxControlToolkit";
-
-        static Lazy<PageTemplateBase<TypeDoc>> _templateLazy = new Lazy<PageTemplateBase<TypeDoc>>(CreateTemplate);
-        static PageTemplateBase<TypeDoc> Template {
-            get { return _templateLazy.Value; }
-        }
-
-        static PageTemplateBase<TypeDoc> CreateTemplate() {
-            var context = System.Web.HttpContext.Current;
-
-            var rootDir = Path.Combine(
-                Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName,
-                "AjaxControlToolkit.Reference"
-            );
-
-            var engine = new Engine(rootDir);
-#warning hardcoded!
-            return engine.CreateTemplateInstance<TypeDoc>("~/Views/Reference/Type.cshtml");
-        }
 
         public ActionResult Index() {
             var typeNames = new string[] {
@@ -91,17 +72,6 @@ namespace AjaxControlToolkit.Reference.Controllers {
             var types = doc.Types.Where(t => typeNames.Contains(t.Name)).Select(t => t.Name);
 
             return View(types);
-        }
-
-        public ContentResult Type(string typeName) {
-            var doc = GetDoc();
-
-            var typeFullName = ActNamespace + "." + typeName;
-            FillClientMembers(doc, typeFullName);
-
-            var types = doc.Types.FirstOrDefault(t => t.Name == typeName);
-
-            return Content(Template.Render(types));
         }
 
         public ContentResult Markup() {

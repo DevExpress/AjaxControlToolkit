@@ -1,8 +1,9 @@
-﻿using System;
+﻿using AjaxControlToolkit.Reference.Core.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace AjaxControlToolkit.Reference.Core.Rendering {
+namespace AjaxControlToolkit.Reference.Core {
 
     public class ExtenderDoc {
         IDocRenderer _renderer;
