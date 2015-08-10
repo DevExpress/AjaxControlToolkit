@@ -8,7 +8,7 @@ namespace AjaxControlToolkit.Reference.Core {
         IList<MethodDoc> _methods;
         IList<EventDoc> _events;
         IList<PropertyDoc> _properties;
-        IList<ClientMethodDoc> _clientMethods;
+        IList<MethodDoc> _clientMethods;
         IList<ClientPropertyDoc> _clientProperties;
 
         public TypeDoc(string fullName)
@@ -16,7 +16,7 @@ namespace AjaxControlToolkit.Reference.Core {
             _methods = new List<MethodDoc>();
             _events = new List<EventDoc>();
             _properties = new List<PropertyDoc>();
-            _clientMethods = new List<ClientMethodDoc>();
+            _clientMethods = new List<MethodDoc>();
             _clientProperties = new List<ClientPropertyDoc>();
         }
 
@@ -32,7 +32,7 @@ namespace AjaxControlToolkit.Reference.Core {
             get { return _properties; }
         }
 
-        public IEnumerable<ClientMethodDoc> ClientMethods {
+        public IEnumerable<MethodDoc> ClientMethods {
             get { return _clientMethods; }
         }
 
@@ -52,7 +52,7 @@ namespace AjaxControlToolkit.Reference.Core {
             _properties.Add(info);
         }
 
-        public void AddClientMethod(ClientMethodDoc info) {
+        public void AddClientMethod(MethodDoc info) {
             _clientMethods.Add(info);
         }
 

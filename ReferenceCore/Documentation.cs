@@ -35,7 +35,7 @@ namespace AjaxControlToolkit.Reference.Core {
                         return info;
                     }
                 case "cM": {
-                        var info = new ClientMethodDoc(fullName);
+                        var info = new MethodDoc(fullName);
                         GetTypeByName(info.Namespace).AddClientMethod(info);
                         return info;
                     }

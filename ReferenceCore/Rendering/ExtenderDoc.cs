@@ -43,7 +43,7 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             _docStringBuilder.AppendLine(_renderer.RenderTextBlock(typeDescription));
         }
 
-        void RenderMethods<T>(IEnumerable<T> methods, string headerText) where T : IMethodDoc {
+        void RenderMethods(IEnumerable<MethodDoc> methods, string headerText) {
             var methodsStringBuilder = new StringBuilder();
             methodsStringBuilder.AppendLine(_renderer.RenderHeader(headerText, level: 2));
 
@@ -62,7 +62,7 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             _docStringBuilder.AppendLine(methodsStringBuilder.ToString());
         }
 
-        IEnumerable<DocListItem> GetMethodParams(IMethodDoc methodDoc) {
+        IEnumerable<DocListItem> GetMethodParams(MethodDoc methodDoc) {
             foreach(var param in methodDoc.Params) {
                 var header = _renderer.RenderTextBlock(param.Name, bold: true);
                 var type = _renderer.RenderTextBlock(_renderer.RenderText("Type: ", italic: true) + _renderer.RenderText(param.TypeName));

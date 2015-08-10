@@ -26,23 +26,11 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
 
         public void FillInfo(MethodDoc info, IEnumerable<XElement> values) {
             GetSummaryAndRemarks(info, values);
-
             var parameters = values.Where(el => el.Name == ParamTagName);
 
             foreach(var param in parameters) {
                 var name = param.Attribute("name").Value;
-                var description = CleanSpaces(param.Value);
-                info.AddParam(name, null, description);
-            }
-        }
-
-        public void FillInfo(ClientMethodDoc info, IEnumerable<XElement> values) {
-            GetSummaryAndRemarks(info, values);
-            var parameters = values.Where(el => el.Name == ParamTagName);
-
-            foreach(var param in parameters) {
-                var name = param.Attribute("name").Value;
-                var typeName = param.Attribute("type").Value;
+                var typeName = param.Attribute("type") != null ? param.Attribute("type").Value : null;
                 var description = CleanSpaces(param.Value);
                 info.AddParam(name, typeName, description);
             }
