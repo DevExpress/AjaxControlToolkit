@@ -35,50 +35,11 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             return RenderText(text, bold, italic);
         }
 
-        public string RenderList(IEnumerable<DocListItem> items) {
-            if(items == null)
-                return String.Empty;
-
-            var sb = new StringBuilder();
-
-            foreach(var item in items) {
-                sb.Append(GetListItemHeader(item));
-                sb.Append(GetListItemType(item));
-                sb.Append(GetListItemDescription(item));
-            }
-
-            if(sb.Length > 0)
-                sb.Length -= 2;
-
-            return sb.ToString();
-        }
-
-        string GetListItemDescription(DocListItem item) {
-            if(String.IsNullOrEmpty(item.Description))
-                return String.Empty;
-
-            return RenderListItem(item.Description, level: 2) + Environment.NewLine;
-        }
-
-        string GetListItemType(DocListItem item) {
-            if(String.IsNullOrEmpty(item.Type))
-                return String.Empty;
-
-            return RenderListItem(item.Type, level: 2) + Environment.NewLine;
-        }
-
-        string GetListItemHeader(DocListItem item) {
-            if(String.IsNullOrEmpty(item.Header))
-                return String.Empty;
-
-            return RenderListItem(item.Header) + Environment.NewLine;
-        }
-
         public string RenderListItem(string text, bool ordered = false, int level = 1) {
             if(String.IsNullOrWhiteSpace(text))
                 return String.Empty;
 
-            return new String(ordered ? '#' : '*', level) + " " + text;
+            return new String(ordered ? '#' : '*', level) + " " + text + "\n";
         }
     }
 }

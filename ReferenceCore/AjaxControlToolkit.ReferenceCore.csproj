@@ -62,7 +62,6 @@
     <Compile Include="Razor\PageTemplateBase.cs" />
     <Compile Include="Razor\TemplateBase.cs" />
     <Compile Include="Rendering\CodePlexDocRenderer.cs" />
-    <Compile Include="Rendering\DocListItem.cs" />
     <Compile Include="Rendering\ExtenderDoc.cs" />
     <Compile Include="Rendering\IDocRenderer.cs" />
     <Compile Include="TypeDoc.cs" />

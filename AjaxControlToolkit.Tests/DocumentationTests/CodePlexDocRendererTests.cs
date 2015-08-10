@@ -79,59 +79,6 @@ namespace AjaxControlToolkit.Tests {
         }
 
         [Test]
-        public void RenderNullListTest() {
-            var actualText = _codePlexRenderer.RenderList(null);
-            Assert.AreEqual(String.Empty, actualText);
-        }
-
-        [Test]
-        public void RenderEmptyListTest() {
-            var items = new List<DocListItem>();
-            var actualText = _codePlexRenderer.RenderList(items);
-            Assert.AreEqual(String.Empty, actualText);
-        }
-
-        [Test]
-        public void RenderListHeaderOnlyTest() {
-            var items = new List<DocListItem>();
-            items.Add(new DocListItem() { Header = "Header" });
-            var actualText = _codePlexRenderer.RenderList(items);
-            Assert.AreEqual("* " + items[0].Header, actualText);
-        }
-
-        [Test]
-        public void RenderListTypeOnlyTest() {
-            var items = new List<DocListItem>();
-            items.Add(new DocListItem() { Type = "Type" });
-            var actualText = _codePlexRenderer.RenderList(items);
-            Assert.AreEqual("** " + items[0].Type, actualText);
-        }
-
-        [Test]
-        public void RenderListDescriptionOnlyTest() {
-            var items = new List<DocListItem>();
-            items.Add(new DocListItem() { Description = "Description" });
-            var actualText = _codePlexRenderer.RenderList(items);
-            Assert.AreEqual("** " + items[0].Description, actualText);
-        }
-
-        [Test]
-        public void RenderListHeaderAndDescriptionTest() {
-            var items = new List<DocListItem>();
-            items.Add(new DocListItem() { Header = "Header", Description = "Description" });
-            var actualText = _codePlexRenderer.RenderList(items);
-            Assert.AreEqual("* " + items[0].Header + Environment.NewLine + "** " + items[0].Description, actualText);
-        }
-
-        [Test]
-        public void RenderListTypeAndDescriptionTest() {
-            var items = new List<DocListItem>();
-            items.Add(new DocListItem() { Type = "Type", Description = "Description" });
-            var actualText = _codePlexRenderer.RenderList(items);
-            Assert.AreEqual("** " + items[0].Type + Environment.NewLine + "** " + items[0].Description, actualText);
-        }
-
-        [Test]
         public void RenderEmptyListItemTest() {
             var actualText = _codePlexRenderer.RenderListItem(String.Empty);
             Assert.AreEqual(String.Empty, actualText);
@@ -141,28 +88,28 @@ namespace AjaxControlToolkit.Tests {
         public void RenderListItemTest() {
             var text = "text";
             var actualText = _codePlexRenderer.RenderListItem(text);
-            Assert.AreEqual("* " + text, actualText);
+            Assert.AreEqual("* " + text + "\n", actualText);
         }
 
         [Test]
         public void RenderOrderedListItemTest() {
             var text = "text";
             var actualText = _codePlexRenderer.RenderListItem(text, true);
-            Assert.AreEqual("# " + text, actualText);
+            Assert.AreEqual("# " + text + "\n", actualText);
         }
 
         [Test]
         public void RenderSecondLevelListItemTest() {
             var text = "text";
             var actualText = _codePlexRenderer.RenderListItem(text, level: 2);
-            Assert.AreEqual("** " + text, actualText);
+            Assert.AreEqual("** " + text + "\n", actualText);
         }
 
         [Test]
         public void RenderOrderedSecondLevelListItemTest() {
             var text = "text";
             var actualText = _codePlexRenderer.RenderListItem(text, true, 2);
-            Assert.AreEqual("## " + text, actualText);
+            Assert.AreEqual("## " + text + "\n", actualText);
         }
     }
 }

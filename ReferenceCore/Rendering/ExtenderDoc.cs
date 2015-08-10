@@ -53,26 +53,23 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
                 methodsStringBuilder.AppendLine(_renderer.RenderTextBlock("Params:", italic: true));
 
-                var docList = new List<DocListItem>();
-                foreach(var docListItem in GetMethodParams(methodDoc))
-                    docList.Add(docListItem);
-                methodsStringBuilder.AppendLine(_renderer.RenderList(docList));
+                foreach(var item in FormatMethodParams(methodDoc))
+                    methodsStringBuilder.AppendLine(item);
+
             }
 
             _docStringBuilder.AppendLine(methodsStringBuilder.ToString());
         }
 
-        IEnumerable<DocListItem> GetMethodParams(MethodDoc methodDoc) {
+        IEnumerable<string> FormatMethodParams(MethodDoc methodDoc) {
             foreach(var param in methodDoc.Params) {
-                var header = _renderer.RenderTextBlock(param.Name, bold: true);
-                var type = _renderer.RenderTextBlock(_renderer.RenderText("Type: ", italic: true) + _renderer.RenderText(param.TypeName));
-                var description = _renderer.RenderTextBlock(param.Description);
+                var header = _renderer.RenderText(param.Name, bold: true);
+                var type = _renderer.RenderText(_renderer.RenderText("Type: ", italic: true) + _renderer.RenderText(param.TypeName));
 
-                yield return new DocListItem() {
-                    Header = header,
-                    Type = type,
-                    Description = description
-                };
+                yield return
+                    _renderer.RenderListItem(header, false, 1) +
+                    _renderer.RenderListItem(type, false, 2) +
+                    _renderer.RenderListItem(param.Description, false, 2);
             }
         }
 
