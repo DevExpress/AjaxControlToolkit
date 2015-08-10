@@ -49,10 +49,10 @@ namespace AjaxControlToolkit.Reference.Core {
             methodsStringBuilder.Append(_renderer.RenderHeader(headerText, level: 2));
 
             foreach(var methodDoc in methods) {
-                methodsStringBuilder.Append(_renderer.RenderText(methodDoc.Name, bold: true) + _renderer.RenderLineBreak());
-                methodsStringBuilder.Append(_renderer.RenderText(methodDoc.Summary) + _renderer.RenderLineBreak());
+                methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(methodDoc.Name, bold: true));
+                methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(methodDoc.Summary));
 
-                methodsStringBuilder.Append(_renderer.RenderText("Params:", italic: true) + _renderer.RenderLineBreak());
+                methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Params:", italic: true));
 
                 foreach(var item in FormatMethodParams(methodDoc))
                     methodsStringBuilder.Append(item);
@@ -76,11 +76,11 @@ namespace AjaxControlToolkit.Reference.Core {
 
         void RenderEvents(IEnumerable<EventDoc> events) {
             var eventsStringBuilder = new StringBuilder();
-            eventsStringBuilder.Append(_renderer.RenderHeader("Events", level: 2));
+            eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Events", level: 2));
 
             foreach(var eventDoc in events) {
-                eventsStringBuilder.Append(_renderer.RenderText(eventDoc.Name, bold: true) + _renderer.RenderLineBreak());
-                eventsStringBuilder.Append(_renderer.RenderText(eventDoc.Summary) + _renderer.RenderLineBreak());
+                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(eventDoc.Name, bold: true));
+                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(eventDoc.Summary));
             }
 
             _docStringBuilder.Append(eventsStringBuilder.ToString());
@@ -88,23 +88,23 @@ namespace AjaxControlToolkit.Reference.Core {
 
         void RenderClientProperties(IEnumerable<ClientPropertyDoc> clientProperties) {
             var propertiesStringBuilder = new StringBuilder();
-            propertiesStringBuilder.Append(_renderer.RenderHeader("Client properties", level: 2));
+            propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Client properties", level: 2));
 
             foreach(var clientPropertyDoc in clientProperties) {
-                propertiesStringBuilder.Append(_renderer.RenderText(clientPropertyDoc.Name, bold: true) + _renderer.RenderLineBreak());
-                propertiesStringBuilder.Append(_renderer.RenderText(clientPropertyDoc.Summary) + _renderer.RenderLineBreak());
+                propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(clientPropertyDoc.Name, bold: true) );
+                propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(clientPropertyDoc.Summary) );
 
                 if(!String.IsNullOrWhiteSpace(clientPropertyDoc.GetterName))
                     propertiesStringBuilder.Append(
+                        _renderer.RenderLineBreak()+
                         _renderer.RenderText("Getter name: ", bold: true) +
-                        _renderer.RenderText(clientPropertyDoc.GetterName) +
-                        _renderer.RenderLineBreak());
+                        _renderer.RenderText(clientPropertyDoc.GetterName));
 
                 if(!String.IsNullOrWhiteSpace(clientPropertyDoc.SetterName))
                     propertiesStringBuilder.Append(
+                        _renderer.RenderLineBreak() +
                         _renderer.RenderText("Setter name: ", bold: true) +
-                        _renderer.RenderText(clientPropertyDoc.SetterName) +
-                        _renderer.RenderLineBreak());
+                        _renderer.RenderText(clientPropertyDoc.SetterName));
             }
 
             _docStringBuilder.Append(propertiesStringBuilder.ToString());
