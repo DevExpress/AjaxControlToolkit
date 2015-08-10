@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace AjaxControlToolkit.Reference.Core.Rendering {
@@ -94,8 +95,12 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             foreach(var clientPropertyDoc in clientProperties) {
                 propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(clientPropertyDoc.Name, bold: true));
                 propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(clientPropertyDoc.Summary));
-                propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(_renderer.RenderText("Getter name: ", bold: true) + _renderer.RenderText(clientPropertyDoc.GetterName)));
-                propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(_renderer.RenderText("Setter name: ", bold: true) + _renderer.RenderText(clientPropertyDoc.SetterName)));
+
+                if(!String.IsNullOrWhiteSpace(clientPropertyDoc.GetterName))
+                    propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(_renderer.RenderText("Getter name: ", bold: true) + _renderer.RenderText(clientPropertyDoc.GetterName)));
+
+                if(!String.IsNullOrWhiteSpace(clientPropertyDoc.SetterName))
+                    propertiesStringBuilder.AppendLine(_renderer.RenderTextBlock(_renderer.RenderText("Setter name: ", bold: true) + _renderer.RenderText(clientPropertyDoc.SetterName)));
             }
 
             _docStringBuilder.AppendLine(propertiesStringBuilder.ToString());
