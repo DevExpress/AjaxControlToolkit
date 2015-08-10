@@ -50,8 +50,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.Jasmine"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.Reference", "AjaxControlToolkit.Reference\AjaxControlToolkit.Reference.csproj", "{F59259DF-E8B8-483C-8019-67A9C78BB6EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.ReferenceExporter", "AjaxControlToolkit.ReferenceExporter\AjaxControlToolkit.ReferenceExporter.csproj", "{7834E0E4-2915-4F1D-8E43-7222B5E45284}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.ReferenceCore", "ReferenceCore\AjaxControlToolkit.ReferenceCore.csproj", "{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}"
 EndProject
 Global
@@ -94,10 +92,6 @@ Global
 		{F59259DF-E8B8-483C-8019-67A9C78BB6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F59259DF-E8B8-483C-8019-67A9C78BB6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F59259DF-E8B8-483C-8019-67A9C78BB6EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7834E0E4-2915-4F1D-8E43-7222B5E45284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7834E0E4-2915-4F1D-8E43-7222B5E45284}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7834E0E4-2915-4F1D-8E43-7222B5E45284}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7834E0E4-2915-4F1D-8E43-7222B5E45284}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}.Release|Any CPU.ActiveCfg = Release|Any CPU
