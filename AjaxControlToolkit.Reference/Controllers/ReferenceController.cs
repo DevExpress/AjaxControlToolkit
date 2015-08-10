@@ -107,7 +107,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
         public ContentResult Markup() {
             var doc = GetDoc();
 
-            foreach(var docType in doc.Types) {
+            foreach(var docType in doc.Types.ToList()) {
                 var typeFullName = docType.Namespace + "." + docType.Name;
                 FillClientMembers(doc, typeFullName);
             }
@@ -124,7 +124,10 @@ namespace AjaxControlToolkit.Reference.Controllers {
             var actAssembly = typeof(ToolkitResourceManager).Assembly;
             var type = actAssembly.GetType(typeFullName, true);
 
-            if(type.BaseType == typeof(ExtenderControlBase)) {
+
+            if(type.IsSubclassOf(typeof(ExtenderControlBase))
+                ||
+                type.IsSubclassOf(typeof(ScriptControlBase))) {
                 var clientScriptName = type
                     .CustomAttributes
                     .First(a => a.AttributeType.Name == "ClientScriptResourceAttribute")
