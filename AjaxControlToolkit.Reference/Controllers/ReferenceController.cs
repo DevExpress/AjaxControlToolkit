@@ -78,7 +78,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
             var doc = GetDoc();
 
             foreach(var docType in doc.Types.ToList()) {
-                var typeFullName = docType.Namespace + "." + docType.Name;
+                var typeFullName = docType.Namespace + "." + GetNeededType(docType.Name);
                 FillClientMembers(doc, typeFullName);
             }
 
@@ -90,10 +90,19 @@ namespace AjaxControlToolkit.Reference.Controllers {
             return Content(wikiEngine.Render(markup));
         }
 
+        string GetNeededType(string typeName) {
+            switch(typeName) {
+                case "Accordion":
+                    return "AccordionExtender";
+                default:
+                    return typeName;
+                    break;
+            }
+        }
+
         void FillClientMembers(Documentation doc, string typeFullName) {
             var actAssembly = typeof(ToolkitResourceManager).Assembly;
             var type = actAssembly.GetType(typeFullName, true);
-
 
             if(type.IsSubclassOf(typeof(ExtenderControlBase))
                 ||
