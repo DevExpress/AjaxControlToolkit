@@ -67,15 +67,14 @@ namespace AjaxControlToolkit.Tests {
         [Test]
         public void RenderBoldItalicTextTest() {
             var text = "text";
-            var actualText = _codePlexRenderer.RenderText(text, bold:true, italic: true);
+            var actualText = _codePlexRenderer.RenderText(text, bold: true, italic: true);
             Assert.AreEqual("_*" + text + "*_", actualText);
         }
 
         [Test]
-        public void RenderTextBlockTest() {
-            var text = "text";
-            var actualText = _codePlexRenderer.RenderTextBlock(text);
-            Assert.AreEqual(text, actualText);
+        public void RenderLineBreakTest() {
+            var actualText = _codePlexRenderer.RenderLineBreak();
+            Assert.AreEqual("\n", actualText);
         }
 
         [Test]

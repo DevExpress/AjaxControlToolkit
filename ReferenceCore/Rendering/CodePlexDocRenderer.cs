@@ -5,11 +5,12 @@ using System.Text;
 namespace AjaxControlToolkit.Reference.Core.Rendering {
 
     public class CodePlexDocRenderer : IDocRenderer {
+
         public string RenderHeader(string text, int level = 1) {
             if(String.IsNullOrWhiteSpace(text))
                 return String.Empty;
 
-            return new String('!', level) + " " + text;
+            return RenderLineBreak() + new String('!', level) + " " + text;
         }
 
         public string RenderText(string text, bool bold = false, bool italic = false) {
@@ -31,15 +32,15 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             return String.Format("[url:{0}]", url);
         }
 
-        public string RenderTextBlock(string text, bool bold = false, bool italic = false) {
-            return RenderText(text, bold, italic);
-        }
-
         public string RenderListItem(string text, bool ordered = false, int level = 1) {
             if(String.IsNullOrWhiteSpace(text))
                 return String.Empty;
 
-            return new String(ordered ? '#' : '*', level) + " " + text + "\n";
+            return new String(ordered ? '#' : '*', level) + " " + text + RenderLineBreak();
+        }
+
+        public string RenderLineBreak() {
+            return "\n";
         }
     }
 }
