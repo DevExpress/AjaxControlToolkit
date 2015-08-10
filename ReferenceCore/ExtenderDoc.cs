@@ -65,7 +65,7 @@ namespace AjaxControlToolkit.Reference.Core {
         IEnumerable<string> FormatMethodParams(MethodDoc methodDoc) {
             foreach(var param in methodDoc.Params) {
                 var header = _renderer.RenderText(param.Name, bold: true);
-                var type = _renderer.RenderText(_renderer.RenderText("Type: ", italic: true) + _renderer.RenderText(param.TypeName));
+                var type = _renderer.RenderText("Type: ", italic: true) + _renderer.RenderText(param.TypeName);
 
                 yield return
                     _renderer.RenderListItem(header, false, 1) +
