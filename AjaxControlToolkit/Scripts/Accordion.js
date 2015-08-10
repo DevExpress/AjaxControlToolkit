@@ -220,23 +220,33 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     // index is invalid).
     this._selectedIndex = 0;
 
-    // The _panes array represents the collection of Accordion panes.  Each element of
-    // the array is an object of the form {header, content, animation} corresponding
-    // to that pane's header section, content section, and the animation used to open
-    // and close its content section.  The content element is a new div that has been
-    // created to wrap the original div (so we can completely collapse it - even if it
-    // has padding, margins, etc.) which is pointed to by a dynamic _original property.
-    // The header element has a dynamic _index property indicating its position in the
-    // Accordion's pane collection (used primarily by the headers' shared click handler).
-    // Furthermore, the animation will either be an instance of LengthAnimation or
-    // ParallelAnimation (in the latter case, it will have two children which are a
-    // LengthAnimation and a FadeAnimation).  There will be two dynamic properties
-    // _length and _fade pointing to each of these children (to easily set the length
-    // and fadeEffect properties).  There is also a dynamic _ended property which is
-    // an event handler to be fired when the animation is complete, a dynamic _opening
-    // property to indicate whether the animation was opening or closing the pane, and
-    // a dynamic _pane property to provide a reference to the pane that was being
-    // animated.
+    ///<summary>
+    /// The _panes array represents the collection of Accordion panes.  Each element of
+    /// the array is an object of the form {header, content, animation} corresponding
+    /// to that pane's header section, content section, and the animation used to open
+    /// and close its content section.  The content element is a new div that has been
+    /// created to wrap the original div (so we can completely collapse it - even if it
+    /// has padding, margins, etc.) which is pointed to by a dynamic _original property.
+    /// The header element has a dynamic _index property indicating its position in the
+    /// Accordion's pane collection (used primarily by the headers' shared click handler).
+    /// Furthermore, the animation will either be an instance of LengthAnimation or
+    /// ParallelAnimation (in the latter case, it will have two children which are a
+    /// LengthAnimation and a FadeAnimation).  There will be two dynamic properties
+    /// _length and _fade pointing to each of these children (to easily set the length
+    /// and fadeEffect properties).  There is also a dynamic _ended property which is
+    /// an event handler to be fired when the animation is complete, a dynamic _opening
+    /// property to indicate whether the animation was opening or closing the pane, and
+    /// a dynamic _pane property to provide a reference to the pane that was being
+    /// animated.
+    ///</summary>
+    ///<getter>get_Count</getter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.Count" />
+
+    ///<summary>
+    /// Get a specific Accordion pane given its index. If no index is provided, get the currently selected pane.
+    ///</summary>
+    ///<getter>get_Pane</getter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.Pane" />
     this._panes = [];
 
     // The this._fadeTransitions flag determines whether or not we enable a simple fade
@@ -250,20 +260,29 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     // the the type of effect being used an the number of accordion panes, etc.
     this._framesPerSecond = 30;
 
-    // Determine how growth of the Accordion will be controlled.  If it is set to
-    // None, then the Accordion can grow as large or as small as necessary.  If it is
-    // set to Limit, then the Accordion will always be less than or equal to its
-    // available space.  If it is set to Fill, then it will always be equal to its
-    // available space.
+    
+    ///<summary>
+    /// Determine how growth of the Accordion will be controlled.  If it is set to
+    /// None, then the Accordion can grow as large or as small as necessary.  If it is
+    /// set to Limit, then the Accordion will always be less than or equal to its
+    /// available space.  If it is set to Fill, then it will always be equal to its
+    /// available space.
+    ///</summary>
+    ///<getter>get_AutoSize</getter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.AutoSize" />
     this._autoSize = Sys.Extended.UI.AutoSize.None;
 
     // Whether or not clicking the header will close the currently opened pane (which
     // leaves all the Accordion's panes closed)
     this._requireOpenedPane = true;
 
-    // Whether or not we suppress the client-side click handlers of any elements
-    // (including server controls like Button or HTML elements like anchor) in the header
-    // sections of the Accordion
+    ///<summary>
+    /// Whether or not we suppress the client-side click handlers of any elements
+    /// (including server controls like Button or HTML elements like anchor) in the header
+    /// sections of the Accordion
+    ///</summary>
+    ///<getter>get_suppressHeaderPostbacks</getter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.suppressHeaderPostbacks" />
     this._suppressHeaderPostbacks = false;
 
     // Size of all the headers

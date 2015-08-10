@@ -574,7 +574,9 @@ namespace AjaxControlToolkit {
             return _currentView;
         }
 
-        // Bind the Accordion to its DataSource
+        /// <summary>
+        /// Bind the Accordion to its DataSource
+        /// </summary>
         public override void DataBind() {
             // Don't databind to a data source control when the control is in the designer but not top-level
             if(IsBoundUsingDataSourceID && DesignMode && (Site == null))
