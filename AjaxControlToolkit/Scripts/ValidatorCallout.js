@@ -345,12 +345,6 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// OnShow handler.
-    /// </summary>
-    /// <getter>get_onShow</getter>
-    /// <setter>set_onShow</setter>
-    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.onShow" />
     get_onShow: function() {
         // Generic OnShow Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onShow() : this._onShowJson;
@@ -364,9 +358,11 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Raises OnShow event.
+    /// OnShow handler.
     /// </summary>
-    /// <member name="cM:AjaxControlToolkit.ValidatorCalloutExtender.onShow" />
+    /// <getter>get_onShow</getter>
+    /// <setter>set_onShow</setter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.onShow" />
     onShow: function() {
         if(this._popupBehavior)
             this._popupBehavior.onShow();
@@ -382,12 +378,6 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         return this._popupBehavior ? this._popupBehavior.get_onShowBehavior() : null;
     },
 
-    /// <summary>
-    /// OnHide handler.
-    /// </summary>
-    /// <getter>get_onHide</getter>
-    /// <setter>set_onHide</setter>
-    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.onHide" />
     get_onHide: function() {
         // Generic OnHide Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onHide() : this._onHideJson;
@@ -401,9 +391,11 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Raises OnHide event.
+    /// OnHide handler.
     /// </summary>
-    /// <member name="cM:AjaxControlToolkit.ValidatorCalloutExtender.onHide" />
+    /// <getter>get_onHide</getter>
+    /// <setter>set_onHide</setter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.onHide" />
     onHide: function() {
         if(this._popupBehavior)
             this._popupBehavior.onHide();
