@@ -208,59 +208,74 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     // has content at div 2i+1).
     Sys.Extended.UI.AccordionBehavior.initializeBase(this, [element]);
 
-    // The _selectedIndex variable is used to track the currently visible content
-    // pane.  It is persisted via ClientState so that it can be restored on PostBack.
-    // If 0 <= _selectedIndex < _panes.Length is not true, then no pane is selected
-    // (and they all appear collapsed).  While any index outside the bounds of the
-    // _panes array indicates that no pane is selected, we don't automatically set
-    // the value to a sentinel like -1 (especially on the server) because it's
-    // possible for additional panes to be added at any time.  We abstract this
-    // problem using the get_Pane() function which returns the selected pane when
-    // it's called with no arguments (and returns null when the current selected
-    // index is invalid).
+    ///<summary>
+    /// The _selectedIndex variable is used to track the currently visible content
+    /// pane.  It is persisted via ClientState so that it can be restored on PostBack.
+    /// If 0 <= _selectedIndex < _panes.Length is not true, then no pane is selected
+    /// (and they all appear collapsed).  While any index outside the bounds of the
+    /// _panes array indicates that no pane is selected, we don't automatically set
+    /// the value to a sentinel like -1 (especially on the server) because it's
+    /// possible for additional panes to be added at any time.  We abstract this
+    /// problem using the get_Pane() function which returns the selected pane when
+    /// it's called with no arguments (and returns null when the current selected
+    /// index is invalid).
+    ///</summary>
+    ///<getter>get_selectedIndex</getter>
+    ///<setter>set_selectedIndex</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.selectedIndex" />
     this._selectedIndex = 0;
 
     ///<summary>
-    /// The _panes array represents the collection of Accordion panes.  Each element of
-    /// the array is an object of the form {header, content, animation} corresponding
-    /// to that pane's header section, content section, and the animation used to open
-    /// and close its content section.  The content element is a new div that has been
-    /// created to wrap the original div (so we can completely collapse it - even if it
-    /// has padding, margins, etc.) which is pointed to by a dynamic _original property.
-    /// The header element has a dynamic _index property indicating its position in the
-    /// Accordion's pane collection (used primarily by the headers' shared click handler).
-    /// Furthermore, the animation will either be an instance of LengthAnimation or
-    /// ParallelAnimation (in the latter case, it will have two children which are a
-    /// LengthAnimation and a FadeAnimation).  There will be two dynamic properties
-    /// _length and _fade pointing to each of these children (to easily set the length
-    /// and fadeEffect properties).  There is also a dynamic _ended property which is
-    /// an event handler to be fired when the animation is complete, a dynamic _opening
-    /// property to indicate whether the animation was opening or closing the pane, and
-    /// a dynamic _pane property to provide a reference to the pane that was being
-    /// animated.
+    /// Panes count.
     ///</summary>
     ///<getter>get_Count</getter>
     ///<member name="cP:AjaxControlToolkit.Accordion.Count" />
 
-    ///<summary>
-    /// Get a specific Accordion pane given its index. If no index is provided, get the currently selected pane.
-    ///</summary>
-    ///<getter>get_Pane</getter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.Pane" />
+    // The _panes array represents the collection of Accordion panes.  Each element of
+    // the array is an object of the form {header, content, animation} corresponding
+    // to that pane's header section, content section, and the animation used to open
+    // and close its content section.  The content element is a new div that has been
+    // created to wrap the original div (so we can completely collapse it - even if it
+    // has padding, margins, etc.) which is pointed to by a dynamic _original property.
+    // The header element has a dynamic _index property indicating its position in the
+    // Accordion's pane collection (used primarily by the headers' shared click handler).
+    // Furthermore, the animation will either be an instance of LengthAnimation or
+    // ParallelAnimation (in the latter case, it will have two children which are a
+    // LengthAnimation and a FadeAnimation).  There will be two dynamic properties
+    // _length and _fade pointing to each of these children (to easily set the length
+    // and fadeEffect properties).  There is also a dynamic _ended property which is
+    // an event handler to be fired when the animation is complete, a dynamic _opening
+    // property to indicate whether the animation was opening or closing the pane, and
+    // a dynamic _pane property to provide a reference to the pane that was being
+    // animated.
     this._panes = [];
 
-    // The this._fadeTransitions flag determines whether or not we enable a simple fade
-    // animation effect on top of the opening and closing effect
+    ///<summary>
+    /// Whether or not to fade the accordion panes when transitioning
+    ///</summary>
+    ///<getter>get_FadeTransitions</getter>
+    ///<setter>set_FadeTransitions</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.FadeTransitions" />
     this._fadeTransitions = false;
 
-    // The this._duration represents the transition duration of the animations in seconds
+    ///<summary>
+    /// Length of time to transition between Accordion sections in
+    /// milleseconds.  The default value is 250ms.
+    ///</summary>
+    ///<getter>get_TransitionDuration</getter>
+    ///<getter>set_TransitionDuration</getter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.TransitionDuration" />
     this._duration = 0.25;
 
-    // framesPerSecond is used to tune the animation to perform well depending on
-    // the the type of effect being used an the number of accordion panes, etc.
+    ///<summary>
+    /// Number of steps per second in the transition animations.
+    /// The default value is 30 frames per second.
+    ///</summary>
+    ///<getter>get_FramesPerSecond</getter>
+    ///<setter>set_FramesPerSecond</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.FramesPerSecond" />
     this._framesPerSecond = 30;
 
-    
     ///<summary>
     /// Determine how growth of the Accordion will be controlled.  If it is set to
     /// None, then the Accordion can grow as large or as small as necessary.  If it is
@@ -272,16 +287,22 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     ///<member name="cP:AjaxControlToolkit.Accordion.AutoSize" />
     this._autoSize = Sys.Extended.UI.AutoSize.None;
 
-    // Whether or not clicking the header will close the currently opened pane (which
-    // leaves all the Accordion's panes closed)
+    ///<summary>
+    /// Whether or not clicking the header will close the currently opened pane (which
+    /// leaves all the Accordion's panes closed).
+    ///</summary>
+    ///<getter>get_requireOpenedPane</getter>
+    ///<setter>set_requireOpenedPane</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.requireOpenedPane" />
     this._requireOpenedPane = true;
 
     ///<summary>
     /// Whether or not we suppress the client-side click handlers of any elements
     /// (including server controls like Button or HTML elements like anchor) in the header
-    /// sections of the Accordion
+    /// sections of the Accordion.
     ///</summary>
     ///<getter>get_suppressHeaderPostbacks</getter>
+    ///<setter>set_suppressHeaderPostbacks</setter>
     ///<member name="cP:AjaxControlToolkit.Accordion.suppressHeaderPostbacks" />
     this._suppressHeaderPostbacks = false;
 
@@ -292,10 +313,20 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     // elements of our panes will be wired up to
     this._headerClickHandler = null;
 
-    // The _headerSelectedCssClass is the css class applied to the selected header.    
+    ///<summary>
+    /// The _headerSelectedCssClass is the css class applied to the selected header.
+    ///</summary>
+    ///<getter>get_HeaderCssClass</getter>
+    ///<setter>set_HeaderCssClass</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.HeaderCssClass" />
     this._headerCssClass = '';
 
-    // The _headerSelectedCssClass is the css class applied to the selected header.    
+    ///<summary>
+    /// The _headerSelectedCssClass is the css class applied to the selected header.
+    ///</summary>
+    ///<getter>get_HeaderSelectedCssClass</getter>
+    ///<setter>get_HeaderSelectedCssClass</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.HeaderSelectedCssClass" />
     this._headerSelectedCssClass = '';
 
     // The _resizeHandler is a reference to the global event handler used to patch
@@ -1087,35 +1118,24 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         }
     },
 
-    get_Pane: function(index) {
-        // Get a specific Accordion pane given its index.  If no index is provided, get
-        // the currently selected pane.
-        // The desired pane object, or null if outside the the bounds of the _panes array.
-        // The pane is an object of the form {header, content, animation} corresponding to
-        // that pane's header section, content section, and the animation used to open and
-        // close its content section.  The content element is a new div that has been
-        // created to wrap the original div (so we can completely collapse it - even if it
-        // has padding, margins, etc.) which is pointed to by a dynamic _original property.
-        // The header element has a dynamic _index property indicating its position in the
-        // Accordion's pane collection (used primarily by the headers' shared click handler).
-        // Furthermore, the animation will either be an instance of LengthAnimation or
-        // ParallelAnimation (in the latter case, it will have two children which are a
-        // LengthAnimation and a FadeAnimation).  There will be two dynamic properties
-        // _length and _fade pointing to each of these children (to easily set the length
-        // and fadeEffect properties).  There is also a dynamic _ended property which is an
-        // event handler to be fired when the animation is complete, a dynamic _opening
-        // property to indicate whether the animation was opening or closing the pane, and
-        // a dynamic _pane property to provide a reference to the pane that was being
-        // animated.
-        //
-        // "index"- index of the desired Accordion pane.  If the index is not provided, we use
-        // the currently selected index.  In the event the provided index (or the currently
-        // selected index) is outside the bounds of the panes collection, we return null.
-
+    /// <summary>
+    /// Get a specific Accordion pane given its index. If no index is provided, get the currently selected pane.
+    /// </summary>
+    /// <param name="index" type="Number">index of the desired Accordion pane.  If the index is not provided, we use
+    /// the currently selected index.  In the event the provided index (or the currently
+    /// selected index) is outside the bounds of the panes collection, we return null.</param>
+    /// <member name="cM:AjaxControlToolkit.Accordion.getPane" />
+    getPane: function(index)
+    {
         if (index === undefined || index === null) {
             index = this._selectedIndex;
         }
         return (this._panes && index >= 0 && index < this._panes.length) ? this._panes[index] : null;
+    },
+
+    get_Pane: function(index) {
+        Sys.Extended.Deprecated("get_Pane(index)", "getPane(index)");
+        return this.getPane(index);
     },
 
     get_Count: function() {
@@ -1123,8 +1143,6 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     get_TransitionDuration: function() {
-        // Length of time to transition between Accordion sections in
-        // milleseconds.  The default value is 250ms.
         return this._duration * 1000;
     },
     set_TransitionDuration: function(value) {
@@ -1141,8 +1159,6 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     get_FramesPerSecond: function() {
-        // Number of steps per second in the transition animations.
-        // The default value is 30 frames per second.
         return this._framesPerSecond;
     },
     set_FramesPerSecond: function(value) {
@@ -1159,7 +1175,6 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     get_FadeTransitions: function() {
-        // Whether or not to fade the accordion panes when transitioning
         return this._fadeTransitions;
     },
     set_FadeTransitions: function(value) {
@@ -1235,8 +1250,6 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     get_requireOpenedPane: function() {
-        // Whether or not clicking the header will close the currently opened pane
-        // (which leaves all the Accordion's panes closed)
         return this._requireOpenedPane;
     },
     set_requireOpenedPane: function(value) {
@@ -1247,9 +1260,6 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     get_suppressHeaderPostbacks: function() {
-        // Whether or not we suppress the client-side click handlers of any elements
-        // (including server controls like Button or HTML elements like anchor) in the
-        // header sections of the Accordion.
         return this._suppressHeaderPostbacks;
     },
     set_suppressHeaderPostbacks: function(value) {
