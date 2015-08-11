@@ -6,6 +6,18 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
     public class CodePlexDocRenderer : IDocRenderer {
 
+        public string Sanitize(string text) {
+            if(String.IsNullOrWhiteSpace(text))
+                return String.Empty;
+
+            return text
+                .Replace("*", "{\"*\"}")
+                .Replace("_", "{\"_\"}")
+                .Replace("+", "{\"+\"}")
+                .Replace("!", "{\"!\"}")
+                .Replace("#", "{\"#\"}");
+        }
+
         public string RenderHeader(string text, int level = 1) {
             if(String.IsNullOrWhiteSpace(text))
                 return String.Empty;

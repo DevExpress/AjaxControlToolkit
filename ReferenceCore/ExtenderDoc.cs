@@ -41,7 +41,7 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderTypeDescription(string typeDescription) {
-            _docStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(typeDescription));
+            _docStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(typeDescription)));
         }
 
         void RenderMethods(IEnumerable<MethodDoc> methods, string headerText) {
@@ -50,13 +50,12 @@ namespace AjaxControlToolkit.Reference.Core {
 
             foreach(var methodDoc in methods) {
                 methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(methodDoc.Name, bold: true));
-                methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(methodDoc.Summary));
+                methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(methodDoc.Summary)));
 
                 methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Params:", italic: true));
 
                 foreach(var item in FormatMethodParams(methodDoc))
-                    methodsStringBuilder.Append(item);
-
+                    methodsStringBuilder.Append(_renderer.RenderLineBreak() + item);
             }
 
             _docStringBuilder.Append(methodsStringBuilder.ToString());
@@ -70,7 +69,7 @@ namespace AjaxControlToolkit.Reference.Core {
                 yield return
                     _renderer.RenderListItem(header, false, 1) +
                     _renderer.RenderListItem(type, false, 2) +
-                    _renderer.RenderListItem(param.Description, false, 2);
+                    _renderer.RenderListItem(_renderer.Sanitize(param.Description), false, 2);
             }
         }
 
@@ -80,7 +79,7 @@ namespace AjaxControlToolkit.Reference.Core {
 
             foreach(var eventDoc in events) {
                 eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(eventDoc.Name, bold: true));
-                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(eventDoc.Summary));
+                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(eventDoc.Summary)));
             }
 
             _docStringBuilder.Append(eventsStringBuilder.ToString());
@@ -91,12 +90,12 @@ namespace AjaxControlToolkit.Reference.Core {
             propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Client properties", level: 2));
 
             foreach(var clientPropertyDoc in clientProperties) {
-                propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(clientPropertyDoc.Name, bold: true) );
-                propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(clientPropertyDoc.Summary) );
+                propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(clientPropertyDoc.Name, bold: true));
+                propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(clientPropertyDoc.Summary)));
 
                 if(!String.IsNullOrWhiteSpace(clientPropertyDoc.GetterName))
                     propertiesStringBuilder.Append(
-                        _renderer.RenderLineBreak()+
+                        _renderer.RenderLineBreak() +
                         _renderer.RenderText("Getter name: ", bold: true) +
                         _renderer.RenderText(clientPropertyDoc.GetterName));
 
@@ -116,7 +115,7 @@ namespace AjaxControlToolkit.Reference.Core {
 
             foreach(var propertyDoc in properties) {
                 propertiesStringBuilder.Append(_renderer.RenderText(propertyDoc.Name, bold: true) + _renderer.RenderLineBreak());
-                propertiesStringBuilder.Append(_renderer.RenderText(propertyDoc.Summary) + _renderer.RenderLineBreak());
+                propertiesStringBuilder.Append(_renderer.RenderText(_renderer.Sanitize(propertyDoc.Summary)) + _renderer.RenderLineBreak());
             }
 
             _docStringBuilder.Append(propertiesStringBuilder.ToString());

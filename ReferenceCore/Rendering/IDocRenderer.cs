@@ -7,5 +7,6 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         string RenderText(string text, bool bold = false, bool italic = false);
         string RenderLineBreak();
         string RenderListItem(string text, bool ordered = false, int level = 1);
+        string Sanitize(string text);
     }
 }

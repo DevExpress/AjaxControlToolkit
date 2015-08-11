@@ -110,5 +110,46 @@ namespace AjaxControlToolkit.Tests {
             var actualText = _codePlexRenderer.RenderListItem(text, true, 2);
             Assert.AreEqual("## " + text + "\n", actualText);
         }
+
+        [Test]
+        public void SanitizeNullTest() {
+            var actualText = _codePlexRenderer.Sanitize(null);
+            Assert.AreEqual(String.Empty, actualText);
+        }
+
+        [Test]
+        public void SanitizeBoldTest() {
+            var text = "*text*";
+            var actualText = _codePlexRenderer.Sanitize(text);
+            Assert.AreEqual("{\"*\"}text{\"*\"}", actualText);
+        }
+
+        [Test]
+        public void SanitizeItalicsTest() {
+            var text = "_text_";
+            var actualText = _codePlexRenderer.Sanitize(text);
+            Assert.AreEqual("{\"_\"}text{\"_\"}", actualText);
+        }
+
+        [Test]
+        public void SanitizeUnderlineTest() {
+            var text = "+text+";
+            var actualText = _codePlexRenderer.Sanitize(text);
+            Assert.AreEqual("{\"+\"}text{\"+\"}", actualText);
+        }
+
+        [Test]
+        public void SanitizeHeadingTest() {
+            var text = "! text";
+            var actualText = _codePlexRenderer.Sanitize(text);
+            Assert.AreEqual("{\"!\"} text", actualText);
+        }
+
+        [Test]
+        public void SanitizeNumberListTest() {
+            var text = "# text";
+            var actualText = _codePlexRenderer.Sanitize(text);
+            Assert.AreEqual("{\"#\"} text", actualText);
+        }
     }
 }
