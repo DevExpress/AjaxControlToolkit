@@ -10,7 +10,10 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
 
         public IEnumerable<RawDoc> ParseFile(string[] lines) {
             foreach(var block in GetCommentBlocks(lines)) {
-                var blockContent = "<root>" + String.Join(" ", block.Lines) + "</root>";
+                var blockString = String.Join(" ", block.Lines);
+                blockString = blockString.Replace("<summary>", "<summary><![CDATA[").Replace("</summary>", "]]></summary>");
+
+                var blockContent = "<root>" + blockString + "</root>";
                 var element = XElement.Parse(blockContent);
 
                 var member = element.Elements("member").FirstOrDefault();
