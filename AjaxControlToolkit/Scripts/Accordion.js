@@ -216,7 +216,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     /// _panes array indicates that no pane is selected, we don't automatically set
     /// the value to a sentinel like -1 (especially on the server) because it's
     /// possible for additional panes to be added at any time.  We abstract this
-    /// problem using the get_Pane() function which returns the selected pane when
+    /// problem using the getPane() function which returns the selected pane when
     /// it's called with no arguments (and returns null when the current selected
     /// index is invalid).
     ///</summary>
@@ -385,7 +385,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
         // Ensure we have an opened pane if we're required to (and use the first
         // pane if we don't have a valid selected index)
-        if (this._requireOpenedPane && !this.get_Pane() && this._panes.length > 0) {
+        if (this._requireOpenedPane && !this.getPane() && this._panes.length > 0) {
             this._changeSelectedIndex(0, false, true);
         }
 
@@ -600,7 +600,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         //
         // "index" - index of the pane to initialize
 
-        var pane = this.get_Pane(index);
+        var pane = this.getPane(index);
         if (!pane) {
             return;
         }
@@ -723,7 +723,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     _resizeSelectedPane: function() {        
-        var pane = this.get_Pane();
+        var pane = this.getPane();
         if (!pane) {
             return;
         }
@@ -789,11 +789,11 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // we aren't able to determine invalid values yet.
 
         // Don't bother doing anything if the index didn't change (we actually check the
-        // panes so any invalid indices will match because get_Pane() will return null for
+        // panes so any invalid indices will match because getPane() will return null for
         // both of them)
         var lastIndex = this._selectedIndex;
-        var currentPane = this.get_Pane(index);
-        var lastPane = this.get_Pane(lastIndex);
+        var currentPane = this.getPane(index);
+        var lastPane = this.getPane(lastIndex);
         if (!force && (currentPane == lastPane)) {
             return;
         }
@@ -1022,7 +1022,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // we're getting the remaining height for its wrapper.
 
         var height = 0;
-        var pane = this.get_Pane();
+        var pane = this.getPane();
 
         if (this._autoSize === Sys.Extended.UI.AutoSize.None) {
             // If the AutoSize mode is "None", then we use the size of the pane
@@ -1105,10 +1105,10 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         }
     },
 
-    add_selectedIndexChanged: function(handler) {        
+    add_selectedIndexChanged: function(handler) {
         this.get_events().addHandler('selectedIndexChanged', handler);
     },
-    remove_selectedIndexChanged: function(handler) {        
+    remove_selectedIndexChanged: function(handler) {
         this.get_events().removeHandler('selectedIndexChanged', handler);
     },
     raiseSelectedIndexChanged: function(eventArgs) {
