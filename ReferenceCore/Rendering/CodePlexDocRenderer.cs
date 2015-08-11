@@ -22,7 +22,7 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             if(String.IsNullOrWhiteSpace(text))
                 return String.Empty;
 
-            return RenderLineBreak() + new String('!', level) + " " + text;
+            return RenderLineBreak() + new String('!', level) + " " + text + RenderLineBreak();
         }
 
         public string RenderText(string text, bool bold = false, bool italic = false) {
