@@ -59,6 +59,9 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
         }
 
         string GetValue(IEnumerable<XElement> values, string elementName) {
+            if(values.Count(el => el.Name == elementName) > 1)
+                throw new InvalidOperationException(String.Format("Invalid documentaion XML format. Element {0} appears more than once.", elementName));
+
             var element = values.FirstOrDefault(el => el.Name == elementName);
 
             if(element == null)
