@@ -285,7 +285,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ValidatorCalloutExtender.show" />
     show: function(force) {
-        if(force || !this.get_isOpen()) {
+        if(force || !this.isOpen()) {
             if(force && Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout)
                 Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout.hide();
             if(Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout != null)
@@ -303,7 +303,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     hide: function() {
         if(Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout == this)
             Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout = null;
-        if(this.get_isOpen())
+        if(this.isOpen())
             this._popupBehavior.hide();
     },
 
@@ -358,7 +358,9 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// OnShow handler.
+    /// The OnShow animation will be played each time the validation popup
+    /// is displayed. The popup will be positioned correctly but hidden.
+    /// The animation can use to display the popup along with any other visual effects.
     /// </summary>
     /// <getter>get_onShow</getter>
     /// <setter>set_onShow</setter>
@@ -391,7 +393,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// OnHide handler.
+    /// The OnHide animation will be played each time the validation popup is hidden.
     /// </summary>
     /// <getter>get_onHide</getter>
     /// <setter>set_onHide</setter>
@@ -412,7 +414,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Url of the warning icon image.
+    /// The path to a custom warning icon image.
     /// </summary>
     /// <getter>get_warningIconImageUrl</getter>
     /// <setter>set_warningIconImageUrl</setter>
@@ -430,7 +432,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Url of the close button image.
+    /// The path to a custom close image.
     /// </summary>
     /// <getter>get_closeImageUrl</getter>
     /// <setter>set_closeImageUrl</setter>
@@ -448,7 +450,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Element width.
+    /// The width of the callout.
     /// </summary>
     /// <getter>get_width</getter>
     /// <setter>set_width</setter>
@@ -466,7 +468,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Popup position.
+    /// Indicates where you want the ValidatorCallout displayed.
     /// </summary>
     /// <getter>get_popupPosition</getter>
     /// <setter>set_popupPosition</setter>
@@ -482,7 +484,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Name of the CSS class used to style element.
+    /// Name of the CSS class used to style the ValidatorCallout. 
     /// </summary>
     /// <getter>get_cssClass</getter>
     /// <setter>set_cssClass</setter>
@@ -498,7 +500,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Name of the CSS class used to style element highlighted state.
+    /// A CSS class to apply to the invalid field.
     /// </summary>
     /// <getter>get_highlightCssClass</getter>
     /// <setter>set_highlightCssClass</setter>
@@ -516,10 +518,13 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     /// <summary>
     /// Is ValidatorCallout popup opened.
     /// </summary>
-    /// <getter>get_isOpen</getter>
-    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.isOpen" />
-    get_isOpen: function() {
+    /// <member name="cM:AjaxControlToolkit.ValidatorCalloutExtender.isOpen" />
+    isOpen: function() {
         return $common.getVisible(this._popupTable);
+    },
+    get_isOpen: function() {
+        Sys.Extended.Deprecated("get_isOpen()", "isOpen()");
+        return this.isOpen();
     }
 };
 Sys.Extended.UI.ValidatorCalloutBehavior.registerClass('Sys.Extended.UI.ValidatorCalloutBehavior', Sys.Extended.UI.BehaviorBase);
