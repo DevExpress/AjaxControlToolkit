@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace AjaxControlToolkit.Reference.Core {
 
@@ -27,11 +28,11 @@ namespace AjaxControlToolkit.Reference.Core {
 
             RenderTypeName(typeDoc.Name);
             RenderTypeDescription(typeDoc.Summary);
-            RenderMethods(typeDoc.Methods, "Methods");
-            RenderEvents(typeDoc.Events);
-            RenderProperties(typeDoc.Properties);
-            RenderClientProperties(typeDoc.ClientProperties);
-            RenderMethods(typeDoc.ClientMethods, "Client methods");
+            RenderMethods(typeDoc.Methods.OrderBy(m => m.Name), "Methods");
+            RenderEvents(typeDoc.Events.OrderBy(e => e.Name));
+            RenderProperties(typeDoc.Properties.OrderBy(p => p.Name));
+            RenderClientProperties(typeDoc.ClientProperties.OrderBy(p => p.Name));
+            RenderMethods(typeDoc.ClientMethods.OrderBy(m => m.Name), "Client methods");
 
             return _docStringBuilder.ToString();
         }
