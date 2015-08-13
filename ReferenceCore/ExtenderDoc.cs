@@ -33,6 +33,7 @@ namespace AjaxControlToolkit.Reference.Core {
             RenderProperties(typeDoc.Properties.OrderBy(p => p.Name));
             RenderClientProperties(typeDoc.ClientProperties.OrderBy(p => p.Name));
             RenderMethods(typeDoc.ClientMethods.OrderBy(m => m.Name), "Client methods");
+            RenderClientEvents(typeDoc.ClientEvents.OrderBy(p => p.Name));
 
             return _docStringBuilder.ToString();
         }
@@ -121,5 +122,21 @@ namespace AjaxControlToolkit.Reference.Core {
 
             _docStringBuilder.Append(propertiesStringBuilder.ToString());
         }
+
+        void RenderClientEvents(IEnumerable<ClientEventDoc> clientEvents) {
+            var eventsStringBuilder = new StringBuilder();
+            eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Client events", level: 2));
+
+            foreach(var eventDoc in clientEvents) {
+                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(eventDoc.Name, bold: true));
+                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(eventDoc.Summary)));
+                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Add event handler method: ", bold: true) + _renderer.RenderText(eventDoc.AddMethodName));
+                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Remove event handler method: ", bold: true) + _renderer.RenderText(eventDoc.RemoveMethodName));
+                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Raise event method: ", bold: true) + _renderer.RenderText(eventDoc.RaiseMethodName));
+            }
+
+            _docStringBuilder.Append(eventsStringBuilder.ToString());
+        }
+
     }
 }

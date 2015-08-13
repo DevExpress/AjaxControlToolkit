@@ -12,6 +12,7 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
         const string GetterTagName = "getter";
         const string SetterTagName = "setter";
         const string ParamTagName = "param";
+        const string EventTagName = "event";
 
         static Lazy<DocParser> _instance = new Lazy<DocParser>(() => new DocParser());
         public static DocParser Instance {
@@ -48,6 +49,15 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
             GetSummaryAndRemarks(info, values);
             info.GetterName = GetValue(values, GetterTagName);
             info.SetterName = GetValue(values, SetterTagName);
+        }
+
+        public void FillInfo(ClientEventDoc info, IEnumerable<XElement> values) {
+            GetSummaryAndRemarks(info, values);
+            var @event = values.Where(el => el.Name == EventTagName).FirstOrDefault();
+
+            info.AddMethodName = @event.Attribute("add").Value;
+            info.RemoveMethodName = @event.Attribute("remove").Value;
+            info.RaiseMethodName= @event.Attribute("raise").Value;
         }
 
         void GetSummaryAndRemarks(DocBase info, IEnumerable<XElement> values) {

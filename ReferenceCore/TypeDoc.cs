@@ -10,6 +10,7 @@ namespace AjaxControlToolkit.Reference.Core {
         IList<PropertyDoc> _properties;
         IList<MethodDoc> _clientMethods;
         IList<ClientPropertyDoc> _clientProperties;
+        IList<ClientEventDoc> _clientEvents;
 
         public TypeDoc(string fullName)
             : base(fullName) {
@@ -18,6 +19,7 @@ namespace AjaxControlToolkit.Reference.Core {
             _properties = new List<PropertyDoc>();
             _clientMethods = new List<MethodDoc>();
             _clientProperties = new List<ClientPropertyDoc>();
+            _clientEvents = new List<ClientEventDoc>();
         }
 
         public IEnumerable<MethodDoc> Methods {
@@ -40,6 +42,10 @@ namespace AjaxControlToolkit.Reference.Core {
             get { return _clientProperties; }
         }
 
+        public IEnumerable<ClientEventDoc> ClientEvents {
+            get { return _clientEvents; }
+        }
+
         public void AddMethod(MethodDoc info) {
             _methods.Add(info);
         }
@@ -58,6 +64,10 @@ namespace AjaxControlToolkit.Reference.Core {
 
         public void AddClientProperty(ClientPropertyDoc info) {
             _clientProperties.Add(info);
+        }
+
+        public void AddClientEvent(ClientEventDoc info) {
+            _clientEvents.Add(info);
         }
 
         public override DocBase Fill(IEnumerable<XElement> values) {

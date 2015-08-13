@@ -44,6 +44,11 @@ namespace AjaxControlToolkit.Reference.Core {
                         GetTypeByName(info.Namespace).AddClientProperty(info);
                         return info;
                     }
+                case "cE": {
+                        var info = new ClientEventDoc(fullName);
+                        GetTypeByName(info.Namespace).AddClientEvent(info);
+                        return info;
+                    }
             }
 
             throw new ArgumentException("Unknown info type", "fullName");

@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientPropertyDoc.cs" />
+    <Compile Include="ClientEventDoc.cs" />
     <Compile Include="DocBase.cs" />
     <Compile Include="Documentation.cs" />
     <Compile Include="EventDoc.cs" />
