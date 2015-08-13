@@ -22,39 +22,51 @@ namespace AjaxControlToolkit {
         Animation _updated;
         List<string> _triggerControlsClientID = new List<string>();
 
-        // Animation played when an update begins
+        /// <summary>
+        /// Generic animation played as when any UpdatePanel begins updating.
+        /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
         [ExtenderControlProperty]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [ClientPropertyName("onUpdating")]
         public Animation OnUpdating {
             get { return GetAnimation(ref _updating, "OnUpdating"); }
             set { SetAnimation(ref _updating, "OnUpdating", value); }
         }
 
-        // Animation played when an update completes
+        /// <summary>
+        /// Generic animation played after the UpdatePanel has finished updating (but only if the UpdatePanel was changed).
+        /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
         [ExtenderControlProperty]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [ClientPropertyName("onUpdated")]
         public Animation OnUpdated {
             get { return GetAnimation(ref _updated, "OnUpdated"); }
             set { SetAnimation(ref _updated, "OnUpdated", value); }
         }
 
-        // Sets a value indicating whether the OnUpdating animation will always be allowed to finish
-        // before the OnUpdated animation starts playing.
+        /// <summary>
+        /// Optional property which makes sure OnUpdated event will fire only after completion of onUpdating event.
+        /// </summary>
         [DefaultValue(false)]
         [Browsable(true)]
         [ExtenderControlProperty]
+        [ClientPropertyName("alwaysFinishOnUpdatingAnimation")]
         public bool AlwaysFinishOnUpdatingAnimation {
             get { return GetPropertyValue<bool>("AlwaysFinishOnUpdatingAnimation", false); }
             set { SetPropertyValue("AlwaysFinishOnUpdatingAnimation", value); }
         }
 
+        /// <summary>
+        /// Array of target control trigger client IDs.
+        /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
         [ExtenderControlProperty(true, true)]
+        [ClientPropertyName("triggerControlsClientID")]
         public string[] TriggerControlsClientID {
             get { return _triggerControlsClientID.ToArray(); }
         }
@@ -102,10 +114,19 @@ namespace AjaxControlToolkit {
                 ReplaceStaticAnimationTargets(child);
         }
 
+        /// <summary>
+        /// Returns UpdatePanel whose updates are used to play the animations (this is also the default target of the animations).
+        /// </summary>
+        /// <returns>Target control</returns>
         public Control GetTargetControl() {
             return TargetControl;
         }
 
+        /// <summary>
+        /// Returns control specified by its id.
+        /// </summary>
+        /// <param name="id">ID of the control</param>
+        /// <returns>Found control</returns>
         public Control GetControl(string id) {
             return FindControl(id);
         }
