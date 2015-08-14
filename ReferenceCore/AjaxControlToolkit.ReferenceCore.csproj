@@ -53,6 +53,7 @@
     <Compile Include="ParamInfo.cs" />
     <Compile Include="Parsing\CommentBlock.cs" />
     <Compile Include="Parsing\CommentParser.cs" />
+    <Compile Include="Parsing\ContentType.cs" />
     <Compile Include="Parsing\DocParser.cs" />
     <Compile Include="Parsing\RawDoc.cs" />
     <Compile Include="PropertyDoc.cs" />

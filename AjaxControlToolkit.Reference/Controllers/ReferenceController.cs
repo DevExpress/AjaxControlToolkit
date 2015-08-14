@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
 using System.Web.UI.WebControls;
+using AjaxControlToolkit.ReferenceCore.Parsing;
 
 namespace AjaxControlToolkit.Reference.Controllers {
 
@@ -117,7 +118,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
                 var commentParser = new CommentParser();
                 var clientMembers = commentParser.ParseFile(jsLines);
 
-                doc.Add(clientMembers);
+                doc.Add(clientMembers, ContentType.Text);
             }
         }
 
@@ -129,7 +130,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
                 Elements = el.Elements()
             }).OrderBy(el => el.TargetFullName);
 
-            doc.Add(members);
+            doc.Add(members, ContentType.Xml);
             return doc;
         }
 

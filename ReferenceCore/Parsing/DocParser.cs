@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using AjaxControlToolkit.ReferenceCore.Parsing;
 
 namespace AjaxControlToolkit.Reference.Core.Parsing {
 
@@ -21,12 +22,12 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
 
         DocParser() { }
 
-        public void FillInfo(TypeDoc info, IEnumerable<XElement> values) {
-            GetSummaryAndRemarks(info, values);
+        public void FillInfo(TypeDoc info, IEnumerable<XElement> values, ContentType contentType) {
+            GetSummaryAndRemarks(info, values, contentType);
         }
 
-        public void FillInfo(MethodDoc info, IEnumerable<XElement> values) {
-            GetSummaryAndRemarks(info, values);
+        public void FillInfo(MethodDoc info, IEnumerable<XElement> values, ContentType contentType) {
+            GetSummaryAndRemarks(info, values, contentType);
             var parameters = values.Where(el => el.Name == ParamTagName);
 
             foreach(var param in parameters) {
@@ -37,38 +38,38 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
             }
         }
 
-        public void FillInfo(PropertyDoc info, IEnumerable<XElement> values) {
-            GetSummaryAndRemarks(info, values);
+        public void FillInfo(PropertyDoc info, IEnumerable<XElement> values, ContentType contentType) {
+            GetSummaryAndRemarks(info, values, contentType);
         }
 
-        public void FillInfo(EventDoc info, IEnumerable<XElement> values) {
-            GetSummaryAndRemarks(info, values);
+        public void FillInfo(EventDoc info, IEnumerable<XElement> values, ContentType contentType) {
+            GetSummaryAndRemarks(info, values, contentType);
         }
 
-        public void FillInfo(ClientPropertyDoc info, IEnumerable<XElement> values) {
-            GetSummaryAndRemarks(info, values);
-            info.GetterName = GetValue(values, GetterTagName);
-            info.SetterName = GetValue(values, SetterTagName);
+        public void FillInfo(ClientPropertyDoc info, IEnumerable<XElement> values, ContentType contentType) {
+            GetSummaryAndRemarks(info, values, contentType);
+            info.GetterName = GetValue(values, GetterTagName, contentType);
+            info.SetterName = GetValue(values, SetterTagName, contentType);
         }
 
-        public void FillInfo(ClientEventDoc info, IEnumerable<XElement> values) {
-            GetSummaryAndRemarks(info, values);
+        public void FillInfo(ClientEventDoc info, IEnumerable<XElement> values, ContentType contentType) {
+            GetSummaryAndRemarks(info, values, contentType);
             var @event = values.Where(el => el.Name == EventTagName).FirstOrDefault();
 
             info.AddMethodName = @event.Attribute("add").Value;
             info.RemoveMethodName = @event.Attribute("remove").Value;
-            info.RaiseMethodName= @event.Attribute("raise").Value;
+            info.RaiseMethodName = @event.Attribute("raise").Value;
         }
 
-        void GetSummaryAndRemarks(DocBase info, IEnumerable<XElement> values) {
+        void GetSummaryAndRemarks(DocBase info, IEnumerable<XElement> values, ContentType contentType) {
             if(values.Any()) {
-                info.Summary = GetValue(values, SummaryTagName);
-                info.Remarks = GetValue(values, RemarksTagName);
+                info.Summary = GetValue(values, SummaryTagName, contentType);
+                info.Remarks = GetValue(values, RemarksTagName, contentType);
             } else
                 info.Summary = "<INVALID DOC MARKUP>";
         }
 
-        string GetValue(IEnumerable<XElement> values, string elementName) {
+        string GetValue(IEnumerable<XElement> values, string elementName, ContentType contentType) {
             if(elementName != "param" &&
                 values.Count(el => el.Name == elementName) > 1)
                 throw new InvalidOperationException(String.Format("Invalid documentaion XML format. Element {0} appears more than once.", elementName));
@@ -78,7 +79,16 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
             if(element == null)
                 return null;
 
-            return CleanSpaces(element.Value);
+            var content = "";
+            if(contentType == ContentType.Text)
+                content = element.Value;
+            else {
+                var reader = element.CreateReader();
+                reader.MoveToContent();
+                content = reader.ReadInnerXml();
+            }
+
+            return CleanSpaces(content);
         }
 
         string CleanSpaces(string value) {

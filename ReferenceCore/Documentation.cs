@@ -1,6 +1,7 @@
 ﻿using AjaxControlToolkit.Reference.Core.Parsing;
 using System;
 using System.Collections.Generic;
+using AjaxControlToolkit.ReferenceCore.Parsing;
 
 namespace AjaxControlToolkit.Reference.Core {
 
@@ -8,10 +9,10 @@ namespace AjaxControlToolkit.Reference.Core {
 
         IDictionary<string, TypeDoc> _types;
 
-        public void Add(IEnumerable<RawDoc> rawDocs) {
+        public void Add(IEnumerable<RawDoc> rawDocs, ContentType contentType) {
 
             foreach(var rawDoc in rawDocs)
-                ProcessInfo(rawDoc.TargetNamePrefix, rawDoc.TargetFullName).Fill(rawDoc.Elements);
+                ProcessInfo(rawDoc.TargetNamePrefix, rawDoc.TargetFullName).Fill(rawDoc.Elements, contentType);
         }
 
         DocBase ProcessInfo(string targetNamePrefix, string fullName) {
