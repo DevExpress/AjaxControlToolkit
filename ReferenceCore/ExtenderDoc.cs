@@ -44,7 +44,7 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderTypeName(string typeName) {
-            _docStringBuilder.Append(_renderer.RenderHeader(typeName));
+            _docStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader(typeName));
         }
 
         void RenderTypeDescription(string typeDescription) {
@@ -53,7 +53,7 @@ namespace AjaxControlToolkit.Reference.Core {
 
         void RenderMethods(IEnumerable<MethodDoc> methods, string headerText) {
             var methodsStringBuilder = new StringBuilder();
-            methodsStringBuilder.Append(_renderer.RenderHeader(headerText, level: 2));
+            methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader(headerText, level: 2));
 
             foreach(var methodDoc in methods) {
                 methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(methodDoc.Name, bold: true));
@@ -120,7 +120,7 @@ namespace AjaxControlToolkit.Reference.Core {
 
         void RenderProperties(IEnumerable<PropertyDoc> properties) {
             var propertiesStringBuilder = new StringBuilder();
-            propertiesStringBuilder.Append(_renderer.RenderHeader("Properties", level: 2));
+            propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Properties", level: 2));
 
             foreach(var propertyDoc in properties) {
                 propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(propertyDoc.Name, bold: true));
