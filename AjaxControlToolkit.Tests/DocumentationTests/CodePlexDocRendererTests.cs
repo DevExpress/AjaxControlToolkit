@@ -26,14 +26,14 @@ namespace AjaxControlToolkit.Tests {
         public void RenderHeaderTest() {
             var text = "text";
             var actualText = _codePlexRenderer.RenderHeader(text);
-            Assert.AreEqual("\n! " + text, actualText);
+            Assert.AreEqual("\n! " + text + "\n", actualText);
         }
 
         [Test]
         public void RenderHeaderSecondLevelTest() {
             var text = "text";
             var actualText = _codePlexRenderer.RenderHeader(text, 2);
-            Assert.AreEqual("\n!! " + text, actualText);
+            Assert.AreEqual("\n!! " + text + "\n", actualText);
         }
 
         [Test]
@@ -150,6 +150,13 @@ namespace AjaxControlToolkit.Tests {
             var text = "# text";
             var actualText = _codePlexRenderer.Sanitize(text);
             Assert.AreEqual("{\"#\"} text", actualText);
+        }
+
+        [Test]
+        public void RenderCodeBlockTest() {
+            var text = "<code>text</code>";
+            var actualText = _codePlexRenderer.RenderText(text);
+            Assert.AreEqual("{{text}}", actualText);
         }
     }
 }
