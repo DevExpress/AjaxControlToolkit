@@ -33,7 +33,7 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
             foreach(var param in parameters) {
                 var name = param.Attribute("name").Value;
                 var typeName = param.Attribute("type") != null ? param.Attribute("type").Value : null;
-                var description = CleanSpaces(param.Value);
+                var description = CleanSpaces(param.Value, true);
                 info.AddParam(name, typeName, description);
             }
         }
@@ -80,19 +80,22 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
                 return null;
 
             var content = "";
-            if(contentType == ContentType.Text)
+            if(contentType == ContentType.Text) {
                 content = element.Value;
-            else {
+                return CleanSpaces(content, true);
+            } else {
                 var reader = element.CreateReader();
                 reader.MoveToContent();
                 content = reader.ReadInnerXml();
+                return CleanSpaces(content, false);
             }
-
-            return CleanSpaces(content);
         }
 
-        string CleanSpaces(string value) {
-            return Regex.Replace(value, @"\s+", " ");
+        string CleanSpaces(string value, bool cleanNewLine) {
+            if(cleanNewLine)
+                return Regex.Replace(value, @"\s+", " ");
+            else
+                return Regex.Replace(value, @"[^\S\r\n]+", " ");
         }
     }
 }

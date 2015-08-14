@@ -31,6 +31,8 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
             var result = text;
 
+            result = result.Replace("<code>", "{{").Replace("</code>", "}}");
+
             if(bold)
                 result = String.Format("*{0}*", result);
 
