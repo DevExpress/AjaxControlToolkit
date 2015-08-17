@@ -515,7 +515,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
 
     this.raiseUploadError = function(xhr) {
 
-        control.raiseUploadError(xhr);
+        control.raise_uploadError(xhr);
         control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
 
         if(xhrPoll)
@@ -772,7 +772,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         var fileItem = control.getFileItem(id);
         fileItem._isUploading = false;
         control.setFileStatus(id, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
-        control.raiseUploadError(xhr);
+        control.raise_uploadError(xhr);
     };
 
     this.onUploadCanceledHandler = function(id, xhr) {
@@ -891,7 +891,7 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     ///</summary>
     ///<getter>get_postBackUrl</getter>
     ///<setter>set_postBackUrl</setter>
-    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.postBackUrl" />
+    ///<member name="cP:AjaxControlToolkit.Accordion.postBackUrl" />
     this._postBackUrl = null;
 
     ///<summary>
@@ -899,42 +899,42 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     ///</summary>
     ///<getter>get_mode</getter>
     ///<setter>set_mode</setter>
-    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.mode" />
+    ///<member name="cP:AjaxControlToolkit.Accordion.mode" />
     this._mode = 0;
     ///<summary>
     /// Does AjaxFileUpload supports server polling.
     ///</summary>
     ///<getter>get_serverPollingSupport</getter>
     ///<setter>set_serverPollingSupport</setter>
-    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.serverPollingSupport" />
+    ///<member name="cP:AjaxControlToolkit.Accordion.serverPollingSupport" />
     this._serverPollingSupport = false;
     ///<summary>
     /// The control that is shown while the file is uploading. The throbber image is displayed for browsers that do not support the HTML5 File API or server-side polling.
     ///</summary>
     ///<getter>get_throbber</getter>
     ///<setter>set_throbber</setter>
-    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.throbber" />
+    ///<member name="cP:AjaxControlToolkit.Accordion.throbber" />
     this._throbber = null;
     ///<summary>
     /// Maximum number of files in upload queue. Default value is 10.
     ///</summary>
     ///<getter>get_maximumNumberOfFiles</getter>
     ///<setter>set_maximumNumberOfFiles</setter>
-    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.maximumNumberOfFiles" />
+    ///<member name="cP:AjaxControlToolkit.Accordion.maximumNumberOfFiles" />
     this._maximumNumberOfFiles = 10;
     ///<summary>
     /// Сomma-separated list of allowed file extensions.
     ///</summary>
     ///<getter>get_allowedFileTypes</getter>
     ///<setter>set_allowedFileTypes</setter>
-    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.allowedFileTypes" />
+    ///<member name="cP:AjaxControlToolkit.Accordion.allowedFileTypes" />
     this._allowedFileTypes = '';
     ///<summary>
     /// Size of chunk used by HTML5 to upload large file in Mega Bytes.
     ///</summary>
     ///<getter>get_chunkSize</getter>
     ///<setter>set_chunkSize</setter>
-    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.chunkSize" />
+    ///<member name="cP:AjaxControlToolkit.Accordion.chunkSize" />
     this._chunkSize = 4096;
 
     // fields
@@ -1088,9 +1088,9 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                 if(xhr.readyState == 4) {
                     if(xhr.status == 200) {
                         self._processor.startUpload();
-                        self.raiseUploadStart(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
+                        self.raise_uploadStart(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
                     } else {
-                        self.raiseUploadError(xhr);
+                        self.raise_uploadError(xhr);
                         throw "Failed to starting upload.";
                     }
                 }
@@ -1154,9 +1154,9 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         xhr.onreadystatechange = function() {
             if(xhr.readyState == 4) {
                 if(xhr.status == 200) {
-                    self.raiseUploadCompleteAll(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
+                    self.raise_uploadCompleteAll(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
                 } else {
-                    self.raiseUploadError(xhr);
+                    self.raise_uploadError(xhr);
                     throw "Failed to completing upload.";
                 }
             }
@@ -1286,7 +1286,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                 if(xhr.status == 200) {
 
                     // Mark as done and invoke event handler
-                    self.raiseUploadComplete(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
+                    self.raise_uploadComplete(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
 
                     // Upload next file
                     self._processor.startUpload();
@@ -1294,7 +1294,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                 } else {
                     // finalizing is error. next file will not be uploaded.
                     self.setFileStatus(fileItem, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
-                    self.raiseUploadError(xhr);
+                    self.raise_uploadError(xhr);
                     throw "error raising upload complete event and start new upload";
                 }
             }
@@ -1438,7 +1438,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     ///<summary>
     /// Occurs when a file upload starts.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.AjaxFileUpload.uploadStart" />
+    ///<member name="cE:AjaxControlToolkit.Accordion.uploadStart" />
     ///<event add="add_uploadStart" remove="remove_uploadStart" raise="raise_uploadStart" />
     add_uploadStart: function(handler) {
         this.get_events().addHandler("uploadStart", handler);
@@ -1462,7 +1462,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     ///<summary>
     /// Occurs when a file upload complete.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.AjaxFileUpload.uploadComplete" />
+    ///<member name="cE:AjaxControlToolkit.Accordion.uploadComplete" />
     ///<event add="add_uploadComplete" remove="remove_uploadComplete" raise="raise_uploadComplete" />
     add_uploadComplete: function(handler) {
         this.get_events().addHandler("uploadComplete", handler);
@@ -1504,7 +1504,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     /// Event handler to raise when all files in upload queue raised UploadComplete event, 
     /// or when user hits Cancel button to stop uploading.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.AjaxFileUpload.uploadCompleteAll" />
+    ///<member name="cE:AjaxControlToolkit.Accordion.uploadCompleteAll" />
     ///<event add="add_uploadCompleteAll" remove="remove_uploadCompleteAll" raise="raise_uploadCompleteAll" />
     add_uploadCompleteAll: function(handler) {
         this.get_events().addHandler("uploadCompleteAll", handler);
@@ -1527,7 +1527,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     ///<summary>
     /// Event handler to raise when upload error occurs.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.AjaxFileUpload.uploadError" />
+    ///<member name="cE:AjaxControlToolkit.Accordion.uploadError" />
     ///<event add="add_uploadError" remove="remove_uploadError" raise="raise_uploadError" />
     add_uploadError: function(handler) {
         this.get_events().addHandler("uploadError", handler);
@@ -1551,7 +1551,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     ///<summary>
-    /// Get file item based on current file id.
+    // Get file item based on current file id.
     ///</summary>
     ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.getCurrentFileItem" />
     getCurrentFileItem: function() {
