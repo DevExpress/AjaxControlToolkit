@@ -291,8 +291,8 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     },
 
     this.onFileSelectedHandler = function(e) {
-        /// User selects file through browser open file dialog. 
-        /// We generate file item and add it into file list, and recreate new element for next file.
+        // User selects file through browser open file dialog. 
+        // We generate file item and add it into file list, and recreate new element for next file.
 
         // generate file item to be uploaded
         var fileItem = {
@@ -885,14 +885,56 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     Sys.Extended.UI.AjaxFileUpload.Control.initializeBase(this, [element]);
 
     // properties 
-    this._allowedFileTypes = null;
     this._contextKey = null;
+    ///<summary>
+    /// Url of the page where control is located.
+    ///</summary>
+    ///<getter>get_postBackUrl</getter>
+    ///<setter>set_postBackUrl</setter>
+    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.postBackUrl" />
     this._postBackUrl = null;
+
+    ///<summary>
+    /// Get or set how AjaxFileUpload displays progress bar.
+    ///</summary>
+    ///<getter>get_mode</getter>
+    ///<setter>set_mode</setter>
+    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.mode" />
     this._mode = 0;
+    ///<summary>
+    /// Does AjaxFileUpload supports server polling.
+    ///</summary>
+    ///<getter>get_serverPollingSupport</getter>
+    ///<setter>set_serverPollingSupport</setter>
+    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.serverPollingSupport" />
     this._serverPollingSupport = false;
+    ///<summary>
+    /// The control that is shown while the file is uploading. The throbber image is displayed for browsers that do not support the HTML5 File API or server-side polling.
+    ///</summary>
+    ///<getter>get_throbber</getter>
+    ///<setter>set_throbber</setter>
+    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.throbber" />
     this._throbber = null;
+    ///<summary>
+    /// Maximum number of files in upload queue. Default value is 10.
+    ///</summary>
+    ///<getter>get_maximumNumberOfFiles</getter>
+    ///<setter>set_maximumNumberOfFiles</setter>
+    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.maximumNumberOfFiles" />
     this._maximumNumberOfFiles = 10;
+    ///<summary>
+    /// Сomma-separated list of allowed file extensions.
+    ///</summary>
+    ///<getter>get_allowedFileTypes</getter>
+    ///<setter>set_allowedFileTypes</setter>
+    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.allowedFileTypes" />
     this._allowedFileTypes = '';
+    ///<summary>
+    /// Size of chunk used by HTML5 to upload large file in Mega Bytes.
+    ///</summary>
+    ///<getter>get_chunkSize</getter>
+    ///<setter>set_chunkSize</setter>
+    ///<member name="cP:AjaxControlToolkit.AjaxFileUpload.chunkSize" />
     this._chunkSize = 4096;
 
     // fields
@@ -909,6 +951,10 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
 
 Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
 
+    ///<summary>
+    /// Initialize of AjaxFileUpload.
+    ///</summary>
+    /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.initialize" />
     initialize: function() {
 
         var utils = new Sys.Extended.UI.AjaxFileUpload.Utils(),
@@ -966,12 +1012,20 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         Sys.Extended.UI.AjaxFileUpload.Control.callBaseMethod(this, "initialize");
     },
 
+    ///<summary>
+    /// Dispose of AjaxFileUpload.
+    ///</summary>
+    /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.dispose" />
     dispose: function() {
         Sys.Extended.UI.AjaxFileUpload.Control.callBaseMethod(this, "dispose");
     },
 
+    ///<summary>
+    /// Set default elements layout during initialize.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.setDefaultElementsLayout" />
+    ///<param name="elements" type="Object">Elements to set up.</param>
     setDefaultElementsLayout: function(elements) {
-
         $common.setVisible(elements.inputFile, true);
         elements.uploadOrCancelButton.style.visibility = "hidden";
         $common.setVisible(elements.fileStatusContainer, true);
@@ -982,15 +1036,23 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_SelectFileToUpload);
     },
 
+    ///<summary>
+    /// Attaches click event hanlder to upload button.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.attachEvents" />
+    ///<param name="elements" type="Object">Collection of AjaxFileUpload visual elements.</param>
     attachEvents: function(elements) {
         this.onUploadOrCancelButtonClicked$delegate = Function.createDelegate(this, this.onUploadOrCancelButtonClickedHandler);
         $addHandlers(elements.uploadOrCancelButton, { 'click': this.onUploadOrCancelButtonClicked$delegate });
     },
 
+    ///<summary>
+    /// Event handler for click event on upload button. Upload button will act as a toggle driven by _isUploading field, for Upload and Cancel action.
+    /// if _isUploading set to true, it indicates that this button will act as Cancel, otherwise is Upload.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.attachEvents" />
+    ///<param name="e" type="Object">Click event.</param>
     onUploadOrCancelButtonClickedHandler: function(e) {
-        // Event handler for click event on upload button. Upload button will act as a toggle driven by _isUploading field, for Upload and Cancel action.
-        // if _isUploading set to true, it indicates that this button will act as Cancel, otherwise is Upload.
-
         var files = this._filesInQueue;
         if(!files.length) {
             alert(Sys.Extended.UI.Resources.AjaxFileUpload_SelectFileToUpload);
@@ -1048,10 +1110,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         }
     },
 
+    ///<summary>
+    /// If set to true, it will set control state to be enable (ready to upload), 
+    /// otherwise control will disable and button state turns to Cancel button.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.enableControls" />
+    ///<param name="enable" type="Boolean">true to enable controls, otherwise false.</param>
     enableControls: function(enable) {
-        // If set to true, it will set control state to be enable (ready to upload), 
-        // otherwise control will disable and button state turns to Cancel button.
-
         var btn = this._elements.uploadOrCancelButton;
         $common.setText(btn, enable ? Sys.Extended.UI.Resources.AjaxFileUpload_Upload : Sys.Extended.UI.Resources.AjaxFileUpload_Cancel);
         btn.setAttribute('class', enable ? 'ajax__fileupload_uploadbutton' : 'ajax_fileupload_cancelbutton');
@@ -1065,10 +1130,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         }
     },
 
+    ///<summary>
+    /// Call this method when all files has been uploaded.
+    /// This method will reset states of control.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.done" />
     done: function() {
-        // Call this method when all files has been uploaded.
-        // This method will reset states of control.
-
         this._isUploading = false;
         this.enableControls(true);
         this.setStatusMessage(Sys.Extended.UI.Resources.AjaxFileUpload_AllFilesUploaded + " " + Sys.Extended.UI.Resources.AjaxFileUpload_SelectFileToUpload);
@@ -1101,6 +1168,11 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this._currentQueueIndex = 0;
     },
 
+    ///<summary>
+    /// Removes file from the queue and updates user interface.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.removeFileFromQueueHandler" />
+    ///<param name="e" type="Sys.Extended.UI.AjaxFileUpload.Item">An item to remove.</param>
     removeFileFromQueueHandler: function(e) {
         // never remove file being uploaded.
         if(!e || e._isUploading)
@@ -1122,10 +1194,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this._showFilesCount();
     },
 
+    ///<summary>
+    /// Processor will call this method to add selected file to queue.
+    /// Will return true if file item successfully added, otherwise are false.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.addFileToQueue" />
+    ///<param name="item" type="Object">File to add to the queue.</param>
     addFileToQueue: function(item) {
-        // Processor will call this method to add selected file to queue.
-        // Will return true if file item successfully added, otherwise are false.
-
         var max = this.get_maximumNumberOfFiles();
         if(max > 0 && this._filesInQueue.length >= max) {
             alert(Sys.Extended.UI.Resources.AjaxFileUpload_MaxNumberOfFilesExceeded);
@@ -1165,10 +1240,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             : String.format(Sys.Extended.UI.Resources.AjaxFileUpload_FileInQueue, this._filesInQueue.length.toString()));
     },
 
-
+    ///<summary>
+    /// Check whether file type is allowed to be uploaded by checking it against "AlowedFileTypes" property.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.fileTypeIsValid" />
+    ///<param name="fileType" type="String">File extension.</param>
     fileTypeIsValid: function(fileType) {
-        // Check whether file type is allowed to be uploaded by checking it against "AlowedFileTypes" property
-
         if(!this._allowedFileTypes)
             return true;
 
@@ -1183,16 +1260,22 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         return false;
     },
 
+    ///<summary>
+    /// Send alert to user that file type is not acceptable. Processor uses this method after validation.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.confirmFileIsInvalid" />
+    ///<param name="fileItem" type="Object">File trying to be added to queue.</param>
     confirmFileIsInvalid: function(fileItem) {
-        // Send alert to user that file type is not acceptable. Processor uses this method after validation.
-
         var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
         alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_WrongFileType, utils.getFileName(fileItem.value), fileItem.type));
     },
 
+    ///<summary>
+    /// Mark fileItem as uploaded, and upload next file in queue.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.doneAndUploadNextFile" />
+    ///<param name="fileItem" type="Object">Uploaded file.</param>
     doneAndUploadNextFile: function(fileItem) {
-        // Mark fileItem as uploaded, and upload next file in queue.
-
         // send message to server to finalize this upload
         var xhr = new XMLHttpRequest(),
             self = this;
@@ -1219,8 +1302,11 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         xhr.send(null);
     },
 
+    ///<summary>
+    /// Cancel upload process.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.cancelUpload" />
     cancelUpload: function() {
-
         var fileItem = this.getCurrentFileItem();
 
         // Reset file item state
@@ -1239,9 +1325,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         }
     },
 
+    ///<summary>
+    /// Set file item status is uploading.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.setAsUploading" />
+    ///<param name="fileItem" type="Sys.Extended.UI.AjaxFileUpload.Item">Uploading file.</param>
     setAsUploading: function(fileItem) {
-        // Set file item status is uploading.
-
         fileItem._isUploading = true;
         fileItem._isUploaded = false;
 
@@ -1251,6 +1340,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this.setStatusMessage('Uploading ' + this._currentQueueIndex + ' of ' + this._filesInQueue.length + ' file(s)');
     },
 
+    ///<summary>
+    /// Set file item status text.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.setFileStatus" />
+    ///<param name="fileItem" type="Sys.Extended.UI.AjaxFileUpload.Item">Uploading file.</param>
+    ///<param name="fileStatusText" type="String">Text displayed in file info container.</param>
+    ///<param name="text" type="String">Text displayed in status bar.</param>
     setFileStatus: function(fileItem, fileStatusText, text) {
         if(typeof (fileItem) === "string")
             fileItem = this.getFileItem(fileItem);
@@ -1258,10 +1354,20 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             fileItem.setStatus(fileStatusText, text);
     },
 
+    ///<summary>
+    /// Set message in status bar.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.setStatusMessage" />
+    ///<param name="msg" type="String">Text to set.</param>
     setStatusMessage: function(msg) {
         this._elements.fileStatusContainer.innerHTML = msg;
     },
 
+    ///<summary>
+    /// Set upload percentage.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.setPercent" />
+    ///<param name="percent" type="Number">Upload percent.</param>
     setPercent: function(percent) {
         var progressBar = this._elements.progressBar;
         if(percent <= 0)
@@ -1329,28 +1435,22 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this._chunkSize = value;
     },
 
+    ///<summary>
+    /// Occurs when a file upload starts.
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.AjaxFileUpload.uploadStart" />
+    ///<event add="add_uploadStart" remove="remove_uploadStart" raise="raise_uploadStart" />
     add_uploadStart: function(handler) {
         this.get_events().addHandler("uploadStart", handler);
     },
     remove_uploadStart: function(handler) {
         this.get_events().removeHandler("uploadStart", handler);
     },
-
-    add_uploadComplete: function(handler) {
-        this.get_events().addHandler("uploadComplete", handler);
-    },
-    remove_uploadComplete: function(handler) {
-        this.get_events().removeHandler("uploadComplete", handler);
-    },
-
-    add_uploadCompleteAll: function(handler) {
-        this.get_events().addHandler("uploadCompleteAll", handler);
-    },
-    remove_uploadCompleteAll: function(handler) {
-        this.get_events().removeHandler("uploadCompleteAll", handler);
-    },
-
     raiseUploadStart: function(e) {
+        Sys.Extended.Deprecated("raiseUploadStart(e)", "raise_uploadStart(e)");
+        this.raise_uploadStart(e);
+    },
+    raise_uploadStart: function(e) {
         // Invoke uploadStart event
         var eh = this.get_events().getHandler("uploadStart");
         if(eh) {
@@ -1359,7 +1459,22 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         }
     },
 
+    ///<summary>
+    /// Occurs when a file upload complete.
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.AjaxFileUpload.uploadComplete" />
+    ///<event add="add_uploadComplete" remove="remove_uploadComplete" raise="raise_uploadComplete" />
+    add_uploadComplete: function(handler) {
+        this.get_events().addHandler("uploadComplete", handler);
+    },
+    remove_uploadComplete: function(handler) {
+        this.get_events().removeHandler("uploadComplete", handler);
+    },
     raiseUploadComplete: function(e) {
+        Sys.Extended.Deprecated("raiseUploadComplete(e)", "raise_uploadComplete(e)");
+        this.raise_uploadComplete(e);
+    },
+    raise_uploadComplete: function(e) {
         var fileItem = this.getCurrentFileItem();
 
         if(!fileItem || !e || e.FileId !== fileItem._id)
@@ -1385,7 +1500,23 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         }
     },
 
+    ///<summary>
+    /// Event handler to raise when all files in upload queue raised UploadComplete event, 
+    /// or when user hits Cancel button to stop uploading.
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.AjaxFileUpload.uploadCompleteAll" />
+    ///<event add="add_uploadCompleteAll" remove="remove_uploadCompleteAll" raise="raise_uploadCompleteAll" />
+    add_uploadCompleteAll: function(handler) {
+        this.get_events().addHandler("uploadCompleteAll", handler);
+    },
+    remove_uploadCompleteAll: function(handler) {
+        this.get_events().removeHandler("uploadCompleteAll", handler);
+    },
     raiseUploadCompleteAll: function(e) {
+        Sys.Extended.Deprecated("raiseUploadCompleteAll(e)", "raise_uploadCompleteAll(e)");
+        this.raise_uploadCompleteAll("raiseUploadCompleteAll(e)", "raise_uploadCompleteAll(e)");
+    },
+    raise_uploadCompleteAll: function(e) {
         var eh = this.get_events().getHandler("uploadCompleteAll");
         if(eh) {
             var eventArgs = new Sys.Extended.UI.AjaxFileUploadCompleteAllEventArgs(e.FilesInQueue, e.FilesUploaded, e.Reason, e.ServerArguments);
@@ -1393,6 +1524,11 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         }
     },
 
+    ///<summary>
+    /// Event handler to raise when upload error occurs.
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.AjaxFileUpload.uploadError" />
+    ///<event add="add_uploadError" remove="remove_uploadError" raise="raise_uploadError" />
     add_uploadError: function(handler) {
         this.get_events().addHandler("uploadError", handler);
     },
@@ -1400,7 +1536,10 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this.get_events().removeHandler("uploadError", handler);
     },
     raiseUploadError: function(e) {
-
+        Sys.Extended.Deprecated("raiseUploadError(e)", "raise_uploadError(e)");
+        this.raise_uploadError(e);
+    },
+    raise_uploadError: function(e) {
         var eh = this.get_events().getHandler("uploadError");
         if(eh) {
             eh(this, e);
@@ -1411,11 +1550,18 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this.enableControls(true);
     },
 
+    ///<summary>
+    /// Get file item based on current file id.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.getCurrentFileItem" />
     getCurrentFileItem: function() {
-        // Get file item based on current file id.
         return this.getFileItem(this._currentFileId);
     },
 
+    ///<summary>
+    /// Get next file in upload queue.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.getNextFile" />
     getNextFile: function() {
         if(!this._isUploading)
             return null;
@@ -1430,7 +1576,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         return null;
     },
 
-    getFileItem: function(id) {        
+    ///<summary>
+    /// Get file in upload queue by id.
+    ///</summary>
+    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.getFileItem" />
+    ///<param name="id" type="Number">File id.</param>
+    getFileItem: function(id) {
         for(var i = 0; i < this._filesInQueue.length; i++) {
             var file = this._filesInQueue[i];
             if(file._id === id) {
