@@ -8,8 +8,10 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    // Extender used to add constant visibility to an ASP.NET control.  The control that is extended
-    // then always moves to fixed position in the page regardless of how the body is resized or scrolled.
+    ///<summary>
+    /// Extender used to add constant visibility to an ASP.NET control. The control that is extended
+    /// then always moves to fixed position in the page regardless of how the body is resized or scrolled.
+    /// </summary>
     [Designer(typeof(AlwaysVisibleControlExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.AlwaysVisibleControlBehavior", Constants.AlwaysVisibleControlName)]
     [RequiredScript(typeof(AnimationScripts))]
@@ -17,52 +19,70 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(WebControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AlwaysVisibleControlName + Constants.IconPostfix)]
     public class AlwaysVisibleControlExtender : ExtenderControlBase {
-        // Distance to the horizontal edge of the browser in pixels from the
-        // same side of the target control. The default is 0 pixels.
+
+        ///<summary>
+        /// Distance to the horizontal edge of the browser in pixels from the
+        /// same side of the target control. The default is 0 pixels.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
+        [ClientPropertyName("horizontalOffset")]
         public int HorizontalOffset {
             get { return GetPropertyValue("HorizontalOffset", 0); }
             set { SetPropertyValue("HorizontalOffset", value); }
         }
 
-        // Horizontal side of the browser to anchor the control against.
-        // The default is the Left side.
+        ///<summary>
+        /// Horizontal side of the browser to anchor the control against.
+        /// The default is the Left side.
+        ///</summary>
         [ExtenderControlProperty()]
         [DefaultValue(HorizontalSide.Left)]
+        [ClientPropertyName("horizontalSide")]
         public HorizontalSide HorizontalSide {
             get { return GetPropertyValue("HorizontalSide", HorizontalSide.Left); }
             set { SetPropertyValue("HorizontalSide", value); }
         }
 
-        // Distance to the vertical edge of the browser in pixels from the
-        // same side of the target control. The default is 0 pixels.
+        ///<summary>
+        /// Distance to the vertical edge of the browser in pixels from the
+        /// same side of the target control. The default is 0 pixels.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
+        [ClientPropertyName("verticalOffset")]
         public int VerticalOffset {
             get { return GetPropertyValue("VerticalOffset", 0); }
             set { SetPropertyValue("VerticalOffset", value); }
         }
 
-        // Vertical side of the browser to anchor the control against.
-        // The default is the Top side.
+        ///<summary>
+        /// Vertical side of the browser to anchor the control against.
+        /// The default is the Top side.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(VerticalSide.Top)]
+        [ClientPropertyName("verticalSide")]
         public VerticalSide VerticalSide {
             get { return (VerticalSide)GetPropertyValue("VerticalSide", VerticalSide.Top); }
             set { SetPropertyValue("VerticalSide", value); }
         }
 
-        // Length in seconds for the scrolling effect to last when the target
-        // control is repositioned. The default is .1 seconds.
+        ///<summary>
+        /// Length in seconds for the scrolling effect to last when the target
+        /// control is repositioned. The default is .1 seconds.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0.1f)]
+        [ClientPropertyName("scrollEffectDuration")]
         public float ScrollEffectDuration {
             get { return (float)GetPropertyValue("ScrollEffectDuration", 0.1f); }
             set { SetPropertyValue("ScrollEffectDuration", value); }
         }
 
-        // Whether or not to animate the element into position.
+        ///<summary>
+        /// Whether or not to animate the element into position.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
         [ClientPropertyName("useAnimation")]
@@ -71,7 +91,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("UseAnimation", value); }
         }
 
-        // Validate the offsets
+        ///<summary>
+        /// Validate the offsets.
+        /// </summary>
         public override void EnsureValid() {
             base.EnsureValid();
 
@@ -87,5 +109,5 @@ namespace AjaxControlToolkit {
                     "AlwaysVisibleControlExtender on '{0}' must have a positive ScrollEffectDuration", TargetControlID));
         }
     }
-    
+
 }
