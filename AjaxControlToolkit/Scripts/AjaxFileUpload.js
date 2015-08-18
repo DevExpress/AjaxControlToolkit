@@ -1042,17 +1042,16 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.attachEvents" />
     ///<param name="elements" type="Object">Collection of AjaxFileUpload visual elements.</param>
     attachEvents: function(elements) {
-        this.onUploadOrCancelButtonClicked$delegate = Function.createDelegate(this, this.onUploadOrCancelButtonClickedHandler);
+        this.onUploadOrCancelButtonClicked$delegate = Function.createDelegate(this, this._onUploadOrCancelButtonClickedHandler);
         $addHandlers(elements.uploadOrCancelButton, { 'click': this.onUploadOrCancelButtonClicked$delegate });
     },
 
-    ///<summary>
-    /// Event handler for click event on upload button. Upload button will act as a toggle driven by _isUploading field, for Upload and Cancel action.
-    /// if _isUploading set to true, it indicates that this button will act as Cancel, otherwise is Upload.
-    ///</summary>
-    ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.attachEvents" />
-    ///<param name="e" type="Object">Click event.</param>
+    // Event handler for click event on upload button. Upload button will act as a toggle driven by _isUploading field, for Upload and Cancel action.
+    // if _isUploading set to true, it indicates that this button will act as Cancel, otherwise is Upload.
     onUploadOrCancelButtonClickedHandler: function(e) {
+        Sys.Extended.Deprecated("onUploadOrCancelButtonClickedHandler(e)");
+    },
+    _onUploadOrCancelButtonClickedHandler: function(e) {
         var files = this._filesInQueue;
         if(!files.length) {
             alert(Sys.Extended.UI.Resources.AjaxFileUpload_SelectFileToUpload);
