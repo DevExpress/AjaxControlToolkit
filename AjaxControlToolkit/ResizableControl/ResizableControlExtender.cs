@@ -20,58 +20,90 @@ namespace AjaxControlToolkit {
             EnableClientState = true;
         }
 
+        /// <summary>
+        /// The name of the CSS class to apply to the resize handle.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
         [RequiredProperty()]
+        [ClientPropertyName("handleCssClass")]
         public string HandleCssClass {
             get { return GetPropertyValue("HandleCssClass", String.Empty); }
             set { SetPropertyValue("HandleCssClass", value); }
         }
 
+        /// <summary>
+        /// The name of the CSS class to apply to the element when resizing.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
+        [ClientPropertyName("resizableCssClass")]
         public string ResizableCssClass {
             get { return GetPropertyValue("ResizableCssClass", String.Empty); }
             set { SetPropertyValue("ResizableCssClass", value); }
         }
 
+        /// <summary>
+        /// X-Offset to apply to the location of the resize handle.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
+        [ClientPropertyName("handleOffsetX")]
         public int HandleOffsetX {
             get { return GetPropertyValue("HandleOffsetX", 0); }
             set { SetPropertyValue("HandleOffsetX", value); }
         }
 
+        /// <summary>
+        /// Y-Offset to apply to the location of the resize handle.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
+        [ClientPropertyName("handleOffsetY")]
         public int HandleOffsetY {
             get { return GetPropertyValue("HandleOffsetY", 0); }
             set { SetPropertyValue("HandleOffsetY", value); }
         }
 
+        /// <summary>
+        /// Minimum width of the resizable element.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
+        [ClientPropertyName("minimumWidth")]
         public int MinimumWidth {
             get { return GetPropertyValue("MinimumWidth", 0); }
             set { SetPropertyValue("MinimumWidth", value); }
         }
 
+        /// <summary>
+        /// Minimum height of the resizable element.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
+        [ClientPropertyName("minimumHeight")]
         public int MinimumHeight {
             get { return GetPropertyValue("MinimumHeight", 0); }
             set { SetPropertyValue("MinimumHeight", value); }
         }
 
+        /// <summary>
+        /// Maximum width of the resizable element.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(MaximumValue)]
+        [ClientPropertyName("maximumWidth")]
         public int MaximumWidth {
             get { return GetPropertyValue("MaximumWidth", MaximumValue); }
             set { SetPropertyValue("MaximumWidth", value); }
         }
 
+        /// <summary>
+        /// Maximum height of the resizable element.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(MaximumValue)]
+        [ClientPropertyName("maximumHeight")]
         public int MaximumHeight {
             get { return GetPropertyValue("MaximumHeight", MaximumValue); }
             set { SetPropertyValue("MaximumHeight", value); }
@@ -82,6 +114,10 @@ namespace AjaxControlToolkit {
         // Visual Studio designer will expose it to the user and write it
         // to the xml-script so that ASP.NET AJAX will hook up the event
         // properly.
+
+        /// <summary>
+        /// Event fired when the element has been resized.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
         [ClientPropertyName("resize")]
@@ -90,7 +126,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientResize", value); }
         }
 
-        // See above note for onresize
+        /// <summary>
+        /// Event fired as the element is being resized.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
         [ClientPropertyName("resizing")]
@@ -99,10 +137,12 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientResizing", value); }
         }
 
-        // See above note for onresize
+        /// <summary>
+        /// Event fired when the element starts being resized.
+        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
-        [ClientPropertyName("resizebegin")]
+        [ClientPropertyName("resizeBegin")]
         public string OnClientResizeBegin {
             get { return GetPropertyValue("OnClientResizeBegin", String.Empty); }
             set { SetPropertyValue("OnClientResizeBegin", value); }
@@ -117,11 +157,12 @@ namespace AjaxControlToolkit {
                 throw new ArgumentException("Maximum height must not be less than minimum height");
         }
 
-        // This Size property is available for use on the server via code-behind.
-        // There is a corresponding Size property available for use on the client
-        // via script
+        /// <summary>
+        /// Size of the target.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [ClientPropertyName("size")]
         public Size Size {
             get {
                 int width;
