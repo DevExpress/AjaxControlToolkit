@@ -1551,7 +1551,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     ///<summary>
-    // Get file item based on current file id.
+    /// Get file item based on current file id.
     ///</summary>
     ///<member name="cM:AjaxControlToolkit.AjaxFileUpload.getCurrentFileItem" />
     getCurrentFileItem: function() {
