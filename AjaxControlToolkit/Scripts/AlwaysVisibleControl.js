@@ -36,7 +36,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     ///</summary>
     ///<getter>get_horizontalOffset</getter>
     ///<setter>set_horizontalOffset</setter>
-    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControl.horizontalOffset" />
+    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.horizontalOffset" />
     this._horizontalOffset = 0;
 
     ///<summary>
@@ -44,7 +44,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     ///</summary>
     ///<getter>get_horizontalSide</getter>
     ///<setter>set_horizontalSide</setter>
-    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControl.horizontalSide" />
+    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.horizontalSide" />
     this._horizontalSide = Sys.Extended.UI.HorizontalSide.Left;
 
     ///<summary>
@@ -52,7 +52,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     ///</summary>
     ///<getter>get_verticalOffset</getter>
     ///<setter>set_verticalOffset</setter>
-    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControl.verticalOffset" />
+    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.verticalOffset" />
     this._verticalOffset = 0;
 
     ///<summary>
@@ -60,15 +60,15 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     ///</summary>
     ///<getter>get_verticalSide</getter>
     ///<setter>set_verticalSide</setter>
-    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControl.verticalSide" />
+    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.verticalSide" />
     this._verticalSide = Sys.Extended.UI.VerticalSide.Top;
 
     ///<summary>
     /// Length in seconds for the scrolling effect to last when the target control is repositioned. The default is .1 seconds.
-    ///<summary>
+    ///</summary>
     ///<getter>get_scrollEffectDuration</getter>
     ///<setter>set_scrollEffectDuration</setter>
-    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControl.scrollEffectDuration" />
+    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.scrollEffectDuration" />
     this._scrollEffectDuration = .1;
 
     // Member variable used to handle the window's scroll and resize events
@@ -78,10 +78,10 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     ///<summary>
     /// Whether or not to animate the element into position. (note:
     /// this value should always be true in IE6).
-    ///<summary>
+    ///</summary>
     ///<getter>get_useAnimation</getter>
     ///<setter>set_useAnimation</setter>
-    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControl.useAnimation" />
+    /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.useAnimation" />
     this._animate = false;
 
     // Animation to handle moving the element
@@ -91,7 +91,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
     ///<summary>
     /// Initialize of AlwaysVisibleControl.
     ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AlwaysVisibleControl.initialize" />
+    /// <member name="cM:AjaxControlToolkit.AlwaysVisibleControlExtender.initialize" />
     initialize: function() {
         Sys.Extended.UI.AlwaysVisibleControlBehavior.callBaseMethod(this, 'initialize');
 
@@ -136,7 +136,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
     ///<summary>
     /// Initialize of AlwaysVisibleControl.
     ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AlwaysVisibleControl.dispose" />
+    /// <member name="cM:AjaxControlToolkit.AlwaysVisibleControlExtender.dispose" />
     dispose: function() {
         // Detach the event and wipe the delegate
         if(this._repositionHandler) {
@@ -336,7 +336,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
     ///<summary>
     /// Occurs before control reposition.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.Accordion.repositioning" />
+    ///<member name="cE:AjaxControlToolkit.AlwaysVisibleControlExtender.repositioning" />
     ///<event add="add_repositioning" remove="remove_repositioning" raise="raise_repositioning" />
     add_repositioning: function(handler) {
         this.get_events().addHandler('repositioning', handler);
@@ -358,7 +358,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
     ///<summary>
     /// Occurs after control reposition.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.Accordion.repositioned" />
+    ///<member name="cE:AjaxControlToolkit.AlwaysVisibleControlExtender.repositioned" />
     ///<event add="add_repositioned" remove="remove_repositioned" raise="raise_repositioned" />
     add_repositioned: function(handler) {
         this.get_events().addHandler('repositioned', handler);
