@@ -3,8 +3,8 @@ namespace AjaxControlToolkit {
     public static class Constants {
 
         public const string
-            CdnPrefix = "http://ajax.aspnetcdn.com/ajax/act/15.1.1/",
-            CdnSecurePrefix = "https://ajax.aspnetcdn.com/ajax/act/15.1.1/";
+            CdnPrefix = "http://ajax.aspnetcdn.com/ajax/act/15.1.3/",
+            CdnSecurePrefix = "https://ajax.aspnetcdn.com/ajax/act/15.1.3/";
 
         internal const string
             CdnScriptDebugPrefix = CdnPrefix + "Scripts/AjaxControlToolkit/Debug/",
