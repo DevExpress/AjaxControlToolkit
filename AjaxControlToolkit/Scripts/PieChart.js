@@ -159,7 +159,7 @@ Sys.Extended.UI.PieChart.prototype = {
     /// Width of the chart.
     /// </summary>
     /// <getter>get_chartWidth</getter>
-    /// <setter>set_chartWidth</getter>
+    /// <setter>set_chartWidth</setter>
     /// <member name="cP:AjaxControlToolkit.PieChart.chartWidth" />
     get_chartWidth: function() {
         return this._chartWidth;
