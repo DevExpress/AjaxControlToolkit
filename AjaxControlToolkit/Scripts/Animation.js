@@ -7,11 +7,49 @@ Sys.Extended.UI.Animation.AnimationBehavior = function(element) {
     Sys.Extended.UI.Animation.AnimationBehavior.initializeBase(this, [element]);
 
     // Generic animation behaviors that automatically build animations from JSON descriptions
+
+    ///<summary>
+    /// Generic OnLoad Animation's JSON definition
+    /// Setting the OnLoad property will cause it to be played immediately
+    ///</summary>
+    ///<getter>get_onLoad</getter>
+    ///<setter>set_onLoad</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onLoad" />
     this._onLoad = null;
+    ///<summary>
+    /// Generic OnClick Animation's JSON definition
+    ///</summary>
+    ///<getter>get_onClick</getter>
+    ///<setter>set_onClick</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onClick" />
     this._onClick = null;
+    ///<summary>
+    /// Generic OnMouseOver Animation's JSON definition
+    ///</summary>
+    ///<getter>get_onMouseOver</getter>
+    ///<setter>set_onMouseOver</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onMouseOver" />
     this._onMouseOver = null;
+    ///<summary>
+    /// Generic OnMouseOut Animation's JSON definition
+    ///</summary>
+    ///<getter>get_onMouseOut</getter>
+    ///<setter>set_onMouseOut</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onMouseOut" />
     this._onMouseOut = null;
+    ///<summary>
+    /// Generic OnHoverOver Animation's JSON definition
+    ///</summary>
+    ///<getter>get_onHoverOver</getter>
+    ///<setter>set_onHoverOver</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onHoverOver" />
     this._onHoverOver = null;
+    ///<summary>
+    /// Generic OnHoverOut Animation's JSON definition
+    ///</summary>
+    ///<getter>get_onHoverOut</getter>
+    ///<setter>set_onHoverOut</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onHoverOut" />
     this._onHoverOut = null;
 
     // Handlers for the events
@@ -20,6 +58,10 @@ Sys.Extended.UI.Animation.AnimationBehavior = function(element) {
     this._onMouseOutHandler = null;
 }
 Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
+    ///<summary>
+    /// Initialize of Animation.
+    ///</summary>
+    /// <member name="cM:AjaxControlToolkit.AnimationExtender.initialize" />
     initialize: function() {
         Sys.Extended.UI.Animation.AnimationBehavior.callBaseMethod(this, 'initialize');
 
@@ -35,6 +77,10 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         }
     },
 
+    ///<summary>
+    /// Dispose of Animation.
+    ///</summary>
+    /// <member name="cM:AjaxControlToolkit.AnimationExtender.dispose" />
     dispose: function() {
         // Remove the event handlers
         var element = this.get_element();
@@ -55,49 +101,11 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
 
         // Wipe the behaviors (we don't need to dispose them because
         // that will happen automatically in our base dispose)
-
-        ///<summary>
-        /// Generic OnLoad Animation's JSON definition
-        /// Setting the OnLoad property will cause it to be played immediately
-        ///</summary>
-        ///<getter>get_onLoad</getter>
-        ///<setter>set_onLoad</setter>
-        /// <member name="cP:AjaxControlToolkit.AnimationExtender.onLoad" />
         this._onLoad = null;
-        ///<summary>
-        /// Generic OnClick Animation's JSON definition
-        ///</summary>
-        ///<getter>get_onClick</getter>
-        ///<setter>set_onClick</setter>
-        /// <member name="cP:AjaxControlToolkit.AnimationExtender.onClick" />
         this._onClick = null;
-         ///<summary>
-        /// Generic OnMouseOver Animation's JSON definition
-        ///</summary>
-        ///<getter>get_onMouseOver</getter>
-        ///<setter>set_onMouseOver</setter>
-        /// <member name="cP:AjaxControlToolkit.AnimationExtender.onMouseOver" />
         this._onMouseOver = null;
-        ///<summary>
-        /// Generic OnMouseOut Animation's JSON definition
-        ///</summary>
-        ///<getter>get_onMouseOut</getter>
-        ///<setter>set_onMouseOut</setter>
-        /// <member name="cP:AjaxControlToolkit.AnimationExtender.onMouseOut" />
         this._onMouseOut = null;
-        ///<summary>
-        /// Generic OnHoverOver Animation's JSON definition
-        ///</summary>
-        ///<getter>get_onHoverOver</getter>
-        ///<setter>set_onHoverOver</setter>
-        /// <member name="cP:AjaxControlToolkit.AnimationExtender.onHoverOver" />
         this._onHoverOver = null;
-        ///<summary>
-        /// Generic OnHoverOut Animation's JSON definition
-        ///</summary>
-        ///<getter>get_onHoverOut</getter>
-        ///<setter>set_onHoverOut</setter>
-        /// <member name="cP:AjaxControlToolkit.AnimationExtender.onHoverOut" />
         this._onHoverOut = null;
 
         Sys.Extended.UI.Animation.AnimationBehavior.callBaseMethod(this, 'dispose');

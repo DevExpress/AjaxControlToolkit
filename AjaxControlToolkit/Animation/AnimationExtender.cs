@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// Extender used to play animations when a control's events fire
+    /// Extender used to play animations when a control's events fire.
     /// </summary>
     [Designer(typeof(AnimationExtenderDesigner))]
     [RequiredScript(typeof(AnimationScripts))]
