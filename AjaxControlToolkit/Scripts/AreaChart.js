@@ -495,7 +495,7 @@ Sys.Extended.UI.AreaChart.prototype = {
         seriesIndex++;
         if(seriesIndex < self._series.length) {
             setTimeout(function() {
-                self.drawArea(areaPath, seriesIndex);
+                self._drawArea(areaPath, seriesIndex);
             }, 400);
         }
     },
