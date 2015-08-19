@@ -73,7 +73,7 @@
             <b>Events</b>
             <ul>
                 <li><strong>UploadedComplete</strong> - Fired on the server side when the file successfully uploaded</li>
-                <li><strong>UploadedFileError</strong> - Fired on the server side when the uloaded file is corrupted</li>
+                <li><strong>UploadedFileError</strong> - Fired on the server side when the uploaded file is corrupted</li>
             </ul>
             <br />
             <b>Properties</b>
