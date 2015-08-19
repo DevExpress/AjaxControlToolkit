@@ -1231,6 +1231,8 @@ Sys.Extended.UI.ScrollBars.prototype = {
 }
 Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", false);
 
+var isUnminified = /param/.test(function(param) {});
+
 if(isUnminified && console && console.warn)
     Sys.Extended.Deprecated = function(oldMethodName, properMethodName) {
         if(arguments.length == 1)
