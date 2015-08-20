@@ -209,21 +209,28 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
         Sys.Extended.UI.NumericUpDownBehavior.callBaseMethod(this, 'dispose');
     },
 
+    /// <summary>
+    /// Occurs when current textbox value changes.
+    /// </summary>
+    /// <event add="add_currentChanged" remove="remove_currentChanged" raise="raise_currentChanged" />
+    /// <member name="cE:AjaxControlToolkit.NumericUpDownExtender.currentChanged" />
     add_currentChanged: function(handler) {
         this.get_events().addHandler('currentChanged', handler);
     },
-
     remove_currentChanged: function(handler) {
         this.get_events().removeHandler('currentChanged', handler);
     },
-
-    raiseCurrentChanged: function(eventArgs) {
+    raise_currentChanged: function(eventArgs) {
         var handler = this.get_events().getHandler('currentChanged');
         if(handler) {
             if(!eventArgs)
                 eventArgs = Sys.EventArgs.Empty;
             handler(this, eventArgs);
         }
+    },
+    raiseCurrentChanged: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseCurrentChanged(eventArgs)", "raise_currentChanged(eventArgs)");
+        this.raise_currentChanged(eventArgs);
     },
 
     _onChange: function() {
@@ -243,6 +250,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Reads the value of the associated textbox.
+    /// </summary>
+    /// <returns type="String">Value of the associated textbox.</returns>
+    /// <member name="cM:AjaxControlToolkit.NumericUpDownExtender.readValue" />
     readValue: function() {
         // Parse value of textbox and this._currentValue to be that value.
         // this._currentValue = this._min if some there is an exception
@@ -285,6 +297,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Sets the value of the associated textbox.
+    /// </summary>
+    /// <param name="value" type="String">Value to set</param>
+    /// <member name="cM:AjaxControlToolkit.NumericUpDownExtender.setCurrentToTextBox" />
     setCurrentToTextBox: function(value) {
         if(this._elementTextBox) {
             this._elementTextBox.value = value;
@@ -331,71 +348,146 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
         return 0;
     },
 
-    get_Width: function() {
-        // Combined size of the TextBox and Up/Down buttons (min value 25).
+    /// <summary>
+    /// Gets or sets a number that specifies the combined size of the TextBox and Up/Down buttons. Minimum value 25.
+    /// </summary>
+    /// <remarks>
+    /// This property is not used if you provide custom buttons.
+    /// </remarks>
+    /// <getter>get_width</getter>
+    /// <setter>set_width</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.width" />
+    get_width: function() {
         // This property is not used if you provide custom buttons.
         return this._widthValue;
     },
-
-    set_Width: function(value) {
+    set_width: function(value) {
         if(this._widthValue != value) {
             this._widthValue = value;
-            this.raisePropertyChanged('Width');
+            this.raisePropertyChanged('width');
+        }
+    },
+
+    get_Width: function() {
+        Sys.Extended.Deprecated("get_Width", "get_width");
+        return this.get_width();
+    },
+    set_Width: function(value) {
+        Sys.Extended.Deprecated("set_Width", "set_width");
+        this.set_width(value);
+    },
+
+    /// <summary>
+    /// Gets or sets a string that specifies a custom parameter to pass to the Web Service.
+    /// </summary>
+    /// <getter>get_tag</getter>
+    /// <setter>set_tag</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.tag" />
+    get_tag: function() {
+        return this._tagValue;
+    },
+    set_tag: function(value) {
+        if(this._tagValue != value) {
+            this._tagValue = value;
+            this.raisePropertyChanged('tag');
         }
     },
 
     get_Tag: function() {
-        // Specifies a custom parameter to pass to the Web Service
-        return this._tagValue;
+        Sys.Extended.Deprecated("get_Tag", "get_tag");
+        return this.get_tag();
+    },
+    set_Tag: function(value) {
+        Sys.Extended.Deprecated("set_Tag", "set_tag");
+        this.set_tag(value);
     },
 
-    set_Tag: function(value) {
-        if(this._tagValue != value) {
-            this._tagValue = value;
-            this.raisePropertyChanged('Tag');
+    /// <summary>
+    /// Gets or sets a reference to a custom Up button.
+    /// </summary>
+    /// <getter>get_targetButtonUpID</getter>
+    /// <setter>set_targetButtonUpID</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.targetButtonUpID" />
+    get_targetButtonUpID: function() {
+        return this._targetButtonUpIDValue;
+    },
+    set_targetButtonUpID: function(value) {
+        if(this._targetButtonUpIDValue != value) {
+            this._targetButtonUpIDValue = value;
+            this.raisePropertyChanged('targetButtonUpID');
         }
     },
 
     get_TargetButtonUpID: function() {
-        // Reference to a custom Up button
-        return this._targetButtonUpIDValue;
+        Sys.Extended.Deprecated("get_TargetButtonUpID", "get_targetButtonUpID");
+        return this.get_targetButtonUpID();
+    },
+    set_TargetButtonUpID: function(value) {
+        Sys.Extended.Deprecated("set_TargetButtonUpID", "set_targetButtonUpID");
+        this.set_targetButtonUpID(value);
     },
 
-    set_TargetButtonUpID: function(value) {
-        if(this._targetButtonUpIDValue != value) {
-            this._targetButtonUpIDValue = value;
-            this.raisePropertyChanged('TargetButtonUpID');
+    /// <summary>
+    /// Gets or sets a reference to a custom Down button.
+    /// </summary>
+    /// <getter>get_targetButtonDownID</getter>
+    /// <setter>set_targetButtonDownID</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.targetButtonDownID" />
+    get_targetButtonDownID: function() {
+        return this._targetButtonDownIDValue;
+    },
+    set_targetButtonDownID: function(value) {
+        if(this._targetButtonDownIDValue != value) {
+            this._targetButtonDownIDValue = value;
+            this.raisePropertyChanged('targetButtonDownID');
         }
     },
 
     get_TargetButtonDownID: function() {
-        // Reference to a custom Down button
-        return this._targetButtonDownIDValue;
+        Sys.Extended.Deprecated("get_TargetButtonDownID", "get_targetButtonDownID");
+        return this.get_targetButtonDownID();
+    },
+    set_TargetButtonDownID: function(value) {
+        Sys.Extended.Deprecated("set_TargetButtonDownID", "set_targetButtonDownID");
+        this.set_targetButtonDownID(value);
     },
 
-    set_TargetButtonDownID: function(value) {
-        if(this._targetButtonDownIDValue != value) {
-            this._targetButtonDownIDValue = value;
-            this.raisePropertyChanged('TargetButtonDownID');
+    /// <summary>
+    /// Gets or sets the path to a Web service that returns data used to get the next value.
+    /// </summary>
+    /// <remarks>
+    /// If the ServiceUpPath property is empty, a PageMethod will be used instead of a Web service.
+    /// </remarks>
+    /// <getter>get_serviceUpPath</getter>
+    /// <setter>set_serviceUpPath</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.serviceUpPath" />
+    get_serviceUpPath: function() {
+        // If empty, a PageMethod will be used instead of a web service.
+        return this._serviceUpPathValue;
+    },
+    set_serviceUpPath: function(value) {
+        if(this._serviceUpPathValue != value) {
+            this._serviceUpPathValue = value;
+            this.raisePropertyChanged('serviceUpPath');
         }
     },
 
     get_ServiceUpPath: function() {
-        // Path to a web service that returns the data used to get the next value.
-        // If empty, a PageMethod will be used instead of a web service.
-        return this._serviceUpPathValue;
+        Sys.Extended.Deprecated("get_ServiceUpPath", "get_serviceUpPath");
+        return this.get_serviceUpPath();
     },
-
     set_ServiceUpPath: function(value) {
-        if(this._serviceUpPathValue != value) {
-            this._serviceUpPathValue = value;
-            this.raisePropertyChanged('ServiceUpPath');
-        }
+        Sys.Extended.Deprecated("set_ServiceUpPath", "set_serviceUpPath");
+        this.set_serviceUpPath(value);
     },
 
-    get_ServiceUpMethod: function() {
-        // Name of the method to call on the web service (or the name of a PageMethod) to get the next value
-
+    /// <summary>
+    /// Gets or sets the name of the method to call on the Web service (or the name of a PageMethod) to get the next value.
+    /// </summary>
+    /// <getter>get_serviceUpMethod</getter>
+    /// <setter>set_serviceUpMethod</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.serviceUpMethod" />
+    get_serviceUpMethod: function() {
         // The signature of the web method must be of the form:
         //     [WebMethod]
         //     public int MethodName(int current, string tag)
@@ -404,33 +496,61 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
         //     }
         return this._serviceUpMethodValue;
     },
-
-    set_ServiceUpMethod: function(value) {
+    set_serviceUpMethod: function(value) {
         if(this._serviceUpMethodValue != value) {
             this._serviceUpMethodValue = value;
-            this.raisePropertyChanged('ServiceUpMethod');
+            this.raisePropertyChanged('serviceUpMethod');
 
             if(this._elementTextBox)
                 this._elementTextBox.readOnly = true;
         }
     },
 
-    get_ServiceDownPath: function() {
-        // Path to a web service that returns the data used to get the previous value.
+    get_ServiceUpMethod: function() {
+        Sys.Extended.Deprecated("get_ServiceUpMethod", "get_serviceUpMethod");
+        return this.get_serviceUpMethod();
+    },
+    set_ServiceUpMethod: function(value) {
+        Sys.Extended.Deprecated("set_ServiceUpMethod", "set_serviceUpMethod");
+        this.set_serviceUpMethod(value);
+    },
+
+    /// <summary>
+    /// Gets or sets the path to a Web service that returns data used to get the previous value.
+    /// </summary>
+    /// <remarks>
+    /// If the ServiceDownPath property is empty, a PageMethod will be used instead of a Web service.
+    /// </remarks>
+    /// <getter>get_serviceDownPath</getter>
+    /// <setter>set_serviceDownPath</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.serviceDownPath" />
+    get_serviceDownPath: function() {
         // If empty, a PageMethod will be used instead of a web service.
         return this._serviceDownPathValue;
     },
-
-    set_ServiceDownPath: function(value) {
+    set_serviceDownPath: function(value) {
         if(this._serviceDownPathValue != value) {
             this._serviceDownPathValue = value;
-            this.raisePropertyChanged('ServiceDownPath');
+            this.raisePropertyChanged('serviceDownPath');
         }
     },
 
-    get_ServiceDownMethod: function() {
-        // Name of the method to call on the web service (or the name of a PageMethod) to get the previous value
+    get_ServiceDownPath: function() {
+        Sys.Extended.Deprecated("get_ServiceDownPath", "set_serviceDownPath");
+        return this.get_serviceDownPath();
+    },
+    set_ServiceDownPath: function(value) {
+        Sys.Extended.Deprecated("set_ServiceDownPath", "set_serviceDownPath");
+        this.set_serviceDownPath(value);
+    },
 
+    /// <summary>
+    /// Gets or sets the name of the method to call on the Web service (or the name of a PageMethod) to get the previous value.
+    /// </summary>
+    /// <getter>get_serviceDownMethod</getter>
+    /// <setter>set_serviceDownMethod</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.serviceDownMethod" />
+    get_serviceDownMethod: function() {
         // The signature of the web method must be of the form:
         //     [WebMethod]
         //     public int MethodName(int current, string tag)
@@ -439,23 +559,35 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
         //     }
         return this._serviceDownMethodValue;
     },
-
-    set_ServiceDownMethod: function(value) {
+    set_serviceDownMethod: function(value) {
         if(this._serviceDownMethodValue != value) {
             this._serviceDownMethodValue = value;
-            this.raisePropertyChanged('ServiceDownMethod');
+            this.raisePropertyChanged('serviceDownMethod');
 
             if(this._elementTextBox)
                 this._elementTextBox.readOnly = true;
         }
     },
 
-    get_RefValues: function() {
-        // A list of strings separated by semicolons (;) to be used as an enumeration
-        return this._refValuesValue ? this._refValuesValue.join(";") : "";
+    get_ServiceDownMethod: function() {
+        Sys.Extended.Deprecated("get_ServiceDownMethod", "get_serviceDownMethod");
+        return this.get_serviceDownMethod();
+    },
+    set_ServiceDownMethod: function(value) {
+        Sys.Extended.Deprecated("set_ServiceDownMethod", "set_serviceDownMethod");
+        this.set_serviceDownMethod(value);
     },
 
-    set_RefValues: function(value) {
+    /// <summary>
+    /// Gets or sets a string containing a list of strings separated by semicolons (;) to be used as an enumeration.
+    /// </summary>
+    /// <getter>get_refValues</getter>
+    /// <setter>set_refValues</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.refValues" />
+    get_refValues: function() {
+        return this._refValuesValue ? this._refValuesValue.join(";") : "";
+    },
+    set_refValues: function(value) {
         if(value != '') {
             this._refValuesValue = value.split(';');
             this._onChange();
@@ -469,42 +601,92 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
                 this._elementTextBox.readOnly = false;
         }
 
-        this.raisePropertyChanged('RefValues');
+        this.raisePropertyChanged('refValues');
     },
 
-    get_Step: function() {
-        // Step used for simple numeric incrementing and decrementing
+    get_RefValues: function() {
+        Sys.Extended.Deprecated("get_RefValues", "get_refValues");
+        return this.get_refValues();
+    },
+    set_RefValues: function(value) {
+        Sys.Extended.Deprecated("set_RefValues", "set_refValues");
+        this.set_refValues(value);
+    },
+
+    /// <summary>
+    /// Gets or sets a number that specifies the step value used for simple numeric incrementing and decrementing.
+    /// </summary>
+    /// <getter>get_step</getter>
+    /// <setter>set_step</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.step" />
+    get_step: function() {
         return this._step;
     },
-
-    set_Step: function(value) {
+    set_step: function(value) {
         if(value != this._step) {
             this._step = value;
             this._stepPrecision = this._computePrecision(value);
-            this.raisePropertyChanged('Step');
+            this.raisePropertyChanged('step');
+        }
+    },
+
+    get_Step: function() {
+        Sys.Extended.Deprecated("get_Step", "get_step");
+        return this.get_step();
+    },
+    set_Step: function(value) {
+        Sys.Extended.Deprecated("set_Step", "set_step");
+        this.set_step(value);
+    },
+
+    /// <summary>
+    /// Gets or sets a number that specifies the minimum value for the NumericUpDown control.
+    /// </summary>
+    /// <getter>get_minimum</getter>
+    /// <setter>set_minimum</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.minimum" />
+    get_minimum: function() {
+        return this._min;
+    },
+    set_minimum: function(value) {
+        if(value != this._min) {
+            this._min = value;
+            this.raisePropertyChanged('minimum');
         }
     },
 
     get_Minimum: function() {
-        return this._min;
+        Sys.Extended.Deprecated("get_Minimum", "get_minimum");
+        return this.get_minimum();
+    },
+    set_Minimum: function(value) {
+        Sys.Extended.Deprecated("set_Minimum", "set_minimum");
+        this.set_minimum(value);
     },
 
-    set_Minimum: function(value) {
-        if(value != this._min) {
-            this._min = value;
-            this.raisePropertyChanged('Minimum');
+    /// <summary>
+    /// Gets or sets a number that specifies the maximum value for the NumericUpDown control.
+    /// </summary>
+    /// <getter>get_maximum</getter>
+    /// <setter>set_manimum</setter>
+    /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.maximum" />
+    get_maximum: function() {
+        return this._max;
+    },
+    set_maximum: function(value) {
+        if(value != this._max) {
+            this._max = value;
+            this.raisePropertyChanged('maximum');
         }
     },
 
     get_Maximum: function() {
-        return this._max;
+        Sys.Extended.Deprecated("get_Maximum", "get_maximum");
+        return this.get_maximum();
     },
-
     set_Maximum: function(value) {
-        if(value != this._max) {
-            this._max = value;
-            this.raisePropertyChanged('Maximum');
-        }
+        Sys.Extended.Deprecated("set_Maximum", "set_maximum");
+        this.set_maximum(value);
     },
 
     _clickUp: function(evt) {
