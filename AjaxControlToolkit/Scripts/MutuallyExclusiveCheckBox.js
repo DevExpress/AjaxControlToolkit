@@ -33,12 +33,19 @@ Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.prototype = {
         Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.callBaseMethod(this, 'dispose');
     },
 
-    get_Key: function() {
-        // The unique key to use to associate checkboxes. This key does not respect INamingContainer renaming.
+    /// <summary>
+    /// The unique key to use to associate checkboxes.
+    /// </summary>
+    /// <remarks>
+    /// This key does not respect INamingContainer renaming.
+    /// </remarks>
+    /// <getter>get_key</getter>
+    /// <setter>set_key</setter>
+    /// <member name="cP:AjaxControlToolkit.MutuallyExclusiveCheckBoxExtender.key" />
+    get_key: function() {
         return this._key;
     },
-
-    set_Key: function(value) {
+    set_key: function(value) {
         var keys = Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.Keys;
 
         if(value != this._key) {
@@ -56,6 +63,15 @@ Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.prototype = {
                 Array.add(ar, this);
             }
         }
+    },
+
+    get_Key: function() {
+        Sys.Extended.Deprecated("get_Key", "get_key");
+        return this.get_key();
+    },
+    set_Key: function(value) {
+        Sys.Extended.Deprecated("set_Key", "set_key");
+        this.set_key(value);
     },
 
     _onclick: function() {
@@ -80,18 +96,25 @@ Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.prototype = {
         this.raiseChecked(new Sys.Extended.UI.MutuallyExclusiveCheckBoxEventArgs(element, this._key));
     },
 
+    /// <summary>
+    /// Fires when checkbox is checked.
+    /// </summary>
+    /// <event add="add_checked" remove="remove_checked" raise="raise_checked" />
+    /// <member name="cE:AjaxControlToolkit.MutuallyExclusiveCheckBoxExtender.checked" />
     add_checked: function(handler) {
         this.get_events().addHandler('checked', handler);
     },
-
     remove_checked: function(handler) {
         this.get_events().removeHandler('checked', handler);
     },
-
-    raiseChecked: function(eventArgs) {
+    raise_checked: function(eventArgs) {
         var handler = this.get_events().getHandler('checked');
         if(handler)
             handler(this, eventArgs);
+    },
+    raiseChecked: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseChecked(eventArgs)", "raise_checked(eventArgs)");
+        this.raise_checked(eventArgs);
     }
 }
 

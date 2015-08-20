@@ -12,10 +12,15 @@ namespace AjaxControlToolkit {
     [Designer(typeof(MutuallyExclusiveCheckBoxExtenderDesigner))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.MutuallyExclusiveCheckBoxName + Constants.IconPostfix)]
     public class MutuallyExclusiveCheckBoxExtender : ExtenderControlBase {
-        // The unique key to use to associate checkboxes. This key does
-        // not respect INamingContainer renaming.
+        /// <summary>
+        /// The unique key to use to associate checkboxes.
+        /// </summary>
+        /// <remarks>
+        /// This key does not respect INamingContainer renaming.
+        /// </remarks>
         [ExtenderControlProperty]
         [RequiredProperty]
+        [ClientPropertyName("key")]
         public string Key {
             get { return GetPropertyValue("Key", String.Empty); }
             set { SetPropertyValue("Key", value); }
