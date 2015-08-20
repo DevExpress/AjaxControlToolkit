@@ -24,6 +24,9 @@ namespace AjaxControlToolkit {
             : base(false, HtmlTextWriterTag.Div) {
         }
 
+        /// <summary>
+        /// The text to display in the Tab.
+        /// </summary>
         [DefaultValue("")]
         [Category("Appearance")]
         public string HeaderText {
@@ -31,6 +34,9 @@ namespace AjaxControlToolkit {
             set { ViewState["HeaderText"] = value; }
         }
 
+        /// <summary>
+        /// A TemplateInstance.Single ITemplate to use to render the header.
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [TemplateInstance(TemplateInstance.Single)]
         [Browsable(false)]
@@ -40,6 +46,9 @@ namespace AjaxControlToolkit {
             set { _headerTemplate = value; }
         }
 
+        /// <summary>
+        /// A TemplateInstance.Single ITemplate to use to render the body.
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [TemplateInstance(TemplateInstance.Single)]
         [Browsable(false)]
@@ -49,6 +58,12 @@ namespace AjaxControlToolkit {
             set { _contentTemplate = value; }
         }
 
+        /// <summary>
+        /// Whether to display the Tab for the TabPanel by default.
+        /// </summary>
+        /// <remarks>
+        /// This can be changed on the client.
+        /// </remarks>
         [DefaultValue(true)]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -58,6 +73,9 @@ namespace AjaxControlToolkit {
             set { base.Enabled = value; }
         }
 
+        /// <summary>
+        /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabPanel.
+        /// </summary>
         [DefaultValue(ScrollBars.None)]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -67,6 +85,9 @@ namespace AjaxControlToolkit {
             set { ViewState["ScrollBars"] = value; }
         }
 
+        /// <summary>
+        /// The name of a javascript function to attach to the client-side click event of the tab.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -76,6 +97,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientClick"] = value; }
         }
 
+        /// <summary>
+        /// The URL of the web service to call.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -86,6 +110,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DynamicServicePath"] = value; }
         }
 
+        /// <summary>
+        /// The name of the method to call on the page or web service.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -95,6 +122,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DynamicServiceMethod"] = value; }
         }
 
+        /// <summary>
+        /// An arbitrary string value to be passed to the dynamic populate web method.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -104,6 +134,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DynamicContextKey"] = value; }
         }
 
+        /// <summary>
+        /// When container's onDemand is true then whether to load tab - Always, Once, None.
+        /// </summary>
         [DefaultValue(OnDemandMode.Always)]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -113,6 +146,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnDemandMode"] = value; }
         }
 
+        /// <summary>
+        /// Handler to attach to the client-side populating event.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -122,6 +158,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientPopulating"] = value; }
         }
 
+        /// <summary>
+        /// Handler to attach to the client-side populated event.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -136,14 +175,17 @@ namespace AjaxControlToolkit {
             set { _active = value; }
         }
 
-        // Introduce UpdatePanelID to client side by prototyping it
+        /// <summary>
+        /// Introduce UpdatePanelID to client side by prototyping it.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [ExtenderControlProperty]
         [ClientPropertyName("updatePanelID")]
         public string UpdatePanelID { get; set; }
 
-
-        // Loading status of the tab if in Once demand mode
+        /// <summary>
+        /// Loading status of the tab if in Once demand mode.
+        /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [ExtenderControlProperty]
         [ClientPropertyName("wasLoadedOnce")]

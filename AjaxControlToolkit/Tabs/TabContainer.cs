@@ -35,12 +35,21 @@ namespace AjaxControlToolkit {
             : base(true, HtmlTextWriterTag.Div) {
         }
 
+        /// <summary>
+        /// Fired on the server side when a Tab is changed after a postback.
+        /// </summary>
         [Category("Behavior")]
         public event EventHandler ActiveTabChanged {
             add { Events.AddHandler(EventActiveTabChanged, value); }
             remove { Events.RemoveHandler(EventActiveTabChanged, value); }
         }
 
+        /// <summary>
+        /// The first Tab to show.
+        /// </summary>
+        /// <remarks>
+        /// For client.
+        /// </remarks>
         [DefaultValue(-1)]
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -67,6 +76,9 @@ namespace AjaxControlToolkit {
             return IsRenderingScript;
         }
 
+        /// <summary>
+        /// The first Tab to show.
+        /// </summary>
         [DefaultValue(-1)]
         [Category("Behavior")]
         public virtual int ActiveTabIndex {
@@ -112,12 +124,18 @@ namespace AjaxControlToolkit {
             set { ViewState["LastActiveTabIndex"] = value; }
         }
 
+        /// <summary>
+        /// Collection of Tabs.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TabPanelCollection Tabs {
             get { return (TabPanelCollection)Controls; }
         }
 
+        /// <summary>
+        /// Current active Tab.
+        /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TabPanel ActiveTab {
@@ -138,6 +156,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Make auto postback from the javascript when Tab index changes.
+        /// </summary>
         [DefaultValue(false)]
         [Category("Behavior")]
         public bool AutoPostBack {
@@ -145,6 +166,9 @@ namespace AjaxControlToolkit {
             set { _autoPostBack = value; }
         }
 
+        /// <summary>
+        /// Sets the height of the body of the tabs (does not include the TabPanel headers).
+        /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Appearance")]
         public override Unit Height {
@@ -158,6 +182,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Sets the width of the body of the tabs.
+        /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Appearance")]
         public override Unit Width {
@@ -165,6 +192,12 @@ namespace AjaxControlToolkit {
             set { base.Width = value; }
         }
 
+        /// <summary>
+        /// A CSS class override used to define a custom look and feel for the tabs.
+        /// </summary>
+        /// <remarks>
+        /// See the Tabs Theming section for more details.
+        /// </remarks>
         [DefaultValue("ajax__tab_xp")]
         [Category("Appearance")]
         public override string CssClass {
@@ -172,6 +205,9 @@ namespace AjaxControlToolkit {
             set { base.CssClass = value; }
         }
 
+        /// <summary>
+        /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabContainer.
+        /// </summary>
         [DefaultValue(ScrollBars.None)]
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -181,6 +217,9 @@ namespace AjaxControlToolkit {
             set { ViewState["ScrollBars"] = value; }
         }
 
+        /// <summary>
+        /// Whether to render the tabs on top of the container or below (Top, Bottom).
+        /// </summary>
         [DefaultValue(TabStripPlacement.Top)]
         [Category("Appearance")]
         public TabStripPlacement TabStripPlacement {
@@ -188,6 +227,10 @@ namespace AjaxControlToolkit {
             set { _tabStripPlacement = value; }
         }
 
+
+        /// <summary>
+        /// Fired on the client side when a Tab is changed.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -197,6 +240,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientActiveTabChanged"] = value; }
         }
 
+        /// <summary>
+        /// AutoPostback ID.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("autoPostBackId")]
         public new string UniqueID {
@@ -209,6 +255,9 @@ namespace AjaxControlToolkit {
             return IsRenderingScript && AutoPostBack;
         }
 
+        /// <summary>
+        /// Whether to render the tabs on left or right of the container.
+        /// </summary>
         [Description("Change tab header placement vertically when value set to true")]
         [DefaultValue(false)]
         [Category("Appearance")]
@@ -217,6 +266,9 @@ namespace AjaxControlToolkit {
             set { _useVerticalStripPlacement = value; }
         }
 
+        /// <summary>
+        /// Width of the tab panels when displaying tabs vertically.
+        /// </summary>
         [Description("Set width of tab strips when UseVerticalStripPlacement is set to true. Size must be in pixel")]
         [DefaultValue(typeof(Unit), "120px")]
         [Category("Appearance")]
@@ -230,6 +282,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Whether to render/load tabs onDemand or all at page load.
+        /// </summary>
         [DefaultValue(false)]
         [Category("Behavior")]
         public bool OnDemand {
