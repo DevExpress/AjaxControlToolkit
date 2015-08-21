@@ -17,14 +17,22 @@ namespace AjaxControlToolkit {
     public class LineChart : ChartBase {
         List<LineChartSeries> _series = new List<LineChartSeries>();
 
+        /// <summary>
+        /// Provides a set of values for the category axis to create a line chart.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("categoriesAxis")]
         public string CategoriesAxis { get; set; }
 
-        // Provide list of series to client side. Need help from Series property 
-        // for designer experience support, cause Editor always blocks the property
-        // ability to provide values to client side as ExtenderControlProperty on run time.
+        /// <summary>
+        /// Provide list of series to client side.
+        /// </summary>
+        /// <remarks>
+        /// Need help from Series property for designer experience support, cause 
+        /// Editor always blocks the property ability to provide values to 
+        /// client side as ExtenderControlProperty on run time.
+        /// </remarks>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Browsable(false)]
@@ -34,6 +42,9 @@ namespace AjaxControlToolkit {
             get { return _series; }
         }
 
+        /// <summary>
+        /// Provide list of series.
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(null)]
@@ -43,46 +54,73 @@ namespace AjaxControlToolkit {
             get { return _series; }
         }
 
+        /// <summary>
+        /// Enables you to render two types of line charts 1. Basic 2. Stacked.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(LineChartType.Basic)]
         [ClientPropertyName("chartType")]
         public LineChartType ChartType { get; set; }
 
+        /// <summary>
+        /// Enables you to set the interval size for the value axis line.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(9)]
         [ClientPropertyName("valueAxisLines")]
         public int ValueAxisLines { get; set; }
 
+        /// <summary>
+        /// Enables you to set the the color of the value axis lines.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("valueAxisLineColor")]
         public string ValueAxisLineColor { get; set; }
 
+        /// <summary>
+        /// Enables you to set the color of the category axis lines.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("categoryAxisLineColor")]
         public string CategoryAxisLineColor { get; set; }
 
+        /// <summary>
+        /// Enables you to set the color of the base lines of the chart.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("baseLineColor")]
         public string BaseLineColor { get; set; }
 
+        /// <summary>
+        /// Enables you to set the background color of the tooltip box.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#FFC652")]
         [ClientPropertyName("tooltipBackgroundColor")]
         public string TooltipBackgroundColor { get; set; }
 
+        /// <summary>
+        /// Enables you to set the font color of the tooltip box.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#0E426C")]
         [ClientPropertyName("tooltipFontColor")]
         public string TooltipFontColor { get; set; }
 
+        /// <summary>
+        /// Enables you to set the border color of the tooltip box.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#B85B3E")]
         [ClientPropertyName("tooltipBorderColor")]
         public string TooltipBorderColor { get; set; }
 
+        /// <summary>
+        /// Enables you to set the text/label that will be shown in the tooltip and describe about area data value.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("areaDataLabel")]
