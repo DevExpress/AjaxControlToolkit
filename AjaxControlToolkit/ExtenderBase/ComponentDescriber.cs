@@ -12,7 +12,7 @@ namespace AjaxControlToolkit {
     public class ComponentDescriber {
         static Dictionary<Type, Converter<object, string>> _customConverters = new Dictionary<Type, Converter<object, string>>();
 
-        public static void DescribeComponent(object instance, ScriptComponentDescriptor descriptor, IUrlResolutionService urlResolver, IControlResolver controlResolver) {
+        public static void DescribeComponent(object instance, IScriptComponentDescriptor descriptor, IUrlResolutionService urlResolver, IControlResolver controlResolver) {
             // validate preconditions
             if(instance == null) throw new ArgumentNullException("instance");
             if(descriptor == null) throw new ArgumentNullException("descriptor");

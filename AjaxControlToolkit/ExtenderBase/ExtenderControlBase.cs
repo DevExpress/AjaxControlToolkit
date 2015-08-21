@@ -115,8 +115,7 @@ namespace AjaxControlToolkit {
                 //
                 if(string.IsNullOrEmpty(ClientStateFieldID)) {
                     hiddenField = CreateClientStateField();
-                }
-                else {
+                } else {
                     hiddenField = (HiddenField)NamingContainer.FindControl(ClientStateFieldID);
                 }
 
@@ -249,7 +248,7 @@ namespace AjaxControlToolkit {
         // Walks each of the properties in the TargetProperties object and renders script for them.
         protected virtual void RenderScriptAttributes(ScriptBehaviorDescriptor descriptor) {
             try {
-                ComponentDescriber.DescribeComponent(this, descriptor, this.Page, this);
+                ComponentDescriber.DescribeComponent(this, new ScriptComponentDescriptorWrapper(descriptor), this.Page, this);
             } finally { }
         }
 

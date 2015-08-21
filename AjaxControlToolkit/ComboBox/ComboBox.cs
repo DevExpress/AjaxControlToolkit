@@ -322,7 +322,7 @@ namespace AjaxControlToolkit {
                 return null;
 
             var descriptor = new ScriptControlDescriptor(ClientControlType, ClientID);
-            ComponentDescriber.DescribeComponent(this, descriptor, this, this);
+            ComponentDescriber.DescribeComponent(this, new ScriptComponentDescriptorWrapper(descriptor), this, this);
             descriptor.AddElementProperty("textBoxControl", TextBoxControl.ClientID);
             descriptor.AddElementProperty("buttonControl", ButtonControl.ClientID);
             descriptor.AddElementProperty("hiddenFieldControl", HiddenFieldControl.ClientID);

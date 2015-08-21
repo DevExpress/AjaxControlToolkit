@@ -126,7 +126,8 @@ namespace AjaxControlToolkit {
         }
 
         protected override IEnumerable<ScriptDescriptor> GetScriptDescriptors() {
-            if(!Visible) return null;
+            if(!Visible)
+                return null;
 
             EnsureID();
 
@@ -143,7 +144,7 @@ namespace AjaxControlToolkit {
         protected virtual void DescribeComponent(ScriptComponentDescriptor descriptor) {
             try {
                 _renderingScript = true;
-                ComponentDescriber.DescribeComponent(this, descriptor, this.Page, this);
+                ComponentDescriber.DescribeComponent(this, new ScriptComponentDescriptorWrapper(descriptor), this.Page, this);
             } finally {
                 _renderingScript = false;
             }
