@@ -11,7 +11,6 @@ namespace AjaxControlToolkit {
         void AddComponentProperty(string name, string componentID);
         void AddElementProperty(string name, string elementID);
         void AddEvent(string name, string handler);
-        void AddProperty(string name, object value);
-        void AddScriptProperty(string name, string script);
+        void AddProperty(string name, object value);       
     }
 }
