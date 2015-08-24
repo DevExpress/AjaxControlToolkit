@@ -44,6 +44,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
@@ -54,6 +55,8 @@
   <ItemGroup>
     <Compile Include="BundleResolverTests.cs" />
     <Compile Include="BaseValidatorTests.cs" />
+    <Compile Include="ComponentDescriber\ComponentDescriberTests.cs" />
+    <Compile Include="ComponentDescriber\ScriptComponentDescriptorMock.cs" />
     <Compile Include="TabPanelTests.cs" />
     <Compile Include="HtmlSanitizer\HaCkerOrgXMLTest.cs" />
     <Compile Include="LocalizationTests.cs" />

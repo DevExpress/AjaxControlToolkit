@@ -108,7 +108,11 @@ namespace AjaxControlToolkit {
                                 } else {
                                     // Use the property's own converter
                                     TypeConverter conv = prop.Converter;
-                                    value = conv.ConvertToString(null, CultureInfo.InvariantCulture, value);
+
+                                    if(value.GetType() == typeof(DateTime))
+                                        value = ((DateTime)value).ToString("s", CultureInfo.InvariantCulture);
+                                    else
+                                        value = conv.ConvertToString(null, CultureInfo.InvariantCulture, value);
                                 }
                             }
                         }
