@@ -174,20 +174,40 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         Sys.Extended.UI.MultiHandleSliderBehavior.callBaseMethod(this, 'dispose');
     },
 
-    get_SliderInitialized: function() {
-        // Gets whether this slider is initialized. This is here for backwards compatibility
-        // with the original Slider.
+    /// <summary>
+    /// Gets whether this slider is initialized.
+    /// </summary>
+    /// <remarks>
+    /// This is here for backwards compatibility with the original Slider.
+    /// </remarks>
+    /// <getter>get_sliderInitialized</getter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.sliderInitialized" />
+    get_sliderInitialized: function() {
         return this._initialized;
     },
+    get_SliderInitialized: function() {
+        Sys.Extended.Deprecated("get_SliderInitialized", "get_sliderInitialized");
+        return this.get_sliderInitialized();
+    },
 
+    /// <summary>
+    /// Gets the value of a specific slider handle programmatically by index.
+    /// </summary>
+    /// <param name="index" type="Number">Handle index</param>
+    /// <returns>Slider handle value</returns>
+    /// <member name="cM:AjaxControlToolkit.MultiHandleSliderExtender.getValue" />
     getValue: function(index) {
-        // Gets the value of a specific slider handle programmatically by index.
         var multiHandleSliderTarget = $get(this._multiHandleSliderTargets[index].ControlID);
         return multiHandleSliderTarget.value;
     },
 
+    /// <summary>
+    /// Sets the value of a specific slider handle programmatically by index.
+    /// </summary>
+    /// <param name="index" type="Number">Handle index</param>
+    /// <param name="value" type="Number">Value</param>
+    /// <member name="cM:AjaxControlToolkit.MultiHandleSliderExtender.serValue" />
     setValue: function(index, value) {
-        // Sets the value of a specific slider handle programmatically by index.
         var multiHandleSliderTarget = $get(this._multiHandleSliderTargets[index].ControlID);
         if(multiHandleSliderTarget) {
             this.beginUpdate();
@@ -196,11 +216,16 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Gets all handle values as a comma-delimited string.
+    /// </summary>
+    /// <remarks>
+    /// This is required for the automated toolkit test behavior.
+    /// Returns a comma-delimited string of handle values.
+    /// </remarks>
+    /// <getter>get_values</getter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.values" />
     get_values: function() {
-        // Gets all handle values as a comma-delimited string. This is required
-        // for the automated toolkit test behavior.
-        // returns a comma-delimited string of handle values.
-
         var values = [this._handles];
         for(var i = 0; i < this._handles; i++) {
             var control = this._multiHandleSliderTargets[i];
@@ -1376,23 +1401,46 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     // IDragSource Implementation
 
+    /// <summary>
+    /// Drag data type.
+    /// </summary>
+    /// <getter>get_dragDataType</getter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.dragDataType" />
     get_dragDataType: function() {
         return 'HTML';
     },
 
+    /// <summary>
+    /// Returns drag data.
+    /// </summary>
+    /// <returns type="Object">Drag data</returns>
+    /// <member name="cM:AjaxControlToolkit.MultiHandleSliderExtender.getDragData" />
     getDragData: function() {
         return this._handleUnderDrag;
     },
 
+    /// <summary>
+    /// Drag mode.
+    /// </summary>
+    /// <getter>get_dragMode</getter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.dragMode" />
     get_dragMode: function() {
         return Sys.Extended.UI.DragMode.Move;
     },
 
+    /// <summary>
+    /// Raises OnDragStart event.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.MultiHandleSliderExtender.onDragStart" />
     onDragStart: function() {
         this._resetDragHandle(this._handleUnderDrag);
         this._raiseEvent('dragStart');
     },
 
+    /// <summary>
+    /// Raises OnDrag event.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.MultiHandleSliderExtender.onDrag" />
     onDrag: function() {
         var dragHandleBounds = this._getBoundsInternal(this._handleUnderDrag.DragHandle),
             handleBounds = this._getBoundsInternal(this._handleUnderDrag),
@@ -1421,6 +1469,10 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         this._raiseEvent('drag');
     },
 
+    /// <summary>
+    /// Raises OnDragEnd event.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.MultiHandleSliderExtender.onDragEnd" />
     onDragEnd: function() {
         this._initializeInnerRail();
 
@@ -1434,10 +1486,21 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     // IDropTarget Implementation
 
+    /// <summary>
+    /// Drop target element.
+    /// </summary>
+    /// <getter>get_dropTargetElement</getter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.dropTargetElement" />
     get_dropTargetElement: function() {
         return document.forms[0];
     },
 
+    /// <summary>
+    /// Determines whether element can be dropped.
+    /// </summary>
+    /// <param name="dragMode" type="Sys.Extended.UI.DragMode">Drag mode</param>
+    /// <param name="dataType" type="String">Data type</param>
+    /// <member name="cM:AjaxControlToolkit.MultiHandleSliderExtender.canDrop" />
     canDrop: function(dragMode, dataType) {
         return dataType == 'HTML';
     },
@@ -1526,16 +1589,18 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
 
     // Backwards-compatible Property Accessors
 
-    get_Value: function() {
-        // Gets the value of a single bound control for backwards compatibility
-        // of existing slider and tests. Only to be used in this context.
+    /// <summary>
+    /// Gets or sets the value of a single bound control for backwards compatibility
+    /// of existing slider and tests. Only to be used in this context.
+    /// </summary>
+    /// <getter>get_value</getter>
+    /// <setter>set_value</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.value" />
+    get_value: function() {
         var bound = $get(this._boundControlID);
         return bound.value ? bound.value : 0;
     },
-
-    set_Value: function(value) {
-        // Sets the value of a single bound control for backwards compatibility
-        // of existing slider and tests. Only to be used in this context.
+    set_value: function(value) {
         var multiHandleSliderTarget = $get(this._multiHandleSliderTargets[0].ControlID);
 
         this.beginUpdate();
@@ -1546,12 +1611,26 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         $common.tryFireEvent(multiHandleSliderTarget, "change");
     },
 
+    get_Value: function() {
+        Sys.Extended.Deprecated("get_Value", "get_value");
+        return this.get_value();
+    },
+    set_Value: function(value) {
+        Sys.Extended.Deprecated("set_Value", "set_value");
+        this.set_value(value);  
+    },
+
     // Property Accessors
 
+    /// <summary>
+    /// The lowest value on the slider.
+    /// </summary>
+    /// <getter>get_minimum</getter>
+    /// <setter>set_minimum</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.minimum" />
     get_minimum: function() {
         return this._minimum;
     },
-
     set_minimum: function(value) {
         if(value !== this._minimum) {
             this._minimum = value;
@@ -1559,10 +1638,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// The highest value on the slider.
+    /// </summary>
+    /// <getter>get_maximum</getter>
+    /// <setter>set_maximum</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.maximum" />
     get_maximum: function() {
         return this._maximum;
     },
-
     set_maximum: function(value) {
         if(value !== this._maximum) {
             this._maximum = value;
@@ -1570,10 +1654,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// The length of the slider rail in pixels.
+    /// </summary>
+    /// <getter>get_length</getter>
+    /// <setter>set_length</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.length" />
     get_length: function() {
         return this._length;
     },
-
     set_length: function(value) {
         if(value !== this._length) {
             this._length = value;
@@ -1581,13 +1670,16 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines number of discrete locations on the slider; otherwise, the slider is continous.
+    /// </summary>
+    /// <getter>get_steps</getter>
+    /// <setter>set_steps</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.steps" />
     get_steps: function() {
-        // Determines number of discrete locations on the slider; otherwise, the slider is continous.
         return this._steps;
     },
-
     set_steps: function(value) {
-        // Determines number of discrete locations on the slider; otherwise, the slider is continous.
         var oldValue = this._steps;
         this._steps = Math.abs(value);
         this._steps = (this._steps === 1) ? 2 : this._steps;
@@ -1596,10 +1688,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             this.raisePropertyChanged('steps');
     },
 
+    /// <summary>
+    /// Determines if the slider's orientation is horizontal or vertical.
+    /// </summary>
+    /// <getter>get_orientation</getter>
+    /// <setter>set_orientation</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.orientation" />
     get_orientation: function() {
         return this._isVertical;
     },
-
     set_orientation: function(value) {
         if(value !== this._isVertical) {
             this._orientation = value;
@@ -1607,115 +1704,144 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines if the slider handles display an animation effect when changing position.
+    /// </summary>
+    /// <getter>get_enableHandleAnimation</getter>
+    /// <setter>set_enableHandleAnimation</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.enableHandleAnimation" />
     get_enableHandleAnimation: function() {
-        // Determines if the slider handles display an animation effect when changing position.
         return this._enableHandleAnimation;
     },
-
     set_enableHandleAnimation: function(value) {
-        // Determines if the slider handles display an animation effect when changing position.
         if(value !== this._enableHandleAnimation) {
             this._enableHandleAnimation = value;
             this.raisePropertyChanged('enableHandleAnimation');
         }
     },
 
+    /// <summary>
+    /// Determines the total duration of the animation effect, in seconds.
+    /// </summary>
+    /// <getter>get_handleAnimationDuration</getter>
+    /// <setter>set_handleAnimationDuration</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.handleAnimationDuration" />
     get_handleAnimationDuration: function() {
-        // Determines the total duration of the animation effect, in seconds.
         return this._handleAnimationDuration;
     },
-
     set_handleAnimationDuration: function(value) {
-        // Determines the total duration of the animation effect, in seconds.
         if(value !== this._handleAnimationDuration) {
             this._handleAnimationDuration = value;
             this.raisePropertyChanged('handleAnimationDuration');
         }
     },
 
+    /// <summary>
+    /// Determines if changes to the slider's values are raised as an event when dragging; otherwise, they are raised on drag end.
+    /// </summary>
+    /// <getter>get_raiseChangeOnlyOnMouseUp</getter>
+    /// <setter>set_raiseChangeOnlyOnMouseUp</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.raiseChangeOnlyOnMouseUp" />
     get_raiseChangeOnlyOnMouseUp: function() {
-        // Determines if changes to the slider's values are raised as an event when dragging; otherwise, they are raised on drag end.
         return this._raiseChangeOnlyOnMouseUp;
     },
-
     set_raiseChangeOnlyOnMouseUp: function(value) {
-        // Determines if changes to the slider's values are raised as an event when dragging; otherwise, they are raised on drag end.
         if(value !== this._raiseChangeOnlyOnMouseUp) {
             this._raiseChangeOnlyOnMouseUp = value;
             this.raisePropertyChanged('raiseChangeOnlyOnMouseUp');
         }
     },
 
+    /// <summary>
+    /// Determines if the slider will show an inner selected range rail; otherwise, it will display as a uniform rail.
+    /// </summary>
+    /// <getter>get_showInnerRail</getter>
+    /// <setter>set_showInnerRail</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.showInnerRail" />
     get_showInnerRail: function() {
-        // Determines if the slider will show an inner selected range rail; otherwise, it will display as a uniform rail.
         return this._showInnerRail;
     },
-
     set_showInnerRail: function(value) {
-        // Determines if the slider will show an inner selected range rail; otherwise, it will display as a uniform rail.
         if(value !== this._showInnerRail) {
             this._showInnerRail = value;
             this.raisePropertyChanged('showInnerRail');
         }
     },
 
+    /// <summary>
+    /// Determines if the slider handles will show a style effect when they are hovered over.
+    /// </summary>
+    /// <getter>get_showHandleHoverStyle</getter>
+    /// <setter>set_showHandleHoverStyle</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.showHandleHoverStyle" />
     get_showHandleHoverStyle: function() {
-        // Determines if the slider handles will show a style effect when they are hovered over.
         return this._showHoverStyle;
     },
-
     set_showHandleHoverStyle: function(value) {
-        // Determines if the slider handles will show a style effect when they are hovered over.
         if(value !== this._showHoverStyle) {
             this._showHoverStyle = value;
             this.raisePropertyChanged('showHoverStyle');
         }
     },
 
+    /// <summary>
+    /// Determines if the slider handles will show a style effect when they are being dragged.
+    /// </summary>
+    /// <getter>get_showHandleDragStyle</getter>
+    /// <setter>set_showHnaldesragStyle</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.showHandleDragStyle" />
     get_showHandleDragStyle: function() {
-        // Determines if the slider handles will show a style effect when they are being dragged.
         return this._showDragStyle;
     },
-
     set_showHandleDragStyle: function(value) {
-        // Determines if the slider handles will show a style effect when they are being dragged.
         if(value !== this._showDragStyle) {
             this._showDragStyle = value;
             this.raisePropertyChanged('showDragStyle');
         }
     },
 
+    /// <summary>
+    /// Determines how the inner rail style is handled.
+    /// </summary>
+    /// <getter>get_innerRailStyle</getter>
+    /// <setter>set_innerRailStyle</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.innerRailStyle" />
     get_innerRailStyle: function() {
-        // Determines how the inner rail style is handled.
         return this._innerRailStyle;
     },
-
     set_innerRailStyle: function(value) {
-        // Determines how the inner rail style is handled.
         if(value !== this._innerRailStyle) {
             this._innerRailStyle = value;
             this.raisePropertyChanged('innerRailStyle');
         }
     },
 
+    /// <summary>
+    /// Determines if the inner rail range can be dragged as a whole, moving both handles defining it.
+    /// </summary>
+    /// <getter>get_enableInnerRangeDrag</getter>
+    /// <setter>set_enableInnerRangeDrag</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.enableInnerRangeDrag" />
     get_enableInnerRangeDrag: function() {
-        // Determines if the inner rail range can be dragged as a whole, moving both handles defining it.
         return this._enableInnerRangeDrag;
     },
-
     set_enableInnerRangeDrag: function(value) {
-        // Determines if the inner rail range can be dragged as a whole, moving both handles defining it.
         if(value !== this._enableInnerRangeDrag) {
             this._enableInnerRangeDrag = value;
             this.raisePropertyChanged('allowInnerRangeDrag');
         }
     },
 
+    /// <summary>
+    /// Determines if clicking on the rail will detect and move the closest handle.
+    /// </summary>
+    /// <getter>get_enableRailClick</getter>
+    /// <setter>set_enableRailClick</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.enableRailClick" />
     get_enableRailClick: function() {
         // Determines if clicking on the rail will detect and move the closest handle.
         return this._enableRailClick;
     },
-
     set_enableRailClick: function(value) {
         // Determines if clicking on the rail will detect and move the closest handle.
         if(value !== this._enableRailClick) {
@@ -1724,10 +1850,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines if the slider and its values can be manipulated.
+    /// </summary>
+    /// <getter>get_isReadOnly</getter>
+    /// <setter>set_isReadOnly</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.isReadOnly" />
     get_isReadOnly: function() {
         return this._isReadOnly;
     },
-
     set_isReadOnly: function(value) {
         if(value !== this._isReadOnly) {
             this._isReadOnly = value;
@@ -1735,10 +1866,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines if the slider will respond to arrow keys when it has focus.
+    /// </summary>
+    /// <getter>get_enableKeyboard</getter>
+    /// <setter>set-enableKeyboard</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.enableKeyboard" />
     get_enableKeyboard: function() {
         return this._enableKeyboard;
     },
-
     set_enableKeyboard: function(value) {
         if(value !== this._enableKeyboard) {
             this._enableKeyboard = value;
@@ -1746,10 +1882,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines if the slider will respond to the mouse wheel when it has focus.
+    /// </summary>
+    /// <getter>get_enableMouseWheel</getter>
+    /// <setter>set_enableMouseWheel</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.enableMouseWheel" />
     get_enableMouseWheel: function() {
         return this._enableMouseWheel;
     },
-
     set_enableMouseWheel: function(value) {
         if(value !== this._enableMouseWheel) {
             this._enableMouseWheel = value;
@@ -1757,24 +1898,32 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines the number of points to increment or decrement the slider using the keyboard or mousewheel; ignored if steps is used.
+    /// </summary>
+    /// <getter>get_increment</getter>
+    /// <setter>set_increment</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.increment" />
     get_increment: function() {
-        // Determines the number of points to increment or decrement the slider using the keyboard or mousewheel; ignored if steps is used.
         return this._increment;
     },
-
     set_increment: function(value) {
-        // Determines the number of points to increment or decrement the slider using the keyboard or mousewheel; ignored if steps is used.
         if(value !== this._increment) {
             this._increment = value;
             this.raisePropertyChanged('increment');
         }
     },
 
+    /// <summary>
+    /// Determines the text to display as the tooltip; {0} denotes the current handle's value in the format string.
+    /// </summary>
+    /// <getter>get_tooltipText</getter>
+    /// <setter>set_tooltipText</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.tooltipText" />
     get_tooltipText: function() {
         // {0} denotes the current handle's value in the format string.
         return this._tooltipText;
     },
-
     set_tooltipText: function(value) {
         // {0} denotes the current handle's value in the format string.
         if(value !== this._tooltipText) {
@@ -1783,10 +1932,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// The list of controls used to bind slider handle values. These should be Label or TextBox controls.
+    /// </summary>
+    /// <getter>get_multiHandleSliderTargets</getter>
+    /// <setter>set_multiHandleSliderTargets</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.multiHandleSliderTargets" />
     get_multiHandleSliderTargets: function() {
         return this._multiHandleSliderTargets;
     },
-
     set_multiHandleSliderTargets: function(value) {
         if(value !== this._multiHandleSliderTargets) {
             this._multiHandleSliderTargets = value;
@@ -1794,10 +1948,15 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// The master style to apply to slider graphical elements.
+    /// </summary>
+    /// <getter>get_cssClass</getter>
+    /// <setter>set_cssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.cssClass" />
     get_cssClass: function() {
         return this._cssClass;
     },
-
     set_cssClass: function(value) {
         if(value !== this._cssClass) {
             this._cssClass = value;
@@ -1805,13 +1964,16 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Gets or sets the ID of a control to use for a single handle.
+    /// </summary>
+    /// <getter>get_boundControlID</getter>
+    /// <setter>set_boundControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.boundControlID" />
     get_boundControlID: function() {
-        // Gets the ID of a control to use for a single handle.
         return this._boundControlID;
     },
-
     set_boundControlID: function(value) {
-        // Sets the ID of a control to use for a single handle.
         this._boundControlID = value;
 
         if(this._boundControlID)
@@ -1820,78 +1982,116 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
             this._boundControl = null;
     },
 
+    /// <summary>
+    /// Gets or sets the CSS class of a single handle.
+    /// </summary>
+    /// <getter>get_handleCssClass</getter>
+    /// <setter>set_handleCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.handleCssClass" />
     get_handleCssClass: function() {
         return this._handleCssClass;
     },
-
     set_handleCssClass: function(value) {
         this._handleCssClass = value;
     },
 
+    /// <summary>
+    /// Gets or sets the URL for the image to display in the slider's handle.
+    /// </summary>
+    /// <getter>get_handleImageUrl</getter>
+    /// <setter>set_handleImageUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.handleImageUrl" />
     get_handleImageUrl: function() {
         return this._handleImageUrl;
     },
-
     set_handleImageUrl: function(value) {
         this._handleImageUrl = value;
     },
 
+    /// <summary>
+    /// Gets or set the CSS class for the slider's rail element.
+    /// </summary>
+    /// <getter>get_railCssClass</getter>
+    /// <setter>set_railCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.railCssClass" />
     get_railCssClass: function() {
         return this._railCssClass;
     },
-
     set_railCssClass: function(value) {
         this._railCssClass = value;
     },
 
+    /// <summary>
+    /// Gets or sets the number of decimal digits in a single slider's value.
+    /// </summary>
+    /// <getter>get_decimals</getter>
+    /// <setter>set_decimals</setter>
+    /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.decimals" />
     get_decimals: function() {
-        // Get the number of decimal digits in a single slider's value.
         return this._decimals;
     },
-
     set_decimals: function(value) {
-        // Set the number of decimal digits in a single slider's value.
         this._decimals = value;
     },
 
     // Event Accessors
 
+    /// <summary>
+    /// The event raised when the slider is completely loaded on the page.
+    /// </summary>
+    /// <event add="add_load" remove="remove_load" raise="" />
+    /// <member name="cE:AjaxControlToolkit.MultiHandleSliderExtender.load" />
     add_load: function(handler) {
         this.get_events().addHandler('load', handler);
     },
-
     remove_load: function(handler) {
         this.get_events().removeHandler('load', handler);
     },
 
+    /// <summary>
+    /// The event raised when the user initiates a drag operation on the slider.
+    /// </summary>
+    /// <event add="add_dragStart" remove="remove_dragStart" raise="" />
+    /// <member name="cE:AjaxControlToolkit.MultiHandleSliderExtender.dragStart" />
     add_dragStart: function(handler) {
         this.get_events().addHandler('dragStart', handler);
     },
-
     remove_dragStart: function(handler) {
         this.get_events().removeHandler('dragStart', handler);
     },
 
+    /// <summary>
+    /// The event raised when the user drags the slider.
+    /// </summary>
+    /// <event add="add_drag" remove="remove_drag" raise="" />
+    /// <member name="cE:AjaxControlToolkit.MultiHandleSliderExtender.drag" />
     add_drag: function(handler) {
         this.get_events().addHandler('drag', handler);
     },
-
     remove_drag: function(handler) {
         this.get_events().removeHandler('drag', handler);
     },
 
+    /// <summary>
+    /// The event raised when the user drops the slider.
+    /// </summary>
+    /// <event add="add_dragEnd" remove="remove_dragEnd" raise="" />
+    /// <member name="cE:AjaxControlToolkit.MultiHandleSliderExtender.dragEnd" />
     add_dragEnd: function(handler) {
         this.get_events().addHandler('dragEnd', handler);
     },
-
     remove_dragEnd: function(handler) {
         this.get_events().removeHandler('dragEnd', handler);
     },
 
+    /// <summary>
+    /// The event raised when the slider changes its state.
+    /// </summary>
+    /// <event add="add_valueChanged" remove="remove_valueChanged" raise="" />
+    /// <member name="cE:AjaxControlToolkit.MultiHandleSliderExtender.valueChanged" />
     add_valueChanged: function(handler) {
         this.get_events().addHandler('valueChanged', handler);
     },
-
     remove_valueChanged: function(handler) {
         this.get_events().removeHandler('valueChanged', handler);
     }
