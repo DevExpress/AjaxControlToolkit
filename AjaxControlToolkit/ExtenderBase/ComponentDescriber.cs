@@ -14,10 +14,14 @@ namespace AjaxControlToolkit {
 
         public static void DescribeComponent(object instance, IScriptComponentDescriptor descriptor, IUrlResolutionService urlResolver, IControlResolver controlResolver) {
             // validate preconditions
-            if(instance == null) throw new ArgumentNullException("instance");
-            if(descriptor == null) throw new ArgumentNullException("descriptor");
-            if(urlResolver == null) urlResolver = instance as IUrlResolutionService;
-            if(controlResolver == null) controlResolver = instance as IControlResolver;
+            if(instance == null)
+                throw new ArgumentNullException("instance");
+            if(descriptor == null)
+                throw new ArgumentNullException("descriptor");
+            if(urlResolver == null)
+                urlResolver = instance as IUrlResolutionService;
+            if(controlResolver == null)
+                controlResolver = instance as IControlResolver;
 
             // describe properties
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(instance);
@@ -120,11 +124,14 @@ namespace AjaxControlToolkit {
                     if(eventAttr != null) {
                         descriptor.AddEvent(propertyName, (string)value);
                     } else if(elementAttr != null) {
-                        if(c == null && controlResolver != null) c = controlResolver.ResolveControl((string)value);
-                        if(c != null) value = c.ClientID;
+                        if(c == null && controlResolver != null)
+                            c = controlResolver.ResolveControl((string)value);
+                        if(c != null)
+                            value = c.ClientID;
                         descriptor.AddElementProperty(propertyName, (string)value);
                     } else if(compAttr != null) {
-                        if(c == null && controlResolver != null) c = controlResolver.ResolveControl((string)value);
+                        if(c == null && controlResolver != null)
+                            c = controlResolver.ResolveControl((string)value);
                         if(c != null) {
                             ExtenderControlBase ex = c as ExtenderControlBase;
                             if(ex != null && ex.BehaviorID.Length > 0)
@@ -134,7 +141,8 @@ namespace AjaxControlToolkit {
                         }
                         descriptor.AddComponentProperty(propertyName, (string)value);
                     } else {
-                        if(c != null) value = c.ClientID;
+                        if(c != null)
+                            value = c.ClientID;
                         descriptor.AddProperty(propertyName, value);
                     }
                 }
