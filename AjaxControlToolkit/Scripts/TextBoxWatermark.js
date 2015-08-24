@@ -6,11 +6,6 @@ Sys.Extended.UI.TextBoxWatermarkBehavior = function(element) {
     Sys.Extended.UI.TextBoxWatermarkBehavior.initializeBase(this, [element]);
     
     // Properties
-    ///<summary> The text to show when the control 
-    ///has no value</summary>
-    ///<getter>get_WatermarkText</getter>
-    ///<setter>set_WatermarkText</setter>
-    ///<member name="cP:AjaxControlToolkit.TextBoxWatermarkExtender.watermarkText" />
     this._watermarkText = null;
     this._watermarkCssClass = null;
 
@@ -131,9 +126,9 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     /// <summary>
-    /// Clear the text from the target
+    /// Clears the text from the target.
     /// </summary>
-    /// <param name="focusing" type="Boolean">whether or not we are focusing on the textbox</param>
+    /// <param name="focusing" type="Boolean">Whether or not we are focusing on the textbox</param>
     /// <member name="cM:AjaxControlToolkit.TextBoxWatermarkExtender.clearText" />
     clearText : function(focusing) {
         var element = this.get_element();
@@ -191,7 +186,9 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
         Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).set_IsWatermarked(false);
     },
 
-    /// <summary>Method called to hook up to Sys.Preview.UI.TextBox if present</summary>
+    /// <summary>
+    /// Method called to hook up to Sys.Preview.UI.TextBox if present.
+    /// </summary>
     /// <remarks>This method must be called manually if the Sys.Preview.UI.TextBox
     /// is added after the TextBoxWatermarkBehavior is initialized.
     /// </remarks>
@@ -235,38 +232,72 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
         }
     },
     
-    get_WatermarkText : function() {
-        
+    /// <summary>
+    /// The text to show when the control has no value.
+    /// </summary>
+    /// <getter>get_watermarkText</getter>
+    /// <setter>set_watermarkText</setter>
+    /// <member name="cP:AjaxControlToolkit.TextBoxWatermarkExtender.watermarkText" />
+    get_watermarkText: function() {
         return this._watermarkText;
     },
-    
-    set_WatermarkText : function(value) {
-        if (this._watermarkText != value) {
+    set_watermarkText: function(value) {
+        if(this._watermarkText != value) {
             this._watermarkText = value;
-            if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked())
+            if(Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked())
                 this._applyWatermark();
-            this.raisePropertyChanged('WatermarkText');
+            this.raisePropertyChanged('watermarkText');
+        }
+    },
+
+    get_WatermarkText : function() {
+        Sys.Extended.Deprecated("get_WatermarkText", "get_watermarkText");
+        return this.get_watermarkText();
+    },
+    set_WatermarkText : function(value) {
+        Sys.Extended.Deprecated("set_WatermarkText", "set_watermarkText");
+        this.set_watermarkText(value);
+    },
+
+    /// <summary>
+    /// The CSS class to apply to the TextBox when it has no value (e.g. the watermark text is shown).
+    /// </summary>
+    /// <getter>get_watermarkCssClass</getter>
+    /// <setter>set_watermarkCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.TextBoxWatermarkExtender.watermarkCssClass" />
+    get_watermarkCssClass: function() {
+        // The CSS class to apply to the TextBox when it has no value (e.g. the watermark text is shown).
+        return this._watermarkCssClass;
+    },
+    set_watermarkCssClass: function(value) {
+        if(this._watermarkCssClass != value) {
+            this._watermarkCssClass = value;
+            if(Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked())
+                this._applyWatermark();
+            this.raisePropertyChanged('watermarkCssClass');
         }
     },
 
     get_WatermarkCssClass : function() {
-        // The CSS class to apply to the TextBox when it has no value (e.g. the watermark text is shown).
-        return this._watermarkCssClass;
+        Sys.Extended.Deprecated("get_WatermarkCssClass", "get_watermarkCssClass");
+        return this.get_watermarkCssClass();
     },
     set_WatermarkCssClass : function(value) {
-        if (this._watermarkCssClass != value) {
-            this._watermarkCssClass = value;
-            if (Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_IsWatermarked())
-                this._applyWatermark();
-            this.raisePropertyChanged('WatermarkCssClass');
-        }
+        Sys.Extended.Deprecated("set_WatermarkCssClass", "set_watermarkCssClass");
+        this.set_watermarkCssClass(value);
     },
 
-    get_Text : function() {
+    /// <summary>
+    /// Text of the target TextBox.
+    /// </summary>
+    /// <getter>get_text</getter>
+    /// <setter>set_text</setter>
+    /// <member name="cP:AjaxControlToolkit.TextBoxWatermarkExtender.text" />
+    get_text: funtion() {
         // Wrapper for the textbox's text that will ignore or create the watermark as appropriate
         return Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_Value();
     },
-    set_Text : function(value) {
+    set_text: function(value) {
         if ("" == value) {
             Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).set_Current("");
             this.get_element().blur();
@@ -275,6 +306,15 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
             this._onFocus();  // onFocus sets ""
             Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).set_Current(value);
         }
+    },
+
+    get_Text : function() {
+        Sys.Extended.Deprecated("get_Text", "get_text");
+        return this.get_text();
+    },
+    set_Text : function(value) {
+        Sys.Extended.Deprecated("set_Text", "set_text");
+        this.set_text(value);
     }
 }
 Sys.Extended.UI.TextBoxWatermarkBehavior.registerClass('Sys.Extended.UI.TextBoxWatermarkBehavior', Sys.Extended.UI.BehaviorBase);

@@ -25,11 +25,8 @@ namespace AjaxControlToolkit {
             EnableClientState = true;
         }
 
-        /// <summary>
-        /// OnLoad override to register a submit script for each TextBoxWatermark behavior as well as check
-        /// to see if it's focused by default 
-        /// </summary>
-        /// <param name="e"></param>
+        // OnLoad override to register a submit script for each TextBoxWatermark behavior as well as check
+        // to see if it's focused by default 
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
 
@@ -42,11 +39,12 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The text to show when the control has no value
+        /// The text to show when the control has no value.
         /// </summary>
         [ExtenderControlProperty()]
         [RequiredProperty()]
         [DefaultValue("")]
+        [ClientPropertyName("watermarkText")]
         public string WatermarkText {
             get { return GetPropertyValue(stringWatermarkText, String.Empty); }
             set { SetPropertyValue(stringWatermarkText, value); }
@@ -57,6 +55,7 @@ namespace AjaxControlToolkit {
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
+        [ClientPropertyName("watermarkCssClass")]
         public string WatermarkCssClass {
             get { return GetPropertyValue(stringWatermarkCssClass, String.Empty); }
             set { SetPropertyValue(stringWatermarkCssClass, value); }
