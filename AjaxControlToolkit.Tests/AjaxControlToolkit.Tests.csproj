@@ -56,7 +56,6 @@
     <Compile Include="BundleResolverTests.cs" />
     <Compile Include="BaseValidatorTests.cs" />
     <Compile Include="ComponentDescriber\ComponentDescriberTests.cs" />
-    <Compile Include="ComponentDescriber\ScriptComponentDescriptorMock.cs" />
     <Compile Include="TabPanelTests.cs" />
     <Compile Include="HtmlSanitizer\HaCkerOrgXMLTest.cs" />
     <Compile Include="LocalizationTests.cs" />
