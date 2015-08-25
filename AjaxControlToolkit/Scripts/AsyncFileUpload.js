@@ -3,16 +3,70 @@
 Sys.Extended.UI.AsyncFileUpload = function(element) {
     Sys.Extended.UI.AsyncFileUpload.initializeBase(this, [element]);
 
+    ///<summary>
+    /// Stores file path.
+    ///</summary>
+    ///<getter>get_hiddenField</getter>
+    ///<setter>set_hiddenField</setter>
+    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.hiddenField" />
     this._hiddenField = null;
+    ///<summary>
+    /// Input element with type='file'.
+    ///</summary>
+    ///<getter>get_inputFile</getter>
+    ///<setter>set_inputFile</setter>
+    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.inputFile" />
     this._inputFile = null;
+    ///<summary>
+    /// Element indicating upload result.
+    ///</summary>
+    ///<getter>get_innerTB</getter>
+    ///<setter>set_innerTB</setter>
+    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.innerTB" />
     this._innerTB = null;
+    ///<summary>
+    /// Url that receives posted data relative to the form.
+    ///</summary>
+    ///<getter>get_postBackUrl</getter>
+    ///<setter>set_postBackUrl</setter>
+    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.postBackUrl" />
     this._postBackUrl = "";
+    ///<summary>
+    /// Page form name.
+    ///</summary>
+    ///<getter>get_postBackUrl</getter>
+    ///<setter>set_postBackUrl</setter>
+    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.postBackUrl" />
     this._formName = "";
     this._iframe = null;
     this._waitTimer = null;
+    ///<summary>
+    /// The control's background color on upload complete.
+    ///</summary>
+    ///<getter>get_completeBackColor</getter>
+    ///<setter>set_completeBackColor</setter>
+    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.completeBackColor" />
     this._completeBackColor = "";
+    ///<summary>
+    /// The control's background color when uploading is in progress.
+    ///</summary>
+    ///<getter>get_uploadingBackColor</getter>
+    ///<setter>set_uploadingBackColor</setter>
+    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.uploadingBackColor" />
     this._uploadingBackColor = "";
+    ///<summary>
+    /// The control's background color on upload error.
+    ///</summary>
+    ///<getter>get_errorBackColor</getter>
+    ///<setter>set_errorBackColor</setter>
+    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.errorBackColor" />
     this._errorBackColor = "";
+    ///<summary>
+    /// The control that is shown while the file is uploading.
+    ///</summary>
+    ///<getter>get_throbber</getter>
+    ///<setter>set_throbber</setter>
+    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.throbber" />
     this._throbber = null;
 
     this._onchange$delegate = null;
@@ -86,40 +140,63 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._formName = value;
     },
 
+    ///<summary>
+    /// Occurs when file uploading started.
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadStarted" />
+    ///<event add="add_uploadStarted" remove="remove_uploadStarted" raise="raise_uploadStarted" />
     add_uploadStarted: function(handler) {
         this.get_events().addHandler("uploadStarted", handler);
     },
     remove_uploadStarted: function(handler) {
         this.get_events().removeHandler("uploadStarted", handler);
     },
-    raiseUploadStarted: function(e) {
+    raise_uploadStarted: function (e) {
         var eh = this.get_events().getHandler("uploadStarted");
-        if(eh) {
+        if (eh) {
             return eh(this, e);
         }
         return true;
     },
+    raiseUploadStarted: function(e) {
+        Sys.Extended.Deprecated("raiseUploadStarted(e)", "raise_uploadStarted(e)");
+        return this.raise_uploadStarted(e);
+    },
 
+    ///<summary>
+    /// Occurs when file uploading completed.
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadComplete" />
+    ///<event add="add_uploadComplete" remove="remove_uploadComplete" raise="raise_uploadComplete" />
     add_uploadComplete: function(handler) {
         this.get_events().addHandler("uploadComplete", handler);
     },
     remove_uploadComplete: function(handler) {
         this.get_events().removeHandler("uploadComplete", handler);
     },
-    raiseUploadComplete: function(e) {
+    raise_uploadComplete: function(e) {
         var eh = this.get_events().getHandler("uploadComplete");
         if(eh) {
             eh(this, e);
         }
     },
+    raiseUploadComplete: function (e) {
+        Sys.Extended.Deprecated("raiseUploadComplete(e)", "raise_uploadComplete(e)");
+        return this.raise_uploadComplete(e);
+    },
 
+    ///<summary>
+    /// Occurs when file uploading encounters an error.
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadError" />
+    ///<event add="add_uploadError" remove="remove_uploadError" raise="raise_uploadError" />
     add_uploadError: function(handler) {
         this.get_events().addHandler("uploadError", handler);
     },
     remove_uploadError: function(handler) {
         this.get_events().removeHandler("uploadError", handler);
     },
-    raiseUploadError: function(e) {
+    raise_uploadError: function(e) {
         var eh = this.get_events().getHandler("uploadError");
         if(eh) {
             eh(this, e);
@@ -127,7 +204,15 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         }
         return false;
     },
+    raiseUploadError: function (e) {
+        Sys.Extended.Deprecated("raiseUploadError(e)", "raise_uploadError(e)");
+        return this.raise_uploadError(e);
+    },
 
+    ///<summary>
+    /// Set throbber visual style.
+    ///</summary>
+    /// <member name="cM:AjaxControlToolkit.AsyncFileUpload.setThrobber" />
     setThrobber: function(value) {
         if(this.get_throbber() != null) {
             this.get_throbber().style.display = value ? "" : "none";
@@ -143,6 +228,10 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         return valid;
     },
 
+    ///<summary>
+    /// Initialize of AsyncFileUpload.
+    ///</summary>
+    /// <member name="cM:AjaxControlToolkit.AsyncFileUpload.initialize" />
     initialize: function() {
         Sys.Extended.UI.AsyncFileUpload.callBaseMethod(this, "initialize");
         Sys.Application.add_load(this._app_onload$delegate);
@@ -150,6 +239,10 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this.setThrobber(false);
     },
 
+    ///<summary>
+    /// Dispose of AsyncFileUpload.
+    ///</summary>
+    /// <member name="cM:AjaxControlToolkit.AsyncFileUpload.dispose" />
     dispose: function() {
         Sys.Application.remove_load(this._app_onload$delegate);
         if(this._onchange$delegate != null) {
