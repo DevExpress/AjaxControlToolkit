@@ -87,9 +87,9 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
                 if(!this._shadowRoundedBehavior)
                     this._shadowRoundedBehavior = $create(Sys.Extended.UI.RoundedCornersBehavior, { "Radius": this._radius }, null, null, this._shadowDiv);
                 else
-                    this._shadowRoundedBehavior.set_Radius(this._radius);
+                    this._shadowRoundedBehavior.set_radius(this._radius);
             } else if(this._shadowRoundedBehavior) {
-                this._shadowRoundedBehavior.set_Radius(0);
+                this._shadowRoundedBehavior.set_radius(0);
             }
 
             if(this._opacity != 1.0)
@@ -147,6 +147,14 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// This function does the heavy lifting of positioning and sizing the shadow.
+    /// It caches values to avoid extra work - it's called on a timer so we need to
+    /// keep it light weight.
+    /// </summary>
+    /// <param name="force" type="Boolean">Whether to force the bounds change.</param>
+    /// <param name="norecurse" type="Boolean">Whether to recurse if we need to recreate the shadow div</param>
+    /// <member name="cM:AjaxControlToolkit.DropShadowExtender.setShadow" />
     setShadow: function(force, norecurse) {
         // This function does the heavy lifting of positioning and sizing the shadow.
         // It caches values to avoid extra work - it's called on a timer so we need to
@@ -171,7 +179,7 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
                 this._lastX = location.x;
                 this._lastY = location.y;
 
-                var w = this.get_Width();
+                var w = this.get_width();
 
                 location.x += w;
                 location.y += w;
@@ -236,7 +244,7 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
             this._roundedBehavior = $create(Sys.Extended.UI.RoundedCornersBehavior, null, null, null, this.get_element());
 
         if(this._roundedBehavior)
-            this._roundedBehavior.set_Radius(this._rounded ? this._radius : 0);
+            this._roundedBehavior.set_radius(this._rounded ? this._radius : 0);
     },
 
     updateZIndex: function() {
@@ -268,56 +276,105 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
         }
     },
 
-    get_Opacity: function() {
-        // The opacity of the drop shadow, from 0 (fully transparent) to 1.0 (fully opaque). The default value is .5.
+    /// <summary>
+    /// Gets or sets a number that represents the opacity of the drop shadow, from 0 (fully transparent) to 1.0 (fully opaque).
+    /// </summary>
+    /// <remarks>
+    /// The default is .5.
+    /// </remarks>
+    /// <getter>get_opacity</getter>
+    /// <setter>set_opacity</setter>
+    /// <member name="cP:AjaxControlToolkit.DropShadowExtender.opacity" />
+    get_opacity: function() {
         return this._opacity;
     },
-
-    set_Opacity: function(value) {
+    set_opacity: function(value) {
         if(this._opacity != value) {
             this._opacity = value;
 
             this.setShadow();
             this.setupOpacity();
 
-            this.raisePropertyChanged('Opacity');
+            this.raisePropertyChanged('opacity');
         }
     },
 
-    get_Rounded: function() {
-        // Whether or not the corners of the target and drop shadow should be rounded
-        return this._rounded;
+    get_Opacity: function() {
+        Sys.Extended.Deprecated("get_Opacity", "get_opacity");
+        return this.get_opacity();
+    },
+    set_Opacity: function(value) {
+        Sys.Extended.Deprecated("set_Opacity", "set_opacity");
+        this.set_opacity(value);
     },
 
-    set_Rounded: function(value) {
+    /// <summary>
+    /// Gets or sets a Boolean value that specifies whether the corners of the target and drop shadow should be rounded.
+    /// </summary>
+    /// <getter>get_rounded</getter>
+    /// <setter>set_rounded</setter>
+    /// <member name="cP:AjaxControlToolkit.DropShadowExtender.rounded" />
+    get_rounded: function() {
+        return this._rounded;
+    },
+    set_rounded: function() {
         if(value != this._rounded) {
             this._rounded = value;
 
             this.updateRoundedCorners();
-            this.raisePropertyChanged('Rounded');
+            this.raisePropertyChanged('rounded');
         }
     },
 
-    get_Radius: function() {
-        // Radius, in pixels, of the rounded corners
-        return this._radius;
+    get_Rounded: function() {
+        Sys.Extended.Deprecated("get_Rounded", "get_rounded");
+        return this.get_rounded();
+    },
+    set_Rounded: function(value) {
+        Sys.Extended.Deprecated("set_Rounded", "set_rounded");
+        this.set_rounded(value);
     },
 
-    set_Radius: function(value) {
+    /// <summary>
+    /// Gets or sets an integer that specifies the radius, in pixels, of the rounded corners.
+    /// </summary>
+    /// <getter>get_radius</getter>
+    /// <setter>set_radius</setter>
+    /// <member name="cP:AjaxControlToolkit.DropShadowExtender.radius" />
+    get_radius: function() {
+        return this._radius;
+    },
+    set_radius: function(value) {
         if(value != this._radius) {
             this._radius = value;
 
             this.updateRoundedCorners();
-            this.raisePropertyChanged('Radius');
+            this.raisePropertyChanged('radius');
         }
     },
 
-    get_Width: function() {
-        // Width in pixels of the drop shadow.  The default value is 5 pixels.
-        return this._width;
+    get_Radius: function() {
+        Sys.Extended.Deprecated("get_Radius", "get_radius");
+        return this.get_radius();  
+    },
+    set_Radius: function(value) {
+        Sys.Extended.Deprecated("set_Radius", "set_radius");
+        this.set_radius(value);
     },
 
-    set_Width: function(value) {
+    /// <summary>
+    /// Gets or sets an integer that specifies the width, in pixels, of the drop shadow.
+    /// </summary>
+    /// <remarks>
+    /// The default is 5.
+    /// </remarks>
+    /// <getter>get_width</getter>
+    /// <setter>set_width</setter>
+    /// <member name="cP:AjaxControlToolkit.DropShadowExtender.width" />
+    get_width: function() {
+        return this._width;
+    },
+    set_width: function(value) {
         if(value != this._width) {
             this._width = value;
 
@@ -325,16 +382,29 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
                 $common.setVisible(this._shadowDiv, value > 0);
 
             this.setShadow(true);
-            this.raisePropertyChanged('Width');
+            this.raisePropertyChanged('width');
         }
     },
 
-    get_TrackPositionDelay: function() {
-        // Length of the timer interval used when tracking the position of the target
-        return this._trackPositionDelay;
+    get_Width: function() {
+        Sys.Extended.Deprecated("get_Width", "get_width");
+        return this.get_width();
+    },
+    set_Width: function(value) {
+        Sys.Extended.Deprecated("set_Width", "set_width");
+        this.set_width(value);
     },
 
-    set_TrackPositionDelay: function(value) {
+    /// <summary>
+    /// Gets or sets a number that specifies the length of the timer interval that is used when tracking the position of the target.
+    /// </summary>
+    /// <getter>get_trackPositionDelay</getter>
+    /// <setter>set_trackPositionDelay</setter>
+    /// <member name="cP:AjaxControlToolkit.DropShadowExtender.trackPositionDelay" />
+    get_trackPositionDelay: function() {
+        return this._trackPositionDelay;
+    },
+    set_trackPositionDelay: function(value) {
         if(value != this._trackPositionDelay) {
             this._trackPositionDelay = value;
 
@@ -348,17 +418,35 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
                     this.startTimer();
                 }
 
-                this.raisePropertyChanged('TrackPositionDelay');
+                this.raisePropertyChanged('trackPositionDelay');
             }
         }
     },
 
-    get_TrackPosition: function() {
-        // Whether the drop shadow should track the position of the panel it is attached to. Use this if the panel is absolutely positioned or will otherwise move.
-        return this._trackPosition;
+    get_TrackPositionDelay: function() {
+        Sys.Extended.Deprecated("get_TrackPositionDelay", "get_trackPositionDelay");
+        return this.get_trackPositionDelay();
+    },
+    set_TrackPositionDelay: function(value) {
+        Sys.Extended.Deprecated("set_TrackPositionDelay", "set_trackPositionDelay");
+        this.set_trackPositionDelay(value);
     },
 
-    set_TrackPosition: function(value) {
+    /// <summary>
+    /// Gets or sets a Boolean value that specifies whether the drop shadow should track the position of the panel it is attached to.
+    /// </summary>
+    /// <remarks>
+    /// Set this property to true if the panel is absolutely positioned or if it might move at run time. The default is false.
+    /// </remarks>
+    /// <getter>get_trackPosition</getter>
+    /// <setter>set_trackPosition</setter>
+    /// <member name="cP:AjaxControlToolkit.DropShadowExtender.trackPosition" />
+    get_trackPosition: function() {
+        // Whether the drop shadow should track the position of the panel it is attached to.
+        // Use this if the panel is absolutely positioned or will otherwise move.
+        return this._trackPosition;
+    },
+    set_trackPosition: function(value) {
         if(value != this._trackPosition) {
             this._trackPosition = value;
 
@@ -374,9 +462,18 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
                         this.stopTimer();
                 }
 
-                this.raisePropertyChanged('TrackPosition');
+                this.raisePropertyChanged('trackPosition');
             }
         }
+    },
+
+    get_TrackPosition: function() {
+        Sys.Extended.Deprecated("get_TrackPosition", "get_trackPosition");
+        return this.get_trackPosition();
+    },
+    set_TrackPosition: function(value) {
+        Sys.Extended.Deprecated("set_TrackPosition", "set_trackPosition");
+        this.set_trackPosition(value);
     }
 }
 
