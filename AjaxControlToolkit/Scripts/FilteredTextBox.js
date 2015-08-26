@@ -168,7 +168,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
         // Raise the processKey event and allow handlers to intercept
         // and decide whether the key should be allowed
         var eventArgs = new Sys.Extended.UI.FilteredTextBoxProcessKeyEventArgs(key, Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_Value(), shouldFilter);
-        this.raiseProcessKey(eventArgs);
+        this.raise_processKey(eventArgs);
 
         // If a processKey handler decided the key should be allowed, just
         // return true and pass it through (note that the default value of
@@ -209,101 +209,194 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
         this._changeHandler();
     },
 
-    get_ValidChars: function() {
+    /// <summary>
+    /// Gets or sets a string that consists of all characters that are considered
+    /// valid for the text box when the field type is Custom.
+    /// </summary>
+    /// <remarks>
+    /// If the field type is not Custom, this property value is ignored.
+    /// </remarks>
+    /// <getter>get_validChars</getter>
+    /// <setter>set_validChars</setter>
+    /// <member name="cP:AjaxControlToolkit.FilteredTextBoxExtender.validChars" />
+    get_validChars: function() {
         // A string consisting of all characters considered valid for the textbox, if
         // "Custom" is specified as the field type. Otherwise this parameter is ignored.
         return this.charTypes.Custom;
     },
-
-    set_ValidChars: function(value) {
+    set_validChars: function(value) {
         if(this._validChars != null || this.charTypes.Custom != value) {
             this.charTypes.Custom = value;
             this._validChars = null;
-            this.raisePropertyChanged('ValidChars');
+            this.raisePropertyChanged('validChars');
+        }
+    },
+
+    get_ValidChars: function() {
+        Sys.Extended.Deprecated("get_ValidChars", "get_validChars");
+        return this.get_validChars();
+    },
+    set_ValidChars: function(value) {
+        Sys.Extended.Deprecated("set_ValidChars", "set_validChars");
+        this.set_validChars(value);
+    },
+
+    /// <summary>
+    /// Gets or sets a string that consists of all characters that are considered
+    /// invalid for the text box when the field type is Custom.
+    /// </summary>
+    /// <remarks>
+    /// If the field type is not Custom, this property value is ignored.
+    /// </remarks>
+    /// <getter>get_invalidChars</getter>
+    /// <setter>set_invalidChars</setter>
+    /// <member name="cP:AjaxControlToolkit.FilteredTextBoxExtender.invalidChars" />
+    get_invalidChars: function() {
+        return this.charTypes.Custom;
+    },
+    set_invalidChars: function(value) {
+        if(this._invalidChars != null || this.charTypes.Custom != value) {
+            this.charTypes.Custom = value;
+            this._invalidChars = null;
+            this.raisePropertyChanged('invalidChars');
         }
     },
 
     get_InvalidChars: function() {
-        // A string consisting of all characters considered invalid for the textbox, if "Custom" is specified as the field type. Otherwise this parameter is ignored.
-        return this.charTypes.Custom;
+        Sys.Extended.Deprecated("get_InvalidChars", "get_invalidChars");
+        return this.get_invalidChars();  
+    },
+    set_InvalidChars: function(value) {
+        Sys.Extended.Deprecated("set_InvalidChars", "set_invalidChars");
+        this.set_invalidChars(value);
     },
 
-    set_InvalidChars: function(value) {
-        if(this._invalidChars != null || this.charTypes.Custom != value) {
-            this.charTypes.Custom = value;
-            this._invalidChars = null;
-            this.raisePropertyChanged('InvalidChars');
+    /// <summary>
+    /// Gets or sets a Sys.Extended.UI.FilterTypes object to apply to the FilterTextBox instance.
+    /// </summary>
+    /// <remarks>
+    /// The type of filter to apply can be a comma-separated combination of the following
+    /// values: Numbers, LowercaseLetters, UppercaseLetters, and Custom. If Custom is specified,
+    /// the ValidChars property will be used in addition to other settings, such as Numbers.
+    /// </remarks>
+    /// <getter>get_filterType</getter>
+    /// <setter>set_filterType</setter>
+    /// <member name="cP:AjaxControlToolkit.FilteredTextBoxExtender.filterType" />
+    get_filterType: function() {
+        return this._filterType;
+    },
+    set_filterType: function(value) {
+        if(this._validChars != null || this._filterType != value) {
+            this._filterType = value;
+            this._validChars = null;
+            this.raisePropertyChanged('filterType');
         }
     },
 
     get_FilterType: function() {
-        // FilterType - A the type of filter to apply, as a comma-separated combination of
-        // Numbers, LowercaseLetters, UppercaseLetters, and Custom. If Custom is specified,
-        // the ValidChars field will be used in addition to other settings such as Numbers.
-        return this._filterType;
+        Sys.Extended.Deprecated("get_FilterType", "get_filterType");
+        return this.get_filterType();
     },
-
     set_FilterType: function(value) {
-        if(this._validChars != null || this._filterType != value) {
-            this._filterType = value;
-            this._validChars = null;
-            this.raisePropertyChanged('FilterType');
-        }
+        Sys.Extended.Deprecated("set_FilterType", "set_filterType");
+        this.set_filterType(value);
     },
 
-    get_FilterMode: function() {
-        // FilterMode - The filter mode to apply when custom filtering is activated; supported values are ValidChars and InvalidChars.
+    /// <summary>
+    /// Gets or sets a Sys.Extended.UI.FilterModes object that specifies the mode to apply to the FilterTextBox instance.
+    /// </summary>
+    /// <remarks>
+    /// Supported values are ValidChars and InvalidChars.
+    /// </remarks>
+    /// <getter>get_filterMode</getter>
+    /// <setter>set_filterMode</setter>
+    /// <member name="cP:AjaxControlToolkit.FilteredTextBoxExtender.filterMode" />
+    get_filterMode: function() {
         return this._filterMode;
     },
-
-    set_FilterMode: function(value) {
+    set_filterMode: function(value) {
         if(this._validChars != null || this._invalidChars != null || this._filterMode != value) {
             this._filterMode = value;
             this._validChars = null;
             this._invalidChars = null;
-            this.raisePropertyChanged('FilterMode');
+            this.raisePropertyChanged('filterMode');
+        }
+    },
+
+    get_FilterMode: function() {
+        Sys.Extended.Deprecated("get_FilterMode", "get_filterMode");
+        return this.get_filterMode();  
+    },
+    set_FilterMode: function(value) {
+        Sys.Extended.Deprecated("set_FilterMode", "set_filterMode");
+        this.set_filterMode(value);
+    },
+
+    /// <summary>
+    /// Gets or sets the interval, in milliseconds, in which the field's contents are filtered.
+    /// </summary>
+    /// <getter>get_filterInterval</getter>
+    /// <setter>set_filterInterval</setter>
+    /// <member name="cP:AjaxControlToolkit.FilteredTextBoxExtender.filterInterval" />
+    get_filterInterval: function() {
+        return this._filterInterval;
+    },
+    set_filterInterval: function(value) {
+        if(this._filterInterval != value) {
+            this._filterInterval = value;
+            this.raisePropertyChanged('filterInterval');
         }
     },
 
     get_FilterInterval: function() {
-        // An integer containing the interval (in milliseconds) in which 
-        // the field's contents are filtered
-        return this._filterInterval;
+        Sys.Extended.Deprecated("get_FilterInterval", "get_filterInterval");
+        return this.get_filterInterval();  
     },
-
     set_FilterInterval: function(value) {
-        if(this._filterInterval != value) {
-            this._filterInterval = value;
-            this.raisePropertyChanged('FilterInterval');
-        }
+        Sys.Extended.Deprecated("set_FilterInterval", "set_filterInterval");
+        this.set_filterInterval(value);  
     },
 
+    /// <summary>
+    /// Occurs when key is processing.
+    /// </summary>
+    /// <event add="add_processKey" remove="remove_processKey" raise="raise_processKey" />
+    /// <member name="cE:AjaxControlToolkit.FilteredTextBoxExtender.processKey" />
     add_processKey: function(handler) {
         this.get_events().addHandler('processKey', handler);
     },
-
     remove_processKey: function(handler) {
         this.get_events().removeHandler('processKey', handler);
     },
-
-    raiseProcessKey: function(eventArgs) {
+    raise_processKey: function(eventArgs) {
         var handler = this.get_events().getHandler('processKey');
         if(handler)
             handler(this, eventArgs);
     },
+    raiseProcessKey: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseProcessKey(eventArgs)", "raise_processKey(eventArgs)");
+        this.raise_processKey(eventArgs);
+    },
 
+    /// <summary>
+    /// Occurs when TextBox is filtered.
+    /// </summary>
+    /// <event add="add_filtered" remove="remove_filtered" raise="raise_filtered" />
+    /// <member name="cE:AjaxControlToolkit.FilteredTextBoxExtender.filtered" />
     add_filtered: function(handler) {
         this.get_events().addHandler('filtered', handler);
     },
-
     remove_filtered: function(handler) {
         this.get_events().removeHandler('filtered', handler);
     },
-
-    raiseFiltered: function(eventArgs) {
+    raise_filtered: function(eventArgs) {
         var handler = this.get_events().getHandler('filtered');
         if(handler)
             handler(this, eventArgs);
+    },
+    raiseFiltered: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseFiltered(eventArgs)", "raise_filtered(eventArgs)");
+        this.raise_filtered(eventArgs);
     }
 }
 
