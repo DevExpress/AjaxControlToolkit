@@ -304,17 +304,21 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
                 }
             }
 
-            this.raiseHoverOut(Sys.EventArgs.Empty);
+            this.raise_hoverOut(Sys.EventArgs.Empty);
         }
     },
 
+    /// <summary>
+    /// Shows the DropDown list.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.DropDownExtender.show" />
     show: function() {
         if(!this._isOpen) {
             this.hover();
 
             var eventArgs = new Sys.CancelEventArgs();
-            this.raiseShowing(eventArgs);
-            this.raisePopup(eventArgs);
+            this.raise_showing(eventArgs);
+            this.raise_popup(eventArgs);
             if(eventArgs.get_cancel())
                 return;
 
@@ -328,20 +332,24 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
 
     _showPopup: function() {
         this._dropPopupPopupBehavior.show();
-        this.raiseShown(Sys.EventArgs.Empty);
+        this.raise_shown(Sys.EventArgs.Empty);
     },
 
+    /// <summary>
+    /// Hides the DropDown list.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.DropDownExtender.hide" />
     hide: function() {
         if(this._isOpen) {
             var eventArgs = new Sys.CancelEventArgs();
-            this.raiseHiding(eventArgs);
+            this.raise_hiding(eventArgs);
 
             if(eventArgs.get_cancel())
                 return;
 
             this._isOpen = false;
             this._dropPopupPopupBehavior.hide();
-            this.raiseHidden(Sys.EventArgs.Empty);
+            this.raise_hidden(Sys.EventArgs.Empty);
         }
     },
 
@@ -421,11 +429,15 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
             this._showPopup();
     },
 
+    /// <summary>
+    /// Gets or sets a generic OnShow animation's JSON definition.
+    /// </summary>
+    /// <getter>get_onShow</getter>
+    /// <setter>set_onShow</setter>
+    /// <member name="cP:AjaxControlToolkit.DropDownExtender.onShow" />
     get_onShow: function() {
-        // Generic OnShow Animation's JSON definition
         return this._dropPopupPopupBehavior ? this._dropPopupPopupBehavior.get_onShow() : this._onShowJson;
     },
-
     set_onShow: function(value) {
         if(this._dropPopupPopupBehavior)
             this._dropPopupPopupBehavior.set_onShow(value)
@@ -435,21 +447,34 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
         this.raisePropertyChanged('onShow');
     },
 
+    /// <summary>
+    /// Gets a Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnShow animation's behavior.
+    /// </summary>
+    /// <getter>get_onShowBehaior</getter>
+    /// <member name="cP:AjaxControlToolkit.DropDownExtender.onShowBehavior" />
     get_onShowBehavior: function() {
-        // Generic OnShow Animation's behavior
         return this._dropPopupPopupBehavior ? this._dropPopupPopupBehavior.get_onShowBehavior() : null;
     },
 
+    /// <summary>
+    /// Plays the OnShow animation.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.DropDownExtender.onShow" />
     onShow: function() {
         if(this._dropPopupPopupBehavior)
             this._dropPopupPopupBehavior.onShow();
     },
 
+    /// <summary>
+    /// Gets or sets a generic OnHide animation's JSON definition.
+    /// </summary>
+    /// <getter>get_onHide</getter>
+    /// <setter>set_onHide</setter>
+    /// <member name="cM:AjaxControlToolkit.DropDownExtender.onHide" />
     get_onHide: function() {
         // Generic OnHide Animation's JSON definition
         return this._dropPopupPopupBehavior ? this._dropPopupPopupBehavior.get_onHide() : this._onHideJson;
     },
-
     set_onHide: function(value) {
         if(this._dropPopupPopupBehavior)
             this._dropPopupPopupBehavior.set_onHide(value)
@@ -459,20 +484,33 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
         this.raisePropertyChanged('onHide');
     },
 
+    /// <summary>
+    /// Gets a Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation's behavior.
+    /// </summary>
+    /// <getter>get_onHideBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.DropDownExtender.onHideBehavior" />
     get_onHideBehavior: function() {
-        // Generic OnHide Animation's behavior
         return this._dropPopupPopupBehavior ? this._dropPopupPopupBehavior.get_onHideBehavior() : null;
     },
 
+    /// <summary>
+    /// Play the OnHide animation.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.DropDownExtender.onHide" />
     onHide: function() {
         if(this._dropPopupPopupBehavior)
             this._dropPopupPopupBehavior.onHide();
     },
 
+    /// <summary>
+    /// Gets or sets the DropDown control.
+    /// </summary>
+    /// <getter>get_dropDownControl</getter>
+    /// <setter>set_dropDownControl</setter>
+    /// <member name="cP:AjaxControlToolkit.DropDownExtender.dropDownControl" />
     get_dropDownControl: function() {
         return this._dropDownControl;
     },
-
     set_dropDownControl: function(value) {
         if(this._dropDownControl != value) {
             this._dropDownControl = value;
@@ -480,10 +518,15 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Gets or sets the highlight border color of the DropDown control.
+    /// </summary>
+    /// <getter>get_highlightBorderColor</getter>
+    /// <setter>set_highlightBorderColor</setter>
+    /// <member name="cP:AjaxControlToolkit.DropDownExtender.highlightBorderColor" />
     get_highlightBorderColor: function() {
         return this._highlightBorderColor;
     },
-
     set_highlightBorderColor: function(value) {
         if(this._highlightBorderColor != value) {
             this._highlightBorderColor = value;
@@ -491,10 +534,15 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Gets or sets the highlight background color of the DropDown control.
+    /// </summary>
+    /// <getter>get_highlightBackgroundColor</getter>
+    /// <setter>set_highlightBackgroundColor</setter>
+    /// <member name="cP:AjaxControlToolkit.DropDownExtender.highlightBackgroundColor" />
     get_highlightBackgroundColor: function() {
         return this._highlightBackgroundColor;
     },
-
     set_highlightBackgroundColor: function(value) {
         if(this._highlightBackgroundColor != value) {
             this._highlightBackgroundColor = value;
@@ -506,10 +554,15 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Gets or sets the DropDown arrow background color of the DropDown control.
+    /// </summary>
+    /// <getter>get_dropArrowBackgroundColor</getter>
+    /// <setter>set_dropArrowBackgroundColor</setter>
+    /// <member name="cP:AjaxControlToolkit.DropDownExtender.dropArrowBackgroundColor" />
     get_dropArrowBackgroundColor: function() {
         return this._dropArrowBackgroundColor;
     },
-
     set_dropArrowBackgroundColor: function(value) {
         if(this._dropArrowBackgroundColor != value) {
             this._dropArrowBackgroundColor = value;
@@ -521,10 +574,15 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Gets or sets the DropDown arrow image URL of the DropDown control.
+    /// </summary>
+    /// <getter>get_dropArrowImageUrl</getter>
+    /// <setter>set_dropArrowImageUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.DropDownExtender.dropArrowImageUrl" />
     get_dropArrowImageUrl: function() {
         return this._dropArrowImageUrl;
     },
-
     set_dropArrowImageUrl: function(value) {
         if(this._dropArrowImageUrl != value) {
             this._dropArrowImageUrl = value;
@@ -542,10 +600,15 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Gets or sets the DropDown arrow width of the DropDown control.
+    /// </summary>
+    /// <getter>get_dropArrowWidth</getter>
+    /// <setter>set_dropArrowWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.DropDownExtender.dropArrowWidth" />
     get_dropArrowWidth: function() {
         return this._dropArrowWidth;
     },
-
     set_dropArrowWidth: function(value) {
         if(this._dropArrowWidth != value) {
             this._dropArrowWidth = value;
@@ -557,110 +620,169 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Gets a Boolean value that specifies whether the cursor is over the DropDown control.
+    /// </summary>
+    /// <getter>get_isOver</getter>
+    /// <member name="cP:AjaxControlToolkit.DropDownExtender.isOver" />
     get_isOver: function() {
         return this._isOver;
     },
 
+    /// <summary>
+    /// Get a Boolean value that specifies whether the DropDown control is open.
+    /// </summary>
+    /// <getter>get_isOpen</getter>
+    /// <member name="cM:AjaxControlToolkit.DropDownExtender.isOpen" />
     get_isOpen: function() {
         return this._isOpen;
     },
 
+    /// <summary>
+    /// Occurs when control is showing.
+    /// </summary>
+    /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
+    /// <member name="cE:AjaxControlToolkit.DropDownExtender.showing" />
     add_showing: function(handler) {
         this.get_events().addHandler('showing', handler);
     },
-
     remove_showing: function(handler) {
         this.get_events().removeHandler('showing', handler);
     },
-
-    raiseShowing: function(eventArgs) {
+    raise_showing: function(eventArgs) {
         var handler = this.get_events().getHandler('showing');
         if(handler)
             handler(this, eventArgs);
     },
+    raiseShowing: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseShowing(eventArgs)", "raise_showing(eventArgs)");
+        this.raise_showing(eventArgs);
+    },
 
+    /// <summary>
+    /// Occurs when control is shown.
+    /// </summary>
+    /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
+    /// <member name="cE:AjaxControlToolkit.DropDownExtender.shown" />
     add_shown: function(handler) {
         this.get_events().addHandler('shown', handler);
     },
-
     remove_shown: function(handler) {
         this.get_events().removeHandler('shown', handler);
     },
-
-    raiseShown: function(eventArgs) {
+    raise_shown: function(eventArgs) {
         var handler = this.get_events().getHandler('shown');
         if(handler)
             handler(this, eventArgs);
     },
+    raiseShown: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseShown(eventArgs)", "raise_shown(eventArgs)");
+        this.raise_shown(eventArgs);
+    },
 
+    /// <summary>
+    /// Occurs on popup.
+    /// </summary>
+    /// <event add="add_popup" remove="remove_popup" raise="raise_popup" />
+    /// <member name="cE:AjaxControlToolkit.DropDownExtender.popup" />
     add_popup: function(handler) {
         this.get_events().addHandler('popup', handler);
     },
-
     remove_popup: function(handler) {
         this.get_events().removeHandler('popup', handler);
     },
-
-    raisePopup: function(eventArgs) {
+    raise_popup: function(eventArgs) {
         var handler = this.get_events().getHandler('popup');
         if(handler)
             handler(this, eventArgs);
     },
+    raisePopup: function(eventArgs) {
+        Sys.Extended.Deprecated("raisePopup(eventArgs)", "raise_popup(eventArgs)");
+        this.raise_popup(eventArgs);
+    },
 
+    /// <summary>
+    /// Occurs when control is hiding.
+    /// </summary>
+    /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
+    /// <member name="cE:AjaxControlToolkit.DropDownExtender.hiding" />
     add_hiding: function(handler) {
         this.get_events().addHandler('hiding', handler);
     },
-
     remove_hiding: function(handler) {
         this.get_events().removeHandler('hiding', handler);
     },
-
-    raiseHiding: function(eventArgs) {
+    raise_hiding: function(eventArgs) {
         var handler = this.get_events().getHandler('hiding');
         if(handler)
             handler(this, eventArgs);
     },
+    raiseHiding: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHiding(eventArgs)", "raise_hiding(eventArgs)");
+        this.raise_hiding(eventArgs);
+    },
 
+    /// <summary>
+    /// Occurs when control is hidden.
+    /// </summary>
+    /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
+    /// <member name="cE:AjaxControlToolkit.DropDownExtender.hidden" />
     add_hidden: function(handler) {
         this.get_events().addHandler('hidden', handler);
     },
-
     remove_hidden: function(handler) {
         this.get_events().removeHandler('hidden', handler);
     },
-
-    raiseHidden: function(eventArgs) {
+    raise_hidden: function(eventArgs) {
         var handler = this.get_events().getHandler('hidden');
         if(handler)
             handler(this, eventArgs);
     },
+    raiseHidden: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHidden(eventArgs)", "raise_hidden(eventArgs)");
+        this.raise_hidden(eventArgs);
+    },
 
+    /// <summary>
+    /// Occurs on hover over the control.
+    /// </summary>
+    /// <event add="add_hoverOver" remove="remove_hoverOver" raise="raise_hoverOver" />
+    /// <member name="cE:AjaxControlToolkit.DropDownExtender.hoverOver" />
     add_hoverOver: function(handler) {
         this.get_events().addHandler('hoverOver', handler);
     },
-
     remove_hoverOver: function(handler) {
         this.get_events().removeHandler('hoverOver', handler);
     },
-
-    raiseHoverOver: function(eventArgs) {
+    raise_hoverOver: function(eventArgs) {
         var handler = this.get_events().getHandler('hoverOver');
         if(handler)
             handler(this, eventArgs);
     },
+    raiseHoverOver: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHoverOver(eventArgs)", "raise_hoverOver(eventArgs)");
+        this.raise_hoverOver(eventArgs);
+    },
 
+    /// <summary>
+    /// Occurs on hover out of the control.
+    /// </summary>
+    /// <event add="add_hoverOut" remove="remove_hoverOut" raise="raise_hoverOut" />
+    /// <member name="cE:AjaxControlToolkit.DropDownExtender.hoverOut" />
     add_hoverOut: function(handler) {
         this.get_events().addHandler('hoverOut', handler);
     },
-
     remove_hoverOut: function(handler) {
         this.get_events().removeHandler('hoverOut', handler);
     },
-
-    raiseHoverOut: function(eventArgs) {
+    raise_hoverOut: function(eventArgs) {
         var handler = this.get_events().getHandler('hoverOut');
         if(handler)
             handler(this, eventArgs);
+    },
+    raiseHoverOut: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHoverOut(eventArgs)", "raise_hoverOut(eventArgs)");
+        this.raise_hoverOut(eventArgs);
     }
 }
 

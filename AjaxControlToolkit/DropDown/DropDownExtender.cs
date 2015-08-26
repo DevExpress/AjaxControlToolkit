@@ -7,6 +7,13 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// DropDown is an ASP.NET AJAX extender that can be attached to almost any ASP.NET control
+    /// to provide a SharePoint-style drop-down menu. The displayed menu is merely another panel
+    /// or control. In the above sample the drop-down is a Panel which contains LinkButtons.
+    /// The drop-down is activated by left- or right-clicking the attached control. If the behavior
+    /// is attached to a Hyperlink or LinkButton, clicking on the link itself will operate normally. 
+    /// </summary>
     [TargetControlType(typeof(WebControl))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(PopupExtender))]
@@ -17,6 +24,9 @@ namespace AjaxControlToolkit {
     [Designer(typeof(DropDownExtenderDesigner))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DropDownName + Constants.IconPostfix)]
     public class DropDownExtender : DynamicPopulateExtenderControlBase {
+        /// <summary>
+        /// The ID of the control which will be displayed as the dropdown.
+        /// </summary>
         [DefaultValue("")]
         [IDReferenceProperty(typeof(Control))]
         [ExtenderControlProperty]
@@ -27,6 +37,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DropDownControlID"] = value; }
         }
 
+        /// <summary>
+        /// Highlight border color.
+        /// </summary>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]
         [ClientPropertyName("highlightBorderColor")]
@@ -35,6 +48,9 @@ namespace AjaxControlToolkit {
             set { ViewState["HighlightBorderColor"] = value; }
         }
 
+        /// <summary>
+        /// Highlight background color.
+        /// </summary>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]
         [ClientPropertyName("highlightBackgroundColor")]
@@ -43,6 +59,9 @@ namespace AjaxControlToolkit {
             set { ViewState["HighlightBackColor"] = value; }
         }
 
+        /// <summary>
+        /// Arrow background color.
+        /// </summary>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]
         [ClientPropertyName("dropArrowBackgroundColor")]
@@ -51,6 +70,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DropArrowBackColor"] = value; }
         }
 
+        /// <summary>
+        /// Arrow image URL.
+        /// </summary>
         [DefaultValue("")]
         [UrlProperty]
         [ExtenderControlProperty]
@@ -60,6 +82,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DropArrowImageUrl"] = value; }
         }
 
+        /// <summary>
+        /// Arrow width.
+        /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [ExtenderControlProperty]
         [ClientPropertyName("dropArrowWidth")]
@@ -68,6 +93,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DropArrowWidth"] = value; }
         }
 
+        /// <summary>
+        /// Popup event.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -77,6 +105,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientPopup"] = value; }
         }
 
+        /// <summary>
+        /// Populating event.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -86,6 +117,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientPopulating"] = value; }
         }
 
+        /// <summary>
+        /// Populated event.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -95,6 +129,11 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientPopulated"] = value; }
         }
 
+        /// <summary>
+        /// The OnShow animation will be played each time the dropdown is displayed.
+        /// The dropdown will be positioned correctly but hidden.
+        /// The animation can use to display the dropdown along with any other visual effects.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
         [Browsable(false)]
@@ -106,6 +145,9 @@ namespace AjaxControlToolkit {
         }
         Animation _onShow;
 
+        /// <summary>
+        /// The OnHide animation will be played each time the dropdown is hidden.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
         [Browsable(false)]
