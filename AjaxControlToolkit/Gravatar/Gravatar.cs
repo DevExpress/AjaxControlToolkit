@@ -12,6 +12,10 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The Gravatar control is an ASP.NET AJAX Control Toolkit control that enables you to use gravatar images on your web forms.
+    /// A gravatar is a "Globally Recognized Avatar" provided by Gravatar.com.
+    /// </summary>
     [Designer(typeof(GravatarDesigner))]
     [ToolboxData("<{0}:Gravatar runat=\"server\"></{0}:Gravatar>")]
     [RequiredScript(typeof(ScriptControlBase), 1)]
@@ -22,6 +26,9 @@ namespace AjaxControlToolkit {
         public Gravatar() : base(HtmlTextWriterTag.Img) {
         }
 
+        /// <summary>
+        /// Email that is associated with account at gravatar.
+        /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
         [Description("Account email.")]
@@ -31,6 +38,9 @@ namespace AjaxControlToolkit {
             set;
         }
 
+        /// <summary>
+        /// The requested size of the image that gravatar needs to render (both width and height).
+        /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
         [Description("Image size.")]
@@ -40,6 +50,11 @@ namespace AjaxControlToolkit {
             set;
         }
 
+        /// <summary>
+        /// Url of the image, that will be diplayed, if the gravatar image can't be displayed
+        /// because of inacceptable rating or the email account is not associated with a gravatar.
+        /// This must be an absolute URL.
+        /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
         [Description("Image, that will be shown by default.")]
@@ -49,6 +64,10 @@ namespace AjaxControlToolkit {
             set;
         }
 
+        /// <summary>
+        /// The image displayed when a gravater is not associated with an email account.
+        /// Possible values are Identicon, MonsterId, MysteryMan, Retro, Wavatar.
+        /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
         [Description("Behavior, that will be by default.")]
@@ -58,6 +77,9 @@ namespace AjaxControlToolkit {
             set;
         }
 
+        /// <summary>
+        /// Acceptable rating of the image to display.
+        /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
         [Description("Image rating.")]
