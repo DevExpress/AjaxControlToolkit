@@ -11,6 +11,11 @@ namespace AjaxControlToolkit {
     // The HoverMenuExtender allows a control to be shown as a popup next to another
     // control when the mouse pointer is moved over it.  This popup control can have
     // any server content in it.
+
+    /// <summary>
+    /// HoverMenu is an ASP.NET AJAX Control Toolkit extender that can be attached to any ASP.NET WebControl,
+    /// and will associate that control with a popup panel do display additional content.
+    /// </summary>
     [ClientScriptResource("Sys.Extended.UI.HoverMenuBehavior", Constants.HoverMenuName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(HoverExtender))]
@@ -20,6 +25,9 @@ namespace AjaxControlToolkit {
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.HoverMenuName + Constants.IconPostfix)]
     [Designer(typeof(HoverMenuExtenderDesigner))]
     public class HoverMenuExtender : DynamicPopulateExtenderControlBase {
+        /// <summary>
+        /// The ID of the control to display when mouse is over the target control.
+        /// </summary>
         [ExtenderControlProperty]
         [RequiredProperty]
         [IDReferenceProperty(typeof(WebControl))]
@@ -31,8 +39,12 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("PopupControlID", value); }
         }
 
+        /// <summary>
+        /// The CSS class to apply to the target when the hover menu popup is visible.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
+        [ClientPropertyName("hoverCssClass")]
         public string HoverCssClass {
             get { return GetPropertyValue("HoverCssClass", String.Empty); }
             set { SetPropertyValue("HoverCssClass", value); }
@@ -43,8 +55,13 @@ namespace AjaxControlToolkit {
         // with no space between them.  By specifying a value here, that amount of
         // space, in pixels, will be added to the positioning.  The number can be
         // negative to cause an overlap.
+
+        /// <summary>
+        /// The number of pixels to offset the Popup from it's default position, as specified by PopupPosition.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
+        [ClientPropertyName("offsetX")]
         public int OffsetX {
             get { return GetPropertyValue("OffsetX", 0); }
             set { SetPropertyValue("OffsetX", value); }
@@ -55,40 +72,69 @@ namespace AjaxControlToolkit {
         // with no space between them.  By specifying a value here, that amount of
         // space, in pixels, will be added to the positioning.  The number can be
         // negative to cause an overlap.
+
+        /// <summary>
+        /// The number of pixels to offset the Popup from it's default position, as specified by PopupPosition.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
+        [ClientPropertyName("offsetY")]
         public int OffsetY {
             get { return GetPropertyValue("OffsetY", 0); }
             set { SetPropertyValue("OffsetY", value); }
         }
 
-        // The time, in milliseconds between then the mouse pointer exits the target
-        // element and when the popup element is hidden.
+        /// <summary>
+        /// The time, in milliseconds, for the popup to remain visible after the mouse moves away from the target control.
+        /// </summary>
+        /// <remarks>
+        /// Default is 0.
+        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(0)]
+        [ClientPropertyName("popDelay")]
         public int PopDelay {
             get { return GetPropertyValue("PopDelay", 0); }
             set { SetPropertyValue("PopDelay", value); }
         }
 
-        // The time, in milliseconds, before the popup displays after hovering over the TargetControl
+        /// <summary>
+        /// The time, in milliseconds, before the popup displays after hovering over the target control. 
+        /// </summary>
+        /// <remarks>
+        /// Default is 0.
+        /// </remarks>
         [DefaultValue(0)]
         [ExtenderControlProperty()]
+        [ClientPropertyName("hoverDelay")]
         public int HoverDelay {
             get { return GetPropertyValue("HoverDelay", 0); }
             set { SetPropertyValue("HoverDelay", value); }
         }
 
-        // The position of the popup element when it is shown.  This value can be any
-        // of the values in the HoverMenuPopupPosition enumeration, and the position
-        // can be modified by setting the OffsetX and/or OffsetY property.
+        /// <summary>
+        /// The position of the popup element when it is shown.
+        /// </summary>
+        /// <remarks>
+        /// This value can be any of the values in the HoverMenuPopupPosition enumeration,
+        /// and the position can be modified by setting the OffsetX and/or OffsetY property.
+        /// Can be Left (Default), Right, Top, Bottom, Center.
+        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(HoverMenuPopupPosition.Center)]
+        [ClientPropertyName("popupPosition")]
         public HoverMenuPopupPosition PopupPosition {
             get { return GetPropertyValue("Position", HoverMenuPopupPosition.Center); }
             set { SetPropertyValue("Position", value); }
         }
 
+        /// <summary>
+        /// The OnShow animation will be played each time the hover menu is displayed.
+        /// </summary>
+        /// <remarks>
+        /// The hover menu will be positioned correctly but hidden. The animation can use
+        /// to display the hover menu along with any other visual effects.
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
         [Browsable(false)]
@@ -100,6 +146,9 @@ namespace AjaxControlToolkit {
         }
         Animation _onShow;
 
+        /// <summary>
+        /// The OnHide animation will be played each time the hover menu is hidden.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
         [Browsable(false)]
