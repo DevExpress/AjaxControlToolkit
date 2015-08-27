@@ -170,29 +170,34 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
         Sys.Extended.UI.CollapsiblePanelBehavior.callBaseMethod(this, 'dispose');
     },
 
+    /// <summary>
+    /// Event handler to epxand or collapse the panel (based on its current state)
+    /// This is the public function that should be called instead of _toggle if
+    /// you wish to programmatically open and close the collapsible panel.
+    /// </summary>
+    /// <param name="eventObj" type="Object">Event info</param>
+    /// <member name="cM:AjaxControlToolkit.CollapsiblePanelExtender.togglePanel" />
     togglePanel : function(eventObj) {
-        // Event handler to epxand or collapse the panel (based on its current state)
-        // This is the public function that should be called instead of _toggle if
-        // you wish to programmatically open and close the collapsible panel.
-        // "eventObj" - event Info
         this._toggle(eventObj);
     },    
     
+    /// <summary>
+    /// Open the panel. Public function that users should call if they
+    /// wish to operate the collapsible panel programmatically.
+    /// </summary>
+    /// <param name="eventObj" type="Object">Event info</param>
+    /// <member name="cM:AjaxControlToolkit.CollapsiblePanelExtender.expandPanel" />
     expandPanel : function(eventObj) {
-        // Open the panel. Public function that users should call if they
-        // wish to operate the collapsible panel programmatically.
-        // _doOpen should be treated as private since it has an underscore 
-        // to begin the function name.
-        // "eventObj" - event Info
         this._doOpen(eventObj);    
     },
     
+    /// <summary>
+    /// Collapse the panel. Public function that users should call if they
+    /// wish to operate the collapsible panel programmatically.
+    /// </summary>
+    /// <param name="eventObj" type="Object">Event info</param>
+    /// <member name="cM:AjaxControlToolkit.CollapsiblePanelExtender.collapsePanel" />
     collapsePanel : function(eventObj) {
-        // Collapse the panel. Public function that users should call if they
-        // wish to operate the collapsible panel programmatically.
-        // _doClose should be treated as private since it has an underscore 
-        // to begin the function name.
-        // "eventObj" - event Info
         this._doClose(eventObj);
     },
     
@@ -216,7 +221,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
         // Collapse the panel. Internal function, to close call "collapsePanel".
         // "eventObj" - event Info
         var eventArgs = new Sys.CancelEventArgs();
-        this.raiseCollapsing(eventArgs);
+        this.raise_collapsing(eventArgs);
         if (eventArgs.get_cancel()) {
             return;
         }
@@ -250,7 +255,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
         // Expand the Panel. Internal function, to close call "expandPanel".
         // "eventObj" - event Info
         var eventArgs = new Sys.CancelEventArgs();
-        this.raiseExpanding(eventArgs);
+        this.raise_expanding(eventArgs);
         if (eventArgs.get_cancel()) {
             return;
         }
@@ -330,11 +335,11 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
         }
         
         if (this._collapsed) {
-            this.raiseCollapseComplete();
-            this.raiseCollapsed(Sys.EventArgs.Empty);
+            this.raise_collapseComplete();
+            this.raise_collapsed(Sys.EventArgs.Empty);
         } else {
-            this.raiseExpandComplete()
-            this.raiseExpanded(new Sys.EventArgs());
+            this.raise_expandComplete()
+            this.raise_expanded(new Sys.EventArgs());
         }
     },
     
@@ -372,13 +377,13 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
         return 0;
     },
     
-     _getTargetSize : function() {
+    _getTargetSize : function() {
         // Get the target size of the Panel
         var value;
         if (this._expandDirection == Sys.Extended.UI.CollapsiblePanelExpandDirection.Vertical) {
-           value = this.get_TargetHeight();
+           value = this.get_targetHeight();
         } else if (this._expandDirection == Sys.Extended.UI.CollapsiblePanelExpandDirection.Horizontal) {
-           value = this.get_TargetWidth();
+           value = this.get_targetWidth();
         }       
         
         // Safari returns undefined if display is 'none'
@@ -398,7 +403,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
         var e = this.get_element();
         if (this._expandDirection == Sys.Extended.UI.CollapsiblePanelExpandDirection.Vertical) {
             if (useSize || value < e.offsetHeight) {
-                this.set_TargetHeight(value);
+                this.set_targetHeight(value);
             } else {
                 // if we're at our maximum size, flip to auto 
                 // so that nested collapsible panels will
@@ -408,7 +413,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
             }
         } else if (this._expandDirection == Sys.Extended.UI.CollapsiblePanelExpandDirection.Horizontal) {
             if (useSize || value < e.offsetWidth) {
-                this.set_TargetWidth(value);
+                this.set_targetWidth(value);
             }
             else {
                 e.style.width = "auto";
@@ -592,309 +597,616 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     _toggle : function(eventObj) {
         // Event handler to epxand or collapse the panel (based on its current state)
         // Internal function. Please use "togglePanel(eventObj)" to get same functionality.
-        if (this.get_Collapsed()) {
+        if(this.get_collapsed()) {
             return this.expandPanel(eventObj);
         } else {
             return this.collapsePanel(eventObj);
         }
     },
     
-    add_collapsing : function(handler) {
+    /// <summary>
+    /// Occurs when control is collapsing.
+    /// </summary>
+    /// <event add="add_collapsing" remove="remove_collapsing" raise="raise_collapsing" />
+    /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.collapsing" />
+    add_collapsing: function(handler) {
         // Add an event handler for the collapsing event
         this.get_events().addHandler('collapsing', handler);
     },
-    remove_collapsing : function(handler) {
+    remove_collapsing: function(handler) {
         // Remove an event handler from the collapsing event
         this.get_events().removeHandler('collapsing', handler);
     },
-    raiseCollapsing : function(eventArgs) {
+    raise_collapsing: function(eventArgs) {
         // Raise the collapsing event
         var handler = this.get_events().getHandler('collapsing');
-        if (handler) {
+
+        if(handler)
             handler(this, eventArgs);
-        }
+    },
+    raiseCollapsing: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseCollapsing", "raise_collapsing");
+        this.raise_collapsing(eventArgs);
     },
     
-    add_collapsed : function(handler) {
+    /// <summary>
+    /// Occurs when control is collapsed.
+    /// </summary>
+    /// <event add="add_collapsed" remove="remove_collapsed" raise="raise_collapsed" />
+    /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.collapsed" />
+    add_collapsed: function(handler) {
         // Add an event handler for the collapsed event
         this.get_events().addHandler('collapsed', handler);
     },
-    remove_collapsed : function(handler) {
+    remove_collapsed: function(handler) {
         // Remove an event handler from the collapsed event
         this.get_events().removeHandler('collapsed', handler);
     },
-    raiseCollapsed : function(eventArgs) {
+    raise_collapsed: function(eventArgs) {
         // Raise the collapsed event
         var handler = this.get_events().getHandler('collapsed');
-        if (handler) {
+
+        if(handler)
             handler(this, eventArgs);
-        }
+    },
+    raiseCollapsed: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseCollapsed", "raise_collapsed");
+        this.raise_collapsed(eventArgs);
     },
 
-    add_collapseComplete : function(handler) {
+    /// <summary>
+    /// Occurs when collapse completes.
+    /// </summary>
+    /// <event add="add_collapseComplete" remove="remove_collapseComplete" raise="raise_collapseComplete" />
+    /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.collapseComplete" />
+    add_collapseComplete: function(handler) {
         // Add a handler to the collapseComplete event
         // Obsolete: Use the collapsed event instead
     	this.get_events().addHandler('collapseComplete', handler);
     },
-    remove_collapseComplete : function(handler) {
+    remove_collapseComplete: function(handler) {
         // Remove a handler from the collapseComplete event
         // Obsolete: Use the collapsed event instead
     	this.get_events().removeHandler('collapseComplete', handler);
     },
-    raiseCollapseComplete : function() {
+    raise_collapseComplete: function() {
         // Obsolete: Use the collapsed event instead
-    	var handlers = this.get_events().getHandler('collapseComplete');
-    	if (handlers) {
-    		handlers(this, Sys.EventArgs.Empty);
-    	}
+        var handlers = this.get_events().getHandler('collapseComplete');
+
+        if(handlers)
+            handlers(this, Sys.EventArgs.Empty);
+    },
+    raiseCollapseComplete: function() {
+        Sys.Extended.Deprecated("raiseCollapseComplete", "raise_collapseComplete");
+        this.raise_collapseComplete();
     },
     
-    add_expanding : function(handler) {
+    /// <summary>
+    /// Occurs when control is expanding.
+    /// </summary>
+    /// <event add="add_expanding" remove="remove_expanding" raise="raise_expanding" />
+    /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.expanding" />
+    add_expanding: function(handler) {
         // Add an event handler for the expanding event
         this.get_events().addHandler('expanding', handler);
     },
-    remove_expanding : function(handler) {
+    remove_expanding: function(handler) {
         // Remove an event handler from the expanding event
         this.get_events().removeHandler('expanding', handler);
     },
-    raiseExpanding : function(eventArgs) {
+    raise_expanding: function(eventArgs) {
         // Raise the expanding event
         var handler = this.get_events().getHandler('expanding');
-        if (handler) {
+
+        if(handler)
             handler(this, eventArgs);
-        }
+    },
+    raiseExpanding : function(eventArgs) {
+        Sys.Extended.Deprecated("raiseExpanding", "raise_expanding");
+        this.raise_expanding(eventArgs);
     },
     
-    add_expanded : function(handler) {
+    /// <summary>
+    /// Occurs when control is expanded.
+    /// </summary>
+    /// <event add="add_expanded" remove="remove_expanded" raise="raise_expanded" />
+    /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.expanded" />
+    add_expanded: function(handler) {
         // Add an event handler for the expanded event
         this.get_events().addHandler('expanded', handler);
     },
-    remove_expanded : function(handler) {
+    remove_expanded: function(handler) {
         // Remove an event handler from the expanded event
         this.get_events().removeHandler('expanded', handler);
     },
-    raiseExpanded : function(eventArgs) {
+    raise_expanded: function(eventArgs) {
         // Raise the expanded event
         var handler = this.get_events().getHandler('expanded');
-        if (handler) {
+
+        if(handler)
             handler(this, eventArgs);
-        }
+    },
+    raiseExpanded: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseExpanded", "raise_expanded");
+        this.raise_expanded(eventArgs);
     },
     
-    add_expandComplete : function(handler) {
+    /// <summary>
+    /// Occurs when expand completes.
+    /// </summary>
+    /// <event add="add_expandComplete" remove="remove_expandComplete" raise="raise_expandComplete" />
+    /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.expandComplete" />
+    add_expandComplete: function(handler) {
         // Add a handler to the expandComplete event
         // Obsolete: Use the expanded event instead
     	this.get_events().addHandler('expandComplete', handler);
     },
-    remove_expandComplete : function(handler) {
+    remove_expandComplete: function(handler) {
         // Remove a handler from the expandComplete event
         // Obsolete: Use the expanded event instead
     	this.get_events().removeHandler('expandComplete', handler);
     },
-    raiseExpandComplete : function() {
+    raise_expandComplete: function() {
         // Obsolete: Use the expanded event instead
-    	var handlers = this.get_events().getHandler('expandComplete');
-    	if (handlers) {
-    		handlers(this, Sys.EventArgs.Empty);
-    	}
+        var handlers = this.get_events().getHandler('expandComplete');
+        if(handlers) {
+            handlers(this, Sys.EventArgs.Empty);
+        }
+    },
+    raiseExpandComplete: function() {
+        Sys.Extended.Deprecated("raiseExpandComplete", "raise_expandComplete");
+        this.raise_expandComplete();
     },
 
-    get_TargetHeight : function() {
-        // Wrap the height of the panel
-        return this.get_element().offsetHeight;        
+    /// <summary>
+    /// Wrap the height of the panel.
+    /// </summary>
+    /// <getter>get_targetHeight</getter>
+    /// <setter>set_targetHeight</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.targetHeight" />
+    get_targetHeight: function() {
+        return this.get_element().offsetHeight; 
     },
-    set_TargetHeight : function(value) {        
-        this.get_element().style.height = value + "px";        
-        this.raisePropertyChanged('TargetHeight');
+    set_targetHeight: function(value) {
+        this.get_element().style.height = value + "px";
+        this.raisePropertyChanged('targetHeight');
+    },
+
+    get_TargetHeight: function() {
+        Sys.Extended.Deprecated("get_TargetHeight", "get_targetHeight");
+        return this.get_targetHeight();
+    },
+    set_TargetHeight: function(value) {
+        Sys.Extended.Deprecated("set_TargetHeight", "set_targetHeight");
+        this.set_targetHeight(value);
     },
     
-    get_TargetWidth : function() {
-        // Wrap the width of the panel
-        return this.get_element().offsetWidth;        
+    /// <summary>
+    /// Wrap the width of the panel.
+    /// </summary>
+    /// <getter>get_targetWidth</getter>
+    /// <setter>set_targetWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.targetWidth" />
+    get_targetWidth: function() {
+        return this.get_element().offsetWidth;
     },
-    set_TargetWidth : function(value) {
-        this.get_element().style.width = value + "px"        
-        this.raisePropertyChanged('TargetWidth');
+    set_targetWidth: function(value) {
+        this.get_element().style.width = value + "px";
+        this.raisePropertyChanged('targetWidth');
     },
-        
-    get_Collapsed : function() {
-        // Whether or not the panel is collapsed
-        return this._collapsed;        
-    },    
-    set_Collapsed : function(value) {
+
+    get_TargetWidth: function() {
+        Sys.Extended.Deprecated("get_TargetWidth", "get_targetWidth");
+        return this.get_targetWidth();
+    },
+    set_TargetWidth: function(value) {
+        Sys.Extended.Deprecated("set_TargetWidth", "set_targetWidth");
+        this.set_targetWidth(value);
+    },
+    
+    /// <summary>
+    /// Whether or not the panel is collapsed.
+    /// </summary>
+    /// <getter>get_collapsed</getter>
+    /// <setter>set_collapsed</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.collapsed" />
+    get_collapsed: function() {
+        return this._collapsed;
+    },
+    set_collapsed: function(value) {
         // if we're changing values, and we're live, togglePanel.
-        if (this.get_isInitialized() && this.get_element() && value != this.get_Collapsed()) {
+        if(this.get_isInitialized() && this.get_element() && value != this.get_collapsed()) {
             this.togglePanel();
-        }
-        else {
+        } else {
             this._collapsed = value;
-            this.raisePropertyChanged('Collapsed');
+            this.raisePropertyChanged('collapsed');
         }
     },
+
+    get_Collapsed: function() {
+        Sys.Extended.Deprecated("get_Collapsed", "get_collapsed");
+        return this.get_collapsed();
+    },
+    set_Collapsed: function(value) {
+        Sys.Extended.Deprecated("set_Collapsed", "set_collapsed");
+        this.set_collapsed(value);
+    },
     
-    get_CollapsedSize : function() {
-        // The size of the target, in pixels, when it is in the collapsed state
+    /// <summary>
+    /// The size of the target, in pixels, when it is in the collapsed state.
+    /// </summary>
+    /// <getter>get_collapsedSize</getter>
+    /// <setter>set_collapsedSize</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.collapsedSize" />
+    get_collapsedSize: function() {
         return this._collapsedSize;
     },
-    set_CollapsedSize : function(value) {
-        if (this._collapsedSize != value) {
+    set_collapsedSize: function(value) {
+        if(this._collapsedSize != value) {
             this._collapsedSize = value;
-            this.raisePropertyChanged('CollapsedSize');
+            this.raisePropertyChanged('collapsedSize');
         }
     },
+
+    get_CollapsedSize: function() {
+        Sys.Extended.Deprecated("get_CollapsedSize", "get_collapsedSize");
+        return this.get_collapsedSize();
+    },
+    set_CollapsedSize: function(value) {
+        Sys.Extended.Deprecated("set_CollapsedSize", "set_collapsedSize");
+        this.set_collapsedSize(value);
+    },
     
-    get_ExpandedSize : function() {
-        // The size of the target, in pixels, when it is in the expanded state
+    /// <summary>
+    /// The size of the target, in pixels, when it is in the expanded state.
+    /// </summary>
+    /// <getter>get_expandedSize</getter>
+    /// <setter>set_expandedSize</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.expandedSize" />
+    get_expandedSize: function() {
         return this._expandedSize;
     },
-    set_ExpandedSize : function(value) {
-        if (this._expandedSize != value) {
+    set_expandedSize: function(value) {
+        if(this._expandedSize != value) {
             this._expandedSize = value;
-            this.raisePropertyChanged('ExpandedSize');
+            this.raisePropertyChanged('expandedSize');
         }
     },
+
+    get_ExpandedSize: function() {
+        Sys.Extended.Deprecated("get_ExpandedSize", "get_expandedSize");
+        return this.get_expandedSize();
+    },
+    set_ExpandedSize: function(value) {
+        Sys.Extended.Deprecated("set_ExpandedSize", "set_expandedSize");
+        this.set_expandedSize(value);
+    },
     
-    get_CollapseControlID : function() {
-        // ID of the control used to collapse the target when clicked
+    /// <summary>
+    /// ID of the control used to collapse the target when clicked
+    /// </summary>
+    /// <getter>get_collapseControlID</getter>
+    /// <setter>set_collapseControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.collapseControlID" />
+    get_collapseControlID: function() {
         return this._collapseControlID;
     },
-    set_CollapseControlID : function(value) {
-        if (this._collapseControlID != value) {
+    set_collapseControlID: function(value) {
+        if(this._collapseControlID != value) {
             this._collapseControlID = value;
-            this.raisePropertyChanged('CollapseControlID');
+            this.raisePropertyChanged('collapseControlID');
         }
     },
+
+    get_CollapseControlID: function() {
+        Sys.Extended.Deprecated("get_CollapseControlID", "get_collapseControlID");
+        return this.get_collapseControlID();
+    },
+    set_CollapseControlID: function(value) {
+        Sys.Extended.Deprecated("set_CollapseControlID", "set_collapseControlID");
+        this.set_collapseControlID(value);
+    },
     
-    get_ExpandControlID : function() {
-        // ID of the control used to expand the target when clicked
+    /// <summary>
+    /// ID of the control used to expand the target when clicked
+    /// </summary>
+    /// <getter>get_expandControlID</getter>
+    /// <setter>set_expandControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.expandControlID" />
+    get_expandControlID: function() {
         return this._expandControlID;
-    },    
-    set_ExpandControlID : function(value) {
+    },
+    set_expandControlID: function(value) {
         if (this._expandControlID != value) {
             this._expandControlID = value;
-            this.raisePropertyChanged('ExpandControlID');
+            this.raisePropertyChanged('expandControlID');
         }
     },
+
+    get_ExpandControlID: function() {
+        Sys.Extended.Deprecated("get_ExpandControlID", "get_expandControlID");
+        return this.get_expandControlID();
+    },
+    set_ExpandControlID: function(value) {
+        Sys.Extended.Deprecated("set_ExpandControlID", "set_expandControlID");
+        this.set_expandControlID(value);
+    },
     
-    get_ScrollContents : function() {
-        // Whether to add a scrollbar when the contents are larger than the target (the contents will be clipped if false)
+    /// <summary>
+    /// Whether to add a scrollbar when the contents are larger than the target (the contents will be clipped if false)
+    /// </summary>
+    /// <getter>get_scrollContents</getter>
+    /// <setter>set_scrollContents</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.scrollContents" />
+    get_scrollContents: function() {
         return this._scrollContents;
     },
-    set_ScrollContents : function(value) {
+    set_scrollContents: function(value) {
         if (this._scrollContents != value) {
             this._scrollContents = value;
-            this.raisePropertyChanged('ScrollContents');
+            this.raisePropertyChanged('scrollContents');
         }
     },
+
+    get_ScrollContents: function() {
+        Sys.Extended.Deprecated("get_ScrollContents", "get_scrollContents");
+        return this.get_scrollContents();
+    },
+    set_ScrollContents: function(value) {
+        Sys.Extended.Deprecated("set_ScrollContents", "set_scrollContents");
+        this.set_scrollContents(value);
+    },
     
-    get_SuppressPostBack : function() {
-        // Whether or not to suppress postbacks generated when the CollapseControlID or ExpandControlID elements are clicked
+    /// <summary>
+    /// Whether or not to suppress postbacks generated when the CollapseControlID or ExpandControlID elements are clicked
+    /// </summary>
+    /// <getter>get_suppressPostBack</getter>
+    /// <setter>set_suppressPostBack</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.suppressPostBack" />
+    get_suppressPostBack: function() {
         return this._suppressPostBack;
     },
-    set_SuppressPostBack : function(value) {
+    set_suppressPostBack: function(value) {
         if (this._suppressPostBack != value) {
             this._suppressPostBack = value;
-            this.raisePropertyChanged('SuppressPostBack');
+            this.raisePropertyChanged('suppressPostBack');
         }
     },
+
+    get_SuppressPostBack: function() {
+        Sys.Extended.Deprecated("get_SuppressPostBack", "get_suppressPostBack");
+        return this.get_suppressPostBack();
+    },
+    set_SuppressPostBack: function(value) {
+        Sys.Extended.Deprecated("set_SuppressPostBack", "set_suppressPostBack");
+        this.set_suppressPostBack(value);
+    },
     
-    get_TextLabelID : function() {
-        // ID of the element where the "status text" for the target will be placed
+    /// <summary>
+    /// ID of the element where the "status text" for the target will be placed
+    /// </summary>
+    /// <getter>get_textLabelID</getter>
+    /// <setter>set_textLabelID</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.textLabelID" />
+    get_textLabelID: function() {
         return this._textLabelID;
     },
-    set_TextLabelID : function(value) {
+    set_textLabelID: function(value) {
         if (this._textLabelID != value) {
             this._textLabelID = value;
-            this.raisePropertyChanged('TextLabelID');
+            this.raisePropertyChanged('textLabelID');
         }
     },
+
+    get_TextLabelID: function() {
+        Sys.Extended.Deprecated("get_TextLabelID", "get_textLabelID");
+        return this.get_textLabelID();
+    },
+    set_TextLabelID: function(value) {
+        Sys.Extended.Deprecated("set_TextLabelID", "set_textLabelID");
+        this.set_textLabelID(value);
+    },
     
-    get_ExpandedText : function() {
-        // Text to show in the element specified by TextLabelID when the target is expanded.  This text is also used as the alternate text of the image if ImageControlID has been provided.
+    /// <summary>
+    /// Text to show in the element specified by TextLabelID when the target is expanded.
+    /// This text is also used as the alternate text of the image if ImageControlID has been provided.
+    /// </summary>
+    /// <getter>get_expandedText</getter>
+    /// <setter>set_expandedText</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.expandedText" />
+    get_expandedText: function() {
         return this._expandedText;
     },
-    set_ExpandedText : function(value) {
+    set_expandedText: function(value) {
         if (this._expandedText != value) {
             this._expandedText = value;
-            this.raisePropertyChanged('ExpandedText');
+            this.raisePropertyChanged('expandedText');
         }
     },
+
+    get_ExpandedText: function() {
+        Sys.Extended.Deprecated("get_ExpandedText", "get_expandedText");
+        return this.get_expandedText();
+    },
+    set_ExpandedText: function(value) {
+        Sys.Extended.Deprecated("set_ExpandedText", "set_expandedText");
+        this.set_expandedText(value);
+    },
     
-    get_CollapsedText : function() {
-        // Text to show in the element specified by TextLabelID when the target is collapsed.  This text is also used as the alternate text of the image if ImageControlID has been provided.
+    /// <summary>
+    /// Text to show in the element specified by TextLabelID when the target is collapsed. 
+    /// This text is also used as the alternate text of the image if ImageControlID has been provided.
+    /// </summary>
+    /// <getter>get_collapsedText</getter>
+    /// <setter>set_collapsedText</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.collapsedText" />
+    get_collapsedText: function() {
         return this._collapsedText;
     },
-    set_CollapsedText : function(value) {
+    set_collapsedText: function(value) {
         if (this._collapsedText != value) {
             this._collapsedText = value;
-            this.raisePropertyChanged('CollapsedText');
+            this.raisePropertyChanged('collapsedText');
         }
     },
+
+    get_CollapsedText: function() {
+        Sys.Extended.Deprecated("get_CollapsedText", "get_collapsedText");
+        return this.get_collapsedText();
+    },
+    set_CollapsedText: function(value) {
+        Sys.Extended.Deprecated("set_CollapsedText", "set_collapsedText");
+        this.set_collapsedText(value);  
+    },
     
-    get_ImageControlID : function() {
-        // ID of the <img> element where an icon indicating the collapsed status of the target will be placed
+    /// <summary>
+    /// ID of the <img> element where an icon indicating the collapsed status of the target will be placed.
+    /// </summary>
+    /// <getter>get_imageControlID</getter>
+    /// <setter>set_imageControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.imageControlID" />
+    get_imageControlID: function() {
         return this._imageControlID;
     },
-    set_ImageControlID : function(value) {
+    set_imageControlID: function(value) {
         if (this._imageControlID != value) {
             this._imageControlID = value;
-            this.raisePropertyChanged('ImageControlID');
+            this.raisePropertyChanged('imageControlID');
         }
     },
+
+    get_ImageControlID: function() {
+        Sys.Extended.Deprecated("get_ImageControlID", "get_imageControlID");
+        return this.get_imageControlID();
+    },
+    set_ImageControlID: function(value) {
+        Sys.Extended.Deprecated("set_ImageControlID", "set_imageControlID");
+        this.set_imageControlID();  
+    },
     
-    get_ExpandedImage : function() {
-        // Path to an image to show in the element specified by ImageControlID when the target is expanded
+    /// <summary>
+    /// Path to an image to show in the element specified by ImageControlID when the target is expanded.
+    /// </summary>
+    /// <getter>get_expandedImage</getter>
+    /// <setter>set_expandedImage</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.expandedImage" />
+    get_expandedImage: function() {
         return this._expandedImage;
     },
-    set_ExpandedImage : function(value) {
+    set_expandedImage: function(value) {
         if (this._expandedImage != value) {
             this._expandedImage = value;
-            this.raisePropertyChanged('ExpandedImage');
+            this.raisePropertyChanged('expandedImage');
         }
     },
+
+    get_ExpandedImage: function() {
+        Sys.Extended.Deprecated("get_ExpandedImage", "get_expandedImage");
+        return this.get_expandedImage();
+    },
+    set_ExpandedImage: function(value) {
+        Sys.Extended.Deprecated("set_ExpandedImage", "set_expandedImage");
+        this.set_expandedImage(value);  
+    },
     
-    get_CollapsedImage : function() {
-        // Path to an image to show in the element specified by ImageControlID when the target is collapsed
+    /// <summary>
+    /// Path to an image to show in the element specified by ImageControlID when the target is collapsed.
+    /// </summary>
+    /// <getter>get_collapsedImage</getter>
+    /// <setter>set_collapsedImage</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.collapsedImage" />
+    get_collapsedImage: function() {
         return this._collapsedImage;
     },
-    set_CollapsedImage : function(value) {
+    set_collapsedImage: function(value) {
         if (this._collapsedImage != value) {
             this._collapsedImage = value;
-            this.raisePropertyChanged('CollapsedImage');
+            this.raisePropertyChanged('collapsedImage');
         }
     },
-    
-    get_AutoExpand : function() {
-        // Whether to automatically expand the target when the mouse is moved over it
+
+    get_CollapsedImage : function() {
+        Sys.Extended.Deprecated("get_CollapsedImage", "get_collapsedImage");
+        return this.get_collapsedImage();
+    },
+    set_CollapsedImage : function(value) {
+        Sys.Extended.Deprecated("set_CollapsedImage", "set_collapsedImage");
+        this.set_collapsedImage();  
+    },
+
+    /// <summary>
+    /// Whether to automatically expand the target when the mouse is moved over it.
+    /// </summary>
+    /// <getter>get_autoExpand</getter>
+    /// <setter>set_autoExpand</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.autoExpand" />
+    get_autoExpand: function() {
         return this._autoExpand;
     },
-    set_AutoExpand : function(value) {
+    set_autoExpand: function(value) {
         if (this._autoExpand != value) {
             this._autoExpand = value;
-            this.raisePropertyChanged('AutoExpand');
+            this.raisePropertyChanged('autoExpand');
         }
     },
-    
-    get_AutoCollapse : function() {
-        // Whether to automatically collapse the target when the mouse is moved off of it
+
+    get_AutoExpand: function() {
+        Sys.Extended.Deprecated("get_AutoExpand", "get_autoExpand");
+        return this.get_autoExpand();
+    },
+    set_AutoExpand: function(value) {
+        Sys.Extended.Deprecated("set_AutoExpand", "set_autoExpand");
+        this.set_autoExpand(value);
+    },
+
+    /// <summary>
+    /// Whether to automatically collapse the target when the mouse is moved off of it.
+    /// </summary>
+    /// <getter>get_autoCollapse</getter>
+    /// <setter>set_autoCollapse</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.autoCollapse" />
+    get_autoCollapse: function() {
         return this._autoCollapse;
     },
-    set_AutoCollapse : function(value) {
+    set_autoCollapse: function(value) {
         if (this._autoCollapse != value) {
             this._autoCollapse = value;
-            this.raisePropertyChanged('AutoCollapse');
+            this.raisePropertyChanged('autoCollapse');
         }
-    },    
+    },
+
+    get_AutoCollapse: function() {
+        Sys.Extended.Deprecated("get_AutoCollapse", "get_autoCollapse");
+        return this.get_autoCollapse();
+    },
+    set_AutoCollapse: function(value) {
+        Sys.Extended.Deprecated("set_AutoCollapse", "set_autoCollapse");
+        this.set_autoCollapse(value);
+    },
     
-    get_ExpandDirection : function() {
-        // Direction the panel will expand and collapse (can be either "Vertical" or "Horizontal")
+    /// <summary>
+    /// Direction the panel will expand and collapse (can be either "Vertical" or "Horizontal").
+    /// </summary>
+    /// <getter>get_expandDirection</getter>
+    /// <setter>set_expandDirection</setter>
+    /// <member name="cP:AjaxControlToolkit.CollapsiblePanelExtender.expandDirection" />
+    get_expandDirection: function() {
         return this._expandDirection == Sys.Extended.UI.CollapsiblePanelExpandDirection.Vertical;
-    },      
-    set_ExpandDirection : function(value) {
+    },
+    set_expandDirection: function(value) {
         if (this._expandDirection != value) {
             this._expandDirection = value;
-            this.raisePropertyChanged('ExpandDirection');
+            this.raisePropertyChanged('expandDirection');
         }
+    },
+
+    get_ExpandDirection: function() {
+        Sys.Extended.Deprecated("get_ExpandDirection", "get_expandDirection");
+        return this.get_expandDirection();
+    },
+    set_ExpandDirection: function(value) {
+        Sys.Extended.Deprecated("set_ExpandDirection", "set_expandDirection");
+        this.set_expandDirection(value);
     }
 }
 Sys.Extended.UI.CollapsiblePanelBehavior.registerClass('Sys.Extended.UI.CollapsiblePanelBehavior', Sys.Extended.UI.BehaviorBase);
