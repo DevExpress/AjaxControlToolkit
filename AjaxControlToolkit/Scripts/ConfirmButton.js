@@ -107,7 +107,7 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     _displayConfirmDialog: function() {
         // Raise the showing event and potentially cancel
         var eventArgs = new Sys.CancelEventArgs();
-        this.raiseShowing(eventArgs);
+        this.raise_showing(eventArgs);
 
         if(eventArgs.get_cancel())
             return;
@@ -138,7 +138,7 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
 
     _handleConfirmDialogCompletion: function(result) {
         // Handle the completion of a confirm dialog (whether by window.confirm or ModalPopupBehavior)
-        this.raiseHidden(new Sys.Extended.UI.ConfirmButtonHiddenEventArgs(result));
+        this.raise_hidden(new Sys.Extended.UI.ConfirmButtonHiddenEventArgs(result));
 
         if(result) {
             // Confirmed - Initiate the postback if specified
