@@ -151,47 +151,100 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
         }
     },
 
-    get_OnClientCancel: function() {
+    /// <summary>
+    /// Gets or sets a string that contains client script that executes when the Cancel button is clicked in the confirm dialog box.
+    /// </summary>
+    /// <getter>get_onClientCancel</getter>
+    /// <setter>set_onClientCancel</setter>
+    /// <member name="cP:AjaxControlToolkit.ConfirmButtonExtender.onClientCancel" />
+    get_onClientCancel: function() {
         // The client-side script that executes when the cancel button is clicked on the confirm dialog.
         return this._OnClientCancelValue;
     },
-
-    set_OnClientCancel: function(value) {
+    set_onClientCancel: function(value) {
         if(this._OnClientCancelValue != value) {
             this._OnClientCancelValue = value;
-            this.raisePropertyChanged('OnClientCancel');
+            this.raisePropertyChanged('onClientCancel');
+        }
+    },
+
+    get_OnClientCancel: function() {
+        Sys.Extended.Deprecated("get_OnClientCancel", "get_onClientCancel");
+        return this.get_onClientCancel();  
+    },
+    set_OnClientCancel: function(value) {
+        Sys.Extended.Deprecated("set_OnClientCancel", "set_onClientCancel");
+        this.set_onClientCancel(value);
+    },
+
+    /// <summary>
+    /// Gets or sets the confirmation text to display.
+    /// </summary>
+    /// <remarks>
+    /// HTML entities can be used, such as &#10; for a newline character.
+    /// </remarks>
+    /// <getter>get_confirmText</getter>
+    /// <setter>set_confirmText</setter>
+    /// <member name="cP:AjaxControlToolkit.ConfirmButtonExtender.confirmText" />
+    get_confirmText: function() {
+        // The text to show when you want to confirm the click. (Note: HTML entities can be used here (ex: "&#10;" for new-line))
+        return this._ConfirmTextValue;
+    },
+    set_confirmText: function(value) {
+        if(this._ConfirmTextValue != value) {
+            this._ConfirmTextValue = value;
+            this.raisePropertyChanged('confirmText');
         }
     },
 
     get_ConfirmText: function() {
-        // The text to show when you want to confirm the click. (Note: HTML entities can be used here (ex: "&#10;" for new-line))
-        return this._ConfirmTextValue;
+        Sys.Extended.Deprecated("get_ConfirmText", "get_confirmText");
+        return this.get_confirmText();  
+    },
+    set_ConfirmText: function(value) {
+        Sys.Extended.Deprecated("set_ConfirmText", "set_confirmText");
+        this.set_confirmText(value);
     },
 
-    set_ConfirmText: function(value) {
-        if(this._ConfirmTextValue != value) {
-            this._ConfirmTextValue = value;
-            this.raisePropertyChanged('ConfirmText');
+    /// <summary>
+    /// Gets or sets a Boolean value that specifies that the confirm dialog box should not be displayed until just before the form is submitted.
+    /// </summary>
+    /// <remarks>
+    /// This is useful if the page contains ASP.NET validator controls and the confirm dialog box should be displayed only after all validation checks pass.
+    /// </remarks>
+    /// <getter>get_confirmOnFormSubmit</getter>
+    /// <setter>set_confirmOnFormSubmit</setter>
+    /// <member name="cP:AjaxControlToolkit.ConfirmButtonExtender.confirmOnFormSubmit" />
+    get_confirmOnFormSubmit: function() {
+        // True iff the confirm dialog should run for form submission (i.e., after validators are all satisfied)
+        return this._ConfirmOnFormSubmit;
+    },
+    set_confirmOnFormSubmit: function(value) {
+        if(this._ConfirmOnFormSubmit != value) {
+            this._ConfirmOnFormSubmit = value;
+            this.raisePropertyChanged('confirmOnFormSubmit');
         }
     },
 
     get_ConfirmOnFormSubmit: function() {
-        // True iff the confirm dialog should run for form submission (i.e., after validators are all satisfied)
-        return this._ConfirmOnFormSubmit;
+        Sys.Extended.Deprecated("get_ConfirmOnFormSubmit", "get_confirmOnFormSubmit");
+        return this.get_confirmOnFormSubmit();
     },
-
     set_ConfirmOnFormSubmit: function(value) {
-        if(this._ConfirmOnFormSubmit != value) {
-            this._ConfirmOnFormSubmit = value;
-            this.raisePropertyChanged('ConfirmOnFormSubmit');
-        }
+        Sys.Extended.Deprecated("set_ConfirmOnFormSubmit", "set_confirmOnFormSubmit");
+        this.set_confirmOnFormSubmit(value);
     },
 
+    /// <summary>
+    /// Gets or sets a string that contains the ID of a ModalPopupBehavior control to use instead of the default window.confirm dialog box.
+    /// </summary>
+    /// <getter>get_displayModalPopupID</getter>
+    /// <setter>set_displayModalPopupID</setter>
+    /// <member name="cP:AjaxControlToolkit.ConfirmButtonExtender.displayModalPopupID" />
     get_displayModalPopupID: function() {
         // ID of a ModalPopupBehavior to be used instead of the default window.confirm dialog
         return this._displayModalPopupID;
     },
-
     set_displayModalPopupID: function(value) {
         if(this._displayModalPopupID != value) {
             this._displayModalPopupID = value;
@@ -199,11 +252,16 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Gets or sets a string that contains script to run in order to initiate a postback.
+    /// </summary>
+    /// <getter>get_postBackScript</getter>
+    /// <setter>set_postBackScript</setter>
+    /// <member name="cP:AjaxControlToolkit.ConfirmButtonExtender.postBackScript" />
     get_postBackScript: function() {
         // Script to run to initiate a postback
         return this._postBackScript;
     },
-
     set_postBackScript: function(value) {
         if(this._postBackScript != value) {
             this._postBackScript = value;
@@ -211,32 +269,46 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Occurs when control is showing.
+    /// </summary>
+    /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
+    /// <member name="cE:AjaxControlToolkit.ConfirmButtonExtender.showing" />
     add_showing: function(handler) {
         this.get_events().addHandler('showing', handler);
     },
-
     remove_showing: function(handler) {
         this.get_events().removeHandler('showing', handler);
     },
-
-    raiseShowing: function(eventArgs) {
+    raise_showing: function(eventArgs) {
         var handler = this.get_events().getHandler('showing');
         if(handler)
             handler(this, eventArgs);
     },
+    raiseShowing: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseShowing", "raise_showing");
+        this.raise_showing(eventArgs);
+    },
 
+    /// <summary>
+    /// Occurs when control is hidden.
+    /// </summary>
+    /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
+    /// <member name="cE:AjaxControlToolkit.ConfirmButtonExtender.hidden" />
     add_hidden: function(handler) {
         this.get_events().addHandler('hidden', handler);
     },
-
     remove_hidden: function(handler) {
         this.get_events().removeHandler('hidden', handler);
     },
-
-    raiseHidden: function(eventArgs) {
+    raise_hidden: function(eventArgs) {
         var handler = this.get_events().getHandler('hidden');
         if(handler)
             handler(this, eventArgs);
+    },
+    raiseHidden: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHidden", "raise_hidden");
+        this.raise_hidden(eventArgs);
     }
 }
 
