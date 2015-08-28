@@ -8,6 +8,22 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The BalloonPopupExtender control displays a popup which can contain any content.
+    /// For example, you can use the BalloonPopupExtender to display help information when
+    /// you move focus to a TextBox control.
+    /// 
+    /// The BalloonPopupExtender supports three different styles: Balloon, Rectangle, and Custom.
+    /// You can select among three different sizes for the popup: Small, Medium, and Large.
+    /// If you set the BalloonPopup style to the value Custom then you can define a custom appearance
+    /// for the BalloonPopup. In that case, you also need to set the CustomCssUrl property to point to a custom style sheet.
+    /// 
+    /// This control can be set to 5 positions - TopLeft, TopRight, BottomLeft, BottomRight and Auto.
+    /// If you select the value Auto then the position of the BalloonPopup is determined automatically based on available space.
+    /// 
+    /// You can set the BalloonPopExtender to be triggered by the MouseOver, Focus or Click events.
+    /// The control is hidden automatically when you click outside the Balloon Popup.
+    /// </summary>
     [ClientScriptResource("Sys.Extended.UI.BalloonPopupControlBehavior", Constants.BalloonPopupName)]
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -20,6 +36,9 @@ namespace AjaxControlToolkit {
         Animation _onHide;
         Animation _onShow;
 
+        /// <summary>
+        /// Extender control ID.
+        /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ExtenderControlID {
@@ -27,41 +46,70 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("ExtenderControlID", value); }
         }
 
+        /// <summary>
+        /// The ID of the control to display.
+        /// </summary>
         [ExtenderControlProperty]
         [IDReferenceProperty(typeof(WebControl))]
         [RequiredProperty]
         [DefaultValue("")]
+        [ClientPropertyName("balloonPopupControlID")]
         public string BalloonPopupControlID {
             get { return GetPropertyValue("BalloonPopupControlID", String.Empty); }
             set { SetPropertyValue("BalloonPopupControlID", value); }
         }
 
+        /// <summary>
+        /// Optional setting specifying where the popup should be positioned relative to the target control.
+        /// </summary>
+        /// <remarks>
+        /// (TopRight, TopLeft, BottomRight, BottomLeft, Auto) Default value is Auto.
+        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(BalloonPopupPosition.Auto)]
         [ClientPropertyName("balloonPopupPosition")]
         public BalloonPopupPosition Position { get; set; }
 
+        /// <summary>
+        /// Optional setting specifying the theme of balloon popup.
+        /// </summary>
+        /// <remarks>
+        /// (Cloud, Rectangle, Custom). Default value is Rectangle.
+        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(BalloonPopupStyle.Rectangle)]
         [ClientPropertyName("balloonPopupStyle")]
         public BalloonPopupStyle BalloonStyle { get; set; }
 
-        // Optional X (horizontal) offset for the popup window (relative to the target control)
+        /// <summary>
+        /// Optional X (horizontal) offset for the popup window (relative to the target control).
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
+        [ClientPropertyName("offsetX")]
         public int OffsetX {
             get { return GetPropertyValue("OffsetX", 0); }
             set { SetPropertyValue("OffsetX", value); }
         }
 
-        // Optional Y (vertical) offset for the popup window (relative to the target control)
+        /// <summary>
+        /// Optional Y (vertical) offset for the popup window (relative to the target control).
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
+        [ClientPropertyName("offsetY")]
         public int OffsetY {
             get { return GetPropertyValue("OffsetY", 0); }
             set { SetPropertyValue("OffsetY", value); }
         }
 
+        /// <summary>
+        /// The OnShow animation will be played each time the popup is displayed.
+        /// The popup will be positioned correctly but hidden.
+        /// </summary>
+        /// <remarks>
+        /// The animation can use <HideAction Visible="true" /> to display the popup along with any other visual effects.
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
         [Browsable(false)]
@@ -72,6 +120,9 @@ namespace AjaxControlToolkit {
             set { SetAnimation(ref _onShow, "OnShow", value); }
         }
 
+        /// <summary>
+        /// The OnHide animation will be played each time the popup is hidden.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
         [Browsable(false)]
@@ -82,6 +133,9 @@ namespace AjaxControlToolkit {
             set { SetAnimation(ref _onHide, "OnHide", value); }
         }
 
+        /// <summary>
+        /// Optional setting specifying whether to display balloon popup on the client onMouseOver event. Default value is false.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("displayOnMouseOver")]
         [DefaultValue(false)]
@@ -90,6 +144,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("DisplayOnMouseOver", value); }
         }
 
+        /// <summary>
+        /// Optional setting specifying whether to display balloon popup on the client onFocus event. Default value is false.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("displayOnFocus")]
         [DefaultValue(false)]
@@ -98,6 +155,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("DisplayOnFocus", value); }
         }
 
+        /// <summary>
+        /// Optional setting specifying whether to display balloon popup on the client onClick event. Default value is true.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("displayOnClick")]
         [DefaultValue(true)]
@@ -106,6 +166,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("DisplayOnClick", value); }
         }
 
+        /// <summary>
+        /// Optional setting specifying the size of balloon popup. (Small, Medium and Large). Default value is Small.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("balloonSize")]
         [DefaultValue(BalloonPopupSize.Small)]
@@ -114,6 +177,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("BalloonSize", value); }
         }
 
+        /// <summary>
+        /// Optional setting specifying whether to display shadow of balloon popup or not.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("useShadow")]
         [DefaultValue(true)]
@@ -122,9 +188,18 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("UseShadow", value); }
         }
 
+        /// <summary>
+        /// This is required if user choose BalloonStyle to Custom. This specifies the url of custom css which will display custom theme.
+        /// </summary>
         [DefaultValue("")]
         public string CustomCssUrl { get; set; }
 
+        /// <summary>
+        /// Optional setting specifying whether to display scrollbar if contents are overflowing.
+        /// </summary>
+        /// <remarks>
+        /// This property contains 5 options - None, Horizontal, Vertical, Both and Auto. Default value is Auto.
+        /// </remarks>
         [DefaultValue(ScrollBars.Auto)]
         [Category("Behavior")]
         [ClientPropertyName("scrollBars")]
@@ -135,6 +210,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("ScrollBars", value); }
         }
 
+        /// <summary>
+        /// This is required if user choose BalloonStyle to Custom. This specifies the name of the css class for the custom theme.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("customClassName")]
         [DefaultValue("")]
