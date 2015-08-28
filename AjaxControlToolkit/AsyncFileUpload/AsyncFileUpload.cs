@@ -186,6 +186,9 @@ namespace AjaxControlToolkit {
             set { base.Width = value; }
         }
 
+        /// <summary>
+        /// Whether validation failed.
+        /// </summary>
         [BrowsableAttribute(false)]
         public bool FailedValidation {
             get { return _failedValidation; }
@@ -312,7 +315,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Saves the contents of an uploaded file.
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fileName">Uploaded file name</param>
         public void SaveAs(string fileName) {
             PopulateObjectPriorToRender(this.ClientID);
             var file = CurrentFile;

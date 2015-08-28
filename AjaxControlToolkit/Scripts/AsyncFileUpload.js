@@ -77,6 +77,12 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
 
 Sys.Extended.UI.AsyncFileUpload.prototype = {
 
+    /// <summary>
+    /// Control that is shown while the file is uploading.
+    /// </summary>
+    /// <getter>get_throbber</getter>
+    /// <setter>set_throbber</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.throbber" />
     get_throbber: function() {
         return this._throbber;
     },
@@ -84,6 +90,12 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._throbber = value;
     },
 
+    /// <summary>
+    /// The control's background color on upload complete. Default value - 'Lime'.
+    /// </summary>
+    /// <getter>get_completeBackColor</getter>
+    /// <setter>set_completeBackColor</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.completeBackColor" />
     get_completeBackColor: function() {
         return this._completeBackColor;
     },
@@ -91,6 +103,12 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._completeBackColor = value;
     },
 
+    /// <summary>
+    /// The control's background color on upload error. Default value - 'Red'.
+    /// </summary>
+    /// <getter>get_errorBackColor</getter>
+    /// <setter>set_errorBackColor</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.errorBackColor" />
     get_errorBackColor: function() {
         return this._errorBackColor;
     },
@@ -98,6 +116,12 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._errorBackColor = value;
     },
 
+    /// <summary>
+    /// The control's background color when uploading is in progress. Default value - 'White'.
+    /// </summary>
+    /// <getter>get_uploadingBackColor</getter>
+    /// <setter>set_uploadingBackColor</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.uploadingBackColor" />
     get_uploadingBackColor: function() {
         return this._uploadingBackColor;
     },
@@ -105,6 +129,12 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._uploadingBackColor = value;
     },
 
+    /// <summary>
+    /// Name of a file on a client to upload using the control.
+    /// </summary>
+    /// <getter>get_inputFile</getter>
+    /// <setter>set_inputFile</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.inputFile" />
     get_inputFile: function() {
         return this._inputFile;
     },
@@ -112,6 +142,12 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._inputFile = value;
     },
 
+    /// <summary>
+    /// Hidden field.
+    /// </summary>
+    /// <getter>get_hiddenField</getter>
+    /// <setter>set_hiddenField</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.hiddenField" />
     get_hiddenField: function() {
         return this._hiddenField;
     },
@@ -119,6 +155,12 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._hiddenField = value;
     },
 
+    /// <summary>
+    /// Inner throbber.
+    /// </summary>
+    /// <getter>get_innerTB</getter>
+    /// <setter>set_innerTB</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.innerTB" />
     get_innerTB: function() {
         return this._innerTB;
     },
@@ -126,6 +168,12 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._innerTB = value;
     },
 
+    /// <summary>
+    /// URL of the postback method.
+    /// </summary>
+    /// <getter>get_postBackUrl</getter>
+    /// <setter>set_postBackUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.postBackUrl" />
     get_postBackUrl: function() {
         return this._postBackUrl;
     },
@@ -133,6 +181,12 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._postBackUrl = value;
     },
 
+    /// <summary>
+    /// Name of the form.
+    /// </summary>
+    /// <getter>get_formName</getter>
+    /// <setter>set_formName</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.formName" />
     get_formName: function() {
         return this._formName;
     },
@@ -143,8 +197,8 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     ///<summary>
     /// Occurs when file uploading started.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadStarted" />
     ///<event add="add_uploadStarted" remove="remove_uploadStarted" raise="raise_uploadStarted" />
+    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadStarted" />
     add_uploadStarted: function(handler) {
         this.get_events().addHandler("uploadStarted", handler);
     },
@@ -166,8 +220,8 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     ///<summary>
     /// Occurs when file uploading completed.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadComplete" />
     ///<event add="add_uploadComplete" remove="remove_uploadComplete" raise="raise_uploadComplete" />
+    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadComplete" />
     add_uploadComplete: function(handler) {
         this.get_events().addHandler("uploadComplete", handler);
     },
@@ -188,8 +242,8 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     ///<summary>
     /// Occurs when file uploading encounters an error.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadError" />
     ///<event add="add_uploadError" remove="remove_uploadError" raise="raise_uploadError" />
+    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadError" />
     add_uploadError: function(handler) {
         this.get_events().addHandler("uploadError", handler);
     },
@@ -209,9 +263,10 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         return this.raise_uploadError(e);
     },
 
-    ///<summary>
+    /// <summary>
     /// Set throbber visual style.
-    ///</summary>
+    /// </summary>
+    /// <param name="value" type="String">Visual style value</param>
     /// <member name="cM:AjaxControlToolkit.AsyncFileUpload.setThrobber" />
     setThrobber: function(value) {
         if(this.get_throbber() != null) {
@@ -220,7 +275,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     _onStart: function(fileName) {
-        var valid = this.raiseUploadStarted(new Sys.Extended.UI.AsyncFileUploadEventArgs(fileName, null, null, null));
+        var valid = this.raise_uploadStarted(new Sys.Extended.UI.AsyncFileUploadEventArgs(fileName, null, null, null));
         if(typeof valid == 'undefined') {
             valid = true;
         }
@@ -228,10 +283,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         return valid;
     },
 
-    ///<summary>
-    /// Initialize of AsyncFileUpload.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AsyncFileUpload.initialize" />
+    // Initialize of AsyncFileUpload.
     initialize: function() {
         Sys.Extended.UI.AsyncFileUpload.callBaseMethod(this, "initialize");
         Sys.Application.add_load(this._app_onload$delegate);
@@ -239,10 +291,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this.setThrobber(false);
     },
 
-    ///<summary>
-    /// Dispose of AsyncFileUpload.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AsyncFileUpload.dispose" />
+    // Dispose of AsyncFileUpload.
     dispose: function() {
         Sys.Application.remove_load(this._app_onload$delegate);
         if(this._onchange$delegate != null) {
@@ -324,7 +373,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
                 this._inputFile.style.backgroundColor = this.get_errorBackColor();
             }
         }
-        if(!this.raiseUploadError(new Sys.Extended.UI.AsyncFileUploadEventArgs(this._inputFile.value, null, null, error))) {
+        if(!this.raise_uploadError(new Sys.Extended.UI.AsyncFileUploadEventArgs(this._inputFile.value, null, null, error))) {
             alert(unhandledException + ": " + error);
         }
     },
@@ -393,7 +442,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
                 this._inputFile.style.backgroundColor = this.get_completeBackColor();
             }
         }
-        this.raiseUploadComplete(new Sys.Extended.UI.AsyncFileUploadEventArgs(this._inputFile.value, length, contentType, null));
+        this.raise_uploadComplete(new Sys.Extended.UI.AsyncFileUploadEventArgs(this._inputFile.value, length, contentType, null));
     },
 
     _onload: function(e) {
@@ -493,7 +542,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
                     }
                 }
                 this.setThrobber(false);
-                this.raiseUploadComplete(new Sys.Extended.UI.AsyncFileUploadEventArgs(this._inputFile.value, length, contentType, null));
+                this.raise_uploadComplete(new Sys.Extended.UI.AsyncFileUploadEventArgs(this._inputFile.value, length, contentType, null));
             }
         }
         catch(ex) {
