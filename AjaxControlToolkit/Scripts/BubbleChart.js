@@ -409,6 +409,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         return axisValueContents;
     },
 
+    /// <summary>
+    /// Enables you to customize the width of the chart.
+    /// </summary>
+    /// <getter>get_chartWidth</getter>
+    /// <setter>set_chartWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.chartWidth" />
     get_chartWidth: function() {
         return this._chartWidth;
     },
@@ -416,6 +422,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._chartWidth = value;
     },
 
+    /// <summary>
+    /// Enables you to customize the height of the chart.
+    /// </summary>
+    /// <getter>get_chartHeight</getter>
+    /// <setter>set_chartHeight</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.chartHeight" />
     get_chartHeight: function() {
         return this._chartHeight;
     },
@@ -423,6 +435,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._chartHeight = value;
     },
 
+    /// <summary>
+    /// Enables you to set the title of the chart.
+    /// </summary>
+    /// <getter>get_chartTitle</getter>
+    /// <setter>set_chartTitle</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.chartTitle" />
     get_chartTitle: function() {
         return this._chartTitle;
     },
@@ -430,13 +448,34 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._chartTitle = value;
     },
 
-    get_BubbleChartClientValues: function() {
+    /// <summary>
+    /// List of values.
+    /// </summary>
+    /// <getter>get_bubbleChartClientValues</getter>
+    /// <setter>set_bubbleChartClientValues</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.bubbleChartClientValues" />
+    get_bubbleChartClientValues: function() {
         return this._bubbleChartClientValues;
     },
-    set_BubbleChartClientValues: function(value) {
+    set_bubbleChartClientValues: function(value) {
         this._bubbleChartClientValues = value;
     },
 
+    get_BubbleChartClientValues: function() {
+        Sys.Extended.Deprecated("get_BubbleChartClientValues", "get_bubbleChartClientValues");
+        return this.get_bubbleChartClientValues();
+    },
+    set_BubbleChartClientValues: function(value) {
+        Sys.Extended.Deprecated("set_BubbleChartClientValues", "set_bubbleChartClientValues");
+        this.set_bubbleChartClientValues(value);
+    },
+
+    /// <summary>
+    /// Enables you to control the appearance of the bar chart with a CSS file.
+    /// </summary>
+    /// <getter>get_theme</getter>
+    /// <setter>set_theme</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.theme" />
     get_theme: function() {
         return this._theme;
     },
@@ -444,6 +483,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._theme = value;
     },
 
+    /// <summary>
+    /// Enables you to set the interval size for the Y axis line of the chart.
+    /// </summary>
+    /// <getter>get_yAxisLines</getter>
+    /// <setter>set_yAxisLines</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.yAxisLines" />
     get_yAxisLines: function() {
         return this._yAxisLines;
     },
@@ -451,6 +496,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._yAxisLines = value;
     },
 
+    /// <summary>
+    /// Enables you to set the interval size for the X axis line of the chart.
+    /// </summary>
+    /// <getter>get_xAxisLines</getter>
+    /// <setter>set_xAxisLines</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.xAxisLines" />
     get_xAxisLines: function() {
         return this._xAxisLines;
     },
@@ -458,6 +509,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._xAxisLines = value;
     },
 
+    /// <summary>
+    /// Font color of the chart title.
+    /// </summary>
+    /// <getter>get_chartTitleColor</getter>
+    /// <setter>set_chartTitleColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.chartTitleColor" />
     get_chartTitleColor: function() {
         return this._chartTitleColor;
     },
@@ -465,6 +522,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._chartTitleColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set the color of the Y axis lines of the chart.
+    /// </summary>
+    /// <getter>get_yAxisLineColor</getter>
+    /// <setter>set_yAxisLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.yAxisLineColor" />
     get_yAxisLineColor: function() {
         return this._yAxisLineColor;
     },
@@ -472,6 +535,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._yAxisLineColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set the color of the X axis lines of the chart.
+    /// </summary>
+    /// <getter>get_xAxisLineColor</getter>
+    /// <setter>set_xAxisLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.xAxisLineColor" />
     get_xAxisLineColor: function() {
         return this._xAxisLineColor;
     },
@@ -479,6 +548,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._xAxisLineColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set the number of different sizes of the bubbles.
+    /// </summary>
+    /// <getter>get_bubbleSizes</getter>
+    /// <setter>set_bubbleSizes</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.bubbleSizes" />
     get_bubbleSizes: function() {
         return this._bubbleSizes;
     },
@@ -486,6 +561,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._bubbleSizes = value;
     },
 
+    /// <summary>
+    /// Enables you to set the color of the base lines of the chart.
+    /// </summary>
+    /// <getter>get_baseLineColor</getter>
+    /// <setter>set_baseLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.baseLineColor" />
     get_baseLineColor: function() {
         return this._baseLineColor;
     },
@@ -493,6 +574,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._baseLineColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set the background color of the tooltip box.
+    /// </summary>
+    /// <getter>get_tooltipBackgroundColor</getter>
+    /// <setter>set_tooltipBackgroundColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.tooltipBackgroundColor" />
     get_tooltipBackgroundColor: function() {
         return this.tooltipBackgroundColor;
     },
@@ -500,6 +587,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this.tooltipBackgroundColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set the font color of the tooltip box.
+    /// </summary>
+    /// <getter>get_tooltipFontColor</getter>
+    /// <setter>set_tooptipFontColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.tooltipFontColor" />
     get_tooltipFontColor: function() {
         return this._tooltipFontColor;
     },
@@ -507,6 +600,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._tooltipFontColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set the border color of the tooltip box.
+    /// </summary>
+    /// <getter>get_tooltipBorderColor</getter>
+    /// <setter>set_tooltipBorderColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.tooltipBorderColor" />
     get_tooltipBorderColor: function() {
         return this._tooltipBorderColor;
     },
@@ -514,6 +613,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._tooltipBorderColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set the text/label to describe what data is at XAxis.
+    /// </summary>
+    /// <getter>get_xAxisLabel</getter>
+    /// <setter>set_xAxisLabel</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.xAxisLabel" />
     get_xAxisLabel: function() {
         return this._xAxisLabel;
     },
@@ -521,6 +626,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._xAxisLabel = value;
     },
 
+    /// <summary>
+    /// Enables you to set the text/label to describe what data is at YAxis.
+    /// </summary>
+    /// <getter>get_yAxisLabel</getter>
+    /// <setter>set_yAxisLabel</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.yAxisLabel" />
     get_yAxisLabel: function() {
         return this._yAxisLabel;
     },
@@ -528,6 +639,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._yAxisLabel = value;
     },
 
+    /// <summary>
+    /// Enables you to set the text/label that will be shown in the tooltip and describe about bubble value.
+    /// </summary>
+    /// <getter>get_bubbleLabel</getter>
+    /// <setter>set_bubbleLabel</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.bubbleLabel" />
     get_bubbleLabel: function() {
         return this._bubbleLabel;
     },
@@ -535,6 +652,12 @@ Sys.Extended.UI.BubbleChart.prototype = {
         this._bubbleLabel = value;
     },
 
+    /// <summary>
+    /// Enables you to set the axis label font color.
+    /// </summary>
+    /// <getter>get_axislabelFontColor</getter>
+    /// <setter>set_axislabelFontColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BubbleChart.axislabelFontColor" />
     get_axislabelFontColor: function() {
         return this._axislabelFontColor;
     },
