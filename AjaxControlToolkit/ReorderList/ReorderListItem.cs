@@ -12,9 +12,11 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
-    // This is the control that represents an item in the reorder list.
-    // It's kind of special because it can either be an LI element or something else,
-    // which is needed so the DragHandle can also be bindable (it's a child of a list item)
+    /// <summary>
+    /// This is the control that represents an item in the reorder list.
+    /// It's kind of special because it can either be an LI element or something else,
+    /// which is needed so the DragHandle can also be bindable (it's a child of a list item)
+    /// </summary>
     [ToolboxItem(false)]
     public class ReorderListItem : WebControl, IDataItemContainer {
         object _dataItem;
@@ -24,6 +26,9 @@ namespace AjaxControlToolkit {
         ListItemType _itemType;
         bool _isAddItem /* = false */;
 
+        /// <summary>
+        /// Item type.
+        /// </summary>
         public ListItemType ItemType {
             get {
                 if(_baseItem != null)
@@ -35,6 +40,9 @@ namespace AjaxControlToolkit {
             set { _itemType = value; }
         }
 
+        /// <summary>
+        /// Data item.
+        /// </summary>
         public object DataItem {
             get {
                 if(_baseItem != null)
@@ -44,6 +52,9 @@ namespace AjaxControlToolkit {
             set { _dataItem = value; }
         }
 
+        /// <summary>
+        /// Item index.
+        /// </summary>
         public int ItemIndex {
             get {
                 if(_baseItem != null)
@@ -53,7 +64,9 @@ namespace AjaxControlToolkit {
             set { _itemIndex = value; }
         }
 
-        /// Is this a new item?
+        /// <summary>
+        /// Whether this item is new.
+        /// </summary>
         public bool IsAddItem {
             get {
                 if(_baseItem != null)
@@ -107,12 +120,16 @@ namespace AjaxControlToolkit {
 
         #region IDataItemContainer Members
 
-        // DataItem implemented above
-
+        /// <summary>
+        /// Data item index.
+        /// </summary>
         public int DataItemIndex {
             get { return ItemIndex; }
         }
 
+        /// <summary>
+        /// Display index.
+        /// </summary>
         public int DisplayIndex {
             get { return ItemIndex; }
         }

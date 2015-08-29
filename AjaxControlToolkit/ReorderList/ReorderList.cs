@@ -120,6 +120,9 @@ namespace AjaxControlToolkit {
         const string ArgError = "_~Error~_";
         ReorderListItemLayoutType _layoutType = ReorderListItemLayoutType.Table;
 
+        /// <summary>
+        /// Whether to allow drag/drop reordering. This is automatically set to true if a ReorderTemplate is present.
+        /// </summary>
         [DefaultValue(false)]
         public bool AllowReorder {
             get { return GetPropertyValue("AllowReorder", true); }
@@ -136,6 +139,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Callback CSS style.
+        /// </summary>
         [DefaultValue("")]
         public string CallbackCssStyle {
             get { return GetPropertyValue("CallbackCssStyle", String.Empty); }
@@ -159,13 +165,18 @@ namespace AjaxControlToolkit {
         }
 
         // The column name for the primary key field for this control to use
+        /// <summary>
+        /// The primary key field for the data.
+        /// </summary>
         [DefaultValue("")]
         public string DataKeyField {
             get { return GetPropertyValue("DataKeyName", String.Empty); }
             set { SetPropertyValue("DataKeyName", value); }
         }
 
-        // The indexed collection of data keys, one for each row, when databound.
+        /// <summary>
+        /// The indexed collection of data keys, one for each row, when databound.
+        /// </summary>
         [Browsable(false)]
         public DataKeyCollection DataKeys {
             get { return new DataKeyCollection(DataKeysArray); }
@@ -193,6 +204,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// The DataSource to use to populate this control.
+        /// </summary>
         [TypeConverter(typeof(TypedControlIDConverter<IDataSource>))]
         public override string DataSourceID {
             get { return base.DataSourceID; }
@@ -200,6 +214,9 @@ namespace AjaxControlToolkit {
         }
 
         // The handle alignment in relation to the item template.  
+        /// <summary>
+        ///  Where the drag handle should be relative to the item row - can be "Top", "Bottom", "Left", or "Right".
+        /// </summary>
         [DefaultValue(ReorderHandleAlignment.Left)]
         public ReorderHandleAlignment DragHandleAlignment {
             get { return GetPropertyValue("DragHandleAlignment", ReorderHandleAlignment.Left); }
@@ -209,6 +226,9 @@ namespace AjaxControlToolkit {
 
         // The template to use for the handle that a user can "grab" with the mouse and reorder
         // the item.
+        /// <summary>
+        /// The template for the drag handle that the user clicks and drags to reorder items.
+        /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(ReorderListItem))]
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -219,6 +239,9 @@ namespace AjaxControlToolkit {
         }
 
         // The template that will be shown when the list has no data
+        /// <summary>
+        /// The template to show when the list has no data. This item is not data-bindable.
+        /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(ReorderListItem))]
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -228,14 +251,19 @@ namespace AjaxControlToolkit {
             set { _emptyListTemplate = value; }
         }
 
-        // The index of the item that is currently in edit mode.  
-        // The default is -1, meaning no item is in edit mode.
+        /// <summary>
+        /// The index of the item that is currently in edit mode.  
+        /// The default is -1, meaning no item is in edit mode.
+        /// </summary>
         [DefaultValue(-1)]
         public int EditItemIndex {
             get { return GetPropertyValue("EditItemIndex", -1); }
             set { SetPropertyValue("EditItemIndex", value); }
         }
 
+        /// <summary>
+        /// The template do display for a row that is in edit mode.
+        /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(IDataItemContainer), BindingDirection.TwoWay)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -245,14 +273,18 @@ namespace AjaxControlToolkit {
             set { _editItemTemplate = value; }
         }
 
-        // Specifies where new items are added to the list: beginning or end.
+        /// <summary>
+        /// Determines where new items are inserted into the list, can be Beginning or End.
+        /// </summary>
         [DefaultValue(ReorderListInsertLocation.Beginning)]
         public ReorderListInsertLocation ItemInsertLocation {
             get { return GetPropertyValue("ItemInsertLocation", ReorderListInsertLocation.Beginning); }
             set { SetPropertyValue("ItemInsertLocation", value); }
         }
 
-        // The template to display for adding new items.
+        /// <summary>
+        /// The template to show for adding new items to the list..
+        /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(IDataItemContainer), BindingDirection.TwoWay)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -263,6 +295,9 @@ namespace AjaxControlToolkit {
         }
 
         // The template to display for rows in display mode.
+        /// <summary>
+        /// The template to display for items in the list.
+        /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(IDataItemContainer), BindingDirection.TwoWay)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -272,6 +307,9 @@ namespace AjaxControlToolkit {
             set { _itemTemplate = value; }
         }
 
+        /// <summary>
+        /// Items collection.
+        /// </summary>
         [Browsable(false)]
         public ReorderListItemCollection Items {
             get {
@@ -280,31 +318,40 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // The type of layout to apply to the items.  If "Table" is selected, the 
-        // DragHandleAlignment property is used to lay out the items 
-        // in relation to the drag handle.  If not, the items are simply wrapped in Panel
-        // controls and can be positioned using CSS.
+        /// <summary>
+        /// The type of layout to apply to the items.  If "Table" is selected, the 
+        /// DragHandleAlignment property is used to lay out the items 
+        /// in relation to the drag handle.  If not, the items are simply wrapped in Panel
+        /// controls and can be positioned using CSS.
+        /// </summary>
         [DefaultValue(ReorderListItemLayoutType.Table)]
         public ReorderListItemLayoutType LayoutType {
             get { return _layoutType; }
             set { _layoutType = value; }
         }
 
+        /// <summary>
+        /// Whether or not to do PostBack on reorder.
+        /// </summary>
         [DefaultValue("true")]
         public bool PostBackOnReorder {
             get { return GetPropertyValue("PostBackOnReorder", false); }
             set { SetPropertyValue("PostBackOnReorder", value); }
         }
 
-        // The name of the column which controls the sort order of the rows in the data base.
+        /// <summary>
+        /// The name of the column which controls the sort order of the rows in the data base.
+        /// </summary>
         [DefaultValue("")]
         public string SortOrderField {
             get { return GetPropertyValue("SortOrderField", String.Empty); }
             set { SetPropertyValue("SortOrderField", value); }
         }
 
-        // The template to use as the drop visual when the user is dragging an item around.  
-        // This template is not data bindable.
+        /// <summary>
+        /// The template to use as the drop visual when the user is dragging an item around.  
+        /// This template is not data bindable.
+        /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(ReorderListItem))]
         [PersistenceMode(PersistenceMode.InnerDefaultProperty)]
@@ -314,8 +361,10 @@ namespace AjaxControlToolkit {
             set { _reorderTemplate = value; }
         }
 
-        // Determines whether the InsertItem is shown.  If this value is not set and
-        // an InsertItemTemplate is set, this defaults to true.
+        /// <summary>
+        /// Determines whether the InsertItem is shown.  If this value is not set and
+        /// an InsertItemTemplate is set, this defaults to true.
+        /// </summary>
         [DefaultValue(false)]
         public bool ShowInsertItem {
             get { return GetPropertyValue("ShowInsertItem", InsertItemTemplate != null); }
@@ -1289,29 +1338,54 @@ namespace AjaxControlToolkit {
             base.RenderContents(writer);
         }
 
-        // Performs an update of the specified row with it's current values.
+        /// <summary>
+        /// Performs an update of the specified row with it's current values.
+        /// </summary>
+        /// <param name="rowIndex">Row index</param>
         public void UpdateItem(int rowIndex) {
             HandleUpdate(null, rowIndex);
         }
 
         #region IRepeatInfoUser Members
+        /// <summary>
+        /// Returns item style.
+        /// </summary>
+        /// <param name="itemType">Item type</param>
+        /// <param name="repeatIndex">Repeat index</param>
+        /// <returns>Item style</returns>
         public Style GetItemStyle(ListItemType itemType, int repeatIndex) {
             var item = GetItem(itemType, repeatIndex);
             return item.ControlStyle;
         }
 
+        /// <summary>
+        /// Whether the list has footer.
+        /// </summary>
         public bool HasFooter {
             get { return false; }
         }
 
+        /// <summary>
+        /// Whether the list has header.
+        /// </summary>
         public bool HasHeader {
             get { return false; }
         }
 
+        /// <summary>
+        /// Whether the list has separators.
+        /// </summary>
         public bool HasSeparators {
             get { return false; }
         }
 
+        /// <summary>
+        /// Renders an item.
+        /// </summary>
+        /// <param name="itemType">Item type</param>
+        /// <param name="repeatIndex">Repeat index</param>
+        /// <param name="repeatInfo">Repeat into</param>
+        /// <param name="writer">Writer</param>
         public void RenderItem(ListItemType itemType, int repeatIndex, RepeatInfo repeatInfo, HtmlTextWriter writer) {
             var item = GetItem(itemType, repeatIndex);
             item.RenderControl(writer);
@@ -1329,6 +1403,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Repeated item count.
+        /// </summary>
         public int RepeatedItemCount {
             get {
                 if(itemsArray != null)
