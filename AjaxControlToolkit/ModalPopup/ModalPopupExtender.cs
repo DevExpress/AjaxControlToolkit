@@ -8,6 +8,11 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The ModalPopup extender allows you to display content in an element that mimics a modal dialog box,
+    /// which prevents the user from interacting with the rest of the page. The modal content can contain
+    /// any hierarchy of controls. It is displayed above a background (in z-order) that can have a custom style applied to it. 
+    /// </summary>
     [Designer(typeof(ModalPopupExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.ModalPopupBehavior", Constants.ModalPopup)]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -25,93 +30,145 @@ namespace AjaxControlToolkit {
                   _onHiding,
                   _onShowing;
 
+        /// <summary>
+        /// The ID of the element to display as a modal popup.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [IDReferenceProperty(typeof(WebControl))]
         [RequiredProperty]
+        [ClientPropertyName("popupControlID")]
         public string PopupControlID {
             get { return GetPropertyValue("PopupControlID", String.Empty); }
             set { SetPropertyValue("PopupControlID", value); }
         }
 
+        /// <summary>
+        /// The CSS class to apply to the background when the modal popup is displayed.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
+        [ClientPropertyName("backgroundCssClass")]
         public string BackgroundCssClass {
             get { return GetPropertyValue("BackgroundCssClass", String.Empty); }
             set { SetPropertyValue("BackgroundCssClass", value); }
         }
 
+        /// <summary>
+        /// The ID of the element that dismisses the modal popup.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [IDReferenceProperty(typeof(WebControl))]
+        [ClientPropertyName("okControlID")]
         public string OkControlID {
             get { return GetPropertyValue("OkControlID", String.Empty); }
             set { SetPropertyValue("OkControlID", value); }
         }
 
+        /// <summary>
+        /// The ID of the element that cancels the modal popup.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [IDReferenceProperty(typeof(WebControl))]
+        [ClientPropertyName("cancelControlID")]
         public string CancelControlID {
             get { return GetPropertyValue("CancelControlID", String.Empty); }
             set { SetPropertyValue("CancelControlID", value); }
         }
 
+        /// <summary>
+        /// The script to run when the modal popup is dismissed using the element specified in OkControlID.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
+        [ClientPropertyName("onOkScript")]
         public string OnOkScript {
             get { return GetPropertyValue("OnOkScript", String.Empty); }
             set { SetPropertyValue("OnOkScript", value); }
         }
 
+        /// <summary>
+        /// The script to run when the modal popup is dismissed using the element specified in CancelControlID.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
+        [ClientPropertyName("onCancelScript")]
         public string OnCancelScript {
             get { return GetPropertyValue("OnCancelScript", String.Empty); }
             set { SetPropertyValue("OnCancelScript", value); }
         }
 
-        // The X coordinate of the top/left corner of the modal popup
-        // (the popup will be centered horizontally if not specified)
+        /// <summary>
+        /// The X coordinate of the top/left corner of the modal popup.
+        /// </summary>
+        /// <remarks>
+        /// If this value is not specified, the popup will be centered horizontally.
+        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(-1)]
+        [ClientPropertyName("x")]
         public int X {
             get { return GetPropertyValue("X", -1); }
             set { SetPropertyValue("X", value); }
         }
 
-        // The Y coordinate of the top/left corner of the modal popup
-        // (the popup will be centered vertically if not specified)
+        /// <summary>
+        /// The Y coordinate of the top/left corner of the modal popup.
+        /// </summary>
+        /// <remarks>
+        /// If this value is not specified, the popup will be centered vertically.
+        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(-1)]
+        [ClientPropertyName("y")]
         public int Y {
             get { return GetPropertyValue("Y", -1); }
             set { SetPropertyValue("Y", value); }
         }
 
+        /// <summary>
+        /// Gets or sets a Boolean value that specifies whether the modal popup can be dragged.
+        /// </summary>
+        /// <remarks>
+        /// This property is obsolete.
+        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(false)]
         [Obsolete("The drag feature on modal popup will be automatically turned on if you specify the PopupDragHandleControlID property. Setting the Drag property is a noop")]
+        [ClientPropertyName("drag")]
         public bool Drag {
             get { return GetPropertyValue("stringDrag", false); }
             set { SetPropertyValue("stringDrag", value); }
         }
 
+        /// <summary>
+        /// The ID of the embedded element that contains the popup header and title that will be used as a drag handle.
+        /// </summary>
         [ExtenderControlProperty]
         [IDReferenceProperty(typeof(WebControl))]
         [DefaultValue("")]
+        [ClientPropertyName("popupDragHandleControlID")]
         public string PopupDragHandleControlID {
             get { return GetPropertyValue("PopupDragHandleControlID", String.Empty); }
             set { SetPropertyValue("PopupDragHandleControlID", value); }
         }
 
+        /// <summary>
+        /// True to automatically add a dropshadow to the modal popup.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
+        [ClientPropertyName("dropShadow")]
         public bool DropShadow {
             get { return GetPropertyValue("stringDropShadow", false); }
             set { SetPropertyValue("stringDropShadow", value); }
         }
 
+        /// <summary>
+        /// A value that determines whether the popup must be repositioned when the window is resized or scrolled.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(ModalPopupRepositionMode.RepositionOnWindowResizeAndScroll)]
         [ClientPropertyName("repositionMode")]
@@ -120,43 +177,61 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("RepositionMode", value); }
         }
 
-        // Animation to perform once the modal popup is shown
+        /// <summary>
+        /// Animation to perform once the modal popup is shown.
+        /// </summary>
         [Browsable(false)]
         [ExtenderControlProperty]
+        [ClientPropertyName("onShown")]
         public Animation OnShown {
             get { return GetAnimation(ref _onShown, "OnShown"); }
             set { SetAnimation(ref _onShown, "OnShown", value); }
         }
 
-        // Animation to perform once the modal popup is hidden
+        /// <summary>
+        /// Animation to perform once the modal popup is hidden.
+        /// </summary>
         [Browsable(false)]
         [ExtenderControlProperty]
+        [ClientPropertyName("onHidden")]
         public Animation OnHidden {
             get { return GetAnimation(ref _onHidden, "OnHidden"); }
             set { SetAnimation(ref _onHidden, "OnHidden", value); }
         }
 
-        // Animation to perform just before the modal popup is being shown
+        /// <summary>
+        /// Animation to perform just before the modal popup is being shown.
+        /// </summary>
         [Browsable(false)]
         [ExtenderControlProperty]
+        [ClientPropertyName("onShowing")]
         public Animation OnShowing {
             get { return GetAnimation(ref _onShowing, "OnShowing"); }
             set { SetAnimation(ref _onShowing, "OnShowing", value); }
         }
 
-        // Animation to perform just before the modal popup is being hidden.
-        // The popup closes only after the animation completes.
+        /// <summary>
+        /// Animation to perform just before the modal popup is being hidden.
+        /// The popup closes only after the animation completes.
+        /// </summary>
         [Browsable(false)]
         [ExtenderControlProperty]
+        [ClientPropertyName("onHiding")]
         public Animation OnHiding {
             get { return GetAnimation(ref _onHiding, "OnHiding"); }
             set { SetAnimation(ref _onHiding, "OnHiding", value); }
         }
 
+        /// <summary>
+        /// Displays the element that is referenced by the PopupControlID property as a modal dialog box.
+        /// </summary>
         public void Show() {
             _show = true;
         }
 
+        /// <summary>
+        /// Hides the modal popup.
+        /// </summary>
         public void Hide() {
             _show = false;
         }
