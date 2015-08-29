@@ -9,6 +9,12 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// NoBot is a control that attempts to provide CAPTCHA-like bot/spam prevention without requiring any
+    /// user interaction. This approach is easier to bypass than an implementation that requires actual human
+    /// intervention, but NoBot has the benefit of being completely invisible. NoBot is probably most relevant
+    /// for low-traffic sites where blog/comment spam is a problem and 100% effectiveness is not required. 
+    /// </summary>
     [Designer(typeof(NoBotExtenderDesigner))]
     [DefaultEvent("GenerateChallengeAndResponse")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.NoBotName + Constants.IconPostfix)]
@@ -72,7 +78,11 @@ namespace AjaxControlToolkit {
             Page.Session[sessionKey] = eventArgs.RequiredResponse;
         }
 
-        // Return whether the user is believed to be valid along with relevant details
+        /// <summary>
+        /// Return whether the user is believed to be valid.
+        /// </summary>
+        /// <param name="state">NoBot state</param>
+        /// <returns>Whether user is valid</returns>
         public bool IsValid(out NoBotState state) {
             EnsureChildControls();
 
@@ -82,20 +92,28 @@ namespace AjaxControlToolkit {
             return (NoBotState.Valid == state);
         }
 
-        // Return whether the user is believed to be valid
+        /// <summary>
+        /// Return whether the user is believed to be valid.
+        /// </summary>
+        /// <returns>Whether user is valid</returns>
         public bool IsValid() {
             NoBotState unused;
             return IsValid(out unused);
         }
 
-        // Gets a copy of the user address cache
+        /// <summary>
+        /// Gets a copy of the user address cache.
+        /// </summary>
+        /// <returns></returns>
         public static SortedList<DateTime, string> GetCopyOfUserAddressCache() {
             lock(_pastAddresses) {
                 return new SortedList<DateTime, string>(_pastAddresses);
             }
         }
 
-        // Empties the user address cache
+        /// <summary>
+        /// Empties the user address cache.
+        /// </summary>
         public static void EmptyUserAddressCache() {
             lock(_pastAddresses) {
                 _pastAddresses.Clear();
@@ -194,18 +212,30 @@ namespace AjaxControlToolkit {
             return String.Format(CultureInfo.InvariantCulture, "NoBot_SessionKey_{0}_{1}", UniqueID, ticks);
         }
 
+        /// <summary>
+        /// Optional EventHandler providing a custom implementation of the challenge/response code.
+        /// </summary>
         public event EventHandler<NoBotEventArgs> GenerateChallengeAndResponse;
 
+        /// <summary>
+        /// Optional minimum number of seconds before which a response (postback) is considered valid.
+        /// </summary>
         public int ResponseMinimumDelaySeconds {
             get { return _responseMinimumDelaySeconds; }
             set { _responseMinimumDelaySeconds = value; }
         }
 
+        /// <summary>
+        /// Optional number of seconds specifying the length of the cutoff window that tracks previous postbacks from each IP address.
+        /// </summary>
         public int CutoffWindowSeconds {
             get { return _cutoffWindowSeconds; }
             set { _cutoffWindowSeconds = value; }
         }
 
+        /// <summary>
+        /// Optional maximum number of postbacks to allow by a single IP addresses within the cutoff window.
+        /// </summary>
         public int CutoffMaximumInstances {
             get { return _cutoffMaximumInstances; }
             set { _cutoffMaximumInstances = value; }
