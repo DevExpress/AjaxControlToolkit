@@ -713,78 +713,166 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
             handler(this, eventArgs);
         }
     },
+
+    /// <summary>
+    /// Button element.
+    /// </summary>
+    /// <getter>get_element</getter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.element" />
     get_element: function() {
         return this._button;
     },
+
+    /// <summary>
+    /// Button tooltip.
+    /// </summary>
+    /// <getter>get_tooltip</getter>
+    /// <setter>set_tooltip</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.tooltip" />
     get_tooltip: function() {
         return this._tooltip;
     },
     set_tooltip: function(value) {
         this._tooltip = value;
     },
+
+    /// <summary>
+    /// Button config.
+    /// </summary>
+    /// <getter>get_config</getter>
+    /// <setter>set_config</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.config" />
     get_config: function() {
         return this.config;
     },
     set_config: function(value) {
         this.config = value;
     },
+
+    /// <summary>
+    /// Button source rest.
+    /// </summary>
+    /// <getter>get_srcRest</getter>
+    /// <setter>set_srcRest</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.srcRest" />
     get_srcRest: function() {
         return this._srcRest;
     },
     set_srcRest: function(value) {
         this._srcRest = value;
     },
+
+    /// <summary>
+    /// Button source group.
+    /// </summary>
+    /// <getter>get_srcGroup</getter>
+    /// <setter>set_srcGroup</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.srcGroup" />
     get_srcGroup: function() {
         return this._srcGroup;
     },
     set_srcGroup: function(value) {
         this._srcGroup = value;
     },
+
+    /// <summary>
+    /// Button source hover.
+    /// </summary>
+    /// <getter>get_srcHover</getter>
+    /// <setter>set_srcHover</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.srcHover" />
     get_srcHover: function() {
         return this._srcHover;
     },
     set_srcHover: function(value) {
         this._srcHover = value;
     },
+
+    /// <summary>
+    /// Button source down.
+    /// </summary>
+    /// <getter>get_srcDown</getter>
+    /// <setter>set_srcDown</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.srcDown" />
     get_srcDown: function() {
         return this._srcDown;
     },
     set_srcDown: function(value) {
         this._srcDown = value;
     },
+
+    /// <summary>
+    /// Occurs on button press.
+    /// </summary>
+    /// <event add="add_onPress" remove="remove_onPress" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Button.onPress" />
     add_onPress: function(handler) {
         this.get_events().addHandler("onPress", handler);
     },
     remove_onPress: function(handler) {
         this.get_events().removeHandler("onPress", handler);
     },
+
+    /// <summary>
+    /// Occurs on button click.
+    /// </summary>
+    /// <event add="add_onClick" remove="remove_onClick" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Button.onClick" />
     add_onClick: function(handler) {
         this.get_events().addHandler("onClick", handler);
     },
     remove_onClick: function(handler) {
         this.get_events().removeHandler("onClick", handler);
     },
+
+    /// <summary>
+    /// Occurs on button enter.
+    /// </summary>
+    /// <event add="add_onEnter" remove="remove_onEnter" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Button.onEnter" />
     add_onEnter: function(handler) {
         this.get_events().addHandler("onEnter", handler);
     },
     remove_onEnter: function(handler) {
         this.get_events().removeHandler("onEnter", handler);
     },
+
+    /// <summary>
+    /// Occurs on button release.
+    /// </summary>
+    /// <event add="add_onRelease" remove="remove_onRelease" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Button.onRelease" />
     add_onRelease: function(handler) {
         this.get_events().addHandler("onRelease", handler);
     },
     remove_onRelease: function(handler) {
         this.get_events().removeHandler("onRelease", handler);
     },
+
+    /// <summary>
+    /// Occurs on button exit.
+    /// </summary>
+    /// <event add="add_onExit" remove="remove_onExit" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Button.onExit" />
     add_onExit: function(handler) {
         this.get_events().addHandler("onExit", handler);
     },
     remove_onExit: function(handler) {
         this.get_events().removeHandler("onExit", handler);
     },
+
+    /// <summary>
+    /// Notify group enter.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.Seadragon.Button.notifyGroupEnter" />
     notifyGroupEnter: function() {
         this._inTo(Sys.Extended.UI.Seadragon.ButtonState.GROUP);
     },
+
+    /// <summary>
+    /// Notify group exit.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.Seadragon.Button.notifyGroupExit" />
     notifyGroupExit: function() {
         this._outTo(Sys.Extended.UI.Seadragon.ButtonState.REST);
     }
@@ -818,15 +906,35 @@ Sys.Extended.UI.Seadragon.ButtonGroup.prototype = {
     },
     dispose: function() {
     },
+
+    /// <summary>
+    /// List of buttons.
+    /// </summary>
+    /// <getter>get_buttons</getter>
+    /// <setter>set_buttons</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.ButtonGroup.buttons" />
     get_buttons: function() {
         return this._buttons;
     },
     set_buttons: function(value) {
         this._buttons = value;
     },
+
+    /// <summary>
+    /// ButtonGroup element.
+    /// </summary>
+    /// <getter>get_element</getter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.ButtonGroup.element" />
     get_element: function() {
         return this._group;
     },
+
+    /// <summary>
+    /// ButtonGroup config.
+    /// </summary>
+    /// <getter>get_config</getter>
+    /// <setter>set_config</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.ButtonGroup.config" />
     get_config: function() {
         return this.config;
     },
@@ -855,10 +963,19 @@ Sys.Extended.UI.Seadragon.ButtonGroup.prototype = {
             for(var i = 0; i < this._buttons.length; i++)
                 this._buttons[i].notifyGroupExit();
     },
+
+    /// <summary>
+    /// Emulates enter.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.Seadragon.ButtonGroup.emulateEnter" />
     emulateEnter: function() {
         this._enterHandler();
     },
 
+    /// <summary>
+    /// Emulates exit.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.Seadragon.ButtonGroup.emulateExit" />
     emulateExit: function() {
         this._exitHandler();
     }
@@ -1529,196 +1646,417 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
         this._animating = animated;
         this.profiler.endUpdate();
     },
-
+    
+    /// <summary>
+    /// Returns navigation control of the viewer.
+    /// </summary>
+    /// <returns type="Sys.Extended.UI.Seadragon.NavControl">Navigation control</returns>
+    /// <member name="cM:AjaxControlToolkit.Seadragon.Viewer.getNavControl" />
     getNavControl: function() {
         return this._navControl;
     },
+
+    /// <summary>
+    /// XML path.
+    /// </summary>
+    /// <getter>get_xmlPath</getter>
+    /// <setter>set_xmlPath</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.xmlPath" />
     get_xmlPath: function() {
         return this._xmlPath;
     },
     set_xmlPath: function(value) {
         this._xmlPath = value;
     },
+
+    /// <summary>
+    /// Whether or not debug mode is enabled.
+    /// </summary>
+    /// <getter>get_debugMode</getter>
+    /// <setter>set_debugMode</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.debugMode" />
     get_debugMode: function() {
         return this.config.debugMode;
     },
     set_debugMode: function(value) {
         this.config.debugMode = value;
     },
+
+    /// <summary>
+    /// The amount of time in seconds that animations should last. Default is 1.5.
+    /// </summary>
+    /// <getter>get_animationTime</getter>
+    /// <setter>set_animationTime</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.animationTime" />
     get_animationTime: function() {
         return this.config.animationTime;
     },
     set_animationTime: function(value) {
         this.config.animationTime = value;
     },
+
+    /// <summary>
+    /// The amount of time in seconds that new tiles take to blend from transparent to opaque. Default is 0.5.
+    /// </summary>
+    /// <getter>get_blendTime</getter>
+    /// <setter>set_blendTime</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.blendTime" />
     get_blendTime: function() {
         return this.config.blendTime;
     },
     set_blendTime: function(value) {
         this.config.blendTime = value;
     },
+
+    /// <summary>
+    /// Whether tiles should always blend in and out, not just when they're first loaded. Default is false.
+    /// </summary>
+    /// <getter>get_alwaysBlend</getter>
+    /// <setter>set_alwaysBlend</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.alwaysBlend" />
     get_alwaysBlend: function() {
         return this.config.alwaysBlend;
     },
     set_alwaysBlend: function(value) {
         this.config.alwaysBlend = value;
     },
+
+    /// <summary>
+    /// Whether controls should get automatically hidden when the user's mouse is off
+    /// the viewer and the image has stopped animating. Default is true.
+    /// </summary>
+    /// <getter>get_autoHideControl</getter>
+    /// <setter>set_autoHideControl</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.autoHideControls" />
     get_autoHideControls: function() {
         return this.config.autoHideControls;
     },
     set_autoHideControls: function(value) {
         this.config.autoHideControls = value;
     },
+
+    /// <summary>
+    /// Whether the most appropriate tiles should always be rendered first, before any lower-res
+    /// tiles are rendered. This loses the "sharpening" effect and instead creates a very visible "tiling" effect. Default is false.
+    /// </summary>
+    /// <getter>get_immediateRender</getter>
+    /// <setter>set_immediateRender</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.immediateRender" />
     get_immediateRender: function() {
         return this.config.immediateRender;
     },
     set_immediateRender: function(value) {
         this.config.immediateRender = value;
     },
+
+    /// <summary>
+    /// Horizontal wrapping.
+    /// </summary>
+    /// <getter>get_wrapHorizontal</getter>
+    /// <setter>set_wrapHorizontal</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.wrapHorizontal" />
     get_wrapHorizontal: function() {
         return this.config.wrapHorizontal;
     },
     set_wrapHorizontal: function(value) {
         this.config.wrapHorizontal = value;
     },
+
+    /// <summary>
+    /// Vertical wrapping.
+    /// </summary>
+    /// <getter>get_wrapVertical</getter>
+    /// <setter>set_wrapVertical</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.wrapVertical" />
     get_wrapVertical: function() {
         return this.config.wrapVertical;
     },
     set_wrapVertical: function(value) {
         this.config.wrapVertical = value;
     },
+
+    /// <summary>
+    /// The minimum size (in screen pixels) of either dimension that can result from zooming out. Default is 16.
+    /// </summary>
+    /// <getter>get_minZoomDimension</getter>
+    /// <setter>set_minZoomDimension</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.minZoomDimension" />
     get_minZoomDimension: function() {
         return this.config.minZoomDimension;
     },
     set_minZoomDimension: function(value) {
         this.config.minZoomDimension = value;
     },
+
+    /// <summary>
+    /// The maximum pixel ratio (screen pixel to content pixel) that can result from zooming in. Default is 4.
+    /// </summary>
+    /// <getter>get_maxZoomPizelRation</getter>
+    /// <setter>set_maxZoomPizelRation</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.maxZoomPixelRatio" />
     get_maxZoomPixelRatio: function() {
         return this.config.maxZoomPixelRatio;
     },
     set_maxZoomPixelRatio: function(value) {
         this.config.maxZoomPixelRatio = value;
     },
+
+    /// <summary>
+    /// The minimum portion of the viewport that must show visible content in both dimensions. Default is 0.1.
+    /// </summary>
+    /// <getter>get_visibilityRatio</getter>
+    /// <setter>set_visibilityRatio</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.visibilityRatio" />
     get_visibilityRatio: function() {
         return this.config.visibilityRatio;
     },
     set_visibilityRatio: function(value) {
         this.config.visibilityRatio = value;
     },
+
+    /// <summary>
+    /// Determines how sharply the springs used for animations move. Default is 5.0.
+    /// </summary>
+    /// <getter>get_springStiffness</getter>
+    /// <setter>set_springStiffness</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.springStiffness" />
     get_springStiffness: function() {
         return this.config.springStiffness;
     },
     set_springStiffness: function(value) {
         this.config.springStiffness = value;
     },
+
+    /// <summary>
+    /// The maximum number of concurrent image downloads that can be performed by each viewer. Default is 2.
+    /// </summary>
+    /// <getter>get_imageLoaderLimit</getter>
+    /// <setter>set_imageLoaderLimit</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.imageLoaderLimit" />
     get_imageLoaderLimit: function() {
         return this.config.imageLoaderLimit;
     },
     set_imageLoaderLimit: function(value) {
         this.config.imageLoaderLimit = value;
     },
+
+    /// <summary>
+    /// The maximum number of milliseconds that can pass between a mousedown and 
+    /// a mouseup for the action to still be considered a "quick" click. Default is 200.
+    /// </summary>
+    /// <getter>get_clickTimeThreshold</getter>
+    /// <setter>set_clickTimeThreshold</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.clickTimeThreshold" />
     get_clickTimeThreshold: function() {
         return this.config.clickTimeThreshold;
     },
     set_clickTimeThreshold: function(value) {
         this.config.clickTimeThreshold = value;
     },
+
+    /// <summary>
+    /// The maximum number of pixels the mouse can move between a mousedown and a mouseup
+    /// for the action to still be considered a "quick" click. Default is 5.
+    /// </summary>
+    /// <getter>get_clickDistThreshold</getter>
+    /// <setter>set_clickDistThreshold</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.clickDistThreshold" />
     get_clickDistThreshold: function() {
         return this.config.clickDistThreshold;
     },
     set_clickDistThreshold: function(value) {
         this.config.clickDistThreshold = value;
     },
+
+    /// <summary>
+    /// The factor by which images should zoom when clicked on. Default is 2.
+    /// </summary>
+    /// <getter>get_zoomPerClick</getter>
+    /// <setter>set_zoomPerClick</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.zoomPerClick" />
     get_zoomPerClick: function() {
         return this.config.zoomPerClick;
     },
     set_zoomPerClick: function(value) {
         this.config.zoomPerClick = value;
     },
+
+    /// <summary>
+    /// The factor by which images should zoom over each second when the zoom buttons are held down. Default is 2.
+    /// </summary>
+    /// <getter>get_zoomPerSecond</getter>
+    /// <setter>set_zoomPerSecond</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.zoomPerSecond" />
     get_zoomPerSecond: function() {
         return this.config.zoomPerSecond;
     },
     set_zoomPerSecond: function(value) {
         this.config.zoomPerSecond = value;
     },
+
+    /// <summary>
+    /// Maximum image cache count.
+    /// </summary>
+    /// <getter>get_maxImageCacheCount</getter>
+    /// <setter>set_maxImageCacheCount</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.maxImageCacheCount" />
     get_maxImageCacheCount: function() {
         return this.config.maxImageCacheCount;
     },
     set_maxImageCacheCount: function(value) {
         this.config.maxImageCacheCount = value;
     },
+
+    /// <summary>
+    /// Whether navigation buttons should be shown.
+    /// </summary>
+    /// <getter>get_showNavigationControl</getter>
+    /// <setter>set_showNavigationControl</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.showNavigationControl" />
     get_showNavigationControl: function() {
         return this.config.showNavigationControl;
     },
     set_showNavigationControl: function(value) {
         this.config.showNavigationControl = value;
     },
+
+    /// <summary>
+    /// The minimum pixel ratio.
+    /// </summary>
+    /// <getter>get_minPixelRatio</getter>
+    /// <setter>set_minPixelRatio</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.minPixelRatio" />
     get_minPixelRatio: function() {
         return this.config.minPixelRatio;
     },
     set_minPixelRatio: function(value) {
         this.config.minPixelRatio = value;
     },
+
+    /// <summary>
+    /// Whether mouse navigation is enabled.
+    /// </summary>
+    /// <getter>get_mouseNavEnabled</getter>
+    /// <setter>set_mouseNavEnabled</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.mouseNavEnabled" />
     get_mouseNavEnabled: function() {
         return this.config.mouseNavEnabled;
     },
     set_mouseNavEnabled: function(value) {
         this.config.mouseNavEnabled = value;
     },
+
+    /// <summary>
+    /// Controls list.
+    /// </summary>
+    /// <getter>get_controls</getter>
+    /// <setter>set_controls</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.controls" />
     get_controls: function() {
         return this._customControls;
     },
     set_controls: function(value) {
         this._customControls = value;
     },
+
+    /// <summary>
+    /// Overlay controls list.
+    /// </summary>
+    /// <getter>get_overlays</getter>
+    /// <setter>set_overlays</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.overlays" />
     get_overlays: function() {
         return this._overlayControls;
     },
     set_overlays: function(value) {
         this._overlayControls = value;
     },
+
+    /// <summary>
+    /// Prefix url.
+    /// </summary>
+    /// <getter>get_prefixUrl</getter>
+    /// <setter>set_prefixUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.prefixUrl" />
     get_prefixUrl: function() {
         return this._prefixUrl;
     },
     set_prefixUrl: function(value) {
         this._prefixUrl = value;
     },
+
+    /// <summary>
+    /// Occurs when viewer is open.
+    /// </summary>
+    /// <event add="add_open" remove="remove_open" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.open" />
     add_open: function(handler) {
         this.get_events().addHandler("open", handler);
     },
     remove_open: function(handler) {
         this.get_events().removeHandler("open", handler);
     },
+
+    /// <summary>
+    /// Occurs on error.
+    /// </summary>
+    /// <event add="add_error" remove="remove_error" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.error" />
     add_error: function(handler) {
         this.get_events().addHandler("error", handler);
     },
     remove_error: function(handler) {
         this.get_events().removeHandler("error", handler);
     },
+
+    /// <summary>
+    /// Occurs on ignore.
+    /// </summary>
+    /// <event add="add_ignore" remove="remove_ignore" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.ignore" />
     add_ignore: function(handler) {
         this.get_events().addHandler("ignore", handler);
     },
     remove_ignore: function(handler) {
         this.get_events().removeHandler("ignore", handler);
     },
+
+    /// <summary>
+    /// Occurs on viewer resize.
+    /// </summary>
+    /// <event add="add_resize" remove="remove_resize" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.resize" />
     add_resize: function(handler) {
         this.get_events().addHandler("resize", handler);
     },
     remove_resize: function(handler) {
         this.get_events().removeHandler("resize", handler);
     },
+
+    /// <summary>
+    /// Occurs when animation starts.
+    /// </summary>
+    /// <event add="add_animationstart" remove="remove_animationstart" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.animationstart" />
     add_animationstart: function(handler) {
         this.get_events().addHandler("animationstart", handler);
     },
     remove_animationstart: function(handler) {
         this.get_events().removeHandler("animationstart", handler);
     },
+
+    /// <summary>
+    /// Occurs when animation ends.
+    /// </summary>
+    /// <event add="add_animationend" remove="remove_animationend" raise="" />
+    /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.animationend" />
     add_animationend: function(handler) {
         this.get_events().addHandler("animationend", handler);
     },
     remove_animationend: function(handler) {
         this.get_events().removeHandler("animationend", handler);
     },
+
     addControl: function(elmt, anchor) {
         var elmt = Seadragon.Utils.getElement(elmt);
 
@@ -1753,26 +2091,31 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
 
         this._controls.push(new Sys.Extended.UI.Seadragon.Control(elmt, anchor, div));
     },
+
     isOpen: function() {
         return !!this.source;
     },
+
     openDzi: function(xmlUrl, xmlString) {
         var currentTime = this._beforeOpen();
         Sys.Extended.UI.Seadragon.DziTileSourceHelper.createFromXml(xmlUrl, xmlString,
                     Seadragon.Utils.createCallback(null, Function.createDelegate(this, this._onOpen), currentTime));
     },
+
     openTileSource: function(tileSource) {
         var currentTime = this._beforeOpen();
         window.setTimeout(Function.createDelegate(this, function() {
             this._onOpen(currentTime, tileSource);
         }), 1);
     },
+
     close: function() {
         if(!this.source)
             return;
 
         this._onClose();
     },
+
     removeControl: function(elmt) {
         var elmt = Seadragon.Utils.getElement(elmt);
         var i = this._getControlIndex(elmt);
@@ -1782,10 +2125,12 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
             this._controls.splice(i, 1);
         }
     },
+
     clearControls: function() {
         while(this._controls.length > 0)
             this._controls.pop().destroy();
     },
+    
     isDashboardEnabled: function() {
         for(var i = this._controls.length - 1; i >= 0; i--)
             if(this._controls[i].isVisible())
@@ -3925,13 +4270,30 @@ Sys.Extended.UI.Seadragon.Viewport.prototype = {
         var zoom = this._contentSize.x * this.config.maxZoomPixelRatio / this._containerSize.x;
         return Math.max(zoom, this._getHomeZoom());
     },
+    
+    /// <summary>
+    /// Returns aspect ratio.
+    /// </summary>
+    /// <returns type="Number">Aspect ratio</returns>
+    /// <member name="cM:AjaxControlToolkit.Seadragon.Viewport.getAspectRatio" />
     getAspectRatio: function() {
         return this._containerSize.x / this._containerSize.y;
     },
+
+    /// <summary>
+    /// Returns container size.
+    /// </summary>
+    /// <returns type="Sys.Extended.UI.Seadragon.Point">Container size</returns>
+    /// <member name="cM:AjaxControlToolkit.Seadragon.Viewport.getContainerSize" />
     getContainerSize: function() {
         return new Sys.Extended.UI.Seadragon.Point(this._containerSize.x, this._containerSize.y);
     },
 
+    /// <summary>
+    /// Returns viewport bounds.
+    /// </summary>
+    /// <returns type="Sys.Extended.Seadragon.Rect">Viewport bounds</returns>
+    /// <member name="cM:AjaxControlToolkit.Seadragon.Viewport.getBounds" />
     getBounds: function(current) {
         var center = this.getCenter(current),
             width = 1.0 / this.getZoom(current),
@@ -3940,6 +4302,11 @@ Sys.Extended.UI.Seadragon.Viewport.prototype = {
         return new Sys.Extended.UI.Seadragon.Rect(center.x - width / 2.0, center.y - height / 2.0, width, height);
     },
 
+    /// <summary>
+    /// Returns viewport center point.
+    /// </summary>
+    /// <returns type="Sys.Exteded.Seadragon.Point">Viewport center point</returns>
+    /// <member name="cM:AjaxControlToolkit.Seadragon.Viewport.getCenter" />
     getCenter: function(current) {
         var centerCurrent = new Sys.Extended.UI.Seadragon.Point(this._centerSpringX.getCurrent(), this._centerSpringY.getCurrent()),
             centerTarget = new Sys.Extended.UI.Seadragon.Point(this._centerSpringX.getTarget(), this._centerSpringY.getTarget());
@@ -3972,6 +4339,11 @@ Sys.Extended.UI.Seadragon.Viewport.prototype = {
         return centerTarget.plus(deltaZoomPoints);
     },
 
+    /// <summary>
+    /// Returns current zoom level.
+    /// </summary>
+    /// <returns type="Number">Viewport current zoom level</returns>
+    /// <member name="cM:AjaxControlToolkit.Seadragon.Viewport.getZoom" />
     getZoom: function(current) {
         if(current)
             return this._zoomSpring.getCurrent();
