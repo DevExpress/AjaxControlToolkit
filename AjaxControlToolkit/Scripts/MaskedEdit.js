@@ -2476,6 +2476,8 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         });
 
         if(loadFirst) {
+            m_arrDateLD = input.split(this.get_CultureDatePlaceholder());
+
             if(this.get_UserDateFormat() != Sys.Extended.UI.MaskedEditUserDateFormat.None) {
                 if(this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.DayMonthYear)
                     this._CultureDateFormat = 'DMY';

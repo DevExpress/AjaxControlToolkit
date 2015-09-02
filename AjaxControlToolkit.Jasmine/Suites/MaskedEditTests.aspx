@@ -137,6 +137,15 @@
 
                 expect(this.$numberWithZeroTarget.val()).toBe(expectedValue);
             });
+
+            it("date formatting does not throw an exception when user date format is set (CodePlex item 27921)", function() {
+                this.dateExtender._UserDateFormat = Sys.Extended.UI.MaskedEditUserDateFormat.DayMonthYear;
+
+                var that = this;
+                expect(function() {
+                    that.dateExtender.ConvFmtDate("10/10/2000", true)
+                }).not.toThrow();
+            });
         });
 
         function getKeyboardEvent(prefs) {
