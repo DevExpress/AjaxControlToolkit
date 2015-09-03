@@ -1,15 +1,12 @@
 ﻿using AjaxControlToolkit.Reference.Core;
 using AjaxControlToolkit.Reference.Core.Parsing;
 using AjaxControlToolkit.Reference.Core.Rendering;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Xml.Linq;
-using System.Web.UI.WebControls;
 using AjaxControlToolkit.ReferenceCore.Parsing;
+using System;
+using System.Linq;
+using System.Web.Mvc;
+using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace AjaxControlToolkit.Reference.Controllers {
 
