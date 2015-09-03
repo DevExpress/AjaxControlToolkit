@@ -9,6 +9,7 @@ namespace AjaxControlToolkit.Jasmine.Suites {
     public partial class MaskedEditTests : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
 
+            PhoneNumberTarget.Text = "1234567890";
         }
     }
 }

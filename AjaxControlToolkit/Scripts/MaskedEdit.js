@@ -2042,11 +2042,14 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                         this.InsertSignal(c);
                     }
 
-                    if(this._processKey(logicPosition, c)) {
-                        if(this._MaskType != Sys.Extended.UI.MaskedEditType.Number)
-                            this._insertContent(c, logicPosition);
-                        logicPosition = this._getPreviousPosition(logicPosition - 1);
-                    }
+                    if(this._processKey(logicPosition, c))
+                        this._insertContent(c, logicPosition);
+
+                    oldLogicPosition = logicPosition;
+                    logicPosition = this._getPreviousPosition(logicPosition - 1);
+
+                    if(this._MaskType === Sys.Extended.UI.MaskedEditType.Number && logicPosition === oldLogicPosition)
+                        break;
                 }
             }
         }

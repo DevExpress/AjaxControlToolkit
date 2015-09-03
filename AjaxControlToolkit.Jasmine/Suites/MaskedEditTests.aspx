@@ -34,6 +34,17 @@
         Mask="09999"
         CultureName="en-US" />
 
+    <asp:TextBox runat="server"
+        ID="PhoneNumberTarget" MaxLength="10" />
+    <act:MaskedEditExtender runat="server"
+        ID="PhoneNumberTargetExtender"
+        TargetControlID="PhoneNumberTarget"
+        MaskType="Number"
+        ClearMaskOnLostFocus="false"
+        Mask="(999) 999-9999"
+        ClearTextOnInvalid="false"
+        CultureName="en-US" />
+
     <script>
 
         describe("MaskedEdit", function() {
@@ -43,7 +54,9 @@
                 DATE_TARGET_CLIENT_ID = "<%= DateTarget.ClientID %>",
                 DATE_EXTENDER_CLIENT_ID = "<%= DateTargetExtender.ClientID %>",
                 NUMBER_WITH_ZERO_TARGET_CLIENT_ID = "<%= NumberWithZeroTarget.ClientID %>",
-                NUMBER_WITH_ZERO_CLIENT_ID = "<%= NumberWithZeroTargetExtender.ClientID %>";
+                NUMBER_WITH_ZERO_CLIENT_ID = "<%= NumberWithZeroTargetExtender.ClientID %>",
+                PHONE_NUMBER_TARGET_CLIENT_ID = "<%= PhoneNumberTarget.ClientID %>",
+                PHONE_NUMBER_EXTENDER_CLIENT_ID = "<%= PhoneNumberTargetExtender.ClientID %>";
 
             beforeEach(function() {
                 this.$commonTarget = $(COMMON_TARGET_CLIENT_ID.toIdSelector());
@@ -54,6 +67,9 @@
 
                 this.$numberWithZeroTarget = $(NUMBER_WITH_ZERO_TARGET_CLIENT_ID.toIdSelector());
                 this.numberWithZeroExtender = $find(NUMBER_WITH_ZERO_CLIENT_ID);
+
+                this.phoneNumberExtender = $find(PHONE_NUMBER_EXTENDER_CLIENT_ID);
+                this.$phoneNumberTarget = $(PHONE_NUMBER_TARGET_CLIENT_ID.toIdSelector());
             });
 
             it("removes symbol on backspace", function() {
@@ -145,6 +161,10 @@
                 expect(function() {
                     that.dateExtender.ConvFmtDate("10/10/2000", true)
                 }).not.toThrow();
+            });
+
+            it("target control should have proper initialization text (CodePlex item 27920)", function() {
+                expect(this.$phoneNumberTarget.val()).toBe("(123) 456-7890");
             });
         });
 
