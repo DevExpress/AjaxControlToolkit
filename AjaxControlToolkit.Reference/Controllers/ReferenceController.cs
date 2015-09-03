@@ -65,15 +65,12 @@ namespace AjaxControlToolkit.Reference.Controllers {
                 "UpdatePanelAnimationExtender",
                 "ValidatorCalloutExtender"
             };
-            var doc = GetDoc();
 
-            var types = doc.Types.Where(t => typeNames.Contains(t.Name)).Select(t => t.Name);
-
-            return View(types);
+            return View(typeNames);
         }
 
-        public ContentResult Markup() {
-            var doc = GetDoc();
+        public ContentResult Markup(string typeName) {
+            var doc = GetDoc(typeName);
 
             foreach(var docType in doc.Types.ToList()) {
                 var typeFullName = docType.Namespace + "." + GetNeededType(docType.Name);
@@ -119,15 +116,19 @@ namespace AjaxControlToolkit.Reference.Controllers {
             }
         }
 
-        Documentation GetDoc() {
+        Documentation GetDoc(string type) {
             var doc = new Documentation();
             var xml = LoadXml(Server.MapPath("~/bin/AjaxControltoolkit.xml"));
 
-            var members = xml.Root.Element("members").Elements().Select(el => new RawDoc(el.Attribute("name").Value) {
-                Elements = el.Elements()
-            }).OrderBy(el => el.TargetFullName);
+            var members = xml.Root.Element("members").Elements()
+                .Where(el => el.Attribute("name").ToString().Contains(type))
+                .Select(el => new RawDoc(el.Attribute("name").Value) {
+                    Elements = el.Elements()
+                })
+                .OrderBy(el => el.TargetFullName);
 
             doc.Add(members, ContentType.Xml);
+
             return doc;
         }
 

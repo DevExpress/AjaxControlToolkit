@@ -1,13 +1,11 @@
-﻿@model IEnumerable<string>
+﻿@model string[]
 
 @{
     Layout = "~/Views/_Layout.cshtml";
 }
 
-@Html.ActionLink("CodePlex markup", "Markup")
-
 <ul>
     @foreach(var typeName in Model) {
-        <li><a href="/Reference/Type/@typeName">@typeName</a></li>
+        <li>@Html.ActionLink(typeName, "Markup", "Reference", new { typeName = typeName }, null)</li>
     }
 </ul>
