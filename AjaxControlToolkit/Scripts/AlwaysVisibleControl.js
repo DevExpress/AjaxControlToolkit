@@ -134,7 +134,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
     },
 
     ///<summary>
-    /// Initialize of AlwaysVisibleControl.
+    /// Dispose of AlwaysVisibleControl.
     ///</summary>
     /// <member name="cM:AjaxControlToolkit.AlwaysVisibleControlExtender.dispose" />
     dispose: function() {

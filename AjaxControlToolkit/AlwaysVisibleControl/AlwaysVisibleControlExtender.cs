@@ -22,7 +22,7 @@ namespace AjaxControlToolkit {
 
         ///<summary>
         /// Distance to the horizontal edge of the browser in pixels from the
-        /// same side of the target control. The default is 0 pixels.
+        /// same side of the target control. The default is 0.
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -34,7 +34,7 @@ namespace AjaxControlToolkit {
 
         ///<summary>
         /// Horizontal side of the browser to anchor the control against.
-        /// The default is the Left side.
+        /// The default is the Left.
         ///</summary>
         [ExtenderControlProperty()]
         [DefaultValue(HorizontalSide.Left)]
@@ -46,7 +46,7 @@ namespace AjaxControlToolkit {
 
         ///<summary>
         /// Distance to the vertical edge of the browser in pixels from the
-        /// same side of the target control. The default is 0 pixels.
+        /// same side of the target control. The default is 0.
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -58,7 +58,7 @@ namespace AjaxControlToolkit {
 
         ///<summary>
         /// Vertical side of the browser to anchor the control against.
-        /// The default is the Top side.
+        /// The default is the Top.
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(VerticalSide.Top)]
@@ -70,7 +70,7 @@ namespace AjaxControlToolkit {
 
         ///<summary>
         /// Length in seconds for the scrolling effect to last when the target
-        /// control is repositioned. The default is .1 seconds.
+        /// control is repositioned. The default is .1
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0.1f)]
@@ -82,6 +82,7 @@ namespace AjaxControlToolkit {
 
         ///<summary>
         /// Whether or not to animate the element into position.
+        /// The default is false.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
