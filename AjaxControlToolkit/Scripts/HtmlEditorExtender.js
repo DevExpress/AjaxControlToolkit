@@ -13,11 +13,35 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._isInFocus = null;
     this._oldContents = null;
     this._newContents = null;
+    ///<summary>
+    /// Flag indicating that HtmlEditorExtender content is changed.
+    ///</summary>
+    /// <getter>get_isDirty</getter>
+    /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.isDirty" />
     this._isDirty = false;
     this._viewMode = 'content';
+
+    ///<summary>
+    /// Determines whether to display source view tab/button to see source view of the HtmlEditorExtender.
+    ///</summary>
+    /// <getter>get_displaySourceTab</getter>
+    /// <setter>set_displaySourceTab</setter>
+    /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.displaySourceTab" />
     this._displaySourceTab = false;
 
+    ///<summary>
+    /// Button width in pixels.
+    ///</summary>
+    /// <getter>get_buttonWidth</getter>
+    /// <setter>set_buttonWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.buttonWidth" />
     this._ButtonWidth = 23;
+    ///<summary>
+    /// Button height in pixels.
+    ///</summary>
+    /// <getter>get_buttonHeight</getter>
+    /// <setter>set_buttonHeight</setter>
+    /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.buttonHeight" />
     this._ButtonHeight = 21;
 
     //Templates
@@ -132,6 +156,12 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
 
     // variables
     this._container = null;
+    ///<summary>
+    /// Collection of toolbar buttons.
+    ///</summary>
+    /// <getter>get_toolbarButtons</getter>
+    /// <setter>set_toolbarButtons</setter>
+    /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.toolbarButtons" />
     this._toolbarButtons = null;
     this._editableDiv = null;
     this._sourceViewDiv = null;
@@ -221,7 +251,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             this._sourceViewDivOnBlurDelegate = Function.createDelegate(this, this._sourceViewDiv_onblur);
         }
 
-        // handlers                                
+        // handlers
         $addHandler(this._textbox._element, 'blur', this._textBoxOnBlurDelegate, true);
         $addHandler(this._editableDiv, 'blur', this._editableDivOnBlurDelegate, true);
         $addHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate, true);
@@ -907,15 +937,21 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             document.execCommand(this._commandName, false, "#" + e._selectedColor);
     },
 
-    // Save selected text
-    saveSelection: function() {
+    ///<summary>
+    /// Save selected text
+    ///</summary>
+    /// <member name="cM:AjaxControlToolkit.HtmlEditorExtender.saveSelection" />
+    saveSelection: function () {
         if(window.getSelection) //non IE Browsers
             this._savedRange = window.getSelection().rangeCount && window.getSelection().getRangeAt(0);
         else if(document.selection) //IE
             this._savedRange = document.selection.createRange();
     },
 
-    //Restore selected text
+    ///<summary>
+    ///Restore selected text
+    ///</summary>
+    /// <member name="cM:AjaxControlToolkit.HtmlEditorExtender.restoreSelection" />
     restoreSelection: function() {
         this._isInFocus = true;
 
@@ -980,42 +1016,66 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             if(!eventArgs)
                 eventArgs = Sys.EventArgs.Empty;
 
-            // Fire event.                          
+            // Fire event.
             handler(this, eventArgs);
         }
     },
 
-    get_ButtonWidth: function() {
+    get_buttonWidth: function () {
         return this._ButtonWidth;
     },
+    get_ButtonWidth: function() {
+        Sys.Extended.Deprecated("get_ButtonWidth()", "get_buttonWidth()");
+        return this.get_buttonWidth();
+    },
 
-    set_ButtonWidth: function(value) {
-        if(this._ButtonWidth != value) {
+    set_buttonWidth: function (value) {
+        if (this._ButtonWidth != value) {
             this._ButtonWidth = value;
             this.raisePropertyChanged('ButtonWidth');
         }
     },
-
-    get_ButtonHeight: function() {
-        return this._ButtonHeight;
+    set_ButtonWidth: function(value) {
+        Sys.Extended.Deprecated("set_ButtonWidth(value)", "set_buttonWidth(value)");
+        this.set_buttonWidth(value);
     },
 
-    set_ButtonHeight: function(value) {
+    get_buttonHeight: function() {
+        return this._ButtonHeight;
+    },
+    get_ButtonHeight: function () {
+        Sys.Extended.Deprecated("get_ButtonHeight()", "get_buttonHeight()");
+        return this.get_buttonHeight();
+    },
+
+    set_buttonHeight: function(value) {
         if(this._ButtonHeight != value) {
             this._ButtonHeight = value;
             this.raisePropertyChanged('ButtonHeight');
         }
     },
-
-    get_ToolbarButtons: function() {
-        return this._toolbarButtons;
+    set_ButtonHeight: function (value) {
+        Sys.Extended.Deprecated("set_ButtonHeight(value)", "set_buttonHeight(value)");
+        this.set_buttonHeight();
     },
 
-    set_ToolbarButtons: function(value) {
+    get_toolbarButtons: function () {
+        return this._toolbarButtons;
+    },
+    get_ToolbarButtons: function() {
+        Sys.Extended.Deprecated("get_ToolbarButtons()", "get_toolbarButtons()");
+        return this.get_toolbarButtons();
+    },
+
+    set_toolbarButtons: function(value) {
         if(this._toolbarButtons != value) {
             this._toolbarButtons = value;
             this.raisePropertyChanged('ToolbarButtons');
         }
+    },
+    set_ToolbarButtons: function (value) {
+        Sys.Extended.Deprecated("set_ToolbarButtons(value)", "set_ToolbarButtons(value)");
+        this.set_toolbarButtons(value);
     },
 
     get_displaySourceTab: function() {
@@ -1029,10 +1089,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }
     },
 
+    ///<summary>
+    /// Event handler to raise when text change occurs.
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.HtmlEditorExtender.change" />
+    ///<event add="add_change" remove="remove_change" />
     add_change: function(handler) {
         this.get_events().addHandler("change", handler);
     },
-
     remove_change: function(handler) {
         this.get_events().removeHandler("change", handler);
     },
