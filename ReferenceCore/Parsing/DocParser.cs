@@ -58,7 +58,7 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
 
             info.AddMethodName = @event.Attribute("add").Value;
             info.RemoveMethodName = @event.Attribute("remove").Value;
-            info.RaiseMethodName = @event.Attribute("raise").Value;
+            info.RaiseMethodName = @event.Attribute("raise") != null ? @event.Attribute("raise").Value : null;
         }
 
         void GetSummaryAndRemarks(DocBase info, IEnumerable<XElement> values, ContentType contentType) {
