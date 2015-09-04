@@ -58,6 +58,7 @@ namespace AjaxControlToolkit {
         ///<summary>
         /// This will be true when postback will happen from the control.
         /// This can be used to avoid execution of unnecessary code during partial postback.
+        /// The default is false.
         /// </summary>
         [Browsable(false)]
         [DefaultValue(false)]
@@ -65,6 +66,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Maximum number of files in upload queue.
+        /// The default is 10.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(10)]
@@ -73,6 +75,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Сomma-separated list of allowed file extensions.
+        /// The default is empty string.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -80,7 +83,8 @@ namespace AjaxControlToolkit {
         public string AllowedFileTypes { get; set; }
 
         ///<summary>
-        /// Size of chunk used by HTML5 to upload large file in Mega Bytes.
+        /// Size of chunk used by HTML5 to upload large file in bytes.
+        /// The default is 4096.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(4096)]
@@ -91,7 +95,8 @@ namespace AjaxControlToolkit {
         }
 
         ///<summary>
-        /// Get or set how AjaxFileUpload displays progress bar.        
+        /// Get or set how AjaxFileUpload displays progress bar.
+        /// The default is Auto.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(AjaxFileUploadMode.Auto)]
