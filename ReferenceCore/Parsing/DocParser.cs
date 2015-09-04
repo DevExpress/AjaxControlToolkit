@@ -79,16 +79,7 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
             if(element == null)
                 return null;
 
-            var content = "";
-            if(contentType == ContentType.Text) {
-                content = element.Value;
-                return CleanSpaces(content, true);
-            } else {
-                var reader = element.CreateReader();
-                reader.MoveToContent();
-                content = reader.ReadInnerXml();
-                return CleanSpaces(content, false);
-            }
+            return CleanSpaces(element.Value, true);
         }
 
         string CleanSpaces(string value, bool cleanNewLine) {
