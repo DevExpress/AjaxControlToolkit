@@ -115,11 +115,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
 
     _onClick: function() {
         if(this.get_element().checked) {
-            this._decoyElement.style.backgroundImage = 'url(' + (this.get_element().disabled ? this.get_DisabledCheckedImageUrl() : this._checkedImageUrl) + ')';
+            this._decoyElement.style.backgroundImage = 'url(' + (this.get_element().disabled ? this.get_disabledCheckedImageUrl() : this._checkedImageUrl) + ')';
             if(this._checkedImageAlternateText)
                 this._decoyElement.title = this._checkedImageAlternateText;
         } else {
-            this._decoyElement.style.backgroundImage = 'url(' + (this.get_element().disabled ? this.get_DisabledUncheckedImageUrl() : this._uncheckedImageUrl) + ')';
+            this._decoyElement.style.backgroundImage = 'url(' + (this.get_element().disabled ? this.get_disabledUncheckedImageUrl() : this._uncheckedImageUrl) + ')';
             if(this._uncheckedImageAlternateText)
                 this._decoyElement.title = this._uncheckedImageAlternateText;
         }
@@ -151,7 +151,7 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The width of the image.
+    /// The width of the image
     /// </summary>
     /// <getter>get_imageWidth</getter>
     /// <setter>set_imageWidth</setter>
@@ -176,7 +176,7 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The height of the image.
+    /// The height of the image
     /// </summary>
     /// <getter>get_imageHeight</getter>
     /// <setter>set_imageHeight</setter>
@@ -193,7 +193,7 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
 
     get_ImageHeight: function() {
         Sys.Extended.Deprecated("get_ImageHeight", "get_imageHeight");
-        return this.get_ImageHeight();
+        return this.get_imageHeight();
     },
     set_ImageHeight: function(value) {
         Sys.Extended.Deprecated("set_ImageHeight", "set_imageHeight");
@@ -201,7 +201,7 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The URL of the image to show when the toggle button is in the unchecked state.
+    /// The URL of the image to show when the toggle button is in the unchecked state
     /// </summary>
     /// <getter>get_uncheckedImageUrl</getter>
     /// <setter>set_uncheckedImageUrl</setter>
@@ -226,7 +226,7 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The URL of the image to show when the toggle button is in the checked state.
+    /// The URL of the image to show when the toggle button is in the checked state
     /// </summary>
     /// <getter>get_checkedImageUrl</getter>
     /// <setter>set_checkedImageUrl</setter>
@@ -251,7 +251,7 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The URL of the image to show when the toggle button is disabled and in the unchecked state.
+    /// The URL of the image to show when the toggle button is disabled and in the unchecked state
     /// </summary>
     /// <getter>get_disabledUncheckedImageUrl</getter>
     /// <setter>set_disabledUncheckedImageUrl</setter>
@@ -268,14 +268,16 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_DisabledUncheckedImageUrl: function() {
+        Sys.Extended.Deprecated("get_DisabledUncheckedImageUrl", "get_disabledUncheckedImageUrl");
         return this.get_disabledUncheckedImageUrl();
     },
     set_DisabledUncheckedImageUrl: function(value) {
+        Sys.Extended.Deprecated("set_DisabledUncheckedImageUrl", "set_disabledUncheckedImageUrl");
         this.set_disabledUncheckedImageUrl(value);
     },
 
     /// <summary>
-    /// The URL of the image to show when the toggle button is disabled and in the checked state.
+    /// The URL of the image to show when the toggle button is disabled and in the checked state
     /// </summary>
     /// <getter>get_disabledCheckedImageUrl</getter>
     /// <setter>set_disabledCheckedImageUrl</setter>
@@ -301,7 +303,8 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The URL of the image to show when the toggle button is in the checked state and the mouse is over the button.
+    /// The URL of the image to show when the toggle button is in the checked state and
+    /// the mouse is over the button
     /// </summary>
     /// <getter>get_checkedImageOverUrl</getter>
     /// <setter>set_checkedImageOverUrl</setter>
@@ -326,7 +329,8 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The URL of the image to show when the toggle button is in the unchecked state and the mouse is over the button.
+    /// The URL of the image to show when the toggle button is in the unchecked state and
+    /// the mouse is over the button
     /// </summary>
     /// <getter>get_uncheckedImageOverUrl</getter>
     /// <setter>set_uncheckedImageOverurl</setter>
@@ -351,10 +355,10 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The alt text to show when the toggle button is in the unchecked state.
+    /// The alt text to show when the toggle button is in the unchecked state
     /// </summary>
     /// <getter>get_uncheckedImageAlternateText</getter>
-    /// <setter>set_uncheckedImageALternateText</setter>
+    /// <setter>set_uncheckedImageAlternateText</setter>
     /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.uncheckedImageAlternateText" />
     get_uncheckedImageAlternateText: function() {
         return this._uncheckedImageAlternateText;
@@ -376,7 +380,7 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The alt text to show when the toggle button is in the checked state.
+    /// The alt text to show when the toggle button is in the checked state
     /// </summary>
     /// <getter>get_checkedImageAlternateText</getter>
     /// <setter>set_checkedImageAlternateText</setter>
@@ -401,7 +405,8 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The URL of the image to show when the toggle button is in the checked state and the mouse is over the button.
+    /// The alt text to show when the toggle button is in the checked state and the
+    /// mouse is over the button.
     /// </summary>
     /// <getter>get_checkedImageOverAlternateText</getter>
     /// <setter>set_checkedImageOverAlternateText</setter>
@@ -426,7 +431,8 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// The URL of the image to show when the toggle button is in the unchecked state and the mouse is over the button.
+    /// The alt text to show when the toggle button is in the unchecked state and
+    /// the mouse is over the button
     /// </summary>
     /// <getter>get_uncheckedImageOverAlternateText</getter>
     /// <setter>set_uncheckedImageOverAlternateText</setter>

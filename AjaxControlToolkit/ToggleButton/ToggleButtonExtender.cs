@@ -6,6 +6,11 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// ToggleButton is an ASP.NET AJAX extender that can be attached to an ASP.NET CheckBox
+    /// control. ToggleButton enables the use of custom images to show the state of the CheckBox.
+    /// The behavior of the CheckBox is unaffected.
+    /// </summary>
     [Designer(typeof(ToggleButtonExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.ToggleButtonBehavior", Constants.ToggleButtonName)]
     [TargetControlType(typeof(ICheckBoxControl))]
@@ -25,7 +30,7 @@ namespace AjaxControlToolkit {
         const string stringUncheckedImageOverAlternateText = "UncheckedImageOverAlternateText";
 
         /// <summary>
-        /// The width of the image.
+        /// The width of the image
         /// </summary>
         [ExtenderControlProperty()]
         [RequiredProperty()]
@@ -37,7 +42,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The height of the image.
+        /// The height of the image
         /// </summary>
         [ExtenderControlProperty()]
         [RequiredProperty()]
@@ -49,7 +54,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The URL of the image to show when the toggle button is in the unchecked state.
+        /// The URL of the image to show when the toggle button is in the unchecked state
         /// </summary>
         [ExtenderControlProperty()]
         [RequiredProperty()]
@@ -62,7 +67,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The URL of the image to show when the toggle button is in the checked state.
+        /// The URL of the image to show when the toggle button is in the checked state
         /// </summary>
         [ExtenderControlProperty()]
         [RequiredProperty()]
@@ -75,7 +80,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The URL of the image to show when the toggle button is disabled and in the unchecked state.
+        /// The URL of the image to show when the toggle button is disabled and in the unchecked state
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -87,7 +92,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The URL of the image to show when the toggle button is disabled and in the checked state.
+        /// The URL of the image to show when the toggle button is disabled and in the checked state
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -99,7 +104,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The URL of the image to show when the toggle button is in the checked state and the mouse is over the button.
+        /// The URL of the image to show when the toggle button is in the checked state and
+        /// the mouse is over the button
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -111,7 +117,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The URL of the image to show when the toggle button is in the unchecked state and the mouse is over the button.
+        /// The URL of the image to show when the toggle button is in the unchecked state and
+        /// the mouse is over the button
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -123,7 +130,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The alt text to show when the toggle button is in the unchecked state.
+        /// The alt text to show when the toggle button is in the unchecked state
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -134,7 +141,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The alt text to show when the toggle button is in the checked state.
+        /// The alt text to show when the toggle button is in the checked state
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -145,7 +152,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The URL of the image to show when the toggle button is in the checked state and the mouse is over the button.
+        /// The alt text to show when the toggle button is in the checked state and the
+        /// mouse is over the button
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -156,7 +164,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The URL of the image to show when the toggle button is in the unchecked state and the mouse is over the button.
+        /// The alt text to show when the toggle button is in the unchecked state and
+        /// the mouse is over the button
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
