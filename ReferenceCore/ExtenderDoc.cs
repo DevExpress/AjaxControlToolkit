@@ -141,7 +141,9 @@ namespace AjaxControlToolkit.Reference.Core {
                 eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(eventDoc.Remarks)));
                 eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Add event handler method: ", bold: true) + _renderer.RenderText(eventDoc.AddMethodName));
                 eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Remove event handler method: ", bold: true) + _renderer.RenderText(eventDoc.RemoveMethodName));
-                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Raise event method: ", bold: true) + _renderer.RenderText(eventDoc.RaiseMethodName));
+
+                if(!String.IsNullOrWhiteSpace(eventDoc.RaiseMethodName))
+                    eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Raise event method: ", bold: true) + _renderer.RenderText(eventDoc.RaiseMethodName));
             }
 
             _docStringBuilder.Append(eventsStringBuilder.ToString());
