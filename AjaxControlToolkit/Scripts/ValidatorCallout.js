@@ -460,9 +460,6 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     /// </summary>
     /// <getter>get_width</getter>
     /// <setter>set_width</setter>
-    /// <default>
-    /// 200px
-    /// </default>
     /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.width" />
     get_width: function() {
         return this._width;
@@ -489,9 +486,6 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     /// * Left
     /// * Right
     /// </remarks>
-    /// <default>
-    /// Sys.Extended.UI.ValidatorCalloutPosition.Right
-    /// </default>
     /// <getter>get_popupPosition</getter>
     /// <setter>set_popupPosition</setter>
     /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.popupPosition" />

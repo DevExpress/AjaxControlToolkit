@@ -14,58 +14,6 @@ namespace AjaxControlToolkit {
     /// validator control as you normally would. Then add the ValidatorCallout and 
     /// set its TargetControlID property to reference the validator control. 
     /// </summary>
-    /// <section name="Known Issues">
-    /// The callouts do not currently display automatically after a server post-back
-    /// and will only work for custom validators which utilize client-side validation.
-    /// Even after a post-back the callout will display when the form is 
-    /// revalidated when a postback is attempted again.
-    /// </section>
-    /// <section name="Theming">
-    /// You can change the look and feel of the ValidatorCallout using the ValidatorCallout
-    /// CssClass property. The ValidatorCallout has a predefined set of CSS classes that
-    /// can be overridden. It has a default style which is embedded as a WebResource
-    /// (or Static Resource if you are using the Stating Resources NuGet package) and is a
-    /// part of the AJAX Control Toolkit assembly that has styles set for all the sub-classes.
-    /// You can find the default styles in the AJAX Control Toolkit solution in the
-    /// "AjaxControlToolkit/Styles/ValidatorCallout.css" file. If your CssClass does not provide
-    /// values for any of those then it falls back to the default value. To customize the
-    /// same the user would have to set the CssClass property to the name of the CSS style
-    /// and define the styles for the individual classes so that the various elements in a
-    /// ValidatorCallout control can be styled accordingly. For example if the CssClass property
-    /// was set to "CustomValidatorCalloutStyle", this is how the CSS to style the border and
-    /// background color would look:
-    /// ```
-    /// .CustomValidatorCalloutStyle div,
-    /// .CustomValidatorCalloutStyle td {
-    ///     border: solid 1px blue;
-    ///     background-color: #add8e6;
-    /// }
-    /// ```
-    /// </section>
-    /// <section name="CSS classes">
-    /// ```
-    /// /* The popup table */
-    /// .ajax__validator_popup_table
-    /// /* The popup table row */
-    /// .ajax__validator_popup_table_row
-    /// /* The callout cell */
-    /// .ajax__validatorcallout_callout_cell
-    /// /* The table in the callout cell */
-    /// .ajax__validatorcallout_callout_table
-    /// /* The callout table row */
-    /// .ajax__validatorcallout_callout_table_row
-    /// /* The error message cell */
-    /// .ajax__validatorcallout_error_message_cell
-    /// /* The warning icon cell */
-    /// .ajax__validatorcallout_icon_cell
-    /// /* The close button cell */
-    /// .ajax__validatorcallout_close_button_cell
-    /// /* The arror cell */
-    /// .ajax__validatorcallout_arrow_cell
-    /// /* Inner div of a cell. Used in the close button cell and the arrow cell */
-    /// .ajax__validatorcallout_innerdiv
-    /// ```
-    /// </section>
     [Designer(typeof(ValidatorCalloutExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(PopupExtender))]
@@ -141,9 +89,6 @@ namespace AjaxControlToolkit {
         /// * Left
         /// * Right
         /// </remarks>
-        /// <default>
-        /// ValidatorCalloutPosition.Right
-        /// </default>
         [ExtenderControlProperty]
         [ClientPropertyName("popupPosition")]
         [DefaultValue(ValidatorCalloutPosition.Right)]

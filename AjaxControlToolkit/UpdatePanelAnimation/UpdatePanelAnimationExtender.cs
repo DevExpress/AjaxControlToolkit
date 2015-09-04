@@ -70,9 +70,6 @@ namespace AjaxControlToolkit {
         /// Optional property which makes sure OnUpdated event will fire only
         /// after completion of onUpdating event
         /// </summary>
-        /// <default>
-        /// false
-        /// </default>
         [DefaultValue(false)]
         [Browsable(true)]
         [ExtenderControlProperty]
