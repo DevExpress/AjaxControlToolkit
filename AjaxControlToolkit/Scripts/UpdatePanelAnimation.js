@@ -111,7 +111,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnUpdating Animation's JSON definition.
+    /// Generic animation played as when any UpdatePanel begins updating
     /// </summary>
     /// <getter>get_onUpdating</getter>
     /// <setter>set_onUpdating</setter>
@@ -121,7 +121,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
     set_onUpdating: function(value) {
         this._onUpdating.set_json(value);
-        this.raisePropertyChanged('OnUpdating');
+        this.raisePropertyChanged('onUpdating');
     },
 
     get_OnUpdating: function() {
@@ -134,7 +134,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnUpdating Animation's behavior.
+    /// Generic OnUpdating Animation's behavior
     /// </summary>
     /// <getter>get_onUpdatingBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.UpdatePanelAnimationExtender.onUpdatingBehavior" />
@@ -147,7 +147,8 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnUpdated Animation's JSON definition.
+    /// Generic animation played after the UpdatePanel has finished updating
+    /// (but only if the UpdatePanel was changed)
     /// </summary>
     /// <getter>get_onUpdated</getter>
     /// <setter>set_onUpdated</setter>
@@ -157,7 +158,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
     set_onUpdated: function(value) {
         this._onUpdated.set_json(value);
-        this.raisePropertyChanged('OnUpdated');
+        this.raisePropertyChanged('onUpdated');
     },
 
     get_OnUpdated: function() {
@@ -170,7 +171,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnUpdated Animation's behavior.
+    /// Generic OnUpdated Animation's behavior
     /// </summary>
     /// <getter>get_onUpdatedBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.UpdatePanelAnimationExtender.onUpdatedBehavior" />
@@ -183,7 +184,8 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// Optional property which makes sure OnUpdated event will fire only after completion of onUpdating event.
+    /// Optional property which makes sure OnUpdated event will fire only
+    /// after completion of onUpdating event
     /// </summary>
     /// <getter>get_alwaysFinishOnUpdatingAnimation</getter>
     /// <setter>set_alwaysFinishOnUpdatingAnimation</setter>
@@ -194,9 +196,9 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
         return this._alwaysFinishOnUpdatingAnimation;
     },
     set_alwaysFinishOnUpdatingAnimation: function(value) {
-        if(this._lwaysFinishOnUpdatingAnimation != value) {
+        if(this._alwaysFinishOnUpdatingAnimation != value) {
             this._alwaysFinishOnUpdatingAnimation = value;
-            this.raisePropertyChanged('AlwaysFinishOnUpdatingAnimation');
+            this.raisePropertyChanged('alwaysFinishOnUpdatingAnimation');
         }
     },
 
@@ -210,10 +212,10 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// Array of target control trigger client IDs.
+    /// ClientID's of the trigger controls
     /// </summary>
-    /// <getter>get_TriggerControlsClientID</getter>
-    /// <setter>set_TriggerControlsClientID</setter>
+    /// <getter>get_triggerControlsClientID</getter>
+    /// <setter>set_triggerControlsClientID</setter>
     /// <member name="cP:AjaxControlToolkit.UpdatePanelAnimationExtender.triggerControlsClientID" />
     get_triggerControlsClientID: function() {
         return this._triggerControlsClientID;;

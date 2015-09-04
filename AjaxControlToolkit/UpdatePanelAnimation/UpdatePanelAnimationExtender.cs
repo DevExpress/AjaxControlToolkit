@@ -8,7 +8,24 @@ using System.Collections.Generic;
 
 namespace AjaxControlToolkit {
 
-    /// Extender used to play animations just before and after an UpdatePanel updates
+    /// <summary>
+    /// The UpdatePanelAnimationExtender is a simple extender that allows you to utilize
+    /// the powerful animation framework with existing pages in an easy, declarative fashion.
+    /// It is used to play animations both while an UpdatePanel is updating and after it
+    /// has finished updating.
+    /// 
+    /// It is important to note that because of the UpdatePanel architecture, the OnUpdating
+    /// animation will always play when any partial postbacks starts, but the OnUpdated
+    /// animation will only playat the end of a partial postback if its UpdatePanel was
+    /// changed (note: setting the UpdatePanel's UpdateMode="Always" will ensure the
+    /// OnUpdated animation plays when every postback completes).
+    /// 
+    /// The animations to be played are declaratively specified using XML. You can read the
+    /// Using Animations walkthrough for more details about creating these generic animation
+    /// declarations, as well as other ways to use the animation framework. The framework
+    /// provides a lot of useful animations to handle movement, resizing, fading, etc.
+    /// All the animations and their properties are described in the Animation Reference.
+    /// </summary>
     [Designer(typeof(UpdatePanelAnimationExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
     [RequiredScript(typeof(AnimationScripts), 1)]
@@ -23,7 +40,7 @@ namespace AjaxControlToolkit {
         List<string> _triggerControlsClientID = new List<string>();
 
         /// <summary>
-        /// Generic animation played as when any UpdatePanel begins updating.
+        /// Generic animation played as when any UpdatePanel begins updating
         /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
@@ -36,7 +53,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Generic animation played after the UpdatePanel has finished updating (but only if the UpdatePanel was changed).
+        /// Generic animation played after the UpdatePanel has finished updating
+        /// (but only if the UpdatePanel was changed)
         /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
@@ -49,8 +67,12 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Optional property which makes sure OnUpdated event will fire only after completion of onUpdating event.
+        /// Optional property which makes sure OnUpdated event will fire only
+        /// after completion of onUpdating event
         /// </summary>
+        /// <default>
+        /// false
+        /// </default>
         [DefaultValue(false)]
         [Browsable(true)]
         [ExtenderControlProperty]
@@ -61,7 +83,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Array of target control trigger client IDs.
+        /// ClientID's of the trigger controls
         /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
@@ -115,7 +137,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Returns UpdatePanel whose updates are used to play the animations (this is also the default target of the animations).
+        /// Returns UpdatePanel whose updates are used to play the animations
+        /// (this is also the default target of the animations)
         /// </summary>
         /// <returns>Target control</returns>
         public Control GetTargetControl() {
@@ -123,7 +146,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Returns control specified by its id.
+        /// Returns control specified by its ID
         /// </summary>
         /// <param name="id">ID of the control</param>
         /// <returns>Found control</returns>
