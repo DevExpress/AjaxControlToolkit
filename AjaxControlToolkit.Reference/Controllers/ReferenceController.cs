@@ -15,7 +15,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
         public ActionResult Index() {
             var typeNames = new string[] {
-                "AccordionExtender",
+                "Accordion",
                 "AjaxFileUpload",
                 "AlwaysVisibleControlExtender",
                 "Animation",
