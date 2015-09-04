@@ -120,8 +120,10 @@ namespace AjaxControlToolkit.Reference.Controllers {
             var doc = new Documentation();
             var xml = LoadXml(Server.MapPath("~/bin/AjaxControltoolkit.xml"));
 
+            var elementNames = xml.Root.Element("members").Elements().Select(el => el.Attribute("name")).ToList();
+
             var members = xml.Root.Element("members").Elements()
-                .Where(el => el.Attribute("name").ToString().Contains(type))
+                .Where(el => el.Attribute("name").Value == "T:AjaxControlToolkit." + type)
                 .Select(el => new RawDoc(el.Attribute("name").Value) {
                     Elements = el.Elements()
                 })
