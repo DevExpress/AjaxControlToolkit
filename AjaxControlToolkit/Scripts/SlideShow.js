@@ -82,7 +82,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         }
 
         this.controlsSetup();
-        // Create handlers for slide show buttons clicks events and for image loaded events.
+        // Create handlers for slideshow buttons clicks events and for image loaded events.
         if(this._bNext) {
             this._clickNextHandler = Function.createDelegate(this, this._onClickNext);
             $addHandler(this._bNext, 'click', this._clickNextHandler);
@@ -96,7 +96,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
             $addHandler(this._bPlay, 'click', this._clickPlayHandler);
         }
 
-        // init slide show
+        // init slideshow
         this._slideShowInit();
     },
 
@@ -125,10 +125,10 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when slide fully changes
+    /// Fires when slide changes
     /// </summary>
-    /// <member name="cE:AjaxControlToolkit.SlideShowExtender.slideChanged" />
     /// <event add="add_slideChanged" remove="remove_slideChanged" raise="raise_slideChanged" />
+    /// <member name="cE:AjaxControlToolkit.SlideShowExtender.slideChanged" />
     add_slideChanged: function(handler) {
         this.get_events().addHandler('slideChanged', handler);
     },
@@ -149,10 +149,10 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when slide begins change
+    /// Fires when slide begins to change
     /// </summary>
-    /// <member name="cE:AjaxControlToolkit.SlideShowExtender.slideChanging" />
     /// <event add="add_slideChanging" remove="remove_slideChanging" raise="raise_slideChanging" />
+    /// <member name="cE:AjaxControlToolkit.SlideShowExtender.slideChanging" />
     add_slideChanging: function(handler) {
         this.get_events().addHandler('slideChanging', handler);
     },
@@ -170,16 +170,16 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
     raiseSlideChanging: function(previousSlide, newSlide) {
         Sys.Extended.Deprecated("raiseSlideChanging(previousSlide, newSlide)", "raise_slideChanging(previousSlide, newSlide)");
-        return this.raise_slidechanging(previousSlide, newSlide);
+        return this.raise_slideChanging(previousSlide, newSlide);
     },
 
     /// <summary>
     /// User/page specific context provided to an optional overload of the
-    /// web method described by ServiceMethod/ServicePath.
+    /// web method described by ServiceMethod/ServicePath
     /// </summary>
     /// <remarks>
     /// If the context key is used, it should have the same signature
-    /// with an additional parameter named contextKey of type string.
+    /// with an additional parameter named contextKey of type stri
     /// </remarks>
     /// <getter>get_contextKey</getter>
     /// <setter>set_contextKey</setter>
@@ -200,12 +200,13 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether or not the ContextKey property should be used.
+    /// Whether or not the ContextKey property should be used
     /// </summary>
     /// <remarks>
     /// This will be automatically enabled if the ContextKey property is ever set
     /// (on either the client or the server). If the context key is used,
     /// it should have the same signature with an additional parameter
+    /// named contextKey of type string.
     /// </remarks>
     /// <getter>get_useContextKey</getter>
     /// <setter>set_useContextKey</setter>
@@ -221,7 +222,8 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Width of the image container to animate slides smoothly from left to right or right to left.
+    /// Width of the image container to animate slides smoothly from left to
+    /// right or right to left
     /// </summary>
     /// <getter>get_imageWidth</getter>
     /// <setter>set_imageWidth</setter>
@@ -238,7 +240,8 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Height of the image container to animate slides smoothly from up to down or down to up.
+    /// Height of the image container to animate slides smoothly from up to
+    /// down or down to up
     /// </summary>
     /// <getter>get_imageHeight</getter>
     /// <setter>set_imageHeight</setter>
@@ -255,7 +258,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Get handles to various slide show controls if specified.
+    /// Gets handles to various slideshow controls if specified.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.controlsSetup" />
     controlsSetup: function() {
@@ -278,7 +281,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maintain the various buttons states.
+    /// Maintains the various buttons states
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.resetButtons" />
     resetButtons: function() {
@@ -329,7 +332,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maintain the play button state to reflect whether the slide show is in play mode.
+    /// Maintains the play button state to reflect whether the slideshow is in play mode
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.resetSlideShowButtonState" />
     resetSlideShowButtonState: function() {
@@ -345,10 +348,10 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sets current image
+    /// Maintains slideshow current image
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.setCurrentImage" />
-    setCurrentImage: function() {        
+    setCurrentImage: function() {
         if(this._slides[this._currentIndex]) {
             this._currentImageElement.src = this._slides[this._currentIndex].ImagePath;
             if(this._slides[this._currentIndex].Url != null) {
@@ -417,9 +420,9 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Updates current image
+    /// Updates slideshow current image
     /// </summary>
-    /// <param name="value" type="Image">Image to update</param>
+    /// <param name="value" type="Slide">Image to update</param>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.updateImage" />
     updateImage: function(value) { 
         if(value) {
@@ -480,9 +483,9 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sets image
+    /// Sets slideshow image
     /// </summary>
-    /// <param name="value" type="Image">Image to set</param>
+    /// <param name="value" type="Slide">Image to set</param>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.setImage" />
     setImage: function(value) {
         this._currentValue = value;
@@ -509,12 +512,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// ID of the label that will display the current slide's description.
+    /// ID of Label describing current picture
     /// </summary>
     /// <getter>get_imageDescriptionLabelID</getter>
     /// <setter>set_imageDescriptionLabelID</setter>
     /// <member name="cP:AjaxControlToolkit.SlideShowExtender.imageDescriptionLabelID" />
-    get_imageDescriptionLabelID: function() {        
+    get_imageDescriptionLabelID: function() {
         return this._imageDescriptionLabelID;
     },
     set_imageDescriptionLabelID: function(value) {
@@ -525,12 +528,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// ID of the label that will display the current slide's title.
+    /// ID of Label displaying current picture's title
     /// </summary>
     /// <getter>get_imageTitleLabelID</getter>
     /// <setter>set_imageTitleLabelID</setter>
     /// <member name="cP:AjaxControlToolkit.SlideShowExtender.imageTitleLabelID" />
-    get_imageTitleLabelID: function() {        
+    get_imageTitleLabelID: function() {
         return this._imageTitleLabelID;
     },
     set_imageTitleLabelID: function(value) {
@@ -540,14 +543,13 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
         }
     },
 
-
     /// <summary>
-    /// ID of the control that will move the slide show to the next slide.
+    /// ID of the button that will allow you to see the next picture
     /// </summary>
     /// <getter>get_nextButtonID</getter>
     /// <setter>set_nextButtonID</setter>
     /// <member name="cP:AjaxControlToolkit.SlideShowExtender.nextButtonID" />
-    get_nextButtonID: function() {        
+    get_nextButtonID: function() {
         return this._nextButtonID;
     },
     set_nextButtonID: function(value) {
@@ -558,12 +560,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// ID of the control that will play the slide show.
+    /// ID of the button that will allow you to play/stop the slideshow
     /// </summary>
     /// <getter>get_playButtonID</getter>
     /// <setter>set_playButtonID</setter>
     /// <member name="cP:AjaxControlToolkit.SlideShowExtender.playButtonID" />
-    get_playButtonID: function() {        
+    get_playButtonID: function() {
         return this._playButtonID;
     },
     set_playButtonID: function(value) {
@@ -574,12 +576,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Text to display in the play button if the slide show is not playing.
+    /// The text to be shown in the play button to play the slideshow
     /// </summary>
     /// <getter>get_playButtonText</getter>
     /// <setter>set_playButtonText</setter>
     /// <member name="cP:AjaxControlToolkit.SlideShowExtender.playButtonText" />
-    get_playButtonText: function() {        
+    get_playButtonText: function() {
         return this._playButtonValue;
     },
     set_playButtonText: function(value) {
@@ -590,12 +592,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Text to display in the play button if the slide show is in play mode.
+    /// The text to be shown in the play button to stop the slideshow
     /// </summary>
     /// <getter>get_stopButtonText</getter>
     /// <setter>set_stopButtonText</setter>
     /// <member name="cP:AjaxControlToolkit.SlideShowExtender.stopButtonText" />
-    get_stopButtonText: function() {        
+    get_stopButtonText: function() {
         return this._stopButtonValue;
     },
     set_stopButtonText: function(value) {
@@ -606,7 +608,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Interval in milliseconds before switching to the next slide is playing.
+    /// Interval in milliseconds between slide transitions in play mode
     /// </summary>
     /// <getter>get_playInterval</getter>
     /// <setter>set_playInterval</setter>
@@ -623,7 +625,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// ID of the control that will move the slide show to the previous slide.
+    /// ID of the button that will allow you to see the previous picture
     /// </summary>
     /// <getter>get_previousButtonID</getter>
     /// <setter>set_previousButtonID</setter>
@@ -639,7 +641,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Path to the webservice that the extender will pull the images from.
+    /// Path to the webservice that the extender will pull the images from
     /// </summary>
     /// <getter>get_slideShowServicePath</getter>
     /// <setter>set_slideShowServicePath</setter>
@@ -656,7 +658,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// The webservice method that will be called to supply images.
+    /// The webservice method that will be called to supply images
     /// </summary>
     /// <getter>get_slideShowServiceMethod</getter>
     /// <setter>set_slideShowServiceMethod</setter>
@@ -672,7 +674,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Boolean to determine if the slide show loops around if you hit the first or last slide.
+    /// Setting this to true will allow you to view images in a round-robin fashion
     /// </summary>
     /// <getter>get_loop</getter>
     /// <setter>set_loop</setter>
@@ -688,7 +690,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Boolean to determine if the slide show will play automatically on render.
+    /// Setting this to true will play the slideshow automatically on render
     /// </summary>
     /// <getter>get_autoPlay</getter>
     /// <setter>set_autoPlay</setter>
@@ -704,12 +706,17 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Animation type that will happen on change of slide.
+    /// Type of animation used during change from one slide to another
     /// </summary>
+    /// <remarks>
+    /// If you set SlideShowAnimationType to either SlideDown or SlideRight
+    /// then you must set both the Height and Width properties on the Image
+    /// control being extended by the SlideShow extender.
+    /// </remarks>
     /// <getter>get_slideShowAnimationType</getter>
     /// <setter>set_slideShowAnimationType</setter>
     /// <member name="cP:AjaxControlToolkit.SlideShowExtender.slideShowAnimationType" />
-    get_slideShowAnimationType: function() {        
+    get_slideShowAnimationType: function() {
         return this._slideShowAnimationType;
     },
     set_slideShowAnimationType: function(value) {
@@ -854,7 +861,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     _slideShowInit: function() {
-        // Initializes the slide show by invoking the webservice to retrieve the slides
+        // Initializes the slideshow by invoking the webservice to retrieve the slides
         // and sets the first slide.
 
         // clear the state of the slideshow
@@ -1063,7 +1070,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sets current slide.
+    /// Maintains slideshow current slide
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.setCurrentSlide" />
     setCurrentSlide: function() {
@@ -1192,9 +1199,10 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether SlideShow supports given animation type.
+    /// Whether slideshow supports given animation name
     /// </summary>
-    /// <param name="animationType" type="String">Name of the animation</param>
+    /// <param name="animationName" type="String">Name of the animation</param>
+    /// <returns type="Boolean">Boolean value indicates that given animation name is supported</returns>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.supportsAnimation" />
     supportsAnimation: function(animationName) {
         var isSupport = false,

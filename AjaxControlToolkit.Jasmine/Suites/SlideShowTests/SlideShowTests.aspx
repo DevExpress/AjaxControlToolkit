@@ -250,14 +250,14 @@
                 }, ANIMATION_SPEED + this.extender._playInterval + 300);
             });
 
-            it("'setImage' method calls 'raiseSlideChanged' and 'resetButtons'method", function() {
-                spyOn(this.extender, "raiseSlideChanged");
+            it("'setImage' method calls 'raise_slideChanged' and 'resetButtons'method", function() {
+                spyOn(this.extender, "raise_slideChanged");
                 spyOn(this.extender, "resetButtons");
 
                 var slide = this.extender._slides[1];
                 this.extender.setImage(slide);
 
-                expect(this.extender.raiseSlideChanged).toHaveBeenCalled();
+                expect(this.extender.raise_slideChanged).toHaveBeenCalled();
                 expect(this.extender.resetButtons).toHaveBeenCalled();
             });
 
