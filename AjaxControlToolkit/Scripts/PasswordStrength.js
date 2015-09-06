@@ -622,11 +622,16 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Preferred length of the password.
+    /// Preferred length of the password
     /// </summary>
+    /// <remarks>
+    /// Passwords could be less than this amount but wont reach the 100% calculation
+    /// if less than this count. This is used to calculate 50% of the percentage strength of the password
+    /// Ideally, a password should be 20 characters in length to be a strong password.
+    /// </remarks>
     /// <getter>get_preferredPasswordLength</getter>
     /// <setter>set_preferredPasswordLength</setter>
-    /// <member name="cP:AjaxControlToolkit.PasswordStrength.prefereedPasswordLength" />
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.preferredPasswordLength" />
     get_preferredPasswordLength: function() {
         return this._preferredPasswordLength;
     },
@@ -647,8 +652,13 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Minimum number of numeric characters.
+    ///  Minimum number of numeric characters
     /// </summary>
+    /// <remarks>
+    /// If there are less than this property, then the password is not
+    /// considered strong. If there are equal to or more than this value,
+    /// then this will contribute 15% to the overall password strength percentage value.
+    /// </remarks>
     /// <getter>get_minimumNumericCharacters</getter>
     /// <setter>set_minimumNumericCharacters</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.minimumNumericCharacters" />
@@ -672,8 +682,13 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Minimum number of symbol characters.
+    /// Minimum number of symbol characters (ex. $ ^ *)
     /// </summary>
+    /// <remarks>
+    /// If there are less than this property, then the password is not considered strong.
+    /// If there are equal to or more than this value, then this will contribute 15% to the overall
+    /// password strength percentage value.
+    /// </remarks>
     /// <getter>get_minimumSymbolCharacters</getter>
     /// <setter>set_minimumSymbolCharacters</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.minimumSymbolCharacters" />
@@ -697,8 +712,14 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Specifies whether mixed case characters are required.
+    /// Specifies whether mixed case characters are required
     /// </summary>
+    /// <remarks>
+    /// Determines if mixed case passwords are required to be considered strong.
+    /// If true, then there must be at least one occurrence of mixed case
+    /// (upper and lower) letters in the password to be considered strong. If there is,
+    /// this will contribute 20% to the overall password strength percentage value.
+    /// </remarks>
     /// <getter>get_requiresUpperAndLowerCaseCharacters</getter>
     /// <setter>set_requiresUpperAndLowerCaseCharacters</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.requiresUpperAndLowerCaseCharacters" />
@@ -722,7 +743,7 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class to apply to the control.
+    /// CSS class applied to the text display when StrengthIndicatorType=Text
     /// </summary>
     /// <getter>get_textCssClass</getter>
     /// <setter>set_textCssClass</setter>
@@ -747,7 +768,7 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class applied to the bar indicator's border when StrengthIndicatorType=BarIndicator.
+    /// CSS class applied to the bar indicator's border when StrengthIndicatorType=BarIndicator
     /// </summary>
     /// <getter>get_barBorderCssClass</getter>
     /// <setter>set_barBorderCssClass</setter>
@@ -772,7 +793,7 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class applied to the bar indicator's inner bar when StrengthIndicatorType=BarIndicator.
+    /// CSS class applied to the bar indicator's inner bar when StrengthIndicatorType=BarIndicator
     /// </summary>
     /// <getter>get_barIndicatorCssClass</getter>
     /// <setter>set_barIndicatorCssClass</setter>
@@ -797,7 +818,7 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Positioning of the strength indicator relative to the target control.
+    /// Positioning of the strength indicator relative to the target control
     /// </summary>
     /// <getter>get_displayPosition</getter>
     /// <setter>set_displayPosition</setter>
@@ -822,12 +843,12 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// The text prefixed to the password strength display value when using text display mode.
+    /// Text prefixed to the display text when StrengthIndicatorType=Text
     /// </summary>
     /// <getter>get_prefixText</getter>
-    /// <setter>set_prefixTest</setter>
+    /// <setter>set_prefixText</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.prefixText" />
-    get_prefixTest: function() {
+    get_prefixText: function() {
         return this._prefixText;
     },
     set_prefixText: function(value) {
@@ -847,9 +868,12 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// A property that is either Bar (as in progress bar indicating password strength) or
-    /// text (i.e. low, medium, high, excellent for strength).
+    /// Strength indicator type (Text or BarIndicator)
     /// </summary>
+    /// <remarks>
+    /// BarIndicator - progress bar indicating password strength
+    /// Text - low, medium, high or excellent
+    /// </remarks>
     /// <getter>get_strengthIndicatorType</getter>
     /// <setter>set_strengthIndicatorType</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.strengthIndicatorType" />
@@ -873,8 +897,12 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// A semi-colon delimited string that specifies the string descriptions for the password strength when using a textual display.
+    /// List of semi-colon separated descriptions used when StrengthIndicatorType=Text
+    /// (Minimum of 2, maximum of 10; order is weakest to strongest)
     /// </summary>
+    /// <remarks>
+    /// Example: None;Weak;Medium;Strong;Excellent
+    /// </remarks>
     /// <getter>get_textStrengthDescriptions</getter>
     /// <setter>set_textStrengthDescriptions</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.textStrengthDescriptions" />
@@ -898,9 +926,17 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// A semi-colon delimited string that specifies the styles applicable to each
-    /// string descriptions for the password strength when using a textual display.
+    /// List of semi-colon separated CSS classes that are used depending on the password's strength.
     /// </summary>
+    /// <remarks>
+    /// This property will override the BarIndicatorCssClass / TextIndicatorCssClass property if present.
+    /// The BarIndicatorCssClass / TextIndicatorCssClass property differs in that it attributes one
+    /// CSS style to the BarIndicator or Text Strength indicator (depending on which type is chosen)
+    /// regardless of password strength. This property will cause the style to change based on the password
+    /// strength and also to the number of styles specified in this property. For example, if 2 styles are
+    /// defined like StrengthStyles="style1;style2" then style1 is applied when the password strength is less
+    /// than 50%, and style2 is applied when password strength is >= 50%. This property can have up to 10 styles.
+    /// </remarks>
     /// <getter>get_strengthStyles</getter>
     /// <setter>set_strengthStyles</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.strengthStyles" />
@@ -925,8 +961,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
 
     /// <summary>
     /// A semi-colon delimited string that specifies the styles applicable to each
-    /// string descriptions for the password strength when using a textual display.
+    /// string descriptions for the password strength when using a textual display
     /// </summary>
+    /// <remarks>
+    /// Deprecated. Use StrengthStyles instead
+    /// </remarks>
     /// <getter>get_TextStrengthDescriptionStyles</getter>
     /// <setter>set_TextStrengthDescriptionStyles</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.TextStrengthDescriptionStyles" />
@@ -934,15 +973,19 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
         Sys.Extended.Deprecated("get_TextStrengthDescriptionStyles", "get_strengthStyles");
         return this.get_strengthStyles();
     },
-
     set_TextStrengthDescriptionStyles: function(value) {
         Sys.Extended.Deprecated("set_TextStrengthDescriptionStyles", "set_strengthStyles");
         this.set_strengthStyles(value);
     },
 
     /// <summary>
-    /// CSS class applied to the help element used to display a dialog box describing the password requirements.
+    /// CSS class applied to the help element used to display a dialog box
+    /// describing the password requirements
     /// </summary>
+    /// <remarks>
+    /// This is used so that the user can click on this image and get a display
+    /// on what is required to make the password strong according to the current properties
+    /// </remarks>
     /// <getter>get_helpHandleCssClass</getter>
     /// <setter>set_helpHandleCssClass</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.helpHandleCssClass" />
@@ -966,7 +1009,7 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Positioning of the help handle element relative to the target control.
+    /// Positioning of the help handle element relative to the target control
     /// </summary>
     /// <getter>get_helpHandlePosition</getter>
     /// <setter>set_helpHandlePosition</setter>
@@ -991,16 +1034,22 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// The Calculation ratios or "weightings" used when calculating a passwords strength.
-    /// Must be a string with 4 elements separated by a semi colon.
+    /// List of semi-colon separated numeric values used to determine the weighting of a strength characteristic.
     /// </summary>
+    /// <remarks>
+    /// There must be 4 values specified which must total 100.
+    /// The default weighting values are defined as 50;15;15;20.
+    /// This corresponds to password length is 50% of the strength calculation, Numeric criteria is 15% of
+    /// strength calculation, casing criteria is 15% of calculation, and symbol criteria is 20% of calculation.
+    /// So the format is 'A;B;C;D' where A = length weighting, B = numeric weighting, C = casing weighting, D = symbol weighting.
+    /// </remarks>
     /// <getter>get_calculationWeightings</getter>
     /// <setter>set_calculationWeightings</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.calculationWeightings" />
     get_calculationWeightings: function() {
         return this._calcWeightings;
     },
-    set_calculationWieghtings: function(value) {
+    set_calculationWeightings: function(value) {
         if(this._calcWeightings != value) {
             this._calcWeightings = value;
             this.raisePropertyChanged('calculationWeightings');
@@ -1012,12 +1061,12 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
         return this.get_calculationWeightings();
     },
     set_CalculationWeightings: function(value) {
-        Sys.Extended.Deprecated("set_CalculationWeightings", "set_calculationWieghtings");
-        this.set_calculationWieghtings(value);
+        Sys.Extended.Deprecated("set_CalculationWeightings", "set_calculationWeightings");
+        this.set_calculationWeightings(value);
     },
 
     /// <summary>
-    /// Help text to show.
+    /// Help text to show
     /// </summary>
     /// <getter>get_helpText</getter>
     /// <setter>set_helpText</setter>
@@ -1051,9 +1100,14 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// If the RequiresUpperAndLowerCaseCharacters property is true, then this property determines the
-    /// minimum lower case characters that are required.
+    /// Minimum number of lowercase characters required when requiring mixed case
+    /// characters as part of your password strength considerations
     /// </summary>
+    /// <remarks>
+    /// Only in effect if RequiresUpperAndLowerCaseCharacters property is true.
+    /// The default value is 0 which means this property is not in effect and
+    /// there is no minimum limit.
+    /// </remarks>
     /// <getter>get_minimumLowerCaseCharacters</getter>
     /// <setter>set_minimumLowerCaseCharacters</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.minimumLowerCaseCharacters" />
@@ -1074,9 +1128,14 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// If the RequiresUpperAndLowerCaseCharacters property is true, then this property determines the
-    /// minimum upper case characters that are required.
+    /// Minimum number of uppercase characters required when requiring mixed case
+    /// characters as part of your password strength considerations.
     /// </summary>
+    /// <remarks>
+    /// Only in effect if RequiresUpperAndLowerCaseCharacters property is true.
+    /// The default value is 0 which means this property is not in effect and
+    /// there is no minimum limit.
+    /// </remarks>
     /// <getter>get_minimumUpperCaseCharacters</getter>
     /// <setter>set_minimumUpperCaseCharacters</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.minimumUpperCaseCharacters" />
@@ -1097,7 +1156,7 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Control ID of the label used to display help text.
+    /// Control ID of the label used to display help text
     /// </summary>
     /// <getter>get_helpStatusLabelID</getter>
     /// <setter>set_helpStatusLabelID</setter>

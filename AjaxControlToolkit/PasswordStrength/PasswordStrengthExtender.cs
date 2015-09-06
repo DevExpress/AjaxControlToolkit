@@ -8,6 +8,20 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// PasswordStrength is an ASP.NET AJAX extender that can be attached to an ASP.NET TextBox control used
+    /// for the entry of passwords. The PasswordStrength extender shows the strength of the password in the
+    /// TextBox and updates itself as the user types the password. The indicator can display the strength of
+    /// the password as a text message or with a progress bar indicator. The styling and position of both types
+    /// of indicators is configurable. The required strength of the password is also configurable, allowing
+    /// the page author to tailor the password strength requirements to their needs. The text messages that
+    /// describe the current strength of the password can also be configured and their default values have
+    /// localization support built-in. The second and third extenders' strings are being pulled from Toolkit
+    /// resources files. We do not have strings for all languages currently so they may show non-localized
+    /// values for some languages. A help indicator can be used to provide explicit instructions about what
+    /// changes are required to achieve a strong password. The indicator is displayed when the user begins typing
+    /// into the TextBox and is hidden from view once the TextBox loses focus.
+    /// </summary>
     [TargetControlType(typeof(TextBox))]
     [Designer(typeof(PasswordStrengthExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.PasswordStrengthExtenderBehavior", Constants.PasswordStrengthName)]
@@ -44,7 +58,7 @@ namespace AjaxControlToolkit {
         const string _prefixTextDefault = "Strength: ";
 
         /// <summary>
-        /// Preferred length of the password.
+        /// Preferred length of the password
         /// </summary>
         /// <remarks>
         /// Passwords could be less than this amount but wont reach the 100% calculation
@@ -60,12 +74,12 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Minimum number of numeric characters.
+        /// Minimum number of numeric characters
         /// </summary>
         /// <remarks>
         /// If there are less than this property, then the password is not
-        /// considered strong. If there are equal to or more than this value, then this will contribute 15% to the overall
-        /// password strength percentage value.
+        /// considered strong. If there are equal to or more than this value,
+        /// then this will contribute 15% to the overall password strength percentage value.
         /// </remarks>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -76,11 +90,12 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class applied to the help element used to display a dialog box describing the password requirements.
+        /// CSS class applied to the help element used to display a dialog box
+        /// describing the password requirements
         /// </summary>
         /// <remarks>
-        /// This is used so that the user can click on this image and get a display on what is required to make the
-        /// password strong according to the current properties.
+        /// This is used so that the user can click on this image and get a display
+        /// on what is required to make the password strong according to the current properties
         /// </remarks>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -91,7 +106,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Positioning of the help handle element relative to the target control.
+        /// Positioning of the help handle element relative to the target control
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(DisplayPosition.AboveRight)]
@@ -102,7 +117,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Control ID of the label used to display help text.
+        /// Control ID of the label used to display help text
         /// </summary>
         [IDReferenceProperty(typeof(Label))]
         [DefaultValue("")]
@@ -114,7 +129,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Minimum number of symbol characters.
+        /// Minimum number of symbol characters (ex. $ ^ *)
         /// </summary>
         /// <remarks>
         /// If there are less than this property, then the password is not considered strong.
@@ -130,12 +145,13 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Specifies whether mixed case characters are required.
+        /// Specifies whether mixed case characters are required
         /// </summary>
         /// <remarks>
-        /// Determines if mixed case passwords are required to be considered strong. If true, then there must be at least one occurrence
-        /// of mixed case (upper and lower) letters in the password to be considered strong. If there is, this will contribute 20% to the
-        /// overall password strength percentage value.
+        /// Determines if mixed case passwords are required to be considered strong.
+        /// If true, then there must be at least one occurrence of mixed case
+        /// (upper and lower) letters in the password to be considered strong. If there is,
+        /// this will contribute 20% to the overall password strength percentage value.
         /// </remarks>
         [ExtenderControlProperty()]
         [DefaultValue(false)]
@@ -146,7 +162,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class to apply to the control.
+        /// CSS class applied to the text display when StrengthIndicatorType=Text
         /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty()]
@@ -157,7 +173,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class applied to the bar indicator's border when StrengthIndicatorType=BarIndicator.
+        /// CSS class applied to the bar indicator's border when StrengthIndicatorType=BarIndicator
         /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty()]
@@ -168,7 +184,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class applied to the bar indicator's inner bar when StrengthIndicatorType=BarIndicator.
+        /// CSS class applied to the bar indicator's inner bar when StrengthIndicatorType=BarIndicator
         /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty()]
@@ -179,7 +195,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The text prefixed to the password strength display value when using text display mode.
+        /// Text prefixed to the display text when StrengthIndicatorType=Text
         /// </summary>
         [DefaultValue(_prefixTextDefault)]
         [ExtenderControlProperty()]
@@ -190,7 +206,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Positioning of the strength indicator relative to the target control.
+        /// Positioning of the strength indicator relative to the target control
         /// </summary>
         [DefaultValue(DisplayPosition.RightSide)]
         [ExtenderControlProperty()]
@@ -201,9 +217,12 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A property that is either Bar (as in progress bar indicating password strength) or
-        /// text (i.e. low, medium, high, excellent for strength).
+        /// Strength indicator type (Text or BarIndicator)
         /// </summary>
+        /// <remarks>
+        /// BarIndicator - progress bar indicating password strength
+        /// Text - low, medium, high or excellent
+        /// </remarks>
         [DefaultValue(StrengthIndicatorTypes.Text)]
         [ExtenderControlProperty()]
         [ClientPropertyName("strengthIndicatorType")]
@@ -213,16 +232,14 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The Calculation ratios or "weightings" used when calculating a passwords strength.
-        /// Must be a string with 4 elements separated by a semi colon.
+        /// List of semi-colon separated numeric values used to determine the weighting of a strength characteristic.
         /// </summary>
         /// <remarks>
-        /// Default is '50;15;15;20' which represents
-        /// ... Password Length: 50%
-        /// ... Meets Numerics requirements : 15%
-        /// ... Meets Casing requirements: 15%
-        /// ... Meets Symbol character requirements: 20%
-        /// Total of 4 elements must equal 100
+        /// There must be 4 values specified which must total 100.
+        /// The default weighting values are defined as 50;15;15;20.
+        /// This corresponds to password length is 50% of the strength calculation, Numeric criteria is 15% of
+        /// strength calculation, casing criteria is 15% of calculation, and symbol criteria is 20% of calculation.
+        /// So the format is 'A;B;C;D' where A = length weighting, B = numeric weighting, C = casing weighting, D = symbol weighting.
         /// </remarks>
         [DefaultValue("")]
         [ExtenderControlProperty()]
@@ -253,7 +270,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A semi-colon delimited string that specifies the string descriptions for the password strength when using a textual display.
+        /// List of semi-colon separated descriptions used when StrengthIndicatorType=Text
+        /// (Minimum of 2, maximum of 10; order is weakest to strongest)
         /// </summary>
         /// <remarks>
         /// Example: None;Weak;Medium;Strong;Excellent
@@ -281,9 +299,17 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A semi-colon delimited string that specifies the styles applicable to each
-        /// string descriptions for the password strength when using a textual display.
+        /// List of semi-colon separated CSS classes that are used depending on the password's strength.
         /// </summary>
+        /// <remarks>
+        /// This property will override the BarIndicatorCssClass / TextIndicatorCssClass property if present.
+        /// The BarIndicatorCssClass / TextIndicatorCssClass property differs in that it attributes one
+        /// CSS style to the BarIndicator or Text Strength indicator (depending on which type is chosen)
+        /// regardless of password strength. This property will cause the style to change based on the password
+        /// strength and also to the number of styles specified in this property. For example, if 2 styles are
+        /// defined like StrengthStyles="style1;style2" then style1 is applied when the password strength is less
+        /// than 50%, and style2 is applied when password strength is >= 50%. This property can have up to 10 styles.
+        /// </remarks>
         [ExtenderControlProperty()]
         [DefaultValue("")]
         [ClientPropertyName("strengthStyles")]
@@ -309,12 +335,13 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// If the RequiresUpperAndLowerCaseCharacters property is true, then this property determines the
-        /// minimum lower case characters that are required.
+        /// Minimum number of lowercase characters required when requiring mixed case
+        /// characters as part of your password strength considerations
         /// </summary>
         /// <remarks>
-        /// The default value is 0 which means this property is not
-        /// in effect and there is no minimum limit.
+        /// Only in effect if RequiresUpperAndLowerCaseCharacters property is true.
+        /// The default value is 0 which means this property is not in effect and
+        /// there is no minimum limit.
         /// </remarks>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -325,12 +352,13 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// If the RequiresUpperAndLowerCaseCharacters property is true, then this property determines the
-        /// minimum upper case characters that are required.
+        /// Minimum number of uppercase characters required when requiring mixed case
+        /// characters as part of your password strength considerations.
         /// </summary>
         /// <remarks>
-        /// The default value is 0 which means this property is not
-        /// in effect and there is no minimum limit.
+        /// Only in effect if RequiresUpperAndLowerCaseCharacters property is true.
+        /// The default value is 0 which means this property is not in effect and
+        /// there is no minimum limit.
         /// </remarks>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -342,10 +370,10 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// A semi-colon delimited string that specifies the styles applicable to each
-        /// string descriptions for the password strength when using a textual display.
+        /// string descriptions for the password strength when using a textual display
         /// </summary>
         /// <remarks>
-        /// Deprecated. Use StrengthStyles instead.
+        /// Deprecated. Use StrengthStyles instead
         /// </remarks>
         [Obsolete("This property has been deprecated. Please use the StrengthStyles property instead.")]
         [ExtenderControlProperty()]
