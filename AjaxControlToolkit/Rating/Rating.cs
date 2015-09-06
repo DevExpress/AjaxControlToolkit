@@ -8,6 +8,13 @@ using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The Rating control provides an intuitive rating experience that allows users to select the
+    /// number of stars that represents their rating. The page designer can specify the initial rating,
+    /// the maximum rating to allow, the alignment and direction of the stars, and custom styles for
+    /// the different states a star can have. Rating also supports a ClientCallBack event that allows
+    /// custom code to run after the user has rated something.
+    /// </summary>
     [NonVisualControl, ToolboxData("<{0}:Rating runat=\"server\"></{0}:Rating>")]
     [DesignerAttribute(typeof(RatingExtenderDesigner))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.RatingName + Constants.IconPostfix)]
@@ -21,9 +28,13 @@ namespace AjaxControlToolkit {
         public Rating() {
         }
 
+        /// <summary>
+        /// True to cause a postback on rating item click
+        /// </summary>
         [Category("Behavior")]
         [Description("True to cause a postback on rating change")]
         [DefaultValue(false)]
+        [ClientPropertyName("autoPostBack")]
         public bool AutoPostBack {
             get {
                 EnsureChildControls();
@@ -36,6 +47,9 @@ namespace AjaxControlToolkit {
         }
 
         // Length of the transition animation in milliseconds
+        /// <summary>
+        /// Initial rating value
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("Rating")]
@@ -55,11 +69,15 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Maximum rating value
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("MaxRating")]
         [DefaultValue(5)]
         [Bindable(true, BindingDirection.TwoWay)]
+        [ClientPropertyName("maxRating")]
         public int MaxRating {
             get {
                 EnsureChildControls();
@@ -76,6 +94,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// ID of the behavior object
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("BehaviorID")]
@@ -91,11 +112,15 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Whether or not the rating can be changed
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("ReadOnly")]
         [DefaultValue(false)]
         [Bindable(true, BindingDirection.TwoWay)]
+        [ClientPropertyName("readOnly")]
         public bool ReadOnly {
             get {
                 EnsureChildControls();
@@ -107,11 +132,15 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// A custom parameter to pass to the ClientCallBack
+        /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
         [Description("Tag")]
         [DefaultValue("")]
         [Bindable(true, BindingDirection.TwoWay)]
+        [ClientPropertyName("tag")]
         public string Tag {
             get {
                 EnsureChildControls();
@@ -123,11 +152,15 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// CSS class for a visible star
+        /// </summary>
         [Browsable(true)]
         [Themeable(true)]
         [Category("Behavior")]
         [Description("StarCssClass")]
         [DefaultValue("")]
+        [ClientPropertyName("starCssClass")]
         public string StarCssClass {
             get {
                 EnsureChildControls();
@@ -139,11 +172,15 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// CSS class for star in filled mode
+        /// </summary>
         [Browsable(true)]
         [Themeable(true)]
         [Category("Behavior")]
         [Description("FilledStarCssClass")]
         [DefaultValue("")]
+        [ClientPropertyName("filledStarCssClass")]
         public string FilledStarCssClass {
             get {
                 EnsureChildControls();
@@ -155,11 +192,15 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// CSS class for a star in empty mode
+        /// </summary>
         [Browsable(true)]
         [Themeable(true)]
         [Category("Behavior")]
         [Description("EmptyStarCssClass")]
         [DefaultValue("")]
+        [ClientPropertyName("emptyStarCssClass")]
         public string EmptyStarCssClass {
             get {
                 EnsureChildControls();
@@ -171,11 +212,15 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// CSS class for a star in waiting mode
+        /// </summary>
         [Browsable(true)]
         [Themeable(true)]
         [Category("Behavior")]
         [Description("WaitingStarCssClass")]
         [DefaultValue("")]
+        [ClientPropertyName("waitingStarCssClass")]
         public string WaitingStarCssClass {
             get {
                 EnsureChildControls();
@@ -187,6 +232,10 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Alignment of the stars (Vertical or Horizontal)
+        /// </summary>
+        /// <remarks>
         [Browsable(true)]
         [Themeable(true)]
         [Category("Appearance")]
@@ -197,11 +246,15 @@ namespace AjaxControlToolkit {
             set { _align = value; }
         }
 
+        /// <summary>
+        /// Orientation of the stars (LeftToRightTopToBottom or RightToLeftBottomToTop)
+        /// </summary>
         [Browsable(true)]
         [Themeable(true)]
         [Category("Appearance")]
         [Description("Rating Direction")]
         [DefaultValue(RatingDirection.LeftToRightTopToBottom)]
+        [ClientPropertyName("ratingDirection")]
         public RatingDirection RatingDirection {
             get {
                 EnsureChildControls();
@@ -214,6 +267,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Rating control ID
+        /// </summary>
         public override string ID {
             get { return base.ID; }
             set {
@@ -285,6 +341,9 @@ namespace AjaxControlToolkit {
             _extender.CallbackID = UniqueID;
         }
 
+        /// <summary>
+        /// Fires when rating is changed
+        /// </summary>
         public event RatingEventHandler Changed {
             add { base.Events.AddHandler(Rating.EventChange, value); }
             remove { base.Events.RemoveHandler(Rating.EventChange, value); }
@@ -299,10 +358,18 @@ namespace AjaxControlToolkit {
 
         #region ICallbackEventHandler Members
 
+        /// <summary>
+        /// Returns callback result
+        /// </summary>
+        /// <returns>Callback result</returns>
         public string GetCallbackResult() {
             return _returnFromEvent;
         }
 
+        /// <summary>
+        /// Raises callback event
+        /// </summary>
+        /// <param name="eventArgument">Event argument</param>
         public void RaiseCallbackEvent(string eventArgument) {
             var args = new RatingEventArgs(eventArgument);
             OnChanged(args);
@@ -313,6 +380,10 @@ namespace AjaxControlToolkit {
 
         #region IPostBackEventHandler Members
 
+        /// <summary>
+        /// Raises postback event
+        /// </summary>
+        /// <param name="eventArgument">Event argument</param>
         public void RaisePostBackEvent(string eventArgument) {
             var args = new RatingEventArgs(eventArgument);
             OnChanged(args);

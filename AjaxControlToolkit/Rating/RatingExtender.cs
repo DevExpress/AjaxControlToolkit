@@ -5,6 +5,13 @@ using System.Web.UI;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The Rating extender provides an intuitive rating experience that allows users to select the
+    /// number of stars that represents their rating. The page designer can specify the initial rating,
+    /// the maximum rating to allow, the alignment and direction of the stars, and custom styles for
+    /// the different states a star can have. Rating also supports a ClientCallBack event that allows
+    /// custom code to run after the user has rated something.
+    /// </summary>
     [ToolboxItem(false)]
     [TargetControlType(typeof(Rating))]
     [ClientScriptResource("Sys.Extended.UI.RatingBehavior", Constants.RatingName)]
@@ -20,7 +27,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// True to cause a postback on rating item click.
+        /// True to cause a postback on rating item click
         /// </summary>
         [ExtenderControlProperty]
         [Browsable(false)]
@@ -32,7 +39,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Current rating value.
+        /// Current rating value
         /// </summary>
         [DefaultValue(0)]
         [ExtenderControlProperty]
@@ -49,7 +56,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Callback ID.
+        /// ID of the callback
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -60,7 +67,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A custom parameter to pass to the ClientCallBack.
+        /// A custom parameter to pass to the ClientCallBack
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -71,7 +78,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Orientation of the stars (LeftToRightTopToBottom or RightToLeftBottomToTop).
+        /// Orientation of the stars (LeftToRightTopToBottom or RightToLeftBottomToTop)
         /// </summary>
         [DefaultValue(0)]
         [ExtenderControlProperty]
@@ -83,7 +90,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Maximum rating value.
+        /// Maximum rating value
         /// </summary>
         [DefaultValue(5)]
         [ExtenderControlProperty]
@@ -94,7 +101,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for a visible star.
+        /// CSS class for a visible star
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -106,7 +113,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not the rating can be changed.
+        /// Whether or not the rating can be changed
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
@@ -117,7 +124,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for star in filled mode.
+        /// CSS class for star in filled mode
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -129,7 +136,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for a star in empty mode.
+        /// CSS class for a star in empty mode
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -141,7 +148,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for a star in waiting mode.
+        /// CSS class for a star in waiting mode
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]

@@ -90,7 +90,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
             return;
 
         if(this._ratingValue != this._currentRating)
-            this.set_Rating(this._currentRating);
+            this.set_rating(this._currentRating);
     },
 
     _onStarMouseOver: function(e) {
@@ -113,13 +113,13 @@ Sys.Extended.UI.RatingBehavior.prototype = {
         var k = ev.keyCode ? ev.keyCode : ev.rawEvent.keyCode;
         if((k == Sys.UI.Key.right) || (k == Sys.UI.Key.up)) {
             this._currentRating = Math.min(this._currentRating + 1, this._maxRatingValue);
-            this.set_Rating(this._currentRating);
+            this.set_rating(this._currentRating);
 
             ev.preventDefault();
             ev.stopPropagation();
         } else if((k == Sys.UI.Key.left) || (k == Sys.UI.Key.down)) {
             this._currentRating = Math.max(this._currentRating - 1, 1);
-            this.set_Rating(this._currentRating);
+            this.set_rating(this._currentRating);
 
             ev.preventDefault();
             ev.stopPropagation();
@@ -180,10 +180,10 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when user marks rating.
+    /// Fires when the rating has been marked
     /// </summary>
-    /// <event add="add_Rated" remove="remove_Rated" raise="raiseRated" />
-    /// <member name="cE:AjaxControlToolkit.RatingExtender.rated" />
+    /// <event add="add_rated" remove="remove_rated" raise="raise_rated" />
+    /// <member name="cE:AjaxControlToolkit.Rating.rated" />
     add_rated: function(handler) {
         this.get_events().addHandler("rated", handler);
     },
@@ -211,10 +211,10 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs on mouse over.
+    /// Fires when mouse is over the Rating control
     /// </summary>
     /// <event add="add_mouseOver" remove="remove_mouseOver" raise="raise_mouseOver" />
-    /// <member name="cE:AjaxControlToolkit.RatingExtender.mouseOver" />
+    /// <member name="cE:AjaxControlToolkit.Rating.mouseOver" />
     add_mouseOver: function(handler) {
         this.get_events().addHandler("mouseOver", handler);
     },
@@ -242,10 +242,10 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs on mouse out.
+    /// Fires when mouse pointer leaves the Rating element
     /// </summary>
     /// <event add="add_mouseOut" remove="remove_mouseOut" raise="raise_mouseOut" />
-    /// <member name="cE:AjaxControlToolkit.RatingExtender.mouseOut" />
+    /// <member name="cE:AjaxControlToolkit.Rating.mouseOut" />
     add_mouseOut: function(handler) {
         this.get_events().addHandler("mouseOut", handler);
     },
@@ -273,10 +273,10 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs on end rating selection.
+    /// Fires when the rating is changed
     /// </summary>
     /// <event add="add_endClientCallback" remove="remove_endClientCallback" raise="raise_endClientCallback" />
-    /// <member name="cE:AjaxControlToolkit.RatingExtender.endClientCallback" />
+    /// <member name="cE:AjaxControlToolkit.Rating.endClientCallback" />
     add_endClientCallback: function(handler) {
         this.get_events().addHandler("endClientCallback", handler);
     },
@@ -291,24 +291,24 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     add_EndClientCallback: function(handler) {
-        Sys.Extended.Deprecated("add_EndClientCallback(handler)", "add_endClientCallback(handler)");
+        Sys.Extended.Deprecated("add_EndClientCallback", "add_endClientCallback");
         this.add_endClientCallback(handler);
     },
     remove_EndClientCallback: function(handler) {
-        Sys.Extended.Deprecated("remove_EndClientCallback(handler)", "remove_endClientCallback(handler)");
+        Sys.Extended.Deprecated("remove_EndClientCallback", "remove_endClientCallback");
         this.remove_endClientCallback(handler);
     },
     raiseEndClientCallback: function(result) {
-        Sys.Extended.Deprecated("raiseEndClientCallback(result)", "raise_endClientCallback(result)");
+        Sys.Extended.Deprecated("raiseEndClientCallback", "raise_endClientCallback");
         this.raise_endClientCallback(result);
     },
 
     /// <summary>
-    /// True to cause a postback on rating item click.
+    /// True to cause a postback on rating item click
     /// </summary>
     /// <getter>get_autoPostBack</getter>
     /// <setter>set_autoPostBack</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.autoPostBack" />
+    /// <member name="cP:AjaxControlToolkit.Rating.autoPostBack" />
     get_autoPostBack: function() {
         return this._autoPostBack;
     },
@@ -318,7 +318,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
 
     get_AutoPostBack: function() {
         Sys.Extended.Deprecated("get_AutoPostBack", "get_autoPostBack");
-        return this.get_autoPostBack();  
+        return this.get_autoPostBack();
     },
     set_AutoPostBack: function(value) {
         Sys.Extended.Deprecated("set_AutoPostBack", "set_autoPostBack");
@@ -326,10 +326,10 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Array of stars.
+    /// Array of stars
     /// </summary>
     /// <getter>get_stars</getter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.stars" />
+    /// <member name="cP:AjaxControlToolkit.Rating.stars" />
     get_stars: function() {
         return this._stars;
     },
@@ -339,11 +339,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// A custom parameter to pass to the ClientCallBack.
+    /// A custom parameter to pass to the ClientCallBack
     /// </summary>
     /// <getter>get_tag</getter>
     /// <setter>set_tag</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.tag" />
+    /// <member name="cP:AjaxControlToolkit.Rating.tag" />
     get_tag: function() {
         return this._tag;
     },
@@ -364,11 +364,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Callback ID.
+    /// ID of the callback
     /// </summary>
     /// <getter>get_callbackID</getter>
     /// <setter>set_callbackID</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.callbackID" />
+    /// <member name="cP:AjaxControlToolkit.Rating.callbackID" />
     get_callbackID: function() {
         return this._callbackID;
     },
@@ -386,13 +386,12 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Orientation of the stars (LeftToRightTopToBottom or RightToLeftBottomToTop).
+    /// Orientation of the stars (LeftToRightTopToBottom or RightToLeftBottomToTop)
     /// </summary>
     /// <getter>get_ratingDirection</getter>
     /// <setter>set_ratingDirection</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.ratingDirection" />
+    /// <member name="cP:AjaxControlToolkit.Rating.ratingDirection" />
     get_ratingDirection: function() {
-        // RatingDirection - Orientation of the stars (LeftToRightTopToBottom or RightToLeftBottomToTop)
         // TODO: We should create an enum for this
         return this._ratingDirection;
     },
@@ -417,11 +416,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for a star in empty mode.
+    /// CSS class for a star in empty mode
     /// </summary>
     /// <getter>get_emptyStarCssClass</getter>
     /// <setter>set_emptyStarCssClass</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.emptyStarCssClass" />
+    /// <member name="cP:AjaxControlToolkit.Rating.emptyStarCssClass" />
     get_emptyStarCssClass: function() {
         return this._emptyStarCssClass;
     },
@@ -442,11 +441,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for star in filled mode.
+    /// CSS class for star in filled mode
     /// </summary>
     /// <getter>get_filledStarCssClass</getter>
     /// <setter>set_filledStarCssClass</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.filledStarCssClass" />
+    /// <member name="cP:AjaxControlToolkit.Rating.filledStarCssClass" />
     get_filledStarCssClass: function() {
         return this._filledStarCssClass;
     },
@@ -467,11 +466,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for a star in waiting mode.
+    /// CSS class for a star in waiting mode
     /// </summary>
     /// <getter>get_waitingStarCssClass</getter>
     /// <setter>set_waitingStarCssClass</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.waitingStarCssClass" />
+    /// <member name="cP:AjaxControlToolkit.Rating.waitingStarCssClass" />
     get_waitingStarCssClass: function() {
         return this._waitingStarCssClass;
     },
@@ -492,11 +491,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Current rating value.
+    /// Current rating value
     /// </summary>
     /// <getter>get_rating</getter>
     /// <setter>set_rating</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.rating" />
+    /// <member name="cP:AjaxControlToolkit.Rating.rating" />
     get_rating: function() {
         var hiddenValue = Sys.Extended.UI.RatingBehavior.callBaseMethod(this, 'get_ClientState');
         if(hiddenValue !== null && hiddenValue.length)
@@ -521,7 +520,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
                 Sys.Extended.UI.RatingBehavior.callBaseMethod(this, 'set_ClientState', [this._ratingValue]);
 
                 this.raisePropertyChanged('rating');
-                this.raiseRated(this._currentRating);
+                this.raise_rated(this._currentRating);
 
                 if(this._isServerControl) {
                     this._waitingMode(true);
@@ -548,11 +547,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maximum rating value.
+    /// Maximum rating value
     /// </summary>
     /// <getter>get_maxRating</getter>
     /// <setter>set_maxRating</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.maxRating" />
+    /// <member name="cP:AjaxControlToolkit.Rating.maxRating" />
     get_maxRating: function() {
         return this._maxRatingValue;
     },
@@ -573,11 +572,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether or not the rating can be changed.
+    /// Whether or not the rating can be changed
     /// </summary>
     /// <getter>get_readOnly</getter>
     /// <setter>set_readOnly</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.readOnly" />
+    /// <member name="cP:AjaxControlToolkit.Rating.readOnly" />
     get_readOnly: function() {
         return this._readOnly;
     },
@@ -598,11 +597,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for a visible star.
+    /// CSS class for a visible star
     /// </summary>
     /// <getter>get_starCssClass</getter>
     /// <setter>set_starCssClass</setter>
-    /// <member name="cP:AjaxControlToolkit.RatingExtender.starCssClass" />
+    /// <member name="cP:AjaxControlToolkit.Rating.starCssClass" />
     get_starCssClass: function() {
         return this._starCssClass;
     },
