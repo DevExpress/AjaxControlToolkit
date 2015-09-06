@@ -6,6 +6,12 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The RoundedCorners extender applies rounded corners to existing elements. To accomplish this,
+    /// it inserts elements before and after the element that is selected, so the overall height
+    /// of the element will change slightly. You can choose which corners of the target panel should
+    /// be rounded by setting the "Corners" property.
+    /// </summary>
     [Designer(typeof(RoundedCornersExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.RoundedCornersBehavior", Constants.RoundedCornersName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -13,7 +19,7 @@ namespace AjaxControlToolkit {
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.RoundedCornersName + Constants.IconPostfix)]
     public class RoundedCornersExtender : ExtenderControlBase {
         /// <summary>
-        /// Gets or sets an integer value that specifies the radius of the corners (and the height of the added area). The default is 5.
+        /// Radius of the corners (and height of the added area). The default is 5
         /// </summary>
         [DefaultValue(5)]
         [ExtenderControlProperty()]
@@ -24,8 +30,21 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets a Sys.Extended.UI.BoxCorners object that specifies which corners should be rounded.
+        /// The corners of the target panel that should be rounded
         /// </summary>
+        /// <remarks>
+        /// Possible values:
+        /// * None
+        /// * TopLeft
+        /// * TopRight
+        /// * BottomRight
+        /// * BottomLeft
+        /// * Top
+        /// * Right
+        /// * Bottom
+        /// * Left
+        /// * All
+        /// </remarks>
         [DefaultValue(BoxCorners.All)]
         [ExtenderControlProperty]
         [ClientPropertyName("corners")]
@@ -35,9 +54,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets a string that contains the background color of the rounded corner areas.
-        /// By default, this property gets the background color of the panel that it is attached to.
+        /// Background color of the rounded corners areas
         /// </summary>
+        /// <remarks>
+        /// By default, this property gets the background color of the panel that it is attached to
+        /// </remarks>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]
         [ClientPropertyName("color")]
@@ -47,7 +68,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets a string that contains the color of the border and therefore of the rounded corners.
+        /// Color of the border
         /// </summary>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]

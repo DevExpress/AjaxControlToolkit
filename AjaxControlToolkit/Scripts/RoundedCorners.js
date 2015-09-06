@@ -351,9 +351,9 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     /// <summary>
-    ///  Gets the background color of the target element.
+    /// Returns the background color of the target element
     /// </summary>
-    /// <returns type="String">Color of the target element</returns>
+    /// <returns type="String">String contains the color of the target element</returns>
     /// <member name="cM:AjaxControlToolkit.RoundedCornersExtender.getBackgroundColor" />
     getBackgroundColor: function() {
         if(this._color)
@@ -376,32 +376,34 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     /// <summary>
-    /// Check whether the a flag for this corner has been set.
+    /// Checks whether the a flag for this corner has been set
     /// </summary>
     /// <param name="corner" type="Sys.Extended.UI.BoxCorners">Corner to check</param>
-    /// <returns type="Boolean">True if it is included in the flags, false otherwise</returns>
+    /// <returns type="Boolean">True if the corner has been set; otherwise, false</returns>
     /// <member name="cM:AjaxControlToolkit.RoundedCornersExtender.isCornerSet" />
     isCornerSet: function(corner) {
         return (this._corners & corner) != Sys.Extended.UI.BoxCorners.None;
     },
 
     /// <summary>
-    /// Set a corner as one that should be rounded.
+    /// Sets a corner as one that should be rounded
     /// </summary>
     /// <param name="corner" type="Sys.Extended.UI.BoxCorners">Corner to set</param>
-    /// <param name="value" type="Boolean">True to set the value, False to clear it</param>
+    /// <param name="value" type="Boolean">True to set the value, false to clear it</param>
     /// <member name="cM:AjaxControlToolkit.RoundedCornersExtender.setCorner" />
     setCorner: function(corner, value) {
         if(value)
-            this.set_Corners(this._corners | corner);
+            this.set_corners(this._corners | corner);
         else
-            this.set_Corners(this._corners & ~corner);
+            this.set_corners(this._corners & ~corner);
     },
 
     /// <summary>
-    /// Gets or sets a string that contains the background color of the rounded corner areas.
-    /// By default, this property gets the background color of the panel that it is attached to.
+    /// String that contains the background color of the rounded corner areas
     /// </summary>
+    /// <remarks>
+    /// By default, this property gets the background color of the panel that it is attached to
+    /// </remarks>
     /// <getter>get_color</getter>
     /// <setter>set_color</setter>
     /// <member name="cP:AjaxControlToolkit.RoundedCornersExtender.color" />
@@ -427,7 +429,8 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets an integer value that specifies the radius of the corners (and the height of the added area). The default is 5.
+    /// Integer value that specifies the radius of the corners (and the height of the added area).
+    /// The default is 5
     /// </summary>
     /// <getter>get_radius</getter>
     /// <setter>set_radius</setter>
@@ -454,7 +457,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Sys.Extended.UI.BoxCorners object that specifies which corners should be rounded.
+    /// Sys.Extended.UI.BoxCorners object that specifies which corners should be rounded
     /// </summary>
     /// <getter>get_corners</getter>
     /// <setter>set_corners</setter>
@@ -481,7 +484,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a string that contains the color of the border and therefore of the rounded corners.
+    /// String that contains the color of the border and therefore of the rounded corners
     /// </summary>
     /// <getter>get_borderColor</getter>
     /// <setter>set_borderColor</setter>
