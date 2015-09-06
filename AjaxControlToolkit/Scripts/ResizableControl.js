@@ -241,7 +241,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// The name of the CSS class to apply to the resize handle.
+    /// The name of the CSS class to apply to the resize handle
     /// </summary>
     /// <getter>get_handleCssClass</getter>
     /// <setter>set_handleCssClass</setter>
@@ -267,7 +267,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// The name of the CSS class to apply to the element when resizing.
+    /// The name of the CSS class to apply to the element when resizing
     /// </summary>
     /// <getter>get_resizableCssClass</getter>
     /// <setter>set_resizableCssClass</setter>
@@ -293,7 +293,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// X-Offset to apply to the location of the resize handle.
+    /// X-Offset to apply to the location of the resize handle
     /// </summary>
     /// <getter>get_handleOffsetX</getter>
     /// <setter>set_handleOffsetX</setter>
@@ -318,10 +318,10 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Y-Offset to apply to the location of the resize handle.
+    /// Y-Offset to apply to the location of the resize handle
     /// </summary>
     /// <getter>get_handleOffsetY</getter>
-    /// <setter>set_handleOffsetX</setter>
+    /// <setter>set_handleOffsetY</setter>
     /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.handleOffsetY" />
     get_handleOffsetY: function() {
         return this._handleOffsetY;
@@ -343,7 +343,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Minimum width of the resizable element.
+    /// Minimum width of the resizable element
     /// </summary>
     /// <getter>get_minimumWidth</getter>
     /// <setter>set_minimumWidth</setter>
@@ -368,7 +368,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Minimum height of the resizable element.
+    /// Minimum height of the resizable element
     /// </summary>
     /// <getter>get_minimumHeight</getter>
     /// <setter>set_minimumHeight</setter>
@@ -393,7 +393,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maximum width of the resizable element.
+    /// Maximum width of the resizable element
     /// </summary>
     /// <getter>get_maximumWidth</getter>
     /// <setter>set_maximumWidth</setter>
@@ -418,7 +418,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maximum height of the resizable element.
+    /// Maximum height of the resizable element
     /// </summary>
     /// <getter>get_maximumHeight</getter>
     /// <setter>set_maximumHeight</setter>
@@ -443,7 +443,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Event fired as the element is being resized.
+    /// Fires as the element is being resized
     /// </summary>
     /// <event add="add_resizing" remove="remove_resizing" raise="raise_resizing" />
     /// <member name="cE:AjaxControlToolkit.ResizableControlExtender.resizing" />
@@ -464,7 +464,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Resizing event handler.
+    /// Resizing event handler
     /// </summary>
     /// <getter>get_resizing</getter>
     /// <setter>set_resizing</setter>
@@ -485,10 +485,10 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Event fired when the element has been resized.
+    /// Fires when the element has been resized
     /// </summary>
     /// <event add="add_resize" remove="remove_resize" raise="raise_resize" />
-    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.resize" />
+    /// <member name="cE:AjaxControlToolkit.ResizableControlExtender.resize" />
     add_resize: function(handler) {
         this.get_events().addHandler("resize", handler);
     },
@@ -506,7 +506,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Resize event handler.
+    /// Resize event handler
     /// </summary>
     /// <getter>get_resize</getter>
     /// <setter>set_resize</setter>
@@ -527,7 +527,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Event fired when the element starts being resized.
+    /// Fires when the element starts being resized
     /// </summary>
     /// <event add="add_resizeBegin" remove="remove_resizeBegin" raise="raise_resizeBegin" />
     /// <member name="cE:AjaxControlToolkit.ResizableControlExtender.resizeBegin" />
@@ -558,7 +558,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// ResizeBegin event handler.
+    /// ResizeBegin event handler
     /// </summary>
     /// <getter>get_resizeBegin</getter>
     /// <setter>set_resizeBegin</setter>
@@ -588,7 +588,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Size of the target (of the form {width, height}).
+    /// Size of the target (of the form {width, height})
     /// </summary>
     /// <getter>get_size</getter>
     /// <setter>set_size</setter>

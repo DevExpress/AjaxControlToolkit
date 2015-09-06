@@ -8,6 +8,19 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// ResizableControl is an extender that attaches to any element on a web page and allows the user
+    /// to resize that control with a handle that attaches to lower-right corner of the control. The
+    /// resize handle lets the user resize the element as if it were a window. The appearance of the
+    /// resize handle can be specified by the page designer with a CSS style. The content within the
+    /// element can use CSS styles to automatically resize to fit the new dimensions. Alternatively,
+    /// ResizableControl exposes two events (onresizing and onresize) that the page designer can attach
+    /// custom script to in order to enable more complex layout logic. Element dimensions are preserved
+    /// across postbacks to the server and "size" properties accesible on both the client and server
+    /// can be used to enable custom resize behaviors. ResizableControl can optionally limit the maximum
+    /// and minimum width and height of the target control so that resizing can be constrained by the page
+    /// author (for example, to limit scrolling to only the horizontal dimension).
+    /// </summary>
     [Designer(typeof(ResizableControlExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.ResizableControlBehavior", Constants.ResizableControlName)]
@@ -21,7 +34,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of the CSS class to apply to the resize handle.
+        /// The name of the CSS class to apply to the resize handle
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -33,7 +46,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of the CSS class to apply to the element when resizing.
+        /// The name of the CSS class to apply to the element when resizing
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -44,7 +57,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// X-Offset to apply to the location of the resize handle.
+        /// X-Offset to apply to the location of the resize handle
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -55,7 +68,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Y-Offset to apply to the location of the resize handle.
+        /// Y-Offset to apply to the location of the resize handle
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -66,7 +79,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Minimum width of the resizable element.
+        /// Minimum width of the resizable element
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -77,7 +90,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Minimum height of the resizable element.
+        /// Minimum height of the resizable element
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -88,7 +101,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Maximum width of the resizable element.
+        /// Maximum width of the resizable element
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(MaximumValue)]
@@ -99,7 +112,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Maximum height of the resizable element.
+        /// Maximum height of the resizable element
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(MaximumValue)]
@@ -116,7 +129,7 @@ namespace AjaxControlToolkit {
         // properly.
 
         /// <summary>
-        /// Event fired when the element has been resized.
+        /// Fires when the element has been resized
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -127,7 +140,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Event fired as the element is being resized.
+        /// Fires as the element is being resized
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -138,7 +151,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Event fired when the element starts being resized.
+        /// Fires when the element starts being resized
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -158,7 +171,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Size of the target.
+        /// Size of the target
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
