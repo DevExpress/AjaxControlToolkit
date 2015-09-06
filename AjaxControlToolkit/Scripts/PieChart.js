@@ -156,7 +156,7 @@ Sys.Extended.UI.PieChart.prototype = {
     },
 
     /// <summary>
-    /// Width of the chart.
+    /// Width of the chart
     /// </summary>
     /// <getter>get_chartWidth</getter>
     /// <setter>set_chartWidth</setter>
@@ -164,13 +164,12 @@ Sys.Extended.UI.PieChart.prototype = {
     get_chartWidth: function() {
         return this._chartWidth;
     },
-
     set_chartWidth: function(value) {
         this._chartWidth = value;
     },
 
     /// <summary>
-    /// Height of the chart.
+    /// Height of the chart
     /// </summary>
     /// <getter>get_chartHeight</getter>
     /// <setter>set_chartHeight</setter>
@@ -178,13 +177,12 @@ Sys.Extended.UI.PieChart.prototype = {
     get_chartHeight: function() {
         return this._chartHeight;
     },
-
     set_chartHeight: function(value) {
         this._chartHeight = value;
     },
 
     /// <summary>
-    /// Title of the chart.
+    /// Title of the chart
     /// </summary>
     /// <getter>get_chartTitle</getter>
     /// <setter>set_chartTitle</setter>
@@ -192,13 +190,12 @@ Sys.Extended.UI.PieChart.prototype = {
     get_chartTitle: function() {
         return this._chartTitle;
     },
-
     set_chartTitle: function(value) {
         this._chartTitle = value;
     },
 
     /// <summary>
-    /// Provice list of PieChartValue.
+    /// Provides list of PieChartValue
     /// </summary>
     /// <getter>get_pieChartClientValues</getter>
     /// <setter>set_pieChartClientValues</setter>
@@ -208,11 +205,11 @@ Sys.Extended.UI.PieChart.prototype = {
     },
     set_pieChartClientValues: function(value) {
         this._pieChartClientValues = value;
-    }
+    },
 
     get_PieChartClientValues: function() {
         Sys.Extended.Deprecated("get_PieChartClientValues", "get_pieChartClientValues");
-        return this.get_pieChartClientValues();  
+        return this.get_pieChartClientValues();
     },
     set_PieChartClientValues: function(value) {
         Sys.Extended.Deprecated("set_PieChartClientValues", "set_pieChartClientValues");
@@ -220,7 +217,7 @@ Sys.Extended.UI.PieChart.prototype = {
     },
 
     /// <summary>
-    /// Theme of the chart.
+    /// Theme of the chart
     /// </summary>
     /// <getter>get_theme</getter>
     /// <setter>set_theme</setter>
@@ -228,13 +225,12 @@ Sys.Extended.UI.PieChart.prototype = {
     get_theme: function() {
         return this._theme;
     },
-
     set_theme: function(value) {
         this._theme = value;
     },
 
     /// <summary>
-    /// Font color of the chart title.
+    /// Font color of the chart title
     /// </summary>
     /// <getter>get_chartTitleColor</getter>
     /// <setter>set_chartTitleColor</setter>
@@ -242,7 +238,6 @@ Sys.Extended.UI.PieChart.prototype = {
     get_chartTitleColor: function() {
         return this._chartTitleColor;
     },
-
     set_chartTitleColor: function(value) {
         this._chartTitleColor = value;
     }
