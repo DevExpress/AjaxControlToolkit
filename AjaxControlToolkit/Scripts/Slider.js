@@ -194,7 +194,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
             _elementValue = Number.NaN;
         }
 
-        this.set_Value(_elementValue);
+        this.set_value(_elementValue);
         this._setHandleOffset(this._value);
         this._initializeDragHandle();
 
@@ -444,7 +444,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
         this._isUpdatingInternal = true;
 
-        var currentValue = this.get_Value();
+        var currentValue = this.get_value();
         var increment;
 
         if(this._steps > 0) {
@@ -522,7 +522,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
             : val;
 
         this._isUpdatingInternal = true;
-        this.set_Value(val);
+        this.set_value(val);
         this._isUpdatingInternal = false;
 
         return val;
@@ -607,29 +607,27 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Returns drag data type
+    /// Slider drag data type
     /// </summary>
-    /// <member name="cM:AjaxControlToolkit.SliderExtender.get_dragDataType" />
+    /// <getter>get_dragDataType</getter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.dragDataType" />
     get_dragDataType: function() {
-        return 'HTML';
+        return "HTML";
     },
 
     /// <summary>
-    /// Returns slider handle
+    /// Returns slider data
     /// </summary>
-    /// <member name="cM:AjaxControlToolkit.SliderExtender.get_dragHandle" />
-    get_dragHandle: function() {
+    /// <member name="cM:AjaxControlToolkit.SliderExtender.getDragData" />
+    getDragData: function() {
         return this._handle;
     },
-    getDragData: function() {
-        Sys.Extender.Deprecated("getDragData", "get_dragHandle");
-        return this.get_dragHandle();
-    },
 
     /// <summary>
-    /// Returns drag mode
+    /// Slider drag mode
     /// </summary>
-    /// <member name="cM:AjaxControlToolkit.SliderExtender.get_dragMode" />
+    /// <getter>dragMode</getter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.dragMode" />
     get_dragMode: function() {
         return Sys.Extended.UI.DragMode.Move;
     },
@@ -655,13 +653,18 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         this._calcValue(null, null);
 
         if(this._steps > 1)
-            this._setHandleOffset(this.get_Value(), false);
+            this._setHandleOffset(this.get_value(), false);
     },
 
     onDragEnd: function() {
         this._onHandleReleased();
     },
 
+    /// <summary>
+    /// Slider drop target element
+    /// </summary>
+    /// <getter>get_dropTargetElement</getter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.dropTargetElement" />
     get_dropTargetElement: function() {
         return document.body;
     },
@@ -679,10 +682,10 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     onDragInTarget: Function.emptyMethod,
 
     /// <summary>
-    /// Occurs on slider end initialization.
+    /// Fires when slider is initialized
     /// </summary>
-    /// <member name="cE:AjaxControlToolkit.SliderExtender.sliderInitialized" />
     /// <event add="add_sliderInitialized" remove="remove_sliderInitialized" raise="" />
+    /// <member name="cE:AjaxControlToolkit.SliderExtender.sliderInitialized" />
     add_sliderInitialized: function(handler) {
         this.get_events().addHandler('sliderInitialized', handler);
     },
@@ -691,10 +694,10 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when slider value changed.
+    /// Fires when slider value changes
     /// </summary>
-    /// <member name="cE:AjaxControlToolkit.SliderExtender.valueChanged" />
     /// <event add="add_valueChanged" remove="remove_valueChanged" raise="" />
+    /// <member name="cE:AjaxControlToolkit.SliderExtender.valueChanged" />
     add_valueChanged: function(handler) {
         this.get_events().addHandler('valueChanged', handler);
     },
@@ -703,10 +706,10 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when slide starts.
+    /// Fires when slide starts
     /// </summary>
-    /// <member name="cE:AjaxControlToolkit.SliderExtender.slideStart" />
     /// <event add="add_slideStart" remove="remove_slideStart" raise="" />
+    /// <member name="cE:AjaxControlToolkit.SliderExtender.slideStart" />
     add_slideStart: function(handler) {
         this.get_events().addHandler('slideStart', handler);
     },
@@ -715,10 +718,10 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when slide ends.
+    /// Fires when slide ends
     /// </summary>
-    /// <member name="cE:AjaxControlToolkit.SliderExtender.slideEnd" />
     /// <event add="add_slideEnd" remove="remove_slideEnd" raise="" />
+    /// <member name="cE:AjaxControlToolkit.SliderExtender.slideEnd" />
     add_slideEnd: function(handler) {
         this.get_events().addHandler('slideEnd', handler);
     },
@@ -780,7 +783,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
     get_Value: function() {
         Sys.Extended.Deprecated("get_Value", "get_value");
-        return this.get_value();  
+        return this.get_value();
     },
     set_Value: function(value) {
         Sys.Extended.Deprecated("set_Value", "set_value");
@@ -788,7 +791,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class of the slider's rail.
+    /// CSS class for the slider's rail
     /// </summary>
     /// <getter>get_railCssClass</getter>
     /// <setter>set_railCssClass</setter>
@@ -810,7 +813,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// URL of the image to display as the slider's handle.
+    /// URL of the image to display as the slider's handle
     /// </summary>
     /// <getter>get_handleImageUrl</getter>
     /// <setter>set_handleImageUrl</setter>
@@ -832,7 +835,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for the slider's handle.
+    /// CSS class for the slider's handle
     /// </summary>
     /// <getter>get_handleCssClass</getter>
     /// <setter>set_handleCssClass</setter>
@@ -854,7 +857,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Minimum value allowed.
+    /// Minimum value allowed
     /// </summary>
     /// <getter>get_minimum</getter>
     /// <setter>set_minimum</setter>
@@ -876,7 +879,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maximum value allowed.
+    /// Maximum value allowed
     /// </summary>
     /// <getter>get_maximum</getter>
     /// <setter>set_maximum</setter>
@@ -920,7 +923,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Number of discrete values inside the slider's range.
+    /// Number of discrete values inside the slider's range
     /// </summary>
     /// <getter>get_steps</getter>
     /// <setter>set_steps</setter>
@@ -943,7 +946,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Number of decimal digits for the value.
+    /// Number of decimal digits for the value
     /// </summary>
     /// <getter>get_decimals</getter>
     /// <setter>set_decimals</setter>
@@ -961,14 +964,14 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
     set_Decimals: function(value) {
         Sys.Extended.Deprecated("set_Decimals", "set_decimals");
-        this.set_decimals(value);  
+        this.set_decimals(value);
     },
 
     /// <summary>
-    /// Enable/disable the handle animation.
+    /// Enable/disable the handle animation
     /// </summary>
-    /// <getter>get_enableAnimationDuration</getter>
-    /// <setter>set_enableAnimationDuration</setter>
+    /// <getter>get_enableHandleAnimation</getter>
+    /// <setter>set_enableHandleAnimation</setter>
     /// <member name="cP:AjaxControlToolkit.SliderExtender.enableHandleAnimation" />
     get_enableHandleAnimation: function() {
         return this._enableHandleAnimation;
@@ -987,7 +990,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Duration of the handle animation.
+    /// Duration of the handle animation
     /// </summary>
     /// <getter>get_handleAnimationDuration</getter>
     /// <setter>set_handleAnimationDuration</setter>
@@ -1005,11 +1008,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
     set_HandleAnimationDuration: function(value) {
         Sys.Extended.Deprecated("set_HandleAnimationDuration", "set_handleAnimationDuration");
-        this.get_handleAnimationDuration(value);
+        this.set_handleAnimationDuration(value);
     },
 
     /// <summary>
-    /// ID of the TextBox or Label that dynamically displays the slider's value.
+    /// ID of the TextBox or Label that dynamically displays the slider's value
     /// </summary>
     /// <getter>get_boundControlID</getter>
     /// <setter>set_boundControlID</setter>
@@ -1035,13 +1038,13 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Width/height of a horizontal/vertical slider when the default layout is used.
+    /// Width/height of a horizontal/vertical slider when the default layout is used
     /// </summary>
     /// <getter>get_length</getter>
     /// <setter>set_length</setter>
     /// <member name="cP:AjaxControlToolkit.SliderExtender.length" />
     get_length: function() {
-        this._length;
+        return this._length;
     },
     set_length: function(value) {
         this._length = value + 'px';
@@ -1059,6 +1062,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     /// <summary>
     /// Determines whether slider is initialized
     /// </summary>
+    /// <returns type="Boolean">Boolean value indicates whether slider is initialized</returns>
     /// <member name="cM:AjaxControlToolkit.SliderExtender.isSliderInitialized" />
     isSliderInitialized: function() {
         return this._isInitializedInternal;
@@ -1070,7 +1074,8 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// If true, fires the change event on the extended TextBox only when the left mouse button is released.
+    /// If true, fires the change event on the extended TextBox only when the left
+    /// mouse button is released
     /// </summary>
     /// <getter>get_raiseChangeOnlyOnMouseUp</getter>
     /// <setter>set_raiseChangeOnlyOnMouseUp</setter>
@@ -1095,7 +1100,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     /// Text to display in a tooltip when the handle is hovered.
     /// </summary>
     /// <remarks>
-    /// The {0} placeholder in the text is replaced with the current value of the slider.
+    /// The {0} placeholder in the text is replaced with the current value of the slider
     /// </remarks>
     /// <getter>get_tooltipText</getter>
     /// <setter>set_tooltipText</setter>
@@ -1117,7 +1122,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines if the slider will respond to arrow keys when it has focus.
+    /// Determines if the slider will respond to arrow keys when it has focus
     /// </summary>
     /// <getter>get_enableKeyboard</getter>
     /// <setter>set_enableKeyboard</setter>
@@ -1149,7 +1154,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     getClientState: function() {
-        Sys.Extended.Deprecated("getClientState", "set_clientState");
+        Sys.Extended.Deprecated("getClientState", "get_clientState");
         return this.get_clientState();
     },
     setClientState: function(value) {
