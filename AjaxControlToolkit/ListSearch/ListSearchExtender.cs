@@ -7,6 +7,11 @@ using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The ListSearchExtender lets you search for items in a ListBox or DropDownList by typing. The extender
+    /// performs an incremental search within the ListBox based on what has been typed so far. The prompt message
+    /// that gets displayed when you click the list can be customized along with its CSS class and position.
+    /// </summary>
     [TargetControlType(typeof(ListControl))]
     [ClientScriptResource("Sys.Extended.UI.ListSearchBehavior", Constants.ListSearchName)]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
@@ -45,7 +50,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of the CSS class to apply to the prompt message.
+        /// The name of the CSS class to apply to the prompt message
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("promptCssClass")]
@@ -58,10 +63,8 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Indicates whether the message should appear at the Top or Bottom of the ListBox.
+        /// The default is Top
         /// </summary>
-        /// <remarks>
-        /// The default is Top.
-        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("promptPosition")]
         [DefaultValue(ListSearchPromptPosition.Top)]
@@ -72,7 +75,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The OnShow animation will be played each time the extender's prompt is displayed.
+        /// The OnShow animation will be played each time the extender's prompt is displayed
         /// </summary>
         /// <remarks>
         /// The prompt will be positioned correctly but hidden. The animation can use
@@ -90,7 +93,7 @@ namespace AjaxControlToolkit {
         Animation _onShow;
 
         /// <summary>
-        /// The OnHide animation will be played each time the extender's prompt is hidden.
+        /// The OnHide animation will be played each time the extender's prompt is hidden
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
@@ -105,10 +108,8 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Indicates whether the search query should be reset after the timeout if no match is found.
-        /// </summary>
-        /// <remarks>
         /// The default is 0, meaning no auto reset behavior.
-        /// </remarks>
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
         [ClientPropertyName("queryTimeout")]
@@ -126,10 +127,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Indicates how the typed characters should be used in the search query.
+        /// Indicates how the typed characters should be used in the search query
         /// </summary>
         /// <remarks>
-        /// The default pattern queries for results that start with the typed word.
+        /// The default pattern queries for results that start with the typed word
         /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("queryPattern")]
@@ -141,7 +142,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Indicates if items added to the List are expected to be sorted.
+        /// Indicates if items added to the List are expected to be sorted
         /// </summary>
         /// <remarks>
         /// The default is false. If set to true it allows the code to perform

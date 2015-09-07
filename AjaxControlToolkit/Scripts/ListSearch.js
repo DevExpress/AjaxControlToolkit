@@ -463,13 +463,12 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a generic OnShow animation's JSON definition.
+    /// Generic OnShow animation's JSON definition
     /// </summary>
     /// <getter>get_onShow</getter>
     /// <setter>set_onShow</setter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.onShow" />
     get_onShow: function() {
-        // Generic OnShow Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onShow() : this._onShowJson;
     },
     set_onShow: function(value) {
@@ -482,33 +481,31 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets a Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnShow animation's behavior.
+    ///  Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the
+    /// generic OnShow animation's behavior
     /// </summary>
     /// <getter>get_onShowBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.onShowBehavior" />
     get_onShowBehavior: function() {
-        // Generic OnShow Animation's behavior
         return this._popupBehavior ? this._popupBehavior.get_onShowBehavior() : null;
     },
 
     /// <summary>
-    /// Play the OnShow animation.
+    /// Plasy the OnShow animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ListSearchExtender.onShow" />
     onShow: function() {
-        // Play the OnShow animation
         if(this._popupBehavior)
             this._popupBehavior.onShow();
     },
 
     /// <summary>
-    /// Gets or sets a generic OnHide animation's JSON definition.
+    /// Generic OnHide animation's JSON definition
     /// </summary>
     /// <getter>get_onHide</getter>
     /// <setter>set_onHide</setter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.onHide" />
     get_onHide: function() {
-        // Generic OnHide Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onHide() : this._onHideJson;
     },
     set_onHide: function(value) {
@@ -521,17 +518,16 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets a Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation's behavior.
+    /// Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation's behavior
     /// </summary>
     /// <getter>get_onHideBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.onHideBehavior" />
     get_onHideBehavior: function() {
-        // Generic OnHide Animation's behavior
         return this._popupBehavior ? this._popupBehavior.get_onHideBehavior() : null;
     },
 
     /// <summary>
-    /// Play the OnHide animation.
+    /// Plays the OnHide animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ListSearchExtender.onHide" />
     onHide: function() {
@@ -540,13 +536,12 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the prompt text displayed when user clicks the list.
+    /// Prompt text displayed when user clicks the list
     /// </summary>
     /// <getter>get_promptText</getter>
     /// <setter>set_promptText</setter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.promptText" />
     get_promptText: function() {
-        // The prompt text displayed when user clicks the list
         return this._promptText;
     },
     set_promptText: function(value) {
@@ -557,13 +552,12 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a CSS class applied to prompt when user clicks the list.
+    /// CSS class applied to prompt when user clicks the list
     /// </summary>
     /// <getter>get_promptCssClass</getter>
     /// <setter>set_promptCssClass</setter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.promptCssClass" />
     get_promptCssClass: function() {
-        // CSS class applied to prompt when user clicks list.
         return this._promptCssClass;
     },
     set_promptCssClass: function(value) {
@@ -574,15 +568,14 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Sys.Extended.UI.ListSearchPromptPosition value used to
+    /// Sys.Extended.UI.ListSearchPromptPosition value used to
     /// determine where the prompt should be positioned relative to the target control.
+    /// Can be Top (default) or Bottom
     /// </summary>
     /// <getter>get_promptPosition</getter>
     /// <setter>set_promptPosition</setter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.promptPosition" />
     get_promptPosition: function() {
-        // Where the prompt should be positioned relative to the target control.
-        // Can be Top (default) or Bottom
         return this._promptPosition;
     },
     set_promptPosition: function(value) {
@@ -593,15 +586,13 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Boolean value indicating whether an OnChange event should be
-    /// fired as soon as the selected element is changed, when the list loses focus or when the user hits enter.
+    /// Boolean value indicating whether an OnChange event should be fired as soon as the
+    /// selected element is changed, when the list loses focus or when the user hits enter
     /// </summary>
     /// <getter>get_raiseImmediateOnChange</getter>
     /// <setter>set_raiseImmediateOnChange</setter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.raiseImmediateOnChange" />
     get_raiseImmediateOnChange: function() {
-        // Boolean indicating whether an OnChange event should be fired as soon as the selected element
-        // is changed, or only when the list loses focus or the user hits enter.
         return this._raiseImmediateOnChange;
     },
     set_raiseImmediateOnChange: function(value) {
@@ -612,15 +603,13 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a number indicating a timeout in milliseconds upon which the
-    /// search query will be cleared. Zero means no auto reset at all.
+    /// Number indicating a timeout in milliseconds upon which the
+    /// search query will be cleared. Zero means no auto reset at all
     /// </summary>
     /// <getter>get_queryTimeout</getter>
     /// <setter>set_queryTimeout</setter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.queryTimeout" />
     get_queryTimeout: function() {
-        // Value indicating timeout in milliseconds after which search query will be cleared.
-        // Zero means no auto reset at all.
         return this._queryTimeout;
     },
     set_queryTimeout: function(value) {
@@ -631,8 +620,11 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a boolean value used to determine whether the list has been sorted upon population.
+    /// Boolean value used to determine whether the list has been sorted upon population
     /// </summary>
+    /// <remarks>
+    /// True indicates that all values in List are already sorted upon population
+    /// </remarks>
     /// <getter>get_isSorted</getter>
     /// <setter>set_isSorted</setter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.isSorted" />
@@ -651,14 +643,13 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Indicates how the typed characters should be used in the search query.
+    /// Sys.Extended.UI.ListSearchQueryPattern value used to determine the search
+    /// query pattern to be used to find items. Can be StartsWith (default) or Contains
     /// </summary>
     /// <getter>get_queryPattern</getter>
     /// <setter>set_queryPattern</setter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.queryPattern" />
     get_queryPattern: function() {
-        // Search query pattern to be used to find items
-        // Can be StartsWith (default) or Contains
         return this._queryPattern;
     },
     set_queryPattern: function(value) {
