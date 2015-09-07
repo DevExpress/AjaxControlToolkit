@@ -556,7 +556,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     get_selectedValue: function() {
         return this._selectedValue;
     },
-    set_selectedValue: function(value) {
+    set_selectedValue: function (value, text, title) {
         if(this._selectedValue != value) {
             if(!text) {
                 // Initial population by server; look for "value:::text" pair
@@ -585,8 +585,8 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         return this.get_selectedValue();
     },
     set_SelectedValue: function(value, text, title) {
-        Sys.Extended.Deprecated("set_SelectedValue", "set_selectedValue");
-        this.set_selectedValue(value);
+        Sys.Extended.Deprecated("set_SelectedValue(value, text, title)", "set_selectedValue(value, text, title)");
+        this.set_selectedValue(value, text, title);
     },
 
     /// <summary>
