@@ -50,6 +50,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Enables you to set the interval size for the Y axis line of the chart.
+        /// The default is 6
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(6)]
@@ -58,6 +59,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Enables you to set the interval size for the X axis line of the chart.
+        /// The default is 6
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(6)]
@@ -98,6 +100,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Enables you to set the background color of the tooltip box.
+        /// The default is #FFC652
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#FFC652")]
@@ -106,6 +109,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Enables you to set the font color of the tooltip box.
+        /// The default is #0E426C
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#0E426C")]
@@ -114,6 +118,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Enables you to set the border color of the tooltip box.
+        /// The default is #B85B3E
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#B85B3E")]
