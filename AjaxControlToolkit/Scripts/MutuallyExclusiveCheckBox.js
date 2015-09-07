@@ -34,11 +34,8 @@ Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// The unique key to use to associate checkboxes.
+    /// The unique key to use to associate checkboxes
     /// </summary>
-    /// <remarks>
-    /// This key does not respect INamingContainer renaming.
-    /// </remarks>
     /// <getter>get_key</getter>
     /// <setter>set_key</setter>
     /// <member name="cP:AjaxControlToolkit.MutuallyExclusiveCheckBoxExtender.key" />
@@ -93,11 +90,11 @@ Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.prototype = {
             });
         }
 
-        this.raiseChecked(new Sys.Extended.UI.MutuallyExclusiveCheckBoxEventArgs(element, this._key));
+        this.raise_checked(new Sys.Extended.UI.MutuallyExclusiveCheckBoxEventArgs(element, this._key));
     },
 
     /// <summary>
-    /// Fires when checkbox is checked.
+    /// Fires when checkbox is checked
     /// </summary>
     /// <event add="add_checked" remove="remove_checked" raise="raise_checked" />
     /// <member name="cE:AjaxControlToolkit.MutuallyExclusiveCheckBoxExtender.checked" />
