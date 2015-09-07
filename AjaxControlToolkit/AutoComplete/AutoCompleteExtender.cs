@@ -10,15 +10,16 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// AutoComplete extends any ASP.NET TextBox control.It associates that control with a
+    /// AutoComplete extends any ASP.NET TextBox control. It associates that control with a
     /// popup panel to display words that begin with the prefix that is entered into the text box.
     /// When the user has entered more characters than a specified minimum length, a popup displays
     /// words or phrases that start with that value. By default, the list of words is positioned at
     /// the bottom left side of the text box.
-    /// 
+    /// </summary>
+    ///<remarks>
     /// The candidate words that match the user input are supplied by a Web service. Caching is enabled,
     /// so if the same characters are entered multiple times, only one call is made to the Web service. 
-    /// </summary>
+    /// </remarks>
     [Designer(typeof(AutoCompleteExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.AutoCompleteBehavior", Constants.AutoCompleteName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -30,6 +31,7 @@ namespace AjaxControlToolkit {
     public class AutoCompleteExtender : AnimationExtenderControlBase {
         ///<summary>
         /// Minimum length of text before the webservice provides suggestions.
+        /// The default is 3
         /// </summary>
         [DefaultValue(3)]
         [ExtenderControlProperty]
@@ -40,7 +42,8 @@ namespace AjaxControlToolkit {
         }
 
         ///<summary>
-        /// Time in milliseconds when the timer will kick in to get suggestions using the web service. 
+        /// Time in milliseconds when the timer will kick in to get suggestions using the web service.
+        /// The default is 1000
         /// </summary>
         [DefaultValue(1000)]
         [ExtenderControlProperty]
@@ -53,6 +56,7 @@ namespace AjaxControlToolkit {
 
         ///<summary>
         /// Number of suggestions to be provided.
+        /// The dafault is 10
         /// </summary>
         [DefaultValue(10)]
         [ExtenderControlProperty]
@@ -168,6 +172,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Flag to denote whether client side caching is enabled.
+        /// The default is true
         /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
@@ -188,7 +193,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the First Row of the Search Results be selected by default
+        /// Determines if the First Row of the Search Results be selected by default.
+        /// The default is false
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
@@ -203,6 +209,7 @@ namespace AjaxControlToolkit {
         /// set to true, then the completion list displays suggestions just for the current word, 
         /// otherwise, it displays the whole string that will show up in the TextBox if that
         /// item is selected, which is the current default.
+        /// The default is false
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("showOnlyCurrentWordInCompletionListItem")]

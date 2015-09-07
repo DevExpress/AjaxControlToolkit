@@ -5,21 +5,79 @@ Sys.Extended.UI.AutoCompleteBehavior = function(element) {
     // "element" - DOM Element the behavior is associated with
     Sys.Extended.UI.AutoCompleteBehavior.initializeBase(this, [element]);
     
-    // Path to the web service, or null if a page method
+    /// <summary>
+    /// Web service url.
+    /// </summary>
+    /// <getter>get_servicePath</getter>
+    /// <setter>set_servicePath</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.servicePath" />
     this._servicePath = null;
-    
-    // Name of the web method
+    /// <summary>
+    /// Web service method.
+    /// </summary>
+    /// <getter>get_serviceMethod</getter>
+    /// <setter>set_serviceMethod</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.serviceMethod" />
     this._serviceMethod = null;
-    
-    // User/page specific context provided to the web method
+    /// <summary>
+    /// User/page specific context provided to an optional overload of the
+    /// web method described by ServiceMethod/ServicePath.  If the context
+    /// key is used, it should have the same signature with an additional
+    /// parameter named contextKey of type string.
+    /// </summary>
+    /// <getter>get_contextKey</getter>
+    /// <setter>set_contextKey</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.contextKey" />
     this._contextKey = null;
-    
-    // Whether or not the the user/page specific context should be used
+    /// <summary>
+    /// Whether or not the ContextKey property should be used.  This will be
+    /// automatically enabled if the ContextKey property is ever set
+    /// (on either the client or the server).  If the context key is used,
+    /// it should have the same signature with an additional parameter
+    /// named contextKey of type string.
+    /// The default is false
+    /// </summary>
+    /// <getter>get_useContextKey</getter>
+    /// <setter>set_useContextKey</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.useContextKey" />
     this._useContextKey = false;
+    /// <summary>
+    /// Minimum text prefix length required to call the webservice.
+    /// The default is 3
+    /// </summary>
+    /// <getter>get_minimumPrefixLength</getter>
+    /// <setter>set_minimumPrefixLength</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.minimumPrefixLength" />
     this._minimumPrefixLength = 3;
+    /// <summary>
+    /// Maximum completion set size.
+    /// The default is 10
+    /// </summary>
+    /// <getter>get_completionSetCount</getter>
+    /// <setter>set_completionSetCount</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionSetCount" />
     this._completionSetCount = 10;
-    this._completionInterval = 1000;        
+    /// <summary>
+    /// Auto completion timer interval in milliseconds.
+    /// The default is 1000
+    /// </summary>
+    /// <getter>get_completionInterval</getter>
+    /// <setter>set_completionInterval</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionInterval" />
+    this._completionInterval = 1000;
+    /// <summary>
+    /// ID of the completion div element.
+    /// </summary>
+    /// <getter>get_completionListElementID</getter>
+    /// <setter>set_completionListElementID</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionListElementID" />
     this._completionListElementID = null;
+    /// <summary>
+    /// List dom element.
+    /// </summary>
+    /// <getter>get_completionList</getter>
+    /// <setter>set_completionList</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionList" />
     this._completionListElement = null;
     this._textColor = 'windowtext';
     this._textBackground = 'window';
@@ -34,20 +92,67 @@ Sys.Extended.UI.AutoCompleteBehavior = function(element) {
     this._focusHandler = null;
     this._blurHandler = null;
     this._bodyClickHandler = null;
-    this._completionListBlurHandler = null;        
+    this._completionListBlurHandler = null;
     this._keyDownHandler = null;
     this._mouseDownHandler = null;
     this._mouseUpHandler = null;
     this._mouseOverHandler = null;
     this._tickHandler = null;
+    /// <summary>
+    /// Get or sets whether suggestions retrieved from the webservice should be cached.
+    /// </summary>
+    /// <getter>get_enableCaching</getter>
+    /// <setter>set_enableCaching</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.enableCaching" />
     this._enableCaching = true;
     this._flyoutHasFocus = false;
     this._textBoxHasFocus = false;
+    /// <summary>
+    /// Css class name that will be used to style the completion list element.
+    /// </summary>
+    /// <getter>get_completionListCssClass</getter>
+    /// <setter>set_completionListCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionListCssClass" />
     this._completionListCssClass = null;
+    /// <summary>
+    /// Css class name that will be used to style an item in the completion list.
+    /// </summary>
+    /// <getter>get_completionListItemCssClass</getter>
+    /// <setter>set_completionListItemCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionListItemCssClass" />
     this._completionListItemCssClass = null;
+    /// <summary>
+    /// Css class name that will be used to style a highlighted item in the list.
+    /// </summary>
+    /// <getter>get_highlightedItemCssClass</getter>
+    /// <setter>set_highlightedItemCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.highlightedItemCssClass" />
     this._highlightedItemCssClass = null;
+    /// <summary>
+    /// Gets or sets the character(s) used to seperate words for autocomplete.
+    /// </summary>
+    /// <getter>get_delimiterCharacters</getter>
+    /// <setter>set_delimiterCharacters</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.delimiterCharacters" />
     this._delimiterCharacters = null;
+    /// <summary>
+    /// Flag to determine if the first option in the flyout is selected or not.
+    /// The default is false
+    /// </summary>
+    /// <getter>get_firstRowSelected</getter>
+    /// <setter>set_firstRowSelected</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.firstRowSelected" />
     this._firstRowSelected = false;
+    /// <summary>
+    /// If Delimiter characters are specified and showOnlyCurrentWordInCompletionListItem is 
+    /// set to true, then the completion list displays suggestions just for the current word, 
+    /// otherwise, it displays the whole string that will show up in the TextBox if that
+    /// item is selected, which is the current default.
+    /// The default is false
+    /// </summary>
+    /// <getter>get_showOnlyCurrentWordInCompletionListItem</getter>
+    /// <setter>set_showOnlyCurrentWordInCompletionListItem</setter>
+    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.showOnlyCurrentWordInCompletionListItem" />
     this._showOnlyCurrentWordInCompletionListItem = false;
     // WebRequest object returned from WebServiceProxy.invoke
     this._webRequest = null;  
@@ -775,12 +880,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Auto completion timer interval in milliseconds.
-    /// </summary>
-    /// <getter>get_completionInterval</getter>
-    /// <setter>set_completionInterval</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionInterval" />
     get_completionInterval: function() {
         return this._completionInterval;
     },
@@ -791,12 +890,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// List dom element.
-    /// </summary>
-    /// <getter>get_completionList</getter>
-    /// <setter>set_completionList</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionList" />
     get_completionList: function() {
         return this._completionListElement;
     },
@@ -807,12 +900,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Maximum completion set size.
-    /// </summary>
-    /// <getter>get_completionSetCount</getter>
-    /// <setter>set_completionSetCount</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionSetCount" />
     get_completionSetCount: function() {
         return this._completionSetCount;
     },
@@ -823,12 +910,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Minimum text prefix length required to call the webservice.
-    /// </summary>
-    /// <getter>get_minimumPrefixLength</getter>
-    /// <setter>set_minimumPrefixLength</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.minimumPrefixLength" />
     get_minimumPrefixLength: function() {
         return this._minimumPrefixLength;
     },
@@ -839,12 +920,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Web service method.
-    /// </summary>
-    /// <getter>get_serviceMethod</getter>
-    /// <setter>set_serviceMethod</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.serviceMethod" />
     get_serviceMethod: function() {
         return this._serviceMethod;
     },
@@ -855,12 +930,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Web service url.
-    /// </summary>
-    /// <getter>get_servicePath</getter>
-    /// <setter>set_servicePath</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.servicePath" />
     get_servicePath: function() {
         return this._servicePath;
     },
@@ -871,15 +940,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// User/page specific context provided to an optional overload of the
-    /// web method described by ServiceMethod/ServicePath.  If the context
-    /// key is used, it should have the same signature with an additional
-    /// parameter named contextKey of type string.
-    /// </summary>
-    /// <getter>get_contextKey</getter>
-    /// <setter>set_contextKey</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.contextKey" />
     get_contextKey: function() {
         return this._contextKey;
     },
@@ -891,16 +951,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Whether or not the ContextKey property should be used.  This will be
-    /// automatically enabled if the ContextKey property is ever set
-    /// (on either the client or the server).  If the context key is used,
-    /// it should have the same signature with an additional parameter
-    /// named contextKey of type string.
-    /// </summary>
-    /// <getter>get_useContextKey</getter>
-    /// <setter>set_useContextKey</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.useContextKey" />
     get_useContextKey: function() {
         return this._useContextKey;
     },
@@ -911,12 +961,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Get or sets whether suggestions retrieved from the webservice should be cached.
-    /// </summary>
-    /// <getter>get_enableCaching</getter>
-    /// <setter>set_enableCaching</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.enableCaching" />
     get_enableCaching: function() {
         return this._enableCaching;
     },
@@ -927,13 +971,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// ID of the completion div element.
-    /// </summary>
-    /// <getter>get_completionListElementID</getter>
-    /// <setter>set_completionListElementID</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionListElementID" />
-    get_completionListElementID: function() {        
+    get_completionListElementID: function() {
         return this._completionListElementID;
     },
     set_completionListElementID: function(value) {
@@ -943,12 +981,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Css class name that will be used to style the completion list element.
-    /// </summary>
-    /// <getter>get_completionListCssClass</getter>
-    /// <setter>set_completionListCssClass</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionListCssClass" />
     get_completionListCssClass: function() {
         return this._completionListCssClass;
     },
@@ -959,13 +991,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Css class name that will be used to style an item in the completion list.
-    /// </summary>
-    /// <getter>get_completionListItemCssClass</getter>
-    /// <setter>set_completionListItemCssClass</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.completionListItemCssClass" />
-    get_completionListItemCssClass: function() {        
+    get_completionListItemCssClass: function() {
         return this._completionListItemCssClass;
     },
     set_completionListItemCssClass: function(value) {
@@ -975,12 +1001,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Css class name that will be used to style a highlighted item in the list.
-    /// </summary>
-    /// <getter>get_highlightedItemCssClass</getter>
-    /// <setter>set_highlightedItemCssClass</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.highlightedItemCssClass" />
     get_highlightedItemCssClass: function() {
         return this._highlightedItemCssClass;
     },
@@ -991,12 +1011,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Gets or sets the character(s) used to seperate words for autocomplete.
-    /// </summary>
-    /// <getter>get_delimiterCharacters</getter>
-    /// <setter>set_delimiterCharacters</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.delimiterCharacters" />
     get_delimiterCharacters: function() {
         return this._delimiterCharacters;
     },
@@ -1007,12 +1021,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Flag to determine if the first option in the flyout is selected or not.
-    /// </summary>
-    /// <getter>get_firstRowSelected</getter>
-    /// <setter>set_firstRowSelected</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.firstRowSelected" />
     get_firstRowSelected: function() {
         return this._firstRowSelected;
     },
@@ -1023,15 +1031,6 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// If Delimiter characters are specified and showOnlyCurrentWordInCompletionListItem is 
-    /// set to true, then the completion list displays suggestions just for the current word, 
-    /// otherwise, it displays the whole string that will show up in the TextBox if that
-    /// item is selected, which is the current default.
-    /// </summary>
-    /// <getter>get_showOnlyCurrentWordInCompletionListItem</getter>
-    /// <setter>set_showOnlyCurrentWordInCompletionListItem</setter>
-    /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.showOnlyCurrentWordInCompletionListItem" />
     get_showOnlyCurrentWordInCompletionListItem: function() {
         return this._showOnlyCurrentWordInCompletionListItem;
     },
