@@ -22,31 +22,115 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     // "e" - the DOM element the behavior is associated with
     Sys.Extended.UI.CascadingDropDownBehavior.initializeBase(this, [e]);
 
-    // Properties
+    /// <summary>
+    /// Gets or sets a string containing the ID of the parent drop down in a hierarchy of drop downs.
+    /// </summary>
+    /// <getter>get_parentControlID</getter>
+    /// <setter>set_parentControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.parentControlID" />
     this._parentControlID = null;
+    /// <summary>
+    /// Gets or sets a string containing the category of this drop down.
+    /// </summary>
+    /// <getter>get_category</getter>
+    /// <setter>set_category</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.category" />
     this._category = null;
+    /// <summary>
+    /// Gets or sets a string containing the prompt text that is displayed as the first entry in the drop down.
+    /// </summary>
+    /// <getter>get_promptText</getter>
+    /// <setter>set_promptText</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.promptText" />
     this._promptText = null;
+    /// <summary>
+    /// Gets or sets a string containing the loading text to to be displayed when getting the drop down's values from the Web service.
+    /// </summary>
+    /// <getter>get_loadingText</getter>
+    /// <setter>set_loadingText</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.loadingText" />
     this._loadingText = null;
+    /// <summary>
+    /// Gets or sets a string containing the value for the option displayed by a DropDownList showing the PromptText.
+    /// </summary>
+    /// <getter>get_promptValue</getter>
+    /// <setter>set_promptValue</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.promptValue" />
     this._promptValue = null;
+    /// <summary>
+    /// Gets or sets a string containing the value for the option displayed when the list is empty.
+    /// </summary>
+    /// <getter>get_emptyValue</getter>
+    /// <setter>set_emptyValue</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.emptyValue" />
     this._emptyValue = null;
+    /// <summary>
+    /// Gets or set a string containing the text for the option displayed when the list is empty.
+    /// </summary>
+    /// <getter>get_emptyText</getter>
+    /// <setter>set_emptyText</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.emptyText" />
     this._emptyText = null;
 
-    // Path to the web service, defaulting to a page method
+    /// <summary>
+    /// Gets or sets a string containing the path of the Web service.
+    /// The default is page path
+    /// </summary>
+    /// <getter>get_servicePath</getter>
+    /// <setter>set_servicePath</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.servicePath" />
     this._servicePath = location.pathname;
 
-    // Name of the web method
+    /// <summary>
+    /// Gets or sets a string containing the name of the method to invoke on the Web service.
+    /// </summary>
+    /// <getter>get_serviceMethod</getter>
+    /// <setter>set_serviceMethod</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.serviceMethod" />
     this._serviceMethod = null;
 
-    // User/page specific context provided to the web method
+    /// <summary>
+    /// Gets or sets a string containing user or page specific context provided
+    /// to an optional overload of the Web method described by ServiceMethod or ServicePath.
+    /// </summary>
+    /// <remarks>
+    /// If the context key is used, it should have the same signature with
+    /// an additional parameter named contextKey of type string.
+    /// </remarks>
+    /// <getter>get_contextKey</getter>
+    /// <setter>set_contextKey</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.contextKey" />
     this._contextKey = null;
 
-    // Whether or not the the user/page specific context should be used
+    /// <summary>
+    /// Gets or sets a boolean value that determines whether or not the ContextKey property should be used.
+    /// </summary>
+    /// <remarks>
+    /// The useContextKey property will be automatically enabled if the ContextKey property is
+    /// ever set on either the client or the server. If the context key is used, it should
+    /// have the same signature with an additional parameter named contextKey of type string.
+    /// </remarks>
+    /// <getter>get_useContextKey</getter>
+    /// <setter>set_useContextKey</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.useContextKey" />
     this._useContextKey = false;
 
-    // whether to use get or post
+    /// <summary>
+    /// Whether or not use HTTP GET method for requesting the data.
+    /// </summary>
+    /// <getter>use_HttpGet</getter>
+    /// <setter>use_HttpGet</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.useHttpGet" />
     this._useHttpGet = false;
 
-    //Whether or not enable dropdown list at the time of loading data
+    /// <summary>
+    /// Whether or not disable the dropdownlist control when this is waiting to 
+    /// get data from the service so at the time of loading user can use keyboard 
+    /// to navigate to the dropdown control.
+    /// </summary>
+    /// <getter>get_enableAtLoading</getter>
+    /// <setter>set_enableAtLoading</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.enableAtLoading" />
     this._enableAtLoading = false;
 
     // Variables
@@ -54,6 +138,12 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     this._changeHandler = null;
     this._parentChangeHandler = null;
     this._lastParentValues = null;
+    /// <summary>
+    /// Gets or sets a string containing the selected value of the drop down.
+    /// </summary>
+    /// <getter>get_selectedValue</getter>
+    /// <setter>set_selectedValue</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.selectedValue" />
     this._selectedValue = null;
     this._actualDisabledStatus = false;
 }
@@ -368,12 +458,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         return { 'name': message, 'value': message };
     },
 
-    /// <summary>
-    /// Gets or sets a string containing the ID of the parent drop down in a hierarchy of drop downs.
-    /// </summary>
-    /// <getter>get_parentControlID</getter>
-    /// <setter>set_parentControlID</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.parentControlID" />
     get_parentControlID: function() {
         return this._parentControlID;
     },
@@ -393,12 +477,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         this.set_parentControlID(value);
     },
 
-    /// <summary>
-    /// Gets or sets a string containing the category of this drop down.
-    /// </summary>
-    /// <getter>get_category</getter>
-    /// <setter>set_category</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.category" />
     get_category: function() {
         return this._category;
     },
@@ -418,14 +496,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         this.set_category(value);
     },
 
-    /// <summary>
-    /// Gets or sets a string containing the prompt text that is displayed as the first entry in the drop down.
-    /// </summary>
-    /// <getter>get_promptText</getter>
-    /// <setter>set_promptText</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.promptText" />
     get_promptText: function() {
-        // Prompt text displayed as the first entry in the drop down
         return this._promptText;
     },
     set_promptText: function(value) {
@@ -444,12 +515,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         this.set_promptText(value);  
     },
 
-    /// <summary>
-    /// Gets or sets a string containing the value for the option displayed by a DropDownList showing the PromptText.
-    /// </summary>
-    /// <getter>get_promptValue</getter>
-    /// <setter>set_promptValue</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.promptValue" />
     get_promptValue: function() {
         // Value for the option displayed by a DropDownList showing the PromptText
         return this._promptValue;
@@ -470,14 +535,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         this.set_promptValue(value);
     },
 
-    /// <summary>
-    /// Gets or set a string containing the text for the option displayed when the list is empty.
-    /// </summary>
-    /// <getter>get_emptyText</getter>
-    /// <setter>set_emptyText</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.emptyText" />
     get_emptyText: function() {
-        // Text for the option displayed when the list is empty
         return this._emptyText;
     },
     set_emptyText: function(value) {
@@ -496,12 +554,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         this.set_emptyText(value);
     },
 
-    /// <summary>
-    /// Gets or sets a string containing the value for the option displayed when the list is empty.
-    /// </summary>
-    /// <getter>get_emptyValue</getter>
-    /// <setter>set_emptyValue</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.emptyValue" />
     get_emptyValue: function() {
         // Value for the option displayed when the list is empty
         return this._emptyValue;
@@ -522,12 +574,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         this.set_emptyValue(value);
     },
 
-    /// <summary>
-    /// Gets or sets a string containing the loading text to to be displayed when getting the drop down's values from the Web service.
-    /// </summary>
-    /// <getter>get_loadingText</getter>
-    /// <setter>set_loadingText</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.loadingText" />
     get_loadingText: function() {
         return this._loadingText;
     },
@@ -547,12 +593,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         this.set_loadingText(value);
     },
 
-    /// <summary>
-    /// Gets or sets a string containing the selected value of the drop down.
-    /// </summary>
-    /// <getter>get_selectedValue</getter>
-    /// <setter>set_selectedValue</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.selectedValue" />
+   
     get_selectedValue: function() {
         return this._selectedValue;
     },
@@ -589,12 +630,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         this.set_selectedValue(value, text, title);
     },
 
-    /// <summary>
-    /// Gets or sets a string containing the path of the Web service.
-    /// </summary>
-    /// <getter>get_servicePath</getter>
-    /// <setter>set_servicePath</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.servicePath" />
     get_servicePath: function() {
         return this._servicePath;
     },
@@ -614,12 +649,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         this.set_servicePath(value);
     },
 
-    /// <summary>
-    /// Gets or sets a string containing the name of the method to invoke on the Web service.
-    /// </summary>
-    /// <getter>get_serviceMethod</getter>
-    /// <setter>set_serviceMethod</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.serviceMethod" />
     get_serviceMethod: function() {
         return this._serviceMethod;
     },
@@ -639,17 +668,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         this.set_serviceMethod(value);
     },
 
-    /// <summary>
-    /// Gets or sets a string containing user or page specific context provided
-    /// to an optional overload of the Web method described by ServiceMethod or ServicePath.
-    /// </summary>
-    /// <remarks>
-    /// If the context key is used, it should have the same signature with
-    /// an additional parameter named contextKey of type string.
-    /// </remarks>
-    /// <getter>get_contextKey</getter>
-    /// <setter>set_contextKey</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.contextKey" />
     get_contextKey: function() {
         // User/page specific context provided to an optional overload of the
         // web method described by ServiceMethod/ServicePath.  If the context
@@ -665,17 +683,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Gets or sets a boolean value that determines whether or not the ContextKey property should be used.
-    /// </summary>
-    /// <remarks>
-    /// The useContextKey property will be automatically enabled if the ContextKey property is
-    /// ever set on either the client or the server. If the context key is used, it should
-    /// have the same signature with an additional parameter named contextKey of type string.
-    /// </remarks>
-    /// <getter>get_useContextKey</getter>
-    /// <setter>set_useContextKey</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.useContextKey" />
+    
     get_useContextKey: function() {
         // Whether or not the ContextKey property should be used.  This will be
         // automatically enabled if the ContextKey property is ever set
@@ -691,12 +699,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Whether or not use HTTP GET method for requesting the data.
-    /// </summary>
-    /// <getter>use_HttpGet</getter>
-    /// <setter>use_HttpGet</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.useHttpGet" />
     get_useHttpGet: function() {
         return this._useHttpGet;
     },
@@ -707,14 +709,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         }
     },
 
-    /// <summary>
-    /// Whether or not disable the dropdownlist control when this is waiting to 
-    /// get data from the service so at the time of loading user can use keyboard 
-    /// to navigate to the dropdown control.
-    /// </summary>
-    /// <getter>get_enableAtLoading</getter>
-    /// <setter>set_enableAtLoading</setter>
-    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.enableAtLoading" />
     get_enableAtLoading: function() {
         return this._enableAtLoading;
     },

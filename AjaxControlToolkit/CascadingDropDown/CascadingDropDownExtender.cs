@@ -17,14 +17,6 @@ namespace AjaxControlToolkit {
     /// control to get automatic population of a set of DropDownList controls. Each time the selection
     /// of one the DropDownList controls changes, the CascadingDropDown makes a call to a specified
     /// web service to retrieve the list of values for the next DropDownList in the set.
-    /// 
-    /// CascadingDropDown enables a common scenario in which the contents of one list depends on the
-    /// selection of another list and does so without having to embed the entire data set in the page
-    /// or transfer it to the client at all. All the logic about the contents of the set of DropDownList
-    /// controls lives on the server in a web service. This web service can use any suitable method for
-    /// storing and looking up the relevant data. The sample web service used here reads the data set from
-    /// a simple hierarchical XML data file. The sample data file shows that the DropDownList items can have
-    /// distinct names and value (values are optional in the sample).
     /// </summary>
     [Designer(typeof(CascadingDropDownExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.CascadingDropDownBehavior", Constants.CascadingDropDownName)]
