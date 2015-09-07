@@ -10,9 +10,7 @@ using System.Drawing;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// The BarChart control enables you to render a bar chart from one or more series of values.
-    /// This control is compatible with any browser which supports SVG including Internet Explorer 9 and above.
-    /// This control can display four types of BarCharts: Column, StackedColumn, Bar and StackedBar.
+    /// The BarChart control enables you to render a bar chart from one or more series of values.    
     /// </summary>
     [ClientCssResource(Constants.BarChartName)]
     [ClientScriptResource("Sys.Extended.UI.BarChart", Constants.BarChartName)]
@@ -65,6 +63,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Enables you to set the interval size for the value axis line.
+        /// The default is 9
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(9)]
