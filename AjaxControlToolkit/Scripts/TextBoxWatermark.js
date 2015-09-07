@@ -126,7 +126,7 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     /// <summary>
-    /// Clears the text from the target.
+    /// Clears the text from the target
     /// </summary>
     /// <param name="focusing" type="Boolean">Whether or not we are focusing on the textbox</param>
     /// <member name="cM:AjaxControlToolkit.TextBoxWatermarkExtender.clearText" />
@@ -187,10 +187,11 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     /// <summary>
-    /// Method called to hook up to Sys.Preview.UI.TextBox if present.
+    /// Method called to hook up to Sys.Preview.UI.TextBox if present
     /// </summary>
-    /// <remarks>This method must be called manually if the Sys.Preview.UI.TextBox
-    /// is added after the TextBoxWatermarkBehavior is initialized.
+    /// <remarks>
+    /// This method must be called manually if the Sys.Preview.UI.TextBox
+    /// is added after the TextBoxWatermarkBehavior is initialized
     /// </remarks>
     /// <member name="cM:AjaxControlToolkit.TextBoxWatermarkExtender.registerPropertyChanged" />
     registerPropertyChanged : function() {
@@ -233,7 +234,7 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
     
     /// <summary>
-    /// The text to show when the control has no value.
+    /// The text to show when the control has no value
     /// </summary>
     /// <getter>get_watermarkText</getter>
     /// <setter>set_watermarkText</setter>
@@ -260,13 +261,12 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     /// <summary>
-    /// The CSS class to apply to the TextBox when it has no value (e.g. the watermark text is shown).
+    /// The CSS class to apply to the TextBox when it has no value (e.g. the watermark text is shown)
     /// </summary>
     /// <getter>get_watermarkCssClass</getter>
     /// <setter>set_watermarkCssClass</setter>
     /// <member name="cP:AjaxControlToolkit.TextBoxWatermarkExtender.watermarkCssClass" />
     get_watermarkCssClass: function() {
-        // The CSS class to apply to the TextBox when it has no value (e.g. the watermark text is shown).
         return this._watermarkCssClass;
     },
     set_watermarkCssClass: function(value) {
@@ -293,7 +293,7 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     /// <getter>get_text</getter>
     /// <setter>set_text</setter>
     /// <member name="cP:AjaxControlToolkit.TextBoxWatermarkExtender.text" />
-    get_text: funtion() {
+    get_text: function() {
         // Wrapper for the textbox's text that will ignore or create the watermark as appropriate
         return Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()).get_Value();
     },
