@@ -10,14 +10,7 @@ namespace AjaxControlToolkit {
 
     /// <summary>
     /// The Calendar control extender can be attached to any ASP.NET TextBox control. It provides client-side 
-    /// date-picking functionality with customizable date format and UI in a popup control. You can interact 
-    /// with the calendar by clicking on a day to set the date, or the "Today" link to set the current date.
-    /// 
-    /// In addition, the left and right arrows can be used to move forward or back a month. 
-    /// By clicking on the title of the calendar you can change the view from Days in the current month, 
-    /// to Months in the current year. Another click will switch to Years in the current Decade. 
-    /// This action allows you to easily jump to dates in the past or the future from within 
-    /// the calendar control.
+    /// date-picking functionality with customizable date format and UI in a popup control. 
     /// </summary>
     [Designer(typeof(CalendarExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
@@ -76,6 +69,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Whether time should be cleared in edited date/time.
+        /// The default value is false
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
@@ -87,6 +81,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Whether this behavior is available for the current element.
+        /// The default value is true
         /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
@@ -98,6 +93,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Whether changing modes is animated.
+        /// The default value is true
         /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
@@ -109,6 +105,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Gets or sets the first day of week.
+        /// The default value is Default
         /// </summary>
         [DefaultValue(FirstDayOfWeek.Default)]
         [ExtenderControlProperty]
