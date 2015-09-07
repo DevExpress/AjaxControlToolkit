@@ -210,7 +210,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when current textbox value changes.
+    /// Fires when current textbox value changes
     /// </summary>
     /// <event add="add_currentChanged" remove="remove_currentChanged" raise="raise_currentChanged" />
     /// <member name="cE:AjaxControlToolkit.NumericUpDownExtender.currentChanged" />
@@ -251,9 +251,8 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Reads the value of the associated textbox.
+    /// Reads the value of the associated textbox
     /// </summary>
-    /// <returns type="String">Value of the associated textbox.</returns>
     /// <member name="cM:AjaxControlToolkit.NumericUpDownExtender.readValue" />
     readValue: function() {
         // Parse value of textbox and this._currentValue to be that value.
@@ -298,14 +297,14 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sets the value of the associated textbox.
+    /// Sets the value of the associated textbox
     /// </summary>
     /// <param name="value" type="String">Value to set</param>
     /// <member name="cM:AjaxControlToolkit.NumericUpDownExtender.setCurrentToTextBox" />
     setCurrentToTextBox: function(value) {
         if(this._elementTextBox) {
             this._elementTextBox.value = value;
-            this.raiseCurrentChanged(value);
+            this.raise_currentChanged(value);
 
             if(document.createEvent) {
                 var onchangeEvent = document.createEvent('HTMLEvents');
@@ -349,7 +348,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a number that specifies the combined size of the TextBox and Up/Down buttons. Minimum value 25.
+    /// Combined size of the TextBox and Up/Down buttons. Minimum value 25
     /// </summary>
     /// <remarks>
     /// This property is not used if you provide custom buttons.
@@ -358,7 +357,6 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     /// <setter>set_width</setter>
     /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.width" />
     get_width: function() {
-        // This property is not used if you provide custom buttons.
         return this._widthValue;
     },
     set_width: function(value) {
@@ -378,7 +376,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a string that specifies a custom parameter to pass to the Web Service.
+    /// Custom parameter to pass to the Web Service
     /// </summary>
     /// <getter>get_tag</getter>
     /// <setter>set_tag</setter>
@@ -403,7 +401,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a reference to a custom Up button.
+    /// Reference to custom Up button
     /// </summary>
     /// <getter>get_targetButtonUpID</getter>
     /// <setter>set_targetButtonUpID</setter>
@@ -428,7 +426,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a reference to a custom Down button.
+    /// Reference to custom Down button
     /// </summary>
     /// <getter>get_targetButtonDownID</getter>
     /// <setter>set_targetButtonDownID</setter>
@@ -453,16 +451,15 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the path to a Web service that returns data used to get the next value.
+    /// Path to a web service that returns the data used to get the next value
     /// </summary>
     /// <remarks>
-    /// If the ServiceUpPath property is empty, a PageMethod will be used instead of a Web service.
+    /// If the ServiceUpPath property is empty, a PageMethod will be used instead of a Web service
     /// </remarks>
     /// <getter>get_serviceUpPath</getter>
     /// <setter>set_serviceUpPath</setter>
     /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.serviceUpPath" />
     get_serviceUpPath: function() {
-        // If empty, a PageMethod will be used instead of a web service.
         return this._serviceUpPathValue;
     },
     set_serviceUpPath: function(value) {
@@ -482,18 +479,12 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the name of the method to call on the Web service (or the name of a PageMethod) to get the next value.
+    /// Name of the method to call on the Web service (or the name of a PageMethod) to get the next value
     /// </summary>
     /// <getter>get_serviceUpMethod</getter>
     /// <setter>set_serviceUpMethod</setter>
     /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.serviceUpMethod" />
     get_serviceUpMethod: function() {
-        // The signature of the web method must be of the form:
-        //     [WebMethod]
-        //     public int MethodName(int current, string tag)
-        //     {
-        //         ...
-        //     }
         return this._serviceUpMethodValue;
     },
     set_serviceUpMethod: function(value) {
@@ -516,16 +507,15 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the path to a Web service that returns data used to get the previous value.
+    /// Path to a web service that returns the data used to get the previous value
     /// </summary>
     /// <remarks>
-    /// If the ServiceDownPath property is empty, a PageMethod will be used instead of a Web service.
+    /// If the ServiceDownPath property is empty, a PageMethod will be used instead of a Web service
     /// </remarks>
     /// <getter>get_serviceDownPath</getter>
     /// <setter>set_serviceDownPath</setter>
     /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.serviceDownPath" />
     get_serviceDownPath: function() {
-        // If empty, a PageMethod will be used instead of a web service.
         return this._serviceDownPathValue;
     },
     set_serviceDownPath: function(value) {
@@ -536,7 +526,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_ServiceDownPath: function() {
-        Sys.Extended.Deprecated("get_ServiceDownPath", "set_serviceDownPath");
+        Sys.Extended.Deprecated("get_ServiceDownPath", "get_serviceDownPath");
         return this.get_serviceDownPath();
     },
     set_ServiceDownPath: function(value) {
@@ -545,18 +535,12 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the name of the method to call on the Web service (or the name of a PageMethod) to get the previous value.
+    /// Name of the method to call on the Web service (or the name of a PageMethod) to get the previous value
     /// </summary>
     /// <getter>get_serviceDownMethod</getter>
     /// <setter>set_serviceDownMethod</setter>
     /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.serviceDownMethod" />
     get_serviceDownMethod: function() {
-        // The signature of the web method must be of the form:
-        //     [WebMethod]
-        //     public int MethodName(int current, string tag)
-        //     {
-        //         ...
-        //     }
         return this._serviceDownMethodValue;
     },
     set_serviceDownMethod: function(value) {
@@ -579,7 +563,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a string containing a list of strings separated by semicolons (;) to be used as an enumeration.
+    /// A list of strings separated by semicolons (;) to be used as an enumeration by NumericUpDown
     /// </summary>
     /// <getter>get_refValues</getter>
     /// <setter>set_refValues</setter>
@@ -614,7 +598,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a number that specifies the step value used for simple numeric incrementing and decrementing.
+    /// Step used for simple numeric incrementing and decrementing. The default value is 1
     /// </summary>
     /// <getter>get_step</getter>
     /// <setter>set_step</setter>
@@ -640,8 +624,13 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a number that specifies the minimum value for the NumericUpDown control.
+    /// The minimum value allowed by the extender
     /// </summary>
+    /// <remarks>
+    /// Currently, it does not prevent out of range values from being entered
+    /// into the textbox even if Minimum or Maximum are specified on the extender,
+    /// but using the up/down buttons should bring the value into the allowed range when clicked.
+    /// </remarks>
     /// <getter>get_minimum</getter>
     /// <setter>set_minimum</setter>
     /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.minimum" />
@@ -665,10 +654,10 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a number that specifies the maximum value for the NumericUpDown control.
+    /// The maximum value allowed by the extender
     /// </summary>
     /// <getter>get_maximum</getter>
-    /// <setter>set_manimum</setter>
+    /// <setter>set_maximum</setter>
     /// <member name="cP:AjaxControlToolkit.NumericUpDownExtender.maximum" />
     get_maximum: function() {
         return this._max;

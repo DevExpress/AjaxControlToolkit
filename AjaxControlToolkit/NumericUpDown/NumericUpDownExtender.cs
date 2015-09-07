@@ -8,6 +8,13 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// NumericUpDown is an ASP.NET AJAX extender that can be attached to an ASP.NET TextBox control to
+    /// add "up" and "down" buttons that increment and decrement the value in the TextBox. The increment
+    /// and decrement can be simple +1/-1 arithmetic, they can cycle through a provided list of values
+    /// (like the months of the year), or they can call a Web Service to determine the next value.
+    /// Page authors can also provide custom images to be used instead of the default up/down button graphics.
+    /// </summary>
     [Designer(typeof(NumericUpDownExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientCssResource(Constants.NumericUpDownName)]
@@ -16,7 +23,7 @@ namespace AjaxControlToolkit {
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.NumericUpDownName + Constants.IconPostfix)]
     public class NumericUpDownExtender : ExtenderControlBase {
         /// <summary>
-        /// Reference to custom Up button.
+        /// Reference to custom Up button
         /// </summary>
         [IDReferenceProperty(typeof(Control))]
         [ExtenderControlProperty()]
@@ -27,7 +34,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Reference to custom Down button.
+        /// Reference to custom Down button
         /// </summary>
         [IDReferenceProperty(typeof(Control))]
         [ExtenderControlProperty()]
@@ -38,7 +45,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Path to a web service that returns the data used to get the next value.
+        /// Path to a web service that returns the data used to get the next value
         /// </summary>
         /// <remarks>
         /// This property should be left null if ServiceUpMethod or ServiceDownMethod refers
@@ -61,13 +68,13 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Web service method that returns the data used to get the next value,
-        /// or the name of a method declared on the Page which is decorated with the WebMethodAttribute.
+        /// or the name of a method declared on the Page which is decorated with the WebMethodAttribute
         /// </summary>
         /// <remarks>
         /// The signature of this method must match the following:
-        /// ..[System.Web.Services.WebMethod]
-        /// ..[System.Web.Script.Services.ScriptMethod]
-        /// ..public int NextValue(int current, string tag) { ... }
+        /// [System.Web.Services.WebMethod]
+        /// [System.Web.Script.Services.ScriptMethod]
+        /// public int NextValue(int current, string tag) { ... }
         /// </remarks>
         [ExtenderControlProperty()]
         [ClientPropertyName("serviceUpMethod")]
@@ -77,7 +84,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Path to a web service that returns the data used to get the previous value.
+        /// Path to a web service that returns the data used to get the previous value
         /// </summary>
         /// <remarks>
         /// This property should be left null if ServiceUpMethod or ServiceDownMethod refers
@@ -100,13 +107,13 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Web service method that returns the data used to get the previous value,
-        /// or the name of a method declared on the Page which is decorated with the WebMethodAttribute.
+        /// or the name of a method declared on the Page which is decorated with the WebMethodAttribute
         /// </summary>
         /// <remarks>
         /// The signature of this method must match the following:
-        /// ..[System.Web.Services.WebMethod]
-        /// ..[System.Web.Script.Services.ScriptMethod]
-        /// ..public int NextValue(int current, string tag) { ... }
+        /// [System.Web.Services.WebMethod]
+        /// [System.Web.Script.Services.ScriptMethod]
+        /// public int NextValue(int current, string tag) { ... }
         /// </remarks>
         [ExtenderControlProperty()]
         [ClientPropertyName("serviceDownMethod")]
@@ -116,11 +123,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Step used for simple numeric incrementing and decrementing.
+        /// Step used for simple numeric incrementing and decrementing. The default value is 1
         /// </summary>
-        /// <remarks>
-        /// The default value is 1.
-        /// </remarks>
         [DefaultValue(1.0)]
         [ExtenderControlProperty]
         [ClientPropertyName("step")]
@@ -130,7 +134,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The minimum value allowed by the extender.
+        /// The minimum value allowed by the extender
         /// </summary>
         /// <remarks>
         /// Currently, it does not prevent out of range values from being entered
@@ -145,7 +149,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The maximum value allowed by the extender.
+        /// The maximum value allowed by the extender
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("maximum")]
@@ -155,7 +159,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A list of strings separated by semicolons (;) to be used as an enumeration by NumericUpDown.
+        /// A list of strings separated by semicolons (;) to be used as an enumeration by NumericUpDown
         /// </summary>
         [Editor("System.ComponentModel.Design.MultilineStringEditor", typeof(UITypeEditor))]
         [ExtenderControlProperty()]
@@ -166,10 +170,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Combined size of the TextBox and Up/Down buttons (min value 25).
+        /// Combined size of the TextBox and Up/Down buttons. Minimum value 25
         /// </summary>
         /// <remarks>
-        /// This property is not used if you provide custom buttons.
+        /// This property is not used if you provide custom buttons
         /// </remarks>
         [RequiredProperty()]
         [ExtenderControlProperty()]
@@ -180,7 +184,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Custom parameter for call WebService method.
+        /// Custom parameter to pass to the Web Service
         /// </summary>
         [ExtenderControlProperty()]
         [ClientPropertyName("tag")]
