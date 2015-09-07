@@ -158,10 +158,7 @@ Sys.Extended.UI.AreaChart.prototype = {
         this.drawAreas();
     },
 
-    ///<summary>
-    /// Calculates disntance interval for the value axis.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.calculateInterval" />
+    // Calculates distance interval for the value axis.
     calculateInterval: function() {
         this.startX = (this._chartWidth * 10 / 100) + 0.5;
         this.endX = parseInt(this._chartWidth) - 4.5;
@@ -174,12 +171,7 @@ Sys.Extended.UI.AreaChart.prototype = {
         this.yInterval = this.startY / (this._valueAxisLines + 1);
     },
 
-    ///<summary>
-    /// Calculates minimum and maximum values of the specified data.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.calculateMinMaxValues" />
     calculateMinMaxValues: function() {
-        // calculate minimum and maximum value
         var seriesMax;
         var seriesMin;
         var arrData;
@@ -234,12 +226,8 @@ Sys.Extended.UI.AreaChart.prototype = {
         }
     },
 
-    ///<summary>
-    /// Calculates label values for Value axis to display on the chart.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.calculateValueAxis" />
+    // Calculates label values for Value axis to display on the chart.
     calculateValueAxis: function() {
-        // calculate value axis labels
         var range;
         var unroundedTickSize;
         var x;
@@ -263,11 +251,7 @@ Sys.Extended.UI.AreaChart.prototype = {
         }
         this.startX = this.startX + (this.roundedTickRange * 10 * this._valueAxisLines / 10).toString().length * this.charLength;
     },
-
-    ///<summary>
-    /// Draws background horizontal lines of the chart.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.drawBackgroundHorizontalLines" />
+    
     drawBackgroundHorizontalLines: function() {
         var horizontalLineContents = '';
         // background grid's horizontal lines
@@ -284,10 +268,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return horizontalLineContents;
     },
 
-    ///<summary>
-    /// Draws background vertical lines of the chart.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.drawBackgroundVerticalLines" />
     drawBackgroundVerticalLines: function() {
         // background grid's vertical lines
         var verticalLineContents = '';
@@ -305,11 +285,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return verticalLineContents;
     },
 
-    
-    ///<summary>
-    /// Draws base lines of the chart.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.drawBaseLines" />
     drawBaseLines: function() {
         var baseLineContents = '';
 
@@ -334,10 +309,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return baseLineContents;
     },
 
-    ///<summary>
-    /// Draws legends of the chart.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.drawLegendArea" />
     drawLegendArea: function() {
         var legendContents = '';
         // Legend Area
@@ -392,10 +363,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return legendContents;
     },
 
-    ///<summary>
-    /// Writes horizontal and vertical axis values of the chart.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.drawAxisValues" />
     drawAxisValues: function() {
         var axisContents = '';
         var textLength = 0;
@@ -419,10 +386,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return axisContents;
     },
 
-    ///<summary>
-    /// Creates svg and its initial contents.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.initializeSVG" />
     initializeSVG: function() {
         var svgContents = String.format('<?xml-stylesheet type="text/css" href="{0}.css"?>', this._theme);
         svgContents = svgContents + String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" style="position: relative; display: block;">', this._chartWidth, this._chartHeight);
@@ -440,10 +403,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return svgContents;
     },
 
-    ///<summary>
-    /// Draws Area on the chart.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.drawAreas" />
     drawAreas: function() {
         var areaContents = '';
         // Area section
