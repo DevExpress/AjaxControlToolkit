@@ -14,7 +14,7 @@ namespace AjaxControlToolkit {
     /// server-based processing (including postbacks) without affecting the rest of the page. The popup
     /// window can contain any content, including ASP.NET server controls, HTML elements, etc. Once the
     /// work of the popup window is done, a simple server-side call dismisses it and triggers any relevant
-    /// script on the client to run and update the page dynamically. 
+    /// script on the client to run and update the page dynamically.
     /// </summary>
     [ClientScriptResource("Sys.Extended.UI.PopupControlBehavior", Constants.PopupControlName)]
     [RequiredScript(typeof(PopupExtender))]
@@ -43,20 +43,20 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets a proxy PopupControlExtender representing the currently active popup on the specified page
+        /// Returns a proxy PopupControlExtender representing the currently active popup on the specified page
         /// </summary>
         /// <remarks>
         /// Only the Cancel and Commit methods should be called on the proxy
         /// </remarks>
         /// <param name="page">Page</param>
-        /// <returns>PopupControlExtender</returns>
+        /// <returns>Popup control extender</returns>
         public static PopupControlExtender GetProxyForCurrentPopup(Page page) {
             var popupControlExtender = new PopupControlExtender(page);
             return popupControlExtender;
         }
 
         /// <summary>
-        /// Cancels the popup control and hides it, abandoning any results it has.
+        /// Cancels the popup control and hides it, abandoning any results it has
         /// </summary>
         public void Cancel() {
             // It is possible for Cancel() to be called numerous times during the same postback so we just remember the desired state
@@ -66,7 +66,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Commits the popup control and hides it, applying the specified result.
+        /// Commits the popup control and hides it, applying the specified result
         /// </summary>
         /// <param name="result">Result</param>
         public void Commit(string result) {
@@ -106,7 +106,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The ID of the extender control.
+        /// The ID of the extender control
         /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -117,7 +117,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The ID of the control to display.
+        /// The ID of the control to display
         /// </summary>
         [ExtenderControlProperty]
         [IDReferenceProperty(typeof(WebControl))]
@@ -129,13 +129,12 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("PopupControlID", value); }
         }
 
-        // Optional name of the target control's property to set with the result of the popup
         /// <summary>
         /// Optional setting specifying the property on the control being extended
-        /// that should be set with the result of the popup.
+        /// that should be set with the result of the popup
         /// </summary>
         /// <remarks>
-        /// If not present, the default "value" property will be used.
+        /// If not present, the default "value" property will be used
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -145,9 +144,8 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CommitProperty", value); }
         }
 
-        // Optional script to run after setting the target control's property
         /// <summary>
-        /// Optional setting specifying additional script to run after setting the result of the popup.
+        /// Optional setting specifying additional script to run after setting the result of the popup
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -157,13 +155,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CommitScript", value); }
         }
 
-        // Optional position for the popup window (relative to the target control)
         /// <summary>
         /// Optional setting specifying where the popup should be positioned relative to the target control.
+        /// Can be Left, Right, Top, Bottom or Center
         /// </summary>
-        /// <remarks>
-        /// Can be Left, Right, Top, Bottom or Center.
-        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(PopupControlPopupPosition.Center)]
         [ClientPropertyName("position")]
@@ -172,9 +167,8 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("Position", value); }
         }
 
-        // Optional X (horizontal) offset for the popup window (relative to the target control)
         /// <summary>
-        /// The number of pixels to offset the Popup from its default position, as specified by Position.
+        /// The number of pixels to offset the Popup from its default position, as specified by Position
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -184,9 +178,8 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OffsetX", value); }
         }
 
-        // Optional Y (vertical) offset for the popup window (relative to the target control)
         /// <summary>
-        /// The number of pixels to offset the Popup from its default position, as specified by Position.
+        /// The number of pixels to offset the Popup from its default position, as specified by Position
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -213,7 +206,7 @@ namespace AjaxControlToolkit {
         Animation _onShow;
 
         /// <summary>
-        /// The OnHide animation will be played each time the popup is hidden.
+        /// The OnHide animation will be played each time the popup is hidden
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]

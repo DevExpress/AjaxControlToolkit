@@ -103,7 +103,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Shows the popup.
+    /// Shows the popup
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PopupControlExtender.showPopup" />
     showPopup: function() {
@@ -123,7 +123,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Hides the popup.
+    /// Hides the popup
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PopupControlExtender.hidePopup" />
     hidePopup: function() {
@@ -246,7 +246,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnShow Animation's JSON definition.
+    /// Generic OnShow Animation's JSON definition
     /// </summary>
     /// <getter>get_onShow</getter>
     /// <setter>set_onShow</setter>
@@ -273,7 +273,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Play the OnShow animation.
+    /// Plays the OnShow animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PopupControlExtender.onShow" />
     onShow: function() {
@@ -282,7 +282,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnHide Animation's JSON definition.
+    /// Generic OnHide Animation's JSON definition
     /// </summary>
     /// <getter>get_onHide</getter>
     /// <setter>set_onHide</setter>
@@ -300,7 +300,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnHide Animation's behavior.
+    /// Generic OnHide Animation's behavior
     /// </summary>
     /// <getter>get_onHideBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.PopupControlExtender.onHideBehavior" />
@@ -309,7 +309,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Play the OnHide animation.
+    /// Plays the OnHide animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PopupControlExtender.onHide" />
     onHide: function() {
@@ -318,7 +318,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// The ID of the control to display.
+    /// The ID of the control to display
     /// </summary>
     /// <getter>get_popupControlID</getter>
     /// <setter>set_popupControlID</setter>
@@ -343,7 +343,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// he property on the control being extended that should be set with the result of the popup
+    /// The property on the control being extended that should be set with the result of the popup
     /// </summary>
     /// <getter>get_commitProperty</getter>
     /// <setter>set_commitProperty</setter>
@@ -368,7 +368,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Additional script to run after setting the result of the popup.
+    /// Additional script to run after setting the result of the popup
     /// </summary>
     /// <getter>get_commitScript</getter>
     /// <setter>set_commitScript</setter>
@@ -393,7 +393,8 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Where the popup should be positioned relative to the target control. (Left, Right, Top, Bottom, Center).
+    /// Where the popup should be positioned relative to the target control.
+    /// Can be Left, Right, Top, Bottom or Center
     /// </summary>
     /// <getter>get_position</getter>
     /// <setter>set_position</setter>
@@ -410,7 +411,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
 
     get_Position: function() {
         Sys.Extended.Deprecated("get_Position", "get_position");
-        return this.get_position();  
+        return this.get_position();
     },
     set_Position: function(value) {
         Sys.Extended.Deprecated("set_Position", "set_position");
@@ -418,7 +419,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// The ID of the extender control.
+    /// The ID of the extender control
     /// </summary>
     /// <getter>get_extenderControlID</getter>
     /// <setter>set_extenderControlID</setter>
@@ -443,7 +444,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// The number of pixels to horizontally offset the Popup from its default position.
+    /// The number of pixels to horizontally offset the Popup from its default position
     /// </summary>
     /// <getter>get_offsetX</getter>
     /// <setter>set_offsetX</setter>
@@ -468,7 +469,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// The number of pixels to vertically offset the Popup from its default position.
+    /// The number of pixels to vertically offset the Popup from its default position
     /// </summary>
     /// <getter>get_offsetY</getter>
     /// <setter>set_offsetY</setter>
@@ -493,7 +494,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets whether popup is visible.
+    /// Whether popup is visible
     /// </summary>
     /// <getter>get_popupVisible</getter>
     /// <member name="cP:AjaxControlToolkit.PopupControlExtender.popupVisible" />
@@ -507,7 +508,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is showing.
+    /// Fires when the popup is showing
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.PopupControlExtender.showing" />
@@ -529,7 +530,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is shown.
+    /// Fires when popup is shown
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.PopupControlExtender.shown" />
@@ -551,7 +552,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is hiding.
+    /// Fires when popup is hiding
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.PopupControlExtender.hiding" />
@@ -573,7 +574,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is hidden.
+    /// Firs when popup is hidden
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.PopupControlExtender.hidden" />
