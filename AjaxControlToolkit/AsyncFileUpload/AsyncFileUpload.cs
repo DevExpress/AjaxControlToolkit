@@ -141,7 +141,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The control's background color on upload complete. Default value - 'Lime'.
+        /// The control's background color on upload complete. Default value is Lime.
         /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
@@ -153,7 +153,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The control's background color when uploading is in progress. Default value - 'White'.
+        /// The control's background color when uploading is in progress. Default value is White.
         /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
@@ -165,7 +165,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The control's background color on upload error. Default value - 'Red'.
+        /// The control's background color on upload error. Default value is Red.
         /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
@@ -177,7 +177,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The control's width (Unit). Default value - '355px'.
+        /// The control's width (Unit). Default value is 355px.
         /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Layout")]
@@ -196,7 +196,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The control's appearance style (Traditional, Modern). Default value - 'Traditional'.
+        /// The control's appearance style (Traditional, Modern). Default value is Traditional.
         /// </summary>
         [Bindable(true)]
         [Category("Appearance")]
@@ -288,7 +288,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Is file stored in session.
+        /// Is file stored in session. Default value is false.
         /// </summary>
         [Bindable(true)]
         [BrowsableAttribute(true)]
