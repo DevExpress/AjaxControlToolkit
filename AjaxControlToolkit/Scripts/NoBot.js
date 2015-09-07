@@ -19,32 +19,17 @@ Sys.Extended.UI.NoBotBehavior.prototype = {
     dispose: function() {
         Sys.Extended.UI.NoBotBehavior.callBaseMethod(this, "dispose");
     },
-    
-    /// <summary>
-    /// Challenge script.
-    /// </summary>
-    /// <getter>get_challengeScript</getter>
-    /// <setter>set_challengeScript</setter>
-    /// <member name="cP:AjaxControlToolkit.NoBotExtender.challengeScript" />
-    get_challengeScript: function() {
+
+    get_ChallengeScript: function() {
         // JavaScript to be evaluated
         return this._challengeScript;
     },
-    set_challengeScript: function(value) {
+
+    set_ChallengeScript: function(value) {
         if(this._challengeScript != value) {
             this._challengeScript = value;
             this.raisePropertyChanged('challengeScript');
         }
-    },
-
-    get_ChallengeScript: function() {
-        Sys.Extended.Deprecated("get_ChallengeScript", "get_challengeScript");
-        return this.get_challengeScript();
-    },
-
-    set_ChallengeScript: function(value) {
-        Sys.Extended.Deprecated("set_ChallengeScript", "set_challengeScript");
-        this.set_challengeScript(value);
     }
 }
 

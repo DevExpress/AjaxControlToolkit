@@ -12,9 +12,6 @@ namespace AjaxControlToolkit {
             EnableClientState = true;
         }
 
-        /// <summary>
-        /// Challenge script.
-        /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
         [ClientPropertyName("challengeScript")]
