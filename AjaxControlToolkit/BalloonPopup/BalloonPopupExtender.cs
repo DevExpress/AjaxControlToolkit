@@ -9,20 +9,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// The BalloonPopupExtender control displays a popup which can contain any content.
-    /// For example, you can use the BalloonPopupExtender to display help information when
-    /// you move focus to a TextBox control.
-    /// 
-    /// The BalloonPopupExtender supports three different styles: Balloon, Rectangle, and Custom.
-    /// You can select among three different sizes for the popup: Small, Medium, and Large.
-    /// If you set the BalloonPopup style to the value Custom then you can define a custom appearance
-    /// for the BalloonPopup. In that case, you also need to set the CustomCssUrl property to point to a custom style sheet.
-    /// 
-    /// This control can be set to 5 positions - TopLeft, TopRight, BottomLeft, BottomRight and Auto.
-    /// If you select the value Auto then the position of the BalloonPopup is determined automatically based on available space.
-    /// 
-    /// You can set the BalloonPopExtender to be triggered by the MouseOver, Focus or Click events.
-    /// The control is hidden automatically when you click outside the Balloon Popup.
+    /// The BalloonPopupExtender control displays a popup which can contain any content.    
     /// </summary>
     [ClientScriptResource("Sys.Extended.UI.BalloonPopupControlBehavior", Constants.BalloonPopupName)]
     [RequiredScript(typeof(PopupExtender))]
@@ -72,10 +59,8 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Optional setting specifying the theme of balloon popup.
+        /// Default value is Rectangle.
         /// </summary>
-        /// <remarks>
-        /// (Cloud, Rectangle, Custom). Default value is Rectangle.
-        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(BalloonPopupStyle.Rectangle)]
         [ClientPropertyName("balloonPopupStyle")]
@@ -83,6 +68,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Optional X (horizontal) offset for the popup window (relative to the target control).
+        /// Default value is 0
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -94,6 +80,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Optional Y (vertical) offset for the popup window (relative to the target control).
+        /// Default value is 0
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -196,10 +183,8 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Optional setting specifying whether to display scrollbar if contents are overflowing.
+        /// Default value is Auto.
         /// </summary>
-        /// <remarks>
-        /// This property contains 5 options - None, Horizontal, Vertical, Both and Auto. Default value is Auto.
-        /// </remarks>
         [DefaultValue(ScrollBars.Auto)]
         [Category("Behavior")]
         [ClientPropertyName("scrollBars")]
