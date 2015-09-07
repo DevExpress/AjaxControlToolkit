@@ -11,15 +11,8 @@ namespace AjaxControlToolkit {
 
     /// <summary>
     /// AutoComplete extends any ASP.NET TextBox control. It associates that control with a
-    /// popup panel to display words that begin with the prefix that is entered into the text box.
-    /// When the user has entered more characters than a specified minimum length, a popup displays
-    /// words or phrases that start with that value. By default, the list of words is positioned at
-    /// the bottom left side of the text box.
+    /// popup panel to display words that begin with the prefix that is entered into the text box.   
     /// </summary>
-    ///<remarks>
-    /// The candidate words that match the user input are supplied by a Web service. Caching is enabled,
-    /// so if the same characters are entered multiple times, only one call is made to the Web service. 
-    /// </remarks>
     [Designer(typeof(AutoCompleteExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.AutoCompleteBehavior", Constants.AutoCompleteName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
