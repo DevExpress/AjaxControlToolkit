@@ -11,6 +11,11 @@ using System.Drawing;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The LineChart control enables you to render a line chart from one or more series of values.
+    /// This control is compatible with any browser which supports SVG including Internet Explorer 9 and above.
+    /// This control can display two types of LineCharts: Basic and Stacked.
+    /// </summary>
     [ClientCssResource(Constants.LineChartName)]
     [ClientScriptResource("Sys.Extended.UI.LineChart", Constants.LineChartName)]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.LineChartName + Constants.IconPostfix)]
@@ -18,7 +23,7 @@ namespace AjaxControlToolkit {
         List<LineChartSeries> _series = new List<LineChartSeries>();
 
         /// <summary>
-        /// Provides a set of values for the category axis to create a line chart.
+        /// Provides a set of values for the category axis to create a line chart
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -26,7 +31,7 @@ namespace AjaxControlToolkit {
         public string CategoriesAxis { get; set; }
 
         /// <summary>
-        /// Provide list of series to client side.
+        /// Provides list of series to the client side
         /// </summary>
         /// <remarks>
         /// Need help from Series property for designer experience support, cause 
@@ -38,12 +43,13 @@ namespace AjaxControlToolkit {
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
+        [ClientPropertyName("clientSeries")]
         public List<LineChartSeries> ClientSeries {
             get { return _series; }
         }
 
         /// <summary>
-        /// Provide list of series.
+        /// Provides list of series
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -55,7 +61,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Enables you to render two types of line charts 1. Basic 2. Stacked.
+        /// Enables you to render two types of line charts: Basic or Stacked
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(LineChartType.Basic)]
@@ -63,7 +69,7 @@ namespace AjaxControlToolkit {
         public LineChartType ChartType { get; set; }
 
         /// <summary>
-        /// Enables you to set the interval size for the value axis line.
+        /// Enables you to set the interval size for the value axis line
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(9)]
@@ -71,7 +77,7 @@ namespace AjaxControlToolkit {
         public int ValueAxisLines { get; set; }
 
         /// <summary>
-        /// Enables you to set the the color of the value axis lines.
+        /// Enables you to set the the color of the value axis lines
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -79,7 +85,7 @@ namespace AjaxControlToolkit {
         public string ValueAxisLineColor { get; set; }
 
         /// <summary>
-        /// Enables you to set the color of the category axis lines.
+        /// Enables you to set the color of the category axis lines
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -87,7 +93,7 @@ namespace AjaxControlToolkit {
         public string CategoryAxisLineColor { get; set; }
 
         /// <summary>
-        /// Enables you to set the color of the base lines of the chart.
+        /// Enables you to set the color of the base lines of the chart
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -95,7 +101,7 @@ namespace AjaxControlToolkit {
         public string BaseLineColor { get; set; }
 
         /// <summary>
-        /// Enables you to set the background color of the tooltip box.
+        /// Enables you to set the background color of the tooltip box
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#FFC652")]
@@ -103,7 +109,7 @@ namespace AjaxControlToolkit {
         public string TooltipBackgroundColor { get; set; }
 
         /// <summary>
-        /// Enables you to set the font color of the tooltip box.
+        /// Enables you to set the font color of the tooltip box
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#0E426C")]
@@ -111,7 +117,7 @@ namespace AjaxControlToolkit {
         public string TooltipFontColor { get; set; }
 
         /// <summary>
-        /// Enables you to set the border color of the tooltip box.
+        /// Enables you to set the border color of the tooltip box
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#B85B3E")]
@@ -119,7 +125,8 @@ namespace AjaxControlToolkit {
         public string TooltipBorderColor { get; set; }
 
         /// <summary>
-        /// Enables you to set the text/label that will be shown in the tooltip and describe about area data value.
+        /// Enables you to set the text/label that will be shown in the tooltip
+        /// and describe about area data value
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
