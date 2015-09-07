@@ -951,10 +951,6 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
 
 Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
 
-    ///<summary>
-    /// Initialize of AjaxFileUpload.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.initialize" />
     initialize: function() {
 
         var utils = new Sys.Extended.UI.AjaxFileUpload.Utils(),
@@ -1012,10 +1008,6 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         Sys.Extended.UI.AjaxFileUpload.Control.callBaseMethod(this, "initialize");
     },
 
-    ///<summary>
-    /// Dispose of AjaxFileUpload.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.dispose" />
     dispose: function() {
         Sys.Extended.UI.AjaxFileUpload.Control.callBaseMethod(this, "dispose");
     },

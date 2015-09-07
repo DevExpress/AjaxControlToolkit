@@ -108,10 +108,6 @@ Sys.Extended.UI.AreaChart = function(element) {
 }
 
 Sys.Extended.UI.AreaChart.prototype = {
-    ///<summary>
-    /// Initialize of AreaChart.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.initialize" />
     initialize: function() {
         Sys.Extended.UI.AreaChart.callBaseMethod(this, "initialize");
 
@@ -126,10 +122,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         this.generateAreaChart();
     },
 
-    ///<summary>
-    /// Dispose of AreaChart.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AreaChart.initialize" />
     dispose: function() {
         Sys.Extended.UI.AreaChart.callBaseMethod(this, "dispose");
     },

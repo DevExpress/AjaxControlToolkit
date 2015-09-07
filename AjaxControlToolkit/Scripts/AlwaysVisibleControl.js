@@ -88,10 +88,6 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     this._animation = null;
 }
 Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
-    ///<summary>
-    /// Initialize of AlwaysVisibleControl.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AlwaysVisibleControlExtender.initialize" />
     initialize: function() {
         Sys.Extended.UI.AlwaysVisibleControlBehavior.callBaseMethod(this, 'initialize');
 
@@ -133,10 +129,6 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
         this._reposition();
     },
 
-    ///<summary>
-    /// Dispose of AlwaysVisibleControl.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AlwaysVisibleControlExtender.dispose" />
     dispose: function() {
         // Detach the event and wipe the delegate
         if(this._repositionHandler) {

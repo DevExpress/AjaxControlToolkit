@@ -337,14 +337,11 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     this._isIE8InStandardMode = (Sys.Browser.agent == Sys.Browser.InternetExplorer && Sys.Browser.version > 7 && Sys.Browser.documentMode != 0);
 }
 Sys.Extended.UI.AccordionBehavior.prototype = {
-    ///<summary>
-    /// The initialize function is responsible for getting the selected index from
-    /// the ClientState mechanism and walking the children of the behavior's target
-    /// to find all of the accordion's child panes.  It builds up a collection of the
-    /// panes from the headers and content sections.  Then we hide all the content
-    /// sections that aren't selected and initialize the layout.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.Accordion.initialize" />
+    // The initialize function is responsible for getting the selected index from
+    // the ClientState mechanism and walking the children of the behavior's target
+    // to find all of the accordion's child panes.  It builds up a collection of the
+    // panes from the headers and content sections.  Then we hide all the content
+    // sections that aren't selected and initialize the layout.
     initialize: function() {
         // The initialize function is responsible for getting the selected index from
         // the ClientState mechanism and walking the children of the behavior's target
@@ -655,10 +652,6 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         }
     },
 
-    ///<summary>
-    /// Dispose of the AccordionBehavior.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.Accordion.dispose" />
     dispose: function() {
         // Remove the window resizing handler
         this._disposeResizeHandler();

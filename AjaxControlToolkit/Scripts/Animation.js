@@ -58,10 +58,6 @@ Sys.Extended.UI.Animation.AnimationBehavior = function(element) {
     this._onMouseOutHandler = null;
 }
 Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
-    ///<summary>
-    /// Initialize of Animation.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AnimationExtender.initialize" />
     initialize: function() {
         Sys.Extended.UI.Animation.AnimationBehavior.callBaseMethod(this, 'initialize');
 
@@ -77,10 +73,6 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         }
     },
 
-    ///<summary>
-    /// Dispose of Animation.
-    ///</summary>
-    /// <member name="cM:AjaxControlToolkit.AnimationExtender.dispose" />
     dispose: function() {
         // Remove the event handlers
         var element = this.get_element();
