@@ -7,6 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// PagingBulletedList is an ASP.NET AJAX extender that can be attached to an ASP.NET BulletedList control
+    /// and provide client-side sorted paging. It is very flexible and lets you specify either the number of
+    /// characters used in the heading indices or the maximum number of items to display per index. If the input
+    /// is not sorted (either on the server or client), it will generated more header indices but still function appropriately.
+    /// </summary>
     [Designer(typeof(PagingBulletedListExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.PagingBulletedListBehavior", Constants.PagingBulletedListName)]
     [TargetControlType(typeof(System.Web.UI.WebControls.BulletedList))]
@@ -17,7 +23,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Number of characters in the index headings (ignored if MaxItemPerPage is set).
+        /// Number of characters in the index headings (ignored if MaxItemPerPage is set)
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(1)]
@@ -28,7 +34,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Height of the bulleted list.
+        /// Height of the bulleted list
         /// </summary>
         [ExtenderControlProperty()]
         [ClientPropertyName("height")]
@@ -38,7 +44,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Separator text to be placed between indices.
+        /// Separator text to be placed between indices
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(" - ")]
@@ -49,7 +55,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Maximum number of items per page (ignores the IndexSize property).
+        /// Maximum number of items per page (ignores the IndexSize property)
         /// </summary>
         [ExtenderControlProperty()]
         [ClientPropertyName("maxItemPerPage")]
@@ -59,7 +65,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not the items should be sorted client-side.
+        /// Whether or not the items should be sorted client-side
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(false)]
@@ -70,7 +76,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for the selected index.
+        /// CSS class for the selected index
         /// </summary>
         [ExtenderControlProperty()]
         [ClientPropertyName("selectIndexCssClass")]
@@ -80,7 +86,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for indices that aren't selected.
+        /// CSS class for indices that aren't selected
         /// </summary>
         [ExtenderControlProperty()]
         [ClientPropertyName("unselectIndexCssClass")]

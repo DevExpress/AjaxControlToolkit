@@ -335,7 +335,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when index changes.
+    /// Fires when selected index changes
     /// </summary>
     /// <event add="add_indexChanged" remove="remove_indexChanged" raise="raise_indexChanged" />
     /// <member name="cE:AjaxControlToolkit.PagingBulletedListExtender.indexChanged" />
@@ -346,7 +346,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
         this.get_events().removeHandler('indexChanged', handler);
     },
     raise_indexChanged: function(eventArgs) {
-        // Update the selected index        
+        // Update the selected index
         this._indexSelected = eventArgs.tag;
 
         var handler = this.get_events().getHandler('indexChanged');
@@ -364,7 +364,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// DOM elements of the indices.
+    /// DOM elements of the indices
     /// </summary>
     /// <getter>get_tabIndex</getter>
     /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.tabIndex" />
@@ -373,7 +373,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// DOM elements of the items to display for each index.
+    /// DOM elements of the items to display for each index
     /// </summary>
     /// <getter>get_tabValue</getter>
     /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.tabValue" />
@@ -400,7 +400,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// Height of the bulleted list.
+    /// Height of the bulleted list
     /// </summary>
     /// <getter>get_height</getter>
     /// <setter>set_height</setter>
@@ -430,7 +430,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// Number of characters in the index headings (ignored if MaxItemPerPage is set).
+    /// Number of characters in the index headings (ignored if MaxItemPerPage is set)
     /// </summary>
     /// <getter>get_indexSize</getter>
     /// <setter>set_indexSize</setter>
@@ -454,7 +454,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
 
     get_IndexSize: function() {
         Sys.Extended.Deprecated("get_IndexSize", "get_indexSize");
-        return this.get_indexSize();  
+        return this.get_indexSize();
     },
     set_IndexSize: function(value) {
         Sys.Extended.Deprecated("set_IndexSize", "set_indexSize");
@@ -462,7 +462,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maximum number of items per page (ignores the IndexSize property).
+    /// Maximum number of items per page (ignores the IndexSize property)
     /// </summary>
     /// <getter>get_maxItemPerPage</getter>
     /// <setter>set_maxItemPerPage</setter>
@@ -494,7 +494,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// Separator text to be placed between indices.
+    /// Separator text to be placed between indices
     /// </summary>
     /// <getter>get_separator</getter>
     /// <setter>set_separator</setter>
@@ -527,7 +527,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether or not the items should be sorted client-side.
+    /// Whether or not the items should be sorted client-side
     /// </summary>
     /// <getter>get_clientSort</getter>
     /// <setter>set_clientSort</setter>
@@ -561,11 +561,11 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
     set_ClientSort: function(value) {
         Sys.Extended.Deprecated("set_ClientSort", "set_clientSort");
-        this.set_clientSort(value);  
+        this.set_clientSort(value);
     },
 
     /// <summary>
-    /// CSS class for the selected index.
+    /// CSS class for the selected index
     /// </summary>
     /// <getter>get_selectIndexCssClass</getter>
     /// <setter>set_selectIndexCssClass</setter>
@@ -590,7 +590,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for indices that aren't selected.
+    /// CSS class for indices that aren't selected
     /// </summary>
     /// <getter>get_unselectIndexCssClass</getter>
     /// <setter>set_unselectIndexCssClass</setter>
