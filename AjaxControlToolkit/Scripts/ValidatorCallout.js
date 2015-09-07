@@ -539,7 +539,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     /// </summary>
     /// <returns>
     /// Boolean value, which is true when ValidatorCallout popup is open
-    /// </retuns>
+    /// </returns>
     /// <member name="cM:AjaxControlToolkit.ValidatorCalloutExtender.isOpen" />
     isOpen: function() {
         return $common.getVisible(this._popupTable);
