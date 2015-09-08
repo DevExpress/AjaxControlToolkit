@@ -279,7 +279,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Displays the element that is referenced by the PopupControlID property as a modal dialog box.
+    /// Displays the element that is referenced by the PopupControlID property as a modal dialog box
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ModalPopupExtender.show" />
     show: function() {
@@ -338,7 +338,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Changes the tab indexes so that tabbing moves the focus only through the modal dialog box.
+    /// Changes the tab indexes so that tabbing moves the focus only through the modal dialog box
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ModalPopupExtender.disableTab" />
     disableTab: function() {
@@ -401,7 +401,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Restores the tab indexes from the page.
+    /// Restores the tab indexes from the page
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ModalPopupExtender.restoreTab" />
     restoreTab: function() {
@@ -422,7 +422,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Hides the modal popup.
+    /// Hides the element that is referenced by the PopupControlID property
     /// </summary>
     /// <returns type="Boolean">Whether the popup was hidden</returns>
     /// <member name="cM:AjaxControlToolkit.ModalPopupExtender.hide" />
@@ -633,7 +633,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the ID of the element to display as a modal popup.
+    /// The ID of the element to display as a modal popup
     /// </summary>
     /// <getter>get_popupControlID</getter>
     /// <setter>set_popupControlID</setter>
@@ -654,17 +654,16 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
     set_PopupControlID: function(value) {
         Sys.Extended.Deprecated("set_PopupControlID", "set_popupControlID");
-        this.set_popupControlID(value);  
+        this.set_popupControlID(value);
     },
 
     /// <summary>
-    /// Gets or sets the distance, in pixels, from the left side of the modal popup to the left border of the browser window.
+    /// The distance, in pixels, from the left side of the modal popup to the left border of the browser window
     /// </summary>
     /// <getter>get_x</getter>
     /// <setter>set_x</setter>
     /// <member name="cP:AjaxControlToolkit.ModalPopupExtender.x" />
     get_x: function() {
-        // The number of pixels from the left of the browser to position the modal popup.
         return this._xCoordinate;
     },
     set_x: function(value) {
@@ -684,13 +683,12 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the distance, in pixels, from the top side of the modal popup to the top border of the browser window.
+    /// The distance, in pixels, from the top side of the modal popup to the top border of the browser window
     /// </summary>
     /// <getter>get_y</getter>
     /// <setter>set_y</setter>
     /// <member name="cP:AjaxControlToolkit.ModalPopupExtender.y" />
     get_y: function() {
-        // The number of pixels from the top of the browser to position the modal popup.
         return this._yCoordinate;
     },
     set_y: function(value) {
@@ -710,7 +708,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the ID of the element to display as the drag handle for the modal popup.
+    /// ID of the element to display as the drag handle for the modal popup
     /// </summary>
     /// <getter>get_popupDragHandleControlID</getter>
     /// <setter>set_popupDragHandleControlID</setter>
@@ -735,7 +733,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the CSS class to apply to the background when the modal popup is displayed.
+    /// CSS class to apply to the background when the modal popup is displayed
     /// </summary>
     /// <getter>get_backgroundCssClass</getter>
     /// <setter>set_backgroundCssClass</setter>
@@ -756,17 +754,16 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
     set_BackgroundCssClass: function(value) {
         Sys.Extended.Deprecated("set_BackgroundCssClass", "set_backgroundCssClass");
-        this.set_backgroundCssClass(value);  
+        this.set_backgroundCssClass(value);
     },
 
     /// <summary>
-    /// Gets or sets a Boolean value that specifies whether a dropshadow should be added to the modal popup.
+    /// Boolean value that specifies whether a dropshadow should be added to the modal popup
     /// </summary>
     /// <getter>get_dropShadow</getter>
     /// <setter>set_dropShadow</setter>
     /// <member name="cP:AjaxControlToolkit.ModalPopupExtender.dropShadow" />
     get_dropShadow: function() {
-        // Whether or not a drop-shadow should be added to the modal popup
         return this._dropShadow;
     },
     set_dropShadow: function(value) {
@@ -778,7 +775,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
     get_DropShadow: function() {
         Sys.Extended.Deprecated("get_DropShadow", "get_dropShadow");
-        return this.get_dropShadow();  
+        return this.get_dropShadow();
     },
     set_DropShadow: function(value) {
         Sys.Extended.Deprecated("set_DropShadow", "set_dropShadow");
@@ -786,7 +783,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Boolean value that specifies whether the modal popup can be dragged.
+    /// Boolean value that specifies whether the modal popup can be dragged
     /// </summary>
     /// <remarks>
     /// This property is obsolete.
@@ -815,7 +812,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the ID of the element that dismisses the modal popup.
+    /// The ID of the element that dismisses the modal popup
     /// </summary>
     /// <getter>get_okControlID</getter>
     /// <setter>set_okControlID</setter>
@@ -840,7 +837,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the ID of the element that cancels the modal popup.
+    /// The ID of the element that cancels the modal popup
     /// </summary>
     /// <getter>get_cancelControlID</getter>
     /// <setter>set_cancelControlID</setter>
@@ -865,7 +862,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the script to run when the modal popup is dismissed by the element specified using the OkControlID property.
+    /// Script to run when the modal popup is dismissed by the element specified using the okControlID property
     /// </summary>
     /// <getter>get_onOkScript</getter>
     /// <setter>set_onOkScript</setter>
@@ -890,7 +887,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the script to run when the modal popup is dismissed by the element specified using the CancelControlID property.
+    /// Script to run when the modal popup is dismissed by the element specified using the cancelControlID property
     /// </summary>
     /// <getter>get_onCancelScript</getter>
     /// <setter>set_onCancelScript</setter>
@@ -901,7 +898,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     set_onCancelScript: function(value) {
         if(this._onCancelScript != value) {
             this._onCancelScript = value;
-            this.raisePropertyChanged('OnCancelScript');
+            this.raisePropertyChanged('onCancelScript');
         }
     },
 
@@ -915,14 +912,13 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Sys.Extended.UI.ModalPopupRepositionMode object that determines
-    /// whether the modal popup should be repositioned on window resize or on window scroll.
+    /// Sys.Extended.UI.ModalPopupRepositionMode object that determines
+    /// whether the modal popup should be repositioned on window resize or on window scroll
     /// </summary>
     /// <getter>get_repositionMode</getter>
     /// <setter>set_repositionMode</setter>
     /// <member name="cP:AjaxControlToolkit.ModalPopupExtender.repositionMode" />
     get_repositionMode: function() {
-        // Determines if the ModalPopup should be repositioned on window resize/scroll
         return this._repositionMode;
     },
     set_repositionMode: function(value) {
@@ -1010,7 +1006,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     get_onHidden: function() {
         return this._onHidden.get_json();
     },
-    set_OnHidden: function(value) {
+    set_onHidden: function(value) {
         this._onHidden.set_json(value);
         this.raisePropertyChanged('onHidden');
     },
@@ -1025,7 +1021,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is showing.
+    /// Fires when popup is showing
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.ModalPopupExtender.showing" />
@@ -1049,7 +1045,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is shown.
+    /// Fires when popup is shown
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.ModalPopupExtender.shown" />
@@ -1071,7 +1067,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is hiding.
+    /// Fires when popup is hiding
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.ModalPopupExtender.hiding" />
@@ -1093,7 +1089,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is hidden.
+    /// Fires when popup is hidden
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.ModalPopupExtender.hidden" />
@@ -1111,7 +1107,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
     raiseHidden: function(eventArgs) {
         Sys.Extended.Deprecated("raiseHidden(eventArgs)", "raise_hidden(eventArgs)");
-        this.raise_hidden(eventArgs);        
+        this.raise_hidden(eventArgs);
     }
 };
 
