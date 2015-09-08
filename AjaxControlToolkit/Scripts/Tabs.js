@@ -39,7 +39,7 @@ Sys.Extended.UI.TabContainer = function(element) {
 Sys.Extended.UI.TabContainer.prototype = {
 
     /// <summary>
-    /// Fired when a Tab is changed.
+    /// Fires when a tab is changed
     /// </summary>
     /// <event add="add_activeTabChanged" remove="remove_activeTabChanged" raise="raise_activeTabChanged" />
     /// <member name="cE:AjaxControlToolkit.TabContainer.activeTabChanged" />
@@ -62,7 +62,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// The first Tab to show.
+    /// The first tab to show
     /// </summary>
     /// <getter>get_activeTabIndex</getter>
     /// <setter>set_activeTabIndex</setter>
@@ -113,7 +113,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Collection of Tabs.
+    /// Collection of tabs
     /// </summary>
     /// <getter>get_tabs</getter>
     /// <member name="cP:AjaxControlToolkit.TabContainer.tabs" />
@@ -124,7 +124,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Current active Tab.
+    /// Current active tab
     /// </summary>
     /// <getter>get_activeTab</getter>
     /// <setter>set_activeTab</setter>
@@ -142,7 +142,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// AutoPostback ID.
+    /// AutoPostback ID
     /// </summary>
     /// <getter>get_autoPostBackId</getter>
     /// <setter>set_autoPostBackId</setter>
@@ -155,7 +155,8 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabContainer.
+    /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto)
+    /// in the body of the TabContainer
     /// </summary>
     /// <getter>get_scrollBars</getter>
     /// <setter>set_scrollBars</setter>
@@ -172,7 +173,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Whether to render the tabs on top of the container or below (Top, Bottom).
+    /// Whether to render the tabs on top of the container or below (Top, Bottom)
     /// </summary>
     /// <getter>get_tabStripPlacement</getter>
     /// <setter>set_tabStripPlacement</setter>
@@ -189,7 +190,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Whether to render the tabs on left or right of the container.
+    /// Whether to render the tabs on left or right of the container
     /// </summary>
     /// <getter>get_useVerticalStripPlacement</getter>
     /// <setter>set_useVerticalStripPlacement</setter>
@@ -206,7 +207,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Whether to render/load tabs onDemand or all at page load.
+    /// Whether to render/load tabs onDemand or all at page load
     /// </summary>
     /// <getter>get_onDemand</getter>
     /// <setter>set_onDemand</setter>
@@ -247,9 +248,9 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Returns TabContainer's first Tab.
+    /// Returns TabContainer's first tab
     /// </summary>
-    /// <param name="includeDisabled" type="Boolean">Include disabled Tabs</param>
+    /// <param name="includeDisabled" type="Boolean">Include disabled tabs</param>
     /// <returns type="Sys.Extended.UI.TabPanel">First tab</returns>
     /// <member name="cM:AjaxControlToolkit.TabContainer.getFirstTab" />
     getFirstTab: function(includeDisabled) {
@@ -261,9 +262,9 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Returns TabContainer's last Tab.
+    /// Returns TabContainer's last tab
     /// </summary>
-    /// <param name="includeDisabled" type="Boolean">Include disabled Tabs</param>
+    /// <param name="includeDisabled" type="Boolean">Include disabled tabs</param>
     /// <returns type="Sys.Extended.UI.TabPanel">Last tab</returns>
     /// <member name="cM:AjaxControlToolkit.TabContainer.getLastTab" />
     getLastTab: function(includeDisabled) {
@@ -275,9 +276,9 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Returns TabContainer's next Tab.
+    /// Returns TabContainer's next tab
     /// </summary>
-    /// <param name="includeDisabled" type="Boolean">Include disabled Tabs</param>
+    /// <param name="includeDisabled" type="Boolean">Include disabled tabs</param>
     /// <returns type="Sys.Extended.UI.TabPanel">Next tab</returns>
     /// <member name="cM:AjaxControlToolkit.TabContainer.getNextTab" />
     getNextTab: function(includeDisabled) {
@@ -293,7 +294,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Returns TabContainer's previous Tab.
+    /// Returns TabContainer's previous tab
     /// </summary>
     /// <param name="includeDisabled" type="Boolean">Include disabled Tabs</param>
     /// <returns type="Sys.Extended.UI.TabPanel">Previous tab</returns>
@@ -311,9 +312,9 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Returns TabContainer's nearest Tab.
+    /// Returns TabContainer's nearest tab
     /// </summary>
-    /// <param name="includeDisabled" type="Boolean">Include disabled Tabs</param>
+    /// <param name="includeDisabled" type="Boolean">Include disabled tabs</param>
     /// <member name="cM:AjaxControlToolkit.TabContainer.getNearestTab" />
     getNearestTab: function(includeDisabled) {
         var prev = this.getPreviousTab(includeDisabled);
@@ -326,7 +327,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Save client state.
+    /// Saves JSON serialized client state
     /// </summary>
     /// <returns type="Object">Client state</returns>
     /// <member name="cM:AjaxControlToolkit.TabContainer.saveClientState" />
@@ -461,7 +462,7 @@ Sys.Extended.UI.TabPanel = function(element) {
 Sys.Extended.UI.TabPanel.prototype = {
 
     /// <summary>
-    /// Occurs on click.
+    /// Fires on click
     /// </summary>
     /// <event add="add_click" remove="remove_click" raise="raise_click" />
     /// <member name="cE:AjaxControlToolkit.TabPanel.click" />
@@ -482,7 +483,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Occurs when populating begins.
+    /// Fires when tab populating begins
     /// </summary>
     /// <event add="add_populating" remove="remove_populating" raise="raise_populating" />
     /// <member name="cE:AjaxControlToolkit.TabPanel.populating" />
@@ -503,7 +504,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Occurs when populating is done.
+    /// Fires when tab populating is done
     /// </summary>
     /// <event add="add_populated" remove="remove_populated" raise="raise_populated" />
     /// <member name="cE:AjaxControlToolkit.TabPanel.populated" />
@@ -524,7 +525,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// The text to display in the Tab.
+    /// The text to display in the tab
     /// </summary>
     /// <getter>get_headerText</getter>
     /// <setter>set_headerText</setter>
@@ -544,7 +545,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the header Tab.
+    /// The header tab
     /// </summary>
     /// <getter>get_headerTab</getter>
     /// <setter>set_headerTab</setter>
@@ -567,7 +568,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Whether to display the Tab for the TabPanel by default.
+    /// Whether to display the tab for the TabPanel by default
     /// </summary>
     /// <getter>get_enabled</getter>
     /// <setter>set_enabled</setter>
@@ -585,7 +586,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the owner TabContainer.
+    /// The owner TabContainer
     /// </summary>
     /// <getter>get_owner</getter>
     /// <setter>set_owner</setter>
@@ -604,7 +605,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the ID of the owner TabContainer element.
+    /// The ID of the owner TabContainer element
     /// </summary>
     /// <getter>get_ownerID</getter>
     /// <setter>set_ownerID</setter>
@@ -617,7 +618,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabPanel.
+    /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabPanel
     /// </summary>
     /// <getter>get_scrollBars</getter>
     /// <setter>set_scrollBars</setter>
@@ -633,7 +634,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// When container's onDemand is true then whether to load tab - Always, Once, None.
+    /// When container's onDemand is true then whether to load tab - Always, Once, None
     /// </summary>
     /// <getter>get_onDemandMode</getter>
     /// <setter>set_onDemandMode</setter>
@@ -649,7 +650,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Gets current tab index.
+    /// Current tab index
     /// </summary>
     /// <getter>get_tabIndex</getter>
     /// <member name="cP:AjaxControlToolkit.TabPanel.tabIndex" />
@@ -658,7 +659,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// An arbitrary string value to be passed to the dynamic populate web method.
+    /// An arbitrary string value to be passed to the dynamic populate web method
     /// </summary>
     /// <getter>get_dynamicContextKey</getter>
     /// <setter>set_dynamicContextKey</setter>
@@ -674,7 +675,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// The URL of the web service to call.
+    /// The URL of the web service to call
     /// </summary>
     /// <getter>get_dynamicServicePath</getter>
     /// <setter>set_dynamicServicePath</setter>
@@ -690,7 +691,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// The name of the method to call on the page or web service.
+    /// The name of the method to call on the page or web service
     /// </summary>
     /// <getter>get_dynamicServiceMethod</getter>
     /// <setter>set_dynamicServiceMethod</setter>
@@ -717,7 +718,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// ID of the panel to update.
+    /// ID of the panel to update
     /// </summary>
     /// <getter>get_updatePanelID</getter>
     /// <setter>set_updatePanelID</setter>
@@ -733,7 +734,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Loading status of the tab if in Once demand mode.
+    /// Loading status of the tab if in Once demand mode
     /// </summary>
     /// <getter>get_wasLoadedOnce</getter>
     /// <setter>set_wasLoadedOnce</setter>

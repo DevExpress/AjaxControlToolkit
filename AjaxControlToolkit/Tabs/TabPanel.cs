@@ -6,6 +6,13 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// TabPanel is a part of TabContainer element. It can be used to organize page content.
+    /// 
+    /// Each TabPanel defines its HeaderText or HeaderTemplate as well as a ContentTemplate that defines
+    /// its content.The most recent tab should remain selected after a postback, and the Enabled state
+    /// of tabs should remain after a postback as well.
+    /// </summary>
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(DynamicPopulateExtender))]
     [RequiredScript(typeof(TabContainer))]
@@ -25,17 +32,18 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The text to display in the Tab.
+        /// The text to display in the tab
         /// </summary>
         [DefaultValue("")]
         [Category("Appearance")]
+        [ClientPropertyName("headerText")]
         public string HeaderText {
             get { return (string)(ViewState["HeaderText"] ?? string.Empty); }
             set { ViewState["HeaderText"] = value; }
         }
 
         /// <summary>
-        /// A TemplateInstance.Single ITemplate to use to render the header.
+        /// A TemplateInstance.Single ITemplate to use to render the header
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [TemplateInstance(TemplateInstance.Single)]
@@ -47,7 +55,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A TemplateInstance.Single ITemplate to use to render the body.
+        /// A TemplateInstance.Single ITemplate to use to render the body
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [TemplateInstance(TemplateInstance.Single)]
@@ -59,10 +67,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to display the Tab for the TabPanel by default.
+        /// Whether to display the tab for the TabPanel by default
         /// </summary>
         /// <remarks>
-        /// This can be changed on the client.
+        /// This can be changed on the client
         /// </remarks>
         [DefaultValue(true)]
         [Category("Behavior")]
@@ -74,7 +82,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabPanel.
+        /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabPanel
         /// </summary>
         [DefaultValue(ScrollBars.None)]
         [Category("Behavior")]
@@ -86,7 +94,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a javascript function to attach to the client-side click event of the tab.
+        /// The name of a javascript function to attach to the client-side click event of the tab
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -98,7 +106,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The URL of the web service to call.
+        /// The URL of the web service to call
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -111,7 +119,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of the method to call on the page or web service.
+        /// The name of the method to call on the page or web service
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -123,7 +131,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// An arbitrary string value to be passed to the dynamic populate web method.
+        /// An arbitrary string value to be passed to the dynamic populate web method
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -135,7 +143,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// When container's onDemand is true then whether to load tab - Always, Once, None.
+        /// When container's onDemand is true then whether to load tab - Always, Once, None
         /// </summary>
         [DefaultValue(OnDemandMode.Always)]
         [Category("Behavior")]
@@ -147,7 +155,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Handler to attach to the client-side populating event.
+        /// Handler to attach to the client-side populating event
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -159,7 +167,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Handler to attach to the client-side populated event.
+        /// Handler to attach to the client-side populated event
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -176,7 +184,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Introduce UpdatePanelID to client side by prototyping it.
+        /// Introduce UpdatePanelID to client side by prototyping it
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [ExtenderControlProperty]
@@ -184,7 +192,7 @@ namespace AjaxControlToolkit {
         public string UpdatePanelID { get; set; }
 
         /// <summary>
-        /// Loading status of the tab if in Once demand mode.
+        /// Loading status of the tab if in Once demand mode
         /// </summary>
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [ExtenderControlProperty]

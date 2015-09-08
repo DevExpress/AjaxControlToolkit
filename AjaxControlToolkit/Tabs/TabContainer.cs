@@ -13,6 +13,10 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// TabContainer is an ASP.NET AJAX Control which creates a set of Tabs that can be used to organize
+    /// page content. A TabContainer is a host for a number of TabPanel controls.
+    /// </summary>
     [Designer(typeof(TabContainerDesigner))]
     [ParseChildren(typeof(TabPanel))]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -36,7 +40,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Fired on the server side when a Tab is changed after a postback.
+        /// Fires on the server side when a tab is changed after a postback
         /// </summary>
         [Category("Behavior")]
         public event EventHandler ActiveTabChanged {
@@ -45,7 +49,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The first Tab to show.
+        /// The first tab to show
         /// </summary>
         /// <remarks>
         /// For client.
@@ -77,7 +81,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The first Tab to show.
+        /// The first tab to show
         /// </summary>
         [DefaultValue(-1)]
         [Category("Behavior")]
@@ -125,7 +129,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Collection of Tabs.
+        /// Collection of tabs
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -134,7 +138,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Current active Tab.
+        /// Current active tab
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -157,7 +161,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Make auto postback from the javascript when Tab index changes.
+        /// Make auto postback from the javascript when tab index changes
         /// </summary>
         [DefaultValue(false)]
         [Category("Behavior")]
@@ -167,7 +171,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Sets the height of the body of the tabs (does not include the TabPanel headers).
+        /// Height of the body of the tabs (does not include the TabPanel headers)
         /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Appearance")]
@@ -183,7 +187,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Sets the width of the body of the tabs.
+        /// Width of the body of the tabs
         /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Appearance")]
@@ -193,10 +197,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A CSS class override used to define a custom look and feel for the tabs.
+        /// CSS class override used to define a custom look and feel for the tabs
         /// </summary>
         /// <remarks>
-        /// See the Tabs Theming section for more details.
+        /// See the Tabs Theming section for more details
         /// </remarks>
         [DefaultValue("ajax__tab_xp")]
         [Category("Appearance")]
@@ -206,7 +210,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabContainer.
+        /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto)
+        /// in the body of the TabContainer
         /// </summary>
         [DefaultValue(ScrollBars.None)]
         [Category("Behavior")]
@@ -218,10 +223,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to render the tabs on top of the container or below (Top, Bottom).
+        /// Whether to render the tabs on top of the container or below (Top, Bottom)
         /// </summary>
         [DefaultValue(TabStripPlacement.Top)]
         [Category("Appearance")]
+        [ClientPropertyName("tabStripPlacement")]
         public TabStripPlacement TabStripPlacement {
             get { return _tabStripPlacement; }
             set { _tabStripPlacement = value; }
@@ -229,7 +235,7 @@ namespace AjaxControlToolkit {
 
 
         /// <summary>
-        /// Fired on the client side when a Tab is changed.
+        /// Fires on the client side when a tab is changed
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -241,7 +247,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// AutoPostback ID.
+        /// AutoPostback ID
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("autoPostBackId")]
@@ -256,18 +262,19 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to render the tabs on left or right of the container.
+        /// Whether to render the tabs on left or right of the container
         /// </summary>
         [Description("Change tab header placement vertically when value set to true")]
         [DefaultValue(false)]
         [Category("Appearance")]
+        [ClientPropertyName("useVerticalStripPlacement")]
         public bool UseVerticalStripPlacement {
             get { return _useVerticalStripPlacement; }
             set { _useVerticalStripPlacement = value; }
         }
 
         /// <summary>
-        /// Width of the tab panels when displaying tabs vertically.
+        /// Width of the tab panels when displaying tabs vertically
         /// </summary>
         [Description("Set width of tab strips when UseVerticalStripPlacement is set to true. Size must be in pixel")]
         [DefaultValue(typeof(Unit), "120px")]
@@ -283,10 +290,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to render/load tabs onDemand or all at page load.
+        /// Whether to render/load tabs onDemand or all at page load
         /// </summary>
         [DefaultValue(false)]
         [Category("Behavior")]
+        [ClientPropertyName("onDemand")]
         public bool OnDemand {
             get { return _onDemand; }
             set { _onDemand = value; }
