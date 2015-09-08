@@ -210,7 +210,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a string that consists of all characters that are considered
+    /// A string that consists of all characters that are considered
     /// valid for the text box when the field type is Custom.
     /// </summary>
     /// <remarks>
@@ -242,7 +242,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a string that consists of all characters that are considered
+    /// A string that consists of all characters that are considered
     /// invalid for the text box when the field type is Custom.
     /// </summary>
     /// <remarks>
@@ -272,7 +272,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Sys.Extended.UI.FilterTypes object to apply to the FilterTextBox instance.
+    /// A Sys.Extended.UI.FilterTypes object to apply to the FilterTextBox instance.
     /// </summary>
     /// <remarks>
     /// The type of filter to apply can be a comma-separated combination of the following
@@ -303,7 +303,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Sys.Extended.UI.FilterModes object that specifies the mode to apply to the FilterTextBox instance.
+    /// A Sys.Extended.UI.FilterModes object that specifies the mode to apply to the FilterTextBox instance.
     /// </summary>
     /// <remarks>
     /// Supported values are ValidChars and InvalidChars.
@@ -358,7 +358,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when key is processing.
+    /// Fires when key is processing.
     /// </summary>
     /// <event add="add_processKey" remove="remove_processKey" raise="raise_processKey" />
     /// <member name="cE:AjaxControlToolkit.FilteredTextBoxExtender.processKey" />
@@ -379,7 +379,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when TextBox is filtered.
+    /// Fires when TextBox is filtered.
     /// </summary>
     /// <event add="add_filtered" remove="remove_filtered" raise="raise_filtered" />
     /// <member name="cE:AjaxControlToolkit.FilteredTextBoxExtender.filtered" />

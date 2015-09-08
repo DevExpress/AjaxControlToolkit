@@ -26,6 +26,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// The type of filter to apply, specified as a comma-separated combination of the
         /// following values: Numbers, LowercaseLetters, UppercaseLetters, and Custom.
+        /// The default is Custom.
         /// </summary>
         /// <remarks>
         /// If Custom is specified, the ValidChars property will be used in addition to other settings, such as Numbers.
@@ -41,6 +42,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// The filter mode to apply. Supported values are ValidChars and InvalidChars.
         /// If the property is set to InvalidChars, FilterType must be set to Custom.
+        /// The default is ValidChars
         /// </summary>
         /// <remarks>
         /// If the property is set to ValidChars, FilterType must be set to Custom.
@@ -85,7 +87,7 @@ namespace AjaxControlToolkit {
         /// An integer that specifies the interval, in milliseconds, in which the field's contents are filtered.
         /// </summary>
         /// <remarks>
-        /// The default is 250.
+        /// The default is 250
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(250)]
