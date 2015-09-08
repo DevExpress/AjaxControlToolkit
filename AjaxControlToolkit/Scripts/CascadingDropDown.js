@@ -118,8 +118,8 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     /// <summary>
     /// Whether or not use HTTP GET method for requesting the data.
     /// </summary>
-    /// <getter>use_HttpGet</getter>
-    /// <setter>use_HttpGet</setter>
+    /// <getter>get_useHttpGet</getter>
+    /// <setter>set_useHttpGet</setter>
     /// <member name="cP:AjaxControlToolkit.CascadingDropDown.useHttpGet" />
     this._useHttpGet = false;
 
