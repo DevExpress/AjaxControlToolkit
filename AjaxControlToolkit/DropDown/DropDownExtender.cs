@@ -9,10 +9,7 @@ namespace AjaxControlToolkit {
 
     /// <summary>
     /// DropDown is an ASP.NET AJAX extender that can be attached to almost any ASP.NET control
-    /// to provide a SharePoint-style drop-down menu. The displayed menu is merely another panel
-    /// or control. In the above sample the drop-down is a Panel which contains LinkButtons.
-    /// The drop-down is activated by left- or right-clicking the attached control. If the behavior
-    /// is attached to a Hyperlink or LinkButton, clicking on the link itself will operate normally. 
+    /// to provide a SharePoint-style drop-down menu.
     /// </summary>
     [TargetControlType(typeof(WebControl))]
     [RequiredScript(typeof(CommonToolkitScripts))]
