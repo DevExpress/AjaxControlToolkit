@@ -938,7 +938,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     ///<summary>
-    /// Save selected text
+    /// Saves selected text
     ///</summary>
     /// <member name="cM:AjaxControlToolkit.HtmlEditorExtender.saveSelection" />
     saveSelection: function () {
@@ -949,7 +949,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     ///<summary>
-    ///Restore selected text
+    /// Restores selected text
     ///</summary>
     /// <member name="cM:AjaxControlToolkit.HtmlEditorExtender.restoreSelection" />
     restoreSelection: function() {
@@ -1090,7 +1090,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     ///<summary>
-    /// Event handler to raise when text change occurs.
+    /// Fires when text change occurs.
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.HtmlEditorExtender.change" />
     ///<event add="add_change" remove="remove_change" />
