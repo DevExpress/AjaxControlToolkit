@@ -206,7 +206,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a generic OnShow animation's JSON definition.
+    /// A generic OnShow animation's JSON definition.
     /// </summary>
     /// <getter>get_onShow</getter>
     /// <setter>set_onShow</setter>
@@ -225,7 +225,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets a Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnShow animation's behavior.
+    /// A Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnShow animation's behavior.
     /// </summary>
     /// <getter>get_onShowBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.onShowBehavior" />
@@ -244,7 +244,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a generic OnHide animation's JSON definition.
+    /// A generic OnHide animation's JSON definition.
     /// </summary>
     /// <getter>get_onHide</getter>
     /// <setter>set_onHide</setter>
@@ -263,7 +263,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets a Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation's behavior.
+    /// A Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation's behavior.
     /// </summary>
     /// <getter>get_onHideBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.onHideBehavior" />
@@ -273,7 +273,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Play the OnHide animation.
+    /// Plays the OnHide animation.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.HoverMenuExtender.onHide" />
     onHide: function() {
@@ -282,7 +282,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Sys.UI.DomElement that acts as the popup and is displayed when hovering.
+    /// A Sys.UI.DomElement that acts as the popup and is displayed when hovering.
     /// </summary>
     /// <getter>get_popupElement</getter>
     /// <setter>set_popupElement</setter>
@@ -303,7 +303,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the CSS class used when hovering.
+    /// The CSS class used when hovering.
     /// </summary>
     /// <getter>get_hoverCssClass</getter>
     /// <setter>set_hoverCssClass</setter>
@@ -328,7 +328,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the number of pixels to offset the popup from it's default horizontal position.
+    /// The number of pixels to offset the popup from it's default horizontal position.
     /// </summary>
     /// <getter>get_offsetX</getter>
     /// <setter>set_offsetX</setter>
@@ -344,16 +344,16 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     get_OffsetX: function() {
-        Sys.Extended.Deprecated("get_OffsetX", "get_offsetX");
+        Sys.Extended.Deprecated("get_OffsetX()", "get_offsetX()");
         return this.get_offsetX();
     },
     set_OffsetX: function(value) {
-        Sys.Extended.Deprecated("set_OffsetX", "set_offsetX");
+        Sys.Extended.Deprecated("set_OffsetX(value)", "set_offsetX(value)");
         this.set_offsetX(value);
     },
 
     /// <summary>
-    ///  Gets or sets the number of pixels to offset the popup from it's default vertical position.
+    ///  The number of pixels to offset the popup from it's default vertical position.
     /// </summary>
     /// <getter>get_offsetY</getter>
     /// <setter>set_offsetY</setter>
@@ -369,20 +369,20 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     get_OffsetY: function() {
-        Sys.Extended.Deprecated("get_OffsetY", "get_offsetY");
+        Sys.Extended.Deprecated("get_OffsetY()", "get_offsetY()");
         return this.get_offsetY();
     },
     set_OffsetY: function(value) {
-        Sys.Extended.Deprecated("set_OffsetY", "set_offsetY");
+        Sys.Extended.Deprecated("set_OffsetY(value)", "set_offsetY(value)");
         this.set_offsetY(value);
     },
 
     /// <summary>
-    /// Gets or sets a Sys.Extended.UI.HoverMenuPopupPosition object that contains
+    /// A Sys.Extended.UI.HoverMenuPopupPosition object that contains
     /// the location where the popup should be positioned relative to the target control.
     /// </summary>
     /// <remarks>
-    /// Can be Left (Default), Right, Top, Bottom, Center.
+    /// Can be Left, Right, Top, Bottom, Center. The default is Center
     /// </remarks>
     /// <getter>get_popupPosition</getter>
     /// <setter>set_popupPosition</setter>
@@ -398,16 +398,16 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     get_PopupPosition: function() {
-        Sys.Extended.Deprecated("get_PopupPosition", "get_popupPosition");
+        Sys.Extended.Deprecated("get_PopupPosition()", "get_popupPosition()");
         return this.get_popupPosition();
     },
     set_PopupPosition: function(value) {
-        Sys.Extended.Deprecated("set_PopupPosition", "set_popupPosition");
+        Sys.Extended.Deprecated("set_PopupPosition(value)", "set_popupPosition(value)");
         this.set_popupPosition(value);
     },
 
     /// <summary>
-    /// Gets or sets a number representing the time delay from when the
+    /// A number representing the time delay from when the
     /// mouse enters the target to when the popup is shown, in milliseconds.
     /// </summary>
     /// <remarks>
@@ -436,7 +436,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a number representing the time delay after the mouse
+    /// A number representing the time delay after the mouse
     /// enters the target and before the popup is shown, in milliseconds.
     /// </summary>
     /// <remarks>
@@ -465,7 +465,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when hover menu is showing.
+    /// Fires when hover menu is showing.
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.showing" />
@@ -486,7 +486,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when hover menu is shown.
+    /// Fires when hover menu is shown.
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.shown" />
@@ -507,7 +507,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when hover menu is hiding.
+    /// Fires when hover menu is hiding.
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.hiding" />
@@ -528,7 +528,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when hover menu is hidden.
+    /// Fires when hover menu is hidden.
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.hidden" />

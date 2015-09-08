@@ -58,6 +58,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// The number of pixels to offset the Popup from it's default position, as specified by PopupPosition.
+        /// The default is 0
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -75,6 +76,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// The number of pixels to offset the Popup from it's default position, as specified by PopupPosition.
+        /// The default is 0
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -118,7 +120,8 @@ namespace AjaxControlToolkit {
         /// <remarks>
         /// This value can be any of the values in the HoverMenuPopupPosition enumeration,
         /// and the position can be modified by setting the OffsetX and/or OffsetY property.
-        /// Can be Left (Default), Right, Top, Bottom, Center.
+        /// Can be Left, Right, Top, Bottom, Center.
+        /// The default is Center
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(HoverMenuPopupPosition.Center)]
