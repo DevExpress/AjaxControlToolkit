@@ -7,11 +7,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// DropShadow is an extender that applies a drop shadow to an ASP.NET Panel control.
-    /// The extender allows you to specify how wide the shadow is, how opaque it is,
-    /// and whether the shadow should have rounded corners. For pages that let the user move or
-    /// resize the panel, the DropShadow extender has a mode that will resize and reposition
-    /// the shadow to match the target panel at run time.
+    /// DropShadow is an extender that applies a drop shadow to an ASP.NET Panel control.    
     /// </summary>
     [Designer(typeof(DropShadowExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.DropShadowBehavior", Constants.DropShadowName)]
@@ -21,8 +17,6 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(WebControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DropShadowName + Constants.IconPostfix)]
     public class DropShadowExtender : ExtenderControlBase {
-        // 
-        // 
         /// <summary>
         /// The opacity of the shadow, from 0 (transparent - no shadow rendered) to 1.0, which is fully opaque black.
         /// </summary>
