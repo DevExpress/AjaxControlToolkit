@@ -59,6 +59,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
                 "Seadragon",
                 "SliderExtender",
                 "SlideShowExtender",
+                "TabContainer",
                 "TabPanel",
                 "TextBoxWatermarkExtender",
                 "ToggleButtonExtender",
