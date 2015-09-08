@@ -167,11 +167,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_ImageWidth: function() {
-        Sys.Extended.Deprecated("get_ImageWidth", "get_imageWidth");
+        Sys.Extended.Deprecated("get_ImageWidth()", "get_imageWidth()");
         return this.get_imageWidth();
     },
     set_ImageWidth: function(value) {
-        Sys.Extended.Deprecated("set_ImageWidth", "set_imageWidth");
+        Sys.Extended.Deprecated("set_ImageWidth(value)", "set_imageWidth(value)");
         this.set_imageWidth(value);
     },
 
@@ -192,11 +192,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_ImageHeight: function() {
-        Sys.Extended.Deprecated("get_ImageHeight", "get_imageHeight");
+        Sys.Extended.Deprecated("get_ImageHeight()", "get_imageHeight()");
         return this.get_imageHeight();
     },
     set_ImageHeight: function(value) {
-        Sys.Extended.Deprecated("set_ImageHeight", "set_imageHeight");
+        Sys.Extended.Deprecated("set_ImageHeight(value)", "set_imageHeight(value)");
         this.set_imageHeight(value);
     },
 
@@ -217,11 +217,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_UncheckedImageUrl: function() {
-        Sys.Extended.Deprecated("get_UncheckedImageUrl", "get_uncheckedImageUrl");
+        Sys.Extended.Deprecated("get_UncheckedImageUrl()", "get_uncheckedImageUrl()");
         return this.get_uncheckedImageUrl();
     },
     set_UncheckedImageUrl: function(value) {
-        Sys.Extended.Deprecated("set_UncheckedImageUrl", "set_uncheckedImageUrl");
+        Sys.Extended.Deprecated("set_UncheckedImageUrl(value)", "set_uncheckedImageUrl(value)");
         this.set_uncheckedImageUrl(value);
     },
 
@@ -242,11 +242,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_CheckedImageUrl: function() {
-        Sys.Extended.Deprecated("get_CheckedImageUrl", "get_checkedImageUrl");
+        Sys.Extended.Deprecated("get_CheckedImageUrl()", "get_checkedImageUrl()");
         return this.get_checkedImageUrl();
     },
     set_CheckedImageUrl: function(value) {
-        Sys.Extended.Deprecated("set_CheckedImageUrl", "set_checkedImageUrl");
+        Sys.Extended.Deprecated("set_CheckedImageUrl(value)", "set_checkedImageUrl(value)");
         this.set_checkedImageUrl(value);
     },
 
@@ -268,11 +268,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_DisabledUncheckedImageUrl: function() {
-        Sys.Extended.Deprecated("get_DisabledUncheckedImageUrl", "get_disabledUncheckedImageUrl");
+        Sys.Extended.Deprecated("get_DisabledUncheckedImageUrl()", "get_disabledUncheckedImageUrl()");
         return this.get_disabledUncheckedImageUrl();
     },
     set_DisabledUncheckedImageUrl: function(value) {
-        Sys.Extended.Deprecated("set_DisabledUncheckedImageUrl", "set_disabledUncheckedImageUrl");
+        Sys.Extended.Deprecated("set_DisabledUncheckedImageUrl(value)", "set_disabledUncheckedImageUrl(value)");
         this.set_disabledUncheckedImageUrl(value);
     },
 
@@ -294,11 +294,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_DisabledCheckedImageUrl: function() {
-        Sys.Extended.Deprecated("get_DisabledCheckedImageUrl", "get_disabledCheckedImageUrl");
+        Sys.Extended.Deprecated("get_DisabledCheckedImageUrl()", "get_disabledCheckedImageUrl()");
         return this.get_disabledCheckedImageUrl();
     },
     set_DisabledCheckedImageUrl: function(value) {
-        Sys.Extended.Deprecated("set_DisabledCheckedImageUrl", "set_disabledCheckedImageUrl");
+        Sys.Extended.Deprecated("set_DisabledCheckedImageUrl(value)", "set_disabledCheckedImageUrl(value)");
         this.set_disabledCheckedImageUrl(value);
     },
 
@@ -320,11 +320,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_CheckedImageOverUrl: function() {
-        Sys.Extended.Deprecated("get_CheckedImageOverUrl", "get_checkedImageOverUrl");
+        Sys.Extended.Deprecated("get_CheckedImageOverUrl()", "get_checkedImageOverUrl()");
         return this.get_checkedImageOverUrl();
     },
     set_CheckedImageOverUrl: function(value) {
-        Sys.Extended.Deprecated("set_CheckedImageOverUrl", "set_checkedImageOverUrl");
+        Sys.Extended.Deprecated("set_CheckedImageOverUrl(value)", "set_checkedImageOverUrl(value)");
         this.set_checkedImageOverUrl(value);
     },
 
@@ -346,11 +346,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_UncheckedImageOverUrl: function() {
-        Sys.Extended.Deprecated("get_UncheckedImageOverUrl", "get_uncheckedImageOverUrl");
+        Sys.Extended.Deprecated("get_UncheckedImageOverUrl()", "get_uncheckedImageOverUrl()");
         return this.get_uncheckedImageOverUrl();
     },
     set_UncheckedImageOverUrl: function(value) {
-        Sys.Extended.Deprecated("set_UncheckedImageOverUrl", "set_uncheckedImageOverUrl");
+        Sys.Extended.Deprecated("set_UncheckedImageOverUrl(value)", "set_uncheckedImageOverUrl(value)");
         this.set_uncheckedImageOverUrl(value);
     },
 
@@ -371,11 +371,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_UncheckedImageAlternateText: function() {
-        Sys.Extended.Deprecated("get_UncheckedImageAlternateText", "get_uncheckedImageAlternateText");
+        Sys.Extended.Deprecated("get_UncheckedImageAlternateText()", "get_uncheckedImageAlternateText()");
         return this.get_uncheckedImageAlternateText();
     },
     set_UncheckedImageAlternateText: function(value) {
-        Sys.Extended.Deprecated("set_UncheckedImageAlternateText", "set_uncheckedImageAlternateText");
+        Sys.Extended.Deprecated("set_UncheckedImageAlternateText(value)", "set_uncheckedImageAlternateText(value)");
         this.set_uncheckedImageAlternateText(value);
     },
 
@@ -396,11 +396,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_CheckedImageAlternateText: function() {
-        Sys.Extended.Deprecated("get_CheckedImageAlternateText", "get_checkedImageAlternateText");
+        Sys.Extended.Deprecated("get_CheckedImageAlternateText()", "get_checkedImageAlternateText()");
         return this.get_checkedImageAlternateText();
     },
     set_CheckedImageAlternateText: function(value) {
-        Sys.Extended.Deprecated("set_CheckedImageAlternateText", "set_checkedImageAlternateText");
+        Sys.Extended.Deprecated("set_CheckedImageAlternateText(value)", "set_checkedImageAlternateText(value)");
         this.set_checkedImageAlternateText(value);
     },
 
@@ -422,11 +422,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_CheckedImageOverAlternateText: function() {
-        Sys.Extended.Deprecated("get_CheckedImageOverAlternateText", "get_checkedImageOverAlternateText");
+        Sys.Extended.Deprecated("get_CheckedImageOverAlternateText()", "get_checkedImageOverAlternateText()");
         return this.get_checkedImageOverAlternateText();
     },
     set_CheckedImageOverAlternateText: function(value) {
-        Sys.Extended.Deprecated("set_CheckedImageOverAlternateText", "set_checkedImageOverAlternateTet");
+        Sys.Extended.Deprecated("set_CheckedImageOverAlternateText(value)", "set_checkedImageOverAlternateTet(value)");
         this.set_checkedImageOverAlternateText(value);
     },
 
@@ -448,11 +448,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     },
 
     get_UncheckedImageOverAlternateText: function() {
-        Sys.Extended.Deprecated("get_UncheckedImageOverAlternateText", "get_uncheckedImageOverAlternateText");
+        Sys.Extended.Deprecated("get_UncheckedImageOverAlternateText()", "get_uncheckedImageOverAlternateText()");
         return this.get_uncheckedImageOverAlternateText();
     },
     set_UncheckedImageOverAlternateText: function(value) {
-        Sys.Extended.Deprecated("set_UncheckedImageOverAlternateText", "set_uncheckedImageOverAlternateTet");
+        Sys.Extended.Deprecated("set_UncheckedImageOverAlternateText(value)", "set_uncheckedImageOverAlternateTet(value)");
         this.set_uncheckedImageOverAlternateText(value);
     }
 }

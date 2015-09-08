@@ -125,11 +125,11 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     get_OnUpdating: function() {
-        Sys.Extended.Deprecated("get_OnUpdating", "get_onUpdating");
+        Sys.Extended.Deprecated("get_OnUpdating()", "get_onUpdating()");
         return this.get_onUpdating();
     },
     set_OnUpdating: function(value) {
-        Sys.Extended.Deprecated("set_OnUpdating", "set_onUpdating");
+        Sys.Extended.Deprecated("set_OnUpdating(value)", "set_onUpdating(value)");
         this.set_onUpdating();
     },
 
@@ -142,7 +142,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
         return this._onUpdating;
     },
     get_OnUpdatingBehavior: function() {
-        Sys.Extended.Deprecated("get_OnUpdatingBehavior", "get_onUpdatingBehavior");
+        Sys.Extended.Deprecated("get_OnUpdatingBehavior()", "get_onUpdatingBehavior()");
         return this.get_onUpdatingBehavior();
     },
 
@@ -162,11 +162,11 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     get_OnUpdated: function() {
-        Sys.Extended.Deprecated("get_OnUpdated", "get_onUpdated");
+        Sys.Extended.Deprecated("get_OnUpdated()", "get_onUpdated()");
         return this.get_onUpdated();
     },
     set_OnUpdated: function(value) {
-        Sys.Extended.Deprecated("set_OnUpdated", "set_onUpdated");
+        Sys.Extended.Deprecated("set_OnUpdated(value)", "set_onUpdated(value)");
         this.set_onUpdated(value);
     },
 
@@ -179,7 +179,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
         return this._onUpdated;
     },
     get_OnUpdatedBehavior: function() {
-        Sys.Extended.Deprecated("get_OnUpdatedBehavior", "get_onUpdatedBehavior");
+        Sys.Extended.Deprecated("get_OnUpdatedBehavior()", "get_onUpdatedBehavior()");
         return this.get_onUpdatedBehavior();
     },
 
@@ -203,11 +203,11 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     get_AlwaysFinishOnUpdatingAnimation: function() {
-        Sys.Extended.Deprecated("get_AlwaysFinishOnUpdatingAnimation", "get_alwaysFinishOnUpdatingAnimation");
+        Sys.Extended.Deprecated("get_AlwaysFinishOnUpdatingAnimation()", "get_alwaysFinishOnUpdatingAnimation()");
         return this.get_alwaysFinishOnUpdatingAnimation();
     },
     set_AlwaysFinishOnUpdatingAnimation: function(value) {
-        Sys.Extended.Deprecated("set_AlwaysFinishOnUpdatingAnimation", "set_alwaysFinishOnUpdatingAnimation");
+        Sys.Extended.Deprecated("set_AlwaysFinishOnUpdatingAnimation(value)", "set_alwaysFinishOnUpdatingAnimation(value)");
         this.set_alwaysFinishOnUpdatingAnimation(value);
     },
 
@@ -228,11 +228,11 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     get_TriggerControlsClientID: function() {
-        Sys.Extended.Deprecated("get_TriggerControlsClientID", "get_triggerControlsClientID");
+        Sys.Extended.Deprecated("get_TriggerControlsClientID()", "get_triggerControlsClientID()");
         return this._triggerControlsClientID;
     },
     set_TriggerControlsClientID: function(value) {
-        Sys.Extended.Deprecated("set_TriggerControlsClientID", "set_triggerControlsClientID");
+        Sys.Extended.Deprecated("set_TriggerControlsClientID(value)", "set_triggerControlsClientID(value)");
         this.set_triggerControlsClientID(value);
     }
 };

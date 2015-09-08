@@ -252,11 +252,11 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     get_WatermarkText : function() {
-        Sys.Extended.Deprecated("get_WatermarkText", "get_watermarkText");
+        Sys.Extended.Deprecated("get_WatermarkText()", "get_watermarkText()");
         return this.get_watermarkText();
     },
     set_WatermarkText : function(value) {
-        Sys.Extended.Deprecated("set_WatermarkText", "set_watermarkText");
+        Sys.Extended.Deprecated("set_WatermarkText(value)", "set_watermarkText(value)");
         this.set_watermarkText(value);
     },
 
@@ -279,11 +279,11 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     get_WatermarkCssClass : function() {
-        Sys.Extended.Deprecated("get_WatermarkCssClass", "get_watermarkCssClass");
+        Sys.Extended.Deprecated("get_WatermarkCssClass()", "get_watermarkCssClass()");
         return this.get_watermarkCssClass();
     },
     set_WatermarkCssClass : function(value) {
-        Sys.Extended.Deprecated("set_WatermarkCssClass", "set_watermarkCssClass");
+        Sys.Extended.Deprecated("set_WatermarkCssClass(value)", "set_watermarkCssClass(value)");
         this.set_watermarkCssClass(value);
     },
 
@@ -309,11 +309,11 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     get_Text : function() {
-        Sys.Extended.Deprecated("get_Text", "get_text");
+        Sys.Extended.Deprecated("get_Text()", "get_text()");
         return this.get_text();
     },
     set_Text : function(value) {
-        Sys.Extended.Deprecated("set_Text", "set_text");
+        Sys.Extended.Deprecated("set_Text(value)", "set_text(value)");
         this.set_text(value);
     }
 }
