@@ -10,10 +10,7 @@ namespace AjaxControlToolkit {
 
     /// <summary>
     /// The ColorPicker extender enables you to display a pop-up color picker when the focus is moved to an input element.
-    /// You can attach the ColorPicker extender to any ASP.NET TextBox control. It provides client-side color-picking
-    /// functionality with UI in a popup control. Optionally, you can specify a button to display the color-picker popup and
-    /// a control that previews a color from the color palette. You can also provide a TextBox control where users can enter a
-    /// color value; the ColorPicker extender can display a custom color even if the color is not in the default color-picker palette.
+    /// You can attach the ColorPicker extender to any ASP.NET TextBox control.
     /// </summary>
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
     [RequiredScript(typeof(PopupExtender), 1)]

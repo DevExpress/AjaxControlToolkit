@@ -197,7 +197,6 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     /// <member name="cP:AjaxControlToolkit.ColorPickerExtender.enabled" />
     get_enabled: function() {
         // Whether this behavior is available for the current element
-
         return this._enabled;
     },
     set_enabled: function(value) {
@@ -209,10 +208,8 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
 
     /// <summary>
     /// Gets or sets a Sys.Extended.UI.PositionMode object that represents where the popup should be positioned relative to the target control.
+    /// The default is BottomLeft.
     /// </summary>
-    /// <remarks>
-    /// The positions can be BottomLeft, BottomRight, TopLeft, or TopRight. The default is BottomLeft.
-    /// </remarks>
     /// <getter>get_popupPosition</getter>
     /// <setter>set_popupPosition</setter>
     /// <member name="cP:AjaxControlToolkit.ColorPickerExtender.popupPosition" />
