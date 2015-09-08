@@ -11,6 +11,9 @@ namespace AjaxControlToolkit {
     /// <summary>
     /// The MultiHandleSlider extender provides a feature-rich extension to a regular asp:Textbox control.
     /// It allows you to choose a single value, or multiple values in a range, through a graphical slider interface.
+    /// It supports one handle, dual handles, or any number of handles bound to the values of asp:TextBox or
+    /// asp:Label controls. It also provides options for read-only access, custom graphic styling, hover
+    /// and drag handle styles, as well as mouse and keyboard support for accessibility.
     /// </summary>
     [Designer(typeof(MultiHandleSliderExtenderDesigner))]
     [ClientCssResource(Constants.MultiHandleSliderName)]
@@ -23,7 +26,7 @@ namespace AjaxControlToolkit {
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.MultiHandleSliderName + Constants.IconPostfix)]
     public class MultiHandleSliderExtender : ExtenderControlBase {
         /// <summary>
-        /// The lowest value on the slider.
+        /// The lowest value on the slider
         /// </summary>
         [Description("The lowest value on the slider.")]
         [ExtenderControlProperty]
@@ -35,7 +38,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The highest value on the slider.
+        /// The highest value on the slider
         /// </summary>
         [Description("The highest value on the slider.")]
         [ExtenderControlProperty]
@@ -47,7 +50,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The length of the slider rail in pixels.
+        /// The length of the slider rail in pixels
         /// </summary>
         [Description("The length of the slider rail in pixels.")]
         [ExtenderControlProperty]
@@ -59,7 +62,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines number of discrete locations on the slider; otherwise, the slider is continous.
+        /// Determines number of discrete locations on the slider; otherwise, the slider is continous
         /// </summary>
         [Description("Determines number of discrete locations on the slider; otherwise, the slider is continous.")]
         [ExtenderControlProperty]
@@ -71,7 +74,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the slider will show an inner selected range rail; otherwise, it will display as a uniform rail.
+        /// Determines if the slider will show an inner selected range rail; otherwise, it will display as a uniform rail
         /// </summary>
         [Description("Determines if the slider will show an inner selected range rail; otherwise, it will display as a uniform rail.")]
         [ExtenderControlProperty]
@@ -83,7 +86,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines how the inner rail style is handled.
+        /// Determines how the inner rail style is handled
         /// </summary>
         [Description("Determines how the inner rail style is handled.")]
         [ExtenderControlProperty]
@@ -95,7 +98,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the slider's orientation is horizontal or vertical.
+        /// Determines if the slider's orientation is horizontal or vertical
         /// </summary>
         [ExtenderControlProperty]
         [Description("Determines if the slider's orientation is horizontal or vertical.")]
@@ -107,7 +110,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if changes to the slider's values are raised as an event when dragging; otherwise, they are raised on drag end.
+        /// Determines if changes to the slider's values are raised as an event when dragging;
+        /// otherwise, they are raised on drag end
         /// </summary>
         [Description("Determines if changes to the slider's values are raised as an event when dragging; otherwise, they are raised on drag end.")]
         [ExtenderControlProperty]
@@ -119,7 +123,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the inner rail range can be dragged as a whole, moving both handles defining it.
+        /// Determines if the inner rail range can be dragged as a whole, moving both handles defining it
         /// </summary>
         [Description("Determines if the inner rail range can be dragged as a whole, moving both handles defining it.")]
         [ExtenderControlProperty]
@@ -131,7 +135,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if clicking on the rail will detect and move the closest handle.
+        /// Determines if clicking on the rail will detect and move the closest handle
         /// </summary>
         [Description("Determines if clicking on the rail will detect and move the closest handle.")]
         [ExtenderControlProperty]
@@ -143,7 +147,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the slider and its values can be manipulated.
+        /// Determines if the slider and its values can be manipulated
         /// </summary>
         [Description("Determines if the slider and its values can be manipulated.")]
         [ExtenderControlProperty]
@@ -155,7 +159,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the slider will respond to arrow keys when it has focus.
+        /// Determines if the slider will respond to arrow keys when it has focus
         /// </summary>
         [Description("Determines if the slider will respond to arrow keys when it has focus.")]
         [ExtenderControlProperty]
@@ -167,7 +171,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the slider will respond to the mouse wheel when it has focus.
+        /// Determines if the slider will respond to the mouse wheel when it has focus
         /// </summary>
         [Description("Determines if the slider will respond to the mouse wheel when it has focus.")]
         [ExtenderControlProperty]
@@ -179,7 +183,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines the number of points to increment or decrement the slider using the keyboard or mousewheel; ignored if steps is used.
+        /// Determines the number of points to increment or decrement the slider using the
+        /// keyboard or mousewheel; ignored if steps is used
         /// </summary>
         [Description("Determines the number of points to increment or decrement the slider using the keyboard or mousewheel; ignored if steps is used.")]
         [ExtenderControlProperty]
@@ -191,7 +196,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if control is server control.
+        /// Determines if control is server control
         /// </summary>
         [ExtenderControlProperty(true, true)]
         [ClientPropertyName("_isServerControl")]
@@ -200,7 +205,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The list of controls used to bind slider handle values. These should be Label or TextBox controls.
+        /// The list of controls used to bind slider handle values. These should be Label or TextBox controls
         /// </summary>
         [Description("The list of controls used to bind slider handle values. These should be Label or TextBox controls.")]
         [ExtenderControlProperty(true, true)]
@@ -214,7 +219,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the slider handles display an animation effect when changing position.
+        /// Determines if the slider handles display an animation effect when changing position
         /// </summary>
         [Description("Determines if the slider handles display an animation effect when changing position.")]
         [ExtenderControlProperty]
@@ -226,7 +231,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the slider handles will show a style effect when they are hovered over.
+        /// Determines if the slider handles will show a style effect when they are hovered over
         /// </summary>
         [Description("Determines if the slider handles will show a style effect when they are hovered over.")]
         [ExtenderControlProperty]
@@ -238,7 +243,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the slider handles will show a style effect when they are being dragged.
+        /// Determines if the slider handles will show a style effect when they are being dragged
         /// </summary>
         [Description("Determines if the slider handles will show a style effect when they are being dragged.")]
         [ExtenderControlProperty]
@@ -250,7 +255,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines the total duration of the animation effect, in seconds.
+        /// Determines the total duration of the animation effect, in seconds
         /// </summary>
         [Description("Determines the total duration of the animation effect, in seconds.")]
         [ExtenderControlProperty]
@@ -262,7 +267,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines the text to display as the tooltip; {0} denotes the current handle's value in the format string.
+        /// Determines the text to display as the tooltip; {0} denotes the current handle's
+        /// value in the format string
         /// </summary>
         [Description("Determines the text to display as the tooltip; {0} denotes the current handle's value in the format string.")]
         [ExtenderControlProperty]
@@ -274,7 +280,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The master style to apply to slider graphical elements.
+        /// The master style to apply to slider graphical elements
         /// </summary>
         [Description("The master style to apply to slider graphical elements.")]
         [ExtenderControlProperty]
@@ -286,7 +292,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The event raised when the slider is completely loaded on the page.
+        /// The event raised when the slider is completely loaded on the page
         /// </summary>
         [ExtenderControlEvent]
         [Description("The event raised when the slider is completely loaded on the page.")]
@@ -298,7 +304,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The event raised when the user initiates a drag operation on the slider.
+        /// The event raised when the user initiates a drag operation on the slider
         /// </summary>
         [ExtenderControlEvent]
         [Description("The event raised when the user initiates a drag operation on the slider.")]
@@ -310,7 +316,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The event raised when the user drags the slider.
+        /// The event raised when the user drags the slider
         /// </summary>
         [ExtenderControlEvent]
         [Description("The event raised when the user drags the slider.")]
@@ -322,7 +328,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The event raised when the user drops the slider.
+        /// The event raised when the user drops the slider
         /// </summary>
         [ExtenderControlEvent]
         [Description("The event raised when the user drops the slider.")]
@@ -334,7 +340,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The event raised when the slider changes its state.
+        /// The event raised when the slider changes its state
         /// </summary>
         [ExtenderControlEvent]
         [Description("The event raised when the slider changes its state.")]
@@ -350,7 +356,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the ID of a control to use for a single handle.
+        /// The ID of a control to use for a single handle
         /// </summary>
         /// <remarks>
         /// Only used as a backwards compatibility feature for users wishing to upgrade
@@ -366,7 +372,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the number of decimal digits in a single slider's value.
+        /// The number of decimal digits in a single slider's value
         /// </summary>
         /// <remarks>
         /// A value of 0 means an integer value. Only used as a backwards
@@ -381,7 +387,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the CSS class of a single handle.
+        /// CSS class of a single handle
         /// </summary>
         /// <remarks>
         /// Only used as a backwards compatibility feature
@@ -396,7 +402,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or set the CSS class for the slider's rail element.
+        /// CSS class for the slider's rail element
         /// </summary>
         /// <remarks>
         /// Only used as a backwards compatibility feature for 
@@ -411,11 +417,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the URL for the image to display in the slider's handle.
+        /// URL for the image to display in the slider's handle.
         /// </summary>
         /// <remarks>
         /// Only used as a backwards compatibility feature for users wishing to upgrade
-        /// their existing controls.
+        /// their existing controls
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(""),
