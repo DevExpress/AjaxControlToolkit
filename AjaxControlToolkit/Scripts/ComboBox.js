@@ -1833,7 +1833,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     /// <member name="cP:AjaxControlToolkit.ComboBox.listItemHoverCssClass" />
     get_listItemHoverCssClass: function () {
         return this._listItemHoverCssClass;
-    }
+    },
     set_listItemHoverCssClass: function (value) {
         if (this._listItemHoverCssClass !== value) {
             this._listItemHoverCssClass = value;

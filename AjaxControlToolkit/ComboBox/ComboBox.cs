@@ -19,10 +19,7 @@ namespace AjaxControlToolkit {
 
     /// <summary>
     /// ComboBox is an ASP.NET AJAX control that, like the AutoCompleteExtender, combines the flexibility
-    /// of a TextBox with a list of options that users are able to choose from. It borrows many of its properties,
-    /// behaviors, and naming conventions from the Windows Forms ComboBox control, and is derived from the same base
-    /// class as the ListBox, BulletedList, and DropDownList web controls. In fact, a ComboBox is best described as a
-    /// DropDownList that can be typed directly into like a TextBox. 
+    /// of a TextBox with a list of options that users are able to choose from.
     /// </summary>
     [SupportsEventValidation()]
     [ValidationProperty("SelectedItem")]
