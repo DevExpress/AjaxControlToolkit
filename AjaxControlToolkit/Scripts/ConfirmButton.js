@@ -169,11 +169,11 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     },
 
     get_OnClientCancel: function() {
-        Sys.Extended.Deprecated("get_OnClientCancel", "get_onClientCancel");
+        Sys.Extended.Deprecated("get_OnClientCancel()", "get_onClientCancel()");
         return this.get_onClientCancel();  
     },
     set_OnClientCancel: function(value) {
-        Sys.Extended.Deprecated("set_OnClientCancel", "set_onClientCancel");
+        Sys.Extended.Deprecated("set_OnClientCancel(value)", "set_onClientCancel(value)");
         this.set_onClientCancel(value);
     },
 
@@ -198,11 +198,11 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     },
 
     get_ConfirmText: function() {
-        Sys.Extended.Deprecated("get_ConfirmText", "get_confirmText");
+        Sys.Extended.Deprecated("get_ConfirmText()", "get_confirmText()");
         return this.get_confirmText();  
     },
     set_ConfirmText: function(value) {
-        Sys.Extended.Deprecated("set_ConfirmText", "set_confirmText");
+        Sys.Extended.Deprecated("set_ConfirmText(value)", "set_confirmText(value)");
         this.set_confirmText(value);
     },
 
@@ -227,11 +227,11 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     },
 
     get_ConfirmOnFormSubmit: function() {
-        Sys.Extended.Deprecated("get_ConfirmOnFormSubmit", "get_confirmOnFormSubmit");
+        Sys.Extended.Deprecated("get_ConfirmOnFormSubmit()", "get_confirmOnFormSubmit()");
         return this.get_confirmOnFormSubmit();
     },
     set_ConfirmOnFormSubmit: function(value) {
-        Sys.Extended.Deprecated("set_ConfirmOnFormSubmit", "set_confirmOnFormSubmit");
+        Sys.Extended.Deprecated("set_ConfirmOnFormSubmit(value)", "set_confirmOnFormSubmit(value)");
         this.set_confirmOnFormSubmit(value);
     },
 
@@ -259,7 +259,6 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     /// <setter>set_postBackScript</setter>
     /// <member name="cP:AjaxControlToolkit.ConfirmButtonExtender.postBackScript" />
     get_postBackScript: function() {
-        // Script to run to initiate a postback
         return this._postBackScript;
     },
     set_postBackScript: function(value) {

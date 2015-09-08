@@ -14,10 +14,7 @@ namespace AjaxControlToolkit {
     /// ConfirmButton is an extender that catches clicks on a button (or on any instance of a type that
     /// is derived from Button) and displays a message to the user. If the user clicks OK,
     /// the button or link functions normally. If the user does not click OK, the click event is trapped
-    /// and the button does not perform its default submit behavior. Optionally, you can specify
-    /// client script to execute when the buttons are clicked in the confirm dialog box.
-    /// This is useful if you use the ConfirmButton extender with a button that performs a delete operation or
-    /// another task that might require confirmation from the user.
+    /// and the button does not perform its default submit behavior.
     /// </summary>
     [Designer(typeof(ConfirmButtonExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.ConfirmButtonBehavior", Constants.ConfirmButtonName)]
@@ -98,6 +95,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// True if the confirm dialog should run for form submission (i.e., after validators are all satisfied).
+        /// The default is false
         /// </summary>
         /// <remarks>
         /// This is useful if the page contains ASP.NET validator controls and the confirm dialog box should be displayed only after all validation checks pass.
