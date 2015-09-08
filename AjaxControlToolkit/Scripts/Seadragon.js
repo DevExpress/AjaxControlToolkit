@@ -714,21 +714,10 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         }
     },
 
-    /// <summary>
-    /// Button element.
-    /// </summary>
-    /// <getter>get_element</getter>
-    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.element" />
     get_element: function() {
         return this._button;
     },
 
-    /// <summary>
-    /// Button tooltip.
-    /// </summary>
-    /// <getter>get_tooltip</getter>
-    /// <setter>set_tooltip</setter>
-    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.tooltip" />
     get_tooltip: function() {
         return this._tooltip;
     },
@@ -736,12 +725,6 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this._tooltip = value;
     },
 
-    /// <summary>
-    /// Button config.
-    /// </summary>
-    /// <getter>get_config</getter>
-    /// <setter>set_config</setter>
-    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.config" />
     get_config: function() {
         return this.config;
     },
@@ -749,12 +732,6 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this.config = value;
     },
 
-    /// <summary>
-    /// Button source rest.
-    /// </summary>
-    /// <getter>get_srcRest</getter>
-    /// <setter>set_srcRest</setter>
-    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.srcRest" />
     get_srcRest: function() {
         return this._srcRest;
     },
@@ -762,12 +739,6 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this._srcRest = value;
     },
 
-    /// <summary>
-    /// Button source group.
-    /// </summary>
-    /// <getter>get_srcGroup</getter>
-    /// <setter>set_srcGroup</setter>
-    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.srcGroup" />
     get_srcGroup: function() {
         return this._srcGroup;
     },
@@ -775,12 +746,6 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this._srcGroup = value;
     },
 
-    /// <summary>
-    /// Button source hover.
-    /// </summary>
-    /// <getter>get_srcHover</getter>
-    /// <setter>set_srcHover</setter>
-    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.srcHover" />
     get_srcHover: function() {
         return this._srcHover;
     },
@@ -788,12 +753,6 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this._srcHover = value;
     },
 
-    /// <summary>
-    /// Button source down.
-    /// </summary>
-    /// <getter>get_srcDown</getter>
-    /// <setter>set_srcDown</setter>
-    /// <member name="cP:AjaxControlToolkit.Seadragon.Button.srcDown" />
     get_srcDown: function() {
         return this._srcDown;
     },
@@ -801,11 +760,6 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this._srcDown = value;
     },
 
-    /// <summary>
-    /// Occurs on button press.
-    /// </summary>
-    /// <event add="add_onPress" remove="remove_onPress" raise="" />
-    /// <member name="cE:AjaxControlToolkit.Seadragon.Button.onPress" />
     add_onPress: function(handler) {
         this.get_events().addHandler("onPress", handler);
     },
@@ -813,11 +767,6 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this.get_events().removeHandler("onPress", handler);
     },
 
-    /// <summary>
-    /// Occurs on button click.
-    /// </summary>
-    /// <event add="add_onClick" remove="remove_onClick" raise="" />
-    /// <member name="cE:AjaxControlToolkit.Seadragon.Button.onClick" />
     add_onClick: function(handler) {
         this.get_events().addHandler("onClick", handler);
     },
@@ -825,11 +774,6 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this.get_events().removeHandler("onClick", handler);
     },
 
-    /// <summary>
-    /// Occurs on button enter.
-    /// </summary>
-    /// <event add="add_onEnter" remove="remove_onEnter" raise="" />
-    /// <member name="cE:AjaxControlToolkit.Seadragon.Button.onEnter" />
     add_onEnter: function(handler) {
         this.get_events().addHandler("onEnter", handler);
     },
@@ -837,11 +781,6 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this.get_events().removeHandler("onEnter", handler);
     },
 
-    /// <summary>
-    /// Occurs on button release.
-    /// </summary>
-    /// <event add="add_onRelease" remove="remove_onRelease" raise="" />
-    /// <member name="cE:AjaxControlToolkit.Seadragon.Button.onRelease" />
     add_onRelease: function(handler) {
         this.get_events().addHandler("onRelease", handler);
     },
@@ -849,11 +788,6 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this.get_events().removeHandler("onRelease", handler);
     },
 
-    /// <summary>
-    /// Occurs on button exit.
-    /// </summary>
-    /// <event add="add_onExit" remove="remove_onExit" raise="" />
-    /// <member name="cE:AjaxControlToolkit.Seadragon.Button.onExit" />
     add_onExit: function(handler) {
         this.get_events().addHandler("onExit", handler);
     },
@@ -861,18 +795,10 @@ Sys.Extended.UI.Seadragon.Button.prototype = {
         this.get_events().removeHandler("onExit", handler);
     },
 
-    /// <summary>
-    /// Notify group enter.
-    /// </summary>
-    /// <member name="cM:AjaxControlToolkit.Seadragon.Button.notifyGroupEnter" />
     notifyGroupEnter: function() {
         this._inTo(Sys.Extended.UI.Seadragon.ButtonState.GROUP);
     },
 
-    /// <summary>
-    /// Notify group exit.
-    /// </summary>
-    /// <member name="cM:AjaxControlToolkit.Seadragon.Button.notifyGroupExit" />
     notifyGroupExit: function() {
         this._outTo(Sys.Extended.UI.Seadragon.ButtonState.REST);
     }
@@ -907,12 +833,6 @@ Sys.Extended.UI.Seadragon.ButtonGroup.prototype = {
     dispose: function() {
     },
 
-    /// <summary>
-    /// List of buttons.
-    /// </summary>
-    /// <getter>get_buttons</getter>
-    /// <setter>set_buttons</setter>
-    /// <member name="cP:AjaxControlToolkit.Seadragon.ButtonGroup.buttons" />
     get_buttons: function() {
         return this._buttons;
     },
@@ -920,21 +840,10 @@ Sys.Extended.UI.Seadragon.ButtonGroup.prototype = {
         this._buttons = value;
     },
 
-    /// <summary>
-    /// ButtonGroup element.
-    /// </summary>
-    /// <getter>get_element</getter>
-    /// <member name="cP:AjaxControlToolkit.Seadragon.ButtonGroup.element" />
     get_element: function() {
         return this._group;
     },
 
-    /// <summary>
-    /// ButtonGroup config.
-    /// </summary>
-    /// <getter>get_config</getter>
-    /// <setter>set_config</setter>
-    /// <member name="cP:AjaxControlToolkit.Seadragon.ButtonGroup.config" />
     get_config: function() {
         return this.config;
     },
@@ -964,18 +873,10 @@ Sys.Extended.UI.Seadragon.ButtonGroup.prototype = {
                 this._buttons[i].notifyGroupExit();
     },
 
-    /// <summary>
-    /// Emulates enter.
-    /// </summary>
-    /// <member name="cM:AjaxControlToolkit.Seadragon.ButtonGroup.emulateEnter" />
     emulateEnter: function() {
         this._enterHandler();
     },
 
-    /// <summary>
-    /// Emulates exit.
-    /// </summary>
-    /// <member name="cM:AjaxControlToolkit.Seadragon.ButtonGroup.emulateExit" />
     emulateExit: function() {
         this._exitHandler();
     }
@@ -1648,7 +1549,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
     
     /// <summary>
-    /// Returns navigation control of the viewer.
+    /// Returns navigation control of the viewer
     /// </summary>
     /// <returns type="Sys.Extended.UI.Seadragon.NavControl">Navigation control</returns>
     /// <member name="cM:AjaxControlToolkit.Seadragon.Viewer.getNavControl" />
@@ -1657,7 +1558,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// XML path.
+    /// XML path
     /// </summary>
     /// <getter>get_xmlPath</getter>
     /// <setter>set_xmlPath</setter>
@@ -1670,7 +1571,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether or not debug mode is enabled.
+    /// Whether or not debug mode is enabled
     /// </summary>
     /// <getter>get_debugMode</getter>
     /// <setter>set_debugMode</setter>
@@ -1683,7 +1584,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The amount of time in seconds that animations should last. Default is 1.5.
+    /// The amount of time in seconds that animations should last. Default is 1.5
     /// </summary>
     /// <getter>get_animationTime</getter>
     /// <setter>set_animationTime</setter>
@@ -1696,7 +1597,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The amount of time in seconds that new tiles take to blend from transparent to opaque. Default is 0.5.
+    /// The amount of time in seconds that new tiles take to blend from transparent to opaque.
+    /// Default is 0.5
     /// </summary>
     /// <getter>get_blendTime</getter>
     /// <setter>set_blendTime</setter>
@@ -1709,7 +1611,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether tiles should always blend in and out, not just when they're first loaded. Default is false.
+    /// Whether tiles should always blend in and out, not just when they're first
+    /// loaded. Default is false
     /// </summary>
     /// <getter>get_alwaysBlend</getter>
     /// <setter>set_alwaysBlend</setter>
@@ -1723,7 +1626,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
 
     /// <summary>
     /// Whether controls should get automatically hidden when the user's mouse is off
-    /// the viewer and the image has stopped animating. Default is true.
+    /// the viewer and the image has stopped animating. Default is true
     /// </summary>
     /// <getter>get_autoHideControl</getter>
     /// <setter>set_autoHideControl</setter>
@@ -1737,7 +1640,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
 
     /// <summary>
     /// Whether the most appropriate tiles should always be rendered first, before any lower-res
-    /// tiles are rendered. This loses the "sharpening" effect and instead creates a very visible "tiling" effect. Default is false.
+    /// tiles are rendered. This loses the "sharpening" effect and instead creates a very
+    /// visible "tiling" effect. Default is false
     /// </summary>
     /// <getter>get_immediateRender</getter>
     /// <setter>set_immediateRender</setter>
@@ -1750,7 +1654,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Horizontal wrapping.
+    /// Whether or not control to use horizontal wrapping
     /// </summary>
     /// <getter>get_wrapHorizontal</getter>
     /// <setter>set_wrapHorizontal</setter>
@@ -1763,7 +1667,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Vertical wrapping.
+    /// Whether or not control to use vertical wrapping
     /// </summary>
     /// <getter>get_wrapVertical</getter>
     /// <setter>set_wrapVertical</setter>
@@ -1776,7 +1680,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The minimum size (in screen pixels) of either dimension that can result from zooming out. Default is 16.
+    /// The minimum size (in screen pixels) of either dimension that can result from
+    /// zooming out. Default is 16
     /// </summary>
     /// <getter>get_minZoomDimension</getter>
     /// <setter>set_minZoomDimension</setter>
@@ -1789,10 +1694,11 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The maximum pixel ratio (screen pixel to content pixel) that can result from zooming in. Default is 4.
+    /// The maximum pixel ratio (screen pixel to content pixel) that can result from
+    /// zooming in. Default is 4
     /// </summary>
-    /// <getter>get_maxZoomPizelRation</getter>
-    /// <setter>set_maxZoomPizelRation</setter>
+    /// <getter>get_maxZoomPixelRation</getter>
+    /// <setter>set_maxZoomPixelRation</setter>
     /// <member name="cP:AjaxControlToolkit.Seadragon.Viewer.maxZoomPixelRatio" />
     get_maxZoomPixelRatio: function() {
         return this.config.maxZoomPixelRatio;
@@ -1802,7 +1708,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The minimum portion of the viewport that must show visible content in both dimensions. Default is 0.1.
+    /// The minimum portion of the viewport that must show visible content in
+    /// both dimensions. Default is 0.1
     /// </summary>
     /// <getter>get_visibilityRatio</getter>
     /// <setter>set_visibilityRatio</setter>
@@ -1815,7 +1722,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Determines how sharply the springs used for animations move. Default is 5.0.
+    /// Determines how sharply the springs used for animations move. Default is 5.0
     /// </summary>
     /// <getter>get_springStiffness</getter>
     /// <setter>set_springStiffness</setter>
@@ -1828,7 +1735,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The maximum number of concurrent image downloads that can be performed by each viewer. Default is 2.
+    /// The maximum number of concurrent image downloads that can be performed by each viewer. Default is 2
     /// </summary>
     /// <getter>get_imageLoaderLimit</getter>
     /// <setter>set_imageLoaderLimit</setter>
@@ -1842,7 +1749,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
 
     /// <summary>
     /// The maximum number of milliseconds that can pass between a mousedown and 
-    /// a mouseup for the action to still be considered a "quick" click. Default is 200.
+    /// a mouseup for the action to still be considered a "quick" click. Default is 200
     /// </summary>
     /// <getter>get_clickTimeThreshold</getter>
     /// <setter>set_clickTimeThreshold</setter>
@@ -1856,7 +1763,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
 
     /// <summary>
     /// The maximum number of pixels the mouse can move between a mousedown and a mouseup
-    /// for the action to still be considered a "quick" click. Default is 5.
+    /// for the action to still be considered a "quick" click. Default is 5
     /// </summary>
     /// <getter>get_clickDistThreshold</getter>
     /// <setter>set_clickDistThreshold</setter>
@@ -1869,7 +1776,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The factor by which images should zoom when clicked on. Default is 2.
+    /// The factor by which images should zoom when clicked on. Default is 2
     /// </summary>
     /// <getter>get_zoomPerClick</getter>
     /// <setter>set_zoomPerClick</setter>
@@ -1882,7 +1789,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The factor by which images should zoom over each second when the zoom buttons are held down. Default is 2.
+    /// The factor by which images should zoom over each second when the zoom buttons
+    /// are held down. Default is 2
     /// </summary>
     /// <getter>get_zoomPerSecond</getter>
     /// <setter>set_zoomPerSecond</setter>
@@ -1895,7 +1803,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Maximum image cache count.
+    /// Maximum image cache count
     /// </summary>
     /// <getter>get_maxImageCacheCount</getter>
     /// <setter>set_maxImageCacheCount</setter>
@@ -1908,7 +1816,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether navigation buttons should be shown.
+    /// Whether navigation buttons should be shown
     /// </summary>
     /// <getter>get_showNavigationControl</getter>
     /// <setter>set_showNavigationControl</setter>
@@ -1921,7 +1829,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The minimum pixel ratio.
+    /// The minimum pixel ratio
     /// </summary>
     /// <getter>get_minPixelRatio</getter>
     /// <setter>set_minPixelRatio</setter>
@@ -1934,7 +1842,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether mouse navigation is enabled.
+    /// Whether mouse navigation is enabled
     /// </summary>
     /// <getter>get_mouseNavEnabled</getter>
     /// <setter>set_mouseNavEnabled</setter>
@@ -1947,7 +1855,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Controls list.
+    /// List of controls
     /// </summary>
     /// <getter>get_controls</getter>
     /// <setter>set_controls</setter>
@@ -1960,7 +1868,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Overlay controls list.
+    /// List of overlay controls
     /// </summary>
     /// <getter>get_overlays</getter>
     /// <setter>set_overlays</setter>
@@ -1973,7 +1881,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Prefix url.
+    /// Prefix URL
     /// </summary>
     /// <getter>get_prefixUrl</getter>
     /// <setter>set_prefixUrl</setter>
@@ -1986,7 +1894,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Occurs when viewer is open.
+    /// Fires when viewer opens
     /// </summary>
     /// <event add="add_open" remove="remove_open" raise="" />
     /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.open" />
@@ -1998,7 +1906,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Occurs on error.
+    /// Fires on error occured
     /// </summary>
     /// <event add="add_error" remove="remove_error" raise="" />
     /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.error" />
@@ -2010,7 +1918,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Occurs on ignore.
+    /// Fires on ignore occured
     /// </summary>
     /// <event add="add_ignore" remove="remove_ignore" raise="" />
     /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.ignore" />
@@ -2022,7 +1930,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Occurs on viewer resize.
+    /// Fires on viewer resizing
     /// </summary>
     /// <event add="add_resize" remove="remove_resize" raise="" />
     /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.resize" />
@@ -2034,7 +1942,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Occurs when animation starts.
+    /// Fires when animation starts
     /// </summary>
     /// <event add="add_animationstart" remove="remove_animationstart" raise="" />
     /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.animationstart" />
@@ -2046,7 +1954,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Occurs when animation ends.
+    /// Fires when animation ends
     /// </summary>
     /// <event add="add_animationend" remove="remove_animationend" raise="" />
     /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.animationend" />
@@ -4272,7 +4180,7 @@ Sys.Extended.UI.Seadragon.Viewport.prototype = {
     },
     
     /// <summary>
-    /// Returns aspect ratio.
+    /// Returns viewport aspect ratio
     /// </summary>
     /// <returns type="Number">Aspect ratio</returns>
     /// <member name="cM:AjaxControlToolkit.Seadragon.Viewport.getAspectRatio" />
@@ -4281,7 +4189,7 @@ Sys.Extended.UI.Seadragon.Viewport.prototype = {
     },
 
     /// <summary>
-    /// Returns container size.
+    /// Returns viewport container size
     /// </summary>
     /// <returns type="Sys.Extended.UI.Seadragon.Point">Container size</returns>
     /// <member name="cM:AjaxControlToolkit.Seadragon.Viewport.getContainerSize" />
@@ -4290,7 +4198,7 @@ Sys.Extended.UI.Seadragon.Viewport.prototype = {
     },
 
     /// <summary>
-    /// Returns viewport bounds.
+    /// Returns viewport bounds
     /// </summary>
     /// <returns type="Sys.Extended.Seadragon.Rect">Viewport bounds</returns>
     /// <member name="cM:AjaxControlToolkit.Seadragon.Viewport.getBounds" />
@@ -4303,7 +4211,7 @@ Sys.Extended.UI.Seadragon.Viewport.prototype = {
     },
 
     /// <summary>
-    /// Returns viewport center point.
+    /// Returns viewport center point
     /// </summary>
     /// <returns type="Sys.Exteded.Seadragon.Point">Viewport center point</returns>
     /// <member name="cM:AjaxControlToolkit.Seadragon.Viewport.getCenter" />
@@ -4340,7 +4248,7 @@ Sys.Extended.UI.Seadragon.Viewport.prototype = {
     },
 
     /// <summary>
-    /// Returns current zoom level.
+    /// Returns viewport current zoom level
     /// </summary>
     /// <returns type="Number">Viewport current zoom level</returns>
     /// <member name="cM:AjaxControlToolkit.Seadragon.Viewport.getZoom" />

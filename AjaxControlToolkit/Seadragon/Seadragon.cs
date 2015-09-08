@@ -9,7 +9,8 @@ using System.Drawing;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// The Seadragon control can be used for interactively viewing images. Use your mouse to pan and zoom around the image.
+    /// The Seadragon control can be used for interactively viewing images.
+    /// Use your mouse to pan and zoom around the image.
     /// </summary>
     [ClientScriptResource("Sys.Extended.UI.Seadragon.Viewer", Constants.SeadragonName)]
     [ToolboxData("<{0}:Seadragon runat=server></{0}:Seadragon>")]
@@ -44,7 +45,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The amount of time in seconds that animations should last. Default is 1.5.
+        /// The amount of time in seconds that animations should last. Default is 1.5
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(1.5f)]
@@ -55,7 +56,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether navigation buttons should be shown.
+        /// Whether navigation buttons should be shown
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(true)]
@@ -66,7 +67,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The amount of time in seconds that new tiles take to blend from transparent to opaque. Default is 0.5.
+        /// The amount of time in seconds that new tiles take to blend from
+        /// transparent to opaque. Default is 0.5
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0.5f)]
@@ -77,7 +79,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether tiles should always blend in and out, not just when they're first loaded. Default is false.
+        /// Whether tiles should always blend in and out, not just when they're
+        /// first loaded. Default is false
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
@@ -89,7 +92,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Whether controls should get automatically hidden when the user's mouse is off the
-        /// viewer and the image has stopped animating. Default is true.
+        /// viewer and the image has stopped animating. Default is true
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(true)]
@@ -100,8 +103,9 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether the most appropriate tiles should always be rendered first, before any lower-res tiles are
-        /// rendered. This loses the "sharpening" effect and instead creates a very visible "tiling" effect. Default is false.
+        /// Whether the most appropriate tiles should always be rendered first, before
+        /// any lower-res tiles are rendered. This loses the "sharpening" effect and
+        /// instead creates a very visible "tiling" effect. Default is false
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(true)]
@@ -112,7 +116,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not control to use horizontal wrapping.
+        /// Whether or not control to use horizontal wrapping
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
@@ -123,7 +127,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not control to use vertical wrapping.
+        /// Whether or not control to use vertical wrapping
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
@@ -134,7 +138,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The minimum size (in screen pixels) of either dimension that can result from zooming out. Default is 16.
+        /// The minimum size (in screen pixels) of either dimension that can result from
+        /// zooming out. Default is 16
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0.8f)]
@@ -145,7 +150,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The maximum pixel ratio (screen pixel to content pixel) that can result from zooming in. Default is 4.
+        /// The maximum pixel ratio (screen pixel to content pixel) that can result from
+        /// zooming in. Default is 4
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(2f)]
@@ -156,7 +162,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The minimum portion of the viewport that must show visible content in both dimensions. Default is 0.1.
+        /// The minimum portion of the viewport that must show visible content in both
+        /// dimensions. Default is 0.1
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0.5f)]
@@ -167,7 +174,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines how sharply the springs used for animations move. Default is 5.0.
+        /// Determines how sharply the springs used for animations move. Default is 5.0
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(5.0f)]
@@ -178,7 +185,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The maximum number of concurrent image downloads that can be performed by each viewer. Default is 2.
+        /// The maximum number of concurrent image downloads that can be performed by
+        /// each viewer. Default is 2
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(2)]
@@ -189,7 +197,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The maximum number of milliseconds that can pass between a mousedown and a mouseup for the action to still be considered a "quick" click. Default is 200.
+        /// The maximum number of milliseconds that can pass between a mousedown and a mouseup
+        /// for the action to still be considered a "quick" click. Default is 200
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(200)]
@@ -200,7 +209,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The maximum number of pixels the mouse can move between a mousedown and a mouseup for the action to still be considered a "quick" click. Default is 5.
+        /// The maximum number of pixels the mouse can move between a mousedown and a mouseup for
+        /// the action to still be considered a "quick" click. Default is 5
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(2)]
@@ -211,7 +221,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The factor by which images should zoom when clicked on. Default is 2.
+        /// The factor by which images should zoom when clicked on. Default is 2
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(2.0f)]
@@ -222,7 +232,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The factor by which images should zoom over each second when the zoom buttons are held down. Default is 2.
+        /// The factor by which images should zoom over each second when the zoom
+        /// buttons are held down. Default is 2
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(2.0f)]
@@ -233,7 +244,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Maximum image cache count.
+        /// Maximum image cache count
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(100)]
@@ -244,7 +255,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Minimum pixel ratio.
+        /// The minimum pixel ratio
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0.5f)]
@@ -255,10 +266,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a JavaScript function executed on the client-side after image opened.
+        /// The name of a JavaScript function executed on the client-side after image opened
         /// </summary>
         [ExtenderControlEvent]
-        [ClientPropertyName("0pen")]
+        [ClientPropertyName("open")]
         [DefaultValue("")]
         public string OnClientOpen {
             get { return GetPropertyValue<string>("OnClientOpen", String.Empty); }
@@ -266,7 +277,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a JavaScript function executed on the client-side on error.
+        /// The name of a JavaScript function executed on the client-side on error
         /// </summary>
         [ExtenderControlEvent]
         [ClientPropertyName("error")]
@@ -277,7 +288,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a JavaScript function executed on the client-side on ignore.
+        /// The name of a JavaScript function executed on the client-side on ignore
         /// </summary>
         [ExtenderControlEvent]
         [DefaultValue("")]
@@ -288,7 +299,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a JavaScript function executed on the client-side when image resized.
+        /// The name of a JavaScript function executed on the client-side when image resized
         /// </summary>
         [ExtenderControlEvent]
         [DefaultValue("")]
@@ -299,7 +310,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a JavaScript function executed on the client-side when animation starts.
+        /// The name of a JavaScript function executed on the client-side when animation starts
         /// </summary>
         [ExtenderControlEvent]
         [DefaultValue("")]
@@ -310,7 +321,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a JavaScript function executed on the client-side when animation ends.
+        /// The name of a JavaScript function executed on the client-side when animation ends
         /// </summary>
         [ExtenderControlEvent]
         [DefaultValue("")]
@@ -321,7 +332,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a JavaScript function executed on the client-side on animation.
+        /// The name of a JavaScript function executed on the client-side on animation
         /// </summary>
         [ExtenderControlEvent]
         [DefaultValue("")]
@@ -332,7 +343,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether mouse navigation is enabled.
+        /// Whether mouse navigation is enabled
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(true)]
@@ -344,7 +355,8 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// The path for all UI images. This can be absolute or relative. If relative,
-        /// it must be relative to the HTML page. A change to this value will only affect new viewers. Default is "img/".
+        /// it must be relative to the HTML page. A change to this value will only affect
+        /// new viewers. Default is "img/"
         /// </summary>
         [EditorAttribute(typeof(SeadragonUrlEditor), typeof(UITypeEditor))]
         public string SourceUrl {
@@ -353,7 +365,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Controls collection.
+        /// Collection of SeaDragon controls
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [NotifyParentProperty(true)]
@@ -368,7 +380,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Controls.
+        /// Collection of controls
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override ControlCollection Controls {
@@ -380,7 +392,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Overlays collection.
+        /// Collection of overlays
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [NotifyParentProperty(true)]
