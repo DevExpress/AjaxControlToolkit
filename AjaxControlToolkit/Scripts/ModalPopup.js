@@ -898,7 +898,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     get_onCancelScript: function() {
         return this._onCancelScript;
     },
-    set_onCancelScript: function() {
+    set_onCancelScript: function(value) {
         if(this._onCancelScript != value) {
             this._onCancelScript = value;
             this.raisePropertyChanged('OnCancelScript');
