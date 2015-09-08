@@ -188,7 +188,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     /// <param name="eventObj" type="Object">Event info</param>
     /// <member name="cM:AjaxControlToolkit.CollapsiblePanelExtender.expandPanel" />
     expandPanel : function(eventObj) {
-        this._doOpen(eventObj);    
+        this._doOpen(eventObj);
     },
     
     /// <summary>

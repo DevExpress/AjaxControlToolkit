@@ -27,7 +27,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The server ID of the control to initiate the collapse of the target panel.  The panel will
+        /// The server ID of the control to initiate the collapse of the target panel. The panel will
         /// collapse when this control fires its client side "onclick" event.
         /// </summary>
         /// <remarks>
@@ -63,6 +63,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// If true, and the panel is in its 'expanded' state, the panel will
         /// automatically collapse when the mouse pointer moves off of the panel.
+        /// The default is false
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
@@ -75,6 +76,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// If true, and the panel is in its 'collapsed' state, the panel will
         /// automatically expand when the mouse pointer moves into the panel.
+        /// The default is false
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
@@ -120,6 +122,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Determines whether the contents of the panel should be scrolled or clipped if they do not fit into
         /// the expanded size.
+        /// The default is false
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
@@ -148,6 +151,7 @@ namespace AjaxControlToolkit {
         /// Signals the initial collapsed state of the control.  Note this will not cause
         /// an expanded control to collapse at initialization, but rather tells the extender
         /// what the initial state of the Panel control is.
+        /// The default is false
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
