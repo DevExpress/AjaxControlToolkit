@@ -114,7 +114,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
                 var jsLines = System.IO.File.ReadAllLines(Server.MapPath("~/bin/Scripts/" + jsFileName));
                 var commentParser = new CommentParser();
-                var clientMembers = commentParser.ParseFile(jsLines);
+                var clientMembers = commentParser.ParseFile(jsLines, typeFullName);
 
                 doc.Add(clientMembers, ContentType.Text);
             }
