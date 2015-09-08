@@ -11,8 +11,6 @@ namespace AjaxControlToolkit {
 
     /// <summary>
     /// DynamicPopulate is an extender that replaces the contents of a control with the result of a Web service or page method call.
-    /// It allows you to dynamically populate the innerHTML of a control based on a web service callback.
-    /// The method call returns a string of HTML that is inserted as a child of the target element.
     /// </summary>
     [Designer(typeof(DynamicPopulateExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -123,6 +121,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Whether the results of the dynamic population should be cached and not fetched again after the first load.
+        /// The default is false
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("cacheDynamicResults")]

@@ -171,7 +171,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Boolean value that specifies whether the contents of the target should be cleared when an update begins.
+    /// A Boolean value that specifies whether the contents of the target should be cleared when an update begins.
     /// </summary>
     /// <getter>get_clearContentsDuringUpdate</getter>
     /// <setter>set_clearContentsDuringUpdate</setter>
@@ -196,7 +196,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a string to pass to the Web method.
+    /// A string to pass to the Web method.
     /// </summary>
     /// <getter>get_contextKey</getter>
     /// <setter>set_contextKey</setter>
@@ -224,7 +224,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the name of an element that can be clicked to trigger the action of populating of the target element.
+    /// The name of an element that can be clicked to trigger the action of populating of the target element.
     /// </summary>
     /// <getter>get_populateTriggerID</getter>
     /// <setter>set_populateTriggerID</setter>
@@ -250,7 +250,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the URL of the Web service to call.
+    /// The URL of the Web service to call.
     /// </summary>
     /// <remarks>
     /// This property is optional. If the ServicePath property is not set, a page method is invoked instead of a Web service.
@@ -278,7 +278,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the name of the method to call on the Web service or page.
+    /// The name of the method to call on the Web service or page.
     /// </summary>
     /// <getter>get_serviceMethod</getter>
     /// <setter>set_serviceMethod</setter>
@@ -308,7 +308,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Boolean value that specifies whether the results of populating the
+    /// A Boolean value that specifies whether the results of populating the
     /// target element should be cached and not fetched again after the first load.
     /// </summary>
     /// <getter>get_cacheDynamicResults</getter>
@@ -325,7 +325,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the name of the CSS class to apply to the target during asynchronous calls.
+    /// The name of the CSS class to apply to the target during asynchronous calls.
     /// </summary>
     /// <getter>get_updatingCssClass</getter>
     /// <setter>set_updatingCssClass</setter>
@@ -350,7 +350,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the script to invoke instead of calling a Web service method or a page method.
+    /// The script to invoke instead of calling a Web service method or a page method.
     /// </summary>
     /// <getter>get_customScript</getter>
     /// <setter>set_customScript</setter>
@@ -376,7 +376,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when populating starts.
+    /// Fires when populating starts.
     /// </summary>
     /// <event add="add_populating" remove="remove_populating" raise="raise_populating" />
     /// <member name="cE:AjaxControlToolkit.DynamicPopulateExtender.populating" />
@@ -397,10 +397,10 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when populating ends.
+    /// Fires when populating ends.
     /// </summary>
     /// <event add="add_populated" remove="remove_populated" raise="raise_populated" />
-    /// <member name="cP:AjaxControlToolkit.DynamicPopulateExtender.populated" />
+    /// <member name="cE:AjaxControlToolkit.DynamicPopulateExtender.populated" />
     add_populated: function(handler) {
         this.get_events().addHandler('populated', handler);
     },
