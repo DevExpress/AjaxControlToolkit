@@ -317,7 +317,7 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
     get_rounded: function() {
         return this._rounded;
     },
-    set_rounded: function() {
+    set_rounded: function(value) {
         if(value != this._rounded) {
             this._rounded = value;
 
