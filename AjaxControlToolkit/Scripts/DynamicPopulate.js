@@ -291,7 +291,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
         //    }
         return this._serviceMethod;
     },
-    set_servicePath: function(value) {
+    set_serviceMethod: function (value) {
         if(this._serviceMethod != value) {
             this._serviceMethod = value;
             this.raisePropertyChanged('serviceMethod');
