@@ -13,6 +13,10 @@ namespace AjaxControlToolkit {
     /// of text that can be entered. MaskedEdit applies a "mask" to the input that permits only certain
     /// types of characters/text to be entered. The supported data formats are: Number, Date, Time, and DateTime.
     /// </summary>
+    /// <remarks>
+    /// MaskedEdit uses the culture settings specified in the CultureName property. If none is specified
+    /// the culture setting will be the same as the page: English (United States).
+    /// </remarks>
     [Designer(typeof(MaskedEditExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.MaskedEditBehavior", Constants.MaskedEditValidatorName)]
     [ClientScriptResource("Sys.Extended.UI.MaskedEditBehavior", Constants.MaskedEditName)]
@@ -77,11 +81,12 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Mask to be applied to target TextBox.
+        /// Mask to be applied to target TextBox
         /// </summary>
         [RequiredProperty()]
         [DefaultValue("")]
         [ExtenderControlProperty]
+        [ClientPropertyName("mask")]
         public string Mask {
             get { return GetPropertyValue<string>("Mask", ""); }
             set {
@@ -93,7 +98,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Prompt text to use when a clipboard paste is performed.
+        /// Prompt text to use when a clipboard paste is performed
         /// </summary>
         [DefaultValue("Your browser security settings don't permit the automatic execution of paste operations. Please use the keyboard shortcut Ctrl+V instead.")]
         [ExtenderControlProperty]
@@ -104,9 +109,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Type of validation to perform.
+        /// Type of validation to perform
         /// </summary>
         /// <remarks>
+        /// Possible values:
         /// None - No validation
         /// Number - Number validation
         /// Date - Date validation
@@ -157,7 +163,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message displayed when editing in TextBox.
+        /// Message displayed when editing in TextBox
         /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
@@ -168,7 +174,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// True to show a tooltip message when the mouse hovers over an invalid TextBox.
+        /// True to show a tooltip message when the mouse hovers over an invalid TextBox
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
@@ -179,7 +185,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for the tooltip message.
+        /// CSS class for the tooltip message
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -190,7 +196,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// True to allow copy/paste with the clipboard.
+        /// True to allow copy/paste with the clipboard
         /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
@@ -201,7 +207,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// True to automatically fill in empty mask characters not specified by the user.
+        /// True to automatically fill in empty mask characters not specified by the user
         /// </summary>
         /// <remarks>
         /// MaskType=Number - Empty mask characters will be filled with zeros
@@ -211,14 +217,14 @@ namespace AjaxControlToolkit {
         /// </remarks>
         [DefaultValue(true)]
         [ExtenderControlProperty]
-        [ClientPropertyName("autocomplete")]
+        [ClientPropertyName("autoСomplete")]
         public bool AutoComplete {
             get { return GetPropertyValue<bool>("AutoComplete", true); }
             set { SetPropertyValue<bool>("AutoComplete", value); }
         }
 
         /// <summary>
-        /// True to clear the TextBox when invalid text is entered.
+        /// True to clear the TextBox when invalid text is entered
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
@@ -229,7 +235,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Default character to use when AutoComplete is enabled.
+        /// Default character to use when AutoComplete is enabled
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -240,7 +246,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Valid characters for mask type "C" (case-sensitive).
+        /// Valid characters for mask type "C" (case-sensitive)
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -251,9 +257,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Text input direction.
+        /// Text input direction
         /// </summary>
         /// <remarks>
+        /// Possible values:
         /// LeftToRight - Left to Right
         /// RightToLeft - Right to left
         /// </remarks>
@@ -266,7 +273,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Prompt character.
+        /// Prompt character
         /// </summary>
         [DefaultValue("_")]
         [ExtenderControlProperty]
@@ -277,7 +284,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class used when the TextBox receives focus.
+        /// CSS class used when the TextBox receives focus
         /// </summary>
         [DefaultValue("MaskedEditFocus")]
         [ExtenderControlProperty]
@@ -288,7 +295,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class used when the text is not valid.
+        /// CSS class used when the text is not valid
         /// </summary>
         [DefaultValue("MaskedEditError")]
         [ExtenderControlProperty]
@@ -299,7 +306,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Custom date format.
+        /// Custom date format
         /// </summary>
         [DefaultValue(MaskedEditUserDateFormat.None)]
         [ExtenderControlProperty]
@@ -310,7 +317,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Custom time format.
+        /// Custom time format
         /// </summary>
         [DefaultValue(MaskedEditUserTimeFormat.None)]
         [ExtenderControlProperty]
@@ -321,7 +328,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// True to remove the mask when the TextBox loses focus.
+        /// True to remove the mask when the TextBox loses focus
         /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
@@ -332,7 +339,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Name of culture to use (overrides the default page culture).
+        /// Name of culture to use (overrides the default page culture)
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -375,7 +382,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Culture override.
+        /// Culture override
         /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -387,7 +394,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Culture override.
+        /// Culture override
         /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -399,7 +406,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Culture override.
+        /// Culture override
         /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -411,7 +418,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Culture override.
+        /// Culture override
         /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -423,7 +430,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Culture override.
+        /// Culture override
         /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -447,7 +454,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Culture override.
+        /// Culture override
         /// </summary>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -459,11 +466,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not AM/PM is accepted on times.
+        /// Whether or not AM/PM is accepted on times. The default value is false
         /// </summary>
-        /// <remarks>
-        /// The default value is false.
-        /// </remarks>
         [DefaultValue(false)]
         [ExtenderControlProperty]
         [ClientPropertyName("acceptAMPM")]
@@ -473,9 +477,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// True if the negative sign (-) is allowed.
+        /// True if the negative sign (-) is allowed
         /// </summary>
         /// <remarks>
+        /// Possible values:
         /// None - Do not show the negative sign
         /// Left - Show the negative sign on the left of the mask
         /// Right - Show the negative sign on the right of the mask
@@ -489,7 +494,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class used when the TextBox gets focus with a negative value.
+        /// CSS class used when the TextBox gets focus with a negative value
         /// </summary>
         [DefaultValue("MaskedEditFocusNegative")]
         [ExtenderControlProperty]
@@ -500,7 +505,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class used when the TextBox loses focus with a negative value.
+        /// CSS class used when the TextBox loses focus with a negative value
         /// </summary>
         [DefaultValue("MaskedEditBlurNegative")]
         [ExtenderControlProperty]
@@ -511,9 +516,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Specifies how the currency symbol is displayed.
+        /// Specifies how the currency symbol is displayed
         /// </summary>
         /// <remarks>
+        /// Possible values:
         /// None - Do not show the currency symbol
         /// Left - Show the currency symbol on the left of the mask
         /// Right - Show the currency symbol on the right of the mask
@@ -527,7 +533,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Default century used when a date mask only has two digits for the year.
+        /// Default century used when a date mask only has two digits for the year
         /// </summary>
         [DefaultValue(1900)]
         [ExtenderControlProperty]

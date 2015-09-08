@@ -2526,9 +2526,9 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sets or removes the CSS class from MaskedEdit.
+    /// Sets the CSS class from MaskedEdit
     /// </summary>
-    /// <param name="cssClass" type="String">CSS class to add/remove</param>
+    /// <param name="cssClass" type="String">CSS class to add</param>
     /// <member name="cM:AjaxControlToolkit.MaskedEditExtender.addCssClassMaskedEdit" />
     addCssClassMaskedEdit: function(cssClass) {
         var e = this.get_element();
@@ -2653,7 +2653,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Shows or hides the message tip.
+    /// Shows or hides the message tip
     /// </summary>
     /// <param name="visible" type="Boolean">Indicates whether or not to show or hide the message tip</param>
     /// <member name="cM:AjaxControlToolkit.MaskedEditExtender.showTooltipMessage" />
@@ -2799,7 +2799,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Insert symbol AM/PM.
+    /// Inserts AM/PM symbol
     /// </summary>
     /// <param name="value" type="String">Value to insert</param>
     /// <member name="cM:AjaxControlToolkit.MaskedEditExtender.insertAMPM" />
@@ -2828,7 +2828,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Insert symbol negative.
+    /// Inserts symbol negative
     /// </summary>
     /// <param name="value" type="String">Value to insert</param>
     /// <member name="cM:AjaxControlToolkit.MaskedEditExtender.insertSignal" />
@@ -2868,7 +2868,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Set Cursor at position in TextBox.
+    /// Sets Cursor at position in TextBox
     /// </summary>
     /// <param name="selectionStart" type="Number">Selection start index</param>
     /// <param name="selectionEnd" type="Number">Selection end index</param>
@@ -3274,7 +3274,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     // Helper properties
 
     /// <summary>
-    /// Mask to be applied to target TextBox.
+    /// Mask to be applied to target TextBox
     /// </summary>
     /// <getter>get_mask</getter>
     /// <setter>set_mask</setter>
@@ -3300,7 +3300,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Valid characters for mask type "C" (case-sensitive).
+    /// Valid characters for mask type "C" (case-sensitive)
     /// </summary>
     /// <getter>get_filtered</getter>
     /// <setter>set_filtered</setter>
@@ -3323,9 +3323,10 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Text input direction.
+    /// Text input direction
     /// </summary>
     /// <remarks>
+    /// Possible values:
     /// LeftToRight - Left to Right
     /// RightToLeft - Right to left
     /// </remarks>
@@ -3350,7 +3351,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Prompt character.
+    /// Prompt character
     /// </summary>
     /// <getter>get_promptCharacter</getter>
     /// <setter>set_promptCharacter</setter>
@@ -3373,7 +3374,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class used when the TextBox receives focus.
+    /// CSS class used when the TextBox receives focus
     /// </summary>
     /// <getter>get_onFocusCssClass</getter>
     /// <setter>set_onFocusCssClass</setter>
@@ -3396,7 +3397,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class used when the text is not valid.
+    /// CSS class used when the text is not valid
     /// </summary>
     /// <getter>get_onInvalidCssClass</getter>
     /// <setter>set_onInvalidCssClass</setter>
@@ -3419,7 +3420,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Name of culture to use (overrides the default page culture).
+    /// Name of culture to use (overrides the default page culture)
     /// </summary>
     /// <getter>get_cultureName</getter>
     /// <setter>set_cultureName</setter>
@@ -3427,9 +3428,9 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     get_cultureName: function() {
         return this._cultureName;
     },
-    set_culturename: function(value) {
+    set_cultureName: function(value) {
         this._cultureName = value;
-        this.raisePropertyChanged('culture');
+        this.raisePropertyChanged('cultureName');
     },
 
     get_CultureName: function() {
@@ -3442,7 +3443,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Culture override.
+    /// Culture override
     /// </summary>
     /// <getter>get_cultureDatePlaceholder</getter>
     /// <setter>set_cultureDatePlaceholder</setter>
@@ -3465,7 +3466,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Culture override.
+    /// Culture override
     /// </summary>
     /// <getter>get_cultureTimePlaceholder</getter>
     /// <setter>set_cultureTimePlaceholder</setter>
@@ -3479,7 +3480,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureTimePlaceholder: function() {
-        Sys.Extended.Deprecated("get_CultureTimePlaceholder", "set_cultureTimePlaceholder");
+        Sys.Extended.Deprecated("get_CultureTimePlaceholder", "get_cultureTimePlaceholder");
         return this.get_cultureTimePlaceholder();
     },
     set_CultureTimePlaceholder: function(value) {
@@ -3488,7 +3489,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Culture override.
+    /// Culture override
     /// </summary>
     /// <getter>get_cultureDecimalPlaceholder</getter>
     /// <setter>set_cultureDecimalPlaceholder</setter>
@@ -3511,7 +3512,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Culture override.
+    /// Culture override
     /// </summary>
     /// <getter>get_cultureThousandsPlaceholder</getter>
     /// <setter>set_cultureThousandsPlaceholder</setter>
@@ -3526,7 +3527,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
 
     get_CultureThousandsPlaceholder: function() {
         Sys.Extended.Deprecated("get_CultureThousandsPlaceholder", "get_cultureThousandsPlaceholder");
-        return this.get_cultureThousandsPlaceholder();  
+        return this.get_cultureThousandsPlaceholder();
     },
     set_CultureThousandsPlaceholder: function(value) {
         Sys.Extended.Deprecated("set_CultureThousandsPlaceholder", "set_cultureThousandsPlaceholder");
@@ -3534,7 +3535,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Culture override.
+    /// Culture override
     /// </summary>
     /// <getter>get_cultureDateFormat</getter>
     /// <setter>set_cultureDateFormat</setter>
@@ -3580,7 +3581,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Culture override.
+    /// Culture override
     /// </summary>
     /// <getter>get_cultureCurrencySymbolPlaceholder</getter>
     /// <setter>set_cultureCurrencySymbolPlaceholder</setter>
@@ -3603,7 +3604,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Culture override.
+    /// Culture override
     /// </summary>
     /// <getter>get_cultureAMPMPlaceholder</getter>
     /// <setter>set_cultureAMPMPlaceholder</setter>
@@ -3625,7 +3626,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
 
     get_CultureAMPMPlaceholder: function() {
         Sys.Extended.Deprecated("get_CultureAMPMPlaceholder", "get_cultureAMPMPlaceholder");
-        return this.get_cultureAMPMPlaceholder();  
+        return this.get_cultureAMPMPlaceholder();
     },
     set_CultureAMPMPlaceholder: function(value) {
         Sys.Extended.Deprecated("set_CultureAMPMPlaceholder", "set_cultureAMPMPlaceholder");
@@ -3633,7 +3634,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Returns culture's first AMPM letters.
+    /// Returns culture's first AMPM letters
     /// </summary>
     /// <returns type="String">First AMPM letters</returns>
     /// <member name="cM:AjaxControlToolkit.MaskedEditExtender.getCultureFirstLettersAMPM" />
@@ -3652,7 +3653,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Returns culture's first AM letter.
+    /// Returns culture's first AM letter
     /// </summary>
     /// <returns type="String">First AM letter</returns>
     /// <member name="cM:AjaxControlToolkit.MaskedEditExtender.getCultureFirstLetterAM" />
@@ -3671,7 +3672,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Returns culture's first PM letter.
+    /// Returns culture's first PM letter
     /// </summary>
     /// <returns type="String">First PM letter</returns>
     /// <member name="cM:AjaxControlToolkit.MaskedEditExtender.getCultureFirstLetterPM" />
@@ -3690,7 +3691,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// True to remove the mask when the TextBox loses focus.
+    /// True to remove the mask when the TextBox loses focus
     /// </summary>
     /// <getter>get_clearMaskOnLostFocus</getter>
     /// <setter>set_clearMaskOnLostFocus</setter>
@@ -3700,7 +3701,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
     set_clearMaskOnLostFocus: function(value) {
         this._clearMaskOnLostfocus = value;
-        this.raisePropertyChanged('ClearMaskOnLostfocus');
+        this.raisePropertyChanged('clearMaskOnLostFocus');
     },
 
     get_ClearMaskOnLostFocus: function() {
@@ -3713,7 +3714,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Message displayed when editing in TextBox.
+    /// Message displayed when editing in TextBox
     /// </summary>
     /// <getter>get_messageValidatorTip</getter>
     /// <setter>set_messageValidatorTip</setter>
@@ -3736,11 +3737,8 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether or not AM/PM is accepted on times.
+    /// Whether or not AM/PM is accepted on times. The default value is false
     /// </summary>
-    /// <remarks>
-    /// The default value is false.
-    /// </remarks>
     /// <getter>get_acceptAMPM</getter>
     /// <setter>set_acceptAMPM</setter>
     /// <member name="cP:AjaxControlToolkit.MaskedEditExtender.acceptAMPM" />
@@ -3749,7 +3747,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
     set_acceptAMPM: function(value) {
         this._acceptAmPm = value;
-        this.raisePropertyChanged('acceptAmPm');
+        this.raisePropertyChanged('acceptAMPM');
     },
 
     get_AcceptAMPM: function() {
@@ -3762,9 +3760,10 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// True if the negative sign (-) is allowed.
+    /// True if the negative sign (-) is allowed
     /// </summary>
     /// <remarks>
+    /// Possible values:
     /// None - Do not show the negative sign
     /// Left - Show the negative sign on the left of the mask
     /// Right - Show the negative sign on the right of the mask
@@ -3790,9 +3789,10 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Specifies how the currency symbol is displayed.
+    /// Specifies how the currency symbol is displayed
     /// </summary>
     /// <remarks>
+    /// Possible values:
     /// None - Do not show the currency symbol
     /// Left - Show the currency symbol on the left of the mask
     /// Right - Show the currency symbol on the right of the mask
@@ -3818,7 +3818,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class used when the TextBox gets focus with a negative value.
+    /// CSS class used when the TextBox gets focus with a negative value
     /// </summary>
     /// <getter>get_onFocusCssNegative</getter>
     /// <setter>set_onFocusCssNegative</setter>
@@ -3841,7 +3841,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class used when the TextBox loses focus with a negative value.
+    /// CSS class used when the TextBox loses focus with a negative value
     /// </summary>
     /// <getter>get_onBlurCssNegative</getter>
     /// <setter>set_onBlurCssNegative</setter>
@@ -3864,7 +3864,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Default century used when a date mask only has two digits for the year.
+    /// Default century used when a date mask only has two digits for the year
     /// </summary>
     /// <getter>get_century</getter>
     /// <setter>set_century</setter>
@@ -3887,7 +3887,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// True to automatically fill in empty mask characters not specified by the user.
+    /// True to automatically fill in empty mask characters not specified by the user
     /// </summary>
     /// <remarks>
     /// MaskType=Number - Empty mask characters will be filled with zeros
@@ -3916,7 +3916,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Default character to use when AutoComplete is enabled.
+    /// Default character to use when AutoComplete is enabled
     /// </summary>
     /// <getter>get_autoCompleteValue</getter>
     /// <setter>set_autoCompleteValue</setter>
@@ -3939,9 +3939,10 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Type of validation to perform.
+    /// Type of validation to perform
     /// </summary>
     /// <remarks>
+    /// Possible values:
     /// None - No validation
     /// Number - Number validation
     /// Date - Date validation
@@ -3969,7 +3970,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// True to clear the TextBox when invalid text is entered.
+    /// True to clear the TextBox when invalid text is entered
     /// </summary>
     /// <getter>get_clearTextOnInvalid</getter>
     /// <setter>set_clearTextOnInvalid</setter>
@@ -3994,7 +3995,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Prompt text to use when a clipboard paste is performed.
+    /// Prompt text to use when a clipboard paste is performed
     /// </summary>
     /// <getter>get_clipboardText</getter>
     /// <setter>set_clipboardText</setter>
@@ -4017,7 +4018,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// True to allow copy/paste with the clipboard.
+    /// True to allow copy/paste with the clipboard
     /// </summary>
     /// <getter>get_clipboardEnabled</getter>
     /// <setter>set_clipboardEnabled</setter>
@@ -4040,7 +4041,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// True to show a tooltip message when the mouse hovers over an invalid TextBox.
+    /// True to show a tooltip message when the mouse hovers over an invalid TextBox
     /// </summary>
     /// <getter>get_errorTooltipEnabled</getter>
     /// <setter>set_errorTooltipEnabled</setter>
@@ -4063,7 +4064,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for the tooltip message.
+    /// CSS class for the tooltip message
     /// </summary>
     /// <getter>get_errorTooltipCssClass</getter>
     /// <setter>set_errorTooltipCssClass</setter>
@@ -4086,7 +4087,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Custom date format.
+    /// Custom date format
     /// </summary>
     /// <getter>get_userDateFormat</getter>
     /// <setter>set_userDateFormat</setter>
@@ -4109,7 +4110,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     /// <summary>
-    /// Custom time format.
+    /// Custom time format
     /// </summary>
     /// <getter>get_userTimeFormat</getter>
     /// <setter>set_userTimeFormat</setter>
