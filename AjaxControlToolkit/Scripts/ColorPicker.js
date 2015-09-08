@@ -115,7 +115,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Sys.UI.DomElement object that represents the button to use to show the color picker.
+    /// A Sys.UI.DomElement object that represents the button to use to show the color picker.
     /// </summary>
     /// <remarks>
     /// This property is optional.
@@ -141,7 +141,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Sys.UI.DomElement object that represents the element to use to preview the
+    /// A Sys.UI.DomElement object that represents the element to use to preview the
     /// color that is currently selected or that the user is holding the mouse pointer over.
     /// </summary>
     /// <remarks>
@@ -162,7 +162,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a string that contains the color value that is represented by the text box.
+    /// A string that contains the color value that is represented by the text box.
     /// </summary>
     /// <getter>get_selectedColor</getter>
     /// <setter>set_selectedColor</setter>
@@ -190,7 +190,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Boolean value that specifies whether the ColorPicker behavior is available for the current element.
+    /// A Boolean value that specifies whether the ColorPicker behavior is available for the current element.
     /// </summary>
     /// <getter>get_enabled</getter>
     /// <setter>set_enabled</setter>
@@ -207,7 +207,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Sys.Extended.UI.PositionMode object that represents where the popup should be positioned relative to the target control.
+    /// A Sys.Extended.UI.PositionMode object that represents where the popup should be positioned relative to the target control.
     /// The default is BottomLeft.
     /// </summary>
     /// <getter>get_popupPosition</getter>
@@ -225,7 +225,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when color selection is changed.
+    /// Fires when color selection is changed.
     /// </summary>
     /// <event add="add_colorSelectionChanged" remove="remove_colorSelectionChanged" raise="raise_colorSelectionChanged" />
     /// <member name="cE:AjaxControlToolkit.ColorPickerExtender.colorSelectionChanged" />
@@ -247,7 +247,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is showing.
+    /// Fires when control is showing.
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.ColorPickerExtender.showing" />
@@ -269,7 +269,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is shown.
+    /// Fires when control is shown.
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.ColorPickerExtender.shown" />
@@ -291,7 +291,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is hiding.
+    /// Fires when control is hiding.
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.ColorPickerExtender.hiding" />
@@ -313,7 +313,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is hidden.
+    /// Fires when control is hidden.
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.ColorPickerExtender.hidden" />

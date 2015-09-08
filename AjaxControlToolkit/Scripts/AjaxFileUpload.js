@@ -1427,7 +1427,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     ///<summary>
-    /// Occurs when a file upload starts.
+    /// Fires when a file upload starts.
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.AjaxFileUpload.uploadStart" />
     ///<event add="add_uploadStart" remove="remove_uploadStart" raise="raise_uploadStart" />
@@ -1451,7 +1451,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     ///<summary>
-    /// Occurs when a file upload complete.
+    /// Fires when a file upload complete.
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.AjaxFileUpload.uploadComplete" />
     ///<event add="add_uploadComplete" remove="remove_uploadComplete" raise="raise_uploadComplete" />

@@ -1098,7 +1098,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     ///<summary>
-    /// Occurs when accordion pane is clicked, but before accordion changes the pane.
+    /// Fires when accordion pane is clicked, but before accordion changes the pane.
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.Accordion.selectedIndexChanging" />
     ///<event add="add_selectedIndexChanging" remove="remove_selectedIndexChanging" raise="raise_selectedIndexChanging" />
@@ -1120,7 +1120,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     ///<summary>
-    /// Occurs when accordion pane is clicked, but after accordion changes the pane.
+    /// Fires when accordion pane is clicked, but after accordion changes the pane.
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.Accordion.selectedIndexChanged" />
     ///<event add="add_selectedIndexChanged" remove="remove_selectedIndexChanged" raise="raise_selectedIndexChanged" />

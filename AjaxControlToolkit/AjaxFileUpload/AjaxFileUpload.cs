@@ -107,21 +107,21 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Event to raise when a file upload starts.
+        /// Fires when a file upload starts.
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AjaxFileUploadStartEventArgs> UploadStart;
 
         /// <summary>
-        /// Event to raise when a file upload complete.
+        /// Fires when a file upload complete.
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AjaxFileUploadEventArgs> UploadComplete;
 
         /// <summary>
-        /// Event handler to raise when all files in upload queue raised UploadComplete event, 
+        /// Fires when all files in upload queue raised UploadComplete event, 
         /// or when user hits Cancel button to stop uploading.
         /// </summary>
         [Bindable(true)]
@@ -153,7 +153,7 @@ namespace AjaxControlToolkit {
         }
 
         ///<summary>
-        // Gets or sets the client script that executes when all of files in queue uploaded, 
+        // The client script that executes when all of files in queue uploaded, 
         // or when user hits Cancel button to stop uploading.
         /// </summary>
         [DefaultValue("")]

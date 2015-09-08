@@ -29,19 +29,19 @@ namespace AjaxControlToolkit {
         internal const string ItemCountViewStateKey = "_!ItemCount";
 
         /// <summary>
-        /// Event to raise when an item (i.e. Pane's Header or Content) is
+        /// Fires when an item (i.e. Pane's Header or Content) is
         /// created during data binding
         /// </summary>
         public event EventHandler<AccordionItemEventArgs> ItemCreated;
 
         /// <summary>
-        /// Event to raise when an item (i.e. Pane's Header or Content) is
+        /// Fires when an item (i.e. Pane's Header or Content) is
         /// data bound
         /// </summary>
         public event EventHandler<AccordionItemEventArgs> ItemDataBound;
 
         /// <summary>
-        /// Event to raise when a command is fired
+        /// Fires when a command is fired
         /// </summary>
         public event CommandEventHandler ItemCommand;
 
@@ -295,7 +295,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the data source that provides data for populating 
+        /// The data source that provides data for populating 
         /// the list of AccordionPanes.
         /// </summary>
         [Bindable(true)]

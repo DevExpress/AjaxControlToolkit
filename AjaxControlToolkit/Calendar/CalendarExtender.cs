@@ -104,7 +104,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the first day of week.
+        /// The first day of week.
         /// The default value is Default
         /// </summary>
         [DefaultValue(FirstDayOfWeek.Default)]
@@ -130,7 +130,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the popup position of the calendar. The default value is BottomLeft.
+        /// The popup position of the calendar. The default value is BottomLeft.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("popupPosition")]
@@ -142,7 +142,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the date that the calendar is initialized with.
+        /// The date that the calendar is initialized with.
         /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty]
@@ -159,7 +159,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the default view of the calender. The default value is Days.
+        /// The default view of the calender. The default value is Days.
         /// </summary>
         [DefaultValue(CalendarDefaultView.Days)]
         [ExtenderControlProperty]
@@ -171,7 +171,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the client script that executes immediately before the calendar is displayed.
+        /// The client script that executes immediately before the calendar is displayed.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -182,7 +182,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the client script that executes immediately after the calendar is displayed.
+        /// The client script that executes immediately after the calendar is displayed.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -193,7 +193,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the client script that executes immediately before the calendar is hidden.
+        /// The client script that executes immediately before the calendar is hidden.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -204,7 +204,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the client script that executes immediately after the calendar is hidden.
+        /// The client script that executes immediately after the calendar is hidden.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -215,7 +215,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the script that executes when a new date is selected.
+        /// The script that executes when a new date is selected.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -226,7 +226,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the property of the start date for range.
+        /// The start date for range.
         /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty]
@@ -242,7 +242,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the property of the end date for range.
+        /// The end date for range.
         /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty]

@@ -98,7 +98,7 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.todaysDate" />
     this._todaysDate = null;
     /// <summary>
-    /// Gets or sets the first day of week.
+    /// The first day of week.
     /// The default value is Default
     /// </summary>
     /// <getter>get_firstDayOfWeek</getter>
@@ -132,7 +132,7 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
     this._yearsTable = null;
     this._yearsBody = null;
     /// <summary>
-    /// Gets or sets the popup position of the calendar.
+    /// The popup position of the calendar.
     /// The default is BottomLeft
     /// </summary>
     /// <getter>get_popupPosition</getter>
@@ -140,7 +140,7 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.popupPosition" />
     this._popupPosition = Sys.Extended.UI.CalendarPosition.BottomLeft;
     /// <summary>
-    /// Gets or sets the default view of the calender. The default value is Days.
+    /// The default view of the calender. The default value is Days.
     /// </summary>
     /// <getter>get_defaultView</getter>
     /// <setter>set_defaultView</setter>
@@ -453,7 +453,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when calendar is showing.
+    /// Fires when calendar is showing.
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.CalendarExtender.showing" />
@@ -475,7 +475,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when calendar is shown.
+    /// Fires when calendar is shown.
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.CalendarExtender.shown" />
@@ -497,7 +497,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when calendar is hiding.
+    /// Fires when calendar is hiding.
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.CalendarExtender.hiding" />
@@ -519,7 +519,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when calendar is hidden.
+    /// Fires when calendar is hidden.
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.CalendarExtender.hidden" />
@@ -541,7 +541,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when calendar date selection changed.
+    /// Fires when calendar date selection changed.
     /// </summary>
     /// <event add="add_dateSelectionChanged" remove="remove_dateSelectionChanged" raise="raise_dateSelectionChanged" />
     /// <member name="cE:AjaxControlToolkit.CalendarExtender.dateSelectionChanged" /> 

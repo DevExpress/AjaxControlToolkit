@@ -152,7 +152,7 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a string that contains client script that executes when the Cancel button is clicked in the confirm dialog box.
+    /// A string that contains client script that executes when the Cancel button is clicked in the confirm dialog box.
     /// </summary>
     /// <getter>get_onClientCancel</getter>
     /// <setter>set_onClientCancel</setter>
@@ -178,7 +178,7 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the confirmation text to display.
+    /// The confirmation text to display.
     /// </summary>
     /// <remarks>
     /// HTML entities can be used, such as &#10; for a newline character.
@@ -207,7 +207,7 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a Boolean value that specifies that the confirm dialog box should not be displayed until just before the form is submitted.
+    /// A Boolean value that specifies that the confirm dialog box should not be displayed until just before the form is submitted.
     /// </summary>
     /// <remarks>
     /// This is useful if the page contains ASP.NET validator controls and the confirm dialog box should be displayed only after all validation checks pass.
@@ -236,7 +236,7 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a string that contains the ID of a ModalPopupBehavior control to use instead of the default window.confirm dialog box.
+    /// A string that contains the ID of a ModalPopupBehavior control to use instead of the default window.confirm dialog box.
     /// </summary>
     /// <getter>get_displayModalPopupID</getter>
     /// <setter>set_displayModalPopupID</setter>
@@ -253,7 +253,7 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a string that contains script to run in order to initiate a postback.
+    /// A string that contains script to run in order to initiate a postback.
     /// </summary>
     /// <getter>get_postBackScript</getter>
     /// <setter>set_postBackScript</setter>
@@ -269,7 +269,7 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is showing.
+    /// Fires when control is showing.
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.ConfirmButtonExtender.showing" />
@@ -290,7 +290,7 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is hidden.
+    /// Fires when control is hidden.
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.ConfirmButtonExtender.hidden" />

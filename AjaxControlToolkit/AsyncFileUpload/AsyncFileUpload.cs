@@ -55,14 +55,14 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Fired when the file successfully uploaded.
+        /// Fires when the file successfully uploaded.
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AsyncFileUploadEventArgs> UploadedComplete;
 
         /// <summary>
-        /// Fired when the uploaded file is corrupted.
+        /// Fires when the uploaded file is corrupted.
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
@@ -187,7 +187,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether validation failed.
+        /// Whether validation is failed.
         /// </summary>
         [BrowsableAttribute(false)]
         public bool FailedValidation {
@@ -208,7 +208,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets a HttpPostedFile object that provides access to the uploaded file.
+        /// A HttpPostedFile object that provides access to the uploaded file.
         /// </summary>
         [BrowsableAttribute(false)]
         public HttpPostedFile PostedFile {
@@ -219,7 +219,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets a bool value indicating whether the control contains a file.
+        /// A bool value indicating whether the control contains a file.
         /// </summary>
         [BrowsableAttribute(false)]
         public bool HasFile {
@@ -233,7 +233,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets the name of a file on a client to upload using the control.
+        /// The name of a file on a client to upload using the control.
         /// </summary>
         [BrowsableAttribute(false)]
         public string FileName {
@@ -249,7 +249,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets the name of a file on a client to upload using the control.
+        /// The name of a file on a client to upload using the control.
         /// </summary>
         [BrowsableAttribute(false)]
         public string ContentType {
@@ -265,7 +265,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets a Stream object that points to an uploaded file to prepare for reading the contents of the file.
+        /// A Stream object that points to an uploaded file to prepare for reading the contents of the file.
         /// </summary>
         [BrowsableAttribute(false)]
         public Stream FileContent {

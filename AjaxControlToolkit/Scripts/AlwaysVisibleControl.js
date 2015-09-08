@@ -326,7 +326,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
     },
 
     ///<summary>
-    /// Occurs before control reposition.
+    /// Fires before control reposition.
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.AlwaysVisibleControlExtender.repositioning" />
     ///<event add="add_repositioning" remove="remove_repositioning" raise="raise_repositioning" />
@@ -348,7 +348,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
     },
 
     ///<summary>
-    /// Occurs after control reposition.
+    /// Fires after control reposition.
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.AlwaysVisibleControlExtender.repositioned" />
     ///<event add="add_repositioned" remove="remove_repositioned" raise="raise_repositioned" />

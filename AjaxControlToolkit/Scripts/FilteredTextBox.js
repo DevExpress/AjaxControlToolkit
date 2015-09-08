@@ -333,7 +333,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the interval, in milliseconds, in which the field's contents are filtered.
+    /// The interval, in milliseconds, in which the field's contents are filtered.
     /// </summary>
     /// <getter>get_filterInterval</getter>
     /// <setter>set_filterInterval</setter>

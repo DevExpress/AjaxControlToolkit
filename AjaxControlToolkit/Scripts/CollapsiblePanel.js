@@ -605,7 +605,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Occurs when control is collapsing.
+    /// Fires when control is collapsing.
     /// </summary>
     /// <event add="add_collapsing" remove="remove_collapsing" raise="raise_collapsing" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.collapsing" />
@@ -630,7 +630,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Occurs when control is collapsed.
+    /// Fires when control is collapsed.
     /// </summary>
     /// <event add="add_collapsed" remove="remove_collapsed" raise="raise_collapsed" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.collapsed" />
@@ -655,7 +655,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when collapse completes.
+    /// Fires when collapse completes.
     /// </summary>
     /// <event add="add_collapseComplete" remove="remove_collapseComplete" raise="raise_collapseComplete" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.collapseComplete" />
@@ -682,7 +682,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Occurs when control is expanding.
+    /// Fires when control is expanding.
     /// </summary>
     /// <event add="add_expanding" remove="remove_expanding" raise="raise_expanding" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.expanding" />
@@ -707,7 +707,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Occurs when control is expanded.
+    /// Fires when control is expanded.
     /// </summary>
     /// <event add="add_expanded" remove="remove_expanded" raise="raise_expanded" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.expanded" />
@@ -732,7 +732,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Occurs when expand completes.
+    /// Fires when expand completes.
     /// </summary>
     /// <event add="add_expandComplete" remove="remove_expandComplete" raise="raise_expandComplete" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.expandComplete" />

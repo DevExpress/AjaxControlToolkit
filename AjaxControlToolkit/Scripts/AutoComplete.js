@@ -129,7 +129,7 @@ Sys.Extended.UI.AutoCompleteBehavior = function(element) {
     /// <member name="cP:AjaxControlToolkit.AutoCompleteExtender.highlightedItemCssClass" />
     this._highlightedItemCssClass = null;
     /// <summary>
-    /// Gets or sets the character(s) used to seperate words for autocomplete.
+    /// The character(s) used to seperate words for autocomplete.
     /// </summary>
     /// <getter>get_delimiterCharacters</getter>
     /// <setter>set_delimiterCharacters</setter>
@@ -1042,7 +1042,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs control is populating.
+    /// Fires control is populating.
     /// </summary>
     /// <event add="add_populating" remove="remove_populating" raise="raise_populating" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.populating" />
@@ -1066,7 +1066,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is populated.
+    /// Fires when control is populated.
     /// </summary>
     /// <event add="add_populated" remove="remove_populated" raise="raise_populated" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.populated" />
@@ -1087,7 +1087,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is showing.
+    /// Fires when control is showing.
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.showing" />
@@ -1108,7 +1108,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is shown.
+    /// Fires when control is shown.
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.shown" />
@@ -1129,7 +1129,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is hiding.
+    /// Fires when control is hiding.
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.hiding" />
@@ -1150,7 +1150,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is hidden.
+    /// Fires when control is hidden.
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.hidden" />
@@ -1171,7 +1171,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when item is selected.
+    /// Fires when item is selected.
     /// </summary>
     /// <event add="add_itemSelected" remove="remove_itemSelected" raise="raise_itemSelected" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.itemSelected" />
@@ -1192,7 +1192,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when mouse cursor is over item.
+    /// Fires when mouse cursor is over item.
     /// </summary>
     /// <event add="add_itemOver" remove="remove_itemOver" raise="raise_itemOver" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.itemOver" />
@@ -1213,7 +1213,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when mouse cursor is out of the item.
+    /// Fires when mouse cursor is out of the item.
     /// </summary>
     /// <event add="add_itemOut" remove="remove_itemOut" raise="raise_itemOut" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.itemOut" />

@@ -817,7 +817,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is showing.
+    /// Fires when popup is showing.
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.showing" />
@@ -839,7 +839,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is shown.
+    /// Fires when popup is shown.
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.shown" />
@@ -861,7 +861,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is hiding.
+    /// Fires when popup is hiding.
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.hiding" />
@@ -883,7 +883,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when popup is hidden.
+    /// Fires when popup is hidden.
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.hidden" />

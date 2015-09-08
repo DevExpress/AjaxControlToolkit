@@ -23,49 +23,49 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     Sys.Extended.UI.CascadingDropDownBehavior.initializeBase(this, [e]);
 
     /// <summary>
-    /// Gets or sets a string containing the ID of the parent drop down in a hierarchy of drop downs.
+    /// A string containing the ID of the parent drop down in a hierarchy of drop downs.
     /// </summary>
     /// <getter>get_parentControlID</getter>
     /// <setter>set_parentControlID</setter>
     /// <member name="cP:AjaxControlToolkit.CascadingDropDown.parentControlID" />
     this._parentControlID = null;
     /// <summary>
-    /// Gets or sets a string containing the category of this drop down.
+    /// A string containing the category of this drop down.
     /// </summary>
     /// <getter>get_category</getter>
     /// <setter>set_category</setter>
     /// <member name="cP:AjaxControlToolkit.CascadingDropDown.category" />
     this._category = null;
     /// <summary>
-    /// Gets or sets a string containing the prompt text that is displayed as the first entry in the drop down.
+    /// A string containing the prompt text that is displayed as the first entry in the drop down.
     /// </summary>
     /// <getter>get_promptText</getter>
     /// <setter>set_promptText</setter>
     /// <member name="cP:AjaxControlToolkit.CascadingDropDown.promptText" />
     this._promptText = null;
     /// <summary>
-    /// Gets or sets a string containing the loading text to to be displayed when getting the drop down's values from the Web service.
+    /// A string containing the loading text to to be displayed when getting the drop down's values from the Web service.
     /// </summary>
     /// <getter>get_loadingText</getter>
     /// <setter>set_loadingText</setter>
     /// <member name="cP:AjaxControlToolkit.CascadingDropDown.loadingText" />
     this._loadingText = null;
     /// <summary>
-    /// Gets or sets a string containing the value for the option displayed by a DropDownList showing the PromptText.
+    /// A string containing the value for the option displayed by a DropDownList showing the PromptText.
     /// </summary>
     /// <getter>get_promptValue</getter>
     /// <setter>set_promptValue</setter>
     /// <member name="cP:AjaxControlToolkit.CascadingDropDown.promptValue" />
     this._promptValue = null;
     /// <summary>
-    /// Gets or sets a string containing the value for the option displayed when the list is empty.
+    /// A string containing the value for the option displayed when the list is empty.
     /// </summary>
     /// <getter>get_emptyValue</getter>
     /// <setter>set_emptyValue</setter>
     /// <member name="cP:AjaxControlToolkit.CascadingDropDown.emptyValue" />
     this._emptyValue = null;
     /// <summary>
-    /// Gets or set a string containing the text for the option displayed when the list is empty.
+    /// A string containing the text for the option displayed when the list is empty.
     /// </summary>
     /// <getter>get_emptyText</getter>
     /// <setter>set_emptyText</setter>
@@ -73,7 +73,7 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     this._emptyText = null;
 
     /// <summary>
-    /// Gets or sets a string containing the path of the Web service.
+    /// A string containing the path of the Web service.
     /// The default is page path
     /// </summary>
     /// <getter>get_servicePath</getter>
@@ -82,7 +82,7 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     this._servicePath = location.pathname;
 
     /// <summary>
-    /// Gets or sets a string containing the name of the method to invoke on the Web service.
+    /// A string containing the name of the method to invoke on the Web service.
     /// </summary>
     /// <getter>get_serviceMethod</getter>
     /// <setter>set_serviceMethod</setter>
@@ -90,7 +90,7 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     this._serviceMethod = null;
 
     /// <summary>
-    /// Gets or sets a string containing user or page specific context provided
+    /// A string containing user or page specific context provided
     /// to an optional overload of the Web method described by ServiceMethod or ServicePath.
     /// </summary>
     /// <remarks>
@@ -103,7 +103,7 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     this._contextKey = null;
 
     /// <summary>
-    /// Gets or sets a boolean value that determines whether or not the ContextKey property should be used.
+    /// A boolean value that determines whether or not the ContextKey property should be used.
     /// </summary>
     /// <remarks>
     /// The useContextKey property will be automatically enabled if the ContextKey property is
@@ -139,7 +139,7 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     this._parentChangeHandler = null;
     this._lastParentValues = null;
     /// <summary>
-    /// Gets or sets a string containing the selected value of the drop down.
+    /// A string containing the selected value of the drop down.
     /// </summary>
     /// <getter>get_selectedValue</getter>
     /// <setter>set_selectedValue</setter>
@@ -720,7 +720,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when selection changed.
+    /// Fires when selection changed.
     /// </summary>
     /// <event add="add_selectionChanged" remove="remove_selectionChanged" raise="raise_selectionChanged" />
     /// <member name="cE:AjaxControlToolkit.CascadingDropDown.selectionChanged" />
@@ -742,7 +742,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is populating.
+    /// Fires when control is populating.
     /// </summary>
     /// <event add="add_populating" remove="remove_populating" raise="raise_populating" />
     /// <member name="cE:AjaxControlToolkit.CascadingDropDown.populating" />
@@ -768,7 +768,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is populated.
+    /// Fires when control is populated.
     /// </summary>
     /// <event add="add_populated" remove="remove_populated" raise="raise_populated" />
     /// <member name="cE:AjaxControlToolkit.CascadingDropDown.populated" />

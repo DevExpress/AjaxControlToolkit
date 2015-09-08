@@ -27,7 +27,7 @@ namespace AjaxControlToolkit {
         public string CategoriesAxis { get; set; }
 
         /// <summary>
-        /// Provide list of series to client side. Need help from Series property 
+        /// Provides list of series to client side. Need help from Series property 
         /// for designer experience support, cause Editor always blocks the property
         /// ability to provide values to client side as ExtenderControlProperty on run time.
         /// </summary>
@@ -54,7 +54,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Enables you to render different types of bar charts including Column, StackedColumn, Bar, and StackedBar.
+        /// Type of bar charts including Column, StackedColumn, Bar, and StackedBar.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(BarChartType.Column)]
@@ -62,7 +62,7 @@ namespace AjaxControlToolkit {
         public BarChartType ChartType { get; set; }
 
         /// <summary>
-        /// Enables you to set the interval size for the value axis line.
+        /// The interval size for the value axis line.
         /// The default is 9
         /// </summary>
         [ExtenderControlProperty]
@@ -71,7 +71,7 @@ namespace AjaxControlToolkit {
         public int ValueAxisLines { get; set; }
 
         /// <summary>
-        /// Enables you to set the the color of the value axis lines.
+        /// The the color of the value axis lines.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -79,7 +79,7 @@ namespace AjaxControlToolkit {
         public string ValueAxisLineColor { get; set; }
 
         /// <summary>
-        /// Enables you to set the color of the category axis lines.
+        /// The color of the category axis lines.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -87,7 +87,7 @@ namespace AjaxControlToolkit {
         public string CategoryAxisLineColor { get; set; }
 
         /// <summary>
-        /// Enables you to set the color of the base lines of the chart.
+        /// The color of the base lines of the chart.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]

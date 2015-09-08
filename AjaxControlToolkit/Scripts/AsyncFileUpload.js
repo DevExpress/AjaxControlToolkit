@@ -195,7 +195,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     ///<summary>
-    /// Occurs when file uploading started.
+    /// Fires when file uploading started.
     ///</summary>
     ///<event add="add_uploadStarted" remove="remove_uploadStarted" raise="raise_uploadStarted" />
     ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadStarted" />
@@ -218,7 +218,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     ///<summary>
-    /// Occurs when file uploading completed.
+    /// Fires when file uploading completed.
     ///</summary>
     ///<event add="add_uploadComplete" remove="remove_uploadComplete" raise="raise_uploadComplete" />
     ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadComplete" />
@@ -240,7 +240,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     ///<summary>
-    /// Occurs when file uploading encounters an error.
+    /// Fires when file uploading encounters an error.
     ///</summary>
     ///<event add="add_uploadError" remove="remove_uploadError" raise="raise_uploadError" />
     ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadError" />

@@ -176,7 +176,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Gets or sets the character(s) used to separate words for autocomplete.
+        /// The character(s) used to separate words for autocomplete.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("delimiterCharacters")]

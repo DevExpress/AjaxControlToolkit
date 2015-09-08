@@ -430,7 +430,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a generic OnShow animation's JSON definition.
+    /// A generic OnShow animation's JSON definition.
     /// </summary>
     /// <getter>get_onShow</getter>
     /// <setter>set_onShow</setter>
@@ -448,7 +448,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets a Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnShow animation's behavior.
+    /// A Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnShow animation's behavior.
     /// </summary>
     /// <getter>get_onShowBehaior</getter>
     /// <member name="cP:AjaxControlToolkit.DropDownExtender.onShowBehavior" />
@@ -466,7 +466,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets a generic OnHide animation's JSON definition.
+    /// A generic OnHide animation's JSON definition.
     /// </summary>
     /// <getter>get_onHide</getter>
     /// <setter>set_onHide</setter>
@@ -485,7 +485,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets a Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation's behavior.
+    /// A Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation's behavior.
     /// </summary>
     /// <getter>get_onHideBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.DropDownExtender.onHideBehavior" />
@@ -503,7 +503,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the DropDown control.
+    /// The DropDown control.
     /// </summary>
     /// <getter>get_dropDownControl</getter>
     /// <setter>set_dropDownControl</setter>
@@ -519,7 +519,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the highlight border color of the DropDown control.
+    /// The highlight border color of the DropDown control.
     /// </summary>
     /// <getter>get_highlightBorderColor</getter>
     /// <setter>set_highlightBorderColor</setter>
@@ -535,7 +535,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the highlight background color of the DropDown control.
+    /// The highlight background color of the DropDown control.
     /// </summary>
     /// <getter>get_highlightBackgroundColor</getter>
     /// <setter>set_highlightBackgroundColor</setter>
@@ -555,7 +555,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the DropDown arrow background color of the DropDown control.
+    /// The DropDown arrow background color of the DropDown control.
     /// </summary>
     /// <getter>get_dropArrowBackgroundColor</getter>
     /// <setter>set_dropArrowBackgroundColor</setter>
@@ -575,7 +575,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the DropDown arrow image URL of the DropDown control.
+    /// The DropDown arrow image URL of the DropDown control.
     /// </summary>
     /// <getter>get_dropArrowImageUrl</getter>
     /// <setter>set_dropArrowImageUrl</setter>
@@ -601,7 +601,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets or sets the DropDown arrow width of the DropDown control.
+    /// The DropDown arrow width of the DropDown control.
     /// </summary>
     /// <getter>get_dropArrowWidth</getter>
     /// <setter>set_dropArrowWidth</setter>
@@ -621,7 +621,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets a Boolean value that specifies whether the cursor is over the DropDown control.
+    /// A Boolean value that specifies whether the cursor is over the DropDown control.
     /// </summary>
     /// <getter>get_isOver</getter>
     /// <member name="cP:AjaxControlToolkit.DropDownExtender.isOver" />
@@ -639,7 +639,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is showing.
+    /// Fires when control is showing.
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.DropDownExtender.showing" />
@@ -660,7 +660,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is shown.
+    /// Fires when control is shown.
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.DropDownExtender.shown" />
@@ -681,7 +681,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs on popup.
+    /// Fires on popup.
     /// </summary>
     /// <event add="add_popup" remove="remove_popup" raise="raise_popup" />
     /// <member name="cE:AjaxControlToolkit.DropDownExtender.popup" />
@@ -702,7 +702,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is hiding.
+    /// Fires when control is hiding.
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.DropDownExtender.hiding" />
@@ -723,7 +723,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs when control is hidden.
+    /// Fires when control is hidden.
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.DropDownExtender.hidden" />
@@ -744,7 +744,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs on hover over the control.
+    /// Fires on hover over the control.
     /// </summary>
     /// <event add="add_hoverOver" remove="remove_hoverOver" raise="raise_hoverOver" />
     /// <member name="cE:AjaxControlToolkit.DropDownExtender.hoverOver" />
@@ -765,7 +765,7 @@ Sys.Extended.UI.DropDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Occurs on hover out of the control.
+    /// Fires on hover out of the control.
     /// </summary>
     /// <event add="add_hoverOut" remove="remove_hoverOut" raise="raise_hoverOut" />
     /// <member name="cE:AjaxControlToolkit.DropDownExtender.hoverOut" />
