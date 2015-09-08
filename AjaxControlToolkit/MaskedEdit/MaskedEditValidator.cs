@@ -8,6 +8,12 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// MaskedEditValidator is a custom validator which attaches to the MaskedEdit extender and its associated
+    /// TextBox and verifies that the input text matches the pattern specified in the MaskedEdit extender.
+    /// Once associated with a validation group, server- and client-side validation can be performed and used
+    /// to display messages.
+    /// </summary>
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.MaskedEditName + Constants.IconPostfix)]
     public class MaskedEditValidator : BaseValidator {
         bool _isValidEmpty = true;
@@ -53,6 +59,9 @@ namespace AjaxControlToolkit {
             set { base.ErrorMessage = value; }
         }
 
+        /// <summary>
+        /// True if the TextBox can be empty
+        /// </summary>
         [DefaultValue(true)]
         [Category("MaskedEdit")]
         public bool IsValidEmpty {
@@ -60,6 +69,9 @@ namespace AjaxControlToolkit {
             set { _isValidEmpty = value; }
         }
 
+        /// <summary>
+        /// Message displayed when the TextBox has focus with an empty value
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string TooltipMessage {
@@ -72,6 +84,9 @@ namespace AjaxControlToolkit {
             set { _messageTip = value; }
         }
 
+        /// <summary>
+        /// Message displayed when empty and TextBox has focus
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string EmptyValueMessage {
@@ -84,6 +99,9 @@ namespace AjaxControlToolkit {
             set { _messageEmpty = value; }
         }
 
+        /// <summary>
+        /// Message displayed when empty and TextBox does not have focus
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string EmptyValueBlurredText {
@@ -96,6 +114,9 @@ namespace AjaxControlToolkit {
             set { _textEmpty = value; }
         }
 
+        /// <summary>
+        /// Message displayed when invalid and TextBox has focus
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string InvalidValueMessage {
@@ -108,6 +129,9 @@ namespace AjaxControlToolkit {
             set { _messageInvalid = value; }
         }
 
+        /// <summary>
+        /// Message displayed when invalid and TextBox does not have focus
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string InvalidValueBlurredMessage {
@@ -120,6 +144,9 @@ namespace AjaxControlToolkit {
             set { _textInvalid = value; }
         }
 
+        /// <summary>
+        /// Maximum value of the input
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string MaximumValue {
@@ -132,6 +159,9 @@ namespace AjaxControlToolkit {
             set { _maximumValue = value; }
         }
 
+        /// <summary>
+        /// Message displayed when maximum value exceeded and TextBox has focus
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string MaximumValueMessage {
@@ -144,6 +174,9 @@ namespace AjaxControlToolkit {
             set { _messageMax = value; }
         }
 
+        /// <summary>
+        /// Message displayed when maximum value exceeded and TextBox does not have focus
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string MaximumValueBlurredMessage {
@@ -156,6 +189,9 @@ namespace AjaxControlToolkit {
             set { _textMax = value; }
         }
 
+        /// <summary>
+        /// Client script used for custom validation
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string ClientValidationFunction {
@@ -168,6 +204,9 @@ namespace AjaxControlToolkit {
             set { _clientValidationFunction = value; }
         }
 
+        /// <summary>
+        /// Initial value of the TextBox
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string InitialValue {
@@ -180,6 +219,9 @@ namespace AjaxControlToolkit {
             set { _initialValue = value; }
         }
 
+        /// <summary>
+        /// Regular expression used to validate the input
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string ValidationExpression {
@@ -192,6 +234,9 @@ namespace AjaxControlToolkit {
             set { _validationExpression = value; }
         }
 
+        /// <summary>
+        /// Minimum value of the input
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string MinimumValue {
@@ -204,6 +249,9 @@ namespace AjaxControlToolkit {
             set { _minimumValue = value; }
         }
 
+        /// <summary>
+        /// Message displayed when minimum value exceeded and TextBox has focus
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string MinimumValueMessage {
@@ -216,6 +264,9 @@ namespace AjaxControlToolkit {
             set { _messageMin = value; }
         }
 
+        /// <summary>
+        /// Message displayed when minimum value exceeded and TextBox does not have focus
+        /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
         public string MinimumValueBlurredText {
@@ -228,6 +279,9 @@ namespace AjaxControlToolkit {
             set { _textMin = value; }
         }
 
+        /// <summary>
+        /// ID of the MaskedEditExtender attached to the TextBox
+        /// </summary>
         [DefaultValue("")]
         [TypeConverter(typeof(MaskedEditTypeConvert))]
         [RequiredProperty()]
