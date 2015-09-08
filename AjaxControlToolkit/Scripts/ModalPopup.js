@@ -649,11 +649,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_PopupControlID: function() {
-        Sys.Extended.Deprecated("get_PopupControlID", "get_popupControlID");
+        Sys.Extended.Deprecated("get_PopupControlID()", "get_popupControlID()");
         return this.get_popupControlID();
     },
     set_PopupControlID: function(value) {
-        Sys.Extended.Deprecated("set_PopupControlID", "set_popupControlID");
+        Sys.Extended.Deprecated("set_PopupControlID(value)", "set_popupControlID(value)");
         this.set_popupControlID(value);
     },
 
@@ -674,11 +674,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_X: function() {
-        Sys.Extended.Deprecated("get_X", "get_x");
+        Sys.Extended.Deprecated("get_X()", "get_x()");
         return this.get_x();
     },
     set_X: function(value) {
-        Sys.Extended.Deprecated("set_X", "set_x");
+        Sys.Extended.Deprecated("set_X(value)", "set_x(value)");
         this.set_x(value);
     },
 
@@ -699,11 +699,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_Y: function() {
-        Sys.Extended.Deprecated("get_Y", "get_y");
+        Sys.Extended.Deprecated("get_Y()", "get_y()");
         return this.get_y();
     },
     set_Y: function(value) {
-        Sys.Extended.Deprecated("set_Y", "set_y");
+        Sys.Extended.Deprecated("set_Y(value)", "set_y(value)");
         this.set_y(value);
     },
 
@@ -724,11 +724,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_PopupDragHandleControlID: function() {
-        Sys.Extended.Deprecated("get_PopupDragHandleControlID", "get_popupDragHandleControlID");
+        Sys.Extended.Deprecated("get_PopupDragHandleControlID()", "get_popupDragHandleControlID()");
         return this.get_popupDragHandleControlID();
     },
     set_PopupDragHandleControlID: function(value) {
-        Sys.Extended.Deprecated("set_PopupDragHandleControlID", "set_popupDragHandleControlID");
+        Sys.Extended.Deprecated("set_PopupDragHandleControlID(value)", "set_popupDragHandleControlID(value)");
         this.set_popupDragHandleControlID(value);
     },
 
@@ -749,11 +749,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_BackgroundCssClass: function() {
-        Sys.Extended.Deprecated("get_BackgroundCssClass", "get_backgroundCssClass");
+        Sys.Extended.Deprecated("get_BackgroundCssClass()", "get_backgroundCssClass()");
         return this.get_backgroundCssClass();
     },
     set_BackgroundCssClass: function(value) {
-        Sys.Extended.Deprecated("set_BackgroundCssClass", "set_backgroundCssClass");
+        Sys.Extended.Deprecated("set_BackgroundCssClass(value)", "set_backgroundCssClass(value)");
         this.set_backgroundCssClass(value);
     },
 
@@ -774,11 +774,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_DropShadow: function() {
-        Sys.Extended.Deprecated("get_DropShadow", "get_dropShadow");
+        Sys.Extended.Deprecated("get_DropShadow()", "get_dropShadow()");
         return this.get_dropShadow();
     },
     set_DropShadow: function(value) {
-        Sys.Extended.Deprecated("set_DropShadow", "set_dropShadow");
+        Sys.Extended.Deprecated("set_DropShadow(value)", "set_dropShadow(value)");
         this.set_dropShadow(value);
     },
 
@@ -803,11 +803,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_Drag: function() {
-        Sys.Extended.Deprecated("get_Drag", "get_drag");
+        Sys.Extended.Deprecated("get_Drag()", "get_drag()");
         return this.get_drag();
     },
     set_Drag: function(value) {
-        Sys.Extended.Deprecated("set_Drag", "set_drag");
+        Sys.Extended.Deprecated("set_Drag(value)", "set_drag(value)");
         this.set_drag(value);
     },
 
@@ -828,11 +828,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_OkControlID: function() {
-        Sys.Extended.Deprecated("get_OkControlID", "get_okControlID");
+        Sys.Extended.Deprecated("get_OkControlID()", "get_okControlID()");
         return this.get_okControlID();
     },
     set_OkControlID: function(value) {
-        Sys.Extended.Deprecated("set_OkControlID", "set_okControlID");
+        Sys.Extended.Deprecated("set_OkControlID(value)", "set_okControlID(value)");
         this.set_okControlID(value);
     },
 
@@ -853,11 +853,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_CancelControlID: function() {
-        Sys.Extended.Deprecated("get_CancelControlID", "get_cancelControlID");
+        Sys.Extended.Deprecated("get_CancelControlID()", "get_cancelControlID()");
         return this.get_cancelControlID();
     },
     set_CancelControlID: function(value) {
-        Sys.Extended.Deprecated("set_CancelControlID", "set_cancelControlID");
+        Sys.Extended.Deprecated("set_CancelControlID(value)", "set_cancelControlID(value)");
         this.set_cancelControlID(value);
     },
 
@@ -878,11 +878,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_OnOkScript: function() {
-        Sys.Extended.Deprecated("get_OnOkScript", "get_onOkScript");
+        Sys.Extended.Deprecated("get_OnOkScript()", "get_onOkScript()");
         return this.get_onOkScript();
     },
     set_OnOkScript: function(value) {
-        Sys.Extended.Deprecated("set_OnOkScript", "set_onOkScript");
+        Sys.Extended.Deprecated("set_OnOkScript(value)", "set_onOkScript(value)");
         this.set_onOkScript(value); 
     },
 
@@ -903,11 +903,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_OnCancelScript: function() {
-        Sys.Extended.Deprecated("get_OnCancelScript", "get_onCancelScript");
+        Sys.Extended.Deprecated("get_OnCancelScript()", "get_onCancelScript()");
         return this.get_onCancelScript();
     },
     set_OnCancelScript: function(value) {
-        Sys.Extended.Deprecated("set_OnCancelScript", "set_onCancelScript");
+        Sys.Extended.Deprecated("set_OnCancelScript(value)", "set_onCancelScript(value)");
         this.set_onCancelScript(value);
     },
 
@@ -943,11 +943,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_OnShowing: function() {
-        Sys.Extended.Deprecated("get_OnShowing", "get_onShowing");
+        Sys.Extended.Deprecated("get_OnShowing()", "get_onShowing()");
         return this.get_onShowing();
     },
     set_OnShowing: function(value) {
-        Sys.Extended.Deprecated("set_OnShowing", "set_onShowing");
+        Sys.Extended.Deprecated("set_OnShowing(value)", "set_onShowing(value)");
         this.set_onShowing(value);
     },
 
@@ -966,11 +966,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_OnShown: function() {
-        Sys.Extended.Deprecated("get_OnShown", "get_onShown");
+        Sys.Extended.Deprecated("get_OnShown()", "get_onShown()");
         return this.get_onShown();
     },
     set_OnShown: function(value) {
-        Sys.Extended.Deprecated("set_OnShown", "set_onShown");
+        Sys.Extended.Deprecated("set_OnShown(value)", "set_onShown(value)");
         this.set_onShown(value);
     },
 
@@ -989,11 +989,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_OnHiding: function() {
-        Sys.Extended.Deprecated("get_OnHiding", "get_onHiding");
+        Sys.Extended.Deprecated("get_OnHiding()", "get_onHiding()");
         return this.get_onHiding();
     },
     set_OnHiding: function(value) {
-        Sys.Extended.Deprecated("set_OnHiding", "set_onHiding");
+        Sys.Extended.Deprecated("set_OnHiding(value)", "set_onHiding(value)");
         this.set_onHiding(value);
     },
 
@@ -1012,11 +1012,11 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     get_OnHidden: function() {
-        Sys.Extended.Deprecated("get_OnHidden", "get_onHidden");
+        Sys.Extended.Deprecated("get_OnHidden()", "get_onHidden()");
         return this.get_onHidden();
     },
     set_OnHidden: function(value) {
-        Sys.Extended.Deprecated("set_OnHidden", "set_onHidden");
+        Sys.Extended.Deprecated("set_OnHidden(value)", "set_onHidden(value)");
         this.set_onHidden(value);
     },
 

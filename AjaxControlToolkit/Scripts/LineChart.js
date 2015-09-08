@@ -516,11 +516,11 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     get_ClientSeries: function() {
-        Sys.Extended.Deprecated("get_ClientSeries", "get_clientSeries");
+        Sys.Extended.Deprecated("get_ClientSeries()", "get_clientSeries()");
         return this.get_clientSeries();
     },
     set_ClientSeries: function(value) {
-        Sys.Extended.Deprecated("set_ClientSeries", "set_clientSeries");
+        Sys.Extended.Deprecated("set_ClientSeries(value)", "set_clientSeries(value)");
         this.set_clientSeries(value);
     },
 

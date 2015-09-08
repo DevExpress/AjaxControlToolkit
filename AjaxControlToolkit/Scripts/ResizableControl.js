@@ -258,11 +258,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     get_HandleCssClass: function() {
-        Sys.Extended.Deprecated("get_HandleCssClass", "get_handleCssClass");
+        Sys.Extended.Deprecated("get_HandleCssClass()", "get_handleCssClass()");
         return this.get_handleCssClass();
     },
     set_HandleCssClass: function(value) {
-        Sys.Extended.Deprecated("set_HandleCssClass", "set_handleCssClass");
+        Sys.Extended.Deprecated("set_HandleCssClass(value)", "set_handleCssClass(value)");
         this.set_handleCssClass(value);
     },
 
@@ -284,11 +284,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     get_ResizableCssClass: function() {
-        Sys.Extended.Deprecated("get_ResizableCssClass", "get_resizableCssClass");
+        Sys.Extended.Deprecated("get_ResizableCssClass()", "get_resizableCssClass()");
         return this.get_resizableCssClass();
     },
     set_ResizableCssClass: function(value) {
-        Sys.Extended.Deprecated("set_ResizableCssClass", "set_resizableCssClass");
+        Sys.Extended.Deprecated("set_ResizableCssClass(value)", "set_resizableCssClass(value)");
         this.set_resizableCssClass(value);
     },
 
@@ -309,11 +309,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     get_HandleOffsetX: function() {
-        Sys.Extended.Deprecated("get_HandleOffsetX", "get_handleOffsetX");
+        Sys.Extended.Deprecated("get_HandleOffsetX()", "get_handleOffsetX()");
         return this.get_handleOffsetX();
     },
     set_HandleOffsetX: function(value) {
-        Sys.Extended.Deprecated("set_HandleOffsetX", "set_handleOffsetX");
+        Sys.Extended.Deprecated("set_HandleOffsetX(value)", "set_handleOffsetX(value)");
         this.set_handleOffsetX(value);
     },
 
@@ -334,11 +334,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     get_HandleOffsetY: function() {
-        Sys.Extended.Deprecated("get_HandleOffsetY", "get_handleOffsetY");
+        Sys.Extended.Deprecated("get_HandleOffsetY()", "get_handleOffsetY()");
         return this.get_handleOffsetY();
     },
     set_HandleOffsetY: function(value) {
-        Sys.Extended.Deprecated("set_HandleOffsetY", "set_handleOffsetY");
+        Sys.Extended.Deprecated("set_HandleOffsetY(value)", "set_handleOffsetY(value)");
         this.set_handleOffsetY(value);
     },
 
@@ -359,11 +359,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     get_MinimumWidth: function() {
-        Sys.Extended.Deprecated("get_MinimumWidth", "get_minimumWidth");
+        Sys.Extended.Deprecated("get_MinimumWidth()", "get_minimumWidth()");
         return this.get_minimumWidth();
     },
     set_MinimumWidth: function(value) {
-        Sys.Extended.Deprecated("set_MinimumWidth", "set_minimumWidth");
+        Sys.Extended.Deprecated("set_MinimumWidth(value)", "set_minimumWidth(value)");
         this.set_minimumWidth(value);
     },
 
@@ -384,11 +384,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     get_MinimumHeight: function() {
-        Sys.Extended.Deprecated("get_MinimumHeight", "get_minimumHeight");
+        Sys.Extended.Deprecated("get_MinimumHeight()", "get_minimumHeight()");
         return this.get_minimumHeight();
     },
     set_MinimumHeight: function(value) {
-        Sys.Extended.Deprecated("set_MinimumHeight", "set_minimumHeight");
+        Sys.Extended.Deprecated("set_MinimumHeight(value)", "set_minimumHeight(value)");
         this.set_minimumHeight(value);
     },
 
@@ -409,11 +409,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     get_MaximumWidth: function() {
-        Sys.Extended.Deprecated("get_MaximumWidth", "get_maximumWidth");
+        Sys.Extended.Deprecated("get_MaximumWidth()", "get_maximumWidth()");
         return this.get_maximumWidth();
     },
     set_MaximumWidth: function(value) {
-        Sys.Extended.Deprecated("set_MaximumWidth", "set_maximumWidth");
+        Sys.Extended.Deprecated("set_MaximumWidth(value)", "set_maximumWidth(value)");
         this.set_maximumWidth(value);
     },
 
@@ -434,11 +434,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     get_MaximumHeight: function() {
-        Sys.Extended.Deprecated("get_MaximumHeight", "get_maximumHeight");
+        Sys.Extended.Deprecated("get_MaximumHeight()", "get_maximumHeight()");
         return this.get_maximumHeight();
     },
     set_MaximumHeight: function(value) {
-        Sys.Extended.Deprecated("set_MaximumHeight", "set_maximumHeight");
+        Sys.Extended.Deprecated("set_MaximumHeight(value)", "set_maximumHeight(value)");
         this.set_maximumHeight(value);
     },
 
@@ -459,7 +459,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
             onResizingHandler(this, Sys.EventArgs.Empty);
     },
     raiseResizing: function() {
-        Sys.Extended.Deprecated("raiseResizing", "raise_resizing");
+        Sys.Extended.Deprecated("raiseResizing()", "raise_resizing()");
         this.raise_resizing();
     },
 
@@ -501,7 +501,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
             onResizeHandler(this, Sys.EventArgs.Empty);
     },
     raiseResize: function() {
-        Sys.Extended.Deprecated("raiseResize", "raise_resize");
+        Sys.Extended.Deprecated("raiseResize()", "raise_resize()");
         this.raise_resize();
     },
 
@@ -545,15 +545,15 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     add_resizebegin: function(handler) {
-        Sys.Extended.Deprecated("add_resizebegin", "add_resizeBegin");
+        Sys.Extended.Deprecated("add_resizebegin(handler)", "add_resizeBegin(handler)");
         this.add_resizeBegin(handler);
     },
     remove_resizebegin: function(handler) {
-        Sys.Extended.Deprecated("remove_resizebegin", "remove_resizeBegin");
+        Sys.Extended.Deprecated("remove_resizebegin(handler)", "remove_resizeBegin(handler)");
         this.remove_resizeBegin(handler);
     },
     raiseResizeBegin: function() {
-        Sys.Extended.Deprecated("raiseResizeBegin", "raise_resizeBegin");
+        Sys.Extended.Deprecated("raiseResizeBegin()", "raise_resizeBegin()");
         this.raise_resizeBegin();
     },
 
@@ -579,11 +579,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     get_resizebegin: function() {
-        Sys.Extended.Deprecated("get_resizebegin", "get_resizeBegin");
+        Sys.Extended.Deprecated("get_resizebegin()", "get_resizeBegin()");
         return this.get_resizeBegin();
     },
     set_resizebegin: function(value) {
-        Sys.Extended.Deprecated("set_resizebegin", "set_resizeBegin");
+        Sys.Extended.Deprecated("set_resizebegin(value)", "set_resizeBegin(value)");
         this.set_resizeBegin(value);
     },
 
@@ -609,11 +609,11 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     get_Size: function() {
-        Sys.Extended.Deprecated("get_Size", "get_size");
+        Sys.Extended.Deprecated("get_Size()", "get_size()");
         return this.get_size();
     },
     set_Size: function(value) {
-        Sys.Extended.Deprecated("set_Size", "set_size");
+        Sys.Extended.Deprecated("set_Size(value)", "set_size(value)");
         this.set_size(value);
     }
 }

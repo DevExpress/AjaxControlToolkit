@@ -208,11 +208,11 @@ Sys.Extended.UI.PieChart.prototype = {
     },
 
     get_PieChartClientValues: function() {
-        Sys.Extended.Deprecated("get_PieChartClientValues", "get_pieChartClientValues");
+        Sys.Extended.Deprecated("get_PieChartClientValues()", "get_pieChartClientValues()");
         return this.get_pieChartClientValues();
     },
     set_PieChartClientValues: function(value) {
-        Sys.Extended.Deprecated("set_PieChartClientValues", "set_pieChartClientValues");
+        Sys.Extended.Deprecated("set_PieChartClientValues(value)", "set_pieChartClientValues(value)");
         this.set_pieChartClientValues(value);
     },
 

@@ -643,11 +643,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_PreferredPasswordLength: function() {
-        Sys.Extended.Deprecated("get_PreferredPasswordLength", "get_preferredPasswordLength");
+        Sys.Extended.Deprecated("get_PreferredPasswordLength()", "get_preferredPasswordLength()");
         return this.get_preferredPasswordLength();
     },
     set_PreferredPasswordLength: function(value) {
-        Sys.Extended.Deprecated("set_PreferredPasswordLength", "set_preferredPasswordLength");
+        Sys.Extended.Deprecated("set_PreferredPasswordLength(value)", "set_preferredPasswordLength(value)");
         this.set_preferredPasswordLength(value);
     },
 
@@ -673,11 +673,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_MinimumNumericCharacters: function() {
-        Sys.Extended.Deprecated("get_MinimumNumericCharacters", "get_minimumNumericCharacters");
+        Sys.Extended.Deprecated("get_MinimumNumericCharacters()", "get_minimumNumericCharacters()");
         return this.get_minimumNumericCharacters();
     },
     set_MinimumNumericCharacters: function(value) {
-        Sys.Extended.Deprecated("set_MinimumNumericCharacters", "set_minimumNumericCharacters");
+        Sys.Extended.Deprecated("set_MinimumNumericCharacters(value)", "set_minimumNumericCharacters(value)");
         this.set_minimumNumericCharacters(value);
     },
 
@@ -703,11 +703,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_MinimumSymbolCharacters: function() {
-        Sys.Extended.Deprecated("get_MinimumSymbolCharacters", "get_minimumSymbolCharacters");
+        Sys.Extended.Deprecated("get_MinimumSymbolCharacters()", "get_minimumSymbolCharacters()");
         return this.get_minimumSymbolCharacters();
     },
     set_MinimumSymbolCharacters: function(value) {
-        Sys.Extended.Deprecated("set_MinimumSymbolCharacters", "set_minimumSymbolCharacters");
+        Sys.Extended.Deprecated("set_MinimumSymbolCharacters(value)", "set_minimumSymbolCharacters(value)");
         this.set_minimumSymbolCharacters(value);
     },
 
@@ -734,11 +734,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_RequiresUpperAndLowerCaseCharacters: function() {
-        Sys.Extended.Deprecated("get_RequiresUpperAndLowerCaseCharacters", "get_requiresUpperAndLowerCaseCharacters");
+        Sys.Extended.Deprecated("get_RequiresUpperAndLowerCaseCharacters()", "get_requiresUpperAndLowerCaseCharacters()");
         return this.get_requiresUpperAndLowerCaseCharacters();
     },
     set_RequiresUpperAndLowerCaseCharacters: function(value) {
-        Sys.Extended.Deprecated("set_RequiresUpperAndLowerCaseCharacters", "set_requiresUpperAndLowerCaseCharacters");
+        Sys.Extended.Deprecated("set_RequiresUpperAndLowerCaseCharacters(value)", "set_requiresUpperAndLowerCaseCharacters(value)");
         this.set_requiresUpperAndLowerCaseCharacters(value);
     },
 
@@ -759,11 +759,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_TextCssClass: function() {
-        Sys.Extended.Deprecated("get_TextCssClass", "get_textCssClass");
+        Sys.Extended.Deprecated("get_TextCssClass()", "get_textCssClass()");
         return this.get_textCssClass();
     },
     set_TextCssClass: function(value) {
-        Sys.Extended.Deprecated("set_TextCssClass", "set_textCssClass");
+        Sys.Extended.Deprecated("set_TextCssClass(value)", "set_textCssClass(value)");
         this.set_textCssClass(value);
     },
 
@@ -784,11 +784,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_BarBorderCssClass: function() {
-        Sys.Extended.Deprecated("get_BarBorderCssClass", "get_barBorderCssClass");
+        Sys.Extended.Deprecated("get_BarBorderCssClass()", "get_barBorderCssClass()");
         return this.get_barBorderCssClass();
     },
     set_BarBorderCssClass: function(value) {
-        Sys.Extended.Deprecated("set_BarBorderCssClass", "set_barBorderCssClass");
+        Sys.Extended.Deprecated("set_BarBorderCssClass(value)", "set_barBorderCssClass(value)");
         this.set_barBorderCssClass(value);
     },
 
@@ -809,11 +809,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_BarIndicatorCssClass: function() {
-        Sys.Extended.Deprecated("get_BarIndicatorCssClass", "get_barIndicatorCssClass");
+        Sys.Extended.Deprecated("get_BarIndicatorCssClass()", "get_barIndicatorCssClass()");
         return this.get_barIndicatorCssClass();
     },
     set_BarIndicatorCssClass: function(value) {
-        Sys.Extended.Deprecated("set_BarIndicatorCssClass", "set_barIndicatorCssClass");
+        Sys.Extended.Deprecated("set_BarIndicatorCssClass(value)", "set_barIndicatorCssClass(value)");
         this.set_barIndicatorCssClass(value);
     },
 
@@ -834,11 +834,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_DisplayPosition: function() {
-        Sys.Extended.Deprecated("get_DisplayPosition", "get_displayPosition");
+        Sys.Extended.Deprecated("get_DisplayPosition()", "get_displayPosition()");
         return this.get_displayPosition();
     },
     set_DisplayPosition: function(value) {
-        Sys.Extended.Deprecated("set_DisplayPosition", "set_displayPosition");
+        Sys.Extended.Deprecated("set_DisplayPosition(value)", "set_displayPosition(value)");
         this.set_displayPosition(value);
     },
 
@@ -859,11 +859,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_PrefixText: function() {
-        Sys.Extended.Deprecated("get_PrefixText", "get_prefixText");
+        Sys.Extended.Deprecated("get_PrefixText()", "get_prefixText()");
         return this.get_prefixText();
     },
     set_PrefixText: function(value) {
-        Sys.Extended.Deprecated("set_PrefixText", "set_prefixText");
+        Sys.Extended.Deprecated("set_PrefixText(value)", "set_prefixText(value)");
         this.set_prefixText(value);
     },
 
@@ -888,11 +888,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_StrengthIndicatorType: function() {
-        Sys.Extended.Deprecated("get_StrengthIndicatorType", "get_strengthIndicatorType");
+        Sys.Extended.Deprecated("get_StrengthIndicatorType()", "get_strengthIndicatorType()");
         return this.get_strengthIndicatorType();
     },
     set_StrengthIndicatorType: function(value) {
-        Sys.Extended.Deprecated("set_StrengthIndicatorType", "set_strengthIndicatorType");
+        Sys.Extended.Deprecated("set_StrengthIndicatorType(value)", "set_strengthIndicatorType(value)");
         this.set_strengthIndicatorType(value);
     },
 
@@ -917,11 +917,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_TextStrengthDescriptions: function() {
-        Sys.Extended.Deprecated("get_TextStrengthDescriptions", "get_textStrengthDescriptions");
+        Sys.Extended.Deprecated("get_TextStrengthDescriptions()", "get_textStrengthDescriptions()");
         return this.get_textStrengthDescriptions();
     },
     set_TextStrengthDescriptions: function(value) {
-        Sys.Extended.Deprecated("set_TextStrengthDescriptions", "set_textStrengthDescriptions");
+        Sys.Extended.Deprecated("set_TextStrengthDescriptions(value)", "set_textStrengthDescriptions(value)");
         this.set_textStrengthDescriptions(value);
     },
 
@@ -951,11 +951,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_StrengthStyles: function() {
-        Sys.Extended.Deprecated("get_StrengthStyles", "get_strengthStyles");
+        Sys.Extended.Deprecated("get_StrengthStyles()", "get_strengthStyles()");
         return this.get_strengthStyles();
     },
     set_StrengthStyles: function(value) {
-        Sys.Extended.Deprecated("set_StrengthStyles", "set_strengthStyles");
+        Sys.Extended.Deprecated("set_StrengthStyles(value)", "set_strengthStyles(value)");
         this.set_strengthStyles(value);
     },
 
@@ -970,11 +970,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     /// <setter>set_TextStrengthDescriptionStyles</setter>
     /// <member name="cP:AjaxControlToolkit.PasswordStrength.TextStrengthDescriptionStyles" />
     get_TextStrengthDescriptionStyles: function() {
-        Sys.Extended.Deprecated("get_TextStrengthDescriptionStyles", "get_strengthStyles");
+        Sys.Extended.Deprecated("get_TextStrengthDescriptionStyles()", "get_strengthStyles()");
         return this.get_strengthStyles();
     },
     set_TextStrengthDescriptionStyles: function(value) {
-        Sys.Extended.Deprecated("set_TextStrengthDescriptionStyles", "set_strengthStyles");
+        Sys.Extended.Deprecated("set_TextStrengthDescriptionStyles(value)", "set_strengthStyles(value)");
         this.set_strengthStyles(value);
     },
 
@@ -1000,11 +1000,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_HelpHandleCssClass: function() {
-        Sys.Extended.Deprecated("get_HelpHandleCssClass", "get_helpHandleCssClass");
+        Sys.Extended.Deprecated("get_HelpHandleCssClass()", "get_helpHandleCssClass()");
         return this.get_helpHandleCssClass();
     },
     set_HelpHandleCssClass: function(value) {
-        Sys.Extended.Deprecated("set_HelpHandleCssClass", "set_helpHandleCssClass");
+        Sys.Extended.Deprecated("set_HelpHandleCssClass(value)", "set_helpHandleCssClass(value)");
         this.set_helpHandleCssClass(value);
     },
 
@@ -1025,11 +1025,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_HelpHandlePosition: function() {
-        Sys.Extended.Deprecated("get_HelpHandlePosition", "get_helpHandlePosition");
+        Sys.Extended.Deprecated("get_HelpHandlePosition()", "get_helpHandlePosition()");
         return this.get_helpHandlePosition();
     },
     set_HelpHandlePosition: function(value) {
-        Sys.Extended.Deprecated("set_HelpHandlePosition", "set_helpHandlePosition");
+        Sys.Extended.Deprecated("set_HelpHandlePosition(value)", "set_helpHandlePosition(value)");
         this.set_helpHandlePosition(value);
     },
 
@@ -1057,11 +1057,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_CalculationWeightings: function() {
-        Sys.Extended.Deprecated("get_CalculationWeightings", "get_calculationWeightings");
+        Sys.Extended.Deprecated("get_CalculationWeightings()", "get_calculationWeightings()");
         return this.get_calculationWeightings();
     },
     set_CalculationWeightings: function(value) {
-        Sys.Extended.Deprecated("set_CalculationWeightings", "set_calculationWeightings");
+        Sys.Extended.Deprecated("set_CalculationWeightings(value)", "set_calculationWeightings(value)");
         this.set_calculationWeightings(value);
     },
 
@@ -1091,11 +1091,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_HelpText: function() {
-        Sys.Extended.Deprecated("get_HelpText", "get_helpText");
+        Sys.Extended.Deprecated("get_HelpText()", "get_helpText()");
         return this.get_helpText();
     },
     set_HelpText: function(value) {
-        Sys.Extended.Deprecated("set_HelpText", "set_helpText");
+        Sys.Extended.Deprecated("set_HelpText(value)", "set_helpText(value)");
         this.set_helpText(value);
     },
 
@@ -1119,11 +1119,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_MinimumLowerCaseCharacters: function() {
-        Sys.Extended.Deprecated("get_MinimumLowerCaseCharacters", "get_minimumLowerCaseCharacters");
+        Sys.Extended.Deprecated("get_MinimumLowerCaseCharacters()", "get_minimumLowerCaseCharacters()");
         return this.get_minimumLowerCaseCharacters();
     },
     set_MinimumLowerCaseCharacters: function(value) {
-        Sys.Extended.Deprecated("set_MinimumLowerCaseCharacters", "set_minimumLowerCaseCharacters");
+        Sys.Extended.Deprecated("set_MinimumLowerCaseCharacters(value)", "set_minimumLowerCaseCharacters(value)");
         this.set_minimumLowerCaseCharacters(value);
     },
 
@@ -1147,11 +1147,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_MinimumUpperCaseCharacters: function() {
-        Sys.Extended.Deprecated("get_MinimumUpperCaseCharacters", "get_minimumUpperCaseCharacters");
+        Sys.Extended.Deprecated("get_MinimumUpperCaseCharacters()", "get_minimumUpperCaseCharacters()");
         return this.get_minimumUpperCaseCharacters();
     },
     set_MinimumUpperCaseCharacters: function(value) {
-        Sys.Extended.Deprecated("set_MinimumUpperCaseCharacters", "set_minimumUpperCaseCharacters");
+        Sys.Extended.Deprecated("set_MinimumUpperCaseCharacters(value)", "set_minimumUpperCaseCharacters(value)");
         this.set_minimumUpperCaseCharacters(value);
     },
 
@@ -1172,11 +1172,11 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
     },
 
     get_HelpStatusLabelID: function() {
-        Sys.Extended.Deprecated("get_HelpStatusLabelID", "get_helpStatusLabelID");
+        Sys.Extended.Deprecated("get_HelpStatusLabelID()", "get_helpStatusLabelID()");
         return this.get_helpStatusLabelID();
     },
     set_HelpStatusLabelID: function(value) {
-        Sys.Extended.Deprecated("set_HelpStatusLabelID", "set_helpStatusLabelID");
+        Sys.Extended.Deprecated("set_HelpStatusLabelID(value)", "set_helpStatusLabelID(value)");
         this.set_helpStatusLabelID(value);
     }
 }

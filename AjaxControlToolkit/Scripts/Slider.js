@@ -782,11 +782,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_Value: function() {
-        Sys.Extended.Deprecated("get_Value", "get_value");
+        Sys.Extended.Deprecated("get_Value()", "get_value()");
         return this.get_value();
     },
     set_Value: function(value) {
-        Sys.Extended.Deprecated("set_Value", "set_value");
+        Sys.Extended.Deprecated("set_Value(value)", "set_value(value)");
         this.set_value(value);
     },
 
@@ -804,11 +804,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_RailCssClass: function() {
-        Sys.Extended.Deprecated("get_RailCssClass", "get_railCssClass");
+        Sys.Extended.Deprecated("get_RailCssClass()", "get_railCssClass()");
         return this.get_railCssClass();
     },
     set_RailCssClass: function(value) {
-        Sys.Extended.Deprecated("set_RailCssClass", "set_railCssClass");
+        Sys.Extended.Deprecated("set_RailCssClass(value)", "set_railCssClass(value)");
         this.set_railCssClass(value);
     },
 
@@ -826,11 +826,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_HandleImageUrl: function() {
-        Sys.Extended.Deprecated("get_HandleImageUrl", "get_handleImageUrl");
+        Sys.Extended.Deprecated("get_HandleImageUrl()", "get_handleImageUrl()");
         return this.get_handleImageUrl();
     },
     set_HandleImageUrl: function(value) {
-        Sys.Extended.Deprecated("set_HandleImageUrl", "set_handleImageUrl");
+        Sys.Extended.Deprecated("set_HandleImageUrl(value)", "set_handleImageUrl(value)");
         this.set_handleImageUrl(value);
     },
 
@@ -848,11 +848,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_HandleCssClass: function() {
-        Sys.Extended.Deprecated("get_HandleCssClass", "get_handleCssClass");
+        Sys.Extended.Deprecated("get_HandleCssClass()", "get_handleCssClass()");
         return this.get_handleCssClass();
     },
     set_HandleCssClass: function(value) {
-        Sys.Extended.Deprecated("set_HandleCssClass", "set_handleCssClass");
+        Sys.Extended.Deprecated("set_HandleCssClass(value)", "set_handleCssClass(value)");
         this.set_handleCssClass(value);
     },
 
@@ -870,11 +870,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_Minimum: function() {
-        Sys.Extended.Deprecated("get_Minimum", "get_minimum");
+        Sys.Extended.Deprecated("get_Minimum()", "get_minimum()");
         return this.get_minimum();
     },
     set_Minimum: function(value) {
-        Sys.Extended.Deprecated("set_Minimum", "set_minimum");
+        Sys.Extended.Deprecated("set_Minimum(value)", "set_minimum(value)");
         this.set_minimum(value);
     },
 
@@ -892,11 +892,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_Maximum: function() {
-        Sys.Extended.Deprecated("get_Maximum", "get_maximum");
+        Sys.Extended.Deprecated("get_Maximum()", "get_maximum()");
         return this.get_maximum();
     },
     set_Maximum: function(value) {
-        Sys.Extended.Deprecated("set_Maximum", "set_maximum");
+        Sys.Extended.Deprecated("set_Maximum(value)", "set_maximum(value)");
         this.set_maximum(value);
     },
 
@@ -914,11 +914,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_Orientation: function() {
-        Sys.Extended.Deprecated("get_Orientation", "get_orientation");
+        Sys.Extended.Deprecated("get_Orientation()", "get_orientation()");
         return this.get_orientation();
     },
     set_Orientation: function(value) {
-        Sys.Extended.Deprecated("set_Orientation", "set_orientation");
+        Sys.Extended.Deprecated("set_Orientation(value)", "set_orientation(value)");
         this.set_orientation(value);
     },
 
@@ -937,11 +937,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_Steps: function() {
-        Sys.Extended.Deprecated("get_Steps", "get_steps");
-        return this.get_steps();  
+        Sys.Extended.Deprecated("get_Steps()", "get_steps()");
+        return this.get_steps();
     },
     set_Steps: function(value) {
-        Sys.Extended.Deprecated("set_Steps", "set_steps");
+        Sys.Extended.Deprecated("set_Steps(value)", "set_steps(value)");
         this.set_steps(value);
     },
 
@@ -959,11 +959,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_Decimals: function() {
-        Sys.Extended.Deprecated("get_Decimals", "get_decimals");
+        Sys.Extended.Deprecated("get_Decimals()", "get_decimals()");
         return this.get_decimals();
     },
     set_Decimals: function(value) {
-        Sys.Extended.Deprecated("set_Decimals", "set_decimals");
+        Sys.Extended.Deprecated("set_Decimals(value)", "set_decimals(value)");
         this.set_decimals(value);
     },
 
@@ -981,11 +981,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_EnableHandleAnimation: function() {
-        Sys.Extended.Deprecated("get_EnableHandleAnimation", "get_enableHandleAnimation");
+        Sys.Extended.Deprecated("get_EnableHandleAnimation()", "get_enableHandleAnimation()");
         return this.get_enableHandleAnimation();
     },
     set_EnableHandleAnimation: function(value) {
-        Sys.Extended.Deprecated("set_EnableHandleAnimation", "set_enableHandleAnimation");
+        Sys.Extended.Deprecated("set_EnableHandleAnimation(value)", "set_enableHandleAnimation(value)");
         this.set_enableHandleAnimation(value);
     },
 
@@ -1003,11 +1003,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_HandleAnimationDuration: function() {
-        Sys.Extended.Deprecated("get_HandleAnimationDuration", "get_handleAnimationDuration");
+        Sys.Extended.Deprecated("get_HandleAnimationDuration()", "get_handleAnimationDuration()");
         return this.get_handleAnimationDuration();
     },
     set_HandleAnimationDuration: function(value) {
-        Sys.Extended.Deprecated("set_HandleAnimationDuration", "set_handleAnimationDuration");
+        Sys.Extended.Deprecated("set_HandleAnimationDuration(value)", "set_handleAnimationDuration(value)");
         this.set_handleAnimationDuration(value);
     },
 
@@ -1029,11 +1029,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_BoundControlID: function() {
-        Sys.Extended.Deprecated("get_BoundControlID", "get_boundControlID");
+        Sys.Extended.Deprecated("get_BoundControlID()", "get_boundControlID()");
         return this.get_boundControlID();
     },
     set_BoundControlID: function(value) {
-        Sys.Extended.Deprecated("set_BoundControlID", "set_boundControlID");
+        Sys.Extended.Deprecated("set_BoundControlID(value)", "set_boundControlID(value)");
         this.set_boundControlID(value);
     },
 
@@ -1051,11 +1051,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_Length: function() {
-        Sys.Extended.Deprecated("get_Length", "get_length");
+        Sys.Extended.Deprecated("get_Length()", "get_length()");
         return this.get_length();
     },
     set_Length: function(value) {
-        Sys.Extended.Deprecated("set_Length", "set_length");
+        Sys.Extended.Deprecated("set_Length(value)", "set_length(value)");
         this.set_length(value);
     },
 
@@ -1069,7 +1069,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_SliderInitialized: function() {
-        Sys.Extended.Deprecated("get_SliderInitialized", "isSliderInitialized");
+        Sys.Extended.Deprecated("get_SliderInitialized()", "isSliderInitialized()");
         return this.isSliderInitialized();
     },
 
@@ -1088,11 +1088,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_RaiseChangeOnlyOnMouseUp: function() {
-        Sys.Extended.Deprecated("get_RaiseChangeOnlyOnMouseUp", "get_raiseChangeOnlyOnMouseUp");
+        Sys.Extended.Deprecated("get_RaiseChangeOnlyOnMouseUp()", "get_raiseChangeOnlyOnMouseUp()");
         return this.get_raiseChangeOnlyOnMouseUp();
     },
     set_RaiseChangeOnlyOnMouseUp: function(value) {
-        Sys.Extended.Deprecated("set_RaiseChangeOnlyOnMouseUp", "set_raiseChangeOnlyOnMouseUp");
+        Sys.Extended.Deprecated("set_RaiseChangeOnlyOnMouseUp(value)", "set_raiseChangeOnlyOnMouseUp(value)");
         this.set_raiseChangeOnlyOnMouseUp(value);
     },
 
@@ -1113,11 +1113,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     get_TooltipText: function() {
-        Sys.Extended.Deprecated("get_TooltipText", "get_tooltipText");
+        Sys.Extended.Deprecated("get_TooltipText()", "get_tooltipText()");
         return this.get_tooltipText();
     },
     set_TooltipText: function(value) {
-        Sys.Extended.Deprecated("set_TooltipText", "set_tooltipText");
+        Sys.Extended.Deprecated("set_TooltipText(value)", "set_tooltipText(value)");
         this.set_tooltipText(value);
     },
 
@@ -1154,11 +1154,11 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     getClientState: function() {
-        Sys.Extended.Deprecated("getClientState", "get_clientState");
+        Sys.Extended.Deprecated("getClientState()", "get_clientState()");
         return this.get_clientState();
     },
     setClientState: function(value) {
-        Sys.Extended.Deprecated("setClientState", "set_clientState");
+        Sys.Extended.Deprecated("setClientState(value)", "set_clientState(value)");
         return this.set_clientState(value);
     }
 }

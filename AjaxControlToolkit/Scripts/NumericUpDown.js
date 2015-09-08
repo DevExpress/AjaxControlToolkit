@@ -367,11 +367,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_Width: function() {
-        Sys.Extended.Deprecated("get_Width", "get_width");
+        Sys.Extended.Deprecated("get_Width()", "get_width()");
         return this.get_width();
     },
     set_Width: function(value) {
-        Sys.Extended.Deprecated("set_Width", "set_width");
+        Sys.Extended.Deprecated("set_Width(value)", "set_width(value)");
         this.set_width(value);
     },
 
@@ -392,11 +392,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_Tag: function() {
-        Sys.Extended.Deprecated("get_Tag", "get_tag");
+        Sys.Extended.Deprecated("get_Tag()", "get_tag()");
         return this.get_tag();
     },
     set_Tag: function(value) {
-        Sys.Extended.Deprecated("set_Tag", "set_tag");
+        Sys.Extended.Deprecated("set_Tag(value)", "set_tag(value)");
         this.set_tag(value);
     },
 
@@ -417,11 +417,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_TargetButtonUpID: function() {
-        Sys.Extended.Deprecated("get_TargetButtonUpID", "get_targetButtonUpID");
+        Sys.Extended.Deprecated("get_TargetButtonUpID()", "get_targetButtonUpID()");
         return this.get_targetButtonUpID();
     },
     set_TargetButtonUpID: function(value) {
-        Sys.Extended.Deprecated("set_TargetButtonUpID", "set_targetButtonUpID");
+        Sys.Extended.Deprecated("set_TargetButtonUpID(value)", "set_targetButtonUpID(value)");
         this.set_targetButtonUpID(value);
     },
 
@@ -442,11 +442,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_TargetButtonDownID: function() {
-        Sys.Extended.Deprecated("get_TargetButtonDownID", "get_targetButtonDownID");
+        Sys.Extended.Deprecated("get_TargetButtonDownID()", "get_targetButtonDownID()");
         return this.get_targetButtonDownID();
     },
     set_TargetButtonDownID: function(value) {
-        Sys.Extended.Deprecated("set_TargetButtonDownID", "set_targetButtonDownID");
+        Sys.Extended.Deprecated("set_TargetButtonDownID(value)", "set_targetButtonDownID(value)");
         this.set_targetButtonDownID(value);
     },
 
@@ -470,11 +470,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_ServiceUpPath: function() {
-        Sys.Extended.Deprecated("get_ServiceUpPath", "get_serviceUpPath");
+        Sys.Extended.Deprecated("get_ServiceUpPath()", "get_serviceUpPath()");
         return this.get_serviceUpPath();
     },
     set_ServiceUpPath: function(value) {
-        Sys.Extended.Deprecated("set_ServiceUpPath", "set_serviceUpPath");
+        Sys.Extended.Deprecated("set_ServiceUpPath(value)", "set_serviceUpPath(value)");
         this.set_serviceUpPath(value);
     },
 
@@ -498,11 +498,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_ServiceUpMethod: function() {
-        Sys.Extended.Deprecated("get_ServiceUpMethod", "get_serviceUpMethod");
+        Sys.Extended.Deprecated("get_ServiceUpMethod()", "get_serviceUpMethod()");
         return this.get_serviceUpMethod();
     },
     set_ServiceUpMethod: function(value) {
-        Sys.Extended.Deprecated("set_ServiceUpMethod", "set_serviceUpMethod");
+        Sys.Extended.Deprecated("set_ServiceUpMethod(value)", "set_serviceUpMethod(value)");
         this.set_serviceUpMethod(value);
     },
 
@@ -526,11 +526,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_ServiceDownPath: function() {
-        Sys.Extended.Deprecated("get_ServiceDownPath", "get_serviceDownPath");
+        Sys.Extended.Deprecated("get_ServiceDownPath()", "get_serviceDownPath()");
         return this.get_serviceDownPath();
     },
     set_ServiceDownPath: function(value) {
-        Sys.Extended.Deprecated("set_ServiceDownPath", "set_serviceDownPath");
+        Sys.Extended.Deprecated("set_ServiceDownPath(value)", "set_serviceDownPath(value)");
         this.set_serviceDownPath(value);
     },
 
@@ -554,11 +554,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_ServiceDownMethod: function() {
-        Sys.Extended.Deprecated("get_ServiceDownMethod", "get_serviceDownMethod");
+        Sys.Extended.Deprecated("get_ServiceDownMethod()", "get_serviceDownMethod()");
         return this.get_serviceDownMethod();
     },
     set_ServiceDownMethod: function(value) {
-        Sys.Extended.Deprecated("set_ServiceDownMethod", "set_serviceDownMethod");
+        Sys.Extended.Deprecated("set_ServiceDownMethod(value)", "set_serviceDownMethod(value)");
         this.set_serviceDownMethod(value);
     },
 
@@ -589,11 +589,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_RefValues: function() {
-        Sys.Extended.Deprecated("get_RefValues", "get_refValues");
+        Sys.Extended.Deprecated("get_RefValues()", "get_refValues()");
         return this.get_refValues();
     },
     set_RefValues: function(value) {
-        Sys.Extended.Deprecated("set_RefValues", "set_refValues");
+        Sys.Extended.Deprecated("set_RefValues(value)", "set_refValues(value)");
         this.set_refValues(value);
     },
 
@@ -615,11 +615,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_Step: function() {
-        Sys.Extended.Deprecated("get_Step", "get_step");
+        Sys.Extended.Deprecated("get_Step()", "get_step()");
         return this.get_step();
     },
     set_Step: function(value) {
-        Sys.Extended.Deprecated("set_Step", "set_step");
+        Sys.Extended.Deprecated("set_Step(value)", "set_step(value)");
         this.set_step(value);
     },
 
@@ -645,11 +645,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_Minimum: function() {
-        Sys.Extended.Deprecated("get_Minimum", "get_minimum");
+        Sys.Extended.Deprecated("get_Minimum()", "get_minimum()");
         return this.get_minimum();
     },
     set_Minimum: function(value) {
-        Sys.Extended.Deprecated("set_Minimum", "set_minimum");
+        Sys.Extended.Deprecated("set_Minimum(value)", "set_minimum(value)");
         this.set_minimum(value);
     },
 
@@ -670,11 +670,11 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     get_Maximum: function() {
-        Sys.Extended.Deprecated("get_Maximum", "get_maximum");
+        Sys.Extended.Deprecated("get_Maximum()", "get_maximum()");
         return this.get_maximum();
     },
     set_Maximum: function(value) {
-        Sys.Extended.Deprecated("set_Maximum", "set_maximum");
+        Sys.Extended.Deprecated("set_Maximum(value)", "set_maximum(value)");
         this.set_maximum(value);
     },
 

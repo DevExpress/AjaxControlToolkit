@@ -186,7 +186,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
         return this._initialized;
     },
     get_SliderInitialized: function() {
-        Sys.Extended.Deprecated("get_SliderInitialized", "get_sliderInitialized");
+        Sys.Extended.Deprecated("get_SliderInitialized()", "get_sliderInitialized()");
         return this.get_sliderInitialized();
     },
 
@@ -1586,11 +1586,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     get_Value: function() {
-        Sys.Extended.Deprecated("get_Value", "get_value");
+        Sys.Extended.Deprecated("get_Value()", "get_value()");
         return this.get_value();
     },
     set_Value: function(value) {
-        Sys.Extended.Deprecated("set_Value", "set_value");
+        Sys.Extended.Deprecated("set_Value(value)", "set_value(value)");
         this.set_value(value);  
     },
 

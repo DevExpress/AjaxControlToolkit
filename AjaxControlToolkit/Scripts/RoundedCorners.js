@@ -420,11 +420,11 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     get_Color: function() {
-        Sys.Extended.Deprecated("get_Color", "get_color");
+        Sys.Extended.Deprecated("get_Color()", "get_color()");
         return this.get_color();
     },
     set_Color: function(value) {
-        Sys.Extended.Deprecated("set_Color", "set_color");
+        Sys.Extended.Deprecated("set_Color(value)", "set_color(value)");
         this.set_color(value);
     },
 
@@ -448,11 +448,11 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     get_Radius: function() {
-        Sys.Extended.Deprecated("get_Radius", "get_radius");
+        Sys.Extended.Deprecated("get_Radius()", "get_radius()");
         return this.get_radius();
     },
     set_Radius: function(value) {
-        Sys.Extended.Deprecated("set_Radius", "set_radius");
+        Sys.Extended.Deprecated("set_Radius(value)", "set_radius(value)");
         this.set_radius(value);
     },
 
@@ -475,11 +475,11 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     get_Corners: function() {
-        Sys.Extended.Deprecated("get_Corners", "get_corners");
+        Sys.Extended.Deprecated("get_Corners()", "get_corners()");
         return this.get_corners();
     },
     set_Corners: function(value) {
-        Sys.Extended.Deprecated("set_Corners", "set_corners");
+        Sys.Extended.Deprecated("set_Corners(value)", "set_corners(value)");
         this.set_corners(value);
     },
 
@@ -502,11 +502,11 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     get_BorderColor: function() {
-        Sys.Extended.Deprecated("get_BorderColor", "get_borderColor");
+        Sys.Extended.Deprecated("get_BorderColor()", "get_borderColor()");
         return this.get_borderColor();
     },
     set_BorderColor: function(value) {
-        Sys.Extended.Deprecated("set_BorderColor", "set_borderColor");
+        Sys.Extended.Deprecated("set_BorderColor(value)", "set_borderColor(value)");
         this.set_borderColor(value);
     }
 }

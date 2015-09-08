@@ -57,7 +57,7 @@ Sys.Extended.UI.TabContainer.prototype = {
             __doPostBack(this._autoPostBackId, "activeTabChanged:" + this.get_activeTabIndex());
     },
     raiseActiveTabChanged: function() {
-        Sys.Extended.Deprecated("raiseActiveTabChanged", "raise_activeTabChanged");
+        Sys.Extended.Deprecated("raiseActiveTabChanged()", "raise_activeTabChanged()");
         this.raise_activeTabChanged();
     },
 
@@ -478,7 +478,7 @@ Sys.Extended.UI.TabPanel.prototype = {
             eh(this, Sys.EventArgs.Empty);
     },
     raiseClick: function() {
-        Sys.Extended.Deprecated("raiseClick", "raise_click");
+        Sys.Extended.Deprecated("raiseClick()", "raise_click()");
         this.raise_click();
     },
 
@@ -499,7 +499,7 @@ Sys.Extended.UI.TabPanel.prototype = {
             eh(this, Sys.EventArgs.Empty);
     },
     raisePopulating: function() {
-        Sys.Extended.Deprecated("raisePopulating", "raise_populating");
+        Sys.Extended.Deprecated("raisePopulating()", "raise_populating()");
         this.raise_populating();
     },
 
@@ -520,7 +520,7 @@ Sys.Extended.UI.TabPanel.prototype = {
             eh(this, Sys.EventArgs.Empty);
     },
     raisePopulated: function() {
-        Sys.Extended.Deprecated("raisePopulated", "raise_populated");
+        Sys.Extended.Deprecated("raisePopulated()", "raise_populated()");
         this.raise_populated();
     },
 

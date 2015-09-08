@@ -3291,11 +3291,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_Mask: function() {
-        Sys.Extended.Deprecated("get_Mask", "get_mask");
+        Sys.Extended.Deprecated("get_Mask()", "get_mask()");
         return this.get_mask();
     },
     set_Mask: function(value) {
-        Sys.Extended.Deprecated("set_Mask", "set_mask");
+        Sys.Extended.Deprecated("set_Mask(value)", "set_mask(value)");
         this.set_mask(value);
     },
 
@@ -3314,11 +3314,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_Filtered: function() {
-        Sys.Extended.Deprecated("get_Filtered", "get_filtered");
+        Sys.Extended.Deprecated("get_Filtered()", "get_filtered()");
         return this.get_filtered();
     },
     set_Filtered: function(value) {
-        Sys.Extended.Deprecated("set_Filtered", "set_filtered");
+        Sys.Extended.Deprecated("set_Filtered(value)", "set_filtered(value)");
         this.set_filtered(value);
     },
 
@@ -3342,11 +3342,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_InputDirection: function() {
-        Sys.Extended.Deprecated("get_InputDirection", "get_inputDirection");
+        Sys.Extended.Deprecated("get_InputDirection()", "get_inputDirection()");
         return this.get_inputDirection();
     },
     set_InputDirection: function(value) {
-        Sys.Extended.Deprecated("set_InputDirection", "set_inputDirection");
+        Sys.Extended.Deprecated("set_InputDirection(value)", "set_inputDirection(value)");
         this.set_inputDirection(value);
     },
 
@@ -3365,11 +3365,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_PromptCharacter: function() {
-        Sys.Extended.Deprecated("get_PromptCharacter", "get_promptCharacter");
+        Sys.Extended.Deprecated("get_PromptCharacter()", "get_promptCharacter()");
         return this.get_promptCharacter();
     },
     set_PromptCharacter: function(value) {
-        Sys.Extended.Deprecated("set_PromptCharacter", "set_promptCharacter");
+        Sys.Extended.Deprecated("set_PromptCharacter(value)", "set_promptCharacter(value)");
         this.set_promptCharacter(value);
     },
 
@@ -3388,11 +3388,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_OnFocusCssClass: function() {
-        Sys.Extended.Deprecated("get_OnFocusCssClass", "get_onFocusCssClass");
+        Sys.Extended.Deprecated("get_OnFocusCssClass()", "get_onFocusCssClass()");
         return this.get_onFocusCssClass();
     },
     set_OnFocusCssClass: function(value) {
-        Sys.Extended.Deprecated("set_OnFocusCssClass", "set_onFocusCssClass");
+        Sys.Extended.Deprecated("set_OnFocusCssClass(value)", "set_onFocusCssClass(value)");
         this.set_onFocusCssClass(value);
     },
 
@@ -3411,11 +3411,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_OnInvalidCssClass: function() {
-        Sys.Extended.Deprecated("get_OnInvalidCssClass", "get_onInvalidCssClass");
+        Sys.Extended.Deprecated("get_OnInvalidCssClass()", "get_onInvalidCssClass()");
         return this.get_onInvalidCssClass();
     },
     set_OnInvalidCssClass: function(value) {
-        Sys.Extended.Deprecated("set_OnInvalidCssClass", "set_onInvalidCssClass");
+        Sys.Extended.Deprecated("set_OnInvalidCssClass(value)", "set_onInvalidCssClass(value)");
         this.set_onInvalidCssClass(value);
     },
 
@@ -3434,11 +3434,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureName: function() {
-        Sys.Extended.Deprecated("get_CultureName", "get_cultureName");
+        Sys.Extended.Deprecated("get_CultureName()", "get_cultureName()");
         return this.get_cultureName();
     },
     set_CultureName: function(value) {
-        Sys.Extended.Deprecated("set_CultureName", "set_cultureName");
+        Sys.Extended.Deprecated("set_CultureName(value)", "set_cultureName(value)");
         this.set_cultureName(value);
     },
 
@@ -3457,11 +3457,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureDatePlaceholder: function() {
-        Sys.Extended.Deprecated("get_CultureDatePlaceholder", "get_cultureDatePlaceholder");
+        Sys.Extended.Deprecated("get_CultureDatePlaceholder()", "get_cultureDatePlaceholder()");
         return this.get_cultureDatePlaceholder();
     },
     set_CultureDatePlaceholder: function(value) {
-        Sys.Extended.Deprecated("set_CultureDatePlaceholder", "set_cultureDatePlaceholder");
+        Sys.Extended.Deprecated("set_CultureDatePlaceholder(value)", "set_cultureDatePlaceholder(value)");
         this.set_cultureDatePlaceholder(value);
     },
 
@@ -3480,11 +3480,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureTimePlaceholder: function() {
-        Sys.Extended.Deprecated("get_CultureTimePlaceholder", "get_cultureTimePlaceholder");
+        Sys.Extended.Deprecated("get_CultureTimePlaceholder()", "get_cultureTimePlaceholder()");
         return this.get_cultureTimePlaceholder();
     },
     set_CultureTimePlaceholder: function(value) {
-        Sys.Extended.Deprecated("set_CultureTimePlaceholder", "set_cultureTimePlaceholder");
+        Sys.Extended.Deprecated("set_CultureTimePlaceholder(value)", "set_cultureTimePlaceholder(value)");
         this.set_cultureTimePlaceholder(value);
     },
 
@@ -3503,11 +3503,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureDecimalPlaceholder: function() {
-        Sys.Extended.Deprecated("get_CultureDecimalPlaceholder", "get_cultureDecimalPlaceholder");
+        Sys.Extended.Deprecated("get_CultureDecimalPlaceholder()", "get_cultureDecimalPlaceholder()");
         return this.get_cultureDecimalPlaceholder();
     },
     set_CultureDecimalPlaceholder: function(value) {
-        Sys.Extended.Deprecated("set_CultureDecimalPlaceholder", "set_cultureDecimalPlaceholder");
+        Sys.Extended.Deprecated("set_CultureDecimalPlaceholder(value)", "set_cultureDecimalPlaceholder(value)");
         this.set_cultureDecimalPlaceholder(value);
     },
 
@@ -3526,11 +3526,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureThousandsPlaceholder: function() {
-        Sys.Extended.Deprecated("get_CultureThousandsPlaceholder", "get_cultureThousandsPlaceholder");
+        Sys.Extended.Deprecated("get_CultureThousandsPlaceholder()", "get_cultureThousandsPlaceholder()");
         return this.get_cultureThousandsPlaceholder();
     },
     set_CultureThousandsPlaceholder: function(value) {
-        Sys.Extended.Deprecated("set_CultureThousandsPlaceholder", "set_cultureThousandsPlaceholder");
+        Sys.Extended.Deprecated("set_CultureThousandsPlaceholder(value)", "set_cultureThousandsPlaceholder(value)");
         this.set_cultureThousandsPlaceholder(value);
     },
 
@@ -3572,11 +3572,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureDateFormat: function() {
-        Sys.Extended.Deprecated("get_CultureDateFormat", "get_cultureDateFormat");
+        Sys.Extended.Deprecated("get_CultureDateFormat()", "get_cultureDateFormat()");
         return this.get_cultureDateFormat();
     },
     set_CultureDateFormat: function(value) {
-        Sys.Extended.Deprecated("set_CultureDateFormat", "set_cultureDateFormat");
+        Sys.Extended.Deprecated("set_CultureDateFormat(value)", "set_cultureDateFormat(value)");
         this.set_cultureDateFormat(value);
     },
 
@@ -3595,11 +3595,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureCurrencySymbolPlaceholder: function() {
-        Sys.Extended.Deprecated("get_CultureCurrencySymbolPlaceholder", "get_cultureCurrencySymbolPlaceholder");
+        Sys.Extended.Deprecated("get_CultureCurrencySymbolPlaceholder()", "get_cultureCurrencySymbolPlaceholder()");
         return this.get_cultureCurrencySymbolPlaceholder();
     },
     set_CultureCurrencySymbolPlaceholder: function(value) {
-        Sys.Extended.Deprecated("set_CultureCurrencySymbolPlaceholder", "set_cultureCurrencySymbolPlaceholder");
+        Sys.Extended.Deprecated("set_CultureCurrencySymbolPlaceholder(value)", "set_cultureCurrencySymbolPlaceholder(value)");
         this.set_cultureCurrencySymbolPlaceholder(value);
     },
 
@@ -3625,11 +3625,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureAMPMPlaceholder: function() {
-        Sys.Extended.Deprecated("get_CultureAMPMPlaceholder", "get_cultureAMPMPlaceholder");
+        Sys.Extended.Deprecated("get_CultureAMPMPlaceholder()", "get_cultureAMPMPlaceholder()");
         return this.get_cultureAMPMPlaceholder();
     },
     set_CultureAMPMPlaceholder: function(value) {
-        Sys.Extended.Deprecated("set_CultureAMPMPlaceholder", "set_cultureAMPMPlaceholder");
+        Sys.Extended.Deprecated("set_CultureAMPMPlaceholder(value)", "set_cultureAMPMPlaceholder(value)");
         this.set_cultureAMPMPlaceholder(value);
     },
 
@@ -3648,7 +3648,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureFirstLettersAMPM: function() {
-        Sys.Extended.Deprecated("get_CultureFirstLettersAMPM", "getCultureFirstLettersAMPM");
+        Sys.Extended.Deprecated("get_CultureFirstLettersAMPM()", "getCultureFirstLettersAMPM()");
         return this.getCultureFirstLettersAMPM();
     },
 
@@ -3667,7 +3667,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureFirstLetterAM: function() {
-        Sys.Extended.Deprecated("get_CultureFirstLetterAM", "getCultureFirstLetterAM");
+        Sys.Extended.Deprecated("get_CultureFirstLetterAM()", "getCultureFirstLetterAM()");
         return this.getCultureFirstLetterAM();
     },
 
@@ -3686,7 +3686,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_CultureFirstLetterPM: function() {
-        Sys.Extended.Deprecated("get_CultureFirstLetterPM", "getCultureFirstLetterPM");
+        Sys.Extended.Deprecated("get_CultureFirstLetterPM()", "getCultureFirstLetterPM()");
         return this.getCultureFirstLetterPM();
     },
 
@@ -3705,11 +3705,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_ClearMaskOnLostFocus: function() {
-        Sys.Extended.Deprecated("get_ClearMaskOnLostFocus", "get_clearMaskOnLostFocus");
+        Sys.Extended.Deprecated("get_ClearMaskOnLostFocus()", "get_clearMaskOnLostFocus()");
         return this.get_clearMaskOnLostFocus();
     },
     set_ClearMaskOnLostFocus: function(value) {
-        Sys.Extended.Deprecated("set_ClearMaskOnLostFocus", "set_clearMaskOnLostFocus");
+        Sys.Extended.Deprecated("set_ClearMaskOnLostFocus(value)", "set_clearMaskOnLostFocus(value)");
         this.set_clearMaskOnLostFocus(value);
     },
 
@@ -3728,11 +3728,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_MessageValidatorTip: function() {
-        Sys.Extended.Deprecated("get_MessageValidatorTip", "get_messageValidatorTip");
+        Sys.Extended.Deprecated("get_MessageValidatorTip()", "get_messageValidatorTip()");
         return this.get_messageValidatorTip();
     },
     set_MessageValidatorTip: function(value) {
-        Sys.Extended.Deprecated("set_MessageValidatorTip", "set_messageValidatorTip");
+        Sys.Extended.Deprecated("set_MessageValidatorTip(value)", "set_messageValidatorTip(value)");
         this.set_messageValidatorTip(value);
     },
 
@@ -3751,11 +3751,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_AcceptAMPM: function() {
-        Sys.Extended.Deprecated("get_AcceptAMPM", "get_acceptAMPM");
+        Sys.Extended.Deprecated("get_AcceptAMPM()", "get_acceptAMPM()");
         return this.get_acceptAMPM();
     },
     set_AcceptAMPM: function(value) {
-        Sys.Extended.Deprecated("set_AcceptAMPM", "set_acceptAMPM");
+        Sys.Extended.Deprecated("set_AcceptAMPM(value)", "set_acceptAMPM(value)");
         this.set_acceptAMPM(value);
     },
 
@@ -3780,11 +3780,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_AcceptNegative: function() {
-        Sys.Extended.Deprecated("get_AcceptNegative", "get_acceptNegative");
+        Sys.Extended.Deprecated("get_AcceptNegative()", "get_acceptNegative()");
         return this.get_acceptNegative();
     },
     set_AcceptNegative: function(value) {
-        Sys.Extended.Deprecated("set_AcceptNegative", "set_acceptNegative");
+        Sys.Extended.Deprecated("set_AcceptNegative(value)", "set_acceptNegative(value)");
         this.set_acceptNegative(value);
     },
 
@@ -3809,11 +3809,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_DisplayMoney: function() {
-        Sys.Extended.Deprecated("get_DisplayMoney", "get_displayMoney");
+        Sys.Extended.Deprecated("get_DisplayMoney()", "get_displayMoney()");
         return this.get_displayMoney();
     },
     set_DisplayMoney: function(value) {
-        Sys.Extended.Deprecated("set_DisplayMoney", "set_displayMoney");
+        Sys.Extended.Deprecated("set_DisplayMoney(value)", "set_displayMoney(value)");
         this.set_displayMoney(value);
     },
 
@@ -3832,11 +3832,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_OnFocusCssNegative: function() {
-        Sys.Extended.Deprecated("get_OnFocusCssNegative", "get_onFocusCssNegative");
+        Sys.Extended.Deprecated("get_OnFocusCssNegative()", "get_onFocusCssNegative()");
         return this.get_onFocusCssNegative();
     },
     set_OnFocusCssNegative: function(value) {
-        Sys.Extended.Deprecated("set_OnFocusCssNegative", "set_onFocusCssNegative");
+        Sys.Extended.Deprecated("set_OnFocusCssNegative(value)", "set_onFocusCssNegative(value)");
         this.set_onFocusCssNegative(value);
     },
 
@@ -3855,11 +3855,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_OnBlurCssNegative: function() {
-        Sys.Extended.Deprecated("get_OnBlurCssNegative", "get_onBlurCssNegative");
+        Sys.Extended.Deprecated("get_OnBlurCssNegative()", "get_onBlurCssNegative()");
         return this.get_onBlurCssNegative();
     },
     set_OnBlurCssNegative: function(value) {
-        Sys.Extended.Deprecated("set_OnBlurCssNegative", "set_onBlurCssNegative");
+        Sys.Extended.Deprecated("set_OnBlurCssNegative(value)", "set_onBlurCssNegative(value)");
         this.set_onBlurCssNegative(value);
     },
 
@@ -3878,11 +3878,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_Century: function() {
-        Sys.Extended.Deprecated("get_Century", "get_century");
+        Sys.Extended.Deprecated("get_Century()", "get_century()");
         return this.get_century();
     },
     set_Century: function(value) {
-        Sys.Extended.Deprecated("set_Century", "set_century");
+        Sys.Extended.Deprecated("set_Century(value)", "set_century(value)");
         this.set_century(value);
     },
 
@@ -3907,11 +3907,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_AutoComplete: function() {
-        Sys.Extended.Deprecated("get_AutoComplete", "get_autoComplete");
+        Sys.Extended.Deprecated("get_AutoComplete()", "get_autoComplete()");
         return this.get_autoComplete();
     },
     set_AutoComplete: function(value) {
-        Sys.Extended.Deprecated("set_AutoComplete", "set_autoComplete");
+        Sys.Extended.Deprecated("set_AutoComplete(value)", "set_autoComplete(value)");
         this.set_autoComplete(value);
     },
 
@@ -3930,11 +3930,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_AutoCompleteValue: function() {
-        Sys.Extended.Deprecated("get_AutoCompleteValue", "get_autoCompleteValue");
+        Sys.Extended.Deprecated("get_AutoCompleteValue()", "get_autoCompleteValue()");
         return this.get_autoCompleteValue();
     },
     set_AutoCompleteValue: function(value) {
-        Sys.Extended.Deprecated("set_AutoCompleteValue", "set_autoCompleteValue");
+        Sys.Extended.Deprecated("set_AutoCompleteValue(value)", "set_autoCompleteValue(value)");
         this.set_autoCompleteValue(value);
     },
 
@@ -3961,11 +3961,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_MaskType: function() {
-        Sys.Extended.Deprecated("get_MaskType", "get_maskType");
+        Sys.Extended.Deprecated("get_MaskType()", "get_maskType()");
         return this.get_maskType();
     },
     set_MaskType: function(value) {
-        Sys.Extended.Deprecated("set_MaskType", "set_maskType");
+        Sys.Extended.Deprecated("set_MaskType(value)", "set_maskType(value)");
         this.set_maskType(value);
     },
 
@@ -3986,11 +3986,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_ClearTextOnInvalid: function() {
-        Sys.Extended.Deprecated("get_ClearTextOnInvalid", "get_clearTextOnInvalid");
+        Sys.Extended.Deprecated("get_ClearTextOnInvalid()", "get_clearTextOnInvalid()");
         return this.get_clearTextOnInvalid();
     },
     set_ClearTextOnInvalid: function(value) {
-        Sys.Extended.Deprecated("set_ClearTextOnInvalid", "set_clearTextOnInvalid");
+        Sys.Extended.Deprecated("set_ClearTextOnInvalid(value)", "set_clearTextOnInvalid(value)");
         this.set_clearTextOnInvalid(value);
     },
 
@@ -4009,11 +4009,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_ClipboardText: function() {
-        Sys.Extended.Deprecated("get_ClipboardText", "get_clipboardText");
+        Sys.Extended.Deprecated("get_ClipboardText()", "get_clipboardText()");
         return this.get_clipboardText();
     },
     set_ClipboardText: function(value) {
-        Sys.Extended.Deprecated("set_ClipboardText", "set_clipboardText");
+        Sys.Extended.Deprecated("set_ClipboardText(value)", "set_clipboardText(value)");
         this.set_clipboardText(value);
     },
 
@@ -4032,11 +4032,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_ClipboardEnabled: function() {
-        Sys.Extended.Deprecated("get_ClipboardEnabled", "get_clipboardEnabled");
+        Sys.Extended.Deprecated("get_ClipboardEnabled()", "get_clipboardEnabled()");
         return this.get_clipboardEnabled();
     },
     set_ClipboardEnabled: function(value) {
-        Sys.Extended.Deprecated("set_ClipboardEnabled", "set_clipboardEnabled");
+        Sys.Extended.Deprecated("set_ClipboardEnabled(value)", "set_clipboardEnabled(value)");
         this.set_clipboardEnabled(value);
     },
 
@@ -4055,11 +4055,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_ErrorTooltipEnabled: function() {
-        Sys.Extended.Deprecated("get_ErrorTooltipEnabled", "get_errorTooltipEnabled");
+        Sys.Extended.Deprecated("get_ErrorTooltipEnabled()", "get_errorTooltipEnabled()");
         return this.get_errorTooltipEnabled();
     },
     set_ErrorTooltipEnabled: function(value) {
-        Sys.Extended.Deprecated("set_ErrorTooltipEnabled", "set_errorTooltipEnabled");
+        Sys.Extended.Deprecated("set_ErrorTooltipEnabled(value)", "set_errorTooltipEnabled(value)");
         this.set_errorTooltipEnabled(value);
     },
 
@@ -4078,11 +4078,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_ErrorTooltipCssClass: function() {
-        Sys.Extended.Deprecated("get_ErrorTooltipCssClass", "get_errorTooltipCssClass");
+        Sys.Extended.Deprecated("get_ErrorTooltipCssClass()", "get_errorTooltipCssClass()");
         return this.get_errorTooltipCssClass();
     },
     set_ErrorTooltipCssClass: function(value) {
-        Sys.Extended.Deprecated("set_ErrorTooltipCssClass", "set_errorTooltipCssClass");
+        Sys.Extended.Deprecated("set_ErrorTooltipCssClass(value)", "set_errorTooltipCssClass(value)");
         this.set_errorTooltipCssClass(value);
     },
 
@@ -4101,11 +4101,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_UserDateFormat: function() {
-        Sys.Extended.Deprecated("get_UserDateFormat", "get_userDateFormat");
+        Sys.Extended.Deprecated("get_UserDateFormat()", "get_userDateFormat()");
         return this.get_userDateFormat();
     },
     set_UserDateFormat: function(value) {
-        Sys.Extended.Deprecated("set_UserDateFormat", "set_userDateFormat");
+        Sys.Extended.Deprecated("set_UserDateFormat(value)", "set_userDateFormat(value)");
         this.set_userDateFormat(value);
     },
 
@@ -4124,11 +4124,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     get_UserTimeFormat: function() {
-        Sys.Extended.Deprecated("get_UserTimeFormat", "get_userTimeFormat");
+        Sys.Extended.Deprecated("get_UserTimeFormat()", "get_userTimeFormat()");
         return this.get_userTimeFormat();
     },
     set_UserTimeFormat: function(value) {
-        Sys.Extended.Deprecated("set_UserTimeFormat", "set_userTimeFormat");
+        Sys.Extended.Deprecated("set_UserTimeFormat(value)", "set_userTimeFormat(value)");
         this.set_userTimeFormat(value);
     }
 }

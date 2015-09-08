@@ -421,11 +421,11 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     get_Height: function() {
-        Sys.Extended.Deprecated("get_Height", "get_height");
+        Sys.Extended.Deprecated("get_Height()", "get_height()");
         return this.get_height();
     },
     set_Height: function(value) {
-        Sys.Extended.Deprecated("set_Height", "set_height");
+        Sys.Extended.Deprecated("set_Height(value)", "set_height(value)");
         this.set_height(value);
     },
 
@@ -453,11 +453,11 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     get_IndexSize: function() {
-        Sys.Extended.Deprecated("get_IndexSize", "get_indexSize");
+        Sys.Extended.Deprecated("get_IndexSize()", "get_indexSize()");
         return this.get_indexSize();
     },
     set_IndexSize: function(value) {
-        Sys.Extended.Deprecated("set_IndexSize", "set_indexSize");
+        Sys.Extended.Deprecated("set_IndexSize(value)", "set_indexSize(value)");
         this.set_indexSize(value);
     },
 
@@ -485,11 +485,11 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     get_MaxItemPerPage: function() {
-        Sys.Extended.Deprecated("get_MaxItemPerPage", "get_maxItemPerPage");
+        Sys.Extended.Deprecated("get_MaxItemPerPage()", "get_maxItemPerPage()");
         return this.get_maxItemPerPage();
     },
     set_MaxItemPerPage: function(value) {
-        Sys.Extended.Deprecated("set_MaxItemPerPage", "set_maxItemPerPage");
+        Sys.Extended.Deprecated("set_MaxItemPerPage(value)", "set_maxItemPerPage(value)");
         this.set_maxItemPerPage(value);
     },
 
@@ -518,11 +518,11 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     get_Separator: function() {
-        Sys.Extended.Deprecated("get_Separator", "get_separator");
+        Sys.Extended.Deprecated("get_Separator()", "get_separator()");
         return this.get_separator();
     },
     set_Separator: function(value) {
-        Sys.Extended.Deprecated("set_Separator", "set_separator");
+        Sys.Extended.Deprecated("set_Separator(value)", "set_separator(value)");
         this.set_separator(value);
     },
 
@@ -556,11 +556,11 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     get_ClientSort: function() {
-        Sys.Extended.Deprecated("get_ClientSort", "get_clientSort");
+        Sys.Extended.Deprecated("get_ClientSort()", "get_clientSort()");
         return this.get_clientSort();
     },
     set_ClientSort: function(value) {
-        Sys.Extended.Deprecated("set_ClientSort", "set_clientSort");
+        Sys.Extended.Deprecated("set_ClientSort(value)", "set_clientSort(value)");
         this.set_clientSort(value);
     },
 
@@ -581,11 +581,11 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     get_SelectIndexCssClass: function() {
-        Sys.Extended.Deprecated("get_SelectIndexCssClass", "get_selectIndexCssClass");
+        Sys.Extended.Deprecated("get_SelectIndexCssClass()", "get_selectIndexCssClass()");
         return this.get_selectIndexCssClass();
     },
     set_SelectIndexCssClass: function(value) {
-        Sys.Extended.Deprecated("set_SelectIndexCssClass", "set_selectIndexCssClass");
+        Sys.Extended.Deprecated("set_SelectIndexCssClass(value)", "set_selectIndexCssClass(value)");
         this.set_selectIndexCssClass(value);
     },
 
@@ -606,11 +606,11 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     get_UnselectIndexCssClass: function() {
-        Sys.Extended.Deprecated("get_UnselectIndexCssClass", "get_unselectIndexCssClass");
+        Sys.Extended.Deprecated("get_UnselectIndexCssClass()", "get_unselectIndexCssClass()");
         return this.get_unselectIndexCssClass();
     },
     set_UnselectIndexCssClass: function(value) {
-        Sys.Extended.Deprecated("set_UnselectIndexCssClass", "set_unselectIndexCssClass");
+        Sys.Extended.Deprecated("set_UnselectIndexCssClass(value)", "set_unselectIndexCssClass(value)");
         this.set_unselectIndexCssClass(value);
     }
 }

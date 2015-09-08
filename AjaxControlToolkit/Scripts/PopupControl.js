@@ -334,11 +334,11 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     get_PopupControlID: function() {
-        Sys.Extended.Deprecated("get_PopupControlID", "get_popupControlID");
+        Sys.Extended.Deprecated("get_PopupControlID()", "get_popupControlID()");
         return this.get_popupControlID();
     },
     set_PopupControlID: function(value) {
-        Sys.Extended.Deprecated("set_PopupControlID", "set_popupControlID");
+        Sys.Extended.Deprecated("set_PopupControlID(value)", "set_popupControlID(value)");
         this.set_popupControlID(value);
     },
 
@@ -359,11 +359,11 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     get_CommitProperty: function() {
-        Sys.Extended.Deprecated("get_CommitProperty", "get_commitProperty");
+        Sys.Extended.Deprecated("get_CommitProperty()", "get_commitProperty()");
         return this.get_commitProperty();
     },
     set_CommitProperty: function(value) {
-        Sys.Extended.Deprecated("set_CommitProperty", "set_commitProperty");
+        Sys.Extended.Deprecated("set_CommitProperty(value)", "set_commitProperty(value)");
         this.set_commitProperty(value);
     },
 
@@ -384,11 +384,11 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     get_CommitScript: function() {
-        Sys.Extended.Deprecated("get_CommitScript", "get_commitScript");
+        Sys.Extended.Deprecated("get_CommitScript()", "get_commitScript()");
         return this.get_commitScript();
     },
     set_CommitScript: function(value) {
-        Sys.Extended.Deprecated("set_CommitScript", "set_commitScript");
+        Sys.Extended.Deprecated("set_CommitScript(value)", "set_commitScript(value)");
         this.set_commitScript(value);
     },
 
@@ -410,11 +410,11 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     get_Position: function() {
-        Sys.Extended.Deprecated("get_Position", "get_position");
+        Sys.Extended.Deprecated("get_Position()", "get_position()");
         return this.get_position();
     },
     set_Position: function(value) {
-        Sys.Extended.Deprecated("set_Position", "set_position");
+        Sys.Extended.Deprecated("set_Position(value)", "set_position(value)");
         this.set_position(value);
     },
 
@@ -435,11 +435,11 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     get_ExtenderControlID: function() {
-        Sys.Extended.Deprecated("get_ExtenderControlID", "get_extenderControlID");
+        Sys.Extended.Deprecated("get_ExtenderControlID()", "get_extenderControlID()");
         return this.get_extenderControlID();
     },
     set_ExtenderControlID: function(value) {
-        Sys.Extended.Deprecated("set_ExtenderControlID", "set_extenderControlID");
+        Sys.Extended.Deprecated("set_ExtenderControlID(value)", "set_extenderControlID(value)");
         this.set_extenderControlID(value);
     },
 
@@ -460,11 +460,11 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     get_OffsetX: function() {
-        Sys.Extended.Deprecated("get_OffsetX", "get_offsetX");
+        Sys.Extended.Deprecated("get_OffsetX()", "get_offsetX()");
         return this.get_offsetX();
     },
     set_OffsetX: function(value) {
-        Sys.Extended.Deprecated("set_OffsetX", "set_offsetX");
+        Sys.Extended.Deprecated("set_OffsetX(value)", "set_offsetX(value)");
         this.set_offsetX(value);
     },
 
@@ -485,11 +485,11 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     get_OffsetY: function() {
-        Sys.Extended.Deprecated("get_OffsetY", "get_offsetY");
+        Sys.Extended.Deprecated("get_OffsetY()", "get_offsetY()");
         return this.get_offsetY();
     },
     set_OffsetY: function(value) {
-        Sys.Extended.Deprecated("set_OffsetY", "set_offsetY");
+        Sys.Extended.Deprecated("set_OffsetY(value)", "set_offsetY(value)");
         this.set_offsetY(value);
     },
 
@@ -503,7 +503,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     get_PopupVisible: function() {
-        Sys.Extended.Deprecated("get_PopupVisible", "get_popupVisible");
+        Sys.Extended.Deprecated("get_PopupVisible()", "get_popupVisible()");
         return this.get_popupVisible();
     },
 

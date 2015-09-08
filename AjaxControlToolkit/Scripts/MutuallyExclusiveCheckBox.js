@@ -63,11 +63,11 @@ Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.prototype = {
     },
 
     get_Key: function() {
-        Sys.Extended.Deprecated("get_Key", "get_key");
+        Sys.Extended.Deprecated("get_Key()", "get_key()");
         return this.get_key();
     },
     set_Key: function(value) {
-        Sys.Extended.Deprecated("set_Key", "set_key");
+        Sys.Extended.Deprecated("set_Key(value)", "set_key(value)");
         this.set_key(value);
     },
 

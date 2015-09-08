@@ -198,15 +198,15 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     add_Rated: function(handler) {
-        Sys.Extended.Deprecated("add_Rated", "add_rated");
+        Sys.Extended.Deprecated("add_Rated(handler)", "add_rated(handler)");
         this.add_rated(handler);
     },
     remove_Rated: function(handler) {
-        Sys.Extended.Deprecated("remove_Rated", "remove_rated");
+        Sys.Extended.Deprecated("remove_Rated(handler)", "remove_rated(handler)");
         this.remove_rated(handler);
     },
     raiseRated: function(rating) {
-        Sys.Extended.Deprecated("raiseRated", "raise_rated");
+        Sys.Extended.Deprecated("raiseRated(rating)", "raise_rated(rating)");
         this.raise_rated(rating);
     },
 
@@ -229,15 +229,15 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     add_MouseOver: function(handler) {
-        Sys.Extended.Deprecated("add_MouseOver", "add_mouseOver");
+        Sys.Extended.Deprecated("add_MouseOver(handler)", "add_mouseOver(handler)");
         this.add_mouseOver(handler);
     },
     remove_MouseOver: function(handler) {
-        Sys.Extended.Deprecated("remove_MouseOver", "remove_mouseOver");
+        Sys.Extended.Deprecated("remove_MouseOver(handler)", "remove_mouseOver(handler)");
         this.remove_mouseOver(handler);
     },
     raiseMouseOver: function(rating_tmp) {
-        Sys.Extended.Deprecated("raiseMouseOver", "raise_mouseOver");
+        Sys.Extended.Deprecated("raiseMouseOver(rating_tmp)", "raise_mouseOver(ratingTmp)");
         this.raise_mouseOver(rating_tmp);
     },
 
@@ -260,15 +260,15 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     add_MouseOut: function(handler) {
-        Sys.Extended.Deprecated("add_MouseOut", "add_mouseOut");
+        Sys.Extended.Deprecated("add_MouseOut(handler)", "add_mouseOut(handler)");
         this.add_mouseOut(handler);
     },
     remove_MouseOut: function(handler) {
-        Sys.Extended.Deprecated("remove_MouseOut", "remove_mouseOut");
+        Sys.Extended.Deprecated("remove_MouseOut(handler)", "remove_mouseOut(handler)");
         this.remove_mouseOut(handler);
     },
     raiseMouseOut: function(rating_old) {
-        Sys.Extended.Deprecated("raiseMouseOut", "raise_mouseOut");
+        Sys.Extended.Deprecated("raiseMouseOut(rating_old)", "raise_mouseOut(ratingOld)");
         this.raise_mouseOut(rating_old);
     },
 
@@ -291,15 +291,15 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     add_EndClientCallback: function(handler) {
-        Sys.Extended.Deprecated("add_EndClientCallback", "add_endClientCallback");
+        Sys.Extended.Deprecated("add_EndClientCallback(handler)", "add_endClientCallback(handler)");
         this.add_endClientCallback(handler);
     },
     remove_EndClientCallback: function(handler) {
-        Sys.Extended.Deprecated("remove_EndClientCallback", "remove_endClientCallback");
+        Sys.Extended.Deprecated("remove_EndClientCallback(handler)", "remove_endClientCallback(handler)");
         this.remove_endClientCallback(handler);
     },
     raiseEndClientCallback: function(result) {
-        Sys.Extended.Deprecated("raiseEndClientCallback", "raise_endClientCallback");
+        Sys.Extended.Deprecated("raiseEndClientCallback()", "raise_endClientCallback()");
         this.raise_endClientCallback(result);
     },
 
@@ -317,11 +317,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_AutoPostBack: function() {
-        Sys.Extended.Deprecated("get_AutoPostBack", "get_autoPostBack");
+        Sys.Extended.Deprecated("get_AutoPostBack()", "get_autoPostBack()");
         return this.get_autoPostBack();
     },
     set_AutoPostBack: function(value) {
-        Sys.Extended.Deprecated("set_AutoPostBack", "set_autoPostBack");
+        Sys.Extended.Deprecated("set_AutoPostBack(value)", "set_autoPostBack(value)");
         this.set_autoPostBack(value);
     },
 
@@ -334,7 +334,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
         return this._stars;
     },
     get_Stars: function() {
-        Sys.Extended.Deprecated("get_Stars", "get_stars");
+        Sys.Extended.Deprecated("get_Stars()", "get_stars()");
         return this.get_stars();
     },
 
@@ -355,11 +355,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_Tag: function() {
-        Sys.Extended.Deprecated("get_Tag", "get_tag");
+        Sys.Extended.Deprecated("get_Tag()", "get_tag()");
         return this.get_tag();
     },
     set_Tag: function(value) {
-        Sys.Extended.Deprecated("set_Tag", "set_tag");
+        Sys.Extended.Deprecated("set_Tag(value)", "set_tag(value)");
         this.set_tag(value);
     },
 
@@ -377,11 +377,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_CallbackID: function() {
-        Sys.Extended.Deprecated("get_CallbackID", "get_callbackID");
+        Sys.Extended.Deprecated("get_CallbackID()", "get_callbackID()");
         return this.get_callbackID();
     },
     set_CallbackID: function(value) {
-        Sys.Extended.Deprecated("set_CallbackID", "set_callbackID");
+        Sys.Extended.Deprecated("set_CallbackID(value)", "set_callbackID(value)");
         this.set_callbackID(value);
     },
 
@@ -407,11 +407,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_RatingDirection: function() {
-        Sys.Extended.Deprecated("get_RatingDirection", "get_ratingDirection");
+        Sys.Extended.Deprecated("get_RatingDirection()", "get_ratingDirection()");
         return this.get_ratingDirection();
     },
     set_RatingDirection: function(value) {
-        Sys.Extended.Deprecated("set_RatingDirection", "set_ratingDirection");
+        Sys.Extended.Deprecated("set_RatingDirection(value)", "set_ratingDirection(value)");
         this.set_ratingDirection(value);
     },
 
@@ -432,11 +432,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_EmptyStarCssClass: function() {
-        Sys.Extended.Deprecated("get_EmptyStarCssClass", "get_emptyStarCssClass");
+        Sys.Extended.Deprecated("get_EmptyStarCssClass()", "get_emptyStarCssClass()");
         return this.get_emptyStarCssClass();
     },
     set_EmptyStarCssClass: function(value) {
-        Sys.Extended.Deprecated("set_EmptyStarCssClass", "set_emptyStarCssClass");
+        Sys.Extended.Deprecated("set_EmptyStarCssClass(value)", "set_emptyStarCssClass(value)");
         this.set_emptyStarCssClass(value);  
     },
 
@@ -457,11 +457,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_FilledStarCssClass: function() {
-        Sys.Extended.Deprecated("get_FilledStarCssClass", "get_filledStarCssClass");
+        Sys.Extended.Deprecated("get_FilledStarCssClass()", "get_filledStarCssClass()");
         return this.get_filledStarCssClass();
     },
     set_FilledStarCssClass: function(value) {
-        Sys.Extended.Deprecated("set_FilledStarCssClass", "set_filledStarCssClass");
+        Sys.Extended.Deprecated("set_FilledStarCssClass(value)", "set_filledStarCssClass(value)");
         this.set_filledStarCssClass(value);
     },
 
@@ -482,11 +482,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_WaitingStarCssClass: function() {
-        Sys.Extended.Deprecated("get_WaitingStarCssClass", "get_waitingStarCssClass");
+        Sys.Extended.Deprecated("get_WaitingStarCssClass()", "get_waitingStarCssClass()");
         return this.get_waitingStarCssClass();
     },
     set_WaitingStarCssClass: function(value) {
-        Sys.Extended.Deprecated("set_WaitingStarCssClass", "set_waitingStarCssClass");
+        Sys.Extended.Deprecated("set_WaitingStarCssClass(value)", "set_waitingStarCssClass(value)");
         this.set_waitingStarCssClass(value);
     },
 
@@ -538,11 +538,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_Rating: function() {
-        Sys.Extended.Deprecated("get_Rating", "get_rating");
+        Sys.Extended.Deprecated("get_Rating()", "get_rating()");
         return this.get_rating();
     },
     set_Rating: function(value) {
-        Sys.Extended.Deprecated("set_Rating", "set_rating");
+        Sys.Extended.Deprecated("set_Rating(value)", "set_rating(value)");
         this.set_rating(value);
     },
 
@@ -563,11 +563,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_MaxRating: function() {
-        Sys.Extended.Deprecated("get_MaxRating", "get_maxRating");
+        Sys.Extended.Deprecated("get_MaxRating()", "get_maxRating()");
         return this.get_maxRating();
     },
     set_MaxRating: function(value) {
-        Sys.Extended.Deprecated("set_MaxRating", "set_maxRating");
+        Sys.Extended.Deprecated("set_MaxRating(value)", "set_maxRating(value)");
         this.set_maxRating(value);
     },
 
@@ -588,11 +588,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_ReadOnly: function() {
-        Sys.Extended.Deprecated("get_ReadOnly", "get_readOnly");
+        Sys.Extended.Deprecated("get_ReadOnly()", "get_readOnly()");
         return this.get_readOnly();
     },
     set_ReadOnly: function(value) {
-        Sys.Extended.Deprecated("set_ReadOnly", "set_readOnly");
+        Sys.Extended.Deprecated("set_ReadOnly(value)", "set_readOnly(value)");
         this.set_readOnly(value);
     },
 
@@ -613,11 +613,11 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     get_StarCssClass: function() {
-        Sys.Extended.Deprecated("get_StarCssClass", "get_starCssClass");
+        Sys.Extended.Deprecated("get_StarCssClass()", "get_starCssClass()");
         return this.get_starCssClass();
     },
     set_StarCssClass: function(value) {
-        Sys.Extended.Deprecated("set_StarCssClass", "set_starCssClass");
+        Sys.Extended.Deprecated("set_StarCssClass(value)", "set_starCssClass(value)");
         this.set_starCssClass(value);
     }
 }
