@@ -102,7 +102,9 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
             if(type.IsSubclassOf(typeof(ExtenderControlBase))
                 ||
-                type.IsSubclassOf(typeof(ScriptControlBase))) {
+                type.IsSubclassOf(typeof(ScriptControlBase))
+                ||
+                type == typeof(ComboBox)) {
                 var clientScriptName = type
                     .CustomAttributes
                     .First(a => a.AttributeType.Name == "ClientScriptResourceAttribute")
