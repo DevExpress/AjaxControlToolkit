@@ -42,6 +42,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
                 "LineChart",
                 "ListSearchExtender",
                 "MaskedEditExtender",
+                "MaskedEditValidator",
                 "ModalPopupExtender",
                 "MultiHandleSliderExtender",
                 "MutuallyExclusiveCheckBoxExtender",
