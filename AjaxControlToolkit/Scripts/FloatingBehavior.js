@@ -9,18 +9,27 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
 
     var _mouseDownHandler = Function.createDelegate(this, mouseDownHandler);
 
+    ///<summary>
+    /// Move event handler.
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.DragPanelExtender.move" />
+    ///<event add="add_move" remove="remove_move" />
     this.add_move = function(handler) {
         this.get_events().addHandler('move', handler);
     }
-
     this.remove_move = function(handler) {
         this.get_events().removeHandler('move', handler);
     }
 
+    ///<summary>
+    /// Handle to drag panel around.
+    ///</summary>
+    ///<getter>get_handle</getter>
+    ///<setter>set_handle</setter>
+    ///<member name="cP:AjaxControlToolkit.DragPanelExtender.handle" />
     this.get_handle = function() {
         return _handle;
     }
-
     this.set_handle = function(value) {
         if(_handle != null)
             $removeHandler(_handle, "mousedown", _mouseDownHandler);
@@ -32,7 +41,6 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     this.get_profileProperty = function() {
         return _profileProperty;
     }
-
     this.set_profileProperty = function(value) {
         _profileProperty = value;
     }
@@ -40,15 +48,19 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     this.get_profileComponent = function() {
         return _profileComponent;
     }
-
     this.set_profileComponent = function(value) {
         _profileComponent = value;
     }
 
+    ///<summary>
+    /// Location of an element being dragged.
+    ///</summary>
+    ///<getter>get_location</getter>
+    ///<setter>set_location</setter>
+    ///<member name="cP:AjaxControlToolkit.DragPanelExtender.location" />
     this.get_location = function() {
         return _location;
     }
-
     this.set_location = function(value) {
         if(_location != value) {
             _location = value;
@@ -129,7 +141,6 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     // void onDrag()
     this.onDrag = function() { }
 
-    // void onDragEnd(Canceled)
     this.onDragEnd = function(canceled) {
         if(!canceled) {
             var handler = this.get_events().getHandler('move');
