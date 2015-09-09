@@ -2467,14 +2467,32 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         return partdt + " " + parttm;
     },
 
-    ConvFmtDate: function(input, loadFirst) {
+    _filter: function (array, testFunc) {
+        var newArray = [];
+        for (var i = 0; i < array.length; i++) {
+            if (testFunc(array[i]))
+                newArray.push(array[i]);
+        }
+
+        return newArray;
+    },
+
+    _map: function (array, mapFunc) {
+        var newArray = [];
+        for (var i = 0; i < array.length; i++)
+            newArray.push(mapFunc(array[i]));
+
+        return newArray;
+    },
+
+    ConvFmtDate: function (input, loadFirst) {
         var m_arrDateLD,
             m_arrDate;
 
-        m_arrDate = input.split(this.get_CultureDatePlaceholder()).filter(function(element) {
+        m_arrDate = this._filter(input.split(this.get_CultureDatePlaceholder()), function (element) {
             return element != "";
         });
-        m_arrDate = m_arrDate.map(function(element) {
+        m_arrDate = this._map(m_arrDate, function (element) {
             return element.replace(/[^\/\d]/g, '')
         });
 
