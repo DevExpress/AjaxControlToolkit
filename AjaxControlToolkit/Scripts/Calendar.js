@@ -8,26 +8,29 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
 
     this._textbox = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
     /// <summary>
-    /// Format string used to display the selected date. The default value is "d".
+    /// Format string used to display the selected date. The default value is "d"
     /// </summary>
     /// <getter>get_format</getter>
     /// <setter>set_format</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.format" />
     this._format = "d";
+
     /// <summary>
-    /// Format string used to display today's date. The default value is "MMMM d, yyyy".
+    /// Format string used to display today's date. The default value is "MMMM d, yyyy"
     /// </summary>
     /// <getter>get_todaysDateFormat</getter>
     /// <setter>set_todaysDateFormat</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.todaysDateFormat" />
     this._todaysDateFormat = "MMMM d, yyyy";
+
     /// <summary>
-    /// Format string used to display Days Mode Title. The default value is "MMMM, yyyy".
+    /// Format string used to display Days Mode Title. The default value is "MMMM, yyyy"
     /// </summary>
     /// <getter>get_daysModeTitleFormat</getter>
     /// <setter>set_daysModeTitleFormat</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.daysModeTitleFormat" />
     this._daysModeTitleFormat = "MMMM, yyyy";
+
     /// <summary>
     /// Name of the CSS class used to style the calendar.
     /// The default value is ajax__calendar
@@ -36,13 +39,15 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
     /// <setter>set_cssClass</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.cssClass" />
     this._cssClass = "ajax__calendar";
+
     /// <summary>
-    /// Whether this behavior is available for the current element.
+    /// Whether this behavior is available for the current element
     /// </summary>
     /// <getter>get_enabled</getter>
     /// <setter>set_enabled</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.enabled" />
     this._enabled = true;
+
     /// <summary>
     /// Whether changing modes is animated.
     /// The default is true
@@ -54,49 +59,56 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
     this._buttonID = null;
     this._layoutRequested = 0;
     this._layoutSuspended = false;
+
     /// <summary>
-    /// The button to use to show the calendar (optional).
+    /// The button to use to show the calendar (optional)
     /// </summary>
     /// <getter>get_button</getter>
     /// <setter>set_button</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.button" />
     this._button = null;
     this._popupMouseDown = false;
+
     /// <summary>
-    /// Gets or sets the date that the calendar is initialized with.
+    /// The date that the calendar is initialized with
     /// </summary>
     /// <getter>get_selectedDate</getter>
     /// <setter>set_selectedDate</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.selectedDate" />
     this._selectedDate = null;
+
     /// <summary>
-    /// Gets or sets the property of the start date for range.
+    /// The property of the start date for range
     /// </summary>
     /// <getter>get_startDate</getter>
     /// <setter>set_startDate</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.startDate" />
     this._startDate = null;
+
     /// <summary>
-    /// Gets or sets the property of the end date for range.
+    /// The property of the end date for range
     /// </summary>
     /// <getter>get_endDate</getter>
     /// <setter>set_endDate</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.endDate" />
     this._endDate = null;
+
     /// <summary>
-    /// The date currently visible in the calendar.
+    /// The date currently visible in the calendar
     /// </summary>
     /// <getter>get_visibleDate</getter>
     /// <setter>set_visibleDate</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.visibleDate" />
     this._visibleDate = null;
+
     /// <summary>
-    /// The date to use for "Today".
+    /// The date to use for "Today"
     /// </summary>
     /// <getter>get_todaysDate</getter>
     /// <setter>set_todaysDate</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.todaysDate" />
     this._todaysDate = null;
+
     /// <summary>
     /// The first day of week.
     /// The default value is Default
@@ -114,8 +126,9 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
     this._nextArrow = null;
     this._title = null;
     this._body = null;
+
     /// <summary>
-    /// The button used to select todays date.
+    /// The button used to select todays date
     /// </summary>
     /// <getter>get_todayButton</getter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.todayButton" />
@@ -131,6 +144,7 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
     this._years = null;
     this._yearsTable = null;
     this._yearsBody = null;
+
     /// <summary>
     /// The popup position of the calendar.
     /// The default is BottomLeft
@@ -139,8 +153,9 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
     /// <setter>set_popupPosition</setter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.popupPosition" />
     this._popupPosition = Sys.Extended.UI.CalendarPosition.BottomLeft;
+
     /// <summary>
-    /// The default view of the calender. The default value is Days.
+    /// The default view of the calender. The default value is Days
     /// </summary>
     /// <getter>get_defaultView</getter>
     /// <setter>set_defaultView</setter>
@@ -153,6 +168,7 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
     this._modeChangeMoveBottomOrRightAnimation = null;
     this._mode = "days";
     this._selectedDateChanging = false;
+
     /// <summary>
     /// Whether the calendar is open.
     /// The default value is false
@@ -161,6 +177,7 @@ Sys.Extended.UI.CalendarBehavior = function(element) {
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.isOpen" />
     this._isOpen = false;
     this._isAnimating = false;
+
     /// <summary>
     /// Whether time should be cleared in edited date/time.
     /// The default is false
@@ -441,7 +458,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets the day cell at the specified row or column
+    /// The day cell at the specified row or column
     /// </summary>
     /// <getter>get_dayCell</getter>
     /// <member name="cP:AjaxControlToolkit.CalendarExtender.dayCell" />
@@ -453,7 +470,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when calendar is showing.
+    /// Fires when calendar is showing
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.CalendarExtender.showing" />
@@ -475,7 +492,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when calendar is shown.
+    /// Fires when calendar is shown
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.CalendarExtender.shown" />
@@ -497,7 +514,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when calendar is hiding.
+    /// Fires when calendar is hiding
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.CalendarExtender.hiding" />
@@ -519,7 +536,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when calendar is hidden.
+    /// Fires when calendar is hidden
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.CalendarExtender.hidden" />
@@ -541,7 +558,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when calendar date selection changed.
+    /// Fires when calendar date selection changed
     /// </summary>
     /// <event add="add_dateSelectionChanged" remove="remove_dateSelectionChanged" raise="raise_dateSelectionChanged" />
     /// <member name="cE:AjaxControlToolkit.CalendarExtender.dateSelectionChanged" /> 
@@ -663,7 +680,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Shows the calendar.
+    /// Shows the calendar
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.CalendarExtender.show" />
     show: function() {
@@ -699,7 +716,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Hides the calendar.
+    /// Hides the calendar
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.CalendarExtender.hide" />
     hide: function() {
@@ -722,7 +739,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Focuses the calendar.
+    /// Focuses the calendar
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.CalendarExtender.focus" />
     focus: function() {
@@ -734,7 +751,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     /// <summary>
-    /// Blurs the calendar.
+    /// Blurs the calendar
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.CalendarExtender.blur" />
     blur: function(force) {

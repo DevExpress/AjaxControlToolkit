@@ -10,7 +10,7 @@ using System.Drawing;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// The BarChart control enables you to render a bar chart from one or more series of values.    
+    /// The BarChart control enables you to render a bar chart from one or more series of values.  
     /// </summary>
     [ClientCssResource(Constants.BarChartName)]
     [ClientScriptResource("Sys.Extended.UI.BarChart", Constants.BarChartName)]
@@ -19,7 +19,8 @@ namespace AjaxControlToolkit {
         List<BarChartSeries> _series = new List<BarChartSeries>();
 
         /// <summary>
-        /// This is a required property. You need to provide a set of values for the category axis to create a bar chart.
+        /// This is a required property. You need to provide a set of values for
+        /// the category axis to create a bar chart
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -29,7 +30,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Provides list of series to client side. Need help from Series property 
         /// for designer experience support, cause Editor always blocks the property
-        /// ability to provide values to client side as ExtenderControlProperty on run time.
+        /// ability to provide values to client side as ExtenderControlProperty on run time
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -42,7 +43,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// List of series.
+        /// List of series
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -54,7 +55,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Type of bar charts including Column, StackedColumn, Bar, and StackedBar.
+        /// Type of bar charts including Column, StackedColumn, Bar, and StackedBar
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(BarChartType.Column)]
@@ -71,7 +72,7 @@ namespace AjaxControlToolkit {
         public int ValueAxisLines { get; set; }
 
         /// <summary>
-        /// The the color of the value axis lines.
+        /// The the color of the value axis lines
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -79,7 +80,7 @@ namespace AjaxControlToolkit {
         public string ValueAxisLineColor { get; set; }
 
         /// <summary>
-        /// The color of the category axis lines.
+        /// The color of the category axis lines
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -87,7 +88,7 @@ namespace AjaxControlToolkit {
         public string CategoryAxisLineColor { get; set; }
 
         /// <summary>
-        /// The color of the base lines of the chart.
+        /// The color of the base lines of the chart
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]

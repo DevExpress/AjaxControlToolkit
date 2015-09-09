@@ -678,7 +678,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to customize the width of the chart.
+    /// Enables you to customize the width of the chart
     /// </summary>
     /// <getter>get_chartWidth</getter>
     /// <setter>set_chartWidth</setter>
@@ -691,7 +691,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to customize the height of the chart.
+    /// Enables you to customize the height of the chart
     /// </summary>
     /// <getter>get_chartHeight</getter>
     /// <setter>set_chartHeight</setter>
@@ -704,7 +704,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the title of the chart.
+    /// Enables you to set the title of the chart
     /// </summary>
     /// <getter>get_chartTitle</getter>
     /// <setter>set_chartTitle</setter>
@@ -717,7 +717,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// This is a required property. You need to provide a set of values for the category axis to create a bar chart.
+    /// This is a required property. You need to provide a set of values for the category axis to create a bar chart
     /// </summary>
     /// <getter>get_categoriesAxis</getter>
     /// <setter>set_categoriesAxis</setter>
@@ -730,7 +730,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// List of series.
+    /// List of series
     /// </summary>
     /// <getter>get_clientSeries</getter>
     /// <setter>set_clientSeries</setter>
@@ -752,7 +752,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to render different types of bar charts including Column, StackedColumn, Bar, and StackedBar.
+    /// Enables you to render different types of bar charts including Column, StackedColumn, Bar, and StackedBar
     /// </summary>
     /// <getter>get_chartType</getter>
     /// <setter>set_chartType</setter>
@@ -765,7 +765,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to control the appearance of the bar chart with a Cascading Style Sheet file.
+    /// Enables you to control the appearance of the bar chart with a Cascading Style Sheet file
     /// </summary>
     /// <getter>get_theme</getter>
     /// <setter>set_theme</setter>
@@ -778,7 +778,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the interval size for the value axis line.
+    /// Enables you to set the interval size for the value axis line
     /// </summary>
     /// <getter>get_valueAxisLines</getter>
     /// <setter>set_valueAxisLines</setter>
@@ -791,7 +791,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the font color of the chart title.
+    /// Enables you to set the font color of the chart title
     /// </summary>
     /// <getter>get_chartTitleColor</getter>
     /// <setter>set_chartTitleColor</setter>
@@ -804,7 +804,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the the color of the value axis lines.
+    /// Enables you to set the the color of the value axis lines
     /// </summary>
     /// <getter>get_valueAxisLineColor</getter>
     /// <setter>set_valueAxisLineColor</setter>
@@ -817,7 +817,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the color of the category axis lines.
+    /// Enables you to set the color of the category axis lines
     /// </summary>
     /// <getter>get_categoryAxisLineColor</getter>
     /// <setter>set_categoryAxisLineColor</setter>
@@ -830,7 +830,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the color of the base lines of the chart.
+    /// Enables you to set the color of the base lines of the chart
     /// </summary>
     /// <getter>get_baseLineColor</getter>
     /// <setter>set_baseLineColor</setter>

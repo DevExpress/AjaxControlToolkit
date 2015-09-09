@@ -5,77 +5,87 @@ Sys.Extended.UI.BalloonPopupControlBehavior = function(element) {
     Sys.Extended.UI.BalloonPopupControlBehavior.initializeBase(this, [element]);
 
     /// <summary>
-    /// The ID of the control to display.
+    /// The ID of the control to display
     /// </summary>
     /// <getter>get_balloonPopupControlID</getter>
     /// <setter>set_balloonPopupControlID</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.balloonPopopControlID" />
     this._balloonPopupControlID = null;
+
     /// <summary>
     /// Optional setting specifying where the popup should be positioned relative to the target control.
-    /// Default value is Auto.
+    /// Default value is Auto
     /// </summary>
     /// <getter>get_balloonPopupPosition</getter>
     /// <setter>set_balloonPopupPosition</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.balloonPopupPosition" />
     this._position = Sys.Extended.UI.BalloonPopupPosition.Auto;
+
     /// <summary>
     /// Optional setting specifying the theme of balloon popup.
-    /// Default value is Rectangle.
+    /// Default value is Rectangle
     /// </summary>
     /// <getter>get_balloonPopupStyle</getter>
     /// <setter>set_balloonPopupStyle</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.balloonPopupStyle" />
     this._balloonStyle = Sys.Extended.UI.BalloonPopupStyle.Rectangle;
+
     /// <summary>
-    /// Optional X (horizontal) offset for the popup window (relative to the target control).
+    /// Optional X (horizontal) offset for the popup window (relative to the target control)
     /// </summary>
     /// <getter>get_offsetX</getter>
     /// <setter>set_offsetX</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.offsetX" />
     this._offsetX = 0;
+
     /// <summary>
-    /// Optional Y (horizontal) offset for the popup window (relative to the target control).
+    /// Optional Y (horizontal) offset for the popup window (relative to the target control)
     /// </summary>
     /// <getter>get_offsetY</getter>
     /// <setter>set_offsetY</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.offsetY" />
     this._offsetY = 0;
+
     /// <summary>
-    /// Extender control ID.
+    /// Extender control ID
     /// </summary>
     /// <getter>get_extenderControlID</getter>
     /// <setter>set_extenderControlID</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.extenderControlID" />
     this._extenderControlID = null;
+
     /// <summary>
-    /// Optional setting specifying whether to display balloon popup on the client onMouseOver event. Default value is false.
+    /// Optional setting specifying whether to display balloon popup on the client onMouseOver event. Default value is false
     /// </summary>
     /// <getter>get_displayOnMouseOver</getter>
     /// <setter>set_displayOnMouseOver</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.displayOnMouseOver" />
     this._displayOnMouseOver = false;
+
     /// <summary>
-    /// Optional setting specifying whether to display balloon popup on the client onFocus event. Default value is false.
+    /// Optional setting specifying whether to display balloon popup on the client onFocus event. Default value is false
     /// </summary>
     /// <getter>get_displayOnFocus</getter>
     /// <setter>set_displayOnFocus</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.displayOnFocus" />
     this._displayOnFocus = false;
+
     /// <summary>
-    /// Optional setting specifying whether to display balloon popup on the client onClick event. Default value is true.
+    /// Optional setting specifying whether to display balloon popup on the client onClick event. Default value is true
     /// </summary>
     /// <getter>get_displayOnClick</getter>
     /// <setter>set_displayOnClick</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.displayOnClick" />
     this._displayOnClick = true;
+
     /// <summary>
-    /// Optional setting specifying the size of balloon popup. Default value is Small.
+    /// Optional setting specifying the size of balloon popup. Default value is Small
     /// </summary>
     /// <getter>get_balloonSize</getter>
     /// <setter>set_balloonSize</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.balloonSize" />
     this._balloonSize = "small";
+
     /// <summary>
     /// Optional setting specifying whether to display shadow of balloon popup or not.
     /// Default value is true
@@ -84,9 +94,10 @@ Sys.Extended.UI.BalloonPopupControlBehavior = function(element) {
     /// <setter>set_useShadow</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.useShadow" />
     this._shadow = true;
+
     /// <summary>
     /// Optional setting specifying whether to display scrollbar if contents are overflowing.
-    /// Default value is Auto.
+    /// Default value is Auto
     /// </summary>
     /// <getter>get_scrollBars</getter>
     /// <setter>set_scrollBars</setter>
@@ -101,6 +112,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior = function(element) {
     this._directionElement = null;
     this._contentElement = null;
     this._popupBehavior = null;
+
     /// <summary>
     /// Whether popup is visible.
     /// Default value is false
@@ -391,7 +403,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Shows the popup.
+    /// Shows the popup
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.showPopup" />
     showPopup: function() {
@@ -431,7 +443,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Hides the popup.
+    /// Hides the popup
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.hidePopup" />
     hidePopup: function() {
@@ -556,16 +568,12 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// The OnShow animation will be played each time the popup is displayed. The popup will be positioned correctly but hidden.
+    /// Generic OnShow Animation's JSON definition
     /// </summary>
-    /// <remarks>
-    /// The animation can use <HideAction Visible="true" /> to display the popup along with any other visual effects.
-    /// </remarks>
     /// <getter>get_onShow</getter>
     /// <setter>set_onShow</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.onShow" />
     get_onShow: function() {
-        // Generic OnShow Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onShow() : this._onShowJson;
     },
     set_onShow: function(value) {
@@ -578,7 +586,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnShow Animation's behavior.
+    /// Generic OnShow Animation's behavior
     /// </summary>
     /// <getter>get_onShowBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.onShowBehavior" />
@@ -587,7 +595,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Play the OnShow animation.
+    /// Play the OnShow animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.onShow" />
     onShow: function() {
@@ -597,13 +605,12 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// The OnHide animation will be played each time the popup is hidden.
+    /// Generic OnHide Animation's JSON definition
     /// </summary>
     /// <getter>get_onHide</getter>
     /// <setter>set_onHide</setter>
     /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.onHide" />
     get_onHide: function() {
-        // Generic OnHide Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onHide() : this._onHideJson;
     },
     set_onHide: function(value) {
@@ -616,7 +623,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnHide Animation's behavior.
+    /// Generic OnHide Animation's behavior
     /// </summary>
     /// <getter>get_onHideBehavior</getter>
     /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.onHideBehavior" />
@@ -625,7 +632,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Play the OnHide animation.
+    /// Play the OnHide animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.onHide" />
     onHide: function() {
@@ -801,7 +808,8 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// This is required if user choose BalloonStyle to Custom. This specifies the name of the css class for the custom theme.
+    /// This is required if user choose BalloonStyle to Custom. This specifies the name of
+    /// the css class for the custom theme
     /// </summary>
     /// <getter>get_customClassName</getter>
     /// <setter>set_customClassName</setter>
@@ -817,7 +825,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when popup is showing.
+    /// Fires when popup is showing
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.showing" />
@@ -839,7 +847,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when popup is shown.
+    /// Fires when popup is shown
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.shown" />
@@ -861,7 +869,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when popup is hiding.
+    /// Fires when popup is hiding
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.hiding" />
@@ -883,7 +891,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when popup is hidden.
+    /// Fires when popup is hidden
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.hidden" />
@@ -905,7 +913,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Calculates popup top offset.
+    /// Calculates popup top offset
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.posTop" />
     posTop: function() {
@@ -924,7 +932,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Calculates popup left offset.
+    /// Calculates popup left offset
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.posLeft" />
     posLeft: function() {
@@ -943,7 +951,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Calculates container height.
+    /// Calculates container height
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.pageHeight" />
     pageHeight: function() {
@@ -962,7 +970,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Calculates container width.
+    /// Calculates container width
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.pageWidth" />
     pageWidth: function() {

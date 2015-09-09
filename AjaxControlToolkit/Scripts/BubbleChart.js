@@ -14,6 +14,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     /// <setter>set_chartWidth</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.chartWidth" />
     this._chartWidth = '300';
+
     /// <summary>
     /// Enables you to customize the height of the chart.
     /// The default is 200
@@ -22,20 +23,23 @@ Sys.Extended.UI.BubbleChart = function(element) {
     /// <setter>set_chartHeight</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.chartHeight" />
     this._chartHeight = '200';
+
     /// <summary>
-    /// Enables you to set the title of the chart.
+    /// Enables you to set the title of the chart
     /// </summary>
     /// <getter>get_chartTitle</getter>
     /// <setter>set_chartTitle</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.chartTitle" />
     this._chartTitle = '';
+
     /// <summary>
-    /// List of values.
+    /// List of values
     /// </summary>
     /// <getter>get_bubbleChartClientValues</getter>
     /// <setter>set_bubbleChartClientValues</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.bubbleChartClientValues" />
     this._bubbleChartClientValues = null;
+
     /// <summary>
     /// Enables you to control the appearance of the bar chart with a CSS file.
     /// The default is 'BubbleChart'
@@ -44,6 +48,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     /// <setter>set_theme</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.theme" />
     this._theme = 'BubbleChart';
+
     /// <summary>
     /// Enables you to set the interval size for the Y axis line of the chart.
     /// The default is 6
@@ -52,6 +57,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     /// <setter>set_yAxisLines</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.yAxisLines" />
     this._yAxisLines = 6;
+
     /// <summary>
     /// Enables you to set the interval size for the X axis line of the chart.
     /// The default is 6
@@ -60,41 +66,47 @@ Sys.Extended.UI.BubbleChart = function(element) {
     /// <setter>set_xAxisLines</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.xAxisLines" />
     this._xAxisLines = 6;
+
     /// <summary>
-    /// Enables you to set the number of different sizes of the bubbles.
+    /// Enables you to set the number of different sizes of the bubbles
     /// </summary>
     /// <getter>get_bubbleSizes</getter>
     /// <setter>set_bubbleSizes</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.bubbleSizes" />
     this._bubbleSizes = 5;
+
     /// <summary>
-    /// Font color of the chart title.
+    /// Font color of the chart title
     /// </summary>
     /// <getter>get_chartTitleColor</getter>
     /// <setter>set_chartTitleColor</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.chartTitleColor" />
     this._chartTitleColor = '';
+
     /// <summary>
-    /// Enables you to set the color of the Y axis lines of the chart.
+    /// Enables you to set the color of the Y axis lines of the chart
     /// </summary>
     /// <getter>get_yAxisLineColor</getter>
     /// <setter>set_yAxisLineColor</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.yAxisLineColor" />
     this._yAxisLineColor = '';
+
     /// <summary>
-    /// Enables you to set the color of the X axis lines of the chart.
+    /// Enables you to set the color of the X axis lines of the chart
     /// </summary>
     /// <getter>get_xAxisLineColor</getter>
     /// <setter>set_xAxisLineColor</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.xAxisLineColor" />
     this._xAxisLineColor = '';
+
     /// <summary>
-    /// Enables you to set the color of the base lines of the chart.
+    /// Enables you to set the color of the base lines of the chart
     /// </summary>
     /// <getter>get_baseLineColor</getter>
     /// <setter>set_baseLineColor</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.baseLineColor" />
     this._baseLineColor = '';
+
     /// <summary>
     /// Enables you to set the background color of the tooltip box.
     /// The default is #FFFFFF
@@ -103,6 +115,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     /// <setter>set_tooltipBackgroundColor</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.tooltipBackgroundColor" />
     this._tooltipBackgroundColor = '#FFFFFF';
+
     /// <summary>
     /// Enables you to set the font color of the tooltip box.
     /// The default is #0E426C
@@ -111,6 +124,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     /// <setter>set_tooptipFontColor</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.tooltipFontColor" />
     this._tooltipFontColor = '#0E426C';
+
     /// <summary>
     /// Enables you to set the border color of the tooltip box.
     /// The default is #B85B3E
@@ -119,27 +133,31 @@ Sys.Extended.UI.BubbleChart = function(element) {
     /// <setter>set_tooltipBorderColor</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.tooltipBorderColor" />
     this._tooltipBorderColor = '#B85B3E';
+
     /// <summary>
-    /// Enables you to set the text/label to describe what data is at XAxis.
+    /// Enables you to set the text/label to describe what data is at XAxis
     /// </summary>
     /// <getter>get_xAxisLabel</getter>
     /// <setter>set_xAxisLabel</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.xAxisLabel" />
     this._xAxisLabel = '';
+
     /// <summary>
-    /// Enables you to set the text/label to describe what data is at YAxis.
+    /// Enables you to set the text/label to describe what data is at YAxis
     /// </summary>
     /// <getter>get_yAxisLabel</getter>
     /// <setter>set_yAxisLabel</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.yAxisLabel" />
     this._yAxisLabel = '';
+
     /// <summary>
-    /// Enables you to set the text/label that will be shown in the tooltip and describe about bubble value.
+    /// Enables you to set the text/label that will be shown in the tooltip and describe about bubble value
     /// </summary>
     /// <getter>get_bubbleLabel</getter>
     /// <setter>set_bubbleLabel</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.bubbleLabel" />
     this._bubbleLabel = '';
+
     /// <summary>
     /// Enables you to set the axis label font color.
     /// The default is #000000

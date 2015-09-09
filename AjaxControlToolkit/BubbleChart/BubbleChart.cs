@@ -24,7 +24,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Provides list of values to client side. Need help from Values property 
         /// for designer experience support, cause Editor always blocks the property
-        /// ability to provide values to client side as ExtenderControlProperty on run time.
+        /// ability to provide values to client side as ExtenderControlProperty on run time
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -37,7 +37,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// List of values.
+        /// List of values
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -67,7 +67,7 @@ namespace AjaxControlToolkit {
         public int XAxisLines { get; set; }
 
         /// <summary>
-        /// The number of different sizes of the bubbles.
+        /// The number of different sizes of the bubbles
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(5)]
@@ -75,7 +75,7 @@ namespace AjaxControlToolkit {
         public int BubbleSizes { get; set; }
 
         /// <summary>
-        /// The color of the Y axis lines of the chart.
+        /// The color of the Y axis lines of the chart
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -83,7 +83,7 @@ namespace AjaxControlToolkit {
         public string YAxisLineColor { get; set; }
 
         /// <summary>
-        /// The color of the X axis lines of the chart.
+        /// The color of the X axis lines of the chart
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -91,7 +91,7 @@ namespace AjaxControlToolkit {
         public string XAxisLineColor { get; set; }
 
         /// <summary>
-        /// The color of the base lines of the chart.
+        /// The color of the base lines of the chart
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -126,7 +126,7 @@ namespace AjaxControlToolkit {
         public string TooltipBorderColor { get; set; }
 
         /// <summary>
-        /// The text/label to describe what data is at XAxis.
+        /// The text/label to describe what data is at XAxis
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -134,7 +134,7 @@ namespace AjaxControlToolkit {
         public string XAxisLabel { get; set; }
 
         /// <summary>
-        /// The text/label to describe what data is at YAxis.
+        /// The text/label to describe what data is at YAxis
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -142,7 +142,7 @@ namespace AjaxControlToolkit {
         public string YAxisLabel { get; set; }
 
         /// <summary>
-        /// The text/label that will be shown in the tooltip and describe about bubble value.
+        /// The text/label that will be shown in the tooltip and describe about bubble value
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -150,7 +150,7 @@ namespace AjaxControlToolkit {
         public string BubbleLabel { get; set; }
 
         /// <summary>
-        /// The axis label font color.
+        /// The axis label font color
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
