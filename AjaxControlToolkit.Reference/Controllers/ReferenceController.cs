@@ -84,7 +84,8 @@ namespace AjaxControlToolkit.Reference.Controllers {
             var markup = extenderDoc.BuildDoc(doc.Types);
             var wikiEngine = new WikiPlex.WikiEngine();
 
-            return Content(wikiEngine.Render(markup));
+            var pageStyle = "<style>html { font-family: 'Segoe UI'; font-size: 13px; }</style>";
+            return Content(pageStyle + wikiEngine.Render(markup));
         }
 
         string GetNeededType(string typeName) {
