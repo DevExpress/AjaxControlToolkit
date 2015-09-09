@@ -1349,7 +1349,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Performs an update of the specified row with it's current values
         /// </summary>
-        /// <param name="rowIndex">Row index</param>
+        /// <param name="rowIndex" type="Int">Row index</param>
         public void UpdateItem(int rowIndex) {
             HandleUpdate(null, rowIndex);
         }
@@ -1358,8 +1358,8 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Returns style of the reorder list item
         /// </summary>
-        /// <param name="itemType">Item type</param>
-        /// <param name="repeatIndex">Repeat index</param>
+        /// <param name="itemType" type="ListItemType">Item type</param>
+        /// <param name="repeatIndex" type="Int">Repeat index</param>
         /// <returns>Item style</returns>
         public Style GetItemStyle(ListItemType itemType, int repeatIndex) {
             var item = GetItem(itemType, repeatIndex);
@@ -1390,10 +1390,10 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Renders an item
         /// </summary>
-        /// <param name="itemType">Item type</param>
-        /// <param name="repeatIndex">Repeat index</param>
-        /// <param name="repeatInfo">Repeat into</param>
-        /// <param name="writer">Writer</param>
+        /// <param name="itemType" type="ListItemType">Item type</param>
+        /// <param name="repeatIndex" type="Int">Repeat index</param>
+        /// <param name="repeatInfo" type="RepeatInfo">Repeat into</param>
+        /// <param name="writer" type="HtmlTextWriter">Writer</param>
         public void RenderItem(ListItemType itemType, int repeatIndex, RepeatInfo repeatInfo, HtmlTextWriter writer) {
             var item = GetItem(itemType, repeatIndex);
             item.RenderControl(writer);
