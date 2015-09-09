@@ -369,7 +369,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Raises callback event
         /// </summary>
-        /// <param name="eventArgument">Event argument</param>
+        /// <param name="eventArgument" type="String">Event argument</param>
         public void RaiseCallbackEvent(string eventArgument) {
             var args = new RatingEventArgs(eventArgument);
             OnChanged(args);
@@ -383,7 +383,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Raises postback event
         /// </summary>
-        /// <param name="eventArgument">Event argument</param>
+        /// <param name="eventArgument" type="String">Event argument</param>
         public void RaisePostBackEvent(string eventArgument) {
             var args = new RatingEventArgs(eventArgument);
             OnChanged(args);
