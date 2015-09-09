@@ -19,16 +19,16 @@ namespace AjaxControlToolkit {
         List<AreaChartSeries> _series = new List<AreaChartSeries>();
 
         /// <summary>
-        /// Comma-separated text for each category rendered below X axis.
+        /// Comma-separated text for each category rendered below X axis
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("categoriesAxis")]
         public string CategoriesAxis { get; set; }
 
-        ///<summary>
-        /// List of series.
-        ///</summary>
+        /// <summary>
+        /// List of series for client side
+        /// </summary>
         // Provide list of series to client side. Need help from Series property 
         // for designer experience support, cause Editor always blocks the property
         // ability to provide values to client side as ExtenderControlProperty on run time.
@@ -42,9 +42,9 @@ namespace AjaxControlToolkit {
             get { return _series; }
         }
 
-        ///<summary>
-        /// List of series with designer support.
-        ///</summary>
+        /// <summary>
+        /// List of series with designer support
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(null)]
@@ -55,7 +55,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Chart type. The default value is Basic.
+        /// Chart type. The default value is Basic
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(AreaChartType.Basic)]
@@ -63,7 +63,7 @@ namespace AjaxControlToolkit {
         public AreaChartType ChartType { get; set; }
 
         /// <summary>
-        /// Value axis lines count. The default value is 9.
+        /// Value axis lines count. The default value is 9
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(9)]
@@ -71,7 +71,7 @@ namespace AjaxControlToolkit {
         public int ValueAxisLines { get; set; }
 
         /// <summary>
-        /// Value axis line color.
+        /// Value axis line color
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -79,7 +79,7 @@ namespace AjaxControlToolkit {
         public string ValueAxisLineColor { get; set; }
 
         /// <summary>
-        /// Category axis line color.
+        /// Category axis line color
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -87,7 +87,7 @@ namespace AjaxControlToolkit {
         public string CategoryAxisLineColor { get; set; }
 
         /// <summary>
-        /// Base line color.
+        /// Base line color
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]

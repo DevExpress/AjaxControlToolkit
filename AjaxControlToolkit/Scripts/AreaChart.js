@@ -6,88 +6,99 @@ Sys.Extended.UI.AreaChart = function(element) {
     id = id.replace("_ctl00", "");
     this._parentDiv = document.getElementById(id + "__ParentDiv");
 
-    ///<summary>
-    /// Chart width in pixels. Default value is 300.
-    ///</summary>
-    ///<getter>get_chartWidth</getter>
-    ///<setter>set_chartWidth</setter>
+    /// <summary>
+    /// Chart width in pixels. Default value is 300
+    /// </summary>
+    /// <getter>get_chartWidth</getter>
+    /// <setter>set_chartWidth</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.chartWidth" />
     this._chartWidth = '300';
-    ///<summary>
-    /// Chart height in pixels. Default value is 300.
-    ///</summary>
-    ///<getter>get_chartHeight</getter>
-    ///<setter>set_chartHeight</setter>
+
+    /// <summary>
+    /// Chart height in pixels. Default value is 300
+    /// </summary>
+    /// <getter>get_chartHeight</getter>
+    /// <setter>set_chartHeight</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.chartHeight" />
     this._chartHeight = '300';
-    ///<summary>
-    /// Chart title.
-    ///</summary>
-    ///<getter>get_chartTitle</getter>
-    ///<setter>set_chartTitle</setter>
+
+    /// <summary>
+    /// Chart title
+    /// </summary>
+    /// <getter>get_chartTitle</getter>
+    /// <setter>set_chartTitle</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.chartTitle" />
     this._chartTitle = '';
-    ///<summary>
-    /// Comma-separated text for each category rendered below X axis.
-    ///</summary>
-    ///<getter>get_categoriesAxis</getter>
-    ///<setter>set_categoriesAxis</setter>
+
+    /// <summary>
+    /// Comma-separated text for each category rendered below X axis
+    /// </summary>
+    /// <getter>get_categoriesAxis</getter>
+    /// <setter>set_categoriesAxis</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.categoriesAxis" />
     this._categoriesAxis = '';
-    ///<summary>
-    /// List of series.
-    ///</summary>
-    ///<getter>get_clientSeries</getter>
-    ///<setter>set_clientSeries</setter>
+
+    /// <summary>
+    /// List of series
+    /// </summary>
+    /// <getter>get_clientSeries</getter>
+    /// <setter>set_clientSeries</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.clientSeries" />
     this._series = null;
-    ///<summary>
-    /// Type of chart. Default value is Basic.
-    ///</summary>
-    ///<getter>get_chartType</getter>
-    ///<setter>set_chartType</setter>
+
+    /// <summary>
+    /// Type of chart. Default value is Basic
+    /// </summary>
+    /// <getter>get_chartType</getter>
+    /// <setter>set_chartType</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.chartType" />
     this._chartType = Sys.Extended.UI.AreaChartType.Basic;
-    ///<summary>
-    /// CSS file name for AreaChart. Default value is 'AreaChart'.
-    ///</summary>
-    ///<getter>get_theme</getter>
-    ///<setter>set_theme</setter>
+
+    /// <summary>
+    /// CSS file name for AreaChart. Default value is 'AreaChart'
+    /// </summary>
+    /// <getter>get_theme</getter>
+    /// <setter>set_theme</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.theme" />
     this._theme = 'AreaChart';
-    ///<summary>
-    /// Value axis lines count. Default value is 9.
-    ///</summary>
-    ///<getter>get_valueAxisLines</getter>
-    ///<setter>set_valueAxisLines</setter>
+
+    /// <summary>
+    /// Value axis lines count. Default value is 9
+    /// </summary>
+    /// <getter>get_valueAxisLines</getter>
+    /// <setter>set_valueAxisLines</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.valueAxisLines" />
     this._valueAxisLines = 9;
-    ///<summary>
-    /// Color of chart title.
-    ///</summary>
-    ///<getter>get_chartTitleColor</getter>
-    ///<setter>set_chartTitleColor</setter>
+
+    /// <summary>
+    /// Color of chart title
+    /// </summary>
+    /// <getter>get_chartTitleColor</getter>
+    /// <setter>set_chartTitleColor</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.chartTitleColor" />
     this._chartTitleColor = '';
-    ///<summary>
-    /// Color of value axis line.
-    ///</summary>
-    ///<getter>get_valueAxisLineColor</getter>
-    ///<setter>set_valueAxisLineColor</setter>
+
+    /// <summary>
+    /// Color of value axis line
+    /// </summary>
+    /// <getter>get_valueAxisLineColor</getter>
+    /// <setter>set_valueAxisLineColor</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.valueAxisLineColor" />
     this._valueAxisLineColor = '';
-    ///<summary>
-    /// Color of category axis line.
-    ///</summary>
-    ///<getter>get_categoryAxisLineColor</getter>
-    ///<setter>set_categoryAxisLineColor</setter>
+
+    /// <summary>
+    /// Color of category axis line
+    /// </summary>
+    /// <getter>get_categoryAxisLineColor</getter>
+    /// <setter>set_categoryAxisLineColor</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.categoryAxisLineColor" />
     this._categoryAxisLineColor = '';
-    ///<summary>
-    /// Color of base line.
-    ///</summary>
-    ///<getter>get_baseLineColor</getter>
-    ///<setter>set_baseLineColor</setter>
+
+    /// <summary>
+    /// Color of base line
+    /// </summary>
+    /// <getter>get_baseLineColor</getter>
+    /// <setter>set_baseLineColor</setter>
     /// <member name="cP:AjaxControlToolkit.AreaChart.baseLineColor" />
     this._baseLineColor = '';
 
@@ -126,9 +137,9 @@ Sys.Extended.UI.AreaChart.prototype = {
         Sys.Extended.UI.AreaChart.callBaseMethod(this, "dispose");
     },
 
-    ///<summary>
-    /// Generates the AreaChart with the specified values.
-    ///</summary>
+    /// <summary>
+    /// Generates the AreaChart with the specified values
+    /// </summary>
     /// <member name="cM:AjaxControlToolkit.AreaChart.generateAreaChart" />
     generateAreaChart: function() {
         this.arrXAxis = this._categoriesAxis.split(',');

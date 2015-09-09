@@ -22,7 +22,7 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(TextBox))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AutoCompleteName + Constants.IconPostfix)]
     public class AutoCompleteExtender : AnimationExtenderControlBase {
-        ///<summary>
+        /// <summary>
         /// Minimum length of text before the webservice provides suggestions.
         /// The default is 3
         /// </summary>
@@ -34,7 +34,7 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("MinimumPrefixLength", value); }
         }
 
-        ///<summary>
+        /// <summary>
         /// Time in milliseconds when the timer will kick in to get suggestions using the web service.
         /// The default is 1000
         /// </summary>
@@ -47,7 +47,7 @@ namespace AjaxControlToolkit {
         }
 
 
-        ///<summary>
+        /// <summary>
         /// Number of suggestions to be provided.
         /// The dafault is 10
         /// </summary>
@@ -59,8 +59,8 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CompletionSetCount", value); }
         }
 
-        ///<summary>
-        /// ID of element that will serve as the completion list.
+        /// <summary>
+        /// ID of element that will serve as the completion list
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -72,8 +72,8 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CompletionListElementID", value); }
         }
 
-        ///<summary>
-        /// The web service method to be called.
+        /// <summary>
+        /// The web service method to be called
         /// </summary>
         [DefaultValue("")]
         [RequiredProperty]
@@ -87,7 +87,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// The path to the web service that the extender will pull the 
         /// word/sentence completions from. If this is not provided, the 
-        /// service method should be a page method. 
+        /// service method should be a page method.
         /// </summary>
         [UrlProperty]
         [ExtenderControlProperty]
@@ -102,7 +102,7 @@ namespace AjaxControlToolkit {
         /// User/page specific context provided to an optional overload of the
         /// web method described by ServiceMethod/ServicePath.  If the context
         /// key is used, it should have the same signature with an additional
-        /// parameter named contextKey of type string.
+        /// parameter named contextKey of type string
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("contextKey")]
@@ -120,7 +120,7 @@ namespace AjaxControlToolkit {
         /// automatically enabled if the ContextKey property is ever set
         /// (on either the client or the server).  If the context key is used,
         /// it should have the same signature with an additional parameter
-        /// named contextKey of type string.
+        /// named contextKey of type string
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("useContextKey")]
@@ -131,7 +131,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Css Class that will be used to style the completion list flyout.
+        /// Css Class that will be used to style the completion list flyout
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -142,7 +142,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Css Class that will be used to style an item in the autocomplete list.
+        /// Css Class that will be used to style an item in the autocomplete list
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -153,7 +153,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Css Class that will be used to style a highlighted item in the autocomplete list.
+        /// Css Class that will be used to style a highlighted item in the autocomplete list
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -176,7 +176,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The character(s) used to separate words for autocomplete.
+        /// The character(s) used to separate words for autocomplete
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("delimiterCharacters")]
@@ -213,7 +213,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// OnShow animation.
+        /// OnShow animation
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
@@ -227,7 +227,7 @@ namespace AjaxControlToolkit {
         Animation _onShow;
 
         /// <summary>
-        /// OnHide animation.
+        /// OnHide animation
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
@@ -349,8 +349,11 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Creates a serialized JSON object representing a text/value pair that can
-        /// be returned by the webservice.
+        /// be returned by the webservice
         /// </summary>
+        /// <param name="text" type="String">Text part</param>
+        /// <param name="value" type="String">Value part</param>
+        /// <returns>Serialized JSON</returns>
         public static string CreateAutoCompleteItem(string text, string value) {
             return new JavaScriptSerializer().Serialize(new Pair(text, value));
         }

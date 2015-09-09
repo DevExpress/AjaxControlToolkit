@@ -45,7 +45,8 @@ namespace AjaxControlToolkit {
         public string ContextKeys { get; set; }
 
         /// <summary>
-        /// The ID of a control that is shown while the file is uploading. The throbber image is displayed for browsers that do not support the HTML5 File API or server-side polling.
+        /// The ID of a control that is shown while the file is uploading. The throbber image is
+        /// displayed for browsers that do not support the HTML5 File API or server-side polling
         /// </summary>
         [Description("ID of Throbber")]
         [Category("Behavior")]
@@ -58,7 +59,7 @@ namespace AjaxControlToolkit {
         ///<summary>
         /// This will be true when postback will happen from the control.
         /// This can be used to avoid execution of unnecessary code during partial postback.
-        /// The default is false.
+        /// The default is false
         /// </summary>
         [Browsable(false)]
         [DefaultValue(false)]
@@ -66,7 +67,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Maximum number of files in upload queue.
-        /// The default is 10.
+        /// The default is 10
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(10)]
@@ -75,16 +76,16 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Сomma-separated list of allowed file extensions.
-        /// The default is empty string.
+        /// The default is empty string
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("allowedFileTypes")]
         public string AllowedFileTypes { get; set; }
 
-        ///<summary>
+        /// <summary>
         /// Size of chunk used by HTML5 to upload large file in bytes.
-        /// The default is 4096.
+        /// The default is 4096
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(4096)]
@@ -96,7 +97,7 @@ namespace AjaxControlToolkit {
 
         ///<summary>
         /// Get or set how AjaxFileUpload displays progress bar.
-        /// The default is Auto.
+        /// The default is Auto
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(AjaxFileUploadMode.Auto)]
@@ -107,14 +108,14 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Fires when a file upload starts.
+        /// Fires when a file upload starts
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AjaxFileUploadStartEventArgs> UploadStart;
 
         /// <summary>
-        /// Fires when a file upload complete.
+        /// Fires when a file upload complete
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
@@ -122,14 +123,14 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Fires when all files in upload queue raised UploadComplete event, 
-        /// or when user hits Cancel button to stop uploading.
+        /// or when user hits Cancel button to stop uploading
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AjaxFileUploadCompleteAllEventArgs> UploadCompleteAll;
 
         /// <summary>
-        /// The name of a JavaScript function executed on the client-side before any files are uploaded.
+        /// The name of a JavaScript function executed on the client-side before any files are uploaded
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -141,7 +142,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a JavaScript function executed on the client-side after a file is uploaded successfully.
+        /// The name of a JavaScript function executed on the client-side after a file is uploaded successfully
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -152,9 +153,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientUploadComplete"] = value; }
         }
 
-        ///<summary>
-        // The client script that executes when all of files in queue uploaded, 
-        // or when user hits Cancel button to stop uploading.
+        /// <summary>
+        /// The client script that executes when all of files in queue uploaded, 
+        /// or when user hits Cancel button to stop uploading
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -166,7 +167,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a JavaScript function executed on the client-side if the file upload failed.
+        /// The name of a JavaScript function executed on the client-side if the file upload failed
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -178,7 +179,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Does AjaxFileUpload supports server polling.
+        /// Does AjaxFileUpload supports server polling
         /// </summary>
         public bool ServerPollingSupport {
             get { return true; }
@@ -336,9 +337,9 @@ namespace AjaxControlToolkit {
             Page.Response.Write((new AjaxFileUploadStates(Context, fileId)).Percent.ToString());
         }
         /// <summary>
-        /// Saves the uploaded file with the specified file name.
+        /// Saves the uploaded file with the specified file name
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fileName" type="String">Name of the file to save</param>
         public void SaveAs(string fileName) {
             var dir = Path.GetDirectoryName(_uploadedFilePath);
 

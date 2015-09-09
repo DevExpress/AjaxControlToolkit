@@ -31,43 +31,46 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     // from the top/left corner at all times regardless of how the users scrolls or sizes the window.
     Sys.Extended.UI.AlwaysVisibleControlBehavior.initializeBase(this, [element]);
 
-    ///<summary>
-    /// Distance to the horizontal edge of the browser in pixels from the same side of the target control. The default is 0 pixels.
-    ///</summary>
-    ///<getter>get_horizontalOffset</getter>
-    ///<setter>set_horizontalOffset</setter>
+    /// <summary>
+    /// Distance to the horizontal edge of the browser in pixels from the same side of the
+    /// target control. The default is 0 pixels
+    /// </summary>
+    /// <getter>get_horizontalOffset</getter>
+    /// <setter>set_horizontalOffset</setter>
     /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.horizontalOffset" />
     this._horizontalOffset = 0;
 
-    ///<summary>
-    /// Horizontal side of the browser to anchor the control against. The default is the Left side.
-    ///</summary>
-    ///<getter>get_horizontalSide</getter>
-    ///<setter>set_horizontalSide</setter>
+    /// <summary>
+    /// Horizontal side of the browser to anchor the control against. The default is the Left side
+    /// </summary>
+    /// <getter>get_horizontalSide</getter>
+    /// <setter>set_horizontalSide</setter>
     /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.horizontalSide" />
     this._horizontalSide = Sys.Extended.UI.HorizontalSide.Left;
 
-    ///<summary>
-    /// Distance to the vertical edge of the browser in pixels from the same side of the target control. The default is 0 pixels.
-    ///</summary>
-    ///<getter>get_verticalOffset</getter>
-    ///<setter>set_verticalOffset</setter>
+    /// <summary>
+    /// Distance to the vertical edge of the browser in pixels from the same side of the target control.
+    /// The default is 0 pixels
+    /// </summary>
+    /// <getter>get_verticalOffset</getter>
+    /// <setter>set_verticalOffset</setter>
     /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.verticalOffset" />
     this._verticalOffset = 0;
 
-    ///<summary>
-    /// Vertical side of the browser to anchor the control against. The default is the Top side.
-    ///</summary>
-    ///<getter>get_verticalSide</getter>
-    ///<setter>set_verticalSide</setter>
+    /// <summary>
+    /// Vertical side of the browser to anchor the control against. The default is the Top side
+    /// </summary>
+    /// <getter>get_verticalSide</getter>
+    /// <setter>set_verticalSide</setter>
     /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.verticalSide" />
     this._verticalSide = Sys.Extended.UI.VerticalSide.Top;
 
-    ///<summary>
-    /// Length in seconds for the scrolling effect to last when the target control is repositioned. The default is .1 seconds.
-    ///</summary>
-    ///<getter>get_scrollEffectDuration</getter>
-    ///<setter>set_scrollEffectDuration</setter>
+    /// <summary>
+    /// Length in seconds for the scrolling effect to last when the target control is repositioned.
+    /// The default is .1 seconds
+    /// </summary>
+    /// <getter>get_scrollEffectDuration</getter>
+    /// <setter>set_scrollEffectDuration</setter>
     /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.scrollEffectDuration" />
     this._scrollEffectDuration = .1;
 
@@ -75,12 +78,12 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     this._repositionHandler = null;
 
     
-    ///<summary>
+    /// <summary>
     /// Whether or not to animate the element into position. (note:
-    /// this value should always be true in IE6).
-    ///</summary>
-    ///<getter>get_useAnimation</getter>
-    ///<setter>set_useAnimation</setter>
+    /// this value should always be true in IE6)
+    /// </summary>
+    /// <getter>get_useAnimation</getter>
+    /// <setter>set_useAnimation</setter>
     /// <member name="cP:AjaxControlToolkit.AlwaysVisibleControlExtender.useAnimation" />
     this._animate = false;
 
@@ -325,11 +328,11 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
         }
     },
 
-    ///<summary>
-    /// Fires before control reposition.
-    ///</summary>
-    ///<member name="cE:AjaxControlToolkit.AlwaysVisibleControlExtender.repositioning" />
-    ///<event add="add_repositioning" remove="remove_repositioning" raise="raise_repositioning" />
+    /// <summary>
+    /// Fires before control reposition
+    /// </summary>
+    /// <member name="cE:AjaxControlToolkit.AlwaysVisibleControlExtender.repositioning" />
+    /// <event add="add_repositioning" remove="remove_repositioning" raise="raise_repositioning" />
     add_repositioning: function(handler) {
         this.get_events().addHandler('repositioning', handler);
     },
@@ -347,11 +350,11 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior.prototype = {
         this.raise_repositioning(eventArgs);
     },
 
-    ///<summary>
-    /// Fires after control reposition.
-    ///</summary>
-    ///<member name="cE:AjaxControlToolkit.AlwaysVisibleControlExtender.repositioned" />
-    ///<event add="add_repositioned" remove="remove_repositioned" raise="raise_repositioned" />
+    /// <summary>
+    /// Fires after control reposition
+    /// </summary>
+    /// <member name="cE:AjaxControlToolkit.AlwaysVisibleControlExtender.repositioned" />
+    /// <event add="add_repositioned" remove="remove_repositioned" raise="raise_repositioned" />
     add_repositioned: function(handler) {
         this.get_events().addHandler('repositioned', handler);
     },

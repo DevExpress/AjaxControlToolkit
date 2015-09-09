@@ -24,7 +24,7 @@ namespace AjaxControlToolkit {
         Animation _onHoverOut;
 
         /// <summary>
-        /// OnLoad animation.
+        /// OnLoad animation
         /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
@@ -37,7 +37,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// OnClick animation.
+        /// OnClick animation
         /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
@@ -50,7 +50,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// OnMouseOver animation.
+        /// OnMouseOver animation
         /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
@@ -63,7 +63,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// OnMouseOut animation.
+        /// OnMouseOut animation
         /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
@@ -76,7 +76,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// OnHoverOver animation.
+        /// OnHoverOver animation
         /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
@@ -89,7 +89,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// OnHoverOut animation.
+        /// OnHoverOut animation
         /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]

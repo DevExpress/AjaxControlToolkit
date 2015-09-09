@@ -3,70 +3,78 @@
 Sys.Extended.UI.AsyncFileUpload = function(element) {
     Sys.Extended.UI.AsyncFileUpload.initializeBase(this, [element]);
 
-    ///<summary>
-    /// Stores file path.
-    ///</summary>
-    ///<getter>get_hiddenField</getter>
-    ///<setter>set_hiddenField</setter>
-    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.hiddenField" />
+    /// <summary>
+    /// Stores file path
+    /// </summary>
+    /// <getter>get_hiddenField</getter>
+    /// <setter>set_hiddenField</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.hiddenField" />
     this._hiddenField = null;
-    ///<summary>
-    /// Input element with type='file'.
-    ///</summary>
-    ///<getter>get_inputFile</getter>
-    ///<setter>set_inputFile</setter>
-    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.inputFile" />
+
+    /// <summary>
+    /// Input element with type='file'
+    /// </summary>
+    /// <getter>get_inputFile</getter>
+    /// <setter>set_inputFile</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.inputFile" />
     this._inputFile = null;
-    ///<summary>
-    /// Element indicating upload result.
-    ///</summary>
-    ///<getter>get_innerTB</getter>
-    ///<setter>set_innerTB</setter>
-    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.innerTB" />
+
+    /// <summary>
+    /// Element indicating upload result
+    /// </summary>
+    /// <getter>get_innerTB</getter>
+    /// <setter>set_innerTB</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.innerTB" />
     this._innerTB = null;
-    ///<summary>
-    /// Url that receives posted data relative to the form.
-    ///</summary>
-    ///<getter>get_postBackUrl</getter>
-    ///<setter>set_postBackUrl</setter>
-    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.postBackUrl" />
+
+    /// <summary>
+    /// Url that receives posted data relative to the form
+    /// </summary>
+    /// <getter>get_postBackUrl</getter>
+    /// <setter>set_postBackUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.postBackUrl" />
     this._postBackUrl = "";
-    ///<summary>
-    /// Page form name.
-    ///</summary>
-    ///<getter>get_postBackUrl</getter>
-    ///<setter>set_postBackUrl</setter>
-    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.postBackUrl" />
+
+    /// <summary>
+    /// Page form name
+    /// </summary>
+    /// <getter>get_postBackUrl</getter>
+    /// <setter>set_postBackUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.postBackUrl" />
     this._formName = "";
     this._iframe = null;
     this._waitTimer = null;
-    ///<summary>
-    /// The control's background color on upload complete.
-    ///</summary>
-    ///<getter>get_completeBackColor</getter>
-    ///<setter>set_completeBackColor</setter>
-    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.completeBackColor" />
+
+    /// <summary>
+    /// The control's background color on upload complete
+    /// </summary>
+    /// <getter>get_completeBackColor</getter>
+    /// <setter>set_completeBackColor</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.completeBackColor" />
     this._completeBackColor = "";
-    ///<summary>
-    /// The control's background color when uploading is in progress.
-    ///</summary>
-    ///<getter>get_uploadingBackColor</getter>
-    ///<setter>set_uploadingBackColor</setter>
-    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.uploadingBackColor" />
+
+    /// <summary>
+    /// The control's background color when uploading is in progress
+    /// </summary>
+    /// <getter>get_uploadingBackColor</getter>
+    /// <setter>set_uploadingBackColor</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.uploadingBackColor" />
     this._uploadingBackColor = "";
-    ///<summary>
-    /// The control's background color on upload error.
-    ///</summary>
-    ///<getter>get_errorBackColor</getter>
-    ///<setter>set_errorBackColor</setter>
-    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.errorBackColor" />
+
+    /// <summary>
+    /// The control's background color on upload error
+    /// </summary>
+    /// <getter>get_errorBackColor</getter>
+    /// <setter>set_errorBackColor</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.errorBackColor" />
     this._errorBackColor = "";
-    ///<summary>
-    /// The control that is shown while the file is uploading.
-    ///</summary>
-    ///<getter>get_throbber</getter>
-    ///<setter>set_throbber</setter>
-    ///<member name="cP:AjaxControlToolkit.AsyncFileUpload.throbber" />
+
+    /// <summary>
+    /// The control that is shown while the file is uploading
+    /// </summary>
+    /// <getter>get_throbber</getter>
+    /// <setter>set_throbber</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.throbber" />
     this._throbber = null;
 
     this._onchange$delegate = null;
@@ -78,7 +86,7 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
 Sys.Extended.UI.AsyncFileUpload.prototype = {
 
     /// <summary>
-    /// Control that is shown while the file is uploading.
+    /// Control that is shown while the file is uploading
     /// </summary>
     /// <getter>get_throbber</getter>
     /// <setter>set_throbber</setter>
@@ -91,7 +99,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// The control's background color on upload complete. Default value - 'Lime'.
+    /// The control's background color on upload complete. Default value - 'Lime'
     /// </summary>
     /// <getter>get_completeBackColor</getter>
     /// <setter>set_completeBackColor</setter>
@@ -104,7 +112,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// The control's background color on upload error. Default value - 'Red'.
+    /// The control's background color on upload error. Default value - 'Red'
     /// </summary>
     /// <getter>get_errorBackColor</getter>
     /// <setter>set_errorBackColor</setter>
@@ -117,7 +125,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// The control's background color when uploading is in progress. Default value - 'White'.
+    /// The control's background color when uploading is in progress. Default value - 'White'
     /// </summary>
     /// <getter>get_uploadingBackColor</getter>
     /// <setter>set_uploadingBackColor</setter>
@@ -130,7 +138,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// Name of a file on a client to upload using the control.
+    /// Name of a file on a client to upload using the control
     /// </summary>
     /// <getter>get_inputFile</getter>
     /// <setter>set_inputFile</setter>
@@ -143,7 +151,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// Hidden field.
+    /// Hidden field
     /// </summary>
     /// <getter>get_hiddenField</getter>
     /// <setter>set_hiddenField</setter>
@@ -156,7 +164,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// Inner throbber.
+    /// Inner throbber
     /// </summary>
     /// <getter>get_innerTB</getter>
     /// <setter>set_innerTB</setter>
@@ -169,7 +177,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// URL of the postback method.
+    /// URL of the postback method
     /// </summary>
     /// <getter>get_postBackUrl</getter>
     /// <setter>set_postBackUrl</setter>
@@ -182,7 +190,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// Name of the form.
+    /// Name of the form
     /// </summary>
     /// <getter>get_formName</getter>
     /// <setter>set_formName</setter>
@@ -194,11 +202,11 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._formName = value;
     },
 
-    ///<summary>
-    /// Fires when file uploading started.
-    ///</summary>
-    ///<event add="add_uploadStarted" remove="remove_uploadStarted" raise="raise_uploadStarted" />
-    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadStarted" />
+    /// <summary>
+    /// Fires when file uploading started
+    /// </summary>
+    /// <event add="add_uploadStarted" remove="remove_uploadStarted" raise="raise_uploadStarted" />
+    /// <member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadStarted" />
     add_uploadStarted: function(handler) {
         this.get_events().addHandler("uploadStarted", handler);
     },
@@ -217,11 +225,11 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         return this.raise_uploadStarted(e);
     },
 
-    ///<summary>
-    /// Fires when file uploading completed.
-    ///</summary>
-    ///<event add="add_uploadComplete" remove="remove_uploadComplete" raise="raise_uploadComplete" />
-    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadComplete" />
+    /// <summary>
+    /// Fires when file uploading completed
+    /// </summary>
+    /// <event add="add_uploadComplete" remove="remove_uploadComplete" raise="raise_uploadComplete" />
+    /// <member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadComplete" />
     add_uploadComplete: function(handler) {
         this.get_events().addHandler("uploadComplete", handler);
     },
@@ -239,11 +247,11 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         return this.raise_uploadComplete(e);
     },
 
-    ///<summary>
-    /// Fires when file uploading encounters an error.
-    ///</summary>
-    ///<event add="add_uploadError" remove="remove_uploadError" raise="raise_uploadError" />
-    ///<member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadError" />
+    /// <summary>
+    /// Fires when file uploading encounters an error
+    /// </summary>
+    /// <event add="add_uploadError" remove="remove_uploadError" raise="raise_uploadError" />
+    /// <member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadError" />
     add_uploadError: function(handler) {
         this.get_events().addHandler("uploadError", handler);
     },
@@ -264,7 +272,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// Set throbber visual style.
+    /// Set throbber visual style
     /// </summary>
     /// <param name="value" type="String">Visual style value</param>
     /// <member name="cM:AjaxControlToolkit.AsyncFileUpload.setThrobber" />
