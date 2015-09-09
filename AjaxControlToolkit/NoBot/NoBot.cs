@@ -94,7 +94,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Returns whether the user is believed to be valid
         /// </summary>
-        /// <param name="state">NoBot state</param>
+        /// <param name="state" type="NoBotState">NoBot state</param>
         /// <returns>Whether user is valid</returns>
         public bool IsValid(out NoBotState state) {
             EnsureChildControls();
