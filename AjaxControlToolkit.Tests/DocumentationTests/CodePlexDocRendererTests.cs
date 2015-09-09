@@ -158,5 +158,13 @@ namespace AjaxControlToolkit.Tests {
             var actualText = _codePlexRenderer.RenderText(text);
             Assert.AreEqual("{{text}}", actualText);
         }
+
+        [Test]
+        public void RenderUrlTest() {
+            var text = "abc";
+            var url = "http://bcd.ef";
+            var actualText = _codePlexRenderer.RenderUrl(text, url);
+            Assert.AreEqual("[url:abc|http://bcd.ef]", actualText);
+        }
     }
 }

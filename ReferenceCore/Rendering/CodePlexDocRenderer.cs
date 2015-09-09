@@ -69,5 +69,9 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
             return descriptionStringBuilder.ToString();
         }
+
+        public string RenderUrl(string text, string url) {
+            return String.Format("[url:{0}|{1}]", text, url);
+        }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="DocBase.cs" />
     <Compile Include="Documentation.cs" />
     <Compile Include="EventDoc.cs" />
+    <Compile Include="LinkHelper.cs" />
     <Compile Include="MethodDoc.cs" />
     <Compile Include="ParamInfo.cs" />
     <Compile Include="Parsing\CommentBlock.cs" />

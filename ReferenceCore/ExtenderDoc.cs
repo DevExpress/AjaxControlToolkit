@@ -27,6 +27,7 @@ namespace AjaxControlToolkit.Reference.Core {
             _docStringBuilder.Clear();
 
             RenderTypeName(typeDoc.Name);
+            RenderSampleSiteLink(typeDoc.Name);
             RenderTypeDescription(typeDoc.Summary);
             RenderTypeRemarks(typeDoc.Remarks);
 
@@ -46,6 +47,11 @@ namespace AjaxControlToolkit.Reference.Core {
 
         void RenderTypeName(string typeName) {
             _docStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader(typeName));
+        }
+
+        void RenderSampleSiteLink(string typeName) {
+            var url = LinkHelper.GetSampleSiteLink(typeName);
+            _docStringBuilder.Append(String.Format(" ({0})", _renderer.RenderUrl("demo", url)));
         }
 
         void RenderTypeDescription(string typeDescription) {
