@@ -18,10 +18,10 @@ namespace AjaxControlToolkit {
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DropShadowName + Constants.IconPostfix)]
     public class DropShadowExtender : ExtenderControlBase {
         /// <summary>
-        /// The opacity of the shadow, from 0 (transparent - no shadow rendered) to 1.0, which is fully opaque black.
+        /// The opacity of the shadow, from 0 (transparent - no shadow rendered) to 1.0, which is fully opaque black
         /// </summary>
         /// <remarks>
-        /// The default is .5.
+        /// The default is .5
         /// </remarks>
         [DefaultValue(1.0f)]
         [ExtenderControlProperty()]
@@ -32,10 +32,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The width of the shadow on each side, in pixels.
+        /// The width of the shadow on each side, in pixels
         /// </summary>
         /// <remarks>
-        /// The default is 5.
+        /// The default is 5
         /// </remarks>
         [DefaultValue(5)]
         [ExtenderControlProperty()]
@@ -46,11 +46,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines whether the DropShadow tracks position or size changes of the panel it is targeting.
+        /// Determines whether the DropShadow tracks position or size changes of the panel it is targeting
         /// </summary>
         /// <remarks>
         /// This is false by default.  If true, the DropShadowBehavior uses a timer to
-        /// poll for the position of it's target, so don't turn it on unless it's needed.
+        /// poll for the position of it's target, so don't turn it on unless it's needed
         /// </remarks>
         [DefaultValue(false)]
         [ExtenderControlProperty()]
@@ -61,7 +61,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A Boolean value that specifies whether the corners of the target and drop shadow should be rounded.
+        /// A Boolean value that specifies whether the corners of the target and drop shadow should be rounded
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty()]
@@ -72,7 +72,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Specifies the radius, in pixels, of the rounded corners.
+        /// Specifies the radius, in pixels, of the rounded corners
         /// </summary>
         [DefaultValue(5)]
         [ExtenderControlProperty()]

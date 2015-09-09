@@ -13,32 +13,34 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._isInFocus = null;
     this._oldContents = null;
     this._newContents = null;
-    ///<summary>
-    /// Flag indicating that HtmlEditorExtender content is changed.
+
+    /// <summary>
+    /// Flag indicating that HtmlEditorExtender content is changed
     ///</summary>
     /// <getter>get_isDirty</getter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.isDirty" />
     this._isDirty = false;
     this._viewMode = 'content';
 
-    ///<summary>
-    /// Determines whether to display source view tab/button to see source view of the HtmlEditorExtender.
-    ///</summary>
+    /// <summary>
+    /// Determines whether to display source view tab/button to see source view of the HtmlEditorExtender
+    /// </summary>
     /// <getter>get_displaySourceTab</getter>
     /// <setter>set_displaySourceTab</setter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.displaySourceTab" />
     this._displaySourceTab = false;
 
-    ///<summary>
-    /// Button width in pixels.
-    ///</summary>
+    /// <summary>
+    /// Button width in pixels
+    /// </summary>
     /// <getter>get_buttonWidth</getter>
     /// <setter>set_buttonWidth</setter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.buttonWidth" />
     this._ButtonWidth = 23;
-    ///<summary>
-    /// Button height in pixels.
-    ///</summary>
+
+    /// <summary>
+    /// Button height in pixels
+    /// </summary>
     /// <getter>get_buttonHeight</getter>
     /// <setter>set_buttonHeight</setter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.buttonHeight" />
@@ -156,9 +158,10 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
 
     // variables
     this._container = null;
-    ///<summary>
-    /// Collection of toolbar buttons.
-    ///</summary>
+
+    /// <summary>
+    /// Collection of toolbar buttons
+    /// </summary>
     /// <getter>get_toolbarButtons</getter>
     /// <setter>set_toolbarButtons</setter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.toolbarButtons" />
@@ -937,9 +940,9 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             document.execCommand(this._commandName, false, "#" + e._selectedColor);
     },
 
-    ///<summary>
+    /// <summary>
     /// Saves selected text
-    ///</summary>
+    /// </summary>
     /// <member name="cM:AjaxControlToolkit.HtmlEditorExtender.saveSelection" />
     saveSelection: function () {
         if(window.getSelection) //non IE Browsers
@@ -948,9 +951,9 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             this._savedRange = document.selection.createRange();
     },
 
-    ///<summary>
+    /// <summary>
     /// Restores selected text
-    ///</summary>
+    /// </summary>
     /// <member name="cM:AjaxControlToolkit.HtmlEditorExtender.restoreSelection" />
     restoreSelection: function() {
         this._isInFocus = true;
@@ -1089,11 +1092,11 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }
     },
 
-    ///<summary>
-    /// Fires when text change occurs.
-    ///</summary>
-    ///<member name="cE:AjaxControlToolkit.HtmlEditorExtender.change" />
-    ///<event add="add_change" remove="remove_change" />
+    /// <summary>
+    /// Fires when text change occurs
+    /// </summary>
+    /// <member name="cE:AjaxControlToolkit.HtmlEditorExtender.change" />
+    /// <event add="add_change" remove="remove_change" />
     add_change: function(handler) {
         this.get_events().addHandler("change", handler);
     },

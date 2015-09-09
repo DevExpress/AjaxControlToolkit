@@ -28,11 +28,11 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// The server ID of the control to initiate the collapse of the target panel. The panel will
-        /// collapse when this control fires its client side "onclick" event.
+        /// collapse when this control fires its client side "onclick" event
         /// </summary>
         /// <remarks>
         /// If this value is the same as the value for "ExpandControlID", the CollapsiblePanel will
-        /// toggle when this control is clicked.
+        /// toggle when this control is clicked
         /// </remarks>
         [IDReferenceProperty(typeof(WebControl))]
         [DefaultValue("")]
@@ -45,11 +45,11 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// The server ID of the control to initiate the expansion of the target panel.  The panel will
-        /// opening when this control fires its client side "onclick" event.
+        /// opening when this control fires its client side "onclick" event
         /// </summary>
         /// <remarks>
         /// If this value is the same as the value for "CollapseControlID", the CollapsiblePanel will
-        /// toggle when this control is clicked.
+        /// toggle when this control is clicked
         /// </remarks>
         [IDReferenceProperty(typeof(WebControl))]
         [DefaultValue("")]
@@ -89,11 +89,11 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// The size of the panel when it is in it's collapsed state.  To avoid flicker when your page
         /// initializes, set the initial height (or width) of your Panel control to match this value, and set the Collapsed property
-        /// to 'true'.
+        /// to 'true'
         /// </summary>
         /// <remarks>
         /// The default value is -1, which indicates that the CollapsiblePanel should initialize the CollapsedSize based on the
-        /// initial size of the object.
+        /// initial size of the object
         /// </remarks>
         [DefaultValue(-1)]
         [ExtenderControlProperty]
@@ -106,11 +106,11 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// The size of the panel when it is in it's opened state.  To avoid flicker when your page
         /// initializes, set the initial width of your Panel control to match this value, and set the Collapsed property
-        /// to 'false'.
+        /// to 'false'
         /// </summary>
         /// <remarks>
         /// The default value is -1, which indicates that the CollapsiblePanel should initialize the ExpandedSize based on the
-        /// parent div offsetheight if aligned vertically and parentdiv offsetwidth if aligned horizonatally.     
+        /// parent div offsetheight if aligned vertically and parentdiv offsetwidth if aligned horizonatally    
         /// </remarks>
         [DefaultValue(-1)]
         [ExtenderControlProperty]
@@ -134,10 +134,10 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// Determines whether the CollapsiblePanelBehavior should suppress the click operations of the controls
-        /// referenced in CollapseControlID and/or ExpandControlID.  
+        /// referenced in CollapseControlID and/or ExpandControlID. 
         /// </summary>
         /// <remarks>
-        /// By default, this value is false, except for anchor ("A") tags.
+        /// By default, this value is false, except for anchor ("A") tags
         /// </remarks>
         [DefaultValue(false)]
         [ExtenderControlProperty]
@@ -165,7 +165,7 @@ namespace AjaxControlToolkit {
         /// The text to display in the collapsed state.  When the panel is collapsed,
         /// the internal contents (anything between the start and ending tags) of the control referenced by
         /// the TextLabelID property will be replaced with this text.  This collapsed text is also used
-        /// as the alternate text of the image if ImageControlID is set.
+        /// as the alternate text of the image if ImageControlID is set
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -179,7 +179,7 @@ namespace AjaxControlToolkit {
         /// The text to display in the expanded state.  When the panel is expanded,
         /// the internal contents (anything between the start and ending tags) of the control referenced by
         /// the TextLabelID property will be replaced with this text.  This expanded text is also used
-        /// as the alternate text of the image if ImageControlID is set.
+        /// as the alternate text of the image if ImageControlID is set
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -192,7 +192,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// The ID of a label control to display the current state of the Panel.  When the collapsed state of the 
         /// panel changes, the entire HTML contents (anything between the start and ending tags of the label) will be replaced
-        /// with the status text.
+        /// with the status text
         /// </summary>
         [IDReferenceProperty(typeof(Label))]
         [DefaultValue("")]
@@ -204,7 +204,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Image to be displayed when the Panel is expanded and the ImageControlID is set.
+        /// Image to be displayed when the Panel is expanded and the ImageControlID is set
         /// </summary>
         [DefaultValue("")]
         [UrlProperty]
@@ -216,7 +216,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Image to be displayed when the Panel is collapsed and the ImageControlID is set.
+        /// Image to be displayed when the Panel is collapsed and the ImageControlID is set
         /// </summary>
         [DefaultValue("")]
         [UrlProperty]
@@ -230,7 +230,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// The ID of an image control to display the current state of the Panel.  When the collapsed state of the 
         /// panel changes, the image source will be changed from the ExpandedImage to the CollapsedImage.  We also
-        /// use the ExpandedText and CollapsedText as the image's alternate text if they are provided.
+        /// use the ExpandedText and CollapsedText as the image's alternate text if they are provided
         /// </summary>
         [IDReferenceProperty(typeof(System.Web.UI.WebControls.Image))]
         [DefaultValue("")]
@@ -242,7 +242,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The dimension to use for collapsing and expanding - vertical or horizontal.
+        /// The dimension to use for collapsing and expanding - vertical or horizontal
         /// </summary>
         [DefaultValue(CollapsiblePanelExpandDirection.Vertical)]
         [ExtenderControlProperty]

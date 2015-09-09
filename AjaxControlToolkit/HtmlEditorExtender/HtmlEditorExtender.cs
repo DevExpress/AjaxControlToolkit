@@ -56,7 +56,7 @@ namespace AjaxControlToolkit {
         ///<summary>
         /// Provide button list to client side. Need help from Toolbar property 
         /// for designer experience support, cause Editor always blocks the property
-        /// ability to provide values to client side as ExtenderControlProperty on run time.
+        /// ability to provide values to client side as ExtenderControlProperty on run time
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -80,7 +80,7 @@ namespace AjaxControlToolkit {
 
         ///<summary>
         /// Helper property to cacth buttons from modifed buttons on design time.
-        /// This property will only attached when Toolbar property are not empty in design time.
+        /// This property will only attached when Toolbar property are not empty in design time
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -97,7 +97,7 @@ namespace AjaxControlToolkit {
         }
 
         ///<summary>
-        /// Determines whether to display source view tab/button to see source view of the HtmlEditorExtender.
+        /// Determines whether to display source view tab/button to see source view of the HtmlEditorExtender
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
@@ -108,7 +108,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a javascript function to attach to the client-side change event.
+        /// The name of a javascript function to attach to the client-side change event
         /// </summary>
         [ExtenderControlEvent]
         [ClientPropertyName("change")]
@@ -119,7 +119,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// AjaxFileUpload that is used to upload images.
+        /// AjaxFileUpload that is used to upload images
         /// </summary>
         [Browsable(false)]
         public AjaxFileUpload AjaxFileUpload {
@@ -127,7 +127,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to use HTML-sanitization before transferring data to server.
+        /// Whether to use HTML-sanitization before transferring data to server
         /// </summary>
         [Browsable(true)]
         [DefaultValue(true)]
@@ -137,7 +137,7 @@ namespace AjaxControlToolkit {
         }
 
         ///<summary>
-        /// Event handler for Ajax Image upload complete event.
+        /// Event handler for Ajax Image upload complete event
         /// </summary>
         public event EventHandler<AjaxFileUploadEventArgs> ImageUploadComplete;
 

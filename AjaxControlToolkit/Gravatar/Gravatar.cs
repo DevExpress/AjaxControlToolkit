@@ -27,7 +27,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Email that is associated with account at gravatar.
+        /// Email that is associated with account at gravatar
         /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -39,7 +39,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The requested size of the image that gravatar needs to render (both width and height).
+        /// The requested size of the image that gravatar needs to render (both width and height)
         /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -53,7 +53,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Url of the image, that will be diplayed, if the gravatar image can't be displayed
         /// because of inacceptable rating or the email account is not associated with a gravatar.
-        /// This must be an absolute URL.
+        /// This must be an absolute URL
         /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -66,7 +66,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// The image displayed when a gravater is not associated with an email account.
-        /// Possible values are Identicon, MonsterId, MysteryMan, Retro, Wavatar.
+        /// Possible values are Identicon, MonsterId, MysteryMan, Retro, Wavatar
         /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -78,7 +78,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Acceptable rating of the image to display.
+        /// Acceptable rating of the image to display
         /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]

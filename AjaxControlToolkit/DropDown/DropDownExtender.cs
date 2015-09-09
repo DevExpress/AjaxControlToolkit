@@ -22,7 +22,7 @@ namespace AjaxControlToolkit {
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DropDownName + Constants.IconPostfix)]
     public class DropDownExtender : DynamicPopulateExtenderControlBase {
         /// <summary>
-        /// The ID of the control which will be displayed as the dropdown.
+        /// The ID of the control which will be displayed as the dropdown
         /// </summary>
         [DefaultValue("")]
         [IDReferenceProperty(typeof(Control))]
@@ -35,7 +35,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Highlight border color.
+        /// Highlight border color
         /// </summary>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]
@@ -46,7 +46,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Highlight background color.
+        /// Highlight background color
         /// </summary>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]
@@ -57,7 +57,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Arrow background color.
+        /// Arrow background color
         /// </summary>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]
@@ -68,7 +68,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Arrow image URL.
+        /// Arrow image URL
         /// </summary>
         [DefaultValue("")]
         [UrlProperty]
@@ -80,7 +80,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Arrow width.
+        /// Arrow width
         /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [ExtenderControlProperty]
@@ -91,7 +91,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Popup event.
+        /// Popup event
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -103,7 +103,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Populating event.
+        /// Populating event
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -115,7 +115,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Populated event.
+        /// Populated event
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -129,7 +129,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// The OnShow animation will be played each time the dropdown is displayed.
         /// The dropdown will be positioned correctly but hidden.
-        /// The animation can use to display the dropdown along with any other visual effects.
+        /// The animation can use to display the dropdown along with any other visual effects
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
@@ -143,7 +143,7 @@ namespace AjaxControlToolkit {
         Animation _onShow;
 
         /// <summary>
-        /// The OnHide animation will be played each time the dropdown is hidden.
+        /// The OnHide animation will be played each time the dropdown is hidden
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]

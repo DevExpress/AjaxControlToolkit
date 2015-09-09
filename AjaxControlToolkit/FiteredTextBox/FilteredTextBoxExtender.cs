@@ -26,10 +26,11 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// The type of filter to apply, specified as a comma-separated combination of the
         /// following values: Numbers, LowercaseLetters, UppercaseLetters, and Custom.
-        /// The default is Custom.
+        /// The default is Custom
         /// </summary>
         /// <remarks>
-        /// If Custom is specified, the ValidChars property will be used in addition to other settings, such as Numbers.
+        /// If Custom is specified, the ValidChars property will be used in addition to other
+        /// settings, such as Numbers
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(FilterTypes.Custom)]
@@ -45,7 +46,7 @@ namespace AjaxControlToolkit {
         /// The default is ValidChars
         /// </summary>
         /// <remarks>
-        /// If the property is set to ValidChars, FilterType must be set to Custom.
+        /// If the property is set to ValidChars, FilterType must be set to Custom
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(FilterModes.ValidChars)]
@@ -56,10 +57,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A string that consists of all characters that are considered valid for the text box when the field type is Custom.
+        /// A string that consists of all characters that are considered valid for the text box when the field type is Custom
         /// </summary>
         /// <remarks>
-        /// If the field type is not Custom, this property value is ignored.
+        /// If the field type is not Custom, this property value is ignored
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -70,10 +71,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A string that consists of all characters that are considered invalid for the text box when the field type is Custom.
+        /// A string that consists of all characters that are considered invalid for the text box when the field type is Custom
         /// </summary>
         /// <remarks>
-        /// If the field type is not Custom, this property value is ignored.
+        /// If the field type is not Custom, this property value is ignored
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -84,7 +85,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// An integer that specifies the interval, in milliseconds, in which the field's contents are filtered.
+        /// An integer that specifies the interval, in milliseconds, in which the field's contents are filtered
         /// </summary>
         /// <remarks>
         /// The default is 250

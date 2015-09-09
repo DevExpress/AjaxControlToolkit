@@ -211,10 +211,10 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
 
     /// <summary>
     /// A string that consists of all characters that are considered
-    /// valid for the text box when the field type is Custom.
+    /// valid for the text box when the field type is Custom
     /// </summary>
     /// <remarks>
-    /// If the field type is not Custom, this property value is ignored.
+    /// If the field type is not Custom, this property value is ignored
     /// </remarks>
     /// <getter>get_validChars</getter>
     /// <setter>set_validChars</setter>
@@ -243,10 +243,10 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
 
     /// <summary>
     /// A string that consists of all characters that are considered
-    /// invalid for the text box when the field type is Custom.
+    /// invalid for the text box when the field type is Custom
     /// </summary>
     /// <remarks>
-    /// If the field type is not Custom, this property value is ignored.
+    /// If the field type is not Custom, this property value is ignored
     /// </remarks>
     /// <getter>get_invalidChars</getter>
     /// <setter>set_invalidChars</setter>
@@ -272,12 +272,12 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// A Sys.Extended.UI.FilterTypes object to apply to the FilterTextBox instance.
+    /// A Sys.Extended.UI.FilterTypes object to apply to the FilterTextBox instance
     /// </summary>
     /// <remarks>
     /// The type of filter to apply can be a comma-separated combination of the following
     /// values: Numbers, LowercaseLetters, UppercaseLetters, and Custom. If Custom is specified,
-    /// the ValidChars property will be used in addition to other settings, such as Numbers.
+    /// the ValidChars property will be used in addition to other settings, such as Numbers
     /// </remarks>
     /// <getter>get_filterType</getter>
     /// <setter>set_filterType</setter>
@@ -303,10 +303,10 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// A Sys.Extended.UI.FilterModes object that specifies the mode to apply to the FilterTextBox instance.
+    /// A Sys.Extended.UI.FilterModes object that specifies the mode to apply to the FilterTextBox instance
     /// </summary>
     /// <remarks>
-    /// Supported values are ValidChars and InvalidChars.
+    /// Supported values are ValidChars and InvalidChars
     /// </remarks>
     /// <getter>get_filterMode</getter>
     /// <setter>set_filterMode</setter>
@@ -333,7 +333,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// The interval, in milliseconds, in which the field's contents are filtered.
+    /// The interval, in milliseconds, in which the field's contents are filtered
     /// </summary>
     /// <getter>get_filterInterval</getter>
     /// <setter>set_filterInterval</setter>
@@ -358,7 +358,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when key is processing.
+    /// Fires when key is processing
     /// </summary>
     /// <event add="add_processKey" remove="remove_processKey" raise="raise_processKey" />
     /// <member name="cE:AjaxControlToolkit.FilteredTextBoxExtender.processKey" />
@@ -379,7 +379,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when TextBox is filtered.
+    /// Fires when TextBox is filtered
     /// </summary>
     /// <event add="add_filtered" remove="remove_filtered" raise="raise_filtered" />
     /// <member name="cE:AjaxControlToolkit.FilteredTextBoxExtender.filtered" />

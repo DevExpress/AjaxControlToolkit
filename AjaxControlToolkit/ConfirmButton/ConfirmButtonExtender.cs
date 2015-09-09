@@ -32,10 +32,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Registers the target of DisplayModalPopupID for use with ConfirmButton.
+        /// Registers the target of DisplayModalPopupID for use with ConfirmButton
         /// </summary>
         /// <remarks>
-        /// Called in OnLoad by default, but can be called later if the ModalPopup/ConfirmButton are created dynamically.
+        /// Called in OnLoad by default, but can be called later if the ModalPopup/ConfirmButton are created dynamically
         /// </remarks>
         public void RegisterDisplayModalPopup() {
             if(!String.IsNullOrEmpty(DisplayModalPopupID)) {
@@ -69,10 +69,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The confirmation text to display.
+        /// The confirmation text to display
         /// </summary>
         /// <remarks>
-        /// HTML entities can be used, such as &#10; for a newline character.
+        /// HTML entities can be used, such as &#10; for a newline character
         /// </remarks>
         [ExtenderControlProperty]
         [RequiredProperty]
@@ -83,7 +83,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The client script to execute when the Cancel button is clicked in the confirm dialog box.
+        /// The client script to execute when the Cancel button is clicked in the confirm dialog box
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -98,7 +98,8 @@ namespace AjaxControlToolkit {
         /// The default is false
         /// </summary>
         /// <remarks>
-        /// This is useful if the page contains ASP.NET validator controls and the confirm dialog box should be displayed only after all validation checks pass.
+        /// This is useful if the page contains ASP.NET validator controls and the confirm dialog box
+        /// should be displayed only after all validation checks pass
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(false)]
@@ -109,13 +110,13 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Specifies the ID of a pre-configured ModalPopupExtender to use in place of window.confirm.
+        /// Specifies the ID of a pre-configured ModalPopupExtender to use in place of window.confirm
         /// </summary>
         /// <remarks>
         /// When you use the DisplayModalPopupID property, the following conditions must be met:
-        /// - The ModalPopup control must be configured with the same TargetControlID value as the ConfirmButton extender. (It will work properly if the ConfirmButton extender is disabled.)
-        /// - The ModalPopup control must specify the OkControlID or the CancelControlID properties in order to identify the buttons that correspond to the the OK and Cancel buttons in the confirm dialog box.
-        /// - The ModalPopup must not specify a OnOkScript or OnCancelScript property.
+        /// 1. The ModalPopup control must be configured with the same TargetControlID value as the ConfirmButton extender. (It will work properly if the ConfirmButton extender is disabled)
+        /// 2. The ModalPopup control must specify the OkControlID or the CancelControlID properties in order to identify the buttons that correspond to the the OK and Cancel buttons in the confirm dialog box
+        /// 3. The ModalPopup must not specify a OnOkScript or OnCancelScript property
         /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("displayModalPopupID")]
@@ -127,7 +128,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Specifies the script to run to initiate a postback.
+        /// Specifies the script to run to initiate a postback
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("postBackScript")]

@@ -26,7 +26,7 @@ namespace AjaxControlToolkit {
     [Designer(typeof(HoverMenuExtenderDesigner))]
     public class HoverMenuExtender : DynamicPopulateExtenderControlBase {
         /// <summary>
-        /// The ID of the control to display when mouse is over the target control.
+        /// The ID of the control to display when mouse is over the target control
         /// </summary>
         [ExtenderControlProperty]
         [RequiredProperty]
@@ -40,7 +40,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The CSS class to apply to the target when the hover menu popup is visible.
+        /// The CSS class to apply to the target when the hover menu popup is visible
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -87,11 +87,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The time, in milliseconds, for the popup to remain visible after the mouse moves away from the target control.
+        /// The time, in milliseconds, for the popup to remain visible after the mouse moves away from the target control. Default is 0
         /// </summary>
-        /// <remarks>
-        /// Default is 0.
-        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(0)]
         [ClientPropertyName("popDelay")]
@@ -101,11 +98,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The time, in milliseconds, before the popup displays after hovering over the target control. 
+        /// The time, in milliseconds, before the popup displays after hovering over the target control. Default is 0
         /// </summary>
-        /// <remarks>
-        /// Default is 0.
-        /// </remarks>
         [DefaultValue(0)]
         [ExtenderControlProperty()]
         [ClientPropertyName("hoverDelay")]
@@ -115,7 +109,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The position of the popup element when it is shown.
+        /// The position of the popup element when it is shown
         /// </summary>
         /// <remarks>
         /// This value can be any of the values in the HoverMenuPopupPosition enumeration,
@@ -132,11 +126,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The OnShow animation will be played each time the hover menu is displayed.
+        /// The OnShow animation will be played each time the hover menu is displayed
         /// </summary>
         /// <remarks>
         /// The hover menu will be positioned correctly but hidden. The animation can use
-        /// to display the hover menu along with any other visual effects.
+        /// to display the hover menu along with any other visual effects
         /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
@@ -150,7 +144,7 @@ namespace AjaxControlToolkit {
         Animation _onShow;
 
         /// <summary>
-        /// The OnHide animation will be played each time the hover menu is hidden.
+        /// The OnHide animation will be played each time the hover menu is hidden
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]

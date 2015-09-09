@@ -173,7 +173,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     /// <summary>
     /// Event handler to epxand or collapse the panel (based on its current state)
     /// This is the public function that should be called instead of _toggle if
-    /// you wish to programmatically open and close the collapsible panel.
+    /// you wish to programmatically open and close the collapsible panel
     /// </summary>
     /// <param name="eventObj" type="Object">Event info</param>
     /// <member name="cM:AjaxControlToolkit.CollapsiblePanelExtender.togglePanel" />
@@ -183,7 +183,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     
     /// <summary>
     /// Open the panel. Public function that users should call if they
-    /// wish to operate the collapsible panel programmatically.
+    /// wish to operate the collapsible panel programmatically
     /// </summary>
     /// <param name="eventObj" type="Object">Event info</param>
     /// <member name="cM:AjaxControlToolkit.CollapsiblePanelExtender.expandPanel" />
@@ -193,7 +193,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     
     /// <summary>
     /// Collapse the panel. Public function that users should call if they
-    /// wish to operate the collapsible panel programmatically.
+    /// wish to operate the collapsible panel programmatically
     /// </summary>
     /// <param name="eventObj" type="Object">Event info</param>
     /// <member name="cM:AjaxControlToolkit.CollapsiblePanelExtender.collapsePanel" />
@@ -605,7 +605,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Fires when control is collapsing.
+    /// Fires when control is collapsing
     /// </summary>
     /// <event add="add_collapsing" remove="remove_collapsing" raise="raise_collapsing" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.collapsing" />
@@ -630,7 +630,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Fires when control is collapsed.
+    /// Fires when control is collapsed
     /// </summary>
     /// <event add="add_collapsed" remove="remove_collapsed" raise="raise_collapsed" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.collapsed" />
@@ -655,7 +655,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when collapse completes.
+    /// Fires when collapse completes
     /// </summary>
     /// <event add="add_collapseComplete" remove="remove_collapseComplete" raise="raise_collapseComplete" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.collapseComplete" />
@@ -682,7 +682,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Fires when control is expanding.
+    /// Fires when control is expanding
     /// </summary>
     /// <event add="add_expanding" remove="remove_expanding" raise="raise_expanding" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.expanding" />
@@ -707,7 +707,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Fires when control is expanded.
+    /// Fires when control is expanded
     /// </summary>
     /// <event add="add_expanded" remove="remove_expanded" raise="raise_expanded" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.expanded" />
@@ -732,7 +732,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Fires when expand completes.
+    /// Fires when expand completes
     /// </summary>
     /// <event add="add_expandComplete" remove="remove_expandComplete" raise="raise_expandComplete" />
     /// <member name="cE:AjaxControlToolkit.CollapsiblePanelExtender.expandComplete" />
@@ -759,7 +759,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
 
     /// <summary>
-    /// Wrap the height of the panel.
+    /// Wrap the height of the panel
     /// </summary>
     /// <getter>get_targetHeight</getter>
     /// <setter>set_targetHeight</setter>
@@ -782,7 +782,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Wrap the width of the panel.
+    /// Wrap the width of the panel
     /// </summary>
     /// <getter>get_targetWidth</getter>
     /// <setter>set_targetWidth</setter>
@@ -805,7 +805,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Whether or not the panel is collapsed.
+    /// Whether or not the panel is collapsed
     /// </summary>
     /// <getter>get_collapsed</getter>
     /// <setter>set_collapsed</setter>
@@ -833,7 +833,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// The size of the target, in pixels, when it is in the collapsed state.
+    /// The size of the target, in pixels, when it is in the collapsed state
     /// </summary>
     /// <getter>get_collapsedSize</getter>
     /// <setter>set_collapsedSize</setter>
@@ -858,7 +858,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// The size of the target, in pixels, when it is in the expanded state.
+    /// The size of the target, in pixels, when it is in the expanded state
     /// </summary>
     /// <getter>get_expandedSize</getter>
     /// <setter>set_expandedSize</setter>
@@ -933,7 +933,8 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Whether to add a scrollbar when the contents are larger than the target (the contents will be clipped if false)
+    /// Whether to add a scrollbar when the contents are larger than the target
+    /// (the contents will be clipped if false)
     /// </summary>
     /// <getter>get_scrollContents</getter>
     /// <setter>set_scrollContents</setter>
@@ -958,7 +959,8 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Whether or not to suppress postbacks generated when the CollapseControlID or ExpandControlID elements are clicked
+    /// Whether or not to suppress postbacks generated when the CollapseControlID or
+    /// ExpandControlID elements are clicked
     /// </summary>
     /// <getter>get_suppressPostBack</getter>
     /// <setter>set_suppressPostBack</setter>
@@ -1009,7 +1011,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     
     /// <summary>
     /// Text to show in the element specified by TextLabelID when the target is expanded.
-    /// This text is also used as the alternate text of the image if ImageControlID has been provided.
+    /// This text is also used as the alternate text of the image if ImageControlID has been provided
     /// </summary>
     /// <getter>get_expandedText</getter>
     /// <setter>set_expandedText</setter>
@@ -1035,7 +1037,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     
     /// <summary>
     /// Text to show in the element specified by TextLabelID when the target is collapsed. 
-    /// This text is also used as the alternate text of the image if ImageControlID has been provided.
+    /// This text is also used as the alternate text of the image if ImageControlID has been provided
     /// </summary>
     /// <getter>get_collapsedText</getter>
     /// <setter>set_collapsedText</setter>
@@ -1060,7 +1062,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// ID of the <img> element where an icon indicating the collapsed status of the target will be placed.
+    /// ID of the <img> element where an icon indicating the collapsed status of the target will be placed
     /// </summary>
     /// <getter>get_imageControlID</getter>
     /// <setter>set_imageControlID</setter>
@@ -1085,7 +1087,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Path to an image to show in the element specified by ImageControlID when the target is expanded.
+    /// Path to an image to show in the element specified by ImageControlID when the target is expanded
     /// </summary>
     /// <getter>get_expandedImage</getter>
     /// <setter>set_expandedImage</setter>
@@ -1110,7 +1112,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Path to an image to show in the element specified by ImageControlID when the target is collapsed.
+    /// Path to an image to show in the element specified by ImageControlID when the target is collapsed
     /// </summary>
     /// <getter>get_collapsedImage</getter>
     /// <setter>set_collapsedImage</setter>
@@ -1135,7 +1137,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether to automatically expand the target when the mouse is moved over it.
+    /// Whether to automatically expand the target when the mouse is moved over it
     /// </summary>
     /// <getter>get_autoExpand</getter>
     /// <setter>set_autoExpand</setter>
@@ -1160,7 +1162,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether to automatically collapse the target when the mouse is moved off of it.
+    /// Whether to automatically collapse the target when the mouse is moved off of it
     /// </summary>
     /// <getter>get_autoCollapse</getter>
     /// <setter>set_autoCollapse</setter>
@@ -1185,7 +1187,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
     
     /// <summary>
-    /// Direction the panel will expand and collapse (can be either "Vertical" or "Horizontal").
+    /// Direction the panel will expand and collapse (can be either "Vertical" or "Horizontal")
     /// </summary>
     /// <getter>get_expandDirection</getter>
     /// <setter>set_expandDirection</setter>

@@ -1651,7 +1651,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
 
     /// <summary>
-    /// ComboBox table control.
+    /// ComboBox table control
     /// </summary>
     /// <getter>get_comboTableControl</getter>
     /// <setter>set_comboTableControl</setter>
@@ -1667,7 +1667,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     
     /// <summary>
-    /// TextBox control.
+    /// TextBox control
     /// </summary>
     /// <getter>get_textBoxControl</getter>
     /// <setter>set_textBoxControl</setter>
@@ -1683,7 +1683,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     
     /// <summary>
-    /// Button control.
+    /// Button control
     /// </summary>
     /// <getter>get_buttonControl</getter>
     /// <setter>set_buttonControl</setter>
@@ -1699,7 +1699,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     
     /// <summary>
-    /// OptionList control.
+    /// OptionList control
     /// </summary>
     /// <getter>get_optionListControl</getter>
     /// <setter>set_optionListControl</setter>
@@ -1715,7 +1715,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     
     /// <summary>
-    /// Hidden field control.
+    /// Hidden field control
     /// </summary>
     /// <getter>get_hiddenFieldControl</getter>
     /// <setter>set_hiddenFieldControl</setter>
@@ -1731,7 +1731,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     
     /// <summary>
-    /// ComboBox selected item index.
+    /// ComboBox selected item index
     /// </summary>
     /// <getter>get_selectedIndex</getter>
     /// <setter>set_selectedIndex</setter>
@@ -1750,7 +1750,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     
     /// <summary>
-    /// Whether or not to use AutoPostBack.
+    /// Whether or not to use AutoPostBack
     /// </summary>
     /// <getter>get_autoPostBack</getter>
     /// <setter>set_autoPostBack</setter>
@@ -1766,14 +1766,14 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
 
     /// <summary>
-    /// Determines how the ComboBox automatically completes the text that is typed into it.
+    /// Determines how the ComboBox automatically completes the text that is typed into it
     /// </summary>
     /// <remarks>
     /// When "Suggest" is specified, the ComboBox will show the list, highlight the first matched item,
     /// and if necessary, scroll the list to show the highlighted item. If "Append" is specified,
     /// the ComboBox will append the remainder of the first matched item to the user-typed text and
     /// highlight the appended text. When "SuggestAppend" is specified, both of the above behaviors are
-    /// applied. If "None" (the default value) is specified, the ComboBox's auto-complete behaviors are disabled.
+    /// applied. If "None" (the default value) is specified, the ComboBox's auto-complete behaviors are disabled
     /// </remarks>
     /// <getter>get_autoCompleteMode</getter>
     /// <setter>set_autoCompleteMode</setter>
@@ -1789,12 +1789,13 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     
     /// <summary>
-    /// Determines whether the user is allowed to enter text that does not match an item in the list, and whether the list is always displayed.
+    /// Determines whether the user is allowed to enter text that does not match an item in the list,
+    /// and whether the list is always displayed
     /// </summary>
     /// <remarks>
     /// If "DropDownList" is specified, users are not allowed to enter text that does not match an item in the list. When "DropDown"
     /// (the default value) is specified, any text is allowed. If "Simple" is specified, any text is allowed and the list is
-    /// always displayed regardless of the AutoCompleteMode property value.
+    /// always displayed regardless of the AutoCompleteMode property value
     /// </remarks>
     /// <getter>get_dropDownStyle</getter>
     /// <setter>set_dropDownStyle</setter>
@@ -1810,7 +1811,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
     
     /// <summary>
-    /// Specifies whether user-typed text is matched to items in the list in a case-sensitive manner. The default is "false".
+    /// Specifies whether user-typed text is matched to items in the list in a case-sensitive manner. The default is "false"
     /// </summary>
     /// <getter>get_caseSensitive</getter>
     /// <setter>set_caseSensitive</setter>
@@ -1826,7 +1827,7 @@ Sys.Extended.UI.ComboBox.prototype = {
     },
 
     /// <summary>
-    /// When specified, replaces the default styles applied to highlighted items in the list with a custom css class.
+    /// When specified, replaces the default styles applied to highlighted items in the list with a custom css class
     /// </summary>
     /// <getter>get_listItemHoverCssClass</getter>
     /// <setter>set_listItemHoverCssClass</setter>

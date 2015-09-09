@@ -206,7 +206,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// A generic OnShow animation's JSON definition.
+    /// A generic OnShow animation's JSON definition
     /// </summary>
     /// <getter>get_onShow</getter>
     /// <setter>set_onShow</setter>
@@ -225,7 +225,8 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// A Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnShow animation's behavior.
+    /// A Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic
+    /// OnShow animation's behavior
     /// </summary>
     /// <getter>get_onShowBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.onShowBehavior" />
@@ -235,7 +236,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Play the OnShow animation.
+    /// Play the OnShow animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.HoverMenuExtender.onShow" />
     onShow: function() {
@@ -244,7 +245,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// A generic OnHide animation's JSON definition.
+    /// A generic OnHide animation's JSON definition
     /// </summary>
     /// <getter>get_onHide</getter>
     /// <setter>set_onHide</setter>
@@ -263,7 +264,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// A Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation's behavior.
+    /// A Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation's behavior
     /// </summary>
     /// <getter>get_onHideBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.onHideBehavior" />
@@ -273,7 +274,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Plays the OnHide animation.
+    /// Plays the OnHide animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.HoverMenuExtender.onHide" />
     onHide: function() {
@@ -282,7 +283,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// A Sys.UI.DomElement that acts as the popup and is displayed when hovering.
+    /// A Sys.UI.DomElement that acts as the popup and is displayed when hovering
     /// </summary>
     /// <getter>get_popupElement</getter>
     /// <setter>set_popupElement</setter>
@@ -303,7 +304,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// The CSS class used when hovering.
+    /// The CSS class used when hovering
     /// </summary>
     /// <getter>get_hoverCssClass</getter>
     /// <setter>set_hoverCssClass</setter>
@@ -328,7 +329,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// The number of pixels to offset the popup from it's default horizontal position.
+    /// The number of pixels to offset the popup from it's default horizontal position
     /// </summary>
     /// <getter>get_offsetX</getter>
     /// <setter>set_offsetX</setter>
@@ -353,7 +354,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    ///  The number of pixels to offset the popup from it's default vertical position.
+    ///  The number of pixels to offset the popup from it's default vertical position
     /// </summary>
     /// <getter>get_offsetY</getter>
     /// <setter>set_offsetY</setter>
@@ -379,7 +380,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
 
     /// <summary>
     /// A Sys.Extended.UI.HoverMenuPopupPosition object that contains
-    /// the location where the popup should be positioned relative to the target control.
+    /// the location where the popup should be positioned relative to the target control
     /// </summary>
     /// <remarks>
     /// Can be Left, Right, Top, Bottom, Center. The default is Center
@@ -408,11 +409,8 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
 
     /// <summary>
     /// A number representing the time delay from when the
-    /// mouse enters the target to when the popup is shown, in milliseconds.
+    /// mouse enters the target to when the popup is shown, in milliseconds. Default is 100
     /// </summary>
-    /// <remarks>
-    /// Default is 100.
-    /// </remarks>
     /// <getter>get_popDelay</getter>
     /// <setter>set_popDelay</setter>
     /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.popDelay" />
@@ -437,11 +435,8 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
 
     /// <summary>
     /// A number representing the time delay after the mouse
-    /// enters the target and before the popup is shown, in milliseconds.
+    /// enters the target and before the popup is shown, in milliseconds. Default is 0
     /// </summary>
-    /// <remarks>
-    /// Default is 0.
-    /// </remarks>
     /// <getter>get_hoverDelay</getter>
     /// <setter>set_hoverDelay</setter>
     /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.hoverDelay" />
@@ -465,7 +460,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when hover menu is showing.
+    /// Fires when hover menu is showing
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.showing" />
@@ -486,7 +481,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when hover menu is shown.
+    /// Fires when hover menu is shown
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.shown" />
@@ -507,7 +502,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when hover menu is hiding.
+    /// Fires when hover menu is hiding
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.hiding" />
@@ -528,7 +523,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when hover menu is hidden.
+    /// Fires when hover menu is hidden
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.hidden" />

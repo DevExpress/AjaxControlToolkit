@@ -20,7 +20,7 @@ namespace AjaxControlToolkit {
     public class DynamicPopulateExtender : ExtenderControlBase {
 
         /// <summary>
-        /// Whether or not we should clear the HTML contents of the target element when an update begins.
+        /// Whether or not we should clear the HTML contents of the target element when an update begins
         /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
@@ -32,7 +32,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// An key that you can pass to the web service call, such as an ID. This is optional.
+        /// An key that you can pass to the web service call, such as an ID. This is optional
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -44,7 +44,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The ID of a control to trigger the population of the target. The population will be triggered by this controls "click" event.
+        /// The ID of a control to trigger the population of the target. The population will be
+        /// triggered by this controls "click" event
         /// </summary>
         [ExtenderControlProperty]
         [IDReferenceProperty(typeof(Control))]
@@ -56,7 +57,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The method name of the web service of page method to call.
+        /// The method name of the web service of page method to call
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -73,7 +74,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The path of the web service to call, or if this is blank, a page method will be called instead.
+        /// The path of the web service to call, or if this is blank, a page method will be called instead
         /// </summary>
         [ExtenderControlProperty]
         [UrlProperty]
@@ -103,7 +104,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// A CustomScript can be used to eval a javascript function that will return a string to populate the control.
-        /// This script method must return a string and will be called instead of the Service or Page method.
+        /// This script method must return a string and will be called instead of the Service or Page method
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
