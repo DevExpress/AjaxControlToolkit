@@ -145,7 +145,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Returns control specified by its ID
         /// </summary>
-        /// <param name="id">ID of the control</param>
+        /// <param name="id" type="Number">ID of the control</param>
         /// <returns>Found control</returns>
         public Control GetControl(string id) {
             return FindControl(id);
