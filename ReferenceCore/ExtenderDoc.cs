@@ -127,13 +127,13 @@ namespace AjaxControlToolkit.Reference.Core {
                 if(!String.IsNullOrWhiteSpace(clientPropertyDoc.GetterName))
                     propertiesStringBuilder.Append(
                         _renderer.RenderLineBreak() +
-                        _renderer.RenderText("Getter name: ", bold: true) +
+                        _renderer.RenderText("Getter name: ", italic: true) +
                         _renderer.RenderText(clientPropertyDoc.GetterName + "()"));
 
                 if(!String.IsNullOrWhiteSpace(clientPropertyDoc.SetterName))
                     propertiesStringBuilder.Append(
                         _renderer.RenderLineBreak() +
-                        _renderer.RenderText("Setter name: ", bold: true) +
+                        _renderer.RenderText("Setter name: ", italic: true) +
                         _renderer.RenderText(clientPropertyDoc.SetterName + "(value)"));
 
                 propertiesStringBuilder.Append(_renderer.RenderLineBreak());
