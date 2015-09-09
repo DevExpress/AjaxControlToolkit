@@ -31,9 +31,10 @@ namespace AjaxControlToolkit.Reference.Core {
             RenderTypeDescription(typeDoc.Summary);
             RenderTypeRemarks(typeDoc.Remarks);
 
+            RenderProperties(typeDoc.Properties.OrderBy(p => p.Name));
             RenderMethods(typeDoc.Methods.OrderBy(m => m.Name), "Methods");
             RenderEvents(typeDoc.Events.OrderBy(e => e.Name));
-            RenderProperties(typeDoc.Properties.OrderBy(p => p.Name));
+            
             RenderClientProperties(typeDoc.ClientProperties.OrderBy(p => p.Name));
             RenderMethods(typeDoc.ClientMethods.OrderBy(m => m.Name), "Client methods");
             RenderClientEvents(typeDoc.ClientEvents.OrderBy(p => p.Name));
