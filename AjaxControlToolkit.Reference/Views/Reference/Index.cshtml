@@ -6,6 +6,27 @@
 
 <ul>
     @foreach(var typeName in Model) {
-        <li>@Html.ActionLink(typeName, "Markup", "Reference", new { typeName = typeName }, null)</li>
+        <li>@Html.ActionLink(typeName, "Markup", "Reference", new { typeName = typeName }, null) (<a href="@GetSampleSiteLink(typeName)">demo</a>)</li>
     }
 </ul>
+
+
+@functions
+{
+    HtmlString GetSampleSiteLink(string typeName) {
+        var pageName = typeName.Replace("Extender", "");
+        
+        if(typeName == "HtmlEditorExtender")
+            pageName += "Extender";
+
+        if(typeName == "TabContainer"
+            ||
+            typeName == "TabPanel")
+            pageName = "Tabs";
+
+        if(typeName == "MaskedEditValidator")
+            pageName = "MaskedEdit";
+
+        return new HtmlString(String.Format("http://ajaxcontroltoolkit.devexpress.com/{0}/{0}.aspx", pageName));
+    }
+}
