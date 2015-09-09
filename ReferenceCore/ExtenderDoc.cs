@@ -29,6 +29,7 @@ namespace AjaxControlToolkit.Reference.Core {
             RenderTypeName(typeDoc.Name);
             RenderTypeDescription(typeDoc.Summary);
             RenderTypeRemarks(typeDoc.Remarks);
+
             RenderMethods(typeDoc.Methods.OrderBy(m => m.Name), "Methods");
             RenderEvents(typeDoc.Events.OrderBy(e => e.Name));
             RenderProperties(typeDoc.Properties.OrderBy(p => p.Name));
@@ -52,6 +53,9 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderMethods(IEnumerable<MethodDoc> methods, string headerText) {
+            if(methods.Count() <= 0)
+                return;
+
             var methodsStringBuilder = new StringBuilder();
             methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader(headerText, level: 2));
 
@@ -82,6 +86,9 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderEvents(IEnumerable<EventDoc> events) {
+            if(events.Count() <= 0)
+                return;
+
             var eventsStringBuilder = new StringBuilder();
             eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Events", level: 2));
 
@@ -95,6 +102,9 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderClientProperties(IEnumerable<ClientPropertyDoc> clientProperties) {
+            if(clientProperties.Count() <= 0)
+                return;
+
             var propertiesStringBuilder = new StringBuilder();
             propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Client properties", level: 2));
 
@@ -119,6 +129,9 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderProperties(IEnumerable<PropertyDoc> properties) {
+            if(properties.Count() <= 0)
+                return;
+
             var propertiesStringBuilder = new StringBuilder();
             propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Properties", level: 2));
 
@@ -132,6 +145,9 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderClientEvents(IEnumerable<ClientEventDoc> clientEvents) {
+            if(clientEvents.Count() <= 0)
+                return;
+
             var eventsStringBuilder = new StringBuilder();
             eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Client events", level: 2));
 
