@@ -56,5 +56,18 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         public string RenderLineBreak() {
             return "\n";
         }
+
+        public string RenderDescriptionBlock(Dictionary<string, string> values) {
+            var descriptionStringBuilder = new StringBuilder();
+
+            descriptionStringBuilder.Append(String.Format("|| {0} || {1} ||", "Name", "Description"));
+            descriptionStringBuilder.Append(this.RenderLineBreak());
+            foreach(var value in values) {
+                descriptionStringBuilder.Append(String.Format("| {0} | {1} |", RenderText(value.Key), RenderText(value.Value)));
+                descriptionStringBuilder.Append(this.RenderLineBreak());
+            }
+
+            return descriptionStringBuilder.ToString();
+        }
     }
 }

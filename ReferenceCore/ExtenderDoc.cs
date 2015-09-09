@@ -149,15 +149,17 @@ namespace AjaxControlToolkit.Reference.Core {
             var propertiesStringBuilder = new StringBuilder();
             propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Properties", level: 2));
 
-            foreach(var propertyDoc in properties) {
-                propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(propertyDoc.Name, bold: true));
-                propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(propertyDoc.Summary)));
+            propertiesStringBuilder.Append(_renderer.RenderLineBreak());
 
-                if(propertyDoc.Remarks != null)
-                    propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(propertyDoc.Remarks)));
+            var dict = new Dictionary<string, string>();
+            foreach(var  property in properties) {
+                var remarks = "";
+                if(property.Remarks != null)
+                    remarks = _renderer.RenderText("Remarks: ", italic: true, bold: true) + _renderer.RenderText(_renderer.Sanitize(property.Remarks), italic: true);
 
-                propertiesStringBuilder.Append(_renderer.RenderLineBreak());
+                dict.Add(property.Name, property.Summary + remarks);
             }
+            propertiesStringBuilder.Append(_renderer.RenderDescriptionBlock(dict));
 
             _docStringBuilder.Append(propertiesStringBuilder.ToString());
         }

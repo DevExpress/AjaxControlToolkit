@@ -8,5 +8,6 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         string RenderLineBreak();
         string RenderListItem(string text, bool ordered = false, int level = 1);
         string Sanitize(string text);
+        string RenderDescriptionBlock(Dictionary<string, string> values);
     }
 }
