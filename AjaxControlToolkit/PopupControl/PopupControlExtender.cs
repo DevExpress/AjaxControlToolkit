@@ -48,7 +48,7 @@ namespace AjaxControlToolkit {
         /// <remarks>
         /// Only the Cancel and Commit methods should be called on the proxy
         /// </remarks>
-        /// <param name="page">Page</param>
+        /// <param name="page" type="Page">Page</param>
         /// <returns>Popup control extender</returns>
         public static PopupControlExtender GetProxyForCurrentPopup(Page page) {
             var popupControlExtender = new PopupControlExtender(page);
@@ -68,7 +68,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Commits the popup control and hides it, applying the specified result
         /// </summary>
-        /// <param name="result">Result</param>
+        /// <param name="result" type="String">Result</param>
         public void Commit(string result) {
             // It is possible for Commit() to be called numerous times during the same postback so we just remember the desired state
             _closeString = result;
