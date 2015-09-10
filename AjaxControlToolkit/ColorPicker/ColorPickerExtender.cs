@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// The ColorPicker extender enables you to display a pop-up color picker when the focus is moved to an input element.
+    /// The ColorPicker extender allows you to display a popup color picker when focus is moved to an input element.
     /// You can attach the ColorPicker extender to any ASP.NET TextBox control.
     /// </summary>
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
@@ -22,7 +22,7 @@ namespace AjaxControlToolkit {
     [Designer(typeof(ColorPickerExtenderDesigner))]
     public class ColorPickerExtender : ExtenderControlBase {
         /// <summary>
-        /// Specifies whether the ColorPicker behavior is available for the current element
+        /// Specifies whether or not ColorPicker behavior is available for the current element.
         /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
@@ -33,11 +33,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The ID of a control to use to display the color-picker popup
+        ///  The ID of a control to use to display the color-picker popup.
         /// </summary>
         /// <remarks>
-        /// If this value is not set, the color picker will pop up when the
-        /// TextBox control that is represented by TargetControlID receives focus
+        /// If this value is not set, the color picker will pop up when the TextBox control represented by TargetControlID receives focus.
         /// </remarks>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -50,11 +49,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The ID of a control to use to display the selected color
+        /// The ID of a control to use to display the selected color.
         /// </summary>
         /// <remarks>
-        /// If this value is set and the color picker popup is open, the background color of the specified control
-        /// displays the color that the mouse pointer is over. If this value is not set, the selected color is not displayed
+        /// If this value is set and the color picker popup is open, the background color of the specified control displays a color over which that the mouse pointer is hovering.
+        /// If this value is not set, the selected color is not displayed.
         /// </remarks>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -67,10 +66,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Indicates where the color picker popup should appear relative to the TextBox control that is being extended
+        /// Indicates where the color picker popup should appear relative to the TextBox control that is being extended.
         /// </summary>
         /// <remarks>
-        /// Values can be BottomLeft, BottomRight, TopLeft, TopRight, Left, or Right. The default is BottomLeft
+        /// Values can be BottomLeft, BottomRight, TopLeft, TopRight, Left, or Right. The default is BottomLeft.
         /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("popupPosition")]
@@ -82,7 +81,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The color value that the ColorPicker extender is initialized with
+        /// A color value that the ColorPicker extender is initialized with.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -93,7 +92,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A JavaScript function that will be called when the showing event is raised
+        /// A JavaScript function that will be called when the showing event is raised.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -104,7 +103,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A JavaScript function that will be called when the shown event is raised
+        /// A JavaScript function that will be called when the shown event is raised.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -115,7 +114,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A JavaScript function that will be called when the hiding event is raised
+        /// A JavaScript function that will be called when the hiding event is raised.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -126,7 +125,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A JavaScript function that will be called when the hidden event is raised
+        /// A JavaScript function that will be called when the hidden event is raised.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -137,7 +136,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A JavaScript function that will be called when the colorSelectionChanged event is raised
+        /// A JavaScript function that will be called when the colorSelectionChanged event is raised.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
