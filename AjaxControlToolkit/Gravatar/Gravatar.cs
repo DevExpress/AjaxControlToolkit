@@ -14,7 +14,7 @@ namespace AjaxControlToolkit {
 
     /// <summary>
     /// The Gravatar control is an ASP.NET AJAX Control Toolkit control that enables you to use gravatar images on your web forms.
-    /// A gravatar is a "Globally Recognized Avatar" provided by Gravatar.com.
+    /// Gravatar is a Globally Recognized Avatar provided by Gravatar.com. 
     /// </summary>
     [Designer(typeof(GravatarDesigner))]
     [ToolboxData("<{0}:Gravatar runat=\"server\"></{0}:Gravatar>")]
@@ -27,7 +27,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Email that is associated with account at gravatar
+        /// An email that is associated with an account at Gravatar.com.
         /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -39,7 +39,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The requested size of the image that gravatar needs to render (both width and height)
+        /// The requested size of an image that the gravatar needs to render (both width and height).
         /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -51,9 +51,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Url of the image, that will be diplayed, if the gravatar image can't be displayed
-        /// because of inacceptable rating or the email account is not associated with a gravatar.
-        /// This must be an absolute URL
+        ///  An image Url that will be diplayed if a gravatar image can't be displayed because of inacceptable rating or an email account is not associated with the gravatar.
+        ///  It must be an absolute URL. 
         /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -65,8 +64,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The image displayed when a gravater is not associated with an email account.
-        /// Possible values are Identicon, MonsterId, MysteryMan, Retro, Wavatar
+        /// An image displayed when the gravatar is not associated with an email account.
+        /// Possible values are Identicon, MonsterId, MysteryMan, Retro, Wavatar. 
         /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
@@ -78,7 +77,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Acceptable rating of the image to display
+        ///  Acceptable rating of an image to display.
         /// </summary>
         [Category("Behavior")]
         [ExtenderControlProperty]
