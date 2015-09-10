@@ -18,8 +18,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// ComboBox is an ASP.NET AJAX control that, like the AutoCompleteExtender, combines the flexibility
-    /// of a TextBox with a list of options that users are able to choose from.
+    /// Like AutoCompleteExtender, a combo box is an ASP.NET AJAX control that combines the flexibility of the TextBox with a list of options from which users are able to choose.
     /// </summary>
     [SupportsEventValidation()]
     [ValidationProperty("SelectedItem")]
@@ -73,17 +72,16 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Resolves control
+        /// Resolves a control
         /// </summary>
-        /// <param name="controlId" type="String">ID of the control</param>
+        /// <param name="controlId">ID of the control</param>
         /// <returns>Found control</returns>
         public Control ResolveControl(string controlId) {
             return FindControl(controlId);
         }
 
         /// <summary>
-        /// Specifies whether the ComboBox is rendered as an "Inline" or "Block" level HTML element.
-        /// The default is "Inline"
+        /// Specifies whether or not the ComboBox is rendered as an Inline or Block level HTML element. The default is Inline.
         /// </summary>
         [Category("Layout")]
         [DefaultValue(typeof(ComboBoxRenderMode), "Inline")]
@@ -94,13 +92,12 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines whether the user is allowed to enter text that does not match an item in the
-        /// list, and whether the list is always displayed
+        /// Determines whether or not a user is allowed to enter text that does not match an item in the list and if the list is always displayed.
         /// </summary>
         /// <remarks>
         /// If "DropDownList" is specified, users are not allowed to enter text that does not match an item in the list. When "DropDown"
         /// (the default value) is specified, any text is allowed. If "Simple" is specified, any text is allowed and the list is
-        /// always displayed regardless of the AutoCompleteMode property value
+        /// always displayed regardless of the AutoCompleteMode property value.
         /// </remarks>
         [Category("Behavior")]
         [DefaultValue(typeof(ComboBoxStyle), "DropDown")]
@@ -114,14 +111,13 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines how the ComboBox automatically completes the text that is typed into it
+        /// Determines how the ComboBox automatically completes typed text.
         /// </summary>
         /// <remarks>
-        /// When "Suggest" is specified, the ComboBox will show the list, highlight the first matched item,
-        /// and if necessary, scroll the list to show the highlighted item. If "Append" is specified,
-        /// the ComboBox will append the remainder of the first matched item to the user-typed text and
-        /// highlight the appended text. When "SuggestAppend" is specified, both of the above behaviors are
-        /// applied. If "None" (the default value) is specified, the ComboBox's auto-complete behaviors are disabled
+        /// When Suggest is specified, the ComboBox will show a list, highlight the first matched item, and if necessary, scroll the list to show the highlighted item. 
+        /// If Append is specified, the ComboBox will append the remainder of the first matched item to the user-typed text and highlight the appended text. 
+        /// When SuggestAppend is specified, both of the above behaviors are applied. 
+        /// If None (the default value) is specified, the ComboBox' auto-complete behaviors are disabled.
         /// </remarks>
         [Category("Behavior")]
         [DefaultValue(typeof(ComboBoxAutoCompleteMode), "None")]
@@ -135,9 +131,9 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines whether to "Append" or "Prepend" new items when they are inserted into the list,
-        /// or whether to insert them in an "Ordinal" manner (alphabetically) based on the item
-        /// Text or Value. The default is "Append
+        /// Determines if to "Append" or "Prepend" new items when they are inserted into the list 
+        /// or insert them in an "Ordinal" manner (alphabetically) based on the item Text or Value.
+        /// The default is "Append"
         /// </summary>
         [Category("Behavior")]
         [DefaultValue(typeof(ComboBoxItemInsertLocation), "Append")]
@@ -151,8 +147,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Specifies whether user-typed text is matched to items in the list in a case-sensitive manner.
-        /// The default is "false"
+        /// Specifies whether or not user-typed text matches items in the list in a case-sensitive manner. The default is false.
         /// </summary>
         [Category("Behavior")]
         [DefaultValue(false)]
@@ -168,7 +163,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// When specified, replaces the default styles applied to highlighted items in the list with a custom css class
+        /// When specified, replaces default styles applied to highlighted items in the list with a custom css class.
         /// </summary>
         [Category("Style")]
         [DefaultValue("")]
@@ -184,7 +179,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// ComboBox selected item index
+        /// The ComboBox selected item index.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("selectedIndex")]
@@ -197,7 +192,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not to use AutoPostBack
+        /// Determines whether or not AutoPostBack should be used.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("autoPostBack")]
@@ -207,7 +202,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Specifies maximum length of the associated TextBox control
+        /// Specifies maximum length of the associated TextBox control.
         /// </summary>
         public virtual int MaxLength {
             get { return TextBoxControl.MaxLength; }
@@ -215,7 +210,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// ComboBox tab index
+        /// The ComboBox tab index.
         /// </summary>
         public override short TabIndex {
             get { return TextBoxControl.TabIndex; }
@@ -223,7 +218,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not ComboBox is enabled
+        /// Determines whether or not the ComboBox is enabled.
         /// </summary>
         public override bool Enabled {
             get { return base.Enabled; }
@@ -235,7 +230,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// ComboBox height
+        /// ComboBox height.
         /// </summary>
         public override Unit Height {
             get { return TextBoxControl.Height; }
@@ -243,7 +238,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// ComboBox width
+        /// ComboBox width.
         /// </summary>
         public override Unit Width {
             get { return TextBoxControl.Width; }
@@ -251,7 +246,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Foreground color
+        /// A foreground color.
         /// </summary>
         public override Color ForeColor {
             get { return TextBoxControl.ForeColor; }
@@ -259,7 +254,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Background color
+        /// A background color.
         /// </summary>
         public override Color BackColor {
             get { return TextBoxControl.BackColor; }
@@ -267,14 +262,14 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Font of the ComboBox control
+        /// The ComboBox control font.
         /// </summary>
         public override FontInfo Font {
             get { return TextBoxControl.Font; }
         }
 
         /// <summary>
-        /// Color of the ComboBox border
+        /// The ComboBox border color.
         /// </summary>
         public override Color BorderColor {
             get { return TextBoxControl.BorderColor; }
@@ -286,7 +281,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Style of the ComboBox border
+        /// The ComboBox border style.
         /// </summary>
         public override BorderStyle BorderStyle {
             get { return TextBoxControl.BorderStyle; }
@@ -297,7 +292,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Width of the ComboBox border
+        /// The ComboBox border width.
         /// </summary>
         public override Unit BorderWidth {
             get { return TextBoxControl.BorderWidth; }
@@ -500,9 +495,9 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Renders control
+        /// Renders a control.
         /// </summary>
-        /// <param name="writer" type="HtmlTextWriter">HTML text writer</param>
+        /// <param name="writer">HTML text writer</param>
         public override void RenderControl(HtmlTextWriter writer) {
             if(DesignMode) {
                 CreateChildControls();
@@ -561,14 +556,14 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Raises PostDataChangeEvent
+        /// Raises PostDataChangeEvent.
         /// </summary>
         public virtual void RaisePostDataChangedEvent() {
             OnSelectedIndexChanged(EventArgs.Empty);
         }
 
         /// <summary>
-        /// Fired on item inserting
+        /// Fires on inserting an item.
         /// </summary>
         public event EventHandler<ComboBoxItemInsertEventArgs> ItemInserting {
             add { Events.AddHandler(EventItemInserting, value); }
@@ -576,7 +571,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Fired when item is inserted
+        /// Fires when an item is inserted.
         /// </summary>
         public event EventHandler<ComboBoxItemInsertEventArgs> ItemInserted {
             add { Events.AddHandler(EventItemInserted, value); }
