@@ -148,14 +148,14 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
     },
 
     ///<summary>
-    /// Draws shadow around the control
+    /// Draws shadow around the control.
     ///</summary>
     /// <remarks>
-    /// This function does the heavy lifting of positioning and sizing the shadow.
-    /// It caches values to avoid extra work - it's called on a timer so we need to
-    /// keep it light weight
+    /// This function does most part of work when positioning and sizing the shadow. 
+    /// It caches values to avoid extra work. 
+    /// It's called on a timer so we need to keep its weight light.
     /// </remarks>
-    /// <param name="force" type="Boolean">Whether to force the bounds change</param>
+    /// <param name="force" type="Boolean">Whether to force the bounds change.</param>
     /// <param name="norecurse" type="Boolean">Whether to recurse if we need to recreate the shadow div</param>
     /// <member name="cM:AjaxControlToolkit.DropShadowExtender.setShadow" />
     setShadow: function(force, norecurse) {
@@ -280,10 +280,10 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
     },
 
     /// <summary>
-    /// A number that represents the opacity of the drop shadow, from 0 (fully transparent) to 1.0 (fully opaque)
+    /// A number that represents the opacity of the drop shadow from 0 (fully transparent) to 1.0 (fully opaque).	
     /// </summary>
     /// <remarks>
-    /// The default is .5
+    /// The default is .5.
     /// </remarks>
     /// <getter>get_opacity</getter>
     /// <setter>set_opacity</setter>
@@ -312,7 +312,7 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
     },
 
     /// <summary>
-    /// A Boolean value that specifies whether the corners of the target and drop shadow should be rounded
+    /// A Boolean value that specifies whether or not corners of the target and drop shadow should be rounded.
     /// </summary>
     /// <getter>get_rounded</getter>
     /// <setter>set_rounded</setter>
@@ -339,7 +339,7 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
     },
 
     /// <summary>
-    /// An integer that specifies the radius, in pixels, of the rounded corners
+    /// An integer that specifies the radius of rounded corners in pixels.
     /// </summary>
     /// <getter>get_radius</getter>
     /// <setter>set_radius</setter>
@@ -366,10 +366,10 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
     },
 
     /// <summary>
-    /// An integer that specifies the width, in pixels, of the drop shadow
+    /// An integer that specifies the drop shadow width in pixels.
     /// </summary>
     /// <remarks>
-    /// The default is 5
+    /// The default is 5.
     /// </remarks>
     /// <getter>get_width</getter>
     /// <setter>set_width</setter>
@@ -399,7 +399,7 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
     },
 
     /// <summary>
-    /// A number that specifies the length of the timer interval that is used when tracking the position of the target
+    /// A number that specifies the length of the timer interval that is used when tracking the targer position.
     /// </summary>
     /// <getter>get_trackPositionDelay</getter>
     /// <setter>set_trackPositionDelay</setter>
@@ -436,10 +436,10 @@ Sys.Extended.UI.DropShadowBehavior.prototype = {
     },
 
     /// <summary>
-    /// A Boolean value that specifies whether the drop shadow should track the position of the panel it is attached to
+    /// A Boolean value that specifies whether the drop shadow should track the position of the panel to which it is attached.
     /// </summary>
     /// <remarks>
-    /// Set this property to true if the panel is absolutely positioned or if it might move at run time. The default is false
+    /// Set this property to true if the panel is absolutely positioned or if it might move at runtime. The default is false.
     /// </remarks>
     /// <getter>get_trackPosition</getter>
     /// <setter>set_trackPosition</setter>
