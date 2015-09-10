@@ -10,7 +10,7 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     var _mouseDownHandler = Function.createDelegate(this, mouseDownHandler);
 
     ///<summary>
-    /// Move event handler
+    /// Move event handler.
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.DragPanelExtender.move" />
     ///<event add="add_move" remove="remove_move" />
@@ -22,7 +22,7 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     }
 
     ///<summary>
-    /// Handle to drag panel around
+    /// Handles to drag the panel around.
     ///</summary>
     ///<getter>get_handle</getter>
     ///<setter>set_handle</setter>
@@ -53,7 +53,7 @@ Sys.Extended.UI.FloatingBehavior = function(element) {
     }
 
     ///<summary>
-    /// Location of an element being dragged
+    /// Defines the location of an element being dragged.
     ///</summary>
     ///<getter>get_location</getter>
     ///<setter>set_location</setter>

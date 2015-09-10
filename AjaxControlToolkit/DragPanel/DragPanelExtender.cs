@@ -8,10 +8,8 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     ///<summary>
-    /// This extender attaches the stock "floatingBehavior" to a Panel, and is an example
-    /// of wrapping an existing behavior with an extender.
-    /// When attached to a Panel, the user can then drag that panel around the browser rendering surface
-    /// using the mouse.
+    /// This extender attaches the stock floatingBehavior to the panel and is an example of wrapping the existing behavior with an extender. 
+    /// On being attached to the panel, a user can then drag that panel around the browser rendering surface using the mouse.
     ///</summary>
     [Designer(typeof(DragPanelExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.FloatingBehavior", Constants.FloatingBehaviorName)]
@@ -20,8 +18,8 @@ namespace AjaxControlToolkit {
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DragPanelName + Constants.IconPostfix)]
     public class DragPanelExtender : ExtenderControlBase {
         /// <summary>
-        /// The server ID of a control that will serve as the "handle" for this drag operation.
-        /// When the user clicks and drags on this control, the associated panel will be moved as well
+        /// The server ID of a control that will serve as a handle for this drag operation. 
+        /// When a user clicks and drags this control, the associated panel will be moved as well.
         /// </summary>
         [IDReferenceProperty(typeof(WebControl))]
         [ExtenderControlProperty()]
