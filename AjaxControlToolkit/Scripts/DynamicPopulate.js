@@ -54,13 +54,12 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Uses the dymanic content to populate the target element
+    /// Uses dymanic content to populate the target element.
     /// </summary>
     /// <remarks>
-    /// If the element to populate is in a data-bound repeating control, the contextKey
-    /// parameter can be the ID of the current row
+    /// If an element to populate is in a data-bound repeating control, the contextKey parameter can be an ID of the current row.
     /// </remarks>
-    /// <param name="contextKey" type="String">A string to pass to the Web service method or page method</param>
+    /// <param name="contextKey" type="String">A string to pass to the Web service method or page method.</param>
     /// <member name="cM:AjaxControlToolkit.DynamicPopulateExtender.populate" />
     populate: function(contextKey) {
         // An arbitrary string value to be passed to the web method. For example, if the element to be populated is within a data-bound repeater, this could be the ID of the current row.
@@ -149,9 +148,9 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sets the style of the display
+    /// Sets the dislpayed style.
     /// </summary>
-    /// <param name="updating" type="Boolean">A Boolean value that specifies whether the display is being updated</param>
+    /// <param name="updating" type="Boolean">A Boolean value that specifies whether the display is being updated.</param>
     /// <member name="cM:AjaxControlToolkit.DynamicPopulateExtender.setStyle" />
     setStyle: function(updating) {
         // Set the style of the display
@@ -172,7 +171,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// A Boolean value that specifies whether the contents of the target should be cleared when an update begins
+    /// A Boolean value that specifies whether or the target content should be cleared when the update begins.
     /// </summary>
     /// <getter>get_clearContentsDuringUpdate</getter>
     /// <setter>set_clearContentsDuringUpdate</setter>
@@ -197,7 +196,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// A string to pass to the Web method
+    /// A string to pass to the Web method.
     /// </summary>
     /// <getter>get_contextKey</getter>
     /// <setter>set_contextKey</setter>
@@ -225,7 +224,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// The name of an element that can be clicked to trigger the action of populating of the target element
+    /// TA name of an element that can be clicked to trigger the target element population.
     /// </summary>
     /// <getter>get_populateTriggerID</getter>
     /// <setter>set_populateTriggerID</setter>
@@ -251,10 +250,10 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// The URL of the Web service to call
+    /// The Web service URL to call.
     /// </summary>
     /// <remarks>
-    /// This property is optional. If the ServicePath property is not set, a page method is invoked instead of a Web service
+    /// This property is optional. If the ServicePath property is not set, a page method is invoked instead of a Web service.
     /// </remarks>
     /// <getter>get_servicePath</getter>
     /// <setter>set_servicePath</setter>
@@ -279,7 +278,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// The name of the method to call on the Web service or page
+    /// The method name to call on the Web service or a page.
     /// </summary>
     /// <getter>get_serviceMethod</getter>
     /// <setter>set_serviceMethod</setter>
@@ -309,8 +308,8 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// A Boolean value that specifies whether the results of populating the
-    /// target element should be cached and not fetched again after the first load
+    /// A Boolean value that specifies whether or not the results of the target 
+    /// element population should be cached and not fetched again after the first load.	
     /// </summary>
     /// <getter>get_cacheDynamicResults</getter>
     /// <setter>set_cacheDynamicResults</setter>
@@ -326,7 +325,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// The name of the CSS class to apply to the target during asynchronous calls
+    /// The name of the CSS class to apply to the target during asynchronous calls.
     /// </summary>
     /// <getter>get_updatingCssClass</getter>
     /// <setter>set_updatingCssClass</setter>
@@ -351,7 +350,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// The script to invoke instead of calling a Web service method or a page method
+    /// The script to invoke instead of calling a Web service or page method.	
     /// </summary>
     /// <getter>get_customScript</getter>
     /// <setter>set_customScript</setter>
@@ -377,7 +376,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when populating starts
+    /// Fires when populating starts.
     /// </summary>
     /// <event add="add_populating" remove="remove_populating" raise="raise_populating" />
     /// <member name="cE:AjaxControlToolkit.DynamicPopulateExtender.populating" />
@@ -398,7 +397,7 @@ Sys.Extended.UI.DynamicPopulateBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when populating ends
+    /// Fires when populating ends.
     /// </summary>
     /// <event add="add_populated" remove="remove_populated" raise="raise_populated" />
     /// <member name="cE:AjaxControlToolkit.DynamicPopulateExtender.populated" />

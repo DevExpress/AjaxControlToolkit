@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// DynamicPopulate is an extender that replaces the contents of a control with the result of a Web service or page method call.
+    /// DynamicPopulate is an extender that replaces the control content with the result of the Web service or a page method call.
     /// </summary>
     [Designer(typeof(DynamicPopulateExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -20,7 +20,7 @@ namespace AjaxControlToolkit {
     public class DynamicPopulateExtender : ExtenderControlBase {
 
         /// <summary>
-        /// Whether or not we should clear the HTML contents of the target element when an update begins
+        /// Determines if HTML content of a target element should be cleared when the update begins.
         /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
@@ -32,7 +32,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// An key that you can pass to the web service call, such as an ID. This is optional
+        /// A key that you can pass to the Web service call, such as an ID. This is optional.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -44,8 +44,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The ID of a control to trigger the population of the target. The population will be
-        /// triggered by this controls "click" event
+        /// A control's ID to trigger the target population. The population will be triggered by this control's Click event.
         /// </summary>
         [ExtenderControlProperty]
         [IDReferenceProperty(typeof(Control))]
@@ -57,7 +56,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The method name of the web service of page method to call
+        /// A name of a Web service or page method to call
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -74,7 +73,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The path of the web service to call, or if this is blank, a page method will be called instead
+        /// A path of the web service to call. If it is blank, a page method will be called instead.
         /// </summary>
         [ExtenderControlProperty]
         [UrlProperty]
@@ -103,8 +102,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A CustomScript can be used to eval a javascript function that will return a string to populate the control.
-        /// This script method must return a string and will be called instead of the Service or Page method
+        /// CustomScript can be used to evaluate a JavaScript function that will return a string to populate the control.
+        /// This script method must return a string and will be called instead of the Service or Page method.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -121,7 +120,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether the results of the dynamic population should be cached and not fetched again after the first load.
+        /// Determines if the dynamic population result should be cached and not fetched again after the first load.
         /// The default is false
         /// </summary>
         [ExtenderControlProperty]
