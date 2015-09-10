@@ -13,8 +13,8 @@ namespace AjaxControlToolkit {
     // any server content in it.
 
     /// <summary>
-    /// HoverMenu is an ASP.NET AJAX Control Toolkit extender that can be attached to any ASP.NET WebControl,
-    /// and will associate that control with a popup panel do display additional content.
+    /// HoverMenu is an ASP.NET AJAX Control Toolkit extender that can be attached to any 
+    /// ASP.NET WebControl and associates that control with a popup panel to display additional content.
     /// </summary>
     [ClientScriptResource("Sys.Extended.UI.HoverMenuBehavior", Constants.HoverMenuName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -26,7 +26,7 @@ namespace AjaxControlToolkit {
     [Designer(typeof(HoverMenuExtenderDesigner))]
     public class HoverMenuExtender : DynamicPopulateExtenderControlBase {
         /// <summary>
-        /// The ID of the control to display when mouse is over the target control
+        /// A control's ID to display when the mouse is over the target control. 
         /// </summary>
         [ExtenderControlProperty]
         [RequiredProperty]
@@ -40,7 +40,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The CSS class to apply to the target when the hover menu popup is visible
+        /// A CSS class to apply to the target when the hover menu popup is visible
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -57,9 +57,7 @@ namespace AjaxControlToolkit {
         // negative to cause an overlap.
 
         /// <summary>
-        /// The number of pixels to offset the Popup from it's default position, as specified by PopupPosition.
-        /// The default is 0
-        /// </summary>
+        /// The number of pixels to offset the popup from its default position as specified by PopupPosition. Default is 0 
         [ExtenderControlProperty]
         [DefaultValue(0)]
         [ClientPropertyName("offsetX")]
@@ -75,8 +73,7 @@ namespace AjaxControlToolkit {
         // negative to cause an overlap.
 
         /// <summary>
-        /// The number of pixels to offset the Popup from it's default position, as specified by PopupPosition.
-        /// The default is 0
+        /// The number of pixels to offset the popup from its default position as specified by PopupPosition. Default is 0 
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -87,8 +84,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The time, in milliseconds, for the popup to remain visible after the mouse moves away from the target control. Default is 0
+        ///  Time in milliseconds for the popup to remain visible after the mouse moves away from the target control. 
         /// </summary>
+        /// <remarks>
+        /// Default is 0.
+        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(0)]
         [ClientPropertyName("popDelay")]
@@ -98,8 +98,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The time, in milliseconds, before the popup displays after hovering over the target control. Default is 0
+        /// Time in milliseconds before the popup is displayed after hovering over the target control. 
         /// </summary>
+        /// <remarks>
+        /// Default is 0.
+        /// </remarks>
         [DefaultValue(0)]
         [ExtenderControlProperty()]
         [ClientPropertyName("hoverDelay")]
@@ -109,13 +112,12 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The position of the popup element when it is shown
+        /// The popup element position when it is shown. 
         /// </summary>
         /// <remarks>
-        /// This value can be any of the values in the HoverMenuPopupPosition enumeration,
-        /// and the position can be modified by setting the OffsetX and/or OffsetY property.
-        /// Can be Left, Right, Top, Bottom, Center.
-        /// The default is Center
+        /// This can be any value from the HoverMenuPopupPosition enumeration, 
+        /// and the position can be modified by setting the OffsetX and/or OffsetY properties. 
+        /// Can be Left, Right, Top, Bottom, Center. Center is default. 
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(HoverMenuPopupPosition.Center)]
@@ -126,11 +128,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The OnShow animation will be played each time the hover menu is displayed
+        /// OnShow animation will be played each time the hover menu is displayed. 
         /// </summary>
         /// <remarks>
-        /// The hover menu will be positioned correctly but hidden. The animation can use
-        /// to display the hover menu along with any other visual effects
+        ///  The hover menu will be positioned correctly but hidden. Animation can be used to display the hover menu with other visual effects.
         /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
@@ -144,7 +145,7 @@ namespace AjaxControlToolkit {
         Animation _onShow;
 
         /// <summary>
-        /// The OnHide animation will be played each time the hover menu is hidden
+        /// OnHide animation will be played each time the hover menu is hidden. 
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
