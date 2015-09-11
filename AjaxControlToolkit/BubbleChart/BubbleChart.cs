@@ -12,8 +12,8 @@ using System.Drawing;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// The BubbleChart control enables you to render a bubble chart from one or more series of values.
-    /// This control is compatible with any browser which supports SVG including Internet Explorer 9 and above.
+    /// The BubbleChart control enables you to render a bubble chart from one or more series of values. 
+    /// This control is compatible with any browser that supports SVG including Internet Explorer 9 and above.
     /// </summary>
     [ClientCssResource(Constants.BubbleChartName)]
     [ClientScriptResource("Sys.Extended.UI.BubbleChart", Constants.BubbleChartName)]
@@ -22,9 +22,9 @@ namespace AjaxControlToolkit {
         List<BubbleChartValue> _values = new List<BubbleChartValue>();
 
         /// <summary>
-        /// Provides list of values to client side. Need help from Values property 
-        /// for designer experience support, cause Editor always blocks the property
-        /// ability to provide values to client side as ExtenderControlProperty on run time
+        /// Provides a list of values to the client side. 
+        /// The Values property is required for designer experience support, 
+        /// because the editor always prevents providing values to the client side as ExtenderControlProperty at runtime.
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -37,7 +37,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// List of values
+        /// A list of values.
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -49,7 +49,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The interval size for the Y axis line of the chart.
+        /// Interval size for the Y axis line of the chart.
         /// The default is 6
         /// </summary>
         [ExtenderControlProperty]
@@ -58,7 +58,7 @@ namespace AjaxControlToolkit {
         public int YAxisLines { get; set; }
 
         /// <summary>
-        /// The interval size for the X axis line of the chart.
+        /// Iinterval size for the X axis line of the chart. 
         /// The default is 6
         /// </summary>
         [ExtenderControlProperty]
@@ -67,7 +67,8 @@ namespace AjaxControlToolkit {
         public int XAxisLines { get; set; }
 
         /// <summary>
-        /// The number of different sizes of the bubbles
+        /// The number of different bubble sizes.
+        /// The default is 5
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(5)]
@@ -75,7 +76,7 @@ namespace AjaxControlToolkit {
         public int BubbleSizes { get; set; }
 
         /// <summary>
-        /// The color of the Y axis lines of the chart
+        /// A color of the Y axis lines of the chart.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -83,7 +84,7 @@ namespace AjaxControlToolkit {
         public string YAxisLineColor { get; set; }
 
         /// <summary>
-        /// The color of the X axis lines of the chart
+        /// A color of the X axis lines of the chart.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -91,7 +92,7 @@ namespace AjaxControlToolkit {
         public string XAxisLineColor { get; set; }
 
         /// <summary>
-        /// The color of the base lines of the chart
+        /// The color of the base lines of a chart.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -99,7 +100,7 @@ namespace AjaxControlToolkit {
         public string BaseLineColor { get; set; }
 
         /// <summary>
-        /// The background color of the tooltip box.
+        /// A background color of the tooltip box.
         /// The default is #FFC652
         /// </summary>
         [ExtenderControlProperty]
@@ -108,7 +109,7 @@ namespace AjaxControlToolkit {
         public string TooltipBackgroundColor { get; set; }
 
         /// <summary>
-        /// The font color of the tooltip box.
+        /// A font color of the tooltip box.
         /// The default is #0E426C
         /// </summary>
         [ExtenderControlProperty]
@@ -117,7 +118,7 @@ namespace AjaxControlToolkit {
         public string TooltipFontColor { get; set; }
 
         /// <summary>
-        /// The border color of the tooltip box.
+        /// A border color of the tooltip box. 
         /// The default is #B85B3E
         /// </summary>
         [ExtenderControlProperty]
@@ -126,7 +127,7 @@ namespace AjaxControlToolkit {
         public string TooltipBorderColor { get; set; }
 
         /// <summary>
-        /// The text/label to describe what data is at XAxis
+        /// Text/label to describe what data is in XAxis.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -134,7 +135,7 @@ namespace AjaxControlToolkit {
         public string XAxisLabel { get; set; }
 
         /// <summary>
-        /// The text/label to describe what data is at YAxis
+        /// Text/label to describe what data is in YAxis.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -142,7 +143,7 @@ namespace AjaxControlToolkit {
         public string YAxisLabel { get; set; }
 
         /// <summary>
-        /// The text/label that will be shown in the tooltip and describe about bubble value
+        /// Text/label that will be shown in the tooltip and describe a bubble value.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]

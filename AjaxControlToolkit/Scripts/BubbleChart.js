@@ -7,7 +7,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._parentDiv = document.getElementById(id + "__ParentDiv");
 
     /// <summary>
-    /// Enables you to customize the width of the chart.
+    /// Enables you to customize the chart width.
     /// The default is 300
     /// </summary>
     /// <getter>get_chartWidth</getter>
@@ -16,7 +16,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._chartWidth = '300';
 
     /// <summary>
-    /// Enables you to customize the height of the chart.
+    /// Enables you to customize the chart height.
     /// The default is 200
     /// </summary>
     /// <getter>get_chartHeight</getter>
@@ -25,7 +25,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._chartHeight = '200';
 
     /// <summary>
-    /// Enables you to set the title of the chart
+    /// Enables you to set the chart's title.
     /// </summary>
     /// <getter>get_chartTitle</getter>
     /// <setter>set_chartTitle</setter>
@@ -33,7 +33,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._chartTitle = '';
 
     /// <summary>
-    /// List of values
+    /// A list of values.
     /// </summary>
     /// <getter>get_bubbleChartClientValues</getter>
     /// <setter>set_bubbleChartClientValues</setter>
@@ -50,7 +50,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._theme = 'BubbleChart';
 
     /// <summary>
-    /// Enables you to set the interval size for the Y axis line of the chart.
+    /// Enables you to set interval size for the Y axis line of the chart.
     /// The default is 6
     /// </summary>
     /// <getter>get_yAxisLines</getter>
@@ -59,7 +59,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._yAxisLines = 6;
 
     /// <summary>
-    /// Enables you to set the interval size for the X axis line of the chart.
+    /// Enables you to set interval size for the X axis line of the chart. 
     /// The default is 6
     /// </summary>
     /// <getter>get_xAxisLines</getter>
@@ -76,7 +76,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._bubbleSizes = 5;
 
     /// <summary>
-    /// Font color of the chart title
+    /// A font color of the chart title.
     /// </summary>
     /// <getter>get_chartTitleColor</getter>
     /// <setter>set_chartTitleColor</setter>
@@ -108,7 +108,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._baseLineColor = '';
 
     /// <summary>
-    /// Enables you to set the background color of the tooltip box.
+    /// Enables you to set a background color of the tooltip box.
     /// The default is #FFFFFF
     /// </summary>
     /// <getter>get_tooltipBackgroundColor</getter>
@@ -117,7 +117,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._tooltipBackgroundColor = '#FFFFFF';
 
     /// <summary>
-    /// Enables you to set the font color of the tooltip box.
+    /// Enables you to set a font color of the tooltip box. 
     /// The default is #0E426C
     /// </summary>
     /// <getter>get_tooltipFontColor</getter>
@@ -126,7 +126,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._tooltipFontColor = '#0E426C';
 
     /// <summary>
-    /// Enables you to set the border color of the tooltip box.
+    /// Enables you to set a border color of the tooltip box. 
     /// The default is #B85B3E
     /// </summary>
     /// <getter>get_tooltipBorderColor</getter>
@@ -135,7 +135,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._tooltipBorderColor = '#B85B3E';
 
     /// <summary>
-    /// Enables you to set the text/label to describe what data is at XAxis
+    /// Enables you to set the text/label to describe what data is in XAxis.
     /// </summary>
     /// <getter>get_xAxisLabel</getter>
     /// <setter>set_xAxisLabel</setter>
@@ -143,7 +143,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._xAxisLabel = '';
 
     /// <summary>
-    /// Enables you to set the text/label to describe what data is at YAxis
+    /// Enables you to set the text/label to describe what data is in YAxis.
     /// </summary>
     /// <getter>get_yAxisLabel</getter>
     /// <setter>set_yAxisLabel</setter>
@@ -151,7 +151,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     this._yAxisLabel = '';
 
     /// <summary>
-    /// Enables you to set the text/label that will be shown in the tooltip and describe about bubble value
+    /// Enables you to set the text/label that will be shown in the tooltip and describe a bubble value.
     /// </summary>
     /// <getter>get_bubbleLabel</getter>
     /// <setter>set_bubbleLabel</setter>
