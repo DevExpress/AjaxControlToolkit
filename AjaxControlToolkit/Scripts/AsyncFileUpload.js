@@ -4,7 +4,7 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
     Sys.Extended.UI.AsyncFileUpload.initializeBase(this, [element]);
 
     /// <summary>
-    /// Stores file path
+    /// Stores the file path.
     /// </summary>
     /// <getter>get_hiddenField</getter>
     /// <setter>set_hiddenField</setter>
@@ -12,7 +12,7 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
     this._hiddenField = null;
 
     /// <summary>
-    /// Input element with type='file'
+    /// Inputs an element with type='file'.
     /// </summary>
     /// <getter>get_inputFile</getter>
     /// <setter>set_inputFile</setter>
@@ -20,7 +20,7 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
     this._inputFile = null;
 
     /// <summary>
-    /// Element indicating upload result
+    /// An inner throbber.
     /// </summary>
     /// <getter>get_innerTB</getter>
     /// <setter>set_innerTB</setter>
@@ -28,7 +28,7 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
     this._innerTB = null;
 
     /// <summary>
-    /// Url that receives posted data relative to the form
+    /// Url that receives posted data relative to the form.
     /// </summary>
     /// <getter>get_postBackUrl</getter>
     /// <setter>set_postBackUrl</setter>
@@ -36,7 +36,7 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
     this._postBackUrl = "";
 
     /// <summary>
-    /// Page form name
+    /// A name of the form.
     /// </summary>
     /// <getter>get_postBackUrl</getter>
     /// <setter>set_postBackUrl</setter>
@@ -46,7 +46,7 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
     this._waitTimer = null;
 
     /// <summary>
-    /// The control's background color on upload complete
+    /// The control's background color on upload complete. The default value - 'Lime'.
     /// </summary>
     /// <getter>get_completeBackColor</getter>
     /// <setter>set_completeBackColor</setter>
@@ -54,7 +54,7 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
     this._completeBackColor = "";
 
     /// <summary>
-    /// The control's background color when uploading is in progress
+    /// The control's background color when uploading is in progress. The default value - 'White'.
     /// </summary>
     /// <getter>get_uploadingBackColor</getter>
     /// <setter>set_uploadingBackColor</setter>
@@ -62,7 +62,7 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
     this._uploadingBackColor = "";
 
     /// <summary>
-    /// The control's background color on upload error
+    /// The control's background color on upload error. The default value - 'Red'.
     /// </summary>
     /// <getter>get_errorBackColor</getter>
     /// <setter>set_errorBackColor</setter>
@@ -70,7 +70,7 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
     this._errorBackColor = "";
 
     /// <summary>
-    /// The control that is shown while the file is uploading
+    /// The control that is shown while the file is being uploaded.
     /// </summary>
     /// <getter>get_throbber</getter>
     /// <setter>set_throbber</setter>
@@ -84,13 +84,6 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
 }
 
 Sys.Extended.UI.AsyncFileUpload.prototype = {
-
-    /// <summary>
-    /// Control that is shown while the file is uploading
-    /// </summary>
-    /// <getter>get_throbber</getter>
-    /// <setter>set_throbber</setter>
-    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.throbber" />
     get_throbber: function() {
         return this._throbber;
     },
@@ -98,25 +91,13 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._throbber = value;
     },
 
-    /// <summary>
-    /// The control's background color on upload complete. Default value - 'Lime'
-    /// </summary>
-    /// <getter>get_completeBackColor</getter>
-    /// <setter>set_completeBackColor</setter>
-    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.completeBackColor" />
     get_completeBackColor: function() {
         return this._completeBackColor;
     },
     set_completeBackColor: function(value) {
         this._completeBackColor = value;
     },
-
-    /// <summary>
-    /// The control's background color on upload error. Default value - 'Red'
-    /// </summary>
-    /// <getter>get_errorBackColor</getter>
-    /// <setter>set_errorBackColor</setter>
-    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.errorBackColor" />
+  
     get_errorBackColor: function() {
         return this._errorBackColor;
     },
@@ -124,12 +105,6 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._errorBackColor = value;
     },
 
-    /// <summary>
-    /// The control's background color when uploading is in progress. Default value - 'White'
-    /// </summary>
-    /// <getter>get_uploadingBackColor</getter>
-    /// <setter>set_uploadingBackColor</setter>
-    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.uploadingBackColor" />
     get_uploadingBackColor: function() {
         return this._uploadingBackColor;
     },
@@ -137,12 +112,6 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._uploadingBackColor = value;
     },
 
-    /// <summary>
-    /// Name of a file on a client to upload using the control
-    /// </summary>
-    /// <getter>get_inputFile</getter>
-    /// <setter>set_inputFile</setter>
-    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.inputFile" />
     get_inputFile: function() {
         return this._inputFile;
     },
@@ -150,12 +119,6 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._inputFile = value;
     },
 
-    /// <summary>
-    /// Hidden field
-    /// </summary>
-    /// <getter>get_hiddenField</getter>
-    /// <setter>set_hiddenField</setter>
-    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.hiddenField" />
     get_hiddenField: function() {
         return this._hiddenField;
     },
@@ -163,12 +126,6 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._hiddenField = value;
     },
 
-    /// <summary>
-    /// Inner throbber
-    /// </summary>
-    /// <getter>get_innerTB</getter>
-    /// <setter>set_innerTB</setter>
-    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.innerTB" />
     get_innerTB: function() {
         return this._innerTB;
     },
@@ -176,12 +133,6 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         this._innerTB = value;
     },
 
-    /// <summary>
-    /// URL of the postback method
-    /// </summary>
-    /// <getter>get_postBackUrl</getter>
-    /// <setter>set_postBackUrl</setter>
-    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.postBackUrl" />
     get_postBackUrl: function() {
         return this._postBackUrl;
     },
@@ -203,7 +154,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// Fires when file uploading started
+    /// Occurs when file uploading starts.
     /// </summary>
     /// <event add="add_uploadStarted" remove="remove_uploadStarted" raise="raise_uploadStarted" />
     /// <member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadStarted" />
@@ -226,7 +177,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     },
 
     /// <summary>
-    /// Fires when file uploading completed
+    /// Occurs when file uploading is completed.
     /// </summary>
     /// <event add="add_uploadComplete" remove="remove_uploadComplete" raise="raise_uploadComplete" />
     /// <member name="cE:AjaxControlToolkit.AsyncFileUpload.uploadComplete" />

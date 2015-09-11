@@ -12,8 +12,8 @@ using System.Drawing;
 
 namespace AjaxControlToolkit {
     /// <summary>
-    /// AsyncFileUpload is an ASP.NET AJAX Control that allows you asynchronously upload files to server.
-    /// The file uploading results can be checked both in the server and client sides. 
+    /// AsyncFileUpload is an ASP.NET AJAX Control that allows you to asynchronously upload files to the server.
+    /// The file uploading results can be checked both on the server and client sides.
     /// </summary>
     [Designer(typeof(AsyncFileUploadDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -55,14 +55,14 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Fires when the file successfully uploaded
+        /// Fires when the file is successfully uploaded.
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AsyncFileUploadEventArgs> UploadedComplete;
 
         /// <summary>
-        /// Fires when the uploaded file is corrupted
+        /// Fires when the uploaded file is corrupted.
         /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
@@ -77,7 +77,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a javascript function executed in the client-side on the file uploading started
+        /// The name of a javascript function executed on the client side if the file upload started.
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -89,7 +89,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a javascript function executed in the client-side after the file successfully uploaded
+        /// The name of a javascript function executed on the client side after a file is successfully uploaded.
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -101,7 +101,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a javascript function executed in the client-side if the file uploading failed
+        /// The name of a javascript function executed on the client side if the file upload failed.
         /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
@@ -130,7 +130,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// ID of control that is shown while the file is uploading
+        /// ID of a control that is shown while the file is being uploaded.
         /// </summary>
         [Category("Behavior")]
         [Description("ID of Throbber")]
@@ -141,7 +141,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The control's background color on upload complete. Default value is Lime
+        /// The control's background color on upload complete. The default value is Lime.
         /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
@@ -153,7 +153,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The control's background color when uploading is in progress. Default value is White
+        /// The control's background color when uploading is in progress.
+        /// The default value is White.
         /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
@@ -165,7 +166,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The control's background color on upload error. Default value is Red
+        /// The control's background color on an upload error.
+        /// The default value is Red.
         /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
@@ -177,7 +179,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The control's width (Unit). Default value is 355px
+        /// The control's width (Unit).
+        /// The default value is 355px.
         /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Layout")]
@@ -196,7 +199,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The control's appearance style (Traditional, Modern). Default value is Traditional
+        /// The control's appearance style (Traditional, Modern). The default value is Traditional.
         /// </summary>
         [Bindable(true)]
         [Category("Appearance")]
@@ -233,7 +236,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a file on a client to upload using the control
+        /// Gets the name of a file on the client that is uploaded using the control.
         /// </summary>
         [BrowsableAttribute(false)]
         public string FileName {
@@ -249,7 +252,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of a file on a client to upload using the control
+        /// Gets the name of a file on the client that is uploaded using the control.
         /// </summary>
         [BrowsableAttribute(false)]
         public string ContentType {
@@ -265,7 +268,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A Stream object that points to an uploaded file to prepare for reading the contents of the file
+        /// Gets a Stream object that points to an uploaded file to prepare for reading the content of the file.
         /// </summary>
         [BrowsableAttribute(false)]
         public Stream FileContent {
@@ -280,7 +283,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Is file being uploaded
+        /// Whether a file is being uploaded.
         /// </summary>
         [BrowsableAttribute(false)]
         public bool IsUploading {
@@ -288,7 +291,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Is file stored in session. Default value is false
+        /// Whether a file is stored in session.
+        /// The default value is false.
         /// </summary>
         [Bindable(true)]
         [BrowsableAttribute(true)]
@@ -299,7 +303,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Clears all uploaded files from session
+        /// Clears all uploaded files of a current control from session.
         /// </summary>
         public void ClearAllFilesFromPersistedStore() {
             PersistentStoreManager.Instance.ClearAllFilesFromSession(this.ClientID);
@@ -313,7 +317,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Saves the contents of an uploaded file
+        /// Saves the content of an uploaded file.
         /// </summary>
         /// <param name="fileName" type="String">Uploaded file name</param>
         public void SaveAs(string fileName) {
