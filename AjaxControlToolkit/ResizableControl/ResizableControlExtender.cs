@@ -9,17 +9,8 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// ResizableControl is an extender that attaches to any element on a web page and allows the user
-    /// to resize that control with a handle that attaches to lower-right corner of the control. The
-    /// resize handle lets the user resize the element as if it were a window. The appearance of the
-    /// resize handle can be specified by the page designer with a CSS style. The content within the
-    /// element can use CSS styles to automatically resize to fit the new dimensions. Alternatively,
-    /// ResizableControl exposes two events (onresizing and onresize) that the page designer can attach
-    /// custom script to in order to enable more complex layout logic. Element dimensions are preserved
-    /// across postbacks to the server and "size" properties accesible on both the client and server
-    /// can be used to enable custom resize behaviors. ResizableControl can optionally limit the maximum
-    /// and minimum width and height of the target control so that resizing can be constrained by the page
-    /// author (for example, to limit scrolling to only the horizontal dimension).
+    /// ResizableControl is an extender that is attached to any element on a web page and allows a
+    /// user to resize that control with a handle attached to the lower-right corner of the control.
     /// </summary>
     [Designer(typeof(ResizableControlExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -140,7 +131,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Fires as the element is being resized
+        /// Fires on resizing the elemen
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]
@@ -151,7 +142,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Fires when the element starts being resized
+        /// Fires when resizing the element starts
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue("")]

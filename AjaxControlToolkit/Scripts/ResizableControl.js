@@ -464,7 +464,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Resizing event handler
+    /// The Resizing event handler
     /// </summary>
     /// <getter>get_resizing</getter>
     /// <setter>set_resizing</setter>
@@ -506,7 +506,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Resize event handler
+    /// The Resize event handler
     /// </summary>
     /// <getter>get_resize</getter>
     /// <setter>set_resize</setter>
@@ -558,7 +558,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// ResizeBegin event handler
+    /// The ResizeBegin event handler
     /// </summary>
     /// <getter>get_resizeBegin</getter>
     /// <setter>set_resizeBegin</setter>
