@@ -23,7 +23,7 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._chartHeight = '300';
 
     /// <summary>
-    /// Chart title
+    /// A chart title.
     /// </summary>
     /// <getter>get_chartTitle</getter>
     /// <setter>set_chartTitle</setter>
@@ -39,7 +39,7 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._categoriesAxis = '';
 
     /// <summary>
-    /// List of series
+    /// A list of series.
     /// </summary>
     /// <getter>get_clientSeries</getter>
     /// <setter>set_clientSeries</setter>
@@ -47,7 +47,7 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._series = null;
 
     /// <summary>
-    /// Type of chart. Default value is Basic
+    /// A type of chart. The default value is Basic.
     /// </summary>
     /// <getter>get_chartType</getter>
     /// <setter>set_chartType</setter>
@@ -55,7 +55,7 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._chartType = Sys.Extended.UI.AreaChartType.Basic;
 
     /// <summary>
-    /// CSS file name for AreaChart. Default value is 'AreaChart'
+    /// A CSS file name for AreaChart. The default value is 'AreaChart'.
     /// </summary>
     /// <getter>get_theme</getter>
     /// <setter>set_theme</setter>
@@ -63,7 +63,7 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._theme = 'AreaChart';
 
     /// <summary>
-    /// Value axis lines count. Default value is 9
+    /// Value axis lines count. The default value is 9.
     /// </summary>
     /// <getter>get_valueAxisLines</getter>
     /// <setter>set_valueAxisLines</setter>
@@ -71,7 +71,7 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._valueAxisLines = 9;
 
     /// <summary>
-    /// Color of chart title
+    /// Color of a chart title.
     /// </summary>
     /// <getter>get_chartTitleColor</getter>
     /// <setter>set_chartTitleColor</setter>
@@ -79,7 +79,7 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._chartTitleColor = '';
 
     /// <summary>
-    /// Color of value axis line
+    /// Color of a value axis line.
     /// </summary>
     /// <getter>get_valueAxisLineColor</getter>
     /// <setter>set_valueAxisLineColor</setter>
@@ -87,7 +87,7 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._valueAxisLineColor = '';
 
     /// <summary>
-    /// Color of category axis line
+    /// Color of a category axis line.
     /// </summary>
     /// <getter>get_categoryAxisLineColor</getter>
     /// <setter>set_categoryAxisLineColor</setter>
@@ -95,7 +95,7 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._categoryAxisLineColor = '';
 
     /// <summary>
-    /// Color of base line
+    /// Color of a base line.
     /// </summary>
     /// <getter>get_baseLineColor</getter>
     /// <setter>set_baseLineColor</setter>

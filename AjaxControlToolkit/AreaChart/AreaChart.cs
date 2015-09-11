@@ -10,7 +10,7 @@ using System.Drawing;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// AreaChart control allows to render an area chart from one or more series of values.
+    /// The AreaChart control allows rendering an area chart from one or more series of values.
     /// </summary>
     [ClientCssResource(Constants.AreaChartName)]
     [ClientScriptResource("Sys.Extended.UI.AreaChart", Constants.AreaChartName)]
@@ -27,7 +27,7 @@ namespace AjaxControlToolkit {
         public string CategoriesAxis { get; set; }
 
         /// <summary>
-        /// List of series for client side
+        /// A list of series.
         /// </summary>
         // Provide list of series to client side. Need help from Series property 
         // for designer experience support, cause Editor always blocks the property
@@ -43,7 +43,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// List of series with designer support
+        /// A list of series with designer support.
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -55,7 +55,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Chart type. The default value is Basic
+        /// A chart type. The default value is Basic.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(AreaChartType.Basic)]
