@@ -7,10 +7,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// The RoundedCorners extender applies rounded corners to existing elements. To accomplish this,
-    /// it inserts elements before and after the element that is selected, so the overall height
-    /// of the element will change slightly. You can choose which corners of the target panel should
-    /// be rounded by setting the "Corners" property.
+    /// The RoundedCorners extender applies rounded corners to existing elements.
     /// </summary>
     [Designer(typeof(RoundedCornersExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.RoundedCornersBehavior", Constants.RoundedCornersName)]
@@ -54,7 +51,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Background color of the rounded corners areas
+        /// Background color of the rounded corner areas
         /// </summary>
         /// <remarks>
         /// By default, this property gets the background color of the panel that it is attached to

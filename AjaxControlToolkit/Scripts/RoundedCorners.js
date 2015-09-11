@@ -376,7 +376,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     /// <summary>
-    /// Checks whether the a flag for this corner has been set
+    /// Checks whether a flag for this corner has been set
     /// </summary>
     /// <param name="corner" type="Sys.Extended.UI.BoxCorners">Corner to check</param>
     /// <returns type="Boolean">True if the corner has been set; otherwise, false</returns>
@@ -399,7 +399,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     /// <summary>
-    /// String that contains the background color of the rounded corner areas
+    /// A string that contains the background color of the rounded corner areas
     /// </summary>
     /// <remarks>
     /// By default, this property gets the background color of the panel that it is attached to
@@ -429,7 +429,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     /// <summary>
-    /// Integer value that specifies the radius of the corners (and the height of the added area).
+    /// An integer value that specifies the radius of the corners (and the height of the added area). The default is 5
     /// The default is 5
     /// </summary>
     /// <getter>get_radius</getter>
@@ -457,7 +457,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sys.Extended.UI.BoxCorners object that specifies which corners should be rounded
+    /// A Sys.Extended.UI.BoxCorners object that specifies which corners should be rounded
     /// </summary>
     /// <getter>get_corners</getter>
     /// <setter>set_corners</setter>
@@ -484,7 +484,7 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
     },
 
     /// <summary>
-    /// String that contains the color of the border and therefore of the rounded corners
+    /// A string that contains the color of the border and therefore of the rounded corners
     /// </summary>
     /// <getter>get_borderColor</getter>
     /// <setter>set_borderColor</setter>
