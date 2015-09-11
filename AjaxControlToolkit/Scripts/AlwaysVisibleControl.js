@@ -32,8 +32,8 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     Sys.Extended.UI.AlwaysVisibleControlBehavior.initializeBase(this, [element]);
 
     /// <summary>
-    /// Distance to the horizontal edge of the browser in pixels from the same side of the
-    /// target control. The default is 0 pixels
+    /// A distance to the horizontal edge of the browser in pixels from the same side of the target control.
+    /// The default is 0 pixels.
     /// </summary>
     /// <getter>get_horizontalOffset</getter>
     /// <setter>set_horizontalOffset</setter>
@@ -41,7 +41,8 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     this._horizontalOffset = 0;
 
     /// <summary>
-    /// Horizontal side of the browser to anchor the control against. The default is the Left side
+    /// A horizontal side of the browser to anchor the control against.
+    /// The default is the Left side.
     /// </summary>
     /// <getter>get_horizontalSide</getter>
     /// <setter>set_horizontalSide</setter>
@@ -49,8 +50,8 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     this._horizontalSide = Sys.Extended.UI.HorizontalSide.Left;
 
     /// <summary>
-    /// Distance to the vertical edge of the browser in pixels from the same side of the target control.
-    /// The default is 0 pixels
+    /// A distance to the vertical edge of the browser in pixels from the same side of the target control.
+    /// The default is 0 pixels.
     /// </summary>
     /// <getter>get_verticalOffset</getter>
     /// <setter>set_verticalOffset</setter>
@@ -58,7 +59,8 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     this._verticalOffset = 0;
 
     /// <summary>
-    /// Vertical side of the browser to anchor the control against. The default is the Top side
+    /// A vertical side of the browser to anchor the control against.
+    /// The default is the Top side.
     /// </summary>
     /// <getter>get_verticalSide</getter>
     /// <setter>set_verticalSide</setter>
@@ -66,8 +68,8 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
     this._verticalSide = Sys.Extended.UI.VerticalSide.Top;
 
     /// <summary>
-    /// Length in seconds for the scrolling effect to last when the target control is repositioned.
-    /// The default is .1 seconds
+    /// Length of the scrolling effectn seconds when the target control is repositioned.
+    /// The default is 1
     /// </summary>
     /// <getter>get_scrollEffectDuration</getter>
     /// <setter>set_scrollEffectDuration</setter>
@@ -79,8 +81,7 @@ Sys.Extended.UI.AlwaysVisibleControlBehavior = function(element) {
 
     
     /// <summary>
-    /// Whether or not to animate the element into position. (note:
-    /// this value should always be true in IE6)
+    /// Whether or not to animate the element's transposition. (note: this value should always be true in IE6).	
     /// </summary>
     /// <getter>get_useAnimation</getter>
     /// <setter>set_useAnimation</setter>

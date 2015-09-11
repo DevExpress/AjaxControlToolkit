@@ -9,8 +9,9 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// Extender used to add constant visibility to an ASP.NET control. The control that is extended
-    /// then always moves to fixed position in the page regardless of how the body is resized or scrolled.
+    /// An extender used to add constant visibility to an ASP.NET control. 
+    /// The control that is extended then always moves to a fixed position 
+    /// in the page regardless of how the body is resized or scrolled.
     /// </summary>
     [Designer(typeof(AlwaysVisibleControlExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.AlwaysVisibleControlBehavior", Constants.AlwaysVisibleControlName)]
@@ -21,8 +22,8 @@ namespace AjaxControlToolkit {
     public class AlwaysVisibleControlExtender : ExtenderControlBase {
 
         /// <summary>
-        /// Distance to the horizontal edge of the browser in pixels from the
-        /// same side of the target control. The default is 0
+        /// A distance to the horizontal edge of the browser in pixels from the same side of the target control. 
+        /// The default is 0.
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -33,8 +34,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Horizontal side of the browser to anchor the control against.
-        /// The default is the Left
+        /// A horizontal side of the browser to anchor the control against.
+        /// The default is the Left.
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(HorizontalSide.Left)]
@@ -45,8 +46,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Distance to the vertical edge of the browser in pixels from the
-        /// same side of the target control. The default is 0
+        /// A distance to the vertical edge of the browser in pixels from the same side of the target control.
+        /// The default is 0.
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0)]
@@ -57,8 +58,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Vertical side of the browser to anchor the control against. 
-        /// The default is the Top
+        /// A vertical side of the browser to anchor the control against.
+        /// The default is the Top.
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(VerticalSide.Top)]
@@ -69,8 +70,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Length in seconds for the scrolling effect to last when the target
-        /// control is repositioned. The default is .1
+        /// Length of the scrolling effectn seconds when the target control is repositioned.
+        /// The default is 1.
         /// </summary>
         [ExtenderControlProperty()]
         [DefaultValue(0.1f)]
@@ -81,8 +82,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not to animate the element into position.
-        /// The default is false
+        /// Whether or not to animate the element's transposition.
+        /// The default is false.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
@@ -93,7 +94,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Validate the offsets
+        /// Validates offsets.
         /// </summary>
         public override void EnsureValid() {
             base.EnsureValid();
