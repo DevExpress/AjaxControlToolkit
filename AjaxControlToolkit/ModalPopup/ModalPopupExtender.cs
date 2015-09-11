@@ -10,15 +10,15 @@ namespace AjaxControlToolkit {
 
     /// <summary>
     /// The ModalPopup extender allows you to display content in an element that mimics a modal dialog box,
-    /// which prevents the user from interacting with the rest of the page. The modal content can contain
-    /// any hierarchy of controls. It is displayed above a background (in z-order) that can have a custom style applied to it.
+    /// which prevents a user from interacting with the rest of pages. The modal content can contain any
+    /// hierarchy of controls. It is displayed above background (in z-order) that can have a custom style applied to it.
     /// 
-    /// Clicking OK or Cancel in the modal popup dismisses the content and optionally runs custom script. The custom script is
-    /// typically used to apply changes that were made in the modal popup. If a postback is required, you can allow the OK or
-    /// Cancel control to perform the postback.
+    /// Clicking OK or Cancel in the modal popup dismisses the content and optionally runs a custom script.
+    /// The custom script is typically used to apply changes that were made in the modal popup. If a postback
+    /// is required, you can allow the OK or Cancel control to perform a postback.
     /// 
-    /// By default, the modal content is centered on the page. However, you can set absolute positiniong,
-    /// and set only X or only Y to center the content vertically or horizontally.
+    /// By default, the modal content is centered on the page. However, you can set absolute positiniong and
+    /// set only X or Y to center the content vertically or horizontally.
     /// </summary>
     [Designer(typeof(ModalPopupExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.ModalPopupBehavior", Constants.ModalPopup)]
@@ -38,7 +38,7 @@ namespace AjaxControlToolkit {
                   _onShowing;
 
         /// <summary>
-        /// The ID of the element to display as a modal popup
+        /// ID of an element to display as a modal popup
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -51,7 +51,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The CSS class to apply to the background when the modal popup is displayed
+        /// A CSS class to apply to the background when the modal popup is displayed
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -62,7 +62,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The ID of the element that dismisses the modal popup
+        /// ID of an element that dismisses the modal popup
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -74,7 +74,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The ID of the element that cancels the modal popup
+        /// ID of an element that cancels the modal popup
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -86,7 +86,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The script to run when the modal popup is dismissed using the element specified in OkControlID
+        /// A script to run when the modal popup is dismissed using the element specified in OkControlID
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -97,7 +97,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The script to run when the modal popup is dismissed using the element specified in CancelControlID
+        /// A script to run when the modal popup is dismissed using the element specified in CancelControlID
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -136,10 +136,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Boolean value that specifies whether the modal popup can be dragged
+        /// A Boolean value that specifies whether or not the modal popup can be dragged
         /// </summary>
         /// <remarks>
-        /// This property is obsolete.
+        /// This property is obsolete
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(false)]
@@ -151,8 +151,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The ID of the embedded element that contains the popup header and title that
-        /// will be used as a drag handle
+        /// ID of the embedded element that contains a popup header and title that will
+        /// be used as a drag handle
         /// </summary>
         [ExtenderControlProperty]
         [IDReferenceProperty(typeof(WebControl))]
@@ -164,7 +164,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// True to automatically add a dropshadow to the modal popup
+        /// Set to True to automatically add a drop shadow to the modal popup
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
@@ -175,8 +175,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A value that determines whether the popup must be repositioned when the
-        /// window is resized or scrolled
+        /// A value that determines if the popup must be repositioned when the window
+        /// is resized or scrolled
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(ModalPopupRepositionMode.RepositionOnWindowResizeAndScroll)]
@@ -209,7 +209,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Animation to perform just before the modal popup is being shown
+        /// Animation to perform just before the modal popup is shown
         /// </summary>
         [Browsable(false)]
         [ExtenderControlProperty]
@@ -220,8 +220,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Animation to perform just before the modal popup is being hidden.
-        /// The popup closes only after the animation completes.
+        /// Animation to perform just before the modal popup is hidden.
+        /// The popup closes only after animation completes
         /// </summary>
         [Browsable(false)]
         [ExtenderControlProperty]

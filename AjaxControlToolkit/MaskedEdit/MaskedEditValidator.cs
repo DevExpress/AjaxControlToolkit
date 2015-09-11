@@ -9,8 +9,8 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// MaskedEditValidator is a custom validator which attaches to the MaskedEdit extender and its associated
-    /// TextBox and verifies that the input text matches the pattern specified in the MaskedEdit extender.
+    /// MaskedEditValidator is a custom validator that attaches to the MaskedEdit extender and associates
+    /// the TextBox and verifies that the input text matches the pattern specified in the MaskedEdit extender.
     /// Once associated with a validation group, server- and client-side validation can be performed and used
     /// to display messages.
     /// </summary>
@@ -60,7 +60,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// True if the TextBox can be empty
+        /// Set to True if the TextBox can be empty
         /// </summary>
         [DefaultValue(true)]
         [Category("MaskedEdit")]
@@ -70,7 +70,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message displayed when the TextBox has focus with an empty value
+        /// A message displayed when the TextBox has focus with an empty value
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -85,7 +85,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message displayed when empty and TextBox has focus
+        /// A message displayed when test is empty and the TextBox has focus
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -100,7 +100,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message displayed when empty and TextBox does not have focus
+        /// A message displayed when text is empty and the TextBox does not have focus
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -115,7 +115,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message displayed when invalid and TextBox has focus
+        /// A message displayed when text is invalid and the TextBox has focus
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -130,7 +130,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message displayed when invalid and TextBox does not have focus
+        /// A message displayed when text is invalid and the TextBox does not have focus
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -145,7 +145,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Maximum value of the input
+        /// A maximum value of the input
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -160,7 +160,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message displayed when maximum value exceeded and TextBox has focus
+        /// A message displayed when the maximum value is exceeded and the TextBox has focus
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -175,7 +175,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message displayed when maximum value exceeded and TextBox does not have focus
+        /// A message displayed when the maximum value is exceeded and the TextBox does not have focus
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -190,7 +190,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Client script used for custom validation
+        /// A client script used for custom validation
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -205,7 +205,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Initial value of the TextBox
+        /// The initial value of the TextBox
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -220,7 +220,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Regular expression used to validate the input
+        /// A regular expression used to validate the input
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -235,7 +235,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Minimum value of the input
+        /// A minimum value of the input
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -250,7 +250,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message displayed when minimum value exceeded and TextBox has focus
+        /// A message displayed when the minimum value is exceeded and the TextBox has focus
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]
@@ -265,7 +265,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message displayed when minimum value exceeded and TextBox does not have focus
+        /// A message displayed when the minimum value is exceeded and the TextBox does not have focus
         /// </summary>
         [DefaultValue("")]
         [Category("MaskedEdit")]

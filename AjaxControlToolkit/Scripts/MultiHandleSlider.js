@@ -175,10 +175,10 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether this slider is initialized
+    /// Determines whether or not this slider is initialized
     /// </summary>
     /// <remarks>
-    /// This is here for backwards compatibility with the original Slider
+    /// For backward compatibility with the original slider
     /// </remarks>
     /// <getter>get_sliderInitialized</getter>
     /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.sliderInitialized" />
@@ -191,7 +191,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Returns the value of a specific slider handle programmatically by index
+    /// Returns a value of a specific slider handle programmatically by index
     /// </summary>
     /// <param name="index" type="Number">Handle index</param>
     /// <returns>Slider handle value</returns>
@@ -202,7 +202,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sets the value of a specific slider handle programmatically by index
+    /// Sets a value of a specific slider handle programmatically by index
     /// </summary>
     /// <param name="index" type="Number">Handle index</param>
     /// <param name="value" type="Number">Value</param>
@@ -217,11 +217,11 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// List of all handle values as a comma-delimited string
+    /// A list of all handle values as a comma-delimited string
     /// </summary>
     /// <remarks>
-    /// This is required for the automated toolkit test behavior.
-    /// Returns a comma-delimited string of handle values.
+    /// This is required for automated toolkit test behavior.
+    /// Returns a comma-delimited string of handle values
     /// </remarks>
     /// <getter>get_values</getter>
     /// <member name="cP:AjaxControlToolkit.MultiHandleSliderExtender.values" />
@@ -1414,7 +1414,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Raises OnDragStart event
+    /// Raises the OnDragStart event
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.MultiHandleSliderExtender.onDragStart" />
     onDragStart: function() {
@@ -1423,7 +1423,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Raises OnDrag event
+    /// Raises the OnDrag event
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.MultiHandleSliderExtender.onDrag" />
     onDrag: function() {
@@ -1455,7 +1455,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Raises OnDragEnd event
+    /// Raises the OnDragEnd event
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.MultiHandleSliderExtender.onDragEnd" />
     onDragEnd: function() {
@@ -1564,8 +1564,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     // Backwards-compatible Property Accessors
 
     /// <summary>
-    /// The value of a single bound control for backwards compatibility
-    /// of existing slider and tests. Only to be used in this context
+    /// A value of a single bound control for backward compatibility of the existing slider and tests.
+    /// Can be used only in this context
     /// </summary>
     /// <getter>get_value</getter>
     /// <setter>set_value</setter>
@@ -1629,7 +1629,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// The length of the slider rail in pixels
+    /// The slider rail length in pixels
     /// </summary>
     /// <getter>get_length</getter>
     /// <setter>set_length</setter>
@@ -1645,7 +1645,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines number of discrete locations on the slider; otherwise, the slider is continous
+    /// Determines the number of discrete locations on the slider. Otherwise, the slider is continous
     /// </summary>
     /// <getter>get_steps</getter>
     /// <setter>set_steps</setter>
@@ -1679,7 +1679,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines if the slider handles display an animation effect when changing position
+    /// Determines if the slider handles display an animation effect when the position is changed
     /// </summary>
     /// <getter>get_enableHandleAnimation</getter>
     /// <setter>set_enableHandleAnimation</setter>
@@ -1695,7 +1695,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines the total duration of the animation effect, in seconds
+    /// Determines the total duration of the animation effect in seconds
     /// </summary>
     /// <getter>get_handleAnimationDuration</getter>
     /// <setter>set_handleAnimationDuration</setter>
@@ -1711,8 +1711,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines if changes to the slider's values are raised as an event when dragging;
-    /// otherwise, they are raised on drag end
+    /// Determines if changes events to the slider's values are raised during dragging.
+    /// Otherwise, they are raised when dragging is completed
     /// </summary>
     /// <getter>get_raiseChangeOnlyOnMouseUp</getter>
     /// <setter>set_raiseChangeOnlyOnMouseUp</setter>
@@ -1728,8 +1728,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines if the slider will show an inner selected range rail; otherwise,
-    /// it will display as a uniform rail
+    /// Determines if the slider will show an inner selected range rail. Otherwise,
+    /// it will be displayed as a uniform rail
     /// </summary>
     /// <getter>get_showInnerRail</getter>
     /// <setter>set_showInnerRail</setter>
@@ -1793,7 +1793,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines if the inner rail range can be dragged as a whole, moving both handles defining it
+    /// Determines if the inner rail range can be dragged as a whole moving both handles defining it
     /// </summary>
     /// <getter>get_enableInnerRangeDrag</getter>
     /// <setter>set_enableInnerRangeDrag</setter>
@@ -1809,7 +1809,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines if clicking on the rail will detect and move the closest handle
+    /// Determines if clicking the rail will detect and move the closest handle
     /// </summary>
     /// <getter>get_enableRailClick</getter>
     /// <setter>set_enableRailClick</setter>
@@ -1873,8 +1873,8 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines the number of points to increment or decrement the slider using
-    /// the keyboard or mousewheel; ignored if steps is used
+    /// Determines the number of slider points to increment or decrement using the keyboard or mouse wheel.
+    /// It is ignored if the steps property is used
     /// </summary>
     /// <getter>get_increment</getter>
     /// <setter>set_increment</setter>
@@ -1890,7 +1890,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines the text to display as the tooltip; {0} denotes the current
+    /// Determines the text to display as a tooltip; {0} denotes the current
     /// handle's value in the format string
     /// </summary>
     /// <getter>get_tooltipText</getter>
@@ -1923,7 +1923,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// The master style to apply to slider graphical elements
+    /// A master style to apply to slider graphical elements
     /// </summary>
     /// <getter>get_cssClass</getter>
     /// <setter>set_cssClass</setter>
@@ -1939,7 +1939,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// The ID of a control to use for a single handle
+    /// ID of a control to use for a single handle
     /// </summary>
     /// <getter>get_boundControlID</getter>
     /// <setter>set_boundControlID</setter>
@@ -1957,7 +1957,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class of a single handle
+    /// A CSS class of a single handle
     /// </summary>
     /// <getter>get_handleCssClass</getter>
     /// <setter>set_handleCssClass</setter>
@@ -1970,7 +1970,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// URL for the image to display in the slider's handle
+    /// URL for an image to display in the slider's handle
     /// </summary>
     /// <getter>get_handleImageUrl</getter>
     /// <setter>set_handleImageUrl</setter>
@@ -1983,7 +1983,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for the slider's rail element
+    /// A CSS class for the slider's rail element
     /// </summary>
     /// <getter>get_railCssClass</getter>
     /// <setter>set_railCssClass</setter>
@@ -2011,7 +2011,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     // Event Accessors
 
     /// <summary>
-    /// The event raised when the slider is completely loaded on the page
+    /// The event is raised when the slider is completely loaded on the page
     /// </summary>
     /// <event add="add_load" remove="remove_load" raise="" />
     /// <member name="cE:AjaxControlToolkit.MultiHandleSliderExtender.load" />
@@ -2023,7 +2023,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// The event raised when the user initiates a drag operation on the slider
+    /// The event is raised when a user initiates the drag operation on the slider
     /// </summary>
     /// <event add="add_dragStart" remove="remove_dragStart" raise="" />
     /// <member name="cE:AjaxControlToolkit.MultiHandleSliderExtender.dragStart" />
@@ -2035,7 +2035,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// The event raised when the user drags the slider
+    /// The event is raised when the user drags the slider
     /// </summary>
     /// <event add="add_drag" remove="remove_drag" raise="" />
     /// <member name="cE:AjaxControlToolkit.MultiHandleSliderExtender.drag" />
@@ -2047,7 +2047,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// The event raised when the user drops the slider
+    /// The event is raised when the user drops the slider
     /// </summary>
     /// <event add="add_dragEnd" remove="remove_dragEnd" raise="" />
     /// <member name="cE:AjaxControlToolkit.MultiHandleSliderExtender.dragEnd" />
@@ -2059,7 +2059,7 @@ Sys.Extended.UI.MultiHandleSliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// The event raised when the slider changes its state
+    /// The event is raised when the slider changes its state
     /// </summary>
     /// <event add="add_valueChanged" remove="remove_valueChanged" raise="" />
     /// <member name="cE:AjaxControlToolkit.MultiHandleSliderExtender.valueChanged" />

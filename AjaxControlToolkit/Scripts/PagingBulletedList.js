@@ -335,7 +335,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when selected index changes
+    /// Fires when the selected index changes
     /// </summary>
     /// <event add="add_indexChanged" remove="remove_indexChanged" raise="raise_indexChanged" />
     /// <member name="cE:AjaxControlToolkit.PagingBulletedListExtender.indexChanged" />
@@ -373,7 +373,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// DOM elements of the items to display for each index
+    /// DOM elements of items to display for each index
     /// </summary>
     /// <getter>get_tabValue</getter>
     /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.tabValue" />
@@ -400,7 +400,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// Height of the bulleted list
+    /// Bulleted list height
     /// </summary>
     /// <getter>get_height</getter>
     /// <setter>set_height</setter>
@@ -430,7 +430,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// Number of characters in the index headings (ignored if MaxItemPerPage is set)
+    /// The number of characters in the index headings (ignored if MaxItemPerPage is set)
     /// </summary>
     /// <getter>get_indexSize</getter>
     /// <setter>set_indexSize</setter>
@@ -527,7 +527,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether or not the items should be sorted client-side
+    /// Determines whether or not items should be sorted on the client side
     /// </summary>
     /// <getter>get_clientSort</getter>
     /// <setter>set_clientSort</setter>
@@ -565,7 +565,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for the selected index
+    /// A CSS class for the selected index
     /// </summary>
     /// <getter>get_selectIndexCssClass</getter>
     /// <setter>set_selectIndexCssClass</setter>
@@ -590,7 +590,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for indices that aren't selected
+    /// A CSS class for indices that aren't selected
     /// </summary>
     /// <getter>get_unselectIndexCssClass</getter>
     /// <setter>set_unselectIndexCssClass</setter>

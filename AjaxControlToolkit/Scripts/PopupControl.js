@@ -246,7 +246,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnShow Animation's JSON definition
+    /// A JSON definition of generic OnShow Animation
     /// </summary>
     /// <getter>get_onShow</getter>
     /// <setter>set_onShow</setter>
@@ -264,7 +264,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnShow Animation's behavior
+    /// Generic OnShow Animation behavior
     /// </summary>
     /// <getter>get_onShowBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.PopupControlExtender.onShowBehavior" />
@@ -273,7 +273,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Plays the OnShow animation
+    /// Plays OnShow animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PopupControlExtender.onShow" />
     onShow: function() {
@@ -282,7 +282,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnHide Animation's JSON definition
+    /// A JSON definition of generic OnHide Animation
     /// </summary>
     /// <getter>get_onHide</getter>
     /// <setter>set_onHide</setter>
@@ -300,7 +300,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnHide Animation's behavior
+    /// Generic OnHide Animation behavior
     /// </summary>
     /// <getter>get_onHideBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.PopupControlExtender.onHideBehavior" />
@@ -309,7 +309,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Plays the OnHide animation
+    /// Plays OnHide animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PopupControlExtender.onHide" />
     onHide: function() {
@@ -343,7 +343,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// The property on the control being extended that should be set with the result of the popup
+    /// The property of a control being extended that should be set with the result of the popup
     /// </summary>
     /// <getter>get_commitProperty</getter>
     /// <setter>set_commitProperty</setter>
@@ -368,7 +368,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Additional script to run after setting the result of the popup
+    /// An additional script to run after the result of the popup is set
     /// </summary>
     /// <getter>get_commitScript</getter>
     /// <setter>set_commitScript</setter>
@@ -393,8 +393,8 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Where the popup should be positioned relative to the target control.
-    /// Can be Left, Right, Top, Bottom or Center
+    /// Determines where the popup should be positioned relative to the target control
+    /// (Left, Right, Top, Bottom, or Center)
     /// </summary>
     /// <getter>get_position</getter>
     /// <setter>set_position</setter>
@@ -494,7 +494,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether popup is visible
+    /// Determines whether or not the popup is visible
     /// </summary>
     /// <getter>get_popupVisible</getter>
     /// <member name="cP:AjaxControlToolkit.PopupControlExtender.popupVisible" />
@@ -508,7 +508,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when the popup is showing
+    /// Fires when the popup is being shown
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.PopupControlExtender.showing" />
@@ -530,7 +530,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when popup is shown
+    /// Fires after the popup is shown
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.PopupControlExtender.shown" />
@@ -552,7 +552,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when popup is hiding
+    /// Fires when the popup is being hidden
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.PopupControlExtender.hiding" />
@@ -574,7 +574,7 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
     },
 
     /// <summary>
-    /// Firs when popup is hidden
+    /// Firs after the popup is hidden
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.PopupControlExtender.hidden" />

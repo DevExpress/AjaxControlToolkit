@@ -11,7 +11,7 @@ namespace AjaxControlToolkit {
         string _lineColor = String.Empty;
 
         /// <summary>
-        /// Name of the LineChart series.
+        /// The name of the LineChart series
         /// </summary>
         public string Name {
             get { return _name; }
@@ -19,7 +19,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Enables you to set the color of line for a particular series.
+        /// Enables you to set a line color for a particular series
         /// </summary>
         public string LineColor {
             get { return _lineColor; }
@@ -27,7 +27,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Provides data for a particular series.
+        /// Provides data for a particular series
         /// </summary>
         [TypeConverter(typeof(DataConverter<decimal>))]
         public decimal[] Data { get; set; }

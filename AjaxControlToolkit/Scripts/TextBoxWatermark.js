@@ -187,11 +187,11 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     /// <summary>
-    /// Method called to hook up to Sys.Preview.UI.TextBox if present
+    /// A method to call to be assigned to Sys.Preview.UI.TextBox if any
     /// </summary>
     /// <remarks>
-    /// This method must be called manually if the Sys.Preview.UI.TextBox
-    /// is added after the TextBoxWatermarkBehavior is initialized
+    /// This method must be called manually if Sys.Preview.UI.TextBox
+    /// is added after TextBoxWatermarkBehavior is initialized
     /// </remarks>
     /// <member name="cM:AjaxControlToolkit.TextBoxWatermarkExtender.registerPropertyChanged" />
     registerPropertyChanged : function() {
@@ -234,7 +234,7 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
     
     /// <summary>
-    /// The text to show when the control has no value
+    /// Text to show when the control has no value
     /// </summary>
     /// <getter>get_watermarkText</getter>
     /// <setter>set_watermarkText</setter>
@@ -261,7 +261,7 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     /// <summary>
-    /// The CSS class to apply to the TextBox when it has no value (e.g. the watermark text is shown)
+    /// A CSS class to apply to the TextBox when it has no value (e.g. watermark text is shown)
     /// </summary>
     /// <getter>get_watermarkCssClass</getter>
     /// <setter>set_watermarkCssClass</setter>
@@ -288,7 +288,7 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
     },
 
     /// <summary>
-    /// Text of the target TextBox.
+    /// Text of the target TextBox
     /// </summary>
     /// <getter>get_text</getter>
     /// <setter>set_text</setter>

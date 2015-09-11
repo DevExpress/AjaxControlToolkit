@@ -8,13 +8,13 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// PopupControl is an ASP.NET AJAX extender that can be attached to any control in order to open
-    /// a popup window that displays additional content. This popup window will probably be interactive
-    /// and will probably be within an ASP.NET AJAX UpdatePanel, so it will be able to perform complex
-    /// server-based processing (including postbacks) without affecting the rest of the page. The popup
-    /// window can contain any content, including ASP.NET server controls, HTML elements, etc. Once the
-    /// work of the popup window is done, a simple server-side call dismisses it and triggers any relevant
-    /// script on the client to run and update the page dynamically.
+    /// PopupControl is an ASP.NET AJAX extender that can be attached to any control to open a popup
+    /// window that displays additional content. This popup window will probably be interactive and
+    /// located within an ASP.NET AJAX UpdatePanel. So, it will perform complex server-based processing
+    /// (including postbacks) without affecting the rest of the page. The popup window can contain any
+    /// content including ASP.NET server controls, HTML elements, etc. Once work of the popup window is
+    /// done, a simple server-side call dismisses it and triggers any relevant script on the client to
+    /// run and update the page dynamically.
     /// </summary>
     [ClientScriptResource("Sys.Extended.UI.PopupControlBehavior", Constants.PopupControlName)]
     [RequiredScript(typeof(PopupExtender))]
@@ -56,7 +56,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Cancels the popup control and hides it, abandoning any results it has
+        /// Cancels the popup control and hides it abandoning results
         /// </summary>
         public void Cancel() {
             // It is possible for Cancel() to be called numerous times during the same postback so we just remember the desired state
@@ -66,7 +66,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Commits the popup control and hides it, applying the specified result
+        /// Commits the popup control and hides it applying the specified result
         /// </summary>
         /// <param name="result" type="String">Result</param>
         public void Commit(string result) {
@@ -130,11 +130,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Optional setting specifying the property on the control being extended
-        /// that should be set with the result of the popup
+        /// Optional setting specifying a property of the control being extended that
+        /// should be set with the result of the popup
         /// </summary>
         /// <remarks>
-        /// If not present, the default "value" property will be used
+        /// If the property value is missing (an empty line), the default "value" property will be used
         /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -145,7 +145,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Optional setting specifying additional script to run after setting the result of the popup
+        /// Optional setting specifying an additional script to run after the result of the popup is set
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -156,8 +156,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Optional setting specifying where the popup should be positioned relative to the target control.
-        /// Can be Left, Right, Top, Bottom or Center
+        /// Optional setting specifying where the popup should be positioned relative to the target
+        /// control (Left, Right, Top, Bottom, or Center)
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(PopupControlPopupPosition.Center)]
@@ -190,9 +190,9 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The OnShow animation will be played each time the popup is displayed.
-        /// The popup will be positioned correctly but hidden. The animation can use
-        /// to display the popup along with any other visual effects.
+        /// OnShow animation will be played each time the popup is displayed. The
+        /// popup will be positioned correctly but hidden. Animation can be used
+        /// to display the popup with other visual effects
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
@@ -206,7 +206,7 @@ namespace AjaxControlToolkit {
         Animation _onShow;
 
         /// <summary>
-        /// The OnHide animation will be played each time the popup is hidden
+        /// OnHide animation will be played each time the popup is hidden
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]

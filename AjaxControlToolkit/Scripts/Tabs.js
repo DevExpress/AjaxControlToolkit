@@ -113,7 +113,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Collection of tabs
+    /// A collection of tabs
     /// </summary>
     /// <getter>get_tabs</getter>
     /// <member name="cP:AjaxControlToolkit.TabContainer.tabs" />
@@ -124,7 +124,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Current active tab
+    /// The currently active tab
     /// </summary>
     /// <getter>get_activeTab</getter>
     /// <setter>set_activeTab</setter>
@@ -155,8 +155,8 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto)
-    /// in the body of the TabContainer
+    /// Determines whether or not to display scrollbars (None, Horizontal, Vertical, Both, Auto)
+    /// in the TabContainer body
     /// </summary>
     /// <getter>get_scrollBars</getter>
     /// <setter>set_scrollBars</setter>
@@ -173,7 +173,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Whether to render the tabs on top of the container or below (Top, Bottom)
+    /// Determines whether or not to render tabs on top of the container or below (Top, Bottom)
     /// </summary>
     /// <getter>get_tabStripPlacement</getter>
     /// <setter>set_tabStripPlacement</setter>
@@ -190,7 +190,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Whether to render the tabs on left or right of the container
+    /// Determines whether or not to render tabs on the left or right side of the container
     /// </summary>
     /// <getter>get_useVerticalStripPlacement</getter>
     /// <setter>set_useVerticalStripPlacement</setter>
@@ -207,7 +207,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Whether to render/load tabs onDemand or all at page load
+    /// Determines whether or not to render/load tabs on demand or all tabs on page load
     /// </summary>
     /// <getter>get_onDemand</getter>
     /// <setter>set_onDemand</setter>
@@ -327,7 +327,7 @@ Sys.Extended.UI.TabContainer.prototype = {
     },
 
     /// <summary>
-    /// Saves JSON serialized client state
+    /// Saves JSON state serialized on the client side
     /// </summary>
     /// <returns type="Object">Client state</returns>
     /// <member name="cM:AjaxControlToolkit.TabContainer.saveClientState" />
@@ -462,7 +462,7 @@ Sys.Extended.UI.TabPanel = function(element) {
 Sys.Extended.UI.TabPanel.prototype = {
 
     /// <summary>
-    /// Fires on click
+    /// Fires on a click
     /// </summary>
     /// <event add="add_click" remove="remove_click" raise="raise_click" />
     /// <member name="cE:AjaxControlToolkit.TabPanel.click" />
@@ -504,7 +504,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Fires when tab populating is done
+    /// Fires when tab populating is performed
     /// </summary>
     /// <event add="add_populated" remove="remove_populated" raise="raise_populated" />
     /// <member name="cE:AjaxControlToolkit.TabPanel.populated" />
@@ -525,7 +525,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// The text to display in the tab
+    /// Text to display in the tab
     /// </summary>
     /// <getter>get_headerText</getter>
     /// <setter>set_headerText</setter>
@@ -545,7 +545,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// The header tab
+    /// A header tab
     /// </summary>
     /// <getter>get_headerTab</getter>
     /// <setter>set_headerTab</setter>
@@ -568,7 +568,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Whether to display the tab for the TabPanel by default
+    /// Determines whether or not to display the tab for the TabPanel by default
     /// </summary>
     /// <getter>get_enabled</getter>
     /// <setter>set_enabled</setter>
@@ -618,7 +618,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabPanel
+    /// Determines whether or not to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabPanel
     /// </summary>
     /// <getter>get_scrollBars</getter>
     /// <setter>set_scrollBars</setter>
@@ -634,7 +634,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// When container's onDemand is true then whether to load tab - Always, Once, None
+    /// Determines whether or not to load the tab (Always, Once, None) when the container's onDemand property is true
     /// </summary>
     /// <getter>get_onDemandMode</getter>
     /// <setter>set_onDemandMode</setter>
@@ -650,7 +650,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Current tab index
+    /// The current tab index
     /// </summary>
     /// <getter>get_tabIndex</getter>
     /// <member name="cP:AjaxControlToolkit.TabPanel.tabIndex" />
@@ -659,7 +659,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// An arbitrary string value to be passed to the dynamic populate web method
+    /// An arbitrary string value to be passed to the dynamically populated web method
     /// </summary>
     /// <getter>get_dynamicContextKey</getter>
     /// <setter>set_dynamicContextKey</setter>
@@ -734,7 +734,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
 
     /// <summary>
-    /// Loading status of the tab if in Once demand mode
+    /// Determines the loading status of the tab in Once demand mode
     /// </summary>
     /// <getter>get_wasLoadedOnce</getter>
     /// <setter>set_wasLoadedOnce</setter>

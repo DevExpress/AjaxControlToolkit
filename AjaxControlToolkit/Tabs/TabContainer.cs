@@ -14,8 +14,8 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// TabContainer is an ASP.NET AJAX Control which creates a set of Tabs that can be used to organize
-    /// page content. A TabContainer is a host for a number of TabPanel controls.
+    /// TabContainer is an ASP.NET AJAX Control, which creates a set of tabs that can be
+    /// used to organize page content. TabContainer is a host for a number of TabPanel controls. 
     /// </summary>
     [Designer(typeof(TabContainerDesigner))]
     [ParseChildren(typeof(TabPanel))]
@@ -52,7 +52,7 @@ namespace AjaxControlToolkit {
         /// The first tab to show
         /// </summary>
         /// <remarks>
-        /// For client.
+        /// For the client side
         /// </remarks>
         [DefaultValue(-1)]
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Collection of tabs
+        /// A collection of tabs
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -138,7 +138,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Current active tab
+        /// The current active tab
         /// </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -161,7 +161,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Make auto postback from the javascript when tab index changes
+        /// Make an auto postback from JavaScript when a tab index changes
         /// </summary>
         [DefaultValue(false)]
         [Category("Behavior")]
@@ -171,7 +171,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Height of the body of the tabs (does not include the TabPanel headers)
+        /// Height of a tab body (does not include TabPanel headers)
         /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Appearance")]
@@ -187,7 +187,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Width of the body of the tabs
+        /// Width of the tab body
         /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Appearance")]
@@ -197,7 +197,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class override used to define a custom look and feel for the tabs
+        /// The CSS class override used to define custom look and feel for tabs
         /// </summary>
         /// <remarks>
         /// See the Tabs Theming section for more details
@@ -210,8 +210,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to display scrollbars (None, Horizontal, Vertical, Both, Auto)
-        /// in the body of the TabContainer
+        /// Determines whether or not to display scrollbars (None, Horizontal, Vertical, Both, Auto)
+        /// in the TabContainer body
         /// </summary>
         [DefaultValue(ScrollBars.None)]
         [Category("Behavior")]
@@ -223,7 +223,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to render the tabs on top of the container or below (Top, Bottom)
+        /// Determines whether or not to render tabs on top of the container or below (Top, Bottom)
         /// </summary>
         [DefaultValue(TabStripPlacement.Top)]
         [Category("Appearance")]
@@ -262,7 +262,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to render the tabs on left or right of the container
+        /// Determines whether or not to render tabs on the left or right side of the container
         /// </summary>
         [Description("Change tab header placement vertically when value set to true")]
         [DefaultValue(false)]
@@ -274,7 +274,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Width of the tab panels when displaying tabs vertically
+        /// Width of tab panels when tabs are displayed vertically
         /// </summary>
         [Description("Set width of tab strips when UseVerticalStripPlacement is set to true. Size must be in pixel")]
         [DefaultValue(typeof(Unit), "120px")]
@@ -290,7 +290,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether to render/load tabs onDemand or all at page load
+        /// Determines whether or not to render/load precise tabs on demand or all tabs on page load
         /// </summary>
         [DefaultValue(false)]
         [Category("Behavior")]

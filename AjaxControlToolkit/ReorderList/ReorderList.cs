@@ -20,25 +20,25 @@ using BindingDirection = System.ComponentModel.BindingDirection;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// ReorderList is an ASP.NET AJAX control that implements a bulleted, data-bound list with items that
-    /// can be reordered interactively. To reorder the items in the list, the user simply drags the item's
-    /// control bar to its new location. Graphical feedback is shown where the item will be placed as it is
-    /// dragged by the user. The data source is updated after the item is dropped in its new location.
+    /// ReorderList is an ASP.NET AJAX control that implements a bulleted data-bound list with items that
+    /// can be reordered interactively. To reorder items in the list, a user simply drags the item's control
+    /// bar to its new location. Graphical feedback is shown where the item will be placed as it is dragged by
+    /// the user. The data source is updated after the item is dropped in its new location. 
     /// </summary>
     /// <remarks>
-    /// When bound to data, the ReorderList control will behave like many other databound controls. If the
-    /// data you are displaying has a field that determines sort order (e.g. the select query is sorted by this column),
-    /// and that column is of an integer type, the ReorderList can automatically perform reorders if its SortOrderField
-    /// property is set. The ReorderList can also bind to any data source that implements IList (such as Arrays).
+    /// When bound to data, the ReorderList control will behave like many other databound controls. If data you are
+    /// displaying has a field that determines sort order (e.g. the select query is sorted by this column), and
+    /// that column is of an integer type, the ReorderList can automatically perform reorders if its SortOrderField
+    /// property is set. ReorderList can also be bound to a data source that implements IList (such as Arrays).
     /// 
-    /// The ReorderList control is different than the other samples here because it is an ASP.NET server control that
-    /// is aware of ASP.NET AJAX behaviors. Rather than extending existing controls on the page, it delivers a rich
-    /// client experience directly and still has a traditional post-back server model for interacting with the application.
+    /// The ReorderList control is different than other samples because it is an ASP.NET server-side control that is
+    /// aware of ASP.NET AJAX behavior. Rather than extending existing controls on a page, it delivers rich client-side
+    /// experience directly and still has a traditional postback server model for interaction with an application.
     /// 
-    /// The ReorderList can handle reorders in two ways, either via a callback or via a postback. For a callback, no
-    /// page postback happens on a reorder. This is useful if the data is only to be ordered. If the data items are to
-    /// be deleted or edited, a full postback needs to occur to sync the server side state with the client side state
-   ///  The PostbackOnReorder property enables this.
+    /// ReorderList can handle reorders in two ways either via a callback or postback. In the case of a callback, no
+    /// page postback happens on reordering. This is useful if data is only to be ordered. If data items are to be
+    /// deleted or edited, a full postback needs to occur to sync the server side-state with the client0side state.
+    /// The PostbackOnReorder property enables this. 
     /// </remarks>
     [Designer(typeof(ReorderListDesigner))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ReorderListName + Constants.IconPostfix)]
@@ -135,7 +135,7 @@ namespace AjaxControlToolkit {
         ReorderListItemLayoutType _layoutType = ReorderListItemLayoutType.Table;
 
         /// <summary>
-        /// Whether to allow drag/drop reordering. This is automatically set to true if a ReorderTemplate is present
+        /// Determines whether or not to allow drag/drop reordering. It is automatically set to true if ReorderTemplate is present
         /// </summary>
         [DefaultValue(false)]
         public bool AllowReorder {
@@ -154,7 +154,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Callback CSS style
+        /// A callback CSS style
         /// </summary>
         [DefaultValue("")]
         public string CallbackCssStyle {
@@ -179,7 +179,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The primary key field for the data
+        /// The primary key field for data
         /// </summary>
         [DefaultValue("")]
         public string DataKeyField {
@@ -188,7 +188,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The indexed collection of data keys, one for each row, when databound
+        /// The indexed collection of data keys (one key for each row when data is bound)
         /// </summary>
         [Browsable(false)]
         public DataKeyCollection DataKeys {
@@ -218,7 +218,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// ID of the DataSource to use to populate this control
+        /// ID of the data source to use to populate this control
         /// </summary>
         [TypeConverter(typeof(TypedControlIDConverter<IDataSource>))]
         public override string DataSourceID {
@@ -227,7 +227,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        ///  Where the drag handle should be relative to the item row. Can be "Top", "Bottom", "Left", or "Right".
+        /// Sets the drag handle relative to the item row (Top, Bottom, Left, or Right)
         /// </summary>
         [DefaultValue(ReorderHandleAlignment.Left)]
         public ReorderHandleAlignment DragHandleAlignment {
@@ -237,7 +237,7 @@ namespace AjaxControlToolkit {
 
 
         /// <summary>
-        /// The template for the drag handle that the user clicks and drags to reorder items
+        /// A template for the drag handle that a user clicks and drags to reorder items
         /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(ReorderListItem))]
@@ -249,7 +249,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The template to show when the list has no data. This item is not data-bindable
+        /// A template to show when a list has no data. This item is not data-bindable
         /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(ReorderListItem))]
@@ -261,8 +261,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The index of the item that is currently in edit mode.
-        /// The default is -1, meaning no item is in edit mode
+        /// An index of an item that is currently in Edit mode.
+        /// The default value is -1, which means no item is in edit mode 
         /// </summary>
         [DefaultValue(-1)]
         public int EditItemIndex {
@@ -271,7 +271,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The template do display for a row that is in edit mode
+        /// A template to display for a row that is in Edit mode
         /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(IDataItemContainer), BindingDirection.TwoWay)]
@@ -283,7 +283,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines where new items are inserted into the list. Can be Beginning or End
+        /// Determines where new items are inserted into the list (Beginning or End)
         /// </summary>
         [DefaultValue(ReorderListInsertLocation.Beginning)]
         public ReorderListInsertLocation ItemInsertLocation {
@@ -292,7 +292,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The template to show for adding new items to the list
+        /// A template to show for adding new items to the list
         /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(IDataItemContainer), BindingDirection.TwoWay)]
@@ -304,7 +304,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The template to display for items in the list
+        /// A template to display for items in the list
         /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(IDataItemContainer), BindingDirection.TwoWay)]
@@ -316,7 +316,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Collection of reoder list items
+        /// A collection of reodered list items
         /// </summary>
         [Browsable(false)]
         public ReorderListItemCollection Items {
@@ -327,10 +327,9 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The type of layout to apply to the items. If "Table" is selected, the
-        /// DragHandleAlignment property is used to lay out the items
-        /// in relation to the drag handle. If not, the items are simply wrapped in Panel
-        /// controls and can be positioned using CSS
+        /// The type of a layout to apply to items. If Table is selected, the DragHandleAlignment property
+        /// is used to lay out items in relation to the drag handle. If not, items are simply wrapped in
+        /// the Panel controls and can be positioned using CSS
         /// </summary>
         [DefaultValue(ReorderListItemLayoutType.Table)]
         public ReorderListItemLayoutType LayoutType {
@@ -339,7 +338,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not to do PostBack on reorder
+        /// Determines whether or not to do a postback on reordering
         /// </summary>
         [DefaultValue("true")]
         public bool PostBackOnReorder {
@@ -348,7 +347,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of the column which controls the sort order of the rows in the data base
+        /// The name of a column that controls the sort order of rows in the data base
         /// </summary>
         [DefaultValue("")]
         public string SortOrderField {
@@ -357,8 +356,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The template to use as the drop visual when the user is dragging an item around.
-        /// This template is not data bindable
+        /// A template to use as a visible drop element when a user is dragging an item.
+        /// This template is not data-bindable
         /// </summary>
         [Browsable(false)]
         [TemplateContainer(typeof(ReorderListItem))]
@@ -370,8 +369,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines whether the InsertItem is shown. If this value is not set and
-        /// an InsertItemTemplate is set, this defaults to true
+        /// Determines whether or not the InsertItem is shown. If this value is
+        /// not set and the InsertItemTemplate is set, the default value is set to true
         /// </summary>
         [DefaultValue(false)]
         public bool ShowInsertItem {
@@ -1347,7 +1346,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Performs an update of the specified row with it's current values
+        /// Updates the specified row with its current values
         /// </summary>
         /// <param name="rowIndex" type="Int">Row index</param>
         public void UpdateItem(int rowIndex) {
@@ -1367,21 +1366,21 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether the list has footer
+        /// Determines whether or not the list has a footer
         /// </summary>
         public bool HasFooter {
             get { return false; }
         }
 
         /// <summary>
-        /// Whether the list has header
+        /// Determines whether or not the list has a header
         /// </summary>
         public bool HasHeader {
             get { return false; }
         }
 
         /// <summary>
-        /// Whether the list has separators
+        /// Determines whether or not the list has separators
         /// </summary>
         public bool HasSeparators {
             get { return false; }
@@ -1412,7 +1411,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Repeated item count
+        /// Determines the count of repeated items
         /// </summary>
         public int RepeatedItemCount {
             get {

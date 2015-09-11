@@ -13,9 +13,8 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// Displays tweets from Twitter.com. Supports Profile mode for showing tweets
-    /// for a particular user and Search mode for showing tweets which match a 
-    /// search string.
+    /// Displays tweets from Twitter.com. Supports the Profile mode for showing tweets
+    /// for a particular user and the Search mode for showing tweets that match a search string. 
     /// </summary>
     [ClientCssResource(Constants.TwitterName)]
     [Designer(typeof(TwitterDesigner))]
@@ -25,7 +24,7 @@ namespace AjaxControlToolkit {
         ListView _listView;
 
         /// <summary>
-        /// Determines the overall behavior of the control. Can be either Profile or Search mode
+        /// A Twitter Screen name used in Profile mode
         /// </summary>
         public TwitterMode Mode { get; set; }
 
@@ -37,36 +36,36 @@ namespace AjaxControlToolkit {
         public string ScreenName { get; set; }
 
         /// <summary>
-        /// Twitter Caption which appears in default layout template
+        /// Twitter Caption that appears in the default layout template
         /// </summary>
         /// <remarks>
         /// Enables you to display caption text in the header.
-        /// In Profile mode, the default value is the user screen name.
+        /// In Profile mode, the default value is a user screen name
         /// </remarks>
         [Category("Search")]
         [Description("Twitter Caption")]
         public string Caption { get; set; }
 
         /// <summary>
-        /// Twitter Title which appears in default layout template
+        /// A twitter title that appears in the default layout template
         /// </summary>
         /// <remarks>
         /// Enables you to display title text in the header.
-        /// In Profile mode, the default value is the full user name.
+        /// In Profile mode, the default value is a full user name
         /// </remarks>
         [Category("Search")]
         [Description("Twitter Title")]
         public string Title { get; set; }
 
         /// <summary>
-        /// Twitter Profile image which appears in default layout template
+        /// A Twitter Profile image that appears in the default layout template
         /// </summary>
         [Category("Search")]
         [Description("Twitter Profile Image Url")]
         public string ProfileImageUrl { get; set; }
 
         /// <summary>
-        /// The twitter search query used in Search mode
+        /// A twitter search query used in Search mode
         /// </summary>
         /// <remarks>
         /// You can build complex queries with search operators (https://dev.twitter.com/docs/using-search)
@@ -74,17 +73,17 @@ namespace AjaxControlToolkit {
         public string Search { get; set; }
 
         /// <summary>
-        /// In Profile mode, indicates whether retweets are displayed
+        /// Indicates whether or not retweets are displayed in Profile mode
         /// </summary>
         public bool IncludeRetweets { get; set; }
 
         /// <summary>
-        /// In Profile mode, indicates whether replies are displayed
+        /// Indicates whether or not replies are displayed in Profile mode
         /// </summary>
         public bool IncludeReplies { get; set; }
 
         /// <summary>
-        /// Maximum number of tweets to display. The default value is 5
+        /// A maximum number of tweets to display. The default value is 5
         /// </summary>
         public int Count { get; set; }
 
@@ -94,17 +93,17 @@ namespace AjaxControlToolkit {
         public int CacheDuration { get; set; }
 
         /// <summary>
-        /// Enable get live content from twitter server at design time
+        /// Allows getting live content from the twitter server at design time
         /// </summary>
         [Browsable(true)]
         [Description("Enable get live content from twitter server at design time")]
         public bool IsLiveContentOnDesignMode { get; set; }
 
         /// <summary>
-        /// Template which contains each status message (tweet)
+        /// A template that contains each status message (tweet)
         /// </summary>
         /// <remarks>
-        /// The equivalent to the ItemTemplate in a ListView
+        /// An equivalent to the ItemTemplate in ListView
         /// </remarks>
         [Browsable(false)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -112,10 +111,10 @@ namespace AjaxControlToolkit {
         public ITemplate StatusTemplate { get; set; }
 
         /// <summary>
-        /// Template which is applied for alternating status messages (tweets)
+        /// A template which is applied for alternating status messages (tweets)
         /// </summary>
         /// <remarks>
-        /// The equivalent to the AlternatingItemTemplate in a ListView
+        /// An equivalent to the AlternatingItemTemplate in ListView
         /// </remarks>
         [Browsable(false)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -123,10 +122,10 @@ namespace AjaxControlToolkit {
         public ITemplate AlternatingStatusTemplate { get; set; }
 
         /// <summary>
-        /// Template which displays content when there are no tweets
+        /// A template that displays content when there are no tweets
         /// </summary>
         /// <remarks>
-        /// The equivalent to the EmptyDataTemplate in a ListView
+        /// An equivalent to the EmptyDataTemplate in ListView
         /// </remarks>
         [Browsable(false)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
@@ -134,7 +133,7 @@ namespace AjaxControlToolkit {
         public ITemplate EmptyDataTemplate { get; set; }
 
         /// <summary>
-        /// Template which contains the HTML for the root container of the ListView content
+        /// A template that contains HTML for the root container of the ListView content
         /// </summary>
         /// <remarks>
         /// Displays the root content of the Twitter control

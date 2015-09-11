@@ -1549,7 +1549,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
     
     /// <summary>
-    /// Returns navigation control of the viewer
+    /// Returns a navigation control of the viewer
     /// </summary>
     /// <returns type="Sys.Extended.UI.Seadragon.NavControl">Navigation control</returns>
     /// <member name="cM:AjaxControlToolkit.Seadragon.Viewer.getNavControl" />
@@ -1558,7 +1558,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// XML path
+    /// An XML path
     /// </summary>
     /// <getter>get_xmlPath</getter>
     /// <setter>set_xmlPath</setter>
@@ -1571,7 +1571,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether or not debug mode is enabled
+    /// Determines whether or not the debug mode is enabled
     /// </summary>
     /// <getter>get_debugMode</getter>
     /// <setter>set_debugMode</setter>
@@ -1611,8 +1611,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether tiles should always blend in and out, not just when they're first
-    /// loaded. Default is false
+    /// Determines whether or not tiles should always blend in and out, not just when they're first loaded.
+    /// Default is false
     /// </summary>
     /// <getter>get_alwaysBlend</getter>
     /// <setter>set_alwaysBlend</setter>
@@ -1625,8 +1625,9 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether controls should get automatically hidden when the user's mouse is off
-    /// the viewer and the image has stopped animating. Default is true
+    /// Determines whether or not controls should be automatically hidden when a user
+    /// moves the mouse away from the viewer and the image has stopped animating.
+    /// Default is true
     /// </summary>
     /// <getter>get_autoHideControl</getter>
     /// <setter>set_autoHideControl</setter>
@@ -1639,9 +1640,9 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether the most appropriate tiles should always be rendered first, before any lower-res
-    /// tiles are rendered. This loses the "sharpening" effect and instead creates a very
-    /// visible "tiling" effect. Default is false
+    /// Determines whether or not the most appropriate tiles should always be rendered before any
+    /// low-resolution tiles are rendered. The sharpening effect is lost, and instead a visible
+    /// tiling effect occurs. Default is false
     /// </summary>
     /// <getter>get_immediateRender</getter>
     /// <setter>set_immediateRender</setter>
@@ -1654,7 +1655,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether or not control to use horizontal wrapping
+    /// Determines whether or not the control uses horizontal wrapping
     /// </summary>
     /// <getter>get_wrapHorizontal</getter>
     /// <setter>set_wrapHorizontal</setter>
@@ -1667,7 +1668,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether or not control to use vertical wrapping
+    /// Determines whether or not the control uses vertical wrapping
     /// </summary>
     /// <getter>get_wrapVertical</getter>
     /// <setter>set_wrapVertical</setter>
@@ -1680,8 +1681,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The minimum size (in screen pixels) of either dimension that can result from
-    /// zooming out. Default is 16
+    /// Minimum size (in screen pixels) of a dimension that can be obtained from zooming out.
+    /// Default is 16
     /// </summary>
     /// <getter>get_minZoomDimension</getter>
     /// <setter>set_minZoomDimension</setter>
@@ -1694,8 +1695,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The maximum pixel ratio (screen pixel to content pixel) that can result from
-    /// zooming in. Default is 4
+    /// Maximum pixel ratio (screen pixel to content pixel) that can be obtained from zooming in.
+    /// Default is 4
     /// </summary>
     /// <getter>get_maxZoomPixelRation</getter>
     /// <setter>set_maxZoomPixelRation</setter>
@@ -1708,8 +1709,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The minimum portion of the viewport that must show visible content in
-    /// both dimensions. Default is 0.1
+    /// Minimum portion of the viewport that must show visible content in both dimensions.
+    /// Default is 0.1
     /// </summary>
     /// <getter>get_visibilityRatio</getter>
     /// <setter>set_visibilityRatio</setter>
@@ -1722,7 +1723,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Determines how sharply the springs used for animations move. Default is 5.0
+    /// Determines how sharply springs used for animations move.
+    /// Default is 5.0
     /// </summary>
     /// <getter>get_springStiffness</getter>
     /// <setter>set_springStiffness</setter>
@@ -1735,7 +1737,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The maximum number of concurrent image downloads that can be performed by each viewer. Default is 2
+    /// Maximum number of concurrent image downloads that can be performed by each viewer.
+    /// Default is 2
     /// </summary>
     /// <getter>get_imageLoaderLimit</getter>
     /// <setter>set_imageLoaderLimit</setter>
@@ -1748,8 +1751,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The maximum number of milliseconds that can pass between a mousedown and 
-    /// a mouseup for the action to still be considered a "quick" click. Default is 200
+    /// Maximum number of milliseconds that can pass between a mousedown and mouseup for an
+    /// action to be considered as a quick click. Default is 200
     /// </summary>
     /// <getter>get_clickTimeThreshold</getter>
     /// <setter>set_clickTimeThreshold</setter>
@@ -1762,8 +1765,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The maximum number of pixels the mouse can move between a mousedown and a mouseup
-    /// for the action to still be considered a "quick" click. Default is 5
+    /// Maximum number of pixels the mouse can move between a mousedown and mouseup fo
+    /// an action to be considered as a quick click. Default is 5
     /// </summary>
     /// <getter>get_clickDistThreshold</getter>
     /// <setter>set_clickDistThreshold</setter>
@@ -1776,7 +1779,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The factor by which images should zoom when clicked on. Default is 2
+    /// The factor by which images should zoom in on being clicked. Default is 2
     /// </summary>
     /// <getter>get_zoomPerClick</getter>
     /// <setter>set_zoomPerClick</setter>
@@ -1789,8 +1792,8 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The factor by which images should zoom over each second when the zoom buttons
-    /// are held down. Default is 2
+    /// The factor by which images should zoom in each second the zoom buttons are held down.
+    /// Default is 2
     /// </summary>
     /// <getter>get_zoomPerSecond</getter>
     /// <setter>set_zoomPerSecond</setter>
@@ -1803,7 +1806,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Maximum image cache count
+    /// Maximum number of cached images
     /// </summary>
     /// <getter>get_maxImageCacheCount</getter>
     /// <setter>set_maxImageCacheCount</setter>
@@ -1816,7 +1819,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether navigation buttons should be shown
+    /// Determines whether or not navigation buttons should be shown
     /// </summary>
     /// <getter>get_showNavigationControl</getter>
     /// <setter>set_showNavigationControl</setter>
@@ -1829,7 +1832,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// The minimum pixel ratio
+    /// Minimum pixel ratio
     /// </summary>
     /// <getter>get_minPixelRatio</getter>
     /// <setter>set_minPixelRatio</setter>
@@ -1842,7 +1845,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Whether mouse navigation is enabled
+    /// Determines whether or not mouse navigation is enabled
     /// </summary>
     /// <getter>get_mouseNavEnabled</getter>
     /// <setter>set_mouseNavEnabled</setter>
@@ -1855,7 +1858,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// List of controls
+    /// A list of controls
     /// </summary>
     /// <getter>get_controls</getter>
     /// <setter>set_controls</setter>
@@ -1868,7 +1871,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// List of overlay controls
+    /// A list of overlay controls
     /// </summary>
     /// <getter>get_overlays</getter>
     /// <setter>set_overlays</setter>
@@ -1894,7 +1897,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Fires when viewer opens
+    /// Fires when the viewer opens
     /// </summary>
     /// <event add="add_open" remove="remove_open" raise="" />
     /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.open" />
@@ -1906,7 +1909,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Fires on error occured
+    /// Fires when the error occurs
     /// </summary>
     /// <event add="add_error" remove="remove_error" raise="" />
     /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.error" />
@@ -1918,7 +1921,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     },
 
     /// <summary>
-    /// Fires on ignore occured
+    /// Fires when the ignore event occurs
     /// </summary>
     /// <event add="add_ignore" remove="remove_ignore" raise="" />
     /// <member name="cE:AjaxControlToolkit.Seadragon.Viewer.ignore" />

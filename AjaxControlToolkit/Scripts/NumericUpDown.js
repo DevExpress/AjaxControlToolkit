@@ -210,7 +210,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when current textbox value changes
+    /// Fires when the current textbox value changes
     /// </summary>
     /// <event add="add_currentChanged" remove="remove_currentChanged" raise="raise_currentChanged" />
     /// <member name="cE:AjaxControlToolkit.NumericUpDownExtender.currentChanged" />
@@ -251,7 +251,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Reads the value of the associated textbox
+    /// Reads a value of the associated textbox
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.NumericUpDownExtender.readValue" />
     readValue: function() {
@@ -297,7 +297,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sets the value of the associated textbox
+    /// Sets a value of the associated textbox
     /// </summary>
     /// <param name="value" type="String">Value to set</param>
     /// <member name="cM:AjaxControlToolkit.NumericUpDownExtender.setCurrentToTextBox" />
@@ -351,7 +351,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     /// Combined size of the TextBox and Up/Down buttons. Minimum value 25
     /// </summary>
     /// <remarks>
-    /// This property is not used if you provide custom buttons.
+    /// This property is not used if you provide custom buttons
     /// </remarks>
     /// <getter>get_width</getter>
     /// <setter>set_width</setter>
@@ -401,7 +401,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Reference to custom Up button
+    /// A reference to a custom Up button
     /// </summary>
     /// <getter>get_targetButtonUpID</getter>
     /// <setter>set_targetButtonUpID</setter>
@@ -426,7 +426,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Reference to custom Down button
+    /// A reference to a custom Down button
     /// </summary>
     /// <getter>get_targetButtonDownID</getter>
     /// <setter>set_targetButtonDownID</setter>
@@ -451,10 +451,10 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Path to a web service that returns the data used to get the next value
+    /// A path to a web service that returns data used to get the next value
     /// </summary>
     /// <remarks>
-    /// If the ServiceUpPath property is empty, a PageMethod will be used instead of a Web service
+    /// If the ServiceUpPath property is empty, the PageMethod will be used instead of the Web service
     /// </remarks>
     /// <getter>get_serviceUpPath</getter>
     /// <setter>set_serviceUpPath</setter>
@@ -479,7 +479,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Name of the method to call on the Web service (or the name of a PageMethod) to get the next value
+    /// A name of the method to call on the Web service (or the name of the PageMethod) to get the next value
     /// </summary>
     /// <getter>get_serviceUpMethod</getter>
     /// <setter>set_serviceUpMethod</setter>
@@ -507,10 +507,10 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Path to a web service that returns the data used to get the previous value
+    /// A path to a Web service that returns data used to get the previous value
     /// </summary>
     /// <remarks>
-    /// If the ServiceDownPath property is empty, a PageMethod will be used instead of a Web service
+    /// If the ServiceDownPath property is empty, the PageMethod will be used instead of the Web service
     /// </remarks>
     /// <getter>get_serviceDownPath</getter>
     /// <setter>set_serviceDownPath</setter>
@@ -535,7 +535,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Name of the method to call on the Web service (or the name of a PageMethod) to get the previous value
+    /// A name of the method to call on the Web service (or the name of the PageMethod) to get the previous value
     /// </summary>
     /// <getter>get_serviceDownMethod</getter>
     /// <setter>set_serviceDownMethod</setter>
@@ -598,7 +598,7 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     },
 
     /// <summary>
-    /// Step used for simple numeric incrementing and decrementing. The default value is 1
+    /// A step used for simple numeric incrementing and decrementing. The default value is 1
     /// </summary>
     /// <getter>get_step</getter>
     /// <setter>set_step</setter>
@@ -627,9 +627,9 @@ Sys.Extended.UI.NumericUpDownBehavior.prototype = {
     /// The minimum value allowed by the extender
     /// </summary>
     /// <remarks>
-    /// Currently, it does not prevent out of range values from being entered
-    /// into the textbox even if Minimum or Maximum are specified on the extender,
-    /// but using the up/down buttons should bring the value into the allowed range when clicked.
+    /// Currently, it does not prevent out of range values from being entered into the textbox
+    /// even if Minimum or Maximum are specified on the extender, but using the up/down buttons
+    /// should bring the value into the allowed range when clicked
     /// </remarks>
     /// <getter>get_minimum</getter>
     /// <setter>set_minimum</setter>

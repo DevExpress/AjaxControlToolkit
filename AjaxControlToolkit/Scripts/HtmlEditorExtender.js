@@ -23,7 +23,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._viewMode = 'content';
 
     /// <summary>
-    /// Determines whether to display source view tab/button to see source view of the HtmlEditorExtender
+    /// Determines whether or not to display a source view tab/button to see the source view of HtmlEditorExtender
     /// </summary>
     /// <getter>get_displaySourceTab</getter>
     /// <setter>set_displaySourceTab</setter>
@@ -160,7 +160,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._container = null;
 
     /// <summary>
-    /// Collection of toolbar buttons
+    /// A collection of toolbar buttons
     /// </summary>
     /// <getter>get_toolbarButtons</getter>
     /// <setter>set_toolbarButtons</setter>

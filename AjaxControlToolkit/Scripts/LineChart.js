@@ -102,7 +102,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Calculates distance interval for the value axis
+    /// Calculates a distance interval for the value axis
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.LineChart.calculateInterval" />
     calculateInterval: function() {
@@ -118,7 +118,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Calculates minimum and maximum values of the specified data
+    /// Calculates minimum and maximum values of specified data
     /// </summary>
     /// <param name="chartType" type="Sys.Extended.UI.LineChartType">Chart type</param>
     /// <member name="cM:AjaxControlToolkit.LineChart.calculateMinMaxValues" />
@@ -180,7 +180,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Calculates label values for Value axis to display on the chart
+    /// Calculates label values for the value axis to display on the chart
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.LineChart.calculateValueAxis" />
     calculateValueAxis: function() {
@@ -335,7 +335,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Writes horizontal and vertical axis values of the chart.
+    /// Writes horizontal and vertical axis values of the chart
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.LineChart.drawAxisValues" />
     drawAxisValues: function() {
@@ -358,7 +358,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Creates SVG and its initial contents
+    /// Creates SVG and its initial content
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.LineChart.initializeSVG" />
     initializeSVG: function() {
@@ -451,7 +451,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to customize the width of the chart
+    /// Enables you to customize chart width
     /// </summary>
     /// <getter>get_chartWidth</getter>
     /// <setter>set_chartWidth</setter>
@@ -464,7 +464,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to customize the height of the chart
+    /// Enables you to customize chart height
     /// </summary>
     /// <getter>get_chartHeight</getter>
     /// <setter>set_chartHeight</setter>
@@ -477,7 +477,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the title of the chart
+    /// Enables you to set the chart's title
     /// </summary>
     /// <getter>get_chartTitle</getter>
     /// <setter>set_chartTitle</setter>
@@ -503,7 +503,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Provides list of series
+    /// Provides a list of series
     /// </summary>
     /// <getter>get_clientSeries</getter>
     /// <setter>set_clientSeries</setter>
@@ -538,7 +538,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to control the appearance of the line chart with a CSS file
+    /// Enables you to control the appearance of a line chart with a CSS file
     /// </summary>
     /// <getter>get_theme</getter>
     /// <setter>set_theme</setter>
@@ -551,7 +551,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the interval size for the value axis line
+    /// Enables you to set interval size for a value axis line
     /// </summary>
     /// <getter>get_valueAxisLines</getter>
     /// <setter>set_valueAxisLines</setter>
@@ -564,7 +564,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the font color of the chart title
+    /// Enables you to set a font color of the chart's title
     /// </summary>
     /// <getter>get_chartTitleColor</getter>
     /// <setter>set_chartTitleColor</setter>
@@ -577,7 +577,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the the color of the value axis lines
+    /// Enables you to set a color of a value axis line
     /// </summary>
     /// <getter>get_valueAxisLineColor</getter>
     /// <setter>set_valueAxisLineColor</setter>
@@ -590,7 +590,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the color of the category axis lines
+    /// Enables you to set a color of category axis lines
     /// </summary>
     /// <getter>get_categoryAxisLineColor</getter>
     /// <setter>set_categoryAxisLineColor</setter>
@@ -603,7 +603,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the color of the base lines of the chart
+    /// Enables you to set a color of the chart's base lines
     /// </summary>
     /// <getter>get_baseLineColor</getter>
     /// <setter>set_baseLineColor</setter>
@@ -616,7 +616,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the background color of the tooltip box
+    /// Enables you to set a background color of the tooltip box
     /// </summary>
     /// <getter>get_tooltipBackgroundColor</getter>
     /// <setter>set_tooltipBackgroundColor</setter>
@@ -629,7 +629,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the font color of the tooltip box
+    /// Enables you to set a font color of the tooltip box
     /// </summary>
     /// <getter>get_tooltipFontColor</getter>
     /// <setter>set_tooltipFontColor</setter>
@@ -642,7 +642,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the border color of the tooltip box
+    /// Enables you to set a border color of the tooltip box
     /// </summary>
     /// <getter>get_tooltipBorderColor</getter>
     /// <setter>set_tooltipBorderColor</setter>
@@ -655,8 +655,7 @@ Sys.Extended.UI.LineChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the text/label that will be shown in the tooltip
-    /// and describe about area data value.
+    /// Enables you to set text/label that will be shown in the tooltip and describe a area data value
     /// </summary>
     /// <getter>get_areaDataLabel</getter>
     /// <setter>set_areaDataLabel</setter>

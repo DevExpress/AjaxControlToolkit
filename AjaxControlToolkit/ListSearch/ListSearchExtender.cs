@@ -8,9 +8,10 @@ using AjaxControlToolkit.Design;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// The ListSearchExtender lets you search for items in a ListBox or DropDownList by typing. The extender
-    /// performs an incremental search within the ListBox based on what has been typed so far. The prompt message
-    /// that gets displayed when you click the list can be customized along with its CSS class and position.
+    /// ListSearchExtender lets you search for items in the ListBox or DropDownList by typing.
+    /// The extender performs an incremental search within the ListBox based on what has been typed
+    /// so far. The prompt message that is displayed when you click the list can be customized along
+    /// with its CSS class and position.
     /// </summary>
     [TargetControlType(typeof(ListControl))]
     [ClientScriptResource("Sys.Extended.UI.ListSearchBehavior", Constants.ListSearchName)]
@@ -35,10 +36,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Message to display when the ListBox or DropDownList is given focus.
+        /// A message to display when the ListBox or DropDownList receives focus
         /// </summary>
         /// <remarks>
-        /// Default is 'Type to search'. The PromptText is replaced by the search text typed by the user.
+        /// The default value is 'Type to search'. The PromptText is replaced by the search text typed by a user
         /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("promptText")]
@@ -50,7 +51,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The name of the CSS class to apply to the prompt message
+        /// The name of a CSS class to apply to the prompt message
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("promptCssClass")]
@@ -75,11 +76,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The OnShow animation will be played each time the extender's prompt is displayed
+        /// OnShow animation will be played each time the extender's prompt is displayed
         /// </summary>
         /// <remarks>
-        /// The prompt will be positioned correctly but hidden. The animation can use
-        /// to display the prompt along with any other visual effects.
+        /// The prompt will be positioned correctly but hidden. Animation can be used to
+        /// display the prompt with other visual effects
         /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
@@ -93,7 +94,7 @@ namespace AjaxControlToolkit {
         Animation _onShow;
 
         /// <summary>
-        /// The OnHide animation will be played each time the extender's prompt is hidden
+        /// OnHide animation will be played each time the extender's prompt is hidden
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
@@ -107,8 +108,8 @@ namespace AjaxControlToolkit {
         Animation _onHide;
 
         /// <summary>
-        /// Indicates whether the search query should be reset after the timeout if no match is found.
-        /// The default is 0, meaning no auto reset behavior.
+        /// Indicates whether a search query should be reset after the timeout if no match is found.
+        /// The default is 0 meaning no auto reset behavior
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -127,7 +128,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Indicates how the typed characters should be used in the search query
+        /// Indicates how typed characters should be used in the search query
         /// </summary>
         /// <remarks>
         /// The default pattern queries for results that start with the typed word
@@ -145,8 +146,8 @@ namespace AjaxControlToolkit {
         /// Indicates if items added to the List are expected to be sorted
         /// </summary>
         /// <remarks>
-        /// The default is false. If set to true it allows the code to perform
-        /// a faster search instead of having to determine the same before performing the search.
+        /// The default value is false. If it is set to true, it allows code to perform
+        /// a faster search instead of performing the same operation before the search
         /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("isSorted")]

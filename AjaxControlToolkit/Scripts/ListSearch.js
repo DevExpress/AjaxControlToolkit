@@ -463,7 +463,7 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnShow animation's JSON definition
+    /// A JSON definition of generic OnShow animation
     /// </summary>
     /// <getter>get_onShow</getter>
     /// <setter>set_onShow</setter>
@@ -481,8 +481,7 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    ///  Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the
-    /// generic OnShow animation's behavior
+    /// The Sys.Extended.UI.Animation.GenericAnimationBehavior object containing generic OnShow animation behavior
     /// </summary>
     /// <getter>get_onShowBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.onShowBehavior" />
@@ -491,7 +490,7 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Plasy the OnShow animation
+    /// Plays OnShow animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ListSearchExtender.onShow" />
     onShow: function() {
@@ -500,7 +499,7 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Generic OnHide animation's JSON definition
+    /// A JSON definition of generic OnHide animation
     /// </summary>
     /// <getter>get_onHide</getter>
     /// <setter>set_onHide</setter>
@@ -518,7 +517,7 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation's behavior
+    /// The Sys.Extended.UI.Animation.GenericAnimationBehavior object containing generic OnHide animation behavior
     /// </summary>
     /// <getter>get_onHideBehavior</getter>
     /// <member name="cP:AjaxControlToolkit.ListSearchExtender.onHideBehavior" />
@@ -527,7 +526,7 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Plays the OnHide animation
+    /// Plays OnHide animation
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ListSearchExtender.onHide" />
     onHide: function() {
@@ -536,7 +535,7 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Prompt text displayed when user clicks the list
+    /// Prompt text displayed when a user clicks the list
     /// </summary>
     /// <getter>get_promptText</getter>
     /// <setter>set_promptText</setter>
@@ -552,7 +551,7 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class applied to prompt when user clicks the list
+    /// A CSS class applied to prompt when a user clicks the list
     /// </summary>
     /// <getter>get_promptCssClass</getter>
     /// <setter>set_promptCssClass</setter>
@@ -568,8 +567,8 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sys.Extended.UI.ListSearchPromptPosition value used to
-    /// determine where the prompt should be positioned relative to the target control.
+    /// A Sys.Extended.UI.ListSearchPromptPosition value used to determine where the prompt
+    /// should be positioned relative to the target control (Top (default) or Bottom)
     /// Can be Top (default) or Bottom
     /// </summary>
     /// <getter>get_promptPosition</getter>
@@ -586,8 +585,8 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Boolean value indicating whether an OnChange event should be fired as soon as the
-    /// selected element is changed, when the list loses focus or when the user hits enter
+    /// A Boolean value indicating whether or not the OnChange event should be raised as soon as
+    /// the selected element is changed when the list loses focus or when a user hits Enter
     /// </summary>
     /// <getter>get_raiseImmediateOnChange</getter>
     /// <setter>set_raiseImmediateOnChange</setter>
@@ -603,8 +602,8 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Number indicating a timeout in milliseconds upon which the
-    /// search query will be cleared. Zero means no auto reset at all
+    /// The number indicating timeout in milliseconds upon which the search query will be cleared.
+    /// Zero means no auto reset
     /// </summary>
     /// <getter>get_queryTimeout</getter>
     /// <setter>set_queryTimeout</setter>
@@ -620,10 +619,10 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Boolean value used to determine whether the list has been sorted upon population
+    /// A Boolean value used to determine whether or not the list has been sorted upon population
     /// </summary>
     /// <remarks>
-    /// True indicates that all values in List are already sorted upon population
+    /// True indicates that all values in the List are already sorted upon population
     /// </remarks>
     /// <getter>get_isSorted</getter>
     /// <setter>set_isSorted</setter>
@@ -643,8 +642,8 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sys.Extended.UI.ListSearchQueryPattern value used to determine the search
-    /// query pattern to be used to find items. Can be StartsWith (default) or Contains
+    /// A Sys.Extended.UI.ListSearchQueryPattern value used to determine the search query pattern
+    /// to be used to find items (StartsWith (default) or Contains)
     /// </summary>
     /// <getter>get_queryPattern</getter>
     /// <setter>set_queryPattern</setter>

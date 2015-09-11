@@ -34,7 +34,7 @@ Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// The unique key to use to associate checkboxes
+    /// A unique key to use to associate check boxes
     /// </summary>
     /// <getter>get_key</getter>
     /// <setter>set_key</setter>
@@ -94,7 +94,7 @@ Sys.Extended.UI.MutuallyExclusiveCheckBoxBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when checkbox is checked
+    /// Fires when the check box is checked
     /// </summary>
     /// <event add="add_checked" remove="remove_checked" raise="raise_checked" />
     /// <member name="cE:AjaxControlToolkit.MutuallyExclusiveCheckBoxExtender.checked" />
