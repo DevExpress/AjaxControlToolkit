@@ -176,7 +176,7 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// Plays the animation
+    /// Plays animation.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.AnimationExtender.playOnClick" />
     OnClick: function() {
@@ -222,7 +222,7 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// Play the OnMouseOver/OnHoverOver animations
+    /// Plays OnMouseOver/OnHoverOver animations
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.AnimationExtender.playOnMouseOver" />
     OnMouseOver: function() {
@@ -282,7 +282,7 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// Play the OnMouseOver/OnHoverOver animations
+    /// Plays OnMouseOver/OnHoverOver animations
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.AnimationExtender.playOnMouseOut" />
     OnMouseOut: function(e) {
