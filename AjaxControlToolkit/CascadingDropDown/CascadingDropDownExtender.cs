@@ -13,10 +13,10 @@ using System.Xml;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// CascadingDropDown is an ASP.NET AJAX extender that can be attached to an ASP.NET DropDownList
-    /// control to get automatic population of a set of DropDownList controls. Each time the selection
-    /// of one the DropDownList controls changes, the CascadingDropDown makes a call to a specified
-    /// web service to retrieve the list of values for the next DropDownList in the set.
+    /// CascadingDropDown is an ASP.NET AJAX extender that can be attached to an ASP.NET
+    /// DropDownList control to get automatic population of a set of DropDownList controls.
+    /// Each time selection of one DropDownList control changes, CascadingDropDown makes a call 
+    /// to a specified web service to retrieve the list of values for the next DropDownList in the set.
     /// </summary>
     [Designer(typeof(CascadingDropDownExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.CascadingDropDownBehavior", Constants.CascadingDropDownName)]
@@ -30,7 +30,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Optional ID of the parent DropDownList (upon which the contents of this control are based).
+        /// An optional ID of the parent DropDownList (on which the content of this control is based).
         /// </summary>
         [IDReferenceProperty(typeof(DropDownList))]
         [DefaultValue("")]
@@ -43,7 +43,7 @@ namespace AjaxControlToolkit {
 
         // Used when communicating with the helper web service
         /// <summary>
-        /// Category of this DropDownList (used when communicating with the helper web service)
+        /// A category of this DropDownList (used when communicating with the helper web service).
         /// </summary>
         [RequiredProperty()]
         [DefaultValue("")]
@@ -55,8 +55,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Optional text displayed by a DropDownList the user has not yet touched. If omitted,
-        /// first item in the dropdown is selected
+        /// Optional text displayed by DropDownList a user has not yet touched. If omitted, the first dropdown item is selected.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty()]
@@ -67,7 +66,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Optional value for the option displayed by a DropDownList showing the PromptText
+        /// An optional value for an option displayed by DropDownList showing PromptText.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty()]
@@ -78,7 +77,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Optional text for the option displayed when the list is empty
+        /// Optional text for an option displayed when the list is empty.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty()]
@@ -89,7 +88,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Optional value for the option displayed when the list is empty
+        /// An optional value for an option displayed when the list is empty.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty()]
@@ -100,7 +99,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Optional text displayed by a DropDownList when it is loading its data
+        /// Optional text displayed by DropDownList when it is loading its data.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty()]
@@ -111,7 +110,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Selected value of the drop down
+        /// A selected value of the dropdown.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty()]
@@ -122,7 +121,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Path to the helper web service
+        /// A path to the helper web service.
         /// </summary>
         [UrlProperty()]
         [ExtenderControlProperty()]
@@ -139,7 +138,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Name of the web service method
+        /// The name of a web service method.
         /// </summary>
         [RequiredProperty()]
         [DefaultValue("")]
@@ -151,9 +150,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// User/page specific context provided to an optional overload of the web method described
-        /// by ServiceMethod/ServicePath. If the context key is used, it should have the same signature
-        /// with an additional parameter named contextKey of type string
+        /// User/page specific context provided to an optional overload of the web method described by ServiceMethod/ServicePath.
+        /// If the context key is used, it should have the same signature with an additional parameter named contextKey of the sting type.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("contextKey")]
@@ -167,10 +165,9 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not the ContextKey property should be used. This will be automatically
-        /// enabled if the ContextKey property is ever set (on either the client or the server).
-        /// If the context key is used, it should have the same signature with an additional
-        /// parameter named contextKey of type string
+        /// Determines whether or not the ContextKey property should be used. 
+        /// It will be automatically enabled if the ContextKey property is ever set (either on the client or server side). 
+        /// If the context key is used, it should have the same signature with an additional parameter named contextKey of the string type.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("useContextKey")]
@@ -181,7 +178,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not use HTTP GET method for requesting the data
+        /// Determines whether or not to use the HTTP GET method for requesting data.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("useHttpGet")]
@@ -192,9 +189,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not disable the dropdownlist control when this is waiting to
-        /// get data from the service so at the time of loading user can use keyboard
-        /// to navigate to the dropdown control
+        /// Determines wether or not to disable the DropDownList control when it is waiting for data from the service,
+        /// so on loading a user can use the keyboard to navigate to the drop-down control.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("enableAtLoading")]
@@ -231,9 +227,9 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Helper method to parse the private storage format used to communicate known category/value pairs
+        /// A helper method to parse the private storage format used to communicate with known category/value pairs.
         /// </summary>
-        /// <param name="knownCategoryValues" type="String">Private storage format string</param>
+        /// <param name="knownCategoryValues">Private storage format string</param>
         /// <returns>Dictionary of category/value pairs</returns>
         public static StringDictionary ParseKnownCategoryValuesString(string knownCategoryValues) {
             // Validate parameters
@@ -254,13 +250,12 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Helper method to provide a simple implementation of a method to query a data set
-        /// and return the relevant drop down contents
+        /// A helper method to provide simple implementation of a method to query a data set and return relevant dropdown content.
         /// </summary>
-        /// <param name="document" type="XmlDocument">XML document containing the data set</param>
-        /// <param name="documentHierarchy" type="string[]">List of strings representing the hierarchy of the data set</param>
-        /// <param name="knownCategoryValuesDictionary" type="StringDictionary">Known category/value pairs</param>
-        /// <param name="category" type="String">Category for which the drop down contents are desired</param>
+        /// <param name="document">XML document containing the data set</param>
+        /// <param name="documentHierarchy">List of strings representing the hierarchy of the data set</param>
+        /// <param name="knownCategoryValuesDictionary">Known category/value pairs</param>
+        /// <param name="category">Category for which the drop down contents are desired</param>
         /// <returns>Contents of the specified drop down subject to the choices already made</returns>
         public static CascadingDropDownNameValue[] QuerySimpleCascadingDropDownDocument(XmlDocument document, string[] documentHierarchy, StringDictionary knownCategoryValuesDictionary, string category) {
             // Use a default Regex for input validation that excludes any user input with the characters
@@ -270,14 +265,13 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Helper method to provide a simple implementation of a method to query a data set
-        /// and return the relevant drop down contents
+        /// A helper method to provide simple implementation of a method to query a data set and return relevant dropdown content.
         /// </summary>
-        /// <param name="document" type="XmlDocument">XML document containing the data set</param>
-        /// <param name="documentHierarchy" type="string[]">List of strings representing the hierarchy of the data set</param>
-        /// <param name="knownCategoryValuesDictionary" type="StringDictionary">Known category/value pairs</param>
-        /// <param name="category" type="String">Category for which the drop down contents are desired</param>
-        /// <param name="inputValidationRegex" type="Regex">Regular expression used to validate user input to the web service (to prevent XPath injection attacks)</param>
+        /// <param name="document">XML document containing the data set</param>
+        /// <param name="documentHierarchy">List of strings representing the hierarchy of the data set</param>
+        /// <param name="knownCategoryValuesDictionary">Known category/value pairs</param>
+        /// <param name="category">Category for which the drop down contents are desired</param>
+        /// <param name="inputValidationRegex">Regular expression used to validate user input to the web service (to prevent XPath injection attacks)</param>
         /// <returns>Contents of the specified drop down subject to the choices already made</returns>
         public static CascadingDropDownNameValue[] QuerySimpleCascadingDropDownDocument(XmlDocument document, string[] documentHierarchy,
             StringDictionary knownCategoryValuesDictionary, string category, Regex inputValidationRegex) {
