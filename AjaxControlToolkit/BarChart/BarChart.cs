@@ -28,9 +28,9 @@ namespace AjaxControlToolkit {
         public string CategoriesAxis { get; set; }
 
         /// <summary>
-        /// Provides list of series to client side. Need help from Series property 
-        /// for designer experience support, cause Editor always blocks the property
-        /// ability to provide values to client side as ExtenderControlProperty on run time
+        /// Provides a list of series to the client side. 
+        /// The Values property is required for designer experience support, 
+        /// because the editor always prevents providing values to the client side as ExtenderControlProperty at runtime.
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -43,7 +43,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// List of series
+        /// A list of series.
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -55,7 +55,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Type of bar charts including Column, StackedColumn, Bar, and StackedBar
+        /// A type of bar charts including Column, StackedColumn, Bar, and StackedBar.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(BarChartType.Column)]
@@ -63,7 +63,7 @@ namespace AjaxControlToolkit {
         public BarChartType ChartType { get; set; }
 
         /// <summary>
-        /// The interval size for the value axis line.
+        /// Interval size for the value axis line.
         /// The default is 9
         /// </summary>
         [ExtenderControlProperty]
@@ -72,7 +72,7 @@ namespace AjaxControlToolkit {
         public int ValueAxisLines { get; set; }
 
         /// <summary>
-        /// The the color of the value axis lines
+        /// A color of the value axis lines.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -80,7 +80,7 @@ namespace AjaxControlToolkit {
         public string ValueAxisLineColor { get; set; }
 
         /// <summary>
-        /// The color of the category axis lines
+        /// A color of the category axis lines.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -88,7 +88,7 @@ namespace AjaxControlToolkit {
         public string CategoryAxisLineColor { get; set; }
 
         /// <summary>
-        /// The color of the base lines of the chart
+        /// A color of the base lines of the chart.
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]

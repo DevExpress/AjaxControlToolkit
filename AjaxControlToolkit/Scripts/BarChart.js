@@ -678,7 +678,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to customize the width of the chart
+    /// Enables you to customize chart width.
     /// </summary>
     /// <getter>get_chartWidth</getter>
     /// <setter>set_chartWidth</setter>
@@ -691,7 +691,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to customize the height of the chart
+    /// Enables you to customize chart height.
     /// </summary>
     /// <getter>get_chartHeight</getter>
     /// <setter>set_chartHeight</setter>
@@ -704,7 +704,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the title of the chart
+    /// Enables you to set the chart's title.
     /// </summary>
     /// <getter>get_chartTitle</getter>
     /// <setter>set_chartTitle</setter>
@@ -730,7 +730,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// List of series
+    /// A list of series.
     /// </summary>
     /// <getter>get_clientSeries</getter>
     /// <setter>set_clientSeries</setter>
@@ -778,7 +778,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the interval size for the value axis line
+    /// Enables you to set interval size for a value axis line.
     /// </summary>
     /// <getter>get_valueAxisLines</getter>
     /// <setter>set_valueAxisLines</setter>
@@ -791,7 +791,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the font color of the chart title
+    /// Enables you to set a font color of the chart title.
     /// </summary>
     /// <getter>get_chartTitleColor</getter>
     /// <setter>set_chartTitleColor</setter>
@@ -804,7 +804,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the the color of the value axis lines
+    /// Enables you to set a color of the value axis lines.
     /// </summary>
     /// <getter>get_valueAxisLineColor</getter>
     /// <setter>set_valueAxisLineColor</setter>
@@ -817,7 +817,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the color of the category axis lines
+    /// Enables you to set a color of the category axis lines.
     /// </summary>
     /// <getter>get_categoryAxisLineColor</getter>
     /// <setter>set_categoryAxisLineColor</setter>
@@ -830,7 +830,7 @@ Sys.Extended.UI.BarChart.prototype = {
     },
 
     /// <summary>
-    /// Enables you to set the color of the base lines of the chart
+    /// Enables you to set a color of the base lines of the chart.
     /// </summary>
     /// <getter>get_baseLineColor</getter>
     /// <setter>set_baseLineColor</setter>
