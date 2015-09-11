@@ -48,8 +48,8 @@ namespace AjaxControlToolkit {
 
 
         /// <summary>
-        /// Number of suggestions to be provided.
-        /// The dafault is 10
+        /// A number of suggestions to be provided.
+        /// The default is 10
         /// </summary>
         [DefaultValue(10)]
         [ExtenderControlProperty]
@@ -60,7 +60,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// ID of element that will serve as the completion list
+        /// ID of an element that will serve as the completion list.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -99,10 +99,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// User/page specific context provided to an optional overload of the
-        /// web method described by ServiceMethod/ServicePath.  If the context
-        /// key is used, it should have the same signature with an additional
-        /// parameter named contextKey of type string
+        /// User/page specific context provided to an optional overload of the web method described by ServiceMethod/ServicePath. 
+        /// If the context key is used, it should have the same signature with an additional parameter named contextKey of a string type.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("contextKey")]
@@ -116,11 +114,9 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not the ContextKey property should be used.  This will be
-        /// automatically enabled if the ContextKey property is ever set
-        /// (on either the client or the server).  If the context key is used,
-        /// it should have the same signature with an additional parameter
-        /// named contextKey of type string
+        /// Whether or not the ContextKey property should be used.
+        /// This will be automatically enabled if the ContextKey property is ever set (on either the client or the server). 
+        /// If the context key is used, it should have the same signature with an additional parameter named contextKey of a string type.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("useContextKey")]
@@ -131,7 +127,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Css Class that will be used to style the completion list flyout
+        /// A CSS class that will be used to style the completion list flyout.	
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -142,7 +138,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Css Class that will be used to style an item in the autocomplete list
+        /// A CSS class that will be used to style an item in the autocomplete list.	
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -153,7 +149,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Css Class that will be used to style a highlighted item in the autocomplete list
+        /// A CSS class that will be used to style a highlighted item in the autocomplete list.
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -164,8 +160,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Flag to denote whether client side caching is enabled.
-        /// The default is true
+        /// A flag to denote whether client-side caching is enabled.
+        /// The default is true.
         /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
@@ -186,8 +182,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the First Row of the Search Results be selected by default.
-        /// The default is false
+        /// Determines if the first row of the Search Results is selected by default.
+        /// The default is false.
         /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
@@ -198,11 +194,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// If Delimiter characters are specified and ShowOnlyCurrentWordInCompletionListItem is 
-        /// set to true, then the completion list displays suggestions just for the current word, 
-        /// otherwise, it displays the whole string that will show up in the TextBox if that
-        /// item is selected, which is the current default.
-        /// The default is false
+        /// If delimiter characters are specified and ShowOnlyCurrentWordInCompletionListItem is set to true,
+        /// then the completion list displays suggestions just for the current word, 
+        /// otherwise, it displays the whole string that will show up in the TextBox 
+        /// if that item is selected, which is the current default.
+        /// The default is false.
         /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("showOnlyCurrentWordInCompletionListItem")]
@@ -241,7 +237,7 @@ namespace AjaxControlToolkit {
         Animation _onHide;
 
         /// <summary>
-        /// Handler to attach to the client-side populating event
+        /// A handler attached to the client-side populating event
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -252,7 +248,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Handler to attach to the client-side populated event
+        /// A handler attached to the client-side populated event
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -263,7 +259,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Handler to attach to the client-side showing event
+        /// A handler attached to the client-side showing event
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -274,7 +270,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Handler to attach to the client-side shown event
+        /// A handler attached to the client-side shown event
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -285,7 +281,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Handler to attach to the client-side hiding event
+        /// A handler attached to the client-side hiding event
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -296,7 +292,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Handler to attach to the client-side hidden event
+        /// A handler attached to the client-side hidden event
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -307,7 +303,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Handler to attach to the client-side itemSelected event
+        /// A handler attached to the client-side itemSelected event
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -318,7 +314,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Handler to attach to the client-side itemOver event
+        /// A handler attached to the client-side itemOver event
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
@@ -329,7 +325,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Handler to attach to the client-side itemOut event
+        /// A handler attached to the client-side itemOut event
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]

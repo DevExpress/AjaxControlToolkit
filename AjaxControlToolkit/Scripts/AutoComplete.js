@@ -22,10 +22,10 @@ Sys.Extended.UI.AutoCompleteBehavior = function(element) {
     this._serviceMethod = null;
 
     /// <summary>
-    /// User/page specific context provided to an optional overload of the
-    /// web method described by ServiceMethod/ServicePath.  If the context
-    /// key is used, it should have the same signature with an additional
-    /// parameter named contextKey of type string
+    /// User/page specific context provided to an optional overload 
+    /// of the web method described by ServiceMethod/ServicePath. 
+    /// If the context key is used, it should have the same signature 
+    /// with an additional parameter named contextKey of a string type.
     /// </summary>
     /// <getter>get_contextKey</getter>
     /// <setter>set_contextKey</setter>
@@ -33,11 +33,10 @@ Sys.Extended.UI.AutoCompleteBehavior = function(element) {
     this._contextKey = null;
 
     /// <summary>
-    /// Whether or not the ContextKey property should be used.  This will be
-    /// automatically enabled if the ContextKey property is ever set
-    /// (on either the client or the server).  If the context key is used,
-    /// it should have the same signature with an additional parameter
-    /// named contextKey of type string.
+    /// Whether or not the ContextKey property should be used. 
+    /// This will be automatically enabled if the ContextKey property 
+    /// is ever set (on either the client or the server). If the context key is used,
+    /// it should have the same signature with an additional parameter named contextKey of a string type.
     /// The default is false
     /// </summary>
     /// <getter>get_useContextKey</getter>
@@ -118,7 +117,7 @@ Sys.Extended.UI.AutoCompleteBehavior = function(element) {
     this._textBoxHasFocus = false;
 
     /// <summary>
-    /// Css class name that will be used to style the completion list element
+    /// A CSS class name that will be used to style the completion list element.
     /// </summary>
     /// <getter>get_completionListCssClass</getter>
     /// <setter>set_completionListCssClass</setter>
@@ -126,7 +125,7 @@ Sys.Extended.UI.AutoCompleteBehavior = function(element) {
     this._completionListCssClass = null;
 
     /// <summary>
-    /// Css class name that will be used to style an item in the completion list
+    /// A CSS class name that will be used to style an item in the completion list.
     /// </summary>
     /// <getter>get_completionListItemCssClass</getter>
     /// <setter>set_completionListItemCssClass</setter>
@@ -134,7 +133,7 @@ Sys.Extended.UI.AutoCompleteBehavior = function(element) {
     this._completionListItemCssClass = null;
 
     /// <summary>
-    /// Css class name that will be used to style a highlighted item in the list
+    /// A CSS class name that will be used to style a highlighted item in the list.
     /// </summary>
     /// <getter>get_highlightedItemCssClass</getter>
     /// <setter>set_highlightedItemCssClass</setter>
@@ -150,7 +149,7 @@ Sys.Extended.UI.AutoCompleteBehavior = function(element) {
     this._delimiterCharacters = null;
 
     /// <summary>
-    /// Flag to determine if the first option in the flyout is selected or not.
+    /// A flag to determine if the first option in the flyout is selected or not.
     /// The default is false
     /// </summary>
     /// <getter>get_firstRowSelected</getter>
@@ -1058,7 +1057,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires control is populating.
+    /// Occurs when a control is populating.
     /// </summary>
     /// <event add="add_populating" remove="remove_populating" raise="raise_populating" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.populating" />
@@ -1082,7 +1081,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when control is populated
+    /// Occurs when a control is populated.
     /// </summary>
     /// <event add="add_populated" remove="remove_populated" raise="raise_populated" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.populated" />
@@ -1103,7 +1102,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when control is showing
+    /// Occurs when a control is showing.
     /// </summary>
     /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.showing" />
@@ -1124,7 +1123,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when control is shown
+    /// Occurs when a control is shown.
     /// </summary>
     /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.shown" />
@@ -1145,7 +1144,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when control is hiding
+    /// Occurs when a control is hiding.
     /// </summary>
     /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.hiding" />
@@ -1166,7 +1165,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when control is hidden
+    /// Occurs when a control is hidden.
     /// </summary>
     /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.hidden" />
@@ -1187,7 +1186,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when item is selected
+    /// Occurs when an item is selected.
     /// </summary>
     /// <event add="add_itemSelected" remove="remove_itemSelected" raise="raise_itemSelected" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.itemSelected" />
@@ -1208,7 +1207,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when mouse cursor is over item
+    /// Occurs when the mouse cursor is over item.
     /// </summary>
     /// <event add="add_itemOver" remove="remove_itemOver" raise="raise_itemOver" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.itemOver" />
@@ -1229,7 +1228,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when mouse cursor is out of the item
+    /// Occurs when the mouse cursor is out of the item.
     /// </summary>
     /// <event add="add_itemOut" remove="remove_itemOut" raise="raise_itemOut" />
     /// <member name="cE:AjaxControlToolkit.AutoCompleteExtender.itemOut" />
