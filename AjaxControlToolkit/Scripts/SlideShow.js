@@ -125,7 +125,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when slide changes
+    /// Fires when a slide changes
     /// </summary>
     /// <event add="add_slideChanged" remove="remove_slideChanged" raise="raise_slideChanged" />
     /// <member name="cE:AjaxControlToolkit.SlideShowExtender.slideChanged" />
@@ -149,7 +149,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when slide begins to change
+    /// Fires when a slide begins to change
     /// </summary>
     /// <event add="add_slideChanging" remove="remove_slideChanging" raise="raise_slideChanging" />
     /// <member name="cE:AjaxControlToolkit.SlideShowExtender.slideChanging" />
@@ -174,12 +174,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// User/page specific context provided to an optional overload of the
-    /// web method described by ServiceMethod/ServicePath
+    /// User/page specific context provided to an optional overload of the web
+    /// method described by ServiceMethod/ServicePath
     /// </summary>
     /// <remarks>
-    /// If the context key is used, it should have the same signature
-    /// with an additional parameter named contextKey of type stri
+    /// If the context key is used, it should have the same signature with an
+    /// additional parameter named contextKey of the string type
     /// </remarks>
     /// <getter>get_contextKey</getter>
     /// <setter>set_contextKey</setter>
@@ -204,9 +204,8 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     /// </summary>
     /// <remarks>
     /// This will be automatically enabled if the ContextKey property is ever set
-    /// (on either the client or the server). If the context key is used,
-    /// it should have the same signature with an additional parameter
-    /// named contextKey of type string.
+    /// (on either the client or the server). If the context key is used, it should have
+    /// the same signature with an additional parameter named contextKey of the string type
     /// </remarks>
     /// <getter>get_useContextKey</getter>
     /// <setter>set_useContextKey</setter>
@@ -222,8 +221,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Width of the image container to animate slides smoothly from left to
-    /// right or right to left
+    /// Width of the image container to animate slides smoothly from left to right or right to left
     /// </summary>
     /// <getter>get_imageWidth</getter>
     /// <setter>set_imageWidth</setter>
@@ -240,8 +238,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Height of the image container to animate slides smoothly from up to
-    /// down or down to up
+    /// Height of the image container to animate slides smoothly from up to down or down to up
     /// </summary>
     /// <getter>get_imageHeight</getter>
     /// <setter>set_imageHeight</setter>
@@ -258,7 +255,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Gets handles to various slideshow controls if specified.
+    /// Gets handles to various slideshow controls if specified
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.controlsSetup" />
     controlsSetup: function() {
@@ -281,7 +278,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maintains the various buttons states
+    /// Maintains various button states
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.resetButtons" />
     resetButtons: function() {
@@ -348,7 +345,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maintains slideshow current image
+    /// Maintains a slideshow current image
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.setCurrentImage" />
     setCurrentImage: function() {
@@ -420,7 +417,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Updates slideshow current image
+    /// Updates a slideshow current image
     /// </summary>
     /// <param name="value" type="Slide">Image to update</param>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.updateImage" />
@@ -483,7 +480,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Sets slideshow image
+    /// Sets a slideshow image
     /// </summary>
     /// <param name="value" type="Slide">Image to set</param>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.setImage" />
@@ -512,7 +509,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// ID of Label describing current picture
+    /// ID of Label describing the current picture
     /// </summary>
     /// <getter>get_imageDescriptionLabelID</getter>
     /// <setter>set_imageDescriptionLabelID</setter>
@@ -528,7 +525,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// ID of Label displaying current picture's title
+    /// ID of Label displaying the current picture's title
     /// </summary>
     /// <getter>get_imageTitleLabelID</getter>
     /// <setter>set_imageTitleLabelID</setter>
@@ -608,7 +605,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Interval in milliseconds between slide transitions in play mode
+    /// An interval in milliseconds between slide transitions in play mode
     /// </summary>
     /// <getter>get_playInterval</getter>
     /// <setter>set_playInterval</setter>
@@ -641,7 +638,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Path to the webservice that the extender will pull the images from
+    /// The path to the webservice that the extender will pull the images from
     /// </summary>
     /// <getter>get_slideShowServicePath</getter>
     /// <setter>set_slideShowServicePath</setter>
@@ -674,7 +671,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Setting this to true will allow you to view images in a round-robin fashion
+    /// Setting it to true will allow displaying pictures in cycle
     /// </summary>
     /// <getter>get_loop</getter>
     /// <setter>set_loop</setter>
@@ -690,7 +687,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Setting this to true will play the slideshow automatically on render
+    /// Setting it to true will play the slideshow automatically on render
     /// </summary>
     /// <getter>get_autoPlay</getter>
     /// <setter>set_autoPlay</setter>
@@ -706,12 +703,12 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Type of animation used during change from one slide to another
+    /// Type of animation used on changing one slide to another
     /// </summary>
     /// <remarks>
-    /// If you set SlideShowAnimationType to either SlideDown or SlideRight
-    /// then you must set both the Height and Width properties on the Image
-    /// control being extended by the SlideShow extender.
+    /// If you set SlideShowAnimationType to either SlideDown or SlideRight, then you must
+    /// set both the Height and Width properties on the Image control being extended by
+    /// the SlideShow extender
     /// </remarks>
     /// <getter>get_slideShowAnimationType</getter>
     /// <setter>set_slideShowAnimationType</setter>
@@ -1070,7 +1067,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maintains slideshow current slide
+    /// Maintains a slideshow current slide
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SlideShowExtender.setCurrentSlide" />
     setCurrentSlide: function() {
@@ -1199,7 +1196,7 @@ Sys.Extended.UI.SlideShowBehavior.prototype = {
     },
 
     /// <summary>
-    /// Whether slideshow supports given animation name
+    /// Whether a slideshow supports a given animation name
     /// </summary>
     /// <param name="animationName" type="String">Name of the animation</param>
     /// <returns type="Boolean">Boolean value indicates that given animation name is supported</returns>
