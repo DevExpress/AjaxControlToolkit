@@ -184,8 +184,8 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// Optional property which makes sure OnUpdated event will fire only
-    /// after completion of onUpdating event
+    /// An optional property that makes sure the OnUpdated event will fire
+    /// only after the onUpdating event is completed
     /// </summary>
     /// <getter>get_alwaysFinishOnUpdatingAnimation</getter>
     /// <setter>set_alwaysFinishOnUpdatingAnimation</setter>
@@ -212,7 +212,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     /// <summary>
-    /// ClientID's of the trigger controls
+    /// ClientIDs of the trigger controls
     /// </summary>
     /// <getter>get_triggerControlsClientID</getter>
     /// <setter>set_triggerControlsClientID</setter>
