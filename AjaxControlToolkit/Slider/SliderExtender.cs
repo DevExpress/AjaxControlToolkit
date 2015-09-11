@@ -10,30 +10,15 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// The Slider extender allows to upgrade an asp:TextBox to a graphical slider that allows
-    /// the user to choose a numeric value from a finite range. The Slider's orientation can be
-    /// horizontal or vertical and it can also act as a "discrete" slider, allowing only a
-    /// specified number of values within its range.
-    /// 
-    /// If the developer doesn't specify any parameters, the Slider is rendered with the default
-    /// and its range of values goes from 0 to 100. The Slider's layout can be customized by
-    /// providing CSS classes for the Slider's rail and handle. If handle animation is enabled,
-    /// the handle slides to the specified point on the rail with a nice animation effect.
-    /// 
-    /// When a value is chosen using the Slider, it is automatically persisted during full or
-    /// partial postbacks. The developer can continue to reference the asp:TextBox to get and
-    /// set the Slider's value.
-    /// 
-    /// The Slider's value can be dynamically displayed in another asp:TextBox or an asp:Label.
-    /// If a TextBox is used, the Slider's value can be updated through the bound TextBox.
+    /// The Slider extender allows upgrading an asp:TextBox to a graphical slider that allows
+    /// a user to choose a numeric value from a finite range.
     /// </summary>
     /// <remarks>
-    /// By declaring the extended TextBox as a trigger for an UpdatePanel, the Slider can fire
-    /// the update whenever the handle is released. By setting the RaiseChangeOnlyOnMouseUp to
-    /// false, the update will be fired as soon as the Slider's value changes.
-    /// 
-    /// The TooltipText property allows to display some text when the mouse pointer hovers the
-    /// slider's handle. A {0} placeholder in the text is replaced by the current value of the slider.
+    /// By declaring the extended TextBox as a trigger for an UpdatePanel, the Slider can fire the
+    /// update whenever the handle is released. By setting RaiseChangeOnlyOnMouseUp to false, the
+    /// update will be fired as soon as the Slider's value changes. The TooltipText property allows
+    /// displaying some text when the mouse pointer hovers the slider's handle. A {0} placeholder
+    /// in the text is replaced by the current value of the slider.
     /// </remarks>
     [Designer(typeof(SliderDesigner))]
     [ClientCssResource(Constants.SliderName)]
@@ -75,7 +60,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for the slider's rail
+        /// A CSS class for the slider's rail
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -86,7 +71,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// URL of the image to display as the slider's handle
+        /// The URL of an image to display as the slider's handle
         /// </summary>
         [ExtenderControlProperty, UrlProperty]
         [DefaultValue("")]
@@ -98,7 +83,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for the slider's handle
+        /// A CSS class for the slider's handle
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
@@ -120,7 +105,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Number of discrete values inside the slider's range
+        /// A number of discrete values inside the slider's range
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -142,7 +127,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Number of decimal digits for the value
+        /// A number of decimal digits for the value
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
@@ -176,8 +161,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// If true, fires the change event on the extended TextBox only when the left
-        /// mouse button is released
+        /// If true, fires the change event on the extended TextBox only when the
+        /// left mouse button is released
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(true)]
@@ -202,7 +187,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Determines if the slider will respond to arrow keys when it has focus
+        /// Determines if the slider responds to arrow keys when it has focus
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(true)]

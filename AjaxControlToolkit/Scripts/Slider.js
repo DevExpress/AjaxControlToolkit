@@ -607,7 +607,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Slider drag data type
+    /// A slider drag data type
     /// </summary>
     /// <getter>get_dragDataType</getter>
     /// <member name="cP:AjaxControlToolkit.SliderExtender.dragDataType" />
@@ -624,7 +624,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Slider drag mode
+    /// Slider dra mode 
     /// </summary>
     /// <getter>dragMode</getter>
     /// <member name="cP:AjaxControlToolkit.SliderExtender.dragMode" />
@@ -661,7 +661,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Slider drop target element
+    /// A slider drop target element
     /// </summary>
     /// <getter>get_dropTargetElement</getter>
     /// <member name="cP:AjaxControlToolkit.SliderExtender.dropTargetElement" />
@@ -682,7 +682,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     onDragInTarget: Function.emptyMethod,
 
     /// <summary>
-    /// Fires when slider is initialized
+    /// Fires when the slider is initialized
     /// </summary>
     /// <event add="add_sliderInitialized" remove="remove_sliderInitialized" raise="" />
     /// <member name="cE:AjaxControlToolkit.SliderExtender.sliderInitialized" />
@@ -694,7 +694,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when slider value changes
+    /// Fires when the slider value changes
     /// </summary>
     /// <event add="add_valueChanged" remove="remove_valueChanged" raise="" />
     /// <member name="cE:AjaxControlToolkit.SliderExtender.valueChanged" />
@@ -706,7 +706,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when slide starts
+    /// Fires when sliding starts
     /// </summary>
     /// <event add="add_slideStart" remove="remove_slideStart" raise="" />
     /// <member name="cE:AjaxControlToolkit.SliderExtender.slideStart" />
@@ -718,7 +718,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when slide ends
+    /// Fires when sliding ends
     /// </summary>
     /// <event add="add_slideEnd" remove="remove_slideEnd" raise="" />
     /// <member name="cE:AjaxControlToolkit.SliderExtender.slideEnd" />
@@ -739,7 +739,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Slider current value
+    /// A slider current value
     /// </summary>
     /// <getter>get_value</getter>
     /// <setter>set_value</setter>
@@ -791,7 +791,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for the slider's rail
+    /// A CSS class for the slider's rail
     /// </summary>
     /// <getter>get_railCssClass</getter>
     /// <setter>set_railCssClass</setter>
@@ -813,7 +813,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// URL of the image to display as the slider's handle
+    /// The URL of an image to display as the slider's handle
     /// </summary>
     /// <getter>get_handleImageUrl</getter>
     /// <setter>set_handleImageUrl</setter>
@@ -835,7 +835,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for the slider's handle
+    /// A CSS class for the slider's handle
     /// </summary>
     /// <getter>get_handleCssClass</getter>
     /// <setter>set_handleCssClass</setter>
@@ -923,7 +923,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Number of discrete values inside the slider's range
+    /// A number of discrete values inside the slider's range
     /// </summary>
     /// <getter>get_steps</getter>
     /// <setter>set_steps</setter>
@@ -946,7 +946,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Number of decimal digits for the value
+    /// A number of decimal digits for the value
     /// </summary>
     /// <getter>get_decimals</getter>
     /// <setter>set_decimals</setter>
@@ -1060,7 +1060,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines whether slider is initialized
+    /// Determines whether the slider is initialized
     /// </summary>
     /// <returns type="Boolean">Boolean value indicates whether slider is initialized</returns>
     /// <member name="cM:AjaxControlToolkit.SliderExtender.isSliderInitialized" />
@@ -1074,7 +1074,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// If true, fires the change event on the extended TextBox only when the left
+    /// If true, fires the change event on the extended TextBox only when the left mouse button is released
     /// mouse button is released
     /// </summary>
     /// <getter>get_raiseChangeOnlyOnMouseUp</getter>
@@ -1097,7 +1097,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Text to display in a tooltip when the handle is hovered.
+    /// Text to display in a tooltip when the handle is hovered
     /// </summary>
     /// <remarks>
     /// The {0} placeholder in the text is replaced with the current value of the slider
@@ -1138,7 +1138,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Client state
+    /// A client state
     /// </summary>
     /// <getter>get_clientState</getter>
     /// <setter>set_clientState</setter>
