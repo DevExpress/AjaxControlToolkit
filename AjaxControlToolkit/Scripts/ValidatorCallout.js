@@ -297,7 +297,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Hides the ValidatoCallout popup
+    /// Hides the ValidatorCallout popup
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ValidatorCalloutExtender.hide" />
     hide: function() {
@@ -349,11 +349,11 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     /// Generic OnShow animation for the ValidatorCallout extender
     /// </summary>
     /// <remarks>
-    /// The OnShow animation will be played each time the validation popup
-    /// is displayed. The popup will be positioned correctly but hidden.
-    /// The animation can use to display the popup along with any other visual effects.
+    /// The OnShow animation will be played each time the validation popup is displayed.
+    /// The popup will be positioned correctly, but hidden. The animation can be used to
+    /// display the popup along with any other visual effects. 
     ///
-    /// See Animation Reference for more details.
+    /// See Animation Reference for more details
     /// </remarks>
     /// <getter>get_onShow</getter>
     /// <setter>set_onShow</setter>
@@ -474,8 +474,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Indicates where the ValidatorCallout popup should
-    /// appear relatively to the control to validate
+    /// Indicates where the ValidatorCallout popup should appear relatively to the control to validate
     /// </summary>
     /// <remarks>
     /// Possible values:
@@ -519,7 +518,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// A CSS class to apply to the invalid field
+    /// A CSS class to apply to an invalid field
     /// </summary>
     /// <getter>get_highlightCssClass</getter>
     /// <setter>set_highlightCssClass</setter>
@@ -535,7 +534,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     /// <summary>
-    /// Determines whether ValidatorCallout popup is opened
+    /// Determines whether the ValidatorCallout popup is opened
     /// </summary>
     /// <returns>
     /// Boolean value, which is true when ValidatorCallout popup is open

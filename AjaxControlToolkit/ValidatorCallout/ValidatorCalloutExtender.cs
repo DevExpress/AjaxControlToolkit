@@ -9,10 +9,8 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// ValidatorCallout is an ASP.NET AJAX extender that enhances the functionality of 
-    /// existing ASP.NET validators. To use this control, add an input field and a 
-    /// validator control as you normally would. Then add the ValidatorCallout and 
-    /// set its TargetControlID property to reference the validator control. 
+    /// ValidatorCallout is an ASP.NET AJAX extender that enhances the functionality
+    /// of existing ASP.NET validators.
     /// </summary>
     [Designer(typeof(ValidatorCalloutExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -52,7 +50,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Name of the CSS class used to style the ValidatorCallout
+        /// Name of the CSS class used to style ValidatorCallout
         /// </summary>
         /// <remarks>
         /// See the ValidatorCallout Theming section for more information
@@ -66,7 +64,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A CSS class to apply to the invalid field
+        /// A CSS class to apply to an invalid field
         /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
@@ -77,8 +75,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Indicates where the ValidatorCallout popup should
-        /// appear relatively to the control to validate
+        /// Indicates where the ValidatorCallout popup should appear relatively to the control to validate
         /// </summary>
         /// <remarks>
         /// Possible values:
@@ -113,11 +110,11 @@ namespace AjaxControlToolkit {
         /// Generic OnShow animation for the ValidatorCallout extender
         /// </summary>
         /// <remarks>
-        /// The OnShow animation will be played each time the validation popup
-        /// is displayed. The popup will be positioned correctly but hidden.
-        /// The animation can use to display the popup along with any other visual effects.
+        ///  The OnShow animation will be played each time the validation popup is displayed.
+        /// The popup will be positioned correctly, but hidden. The animation can be used to
+        /// display the popup along with any other visual effects.
         /// 
-        /// See Animation Reference for more details.
+        /// See Animation Reference for more details
         /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
