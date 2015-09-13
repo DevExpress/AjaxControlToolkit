@@ -101,7 +101,7 @@
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_inner {
-    background-image: url('<%=WebResource("AjaxControlToolkit.Images.Tabs.ActiveLeft-VerticalLeft")%>');
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.Tabs.ActiveLeft-VerticalLeft.gif")%>');
 }
 
 .ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab_active .ajax__tab_tab {
@@ -181,11 +181,11 @@
 }
 
 .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_inner {
-    background-image: url('<%=WebResource(""AjaxControlToolkit.Images.Tabs.Bottom-ActiveLeft.gif"")%>');
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.Tabs.Bottom-ActiveLeft.gif")%>');
 }
 
 .ajax__tab_xp .ajax__tab_header_bottom .ajax__tab_active .ajax__tab_tab {
-    background-image: url('<%=WebResource(""AjaxControlToolkit.Images.Tabs.Bottom-Active.gif"")%>');
+    background-image: url('<%=WebResource("AjaxControlToolkit.Images.Tabs.Bottom-Active.gif")%>');
 }
 
 .ajax__multi_slider_default .outer_rail_vertical {
