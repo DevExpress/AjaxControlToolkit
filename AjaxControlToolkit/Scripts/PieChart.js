@@ -182,7 +182,7 @@ Sys.Extended.UI.PieChart.prototype = {
     },
 
     /// <summary>
-    /// Title of the chart
+    /// A title of the chart
     /// </summary>
     /// <getter>get_chartTitle</getter>
     /// <setter>set_chartTitle</setter>
@@ -195,7 +195,7 @@ Sys.Extended.UI.PieChart.prototype = {
     },
 
     /// <summary>
-    /// Provides list of PieChartValue
+    /// Provides the list of PieChartValues
     /// </summary>
     /// <getter>get_pieChartClientValues</getter>
     /// <setter>set_pieChartClientValues</setter>
@@ -217,7 +217,7 @@ Sys.Extended.UI.PieChart.prototype = {
     },
 
     /// <summary>
-    /// Theme of the chart
+    /// A theme of the chart
     /// </summary>
     /// <getter>get_theme</getter>
     /// <setter>set_theme</setter>

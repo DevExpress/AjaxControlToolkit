@@ -20,12 +20,12 @@ namespace AjaxControlToolkit {
         List<PieChartValue> _values = new List<PieChartValue>();
 
         /// <summary>
-        /// Provides list of PieChartValue to client side
+        /// Provides the list of PieChartValues to the client side
         /// </summary>
         /// <remarks>
-        /// Need help from PieChartValues property for designer experience support,
-        /// cause Editor always blocks the property ability to provide values to
-        /// client side as ExtenderControlProperty on run time
+        /// Needs help from the PieChartValues property for designer experience support,
+        /// because Editor always blocks the property's ability to provide values to
+        /// the client side as ExtenderControlProperty does at runtime
         /// </remarks>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -38,7 +38,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// List of PieChartValue
+        /// A list of PieChartValues
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
