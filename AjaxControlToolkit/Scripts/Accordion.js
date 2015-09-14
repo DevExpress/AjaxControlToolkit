@@ -268,7 +268,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     this._duration = 0.25;
 
     ///<summary>
-    /// Number of steps per second in the transition animations.
+    /// A number of steps per second in transition animations.
     /// The default value is 30 frames per second.
     ///</summary>
     ///<getter>get_framesPerSecond</getter>
@@ -277,11 +277,10 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     this._framesPerSecond = 30;
 
     ///<summary>
-    /// Determine how growth of the Accordion will be controlled.  If it is set to
-    /// None, then the Accordion can grow as large or as small as necessary.  If it is
-    /// set to Limit, then the Accordion will always be less than or equal to its
-    /// available space.  If it is set to Fill, then it will always be equal to its
-    /// available space.
+    /// Determines how to control resizing of the Accordion. 
+    /// If it is set to None, then the Accordion can grow as large or as small as necessary. 
+    /// If it is set to Limit, then the Accordion will always be less than or equal to its available space. 
+    /// If it is set to Fill, then it will always be equal to its available space.
     ///</summary>
     ///<getter>get_autoSize</getter>
     ///<member name="cP:AjaxControlToolkit.Accordion.autoSize" />
@@ -1098,7 +1097,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     ///<summary>
-    /// Fires when accordion pane is clicked, but before accordion changes the pane.
+    /// Fires when an Accordion pane is clicked, but before Accordion changes the pane.
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.Accordion.selectedIndexChanging" />
     ///<event add="add_selectedIndexChanging" remove="remove_selectedIndexChanging" raise="raise_selectedIndexChanging" />
@@ -1120,7 +1119,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     ///<summary>
-    /// Fires when accordion pane is clicked, but after accordion changes the pane.
+    /// Fires when an Accordion pane is clicked, but after Accordion changes the pane.	
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.Accordion.selectedIndexChanged" />
     ///<event add="add_selectedIndexChanged" remove="remove_selectedIndexChanged" raise="raise_selectedIndexChanged" />

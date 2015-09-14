@@ -29,19 +29,17 @@ namespace AjaxControlToolkit {
         internal const string ItemCountViewStateKey = "_!ItemCount";
 
         /// <summary>
-        /// Fires when an item (i.e. Pane's Header or Content) is
-        /// created during data binding
+        /// An event to raise when an item (i.e. Pane's Header or Content) is created during data binding
         /// </summary>
         public event EventHandler<AccordionItemEventArgs> ItemCreated;
 
         /// <summary>
-        /// Fires when an item (i.e. Pane's Header or Content) is
-        /// data bound
+        /// An event to raise when an item (i.e. Pane's Header or Content) is data bound
         /// </summary>
         public event EventHandler<AccordionItemEventArgs> ItemDataBound;
 
         /// <summary>
-        /// Fires when a command is fired
+        /// An event to raise when a command is fired
         /// </summary>
         public event CommandEventHandler ItemCommand;
 
@@ -130,9 +128,10 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The number of frames per second used in the transition animation effects.
-        /// This is used to tune performance when using FadeTransition, a large number
-        /// of Accordion Panes, etc. The default is 30
+        /// The number of frames per second used in animation effects' transition. 
+        /// This is used to tune performance when using FadeTransition, 
+        /// a large number of Accordion Panes, etc. 
+        /// The default is 30.
         /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
@@ -157,7 +156,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Default Header CSS Class
+        /// The default Header CSS class
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
@@ -168,7 +167,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Default selected Header CSS Class
+        /// The default selected Header CSS Class
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
@@ -179,7 +178,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Default Content CSS Class
+        /// The default Content CSS class
         /// </summary>
         [Browsable(true)]
         [Category("Appearance")]
@@ -190,11 +189,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary> 
-        /// Determine how growth of the Accordion will be controlled.  If it is set to
-        /// None, then the Accordion can grow as large or as small as necessary.  If it is
-        /// set to Limit, then the Accordion will always be less than or equal to its
-        /// Height. If it is set to Fill then it will always be equal to its height.
-        /// The default is None
+        /// Determines how to controll resizing of the Accordion.
+        /// If it is set to None, then the Accordion can grow as large or as small as necessary. 
+        /// If it is set to Limit, then the Accordion will always be less than or equal to its Height. 
+        /// If it is set to Fill then it will always be equal to its height. 
+        /// The default is None.
         /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
@@ -246,7 +245,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary> 
-        /// Collection of child panes in the Accordion
+        /// A collection of child panes in the Accordion
         /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
@@ -271,7 +270,7 @@ namespace AjaxControlToolkit {
         #region DataBinding Properties
 
         /// <summary>
-        /// Template for the Header of databound panes
+        /// A template for the Header of databound panes
         /// </summary>
         [Browsable(false)]
         [DefaultValue(null)]
@@ -283,7 +282,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Template for the Content of databound panes 
+        /// A template for the content of databound panes
         /// </summary>
         [Browsable(false)]
         [DefaultValue(null)]
@@ -316,10 +315,9 @@ namespace AjaxControlToolkit {
 
         
         /// <summary>
-        /// The ID of the DataControl that this control should use to retrieve
-        /// its data source. When the control is bound to a DataControl, it
-        /// can retrieve a data source instance on-demand, and thereby attempt
-        /// to work in auto-DataBind mode
+        /// The ID of the DataControl that this control should use to retrieve its data source. 
+        /// When the control is bound to a DataControl, it can retrieve a data source instance on demand,
+        /// and thereby attempt to work in auto-DataBind mode.
         /// </summary>
         [DefaultValue("")]
         [IDReferenceProperty(typeof(DataSourceControl))]
@@ -333,7 +331,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Member in the DataSource to bind to 
+        /// A member in the DataSource to bind to
         /// </summary>
         [DefaultValue("")]
         [Category("Data")]
