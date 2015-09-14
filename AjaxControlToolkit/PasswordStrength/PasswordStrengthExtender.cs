@@ -9,18 +9,8 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// PasswordStrength is an ASP.NET AJAX extender that can be attached to an ASP.NET TextBox control used
-    /// for the entry of passwords. The PasswordStrength extender shows the strength of the password in the
-    /// TextBox and updates itself as the user types the password. The indicator can display the strength of
-    /// the password as a text message or with a progress bar indicator. The styling and position of both types
-    /// of indicators is configurable. The required strength of the password is also configurable, allowing
-    /// the page author to tailor the password strength requirements to their needs. The text messages that
-    /// describe the current strength of the password can also be configured and their default values have
-    /// localization support built-in. The second and third extenders' strings are being pulled from Toolkit
-    /// resources files. We do not have strings for all languages currently so they may show non-localized
-    /// values for some languages. A help indicator can be used to provide explicit instructions about what
-    /// changes are required to achieve a strong password. The indicator is displayed when the user begins typing
-    /// into the TextBox and is hidden from view once the TextBox loses focus.
+    /// PasswordStrength is an ASP.NET AJAX extender that can be attached to an ASP.NET TextBox control used for the entry of passwords. 
+    /// The PasswordStrength extender shows the strength of the password in the TextBox and updates itself as a user types the password.
     /// </summary>
     [TargetControlType(typeof(TextBox))]
     [Designer(typeof(PasswordStrengthExtenderDesigner))]
@@ -90,8 +80,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class applied to the help element used to display a dialog box
-        /// describing the password requirements
+        /// A CSS class applied to the help element used to display a dialog box describing password requirements
         /// </summary>
         /// <remarks>
         /// This is used so that the user can click on this image and get a display
@@ -173,7 +162,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class applied to the bar indicator's border when StrengthIndicatorType=BarIndicator
+        /// A CSS class applied to the bar indicator's border when StrengthIndicatorType=BarIndicator
         /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty()]
@@ -184,7 +173,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class applied to the bar indicator's inner bar when StrengthIndicatorType=BarIndicator
+        /// A CSS class applied to the bar indicator's inner bar when StrengthIndicatorType=BarIndicator
         /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty()]
@@ -232,14 +221,15 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// List of semi-colon separated numeric values used to determine the weighting of a strength characteristic.
+        /// A list of semi-colon separated numeric values used to determine the weight of password strength's characteristic.
         /// </summary>
         /// <remarks>
-        /// There must be 4 values specified which must total 100.
-        /// The default weighting values are defined as 50;15;15;20.
-        /// This corresponds to password length is 50% of the strength calculation, Numeric criteria is 15% of
-        /// strength calculation, casing criteria is 15% of calculation, and symbol criteria is 20% of calculation.
-        /// So the format is 'A;B;C;D' where A = length weighting, B = numeric weighting, C = casing weighting, D = symbol weighting.
+        /// There must be 4 values specified which must total 100. 
+        /// The default weighting values are defined as 50;15;15;20. 
+        /// This corresponds to password length is 50% of the strength calculation, 
+        /// Numeric criteria is 15% of strength calculation, casing criteria is 15% of calculation, 
+        /// and symbol criteria is 20% of calculation. So the format is 'A;B;C;D' 
+        /// where A = length weighting, B = numeric weighting, C = casing weighting, D = symbol weighting.
         /// </remarks>
         [DefaultValue("")]
         [ExtenderControlProperty()]
@@ -335,8 +325,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Minimum number of lowercase characters required when requiring mixed case
-        /// characters as part of your password strength considerations
+        /// A minimum number of lowercase characters required when requiring 
+        /// mixed case characters as part of your password strength considerations
         /// </summary>
         /// <remarks>
         /// Only in effect if RequiresUpperAndLowerCaseCharacters property is true.
