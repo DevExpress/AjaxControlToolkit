@@ -9,11 +9,7 @@ using AjaxControlToolkit.Design;
 namespace AjaxControlToolkit {
 
     /// <summary>
-    /// The Rating control provides an intuitive rating experience that allows users to select the
-    /// number of stars that represents their rating. The page designer can specify the initial rating,
-    /// the maximum rating to allow, the alignment and direction of the stars, and custom styles for
-    /// the different states a star can have. Rating also supports a ClientCallBack event that allows
-    /// custom code to run after the user has rated something.
+    /// The Rating control provides intuitive rating experience that allows users to select the number of stars that represents their rating
     /// </summary>
     [NonVisualControl, ToolboxData("<{0}:Rating runat=\"server\"></{0}:Rating>")]
     [DesignerAttribute(typeof(RatingExtenderDesigner))]
@@ -29,7 +25,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// True to cause a postback on rating item click
+        /// Set to True to cause a postback on a rating item click
         /// </summary>
         [Category("Behavior")]
         [Description("True to cause a postback on rating change")]
@@ -48,7 +44,7 @@ namespace AjaxControlToolkit {
 
         // Length of the transition animation in milliseconds
         /// <summary>
-        /// Initial rating value
+        /// An Initial rating value
         /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
@@ -133,7 +129,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A custom parameter to pass to the ClientCallBack
+        /// A custom parameter to pass to ClientCallBack
         /// </summary>
         [Browsable(true)]
         [Category("Behavior")]
@@ -153,7 +149,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for a visible star
+        /// A CSS class for a visible star
         /// </summary>
         [Browsable(true)]
         [Themeable(true)]
@@ -173,7 +169,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for star in filled mode
+        /// A CSS class for a star in filled mode
         /// </summary>
         [Browsable(true)]
         [Themeable(true)]
@@ -193,7 +189,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for a star in empty mode
+        /// A CSS class for a star in empty mode
         /// </summary>
         [Browsable(true)]
         [Themeable(true)]
@@ -213,7 +209,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// CSS class for a star in waiting mode
+        /// A CSS class for a star in waiting mode
         /// </summary>
         [Browsable(true)]
         [Themeable(true)]
@@ -247,7 +243,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Orientation of the stars (LeftToRightTopToBottom or RightToLeftBottomToTop)
+        /// Orientation of stars (LeftToRightTopToBottom or RightToLeftBottomToTop)
         /// </summary>
         [Browsable(true)]
         [Themeable(true)]
@@ -359,7 +355,7 @@ namespace AjaxControlToolkit {
         #region ICallbackEventHandler Members
 
         /// <summary>
-        /// Returns callback result
+        /// Returns a callback result
         /// </summary>
         /// <returns>Callback result</returns>
         public string GetCallbackResult() {
@@ -367,7 +363,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Raises callback event
+        /// Raises the callback event
         /// </summary>
         /// <param name="eventArgument" type="String">Event argument</param>
         public void RaiseCallbackEvent(string eventArgument) {
@@ -381,7 +377,7 @@ namespace AjaxControlToolkit {
         #region IPostBackEventHandler Members
 
         /// <summary>
-        /// Raises postback event
+        /// Raises the postback event
         /// </summary>
         /// <param name="eventArgument" type="String">Event argument</param>
         public void RaisePostBackEvent(string eventArgument) {

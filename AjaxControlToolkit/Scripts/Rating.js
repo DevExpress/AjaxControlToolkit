@@ -180,7 +180,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when the rating has been marked
+    /// Fires when rating has been marked
     /// </summary>
     /// <event add="add_rated" remove="remove_rated" raise="raise_rated" />
     /// <member name="cE:AjaxControlToolkit.Rating.rated" />
@@ -273,7 +273,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Fires when the rating is changed
+    /// Fires when rating is changed
     /// </summary>
     /// <event add="add_endClientCallback" remove="remove_endClientCallback" raise="raise_endClientCallback" />
     /// <member name="cE:AjaxControlToolkit.Rating.endClientCallback" />
@@ -304,7 +304,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// True to cause a postback on rating item click
+    /// Set to True to cause a postback on rating item click
     /// </summary>
     /// <getter>get_autoPostBack</getter>
     /// <setter>set_autoPostBack</setter>
@@ -326,7 +326,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Array of stars
+    /// An array of stars
     /// </summary>
     /// <getter>get_stars</getter>
     /// <member name="cP:AjaxControlToolkit.Rating.stars" />
@@ -386,7 +386,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Orientation of the stars (LeftToRightTopToBottom or RightToLeftBottomToTop)
+    /// Orientation of stars (LeftToRightTopToBottom or RightToLeftBottomToTop)
     /// </summary>
     /// <getter>get_ratingDirection</getter>
     /// <setter>set_ratingDirection</setter>
@@ -416,7 +416,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for a star in empty mode
+    /// A CSS class for a star in empty mode
     /// </summary>
     /// <getter>get_emptyStarCssClass</getter>
     /// <setter>set_emptyStarCssClass</setter>
@@ -441,7 +441,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for star in filled mode
+    /// A CSS class for star in filled mode
     /// </summary>
     /// <getter>get_filledStarCssClass</getter>
     /// <setter>set_filledStarCssClass</setter>
@@ -466,7 +466,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for a star in waiting mode
+    /// A CSS class for a star in waiting mode
     /// </summary>
     /// <getter>get_waitingStarCssClass</getter>
     /// <setter>set_waitingStarCssClass</setter>
@@ -491,7 +491,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Current rating value
+    /// A current rating value
     /// </summary>
     /// <getter>get_rating</getter>
     /// <setter>set_rating</setter>
@@ -547,7 +547,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// Maximum rating value
+    /// A maximum rating value
     /// </summary>
     /// <getter>get_maxRating</getter>
     /// <setter>set_maxRating</setter>
@@ -597,7 +597,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     },
 
     /// <summary>
-    /// CSS class for a visible star
+    /// A CSS class for a visible star
     /// </summary>
     /// <getter>get_starCssClass</getter>
     /// <setter>set_starCssClass</setter>
