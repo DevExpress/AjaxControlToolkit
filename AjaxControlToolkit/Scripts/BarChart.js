@@ -677,6 +677,12 @@ Sys.Extended.UI.BarChart.prototype = {
         return barContents;
     },
 
+    /// <summary>
+    /// Enables you to customize chart width.
+    /// </summary>
+    /// <getter>get_chartWidth</getter>
+    /// <setter>set_chartWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.chartWidth" />
     get_chartWidth: function() {
         return this._chartWidth;
     },
@@ -684,6 +690,12 @@ Sys.Extended.UI.BarChart.prototype = {
         this._chartWidth = value;
     },
 
+    /// <summary>
+    /// Enables you to customize chart height.
+    /// </summary>
+    /// <getter>get_chartHeight</getter>
+    /// <setter>set_chartHeight</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.chartHeight" />
     get_chartHeight: function() {
         return this._chartHeight;
     },
@@ -691,6 +703,12 @@ Sys.Extended.UI.BarChart.prototype = {
         this._chartHeight = value;
     },
 
+    /// <summary>
+    /// Enables you to set the chart's title.
+    /// </summary>
+    /// <getter>get_chartTitle</getter>
+    /// <setter>set_chartTitle</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.chartTitle" />
     get_chartTitle: function() {
         return this._chartTitle;
     },
@@ -698,6 +716,12 @@ Sys.Extended.UI.BarChart.prototype = {
         this._chartTitle = value;
     },
 
+    /// <summary>
+    /// This is a required property. You need to provide a set of values for the category axis to create a bar chart
+    /// </summary>
+    /// <getter>get_categoriesAxis</getter>
+    /// <setter>set_categoriesAxis</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.categoriesAxis" />
     get_categoriesAxis: function() {
         return this._categoriesAxis;
     },
@@ -705,13 +729,34 @@ Sys.Extended.UI.BarChart.prototype = {
         this._categoriesAxis = value;
     },
 
-    get_ClientSeries: function() {
+    /// <summary>
+    /// A list of series.
+    /// </summary>
+    /// <getter>get_clientSeries</getter>
+    /// <setter>set_clientSeries</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.clientSeries" />
+    get_clientSeries: function() {
         return this._series;
     },
-    set_ClientSeries: function(value) {
+    set_clientSeries: function(value) {
         this._series = value;
     },
 
+    get_ClientSeries: function() {
+        Sys.Extended.Deprecated("get_ClientSeries", "get_clientSeries");
+        return this.get_clientSeries();
+    },
+    set_ClientSeries: function(value) {
+        Sys.Extended.Deprecated("set_ClientSeries", "set_clientSeries");
+        this.set_clientSeries(value);
+    },
+
+    /// <summary>
+    /// Enables you to render different types of bar charts including Column, StackedColumn, Bar, and StackedBar
+    /// </summary>
+    /// <getter>get_chartType</getter>
+    /// <setter>set_chartType</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.chartType" />
     get_chartType: function() {
         return this._chartType;
     },
@@ -719,6 +764,12 @@ Sys.Extended.UI.BarChart.prototype = {
         this._chartType = value;
     },
 
+    /// <summary>
+    /// Enables you to control the appearance of the bar chart with a Cascading Style Sheet file
+    /// </summary>
+    /// <getter>get_theme</getter>
+    /// <setter>set_theme</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.theme" />
     get_theme: function() {
         return this._theme;
     },
@@ -726,6 +777,12 @@ Sys.Extended.UI.BarChart.prototype = {
         this._theme = value;
     },
 
+    /// <summary>
+    /// Enables you to set interval size for a value axis line.
+    /// </summary>
+    /// <getter>get_valueAxisLines</getter>
+    /// <setter>set_valueAxisLines</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.valueAxisLines" />
     get_valueAxisLines: function() {
         return this._valueAxisLines;
     },
@@ -733,6 +790,12 @@ Sys.Extended.UI.BarChart.prototype = {
         this._valueAxisLines = value;
     },
 
+    /// <summary>
+    /// Enables you to set a font color of the chart title.
+    /// </summary>
+    /// <getter>get_chartTitleColor</getter>
+    /// <setter>set_chartTitleColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.chartTitleColor" />
     get_chartTitleColor: function() {
         return this._chartTitleColor;
     },
@@ -740,6 +803,12 @@ Sys.Extended.UI.BarChart.prototype = {
         this._chartTitleColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set a color of the value axis lines.
+    /// </summary>
+    /// <getter>get_valueAxisLineColor</getter>
+    /// <setter>set_valueAxisLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.valueAxisLineColor" />
     get_valueAxisLineColor: function() {
         return this._valueAxisLineColor;
     },
@@ -747,6 +816,12 @@ Sys.Extended.UI.BarChart.prototype = {
         this._valueAxisLineColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set a color of the category axis lines.
+    /// </summary>
+    /// <getter>get_categoryAxisLineColor</getter>
+    /// <setter>set_categoryAxisLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.categoryAxisLineColor" />
     get_categoryAxisLineColor: function() {
         return this._categoryAxisLineColor;
     },
@@ -754,6 +829,12 @@ Sys.Extended.UI.BarChart.prototype = {
         this._categoryAxisLineColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set a color of the base lines of the chart.
+    /// </summary>
+    /// <getter>get_baseLineColor</getter>
+    /// <setter>set_baseLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.BarChart.baseLineColor" />
     get_baseLineColor: function() {
         return this._baseLineColor;
     },

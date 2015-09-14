@@ -9,24 +9,37 @@ using System.Drawing;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The PieChart control enables you to render a pie chart from one or more PieChartValues.
+    /// This control is compatible with any browser which supports SVG including Internet Explorer 9 and above.
+    /// </summary>
     [ClientCssResource(Constants.PieChartName)]
     [ClientScriptResource("Sys.Extended.UI.PieChart", Constants.PieChartName)]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.PieChartName + Constants.IconPostfix)]
     public class PieChart : ChartBase {
         List<PieChartValue> _values = new List<PieChartValue>();
 
-        // Provide list of PieChartValue to client side. Need help from PieChartValues property 
-        // for designer experience support, cause Editor always blocks the property
-        // ability to provide values to client side as ExtenderControlProperty on run time.
+        /// <summary>
+        /// Provides the list of PieChartValues to the client side
+        /// </summary>
+        /// <remarks>
+        /// Needs help from the PieChartValues property for designer experience support,
+        /// because Editor always blocks the property's ability to provide values to
+        /// the client side as ExtenderControlProperty does at runtime
+        /// </remarks>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
+        [ClientPropertyName("pieChartClientValues")]
         public List<PieChartValue> PieChartClientValues {
             get { return _values; }
         }
 
+        /// <summary>
+        /// A list of PieChartValues
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(null)]

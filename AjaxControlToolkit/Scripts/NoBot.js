@@ -1,35 +1,50 @@
 Type.registerNamespace("Sys.Extended.UI");
 
-Sys.Extended.UI.NoBotBehavior = function(element) {
+Sys.Extended.UI.NoBotBehavior = function (element) {
     Sys.Extended.UI.NoBotBehavior.initializeBase(this, [element]);
 
-    this._ChallengeScript = "";
+    this._challengeScript = "";
 }
 
 Sys.Extended.UI.NoBotBehavior.prototype = {
 
-    initialize: function() {
+    initialize: function () {
         Sys.Extended.UI.NoBotBehavior.callBaseMethod(this, "initialize");
 
         // Evaluate challenge script and store response in ClientState
-        var response = eval(this._ChallengeScript);
+        var response = eval(this._challengeScript);
         Sys.Extended.UI.NoBotBehavior.callBaseMethod(this, "set_ClientState", [response]);
     },
 
-    dispose: function() {
+    dispose: function () {
         Sys.Extended.UI.NoBotBehavior.callBaseMethod(this, "dispose");
     },
 
-    get_ChallengeScript: function() {
+    /// <summary>
+    /// Challenge script.
+    /// </summary>
+    /// <getter>get_challengeScript</getter>
+    /// <setter>set_challengeScript</setter>
+    /// <member name="cP:AjaxControlToolkit.NoBotExtender.challengeScript" />
+    get_challengeScript: function () {
         // JavaScript to be evaluated
-        return this._ChallengeScript;
+        return this._challengeScript;
+    },
+    set_challengeScript: function (value) {
+        if (this._challengeScript != value) {
+            this._challengeScript = value;
+            this.raisePropertyChanged('challengeScript');
+        }
     },
 
-    set_ChallengeScript: function(value) {
-        if(this._ChallengeScript != value) {
-            this._ChallengeScript = value;
-            this.raisePropertyChanged('ChallengeScript');
-        }
+    get_ChallengeScript: function () {
+        Sys.Extended.Deprecated("get_ChallengeScript", "get_challengeScript");
+        return this.get_challengeScript();
+    },
+
+    set_ChallengeScript: function (value) {
+        Sys.Extended.Deprecated("set_ChallengeScript", "set_challengeScript");
+        this.set_challengeScript(value);
     }
 }
 

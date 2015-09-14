@@ -7,6 +7,12 @@ using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// ListSearchExtender lets you search for items in the ListBox or DropDownList by typing.
+    /// The extender performs an incremental search within the ListBox based on what has been typed
+    /// so far. The prompt message that is displayed when you click the list can be customized along
+    /// with its CSS class and position.
+    /// </summary>
     [TargetControlType(typeof(ListControl))]
     [ClientScriptResource("Sys.Extended.UI.ListSearchBehavior", Constants.ListSearchName)]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
@@ -29,7 +35,12 @@ namespace AjaxControlToolkit {
             ClientState = (String.Compare(Page.Form.DefaultFocus, TargetControlID, StringComparison.OrdinalIgnoreCase) == 0) ? "Focused" : null;
         }
 
-        //The prompt text displayed when user clicks the list.
+        /// <summary>
+        /// A message to display when the ListBox or DropDownList receives focus
+        /// </summary>
+        /// <remarks>
+        /// The default value is 'Type to search'. The PromptText is replaced by the search text typed by a user
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("promptText")]
         [DefaultValue("Type to search")]
@@ -39,7 +50,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("promptText", value); }
         }
 
-        // CSS class applied to prompt when user clicks list.
+        /// <summary>
+        /// The name of a CSS class to apply to the prompt message
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("promptCssClass")]
         [DefaultValue("")]
@@ -49,7 +62,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("promptCssClass", value); }
         }
 
-        // Indicates where you want the prompt message displayed when the user clicks on the list.
+        /// <summary>
+        /// Indicates whether the message should appear at the Top or Bottom of the ListBox.
+        /// The default is Top
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("promptPosition")]
         [DefaultValue(ListSearchPromptPosition.Top)]
@@ -59,6 +75,13 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("promptPosition", value); }
         }
 
+        /// <summary>
+        /// OnShow animation will be played each time the extender's prompt is displayed
+        /// </summary>
+        /// <remarks>
+        /// The prompt will be positioned correctly but hidden. Animation can be used to
+        /// display the prompt with other visual effects
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
         [Browsable(false)]
@@ -70,6 +93,9 @@ namespace AjaxControlToolkit {
         }
         Animation _onShow;
 
+        /// <summary>
+        /// OnHide animation will be played each time the extender's prompt is hidden
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
         [Browsable(false)]
@@ -81,7 +107,10 @@ namespace AjaxControlToolkit {
         }
         Animation _onHide;
 
-        // The timeout in milliseconds after which search query will be cleared.
+        /// <summary>
+        /// Indicates whether a search query should be reset after the timeout if no match is found.
+        /// The default is 0 meaning no auto reset behavior
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
         [ClientPropertyName("queryTimeout")]
@@ -98,7 +127,12 @@ namespace AjaxControlToolkit {
             ResolveControlIDs(_onHide);
         }
 
-        // Indicates search query pattern to be used to find items.
+        /// <summary>
+        /// Indicates how typed characters should be used in the search query
+        /// </summary>
+        /// <remarks>
+        /// The default pattern queries for results that start with the typed word
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("queryPattern")]
         [DefaultValue(ListSearchQueryPattern.StartsWith)]
@@ -108,9 +142,13 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("QueryPattern", value); }
         }
 
-        // When setting this to true, we instruct search routines that
-        // all values in List are already sorted on population,
-        // so binary search can be used if on StartsWith criteria
+        /// <summary>
+        /// Indicates if items added to the List are expected to be sorted
+        /// </summary>
+        /// <remarks>
+        /// The default value is false. If it is set to true, it allows code to perform
+        /// a faster search instead of performing the same operation before the search
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("isSorted")]
         [DefaultValue(false)]

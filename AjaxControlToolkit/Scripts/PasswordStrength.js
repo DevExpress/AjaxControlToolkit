@@ -524,7 +524,7 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
             percentTotal += (ratio * _ratioSym);
         }
 
-        this.set_HelpText(pwdRequirements);
+        this.set_helpText(pwdRequirements);
 
         return percentTotal;
     },
@@ -621,188 +621,460 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
         Sys.Extended.UI.PasswordStrengthExtenderBehavior.callBaseMethod(this, 'dispose');
     },
 
-    get_PreferredPasswordLength: function() {
+    /// <summary>
+    /// Preferred length of the password
+    /// </summary>
+    /// <remarks>
+    /// Passwords could be less than this amount but wont reach the 100% calculation
+    /// if less than this count. This is used to calculate 50% of the percentage strength of the password
+    /// Ideally, a password should be 20 characters in length to be a strong password.
+    /// </remarks>
+    /// <getter>get_preferredPasswordLength</getter>
+    /// <setter>set_preferredPasswordLength</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.preferredPasswordLength" />
+    get_preferredPasswordLength: function() {
         return this._preferredPasswordLength;
     },
-
-    set_PreferredPasswordLength: function(value) {
+    set_preferredPasswordLength: function(value) {
         if(this._preferredPasswordLength != value) {
             this._preferredPasswordLength = value;
-            this.raisePropertyChanged('PreferredPasswordLength');
+            this.raisePropertyChanged('preferredPasswordLength');
+        }
+    },
+
+    get_PreferredPasswordLength: function() {
+        Sys.Extended.Deprecated("get_PreferredPasswordLength()", "get_preferredPasswordLength()");
+        return this.get_preferredPasswordLength();
+    },
+    set_PreferredPasswordLength: function(value) {
+        Sys.Extended.Deprecated("set_PreferredPasswordLength(value)", "set_preferredPasswordLength(value)");
+        this.set_preferredPasswordLength(value);
+    },
+
+    /// <summary>
+    ///  Minimum number of numeric characters
+    /// </summary>
+    /// <remarks>
+    /// If there are less than this property, then the password is not
+    /// considered strong. If there are equal to or more than this value,
+    /// then this will contribute 15% to the overall password strength percentage value.
+    /// </remarks>
+    /// <getter>get_minimumNumericCharacters</getter>
+    /// <setter>set_minimumNumericCharacters</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.minimumNumericCharacters" />
+    get_minimumNumericCharacters: function() {
+        return this._minimumNumericCharacters;
+    },
+    set_minimumNumericCharacters: function(value) {
+        if(this._minimumNumericCharacters != value) {
+            this._minimumNumericCharacters = value;
+            this.raisePropertyChanged('minimumNumericCharacters');
         }
     },
 
     get_MinimumNumericCharacters: function() {
-        return this._minimumNumericCharacters;
+        Sys.Extended.Deprecated("get_MinimumNumericCharacters()", "get_minimumNumericCharacters()");
+        return this.get_minimumNumericCharacters();
+    },
+    set_MinimumNumericCharacters: function(value) {
+        Sys.Extended.Deprecated("set_MinimumNumericCharacters(value)", "set_minimumNumericCharacters(value)");
+        this.set_minimumNumericCharacters(value);
     },
 
-    set_MinimumNumericCharacters: function(value) {
-        if(this._minimumNumericCharacters != value) {
-            this._minimumNumericCharacters = value;
-            this.raisePropertyChanged('MinimumNumericCharacters');
+    /// <summary>
+    /// Minimum number of symbol characters (ex. $ ^ *)
+    /// </summary>
+    /// <remarks>
+    /// If there are less than this property, then the password is not considered strong.
+    /// If there are equal to or more than this value, then this will contribute 15% to the overall
+    /// password strength percentage value.
+    /// </remarks>
+    /// <getter>get_minimumSymbolCharacters</getter>
+    /// <setter>set_minimumSymbolCharacters</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.minimumSymbolCharacters" />
+    get_minimumSymbolCharacters: function() {
+        return this._minimumSymbolCharacters;
+    },
+    set_minimumSymbolCharacters: function(value) {
+        if(this._minimumSymbolCharacters != value) {
+            this._minimumSymbolCharacters = value;
+            this.raisePropertyChanged('minimumSymbolCharacters');
         }
     },
 
     get_MinimumSymbolCharacters: function() {
-        return this._minimumSymbolCharacters;
+        Sys.Extended.Deprecated("get_MinimumSymbolCharacters()", "get_minimumSymbolCharacters()");
+        return this.get_minimumSymbolCharacters();
+    },
+    set_MinimumSymbolCharacters: function(value) {
+        Sys.Extended.Deprecated("set_MinimumSymbolCharacters(value)", "set_minimumSymbolCharacters(value)");
+        this.set_minimumSymbolCharacters(value);
     },
 
-    set_MinimumSymbolCharacters: function(value) {
-        if(this._minimumSymbolCharacters != value) {
-            this._minimumSymbolCharacters = value;
-            this.raisePropertyChanged('MinimumSymbolCharacters');
+    /// <summary>
+    /// Specifies whether mixed case characters are required
+    /// </summary>
+    /// <remarks>
+    /// Determines if mixed case passwords are required to be considered strong.
+    /// If true, then there must be at least one occurrence of mixed case
+    /// (upper and lower) letters in the password to be considered strong. If there is,
+    /// this will contribute 20% to the overall password strength percentage value.
+    /// </remarks>
+    /// <getter>get_requiresUpperAndLowerCaseCharacters</getter>
+    /// <setter>set_requiresUpperAndLowerCaseCharacters</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.requiresUpperAndLowerCaseCharacters" />
+    get_requiresUpperAndLowerCaseCharacters: function() {
+        return this._requiresUpperAndLowerCaseCharacters;
+    },
+    set_requiresUpperAndLowerCaseCharacters: function(value) {
+        if(this._requiresUpperAndLowerCaseCharacters != value) {
+            this._requiresUpperAndLowerCaseCharacters = value;
+            this.raisePropertyChanged('requiresUpperAndLowerCaseCharacters');
         }
     },
 
     get_RequiresUpperAndLowerCaseCharacters: function() {
-        return this._requiresUpperAndLowerCaseCharacters;
+        Sys.Extended.Deprecated("get_RequiresUpperAndLowerCaseCharacters()", "get_requiresUpperAndLowerCaseCharacters()");
+        return this.get_requiresUpperAndLowerCaseCharacters();
+    },
+    set_RequiresUpperAndLowerCaseCharacters: function(value) {
+        Sys.Extended.Deprecated("set_RequiresUpperAndLowerCaseCharacters(value)", "set_requiresUpperAndLowerCaseCharacters(value)");
+        this.set_requiresUpperAndLowerCaseCharacters(value);
     },
 
-    set_RequiresUpperAndLowerCaseCharacters: function(value) {
-        if(this._requiresUpperAndLowerCaseCharacters != value) {
-            this._requiresUpperAndLowerCaseCharacters = value;
-            this.raisePropertyChanged('RequiresUpperAndLowerCaseCharacters');
+    /// <summary>
+    /// CSS class applied to the text display when StrengthIndicatorType=Text
+    /// </summary>
+    /// <getter>get_textCssClass</getter>
+    /// <setter>set_textCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.textCssClass" />
+    get_textCssClass: function() {
+        return this._txtPwdStrengthCssClass;
+    },
+    set_textCssClass: function(value) {
+        if(this._txtPwdStrengthCssClass != value) {
+            this._txtPwdStrengthCssClass = value;
+            this.raisePropertyChanged('textCssClass');
         }
     },
 
     get_TextCssClass: function() {
-        return this._txtPwdStrengthCssClass;
+        Sys.Extended.Deprecated("get_TextCssClass()", "get_textCssClass()");
+        return this.get_textCssClass();
+    },
+    set_TextCssClass: function(value) {
+        Sys.Extended.Deprecated("set_TextCssClass(value)", "set_textCssClass(value)");
+        this.set_textCssClass(value);
     },
 
-    set_TextCssClass: function(value) {
-        if(this._txtPwdStrengthCssClass != value) {
-            this._txtPwdStrengthCssClass = value;
-            this.raisePropertyChanged('TextCssClass');
+    /// <summary>
+    /// CSS class applied to the bar indicator's border when StrengthIndicatorType=BarIndicator
+    /// </summary>
+    /// <getter>get_barBorderCssClass</getter>
+    /// <setter>set_barBorderCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.barBorderCssClass" />
+    get_barBorderCssClass: function() {
+        return this._barBorderCssClass;
+    },
+    set_barBorderCssClass: function(value) {
+        if(this._barBorderCssClass != value) {
+            this._barBorderCssClass = value;
+            this.raisePropertyChanged('barBorderCssClass');
         }
     },
 
     get_BarBorderCssClass: function() {
-        return this._barBorderCssClass;
+        Sys.Extended.Deprecated("get_BarBorderCssClass()", "get_barBorderCssClass()");
+        return this.get_barBorderCssClass();
+    },
+    set_BarBorderCssClass: function(value) {
+        Sys.Extended.Deprecated("set_BarBorderCssClass(value)", "set_barBorderCssClass(value)");
+        this.set_barBorderCssClass(value);
     },
 
-    set_BarBorderCssClass: function(value) {
-        if(this._barBorderCssClass != value) {
-            this._barBorderCssClass = value;
-            this.raisePropertyChanged('BarBorderCssClass');
+    /// <summary>
+    /// CSS class applied to the bar indicator's inner bar when StrengthIndicatorType=BarIndicator
+    /// </summary>
+    /// <getter>get_barIndicatorCssClass</getter>
+    /// <setter>set_barIndicatorCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.barIndicatorCssClass" />
+    get_barIndicatorCssClass: function() {
+        return this._barIndicatorCssClass;
+    },
+    set_barIndicatorCssClass: function(value) {
+        if(this._barIndicatorCssClass != value) {
+            this._barIndicatorCssClass = value;
+            this.raisePropertyChanged('barIndicatorCssClass');
         }
     },
 
     get_BarIndicatorCssClass: function() {
-        return this._barIndicatorCssClass;
+        Sys.Extended.Deprecated("get_BarIndicatorCssClass()", "get_barIndicatorCssClass()");
+        return this.get_barIndicatorCssClass();
+    },
+    set_BarIndicatorCssClass: function(value) {
+        Sys.Extended.Deprecated("set_BarIndicatorCssClass(value)", "set_barIndicatorCssClass(value)");
+        this.set_barIndicatorCssClass(value);
     },
 
-    set_BarIndicatorCssClass: function(value) {
-        if(this._barIndicatorCssClass != value) {
-            this._barIndicatorCssClass = value;
-            this.raisePropertyChanged('BarIndicatorCssClass');
+    /// <summary>
+    /// Positioning of the strength indicator relative to the target control
+    /// </summary>
+    /// <getter>get_displayPosition</getter>
+    /// <setter>set_displayPosition</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.displayPosition" />
+    get_displayPosition: function() {
+        return this._displayPosition;
+    },
+    set_displayPosition: function(value) {
+        if(this._displayPosition != value) {
+            this._displayPosition = value;
+            this.raisePropertyChanged('displayPosition');
         }
     },
 
     get_DisplayPosition: function() {
-        return this._displayPosition;
+        Sys.Extended.Deprecated("get_DisplayPosition()", "get_displayPosition()");
+        return this.get_displayPosition();
+    },
+    set_DisplayPosition: function(value) {
+        Sys.Extended.Deprecated("set_DisplayPosition(value)", "set_displayPosition(value)");
+        this.set_displayPosition(value);
     },
 
-    set_DisplayPosition: function(value) {
-        if(this._displayPosition != value) {
-            this._displayPosition = value;
-            this.raisePropertyChanged('DisplayPosition');
+    /// <summary>
+    /// Text prefixed to the display text when StrengthIndicatorType=Text
+    /// </summary>
+    /// <getter>get_prefixText</getter>
+    /// <setter>set_prefixText</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.prefixText" />
+    get_prefixText: function() {
+        return this._prefixText;
+    },
+    set_prefixText: function(value) {
+        if(this._prefixText != value) {
+            this._prefixText = value;
+            this.raisePropertyChanged('prefixText');
         }
     },
 
     get_PrefixText: function() {
-        return this._prefixText;
+        Sys.Extended.Deprecated("get_PrefixText()", "get_prefixText()");
+        return this.get_prefixText();
+    },
+    set_PrefixText: function(value) {
+        Sys.Extended.Deprecated("set_PrefixText(value)", "set_prefixText(value)");
+        this.set_prefixText(value);
     },
 
-    set_PrefixText: function(value) {
-        if(this._prefixText != value) {
-            this._prefixText = value;
-            this.raisePropertyChanged('PrefixText');
+    /// <summary>
+    /// Strength indicator type (Text or BarIndicator)
+    /// </summary>
+    /// <remarks>
+    /// BarIndicator - progress bar indicating password strength
+    /// Text - low, medium, high or excellent
+    /// </remarks>
+    /// <getter>get_strengthIndicatorType</getter>
+    /// <setter>set_strengthIndicatorType</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.strengthIndicatorType" />
+    get_strengthIndicatorType: function() {
+        return this._strengthIndicator;
+    },
+    set_strengthIndicatorType: function(value) {
+        if(this._strengthIndicator != value) {
+            this._strengthIndicator = value;
+            this.raisePropertyChanged('strengthIndicatorType');
         }
     },
 
     get_StrengthIndicatorType: function() {
-        return this._strengthIndicator;
+        Sys.Extended.Deprecated("get_StrengthIndicatorType()", "get_strengthIndicatorType()");
+        return this.get_strengthIndicatorType();
+    },
+    set_StrengthIndicatorType: function(value) {
+        Sys.Extended.Deprecated("set_StrengthIndicatorType(value)", "set_strengthIndicatorType(value)");
+        this.set_strengthIndicatorType(value);
     },
 
-    set_StrengthIndicatorType: function(value) {
-        if(this._strengthIndicator != value) {
-            this._strengthIndicator = value;
-            this.raisePropertyChanged('StrengthIndicatorType');
+    /// <summary>
+    /// List of semi-colon separated descriptions used when StrengthIndicatorType=Text
+    /// (Minimum of 2, maximum of 10; order is weakest to strongest)
+    /// </summary>
+    /// <remarks>
+    /// Example: None;Weak;Medium;Strong;Excellent
+    /// </remarks>
+    /// <getter>get_textStrengthDescriptions</getter>
+    /// <setter>set_textStrengthDescriptions</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.textStrengthDescriptions" />
+    get_textStrengthDescriptions: function() {
+        return this._txtStrengthDescriptions;
+    },
+    set_textStrengthDescriptions: function(value) {
+        if(value != null && value != '' && value != this._txtStrengthDescriptions) {
+            this._txtStrengthDescriptions = value;
+            this.raisePropertyChanged('textStrengthDescriptions');
         }
     },
 
     get_TextStrengthDescriptions: function() {
-        return this._txtStrengthDescriptions;
+        Sys.Extended.Deprecated("get_TextStrengthDescriptions()", "get_textStrengthDescriptions()");
+        return this.get_textStrengthDescriptions();
+    },
+    set_TextStrengthDescriptions: function(value) {
+        Sys.Extended.Deprecated("set_TextStrengthDescriptions(value)", "set_textStrengthDescriptions(value)");
+        this.set_textStrengthDescriptions(value);
     },
 
-    set_TextStrengthDescriptions: function(value) {
-        if(value != null && value != '' && value != this._txtStrengthDescriptions) {
-            this._txtStrengthDescriptions = value;
-            this.raisePropertyChanged('TextStrengthDescriptions');
+    /// <summary>
+    /// List of semi-colon separated CSS classes that are used depending on the password's strength.
+    /// </summary>
+    /// <remarks>
+    /// This property will override the BarIndicatorCssClass / TextIndicatorCssClass property if present.
+    /// The BarIndicatorCssClass / TextIndicatorCssClass property differs in that it attributes one
+    /// CSS style to the BarIndicator or Text Strength indicator (depending on which type is chosen)
+    /// regardless of password strength. This property will cause the style to change based on the password
+    /// strength and also to the number of styles specified in this property. For example, if 2 styles are
+    /// defined like StrengthStyles="style1;style2" then style1 is applied when the password strength is less
+    /// than 50%, and style2 is applied when password strength is >= 50%. This property can have up to 10 styles.
+    /// </remarks>
+    /// <getter>get_strengthStyles</getter>
+    /// <setter>set_strengthStyles</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.strengthStyles" />
+    get_strengthStyles: function() {
+        return this._strengthStyles;
+    },
+    set_strengthStyles: function(value) {
+        if(value != null && value != '' && value != this._strengthStyles) {
+            this._strengthStyles = value;
+            this.raisePropertyChanged('strengthStyles');
         }
     },
 
     get_StrengthStyles: function() {
-        return this._strengthStyles;
+        Sys.Extended.Deprecated("get_StrengthStyles()", "get_strengthStyles()");
+        return this.get_strengthStyles();
+    },
+    set_StrengthStyles: function(value) {
+        Sys.Extended.Deprecated("set_StrengthStyles(value)", "set_strengthStyles(value)");
+        this.set_strengthStyles(value);
     },
 
-    set_StrengthStyles: function(value) {
-        if(value != null && value != '' && value != this._strengthStyles) {
-            this._strengthStyles = value;
-            this.raisePropertyChanged('StrengthStyles');
+    /// <summary>
+    /// A semi-colon delimited string that specifies the styles applicable to each
+    /// string descriptions for the password strength when using a textual display
+    /// </summary>
+    /// <remarks>
+    /// Deprecated. Use StrengthStyles instead
+    /// </remarks>
+    /// <getter>get_TextStrengthDescriptionStyles</getter>
+    /// <setter>set_TextStrengthDescriptionStyles</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.TextStrengthDescriptionStyles" />
+    get_TextStrengthDescriptionStyles: function() {
+        Sys.Extended.Deprecated("get_TextStrengthDescriptionStyles()", "get_strengthStyles()");
+        return this.get_strengthStyles();
+    },
+    set_TextStrengthDescriptionStyles: function(value) {
+        Sys.Extended.Deprecated("set_TextStrengthDescriptionStyles(value)", "set_strengthStyles(value)");
+        this.set_strengthStyles(value);
+    },
+
+    /// <summary>
+    /// CSS class applied to the help element used to display a dialog box
+    /// describing the password requirements
+    /// </summary>
+    /// <remarks>
+    /// This is used so that the user can click on this image and get a display
+    /// on what is required to make the password strong according to the current properties
+    /// </remarks>
+    /// <getter>get_helpHandleCssClass</getter>
+    /// <setter>set_helpHandleCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.helpHandleCssClass" />
+    get_helpHandleCssClass: function() {
+        return this._helpHandleCssClass;
+    },
+    set_helpHandleCssClass: function(value) {
+        if(this._helpHandleCssClass != value) {
+            this._helpHandleCssClass = value;
+            this.raisePropertyChanged('helpHandleCssClass');
         }
     },
 
-    // NOTE: The TextStrengthDescriptionStyles properties
-    // have been deprecated in faour of the StrengthStyles properties
-    get_TextStrengthDescriptionStyles: function() {
-        return this.get_StrengthStyles();
-    },
-
-    // NOTE: The TextStrengthDescriptionStyles properties
-    // have been deprecated in faour of the StrengthStyles properties
-    set_TextStrengthDescriptionStyles: function(value) {
-        this.set_StrengthStyles(value);
-    },
-
     get_HelpHandleCssClass: function() {
-        return this._helpHandleCssClass;
+        Sys.Extended.Deprecated("get_HelpHandleCssClass()", "get_helpHandleCssClass()");
+        return this.get_helpHandleCssClass();
+    },
+    set_HelpHandleCssClass: function(value) {
+        Sys.Extended.Deprecated("set_HelpHandleCssClass(value)", "set_helpHandleCssClass(value)");
+        this.set_helpHandleCssClass(value);
     },
 
-    set_HelpHandleCssClass: function(value) {
-        if(this._helpHandleCssClass != value) {
-            this._helpHandleCssClass = value;
-            this.raisePropertyChanged('HelpHandleCssClass');
+    /// <summary>
+    /// Positioning of the help handle element relative to the target control
+    /// </summary>
+    /// <getter>get_helpHandlePosition</getter>
+    /// <setter>set_helpHandlePosition</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.helpHandlePosition" />
+    get_helpHandlePosition: function() {
+        return this._helpHandlePosition;
+    },
+    set_helpHandlePosition: function(value) {
+        if(this._helpHandlePosition != value) {
+            this._helpHandlePosition = value;
+            this.raisePropertyChanged('helpHandlePosition');
         }
     },
 
     get_HelpHandlePosition: function() {
-        return this._helpHandlePosition;
+        Sys.Extended.Deprecated("get_HelpHandlePosition()", "get_helpHandlePosition()");
+        return this.get_helpHandlePosition();
     },
-
     set_HelpHandlePosition: function(value) {
-        if(this._helpHandlePosition != value) {
-            this._helpHandlePosition = value;
-            this.raisePropertyChanged('HelpHandlePosition');
-        }
+        Sys.Extended.Deprecated("set_HelpHandlePosition(value)", "set_helpHandlePosition(value)");
+        this.set_helpHandlePosition(value);
     },
 
-    get_HelpText: function() {
-        return this._helpText;
+    /// <summary>
+    /// List of semi-colon separated numeric values used to determine the weighting of a strength characteristic.
+    /// </summary>
+    /// <remarks>
+    /// There must be 4 values specified which must total 100.
+    /// The default weighting values are defined as 50;15;15;20.
+    /// This corresponds to password length is 50% of the strength calculation, Numeric criteria is 15% of
+    /// strength calculation, casing criteria is 15% of calculation, and symbol criteria is 20% of calculation.
+    /// So the format is 'A;B;C;D' where A = length weighting, B = numeric weighting, C = casing weighting, D = symbol weighting.
+    /// </remarks>
+    /// <getter>get_calculationWeightings</getter>
+    /// <setter>set_calculationWeightings</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.calculationWeightings" />
+    get_calculationWeightings: function() {
+        return this._calcWeightings;
+    },
+    set_calculationWeightings: function(value) {
+        if(this._calcWeightings != value) {
+            this._calcWeightings = value;
+            this.raisePropertyChanged('calculationWeightings');
+        }
     },
 
     get_CalculationWeightings: function() {
-        return this._calcWeightings;
+        Sys.Extended.Deprecated("get_CalculationWeightings()", "get_calculationWeightings()");
+        return this.get_calculationWeightings();
     },
-
     set_CalculationWeightings: function(value) {
-        if(this._calcWeightings != value) {
-            this._calcWeightings = value;
-            this.raisePropertyChanged('CalculationWeightings');
-        }
+        Sys.Extended.Deprecated("set_CalculationWeightings(value)", "set_calculationWeightings(value)");
+        this.set_calculationWeightings(value);
     },
 
-    set_HelpText: function(value) {
+    /// <summary>
+    /// Help text to show
+    /// </summary>
+    /// <getter>get_helpText</getter>
+    /// <setter>set_helpText</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.helpText" />
+    get_helpText: function() {
+        return this._helpText;
+    },
+    set_helpText: function(value) {
         if(this._helpStatusLabelID) {
             var label = $get(this._helpStatusLabelID);
             if(label)
@@ -814,35 +1086,98 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
 
         if(this._helpText != value) {
             this._helpText = value;
-            this.raisePropertyChanged('HelpText');
+            this.raisePropertyChanged('helpText');
         }
     },
 
-    get_MinimumLowerCaseCharacters: function() {
-        return this._minLowerCaseChars;
+    get_HelpText: function() {
+        Sys.Extended.Deprecated("get_HelpText()", "get_helpText()");
+        return this.get_helpText();
+    },
+    set_HelpText: function(value) {
+        Sys.Extended.Deprecated("set_HelpText(value)", "set_helpText(value)");
+        this.set_helpText(value);
     },
 
-    set_MinimumLowerCaseCharacters: function(value) {
+    /// <summary>
+    /// Minimum number of lowercase characters required when requiring mixed case
+    /// characters as part of your password strength considerations
+    /// </summary>
+    /// <remarks>
+    /// Only in effect if RequiresUpperAndLowerCaseCharacters property is true.
+    /// The default value is 0 which means this property is not in effect and
+    /// there is no minimum limit.
+    /// </remarks>
+    /// <getter>get_minimumLowerCaseCharacters</getter>
+    /// <setter>set_minimumLowerCaseCharacters</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.minimumLowerCaseCharacters" />
+    get_minimumLowerCaseCharacters: function() {
+        return this._minLowerCaseChars;
+    },
+    set_minimumLowerCaseCharacters: function(value) {
         this._minLowerCaseChars = value;
     },
 
-    get_MinimumUpperCaseCharacters: function() {
-        return this._minUpperCaseChars;
+    get_MinimumLowerCaseCharacters: function() {
+        Sys.Extended.Deprecated("get_MinimumLowerCaseCharacters()", "get_minimumLowerCaseCharacters()");
+        return this.get_minimumLowerCaseCharacters();
+    },
+    set_MinimumLowerCaseCharacters: function(value) {
+        Sys.Extended.Deprecated("set_MinimumLowerCaseCharacters(value)", "set_minimumLowerCaseCharacters(value)");
+        this.set_minimumLowerCaseCharacters(value);
     },
 
-    set_MinimumUpperCaseCharacters: function(value) {
+    /// <summary>
+    /// Minimum number of uppercase characters required when requiring mixed case
+    /// characters as part of your password strength considerations.
+    /// </summary>
+    /// <remarks>
+    /// Only in effect if RequiresUpperAndLowerCaseCharacters property is true.
+    /// The default value is 0 which means this property is not in effect and
+    /// there is no minimum limit.
+    /// </remarks>
+    /// <getter>get_minimumUpperCaseCharacters</getter>
+    /// <setter>set_minimumUpperCaseCharacters</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.minimumUpperCaseCharacters" />
+    get_minimumUpperCaseCharacters: function() {
+        return this._minUpperCaseChars;
+    },
+    set_minimumUpperCaseCharacters: function(value) {
         this._minUpperCaseChars = value;
     },
 
-    get_HelpStatusLabelID: function() {
-        return this._helpStatusLabelID;
+    get_MinimumUpperCaseCharacters: function() {
+        Sys.Extended.Deprecated("get_MinimumUpperCaseCharacters()", "get_minimumUpperCaseCharacters()");
+        return this.get_minimumUpperCaseCharacters();
+    },
+    set_MinimumUpperCaseCharacters: function(value) {
+        Sys.Extended.Deprecated("set_MinimumUpperCaseCharacters(value)", "set_minimumUpperCaseCharacters(value)");
+        this.set_minimumUpperCaseCharacters(value);
     },
 
-    set_HelpStatusLabelID: function(value) {
+    /// <summary>
+    /// Control ID of the label used to display help text
+    /// </summary>
+    /// <getter>get_helpStatusLabelID</getter>
+    /// <setter>set_helpStatusLabelID</setter>
+    /// <member name="cP:AjaxControlToolkit.PasswordStrength.helpStatusLabelID" />
+    get_helpStatusLabelID: function() {
+        return this._helpStatusLabelID;
+    },
+    set_helpStatusLabelID: function(value) {
         if(this._helpStatusLabelID != value) {
             this._helpStatusLabelID = value;
-            this.raisePropertyChanged('HelpStatusLabelID');
+            this.raisePropertyChanged('helpStatusLabelID');
         }
+    },
+
+    get_HelpStatusLabelID: function() {
+        Sys.Extended.Deprecated("get_HelpStatusLabelID()", "get_helpStatusLabelID()");
+        return this.get_helpStatusLabelID();
+    },
+    set_HelpStatusLabelID: function(value) {
+        Sys.Extended.Deprecated("set_HelpStatusLabelID(value)", "set_helpStatusLabelID(value)");
+        this.set_helpStatusLabelID(value);
     }
 }
 

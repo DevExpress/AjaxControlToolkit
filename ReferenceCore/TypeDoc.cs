@@ -1,9 +1,7 @@
 ﻿using AjaxControlToolkit.Reference.Core.Parsing;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Xml.Linq;
+using AjaxControlToolkit.ReferenceCore.Parsing;
 
 namespace AjaxControlToolkit.Reference.Core {
 
@@ -11,16 +9,18 @@ namespace AjaxControlToolkit.Reference.Core {
         IList<MethodDoc> _methods;
         IList<EventDoc> _events;
         IList<PropertyDoc> _properties;
-        IList<ClientMethodDoc> _clientMethods;
+        IList<MethodDoc> _clientMethods;
         IList<ClientPropertyDoc> _clientProperties;
+        IList<ClientEventDoc> _clientEvents;
 
         public TypeDoc(string fullName)
             : base(fullName) {
             _methods = new List<MethodDoc>();
             _events = new List<EventDoc>();
             _properties = new List<PropertyDoc>();
-            _clientMethods = new List<ClientMethodDoc>();
+            _clientMethods = new List<MethodDoc>();
             _clientProperties = new List<ClientPropertyDoc>();
+            _clientEvents = new List<ClientEventDoc>();
         }
 
         public IEnumerable<MethodDoc> Methods {
@@ -35,12 +35,16 @@ namespace AjaxControlToolkit.Reference.Core {
             get { return _properties; }
         }
 
-        public IEnumerable<ClientMethodDoc> ClientMethods {
+        public IEnumerable<MethodDoc> ClientMethods {
             get { return _clientMethods; }
         }
 
         public IEnumerable<ClientPropertyDoc> ClientProperties {
             get { return _clientProperties; }
+        }
+
+        public IEnumerable<ClientEventDoc> ClientEvents {
+            get { return _clientEvents; }
         }
 
         public void AddMethod(MethodDoc info) {
@@ -55,7 +59,7 @@ namespace AjaxControlToolkit.Reference.Core {
             _properties.Add(info);
         }
 
-        public void AddClientMethod(ClientMethodDoc info) {
+        public void AddClientMethod(MethodDoc info) {
             _clientMethods.Add(info);
         }
 
@@ -63,11 +67,13 @@ namespace AjaxControlToolkit.Reference.Core {
             _clientProperties.Add(info);
         }
 
-        public override DocBase Fill(IEnumerable<XElement> values) {
-            DocParser.Instance.FillInfo(this, values);
-            return this;
+        public void AddClientEvent(ClientEventDoc info) {
+            _clientEvents.Add(info);
         }
 
+        public override DocBase Fill(IEnumerable<XElement> values, ContentType contentType) {
+            DocParser.Instance.FillInfo(this, values, contentType);
+            return this;
+        }
     }
-
 }

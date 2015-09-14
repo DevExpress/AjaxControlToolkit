@@ -14,6 +14,7 @@ namespace AjaxControlToolkit {
 
         [ExtenderControlProperty()]
         [DefaultValue("")]
+        [ClientPropertyName("challengeScript")]
         public string ChallengeScript {
             get { return GetPropertyValue("ChallengeScript", ""); }
             set { SetPropertyValue("ChallengeScript", value); }

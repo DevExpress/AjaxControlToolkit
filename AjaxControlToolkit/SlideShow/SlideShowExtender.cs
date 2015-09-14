@@ -7,6 +7,10 @@ using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// SlideShow is an extender that targets image controls and dynamically shows
+    /// each image for a certain amount of time.
+    /// </summary>
     [Designer(typeof(SlideShowExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.SlideShowBehavior", Constants.SlideShowName)]
     [ClientCssResource(Constants.SlideShowName)]
@@ -15,7 +19,9 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(TimerScript))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.SlideShowName + Constants.IconPostfix)]
     public class SlideShowExtender : ExtenderControlBase {
-        // The webservice method that will be called to supply images. 
+        /// <summary>
+        /// The webservice method that will be called to supply images
+        /// </summary>
         [ExtenderControlProperty]
         [RequiredProperty]
         [DefaultValue("")]
@@ -25,7 +31,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("SlideShowServiceMethod", value); }
         }
 
-        // Path to the webservice that the extender will pull the images from.
+        /// <summary>
+        /// The path to the webservice that the extender will pull the images from
+        /// </summary>
         [UrlProperty()]
         [ExtenderControlProperty()]
         [TypeConverter(typeof(ServicePathConverter))]
@@ -35,10 +43,14 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("SlideShowServicePath", value); }
         }
 
-        // User/page specific context provided to an optional overload of the
-        // web method described by ServiceMethod/ServicePath.  If the context
-        // key is used, it should have the same signature with an additional
-        // parameter named contextKey of type string.
+        /// <summary>
+        /// User/page specific context provided to an optional overload of the
+        /// web method described by ServiceMethod/ServicePath
+        /// </summary>
+        /// <remarks>
+        /// If the context key is used, it should have the same signature with
+        /// an additional parameter named contextKey of the string type
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("contextKey")]
         [DefaultValue(null)]
@@ -50,11 +62,14 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // Whether or not the ContextKey property should be used.  This will be
-        // automatically enabled if the ContextKey property is ever set
-        // (on either the client or the server).  If the context key is used,
-        // it should have the same signature with an additional parameter
-        // named contextKey of type string.
+        /// <summary>
+        /// Whether or not the ContextKey property should be used
+        /// </summary>
+        /// <remarks>
+        /// This will be automatically enabled if the ContextKey property is ever set
+        /// (on either the client or the server). If the context key is used, it should
+        /// have the same signature with an additional parameter named contextKey of the string type
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("useContextKey")]
         [DefaultValue(false)]
@@ -63,7 +78,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<bool>("UseContextKey", value); }
         }
 
-        // ID of the control that will move the slide show to the next slide.
+        /// <summary>
+        /// ID of the button that will allow you to see the next picture
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [IDReferenceProperty(typeof(WebControl))]
@@ -73,7 +90,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("NextButtonID", value); }
         }
 
-        // ID of the control that will play the slide show.
+        /// <summary>
+        /// ID of the button that will allow you to play/stop the slideshow
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [IDReferenceProperty(typeof(WebControl))]
@@ -83,7 +102,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("PlayButtonID", value); }
         }
 
-        // Text to display in the play button if the slide show is not playing.
+        /// <summary>
+        /// The text to be shown in the play button to play the slideshow
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("playButtonText")]
@@ -92,7 +113,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("PlayButtonText", value); }
         }
 
-        // Text to display in the play button if the slide show is in play mode.
+        /// <summary>
+        /// The text to be shown in the play button to stop the slideshow
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("stopButtonText")]
@@ -101,7 +124,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("StopButtonText", value); }
         }
 
-        // Interval in milliseconds before switching to the next slide is playing.
+        /// <summary>
+        /// An interval in milliseconds between slide transitions in play mode
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(3000)]
         [ClientPropertyName("playInterval")]
@@ -110,7 +135,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("PlayInterval", value); }
         }
 
-        // ID of the label that will display the current slide's title.
+        /// <summary>
+        /// ID of Label displaying the current picture's title
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [IDReferenceProperty(typeof(WebControl))]
@@ -120,7 +147,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("ImageTitleLabelID", value); }
         }
 
-        // ID of the label that will display the current slide's description.
+        /// <summary>
+        /// ID of Label describing the current picture
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [IDReferenceProperty(typeof(WebControl))]
@@ -130,7 +159,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("ImageDescriptionLabelID", value); }
         }
 
-        // ID of the control that will move the slide show to the previous slide.
+        /// <summary>
+        /// ID of the button that will allow you to see the previous picture
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [IDReferenceProperty(typeof(WebControl))]
@@ -140,7 +171,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("PreviousButtonID", value); }
         }
 
-        // Boolean to determine if the slide show loops around if you hit the first or last slide.
+        /// <summary>
+        /// Setting this to true will allow you to view images in a round-robin fashion
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
         [ClientPropertyName("loop")]
@@ -149,7 +182,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("Loop", value); }
         }
 
-        // Boolean to determine if the slide show will play automatically on render.
+        /// <summary>
+        /// Setting this to true will play the slideshow automatically on render
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
         [ClientPropertyName("autoPlay")]
@@ -158,7 +193,14 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("AutoPlay", value); }
         }
 
-        // Animation type that will happen on change of slide.
+        /// <summary>
+        /// Type of animation used on changing from one slide to another
+        /// </summary>
+        /// <remarks>
+        /// If you set SlideShowAnimationType to either SlideDown or SlideRight,
+        /// then you must set both the Height and Width properties on the Image
+        /// control being extended by the SlideShow extender
+        /// </remarks>
         [ExtenderControlProperty]
         [DefaultValue(SlideShowAnimationType.None)]
         [ClientPropertyName("slideShowAnimationType")]
@@ -167,7 +209,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("SlideShowAnimationType", value); }
         }
 
-        // Width of Image container to animate slides smoothly from left to right or right to left.
+        /// <summary>
+        /// Width of the image container to animate slides smoothly from
+        /// left to right or right to left
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(400)]
         [Browsable(false)]
@@ -177,7 +222,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("ImageWidth", value); }
         }
 
-        // Height of Image container to animate slides smoothly from up to down or down to up.
+        /// <summary>
+        /// Height of the image container to animate slides smoothly from
+        /// up to down or down to up
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(300)]
         [Browsable(false)]

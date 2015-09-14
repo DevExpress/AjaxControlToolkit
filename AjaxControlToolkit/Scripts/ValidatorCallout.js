@@ -280,8 +280,12 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         return this.get_element().errormessage || Sys.Extended.UI.Resources.ValidatorCallout_DefaultErrorMessage;
     },
 
+    /// <summary>
+    /// Shows the ValidatorCallout popup
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.ValidatorCalloutExtender.show" />
     show: function(force) {
-        if(force || !this.get_isOpen()) {
+        if(force || !this.isOpen()) {
             if(force && Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout)
                 Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout.hide();
             if(Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout != null)
@@ -292,10 +296,14 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Hides the ValidatorCallout popup
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.ValidatorCalloutExtender.hide" />
     hide: function() {
         if(Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout == this)
             Sys.Extended.UI.ValidatorCalloutBehavior._currentCallout = null;
-        if(this.get_isOpen())
+        if(this.isOpen())
             this._popupBehavior.hide();
     },
 
@@ -337,6 +345,19 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Generic OnShow animation for the ValidatorCallout extender
+    /// </summary>
+    /// <remarks>
+    /// The OnShow animation will be played each time the validation popup is displayed.
+    /// The popup will be positioned correctly, but hidden. The animation can be used to
+    /// display the popup along with any other visual effects. 
+    ///
+    /// See Animation Reference for more details
+    /// </remarks>
+    /// <getter>get_onShow</getter>
+    /// <setter>set_onShow</setter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.onShow" />
     get_onShow: function() {
         // Generic OnShow Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onShow() : this._onShowJson;
@@ -348,15 +369,30 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             this._onShowJson = value;
         this.raisePropertyChanged('onShow');
     },
-    get_onShowBehavior: function() {
-        // Generic OnShow Animation's behavior
-        return this._popupBehavior ? this._popupBehavior.get_onShowBehavior() : null;
-    },
+
     onShow: function() {
         if(this._popupBehavior)
             this._popupBehavior.onShow();
     },
 
+    /// <summary>
+    /// Generic OnShow Animation's behavior
+    /// </summary>
+    /// <getter>get_onShowBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.onShowBehavior" />
+    get_onShowBehavior: function() {
+        return this._popupBehavior ? this._popupBehavior.get_onShowBehavior() : null;
+    },
+
+    /// <summary>
+    /// Generic OnHide animation for the ValidatorCallout extender
+    /// </summary>
+    /// <remarks>
+    /// The OnHide animation will be played each time the validation popup is hidden
+    /// </remarks>
+    /// <getter>get_onHide</getter>
+    /// <setter>set_onHide</setter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.onHide" />
     get_onHide: function() {
         // Generic OnHide Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onHide() : this._onHideJson;
@@ -368,15 +404,27 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             this._onHideJson = value;
         this.raisePropertyChanged('onHide');
     },
-    get_onHideBehavior: function() {
-        // Generic OnHide Animation's behavior
-        return this._popupBehavior ? this._popupBehavior.get_onHideBehavior() : null;
-    },
+
     onHide: function() {
         if(this._popupBehavior)
             this._popupBehavior.onHide();
     },
 
+    /// <summary>
+    /// Generic OnHide Animation's behavior
+    /// </summary>
+    /// <getter>get_onHideBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.onHideBehavior" />
+    get_onHideBehavior: function() {
+        return this._popupBehavior ? this._popupBehavior.get_onHideBehavior() : null;
+    },
+
+    /// <summary>
+    /// The path to a custom warning icon image
+    /// </summary>
+    /// <getter>get_warningIconImageUrl</getter>
+    /// <setter>set_warningIconImageUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.warningIconImageUrl" />
     get_warningIconImageUrl: function() {
         return this._warningIconImageUrl;
     },
@@ -389,6 +437,12 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// The path to a custom close image
+    /// </summary>
+    /// <getter>get_closeImageUrl</getter>
+    /// <setter>set_closeImageUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.closeImageUrl" />
     get_closeImageUrl: function() {
         return this._closeImageUrl;
     },
@@ -401,6 +455,12 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// The width of the callout
+    /// </summary>
+    /// <getter>get_width</getter>
+    /// <setter>set_width</setter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.width" />
     get_width: function() {
         return this._width;
     },
@@ -413,6 +473,21 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Indicates where the ValidatorCallout popup should appear relatively to the control to validate
+    /// </summary>
+    /// <remarks>
+    /// Possible values:
+    /// * BottomLeft
+    /// * BottomRight
+    /// * TopLeft
+    /// * TopRight
+    /// * Left
+    /// * Right
+    /// </remarks>
+    /// <getter>get_popupPosition</getter>
+    /// <setter>set_popupPosition</setter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.popupPosition" />
     get_popupPosition: function() {
         return this._popupPosition;
     },
@@ -423,6 +498,15 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Name of the CSS class used to style the ValidatorCallout
+    /// </summary>
+    /// <remarks>
+    /// See the ValidatorCallout Theming section for more information
+    /// </remarks>
+    /// <getter>get_cssClass</getter>
+    /// <setter>set_cssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.cssClass" />
     get_cssClass: function() {
         return this._cssClass;
     },
@@ -433,6 +517,12 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// A CSS class to apply to an invalid field
+    /// </summary>
+    /// <getter>get_highlightCssClass</getter>
+    /// <setter>set_highlightCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.ValidatorCalloutExtender.highlightCssClass" />
     get_highlightCssClass: function() {
         return this._highlightCssClass;
     },
@@ -443,8 +533,19 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         }
     },
 
-    get_isOpen: function() {
+    /// <summary>
+    /// Determines whether the ValidatorCallout popup is opened
+    /// </summary>
+    /// <returns>
+    /// Boolean value, which is true when ValidatorCallout popup is open
+    /// </returns>
+    /// <member name="cM:AjaxControlToolkit.ValidatorCalloutExtender.isOpen" />
+    isOpen: function() {
         return $common.getVisible(this._popupTable);
+    },
+    get_isOpen: function() {
+        Sys.Extended.Deprecated("get_isOpen()", "isOpen()");
+        return this.isOpen();
     }
 };
 Sys.Extended.UI.ValidatorCalloutBehavior.registerClass('Sys.Extended.UI.ValidatorCalloutBehavior', Sys.Extended.UI.BehaviorBase);

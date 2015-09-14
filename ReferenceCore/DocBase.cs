@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Xml.Linq;
+using AjaxControlToolkit.ReferenceCore.Parsing;
 
 namespace AjaxControlToolkit.Reference.Core {
 
@@ -23,7 +22,6 @@ namespace AjaxControlToolkit.Reference.Core {
         public string Summary { get; set; }
         public string Remarks { get; set; }
 
-        public abstract DocBase Fill(IEnumerable<XElement> values);
+        public abstract DocBase Fill(IEnumerable<XElement> values, ContentType contentType);
     }
-
 }

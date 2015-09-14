@@ -1,9 +1,7 @@
 ﻿using AjaxControlToolkit.Reference.Core.Parsing;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Xml.Linq;
+using AjaxControlToolkit.ReferenceCore.Parsing;
 
 namespace AjaxControlToolkit.Reference.Core {
 
@@ -11,10 +9,9 @@ namespace AjaxControlToolkit.Reference.Core {
 
         public PropertyDoc(string fullName) : base(fullName) { }
 
-        public override DocBase Fill(IEnumerable<XElement> values) {
-            DocParser.Instance.FillInfo(this, values);
+        public override DocBase Fill(IEnumerable<XElement> values, ContentType contentType) {
+            DocParser.Instance.FillInfo(this, values, contentType);
             return this;
         }
     }
-
 }

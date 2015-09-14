@@ -56,6 +56,7 @@
     <Compile Include="BundleResolverTests.cs" />
     <Compile Include="BaseValidatorTests.cs" />
     <Compile Include="ComponentDescriber\ComponentDescriberTests.cs" />
+    <Compile Include="DocumentationTests\CodePlexDocRendererTests.cs" />
     <Compile Include="TabPanelTests.cs" />
     <Compile Include="HtmlSanitizer\HaCkerOrgXMLTest.cs" />
     <Compile Include="LocalizationTests.cs" />
@@ -70,6 +71,10 @@
     <ProjectReference Include="..\AjaxControlToolkit\AjaxControlToolkit.csproj">
       <Project>{676b3449-93f7-4102-8df0-fb51911675d6}</Project>
       <Name>AjaxControlToolkit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReferenceCore\AjaxControlToolkit.ReferenceCore.csproj">
+      <Project>{e55f6c8f-46e6-49a7-8b25-7c779bc7682b}</Project>
+      <Name>AjaxControlToolkit.ReferenceCore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,10 @@ using System.Collections.Generic;
 
 namespace AjaxControlToolkit {
 
-    /// Extender used to play animations just before and after an UpdatePanel updates
+    /// <summary>
+    /// UpdatePanelAnimationExtender is an extender that allows you to play animations both while an UpdatePanel
+    /// is updating and after its update is finished. The animations to be played are declaratively specified by using XML.
+    /// </summary>
     [Designer(typeof(UpdatePanelAnimationExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
     [RequiredScript(typeof(AnimationScripts), 1)]
@@ -22,39 +25,53 @@ namespace AjaxControlToolkit {
         Animation _updated;
         List<string> _triggerControlsClientID = new List<string>();
 
-        // Animation played when an update begins
+        /// <summary>
+        /// Generic animation played as when any UpdatePanel begins updating
+        /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
         [ExtenderControlProperty]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [ClientPropertyName("onUpdating")]
         public Animation OnUpdating {
             get { return GetAnimation(ref _updating, "OnUpdating"); }
             set { SetAnimation(ref _updating, "OnUpdating", value); }
         }
 
-        // Animation played when an update completes
+        /// <summary>
+        /// Generic animation played after the UpdatePanel has finished updating
+        /// (but only if the UpdatePanel was changed)
+        /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
         [ExtenderControlProperty]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [ClientPropertyName("onUpdated")]
         public Animation OnUpdated {
             get { return GetAnimation(ref _updated, "OnUpdated"); }
             set { SetAnimation(ref _updated, "OnUpdated", value); }
         }
 
-        // Sets a value indicating whether the OnUpdating animation will always be allowed to finish
-        // before the OnUpdated animation starts playing.
+        /// <summary>
+        /// An optional property that makes sure the OnUpdated event will fire
+        /// only after the onUpdating event is completed
+        /// </summary>
         [DefaultValue(false)]
         [Browsable(true)]
         [ExtenderControlProperty]
+        [ClientPropertyName("alwaysFinishOnUpdatingAnimation")]
         public bool AlwaysFinishOnUpdatingAnimation {
             get { return GetPropertyValue<bool>("AlwaysFinishOnUpdatingAnimation", false); }
             set { SetPropertyValue("AlwaysFinishOnUpdatingAnimation", value); }
         }
 
+        /// <summary>
+        /// ClientID's of the trigger controls
+        /// </summary>
         [DefaultValue(null)]
         [Browsable(false)]
         [ExtenderControlProperty(true, true)]
+        [ClientPropertyName("triggerControlsClientID")]
         public string[] TriggerControlsClientID {
             get { return _triggerControlsClientID.ToArray(); }
         }
@@ -102,10 +119,20 @@ namespace AjaxControlToolkit {
                 ReplaceStaticAnimationTargets(child);
         }
 
+        /// <summary>
+        /// Returns the UpdatePanel, whose updates are used to play animations
+        /// (this is also the default target of animations)
+        /// </summary>
+        /// <returns>Target control</returns>
         public Control GetTargetControl() {
             return TargetControl;
         }
 
+        /// <summary>
+        /// Returns the control specified by its ID
+        /// </summary>
+        /// <param name="id" type="Number">ID of the control</param>
+        /// <returns>Found control</returns>
         public Control GetControl(string id) {
             return FindControl(id);
         }

@@ -350,6 +350,11 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Returns the background color of the target element
+    /// </summary>
+    /// <returns type="String">String contains the color of the target element</returns>
+    /// <member name="cM:AjaxControlToolkit.RoundedCornersExtender.getBackgroundColor" />
     getBackgroundColor: function() {
         if(this._color)
             return this._color;
@@ -370,73 +375,139 @@ Sys.Extended.UI.RoundedCornersBehavior.prototype = {
         return moveCount;
     },
 
+    /// <summary>
+    /// Checks whether a flag for this corner has been set
+    /// </summary>
+    /// <param name="corner" type="Sys.Extended.UI.BoxCorners">Corner to check</param>
+    /// <returns type="Boolean">True if the corner has been set; otherwise, false</returns>
+    /// <member name="cM:AjaxControlToolkit.RoundedCornersExtender.isCornerSet" />
     isCornerSet: function(corner) {
-        // Check whether the a flag for this corner has been set
-        // "corner" - Corner to check
-        // returns true if it is included in the flags, false otherwise
         return (this._corners & corner) != Sys.Extended.UI.BoxCorners.None;
     },
 
+    /// <summary>
+    /// Sets a corner as one that should be rounded
+    /// </summary>
+    /// <param name="corner" type="Sys.Extended.UI.BoxCorners">Corner to set</param>
+    /// <param name="value" type="Boolean">True to set the value, false to clear it</param>
+    /// <member name="cM:AjaxControlToolkit.RoundedCornersExtender.setCorner" />
     setCorner: function(corner, value) {
-        // Set a corner as one that should be rounded
-        // "corner" - Corner to set
-        // "value" - True to set the value, False to clear it
         if(value)
-            this.set_Corners(this._corners | corner);
+            this.set_corners(this._corners | corner);
         else
-            this.set_Corners(this._corners & ~corner);
+            this.set_corners(this._corners & ~corner);
     },
 
-    get_Color: function() {
-        // The background color of the rounded area an corners.  By default this picks up the background color of the panel that it is attached to.
+    /// <summary>
+    /// A string that contains the background color of the rounded corner areas
+    /// </summary>
+    /// <remarks>
+    /// By default, this property gets the background color of the panel that it is attached to
+    /// </remarks>
+    /// <getter>get_color</getter>
+    /// <setter>set_color</setter>
+    /// <member name="cP:AjaxControlToolkit.RoundedCornersExtender.color" />
+    get_color: function() {
         return this._color;
     },
-    set_Color: function(value) {
+    set_color: function(value) {
         if(value != this._color) {
             this._color = value;
             this._isDirty = true;
             this.update();
-            this.raisePropertyChanged('Color');
+            this.raisePropertyChanged('color');
         }
     },
 
-    get_Radius: function() {
-        // The radius of the corners (and height of the added area).  Default is 5.
+    get_Color: function() {
+        Sys.Extended.Deprecated("get_Color()", "get_color()");
+        return this.get_color();
+    },
+    set_Color: function(value) {
+        Sys.Extended.Deprecated("set_Color(value)", "set_color(value)");
+        this.set_color(value);
+    },
+
+    /// <summary>
+    /// An integer value that specifies the radius of the corners (and the height of the added area). The default is 5
+    /// The default is 5
+    /// </summary>
+    /// <getter>get_radius</getter>
+    /// <setter>set_radius</setter>
+    /// <member name="cP:AjaxControlToolkit.RoundedCornersExtender.radius" />
+    get_radius: function() {
         return this._radius;
     },
-    set_Radius: function(value) {
+    set_radius: function(value) {
         if(value != this._radius) {
             this._radius = value;
             this._isDirty = true;
             this.update();
-            this.raisePropertyChanged('Radius');
+            this.raisePropertyChanged('radius');
         }
     },
 
-    get_Corners: function() {
-        // Corners that should be rounded
+    get_Radius: function() {
+        Sys.Extended.Deprecated("get_Radius()", "get_radius()");
+        return this.get_radius();
+    },
+    set_Radius: function(value) {
+        Sys.Extended.Deprecated("set_Radius(value)", "set_radius(value)");
+        this.set_radius(value);
+    },
+
+    /// <summary>
+    /// A Sys.Extended.UI.BoxCorners object that specifies which corners should be rounded
+    /// </summary>
+    /// <getter>get_corners</getter>
+    /// <setter>set_corners</setter>
+    /// <member name="cP:AjaxControlToolkit.RoundedCornersExtender.corners" />
+    get_corners: function() {
         return this._corners;
     },
-    set_Corners: function(value) {
+    set_corners: function(value) {
         if(value != this._corners) {
             this._corners = value;
             this._isDirty = true;
             this.update();
-            this.raisePropertyChanged("Corners");
+            this.raisePropertyChanged("corners");
         }
     },
 
-    get_BorderColor: function() {
-        // Color of the border (and hence the rounded corners)
+    get_Corners: function() {
+        Sys.Extended.Deprecated("get_Corners()", "get_corners()");
+        return this.get_corners();
+    },
+    set_Corners: function(value) {
+        Sys.Extended.Deprecated("set_Corners(value)", "set_corners(value)");
+        this.set_corners(value);
+    },
+
+    /// <summary>
+    /// A string that contains the color of the border and therefore of the rounded corners
+    /// </summary>
+    /// <getter>get_borderColor</getter>
+    /// <setter>set_borderColor</setter>
+    /// <member name="cP:AjaxControlToolkit.RoundedCornersExtender.borderColor" />
+    get_borderColor: function() {
         return this._borderColor;
     },
-    set_BorderColor: function(value) {
+    set_borderColor: function(value) {
         if(value != this._borderColor) {
             this._borderColor = value;
             this._isDirty = true;
             this.update();
-            this.raisePropertyChanged("BorderColor");
+            this.raisePropertyChanged("borderColor");
         }
+    },
+
+    get_BorderColor: function() {
+        Sys.Extended.Deprecated("get_BorderColor()", "get_borderColor()");
+        return this.get_borderColor();
+    },
+    set_BorderColor: function(value) {
+        Sys.Extended.Deprecated("set_BorderColor(value)", "set_borderColor(value)");
+        this.set_borderColor(value);
     }
 }
 

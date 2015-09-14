@@ -1,8 +1,7 @@
 ﻿using AjaxControlToolkit.Reference.Core.Parsing;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using AjaxControlToolkit.ReferenceCore.Parsing;
 
 namespace AjaxControlToolkit.Reference.Core {
 
@@ -10,10 +9,10 @@ namespace AjaxControlToolkit.Reference.Core {
 
         IDictionary<string, TypeDoc> _types;
 
-        public void Add(IEnumerable<RawDoc> rawDocs) {
+        public void Add(IEnumerable<RawDoc> rawDocs, ContentType contentType) {
 
             foreach(var rawDoc in rawDocs)
-                ProcessInfo(rawDoc.TargetNamePrefix, rawDoc.TargetFullName).Fill(rawDoc.Elements);
+                ProcessInfo(rawDoc.TargetNamePrefix, rawDoc.TargetFullName).Fill(rawDoc.Elements, contentType);
         }
 
         DocBase ProcessInfo(string targetNamePrefix, string fullName) {
@@ -37,13 +36,18 @@ namespace AjaxControlToolkit.Reference.Core {
                         return info;
                     }
                 case "cM": {
-                        var info = new ClientMethodDoc(fullName);
+                        var info = new MethodDoc(fullName);
                         GetTypeByName(info.Namespace).AddClientMethod(info);
                         return info;
                     }
                 case "cP": {
                         var info = new ClientPropertyDoc(fullName);
                         GetTypeByName(info.Namespace).AddClientProperty(info);
+                        return info;
+                    }
+                case "cE": {
+                        var info = new ClientEventDoc(fullName);
+                        GetTypeByName(info.Namespace).AddClientEvent(info);
                         return info;
                     }
             }
@@ -66,5 +70,4 @@ namespace AjaxControlToolkit.Reference.Core {
             get { return _types.Values; }
         }
     }
-
 }

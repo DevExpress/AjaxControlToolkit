@@ -1649,151 +1649,197 @@ Sys.Extended.UI.ComboBox.prototype = {
         return scrollLeft;
 
     },
-    set_comboTableControl: function (value) {
 
+    /// <summary>
+    /// A ComboBox table control.
+    /// </summary>
+    /// <getter>get_comboTableControl</getter>
+    /// <setter>set_comboTableControl</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.comboTableControl" />
+    get_comboTableControl: function () {
+        return this._comboTableControl;
+    },
+    set_comboTableControl: function (value) {
         if (this._comboTableControl !== value) {
             this._comboTableControl = value;
             this.raisePropertyChanged('comboTableControl');
         }
-
     },
-    get_comboTableControl: function () {
-
-        return this._comboTableControl;
-
+    
+    /// <summary>
+    /// A TextBox control.
+    /// </summary>
+    /// <getter>get_textBoxControl</getter>
+    /// <setter>set_textBoxControl</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.textBoxControl" />
+    get_textBoxControl: function () {
+        return this._textBoxControl;
     },
     set_textBoxControl: function (value) {
-
         if (this._textBoxControl !== value) {
             this._textBoxControl = value;
             this.raisePropertyChanged('textBoxControl');
         }
-
     },
-    get_textBoxControl: function () {
-
-        return this._textBoxControl;
-
+    
+    /// <summary>
+    /// A Button control.
+    /// </summary>
+    /// <getter>get_buttonControl</getter>
+    /// <setter>set_buttonControl</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.buttonControl" />
+    get_buttonControl: function () {
+        return this._buttonControl;
     },
     set_buttonControl: function (value) {
-
         if (this._buttonControl !== value) {
             this._buttonControl = value;
             this.raisePropertyChanged('buttonControl');
         }
-
     },
-    get_buttonControl: function () {
-        return this._buttonControl;
+    
+    /// <summary>
+    /// An OptionList control.
+    /// </summary>
+    /// <getter>get_optionListControl</getter>
+    /// <setter>set_optionListControl</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.optionListControl" />
+    get_optionListControl: function () {
+        return this._optionListControl;
     },
     set_optionListControl: function (value) {
-
         if (this._optionListControl !== value) {
             this._optionListControl = value;
             this.raisePropertyChanged('optionListControl');
         }
-
     },
-    get_optionListControl: function () {
-
-        return this._optionListControl;
-
+    
+    /// <summary>
+    /// A hidden field control.
+    /// </summary>
+    /// <getter>get_hiddenFieldControl</getter>
+    /// <setter>set_hiddenFieldControl</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.hiddenFieldControl" />
+    get_hiddenFieldControl: function () {
+        return this._hiddenFieldControl;
     },
     set_hiddenFieldControl: function (value) {
-
         if (this._hiddenFieldControl !== value) {
             this._hiddenFieldControl = value;
             this.raisePropertyChanged('hiddenFieldControl');
         }
-
     },
-    get_hiddenFieldControl: function () {
-
-        return this._hiddenFieldControl;
-
+    
+    /// <summary>
+    /// The ComboBox selected item index.
+    /// </summary>
+    /// <getter>get_selectedIndex</getter>
+    /// <setter>set_selectedIndex</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.selectedIndex" />
+    get_selectedIndex: function () {
+        this._ensureSelectedIndex();
+        var selectedIndex = this.get_hiddenFieldControl().value;
+        return parseInt(selectedIndex);
     },
     set_selectedIndex: function (value) {
-
         if (this.get_hiddenFieldControl().value !== value.toString()) {
             this.get_hiddenFieldControl().value = value.toString();
             this._ensureSelectedIndex();
             this.raisePropertyChanged('selectedIndex');
         }
-
     },
-    get_selectedIndex: function () {
-
-        this._ensureSelectedIndex();
-        var selectedIndex = this.get_hiddenFieldControl().value;
-        return parseInt(selectedIndex);
-
+    
+    /// <summary>
+    /// Determined whether or not to use AutoPostBack.
+    /// </summary>
+    /// <getter>get_autoPostBack</getter>
+    /// <setter>set_autoPostBack</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.autoPostBack" />
+    get_autoPostBack: function () {
+        return this._autoPostBack;
     },
     set_autoPostBack: function (value) {
-
         if (this._autoPostBack !== value) {
             this._autoPostBack = value;
             this.raisePropertyChanged('autoPostBack');
         }
-
     },
-    get_autoPostBack: function () {
 
-        return this._autoPostBack;
-
+    /// <summary>
+    /// Determines how the ComboBox automatically completes typed text.
+    /// </summary>
+    /// <remarks>
+    /// When "Suggest" is specified, the ComboBox will show the list, highlight the first matched item,
+    /// and if necessary, scroll the list to show the highlighted item. If "Append" is specified,
+    /// the ComboBox will append the remainder of the first matched item to the user-typed text and
+    /// highlight the appended text. When "SuggestAppend" is specified, both of the above behaviors are
+    /// applied. If "None" (the default value) is specified, the ComboBox's auto-complete behaviors are disabled.
+    /// </remarks>
+    /// <getter>get_autoCompleteMode</getter>
+    /// <setter>set_autoCompleteMode</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.autoCompleteMode" />
+    get_autoCompleteMode: function () {
+        return this._autoCompleteMode;
     },
     set_autoCompleteMode: function (value) {
-
         if (this._autoCompleteMode !== value) {
             this._autoCompleteMode = value;
             this.raisePropertyChanged('autoCompleteMode');
         }
-
     },
-    get_autoCompleteMode: function () {
-
-        return this._autoCompleteMode;
-
+    
+    /// <summary>
+    /// Determines whether or not a user is allowed to enter text that does not match an item in the list and if the list is always displayed.
+    /// </summary>
+    /// <remarks>
+    /// If "DropDownList" is specified, users are not allowed to enter text that does not match an item in the list. When "DropDown"
+    /// (the default value) is specified, any text is allowed. If "Simple" is specified, any text is allowed and the list is
+    /// always displayed regardless of the AutoCompleteMode property value.
+    /// </remarks>
+    /// <getter>get_dropDownStyle</getter>
+    /// <setter>set_dropDownStyle</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.dropDownStyle" />
+    get_dropDownStyle: function () {
+        return this._dropDownStyle;
     },
     set_dropDownStyle: function (value) {
-
         if (this._dropDownStyle !== value) {
             this._dropDownStyle = value;
             this.raisePropertyChanged('dropDownStyle');
         }
-
     },
-    get_dropDownStyle: function () {
-
-        return this._dropDownStyle;
-
+    
+    /// <summary>
+    /// Specifies whether user-typed text matches items in the list in a case-sensitive manner. The default is false.
+    /// </summary>
+    /// <getter>get_caseSensitive</getter>
+    /// <setter>set_caseSensitive</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.caseSensitive" />
+    get_caseSensitive: function () {
+        return this._caseSensitive;
     },
     set_caseSensitive: function (value) {
-
         if (this._caseSensitive !== value) {
             this._caseSensitive = value;
             this.raisePropertyChanged('caseSensitive');
         }
-
     },
-    get_caseSensitive: function () {
 
-        return this._caseSensitive;
-
+    /// <summary>
+    /// When specified, replaces the default styles applied to highlighted items in the list with a custom css class.
+    /// </summary>
+    /// <getter>get_listItemHoverCssClass</getter>
+    /// <setter>set_listItemHoverCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.ComboBox.listItemHoverCssClass" />
+    get_listItemHoverCssClass: function () {
+        return this._listItemHoverCssClass;
     },
     set_listItemHoverCssClass: function (value) {
-
         if (this._listItemHoverCssClass !== value) {
             this._listItemHoverCssClass = value;
             this.raisePropertyChanged('listItemHoverCssClass');
         }
-
     },
-    get_listItemHoverCssClass: function () {
-
-        return this._listItemHoverCssClass;
-
-    }
-
 };
 Sys.Extended.UI.ComboBox.registerClass('Sys.Extended.UI.ComboBox', Sys.UI.Control);
 

@@ -299,7 +299,7 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
             this._prevIndexSelected = this._tabIndex[index];
 
             // Invoke IndexChange
-            this.raiseIndexChanged(this._tabIndex[index]);
+            this.raise_indexChanged(this._tabIndex[index]);
         }
     },
 
@@ -329,21 +329,24 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
         this._renderHtml(aIndex.tag);
 
         // Invoke IndexChange
-        this.raiseIndexChanged(aIndex);
+        this.raise_indexChanged(aIndex);
 
         evt.preventDefault();
     },
 
+    /// <summary>
+    /// Fires when the selected index changes
+    /// </summary>
+    /// <event add="add_indexChanged" remove="remove_indexChanged" raise="raise_indexChanged" />
+    /// <member name="cE:AjaxControlToolkit.PagingBulletedListExtender.indexChanged" />
     add_indexChanged: function(handler) {
         this.get_events().addHandler('indexChanged', handler);
     },
-
     remove_indexChanged: function(handler) {
         this.get_events().removeHandler('indexChanged', handler);
     },
-
-    raiseIndexChanged: function(eventArgs) {
-        // Update the selected index        
+    raise_indexChanged: function(eventArgs) {
+        // Update the selected index
         this._indexSelected = eventArgs.tag;
 
         var handler = this.get_events().getHandler('indexChanged');
@@ -353,16 +356,28 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
             handler(this, eventArgs);
         }
 
-        this.set_ClientState(eventArgs.tag + ";" + this.get_IndexSize() + ";" + this.get_MaxItemPerPage() + ";" + this.get_ClientSort());
+        this.set_ClientState(eventArgs.tag + ";" + this.get_indexSize() + ";" + this.get_maxItemPerPage() + ";" + this.get_clientSort());
+    },
+    raiseIndexChanged: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseIndexChanged(eventArgs)", "raise_indexChanged(eventArgs)");
+        this.raise_indexChanged(eventArgs);
     },
 
+    /// <summary>
+    /// DOM elements of the indices
+    /// </summary>
+    /// <getter>get_tabIndex</getter>
+    /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.tabIndex" />
     get_tabIndex: function() {
-        // DOM elements of the indices
         return this._tabIndex;
     },
 
+    /// <summary>
+    /// DOM elements of items to display for each index
+    /// </summary>
+    /// <getter>get_tabValue</getter>
+    /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.tabValue" />
     get_tabValue: function() {
-        // DOM elements of the items to display for each index
         return this._tabValue;
     },
 
@@ -384,12 +399,16 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
         }
     },
 
-    get_Height: function() {
-        // Height of the bulleted list
+    /// <summary>
+    /// Bulleted list height
+    /// </summary>
+    /// <getter>get_height</getter>
+    /// <setter>set_height</setter>
+    /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.height" />
+    get_height: function() {
         return this._heightValue;
     },
-
-    set_Height: function(value) {
+    set_height: function(value) {
         if(this._heightValue != value) {
             this._heightValue = value;
 
@@ -397,54 +416,93 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
                 // Change Height in the DOM
                 this._changeHeightDivContent();
 
-            this.raisePropertyChanged('Height');
+            this.raisePropertyChanged('height');
         }
     },
 
-    get_IndexSize: function() {
-        // Number of characters in the index headings (ignored if MaxItemPerPage is set)
-        return this._indexSizeValue;
+    get_Height: function() {
+        Sys.Extended.Deprecated("get_Height()", "get_height()");
+        return this.get_height();
+    },
+    set_Height: function(value) {
+        Sys.Extended.Deprecated("set_Height(value)", "set_height(value)");
+        this.set_height(value);
     },
 
-    set_IndexSize: function(value) {
+    /// <summary>
+    /// The number of characters in the index headings (ignored if MaxItemPerPage is set)
+    /// </summary>
+    /// <getter>get_indexSize</getter>
+    /// <setter>set_indexSize</setter>
+    /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.indexSize" />
+    get_indexSize: function() {
+        return this._indexSizeValue;
+    },
+    set_indexSize: function(value) {
         if(this._indexSizeValue != value) {
             // Clear ClientState to set 0 index
-            this.set_ClientState("0;" + value + ";" + this.get_MaxItemPerPage() + ";" + this.get_ClientSort());
+            this.set_ClientState("0;" + value + ";" + this.get_maxItemPerPage() + ";" + this.get_clientSort());
 
             this._indexSizeValue = value;
             if(this.get_isInitialized())
                 //Update TabIndex and TabValue and Select first Index
                 this._updateIndexAndView(0);
 
-            this.raisePropertyChanged('IndexSize');
+            this.raisePropertyChanged('indexSize');
         }
     },
 
-    get_MaxItemPerPage: function() {
-        // Maximum number of items per page (ignores the IndexSize property)
-        return this._maxItemPerPage;
+    get_IndexSize: function() {
+        Sys.Extended.Deprecated("get_IndexSize()", "get_indexSize()");
+        return this.get_indexSize();
+    },
+    set_IndexSize: function(value) {
+        Sys.Extended.Deprecated("set_IndexSize(value)", "set_indexSize(value)");
+        this.set_indexSize(value);
     },
 
-    set_MaxItemPerPage: function(value) {
+    /// <summary>
+    /// Maximum number of items per page (ignores the IndexSize property)
+    /// </summary>
+    /// <getter>get_maxItemPerPage</getter>
+    /// <setter>set_maxItemPerPage</setter>
+    /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.maxItemPerPage" />
+    get_maxItemPerPage: function() {
+        return this._maxItemPerPage;
+    },
+    set_maxItemPerPage: function(value) {
         if(this._maxItemPerPage != value) {
             // Clear ClientState to set 0 index
-            this.set_ClientState("0;" + this.get_IndexSize() + ";" + value + ";" + this.get_ClientSort());
+            this.set_ClientState("0;" + this.get_indexSize() + ";" + value + ";" + this.get_clientSort());
 
             this._maxItemPerPage = value;
             if(this.get_isInitialized())
                 //Update TabIndex and TabValue and Select first Index
                 this._updateIndexAndView(0);
 
-            this.raisePropertyChanged('MaxItemPerPage');
+            this.raisePropertyChanged('maxItemPerPage');
         }
     },
 
-    get_Separator: function() {
-        // Separator text to be placed between indices
-        return this._separatorValue;
+    get_MaxItemPerPage: function() {
+        Sys.Extended.Deprecated("get_MaxItemPerPage()", "get_maxItemPerPage()");
+        return this.get_maxItemPerPage();
+    },
+    set_MaxItemPerPage: function(value) {
+        Sys.Extended.Deprecated("set_MaxItemPerPage(value)", "set_maxItemPerPage(value)");
+        this.set_maxItemPerPage(value);
     },
 
-    set_Separator: function(value) {
+    /// <summary>
+    /// Separator text to be placed between indices
+    /// </summary>
+    /// <getter>get_separator</getter>
+    /// <setter>set_separator</setter>
+    /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.separator" />
+    get_separator: function() {
+        return this._separatorValue;
+    },
+    set_separator: function(value) {
         if(this._separatorValue != value) {
             if(value)
                 this._separatorValue = value;
@@ -455,18 +513,32 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
                 // Update TabIndex and TabValue and Select first Index
                 this._updateIndexAndView(0);
 
-            this.raisePropertyChanged('Separator');
+            this.raisePropertyChanged('separator');
         }
     },
 
-    get_ClientSort: function() {
-        // Whether or not the items should be sorted client-side
+    get_Separator: function() {
+        Sys.Extended.Deprecated("get_Separator()", "get_separator()");
+        return this.get_separator();
+    },
+    set_Separator: function(value) {
+        Sys.Extended.Deprecated("set_Separator(value)", "set_separator(value)");
+        this.set_separator(value);
+    },
+
+    /// <summary>
+    /// Determines whether or not items should be sorted on the client side
+    /// </summary>
+    /// <getter>get_clientSort</getter>
+    /// <setter>set_clientSort</setter>
+    /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.clientSort" />
+    get_clientSort: function() {
         return this._clientSortValue;
     },
-    set_ClientSort: function(value) {
+    set_clientSort: function(value) {
         if(this._clientSortValue != value) {
             // Clear ClientState to set 0 index
-            this.set_ClientState("0;" + this.get_IndexSize() + ";" + this.get_MaxItemPerPage() + ";" + value);
+            this.set_ClientState("0;" + this.get_indexSize() + ";" + this.get_maxItemPerPage() + ";" + value);
 
             this._clientSortValue = value;
             if(this.get_isInitialized()) {
@@ -479,32 +551,67 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
                 this._updateIndexAndView(0);
             }
 
-            this.raisePropertyChanged('ClientSort');
+            this.raisePropertyChanged('clientSort');
+        }
+    },
+
+    get_ClientSort: function() {
+        Sys.Extended.Deprecated("get_ClientSort()", "get_clientSort()");
+        return this.get_clientSort();
+    },
+    set_ClientSort: function(value) {
+        Sys.Extended.Deprecated("set_ClientSort(value)", "set_clientSort(value)");
+        this.set_clientSort(value);
+    },
+
+    /// <summary>
+    /// A CSS class for the selected index
+    /// </summary>
+    /// <getter>get_selectIndexCssClass</getter>
+    /// <setter>set_selectIndexCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.selectIndexCssClass" />
+    get_selectIndexCssClass: function() {
+        return this._selectIndexCssClassValue;
+    },
+    set_selectIndexCssClass: function(value) {
+        if(this._selectIndexCssClassValue != value) {
+            this._selectIndexCssClassValue = value;
+            this.raisePropertyChanged('selectIndexCssClass');
         }
     },
 
     get_SelectIndexCssClass: function() {
-        // CSS class for the selected index.
-        return this._selectIndexCssClassValue;
+        Sys.Extended.Deprecated("get_SelectIndexCssClass()", "get_selectIndexCssClass()");
+        return this.get_selectIndexCssClass();
+    },
+    set_SelectIndexCssClass: function(value) {
+        Sys.Extended.Deprecated("set_SelectIndexCssClass(value)", "set_selectIndexCssClass(value)");
+        this.set_selectIndexCssClass(value);
     },
 
-    set_SelectIndexCssClass: function(value) {
-        if(this._selectIndexCssClassValue != value) {
-            this._selectIndexCssClassValue = value;
-            this.raisePropertyChanged('SelectIndexCssClass');
+    /// <summary>
+    /// A CSS class for indices that aren't selected
+    /// </summary>
+    /// <getter>get_unselectIndexCssClass</getter>
+    /// <setter>set_unselectIndexCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.PagingBulletedListExtender.unselectIndexCssClass" />
+    get_unselectIndexCssClass: function() {
+        return this._unselectIndexCssClassValue;
+    },
+    set_unselectIndexCssClass: function(value) {
+        if(this._unselectIndexCssClassValue != value) {
+            this._unselectIndexCssClassValue = value;
+            this.raisePropertyChanged('unselectIndexCssClass');
         }
     },
 
     get_UnselectIndexCssClass: function() {
-        // CSS class for indices that aren't selected
-        return this._unselectIndexCssClassValue;
+        Sys.Extended.Deprecated("get_UnselectIndexCssClass()", "get_unselectIndexCssClass()");
+        return this.get_unselectIndexCssClass();
     },
-
     set_UnselectIndexCssClass: function(value) {
-        if(this._unselectIndexCssClassValue != value) {
-            this._unselectIndexCssClassValue = value;
-            this.raisePropertyChanged('UnselectIndexCssClass');
-        }
+        Sys.Extended.Deprecated("set_UnselectIndexCssClass(value)", "set_unselectIndexCssClass(value)");
+        this.set_unselectIndexCssClass(value);
     }
 }
 

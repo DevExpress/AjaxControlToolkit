@@ -7,6 +7,9 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// DropDown is an ASP.NET AJAX extender that can be attached almost to any ASP.NET control to provide a SharePoint-style drop-down menu.
+    /// </summary>
     [TargetControlType(typeof(WebControl))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(PopupExtender))]
@@ -17,6 +20,9 @@ namespace AjaxControlToolkit {
     [Designer(typeof(DropDownExtenderDesigner))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DropDownName + Constants.IconPostfix)]
     public class DropDownExtender : DynamicPopulateExtenderControlBase {
+        /// <summary>
+        /// A ID of a control that will be displayed as a dropdown.	
+        /// </summary>
         [DefaultValue("")]
         [IDReferenceProperty(typeof(Control))]
         [ExtenderControlProperty]
@@ -27,6 +33,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DropDownControlID"] = value; }
         }
 
+        /// <summary>
+        /// Highlight border color.
+        /// </summary>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]
         [ClientPropertyName("highlightBorderColor")]
@@ -35,6 +44,9 @@ namespace AjaxControlToolkit {
             set { ViewState["HighlightBorderColor"] = value; }
         }
 
+        /// <summary>
+        /// Highlight background color.
+        /// </summary>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]
         [ClientPropertyName("highlightBackgroundColor")]
@@ -43,6 +55,9 @@ namespace AjaxControlToolkit {
             set { ViewState["HighlightBackColor"] = value; }
         }
 
+        /// <summary>
+        /// An arrow's background color.
+        /// </summary>
         [DefaultValue(typeof(Color), "")]
         [ExtenderControlProperty]
         [ClientPropertyName("dropArrowBackgroundColor")]
@@ -51,6 +66,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DropArrowBackColor"] = value; }
         }
 
+        /// <summary>
+        /// An arrow's image URL.
+        /// </summary>
         [DefaultValue("")]
         [UrlProperty]
         [ExtenderControlProperty]
@@ -60,6 +78,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DropArrowImageUrl"] = value; }
         }
 
+        /// <summary>
+        /// Arrow width.
+        /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [ExtenderControlProperty]
         [ClientPropertyName("dropArrowWidth")]
@@ -68,6 +89,9 @@ namespace AjaxControlToolkit {
             set { ViewState["DropArrowWidth"] = value; }
         }
 
+        /// <summary>
+        /// The popup event
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -77,6 +101,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientPopup"] = value; }
         }
 
+        /// <summary>
+        /// The populating event
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -86,6 +113,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientPopulating"] = value; }
         }
 
+        /// <summary>
+        /// The populated event
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -95,6 +125,11 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientPopulated"] = value; }
         }
 
+        /// <summary>
+        /// OnShow animation will be played each time the dropdown is displayed.
+        /// The dropdown will be positioned correctly but hidden.
+        /// Animation can be used to display the dropdown with other visual effects.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
         [Browsable(false)]
@@ -106,6 +141,9 @@ namespace AjaxControlToolkit {
         }
         Animation _onShow;
 
+        /// <summary>
+        /// OnHide animation will be played each time the dropdown is hidden.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
         [Browsable(false)]

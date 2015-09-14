@@ -74,7 +74,7 @@ Sys.Extended.UI.PopupBehavior.prototype = {
             return;
 
         var eventArgs = new Sys.CancelEventArgs();
-        this.raiseShowing(eventArgs);
+        this.raise_showing(eventArgs);
 
         if(eventArgs.get_cancel())
             return;
@@ -92,7 +92,7 @@ Sys.Extended.UI.PopupBehavior.prototype = {
             $common.setVisible(element, false);
             this.onShow();
         } else {
-            this.raiseShown(Sys.EventArgs.Empty);
+            this.raise_shown(Sys.EventArgs.Empty);
         }
     },
 
@@ -102,7 +102,7 @@ Sys.Extended.UI.PopupBehavior.prototype = {
             return;
 
         var eventArgs = new Sys.CancelEventArgs();
-        this.raiseHiding(eventArgs);
+        this.raise_hiding(eventArgs);
         if(eventArgs.get_cancel())
             return;
 
@@ -429,7 +429,7 @@ Sys.Extended.UI.PopupBehavior.prototype = {
                 childFrame.style.display = "none";
         }
 
-        this.raiseHidden(Sys.EventArgs.Empty);
+        this.raise_hidden(Sys.EventArgs.Empty);
     },
 
     _onMove: function() {
@@ -483,7 +483,7 @@ Sys.Extended.UI.PopupBehavior.prototype = {
         this.adjustPopupPosition();
         this.addBackgroundIFrame();
 
-        this.raiseShown(Sys.EventArgs.Empty);
+        this.raise_shown(Sys.EventArgs.Empty);
     },
 
     get_onHide: function() {
@@ -598,57 +598,65 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     add_showing: function(handler) {
         this.get_events().addHandler('showing', handler);
     },
-
     remove_showing: function(handler) {
         this.get_events().removeHandler('showing', handler);
     },
-
-    raiseShowing: function(eventArgs) {
+    raise_showing: function(eventArgs) {
         var handler = this.get_events().getHandler('showing');
         if(handler)
             handler(this, eventArgs);
+    },
+    raiseShowing: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseShowing(eventArgs)", "raise_showing(eventArgs)");
+        this.raise_showing(eventArgs);
     },
 
     add_shown: function(handler) {
         this.get_events().addHandler('shown', handler);
     },
-
     remove_shown: function(handler) {
         this.get_events().removeHandler('shown', handler);
     },
-
-    raiseShown: function(eventArgs) {
+    raise_shown: function(eventArgs) {
         var handler = this.get_events().getHandler('shown');
         if(handler)
             handler(this, eventArgs);
+    },
+    raiseShown: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseShown(eventArgs)", "raise_shown(eventArgs)");
+        this.raise_shown(eventArgs);
     },
 
     add_hiding: function(handler) {
         this.get_events().addHandler('hiding', handler);
     },
-
     remove_hiding: function(handler) {
         this.get_events().removeHandler('hiding', handler);
     },
-
-    raiseHiding: function(eventArgs) {
+    raise_hiding: function(eventArgs) {
         var handler = this.get_events().getHandler('hiding');
         if(handler)
             handler(this, eventArgs);
+    },
+    raiseHiding: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHiding(eventArgs)", "raise_hiding(eventArgs)");
+        this.raise_hiding(eventArgs);
     },
 
     add_hidden: function(handler) {
         this.get_events().addHandler('hidden', handler);
     },
-
     remove_hidden: function(handler) {
         this.get_events().removeHandler('hidden', handler);
     },
-
-    raiseHidden: function(eventArgs) {
+    raise_hidden: function(eventArgs) {
         var handler = this.get_events().getHandler('hidden');
         if(handler)
             handler(this, eventArgs);
+    },
+    raiseHidden: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHidden(eventArgs)", "raise_hidden(eventArgs)");
+        this.raise_hidden(eventArgs);
     },
 
     get_unselectable: function()

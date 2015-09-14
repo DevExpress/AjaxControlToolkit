@@ -194,7 +194,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
             _elementValue = Number.NaN;
         }
 
-        this.set_Value(_elementValue);
+        this.set_value(_elementValue);
         this._setHandleOffset(this._value);
         this._initializeDragHandle();
 
@@ -444,7 +444,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
         this._isUpdatingInternal = true;
 
-        var currentValue = this.get_Value();
+        var currentValue = this.get_value();
         var increment;
 
         if(this._steps > 0) {
@@ -522,7 +522,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
             : val;
 
         this._isUpdatingInternal = true;
-        this.set_Value(val);
+        this.set_value(val);
         this._isUpdatingInternal = false;
 
         return val;
@@ -606,14 +606,28 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// A slider drag data type
+    /// </summary>
+    /// <getter>get_dragDataType</getter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.dragDataType" />
     get_dragDataType: function() {
-        return 'HTML';
+        return "HTML";
     },
 
+    /// <summary>
+    /// Returns slider data
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.SliderExtender.getDragData" />
     getDragData: function() {
         return this._handle;
     },
 
+    /// <summary>
+    /// Slider dra mode 
+    /// </summary>
+    /// <getter>dragMode</getter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.dragMode" />
     get_dragMode: function() {
         return Sys.Extended.UI.DragMode.Move;
     },
@@ -639,13 +653,18 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         this._calcValue(null, null);
 
         if(this._steps > 1)
-            this._setHandleOffset(this.get_Value(), false);
+            this._setHandleOffset(this.get_value(), false);
     },
 
     onDragEnd: function() {
         this._onHandleReleased();
     },
 
+    /// <summary>
+    /// A slider drop target element
+    /// </summary>
+    /// <getter>get_dropTargetElement</getter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.dropTargetElement" />
     get_dropTargetElement: function() {
         return document.body;
     },
@@ -662,34 +681,50 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
     onDragInTarget: Function.emptyMethod,
 
+    /// <summary>
+    /// Fires when the slider is initialized
+    /// </summary>
+    /// <event add="add_sliderInitialized" remove="remove_sliderInitialized" raise="" />
+    /// <member name="cE:AjaxControlToolkit.SliderExtender.sliderInitialized" />
     add_sliderInitialized: function(handler) {
         this.get_events().addHandler('sliderInitialized', handler);
     },
-
     remove_sliderInitialized: function(handler) {
         this.get_events().removeHandler('sliderInitialized', handler);
     },
 
+    /// <summary>
+    /// Fires when the slider value changes
+    /// </summary>
+    /// <event add="add_valueChanged" remove="remove_valueChanged" raise="" />
+    /// <member name="cE:AjaxControlToolkit.SliderExtender.valueChanged" />
     add_valueChanged: function(handler) {
         this.get_events().addHandler('valueChanged', handler);
     },
-
     remove_valueChanged: function(handler) {
         this.get_events().removeHandler('valueChanged', handler);
     },
 
+    /// <summary>
+    /// Fires when sliding starts
+    /// </summary>
+    /// <event add="add_slideStart" remove="remove_slideStart" raise="" />
+    /// <member name="cE:AjaxControlToolkit.SliderExtender.slideStart" />
     add_slideStart: function(handler) {
         this.get_events().addHandler('slideStart', handler);
     },
-
     remove_slideStart: function(handler) {
         this.get_events().removeHandler('slideStart', handler);
     },
 
+    /// <summary>
+    /// Fires when sliding ends
+    /// </summary>
+    /// <event add="add_slideEnd" remove="remove_slideEnd" raise="" />
+    /// <member name="cE:AjaxControlToolkit.SliderExtender.slideEnd" />
     add_slideEnd: function(handler) {
         this.get_events().addHandler('slideEnd', handler);
     },
-
     remove_slideEnd: function(handler) {
         this.get_events().removeHandler('slideEnd', handler);
     },
@@ -703,11 +738,16 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         }
     },
 
-    get_Value: function() {
+    /// <summary>
+    /// A slider current value
+    /// </summary>
+    /// <getter>get_value</getter>
+    /// <setter>set_value</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.value" />
+    get_value: function() {
         return this._value;
     },
-
-    set_Value: function(value) {
+    set_value: function(value) {
         var oldValue = this._value;
         var newValue = value;
 
@@ -741,92 +781,246 @@ Sys.Extended.UI.SliderBehavior.prototype = {
         }
     },
 
-    get_RailCssClass: function() {
-        return this._railCssClass;
+    get_Value: function() {
+        Sys.Extended.Deprecated("get_Value()", "get_value()");
+        return this.get_value();
+    },
+    set_Value: function(value) {
+        Sys.Extended.Deprecated("set_Value(value)", "set_value(value)");
+        this.set_value(value);
     },
 
-    set_RailCssClass: function(value) {
+    /// <summary>
+    /// A CSS class for the slider's rail
+    /// </summary>
+    /// <getter>get_railCssClass</getter>
+    /// <setter>set_railCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.railCssClass" />
+    get_railCssClass: function() {
+        return this._railCssClass;
+    },
+    set_railCssClass: function(value) {
         this._railCssClass = value;
     },
 
-    get_HandleImageUrl: function() {
-        return this._handleImageUrl;
+    get_RailCssClass: function() {
+        Sys.Extended.Deprecated("get_RailCssClass()", "get_railCssClass()");
+        return this.get_railCssClass();
+    },
+    set_RailCssClass: function(value) {
+        Sys.Extended.Deprecated("set_RailCssClass(value)", "set_railCssClass(value)");
+        this.set_railCssClass(value);
     },
 
-    set_HandleImageUrl: function(value) {
+    /// <summary>
+    /// The URL of an image to display as the slider's handle
+    /// </summary>
+    /// <getter>get_handleImageUrl</getter>
+    /// <setter>set_handleImageUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.handleImageUrl" />
+    get_handleImageUrl: function() {
+        return this._handleImageUrl;
+    },
+    set_handleImageUrl: function(value) {
         this._handleImageUrl = value;
     },
 
-    get_HandleCssClass: function() {
-        return this._handleCssClass;
+    get_HandleImageUrl: function() {
+        Sys.Extended.Deprecated("get_HandleImageUrl()", "get_handleImageUrl()");
+        return this.get_handleImageUrl();
+    },
+    set_HandleImageUrl: function(value) {
+        Sys.Extended.Deprecated("set_HandleImageUrl(value)", "set_handleImageUrl(value)");
+        this.set_handleImageUrl(value);
     },
 
-    set_HandleCssClass: function(value) {
+    /// <summary>
+    /// A CSS class for the slider's handle
+    /// </summary>
+    /// <getter>get_handleCssClass</getter>
+    /// <setter>set_handleCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.handleCssClass" />
+    get_handleCssClass: function() {
+        return this._handleCssClass;
+    },
+    set_handleCssClass: function(value) {
         this._handleCssClass = value;
     },
 
-    get_Minimum: function() {
-        return this._minimum;
+    get_HandleCssClass: function() {
+        Sys.Extended.Deprecated("get_HandleCssClass()", "get_handleCssClass()");
+        return this.get_handleCssClass();
+    },
+    set_HandleCssClass: function(value) {
+        Sys.Extended.Deprecated("set_HandleCssClass(value)", "set_handleCssClass(value)");
+        this.set_handleCssClass(value);
     },
 
-    set_Minimum: function(value) {
+    /// <summary>
+    /// Minimum value allowed
+    /// </summary>
+    /// <getter>get_minimum</getter>
+    /// <setter>set_minimum</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.minimum" />
+    get_minimum: function() {
+        return this._minimum;
+    },
+    set_minimum: function(value) {
         this._minimum = value;
     },
 
-    get_Maximum: function() {
-        return this._maximum;
+    get_Minimum: function() {
+        Sys.Extended.Deprecated("get_Minimum()", "get_minimum()");
+        return this.get_minimum();
+    },
+    set_Minimum: function(value) {
+        Sys.Extended.Deprecated("set_Minimum(value)", "set_minimum(value)");
+        this.set_minimum(value);
     },
 
-    set_Maximum: function(value) {
+    /// <summary>
+    /// Maximum value allowed
+    /// </summary>
+    /// <getter>get_maximum</getter>
+    /// <setter>set_maximum</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.maximum" />
+    get_maximum: function() {
+        return this._maximum;
+    },
+    set_maximum: function(value) {
         this._maximum = value;
     },
 
-    get_Orientation: function() {
-        return this._orientation;
+    get_Maximum: function() {
+        Sys.Extended.Deprecated("get_Maximum()", "get_maximum()");
+        return this.get_maximum();
+    },
+    set_Maximum: function(value) {
+        Sys.Extended.Deprecated("set_Maximum(value)", "set_maximum(value)");
+        this.set_maximum(value);
     },
 
-    set_Orientation: function(value) {
+    /// <summary>
+    /// Slider orientation
+    /// </summary>
+    /// <getter>get_orientation</getter>
+    /// <setter>set_orientation</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.orientation" />
+    get_orientation: function() {
+        return this._orientation;
+    },
+    set_orientation: function(value) {
         this._orientation = value;
     },
 
-    get_Steps: function() {
-        return this._steps;
+    get_Orientation: function() {
+        Sys.Extended.Deprecated("get_Orientation()", "get_orientation()");
+        return this.get_orientation();
+    },
+    set_Orientation: function(value) {
+        Sys.Extended.Deprecated("set_Orientation(value)", "set_orientation(value)");
+        this.set_orientation(value);
     },
 
-    set_Steps: function(value) {
+    /// <summary>
+    /// A number of discrete values inside the slider's range
+    /// </summary>
+    /// <getter>get_steps</getter>
+    /// <setter>set_steps</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.steps" />
+    get_steps: function() {
+        return this._steps;
+    },
+    set_steps: function(value) {
         this._steps = Math.abs(value);
         this._steps = (this._steps == 1) ? 2 : this._steps;
     },
 
-    get_Decimals: function() {
-        return this._decimals;
+    get_Steps: function() {
+        Sys.Extended.Deprecated("get_Steps()", "get_steps()");
+        return this.get_steps();
+    },
+    set_Steps: function(value) {
+        Sys.Extended.Deprecated("set_Steps(value)", "set_steps(value)");
+        this.set_steps(value);
     },
 
-    set_Decimals: function(value) {
+    /// <summary>
+    /// A number of decimal digits for the value
+    /// </summary>
+    /// <getter>get_decimals</getter>
+    /// <setter>set_decimals</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.decimals" />
+    get_decimals: function() {
+        return this._decimals;
+    },
+    set_decimals: function(value) {
         this._decimals = Math.abs(value);
     },
 
-    get_EnableHandleAnimation: function() {
-        return this._enableHandleAnimation;
+    get_Decimals: function() {
+        Sys.Extended.Deprecated("get_Decimals()", "get_decimals()");
+        return this.get_decimals();
+    },
+    set_Decimals: function(value) {
+        Sys.Extended.Deprecated("set_Decimals(value)", "set_decimals(value)");
+        this.set_decimals(value);
     },
 
-    set_EnableHandleAnimation: function(value) {
+    /// <summary>
+    /// Enable/disable the handle animation
+    /// </summary>
+    /// <getter>get_enableHandleAnimation</getter>
+    /// <setter>set_enableHandleAnimation</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.enableHandleAnimation" />
+    get_enableHandleAnimation: function() {
+        return this._enableHandleAnimation;
+    },
+    set_enableHandleAnimation: function(value) {
         this._enableHandleAnimation = value;
     },
 
-    get_HandleAnimationDuration: function() {
-        return this._handleAnimationDuration;
+    get_EnableHandleAnimation: function() {
+        Sys.Extended.Deprecated("get_EnableHandleAnimation()", "get_enableHandleAnimation()");
+        return this.get_enableHandleAnimation();
+    },
+    set_EnableHandleAnimation: function(value) {
+        Sys.Extended.Deprecated("set_EnableHandleAnimation(value)", "set_enableHandleAnimation(value)");
+        this.set_enableHandleAnimation(value);
     },
 
-    set_HandleAnimationDuration: function(value) {
+    /// <summary>
+    /// Duration of the handle animation
+    /// </summary>
+    /// <getter>get_handleAnimationDuration</getter>
+    /// <setter>set_handleAnimationDuration</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.handleAnimationDuration" />
+    get_handleAnimationDuration: function() {
+        return this._handleAnimationDuration;
+    },
+    set_handleAnimationDuration: function(value) {
         this._handleAnimationDuration = value;
     },
 
-    get_BoundControlID: function() {
-        return this._boundControlID;
+    get_HandleAnimationDuration: function() {
+        Sys.Extended.Deprecated("get_HandleAnimationDuration()", "get_handleAnimationDuration()");
+        return this.get_handleAnimationDuration();
+    },
+    set_HandleAnimationDuration: function(value) {
+        Sys.Extended.Deprecated("set_HandleAnimationDuration(value)", "set_handleAnimationDuration(value)");
+        this.set_handleAnimationDuration(value);
     },
 
-    set_BoundControlID: function(value) {
+    /// <summary>
+    /// ID of the TextBox or Label that dynamically displays the slider's value
+    /// </summary>
+    /// <getter>get_boundControlID</getter>
+    /// <setter>set_boundControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.boundControlID" />
+    get_boundControlID: function() {
+        return this._boundControlID;
+    },
+    set_boundControlID: function(value) {
         this._boundControlID = value;
         if(this._boundControlID)
             this._boundControl = $get(this._boundControlID);
@@ -834,55 +1028,138 @@ Sys.Extended.UI.SliderBehavior.prototype = {
             this._boundControl = null;
     },
 
-    get_Length: function() {
-        return this._length;
+    get_BoundControlID: function() {
+        Sys.Extended.Deprecated("get_BoundControlID()", "get_boundControlID()");
+        return this.get_boundControlID();
+    },
+    set_BoundControlID: function(value) {
+        Sys.Extended.Deprecated("set_BoundControlID(value)", "set_boundControlID(value)");
+        this.set_boundControlID(value);
     },
 
-    set_Length: function(value) {
+    /// <summary>
+    /// Width/height of a horizontal/vertical slider when the default layout is used
+    /// </summary>
+    /// <getter>get_length</getter>
+    /// <setter>set_length</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.length" />
+    get_length: function() {
+        return this._length;
+    },
+    set_length: function(value) {
         this._length = value + 'px';
     },
 
-    get_SliderInitialized: function() {
+    get_Length: function() {
+        Sys.Extended.Deprecated("get_Length()", "get_length()");
+        return this.get_length();
+    },
+    set_Length: function(value) {
+        Sys.Extended.Deprecated("set_Length(value)", "set_length(value)");
+        this.set_length(value);
+    },
+
+    /// <summary>
+    /// Determines whether the slider is initialized
+    /// </summary>
+    /// <returns type="Boolean">Boolean value indicates whether slider is initialized</returns>
+    /// <member name="cM:AjaxControlToolkit.SliderExtender.isSliderInitialized" />
+    isSliderInitialized: function() {
         return this._isInitializedInternal;
     },
 
-    get_RaiseChangeOnlyOnMouseUp: function() {
-        return this._raiseChangeOnlyOnMouseUp;
+    get_SliderInitialized: function() {
+        Sys.Extended.Deprecated("get_SliderInitialized()", "isSliderInitialized()");
+        return this.isSliderInitialized();
     },
 
-    set_RaiseChangeOnlyOnMouseUp: function(value) {
+    /// <summary>
+    /// If true, fires the change event on the extended TextBox only when the left mouse button is released
+    /// mouse button is released
+    /// </summary>
+    /// <getter>get_raiseChangeOnlyOnMouseUp</getter>
+    /// <setter>set_raiseChangeOnlyOnMouseUp</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.raiseChangeOnlyOnMouseUp" />
+    get_raiseChangeOnlyOnMouseUp: function() {
+        return this._raiseChangeOnlyOnMouseUp;
+    },
+    set_raiseChangeOnlyOnMouseUp: function(value) {
         this._raiseChangeOnlyOnMouseUp = value;
     },
 
-    get_TooltipText: function() {
-        return this._tooltipText;
+    get_RaiseChangeOnlyOnMouseUp: function() {
+        Sys.Extended.Deprecated("get_RaiseChangeOnlyOnMouseUp()", "get_raiseChangeOnlyOnMouseUp()");
+        return this.get_raiseChangeOnlyOnMouseUp();
+    },
+    set_RaiseChangeOnlyOnMouseUp: function(value) {
+        Sys.Extended.Deprecated("set_RaiseChangeOnlyOnMouseUp(value)", "set_raiseChangeOnlyOnMouseUp(value)");
+        this.set_raiseChangeOnlyOnMouseUp(value);
     },
 
-    set_TooltipText: function(value) {
+    /// <summary>
+    /// Text to display in a tooltip when the handle is hovered
+    /// </summary>
+    /// <remarks>
+    /// The {0} placeholder in the text is replaced with the current value of the slider
+    /// </remarks>
+    /// <getter>get_tooltipText</getter>
+    /// <setter>set_tooltipText</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.tooltipText" />
+    get_tooltipText: function() {
+        return this._tooltipText;
+    },
+    set_tooltipText: function(value) {
         this._tooltipText = value;
     },
 
+    get_TooltipText: function() {
+        Sys.Extended.Deprecated("get_TooltipText()", "get_tooltipText()");
+        return this.get_tooltipText();
+    },
+    set_TooltipText: function(value) {
+        Sys.Extended.Deprecated("set_TooltipText(value)", "set_tooltipText(value)");
+        this.set_tooltipText(value);
+    },
+
+    /// <summary>
+    /// Determines if the slider will respond to arrow keys when it has focus
+    /// </summary>
+    /// <getter>get_enableKeyboard</getter>
+    /// <setter>set_enableKeyboard</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.enableKeyboard" />
     get_enableKeyboard: function() {
-        // Determines if the slider will respond to arrow keys when it has focus.
         return this._enableKeyboard;
     },
     set_enableKeyboard: function(value) {
-        // Determines if the slider will respond to arrow keys when it has focus.
         if(value !== this._enableKeyboard) {
             this._enableKeyboard = value;
             this.raisePropertyChanged('enableKeyboard');
         }
     },
 
-    getClientState: function() {
+    /// <summary>
+    /// A client state
+    /// </summary>
+    /// <getter>get_clientState</getter>
+    /// <setter>set_clientState</setter>
+    /// <member name="cP:AjaxControlToolkit.SliderExtender.clientState" />
+    get_clientState: function() {
         var value = Sys.Extended.UI.SliderBehavior.callBaseMethod(this, 'get_ClientState');
         if(value == '')
             value = null;
         return value;
     },
-
-    setClientState: function(value) {
+    set_clientState: function(value) {
         return Sys.Extended.UI.SliderBehavior.callBaseMethod(this, 'set_ClientState', [value]);
+    },
+
+    getClientState: function() {
+        Sys.Extended.Deprecated("getClientState()", "get_clientState()");
+        return this.get_clientState();
+    },
+    setClientState: function(value) {
+        Sys.Extended.Deprecated("setClientState(value)", "set_clientState(value)");
+        return this.set_clientState(value);
     }
 }
 

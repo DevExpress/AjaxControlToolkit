@@ -150,7 +150,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
             return;
 
         var eventArgs = new Sys.CancelEventArgs();
-        this.raiseShowing(eventArgs);
+        this.raise_showing(eventArgs);
 
         if(eventArgs.get_cancel())
             return;
@@ -164,12 +164,12 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
 
         this._popupBehavior.set_x(this._getLeftOffset());
         this._popupBehavior.set_y(this._getTopOffset());
-        this.raiseShown(Sys.EventArgs.Empty);
+        this.raise_shown(Sys.EventArgs.Empty);
     },
 
     _onUnhover: function() {
         var eventArgs = new Sys.CancelEventArgs();
-        this.raiseHiding(eventArgs);
+        this.raise_hiding(eventArgs);
 
         if(eventArgs.get_cancel())
             return;
@@ -177,7 +177,7 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
         this._inHover = false;
         this._resetCssClass();
         this._popupBehavior.hide();
-        this.raiseHidden(Sys.EventArgs.Empty);
+        this.raise_hidden(Sys.EventArgs.Empty);
     },
 
     _onmouseover: function() {
@@ -205,11 +205,16 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
             e.className = this._oldClass;
     },
 
+    /// <summary>
+    ///  A JSON definition of a generic OnShow animation. 
+    /// </summary>
+    /// <getter>get_onShow</getter>
+    /// <setter>set_onShow</setter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.onShow" />
     get_onShow: function() {
         // Generic OnShow Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onShow() : this._onShowJson;
     },
-
     set_onShow: function(value) {
         if(this._popupBehavior)
             this._popupBehavior.set_onShow(value)
@@ -219,21 +224,35 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
         this.raisePropertyChanged('onShow');
     },
 
+    /// <summary>
+    ///  The Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnShow animation behavior. 
+    /// </summary>
+    /// <getter>get_onShowBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.onShowBehavior" />
     get_onShowBehavior: function() {
         // Generic OnShow Animation's behavior
         return this._popupBehavior ? this._popupBehavior.get_onShowBehavior() : null;
     },
 
+    /// <summary>
+    /// Plays OnHide animation. 
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.HoverMenuExtender.onShow" />
     onShow: function() {
         if(this._popupBehavior)
             this._popupBehavior.onShow();
     },
 
+    /// <summary>
+    ///  A JSON definition of a genericOnHide animation. 
+    /// </summary>
+    /// <getter>get_onHide</getter>
+    /// <setter>set_onHide</setter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.onHide" />
     get_onHide: function() {
         // Generic OnHide Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onHide() : this._onHideJson;
     },
-
     set_onHide: function(value) {
         if(this._popupBehavior)
             this._popupBehavior.set_onHide(value)
@@ -243,21 +262,35 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
         this.raisePropertyChanged('onHide');
     },
 
+    /// <summary>
+    /// The Sys.Extended.UI.Animation.GenericAnimationBehavior object containing the generic OnHide animation behavior. 
+    /// </summary>
+    /// <getter>get_onHideBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.onHideBehavior" />
     get_onHideBehavior: function() {
         // Generic OnHide Animation's behavior
         return this._popupBehavior ? this._popupBehavior.get_onHideBehavior() : null;
     },
 
+    /// <summary>
+    /// Plays OnHide animation. 
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.HoverMenuExtender.onHide" />
     onHide: function() {
         if(this._popupBehavior)
             this._popupBehavior.onHide();
     },
 
+    /// <summary>
+    /// Sys.UI.DomElement that acts as a popup and is displayed on hovering. 
+    /// </summary>
+    /// <getter>get_popupElement</getter>
+    /// <setter>set_popupElement</setter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.popupElement" />
     get_popupElement: function() {
         // Popup that is displayed when hovering
         return this._popupElement;
     },
-
     set_popupElement: function(value) {
         if(this._popupElement != value) {
             this._popupElement = value;
@@ -269,132 +302,247 @@ Sys.Extended.UI.HoverMenuBehavior.prototype = {
         }
     },
 
-    get_HoverCssClass: function() {
+    /// <summary>
+    /// A CSS class used on hovering.
+    /// </summary>
+    /// <getter>get_hoverCssClass</getter>
+    /// <setter>set_hoverCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.hoverCssClass" />
+    get_hoverCssClass: function() {
         return this._hoverCssClass;
     },
-
-    set_HoverCssClass: function(value) {
+    set_hoverCssClass: function(value) {
         if(this._hoverCssClass != value) {
             this._hoverCssClass = value;
-            this.raisePropertyChanged('HoverCssClass');
+            this.raisePropertyChanged('hoverCssClass');
+        }
+    },
+
+    get_HoverCssClass: function() {
+        Sys.Extended.Deprecated("get_HoverCssClass", "get_hoverCssClass");
+        return this.get_hoverCssClass();
+    },
+    set_HoverCssClass: function(value) {
+        Sys.Extended.Deprecated("set_HoverCssClass", "set_hoverCssClass");
+        this.set_hoverCssClass(value);
+    },
+
+    /// <summary>
+    /// The number of pixels to offset the popup from its default horizontal position.
+    /// </summary>
+    /// <getter>get_offsetX</getter>
+    /// <setter>set_offsetX</setter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.offsetX" />
+    get_offsetX: function() {
+        return this._offsetX;
+    },
+    set_offsetX: function(value) {
+        if(this._offsetX != value) {
+            this._offsetX = value;
+            this.raisePropertyChanged('offsetX');
         }
     },
 
     get_OffsetX: function() {
-        // The number of pixels to offset the popup from it's default position horizontally
-        return this._offsetX;
+        Sys.Extended.Deprecated("get_OffsetX()", "get_offsetX()");
+        return this.get_offsetX();
+    },
+    set_OffsetX: function(value) {
+        Sys.Extended.Deprecated("set_OffsetX(value)", "set_offsetX(value)");
+        this.set_offsetX(value);
     },
 
-    set_OffsetX: function(value) {
-        if(this._offsetX != value) {
-            this._offsetX = value;
-            this.raisePropertyChanged('OffsetX');
+    /// <summary>
+    /// The number of pixels to offset the popup from its default vertical position. 
+    /// </summary>
+    /// <getter>get_offsetY</getter>
+    /// <setter>set_offsetY</setter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.offsetY" />
+    get_offsetY: function() {
+        return this._offsetY;
+    },
+    set_offsetY: function(value) {
+        if(this._offsetY != value) {
+            this._offsetY = value;
+            this.raisePropertyChanged('offsetY');
         }
     },
 
     get_OffsetY: function() {
-        // The number of pixels to offset the popup from it's default position vertically
-        return this._offsetY;
+        Sys.Extended.Deprecated("get_OffsetY()", "get_offsetY()");
+        return this.get_offsetY();
+    },
+    set_OffsetY: function(value) {
+        Sys.Extended.Deprecated("set_OffsetY(value)", "set_offsetY(value)");
+        this.set_offsetY(value);
     },
 
-    set_OffsetY: function(value) {
-        if(this._offsetY != value) {
-            this._offsetY = value;
-            this.raisePropertyChanged('OffsetY');
+    /// <summary>
+    /// The Sys.Extended.UI.HoverMenuPopupPosition object that contains the location where the popup should be positioned relative to the target control. 
+    /// </summary>
+    /// <remarks>
+    ///  Can be Left, Right, Top, Bottom, Center. Center is default
+    /// </remarks>
+    /// <getter>get_popupPosition</getter>
+    /// <setter>set_popupPosition</setter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.popupPosition" />
+    get_popupPosition: function() {
+        return this._popupPosition;
+    },
+    set_popupPosition: function(value) {
+        if(this._popupPosition != value) {
+            this._popupPosition = value;
+            this.raisePropertyChanged('popupPosition');
         }
     },
 
     get_PopupPosition: function() {
-        // Where the popup should be positioned relative to the target control.
-        // Can be Left (Default), Right, Top, Bottom, Center.
-        return this._popupPosition;
+        Sys.Extended.Deprecated("get_PopupPosition()", "get_popupPosition()");
+        return this.get_popupPosition();
+    },
+    set_PopupPosition: function(value) {
+        Sys.Extended.Deprecated("set_PopupPosition(value)", "set_popupPosition(value)");
+        this.set_popupPosition(value);
     },
 
-    set_PopupPosition: function(value) {
-        if(this._popupPosition != value) {
-            this._popupPosition = value;
-            this.raisePropertyChanged('PopupPosition');
+    /// <summary>
+    /// A number representing a time delay from the moment the mouse enters the target to the time when the popup is shown (displayed in milliseconds). 
+    /// </summary>
+    /// <remarks>
+    /// Default is 100.
+    /// </remarks>
+    /// <getter>get_popDelay</getter>
+    /// <setter>set_popDelay</setter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.popDelay" />
+    get_popDelay: function() {
+        return this._popDelay;
+    },
+    set_popDelay: function(value) {
+        if(this._popDelay != value) {
+            this._popDelay = value;
+            this.raisePropertyChanged('popDelay');
         }
     },
 
     get_PopDelay: function() {
-        // The time delay from when the mouse enters the target to when the popup is shown, in milliseconds. Default is 100.
-        return this._popDelay;
+        Sys.Extended.Deprecated("get_PopDelay", "get_popDelay");
+        return this.get_popDelay();
+    },
+    set_PopDelay: function(value) {
+        Sys.Extended.Deprecated("set_PopDelay", "set_popDelay");
+        this.set_popDelay(value);
     },
 
-    set_PopDelay: function(value) {
-        if(this._popDelay != value) {
-            this._popDelay = value;
-            this.raisePropertyChanged('PopDelay');
+    /// <summary>
+    /// A number representing a time delay after the mouse enters the target and before the popup is shown (in milliseconds). 
+    /// </summary>
+    /// <remarks>
+    /// Default is 0.
+    /// </remarks>
+    /// <getter>get_hoverDelay</getter>
+    /// <setter>set_hoverDelay</setter>
+    /// <member name="cP:AjaxControlToolkit.HoverMenuExtender.hoverDelay" />
+    get_hoverDelay: function() {
+        return this._hoverDelay;
+    },
+    set_hoverDelay: function(value) {
+        if(this._hoverDelay != value) {
+            this._hoverDelay = value;
+            this.raisePropertyChanged('hoverDelay');
         }
     },
 
     get_HoverDelay: function() {
-        // The time delay after the mouse enters the target and before the popup is shown, in milliseconds. Default is 0.
-        return this._hoverDelay;
+        Sys.Extended.Deprecated("get_HoverDelay", "get_hoverDelay");
+        return this.get_hoverDelay();
     },
-
     set_HoverDelay: function(value) {
-        if(this._hoverDelay != value) {
-            this._hoverDelay = value;
-            this.raisePropertyChanged('HoverDelay');
-        }
+        Sys.Extended.Deprecated("set_HoverDelay", "set_hoverDelay");
+        this.set_hoverDelay(value);
     },
 
+    /// <summary>
+    /// Fires when the hover menu is being shown.
+    /// </summary>
+    /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
+    /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.showing" />
     add_showing: function(handler) {
         this.get_events().addHandler('showing', handler);
     },
-
     remove_showing: function(handler) {
         this.get_events().removeHandler('showing', handler);
     },
-
-    raiseShowing: function(eventArgs) {
+    raise_showing: function(eventArgs) {
         var handler = this.get_events().getHandler('showing');
         if(handler)
             handler(this, eventArgs);
     },
+    raiseShowing: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseShowing(eventArgs)", "raise_showing(eventArgs)");
+        this.raise_showing(eventArgs);
+    },
 
+    /// <summary>
+    /// Fires after the hover menu is shown.
+    /// </summary>
+    /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
+    /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.shown" />
     add_shown: function(handler) {
         this.get_events().addHandler('shown', handler);
     },
-
     remove_shown: function(handler) {
         this.get_events().removeHandler('shown', handler);
     },
-
-    raiseShown: function(eventArgs) {
+    raise_shown: function(eventArgs) {
         var handler = this.get_events().getHandler('shown');
         if(handler)
             handler(this, eventArgs);
     },
+    raiseShown: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseShown(eventArgs)", "raise_shown(eventArgs)");
+        this.raise_shown(eventArgs);
+    },
 
+    /// <summary>
+    /// Fires when the hover menu is being hidden.
+    /// </summary>
+    /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
+    /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.hiding" />
     add_hiding: function(handler) {
         this.get_events().addHandler('hiding', handler);
     },
-
     remove_hiding: function(handler) {
         this.get_events().removeHandler('hiding', handler);
     },
-
-    raiseHiding: function(eventArgs) {
+    raise_hiding: function(eventArgs) {
         var handler = this.get_events().getHandler('hiding');
         if(handler)
             handler(this, eventArgs);
     },
+    raiseHiding: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHiding(eventArgs)", "raise_hiding(eventArgs)");
+        this.raise_hiding(eventArgs);
+    },
 
+    /// <summary>
+    /// Fires after the hover menu is hidden. 
+    /// </summary>
+    /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
+    /// <member name="cE:AjaxControlToolkit.HoverMenuExtender.hidden" />
     add_hidden: function(handler) {
         this.get_events().addHandler('hidden', handler);
     },
-
     remove_hidden: function(handler) {
         this.get_events().removeHandler('hidden', handler);
     },
-
-    raiseHidden: function(eventArgs) {
+    raise_hidden: function(eventArgs) {
         var handler = this.get_events().getHandler('hidden');
         if(handler)
             handler(this, eventArgs);
+    },
+    raiseHidden: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHidden(eventArgs)", "raise_hidden(eventArgs)");
+        this.raise_hidden(eventArgs);
     }
 }
 

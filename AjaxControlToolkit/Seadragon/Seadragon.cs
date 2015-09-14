@@ -8,6 +8,10 @@ using System.Drawing;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The SeaDragon control can be used for viewing images in an interactive manner.
+    /// Use the mouse to pan and zoom around an image.
+    /// </summary>
     [ClientScriptResource("Sys.Extended.UI.Seadragon.Viewer", Constants.SeadragonName)]
     [ToolboxData("<{0}:Seadragon runat=server></{0}:Seadragon>")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.SeadragonName + Constants.IconPostfix)]
@@ -40,6 +44,9 @@ namespace AjaxControlToolkit {
             : base(HtmlTextWriterTag.Unknown) {
         }
 
+        /// <summary>
+        /// The amount of time in seconds during which animations should last. Default is 1.5
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(1.5f)]
         [ClientPropertyName("animationTime")]
@@ -48,6 +55,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<float>("AnimationTime", value); }
         }
 
+        /// <summary>
+        /// Determines whether or not navigation buttons should be shown
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(true)]
         [ClientPropertyName("showNavigationControl")]
@@ -56,6 +66,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<bool>("ShowNavigationControl", value); }
         }
 
+        /// <summary>
+        /// The amount of time in seconds when new tiles' blend changes from
+        /// transparent to opaque. Default is 0.5
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0.5f)]
         [ClientPropertyName("blendTime")]
@@ -64,6 +78,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<float>("BlendTime", value); }
         }
 
+        /// <summary>
+        /// Determines whether or not tiles should always blend in and out,
+        /// not just when they're first loaded. Default is false
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
         [ClientPropertyName("alwaysBlend")]
@@ -72,6 +90,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<bool>("AlwaysBlend", value); }
         }
 
+        /// <summary>
+        /// Determines whether or not controls should be automatically hidden when the user
+        /// mover the mouse away from the viewer and the image has stopped animating. Default is true
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(true)]
         [ClientPropertyName("autoHideControls")]
@@ -80,6 +102,11 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<bool>("AutoHideControls", value); }
         }
 
+        /// <summary>
+        /// Determines whether or not the most appropriate tiles should always be rendered before
+        /// any low-resolution tiles are rendered. The sharpening effect is lost, and instead
+        /// a visible tiling effect occurs. Default is false
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(true)]
         [ClientPropertyName("immediateRender")]
@@ -88,6 +115,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<bool>("ImmediateRender", value); }
         }
 
+        /// <summary>
+        /// Determines whether or not the control uses horizontal wrapping
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
         [ClientPropertyName("wrapHorizontal")]
@@ -96,7 +126,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<bool>("WrapHorizontal", value); }
         }
 
-
+        /// <summary>
+        /// Determines whether or not the control uses vertical wrapping
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
         [ClientPropertyName("wrapVertical")]
@@ -105,6 +137,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<bool>("WrapVertical", value); }
         }
 
+        /// <summary>
+        /// Minimum size (in screen pixels) of any dimension that can be obtained by zooming out.
+        /// Default is 16
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0.8f)]
         [ClientPropertyName("minZoomDimension")]
@@ -113,7 +149,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<float>("MinZoomDimension", value); }
         }
 
-
+        /// <summary>
+        /// Maximum pixel ratio (screen pixel to content pixel) that can be obtained by zooming in.
+        /// Default is 4
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(2f)]
         [ClientPropertyName("maxZoomPixelRatio")]
@@ -122,6 +161,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<float>("MaxZoomPixelRatio", value); }
         }
 
+        /// <summary>
+        /// The minimum portion of the viewport that must show visible content in both dimensions.
+        /// Default is 0.1
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0.5f)]
         [ClientPropertyName("visibilityRatio")]
@@ -130,6 +173,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<float>("VisibilityRatio", value); }
         }
 
+        /// <summary>
+        /// Determines how sharply springs used for animation move. Default is 5.0
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(5.0f)]
         [ClientPropertyName("springStiffness")]
@@ -138,6 +184,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<float>("SpringStiffness", value); }
         }
 
+        /// <summary>
+        /// The maximum number of concurrent image downloads that can be performed by
+        /// each viewer. Default is 2
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(2)]
         [ClientPropertyName("imageLoaderLimit")]
@@ -146,6 +196,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<int>("SpringStiffness", value); }
         }
 
+        /// <summary>
+        /// The maximum number of milliseconds that can pass between a mousedown and mouseup
+        /// for an action to be considered as a quick click. Default is 200
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(200)]
         [ClientPropertyName("clickTimeThreshold")]
@@ -154,6 +208,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<int>("ClickTimeThreshold", value); }
         }
 
+        /// <summary>
+        /// The maximum number of pixels the mouse can move between a mousedown and mouseup
+        /// for an action to be considered as a quick click. Default is 5
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(2)]
         [ClientPropertyName("clickDistThreshold")]
@@ -162,6 +220,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<int>("clickDistThreshold", value); }
         }
 
+        /// <summary>
+        /// The factor by which images should zoom in on being clicked. Default is 2
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(2.0f)]
         [ClientPropertyName("zoomPerClick")]
@@ -170,6 +231,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<float>("ZoomPerClick", value); }
         }
 
+        /// <summary>
+        /// The factor by which images should zoom in each second the zoom buttons are held down.
+        /// Default is 2
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(2.0f)]
         [ClientPropertyName("zoomPerSecond")]
@@ -178,6 +243,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<float>("ZoomPerSecond", value); }
         }
 
+        /// <summary>
+        /// Maximum number of cached images
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(100)]
         [ClientPropertyName("maxImageCacheCount")]
@@ -186,6 +254,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<int>("maxImageCacheCount", value); }
         }
 
+        /// <summary>
+        /// Minimum pixel ratio
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0.5f)]
         [ClientPropertyName("minPixelRatio")]
@@ -194,14 +265,20 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<float>("MinPixelRatio", value); }
         }
 
+        /// <summary>
+        /// The name of a JavaScript function executed on the client side after an image is opened
+        /// </summary>
         [ExtenderControlEvent]
-        [ClientPropertyName("0pen")]
+        [ClientPropertyName("open")]
         [DefaultValue("")]
         public string OnClientOpen {
             get { return GetPropertyValue<string>("OnClientOpen", String.Empty); }
             set { SetPropertyValue<string>("OnClientOpen", value); }
         }
 
+        /// <summary>
+        /// The name of a JavaScript function executed on the client side when the error event occurs
+        /// </summary>
         [ExtenderControlEvent]
         [ClientPropertyName("error")]
         [DefaultValue("")]
@@ -210,6 +287,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<string>("OnClientError", value); }
         }
 
+        /// <summary>
+        /// The name of a JavaScript function executed on the client side when the ignore event occurs
+        /// </summary>
         [ExtenderControlEvent]
         [DefaultValue("")]
         [ClientPropertyName("ignore")]
@@ -218,6 +298,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<string>("OnClientIgnore", value); }
         }
 
+        /// <summary>
+        /// The name of a JavaScript function executed on the client side when an image is resized
+        /// </summary>
         [ExtenderControlEvent]
         [DefaultValue("")]
         [ClientPropertyName("resize")]
@@ -226,6 +309,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<string>("OnClientResize", value); }
         }
 
+        /// <summary>
+        /// The name of a JavaScript function executed on the client side when animation starts
+        /// </summary>
         [ExtenderControlEvent]
         [DefaultValue("")]
         [ClientPropertyName("animationstart")]
@@ -234,6 +320,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<string>("OnClientAnimationStart", value); }
         }
 
+        /// <summary>
+        /// The name of a JavaScript function executed on the client side when animation ends
+        /// </summary>
         [ExtenderControlEvent]
         [DefaultValue("")]
         [ClientPropertyName("animationend")]
@@ -242,6 +331,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<string>("OnClientAnimationEnd", value); }
         }
 
+        /// <summary>
+        /// The name of a JavaScript function executed on animation on the client side
+        /// </summary>
         [ExtenderControlEvent]
         [DefaultValue("")]
         [ClientPropertyName("animation")]
@@ -250,6 +342,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<string>("OnClientAnimation", value); }
         }
 
+        /// <summary>
+        /// Determines whether or not mouse navigation is enabled
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(true)]
         [ClientPropertyName("mouseNavEnabled")]
@@ -257,12 +352,21 @@ namespace AjaxControlToolkit {
             get { return GetPropertyValue<bool>("MouseNavEnabled", true); }
             set { SetPropertyValue<bool>("MouseNavEnabled", value); }
         }
+
+        /// <summary>
+        /// A path for all UI images. It can be absolute or relative. If it is
+        /// relative, it must be relative to an HTML page. This value change will affect
+        /// only new viewers. Default is img
+        /// </summary>
         [EditorAttribute(typeof(SeadragonUrlEditor), typeof(UITypeEditor))]
         public string SourceUrl {
             get { return GetPropertyValue<string>("SourceUrl", String.Empty); }
             set { SetPropertyValue<string>("SourceUrl", value); }
         }
 
+        /// <summary>
+        /// A collection of SeaDragon controls
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [NotifyParentProperty(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
@@ -275,6 +379,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// A collection of controls
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override ControlCollection Controls {
             get { return base.Controls; }
@@ -284,6 +391,9 @@ namespace AjaxControlToolkit {
             return base.CreateControlCollection();
         }
 
+        /// <summary>
+        /// A collection of overlays
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [NotifyParentProperty(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]

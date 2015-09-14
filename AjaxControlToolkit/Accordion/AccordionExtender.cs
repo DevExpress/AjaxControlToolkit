@@ -27,6 +27,7 @@ namespace AjaxControlToolkit {
         // Height.  If it is set to Fill then it will always be equal to its height.
         [ExtenderControlProperty]
         [DefaultValue(AutoSize.None)]
+        [ClientPropertyName("autoSize")]
         public AutoSize AutoSize {
             get { return GetPropertyValue<AutoSize>("AutoSize", AutoSize.None); }
             set { SetPropertyValue<AutoSize>("AutoSize", value); }
@@ -35,6 +36,7 @@ namespace AjaxControlToolkit {
         // Length of transition between accordion panes in milliseconds
         [ExtenderControlProperty]
         [DefaultValue(250)]
+        [ClientPropertyName("transitionDuration")]
         public int TransitionDuration {
             get { return GetPropertyValue<int>("TransitionDuration", 250); }
             set { SetPropertyValue("TransitionDuration", value); }
@@ -44,6 +46,7 @@ namespace AjaxControlToolkit {
         // Accordion Panes
         [ExtenderControlProperty]
         [DefaultValue(false)]
+        [ClientPropertyName("fadeTransitions")]
         public bool FadeTransitions {
             get { return GetPropertyValue<bool>("FadeTransitions", false); }
             set { SetPropertyValue("FadeTransitions", value); }
@@ -54,14 +57,15 @@ namespace AjaxControlToolkit {
         // of Accordion Panes, etc.
         [ExtenderControlProperty]
         [DefaultValue(30)]
+        [ClientPropertyName("framesPerSecond")]
         public int FramesPerSecond {
             get { return GetPropertyValue<int>("FramesPerSecond", 30); }
             set { SetPropertyValue<int>("FramesPerSecond", value); }
         }
 
-        // Index of the AccordionPane that is currently selected for display
         [ExtenderControlProperty]
         [DefaultValue(0)]
+        [ClientPropertyName("selectedIndex")]
         public int SelectedIndex {
             get {
                 int index;
@@ -70,8 +74,6 @@ namespace AjaxControlToolkit {
             set { ClientState = value.ToString(CultureInfo.InvariantCulture); }
         }
 
-        // Whether or not clicking the header will close the currently opened pane (which leaves
-        // all the Accordion's panes closed)
         [ExtenderControlProperty]
         [DefaultValue(true)]
         [ClientPropertyName("requireOpenedPane")]
@@ -80,8 +82,6 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("RequireOpenedPane", value); }
         }
 
-        // Whether or not we suppress the client-side click handlers of any elements (including server
-        // controls like Button or HTML elements like anchor) in the header sections of the Accordion.
         [ExtenderControlProperty]
         [DefaultValue(false)]
         [ClientPropertyName("suppressHeaderPostbacks")]
@@ -92,6 +92,7 @@ namespace AjaxControlToolkit {
         
         [ExtenderControlProperty]
         [DefaultValue("")]
+        [ClientPropertyName("headerCssClass")]
         public string HeaderCssClass {
             get { return GetPropertyValue<String>("HeaderCssClass", String.Empty); }
             set { SetPropertyValue<String>("HeaderCssClass", value); }
@@ -99,6 +100,7 @@ namespace AjaxControlToolkit {
 
         [ExtenderControlProperty]
         [DefaultValue("")]
+        [ClientPropertyName("headerSelectedCssClass")]
         public string HeaderSelectedCssClass {
             get { return GetPropertyValue<String>("HeaderSelectedCssClass", String.Empty); }
             set { SetPropertyValue<String>("HeaderSelectedCssClass", value); }

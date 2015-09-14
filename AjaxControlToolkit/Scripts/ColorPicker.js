@@ -114,6 +114,15 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
         Sys.Extended.UI.ColorPickerBehavior.callBaseMethod(this, 'dispose');
     },
 
+    /// <summary>
+    /// The Sys.UI.DomElement object that represents a button to use to show the color picker.
+    /// </summary>
+    /// <remarks>
+    /// This property is optional.
+    /// </remarks>
+    /// <getter>get_button</getter>
+    /// <setter>set_button</setter>
+    /// <member name="cP:AjaxControlToolkit.ColorPickerExtender.button" />
     get_button: function() {
         // The button to use to show the color picker (optional)
         return this._button;
@@ -131,6 +140,15 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// The Sys.UI.DomElement object that represents an element to use to preview the color that is currently selected or over which a user is holding the mouse pointer.
+    /// </summary>
+    /// <remarks>
+    /// This property is optional.
+    /// </remarks>
+    /// <getter>get_sample</getter>
+    /// <setter>set_sample</setter>
+    /// <member name="cP:AjaxControlToolkit.ColorPickerExtender.sample" />
     get_sample: function() {
         // The element is to sample the color currently being hovered or selected (optional)
         return this._sample;
@@ -142,6 +160,12 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// A string that contains a color value that is represented by the text box.
+    /// </summary>
+    /// <getter>get_selectedColor</getter>
+    /// <setter>set_selectedColor</setter>
+    /// <member name="cP:AjaxControlToolkit.ColorPickerExtender.selectedColor" />
     get_selectedColor: function() {
         if (this._selectedColor === null) {
             var value = this._textbox.get_Value();
@@ -164,9 +188,14 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// A Boolean value that specifies whether or not ColorPicker behavior is available for the current element.
+    /// </summary>
+    /// <getter>get_enabled</getter>
+    /// <setter>set_enabled</setter>
+    /// <member name="cP:AjaxControlToolkit.ColorPickerExtender.enabled" />
     get_enabled: function() {
         // Whether this behavior is available for the current element
-
         return this._enabled;
     },
     set_enabled: function(value) {
@@ -176,9 +205,15 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// The Sys.Extended.UI.PositionMode object that represents where the popup should be positioned relative to the target control.
+    /// The default is BottomLeft.
+    /// </summary>
+    /// <getter>get_popupPosition</getter>
+    /// <setter>set_popupPosition</setter>
+    /// <member name="cP:AjaxControlToolkit.ColorPickerExtender.popupPosition" />
     get_popupPosition: function() {
         // Where the popup should be positioned relative to the target control.
-
         return this._popupPosition;
     },
     set_popupPosition: function(value) {
@@ -188,70 +223,120 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Fires when color selection is changed.
+    /// </summary>
+    /// <event add="add_colorSelectionChanged" remove="remove_colorSelectionChanged" raise="raise_colorSelectionChanged" />
+    /// <member name="cE:AjaxControlToolkit.ColorPickerExtender.colorSelectionChanged" />
     add_colorSelectionChanged: function(handler) {
         this.get_events().addHandler("colorSelectionChanged", handler);
     },
     remove_colorSelectionChanged: function(handler) {
         this.get_events().removeHandler("colorSelectionChanged", handler);
     },
-    raiseColorSelectionChanged: function() {
+    raise_colorSelectionChanged: function() {
         var handlers = this.get_events().getHandler("colorSelectionChanged");
         if (handlers) {
             handlers(this, Sys.EventArgs.Empty);
         }
     },
+    raiseColorSelectionChanged: function() {
+        Sys.Extended.Deprecated("raiseColorSelectionChanged", "raise_colorSelectionChanged");
+        this.raise_colorSelectionChanged();
+    },
 
+    /// <summary>
+    /// Fires when the control is being shown.
+    /// </summary>
+    /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
+    /// <member name="cE:AjaxControlToolkit.ColorPickerExtender.showing" />
     add_showing: function(handler) {
         this.get_events().addHandler("showing", handler);
     },
     remove_showing: function(handler) {
         this.get_events().removeHandler("showing", handler);
     },
-    raiseShowing: function(eventArgs) {
+    raise_showing: function(eventArgs) {
         var handler = this.get_events().getHandler('showing');
         if (handler) {
             handler(this, eventArgs);
         }
     },
+    raiseShowing: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseShowing", "raise_showing");
+        this.raise_showing(eventArgs);
+    },
 
+    /// <summary>
+    /// Fires after the control is shown.
+    /// </summary>
+    /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
+    /// <member name="cE:AjaxControlToolkit.ColorPickerExtender.shown" />
     add_shown: function(handler) {
         this.get_events().addHandler("shown", handler);
     },
     remove_shown: function(handler) {
         this.get_events().removeHandler("shown", handler);
     },
-    raiseShown: function() {
+    raise_shown: function() {
         var handlers = this.get_events().getHandler("shown");
         if (handlers) {
             handlers(this, Sys.EventArgs.Empty);
         }
     },
+    raiseShown: function() {
+        Sys.Extended.Deprecated("raiseShown", "raise_shown");
+        this.raise_shown();
+    },
 
+    /// <summary>
+    /// Fires when the control is being hidden.
+    /// </summary>
+    /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
+    /// <member name="cE:AjaxControlToolkit.ColorPickerExtender.hiding" />
     add_hiding: function(handler) {
         this.get_events().addHandler("hiding", handler);
     },
     remove_hiding: function(handler) {
         this.get_events().removeHandler("hiding", handler);
     },
-    raiseHiding: function(eventArgs) {
+    raise_hiding: function(eventArgs) {
         var handler = this.get_events().getHandler('hiding');
         if (handler) {
             handler(this, eventArgs);
         }
     },
+    raiseHiding: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHiding", "raise_hiding");
+        this.raise_hiding(eventArgs);
+    },
+
+    /// <summary>
+    /// Fires after the control is hidden.
+    /// </summary>
+    /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
+    /// <member name="cE:AjaxControlToolkit.ColorPickerExtender.hidden" />
     add_hidden: function(handler) {
         this.get_events().addHandler("hidden", handler);
     },
     remove_hidden: function(handler) {
         this.get_events().removeHandler("hidden", handler);
     },
-    raiseHidden: function() {
+    raise_hidden: function() {
         var handlers = this.get_events().getHandler("hidden");
         if (handlers) {
             handlers(this, Sys.EventArgs.Empty);
         }
     },
+    raiseHidden: function() {
+        Sys.Extended.Deprecated("raiseHidden", "raise_hidden");
+        this.raise_hidden();
+    },
 
+    /// <summary>
+    /// Shows the color picker.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.ColorPickerExtender.show" />
     show: function() {
         this._ensureColorPicker();
 
@@ -268,6 +353,11 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
             this.raiseShown();
         }
     },
+
+    /// <summary>
+    /// Hides the color picker.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.ColorPickerExtender.hide" />
     hide: function() {
         if (this._isOpen) {
             var eventArgs = new Sys.CancelEventArgs();
@@ -481,7 +571,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
 
         this.set_selectedColor(target.color);
         this._blur.post(true);
-        this.raiseColorSelectionChanged();
+        this.raise_colorSelectionChanged();
     },
 
     _button_onclick: function(e) {

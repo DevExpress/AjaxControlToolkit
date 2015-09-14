@@ -22,31 +22,111 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     // "e" - the DOM element the behavior is associated with
     Sys.Extended.UI.CascadingDropDownBehavior.initializeBase(this, [e]);
 
-    // Properties
+    /// <summary>
+    /// A string containing an ID of a parent dropdown in a hierarchy of dropdowns.
+    /// </summary>
+    /// <getter>get_parentControlID</getter>
+    /// <setter>set_parentControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.parentControlID" />
     this._parentControlID = null;
+    /// <summary>
+    /// A string containing a category of this dropdown.
+    /// </summary>
+    /// <getter>get_category</getter>
+    /// <setter>set_category</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.category" />
     this._category = null;
+    /// <summary>
+    /// A string containing prompt text that is displayed as the first entry in the dropdown.
+    /// </summary>
+    /// <getter>get_promptText</getter>
+    /// <setter>set_promptText</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.promptText" />
     this._promptText = null;
+    /// <summary>
+    /// A string containing loading text to to be displayed when getting the dropdown's values from the Web service.
+    /// </summary>
+    /// <getter>get_loadingText</getter>
+    /// <setter>set_loadingText</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.loadingText" />
     this._loadingText = null;
+    /// <summary>
+    /// A string containing a value for an option displayed by DropDownList showing PromptText.
+    /// </summary>
+    /// <getter>get_promptValue</getter>
+    /// <setter>set_promptValue</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.promptValue" />
     this._promptValue = null;
+    /// <summary>
+    /// A string containing a value for an option displayed when the list is empty.
+    /// </summary>
+    /// <getter>get_emptyValue</getter>
+    /// <setter>set_emptyValue</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.emptyValue" />
     this._emptyValue = null;
+    /// <summary>
+    /// A string containing text for an option displayed when the list is empty.
+    /// </summary>
+    /// <getter>get_emptyText</getter>
+    /// <setter>set_emptyText</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.emptyText" />
     this._emptyText = null;
 
-    // Path to the web service, defaulting to a page method
+    /// <summary>
+    /// A string containing a path of the Web service.
+    /// The default is page path
+    /// </summary>
+    /// <getter>get_servicePath</getter>
+    /// <setter>set_servicePath</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.servicePath" />
     this._servicePath = location.pathname;
 
-    // Name of the web method
+    /// <summary>
+    /// A string containing the name of the method to invoke on the Web service.
+    /// </summary>
+    /// <getter>get_serviceMethod</getter>
+    /// <setter>set_serviceMethod</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.serviceMethod" />
     this._serviceMethod = null;
 
-    // User/page specific context provided to the web method
+    /// <summary>
+    /// A string containing user or page-specific context provided to an optional overload of the Web method described by ServiceMethod or ServicePath.
+    /// </summary>
+    /// <remarks>
+    /// If the context key is used, it should have the same signature with an additional parameter named contextKey of the string type.
+    /// </remarks>
+    /// <getter>get_contextKey</getter>
+    /// <setter>set_contextKey</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.contextKey" />
     this._contextKey = null;
 
-    // Whether or not the the user/page specific context should be used
+    /// <summary>
+    /// A boolean value that determines whether or not the ContextKey property should be used.
+    /// </summary>
+    /// <remarks>
+    /// The useContextKey property will be automatically enabled if the ContextKey property is ever set either on the client or server side. 
+    /// If the context key is used, it should have the same signature with an additional parameter named contextKey of the string type.
+    /// </remarks>
+    /// <getter>get_useContextKey</getter>
+    /// <setter>set_useContextKey</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.useContextKey" />
     this._useContextKey = false;
 
-    // whether to use get or post
+    /// <summary>
+    /// Determines whether or not to use the HTTP GET method for requesting data.
+    /// </summary>
+    /// <getter>get_useHttpGet</getter>
+    /// <setter>set_useHttpGet</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.useHttpGet" />
     this._useHttpGet = false;
 
-    //Whether or not enable dropdown list at the time of loading data
+    /// <summary>
+    /// Determines whether or not to disable the DropDownList control when it is waiting for 
+    /// data from the service, so on loading a user can use the keyboard to navigate to the drop-down control.
+    /// </summary>
+    /// <getter>get_enableAtLoading</getter>
+    /// <setter>set_enableAtLoading</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.enableAtLoading" />
     this._enableAtLoading = false;
 
     // Variables
@@ -54,6 +134,12 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     this._changeHandler = null;
     this._parentChangeHandler = null;
     this._lastParentValues = null;
+    /// <summary>
+    /// A string containing the selected value of the dropdown.
+    /// </summary>
+    /// <getter>get_selectedValue</getter>
+    /// <setter>set_selectedValue</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.selectedValue" />
     this._selectedValue = null;
     this._actualDisabledStatus = false;
 }
@@ -195,7 +281,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             listItemOptionTitle = item.optionTitle;
 
                 if(item.isDefaultValue) {
-                    this.set_SelectedValue(listItemValue, listItemName, listItemOptionTitle);
+                    this.set_selectedValue(listItemValue, listItemName, listItemOptionTitle);
                     defaultIndex = i;
                     if(this._promptText) {
                         // bump the index if there's a prompt item in the list.
@@ -225,16 +311,16 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         // item, select that one.
         //
         if(selectedValueOption) {
-            // Call set_SelectedValue to store the text as well
-            this.set_SelectedValue(e.options[e.selectedIndex].value, e.options[e.selectedIndex].text);
+            // Call set_selectedValue to store the text as well
+            this.set_selectedValue(e.options[e.selectedIndex].value, e.options[e.selectedIndex].text);
         } else if(!selectedValueOption && defaultIndex != -1) {
             e.options[defaultIndex].selected = true;
-            this.set_SelectedValue(e.options[defaultIndex].value, e.options[defaultIndex].text);
+            this.set_selectedValue(e.options[defaultIndex].value, e.options[defaultIndex].text);
         } else if(!inInit && !selectedValueOption && !gettingList && !this._promptText && (e.options.length > 0)) {
             // If no prompt text or default item, select the first item
-            this.set_SelectedValue(e.options[0].value, e.options[0].text);
+            this.set_selectedValue(e.options[0].value, e.options[0].text);
         } else if(!inInit && !selectedValueOption && !gettingList) {
-            this.set_SelectedValue('', '');
+            this.set_selectedValue('', '');
         }
 
         if(e.childDropDown && !gettingList) {
@@ -275,9 +361,9 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
 
         // Record the selected value in the client state
         if((-1 != e.selectedIndex) && !(this._promptText && (0 == e.selectedIndex))) {
-            this.set_SelectedValue(e.options[e.selectedIndex].value, e.options[e.selectedIndex].text, e.options[e.selectedIndex].title);
+            this.set_selectedValue(e.options[e.selectedIndex].value, e.options[e.selectedIndex].text, e.options[e.selectedIndex].title);
         } else {
-            this.set_SelectedValue('', '');
+            this.set_selectedValue('', '');
         }
     },
 
@@ -326,7 +412,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         if(this._servicePath && this._serviceMethod) {
             // Raise the populating event and optionally cancel the web service invocation
             var eventArgs = new Sys.CancelEventArgs();
-            this.raisePopulating(eventArgs);
+            this.raise_populating(eventArgs);
             if(eventArgs.get_cancel()) {
                 return;
             }
@@ -348,7 +434,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     _onMethodComplete: function(result, userContext, methodName) {
         // Success, update the DropDownList
         this._setOptions(result);
-        this.raisePopulated(Sys.EventArgs.Empty);
+        this.raise_populated(Sys.EventArgs.Empty);
     },
 
     _onMethodError: function(webServiceError, userContext, methodName) {
@@ -368,84 +454,146 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         return { 'name': message, 'value': message };
     },
 
-    get_ParentControlID: function() {
+    get_parentControlID: function() {
         return this._parentControlID;
     },
-    set_ParentControlID: function(value) {
+    set_parentControlID: function(value) {
         if(this._parentControlID != value) {
             this._parentControlID = value;
-            this.raisePropertyChanged('ParentControlID');
+            this.raisePropertyChanged('parentControlID');
+        }
+    },
+
+    get_ParentControlID: function() {
+        Sys.Extended.Deprecated("get_ParentControlID", "get_parentControlID");
+        return this.get_parentControlID();
+    },
+    set_ParentControlID: function(value) {
+        Sys.Extended.Deprecated("set_ParentControlID", "set_parentControlID");
+        this.set_parentControlID(value);
+    },
+
+    get_category: function() {
+        return this._category;
+    },
+    set_category: function(value) {
+        if(this._category != value) {
+            this._category = value;
+            this.raisePropertyChanged('category');
         }
     },
 
     get_Category: function() {
-        return this._category;
+        Sys.Extended.Deprecated("get_Category", "get_category");
+        return this.get_category();
     },
     set_Category: function(value) {
-        if(this._category != value) {
-            this._category = value;
-            this.raisePropertyChanged('Category');
+        Sys.Extended.Deprecated("set_Category", "set_category");
+        this.set_category(value);
+    },
+
+    get_promptText: function() {
+        return this._promptText;
+    },
+    set_promptText: function(value) {
+        if(this._promptText != value) {
+            this._promptText = value;
+            this.raisePropertyChanged('promptText');
         }
     },
 
     get_PromptText: function() {
-        // Prompt text displayed as the first entry in the drop down
-        return this._promptText;
+        Sys.Extended.Deprecated("get_PromptText", "get_promptText");
+        return this.get_promptText();
     },
     set_PromptText: function(value) {
-        if(this._promptText != value) {
-            this._promptText = value;
-            this.raisePropertyChanged('PromptText');
+        Sys.Extended.Deprecated("set_PromptText", "set_promptText");
+        this.set_promptText(value);  
+    },
+
+    get_promptValue: function() {
+        // Value for the option displayed by a DropDownList showing the PromptText
+        return this._promptValue;
+    },
+    set_promptValue: function(value) {
+        if(this._promptValue != value) {
+            this._promptValue = value;
+            this.raisePropertyChanged('promptValue');
         }
     },
 
     get_PromptValue: function() {
-        // Value for the option displayed by a DropDownList showing the PromptText
-        return this._promptValue;
+        Sys.Extended.Deprecated("get_PromptValue", "get_promptValue");
+        return this.get_promptValue();
     },
     set_PromptValue: function(value) {
-        if(this._promptValue != value) {
-            this._promptValue = value;
-            this.raisePropertyChanged('PromptValue');
+        Sys.Extended.Deprecated("set_PromptValue", "set_promptValue");
+        this.set_promptValue(value);
+    },
+
+    get_emptyText: function() {
+        return this._emptyText;
+    },
+    set_emptyText: function(value) {
+        if(this._emptyText != value) {
+            this._emptyText = value;
+            this.raisePropertyChanged('emptyText');
         }
     },
 
     get_EmptyText: function() {
-        // Text for the option displayed when the list is empty
-        return this._emptyText;
+        Sys.Extended.Deprecated("get_EmptyText", "get_emptyText");
+        return this.get_emptyText();
     },
     set_EmptyText: function(value) {
-        if(this._emptyText != value) {
-            this._emptyText = value;
-            this.raisePropertyChanged('EmptyText');
+        Sys.Extended.Deprecated("set_EmptyText", "set_emptyText");
+        this.set_emptyText(value);
+    },
+
+    get_emptyValue: function() {
+        // Value for the option displayed when the list is empty
+        return this._emptyValue;
+    },
+    set_emptyValue: function(value) {
+        if(this._emptyValue != value) {
+            this._emptyValue = value;
+            this.raisePropertyChanged('emptyValue');
         }
     },
 
     get_EmptyValue: function() {
-        // Value for the option displayed when the list is empty
-        return this._emptyValue;
+        Sys.Extended.Deprecated("get_EmptyValue", "get_emptyValue");
+        return this.get_emptyValue();
     },
     set_EmptyValue: function(value) {
-        if(this._emptyValue != value) {
-            this._emptyValue = value;
-            this.raisePropertyChanged('EmptyValue');
+        Sys.Extended.Deprecated("set_EmptyValue", "set_emptyValue");
+        this.set_emptyValue(value);
+    },
+
+    get_loadingText: function() {
+        return this._loadingText;
+    },
+    set_loadingText: function(value) {
+        if(this._loadingText != value) {
+            this._loadingText = value;
+            this.raisePropertyChanged('loadingText');
         }
     },
 
     get_LoadingText: function() {
-        return this._loadingText;
+        Sys.Extended.Deprecated("get_LoadingText", "get_loadingText");
+        return this.get_loadingText();
     },
     set_LoadingText: function(value) {
-        if(this._loadingText != value) {
-            this._loadingText = value;
-            this.raisePropertyChanged('LoadingText');
-        }
+        Sys.Extended.Deprecated("set_LoadingText", "set_loadingText");
+        this.set_loadingText(value);
     },
 
-    get_SelectedValue: function() {
+   
+    get_selectedValue: function() {
         return this._selectedValue;
     },
-    set_SelectedValue: function(value, text, title) {
+    set_selectedValue: function (value, text, title) {
         if(this._selectedValue != value) {
             if(!text) {
                 // Initial population by server; look for "value:::text" pair
@@ -463,30 +611,57 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             }
             var oldValue = this._selectedValue;
             this._selectedValue = value;
-            this.raisePropertyChanged('SelectedValue');
-            this.raiseSelectionChanged(new Sys.Extended.UI.CascadingDropDownSelectionChangedEventArgs(oldValue, value));
+            this.raisePropertyChanged('selectedValue');
+            this.raise_selectionChanged(new Sys.Extended.UI.CascadingDropDownSelectionChangedEventArgs(oldValue, value));
         }
         Sys.Extended.UI.CascadingDropDownBehavior.callBaseMethod(this, 'set_ClientState', [this._selectedValue + ':::' + text + ':::' + (title ? (':::' + title) : '')]);
     },
 
-    get_ServicePath: function() {
+    get_SelectedValue: function() {
+        Sys.Extended.Deprecated("get_SelectedValue", "get_selectedValue");
+        return this.get_selectedValue();
+    },
+    set_SelectedValue: function(value, text, title) {
+        Sys.Extended.Deprecated("set_SelectedValue(value, text, title)", "set_selectedValue(value, text, title)");
+        this.set_selectedValue(value, text, title);
+    },
+
+    get_servicePath: function() {
         return this._servicePath;
     },
-    set_ServicePath: function(value) {
+    set_servicePath: function(value) {
         if(this._servicePath != value) {
             this._servicePath = value;
-            this.raisePropertyChanged('ServicePath');
+            this.raisePropertyChanged('servicePath');
+        }
+    },
+
+    get_ServicePath: function() {
+        Sys.Extended.Deprecated("get_ServicePath", "get_servicePath");
+        return this.get_servicePath();
+    },
+    set_ServicePath: function(value) {
+        Sys.Extended.Deprecated("set_ServicePath", "set_servicePath");
+        this.set_servicePath(value);
+    },
+
+    get_serviceMethod: function() {
+        return this._serviceMethod;
+    },
+    set_serviceMethod: function(value) {
+        if(this._serviceMethod != value) {
+            this._serviceMethod = value;
+            this.raisePropertyChanged('serviceMethod');
         }
     },
 
     get_ServiceMethod: function() {
-        return this._serviceMethod;
+        Sys.Extended.Deprecated("get_ServiceMethod", "get_serviceMethod");
+        return this.get_serviceMethod();
     },
     set_ServiceMethod: function(value) {
-        if(this._serviceMethod != value) {
-            this._serviceMethod = value;
-            this.raisePropertyChanged('ServiceMethod');
-        }
+        Sys.Extended.Deprecated("set_ServiceMethod", "set_serviceMethod");
+        this.set_serviceMethod(value);
     },
 
     get_contextKey: function() {
@@ -504,6 +679,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         }
     },
 
+    
     get_useContextKey: function() {
         // Whether or not the ContextKey property should be used.  This will be
         // automatically enabled if the ContextKey property is ever set
@@ -530,9 +706,6 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
     },
 
     get_enableAtLoading: function() {
-        // Whether or not disable the dropdownlist control when this is waiting to 
-        // get data from the service so at the time of loading user can use keyboard 
-        // to navigate to the dropdown control.
         return this._enableAtLoading;
     },
     set_enableAtLoading: function(value) {
@@ -542,26 +715,40 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Fires when selection is changed.
+    /// </summary>
+    /// <event add="add_selectionChanged" remove="remove_selectionChanged" raise="raise_selectionChanged" />
+    /// <member name="cE:AjaxControlToolkit.CascadingDropDown.selectionChanged" />
     add_selectionChanged: function(handler) {
         this.get_events().addHandler('selectionChanged', handler);
     },
     remove_selectionChanged: function(handler) {
         this.get_events().removeHandler('selectionChanged', handler);
     },
-    raiseSelectionChanged: function(eventArgs) {
+    raise_selectionChanged: function(eventArgs) {
         var handler = this.get_events().getHandler('selectionChanged');
         if(handler) {
             handler(this, eventArgs);
         }
     },
+    raiseSelectionChanged: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseSelectionChanged(eventArgs)", "raise_selectionChanged(eventArgs)");
+        this.raise_selectionChanged(eventArgs);
+    },
 
+    /// <summary>
+    /// Fires when the control is being populated.
+    /// </summary>
+    /// <event add="add_populating" remove="remove_populating" raise="raise_populating" />
+    /// <member name="cE:AjaxControlToolkit.CascadingDropDown.populating" />
     add_populating: function(handler) {
         this.get_events().addHandler('populating', handler);
     },
     remove_populating: function(handler) {
         this.get_events().removeHandler('populating', handler);
     },
-    raisePopulating: function(eventArgs) {
+    raise_populating: function(eventArgs) {
         // The populating event can be used to provide custom data to
         // CascadingDropDown instead of using a web service.  Just cancel the
         // event (using the CancelEventArgs) and pass your own data to the
@@ -571,18 +758,31 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             handler(this, eventArgs);
         }
     },
+    raisePopulating: function(eventArgs) {
+        Sys.Extended.Deprecated("raisePopulating(eventArgs)", "raise_populating(eventArgs)");
+        this.raise_populating(eventArgs);
+    },
 
+    /// <summary>
+    /// Fires after the control is populated.
+    /// </summary>
+    /// <event add="add_populated" remove="remove_populated" raise="raise_populated" />
+    /// <member name="cE:AjaxControlToolkit.CascadingDropDown.populated" />
     add_populated: function(handler) {
         this.get_events().addHandler('populated', handler);
     },
     remove_populated: function(handler) {
         this.get_events().removeHandler('populated', handler);
     },
-    raisePopulated: function(eventArgs) {
+    raise_populated: function(eventArgs) {
         var handler = this.get_events().getHandler('populated');
         if(handler) {
             handler(this, eventArgs);
         }
+    },
+    raisePopulated: function(eventArgs) {
+        Sys.Extended.Deprecated("raisePopulated(eventArgs)", "raise_populated(eventArgs)");
+        this.raise_populated(eventArgs);
     }
 }
 Sys.Extended.UI.CascadingDropDownBehavior.registerClass('Sys.Extended.UI.CascadingDropDownBehavior', Sys.Extended.UI.BehaviorBase);

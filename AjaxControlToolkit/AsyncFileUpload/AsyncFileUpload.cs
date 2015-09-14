@@ -11,7 +11,10 @@ using System.Web.UI.WebControls;
 using System.Drawing;
 
 namespace AjaxControlToolkit {
-
+    /// <summary>
+    /// AsyncFileUpload is an ASP.NET AJAX Control that allows you to asynchronously upload files to the server.
+    /// The file uploading results can be checked both on the server and client sides.
+    /// </summary>
     [Designer(typeof(AsyncFileUploadDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.AsyncFileUpload", AjaxControlToolkit.Constants.AsyncFileUploadName)]
@@ -51,10 +54,16 @@ namespace AjaxControlToolkit {
             : base(true, HtmlTextWriterTag.Div) {
         }
 
+        /// <summary>
+        /// Fires when the file is successfully uploaded.
+        /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AsyncFileUploadEventArgs> UploadedComplete;
 
+        /// <summary>
+        /// Fires when the uploaded file is corrupted.
+        /// </summary>
         [Bindable(true)]
         [Category("Server Events")]
         public event EventHandler<AsyncFileUploadEventArgs> UploadedFileError;
@@ -67,6 +76,9 @@ namespace AjaxControlToolkit {
             get { return _persistFile ? PersistentStoreManager.Instance.GetFileFromSession(ClientID) : _postedFile; }
         }
 
+        /// <summary>
+        /// The name of a javascript function executed on the client side if the file upload started.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -76,6 +88,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientUploadStarted"] = value; }
         }
 
+        /// <summary>
+        /// The name of a javascript function executed on the client side after a file is successfully uploaded.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -85,6 +100,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientUploadComplete"] = value; }
         }
 
+        /// <summary>
+        /// The name of a javascript function executed on the client side if the file upload failed.
+        /// </summary>
         [DefaultValue("")]
         [Category("Behavior")]
         [ExtenderControlEvent]
@@ -94,6 +112,9 @@ namespace AjaxControlToolkit {
             set { ViewState["OnClientUploadError"] = value; }
         }
 
+        /// <summary>
+        /// Uploaded file bytes
+        /// </summary>
         [BrowsableAttribute(false)]
         public byte[] FileBytes {
             get {
@@ -108,6 +129,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// ID of a control that is shown while the file is being uploaded.
+        /// </summary>
         [Category("Behavior")]
         [Description("ID of Throbber")]
         [DefaultValue("")]
@@ -116,6 +140,9 @@ namespace AjaxControlToolkit {
             set { ViewState["ThrobberID"] = value; }
         }
 
+        /// <summary>
+        /// The control's background color on upload complete. The default value is Lime.
+        /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
         [Description("Control's background color on upload complete.")]
@@ -125,6 +152,10 @@ namespace AjaxControlToolkit {
             set { ViewState["CompleteBackColor"] = value; }
         }
 
+        /// <summary>
+        /// The control's background color when uploading is in progress.
+        /// The default value is White.
+        /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
         [Description("Control's background color when uploading is in progress.")]
@@ -134,6 +165,10 @@ namespace AjaxControlToolkit {
             set { ViewState["UploadingBackColor"] = value; }
         }
 
+        /// <summary>
+        /// The control's background color on an upload error.
+        /// The default value is Red.
+        /// </summary>
         [Category("Appearance")]
         [TypeConverter(typeof(WebColorConverter))]
         [Description("Control's background color on upload error.")]
@@ -143,6 +178,10 @@ namespace AjaxControlToolkit {
             set { ViewState["ErrorBackColor"] = value; }
         }
 
+        /// <summary>
+        /// The control's width (Unit).
+        /// The default value is 355px.
+        /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [Category("Layout")]
         public override Unit Width {
@@ -150,12 +189,18 @@ namespace AjaxControlToolkit {
             set { base.Width = value; }
         }
 
+        /// <summary>
+        /// Whether validation is failed
+        /// </summary>
         [BrowsableAttribute(false)]
         public bool FailedValidation {
             get { return _failedValidation; }
             set { _failedValidation = value; }
         }
 
+        /// <summary>
+        /// The control's appearance style (Traditional, Modern). The default value is Traditional.
+        /// </summary>
         [Bindable(true)]
         [Category("Appearance")]
         [BrowsableAttribute(true)]
@@ -165,6 +210,9 @@ namespace AjaxControlToolkit {
             set { _controlStyle = value; }
         }
 
+        /// <summary>
+        /// A HttpPostedFile object that provides access to the uploaded file
+        /// </summary>
         [BrowsableAttribute(false)]
         public HttpPostedFile PostedFile {
             get {
@@ -173,6 +221,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// A bool value indicating whether the control contains a file
+        /// </summary>
         [BrowsableAttribute(false)]
         public bool HasFile {
             get {
@@ -184,6 +235,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Gets the name of a file on the client that is uploaded using the control.
+        /// </summary>
         [BrowsableAttribute(false)]
         public string FileName {
             get {
@@ -197,6 +251,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Gets the name of a file on the client that is uploaded using the control.
+        /// </summary>
         [BrowsableAttribute(false)]
         public string ContentType {
             get {
@@ -210,6 +267,9 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Gets a Stream object that points to an uploaded file to prepare for reading the content of the file.
+        /// </summary>
         [BrowsableAttribute(false)]
         public Stream FileContent {
             get {
@@ -222,11 +282,18 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Whether a file is being uploaded.
+        /// </summary>
         [BrowsableAttribute(false)]
         public bool IsUploading {
             get { return (Page.Request.QueryString[Constants.FileUploadIDKey] != null); }
         }
 
+        /// <summary>
+        /// Whether a file is stored in session.
+        /// The default value is false.
+        /// </summary>
         [Bindable(true)]
         [BrowsableAttribute(true)]
         [DefaultValue(false)]
@@ -235,14 +302,24 @@ namespace AjaxControlToolkit {
             set { _persistFile = value; }
         }
 
+        /// <summary>
+        /// Clears all uploaded files of a current control from session.
+        /// </summary>
         public void ClearAllFilesFromPersistedStore() {
             PersistentStoreManager.Instance.ClearAllFilesFromSession(this.ClientID);
         }
 
+        /// <summary>
+        /// Clears all uploaded files of current control from session
+        /// </summary>
         public void ClearFileFromPersistedStore() {
             PersistentStoreManager.Instance.RemoveFileFromSession(this.ClientID);
         }
 
+        /// <summary>
+        /// Saves the content of an uploaded file.
+        /// </summary>
+        /// <param name="fileName" type="String">Uploaded file name</param>
         public void SaveAs(string fileName) {
             PopulateObjectPriorToRender(this.ClientID);
             var file = CurrentFile;

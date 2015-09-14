@@ -24,6 +24,7 @@ namespace AjaxControlToolkit {
         ListItemType _itemType;
         bool _isAddItem /* = false */;
 
+        // Item type.
         public ListItemType ItemType {
             get {
                 if(_baseItem != null)
@@ -35,6 +36,7 @@ namespace AjaxControlToolkit {
             set { _itemType = value; }
         }
 
+        // Data item.
         public object DataItem {
             get {
                 if(_baseItem != null)
@@ -44,6 +46,7 @@ namespace AjaxControlToolkit {
             set { _dataItem = value; }
         }
 
+        // Item index.
         public int ItemIndex {
             get {
                 if(_baseItem != null)
@@ -53,7 +56,7 @@ namespace AjaxControlToolkit {
             set { _itemIndex = value; }
         }
 
-        /// Is this a new item?
+        // Whether this item is new.
         public bool IsAddItem {
             get {
                 if(_baseItem != null)
@@ -107,12 +110,12 @@ namespace AjaxControlToolkit {
 
         #region IDataItemContainer Members
 
-        // DataItem implemented above
-
+        // Data item index.
         public int DataItemIndex {
             get { return ItemIndex; }
         }
 
+        // Display index.
         public int DisplayIndex {
             get { return ItemIndex; }
         }

@@ -155,50 +155,89 @@ Sys.Extended.UI.PieChart.prototype = {
             }, 400);
     },
 
+    /// <summary>
+    /// Width of the chart
+    /// </summary>
+    /// <getter>get_chartWidth</getter>
+    /// <setter>set_chartWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.PieChart.chartWidth" />
     get_chartWidth: function() {
         return this._chartWidth;
     },
-
     set_chartWidth: function(value) {
         this._chartWidth = value;
     },
 
+    /// <summary>
+    /// Height of the chart
+    /// </summary>
+    /// <getter>get_chartHeight</getter>
+    /// <setter>set_chartHeight</setter>
+    /// <member name="cP:AjaxControlToolkit.PieChart.chartHeight" />
     get_chartHeight: function() {
         return this._chartHeight;
     },
-
     set_chartHeight: function(value) {
         this._chartHeight = value;
     },
 
+    /// <summary>
+    /// A title of the chart
+    /// </summary>
+    /// <getter>get_chartTitle</getter>
+    /// <setter>set_chartTitle</setter>
+    /// <member name="cP:AjaxControlToolkit.PieChart.chartTitle" />
     get_chartTitle: function() {
         return this._chartTitle;
     },
-
     set_chartTitle: function(value) {
         this._chartTitle = value;
     },
 
-    get_PieChartClientValues: function() {
+    /// <summary>
+    /// Provides the list of PieChartValues
+    /// </summary>
+    /// <getter>get_pieChartClientValues</getter>
+    /// <setter>set_pieChartClientValues</setter>
+    /// <member name="cP:AjaxControlToolkit.PieChart.pieChartClientValues" />
+    get_pieChartClientValues: function() {
         return this._pieChartClientValues;
     },
-
-    set_PieChartClientValues: function(value) {
+    set_pieChartClientValues: function(value) {
         this._pieChartClientValues = value;
     },
 
+    get_PieChartClientValues: function() {
+        Sys.Extended.Deprecated("get_PieChartClientValues()", "get_pieChartClientValues()");
+        return this.get_pieChartClientValues();
+    },
+    set_PieChartClientValues: function(value) {
+        Sys.Extended.Deprecated("set_PieChartClientValues(value)", "set_pieChartClientValues(value)");
+        this.set_pieChartClientValues(value);
+    },
+
+    /// <summary>
+    /// A theme of the chart
+    /// </summary>
+    /// <getter>get_theme</getter>
+    /// <setter>set_theme</setter>
+    /// <member name="cP:AjaxControlToolkit.PieChart.theme" />
     get_theme: function() {
         return this._theme;
     },
-
     set_theme: function(value) {
         this._theme = value;
     },
 
+    /// <summary>
+    /// Font color of the chart title
+    /// </summary>
+    /// <getter>get_chartTitleColor</getter>
+    /// <setter>set_chartTitleColor</setter>
+    /// <member name="cP:AjaxControlToolkit.PieChart.chartTitleColor" />
     get_chartTitleColor: function() {
         return this._chartTitleColor;
     },
-
     set_chartTitleColor: function(value) {
         this._chartTitleColor = value;
     }

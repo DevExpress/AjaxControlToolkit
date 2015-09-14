@@ -4,18 +4,104 @@ Sys.Extended.UI.BalloonPopupControlBehavior = function(element) {
     // The BalloonPopupControlBehavior opens a popup window next to the target element
     Sys.Extended.UI.BalloonPopupControlBehavior.initializeBase(this, [element]);
 
-    // Properties
+    /// <summary>
+    /// The ID of the control to display
+    /// </summary>
+    /// <getter>get_balloonPopupControlID</getter>
+    /// <setter>set_balloonPopupControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.balloonPopopControlID" />
     this._balloonPopupControlID = null;
+
+    /// <summary>
+    /// Optional setting specifying where the popup should be positioned relative to the target control.
+    /// Default value is Auto
+    /// </summary>
+    /// <getter>get_balloonPopupPosition</getter>
+    /// <setter>set_balloonPopupPosition</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.balloonPopupPosition" />
     this._position = Sys.Extended.UI.BalloonPopupPosition.Auto;
+
+    /// <summary>
+    /// Optional setting specifying the theme of balloon popup.
+    /// Default value is Rectangle
+    /// </summary>
+    /// <getter>get_balloonPopupStyle</getter>
+    /// <setter>set_balloonPopupStyle</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.balloonPopupStyle" />
     this._balloonStyle = Sys.Extended.UI.BalloonPopupStyle.Rectangle;
+
+    /// <summary>
+    /// Optional X (horizontal) offset for the popup window (relative to the target control)
+    /// </summary>
+    /// <getter>get_offsetX</getter>
+    /// <setter>set_offsetX</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.offsetX" />
     this._offsetX = 0;
+
+    /// <summary>
+    /// Optional Y (horizontal) offset for the popup window (relative to the target control)
+    /// </summary>
+    /// <getter>get_offsetY</getter>
+    /// <setter>set_offsetY</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.offsetY" />
     this._offsetY = 0;
+
+    /// <summary>
+    /// Extender control ID
+    /// </summary>
+    /// <getter>get_extenderControlID</getter>
+    /// <setter>set_extenderControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.extenderControlID" />
     this._extenderControlID = null;
+
+    /// <summary>
+    /// Optional setting specifying whether to display balloon popup on the client onMouseOver event. Default value is false
+    /// </summary>
+    /// <getter>get_displayOnMouseOver</getter>
+    /// <setter>set_displayOnMouseOver</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.displayOnMouseOver" />
     this._displayOnMouseOver = false;
+
+    /// <summary>
+    /// Optional setting specifying whether to display balloon popup on the client onFocus event. Default value is false
+    /// </summary>
+    /// <getter>get_displayOnFocus</getter>
+    /// <setter>set_displayOnFocus</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.displayOnFocus" />
     this._displayOnFocus = false;
+
+    /// <summary>
+    /// Optional setting specifying whether to display balloon popup on the client onClick event. Default value is true
+    /// </summary>
+    /// <getter>get_displayOnClick</getter>
+    /// <setter>set_displayOnClick</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.displayOnClick" />
     this._displayOnClick = true;
+
+    /// <summary>
+    /// Optional setting specifying the size of balloon popup. Default value is Small
+    /// </summary>
+    /// <getter>get_balloonSize</getter>
+    /// <setter>set_balloonSize</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.balloonSize" />
     this._balloonSize = "small";
+
+    /// <summary>
+    /// Optional setting specifying whether to display shadow of balloon popup or not.
+    /// Default value is true
+    /// </summary>
+    /// <getter>get_useShadow</getter>
+    /// <setter>set_useShadow</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.useShadow" />
     this._shadow = true;
+
+    /// <summary>
+    /// Optional setting specifying whether to display scrollbar if contents are overflowing.
+    /// Default value is Auto
+    /// </summary>
+    /// <getter>get_scrollBars</getter>
+    /// <setter>set_scrollBars</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.scrollBars" />
     this._scrollBars = Sys.Extended.UI.ScrollBars.Auto;
 
     // Variables
@@ -26,6 +112,13 @@ Sys.Extended.UI.BalloonPopupControlBehavior = function(element) {
     this._directionElement = null;
     this._contentElement = null;
     this._popupBehavior = null;
+
+    /// <summary>
+    /// Whether popup is visible.
+    /// Default value is false
+    /// </summary>
+    /// <getter>get_popupVisible</getter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.popupVisible" />
     this._popupVisible = false;
     this._focusHandler = null;
     this._mouseOverHandler = null;
@@ -309,6 +402,10 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Shows the popup
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.showPopup" />
     showPopup: function() {
         this._contentElement.appendChild($get(this._balloonPopupControlID));
         $get(this._balloonPopupControlID).style.display = 'block';
@@ -345,6 +442,10 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
         $common.setStyle(this._styleElement, { backgroundPositionX: bgPosX, backgroundPositionY: bgPosY });
     },
 
+    /// <summary>
+    /// Hides the popup
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.hidePopup" />
     hidePopup: function() {
         this._popupBehavior.hide();
         this._popupVisible = false;
@@ -366,7 +467,7 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     _onMouseOver: function(e) {
         // Show the balloon popup when its control is mouse over
 
-        // Set the popup position and display it                
+        // Set the popup position and display it
         if(!this._popupVisible) {
             this.showPopup();
         }
@@ -466,8 +567,13 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Generic OnShow Animation's JSON definition
+    /// </summary>
+    /// <getter>get_onShow</getter>
+    /// <setter>set_onShow</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.onShow" />
     get_onShow: function() {
-        // Generic OnShow Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onShow() : this._onShowJson;
     },
     set_onShow: function(value) {
@@ -478,19 +584,33 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
         }
         this.raisePropertyChanged("onShow");
     },
+
+    /// <summary>
+    /// Generic OnShow Animation's behavior
+    /// </summary>
+    /// <getter>get_onShowBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.onShowBehavior" />
     get_onShowBehavior: function() {
-        // Generic OnShow Animation's behavior
         return this._popupBehavior ? this._popupBehavior.get_onShowBehavior() : null;
     },
+
+    /// <summary>
+    /// Play the OnShow animation
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.onShow" />
     onShow: function() {
-        // Play the OnShow animation
         if(this._popupBehavior) {
             this._popupBehavior.onShow();
         }
     },
 
+    /// <summary>
+    /// Generic OnHide Animation's JSON definition
+    /// </summary>
+    /// <getter>get_onHide</getter>
+    /// <setter>set_onHide</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.onHide" />
     get_onHide: function() {
-        // Generic OnHide Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onHide() : this._onHideJson;
     },
     set_onHide: function(value) {
@@ -501,25 +621,43 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
         }
         this.raisePropertyChanged("onHide");
     },
+
+    /// <summary>
+    /// Generic OnHide Animation's behavior
+    /// </summary>
+    /// <getter>get_onHideBehavior</getter>
+    /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.onHideBehavior" />
     get_onHideBehavior: function() {
-        // Generic OnHide Animation's behavior
         return this._popupBehavior ? this._popupBehavior.get_onHideBehavior() : null;
     },
+
+    /// <summary>
+    /// Play the OnHide animation
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.onHide" />
     onHide: function() {
-        // Play the OnHide animation
         if(this._popupBehavior) {
             this._popupBehavior.onHide();
         }
     },
 
-    get_BalloonPopupControlID: function() {
+    get_balloonPopupControlID: function() {
         return this._balloonPopupControlID;
     },
-    set_BalloonPopupControlID: function(value) {
+    set_balloonPopupControlID: function(value) {
         if(this._balloonPopupControlID != value) {
             this._balloonPopupControlID = value;
-            this.raisePropertyChanged("BalloonPopupControlID");
+            this.raisePropertyChanged("balloonPopupControlID");
         }
+    },
+
+    get_BalloonPopupControlID: function() {
+        Sys.Extended.Deprecated("get_BalloonPopupControlID", "get_balloonPopupControlID");
+        return this.get_balloonPopupControlID();
+    },
+    set_BalloonPopupControlID: function(value) {
+        Sys.Extended.Deprecated("set_BalloonPopupControlID", "set_balloonPopupControlID");
+        this.set_balloonPopupControlID(value);
     },
 
     get_balloonPopupPosition: function() {
@@ -536,74 +674,97 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
     get_balloonPopupStyle: function() {
         return this._balloonStyle;
     },
-
     set_balloonPopupStyle: function(value) {
         if(this._balloonStyle != value) {
             this._balloonStyle = value;
-            this.raisePropertyChanged("BalloonStyle");
+            this.raisePropertyChanged("balloonStyle");
+        }
+    },
+
+    get_extenderControlID: function() {
+        return this._extenderControlID;
+    },
+    set_extenderControlID: function(value) {
+        if(this._extenderControlID != value) {
+            this._extenderControlID = value;
+            this.raisePropertyChanged("extenderControlID");
         }
     },
 
     get_ExtenderControlID: function() {
-        return this._extenderControlID;
+        Sys.Extended.Deprecated("get_ExtenderControlID", "get_extenderControlID");
+        return this.get_extenderControlID();
     },
     set_ExtenderControlID: function(value) {
-        if(this._extenderControlID != value) {
-            this._extenderControlID = value;
-            this.raisePropertyChanged("ExtenderControlID");
+        Sys.Extended.Deprecated("set_ExtenderControlID", "set_extenderControlID");
+        this.set_extenderControlID(value);
+    },
+
+    get_offsetX: function() {
+        return this._offsetX;
+    },
+    set_offsetX: function(value) {
+        if(this._offsetX != value) {
+            this._offsetX = value;
+            this.raisePropertyChanged("offsetX");
         }
     },
 
     get_OffsetX: function() {
-        return this._offsetX;
+        Sys.Extended.Deprecated("get_OffsetX", "get_offsetX");
+        return this.get_offsetX();
     },
     set_OffsetX: function(value) {
-        if(this._offsetX != value) {
-            this._offsetX = value;
-            this.raisePropertyChanged("OffsetX");
+        Sys.Extended.Deprecated("set_OffsetX", "set_offsetX");
+        this.set_offsetX(value);
+    },
+
+    get_offsetY: function() {
+        return this._offsetY;
+    },
+    set_offsetY: function(value) {
+        if(this._offsetY != value) {
+            this._offsetY = value;
+            this.raisePropertyChanged("offsetY");
         }
     },
 
     get_OffsetY: function() {
-        return this._offsetY;
+        Sys.Extended.Deprecated("get_OffsetY", "get_offsetY");
+        return this.get_offsetY();
     },
     set_OffsetY: function(value) {
-        if(this._offsetY != value) {
-            this._offsetY = value;
-            this.raisePropertyChanged("OffsetY");
-        }
+        Sys.Extended.Deprecated("set_OffsetY", "set_offsetY");
+        this.set_offsetY(value);
     },
 
     get_displayOnMouseOver: function() {
         return this._displayOnMouseOver;
     },
-
     set_displayOnMouseOver: function(value) {
         if(this._displayOnMouseOver != value) {
             this._displayOnMouseOver = value;
-            this.raisePropertyChanged("DisplayOnMouseOver");
+            this.raisePropertyChanged("displayOnMouseOver");
         }
     },
 
     get_displayOnFocus: function() {
         return this._displayOnFocus;
     },
-
     set_displayOnFocus: function(value) {
         if(this._displayOnFocus != value) {
             this._displayOnFocus = value;
-            this.raisePropertyChanged("DisplayOnFocus");
+            this.raisePropertyChanged("displayOnFocus");
         }
     },
 
     get_displayOnClick: function() {
         return this._displayOnClick;
     },
-
     set_displayOnClick: function(value) {
         if(this.displayOnClick != value) {
             this.displayOnClick = value;
-            this.raisePropertyChanged("DisplayOnClick");
+            this.raisePropertyChanged("displayOnClick");
         }
     },
 
@@ -611,115 +772,150 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
         // small, medium or large
         return this._balloonSize;
     },
-
     set_balloonSize: function(value) {
         if(this._balloonSize != value) {
             this._balloonSize = value;
-            this.raisePropertyChanged("BalloonSize");
+            this.raisePropertyChanged("balloonSize");
         }
     },
 
     get_useShadow: function() {
         return this._shadow;
     },
-
     set_useShadow: function(value) {
         if(this._shadow != value) {
             this._shadow = value;
-            this.raisePropertyChanged("UseShadow");
+            this.raisePropertyChanged("useShadow");
         }
     },
 
     get_scrollBars: function() {
         return this._scrollBars;
     },
-
     set_scrollBars: function(value) {
         if(this._scrollBars != value) {
             this._scrollBars = value;
-            this.raisePropertyChanged('ScrollBars');
+            this.raisePropertyChanged('scrollBars');
         }
     },
 
-    get_PopupVisible: function() {
+    get_popupVisible: function() {
         return this._popupVisible;
     },
+    get_PopupVisible: function() {
+        Sys.Extended.Deprecated("get_PopupVisible", "get_popupVisible");
+        return this.get_popupVisible();
+    },
 
+    /// <summary>
+    /// This is required if user choose BalloonStyle to Custom. This specifies the name of
+    /// the css class for the custom theme
+    /// </summary>
+    /// <getter>get_customClassName</getter>
+    /// <setter>set_customClassName</setter>
+    /// <member name="cP:AjaxControlToolkit.BalloonPopupExtender.customClassName" />
     get_customClassName: function() {
         return this._customClassName;
     },
-
     set_customClassName: function(value) {
         if(this._customClassName != value) {
             this._customClassName = value;
-            this.raisePropertyChanged("CustomClassName");
+            this.raisePropertyChanged("customClassName");
         }
     },
 
+    /// <summary>
+    /// Fires when popup is showing
+    /// </summary>
+    /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
+    /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.showing" />
     add_showing: function(handler) {
-        if(this._popupBehavior) {
+        if(this._popupBehavior)
             this._popupBehavior.add_showing(handler);
-        }
     },
     remove_showing: function(handler) {
-        if(this._popupBehavior) {
+        if(this._popupBehavior)
             this._popupBehavior.remove_showing(handler);
-        }
+    },
+    raise_showing: function(eventArgs) {
+        if(this._popupBehavior)
+            this._popupBehavior.raise_showing(eventArgs);
     },
     raiseShowing: function(eventArgs) {
-        if(this._popupBehavior) {
-            this._popupBehavior.raiseShowing(eventArgs);
-        }
+        Sys.Extended.Deprecated("raiseShowing(eventArgs)", "raise_showing(eventArgs)");
+        this.raise_showing(eventArgs);
     },
 
+    /// <summary>
+    /// Fires when popup is shown
+    /// </summary>
+    /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
+    /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.shown" />
     add_shown: function(handler) {
-        if(this._popupBehavior) {
+        if(this._popupBehavior)
             this._popupBehavior.add_shown(handler);
-        }
     },
     remove_shown: function(handler) {
-        if(this._popupBehavior) {
+        if(this._popupBehavior)
             this._popupBehavior.remove_shown(handler);
-        }
+    },
+    raise_shown: function(eventArgs) {
+        if(this._popupBehavior)
+            this._popupBehavior.raise_shown(eventArgs);
     },
     raiseShown: function(eventArgs) {
-        if(this._popupBehavior) {
-            this._popupBehavior.raiseShown(eventArgs);
-        }
+        Sys.Extended.Deprecated("raiseShown(eventArgs)", "raise_shown(eventArgs)");
+        this.raise_shown(eventArgs);
     },
 
+    /// <summary>
+    /// Fires when popup is hiding
+    /// </summary>
+    /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
+    /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.hiding" />
     add_hiding: function(handler) {
-        if(this._popupBehavior) {
+        if(this._popupBehavior)
             this._popupBehavior.add_hiding(handler);
-        }
     },
     remove_hiding: function(handler) {
-        if(this._popupBehavior) {
+        if(this._popupBehavior)
             this._popupBehavior.remove_hiding(handler);
-        }
+    },
+    raise_hiding: function(eventArgs) {
+        if(this._popupBehavior)
+            this._popupBehavior.raise_hiding(eventArgs);
     },
     raiseHiding: function(eventArgs) {
-        if(this._popupBehavior) {
-            this._popupBehavior.raiseHiding(eventArgs);
-        }
+        Sys.Extended.Deprecated("raiseHiding(eventArgs)", "raise_hiding(eventArgs)");
+        this.raise_hiding(eventArgs);
     },
 
+    /// <summary>
+    /// Fires when popup is hidden
+    /// </summary>
+    /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
+    /// <member name="cE:AjaxControlToolkit.BalloonPopupExtender.hidden" />
     add_hidden: function(handler) {
-        if(this._popupBehavior) {
+        if(this._popupBehavior)
             this._popupBehavior.add_hidden(handler);
-        }
     },
     remove_hidden: function(handler) {
-        if(this._popupBehavior) {
+        if(this._popupBehavior)
             this._popupBehavior.remove_hidden(handler);
-        }
+    },
+    raise_hidden: function(eventArgs) {
+        if(this._popupBehavior)
+            this._popupBehavior.raise_hidden(eventArgs);
     },
     raiseHidden: function(eventArgs) {
-        if(this._popupBehavior) {
-            this._popupBehavior.raiseHidden(eventArgs);
-        }
+        Sys.Extended.Deprecated("raiseHidden(eventArgs)", "raise_hidden(eventArgs)");
+        this.raise_hidden(eventArgs);
     },
 
+    /// <summary>
+    /// Calculates popup top offset
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.posTop" />
     posTop: function() {
         var winTopPosition = 0;
 
@@ -735,6 +931,10 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
         return winTopPosition;
     },
 
+    /// <summary>
+    /// Calculates popup left offset
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.posLeft" />
     posLeft: function() {
         var winLeftPosition = 0;
 
@@ -750,6 +950,10 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
         return winLeftPosition;
     },
 
+    /// <summary>
+    /// Calculates container height
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.pageHeight" />
     pageHeight: function() {
         var _height = null;
 
@@ -765,6 +969,10 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
         return _height;
     },
 
+    /// <summary>
+    /// Calculates container width
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.BalloonPopupExtender.pageWidth" />
     pageWidth: function() {
         var _width = null;
 

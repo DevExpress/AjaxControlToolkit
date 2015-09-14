@@ -7,11 +7,54 @@ Sys.Extended.UI.Animation.AnimationBehavior = function(element) {
     Sys.Extended.UI.Animation.AnimationBehavior.initializeBase(this, [element]);
 
     // Generic animation behaviors that automatically build animations from JSON descriptions
+
+    /// <summary>
+    /// Generic OnLoad Animation's JSON definition.
+    /// Setting the OnLoad property will cause it to be played immediately
+    /// </summary>
+    /// <getter>get_onLoad</getter>
+    /// <setter>set_onLoad</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onLoad" />
     this._onLoad = null;
+
+    /// <summary>
+    /// Generic OnClick Animation's JSON definition
+    /// </summary>
+    /// <getter>get_onClick</getter>
+    /// <setter>set_onClick</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onClick" />
     this._onClick = null;
+
+    /// <summary>
+    /// Generic OnMouseOver Animation's JSON definition
+    /// </summary>
+    /// <getter>get_onMouseOver</getter>
+    /// <setter>set_onMouseOver</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onMouseOver" />
     this._onMouseOver = null;
+
+    /// <summary>
+    /// Generic OnMouseOut Animation's JSON definition
+    /// </summary>
+    /// <getter>get_onMouseOut</getter>
+    /// <setter>set_onMouseOut</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onMouseOut" />
     this._onMouseOut = null;
+
+    /// <summary>
+    /// Generic OnHoverOver Animation's JSON definition
+    /// </summary>
+    /// <getter>get_onHoverOver</getter>
+    /// <setter>set_onHoverOver</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onHoverOver" />
     this._onHoverOver = null;
+
+    /// <summary>
+    /// Generic OnHoverOut Animation's JSON definition
+    /// </summary>
+    /// <getter>get_onHoverOut</getter>
+    /// <setter>set_onHoverOut</setter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onHoverOut" />
     this._onHoverOut = null;
 
     // Handlers for the events
@@ -26,11 +69,11 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         // Wireup the event handlers
         var element = this.get_element();
         if(element) {
-            this._onClickHandler = Function.createDelegate(this, this.OnClick);
+            this._onClickHandler = Function.createDelegate(this, this.playOnClick);
             $addHandler(element, 'click', this._onClickHandler);
-            this._onMouseOverHandler = Function.createDelegate(this, this.OnMouseOver);
+            this._onMouseOverHandler = Function.createDelegate(this, this.playOnMouseOver);
             $addHandler(element, 'mouseover', this._onMouseOverHandler);
-            this._onMouseOutHandler = Function.createDelegate(this, this.OnMouseOut);
+            this._onMouseOutHandler = Function.createDelegate(this, this.playOnMouseOut);
             $addHandler(element, 'mouseout', this._onMouseOutHandler);
         }
     },
@@ -65,12 +108,14 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         Sys.Extended.UI.Animation.AnimationBehavior.callBaseMethod(this, 'dispose');
     },
 
-    get_OnLoad: function() {
-        // Generic OnLoad Animation's JSON definition
-        // Setting the OnLoad property will cause it to be played immediately
+    get_onLoad: function() {
         return this._onLoad ? this._onLoad.get_json() : null;
     },
-    set_OnLoad: function(value) {
+    get_OnLoad: function() {
+        Sys.Extended.Deprecated("get_OnLoad()", "get_onLoad()");
+        return this.get_onLoad();
+    },
+    set_onLoad: function(value) {
         if(!this._onLoad) {
             this._onLoad = new Sys.Extended.UI.Animation.GenericAnimationBehavior(this.get_element());
             this._onLoad.initialize();
@@ -79,17 +124,36 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         this.raisePropertyChanged('OnLoad');
         this._onLoad.play();
     },
+    set_OnLoad: function(value) {
+        Sys.Extended.Deprecated("set_OnLoad(value)", "set_onLoad(value)");
+        this.set_onLoad(value);
+    },
 
-    get_OnLoadBehavior: function() {
-        // Generic OnLoad Animation's behavior
+    /// <summary>
+    /// Generic OnLoad Animation's behavior
+    /// </summary>
+    /// <getter>get_onLoadBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onLoadBehavior" />
+    get_onLoadBehavior: function() {
         return this._onLoad;
     },
+    get_OnLoadBehavior: function() {
+        Sys.Extended.Deprecated("get_OnLoadBehavior()", "get_OnLoadBehavior()");
+        return this.get_onLoadBehavior();
+    },
 
-    get_OnClick: function() {
-        // Generic OnClick Animation's JSON definition
+    get_onClick: function() {
         return this._onClick ? this._onClick.get_json() : null;
     },
+    get_OnClick: function() {
+        Sys.Extended.Deprecated("get_OnClick()", "get_onClick()");
+        return this.get_onClick();
+    },
     set_OnClick: function(value) {
+        Sys.Extended.Deprecated("set_OnClick(value)", "set_onClick(value)");
+        this.set_onClick(value);
+    },
+    set_onClick: function(value) {
         if(!this._onClick) {
             this._onClick = new Sys.Extended.UI.Animation.GenericAnimationBehavior(this.get_element());
             this._onClick.initialize();
@@ -98,22 +162,41 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         this.raisePropertyChanged('OnClick');
     },
 
-    get_OnClickBehavior: function() {
-        // Generic OnClick Animation's behavior
+    /// <summary>
+    /// Generic OnClick Animation's behavior
+    /// </summary>
+    /// <getter>get_onClickBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onClickBehavior" />
+    get_onClickBehavior: function() {
         return this._onClick;
     },
+    get_OnClickBehavior: function() {
+        Sys.Extended.Deprecated("get_OnClickBehavior()", "get_onClickBehavior()");
+        return this.get_onClickBehavior();
+    },
 
+    /// <summary>
+    /// Plays animation.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.AnimationExtender.playOnClick" />
     OnClick: function() {
+        Sys.Extended.Deprecated("OnClick()");
+        this.playOnClick();
+    },
+    playOnClick: function() {
         if(this._onClick) {
             this._onClick.play();
         }
     },
 
-    get_OnMouseOver: function() {
-        // Generic OnMouseOver Animation's JSON definition
+    get_onMouseOver: function() {
         return this._onMouseOver ? this._onMouseOver.get_json() : null;
     },
-    set_OnMouseOver: function(value) {
+    get_OnMouseOver: function() {
+        Sys.Extended.Deprecated("get_OnMouseOver()", "get_onMouseOver()");
+        return this.get_onMouseOver();
+    },
+    set_onMouseOver: function(value) {
         if(!this._onMouseOver) {
             this._onMouseOver = new Sys.Extended.UI.Animation.GenericAnimationBehavior(this.get_element());
             this._onMouseOver.initialize();
@@ -121,14 +204,32 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         this._onMouseOver.set_json(value);
         this.raisePropertyChanged('OnMouseOver');
     },
-
-    get_OnMouseOverBehavior: function() {
-        // Generic OnMouseOver Animation's behavior
-        return this._onMouseOver;
+    set_OnMouseOver: function(value) {
+        Sys.Extended.Deprecated("set_OnMouseOver(value)", "set_onMouseOver(value)");
+        this.set_onMouseOver(value);
     },
 
+    /// <summary>
+    /// Generic OnMouseOver Animation's behavior
+    /// </summary>
+    /// <getter>get_onLoadBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onLoadBehavior" />
+    get_onMouseOverBehavior: function() {
+        return this._onMouseOver;
+    },
+    get_OnMouseOverBehavior: function() {
+        Sys.Extended.Deprecated("get_OnMouseOverBehavior()", "get_onMouseOverBehavior()");
+    },
+
+    /// <summary>
+    /// Plays OnMouseOver/OnHoverOver animations
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.AnimationExtender.playOnMouseOver" />
     OnMouseOver: function() {
-        // Play the OnMouseOver/OnHoverOver animations
+        Sys.Extended.Deprecated("OnMouseOver()");
+        this.playOnMouseOver();
+    },
+    playOnMouseOver: function() {
         // Private property to track whether a mouseOver event has already occured, and thus eliminate dups
         if(this._mouseHasEntered) {
             // This is an additional onMouseOver triggered by child content
@@ -146,11 +247,15 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         this._mouseHasEntered = true;
     },
 
-    get_OnMouseOut: function() {
-        // Generic OnMouseOut Animation's JSON definition
+    
+    get_onMouseOut: function() {
         return this._onMouseOut ? this._onMouseOut.get_json() : null;
     },
-    set_OnMouseOut: function(value) {
+    get_OnMouseOut: function() {
+        Sys.Extended.Deprecated("get_OnMouseOut()", "get_onMouseOut()");
+        return this.get_onMouseOut();
+    },
+    set_onMouseOut: function(value) {
         if(!this._onMouseOut) {
             this._onMouseOut = new Sys.Extended.UI.Animation.GenericAnimationBehavior(this.get_element());
             this._onMouseOut.initialize();
@@ -158,14 +263,33 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         this._onMouseOut.set_json(value);
         this.raisePropertyChanged('OnMouseOut');
     },
-
-    get_OnMouseOutBehavior: function() {
-        // Generic OnMouseOut Animation's behavior
-        return this._onMouseOut;
+    set_OnMouseOut: function(value) {
+        Sys.Extended.Deprecated("set_OnMouseOut(value)", "set_OnMouseOut(value)");
+        this.set_onMouseOut(value);
     },
 
+    /// <summary>
+    /// Generic OnMouseOut Animation's behavior
+    /// </summary>
+    /// <getter>get_onMouseOutBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onMouseOutBehavior" />
+    get_onMouseOutBehavior: function() {
+        return this._onMouseOut;
+    },
+    get_OnMouseOutBehavior: function() {
+        Sys.Extended.Deprecated("get_OnMouseOutBehavior()", "get_onMouseOutBehavior");
+        return this.get_onMouseOutBehavior();
+    },
+
+    /// <summary>
+    /// Plays OnMouseOver/OnHoverOver animations
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.AnimationExtender.playOnMouseOut" />
     OnMouseOut: function(e) {
-        // Play the OnMouseOver/OnHoverOver animations
+        Sys.Extended.Deprecated("OnMouseOut()");
+        this.playOnMouseOut();
+    },
+    playOnMouseOut: function(e) {
         var ev = e.rawEvent;
         var pt = this.get_element();
         var tg = e.target;
@@ -185,6 +309,7 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
             }
         }
     },
+
     _isChild: function(elmtA, elmtB) {
         var body = document.body;
         while(elmtB && elmtA != elmtB && body != elmtB) {
@@ -198,12 +323,14 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         }
         return elmtA == elmtB;
     },
-
-    get_OnHoverOver: function() {
-        // Generic OnHoverOver Animation's JSON definition
+    get_onHoverOver: function() {
         return this._onHoverOver ? this._onHoverOver.get_json() : null;
     },
-    set_OnHoverOver: function(value) {
+    get_OnHoverOver: function() {
+        Sys.Extended.Deprecated("get_OnHoverOver()", "get_onHoverOver");
+        return this.get_onHoverOver();
+    },
+    set_onHoverOver: function(value) {
         if(!this._onHoverOver) {
             this._onHoverOver = new Sys.Extended.UI.Animation.GenericAnimationBehavior(this.get_element());
             this._onHoverOver.initialize();
@@ -211,17 +338,32 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         this._onHoverOver.set_json(value);
         this.raisePropertyChanged('OnHoverOver');
     },
+    set_OnHoverOver: function(value) {
+        Sys.Extended.Deprecated("set_OnHoverOver(value)", "set_OnHoverOver(value)");
+        this.set_onHoverOver(value);
+    },
 
-    get_OnHoverOverBehavior: function() {
-        // Generic OnHoverOver Animation's behavior
+    /// <summary>
+    /// Generic OnHoverOver Animation's behavior
+    /// </summary>
+    /// <getter>get_onHoverOverBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onHoverOverBehavior" />
+    get_onHoverOverBehavior: function() {
         return this._onHoverOver;
     },
+    get_OnHoverOverBehavior: function() {
+        Sys.Extended.Deprecated("get_OnHoverOverBehavior()", "get_onHoverOverBehavior()");
+        return this.get_onHoverOverBehavior();
+    },
 
-    get_OnHoverOut: function() {
-        // Generic OnHoverOut Animation's JSON definition
+    get_onHoverOut: function() {
         return this._onHoverOut ? this._onHoverOut.get_json() : null;
     },
-    set_OnHoverOut: function(value) {
+    get_OnHoverOut: function() {
+        Sys.Extended.Deprecated("get_OnHoverOut()", "get_onHoverOut()");
+        return this.get_onHoverOut();
+    },
+    set_onHoverOut: function(value) {
         if(!this._onHoverOut) {
             this._onHoverOut = new Sys.Extended.UI.Animation.GenericAnimationBehavior(this.get_element());
             this._onHoverOut.initialize();
@@ -229,10 +371,22 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
         this._onHoverOut.set_json(value);
         this.raisePropertyChanged('OnHoverOut');
     },
+    set_OnHoverOut: function(value) {
+        Sys.Extended.Deprecated("set_OnHoverOut(value)", "set_onHoverOut(value)");
+        this.set_onHoverOut(value);
+    },
 
-    get_OnHoverOutBehavior: function() {
-        // Generic OnHoverOut Animation's behavior
+    /// <summary>
+    /// Generic OnHoverOut Animation's behavior
+    /// </summary>
+    /// <getter>get_onHoverOverBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onHoverOverBehavior" />
+    get_onHoverOutBehavior: function() {
         return this._onHoverOut;
+    },
+    get_OnHoverOutBehavior: function() {
+        Sys.Extended.Deprecated("get_OnHoverOutBehavior()", "get_onHoverOutBehavior()");
+        return this.get_onHoverOutBehavior();
     }
 }
 Sys.Extended.UI.Animation.AnimationBehavior.registerClass('Sys.Extended.UI.Animation.AnimationBehavior', Sys.Extended.UI.BehaviorBase);

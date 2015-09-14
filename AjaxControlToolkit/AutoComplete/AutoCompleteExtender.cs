@@ -9,6 +9,10 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// AutoComplete extends any ASP.NET TextBox control. It associates that control with a
+    /// popup panel to display words that begin with the prefix that is entered into the text box.   
+    /// </summary>
     [Designer(typeof(AutoCompleteExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.AutoCompleteBehavior", Constants.AutoCompleteName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
@@ -18,7 +22,10 @@ namespace AjaxControlToolkit {
     [TargetControlType(typeof(TextBox))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AutoCompleteName + Constants.IconPostfix)]
     public class AutoCompleteExtender : AnimationExtenderControlBase {
-        // Minimum length of text before the webservice provides suggestions.
+        /// <summary>
+        /// Minimum length of text before the webservice provides suggestions.
+        /// The default is 3
+        /// </summary>
         [DefaultValue(3)]
         [ExtenderControlProperty]
         [ClientPropertyName("minimumPrefixLength")]
@@ -27,7 +34,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("MinimumPrefixLength", value); }
         }
 
-        // Time in milliseconds when the timer will kick in to get suggestions using the web service. 
+        /// <summary>
+        /// Time in milliseconds when the timer will kick in to get suggestions using the web service.
+        /// The default is 1000
+        /// </summary>
         [DefaultValue(1000)]
         [ExtenderControlProperty]
         [ClientPropertyName("completionInterval")]
@@ -36,7 +46,11 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CompletionInterval", value); }
         }
 
-        // Number of suggestions to be provided.
+
+        /// <summary>
+        /// A number of suggestions to be provided.
+        /// The default is 10
+        /// </summary>
         [DefaultValue(10)]
         [ExtenderControlProperty]
         [ClientPropertyName("completionSetCount")]
@@ -45,7 +59,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CompletionSetCount", value); }
         }
 
-        // ID of element that will serve as the completion list.
+        /// <summary>
+        /// ID of an element that will serve as the completion list.
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("completionListElementID")]
@@ -56,7 +72,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CompletionListElementID", value); }
         }
 
-        // The web service method to be called.
+        /// <summary>
+        /// The web service method to be called
+        /// </summary>
         [DefaultValue("")]
         [RequiredProperty]
         [ExtenderControlProperty]
@@ -66,9 +84,11 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("ServiceMethod", value); }
         }
 
-        // The path to the web service that the extender will pull the 
-        // word\sentence completions from. If this is not provided, the 
-        // service method should be a page method. 
+        /// <summary>
+        /// The path to the web service that the extender will pull the 
+        /// word/sentence completions from. If this is not provided, the 
+        /// service method should be a page method.
+        /// </summary>
         [UrlProperty]
         [ExtenderControlProperty]
         [TypeConverter(typeof(ServicePathConverter))]
@@ -78,10 +98,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("ServicePath", value); }
         }
 
-        // User/page specific context provided to an optional overload of the
-        // web method described by ServiceMethod/ServicePath.  If the context
-        // key is used, it should have the same signature with an additional
-        // parameter named contextKey of type string.
+        /// <summary>
+        /// User/page specific context provided to an optional overload of the web method described by ServiceMethod/ServicePath. 
+        /// If the context key is used, it should have the same signature with an additional parameter named contextKey of a string type.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("contextKey")]
         [DefaultValue(null)]
@@ -93,11 +113,11 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // Whether or not the ContextKey property should be used.  This will be
-        // automatically enabled if the ContextKey property is ever set
-        // (on either the client or the server).  If the context key is used,
-        // it should have the same signature with an additional parameter
-        // named contextKey of type string.
+        /// <summary>
+        /// Whether or not the ContextKey property should be used.
+        /// This will be automatically enabled if the ContextKey property is ever set (on either the client or the server). 
+        /// If the context key is used, it should have the same signature with an additional parameter named contextKey of a string type.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("useContextKey")]
         [DefaultValue(false)]
@@ -106,7 +126,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<bool>("UseContextKey", value); }
         }
 
-        // Css Class that will be used to style the completion list flyout.
+        /// <summary>
+        /// A CSS class that will be used to style the completion list flyout.	
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("completionListCssClass")]
@@ -115,7 +137,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CompletionListCssClass", value); }
         }
 
-        // Css Class that will be used to style an item in the autocomplete list.
+        /// <summary>
+        /// A CSS class that will be used to style an item in the autocomplete list.	
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("completionListItemCssClass")]
@@ -124,7 +148,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CompletionListItemCssClass", value); }
         }
 
-        // Css Class that will be used to style a highlighted item in the autocomplete list.
+        /// <summary>
+        /// A CSS class that will be used to style a highlighted item in the autocomplete list.
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("highlightedItemCssClass")]
@@ -133,7 +159,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CompletionListHighlightedItemCssClass", value); }
         }
 
-        // Flag to denote whether client side caching is enabled.
+        /// <summary>
+        /// A flag to denote whether client-side caching is enabled.
+        /// The default is true.
+        /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
         [ClientPropertyName("enableCaching")]
@@ -141,7 +170,10 @@ namespace AjaxControlToolkit {
             get { return GetPropertyValue("EnableCaching", true); }
             set { SetPropertyValue("EnableCaching", value); }
         }
-        // Gets or sets the character(s) used to separate words for autocomplete.
+
+        /// <summary>
+        /// The character(s) used to separate words for autocomplete
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("delimiterCharacters")]
         public virtual string DelimiterCharacters {
@@ -149,7 +181,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("DelimiterCharacters", value); }
         }
 
-        // Determines if the First Row of the Search Results be selected by default
+        /// <summary>
+        /// Determines if the first row of the Search Results is selected by default.
+        /// The default is false.
+        /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
         [ClientPropertyName("firstRowSelected")]
@@ -158,10 +193,13 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("FirstRowSelected", value); }
         }
 
-        // If Delimiter characters are specified and ShowOnlyCurrentWordInCompletionListItem is 
-        // set to true, then the completion list displays suggestions just for the current word, 
-        // otherwise, it displays the whole string that will show up in the TextBox if that
-        // item is selected, which is the current default.
+        /// <summary>
+        /// If delimiter characters are specified and ShowOnlyCurrentWordInCompletionListItem is set to true,
+        /// then the completion list displays suggestions just for the current word, 
+        /// otherwise, it displays the whole string that will show up in the TextBox 
+        /// if that item is selected, which is the current default.
+        /// The default is false.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("showOnlyCurrentWordInCompletionListItem")]
         [DefaultValue(false)]
@@ -170,6 +208,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<bool>("ShowOnlyCurrentWordInCompletionListItem", value); }
         }
 
+        /// <summary>
+        /// OnShow animation
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
         [Browsable(false)]
@@ -181,6 +222,9 @@ namespace AjaxControlToolkit {
         }
         Animation _onShow;
 
+        /// <summary>
+        /// OnHide animation
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
         [Browsable(false)]
@@ -192,7 +236,9 @@ namespace AjaxControlToolkit {
         }
         Animation _onHide;
 
-        // Handler to attach to the client-side populating event
+        /// <summary>
+        /// A handler attached to the client-side populating event
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("populating")]
@@ -201,7 +247,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientPopulating", value); }
         }
 
-        // Handler to attach to the client-side populated event
+        /// <summary>
+        /// A handler attached to the client-side populated event
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("populated")]
@@ -210,7 +258,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientPopulated", value); }
         }
 
-        // Handler to attach to the client-side showing event
+        /// <summary>
+        /// A handler attached to the client-side showing event
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("showing")]
@@ -219,7 +269,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientShowing", value); }
         }
 
-        // Handler to attach to the client-side shown event
+        /// <summary>
+        /// A handler attached to the client-side shown event
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("shown")]
@@ -228,7 +280,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientShown", value); }
         }
 
-        // Handler to attach to the client-side hiding event
+        /// <summary>
+        /// A handler attached to the client-side hiding event
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("hiding")]
@@ -237,7 +291,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientHiding", value); }
         }
 
-        // Handler to attach to the client-side hidden event
+        /// <summary>
+        /// A handler attached to the client-side hidden event
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("hidden")]
@@ -246,7 +302,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientHidden", value); }
         }
 
-        // Handler to attach to the client-side itemSelected event
+        /// <summary>
+        /// A handler attached to the client-side itemSelected event
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("itemSelected")]
@@ -255,7 +313,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientItemSelected", value); }
         }
 
-        // Handler to attach to the client-side itemOver event
+        /// <summary>
+        /// A handler attached to the client-side itemOver event
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("itemOver")]
@@ -264,7 +324,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientItemOver", value); }
         }
 
-        // Handler to attach to the client-side itemOut event
+        /// <summary>
+        /// A handler attached to the client-side itemOut event
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("itemOut")]
@@ -281,8 +343,13 @@ namespace AjaxControlToolkit {
             ResolveControlIDs(_onHide);
         }
 
-        // Create a serialized JSON object representing a text/value pair that can
-        // be returned by the webservice.
+        /// <summary>
+        /// Creates a serialized JSON object representing a text/value pair that can
+        /// be returned by the webservice
+        /// </summary>
+        /// <param name="text" type="String">Text part</param>
+        /// <param name="value" type="String">Value part</param>
+        /// <returns>Serialized JSON</returns>
         public static string CreateAutoCompleteItem(string text, string value) {
             return new JavaScriptSerializer().Serialize(new Pair(text, value));
         }

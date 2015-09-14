@@ -8,18 +8,18 @@ Sys.Extended.UI.ToggleButtonBehavior = function(element) {
     this._idDecoration = '_ToggleButton';
 
     // Properties
-    this._ImageWidth = null;
-    this._ImageHeight = null;
-    this._UncheckedImageUrl = null;
-    this._CheckedImageUrl = null;
-    this._DisabledUncheckedImageUrl = null;
-    this._DisabledCheckedImageUrl = null;
-    this._CheckedImageOverUrl = null;
-    this._UncheckedImageOverUrl = null;
-    this._UncheckedImageAlternateText = null;
-    this._CheckedImageAlternateText = null;
-    this._CheckedImageOverAlternateText = null;
-    this._UncheckedImageOverAlternateText = null;
+    this._imageWidth = null;
+    this._imageHeight = null;
+    this._uncheckedImageUrl = null;
+    this._checkedImageUrl = null;
+    this._disabledUncheckedImageUrl = null;
+    this._disabledCheckedImageUrl = null;
+    this._checkedImageOverUrl = null;
+    this._uncheckedImageOverUrl = null;
+    this._uncheckedImageAlternateText = null;
+    this._checkedImageAlternateText = null;
+    this._checkedImageOverAlternateText = null;
+    this._uncheckedImageOverAlternateText = null;
 
     // Member variables
     this._decoyElement = null;
@@ -53,11 +53,11 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
         // Initialize left and top to 0px for Opera
         decoyElementStyle.left = '0px';
         decoyElementStyle.top = '0px';
-        decoyElementStyle.width = this._ImageWidth + 'px';
-        decoyElementStyle.height = this._ImageHeight + 'px';
+        decoyElementStyle.width = this._imageWidth + 'px';
+        decoyElementStyle.height = this._imageHeight + 'px';
 
         //Firefox uses fontSize to determine the height of href
-        decoyElementStyle.fontSize = this._ImageHeight + 'px';
+        decoyElementStyle.fontSize = this._imageHeight + 'px';
 
         // Make the decoy element look right
         decoyElementStyle.backgroundRepeat = 'no-repeat';
@@ -115,13 +115,13 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
 
     _onClick: function() {
         if(this.get_element().checked) {
-            this._decoyElement.style.backgroundImage = 'url(' + (this.get_element().disabled ? this.get_DisabledCheckedImageUrl() : this._CheckedImageUrl) + ')';
-            if(this._CheckedImageAlternateText)
-                this._decoyElement.title = this._CheckedImageAlternateText;
+            this._decoyElement.style.backgroundImage = 'url(' + (this.get_element().disabled ? this.get_disabledCheckedImageUrl() : this._checkedImageUrl) + ')';
+            if(this._checkedImageAlternateText)
+                this._decoyElement.title = this._checkedImageAlternateText;
         } else {
-            this._decoyElement.style.backgroundImage = 'url(' + (this.get_element().disabled ? this.get_DisabledUncheckedImageUrl() : this._UncheckedImageUrl) + ')';
-            if(this._UncheckedImageAlternateText)
-                this._decoyElement.title = this._UncheckedImageAlternateText;
+            this._decoyElement.style.backgroundImage = 'url(' + (this.get_element().disabled ? this.get_disabledUncheckedImageUrl() : this._uncheckedImageUrl) + ')';
+            if(this._uncheckedImageAlternateText)
+                this._decoyElement.title = this._uncheckedImageAlternateText;
         }
     },
 
@@ -134,14 +134,14 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
     _onDecoyElementMouseOver: function(e) {
         var e = this.get_element();
         if(e && !e.disabled)
-            if(e.checked && this._CheckedImageOverUrl) {
-                this._decoyElement.style.backgroundImage = 'url(' + this._CheckedImageOverUrl + ')';
-                if(this._CheckedImageOverAlternateText)
-                    this._decoyElement.title = this._CheckedImageOverAlternateText;
-            } else if(!e.checked && this._UncheckedImageOverUrl) {
-                this._decoyElement.style.backgroundImage = 'url(' + this._UncheckedImageOverUrl + ')';
-                if(this._UncheckedImageOverAlternateText)
-                    this._decoyElement.title = this._UncheckedImageOverAlternateText;
+            if(e.checked && this._checkedImageOverUrl) {
+                this._decoyElement.style.backgroundImage = 'url(' + this._checkedImageOverUrl + ')';
+                if(this._checkedImageOverAlternateText)
+                    this._decoyElement.title = this._checkedImageOverAlternateText;
+            } else if(!e.checked && this._uncheckedImageOverUrl) {
+                this._decoyElement.style.backgroundImage = 'url(' + this._uncheckedImageOverUrl + ')';
+                if(this._uncheckedImageOverAlternateText)
+                    this._decoyElement.title = this._uncheckedImageOverAlternateText;
             }
     },
 
@@ -150,126 +150,310 @@ Sys.Extended.UI.ToggleButtonBehavior.prototype = {
         this._onClick();
     },
 
+    /// <summary>
+    /// The width of an image
+    /// </summary>
+    /// <getter>get_imageWidth</getter>
+    /// <setter>set_imageWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.imageWidth" />
+    get_imageWidth: function() {
+        return this._imageWidth;
+    },
+    set_imageWidth: function(value) {
+        if(this._imageWidth != value) {
+            this._imageWidth = value;
+            this.raisePropertyChanged('imageWidth');
+        }
+    },
+
     get_ImageWidth: function() {
-        return this._ImageWidth;
+        Sys.Extended.Deprecated("get_ImageWidth()", "get_imageWidth()");
+        return this.get_imageWidth();
     },
     set_ImageWidth: function(value) {
-        if(this._ImageWidth != value) {
-            this._ImageWidth = value;
-            this.raisePropertyChanged('ImageWidth');
+        Sys.Extended.Deprecated("set_ImageWidth(value)", "set_imageWidth(value)");
+        this.set_imageWidth(value);
+    },
+
+    /// <summary>
+    /// The height of an image
+    /// </summary>
+    /// <getter>get_imageHeight</getter>
+    /// <setter>set_imageHeight</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.imageHeight" />
+    get_imageHeight: function() {
+        return this._imageHeight;
+    },
+    set_imageHeight: function(value) {
+        if(this._imageHeight != value) {
+            this._imageHeight = value;
+            this.raisePropertyChanged('imageHeight');
         }
     },
 
     get_ImageHeight: function() {
-        return this._ImageHeight;
+        Sys.Extended.Deprecated("get_ImageHeight()", "get_imageHeight()");
+        return this.get_imageHeight();
     },
     set_ImageHeight: function(value) {
-        if(this._ImageHeight != value) {
-            this._ImageHeight = value;
-            this.raisePropertyChanged('ImageHeight');
+        Sys.Extended.Deprecated("set_ImageHeight(value)", "set_imageHeight(value)");
+        this.set_imageHeight(value);
+    },
+
+    /// <summary>
+    /// The URL of an image to show when the toggle button is in the unchecked state
+    /// </summary>
+    /// <getter>get_uncheckedImageUrl</getter>
+    /// <setter>set_uncheckedImageUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.uncheckedImageUrl" />
+    get_uncheckedImageUrl: function() {
+        return this._uncheckedImageUrl;
+    },
+    set_uncheckedImageUrl: function(value) {
+        if(this._uncheckedImageUrl != value) {
+            this._uncheckedImageUrl = value;
+            this.raisePropertyChanged('uncheckedImageUrl');
         }
     },
 
     get_UncheckedImageUrl: function() {
-        return this._UncheckedImageUrl;
+        Sys.Extended.Deprecated("get_UncheckedImageUrl()", "get_uncheckedImageUrl()");
+        return this.get_uncheckedImageUrl();
     },
     set_UncheckedImageUrl: function(value) {
-        if(this._UncheckedImageUrl != value) {
-            this._UncheckedImageUrl = value;
-            this.raisePropertyChanged('UncheckedImageUrl');
+        Sys.Extended.Deprecated("set_UncheckedImageUrl(value)", "set_uncheckedImageUrl(value)");
+        this.set_uncheckedImageUrl(value);
+    },
+
+    /// <summary>
+    /// The URL of an image to show when the toggle button is in the checked state
+    /// </summary>
+    /// <getter>get_checkedImageUrl</getter>
+    /// <setter>set_checkedImageUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.checkedImageUrl" />
+    get_checkedImageUrl: function() {
+        return this._checkedImageUrl;
+    },
+    set_checkedImageUrl: function(value) {
+        if(this._checkedImageUrl != value) {
+            this._checkedImageUrl = value;
+            this.raisePropertyChanged('checkedImageUrl');
         }
     },
 
     get_CheckedImageUrl: function() {
-        return this._CheckedImageUrl;
+        Sys.Extended.Deprecated("get_CheckedImageUrl()", "get_checkedImageUrl()");
+        return this.get_checkedImageUrl();
     },
     set_CheckedImageUrl: function(value) {
-        if(this._CheckedImageUrl != value) {
-            this._CheckedImageUrl = value;
-            this.raisePropertyChanged('CheckedImageUrl');
+        Sys.Extended.Deprecated("set_CheckedImageUrl(value)", "set_checkedImageUrl(value)");
+        this.set_checkedImageUrl(value);
+    },
+
+    /// <summary>
+    /// The URL of an image to show when the toggle button is disabled and in the unchecked state
+    /// </summary>
+    /// <getter>get_disabledUncheckedImageUrl</getter>
+    /// <setter>set_disabledUncheckedImageUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.disabledUncheckedImageUrl" />
+    get_disabledUncheckedImageUrl: function() {
+        return (this._disabledUncheckedImageUrl != undefined) ?
+            this._disabledUncheckedImageUrl : this._uncheckedImageUrl;
+    },
+    set_disabledUncheckedImageUrl: function(value) {
+        if(this._disabledUncheckedImageUrl != value) {
+            this._disabledUncheckedImageUrl = value;
+            this.raisePropertyChanged('disabledUncheckedImageUrl');
         }
     },
 
     get_DisabledUncheckedImageUrl: function() {
-        return (this._DisabledUncheckedImageUrl != undefined) ?
-            this._DisabledUncheckedImageUrl : this._UncheckedImageUrl;
+        Sys.Extended.Deprecated("get_DisabledUncheckedImageUrl()", "get_disabledUncheckedImageUrl()");
+        return this.get_disabledUncheckedImageUrl();
     },
     set_DisabledUncheckedImageUrl: function(value) {
-        if(this._DisabledUncheckedImageUrl != value) {
-            this._DisabledUncheckedImageUrl = value;
-            this.raisePropertyChanged('DisabledUncheckedImageUrl');
+        Sys.Extended.Deprecated("set_DisabledUncheckedImageUrl(value)", "set_disabledUncheckedImageUrl(value)");
+        this.set_disabledUncheckedImageUrl(value);
+    },
+
+    /// <summary>
+    /// The URL of an image to show when the toggle button is disabled and in the checked state
+    /// </summary>
+    /// <getter>get_disabledCheckedImageUrl</getter>
+    /// <setter>set_disabledCheckedImageUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.disabledCheckedImageUrl" />
+    get_disabledCheckedImageUrl: function() {
+        return (this._disabledUncheckedImageUrl != undefined) ?
+            this._disabledCheckedImageUrl : this._checkedImageUrl;
+    },
+    set_disabledCheckedImageUrl: function(value) {
+        if(this._disabledCheckedImageUrl != value) {
+            this._disabledCheckedImageUrl = value;
+            this.raisePropertyChanged('disabledCheckedImageUrl');
         }
     },
 
     get_DisabledCheckedImageUrl: function() {
-        return (this._DisabledUncheckedImageUrl != undefined) ?
-            this._DisabledCheckedImageUrl : this._CheckedImageUrl;
+        Sys.Extended.Deprecated("get_DisabledCheckedImageUrl()", "get_disabledCheckedImageUrl()");
+        return this.get_disabledCheckedImageUrl();
     },
     set_DisabledCheckedImageUrl: function(value) {
-        if(this._DisabledCheckedImageUrl != value) {
-            this._DisabledCheckedImageUrl = value;
-            this.raisePropertyChanged('DisabledCheckedImageUrl');
+        Sys.Extended.Deprecated("set_DisabledCheckedImageUrl(value)", "set_disabledCheckedImageUrl(value)");
+        this.set_disabledCheckedImageUrl(value);
+    },
+
+    /// <summary>
+    /// The URL of an image to show when the toggle button is in the checked
+    /// state and the mouse is over the button
+    /// </summary>
+    /// <getter>get_checkedImageOverUrl</getter>
+    /// <setter>set_checkedImageOverUrl</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.checkedImageOverUrl" />
+    get_checkedImageOverUrl: function() {
+        return this._checkedImageOverUrl;
+    },
+    set_checkedImageOverUrl: function(value) {
+        if(this._checkedImageOverUrl != value) {
+            this._checkedImageOverUrl = value;
+            this.raisePropertyChanged('checkedImageOverUrl');
         }
     },
 
     get_CheckedImageOverUrl: function() {
-        return this._CheckedImageOverUrl;
+        Sys.Extended.Deprecated("get_CheckedImageOverUrl()", "get_checkedImageOverUrl()");
+        return this.get_checkedImageOverUrl();
     },
     set_CheckedImageOverUrl: function(value) {
-        if(this._CheckedImageOverUrl != value) {
-            this._CheckedImageOverUrl = value;
-            this.raisePropertyChanged('CheckedImageOverUrl');
+        Sys.Extended.Deprecated("set_CheckedImageOverUrl(value)", "set_checkedImageOverUrl(value)");
+        this.set_checkedImageOverUrl(value);
+    },
+
+    /// <summary>
+    /// The URL of an image to show when the toggle button is in the unchecked
+    /// state and the mouse is over the button
+    /// </summary>
+    /// <getter>get_uncheckedImageOverUrl</getter>
+    /// <setter>set_uncheckedImageOverurl</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.uncheckedImageOverUrl" />
+    get_uncheckedImageOverUrl: function() {
+        return this._uncheckedImageOverUrl;
+    },
+    set_uncheckedImageOverUrl: function(value) {
+        if(this._uncheckedImageOverUrl != value) {
+            this._uncheckedImageOverUrl = value;
+            this.raisePropertyChanged('uncheckedImageOverUrl');
         }
     },
 
     get_UncheckedImageOverUrl: function() {
-        return this._UncheckedImageOverUrl;
+        Sys.Extended.Deprecated("get_UncheckedImageOverUrl()", "get_uncheckedImageOverUrl()");
+        return this.get_uncheckedImageOverUrl();
     },
     set_UncheckedImageOverUrl: function(value) {
-        if(this._UncheckedImageOverUrl != value) {
-            this._UncheckedImageOverUrl = value;
-            this.raisePropertyChanged('UncheckedImageOverUrl');
+        Sys.Extended.Deprecated("set_UncheckedImageOverUrl(value)", "set_uncheckedImageOverUrl(value)");
+        this.set_uncheckedImageOverUrl(value);
+    },
+
+    /// <summary>
+    /// The alt text to show when the toggle button is in the unchecked state
+    /// </summary>
+    /// <getter>get_uncheckedImageAlternateText</getter>
+    /// <setter>set_uncheckedImageAlternateText</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.uncheckedImageAlternateText" />
+    get_uncheckedImageAlternateText: function() {
+        return this._uncheckedImageAlternateText;
+    },
+    set_uncheckedImageAlternateText: function(value) {
+        if(this._uncheckedImageAlternateText != value) {
+            this._uncheckedImageAlternateText = value;
+            this.raisePropertyChanged('uncheckedImageAlternateText');
         }
     },
 
     get_UncheckedImageAlternateText: function() {
-        return this._UncheckedImageAlternateText;
+        Sys.Extended.Deprecated("get_UncheckedImageAlternateText()", "get_uncheckedImageAlternateText()");
+        return this.get_uncheckedImageAlternateText();
     },
     set_UncheckedImageAlternateText: function(value) {
-        if(this._UncheckedImageAlternateText != value) {
-            this._UncheckedImageAlternateText = value;
-            this.raisePropertyChanged('UncheckedImageAlternateText');
+        Sys.Extended.Deprecated("set_UncheckedImageAlternateText(value)", "set_uncheckedImageAlternateText(value)");
+        this.set_uncheckedImageAlternateText(value);
+    },
+
+    /// <summary>
+    /// The alt text to show when the toggle button is in the checked state
+    /// </summary>
+    /// <getter>get_checkedImageAlternateText</getter>
+    /// <setter>set_checkedImageAlternateText</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.checkedImageAlternateText" />
+    get_checkedImageAlternateText: function() {
+        return this._checkedImageAlternateText;
+    },
+    set_checkedImageAlternateText: function(value) {
+        if(this._checkedImageAlternateText != value) {
+            this._checkedImageAlternateText = value;
+            this.raisePropertyChanged('checkedImageAlternateText');
         }
     },
 
     get_CheckedImageAlternateText: function() {
-        return this._CheckedImageAlternateText;
+        Sys.Extended.Deprecated("get_CheckedImageAlternateText()", "get_checkedImageAlternateText()");
+        return this.get_checkedImageAlternateText();
     },
     set_CheckedImageAlternateText: function(value) {
-        if(this._CheckedImageAlternateText != value) {
-            this._CheckedImageAlternateText = value;
-            this.raisePropertyChanged('CheckedImageAlternateText');
+        Sys.Extended.Deprecated("set_CheckedImageAlternateText(value)", "set_checkedImageAlternateText(value)");
+        this.set_checkedImageAlternateText(value);
+    },
+
+    /// <summary>
+    /// The alt text to show when the toggle button is in the checked state
+    /// and the mouse is over the button
+    /// </summary>
+    /// <getter>get_checkedImageOverAlternateText</getter>
+    /// <setter>set_checkedImageOverAlternateText</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.checkedImageOverAlternateText" />
+    get_checkedImageOverAlternateText: function() {
+        return this._checkedImageOverAlternateText;
+    },
+    set_checkedImageOverAlternateText: function(value) {
+        if(this._checkedImageOverAlternateText != value) {
+            this._checkedImageOverAlternateText = value;
+            this.raisePropertyChanged('checkedImageOverAlternateText');
         }
     },
 
     get_CheckedImageOverAlternateText: function() {
-        return this._CheckedImageOverAlternateText;
+        Sys.Extended.Deprecated("get_CheckedImageOverAlternateText()", "get_checkedImageOverAlternateText()");
+        return this.get_checkedImageOverAlternateText();
     },
     set_CheckedImageOverAlternateText: function(value) {
-        if(this._CheckedImageOverAlternateText != value) {
-            this._CheckedImageOverAlternateText = value;
-            this.raisePropertyChanged('CheckedImageOverAlternateText');
+        Sys.Extended.Deprecated("set_CheckedImageOverAlternateText(value)", "set_checkedImageOverAlternateTet(value)");
+        this.set_checkedImageOverAlternateText(value);
+    },
+
+    /// <summary>
+    /// The alt text to show when the toggle button is in the unchecked
+    /// state and the mouse is over the button
+    /// </summary>
+    /// <getter>get_uncheckedImageOverAlternateText</getter>
+    /// <setter>set_uncheckedImageOverAlternateText</setter>
+    /// <member name="cP:AjaxControlToolkit.ToggleButtonExtender.uncheckedImageOverAlternateText" />
+    get_uncheckedImageOverAlternateText: function() {
+        return this._uncheckedImageOverAlternateText;
+    },
+    set_uncheckedImageOverAlternateText: function(value) {
+        if(this._uncheckedImageOverAlternateText != value) {
+            this._uncheckedImageOverAlternateText = value;
+            this.raisePropertyChanged('uncheckedImageOverAlternateText');
         }
     },
 
     get_UncheckedImageOverAlternateText: function() {
-        return this._UncheckedImageOverAlternateText;
+        Sys.Extended.Deprecated("get_UncheckedImageOverAlternateText()", "get_uncheckedImageOverAlternateText()");
+        return this.get_uncheckedImageOverAlternateText();
     },
     set_UncheckedImageOverAlternateText: function(value) {
-        if(this._UncheckedImageOverAlternateText != value) {
-            this._UncheckedImageOverAlternateText = value;
-            this.raisePropertyChanged('UncheckedImageOverAlternateText');
-        }
+        Sys.Extended.Deprecated("set_UncheckedImageOverAlternateText(value)", "set_uncheckedImageOverAlternateTet(value)");
+        this.set_uncheckedImageOverAlternateText(value);
     }
 }
 Sys.Extended.UI.ToggleButtonBehavior.registerClass('Sys.Extended.UI.ToggleButtonBehavior', Sys.Extended.UI.BehaviorBase);

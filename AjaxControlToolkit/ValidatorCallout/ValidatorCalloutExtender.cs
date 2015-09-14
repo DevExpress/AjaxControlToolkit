@@ -8,6 +8,10 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// ValidatorCallout is an ASP.NET AJAX extender that enhances the functionality
+    /// of existing ASP.NET validators.
+    /// </summary>
     [Designer(typeof(ValidatorCalloutExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(PopupExtender))]
@@ -21,6 +25,9 @@ namespace AjaxControlToolkit {
             EnableClientState = true;
         }
 
+        /// <summary>
+        /// The path to a custom warning icon image
+        /// </summary>
         [DefaultValue("")]
         [UrlProperty]
         [ExtenderControlProperty]
@@ -30,6 +37,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("WarningIconImageUrl", value); }
         }
 
+        /// <summary>
+        /// The path to a custom close image
+        /// </summary>
         [DefaultValue("")]
         [UrlProperty]
         [ExtenderControlProperty]
@@ -39,6 +49,12 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CloseImageUrl", value); }
         }
 
+        /// <summary>
+        /// Name of the CSS class used to style ValidatorCallout
+        /// </summary>
+        /// <remarks>
+        /// See the ValidatorCallout Theming section for more information
+        /// </remarks>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("cssClass")]
@@ -47,6 +63,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CssClass", value); }
         }
 
+        /// <summary>
+        /// A CSS class to apply to an invalid field
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("highlightCssClass")]
@@ -55,6 +74,18 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("HighlightCssClass", value); }
         }
 
+        /// <summary>
+        /// Indicates where the ValidatorCallout popup should appear relatively to the control to validate
+        /// </summary>
+        /// <remarks>
+        /// Possible values:
+        /// * BottomLeft
+        /// * BottomRight
+        /// * TopLeft
+        /// * TopRight
+        /// * Left
+        /// * Right
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("popupPosition")]
         [DefaultValue(ValidatorCalloutPosition.Right)]
@@ -64,6 +95,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("PopupPosition", value); }
         }
 
+        /// <summary>
+        /// The width of the callout
+        /// </summary>
         [DefaultValue(typeof(Unit), "")]
         [ExtenderControlProperty]
         [ClientPropertyName("width")]
@@ -72,6 +106,16 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("Width", value); }
         }
 
+        /// <summary>
+        /// Generic OnShow animation for the ValidatorCallout extender
+        /// </summary>
+        /// <remarks>
+        ///  The OnShow animation will be played each time the validation popup is displayed.
+        /// The popup will be positioned correctly, but hidden. The animation can be used to
+        /// display the popup along with any other visual effects.
+        /// 
+        /// See Animation Reference for more details
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("onShow")]
         [Browsable(false)]
@@ -83,6 +127,12 @@ namespace AjaxControlToolkit {
         }
         Animation _onShow;
 
+        /// <summary>
+        /// Generic OnHide animation for the ValidatorCallout extender
+        /// </summary>
+        /// <remarks>
+        /// The OnHide animation will be played each time the validation popup is hidden
+        /// </remarks>
         [ExtenderControlProperty]
         [ClientPropertyName("onHide")]
         [Browsable(false)]

@@ -101,7 +101,10 @@ Sys.Extended.UI.LineChart.prototype = {
         this.drawLines();
     },
 
-    // This calculates distance interval for the value axis.
+    /// <summary>
+    /// Calculates a distance interval for the value axis
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.LineChart.calculateInterval" />
     calculateInterval: function() {
         this.startX = (this._chartWidth * 10 / 100) + 0.5;
         this.endX = parseInt(this._chartWidth) - 4.5;
@@ -114,7 +117,11 @@ Sys.Extended.UI.LineChart.prototype = {
         this.yInterval = this.startY / (this._valueAxisLines + 1);
     },
 
-    // This calculates minimum and maximum values of the specified data.
+    /// <summary>
+    /// Calculates minimum and maximum values of specified data
+    /// </summary>
+    /// <param name="chartType" type="Sys.Extended.UI.LineChartType">Chart type</param>
+    /// <member name="cM:AjaxControlToolkit.LineChart.calculateMinMaxValues" />
     calculateMinMaxValues: function(chartType) {
         var seriesMax,
             seriesMin,
@@ -172,7 +179,10 @@ Sys.Extended.UI.LineChart.prototype = {
             this._valueAxisLines = Math.round(this._valueAxisLines / 2);
     },
 
-    // this calculates label values for Value axis to display on the chart.
+    /// <summary>
+    /// Calculates label values for the value axis to display on the chart
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.LineChart.calculateValueAxis" />
     calculateValueAxis: function() {
         // calculate value axis labels
         var range,
@@ -197,7 +207,10 @@ Sys.Extended.UI.LineChart.prototype = {
         this.startX = this.startX + (this.roundedTickRange * 10 * this._valueAxisLines / 10).toString().length * this.charLength;
     },
 
-    // This draws background horizontal lines of the chart.
+    /// <summary>
+    /// Draws background horizontal lines of the chart
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.LineChart.drawBackgroundHorizontalLines" />
     drawBackgroundHorizontalLines: function() {
         var horizontalLineContents = '';
 
@@ -213,7 +226,10 @@ Sys.Extended.UI.LineChart.prototype = {
         return horizontalLineContents;
     },
 
-    // This draws background vertical lines of the chart.
+    /// <summary>
+    /// Draws background vertical lines of the chart
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.LineChart.drawBackgroundVerticalLines" />
     drawBackgroundVerticalLines: function() {
         // background grid's vertical lines
         var verticalLineContents = '';
@@ -229,7 +245,10 @@ Sys.Extended.UI.LineChart.prototype = {
         return verticalLineContents;
     },
 
-    // This draws base lines of the chart.
+    /// <summary>
+    /// Draws base lines of the chart
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.LineChart.drawBaseLines" />
     drawBaseLines: function() {
         var baseLineContents = '';
 
@@ -253,7 +272,10 @@ Sys.Extended.UI.LineChart.prototype = {
         return baseLineContents;
     },
 
-    // This draws legends of the chart.
+    /// <summary>
+    /// Draws legends of the chart
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.LineChart.drawLegendArea" />
     drawLegendArea: function() {
         var legendContents = '';
         // Legend Area
@@ -312,7 +334,10 @@ Sys.Extended.UI.LineChart.prototype = {
         return legendContents;
     },
 
-    // This writes horizontal and vertical axis values of the chart.
+    /// <summary>
+    /// Writes horizontal and vertical axis values of the chart
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.LineChart.drawAxisValues" />
     drawAxisValues: function() {
         var axisContents = '',
             textLength = 0;
@@ -332,7 +357,10 @@ Sys.Extended.UI.LineChart.prototype = {
         return axisContents;
     },
 
-    // This creates svg and its initial contents.
+    /// <summary>
+    /// Creates SVG and its initial content
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.LineChart.initializeSVG" />
     initializeSVG: function() {
         var svgContents = String.format('<?xml-stylesheet type="text/css" href="{0}.css"?>', this._theme);
 
@@ -351,7 +379,10 @@ Sys.Extended.UI.LineChart.prototype = {
         return svgContents;
     },
 
-    // This draws Lines on the chart.
+    /// <summary>
+    /// Draws lines on the chart
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.LineChart.drawLines" />
     drawLines: function() {
         // Lines section    
         var lineContents = '',
@@ -419,130 +450,219 @@ Sys.Extended.UI.LineChart.prototype = {
             }, 400);
     },
 
+    /// <summary>
+    /// Enables you to customize chart width
+    /// </summary>
+    /// <getter>get_chartWidth</getter>
+    /// <setter>set_chartWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.chartWidth" />
     get_chartWidth: function() {
         return this._chartWidth;
     },
-
     set_chartWidth: function(value) {
         this._chartWidth = value;
     },
 
+    /// <summary>
+    /// Enables you to customize chart height
+    /// </summary>
+    /// <getter>get_chartHeight</getter>
+    /// <setter>set_chartHeight</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.chartHeight" />
     get_chartHeight: function() {
         return this._chartHeight;
     },
-
     set_chartHeight: function(value) {
         this._chartHeight = value;
     },
 
+    /// <summary>
+    /// Enables you to set the chart's title
+    /// </summary>
+    /// <getter>get_chartTitle</getter>
+    /// <setter>set_chartTitle</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.chartTitle" />
     get_chartTitle: function() {
         return this._chartTitle;
     },
-
     set_chartTitle: function(value) {
         this._chartTitle = value;
     },
 
+    /// <summary>
+    /// Provides a set of values for the category axis to create a line chart
+    /// </summary>
+    /// <getter>get_categoriesAxis</getter>
+    /// <setter>set_categoriesAxis</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.categoriesAxis" />
     get_categoriesAxis: function() {
         return this._categoriesAxis;
     },
-
     set_categoriesAxis: function(value) {
         this._categoriesAxis = value;
     },
 
-    get_ClientSeries: function() {
+    /// <summary>
+    /// Provides a list of series
+    /// </summary>
+    /// <getter>get_clientSeries</getter>
+    /// <setter>set_clientSeries</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.clientSeries" />
+    get_clientSeries: function() {
         return this._series;
     },
-
-    set_ClientSeries: function(value) {
+    set_clientSeries: function(value) {
         this._series = value;
     },
 
+    get_ClientSeries: function() {
+        Sys.Extended.Deprecated("get_ClientSeries()", "get_clientSeries()");
+        return this.get_clientSeries();
+    },
+    set_ClientSeries: function(value) {
+        Sys.Extended.Deprecated("set_ClientSeries(value)", "set_clientSeries(value)");
+        this.set_clientSeries(value);
+    },
+
+    /// <summary>
+    /// Enables you to render two types of line charts: Basic or Stacked
+    /// </summary>
+    /// <getter>get_chartType</getter>
+    /// <setter>set_chartType</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.chartType" />
     get_chartType: function() {
         return this._chartType;
     },
-
     set_chartType: function(value) {
         this._chartType = value;
     },
 
+    /// <summary>
+    /// Enables you to control the appearance of a line chart with a CSS file
+    /// </summary>
+    /// <getter>get_theme</getter>
+    /// <setter>set_theme</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.theme" />
     get_theme: function() {
         return this._theme;
     },
-
     set_theme: function(value) {
         this._theme = value;
     },
 
+    /// <summary>
+    /// Enables you to set interval size for a value axis line
+    /// </summary>
+    /// <getter>get_valueAxisLines</getter>
+    /// <setter>set_valueAxisLines</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.valueAxisLines" />
     get_valueAxisLines: function() {
         return this._valueAxisLines;
     },
-
     set_valueAxisLines: function(value) {
         this._valueAxisLines = value;
     },
 
+    /// <summary>
+    /// Enables you to set a font color of the chart's title
+    /// </summary>
+    /// <getter>get_chartTitleColor</getter>
+    /// <setter>set_chartTitleColor</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.chartTitleColor" />
     get_chartTitleColor: function() {
         return this._chartTitleColor;
     },
-
     set_chartTitleColor: function(value) {
         this._chartTitleColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set a color of a value axis line
+    /// </summary>
+    /// <getter>get_valueAxisLineColor</getter>
+    /// <setter>set_valueAxisLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.valueAxisLineColor" />
     get_valueAxisLineColor: function() {
         return this._valueAxisLineColor;
     },
-
     set_valueAxisLineColor: function(value) {
         this._valueAxisLineColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set a color of category axis lines
+    /// </summary>
+    /// <getter>get_categoryAxisLineColor</getter>
+    /// <setter>set_categoryAxisLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.categoryAxisLineColor" />
     get_categoryAxisLineColor: function() {
         return this._categoryAxisLineColor;
     },
-
     set_categoryAxisLineColor: function(value) {
         this._categoryAxisLineColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set a color of the chart's base lines
+    /// </summary>
+    /// <getter>get_baseLineColor</getter>
+    /// <setter>set_baseLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.baseLineColor" />
     get_baseLineColor: function() {
         return this._baseLineColor;
     },
-
     set_baseLineColor: function(value) {
         this._baseLineColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set a background color of the tooltip box
+    /// </summary>
+    /// <getter>get_tooltipBackgroundColor</getter>
+    /// <setter>set_tooltipBackgroundColor</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.tooltipBackgroundColor" />
     get_tooltipBackgroundColor: function() {
         return this.tooltipBackgroundColor;
     },
-
     set_tooltipBackgroundColor: function(value) {
         this.tooltipBackgroundColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set a font color of the tooltip box
+    /// </summary>
+    /// <getter>get_tooltipFontColor</getter>
+    /// <setter>set_tooltipFontColor</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.tooltipFontColor" />
     get_tooltipFontColor: function() {
         return this._tooltipFontColor;
     },
-
     set_tooltipFontColor: function(value) {
         this._tooltipFontColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set a border color of the tooltip box
+    /// </summary>
+    /// <getter>get_tooltipBorderColor</getter>
+    /// <setter>set_tooltipBorderColor</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.tooltipBorderColor" />
     get_tooltipBorderColor: function() {
         return this._tooltipBorderColor;
     },
-
     set_tooltipBorderColor: function(value) {
         this._tooltipBorderColor = value;
     },
 
+    /// <summary>
+    /// Enables you to set text/label that will be shown in the tooltip and describe a area data value
+    /// </summary>
+    /// <getter>get_areaDataLabel</getter>
+    /// <setter>set_areaDataLabel</setter>
+    /// <member name="cP:AjaxControlToolkit.LineChart.areaDataLabel" />
     get_areaDataLabel: function() {
         return this._areaDataLabel;
     },
-
     set_areaDataLabel: function(value) {
         this._areaDataLabel = value;
     }
@@ -551,7 +671,7 @@ Sys.Extended.UI.LineChart.prototype = {
 Sys.Extended.UI.LineChart.registerClass("Sys.Extended.UI.LineChart", Sys.Extended.UI.ControlBase);
 
 Sys.Extended.UI.LineChartType = function() {
-    /// Type of Line Chart
+    // Type of Line Chart
     throw Error.invalidOperation();
 }
 

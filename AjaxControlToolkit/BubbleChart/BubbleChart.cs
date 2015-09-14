@@ -11,24 +11,34 @@ using System.Drawing;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// The BubbleChart control enables you to render a bubble chart from one or more series of values. 
+    /// This control is compatible with any browser that supports SVG including Internet Explorer 9 and above.
+    /// </summary>
     [ClientCssResource(Constants.BubbleChartName)]
     [ClientScriptResource("Sys.Extended.UI.BubbleChart", Constants.BubbleChartName)]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.BubbleChartName + Constants.IconPostfix)]
     public class BubbleChart : ChartBase {
         List<BubbleChartValue> _values = new List<BubbleChartValue>();
 
-        // Provide list of values to client side. Need help from Values property 
-        // for designer experience support, cause Editor always blocks the property
-        // ability to provide values to client side as ExtenderControlProperty on run time.
+        /// <summary>
+        /// Provides a list of values to the client side. 
+        /// The Values property is required for designer experience support, 
+        /// because the editor always prevents providing values to the client side as ExtenderControlProperty at runtime.
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         [ExtenderControlProperty(true, true)]
+        [ClientPropertyName("bubbleChartClientValues")]
         public List<BubbleChartValue> BubbleChartClientValues {
             get { return _values; }
         }
 
+        /// <summary>
+        /// A list of values.
+        /// </summary>
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(null)]
@@ -38,66 +48,111 @@ namespace AjaxControlToolkit {
             get { return _values; }
         }
 
+        /// <summary>
+        /// Interval size for the Y axis line of the chart.
+        /// The default is 6
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(6)]
         [ClientPropertyName("yAxisLines")]
         public int YAxisLines { get; set; }
 
+        /// <summary>
+        /// Iinterval size for the X axis line of the chart. 
+        /// The default is 6
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(6)]
         [ClientPropertyName("xAxisLines")]
         public int XAxisLines { get; set; }
 
+        /// <summary>
+        /// The number of different bubble sizes.
+        /// The default is 5
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(5)]
         [ClientPropertyName("bubbleSizes")]
         public int BubbleSizes { get; set; }
 
+        /// <summary>
+        /// A color of the Y axis lines of the chart.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("yAxisLineColor")]
         public string YAxisLineColor { get; set; }
 
+        /// <summary>
+        /// A color of the X axis lines of the chart.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("xAxisLineColor")]
         public string XAxisLineColor { get; set; }
 
+        /// <summary>
+        /// The color of the base lines of a chart.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("baseLineColor")]
         public string BaseLineColor { get; set; }
 
+        /// <summary>
+        /// A background color of the tooltip box.
+        /// The default is #FFC652
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#FFC652")]
         [ClientPropertyName("tooltipBackgroundColor")]
         public string TooltipBackgroundColor { get; set; }
 
+        /// <summary>
+        /// A font color of the tooltip box.
+        /// The default is #0E426C
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#0E426C")]
         [ClientPropertyName("tooltipFontColor")]
         public string TooltipFontColor { get; set; }
 
+        /// <summary>
+        /// A border color of the tooltip box. 
+        /// The default is #B85B3E
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("#B85B3E")]
         [ClientPropertyName("tooltipBorderColor")]
         public string TooltipBorderColor { get; set; }
 
+        /// <summary>
+        /// Text/label to describe what data is in XAxis.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("xAxisLabel")]
         public string XAxisLabel { get; set; }
 
+        /// <summary>
+        /// Text/label to describe what data is in YAxis.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("yAxisLabel")]
         public string YAxisLabel { get; set; }
 
+        /// <summary>
+        /// Text/label that will be shown in the tooltip and describe a bubble value.
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("bubbleLabel")]
         public string BubbleLabel { get; set; }
 
+        /// <summary>
+        /// The axis label font color
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("")]
         [ClientPropertyName("axislabelFontColor")]

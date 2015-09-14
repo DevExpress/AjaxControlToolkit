@@ -6,17 +6,100 @@ Sys.Extended.UI.AreaChart = function(element) {
     id = id.replace("_ctl00", "");
     this._parentDiv = document.getElementById(id + "__ParentDiv");
 
+    /// <summary>
+    /// Chart width in pixels. Default value is 300
+    /// </summary>
+    /// <getter>get_chartWidth</getter>
+    /// <setter>set_chartWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.chartWidth" />
     this._chartWidth = '300';
+
+    /// <summary>
+    /// Chart height in pixels. Default value is 300
+    /// </summary>
+    /// <getter>get_chartHeight</getter>
+    /// <setter>set_chartHeight</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.chartHeight" />
     this._chartHeight = '300';
+
+    /// <summary>
+    /// A chart title.
+    /// </summary>
+    /// <getter>get_chartTitle</getter>
+    /// <setter>set_chartTitle</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.chartTitle" />
     this._chartTitle = '';
+
+    /// <summary>
+    /// Comma-separated text for each category rendered below X axis
+    /// </summary>
+    /// <getter>get_categoriesAxis</getter>
+    /// <setter>set_categoriesAxis</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.categoriesAxis" />
     this._categoriesAxis = '';
+
+    /// <summary>
+    /// A list of series.
+    /// </summary>
+    /// <getter>get_clientSeries</getter>
+    /// <setter>set_clientSeries</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.clientSeries" />
     this._series = null;
+
+    /// <summary>
+    /// A type of chart. The default value is Basic.
+    /// </summary>
+    /// <getter>get_chartType</getter>
+    /// <setter>set_chartType</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.chartType" />
     this._chartType = Sys.Extended.UI.AreaChartType.Basic;
+
+    /// <summary>
+    /// A CSS file name for AreaChart. The default value is 'AreaChart'.
+    /// </summary>
+    /// <getter>get_theme</getter>
+    /// <setter>set_theme</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.theme" />
     this._theme = 'AreaChart';
+
+    /// <summary>
+    /// Value axis lines count. The default value is 9.
+    /// </summary>
+    /// <getter>get_valueAxisLines</getter>
+    /// <setter>set_valueAxisLines</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.valueAxisLines" />
     this._valueAxisLines = 9;
+
+    /// <summary>
+    /// Color of a chart title.
+    /// </summary>
+    /// <getter>get_chartTitleColor</getter>
+    /// <setter>set_chartTitleColor</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.chartTitleColor" />
     this._chartTitleColor = '';
+
+    /// <summary>
+    /// Color of a value axis line.
+    /// </summary>
+    /// <getter>get_valueAxisLineColor</getter>
+    /// <setter>set_valueAxisLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.valueAxisLineColor" />
     this._valueAxisLineColor = '';
+
+    /// <summary>
+    /// Color of a category axis line.
+    /// </summary>
+    /// <getter>get_categoryAxisLineColor</getter>
+    /// <setter>set_categoryAxisLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.categoryAxisLineColor" />
     this._categoryAxisLineColor = '';
+
+    /// <summary>
+    /// Color of a base line.
+    /// </summary>
+    /// <getter>get_baseLineColor</getter>
+    /// <setter>set_baseLineColor</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.baseLineColor" />
     this._baseLineColor = '';
 
     // variables
@@ -36,7 +119,6 @@ Sys.Extended.UI.AreaChart = function(element) {
 }
 
 Sys.Extended.UI.AreaChart.prototype = {
-
     initialize: function() {
         Sys.Extended.UI.AreaChart.callBaseMethod(this, "initialize");
 
@@ -55,7 +137,10 @@ Sys.Extended.UI.AreaChart.prototype = {
         Sys.Extended.UI.AreaChart.callBaseMethod(this, "dispose");
     },
 
-    // This generates the AreaChart with the specified values.
+    /// <summary>
+    /// Generates the AreaChart with the specified values
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.AreaChart.generateAreaChart" />
     generateAreaChart: function() {
         this.arrXAxis = this._categoriesAxis.split(',');
         this.arrXAxisLength = this.arrXAxis.length;
@@ -76,7 +161,7 @@ Sys.Extended.UI.AreaChart.prototype = {
         this.drawAreas();
     },
 
-    // This calculates disntance interval for the value axis.
+    // Calculates distance interval for the value axis.
     calculateInterval: function() {
         this.startX = (this._chartWidth * 10 / 100) + 0.5;
         this.endX = parseInt(this._chartWidth) - 4.5;
@@ -89,9 +174,7 @@ Sys.Extended.UI.AreaChart.prototype = {
         this.yInterval = this.startY / (this._valueAxisLines + 1);
     },
 
-    // This calculates minimum and maximum values of the specified data.
     calculateMinMaxValues: function() {
-        // calculate minimum and maximum value
         var seriesMax;
         var seriesMin;
         var arrData;
@@ -146,9 +229,8 @@ Sys.Extended.UI.AreaChart.prototype = {
         }
     },
 
-    // this calculates label values for Value axis to display on the chart.
+    // Calculates label values for Value axis to display on the chart.
     calculateValueAxis: function() {
-        // calculate value axis labels
         var range;
         var unroundedTickSize;
         var x;
@@ -172,8 +254,7 @@ Sys.Extended.UI.AreaChart.prototype = {
         }
         this.startX = this.startX + (this.roundedTickRange * 10 * this._valueAxisLines / 10).toString().length * this.charLength;
     },
-
-    // This draws background horizontal lines of the chart.
+    
     drawBackgroundHorizontalLines: function() {
         var horizontalLineContents = '';
         // background grid's horizontal lines
@@ -190,7 +271,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return horizontalLineContents;
     },
 
-    // This draws background vertical lines of the chart.
     drawBackgroundVerticalLines: function() {
         // background grid's vertical lines
         var verticalLineContents = '';
@@ -208,7 +288,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return verticalLineContents;
     },
 
-    // This draws base lines of the chart.
     drawBaseLines: function() {
         var baseLineContents = '';
 
@@ -233,7 +312,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return baseLineContents;
     },
 
-    // This draws legends of the chart.
     drawLegendArea: function() {
         var legendContents = '';
         // Legend Area
@@ -288,7 +366,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return legendContents;
     },
 
-    // This writes horizontal and vertical axis values of the chart.
     drawAxisValues: function() {
         var axisContents = '';
         var textLength = 0;
@@ -312,7 +389,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return axisContents;
     },
 
-    // This creates svg and its initial contents.
     initializeSVG: function() {
         var svgContents = String.format('<?xml-stylesheet type="text/css" href="{0}.css"?>', this._theme);
         svgContents = svgContents + String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" style="position: relative; display: block;">', this._chartWidth, this._chartHeight);
@@ -330,7 +406,6 @@ Sys.Extended.UI.AreaChart.prototype = {
         return svgContents;
     },
 
-    // This draws Area on the chart.
     drawAreas: function() {
         var areaContents = '';
         // Area section
@@ -372,19 +447,23 @@ Sys.Extended.UI.AreaChart.prototype = {
         }
         this._parentDiv.innerHTML = this._parentDiv.innerHTML + areaContents;
         var svgContentsBeforeAnimation = this._parentDiv.innerHTML;
-        this.drawArea(this, areaPath, 0);
-
+        this._drawArea(areaPath, 0);
     },
 
-    drawArea: function(me, areaPath, seriesIndex) {
-        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<g><path id="AreaPath{1}" d="M{0} z" style="fill:{2};stroke:{2}"></path></g></svg>', areaPath[seriesIndex], seriesIndex + 1, me._series[seriesIndex].AreaColor);
+    _drawArea: function(areaPath, seriesIndex) {
+        var self = this;
+        self._parentDiv.innerHTML = self._parentDiv.innerHTML.replace('</svg>', '') + String.format('<g><path id="AreaPath{1}" d="M{0} z" style="fill:{2};stroke:{2}"></path></g></svg>', areaPath[seriesIndex], seriesIndex + 1, self._series[seriesIndex].AreaColor);
 
         seriesIndex++;
-        if(seriesIndex < me._series.length) {
+        if(seriesIndex < self._series.length) {
             setTimeout(function() {
-                me.drawArea(me, areaPath, seriesIndex);
+                self._drawArea(areaPath, seriesIndex);
             }, 400);
         }
+    },
+    drawArea: function(me, areaPath, seriesIndex) {
+        Sys.Extended.Deprecated("drawArea(me, areaPath, seriesIndex)");
+        this._drawArea(areaPath, seriesIndex);
     },
 
     get_chartWidth: function() {
@@ -415,11 +494,19 @@ Sys.Extended.UI.AreaChart.prototype = {
         this._categoriesAxis = value;
     },
 
-    get_ClientSeries: function() {
+    get_clientSeries: function() {
         return this._series;
     },
-    set_ClientSeries: function(value) {
+    get_ClientSeries: function() {
+        Sys.Extended.Deprecated("get_ClientSeries()", "get_clientSeries()");
+        return this.get_clientSeries();
+    },
+    set_clientSeries: function(value) {
         this._series = value;
+    },
+    set_ClientSeries: function(value) {
+        Sys.Extended.Deprecated("set_ClientSeries(value)", "set_clientSeries(value)");
+        this.set_clientSeries(value);
     },
 
     get_chartType: function() {

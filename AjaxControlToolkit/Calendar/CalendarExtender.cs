@@ -8,15 +8,10 @@ using AjaxControlToolkit.Design;
 
 namespace AjaxControlToolkit {
 
-    // The Calendar control extender can be attached to any ASP.NET TextBox control. It provides client-side 
-    // date-picking functionality with customizable date format and UI in a popup control. You can interact 
-    // with the calendar by clicking on a day to set the date, or the "Today" link to set the current date. 
-    // 
-    // In addition, the left and right arrows can be used to move forward or back a month. 
-    // By clicking on the title of the calendar you can change the view from Days in the current month, 
-    // to Months in the current year. Another click will switch to Years in the current Decade. 
-    // This action allows you to easily jump to dates in the past or the future from within 
-    // the calendar control. 
+    /// <summary>
+    /// The Calendar control extender can be attached to any ASP.NET TextBox control. 
+    /// It provides client-side date-picking functionality with a customizable date format and UI in a popup control.
+    /// </summary>
     [Designer(typeof(CalendarExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts), 0)]
     [RequiredScript(typeof(DateTimeScripts), 1)]
@@ -28,6 +23,9 @@ namespace AjaxControlToolkit {
     [ClientScriptResource("Sys.Extended.UI.CalendarBehavior", Constants.CalendarName)]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.CalendarName + Constants.IconPostfix)]
     public class CalendarExtender : ExtenderControlBase {
+        /// <summary>
+        /// The name of the Cascading Style Sheet class used to style the calendar.
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("cssClass")]
@@ -36,7 +34,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("CssClass", value); }
         }
 
-        // Format string used to display the selected date. The default value is "d"
+        /// <summary>
+        /// A format string used to display the selected date.
+        /// The default value is d
+        /// </summary>
         [DefaultValue("d")]
         [ExtenderControlProperty]
         [ClientPropertyName("format")]
@@ -45,7 +46,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("Format", value); }
         }
 
-        // Format string used to display today's date. The default value is "MMMM d, yyyy"
+        /// <summary>
+        /// A format string used to display today's date. 
+        /// The default value is MMMM d, yyyy.
+        /// </summary>
         [DefaultValue("MMMM d, yyyy")]
         [ExtenderControlProperty]
         [ClientPropertyName("todaysDateFormat")]
@@ -54,7 +58,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("TodaysDateFormat", value); }
         }
 
-        // Format string used to display Days Mode Title. The default value is "MMMM, yyyy"
+        /// <summary>
+        /// A format string used to display the Days Mode Title.
+        /// The default value is MMMM, yyyy.
+        /// </summary>
         [DefaultValue("MMMM, yyyy")]
         [ExtenderControlProperty]
         [ClientPropertyName("daysModeTitleFormat")]
@@ -63,7 +70,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("DaysModeTitleFormat", value); }
         }
 
-        /// <summary>Whether time should be cleared in edited date/time</summary>
+        /// <summary>
+        /// Sets whether or not time should be cleared in edited date/time.
+        /// The default value is false
+        /// </summary>
         [DefaultValue(false)]
         [ExtenderControlProperty]
         [ClientPropertyName("clearTime")]
@@ -72,7 +82,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("ClearTime", value); }
         }
 
-        // Whether this behavior is available for the current element
+        /// <summary>
+        /// Sets whether or not this behavior is available for the current element.
+        /// The default value is true
+        /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
         [ClientPropertyName("enabled")]
@@ -81,7 +94,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("EnabledOnClient", value); }
         }
 
-        // Whether changing modes is animated
+        /// <summary>
+        /// Sets whether or not changing modes is animated.
+        /// The default value is true
+        /// </summary>
         [DefaultValue(true)]
         [ExtenderControlProperty]
         [ClientPropertyName("animated")]
@@ -90,7 +106,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("Animated", value); }
         }
 
-        // Gets or sets the first day of week
+        /// <summary>
+        /// The first day of the week. 
+        /// The default value is Default
+        /// </summary>
         [DefaultValue(FirstDayOfWeek.Default)]
         [ExtenderControlProperty]
         [ClientPropertyName("firstDayOfWeek")]
@@ -99,7 +118,10 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("FirstDayOfWeek", value); }
         }
 
-        /// <summary>The ID of a control to show the calendar popup when clicked. If this value is not set, the calendar will pop up when the textbox receives focus</summary>
+        /// <summary>
+        /// The ID of a control to show the calendar popup when clicked. If this value is not
+        /// set, the calendar will pop up when the textbox receives focus.
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("button")]
@@ -110,7 +132,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("PopupButtonID", value); }
         }
 
-        // Gets or sets the popup position of the calendar. The default value is BottomLeft
+        /// <summary>
+        /// The popup position of the calendar. The default value is BottomLeft.
+        /// </summary>
         [ExtenderControlProperty]
         [ClientPropertyName("popupPosition")]
         [DefaultValue(CalendarPosition.BottomLeft)]
@@ -120,7 +144,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("PopupPosition", value); }
         }
 
-        // Gets or sets the date that the calendar is initialized with
+        /// <summary>
+        /// The date that the calendar is initialized with.
+        /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty]
         [ClientPropertyName("selectedDate")]
@@ -135,7 +161,9 @@ namespace AjaxControlToolkit {
             }
         }
 
-        /// Gets or sets the default view of the calender. The default value is Days.
+        /// <summary>
+        /// The default view of the calender. The default value is Days.
+        /// </summary>
         [DefaultValue(CalendarDefaultView.Days)]
         [ExtenderControlProperty]
         [ClientPropertyName("defaultView")]
@@ -145,7 +173,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("DefaultView", value); }
         }
 
-        // Gets or sets the client script that executes immediately before the calendar is displayed
+        /// <summary>
+        /// A client script that is executed immediately before the calendar is displayed.
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("showing")]
@@ -154,7 +184,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientShowing", value); }
         }
 
-        // Gets or sets the client script that executes immediately after the calendar is displayed
+        /// <summary>
+        /// A client script that is executed immediately after the calendar is displayed.
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("shown")]
@@ -163,7 +195,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientShown", value); }
         }
 
-        // Gets or sets the client script that executes immediately before the calendar is hidden
+        /// <summary>
+        /// A client script that is executed immediately before the calendar is hidden.
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("hiding")]
@@ -172,7 +206,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientHiding", value); }
         }
 
-        // Gets or sets the client script that executes immediately after the calendar is hidden
+        /// <summary>
+        /// A client script that is executed immediately after the calendar is hidden.
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("hidden")]
@@ -181,7 +217,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientHidden", value); }
         }
 
-        // Gets or sets the script that executes when a new date is selected
+        /// <summary>
+        /// A script that is executed when a new date is selected.
+        /// </summary>
         [DefaultValue("")]
         [ExtenderControlEvent]
         [ClientPropertyName("dateSelectionChanged")]
@@ -190,7 +228,9 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("OnClientDateSelectionChanged", value); }
         }
 
-        // Gets or sets the property of the start date for range
+        /// <summary>
+        /// The start date for a range.
+        /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty]
         [ClientPropertyName("startDate")]
@@ -204,7 +244,9 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // Gets or sets the property of the end date for range
+        /// <summary>
+        /// The end date for a range.
+        /// </summary>
         [DefaultValue(null)]
         [ExtenderControlProperty]
         [ClientPropertyName("endDate")]

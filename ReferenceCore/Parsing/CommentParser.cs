@@ -2,24 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Xml.Linq;
 
 namespace AjaxControlToolkit.Reference.Core.Parsing {
 
     public class CommentParser {
 
-        public IEnumerable<RawDoc> ParseFile(string[] lines) {
+        public IEnumerable<RawDoc> ParseFile(string[] lines, String typeFullName) {
             foreach(var block in GetCommentBlocks(lines)) {
-                var blockContent = "<root>" + String.Join(" ", block.Lines) + "</root>";
+                var blockString = String.Join(" ", block.Lines);
+                blockString = blockString.Replace("<summary>", "<summary><![CDATA[").Replace("</summary>", "]]></summary>");
+
+                var blockContent = "<root>" + blockString + "</root>";
                 var element = XElement.Parse(blockContent);
 
                 var member = element.Elements("member").FirstOrDefault();
                 member.Remove();
 
-                yield return new RawDoc(member.Attribute("name").Value) {
-                    Elements = element.Elements()
-                };
+                var memberName = member.Attribute("name").Value;
+                if(memberName.Substring(3).StartsWith(typeFullName))
+                    yield return new RawDoc(memberName) {
+                        Elements = element.Elements()
+                    };
             }
         }
 
@@ -48,5 +52,4 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
             return Regex.IsMatch(line, "^(\t| )*///");
         }
     }
-
 }

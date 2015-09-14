@@ -17,9 +17,9 @@ Sys.Extended.UI.AutoSize = function() {
     throw Error.invalidOperation();
 }
 Sys.Extended.UI.AutoSize.prototype = {
-    None : 0,
-    Fill : 1,
-    Limit : 2
+    None: 0,
+    Fill: 1,
+    Limit: 2
 }
 Sys.Extended.UI.AutoSize.registerEnum("Sys.Extended.UI.AutoSize", false);
 
@@ -39,17 +39,17 @@ Sys.Extended.UI.AccordionSelectedIndexChangeEventArgs = function(oldIndex, selec
     this._selectedIndex = selectedIndex;
 }
 Sys.Extended.UI.AccordionSelectedIndexChangeEventArgs.prototype = {
-    get_oldIndex : function() {
+    get_oldIndex: function() {
         return this._oldIndex;
     },
-    set_oldIndex : function(value) {
+    set_oldIndex: function(value) {
         this._oldIndex = value;
     },
-    
-    get_selectedIndex : function() {
+
+    get_selectedIndex: function() {
         return this._selectedIndex;
     },
-    set_selectedIndex : function(value) {
+    set_selectedIndex: function(value) {
         this._selectedIndex = value;
     }
 }
@@ -208,17 +208,28 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     // has content at div 2i+1).
     Sys.Extended.UI.AccordionBehavior.initializeBase(this, [element]);
 
-    // The _selectedIndex variable is used to track the currently visible content
-    // pane.  It is persisted via ClientState so that it can be restored on PostBack.
-    // If 0 <= _selectedIndex < _panes.Length is not true, then no pane is selected
-    // (and they all appear collapsed).  While any index outside the bounds of the
-    // _panes array indicates that no pane is selected, we don't automatically set
-    // the value to a sentinel like -1 (especially on the server) because it's
-    // possible for additional panes to be added at any time.  We abstract this
-    // problem using the get_Pane() function which returns the selected pane when
-    // it's called with no arguments (and returns null when the current selected
-    // index is invalid).
+    ///<summary>
+    /// The _selectedIndex variable is used to track the currently visible content
+    /// pane.  It is persisted via ClientState so that it can be restored on PostBack.
+    /// If 0 <= _selectedIndex < _panes.Length is not true, then no pane is selected
+    /// (and they all appear collapsed).  While any index outside the bounds of the
+    /// _panes array indicates that no pane is selected, we don't automatically set
+    /// the value to a sentinel like -1 (especially on the server) because it's
+    /// possible for additional panes to be added at any time.  We abstract this
+    /// problem using the getPane() function which returns the selected pane when
+    /// it's called with no arguments (and returns null when the current selected
+    /// index is invalid).
+    ///</summary>
+    ///<getter>get_selectedIndex</getter>
+    ///<setter>set_selectedIndex</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.selectedIndex" />
     this._selectedIndex = 0;
+
+    ///<summary>
+    /// Panes count.
+    ///</summary>
+    ///<getter>getCount</getter>
+    ///<member name="cM:AjaxControlToolkit.Accordion.count" />
 
     // The _panes array represents the collection of Accordion panes.  Each element of
     // the array is an object of the form {header, content, animation} corresponding
@@ -239,31 +250,59 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     // animated.
     this._panes = [];
 
-    // The this._fadeTransitions flag determines whether or not we enable a simple fade
-    // animation effect on top of the opening and closing effect
+    ///<summary>
+    /// Whether or not to fade the accordion panes when transitioning
+    ///</summary>
+    ///<getter>get_fadeTransitions</getter>
+    ///<setter>set_fadeTransitions</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.fadeTransitions" />
     this._fadeTransitions = false;
 
-    // The this._duration represents the transition duration of the animations in seconds
+    ///<summary>
+    /// Length of time to transition between Accordion sections in
+    /// milleseconds. The default value is 250ms.
+    ///</summary>
+    ///<getter>get_transitionDuration</getter>
+    ///<setter>set_transitionDuration</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.transitionDuration" />
     this._duration = 0.25;
 
-    // framesPerSecond is used to tune the animation to perform well depending on
-    // the the type of effect being used an the number of accordion panes, etc.
+    ///<summary>
+    /// A number of steps per second in transition animations.
+    /// The default value is 30 frames per second.
+    ///</summary>
+    ///<getter>get_framesPerSecond</getter>
+    ///<setter>set_framesPerSecond</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.framesPerSecond" />
     this._framesPerSecond = 30;
 
-    // Determine how growth of the Accordion will be controlled.  If it is set to
-    // None, then the Accordion can grow as large or as small as necessary.  If it is
-    // set to Limit, then the Accordion will always be less than or equal to its
-    // available space.  If it is set to Fill, then it will always be equal to its
-    // available space.
+    ///<summary>
+    /// Determines how to control resizing of the Accordion. 
+    /// If it is set to None, then the Accordion can grow as large or as small as necessary. 
+    /// If it is set to Limit, then the Accordion will always be less than or equal to its available space. 
+    /// If it is set to Fill, then it will always be equal to its available space.
+    ///</summary>
+    ///<getter>get_autoSize</getter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.autoSize" />
     this._autoSize = Sys.Extended.UI.AutoSize.None;
 
-    // Whether or not clicking the header will close the currently opened pane (which
-    // leaves all the Accordion's panes closed)
+    ///<summary>
+    /// Whether or not clicking the header will close the currently opened pane (which
+    /// leaves all the Accordion's panes closed).
+    ///</summary>
+    ///<getter>get_requireOpenedPane</getter>
+    ///<setter>set_requireOpenedPane</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.requireOpenedPane" />
     this._requireOpenedPane = true;
 
-    // Whether or not we suppress the client-side click handlers of any elements
-    // (including server controls like Button or HTML elements like anchor) in the header
-    // sections of the Accordion
+    ///<summary>
+    /// Whether or not we suppress the client-side click handlers of any elements
+    /// (including server controls like Button or HTML elements like anchor) in the header
+    /// sections of the Accordion.
+    ///</summary>
+    ///<getter>get_suppressHeaderPostbacks</getter>
+    ///<setter>set_suppressHeaderPostbacks</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.suppressHeaderPostbacks" />
     this._suppressHeaderPostbacks = false;
 
     // Size of all the headers
@@ -273,10 +312,20 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     // elements of our panes will be wired up to
     this._headerClickHandler = null;
 
-    // The _headerSelectedCssClass is the css class applied to the selected header.    
+    ///<summary>
+    /// The _headerSelectedCssClass is the css class applied to the selected header.
+    ///</summary>
+    ///<getter>get_headerCssClass</getter>
+    ///<setter>set_headerCssClass</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.headerCssClass" />
     this._headerCssClass = '';
 
-    // The _headerSelectedCssClass is the css class applied to the selected header.    
+    ///<summary>
+    /// The _headerSelectedCssClass is the css class applied to the selected header.
+    ///</summary>
+    ///<getter>get_headerSelectedCssClass</getter>
+    ///<setter>get_headerSelectedCssClass</setter>
+    ///<member name="cP:AjaxControlToolkit.Accordion.headerSelectedCssClass" />
     this._headerSelectedCssClass = '';
 
     // The _resizeHandler is a reference to the global event handler used to patch
@@ -287,6 +336,11 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     this._isIE8InStandardMode = (Sys.Browser.agent == Sys.Browser.InternetExplorer && Sys.Browser.version > 7 && Sys.Browser.documentMode != 0);
 }
 Sys.Extended.UI.AccordionBehavior.prototype = {
+    // The initialize function is responsible for getting the selected index from
+    // the ClientState mechanism and walking the children of the behavior's target
+    // to find all of the accordion's child panes.  It builds up a collection of the
+    // panes from the headers and content sections.  Then we hide all the content
+    // sections that aren't selected and initialize the layout.
     initialize: function() {
         // The initialize function is responsible for getting the selected index from
         // the ClientState mechanism and walking the children of the behavior's target
@@ -300,7 +354,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
         // Get the selected index from ClientState
         var state = this.get_ClientState();
-        if (state !== null && state !== '') {
+        if(state !== null && state !== '') {
             this._changeSelectedIndex(parseInt(state), false, true);
         }
 
@@ -318,13 +372,13 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // index so it can be passed by reference to the _getNextDiv function
         var nodes = this.get_element().childNodes;
         var index = {};
-        for (index.value = 0; index.value < nodes.length; index.value++) {
+        for(index.value = 0; index.value < nodes.length; index.value++) {
             var header = this._getNextDiv(nodes, index);
-            if (!header) {
+            if(!header) {
                 break;
             }
             var content = this._getNextDiv(nodes, index);
-            if (content) {
+            if(content) {
                 // Add the pane once we've found both a header and a content section
                 // (but bump the loop index back so we don't skip an element when the
                 // loop increments)
@@ -335,7 +389,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
         // Ensure we have an opened pane if we're required to (and use the first
         // pane if we don't have a valid selected index)
-        if (this._requireOpenedPane && !this.get_Pane() && this._panes.length > 0) {
+        if(this._requireOpenedPane && !this.getPane() && this._panes.length > 0) {
             this._changeSelectedIndex(0, false, true);
         }
 
@@ -352,18 +406,23 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // the current index in the collection of nodes.  We wrap the index in an object
         // to perform the .NET equivalent of boxing so it can be passed by reference.
         var div = null;
-        while (index.value < nodes.length && (div = nodes[index.value++])) {
-            if (div.tagName && (div.tagName.toLowerCase() === 'div')) {
+        while(index.value < nodes.length && (div = nodes[index.value++])) {
+            if(div.tagName && (div.tagName.toLowerCase() === 'div')) {
                 break;
             }
         }
         return div;
     },
 
+    ///<summary>
+    /// Create a new Accordion pane given references to its header and content divs
+    /// and add it to the _panes collection.  We also wrap the content div in a new
+    /// container div, add a click handler to the header div, etc.
+    ///</summary>
+    /// <param name="header" type="Object">header element of the new Accordion pane</param>
+    /// <param name="content" type="Object">content element of the new Accordion pane</param>
+    /// <member name="cM:AjaxControlToolkit.Accordion.addPane" />
     addPane: function(header, content) {
-        // Create a new Accordion pane given references to its header and content divs
-        // and add it to the _panes collection.  We also wrap the content div in a new
-        // container div, add a click handler to the header div, etc.
         // New pane object added to the end of the Accordion's pane collection.  The pane
         // is an object of the form {header, content, animation} corresponding to that
         // pane's header section, content section, and the animation used to open and
@@ -381,10 +440,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // property to indicate whether the animation was opening or closing the pane, and
         // a dynamic _pane property to provide a reference to the pane that was being
         // animated.
-        //
-        // "header" - header element of the new Accordion pane
-        // "content" - content element of the new Accordion pane
-
+        
         // Create the new pane object
         var pane = {};
         pane.animation = null;
@@ -447,13 +503,13 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // that was being animated.
 
         var animation = pane.animation;
-        if (!animation) {
+        if(!animation) {
             // Determine whether or not to just use the length animation or build a
             // composite effect with fading transitions (note that only the parent
             // animation has the duration/fps specfied)
             var length = null;
             var fade = null;
-            if (!this._fadeTransitions) {
+            if(!this._fadeTransitions) {
                 animation = length = new Sys.Extended.UI.Animation.LengthAnimation(pane.content, this._duration, this._framesPerSecond, "style", "height", 0, 0, "px");
             } else {
                 length = new Sys.Extended.UI.Animation.LengthAnimation(null, null, null, "style", "height", 0, 0, "px");
@@ -494,9 +550,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // Stop any animations that are still playing (i.e. that haven't finished opening
         // or closing from changing previous panes) in case the user changed the AutoSize
         // mode while an animation was playing.
-        for (var i = 0; i < this._panes.length; i++) {
+        for(var i = 0; i < this._panes.length; i++) {
             var animation = this._panes[i].animation;
-            if (animation && animation.get_isPlaying()) {
+            if(animation && animation.get_isPlaying()) {
                 animation.stop();
             }
         }
@@ -508,7 +564,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
 
         // Initialize the accordion itself
-        if (this._autoSize === Sys.Extended.UI.AutoSize.None) {
+        if(this._autoSize === Sys.Extended.UI.AutoSize.None) {
             // Remove the window resizing handler
             this._disposeResizeHandler();
 
@@ -517,10 +573,10 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
             // to auto when it's contained in a fixed size div.  We'll just not
             // change the value if that's the case.
             var isIE7 = (Sys.Browser.agent == Sys.Browser.InternetExplorer && Sys.Browser.version >= 7)
-            if (!isIE7 || (isIE7 && style.height && style.height.length > 0)) {
+            if(!isIE7 || (isIE7 && style.height && style.height.length > 0)) {
                 style.height = 'auto';
             }
-            if (!isIE7 || (isIE7 && style.overflow && style.overflow.length > 0)) {
+            if(!isIE7 || (isIE7 && style.overflow && style.overflow.length > 0)) {
                 style.overflow = 'auto';
             }
         } else {
@@ -533,7 +589,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
         // Setup the layout attributes for the pane so that it will be in a proper opened
         // or closed state
-        for (var i = 0; i < this._panes.length; i++) {
+        for(var i = 0; i < this._panes.length; i++) {
             this._initializePane(i);
         }
 
@@ -542,7 +598,6 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         this._resizeSelectedPane();
     },
 
-
     _initializePane: function(index) {
         // Setup the layout attributes for the pane so that it will be in a proper opened or
         // closed.  This will be called when adding a new pane for the first time or when
@@ -550,8 +605,8 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         //
         // "index" - index of the pane to initialize
 
-        var pane = this.get_Pane(index);
-        if (!pane) {
+        var pane = this.getPane(index);
+        if(!pane) {
             return;
         }
         var wrapper = pane.content;
@@ -566,22 +621,22 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         original.style.overflow = opened ? 'auto' : 'hidden';
 
         var opacity = (opened || !this._fadeTransitions) ? 1 : 0;
-        if (this._autoSize === Sys.Extended.UI.AutoSize.Fill) {
-            if ($common.getElementOpacity(original) != opacity) {
+        if(this._autoSize === Sys.Extended.UI.AutoSize.Fill) {
+            if($common.getElementOpacity(original) != opacity) {
                 $common.setElementOpacity(original, opacity);
             }
-            if ($common.getElementOpacity(wrapper) != 1) {
+            if($common.getElementOpacity(wrapper) != 1) {
                 $common.setElementOpacity(wrapper, 1);
             }
         } else {
-            if ($common.getElementOpacity(wrapper) != opacity) {
+            if($common.getElementOpacity(wrapper) != opacity) {
                 $common.setElementOpacity(wrapper, opacity);
             }
-            if ($common.getElementOpacity(original) != 1) {
+            if($common.getElementOpacity(original) != 1) {
                 $common.setElementOpacity(original, 1);
             }
         }
-        
+
         pane.header.className = this._selectedIndex === index ? (this._headerSelectedCssClass || this._headerCssClass) : this._headerCssClass;
     },
 
@@ -590,7 +645,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // This has been pulled out into its own method since we need to selectively wire
         // up the resize handler depending on the AutoSize mode.
 
-        if (!this._resizeHandler) {
+        if(!this._resizeHandler) {
             this._resizeHandler = Function.createDelegate(this, this._resizeSelectedPane);
             $addHandler(window, "resize", this._resizeHandler);
         }
@@ -605,15 +660,15 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
         // Wipe the _panes collection.  We're careful to wipe any expando properties
         // which could cause memory leaks in IE6.
-        for (var i = this._panes.length - 1; i >= 0; i--) {
+        for(var i = this._panes.length - 1; i >= 0; i--) {
             var pane = this._panes[i];
-            if (pane) {
-                if (pane.header) {
+            if(pane) {
+                if(pane.header) {
                     pane.header._index = null;
                     $removeHandler(pane.header, "click", this._headerClickHandler);
                     pane.header = null;
                 }
-                if (pane.content) {
+                if(pane.content) {
                     pane.content._original = null;
                     pane.content = null;
                 }
@@ -632,7 +687,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // This has been pulled out into its own method since we need to selectively wire
         // up the resize handler depending on the AutoSize mode.
 
-        if (this._resizeHandler) {
+        if(this._resizeHandler) {
             $removeHandler(window, "resize", this._resizeHandler);
             this._resizeHandler = null;
         }
@@ -644,16 +699,16 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // already initialized.  We can merge it back into dispose once we support generic
         // animations on the Accordion.
 
-        for (var i = 0; i < this._panes.length; i++) {
+        for(var i = 0; i < this._panes.length; i++) {
             var animation = this._panes[i].animation;
-            if (animation) {
+            if(animation) {
                 // Stop the animation if it was still playing
-                if (animation.get_isPlaying()) {
+                if(animation.get_isPlaying()) {
                     animation.stop();
                 }
 
                 // Remove the event handler that runs after the animation completes
-                if (animation._ended) {
+                if(animation._ended) {
                     animation.remove_ended(animation._ended);
                     animation._ended = null;
                 }
@@ -672,9 +727,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         }
     },
 
-    _resizeSelectedPane: function() {        
-        var pane = this.get_Pane();
-        if (!pane) {
+    _resizeSelectedPane: function() {
+        var pane = this.getPane();
+        if(!pane) {
             return;
         }
 
@@ -682,7 +737,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         this._headersSize = this._getHeadersSize().height;
 
         var original = pane.content._original;
-        switch (this._autoSize) {
+        switch(this._autoSize) {
             case Sys.Extended.UI.AutoSize.None:
                 original.style.height = 'auto';
                 original.style.maxHeight = '';
@@ -705,14 +760,14 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // control hierarchy until we find an element just below the root of the accordion)
         var header = evt.target;
         var accordion = this.get_element();
-        while (header && (header.parentNode !== accordion)) {
+        while(header && (header.parentNode !== accordion)) {
             header = header.parentNode;
         }
 
         // Stop the event from bubbling out of the header pane and prevent any
         // action from happening unless we clicked a control inside the header
         evt.stopPropagation();
-        if (this._suppressHeaderPostbacks) {
+        if(this._suppressHeaderPostbacks) {
             evt.preventDefault();
         }
 
@@ -721,7 +776,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // we're not required to keep one pane open, then we'll set the selected index
         // to -1 which will close it (which means all panes will be collapsed).
         var index = header._index;
-        if ((index === this._selectedIndex) && !this._requireOpenedPane) {
+        if((index === this._selectedIndex) && !this._requireOpenedPane) {
             index = -1;
         }
         this._changeSelectedIndex(index, true);
@@ -739,30 +794,30 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // we aren't able to determine invalid values yet.
 
         // Don't bother doing anything if the index didn't change (we actually check the
-        // panes so any invalid indices will match because get_Pane() will return null for
+        // panes so any invalid indices will match because getPane() will return null for
         // both of them)
         var lastIndex = this._selectedIndex;
-        var currentPane = this.get_Pane(index);
-        var lastPane = this.get_Pane(lastIndex);
-        if (!force && (currentPane == lastPane)) {
+        var currentPane = this.getPane(index);
+        var lastPane = this.getPane(lastIndex);
+        if(!force && (currentPane == lastPane)) {
             return;
         }
 
         // Raise the selectedIndexChanging event but don't change the selected index
         // if the handler set the cancel property to true
         var eventArgs = new Sys.Extended.UI.AccordionSelectedIndexChangeEventArgs(lastIndex, index);
-        this.raiseSelectedIndexChanging(eventArgs);
-        if (eventArgs.get_cancel()) {
+        this.raise_selectedIndexChanging(eventArgs);
+        if(eventArgs.get_cancel()) {
             return;
         }
 
         //This sets the header CSS class to the non-selected case.
-        if (lastPane) {
+        if(lastPane) {
             lastPane.header.className = this._headerCssClass;
         }
 
         //This sets the selected header CSS class if available.
-        if (currentPane) {
+        if(currentPane) {
             currentPane.header.className = (this._headerSelectedCssClass == '') ?
                 this._headerCssClass : this._headerSelectedCssClass;
         }
@@ -773,14 +828,14 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         this.set_ClientState(this._selectedIndex);
 
         // Animate the pane changes if required
-        if (animate) {
+        if(animate) {
             this._changePanes(lastIndex);
         }
 
         // Raise the selectedIndexChanged event and the propertyChanged event.  We include
         // both events because many users have expressed that the propertyChanged event is
         // not discoverable.
-        this.raiseSelectedIndexChanged(new Sys.Extended.UI.AccordionSelectedIndexChangeEventArgs(lastIndex, index));
+        this.raise_selectedIndexChanged(new Sys.Extended.UI.AccordionSelectedIndexChangeEventArgs(lastIndex, index));
         this.raisePropertyChanged('SelectedIndex');
     },
 
@@ -795,13 +850,13 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         //
         // "lastIndex" - index of the last selected Accordion pane
 
-        if (!this.get_isInitialized()) {
+        if(!this.get_isInitialized()) {
             return;
         }
 
         var open = null;
         var close = null;
-        for (var i = 0; i < this._panes.length; i++) {
+        for(var i = 0; i < this._panes.length; i++) {
             // Get the animation for each pane (creating it on demand if it doesn't
             // already exist)
             var pane = this._panes[i];
@@ -809,7 +864,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
             // Stop any animations that are still playing (i.e. that haven't finished
             // opening or closing from changing previous panes)
-            if (animation.get_isPlaying()) {
+            if(animation.get_isPlaying()) {
                 animation.stop();
             }
 
@@ -817,10 +872,10 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
             // We set the _opening flag so we don't have to keep checking if we're opening
             // or closing.  If opening, we also set the display style of the pane's content
             // so it will be visible for the animation
-            if (i == this._selectedIndex) {
+            if(i == this._selectedIndex) {
                 animation._opening = true;
                 open = animation;
-            } else if (i == lastIndex) {
+            } else if(i == lastIndex) {
                 animation._opening = false;
                 close = animation;
             } else {
@@ -832,7 +887,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
 
             // Setup the fade effect if we are using it
-            if (this._fadeTransitions) {
+            if(this._fadeTransitions) {
                 animation._fade.set_effect(animation._opening ? Sys.Extended.UI.Animation.FadeEffect.FadeIn : Sys.Extended.UI.Animation.FadeEffect.FadeOut);
             }
 
@@ -847,7 +902,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
             // the original div's gutter pixels.  Animating the original content will also
             // cause the animation to jump slightly at the end when it collapses smoothly down
             // to the gutter pixels but then sets display: none and disappears.
-            if (this._autoSize === Sys.Extended.UI.AutoSize.Fill) {
+            if(this._autoSize === Sys.Extended.UI.AutoSize.Fill) {
                 animation.set_target(pane.content._original);
                 animation._length.set_startValue($common.getContentSize(pane.content._original).height);
                 animation._length.set_endValue(animation._opening ? this._getRemainingHeight(true) : 0);
@@ -865,10 +920,10 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // then shrink again because the animations are running on different timers (and
         // unifying them into a single animation would be a lot messier than the current
         // implementation since they won't both play when we're closing the currently open pane).
-        if (close) {
+        if(close) {
             close.play();
         }
-        if (open) {
+        if(open) {
             open.play();
         }
 
@@ -882,12 +937,12 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         var wrapper = pane.content;
         var original = wrapper._original;
 
-        if (opening) {
+        if(opening) {
             // Make the hidden panes visible so we can see them animate
             wrapper.style.display = 'block';
 
             // Workaround for IE8 to preserve the margins of the accordion headers
-            if (this._autoSize === Sys.Extended.UI.AutoSize.Fill && this._isIE8InStandardMode) {
+            if(this._autoSize === Sys.Extended.UI.AutoSize.Fill && this._isIE8InStandardMode) {
                 original.style.display = 'block';
             }
         } else {
@@ -902,7 +957,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
             // Remove any explicit height off the original content section but manually set
             // the wrapper to the initial height (since it will be shrunk from this height
             // to zero)
-            if (this._autoSize === Sys.Extended.UI.AutoSize.Limit) {
+            if(this._autoSize === Sys.Extended.UI.AutoSize.Limit) {
                 wrapper.style.height = this._getTotalSize(original).height + 'px';
                 original.style.maxHeight = '';
             }
@@ -915,12 +970,12 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         var wrapper = pane.content;
         var original = wrapper._original;
 
-        if (opening) {
+        if(opening) {
             // Depending on the mode, move the explicit height value from the original
             // content div to the wrapper div.  This is necessary because we moved the
             // explicit height value to the wrapper before the animation started since
             // it was the target.
-            if (this._autoSize === Sys.Extended.UI.AutoSize.Limit) {
+            if(this._autoSize === Sys.Extended.UI.AutoSize.Limit) {
                 var remaining = this._getRemainingHeight(true);
                 original.style.maxHeight = remaining + 'px';
             }
@@ -936,11 +991,11 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
             // If we finished a close animation, completely hide the pane so that
             // it's content cannot be tabbed into
 
-            if (!this._isIE8InStandardMode) {
+            if(!this._isIE8InStandardMode) {
                 wrapper.style.display = 'none';
             } else {
                 // Workaround for IE8 to preserve the margins of the accordion headers
-                if (this._autoSize === Sys.Extended.UI.AutoSize.Fill) {
+                if(this._autoSize === Sys.Extended.UI.AutoSize.Fill) {
                     original.style.display = 'none';
                 } else {
                     wrapper.style.height = '0px';
@@ -952,7 +1007,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     _getHeadersSize: function() {
         // Compute the amount of space used by all the headers
         var total = { width: 0, height: 0 };
-        for (var i = 0; i < this._panes.length; i++) {
+        for(var i = 0; i < this._panes.length; i++) {
             var size = this._getTotalSize(this._panes[i].header);
             total.width = Math.max(total.width, size.width);
             total.height += size.height;
@@ -972,17 +1027,17 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // we're getting the remaining height for its wrapper.
 
         var height = 0;
-        var pane = this.get_Pane();
+        var pane = this.getPane();
 
-        if (this._autoSize === Sys.Extended.UI.AutoSize.None) {
+        if(this._autoSize === Sys.Extended.UI.AutoSize.None) {
             // If the AutoSize mode is "None", then we use the size of the pane
-            if (pane) {
+            if(pane) {
                 height = this._getTotalSize(pane.content._original).height;
             }
         } else {
             // Compute the amount of space used
             height = this._headersSize;
-            if (includeGutter && pane) {
+            if(includeGutter && pane) {
                 height += this._getGutterSize(pane.content._original).height;
             }
 
@@ -993,10 +1048,10 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
             // If AutoSize is "Limit", then the size of the pane should be either its
             // actual size, or the rest of the available space.
-            if (pane && (this._autoSize === Sys.Extended.UI.AutoSize.Limit)) {
+            if(pane && (this._autoSize === Sys.Extended.UI.AutoSize.Limit)) {
                 var required = this._getTotalSize(pane.content._original).height;
                 // Ensure we return a number greater than or equal to zero
-                if (required > 0) {
+                if(required > 0) {
                     height = Math.min(height, required);
                 }
             }
@@ -1026,13 +1081,13 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
             var box = $common.getPaddingBox(element);
             gutter.width += box.horizontal;
             gutter.height += box.vertical;
-        } catch (ex) { }
+        } catch(ex) { }
 
         try {
             var box = $common.getBorderBox(element);
             gutter.width += box.horizontal;
             gutter.height += box.vertical;
-        } catch (ex) { }
+        } catch(ex) { }
 
         var box = $common.getMarginBox(element);
         gutter.width += box.horizontal;
@@ -1041,6 +1096,11 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         return gutter;
     },
 
+    ///<summary>
+    /// Fires when an Accordion pane is clicked, but before Accordion changes the pane.
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.Accordion.selectedIndexChanging" />
+    ///<event add="add_selectedIndexChanging" remove="remove_selectedIndexChanging" raise="raise_selectedIndexChanging" />
     add_selectedIndexChanging: function(handler) {
         this.get_events().addHandler('selectedIndexChanging', handler);
     },
@@ -1048,72 +1108,85 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         this.get_events().removeHandler('selectedIndexChanging', handler);
     },
     raiseSelectedIndexChanging: function(eventArgs) {
-
+        Sys.Extended.Deprecated("raiseSelectedIndexChanging(eventArgs)", "raise_selectedIndexChanging(eventArgs)");
+        this.raise_selectedIndexChanging(eventArgs);
+    },
+    raise_selectedIndexChanging: function(eventArgs) {
         var handler = this.get_events().getHandler('selectedIndexChanging');
-        if (handler) {
+        if(handler) {
             handler(this, eventArgs);
         }
     },
 
-    add_selectedIndexChanged: function(handler) {        
+    ///<summary>
+    /// Fires when an Accordion pane is clicked, but after Accordion changes the pane.	
+    ///</summary>
+    ///<member name="cE:AjaxControlToolkit.Accordion.selectedIndexChanged" />
+    ///<event add="add_selectedIndexChanged" remove="remove_selectedIndexChanged" raise="raise_selectedIndexChanged" />
+    add_selectedIndexChanged: function(handler) {
         this.get_events().addHandler('selectedIndexChanged', handler);
     },
-    remove_selectedIndexChanged: function(handler) {        
+    remove_selectedIndexChanged: function(handler) {
         this.get_events().removeHandler('selectedIndexChanged', handler);
     },
     raiseSelectedIndexChanged: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseSelectedIndexChanged(eventArgs)", "raise_selectedIndexChanged(eventArgs)");
+        this.raise_selectedIndexChanged(eventArgs);
+    },
+    raise_selectedIndexChanged: function(eventArgs) {
         var handler = this.get_events().getHandler('selectedIndexChanged');
-        if (handler) {
+        if(handler) {
             handler(this, eventArgs);
         }
     },
 
-    get_Pane: function(index) {
-        // Get a specific Accordion pane given its index.  If no index is provided, get
-        // the currently selected pane.
-        // The desired pane object, or null if outside the the bounds of the _panes array.
-        // The pane is an object of the form {header, content, animation} corresponding to
-        // that pane's header section, content section, and the animation used to open and
-        // close its content section.  The content element is a new div that has been
-        // created to wrap the original div (so we can completely collapse it - even if it
-        // has padding, margins, etc.) which is pointed to by a dynamic _original property.
-        // The header element has a dynamic _index property indicating its position in the
-        // Accordion's pane collection (used primarily by the headers' shared click handler).
-        // Furthermore, the animation will either be an instance of LengthAnimation or
-        // ParallelAnimation (in the latter case, it will have two children which are a
-        // LengthAnimation and a FadeAnimation).  There will be two dynamic properties
-        // _length and _fade pointing to each of these children (to easily set the length
-        // and fadeEffect properties).  There is also a dynamic _ended property which is an
-        // event handler to be fired when the animation is complete, a dynamic _opening
-        // property to indicate whether the animation was opening or closing the pane, and
-        // a dynamic _pane property to provide a reference to the pane that was being
-        // animated.
-        //
-        // "index"- index of the desired Accordion pane.  If the index is not provided, we use
-        // the currently selected index.  In the event the provided index (or the currently
-        // selected index) is outside the bounds of the panes collection, we return null.
-
-        if (index === undefined || index === null) {
+    /// <summary>
+    /// Get a specific Accordion pane given its index. If no index is provided, get the currently selected pane.
+    /// </summary>
+    /// <param name="index" type="Number">index of the desired Accordion pane.  If the index is not provided, we use
+    /// the currently selected index.  In the event the provided index (or the currently
+    /// selected index) is outside the bounds of the panes collection, we return null.</param>
+    /// <member name="cM:AjaxControlToolkit.Accordion.getPane" />
+    getPane: function(index) {
+        if(index === undefined || index === null) {
             index = this._selectedIndex;
         }
         return (this._panes && index >= 0 && index < this._panes.length) ? this._panes[index] : null;
     },
+    get_Pane: function(index) {
+        Sys.Extended.Deprecated("get_Pane(index)", "getPane(index)");
+        return this.getPane(index);
+    },
 
-    get_Count: function() {
+    ///<summary>
+    /// Panes count.
+    ///</summary>
+    /// <member name="cM:AjaxControlToolkit.Accordion.getCount" />
+    getCount: function() {
         return this._panes ? this._panes.length : 0;
+    },
+    get_Count: function() {
+        Sys.Extended.Deprecated("get_Count()", "getCount()");
+        return this.getCount();
     },
 
     get_TransitionDuration: function() {
-        // Length of time to transition between Accordion sections in
-        // milleseconds.  The default value is 250ms.
+        Sys.Extended.Deprecated("get_TransitionDuration()", "get_transitionDuration()");
+        return this.get_transitionDuration();
+    },
+    get_transitionDuration: function() {
         return this._duration * 1000;
     },
     set_TransitionDuration: function(value) {
-        if (this._duration != (value / 1000)) {
+        Sys.Extended.Deprecated("set_TransitionDuration(value)", "set_transitionDuration(value)");
+        this.set_transitionDuration(value);
+    },
+    set_transitionDuration: function(value) {
+        if(this._duration != (value / 1000)) {
             this._duration = value / 1000;
-            for (var i = 0; i < this._panes.length; i++) {
+            for(var i = 0; i < this._panes.length; i++) {
                 var animation = this._panes[i].animation;
-                if (animation) {
+                if(animation) {
                     animation.set_duration(this._duration);
                 }
             }
@@ -1122,16 +1195,22 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     get_FramesPerSecond: function() {
-        // Number of steps per second in the transition animations.
-        // The default value is 30 frames per second.
+        Sys.Extended.Deprecated("get_FramesPerSecond()", "get_framesPerSecond()");
+        return this.get_framesPerSecond();
+    },
+    get_framesPerSecond: function() {
         return this._framesPerSecond;
     },
     set_FramesPerSecond: function(value) {
-        if (this._framesPerSecond != value) {
+        Sys.Extended.Deprecated("set_FramesPerSecond(value)", "set_framesPerSecond(value)");
+        this.set_framesPerSecond(value);
+    },
+    set_framesPerSecond: function(value) {
+        if(this._framesPerSecond != value) {
             this._framesPerSecond = value;
-            for (var i = 0; i < this._panes.length; i++) {
+            for(var i = 0; i < this._panes.length; i++) {
                 var animation = this._panes[i].animation;
-                if (animation) {
+                if(animation) {
                     animation.set_fps(this._framesPerSecond);
                 }
             }
@@ -1140,11 +1219,18 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     get_FadeTransitions: function() {
-        // Whether or not to fade the accordion panes when transitioning
+        Sys.Extended.Deprecated("get_FadeTransitions()", "get_fadeTransitions()");
+        return this.get_fadeTransitions();
+    },
+    get_fadeTransitions: function() {
         return this._fadeTransitions;
     },
     set_FadeTransitions: function(value) {
-        if (this._fadeTransitions != value) {
+        Sys.Extended.Deprecated("set_FadeTransitions(value)", "set_fadeTransitions(value)");
+        return this.set_fadeTransitions(value);
+    },
+    set_fadeTransitions: function(value) {
+        if(this._fadeTransitions != value) {
             this._fadeTransitions = value;
 
             // Whenever we toggle FadeTransitions we dispose the entire list of
@@ -1156,12 +1242,12 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
             // Set all the content sections to 100% opacity in case they had been
             // faded out when a pane was changed but not faded back in yet
-            if (!this._fadeTransitions) {
-                for (var i = 0; i < this._panes.length; i++) {
-                    if ($common.getElementOpacity(this._panes[i].content) != 1) {
+            if(!this._fadeTransitions) {
+                for(var i = 0; i < this._panes.length; i++) {
+                    if($common.getElementOpacity(this._panes[i].content) != 1) {
                         $common.setElementOpacity(this._panes[i].content, 1);
                     }
-                    if ($common.getElementOpacity(this._panes[i].content._original) != 1) {
+                    if($common.getElementOpacity(this._panes[i].content._original) != 1) {
                         $common.setElementOpacity(this._panes[i].content._original, 1);
                     }
                 }
@@ -1171,37 +1257,59 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     get_HeaderCssClass: function() {
+        Sys.Extended.Deprecated("get_HeaderCssClass()", "get_headerCssClass()");
+        return this.get_headerCssClass();
+    },
+    get_headerCssClass: function() {
         return this._headerCssClass;
     },
-
     set_HeaderCssClass: function(value) {
+        Sys.Extended.Deprecated("set_HeaderCssClass(value)", "set_headerCssClass(value)");
+        this.set_headerCssClass();
+    },
+    set_headerCssClass: function(value) {
         this._headerCssClass = value;
         this.raisePropertyChanged('HeaderCssClass');
     },
 
     get_HeaderSelectedCssClass: function() {
+        Sys.Extended.Deprecated("get_headerSelectedCssClass()", "get_headerSelectedCssClass()");
+        return this.get_selectedIndex();
+    },
+    get_headerSelectedCssClass: function(){
         return this._headerSelectedCssClass;
     },
-
     set_HeaderSelectedCssClass: function(value) {
+        Sys.Extended.Deprecated("set_HeaderSelectedCssClass(value)", "set_headerSelectedCssClass(value)");
+        this.set_headerSelectedCssClass(value);
+    },
+    set_headerSelectedCssClass: function(value) {
         this._headerSelectedCssClass = value;
         this.raisePropertyChanged('HeaderSelectedCssClass');
     },
 
     get_AutoSize: function() {
+        Sys.Extended.Deprecated("get_AutoSize()", "get_autoSize()");
+        return get_autoSize();
+    },
+    get_autoSize: function() {
         return this._autoSize;
     },
-    set_AutoSize: function(value) {
+    set_AutoSize: function(value){
+        Sys.Extended.Deprecated("set_AutoSize(value)", "set_autoSize(value)");
+        this.set_autoSize(value);
+    },
+    set_autoSize: function(value) {
         // In IE, treat AutoSize.Limit exactly the same as AutoSize.Fill.  Since IE does not
         // support the max-height CSS property, we can't achieve the Limit auto-size behavior
         // without fixing the exact size of the pane (which means it can't grow/shrink in response
         // to dynamic content changes).  Since Fill has most of the same UI characteristics, it's
         // a safer and cleaner workaround for this one browser.
-        if (Sys.Browser.agent === Sys.Browser.InternetExplorer && value === Sys.Extended.UI.AutoSize.Limit) {
+        if(Sys.Browser.agent === Sys.Browser.InternetExplorer && value === Sys.Extended.UI.AutoSize.Limit) {
             value = Sys.Extended.UI.AutoSize.Fill;
         }
 
-        if (this._autoSize != value) {
+        if(this._autoSize != value) {
             this._autoSize = value;
             this._initializeLayout();
             this.raisePropertyChanged('AutoSize');
@@ -1209,32 +1317,35 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     get_SelectedIndex: function() {
+        Sys.Extended.Deprecated("get_SelectedIndex()", "get_selectedIndex()");
+        return this.get_selectedIndex();
+    },
+    get_selectedIndex: function() {
         return this._selectedIndex;
     },
     set_SelectedIndex: function(value) {
+        Sys.Extended.Deprecated("set_SelectedIndex(value)", "set_selectedIndex(value)");
+        this.set_selectedIndex(value);
+    },
+    set_selectedIndex: function(value) {
         this._changeSelectedIndex(value, true);
     },
 
     get_requireOpenedPane: function() {
-        // Whether or not clicking the header will close the currently opened pane
-        // (which leaves all the Accordion's panes closed)
         return this._requireOpenedPane;
     },
     set_requireOpenedPane: function(value) {
-        if (this._requireOpenedPane != value) {
+        if(this._requireOpenedPane != value) {
             this._requireOpenedPane = value;
             this.raisePropertyChanged('requireOpenedPane');
         }
     },
 
     get_suppressHeaderPostbacks: function() {
-        // Whether or not we suppress the client-side click handlers of any elements
-        // (including server controls like Button or HTML elements like anchor) in the
-        // header sections of the Accordion.
         return this._suppressHeaderPostbacks;
     },
     set_suppressHeaderPostbacks: function(value) {
-        if (this._suppressHeaderPostbacks != value) {
+        if(this._suppressHeaderPostbacks != value) {
             this._suppressHeaderPostbacks = value;
             this.raisePropertyChanged('suppressHeaderPostbacks');
         }

@@ -4,14 +4,14 @@ Sys.Extended.UI.ResizableControlBehavior = function(element) {
     Sys.Extended.UI.ResizableControlBehavior.initializeBase(this, [element]);
 
     // Properties
-    this._HandleCssClass = "";
-    this._ResizableCssClass = "";
-    this._HandleOffsetX = 0;
-    this._HandleOffsetY = 0;
-    this._MinimumWidth = 0;
-    this._MinimumHeight = 0;
-    this._MaximumWidth = 100000;
-    this._MaximumHeight = 100000;
+    this._handleCssClass = "";
+    this._resizableCssClass = "";
+    this._handleOffsetX = 0;
+    this._handleOffsetY = 0;
+    this._minimumWidth = 0;
+    this._minimumHeight = 0;
+    this._maximumWidth = 100000;
+    this._maximumHeight = 100000;
 
     // Variables
     this._frame = null;
@@ -69,7 +69,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         // The this._handle represents the UI handle for the user to grab with
         // the mouse
         this._handle = document.createElement('DIV');
-        this._handle.className = this._HandleCssClass;
+        this._handle.className = this._handleCssClass;
         this._handle.style.position = 'absolute';
         this._handleHolder.appendChild(this._handle);
 
@@ -131,12 +131,12 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
     },
 
     _onmouseover: function() {
-        Sys.UI.DomElement.addCssClass(this._frame, this._ResizableCssClass);
+        Sys.UI.DomElement.addCssClass(this._frame, this._resizableCssClass);
     },
 
     _onmouseout: function() {
         if(!this._tracking)
-            Sys.UI.DomElement.removeCssClass(this._frame, this._ResizableCssClass);
+            Sys.UI.DomElement.removeCssClass(this._frame, this._resizableCssClass);
     },
 
     _onmousedown: function(e) {
@@ -158,7 +158,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         if(Sys.Browser.agent === Sys.Browser.Opera)
             $addHandler(document, 'mousedown', this._onselectstartDelegate);
 
-        this.raiseResizeBegin();
+        this.raise_resizeBegin();
     },
 
     _onmousemove: function(e) {
@@ -188,7 +188,7 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         if(Sys.Browser.agent === Sys.Browser.Opera)
             $removeHandler(document, 'mousedown', this._onselectstartDelegate);
 
-        Sys.UI.DomElement.removeCssClass(this._frame, this._ResizableCssClass);
+        Sys.UI.DomElement.removeCssClass(this._frame, this._resizableCssClass);
     },
 
     _onselectstart: function(e) {
@@ -204,8 +204,8 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         this._lastClientY = clientY;
 
         // Calculate new lining/frame width/height
-        var _liningWidth = Math.min(Math.max(this._lining.offsetWidth + deltaX, Math.max(this._MinimumWidth, this._handle.offsetWidth)), this._MaximumWidth),
-            _liningHeight = Math.min(Math.max(this._lining.offsetHeight + deltaY, Math.max(this._MinimumHeight, this._handle.offsetHeight)), this._MaximumHeight);
+        var _liningWidth = Math.min(Math.max(this._lining.offsetWidth + deltaX, Math.max(this._minimumWidth, this._handle.offsetWidth)), this._maximumWidth),
+            _liningHeight = Math.min(Math.max(this._lining.offsetHeight + deltaY, Math.max(this._minimumHeight, this._handle.offsetHeight)), this._maximumHeight);
 
         // Set new lining/frame width/height
         this._lining.style.width = _liningWidth + 'px';
@@ -214,23 +214,23 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         this._frame.style.height = _liningHeight + 'px';
 
         // Calculate new handle left/top
-        var _handleLeft = this._lining.offsetWidth - this._handle.offsetWidth + this._HandleOffsetX,
-            _handleTop = this._lining.offsetHeight - this._handle.offsetHeight + this._HandleOffsetY;
+        var _handleLeft = this._lining.offsetWidth - this._handle.offsetWidth + this._handleOffsetX,
+            _handleTop = this._lining.offsetHeight - this._handle.offsetHeight + this._handleOffsetY;
 
         // Set new handle left/top
         this._handle.style.left = _handleLeft + 'px';
         this._handle.style.top = _handleTop + 'px';
 
         // Raise the resizing event
-        this.raiseResizing();
+        this.raise_resizing();
     },
 
     _rememberSize: function() {
-        var size = this.get_Size();
+        var size = this.get_size();
         // save the size in ClientState
         Sys.Extended.UI.ResizableControlBehavior.callBaseMethod(this, 'set_ClientState', [size.width + ',' + size.height]);
         // Raise the resize event
-        this.raiseResize();
+        this.raise_resize();
     },
 
     _measurementToNumber: function(m) {
@@ -240,115 +240,239 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         return m.replace('px', '');
     },
 
-    get_HandleCssClass: function() {
-        return this._HandleCssClass;
+    /// <summary>
+    /// The name of the CSS class to apply to the resize handle
+    /// </summary>
+    /// <getter>get_handleCssClass</getter>
+    /// <setter>set_handleCssClass</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.handleCssClass" />
+    get_handleCssClass: function() {
+        return this._handleCssClass;
+    },
+    set_handleCssClass: function(value) {
+        if(this._handleCssClass)
+            throw String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_CannotChangeProperty, 'handleCssClass');
+
+        this._handleCssClass = value;
+        this.raisePropertyChanged('handleCssClass');
     },
 
+    get_HandleCssClass: function() {
+        Sys.Extended.Deprecated("get_HandleCssClass()", "get_handleCssClass()");
+        return this.get_handleCssClass();
+    },
     set_HandleCssClass: function(value) {
-        if(this._HandleCssClass)
-            throw String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_CannotChangeProperty, 'HandleCssClass');
+        Sys.Extended.Deprecated("set_HandleCssClass(value)", "set_handleCssClass(value)");
+        this.set_handleCssClass(value);
+    },
 
-        this._HandleCssClass = value;
-        this.raisePropertyChanged('HandleCssClass');
+    /// <summary>
+    /// The name of the CSS class to apply to the element when resizing
+    /// </summary>
+    /// <getter>get_resizableCssClass</getter>
+    /// <setter>set_resizableCssClass</setter>
+    /// <member name="cP:AjaxControlToolkir.ResizableControlExtender.resizableCssClass" />
+    get_resizableCssClass: function() {
+        return this._resizableCssClass;
+    },
+    set_resizableCssClass: function(value) {
+        if(this._resizableCssClass)
+            throw String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_CannotChangeProperty, 'resizableCssClass');
+
+        this._resizableCssClass = value;
+        this.raisePropertyChanged('resizableCssClass');
     },
 
     get_ResizableCssClass: function() {
-        return this._ResizableCssClass;
+        Sys.Extended.Deprecated("get_ResizableCssClass()", "get_resizableCssClass()");
+        return this.get_resizableCssClass();
+    },
+    set_ResizableCssClass: function(value) {
+        Sys.Extended.Deprecated("set_ResizableCssClass(value)", "set_resizableCssClass(value)");
+        this.set_resizableCssClass(value);
     },
 
-    set_ResizableCssClass: function(value) {
-        if(this._ResizableCssClass)
-            throw String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_CannotChangeProperty, 'ResizableCssClass');
-
-        this._ResizableCssClass = value;
-        this.raisePropertyChanged('ResizableCssClass');
+    /// <summary>
+    /// X-Offset to apply to the location of the resize handle
+    /// </summary>
+    /// <getter>get_handleOffsetX</getter>
+    /// <setter>set_handleOffsetX</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.handleOffsetX" />
+    get_handleOffsetX: function() {
+        return this._handleOffsetX;
+    },
+    set_handleOffsetX: function(value) {
+        if(this._handleOffsetX != value) {
+            this._handleOffsetX = value;
+            this.raisePropertyChanged('handleOffsetX');
+        }
     },
 
     get_HandleOffsetX: function() {
-        return this._HandleOffsetX;
+        Sys.Extended.Deprecated("get_HandleOffsetX()", "get_handleOffsetX()");
+        return this.get_handleOffsetX();
+    },
+    set_HandleOffsetX: function(value) {
+        Sys.Extended.Deprecated("set_HandleOffsetX(value)", "set_handleOffsetX(value)");
+        this.set_handleOffsetX(value);
     },
 
-    set_HandleOffsetX: function(value) {
-        if(this._HandleOffsetX != value) {
-            this._HandleOffsetX = value;
-            this.raisePropertyChanged('HandleOffsetX');
+    /// <summary>
+    /// Y-Offset to apply to the location of the resize handle
+    /// </summary>
+    /// <getter>get_handleOffsetY</getter>
+    /// <setter>set_handleOffsetY</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.handleOffsetY" />
+    get_handleOffsetY: function() {
+        return this._handleOffsetY;
+    },
+    set_handleOffsetY: function(value) {
+        if(this._handleOffsetY != value) {
+            this._handleOffsetY = value;
+            this.raisePropertyChanged('handleOffsetY');
         }
     },
 
     get_HandleOffsetY: function() {
-        return this._HandleOffsetY;
+        Sys.Extended.Deprecated("get_HandleOffsetY()", "get_handleOffsetY()");
+        return this.get_handleOffsetY();
+    },
+    set_HandleOffsetY: function(value) {
+        Sys.Extended.Deprecated("set_HandleOffsetY(value)", "set_handleOffsetY(value)");
+        this.set_handleOffsetY(value);
     },
 
-    set_HandleOffsetY: function(value) {
-        if(this._HandleOffsetY != value) {
-            this._HandleOffsetY = value;
-            this.raisePropertyChanged('HandleOffsetY');
+    /// <summary>
+    /// Minimum width of the resizable element
+    /// </summary>
+    /// <getter>get_minimumWidth</getter>
+    /// <setter>set_minimumWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.minimumWidth" />
+    get_minimumWidth: function() {
+        return this._minimumWidth;
+    },
+    set_minimumWidth: function(value) {
+        if(this._minimumWidth != value) {
+            this._minimumWidth = value;
+            this.raisePropertyChanged('minimumWidth');
         }
     },
 
     get_MinimumWidth: function() {
-        return this._MinimumWidth;
+        Sys.Extended.Deprecated("get_MinimumWidth()", "get_minimumWidth()");
+        return this.get_minimumWidth();
+    },
+    set_MinimumWidth: function(value) {
+        Sys.Extended.Deprecated("set_MinimumWidth(value)", "set_minimumWidth(value)");
+        this.set_minimumWidth(value);
     },
 
-    set_MinimumWidth: function(value) {
-        if(this._MinimumWidth != value) {
-            this._MinimumWidth = value;
-            this.raisePropertyChanged('MinimumWidth');
+    /// <summary>
+    /// Minimum height of the resizable element
+    /// </summary>
+    /// <getter>get_minimumHeight</getter>
+    /// <setter>set_minimumHeight</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.minimumHeight" />
+    get_minimumHeight: function() {
+        return this._minimumHeight;
+    },
+    set_minimumHeight: function(value) {
+        if(this._minimumHeight != value) {
+            this._minimumHeight = value;
+            this.raisePropertyChanged('minimumHeight');
         }
     },
 
     get_MinimumHeight: function() {
-        return this._MinimumHeight;
+        Sys.Extended.Deprecated("get_MinimumHeight()", "get_minimumHeight()");
+        return this.get_minimumHeight();
+    },
+    set_MinimumHeight: function(value) {
+        Sys.Extended.Deprecated("set_MinimumHeight(value)", "set_minimumHeight(value)");
+        this.set_minimumHeight(value);
     },
 
-    set_MinimumHeight: function(value) {
-        if(this._MinimumHeight != value) {
-            this._MinimumHeight = value;
-            this.raisePropertyChanged('MinimumHeight');
+    /// <summary>
+    /// Maximum width of the resizable element
+    /// </summary>
+    /// <getter>get_maximumWidth</getter>
+    /// <setter>set_maximumWidth</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.maximumWidth" />
+    get_maximumWidth: function() {
+        return this._maximumWidth;
+    },
+    set_maximumWidth: function(value) {
+        if(this._maximumWidth != value) {
+            this._maximumWidth = value;
+            this.raisePropertyChanged('maximumWidth');
         }
     },
 
     get_MaximumWidth: function() {
-        return this._MaximumWidth;
+        Sys.Extended.Deprecated("get_MaximumWidth()", "get_maximumWidth()");
+        return this.get_maximumWidth();
+    },
+    set_MaximumWidth: function(value) {
+        Sys.Extended.Deprecated("set_MaximumWidth(value)", "set_maximumWidth(value)");
+        this.set_maximumWidth(value);
     },
 
-    set_MaximumWidth: function(value) {
-        if(this._MaximumWidth != value) {
-            this._MaximumWidth = value;
-            this.raisePropertyChanged('MaximumWidth');
+    /// <summary>
+    /// Maximum height of the resizable element
+    /// </summary>
+    /// <getter>get_maximumHeight</getter>
+    /// <setter>set_maximumHeight</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.maximumHeight" />
+    get_maximumHeight: function() {
+        return this._maximumHeight;
+    },
+    set_maximumHeight: function(value) {
+        if(this._maximumHeight != value) {
+            this._maximumHeight = value;
+            this.raisePropertyChanged('maximumHeight');
         }
     },
 
     get_MaximumHeight: function() {
-        return this._MaximumHeight;
+        Sys.Extended.Deprecated("get_MaximumHeight()", "get_maximumHeight()");
+        return this.get_maximumHeight();
     },
-
     set_MaximumHeight: function(value) {
-        if(this._MaximumHeight != value) {
-            this._MaximumHeight = value;
-            this.raisePropertyChanged('MaximumHeight');
-        }
+        Sys.Extended.Deprecated("set_MaximumHeight(value)", "set_maximumHeight(value)");
+        this.set_maximumHeight(value);
     },
 
+    /// <summary>
+    /// Fires as the element is being resized
+    /// </summary>
+    /// <event add="add_resizing" remove="remove_resizing" raise="raise_resizing" />
+    /// <member name="cE:AjaxControlToolkit.ResizableControlExtender.resizing" />
     add_resizing: function(handler) {
         this.get_events().addHandler("resizing", handler);
     },
-
     remove_resizing: function(handler) {
         this.get_events().removeHandler("resizing", handler);
     },
-
-    raiseResizing: function() {
+    raise_resizing: function() {
         var onResizingHandler = this.get_events().getHandler("resizing");
         if(onResizingHandler)
             onResizingHandler(this, Sys.EventArgs.Empty);
     },
+    raiseResizing: function() {
+        Sys.Extended.Deprecated("raiseResizing()", "raise_resizing()");
+        this.raise_resizing();
+    },
 
+    /// <summary>
+    /// The Resizing event handler
+    /// </summary>
+    /// <getter>get_resizing</getter>
+    /// <setter>set_resizing</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.resizing" />
     get_resizing: function() {
         // Function to invoke on resizing (can a Function, name of a Function, or expression that evaluates to a Function)
         return this.get_events().getHandler("resizing");
     },
-
     set_resizing: function(value) {
         if(value && (0 < value.length)) {
             var func = $common.resolveFunction(value);
@@ -360,25 +484,37 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Fires when the element has been resized
+    /// </summary>
+    /// <event add="add_resize" remove="remove_resize" raise="raise_resize" />
+    /// <member name="cE:AjaxControlToolkit.ResizableControlExtender.resize" />
     add_resize: function(handler) {
         this.get_events().addHandler("resize", handler);
     },
-
     remove_resize: function(handler) {
         this.get_events().removeHandler("resize", handler);
     },
-
-    raiseResize: function() {
+    raise_resize: function() {
         var onResizeHandler = this.get_events().getHandler("resize");
         if(onResizeHandler)
             onResizeHandler(this, Sys.EventArgs.Empty);
     },
+    raiseResize: function() {
+        Sys.Extended.Deprecated("raiseResize()", "raise_resize()");
+        this.raise_resize();
+    },
 
+    /// <summary>
+    /// The Resize event handler
+    /// </summary>
+    /// <getter>get_resize</getter>
+    /// <setter>set_resize</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.resize" />
     get_resize: function() {
         // Function to invoke on resize (can be a Function, name of a Function, or expression that evaluates to a Function)
         return this.get_events().getHandler("resize");
     },
-
     set_resize: function(value) {
         if(value && (0 < value.length)) {
             var func = $common.resolveFunction(value);
@@ -390,52 +526,95 @@ Sys.Extended.UI.ResizableControlBehavior.prototype = {
         }
     },
 
+    /// <summary>
+    /// Fires when the element starts being resized
+    /// </summary>
+    /// <event add="add_resizeBegin" remove="remove_resizeBegin" raise="raise_resizeBegin" />
+    /// <member name="cE:AjaxControlToolkit.ResizableControlExtender.resizeBegin" />
+    add_resizeBegin: function(handler) {
+        this.get_events().addHandler("resizeBegin", handler);
+    },
+    remove_resizeBegin: function(handler) {
+        this.get_events().removeHandler("resizeBegin", handler);
+    },
+    raise_resizeBegin: function() {
+        var onResizeBeginHandler = this.get_events().getHandler("resizeBegin");
+
+        if(onResizeBeginHandler)
+            onResizeBeginHandler(this, Sys.EventArgs.Empty);
+    },
+
     add_resizebegin: function(handler) {
-        this.get_events().addHandler("resizebegin", handler);
+        Sys.Extended.Deprecated("add_resizebegin(handler)", "add_resizeBegin(handler)");
+        this.add_resizeBegin(handler);
     },
-
     remove_resizebegin: function(handler) {
-        this.get_events().removeHandler("resizebegin", handler);
+        Sys.Extended.Deprecated("remove_resizebegin(handler)", "remove_resizeBegin(handler)");
+        this.remove_resizeBegin(handler);
     },
-
     raiseResizeBegin: function() {
-        var onresizebeginHandler = this.get_events().getHandler("resizebegin");
-
-        if(onresizebeginHandler)
-            onresizebeginHandler(this, Sys.EventArgs.Empty);
+        Sys.Extended.Deprecated("raiseResizeBegin()", "raise_resizeBegin()");
+        this.raise_resizeBegin();
     },
 
-    get_resizebegin: function() {
+    /// <summary>
+    /// The ResizeBegin event handler
+    /// </summary>
+    /// <getter>get_resizeBegin</getter>
+    /// <setter>set_resizeBegin</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.resizeBegin" />
+    get_resizeBegin: function() {
         // Function to invoke on resizebegin (can be a Function, name of a Function, or expression that evaluates to a Function)
-        return this.get_events().getHandler("resizebegin");
+        return this.get_events().getHandler("resizeBegin");
     },
-
-    set_resizebegin: function(value) {
+    set_resizeBegin: function(value) {
         if(value && (0 < value.length)) {
             var func = $common.resolveFunction(value);
 
             if(func)
-                this.add_resizebegin(func);
+                this.add_resizeBegin(func);
             else
-                throw Error.argumentType('value', typeof (value), 'Function', String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_InvalidHandler, 'resizebegin'));
+                throw Error.argumentType('value', typeof (value), 'Function', String.format(Sys.Extended.UI.Resources.ResizableControlBehavior_InvalidHandler, 'resizeBegin'));
         }
     },
 
-    get_Size: function() {
-        // Size of the target (of the form {width, height})
+    get_resizebegin: function() {
+        Sys.Extended.Deprecated("get_resizebegin()", "get_resizeBegin()");
+        return this.get_resizeBegin();
+    },
+    set_resizebegin: function(value) {
+        Sys.Extended.Deprecated("set_resizebegin(value)", "set_resizeBegin(value)");
+        this.set_resizeBegin(value);
+    },
+
+    /// <summary>
+    /// Size of the target (of the form {width, height})
+    /// </summary>
+    /// <getter>get_size</getter>
+    /// <setter>set_size</setter>
+    /// <member name="cP:AjaxControlToolkit.ResizableControlExtender.size" />
+    get_size: function() {
         return {
             width: this._measurementToNumber($common.getCurrentStyle(this._lining, 'width')),
             height: this._measurementToNumber($common.getCurrentStyle(this._lining, 'height'))
         };
     },
-
-    set_Size: function(value) {
+    set_size: function(value) {
         var deltaX = value.width - this._measurementToNumber($common.getCurrentStyle(this._lining, 'width')),
             deltaY = value.height - this._measurementToNumber($common.getCurrentStyle(this._lining, 'height'));
 
         this._resizeControl(0, 0, deltaX, deltaY);
         this._rememberSize();
-        this.raisePropertyChanged('Size');
+        this.raisePropertyChanged('size');
+    },
+
+    get_Size: function() {
+        Sys.Extended.Deprecated("get_Size()", "get_size()");
+        return this.get_size();
+    },
+    set_Size: function(value) {
+        Sys.Extended.Deprecated("set_Size(value)", "set_size(value)");
+        this.set_size(value);
     }
 }
 

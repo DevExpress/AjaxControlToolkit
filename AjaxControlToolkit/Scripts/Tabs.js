@@ -38,20 +38,35 @@ Sys.Extended.UI.TabContainer = function(element) {
 }
 Sys.Extended.UI.TabContainer.prototype = {
 
+    /// <summary>
+    /// Fires when a tab is changed
+    /// </summary>
+    /// <event add="add_activeTabChanged" remove="remove_activeTabChanged" raise="raise_activeTabChanged" />
+    /// <member name="cE:AjaxControlToolkit.TabContainer.activeTabChanged" />
     add_activeTabChanged: function(handler) {
         this.get_events().addHandler("activeTabChanged", handler);
     },
     remove_activeTabChanged: function(handler) {
         this.get_events().removeHandler("activeTabChanged", handler);
     },
-    raiseActiveTabChanged: function() {
+    raise_activeTabChanged: function() {
         var eh = this.get_events().getHandler("activeTabChanged");
         if(eh)
             eh(this, Sys.EventArgs.Empty);
         if(this._autoPostBackId)
             __doPostBack(this._autoPostBackId, "activeTabChanged:" + this.get_activeTabIndex());
     },
+    raiseActiveTabChanged: function() {
+        Sys.Extended.Deprecated("raiseActiveTabChanged()", "raise_activeTabChanged()");
+        this.raise_activeTabChanged();
+    },
 
+    /// <summary>
+    /// The first tab to show
+    /// </summary>
+    /// <getter>get_activeTabIndex</getter>
+    /// <setter>set_activeTabIndex</setter>
+    /// <member name="cP:AjaxControlToolkit.TabContainer.activeTabIndex" />
     get_activeTabIndex: function() {
         if(this._cachedActiveTabIndex > -1)
             return this._cachedActiveTabIndex;
@@ -90,19 +105,30 @@ Sys.Extended.UI.TabContainer.prototype = {
                             }
                         }
                     }
-                    this.raiseActiveTabChanged();
+                    this.raise_activeTabChanged();
                 }
                 this.raisePropertyChanged("activeTabIndex");
             }
         }
     },
 
+    /// <summary>
+    /// A collection of tabs
+    /// </summary>
+    /// <getter>get_tabs</getter>
+    /// <member name="cP:AjaxControlToolkit.TabContainer.tabs" />
     get_tabs: function() {
         if(this._tabs == null)
             this._tabs = [];
         return this._tabs;
     },
 
+    /// <summary>
+    /// The currently active tab
+    /// </summary>
+    /// <getter>get_activeTab</getter>
+    /// <setter>set_activeTab</setter>
+    /// <member name="cP:AjaxControlToolkit.TabContainer.activeTab" />
     get_activeTab: function() {
         if(this._activeTabIndex > -1)
             return this.get_tabs()[this._activeTabIndex];
@@ -115,12 +141,26 @@ Sys.Extended.UI.TabContainer.prototype = {
         this.set_activeTabIndex(i);
     },
 
+    /// <summary>
+    /// AutoPostback ID
+    /// </summary>
+    /// <getter>get_autoPostBackId</getter>
+    /// <setter>set_autoPostBackId</setter>
+    /// <member name="cP:AjaxControlToolkit.TabContainer.autoPostBackId" />
     get_autoPostBackId: function() {
         return this._autoPostBackId;
     },
     set_autoPostBackId: function(value) {
         this._autoPostBackId = value;
     },
+
+    /// <summary>
+    /// Determines whether or not to display scrollbars (None, Horizontal, Vertical, Both, Auto)
+    /// in the TabContainer body
+    /// </summary>
+    /// <getter>get_scrollBars</getter>
+    /// <setter>set_scrollBars</setter>
+    /// <member name="cP:AjaxControlToolkit.TabContainer.scrollBars" />
     get_scrollBars: function() {
         return this._scrollBars;
     },
@@ -132,6 +172,12 @@ Sys.Extended.UI.TabContainer.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines whether or not to render tabs on top of the container or below (Top, Bottom)
+    /// </summary>
+    /// <getter>get_tabStripPlacement</getter>
+    /// <setter>set_tabStripPlacement</setter>
+    /// <member name="cP:AjaxControlToolkit.TabContainer.tabStripPlacement" />
     get_tabStripPlacement: function() {
         return this._tabStripPlacement;
     },
@@ -143,6 +189,12 @@ Sys.Extended.UI.TabContainer.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines whether or not to render tabs on the left or right side of the container
+    /// </summary>
+    /// <getter>get_useVerticalStripPlacement</getter>
+    /// <setter>set_useVerticalStripPlacement</setter>
+    /// <member name="cP:AjaxControlToolkit.TabContainer.useVerticalStripPlacement" />
     get_useVerticalStripPlacement: function() {
         return this._useVerticalStripPlacement;
     },
@@ -154,6 +206,12 @@ Sys.Extended.UI.TabContainer.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines whether or not to render/load tabs on demand or all tabs on page load
+    /// </summary>
+    /// <getter>get_onDemand</getter>
+    /// <setter>set_onDemand</setter>
+    /// <member name="cP:AjaxControlToolkit.TabContainer.onDemand" />
     get_onDemand: function() {
         return this._onDemand;
     },
@@ -188,6 +246,13 @@ Sys.Extended.UI.TabContainer.prototype = {
         Sys.Application.remove_load(this._app_onload$delegate);
         Sys.Extended.UI.TabContainer.callBaseMethod(this, "dispose");
     },
+
+    /// <summary>
+    /// Returns TabContainer's first tab
+    /// </summary>
+    /// <param name="includeDisabled" type="Boolean">Include disabled tabs</param>
+    /// <returns type="Sys.Extended.UI.TabPanel">First tab</returns>
+    /// <member name="cM:AjaxControlToolkit.TabContainer.getFirstTab" />
     getFirstTab: function(includeDisabled) {
         var tabs = this.get_tabs();
         for(var i = 0; i < tabs.length; i++)
@@ -195,6 +260,13 @@ Sys.Extended.UI.TabContainer.prototype = {
                 return tabs[i];
         return null;
     },
+
+    /// <summary>
+    /// Returns TabContainer's last tab
+    /// </summary>
+    /// <param name="includeDisabled" type="Boolean">Include disabled tabs</param>
+    /// <returns type="Sys.Extended.UI.TabPanel">Last tab</returns>
+    /// <member name="cM:AjaxControlToolkit.TabContainer.getLastTab" />
     getLastTab: function(includeDisabled) {
         var tabs = this.get_tabs();
         for(var i = tabs.length - 1; i >= 0; i--)
@@ -202,6 +274,13 @@ Sys.Extended.UI.TabContainer.prototype = {
                 return tabs[i];
         return null;
     },
+
+    /// <summary>
+    /// Returns TabContainer's next tab
+    /// </summary>
+    /// <param name="includeDisabled" type="Boolean">Include disabled tabs</param>
+    /// <returns type="Sys.Extended.UI.TabPanel">Next tab</returns>
+    /// <member name="cM:AjaxControlToolkit.TabContainer.getNextTab" />
     getNextTab: function(includeDisabled) {
         var tabs = this.get_tabs();
         var active = this.get_activeTabIndex();
@@ -213,6 +292,13 @@ Sys.Extended.UI.TabContainer.prototype = {
         }
         return null;
     },
+
+    /// <summary>
+    /// Returns TabContainer's previous tab
+    /// </summary>
+    /// <param name="includeDisabled" type="Boolean">Include disabled Tabs</param>
+    /// <returns type="Sys.Extended.UI.TabPanel">Previous tab</returns>
+    /// <member name="cM:AjaxControlToolkit.TabContainer.getPreviousTab" />
     getPreviousTab: function(includeDisabled) {
         var tabs = this.get_tabs();
         var active = this.get_activeTabIndex();
@@ -224,6 +310,12 @@ Sys.Extended.UI.TabContainer.prototype = {
         }
         return null;
     },
+
+    /// <summary>
+    /// Returns TabContainer's nearest tab
+    /// </summary>
+    /// <param name="includeDisabled" type="Boolean">Include disabled tabs</param>
+    /// <member name="cM:AjaxControlToolkit.TabContainer.getNearestTab" />
     getNearestTab: function(includeDisabled) {
         var prev = this.getPreviousTab(includeDisabled);
         var next = this.getNextTab(includeDisabled);
@@ -233,6 +325,12 @@ Sys.Extended.UI.TabContainer.prototype = {
             return next;
         return null;
     },
+
+    /// <summary>
+    /// Saves JSON state serialized on the client side
+    /// </summary>
+    /// <returns type="Object">Client state</returns>
+    /// <member name="cM:AjaxControlToolkit.TabContainer.saveClientState" />
     saveClientState: function() {
         var tabs = this.get_tabs();
 
@@ -363,42 +461,75 @@ Sys.Extended.UI.TabPanel = function(element) {
 
 Sys.Extended.UI.TabPanel.prototype = {
 
+    /// <summary>
+    /// Fires on a click
+    /// </summary>
+    /// <event add="add_click" remove="remove_click" raise="raise_click" />
+    /// <member name="cE:AjaxControlToolkit.TabPanel.click" />
     add_click: function(handler) {
         this.get_events().addHandler("click", handler);
     },
     remove_click: function(handler) {
         this.get_events().removeHandler("click", handler);
     },
-    raiseClick: function() {
+    raise_click: function() {
         var eh = this.get_events().getHandler("click");
         if(eh)
             eh(this, Sys.EventArgs.Empty);
     },
+    raiseClick: function() {
+        Sys.Extended.Deprecated("raiseClick()", "raise_click()");
+        this.raise_click();
+    },
 
+    /// <summary>
+    /// Fires when tab populating begins
+    /// </summary>
+    /// <event add="add_populating" remove="remove_populating" raise="raise_populating" />
+    /// <member name="cE:AjaxControlToolkit.TabPanel.populating" />
     add_populating: function(handler) {
         this.get_events().addHandler("populating", handler);
     },
     remove_populating: function(handler) {
         this.get_events().removeHandler("populating", handler);
     },
-    raisePopulating: function() {
+    raise_populating: function() {
         var eh = this.get_events().getHandler("populating");
         if(eh)
             eh(this, Sys.EventArgs.Empty);
     },
+    raisePopulating: function() {
+        Sys.Extended.Deprecated("raisePopulating()", "raise_populating()");
+        this.raise_populating();
+    },
 
+    /// <summary>
+    /// Fires when tab populating is performed
+    /// </summary>
+    /// <event add="add_populated" remove="remove_populated" raise="raise_populated" />
+    /// <member name="cE:AjaxControlToolkit.TabPanel.populated" />
     add_populated: function(handler) {
         this.get_events().addHandler("populated", handler);
     },
     remove_populated: function(handler) {
         this.get_events().removeHandler("populated", handler);
     },
-    raisePopulated: function() {
+    raise_populated: function() {
         var eh = this.get_events().getHandler("populated");
         if(eh)
             eh(this, Sys.EventArgs.Empty);
     },
+    raisePopulated: function() {
+        Sys.Extended.Deprecated("raisePopulated()", "raise_populated()");
+        this.raise_populated();
+    },
 
+    /// <summary>
+    /// Text to display in the tab
+    /// </summary>
+    /// <getter>get_headerText</getter>
+    /// <setter>set_headerText</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.headerText" />
     get_headerText: function() {
         if(this.get_isInitialized())
             return this._header.innerHTML;
@@ -413,6 +544,12 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
 
+    /// <summary>
+    /// A header tab
+    /// </summary>
+    /// <getter>get_headerTab</getter>
+    /// <setter>set_headerTab</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.headerTab" />
     get_headerTab: function() {
         return this._header;
     },
@@ -430,6 +567,12 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines whether or not to display the tab for the TabPanel by default
+    /// </summary>
+    /// <getter>get_enabled</getter>
+    /// <setter>set_enabled</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.enabled" />
     get_enabled: function() {
         return this._enabled;
     },
@@ -442,6 +585,12 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
 
+    /// <summary>
+    /// The owner TabContainer
+    /// </summary>
+    /// <getter>get_owner</getter>
+    /// <setter>set_owner</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.owner" />
     get_owner: function() {
         return this._owner;
     },
@@ -455,6 +604,12 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
 
+    /// <summary>
+    /// The ID of the owner TabContainer element
+    /// </summary>
+    /// <getter>get_ownerID</getter>
+    /// <setter>set_ownerID</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.ownerID" />
     get_ownerID: function() {
         return this._ownerID;
     },
@@ -462,6 +617,12 @@ Sys.Extended.UI.TabPanel.prototype = {
         this._ownerID = value;
     },
 
+    /// <summary>
+    /// Determines whether or not to display scrollbars (None, Horizontal, Vertical, Both, Auto) in the body of the TabPanel
+    /// </summary>
+    /// <getter>get_scrollBars</getter>
+    /// <setter>set_scrollBars</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.scrollBars" />
     get_scrollBars: function() {
         return this._scrollBars;
     },
@@ -472,6 +633,12 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines whether or not to load the tab (Always, Once, None) when the container's onDemand property is true
+    /// </summary>
+    /// <getter>get_onDemandMode</getter>
+    /// <setter>set_onDemandMode</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.onDemandMode" />
     get_onDemandMode: function() {
         return this._onDemandMode;
     },
@@ -482,10 +649,21 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
 
+    /// <summary>
+    /// The current tab index
+    /// </summary>
+    /// <getter>get_tabIndex</getter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.tabIndex" />
     get_tabIndex: function() {
         return this._tabIndex;
     },
 
+    /// <summary>
+    /// An arbitrary string value to be passed to the dynamically populated web method
+    /// </summary>
+    /// <getter>get_dynamicContextKey</getter>
+    /// <setter>set_dynamicContextKey</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.dynamicContextKey" />
     get_dynamicContextKey: function() {
         return this._dynamicContextKey;
     },
@@ -496,6 +674,12 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
 
+    /// <summary>
+    /// The URL of the web service to call
+    /// </summary>
+    /// <getter>get_dynamicServicePath</getter>
+    /// <setter>set_dynamicServicePath</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.dynamicServicePath" />
     get_dynamicServicePath: function() {
         return this._dynamicServicePath;
     },
@@ -506,6 +690,12 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
 
+    /// <summary>
+    /// The name of the method to call on the page or web service
+    /// </summary>
+    /// <getter>get_dynamicServiceMethod</getter>
+    /// <setter>set_dynamicServiceMethod</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.dynamicServiceMethod" />
     get_dynamicServiceMethod: function() {
         return this._dynamicServiceMethod;
     },
@@ -527,6 +717,12 @@ Sys.Extended.UI.TabPanel.prototype = {
             this._deactivate();
     },
 
+    /// <summary>
+    /// ID of the panel to update
+    /// </summary>
+    /// <getter>get_updatePanelID</getter>
+    /// <setter>set_updatePanelID</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.updatePanelID" />
     get_updatePanelID: function() {
         return this._updatePanelID;
     },
@@ -537,6 +733,12 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
 
+    /// <summary>
+    /// Determines the loading status of the tab in Once demand mode
+    /// </summary>
+    /// <getter>get_wasLoadedOnce</getter>
+    /// <setter>set_wasLoadedOnce</setter>
+    /// <member name="cP:AjaxControlToolkit.TabPanel.wasLoadedOnce" />
     get_wasLoadedOnce: function() {
         return this._wasLoadedOnce;
     },
@@ -631,7 +833,7 @@ Sys.Extended.UI.TabPanel.prototype = {
                 { "populated": this._dynamicPopulate_onpopulated$delegate }, null, this.get_element());
 
         if(this._dynamicPopulateBehavior) {
-            this.raisePopulating();
+            this.raise_populating();
             this._dynamicPopulateBehavior.populate(contextKeyOverride ? contextKeyOverride : this._dynamicContextKey);
         }
     },
@@ -710,7 +912,7 @@ Sys.Extended.UI.TabPanel.prototype = {
     },
     _header_onclick: function(e) {
         e.preventDefault();
-        this.raiseClick();
+        this.raise_click();
         this.get_owner().set_activeTab(this);
         this._setFocus(this);
     },
@@ -767,7 +969,7 @@ Sys.Extended.UI.TabPanel.prototype = {
         }
     },
     _dynamicPopulate_onpopulated: function(sender, e) {
-        this.raisePopulated();
+        this.raise_populated();
     },
     _disabled_onclick: function(e) {
         e.preventDefault();

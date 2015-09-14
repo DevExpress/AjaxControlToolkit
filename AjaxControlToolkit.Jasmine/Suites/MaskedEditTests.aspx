@@ -85,7 +85,7 @@
                     keyCodeArg: 8,
                     charCodeArg: 0
                 });
-                this.commonExtender._PromptChar = "";
+                this.commonExtender._promptCharacter = "";
                 setCaretToPosition(this.$commonTarget.get(0), 3);
 
                 this.commonExtender._ExecuteNav(new Sys.UI.DomEvent(keyboardEvent), 8);
@@ -124,7 +124,7 @@
                     },
                 ];
 
-                spyOn(this.dateExtender, "get_CultureDatePlaceholder").and.callFake(function() {
+                spyOn(this.dateExtender, "get_cultureDatePlaceholder").and.callFake(function() {
                     return cultures[i].dateSeparator;
                 });
 

@@ -9,6 +9,25 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
 
+    /// <summary>
+    /// NoBot is a control that prevents CAPTCHA-like bot/spam without user interactions. This approach is
+    /// easier to bypass than the implementation that requires actual human intervention, but NoBot has the
+    /// benefit of being completely invisible. NoBot is probably most relevant for low-traffic sites where
+    /// blog/comment spam is a problem and 100% effectiveness is not required.
+    /// </summary>
+    /// <remarks>
+    /// NoBot employs a few different anti-bot techniques:
+    /// * Forcing the client's browser to perform a configurable JavaScript calculation and verifying the result
+    ///   as part of a postback. For example, the calculation may be simple numeric or may involve the DOM for
+    ///   added assurance that a browser is involved
+    /// * Enforcing a configurable delay between a request sent to a form and the time it can be posted back.
+    ///   For example, a human is unlikely to complete a form in less than two seconds 
+    /// * Enforcing a configurable limit to the number of acceptable requests for each IP address per unit of
+    ///   time. For example, a human is unlikely to submit the same form more than five times in a minute.
+    /// 
+    /// NoBot can be tested by violating any of the above mentioned techniques: posting back quickly,
+    /// posting back many times, or disabling JavaScript in the browser.
+    /// </remarks>
     [Designer(typeof(NoBotExtenderDesigner))]
     [DefaultEvent("GenerateChallengeAndResponse")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.NoBotName + Constants.IconPostfix)]
@@ -72,7 +91,11 @@ namespace AjaxControlToolkit {
             Page.Session[sessionKey] = eventArgs.RequiredResponse;
         }
 
-        // Return whether the user is believed to be valid along with relevant details
+        /// <summary>
+        /// Returns whether or not the user is valid
+        /// </summary>
+        /// <param name="state" type="NoBotState">NoBot state</param>
+        /// <returns>Whether user is valid</returns>
         public bool IsValid(out NoBotState state) {
             EnsureChildControls();
 
@@ -82,20 +105,28 @@ namespace AjaxControlToolkit {
             return (NoBotState.Valid == state);
         }
 
-        // Return whether the user is believed to be valid
+        /// <summary>
+        /// Returns whether or not the user is valid
+        /// </summary>
+        /// <returns>Whether user is valid</returns>
         public bool IsValid() {
             NoBotState unused;
             return IsValid(out unused);
         }
 
-        // Gets a copy of the user address cache
+        /// <summary>
+        /// Returns a copy of the user address cache
+        /// </summary>
+        /// <returns>Copy of the user address cache</returns>
         public static SortedList<DateTime, string> GetCopyOfUserAddressCache() {
             lock(_pastAddresses) {
                 return new SortedList<DateTime, string>(_pastAddresses);
             }
         }
 
-        // Empties the user address cache
+        /// <summary>
+        /// Clears the user address cache
+        /// </summary>
         public static void EmptyUserAddressCache() {
             lock(_pastAddresses) {
                 _pastAddresses.Clear();
@@ -194,18 +225,31 @@ namespace AjaxControlToolkit {
             return String.Format(CultureInfo.InvariantCulture, "NoBot_SessionKey_{0}_{1}", UniqueID, ticks);
         }
 
+        /// <summary>
+        /// An optional EventHandler providing a custom implementation of the challenge/response code
+        /// </summary>
         public event EventHandler<NoBotEventArgs> GenerateChallengeAndResponse;
 
+        /// <summary>
+        /// Optional minimum number of seconds before which a response (postback) is considered valid
+        /// </summary>
         public int ResponseMinimumDelaySeconds {
             get { return _responseMinimumDelaySeconds; }
             set { _responseMinimumDelaySeconds = value; }
         }
 
+        /// <summary>
+        /// Optional number of seconds specifying the length of the cutoff window
+        /// that tracks previous postbacks from each IP address
+        /// </summary>
         public int CutoffWindowSeconds {
             get { return _cutoffWindowSeconds; }
             set { _cutoffWindowSeconds = value; }
         }
 
+        /// <summary>
+        /// Optional maximum number of postbacks to allow by a single IP address within the cutoff window
+        /// </summary>
         public int CutoffMaximumInstances {
             get { return _cutoffMaximumInstances; }
             set { _cutoffMaximumInstances = value; }

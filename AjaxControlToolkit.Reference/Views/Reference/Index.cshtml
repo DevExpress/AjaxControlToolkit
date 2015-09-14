@@ -1,4 +1,5 @@
-﻿@model IEnumerable<string>
+﻿@model string[]
+@using AjaxControlToolkit.Reference.Core
 
 @{
     Layout = "~/Views/_Layout.cshtml";
@@ -6,6 +7,6 @@
 
 <ul>
     @foreach(var typeName in Model) {
-        <li><a href="/Reference/Type/@typeName">@typeName</a></li>
-    }
+        <li>@Html.ActionLink(typeName, "Markup", "Reference", new { typeName = typeName }, null) (<a href="@LinkHelper.GetSampleSiteLink(typeName)">demo</a>)</li>
+    }    
 </ul>

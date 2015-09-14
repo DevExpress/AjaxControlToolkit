@@ -102,6 +102,10 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
         Sys.Extended.UI.PopupControlBehavior.callBaseMethod(this, 'dispose');
     },
 
+    /// <summary>
+    /// Shows the popup
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.PopupControlExtender.showPopup" />
     showPopup: function() {
         var old = Sys.Extended.UI.PopupControlBehavior.__VisiblePopup;
 
@@ -118,6 +122,10 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
         Sys.Extended.UI.PopupControlBehavior.__VisiblePopup = this;
     },
 
+    /// <summary>
+    /// Hides the popup
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.PopupControlExtender.hidePopup" />
     hidePopup: function() {
         this._popupBehavior.hide();
         this._popupVisible = false;
@@ -237,11 +245,15 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
         return yoffSet;
     },
 
+    /// <summary>
+    /// A JSON definition of generic OnShow Animation
+    /// </summary>
+    /// <getter>get_onShow</getter>
+    /// <setter>set_onShow</setter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.onShow" />
     get_onShow: function() {
-        // Generic OnShow Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onShow() : this._onShowJson;
     },
-
     set_onShow: function(value) {
         if(this._popupBehavior)
             this._popupBehavior.set_onShow(value);
@@ -251,22 +263,33 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
         this.raisePropertyChanged('onShow');
     },
 
+    /// <summary>
+    /// Generic OnShow Animation behavior
+    /// </summary>
+    /// <getter>get_onShowBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.onShowBehavior" />
     get_onShowBehavior: function() {
-        // Generic OnShow Animation's behavior
         return this._popupBehavior ? this._popupBehavior.get_onShowBehavior() : null;
     },
 
+    /// <summary>
+    /// Plays OnShow animation
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.PopupControlExtender.onShow" />
     onShow: function() {
-        // Play the OnShow animation
         if(this._popupBehavior)
             this._popupBehavior.onShow();
     },
 
+    /// <summary>
+    /// A JSON definition of generic OnHide Animation
+    /// </summary>
+    /// <getter>get_onHide</getter>
+    /// <setter>set_onHide</setter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.onHide" />
     get_onHide: function() {
-        // Generic OnHide Animation's JSON definition
         return this._popupBehavior ? this._popupBehavior.get_onHide() : this._onHideJson;
     },
-
     set_onHide: function(value) {
         if(this._popupBehavior)
             this._popupBehavior.set_onHide(value);
@@ -276,159 +299,300 @@ Sys.Extended.UI.PopupControlBehavior.prototype = {
         this.raisePropertyChanged('onHide');
     },
 
+    /// <summary>
+    /// Generic OnHide Animation behavior
+    /// </summary>
+    /// <getter>get_onHideBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.onHideBehavior" />
     get_onHideBehavior: function() {
-        // Generic OnHide Animation's behavior
         return this._popupBehavior ? this._popupBehavior.get_onHideBehavior() : null;
     },
 
+    /// <summary>
+    /// Plays OnHide animation
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.PopupControlExtender.onHide" />
     onHide: function() {
         if(this._popupBehavior)
             this._popupBehavior.onHide();
     },
 
-    get_PopupControlID: function() {
+    /// <summary>
+    /// The ID of the control to display
+    /// </summary>
+    /// <getter>get_popupControlID</getter>
+    /// <setter>set_popupControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.popupControlID" />
+    get_popupControlID: function() {
         return this._popupControlID;
     },
-
-    set_PopupControlID: function(value) {
+    set_popupControlID: function(value) {
         if(this._popupControlID != value) {
             this._popupControlID = value;
-            this.raisePropertyChanged('PopupControlID');
+            this.raisePropertyChanged('popupControlID');
+        }
+    },
+
+    get_PopupControlID: function() {
+        Sys.Extended.Deprecated("get_PopupControlID()", "get_popupControlID()");
+        return this.get_popupControlID();
+    },
+    set_PopupControlID: function(value) {
+        Sys.Extended.Deprecated("set_PopupControlID(value)", "set_popupControlID(value)");
+        this.set_popupControlID(value);
+    },
+
+    /// <summary>
+    /// The property of a control being extended that should be set with the result of the popup
+    /// </summary>
+    /// <getter>get_commitProperty</getter>
+    /// <setter>set_commitProperty</setter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.commitProperty" />
+    get_commitProperty: function() {
+        return this._commitProperty;
+    },
+    set_commitProperty: function(value) {
+        if(this._commitProperty != value) {
+            this._commitProperty = value;
+            this.raisePropertyChanged('commitProperty');
         }
     },
 
     get_CommitProperty: function() {
-        // The property on the control being extended that should be set with the result of the popup
-        return this._commitProperty;
+        Sys.Extended.Deprecated("get_CommitProperty()", "get_commitProperty()");
+        return this.get_commitProperty();
+    },
+    set_CommitProperty: function(value) {
+        Sys.Extended.Deprecated("set_CommitProperty(value)", "set_commitProperty(value)");
+        this.set_commitProperty(value);
     },
 
-    set_CommitProperty: function(value) {
-        if(this._commitProperty != value) {
-            this._commitProperty = value;
-            this.raisePropertyChanged('CommitProperty');
+    /// <summary>
+    /// An additional script to run after the result of the popup is set
+    /// </summary>
+    /// <getter>get_commitScript</getter>
+    /// <setter>set_commitScript</setter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.commitScript" />
+    get_commitScript: function() {
+        return this._commitScript;
+    },
+    set_commitScript: function(value) {
+        if(this._commitScript != value) {
+            this._commitScript = value;
+            this.raisePropertyChanged('commitScript');
         }
     },
 
     get_CommitScript: function() {
-        // Additional script to run after setting the result of the popup
-        return this._commitScript;
+        Sys.Extended.Deprecated("get_CommitScript()", "get_commitScript()");
+        return this.get_commitScript();
+    },
+    set_CommitScript: function(value) {
+        Sys.Extended.Deprecated("set_CommitScript(value)", "set_commitScript(value)");
+        this.set_commitScript(value);
     },
 
-    set_CommitScript: function(value) {
-        if(this._commitScript != value) {
-            this._commitScript = value;
-            this.raisePropertyChanged('CommitScript');
+    /// <summary>
+    /// Determines where the popup should be positioned relative to the target control
+    /// (Left, Right, Top, Bottom, or Center)
+    /// </summary>
+    /// <getter>get_position</getter>
+    /// <setter>set_position</setter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.position" />
+    get_position: function() {
+        return this._position;
+    },
+    set_position: function(value) {
+        if(this._position != value) {
+            this._position = value;
+            this.raisePropertyChanged('position');
         }
     },
 
     get_Position: function() {
-        // Where the popup should be positioned relative to the target control. (Left, Right, Top, Bottom, Center)
-        return this._position;
+        Sys.Extended.Deprecated("get_Position()", "get_position()");
+        return this.get_position();
+    },
+    set_Position: function(value) {
+        Sys.Extended.Deprecated("set_Position(value)", "set_position(value)");
+        this.set_position(value);
     },
 
-    set_Position: function(value) {
-        if(this._position != value) {
-            this._position = value;
-            this.raisePropertyChanged('Position');
+    /// <summary>
+    /// The ID of the extender control
+    /// </summary>
+    /// <getter>get_extenderControlID</getter>
+    /// <setter>set_extenderControlID</setter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.extenderControlID" />
+    get_extenderControlID: function() {
+        return this._extenderControlID;
+    },
+    set_extenderControlID: function(value) {
+        if(this._extenderControlID != value) {
+            this._extenderControlID = value;
+            this.raisePropertyChanged('extenderControlID');
         }
     },
 
     get_ExtenderControlID: function() {
-        return this._extenderControlID;
+        Sys.Extended.Deprecated("get_ExtenderControlID()", "get_extenderControlID()");
+        return this.get_extenderControlID();
+    },
+    set_ExtenderControlID: function(value) {
+        Sys.Extended.Deprecated("set_ExtenderControlID(value)", "set_extenderControlID(value)");
+        this.set_extenderControlID(value);
     },
 
-    set_ExtenderControlID: function(value) {
-        if(this._extenderControlID != value) {
-            this._extenderControlID = value;
-            this.raisePropertyChanged('ExtenderControlID');
+    /// <summary>
+    /// The number of pixels to horizontally offset the Popup from its default position
+    /// </summary>
+    /// <getter>get_offsetX</getter>
+    /// <setter>set_offsetX</setter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.offsetX" />
+    get_offsetX: function() {
+        return this._offsetX;
+    },
+    set_offsetX: function(value) {
+        if(this._offsetX != value) {
+            this._offsetX = value;
+            this.raisePropertyChanged('offsetX');
         }
     },
 
     get_OffsetX: function() {
-        // The number of pixels to horizontally offset the Popup from its default position
-        return this._offsetX;
+        Sys.Extended.Deprecated("get_OffsetX()", "get_offsetX()");
+        return this.get_offsetX();
+    },
+    set_OffsetX: function(value) {
+        Sys.Extended.Deprecated("set_OffsetX(value)", "set_offsetX(value)");
+        this.set_offsetX(value);
     },
 
-    set_OffsetX: function(value) {
-        if(this._offsetX != value) {
-            this._offsetX = value;
-            this.raisePropertyChanged('OffsetX');
+    /// <summary>
+    /// The number of pixels to vertically offset the Popup from its default position
+    /// </summary>
+    /// <getter>get_offsetY</getter>
+    /// <setter>set_offsetY</setter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.offsetY" />
+    get_offsetY: function() {
+        return this._offsetY;
+    },
+    set_offsetY: function(value) {
+        if(this._offsetY != value) {
+            this._offsetY = value;
+            this.raisePropertyChanged('offsetY');
         }
     },
 
     get_OffsetY: function() {
-        // The number of pixels to vertically offset the Popup from its default position
-        return this._offsetY;
+        Sys.Extended.Deprecated("get_OffsetY()", "get_offsetY()");
+        return this.get_offsetY();
     },
-
     set_OffsetY: function(value) {
-        if(this._offsetY != value) {
-            this._offsetY = value;
-            this.raisePropertyChanged('OffsetY');
-        }
+        Sys.Extended.Deprecated("set_OffsetY(value)", "set_offsetY(value)");
+        this.set_offsetY(value);
     },
 
-    get_PopupVisible: function() {
+    /// <summary>
+    /// Determines whether or not the popup is visible
+    /// </summary>
+    /// <getter>get_popupVisible</getter>
+    /// <member name="cP:AjaxControlToolkit.PopupControlExtender.popupVisible" />
+    get_popupVisible: function() {
         return this._popupVisible;
     },
 
+    get_PopupVisible: function() {
+        Sys.Extended.Deprecated("get_PopupVisible()", "get_popupVisible()");
+        return this.get_popupVisible();
+    },
+
+    /// <summary>
+    /// Fires when the popup is being shown
+    /// </summary>
+    /// <event add="add_showing" remove="remove_showing" raise="raise_showing" />
+    /// <member name="cE:AjaxControlToolkit.PopupControlExtender.showing" />
     add_showing: function(handler) {
         if(this._popupBehavior)
             this._popupBehavior.add_showing(handler);
     },
-
     remove_showing: function(handler) {
         if(this._popupBehavior)
             this._popupBehavior.remove_showing(handler);
     },
-
-    raiseShowing: function(eventArgs) {
+    raise_showing: function(eventArgs) {
         if(this._popupBehavior)
-            this._popupBehavior.raiseShowing(eventArgs);
+            this._popupBehavior.raise_showing(eventArgs);
+    },
+    raiseShowing: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseShowing(eventArgs)", "raise_showing(eventArgs)");
+        this.raise_showing(eventArgs);
     },
 
+    /// <summary>
+    /// Fires after the popup is shown
+    /// </summary>
+    /// <event add="add_shown" remove="remove_shown" raise="raise_shown" />
+    /// <member name="cE:AjaxControlToolkit.PopupControlExtender.shown" />
     add_shown: function(handler) {
         if(this._popupBehavior)
             this._popupBehavior.add_shown(handler);
     },
-
     remove_shown: function(handler) {
         if(this._popupBehavior)
             this._popupBehavior.remove_shown(handler);
     },
-    raiseShown: function(eventArgs) {
+    raise_shown: function(eventArgs) {
         if(this._popupBehavior)
-            this._popupBehavior.raiseShown(eventArgs);
+            this._popupBehavior.raise_shown(eventArgs);
+    },
+    raiseShown: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseShown(eventArgs)", "raise_shown(eventArgs)");
+        this.raise_shown(eventArgs);
     },
 
+    /// <summary>
+    /// Fires when the popup is being hidden
+    /// </summary>
+    /// <event add="add_hiding" remove="remove_hiding" raise="raise_hiding" />
+    /// <member name="cE:AjaxControlToolkit.PopupControlExtender.hiding" />
     add_hiding: function(handler) {
         if(this._popupBehavior)
             this._popupBehavior.add_hiding(handler);
     },
-
     remove_hiding: function(handler) {
         if(this._popupBehavior)
             this._popupBehavior.remove_hiding(handler);
     },
-
-    raiseHiding: function(eventArgs) {
+    raise_hiding: function() {
         if(this._popupBehavior)
-            this._popupBehavior.raiseHiding(eventArgs);
+            this._popupBehavior.raise_hiding(eventArgs);
+    },
+    raiseHiding: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHiding(eventArgs)", "raise_hiding(eventArgs)");
+        this.raise_hiding(eventArgs);
     },
 
+    /// <summary>
+    /// Firs after the popup is hidden
+    /// </summary>
+    /// <event add="add_hidden" remove="remove_hidden" raise="raise_hidden" />
+    /// <member name="cE:AjaxControlToolkit.PopupControlExtender.hidden" />
     add_hidden: function(handler) {
         if(this._popupBehavior)
             this._popupBehavior.add_hidden(handler);
     },
-
     remove_hidden: function(handler) {
         if(this._popupBehavior)
             this._popupBehavior.remove_hidden(handler);
     },
-
-    raiseHidden: function(eventArgs) {
+    raise_hidden: function(eventArgs) {
         if(this._popupBehavior)
-            this._popupBehavior.raiseHidden(eventArgs);
+            this._popupBehavior.raise_hidden(eventArgs);
+    },
+    raiseHidden: function(eventArgs) {
+        Sys.Extended.Deprecated("raiseHidden(eventArgs)", "raise_hidden(eventArgs)");
+        this.raise_hidden(eventArgs);
     }
 };
 

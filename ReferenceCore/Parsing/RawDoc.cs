@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Xml.Linq;
 
 namespace AjaxControlToolkit.Reference.Core.Parsing {
@@ -20,5 +17,4 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
         public string TargetNamePrefix { get; set; }
         public IEnumerable<XElement> Elements { get; set; }
     }
-
 }
