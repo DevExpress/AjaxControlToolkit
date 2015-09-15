@@ -711,7 +711,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     // Execute Navigator on Mask
     _ExecuteNav: function(evt, scanCode) {
         if(evt.type == "keydown") {
-            if(Sys.Browser.agent == Sys.Browser.InternetExplorer) {
+            if(this._isInternetExplorer()) {
                 // ctrl v 
                 if((scanCode == 86 || scanCode == 118) && !evt.shiftKey && evt.ctrlKey && !evt.altKey) {
                     this._SetCancelEvent(evt);
@@ -730,7 +730,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             }
         }
 
-        if(Sys.Browser.agent != Sys.Browser.InternetExplorer || evt.type == "keypress") {
+        if(!this._isInternetExplorer() || evt.type == "keypress") {
             // Shift Ins 
             if(evt.rawEvent.shiftKey && !evt.rawEvent.ctrlKey && !evt.rawEvent.altKey && evt.rawEvent.keyCode == 45) {
                 // at opera assume Ins = "-" not execute Shift-Ins
@@ -739,9 +739,8 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
 
                 return;
             }
-
             // ctrl v 
-            if(evt.type == "keypress" && (scanCode == 86 || scanCode == 118) && !evt.shiftKey && evt.ctrlKey && !evt.altKey) {
+            if(evt.type == "keydown" && (scanCode == 86 || scanCode == 118) && !evt.shiftKey && evt.ctrlKey && !evt.altKey) {
                 this._SetCancelEvent(evt);
                 this._PasteFromClipBoard();
 
@@ -1083,6 +1082,16 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         return arr;
     },
 
+    _isInternetExplorer: function ()
+    {
+        if (Sys.Browser.agent == Sys.Browser.InternetExplorer //pre IE 11
+            ||
+            (Sys.Browser.agent == null && Sys.Browser.name == "Netscape" && Sys.Browser.version == 5)) // IE 11
+            return true;
+
+        return false;
+    },
+
     // Paste clip board
     _ShowModalClipBoardInput: function() {
         var clip = prompt(this._clipboardText, "");
@@ -1096,7 +1105,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             iniSel = -1,
             fimSel = -1;
 
-        if(Sys.Browser.agent == Sys.Browser.InternetExplorer) {
+        if(this._isInternetExplorer()) {
             value = window.clipboardData.getData("Text");
         } else {
             // save current values because lost focus 
