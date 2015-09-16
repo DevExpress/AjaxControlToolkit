@@ -198,8 +198,8 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("EnableKeyboard", value); }
         }
 
-        protected override void OnPreRender(EventArgs e) {
-            base.OnPreRender(e);
+        protected override void OnLoad(EventArgs e) {
+            base.OnLoad(e);
             ToolkitResourceManager.RegisterImagePaths(_imageNames, this);
         }
     }
