@@ -455,7 +455,7 @@ Sys.Extended.UI.TabPanel = function(element) {
         click: Function.createDelegate(this, this._header_onclick),
         mouseover: Function.createDelegate(this, this._header_onmouseover),
         mouseout: Function.createDelegate(this, this._header_onmouseout),
-        keydown: Function.createDelegate(this, this._onkeydown),
+        keydown: Function.createDelegate(this, this._onkeydown)
     };
 }
 
