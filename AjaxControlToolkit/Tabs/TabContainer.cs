@@ -350,7 +350,7 @@ namespace AjaxControlToolkit {
 
         protected override Style CreateControlStyle() {
             var style = new TabContainerStyle(ViewState);
-            style.CssClass = "ajax__tab_xp";
+            style.CssClass = CssClass;
             return style;
         }
 
@@ -427,7 +427,7 @@ namespace AjaxControlToolkit {
         protected override void AddAttributesToRender(HtmlTextWriter writer) {
             Style.Remove(HtmlTextWriterStyle.Visibility);
             if(!ControlStyleCreated)
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_xp");
+                writer.AddAttribute(HtmlTextWriterAttribute.Class, CssClass);
 
             if(_useVerticalStripPlacement)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
