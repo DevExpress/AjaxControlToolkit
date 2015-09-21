@@ -95,6 +95,17 @@ namespace AjaxControlToolkit {
             set { ViewState["ChunkSize"] = value.ToString(); }
         }
 
+        /// <summary>
+        /// Whether or not to hide file upalod list container after the uploading finished
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(false)]
+        [ClientPropertyName("clearFileListAfterUpload")]
+        public bool ClearFileListAfterUpload {
+            get { return bool.Parse((string)ViewState["ClearFileListAfterUpload"] ?? "false");  }
+            set { ViewState["ClearFileListAfterUpload"] = value.ToString(); }
+        }
+
         ///<summary>
         /// How AjaxFileUpload displays a progress bar.
         /// The default is Auto.

@@ -945,6 +945,8 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.chunkSize" />
     this._chunkSize = 4096;
 
+    this._clearFileListAfterUpload = false;
+
     // fields
     this._uploadUrl = 'AjaxFileUploadHandler.axd';
     this._useHtml5Support = false;
@@ -1161,6 +1163,17 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             }
         };
         xhr.send(null);
+        
+        if(this.get_clearFileListAfterUpload()) {
+            for(var i = 0; i < this._filesInQueue.length; i += 1) {
+                var item = this._filesInQueue[i];
+
+                item.removeNodeFrom(this._elements.queueContainer);
+            }
+
+            $common.setVisible(this._elements.queueContainer, false);
+            $common.setVisible(this._elements.uploadOrCancelButton, false);
+        }
 
         // Reset queue
         this._filesInQueue = [];
@@ -1432,6 +1445,19 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_chunkSize: function(value) {
         this._chunkSize = value;
+    },
+
+    /// <summary>
+    /// Whether or not to hide the file upload list container after uploading finished
+    /// </summary
+    /// <getter>get_clearQueueContainerAfterUpload</getter>
+    /// <setter>set_clearQueueContainerAfterUpload</setter>
+    /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.clearQueueContainerAfterUpload" />
+    get_clearFileListAfterUpload: function() {
+        return this._clearFileListAfterUpload;
+    },
+    set_clearFileListAfterUpload: function(value) {
+        this._clearFileListAfterUpload = value;
     },
 
     /// <summary>
