@@ -762,8 +762,8 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
         return this._displayOnClick;
     },
     set_displayOnClick: function(value) {
-        if(this.displayOnClick != value) {
-            this.displayOnClick = value;
+        if(this._displayOnClick != value) {
+            this._displayOnClick = value;
             this.raisePropertyChanged("displayOnClick");
         }
     },
