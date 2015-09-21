@@ -346,6 +346,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                             // Transfer time from textbox to selected value
                             value.setUTCHours(tbvalue.getUTCHours());
                             value.setUTCMinutes(tbvalue.getUTCMinutes());
+                            value.setUTCSeconds(tbvalue.getUTCSeconds());
                             value.setUTCMilliseconds(tbvalue.getUTCMilliseconds());
 
                             text = this._convertToLocal(value).localeFormat(this._format);
