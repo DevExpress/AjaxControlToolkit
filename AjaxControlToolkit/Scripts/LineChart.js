@@ -4,7 +4,7 @@ Sys.Extended.UI.LineChart = function(element) {
     Sys.Extended.UI.LineChart.initializeBase(this, [element]);
     var id = this.get_id();
     id = id.replace("_ctl00", "");
-    this._parentDiv = document.getElementById(id + "__ParentDiv");
+    this._parentDiv = document.getElementById(id).children[0];
 
     this._chartWidth = '300';
     this._chartHeight = '300';
