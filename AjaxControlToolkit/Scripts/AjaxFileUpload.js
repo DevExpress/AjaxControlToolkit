@@ -1517,7 +1517,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         var eh = this.get_events().getHandler("uploadComplete");
         if(eh) {
             var fileIndex = Array.indexOf(this._filesInQueue, fileItem),
-                eventArgs = new Sys.Extended.UI.AjaxFileUploadEventArgs(e.FileId, "Success", e.FileName,
+                eventArgs = new Sys.Extended.UI.AjaxFileUploadEventArgs(e.FileId, e.StatusMessage, e.FileName,
                 e.FileSize, e.ContentType,
                 e.PostedUrl, fileIndex,
                 this._filesInQueue.length);
