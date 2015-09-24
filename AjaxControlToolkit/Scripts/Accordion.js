@@ -837,6 +837,8 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
         // not discoverable.
         this.raise_selectedIndexChanged(new Sys.Extended.UI.AccordionSelectedIndexChangeEventArgs(lastIndex, index));
         this.raisePropertyChanged('SelectedIndex');
+
+        this._resizeSelectedPane();
     },
 
     _changePanes: function(lastIndex) {
