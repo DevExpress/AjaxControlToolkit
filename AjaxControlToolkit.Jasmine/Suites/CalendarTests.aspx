@@ -11,12 +11,47 @@
 
     <act:CalendarExtender runat="server"
         ID="TargetExtender"
-        TargetControlID="TestTextBox" />
+        TargetControlID="TestTextBox"
+        Animated="false"/>
+
+    <asp:TextBox runat="server"
+        ID="StartDateTextBox" />
+
+    <act:CalendarExtender runat="server"
+        ID="StartDateCalendarExtender"
+        TargetControlID="StartDateTextBox"
+        Animated="false"/>
+
+    <asp:TextBox runat="server"
+        ID="EndDateTextBox" />
+
+    <act:CalendarExtender runat="server"
+        ID="EndDateCalendarExtender"
+        TargetControlID="EndDateTextBox"
+        Animated="false"/>
+
+    <asp:TextBox runat="server"
+        ID="BothDatesTextBox" />
+
+    <act:CalendarExtender runat="server"
+        ID="BothDatesCalendarExtender"
+        TargetControlID="BothDatesTextBox"
+        Animated="false"/>
 
     <script>
+        function getExpectedYearRangeText(year) {
+            var yearText = year.toString();
+            var startYearText = yearText.substring(3, 0) + "0";
+            var endYearText = yearText.substring(3, 0) + "9";
+            return startYearText + "-" + endYearText;
+        }
+
         describe("Calendar", function() {
 
             var CALENDAR_EXTENDER_CLIENT_ID = "<%= TargetExtender.ClientID %>";
+            var START_DATE_CALENDAR_EXTENDER_CLIENT_ID = "<%= StartDateCalendarExtender.ClientID %>";
+            var END_DATE_CALENDAR_EXTENDER_CLIENT_ID = "<%= EndDateCalendarExtender.ClientID %>";
+            var BOTH_DATES_CALENDAR_EXTENDER_CLIENT_ID = "<%= BothDatesCalendarExtender.ClientID %>";
 
             var CALENDAR_CLASS_NAME = "ajax__calendar",
                 CALENDAR_CONTAINER_CLASS_NAME = "ajax__calendar_container",
@@ -77,6 +112,8 @@
                 it("container header contains title element", function() {
                     expect(this.$header.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector()).length).toBe(1);
                 });
+
+               
 
                 it("container body contains days element", function() {
                     expect(this.$body.children(CALENDAR_BODY_DAYS_CLASS_NAME.toClassSelector()).length).toBe(1);
@@ -190,6 +227,125 @@
                     expect(this.$yearsTable.css("border-right-width")).toBeAnyOf(["0", "0px"]);
                     expect(this.$yearsTable.css("border-bottom-width")).toBeAnyOf(["0", "0px"]);
                     expect(this.$yearsTable.css("border-left-width")).toBeAnyOf(["0", "0px"]);
+                });
+
+                it("can navigate years", function () {
+                    var title = this.$header.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector());
+                    var date = new Date(2015, 1, 1);
+                    title.click();
+                    expect(title.text()).toBe(date.getFullYear().toString());
+
+                    title.click();
+                    var expectedYearsText = getExpectedYearRangeText(date.getFullYear());
+                    expect(title.text()).toBe(expectedYearsText);
+
+                    var next = this.$header.find(CALENDAR_HEADER_NEXT_CLASS_NAME.toClassSelector());
+                    next.click();
+                    var expectedYearsTextAfterNextClick = getExpectedYearRangeText(date.getFullYear() + 10);
+                    expect(title.text()).toBe(expectedYearsTextAfterNextClick);
+
+                    var prev = this.$header.find(CALENDAR_HEADER_PREV_CLASS_NAME.toClassSelector());
+                    prev.click();
+                    expect(title.text()).toBe(expectedYearsText);
+
+                    var expectedYearsTextAfterPrevClick = getExpectedYearRangeText(date.getFullYear() - 10);
+                    prev.click();
+                    expect(title.text()).toBe(expectedYearsTextAfterPrevClick);
+                });
+
+                beforeEach(function () {
+                    this.startDateExtender = $find(START_DATE_CALENDAR_EXTENDER_CLIENT_ID);
+
+                    this.startDateExtender.show();
+
+                    this.$startDateCalendar = $(this.startDateExtender._container);
+                    this.$startDateContainer = this.$startDateCalendar.children(CALENDAR_CONTAINER_CLASS_NAME.toClassSelector());
+                    this.$startDateHeader = this.$startDateContainer.children(CALENDAR_HEADER_CLASS_NAME.toClassSelector());
+                });
+
+                it("can navigate years with start date", function () {
+                    var title = this.$startDateHeader.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector());
+                    var date = new Date(2015, 1, 1);
+                    title.click();
+                    expect(title.text()).toBe(date.getFullYear().toString());
+
+                    title.click();
+                    var expectedYearsText = getExpectedYearRangeText(date.getFullYear());
+                    expect(title.text()).toBe(expectedYearsText);
+
+                    var next = this.$startDateHeader.find(CALENDAR_HEADER_NEXT_CLASS_NAME.toClassSelector());
+                    next.click();
+                    var expectedYearsTextAfterNextClick = getExpectedYearRangeText(date.getFullYear() + 10);
+                    expect(title.text()).toBe(expectedYearsTextAfterNextClick);
+
+                    var prev = this.$startDateHeader.find(CALENDAR_HEADER_PREV_CLASS_NAME.toClassSelector());
+                    prev.click();
+                    expect(title.text()).toBe(expectedYearsText);
+
+                    prev.click();
+                    expect(title.text()).toBe(expectedYearsText);
+                });
+
+                beforeEach(function () {
+                    this.endDateExtender = $find(END_DATE_CALENDAR_EXTENDER_CLIENT_ID);
+
+                    this.endDateExtender.show();
+
+                    this.$endDateCalendar = $(this.endDateExtender._container);
+                    this.$endDateContainer = this.$endDateCalendar.children(CALENDAR_CONTAINER_CLASS_NAME.toClassSelector());
+                    this.$endDateHeader = this.$endDateContainer.children(CALENDAR_HEADER_CLASS_NAME.toClassSelector());
+                });
+
+                it("can navigate years with end date", function () {
+                    var title = this.$endDateHeader.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector());
+                    var date = new Date(2015, 1, 1);
+                    title.click();
+                    expect(title.text()).toBe(date.getFullYear().toString());
+
+                    title.click();
+                    var expectedYearsText = getExpectedYearRangeText(date.getFullYear());
+                    expect(title.text()).toBe(expectedYearsText);
+
+                    var prev = this.$endDateHeader.find(CALENDAR_HEADER_PREV_CLASS_NAME.toClassSelector());
+                    prev.click();
+                    var expectedYearsTextAfterPrevClick = getExpectedYearRangeText(date.getFullYear() - 10);
+                    expect(title.text()).toBe(expectedYearsTextAfterPrevClick);
+
+                    var next = this.$endDateHeader.find(CALENDAR_HEADER_NEXT_CLASS_NAME.toClassSelector());
+                    next.click();
+                    expect(title.text()).toBe(expectedYearsText);
+
+                    next.click();
+                    expect(title.text()).toBe(expectedYearsText);
+                });
+
+                beforeEach(function () {
+                    this.bothDatesExtender = $find(BOTH_DATES_CALENDAR_EXTENDER_CLIENT_ID);
+
+                    this.bothDatesExtender.show();
+
+                    this.$bothDatesCalendar = $(this.bothDatesExtender._container);
+                    this.$bothDatesContainer = this.$bothDatesCalendar.children(CALENDAR_CONTAINER_CLASS_NAME.toClassSelector());
+                    this.$bothDatesHeader = this.$bothDatesContainer.children(CALENDAR_HEADER_CLASS_NAME.toClassSelector());
+                });
+
+                it("can navigate years with start and end date", function () {
+                    var title = this.$bothDatesHeader.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector());
+                    var startDate = new Date(2015, 1, 1);
+                    title.click();
+                    expect(title.text()).toBe(startDate.getFullYear().toString());
+
+                    title.click();
+                    var expectedYearsText = getExpectedYearRangeText(startDate.getFullYear());
+                    expect(title.text()).toBe(expectedYearsText);
+
+                    var prev = this.$bothDatesHeader.find(CALENDAR_HEADER_PREV_CLASS_NAME.toClassSelector());
+                    prev.click();
+                    expect(title.text()).toBe(expectedYearsText);
+
+                    var next = this.$bothDatesHeader.find(CALENDAR_HEADER_NEXT_CLASS_NAME.toClassSelector());
+                    next.click();
+                    expect(title.text()).toBe(expectedYearsText);
                 });
             });
         });
