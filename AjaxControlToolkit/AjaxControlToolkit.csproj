@@ -180,10 +180,10 @@
     <Compile Include="ExtenderBase\ScriptControlBase.cs" />
     <Compile Include="ExtenderBase\ServicePathConverter.cs" />
     <Compile Include="ExtenderBase\ThreadingScripts.cs" />
-    <Compile Include="FiteredTextBox\FilteredTextBoxExtenderDesigner.cs" />
-    <Compile Include="FiteredTextBox\FilteredTextBoxExtender.cs" />
-    <Compile Include="FiteredTextBox\FilterModes.cs" />
-    <Compile Include="FiteredTextBox\FilterTypes.cs" />
+    <Compile Include="FilteredTextBox\FilteredTextBoxExtenderDesigner.cs" />
+    <Compile Include="FilteredTextBox\FilteredTextBoxExtender.cs" />
+    <Compile Include="FilteredTextBox\FilterModes.cs" />
+    <Compile Include="FilteredTextBox\FilterTypes.cs" />
     <Compile Include="Gravatar\Gravatar.cs" />
     <Compile Include="Gravatar\GravatarDefaultImageBehavior.cs" />
     <Compile Include="Gravatar\GravatarDesigner.cs" />
