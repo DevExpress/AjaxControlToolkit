@@ -371,6 +371,26 @@
 
                 xhr.send();
             });
+
+            it("doesn't add an '&' symbol after postback if the text contains '<' and '>' symbols", function(done) {
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent("< >");
+
+                var endRequestHandler = function() {
+                    var extender = $find("<%= TargetExtender.ClientID %>"),
+                        wrapper = new HtmlEditorWrapper(extender);
+
+                    expect(wrapper.currentState.editorContent()).toEqual("< >");
+
+                    Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
+
+                    done();
+                };
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+
+                $("#SubmitButton").click();
+            });
         });
     </script>
 
