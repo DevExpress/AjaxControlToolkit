@@ -6,8 +6,8 @@
 
 <asp:Content ContentPlaceHolderID="TestSuite" runat="server">
 
-    <asp:TextBox runat="server" ID="TestTextBox" Width="150" AutoCompleteType="Email" />
-    <act:TextBoxWatermarkExtender runat="server" TargetControlID="TestTextBox" ID="TargetExtender" WatermarkText="Lorem ipsum"/>
+    <asp:TextBox runat="server" ID="TestTextBox" Width="150" AutoCompleteType="Email" CssClass="text" />
+    <act:TextBoxWatermarkExtender runat="server" TargetControlID="TestTextBox" ID="TargetExtender" WatermarkText="Lorem ipsum" WatermarkCssClass="watermark"/>
 
     <script>
         describe("TextBoxWatermark", function() {
@@ -29,6 +29,14 @@
 
                 it("textinput hasn't autocomplete attribute", function() {
                     expect(this.$element.attr("autocomplete")).toBeFalsy();
+                });
+
+                it("preserves original textbox CSS class when watermark CSS class applied", function() {
+                    expect(this.$element.hasClass("text")).toBeTruthy();
+                });
+
+                it("adds watermark CSS class to the textbox", function() {
+                    expect(this.$element.hasClass("watermark")).toBeTruthy();
                 });
 
             });

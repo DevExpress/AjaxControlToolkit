@@ -177,8 +177,15 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
         wrapper.set_Watermark(this._watermarkText);
         wrapper.set_IsWatermarked(true);
-        if(this._watermarkCssClass)
-            this.get_element().className = this._watermarkCssClass;
+
+        if(!this._watermarkCssClass)
+            return;
+
+        var classList = this.get_element().className.split();
+        if(classList.indexOf(this._watermarkCssClass) === -1) {
+            classList.push(this._watermarkCssClass);
+            this.get_element().className = classList.join(" ");
+        }
     },
 
     _onKeyPress : function() {
