@@ -411,7 +411,6 @@ Sys.Extended.UI.TabContainer.prototype = {
             var activeTab = this.get_tabs()[this._activeTabIndex];
             if(activeTab) {
                 activeTab.set_wasLoadedOnce(true);
-                activeTab._setFocus(activeTab);
             }
         }
         this._loaded = true;
