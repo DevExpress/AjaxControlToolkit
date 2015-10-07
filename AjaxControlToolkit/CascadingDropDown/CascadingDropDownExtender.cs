@@ -21,6 +21,7 @@ namespace AjaxControlToolkit {
     [Designer(typeof(CascadingDropDownExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.CascadingDropDownBehavior", Constants.CascadingDropDownName)]
     [RequiredScript(typeof(CommonToolkitScripts))]
+    [TargetControlType(typeof(ListBox))]
     [TargetControlType(typeof(DropDownList))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.CascadingDropDownName + Constants.IconPostfix)]
     public class CascadingDropDown : ExtenderControlBase {
@@ -202,7 +203,7 @@ namespace AjaxControlToolkit {
 
         // Populate DropDownLists with their SelectedValues
         void CascadingDropDown_ClientStateValuesLoaded(object sender, EventArgs e) {
-            var dropDownList = (DropDownList)TargetControl;
+            var dropDownList = (ListControl)TargetControl;
             if(dropDownList == null)
                 throw new ArgumentNullException("No target control is set for the CascadingDropDown extender.");
 
