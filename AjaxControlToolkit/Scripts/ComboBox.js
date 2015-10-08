@@ -812,7 +812,9 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
         // prevent typing when there are no items in the list
-        if (this.get_selectedIndex() == -1 && this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.DropDownList) {
+        if (this.get_selectedIndex() == -1
+            && this.get_dropDownStyle() == Sys.Extended.UI.ComboBoxStyle.DropDownList
+            && this._optionListItems.length == 0) {
             this.get_textBoxControl().value = '';
             e.preventDefault();
             e.stopPropagation();

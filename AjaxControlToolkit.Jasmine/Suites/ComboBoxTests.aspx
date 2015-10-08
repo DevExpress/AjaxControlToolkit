@@ -39,6 +39,15 @@
                         keyCode: 38,
                         type: "keyup"
                     });
+
+                    this.keyPressEvent = new Sys.UI.DomEvent({
+                        keyCode: 97,
+                        type: "keypress",
+                        shiftKey: false,
+                        rawEvent: {
+                            code: 46
+                        }
+                    });
                 });
 
                 it("contains input container", function() {
@@ -137,7 +146,11 @@
 
                 it("first list item is selected after first keydown", function() {
                     this.extender._handleArrowKey(this.keyDownEvent);
+                    expect(this.$itemsContainer.children("li").first().attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                });
 
+                it("first list item is selected after first alphabetic keypress", function () {
+                    this.extender._onTextBoxKeyPress(this.keyPressEvent);
                     expect(this.$itemsContainer.children("li").first().attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
                 });
 
