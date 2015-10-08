@@ -31,6 +31,24 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         protected global::AjaxControlToolkit.HtmlEditorExtender TargetExtender;
         
         /// <summary>
+        /// TargetSanitized control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TargetSanitized;
+        
+        /// <summary>
+        /// TargetExtenderSanitized control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.HtmlEditorExtender TargetExtenderSanitized;
+        
+        /// <summary>
         /// SubmitButton control.
         /// </summary>
         /// <remarks>

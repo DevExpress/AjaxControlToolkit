@@ -53,6 +53,52 @@
                 </Toolbar>
             </act:HtmlEditorExtender>
 
+            <asp:TextBox runat="server"
+                ID="TargetSanitized"
+                Width="500"
+                Height="300" />
+
+            <act:HtmlEditorExtender runat="server"
+                TargetControlID="TargetSanitized" 
+                ID="TargetExtenderSanitized" 
+                EnableSanitization="true" 
+                DisplaySourceTab="true">
+                <Toolbar>
+                    <act:Undo />
+                    <act:Redo />
+                    <act:Bold />
+                    <act:Italic />
+                    <act:Underline />
+                    <act:StrikeThrough />
+                    <act:Subscript />
+                    <act:Superscript />
+                    <act:JustifyLeft />
+                    <act:JustifyCenter />
+                    <act:JustifyRight />
+                    <act:JustifyFull />
+                    <act:InsertOrderedList />
+                    <act:InsertUnorderedList />
+                    <act:CreateLink />
+                    <act:UnLink />
+                    <act:RemoveFormat />
+                    <act:SelectAll />
+                    <act:UnSelect />
+                    <act:Delete />
+                    <act:Cut />
+                    <act:Copy />
+                    <act:Paste />
+                    <act:BackgroundColorSelector />
+                    <act:ForeColorSelector />
+                    <act:FontNameSelector />
+                    <act:FontSizeSelector />
+                    <act:Indent />
+                    <act:Outdent />
+                    <act:InsertHorizontalRule />
+                    <act:HorizontalSeparator />
+                    <act:InsertImage />
+                </Toolbar>
+            </act:HtmlEditorExtender>
+
             <asp:Button ID="SubmitButton" runat="server" Text="Submit button" ClientIDMode="Static"/>
         </ContentTemplate>
     </asp:UpdatePanel>
@@ -60,12 +106,14 @@
     <script>
         describe("HtmlEditorExtender", function() {
 
-            var HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= TargetExtender.ClientID %>";
+            var HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= TargetExtender.ClientID %>",
+                HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID = "<%= TargetExtenderSanitized.ClientID %>";
 
             var HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME = "ajax__colorPicker";
 
             beforeEach(function() {
                 this.extender = $find(HTML_EDITOR_EXTENDER_CLIENT_ID);
+                this.extenderSanitized = $find(HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID);
 
                 this.ua = detect.parse(navigator.userAgent);
             });
@@ -383,6 +431,24 @@
                     expect(wrapper.currentState.editorContent()).toEqual("< >");
 
                     Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
+
+                    done();
+                };
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+
+                $("#SubmitButton").click();
+            });
+
+            it("removes all link href attribute value with javascript code after postback", function(done) {
+                var wrapper = new HtmlEditorWrapper(this.extenderSanitized);
+                wrapper.switchTab("source").setContent("<a href='javascript:alert(\"hello world\");'>test link</a>");
+
+                var endRequestHandler = function() {
+                    var extender = $find("<%= TargetExtenderSanitized.ClientID %>"),
+                        wrapper = new HtmlEditorWrapper(extender);
+
+                    expect(wrapper.currentState.editorContent("source")).toEqual("<a href=\"\">test link</a>");
 
                     done();
                 };

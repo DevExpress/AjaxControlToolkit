@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -380,6 +381,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AjaxControlToolkit.HtmlEditor.Sanitizer\AjaxControlToolkit.HtmlEditor.Sanitizer.csproj">
+      <Project>{4f19469b-3352-4d93-89e2-4b79fd7086a6}</Project>
+      <Name>AjaxControlToolkit.HtmlEditor.Sanitizer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AjaxControlToolkit.StaticResources\AjaxControlToolkit.StaticResources.csproj">
       <Project>{820694df-c225-46b6-ba38-c5fefbd79aeb}</Project>
       <Name>AjaxControlToolkit.StaticResources</Name>
