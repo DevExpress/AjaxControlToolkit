@@ -1982,6 +1982,12 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         }
     },
 
+    containsAMPMLetters: function(value, index)
+    {
+        var currentAMPMtext = value.substring(index);
+
+    },
+
     // Load initial value in mask
     loadValue: function(value, logicPosition) {
         var i;
@@ -1993,9 +1999,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             for(i = 0 ; i < parseInt(value.length, 10) ; i++) {
                 var c = value.substring(i, i + 1);
 
-                if((this._maskType == Sys.Extended.UI.MaskedEditType.Time || this._maskType == Sys.Extended.UI.MaskedEditType.DateTime) && this.getCultureFirstLettersAMPM().toUpperCase().indexOf(c.toUpperCase()) != -1) {
-                    if(this._acceptAmPm)
+                if ((this._maskType == Sys.Extended.UI.MaskedEditType.Time || this._maskType == Sys.Extended.UI.MaskedEditType.DateTime) && this.getCultureFirstLettersAMPM().toUpperCase().indexOf(c.toUpperCase()) != -1) {
+                    if (this._acceptAmPm) {
                         this.insertAMPM(c);
+                        break;
+                    }
                 } else if(this._maskType == Sys.Extended.UI.MaskedEditType.Number && this._acceptNegative != Sys.Extended.UI.MaskedEditShowSymbol.None && "+-".indexOf(c) != -1) {
                     this.insertSignal(c);
                 }
@@ -2094,6 +2102,11 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         return ValueText;
     },
 
+    getCurrentHour: function (date)
+    {
+        return date.getHours().toString();
+    },
+
     AutoFormatTime: function() {
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
         ValueText = wrapper.get_Value();
@@ -2127,7 +2140,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         }
 
         var CurDate = new Date(),
-            Hcur = CurDate.getHours().toString();
+            Hcur = this.getCurrentHour(CurDate);
 
         if(Hcur.length < 2)
             Hcur = "0" + Hcur;

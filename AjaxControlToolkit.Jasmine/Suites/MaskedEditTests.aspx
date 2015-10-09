@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Suites/Suite.Master" AutoEventWireup="true" CodeBehind="MaskedEditTests.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.MaskedEditTests" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Suites/Suite.Master" AutoEventWireup="true" CodeBehind="MaskedEditTests.aspx.cs" Inherits="AjaxControlToolkit.Jasmine.Suites.MaskedEditTests" Culture="auto" UICulture="auto" %>
 
 <asp:Content ContentPlaceHolderID="TestSuiteName" runat="server">
     MaskedEdit
@@ -45,20 +45,29 @@
         ClearTextOnInvalid="false"
         CultureName="en-US" />
 
+    <asp:TextBox runat="server"
+        ID="TimeTarget" />
+    <act:MaskedEditExtender ID="TimeTargetMaskedEditExtender" runat="server"
+        TargetControlID="TimeTarget"
+        Mask="99:99:99"
+        MaskType="Time"
+        AcceptAMPM="True" />
     <script>
 
-        describe("MaskedEdit", function() {
+        describe("MaskedEdit", function () {
 
-            var COMMON_TARGET_CLIENT_ID = "<%= CommonTarget.ClientID %>",
-                COMMON_EXTENDER_CLIENT_ID = "<%= CommonTargetExtender.ClientID %>",
+            var TIME_TARGET_CLIENT_ID = "<%= TimeTarget.ClientID %>",
+                TIME_TARGET_EXTENDER_CLIENT_ID = "<%= TimeTargetMaskedEditExtender.ClientID %>",
+                COMMON_TARGET_CLIENT_ID = "<%= CommonTarget.ClientID%>",
+                COMMON_EXTENDER_CLIENT_ID = "<%= CommonTargetExtender.ClientID%>",
                 DATE_TARGET_CLIENT_ID = "<%= DateTarget.ClientID %>",
                 DATE_EXTENDER_CLIENT_ID = "<%= DateTargetExtender.ClientID %>",
                 NUMBER_WITH_ZERO_TARGET_CLIENT_ID = "<%= NumberWithZeroTarget.ClientID %>",
                 NUMBER_WITH_ZERO_CLIENT_ID = "<%= NumberWithZeroTargetExtender.ClientID %>",
-                PHONE_NUMBER_TARGET_CLIENT_ID = "<%= PhoneNumberTarget.ClientID %>",
-                PHONE_NUMBER_EXTENDER_CLIENT_ID = "<%= PhoneNumberTargetExtender.ClientID %>";
+                PHONE_NUMBER_EXTENDER_CLIENT_ID = "<%= PhoneNumberTargetExtender.ClientID%>",
+                PHONE_NUMBER_TARGET_CLIENT_ID = "<%= PhoneNumberTarget.ClientID %>";
 
-            beforeEach(function() {
+            beforeEach(function () {
                 this.$commonTarget = $(COMMON_TARGET_CLIENT_ID.toIdSelector());
                 this.commonExtender = $find(COMMON_EXTENDER_CLIENT_ID);
 
@@ -70,9 +79,12 @@
 
                 this.phoneNumberExtender = $find(PHONE_NUMBER_EXTENDER_CLIENT_ID);
                 this.$phoneNumberTarget = $(PHONE_NUMBER_TARGET_CLIENT_ID.toIdSelector());
+
+                this.timeExtender = $find(TIME_TARGET_EXTENDER_CLIENT_ID);
+                this.$timeTarget = $(TIME_TARGET_CLIENT_ID.toIdSelector());
             });
 
-            it("removes symbol on backspace", function() {
+            it("removes symbol on backspace", function () {
                 var keyboardEvent = getKeyboardEvent({
                     typeArg: "keydown",
                     canBubbleArg: true,
@@ -93,7 +105,7 @@
                 expect(this.$commonTarget.val()).toBe("AB");
             });
 
-            it("clears mask on blur", function() {
+            it("clears mask on blur", function () {
                 var expectedValue = this.$commonTarget.val();
 
                 this.$commonTarget.blur();
@@ -102,7 +114,7 @@
             });
 
             // CodePlex item 27764
-            it("formats date properly for different cultures", function() {
+            it("formats date properly for different cultures", function () {
                 var cultures = [
                     {
                         name: "en-US",
@@ -124,11 +136,11 @@
                     },
                 ];
 
-                spyOn(this.dateExtender, "get_cultureDatePlaceholder").and.callFake(function() {
+                spyOn(this.dateExtender, "get_cultureDatePlaceholder").and.callFake(function () {
                     return cultures[i].dateSeparator;
                 });
 
-                for(var i = 0; i < cultures.length; i++) {
+                for (var i = 0; i < cultures.length; i++) {
                     var convertedDate = this.dateExtender.ConvFmtDate(cultures[i].localeDateString, false);
                     expect(convertedDate).toBe(cultures[i].convertedDate);
 
@@ -137,7 +149,7 @@
                 }
             });
 
-            it("date formating returns empty string for non-data values", function() {
+            it("date formating returns empty string for non-data values", function () {
                 var convertedDate = this.dateExtender.ConvFmtDate("non-data string", false);
                 expect(convertedDate).toBe("");
 
@@ -145,7 +157,7 @@
                 expect(convertedDate).toBe("");
             });
 
-            it("does not add zero when focusing", function() {
+            it("does not add zero when focusing", function () {
                 var expectedValue = this.$numberWithZeroTarget.val();
 
                 this.$numberWithZeroTarget.blur();
@@ -154,17 +166,49 @@
                 expect(this.$numberWithZeroTarget.val()).toBe(expectedValue);
             });
 
-            it("date formatting does not throw an exception when user date format is set (CodePlex item 27921)", function() {
+            it("date formatting does not throw an exception when user date format is set (CodePlex item 27921)", function () {
                 this.dateExtender._UserDateFormat = Sys.Extended.UI.MaskedEditUserDateFormat.DayMonthYear;
 
                 var that = this;
-                expect(function() {
+                expect(function () {
                     that.dateExtender.ConvFmtDate("10/10/2000", true)
                 }).not.toThrow();
             });
 
-            it("target control should have proper initialization text (CodePlex item 27920)", function() {
+            it("target control should have proper initialization text (CodePlex item 27920)", function () {
                 expect(this.$phoneNumberTarget.val()).toBe("(123) 456-7890");
+            });
+
+            it("loads value with AMPM", function () {
+                spyOn(this.timeExtender, "getCurrentHour").and.callFake(function (date) {
+                    return "14";
+                });
+
+                spyOn(this.timeExtender, "get_cultureAMPMPlaceholder").and.callFake(function () {
+                    return "AM;PM";
+                });
+
+                this.$timeTarget.focus();
+                pressButtons(this.$timeTarget, "050000");
+                this.$timeTarget.blur();
+
+                expect(this.$timeTarget.val()).toBe("05:00:00 AM");
+            });
+
+            it("loads value with AMPM for cs-CZ", function () {
+                spyOn(this.timeExtender, "getCurrentHour").and.callFake(function (date) {
+                    return "14";
+                });
+
+                spyOn(this.timeExtender, "get_cultureAMPMPlaceholder").and.callFake(function () {
+                    return "dop.;odp.";
+                });
+
+                this.$timeTarget.focus();
+                pressButtons(this.$timeTarget, "050000");
+                this.$timeTarget.blur();
+
+                expect(this.$timeTarget.val()).toBe("05:00:00 dop.");
             });
         });
 
@@ -193,15 +237,22 @@
         };
 
         function setSelectionRange(input, selectionStart, selectionEnd) {
-            if(input.setSelectionRange) {
+            if (input.setSelectionRange) {
                 input.focus();
                 input.setSelectionRange(selectionStart, selectionEnd);
-            } else if(input.createTextRange) {
+            } else if (input.createTextRange) {
                 var range = input.createTextRange();
                 range.collapse(true);
                 range.moveEnd('character', selectionEnd);
                 range.moveStart('character', selectionStart);
                 range.select();
+            }
+        };
+
+        function pressButtons(target, sequence) {
+            for (var i = 0; i < sequence.length; i++) {
+                var charCode = sequence.charCodeAt(i);
+                target.simulate("keypress", { charCode: charCode });
             }
         };
 
