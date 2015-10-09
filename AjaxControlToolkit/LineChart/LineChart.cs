@@ -23,6 +23,20 @@ namespace AjaxControlToolkit {
         List<LineChartSeries> _series = new List<LineChartSeries>();
 
         /// <summary>
+        /// Whether or not show series values.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(true)]
+        [ClientPropertyName("displayValues")]
+        public bool DisplayValues {
+            set { ViewState["DisplayValues"] = value; }
+            get {
+                var o = ViewState["DisplayValues"];
+                return (o != null) ? (bool)o : true;
+            }
+        }
+
+        /// <summary>
         /// Provides a set of values for the category axis to create a line chart
         /// </summary>
         [ExtenderControlProperty]

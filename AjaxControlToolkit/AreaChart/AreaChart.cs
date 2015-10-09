@@ -19,6 +19,20 @@ namespace AjaxControlToolkit {
         List<AreaChartSeries> _series = new List<AreaChartSeries>();
 
         /// <summary>
+        /// Whether or not show series values.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(true)]
+        [ClientPropertyName("displayValues")]
+        public bool DisplayValues {
+            set { ViewState["DisplayValues"] = value; }
+            get {
+                var o = ViewState["DisplayValues"];
+                return (o != null) ? (bool)o : true;
+            }
+        }
+
+        /// <summary>
         /// Comma-separated text for each category rendered below X axis
         /// </summary>
         [ExtenderControlProperty]

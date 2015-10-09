@@ -7,6 +7,14 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._parentDiv = document.getElementById(id + "__ParentDiv");
 
     /// <summary>
+    /// Whether or not show series values.
+    /// </summary>
+    /// <getter>get_displayValues</getter>
+    /// <setter>set_displayValues</setter>
+    /// <member name="cP:AjaxControlToolkit.AreaChart.displayValues" />
+    this._displayValues = true;
+
+    /// <summary>
     /// Chart width in pixels. Default value is 300
     /// </summary>
     /// <getter>get_chartWidth</getter>
@@ -406,7 +414,8 @@ Sys.Extended.UI.AreaChart.prototype = {
         return svgContents;
     },
 
-    drawAreas: function() {
+    drawAreas: function () {
+        var displayValues = this.get_displayValues();
         var areaContents = '';
         // Area section
         var yVal = new Array();
@@ -437,9 +446,9 @@ Sys.Extended.UI.AreaChart.prototype = {
                 }
 
                 if(yVal[j] > 0)
-                    areaContents = areaContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * i) + (this.xInterval * 50 / 100) - yVal[j].toString().length * this.charLength, this.startY - Math.round(yVal[j] * (this.yInterval / this.roundedTickRange)) - 7.5, yVal[j]);
+                    areaContents = areaContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * i) + (this.xInterval * 50 / 100) - yVal[j].toString().length * this.charLength, this.startY - Math.round(yVal[j] * (this.yInterval / this.roundedTickRange)) - 7.5, displayValues ? yVal[j] : "");
                 else
-                    areaContents = areaContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * i) + (this.xInterval * 50 / 100) - yVal[j].toString().length * this.charLength, this.startY - Math.round(yVal[j] * (this.yInterval / this.roundedTickRange)) + 7.5, yVal[j]);
+                    areaContents = areaContents + String.format('<text id="LegendText" x="{0}" y="{1}">{2}</text>', this.startX + (this.xInterval * i) + (this.xInterval * 50 / 100) - yVal[j].toString().length * this.charLength, this.startY - Math.round(yVal[j] * (this.yInterval / this.roundedTickRange)) + 7.5, displayValues ? yVal[j] : "");
 
                 lastStartX[j] = this.startX + (this.xInterval * i) + (this.xInterval / 2);
                 lastStartY[j] = this.startY - Math.round(yVal[j] * (this.yInterval / this.roundedTickRange));
@@ -464,6 +473,13 @@ Sys.Extended.UI.AreaChart.prototype = {
     drawArea: function(me, areaPath, seriesIndex) {
         Sys.Extended.Deprecated("drawArea(me, areaPath, seriesIndex)");
         this._drawArea(areaPath, seriesIndex);
+    },
+
+    get_displayValues: function () {
+        return this._displayValues;
+    },
+    set_displayValues: function (value) {
+        this._displayValues = value;
     },
 
     get_chartWidth: function() {
