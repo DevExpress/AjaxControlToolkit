@@ -171,7 +171,6 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._topButtonContainer = null;
     this._topButtonContainer2 = null;
     this._buttons = [];
-    this._btnClickHandler = null;
     this._requested_buttons = new Array();
     this._colorPicker = null;
     this._txtBoxForColor = null;
@@ -355,7 +354,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                             var value = this.options[this.selectedIndex].value;
                             setTimeout(function() {
                                 document.execCommand("fontname", false, value);
-                            }, 200);
+                            }, 2000);
                         }
                     }
                 }, _btn);
