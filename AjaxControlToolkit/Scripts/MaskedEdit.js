@@ -3403,7 +3403,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     get_promptCharacter: function() {
         return this._promptCharacter;
     },
-    set_promptCharacter: function() {
+    set_promptCharacter: function(value) {
         this._promptCharacter = value;
         this.raisePropertyChanged('promptCharacter');
     },
