@@ -354,7 +354,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                             var value = this.options[this.selectedIndex].value;
                             setTimeout(function() {
                                 document.execCommand("fontname", false, value);
-                            }, 2000);
+                            }, 200);
                         }
                     }
                 }, _btn);
@@ -801,8 +801,20 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         return false;
     },
 
+    isValidTarget: function(target)
+    {
+        if (target.name == undefined
+            ||
+            target.name == ""
+            ||
+            target.tagName.toLowerCase() == "select")
+            return false;
+
+        return true;
+    },
+
     _executeCommand: function(command) {
-        if(command.target.name == undefined)
+        if(!this.isValidTarget(command.target))
             return;
 
         var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox,

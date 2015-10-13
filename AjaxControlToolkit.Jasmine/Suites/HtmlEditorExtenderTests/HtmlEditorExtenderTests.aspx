@@ -118,6 +118,11 @@
                 this.ua = detect.parse(navigator.userAgent);
             });
 
+            it("rejects select click target", function () {
+                var target = { tagName: "SELECT" };
+                expect(this.extender.isValidTarget(target)).toBeFalsy();
+            }),
+
             it("does not throw exception on submit if text is empty", function() {
                 expect($.proxy(function() {
                     this.extender._editableDiv_submit();
