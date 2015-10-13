@@ -1,1 +1,1 @@
-﻿Web Essentials is used for script minification on save
+﻿Bundler & Minifier extension is used for script minification on save

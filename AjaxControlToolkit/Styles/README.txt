@@ -1,1 +1,1 @@
-﻿Web Essentials is used for style minification on save
+﻿Bundler & Minifier extension is used for style minification on save
