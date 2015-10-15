@@ -60,6 +60,10 @@
             document.getElementById('uploadCompleteInfo').innerHTML = 'Please wait while uploading ' + e.get_filesInQueue() + ' files...';
         }
 
+        function onClientUploadError(sender, e) {
+            document.getElementById('uploadCompleteInfo').innerHTML = "There was an error while uploading.";
+        }
+
         function onClientUploadCompleteAll(sender, e) {
 
             var args = JSON.parse(e.get_serverArguments()),
@@ -81,7 +85,12 @@
     <ajaxToolkit:AjaxFileUpload ID="AjaxFileUpload1" runat="server" Padding-Bottom="4"
         Padding-Left="2" Padding-Right="1" Padding-Top="4" ThrobberID="myThrobber" OnClientUploadComplete="onClientUploadComplete"
         OnUploadComplete="AjaxFileUpload1_OnUploadComplete" MaximumNumberOfFiles="10"
-        AllowedFileTypes="jpg,jpeg" OnClientUploadCompleteAll="onClientUploadCompleteAll" OnUploadCompleteAll="AjaxFileUpload1_UploadCompleteAll" OnUploadStart="AjaxFileUpload1_UploadStart" OnClientUploadStart="onClientUploadStart" />
+        AllowedFileTypes="jpg,jpeg" 
+        OnClientUploadCompleteAll="onClientUploadCompleteAll" 
+        OnUploadCompleteAll="AjaxFileUpload1_UploadCompleteAll" 
+        OnUploadStart="AjaxFileUpload1_UploadStart" 
+        OnClientUploadStart="onClientUploadStart"
+        OnClientUploadError="onClientUploadError" />
 
     <div id="uploadCompleteInfo"></div>
     <br />
