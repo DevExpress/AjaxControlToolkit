@@ -668,6 +668,15 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         }
     };
 
+    this.resetUI = function () {
+        $common.setVisible(elements.progressBarContainer, false);
+        $common.setVisible(control._elements.uploadOrCancelButton, false);
+
+        var fileItem = control.getNextFile();
+        fileItem._isUploaded = true;
+        fileItem._isUploading = false;
+    },
+
     this.upload = function(fileItem) {
         if(!control._isUploading)
             return;
@@ -1092,6 +1101,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                         self.raise_uploadStart(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
                     } else {
                         self.raise_uploadError(xhr);
+                        self.setFileStatus(fileItem, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
                         throw "Failed to starting upload.";
                     }
                 }
@@ -1158,6 +1168,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                     self.raise_uploadCompleteAll(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
                 } else {
                     self.raise_uploadError(xhr);
+                    self.setFileStatus(fileItem, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
                     throw "Failed to completing upload.";
                 }
             }
@@ -1295,7 +1306,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         xhr.open("POST", "?contextKey=" + this.get_id() + "&done=1&guid=" + fileItem._id, true);
         xhr.onreadystatechange = function(e) {
             if(xhr.readyState == 4) {
-                if(xhr.status == 200) {
+                if (xhr.status == 200 && xhr.responseText != "") {
 
                     // Mark as done and invoke event handler
                     self.raise_uploadComplete(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
@@ -1570,8 +1581,11 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             eh(this, e);
         }
 
+        this._processor.resetUI();
+
         this._canceled = false;
         this._isUploading = false;
+        this._isUploaded = true;
         this.enableControls(true);
     },
 
