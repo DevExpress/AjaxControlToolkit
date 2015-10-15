@@ -389,7 +389,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         if(xhrPoll)
             xhrPoll.abort();
 
-        xhr.open("POST", '?contextKey=' + control.get_id() + "&cancel=1&guid=" + control._currentFileId, true);
+        xhr.open("POST", '?contextKey=' + control.get_id() + "&cancel=1&guid=" + control._currentFileId + self.getQueryString(), true);
         xhr.onreadystatechange = function() {
             self.setThrobber(false);
             if(xhr.readyState == 4) {
@@ -403,6 +403,11 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
             }
         };
         xhr.send(null);
+    },
+
+    this.getQueryString = function()
+    {
+        return "&" + window.location.search.replace("?", "");
     },
 
     this.createIFrame = function() {
@@ -1093,7 +1098,8 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                 self = this;
 
             xhr.open("POST", '?contextKey=' + this.get_id()
-                + "&start=1&queue=" + this._filesInQueue.length);
+                + "&start=1&queue=" + this._filesInQueue.length
+                + this.getQueryString());
             xhr.onreadystatechange = function() {
                 if(xhr.readyState == 4) {
                     if(xhr.status == 200) {
@@ -1160,7 +1166,8 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         xhr.open("POST", '?contextKey=' + this.get_id()
             + "&complete=1&queue=" + this._filesInQueue.length
             + "&uploaded=" + (this._currentQueueIndex - (currentFile._isUploaded ? 0 : 1))
-            + "&reason=" + (this._canceled ? "cancel" : "done"));
+            + "&reason=" + (this._canceled ? "cancel" : "done")
+            + this.getQueryString());
 
         xhr.onreadystatechange = function() {
             if(xhr.readyState == 4) {
@@ -1303,7 +1310,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         var xhr = new XMLHttpRequest(),
             self = this;
 
-        xhr.open("POST", "?contextKey=" + this.get_id() + "&done=1&guid=" + fileItem._id, true);
+        xhr.open("POST", "?contextKey=" + this.get_id() + "&done=1&guid=" + fileItem._id + this.getQueryString(), true);
         xhr.onreadystatechange = function(e) {
             if(xhr.readyState == 4) {
                 if (xhr.status == 200 && xhr.responseText != "") {
@@ -1322,7 +1329,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                 }
             }
         };
-        xhr.send(null);
+        xhr.send();
+    },
+
+    getQueryString: function()
+    {
+        return "&" + window.location.search.replace("?", "");
     },
 
     /// <summary>
