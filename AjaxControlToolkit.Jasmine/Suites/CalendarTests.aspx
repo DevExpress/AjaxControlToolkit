@@ -93,7 +93,7 @@
                 });
 
                 it("container contains body element", function() {
-                    expect(this.$container.children(CALENDAR_BODY_CLASS_NAME.toClassSelector()).length).toBe(1);                    
+                    expect(this.$container.children(CALENDAR_BODY_CLASS_NAME.toClassSelector()).length).toBe(1);
                 });
 
                 beforeEach(function() {
@@ -112,8 +112,6 @@
                 it("container header contains title element", function() {
                     expect(this.$header.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector()).length).toBe(1);
                 });
-
-               
 
                 it("container body contains days element", function() {
                     expect(this.$body.children(CALENDAR_BODY_DAYS_CLASS_NAME.toClassSelector()).length).toBe(1);
@@ -251,6 +249,41 @@
                     var expectedYearsTextAfterPrevClick = getExpectedYearRangeText(date.getFullYear() - 10);
                     prev.click();
                     expect(title.text()).toBe(expectedYearsTextAfterPrevClick);
+                });
+
+                it("shows today date with no start and end date", function () {
+                    var testDate = new Date();
+
+                    spyOn(this.extender, "get_visibleDate").and.callFake(function () {
+                        return testDate;
+                    });
+
+                    var visibleDate = this.extender._getEffectiveVisibleDate();
+                    expect(visibleDate.getTime()).toBe(this.extender.getMonthStartDate(testDate).getTime());
+                });
+
+                it("shows today date with end date", function () {
+                    var testDate = new Date(2000, 1, 1);
+                    this.extender._endDate = new Date(1999, 1, 1);
+
+                    spyOn(this.extender, "get_visibleDate").and.callFake(function () {
+                        return testDate;
+                    });
+
+                    var visibleDate = this.extender._getEffectiveVisibleDate();
+                    expect(visibleDate.getTime()).toBe(this.extender.getMonthStartDate(this.extender._endDate).getTime());
+                });
+
+                it("shows today date with start date", function () {
+                    var testDate = new Date(2000, 1, 1);
+                    this.extender._startDate = new Date(2001, 1, 1);
+
+                    spyOn(this.extender, "get_visibleDate").and.callFake(function () {
+                        return testDate;
+                    });
+
+                    var visibleDate = this.extender._getEffectiveVisibleDate();
+                    expect(visibleDate.getTime()).toBe(this.extender.getMonthStartDate(this.extender._startDate).getTime());
                 });
 
                 beforeEach(function () {

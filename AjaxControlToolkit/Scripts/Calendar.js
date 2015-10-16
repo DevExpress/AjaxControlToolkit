@@ -1676,12 +1676,23 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         if(value == null)
             value = this.get_todaysDate();
 
+        if (this._endDate && value > this._endDate)
+            value = this._endDate;
+        else if (this._startDate && value < this._startDate)
+            value = this._startDate;
+
         value = new Date(value);
         value.setUTCDate(1);
 
         return this._getDateOnly(value);
     },
+    getMonthStartDate: function(date)
+    {
+        var value = new Date(date);
+        value.setUTCDate(1);
 
+        return this._getDateOnly(value);
+    },
 
     _getFirstDayOfWeek: function() {
         // Gets the first day of the week
