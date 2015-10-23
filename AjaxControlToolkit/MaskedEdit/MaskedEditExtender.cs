@@ -217,7 +217,7 @@ namespace AjaxControlToolkit {
         /// </remarks>
         [DefaultValue(true)]
         [ExtenderControlProperty]
-        [ClientPropertyName("autoСomplete")]
+        [ClientPropertyName("autoComplete")]
         public bool AutoComplete {
             get { return GetPropertyValue<bool>("AutoComplete", true); }
             set { SetPropertyValue<bool>("AutoComplete", value); }
