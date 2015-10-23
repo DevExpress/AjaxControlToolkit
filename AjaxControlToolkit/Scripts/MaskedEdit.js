@@ -2511,7 +2511,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         var m_arrDateLD,
             m_arrDate;
 
-        m_arrDate = this._filter(input.split(this.get_CultureDatePlaceholder()), function (element) {
+        m_arrDate = this._filter(input.split(this.get_cultureDatePlaceholder()), function (element) {
             return element != "";
         });
         m_arrDate = this._map(m_arrDate, function (element) {
@@ -2519,9 +2519,9 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         });
 
         if(loadFirst) {
-                    m_arrDateLD = input.split(this.get_CultureDatePlaceholder());
-            if(this.get_UserDateFormat() != Sys.Extended.UI.MaskedEditUserDateFormat.None) {
-                if(this.get_UserDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.DayMonthYear)
+                    m_arrDateLD = input.split(this.get_cultureDatePlaceholder());
+            if(this.get_userDateFormat() != Sys.Extended.UI.MaskedEditUserDateFormat.None) {
+                if(this.get_userDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.DayMonthYear)
                     this._cultureDateFormat = 'DMY';
                 if(this.get_userDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.DayYearMonth)
                     this._cultureDateFormat = 'DYM';
