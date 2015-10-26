@@ -19,6 +19,8 @@ namespace AjaxControlToolkit.Jasmine.Suites {
             BothDatesCalendarExtender.StartDate = new DateTime(2015, 1, 1);
             BothDatesCalendarExtender.EndDate = new DateTime(2015, 2, 2);
             BothDatesCalendarExtender.SelectedDate = selectedDate;
+
+            SelectedDateCalendarExtender.SelectedDate = selectedDate;
         }
     }
 }

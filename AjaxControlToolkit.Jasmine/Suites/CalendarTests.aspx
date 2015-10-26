@@ -38,6 +38,14 @@
         TargetControlID="BothDatesTextBox"
         Animated="false"/>
 
+    <asp:TextBox runat="server"
+        ID="SelectedDateTextBox" />
+
+    <act:CalendarExtender runat="server"
+        ID="SelectedDateCalendarExtender"
+        TargetControlID="SelectedDateTextBox"
+        Animated="false"/>
+
     <script>
         function getExpectedYearRangeText(year) {
             var yearText = year.toString();
@@ -52,6 +60,7 @@
             var START_DATE_CALENDAR_EXTENDER_CLIENT_ID = "<%= StartDateCalendarExtender.ClientID %>";
             var END_DATE_CALENDAR_EXTENDER_CLIENT_ID = "<%= EndDateCalendarExtender.ClientID %>";
             var BOTH_DATES_CALENDAR_EXTENDER_CLIENT_ID = "<%= BothDatesCalendarExtender.ClientID %>";
+            var SELECTED_DATE_CALENDAR_EXTENDER_CLIENT_ID = "<%= SelectedDateCalendarExtender.ClientID %>";
 
             var CALENDAR_CLASS_NAME = "ajax__calendar",
                 CALENDAR_CONTAINER_CLASS_NAME = "ajax__calendar_container",
@@ -379,6 +388,14 @@
                     var next = this.$bothDatesHeader.find(CALENDAR_HEADER_NEXT_CLASS_NAME.toClassSelector());
                     next.click();
                     expect(title.text()).toBe(expectedYearsText);
+                });
+
+                beforeEach(function () {
+                    this.selectedDateExtender = $find(SELECTED_DATE_CALENDAR_EXTENDER_CLIENT_ID);
+                });
+
+                it("sets selected date", function () {
+                    expect(this.selectedDateExtender._selectedDate.localeFormat(this.selectedDateExtender._format)).toBe(this.selectedDateExtender._textbox.get_Value());
                 });
             });
         });

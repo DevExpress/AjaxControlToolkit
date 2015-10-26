@@ -332,7 +332,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
             this._selectedDateChanging = true;
             var text = "";
             if(value) {
-                text = this._convertToLocal(value).localeFormat(this._format);
+                text = value.localeFormat(this._format);
 
                 // If we don't clear the time then we transfer the time from the
                 // textbox to the selected value
@@ -344,12 +344,12 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                     if(tbvalue) {
                         if(value != tbvalue.getDateOnly()) {
                             // Transfer time from textbox to selected value
-                            value.setUTCHours(tbvalue.getUTCHours());
-                            value.setUTCMinutes(tbvalue.getUTCMinutes());
-                            value.setUTCSeconds(tbvalue.getUTCSeconds());
-                            value.setUTCMilliseconds(tbvalue.getUTCMilliseconds());
+                            value.setHours(tbvalue.getHours());
+                            value.setMinutes(tbvalue.getMinutes());
+                            value.setSeconds(tbvalue.getSeconds());
+                            value.setMilliseconds(tbvalue.getMilliseconds());
 
-                            text = this._convertToLocal(value).localeFormat(this._format);
+                            text = value.localeFormat(this._format);
                         }
                     }
                 }
@@ -1006,17 +1006,17 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                 if((this._endDate) && (this._getMonthOnly(date) > this._getMonthOnly(this._endDate))) { return false; }
                 break;
             case "y":
-                if((this._startDate) && (date.getUTCFullYear() < this._startDate.getUTCFullYear())) { return false; }
-                if((this._endDate) && (date.getUTCFullYear() > this._endDate.getUTCFullYear())) { return false; }
+                if((this._startDate) && (date.getFullYear() < this._startDate.getFullYear())) { return false; }
+                if((this._endDate) && (date.getFullYear() > this._endDate.getFullYear())) { return false; }
                 break;
             case "yy":
-                var startYear = date.getUTCFullYear();
-                var endYear = date.getUTCFullYear() + 9;
+                var startYear = date.getFullYear();
+                var endYear = date.getFullYear() + 9;
 
                 if (this._startDate && this._endDate) {
-                    if (startYear < this._startDate.getUTCFullYear()
+                    if (startYear < this._startDate.getFullYear()
                         &&
-                        endYear > this._endDate.getUTCFullYear())
+                        endYear > this._endDate.getFullYear())
                         return true;
 
                     return false;
@@ -1025,10 +1025,10 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                     if(!this._startDate && !this._endDate)
                         return true;
 
-                    if (this._startDate && endYear > this._startDate.getUTCFullYear())
+                    if (this._startDate && endYear > this._startDate.getFullYear())
                         return true;
 
-                    if (this._endDate && startYear < this._endDate.getUTCFullYear())
+                    if (this._endDate && startYear < this._endDate.getFullYear())
                         return true;
 
                     return false;
@@ -1047,12 +1047,12 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                 if ((this._startDate) && (this._getMonthOnly(date) > this._getMonthOnly(this._startDate))) { return false; }
                 break;
             case "y":
-                if ((this._startDate) && (date.getUTCFullYear() > this._startDate.getUTCFullYear())) { return false; }
+                if ((this._startDate) && (date.getFullYear() > this._startDate.getFullYear())) { return false; }
                 break;
             case "yy":
-                var startYear = date.getUTCFullYear();
-                var endYear = date.getUTCFullYear();
-                if ((this._startDate) && (date.getUTCFullYear() > this._startDate.getUTCFullYear())) { return false; }
+                var startYear = date.getFullYear();
+                var endYear = date.getFullYear();
+                if ((this._startDate) && (date.getFullYear() > this._startDate.getFullYear())) { return false; }
                 break;
         }
         return true;
@@ -1066,17 +1066,17 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                 if ((this._endDate) && (this._getMonthOnly(date) < this._getMonthOnly(this._endDate))) { return false; }
                 break;
             case "y":
-                if ((this._endDate) && (date.getUTCFullYear() < this._endDate.getUTCFullYear())) { return false; }
+                if ((this._endDate) && (date.getFullYear() < this._endDate.getFullYear())) { return false; }
                 break;
             case "yy":
-                var startYear = date.getUTCFullYear();
-                var endYear = date.getUTCFullYear() + 9;
+                var startYear = date.getFullYear();
+                var endYear = date.getFullYear() + 9;
 
                 if (this._startDate || this._endDate)
                 {
-                    if (startYear < this._startDate.getUTCFullYear()
+                    if (startYear < this._startDate.getFullYear()
                         &&
-                        endYear > this._endDate.getUTCFullYear())
+                        endYear > this._endDate.getFullYear())
                         return true;
                 }
 
@@ -1086,31 +1086,11 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
 
     _getDateOnly: function(date) {
-        return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
     },
 
     _getMonthOnly: function(date) {
-        return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1));
-    },
-
-    _convertToUTC: function(value) {
-        // Converts a local date such as 1/1/2007 into 1/1/2007 GMT without adjusting for time zone
-        if(value) {
-            value = new Date(Date.UTC(value.getFullYear(), value.getMonth(), value.getDate(), value.getHours(), value.getMinutes(), value.getSeconds(), value.getMilliseconds()));
-        }
-        return value;
-    },
-
-    _convertToLocal: function(value) {
-        // Converts a UTC date such as 1/1/2007 GMT into 1/1/2007 without adjusting for time zone
-
-        var result = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate(), value.getUTCHours(), value.getUTCMinutes(), value.getUTCSeconds(), value.getUTCMilliseconds());
-
-        // Handle daylight savings time offset (The first hour of September 25 becomes the last hour of September 24 when DST starts)
-        if(result.getDate() != value.getUTCDate()) {
-            result = new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate(), value.getUTCHours() + 1, value.getUTCMinutes(), value.getUTCSeconds(), value.getUTCMilliseconds());
-        }
-        return result;
+        return new Date(date.getFullYear(), date.getMonth(), 1);
     },
 
     _performLayout: function() {
@@ -1129,12 +1109,12 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
             case "days":
 
                 var firstDayOfWeek = this._getFirstDayOfWeek();
-                var daysToBacktrack = visibleDate.getUTCDay() - firstDayOfWeek;
+                var daysToBacktrack = visibleDate.getDay() - firstDayOfWeek;
                 if(daysToBacktrack <= 0)
                     daysToBacktrack += 7;
 
                 var startDate = new Date(visibleDate);
-                startDate.setUTCDate(startDate.getUTCDate() - daysToBacktrack);
+                startDate.setDate(startDate.getDate() - daysToBacktrack);
                 var currentDate = new Date(startDate);
 
                 for(var i = 0; i < 7; i++) {
@@ -1151,8 +1131,8 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                         if(dayCell.firstChild) {
                             dayCell.removeChild(dayCell.firstChild);
                         }
-                        dayCell.appendChild(document.createTextNode(currentDate.getUTCDate()));
-                        dayCell.title = this._convertToLocal(currentDate).localeFormat("D");
+                        dayCell.appendChild(document.createTextNode(currentDate.getDate()));
+                        dayCell.title = currentDate.localeFormat("D");
                         dayCell.date = currentDate;
                         $common.removeCssClasses(dayCell.parentNode, ["ajax__calendar_other", "ajax__calendar_active", "ajax__calendar_today"]);
 
@@ -1165,17 +1145,17 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                         }
 
                         currentDate = new Date(currentDate);
-                        currentDate.setUTCDate(currentDate.getUTCDate() + 1);
+                        currentDate.setDate(currentDate.getDate() + 1);
                     }
                 }
 
-                this._prevArrow.date = new Date(Date.UTC(visibleDate.getUTCFullYear(), visibleDate.getUTCMonth() - 1, 1));
-                this._nextArrow.date = new Date(Date.UTC(visibleDate.getUTCFullYear(), visibleDate.getUTCMonth() + 1, 1));
+                this._prevArrow.date = new Date(visibleDate.getFullYear(), visibleDate.getMonth() - 1, 1);
+                this._nextArrow.date = new Date(visibleDate.getFullYear(), visibleDate.getMonth() + 1, 1);
                 if(this._title.firstChild) {
                     this._title.removeChild(this._title.firstChild);
                 }
 
-                this._title.appendChild(document.createTextNode(this._convertToLocal(visibleDate).localeFormat(this.get_daysModeTitleFormat())));
+                this._title.appendChild(document.createTextNode(visibleDate.localeFormat(this.get_daysModeTitleFormat())));
                 this._title.date = visibleDate;
 
                 break;
@@ -1184,8 +1164,8 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                     var row = this._monthsBody.rows[i];
                     for(var j = 0; j < row.cells.length; j++) {
                         var cell = row.cells[j].firstChild;
-                        cell.date = new Date(Date.UTC(visibleDate.getUTCFullYear(), cell.month, 1));
-                        cell.title = this._convertToLocal(cell.date).localeFormat("Y");
+                        cell.date = new Date(visibleDate.getFullYear(), cell.month, 1);
+                        cell.title = cell.date.localeFormat("Y");
 
                         if(!this._isInDateRange(cell.date, "M")) {
                             $common.removeCssClasses(cell.parentNode, ["ajax__calendar_other", "ajax__calendar_active"]);
@@ -1203,20 +1183,20 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                     this._title.removeChild(this._title.firstChild);
                 }
 
-                this._title.appendChild(document.createTextNode(this._convertToLocal(visibleDate).localeFormat("yyyy")));
+                this._title.appendChild(document.createTextNode(visibleDate.localeFormat("yyyy")));
                 this._title.date = visibleDate;
-                this._prevArrow.date = new Date(Date.UTC(visibleDate.getUTCFullYear() - 1, 0, 1));
-                this._nextArrow.date = new Date(Date.UTC(visibleDate.getUTCFullYear() + 1, 0, 1));
+                this._prevArrow.date = new Date(visibleDate.getFullYear() - 1, 0, 1);
+                this._nextArrow.date = new Date(visibleDate.getFullYear() + 1, 0, 1);
 
                 break;
             case "years":
 
-                var minYear = (Math.floor(visibleDate.getUTCFullYear() / 10) * 10);
+                var minYear = (Math.floor(visibleDate.getFullYear() / 10) * 10);
                 for(var i = 0; i < this._yearsBody.rows.length; i++) {
                     var row = this._yearsBody.rows[i];
                     for(var j = 0; j < row.cells.length; j++) {
                         var cell = row.cells[j].firstChild;
-                        cell.date = new Date(Date.UTC(minYear + cell.year, 0, 1));
+                        cell.date = new Date(minYear + cell.year, 0, 1);
                         if(cell.firstChild) {
                             cell.removeChild(cell.lastChild);
                         } else {
@@ -1241,8 +1221,8 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
 
                 this._title.appendChild(document.createTextNode(minYear.toString() + "-" + (minYear + 9).toString()));
                 this._title.date = visibleDate;
-                this._prevArrow.date = new Date(Date.UTC(minYear - 10, 0, 1));
-                this._nextArrow.date = new Date(Date.UTC(minYear + 10, 0, 1));
+                this._prevArrow.date = new Date(minYear - 10, 0, 1);
+                this._nextArrow.date = new Date(minYear + 10, 0, 1);
 
                 break;
         }
@@ -1256,7 +1236,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
             Sys.UI.DomElement.addCssClass(this._today.parentNode, "ajax__calendar_invalid");
         }
 
-        this._today.date = this._convertToUTC(todaysDate);
+        this._today.date = todaysDate;
     },
 
     _ensureCalendar: function() {
@@ -1619,13 +1599,13 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         if(!value) return false;
         switch(part) {
             case 'd':
-                if(date.getUTCDate() != value.getUTCDate()) return false;
+                if(date.getDate() != value.getDate()) return false;
                 // goto case 'M';
             case 'M':
-                if(date.getUTCMonth() != value.getUTCMonth()) return false;
+                if(date.getMonth() != value.getMonth()) return false;
                 // goto case 'y';
             case 'y':
-                if(date.getUTCFullYear() != value.getUTCFullYear()) return false;
+                if(date.getFullYear() != value.getFullYear()) return false;
                 break;
         }
         return true;
@@ -1639,18 +1619,18 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         var value = this._getEffectiveVisibleDate();
         switch(part) {
             case 'd':
-                return (date.getUTCFullYear() != value.getUTCFullYear() || date.getUTCMonth() != value.getUTCMonth());
+                return (date.getFullYear() != value.getFullYear() || date.getMonth() != value.getMonth());
             case 'M':
                 return false;
             case 'y':
-                var minYear = (Math.floor(value.getUTCFullYear() / 10) * 10);
-                return date.getUTCFullYear() < minYear || (minYear + 10) <= date.getUTCFullYear();
+                var minYear = (Math.floor(value.getFullYear() / 10) * 10);
+                return date.getFullYear() < minYear || (minYear + 10) <= date.getFullYear();
         }
         return false;
     },
 
     _isTodaysDate: function(date) {
-        return this._getDateOnly(this._convertToUTC(this.get_todaysDate())).valueOf() === this._getDateOnly(date).valueOf();
+        return this._getDateOnly(this.get_todaysDate()).valueOf() === this._getDateOnly(date).valueOf();
     },
 
     _getCssClass: function(date, part) {
@@ -1682,14 +1662,14 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
             value = this._startDate;
 
         value = new Date(value);
-        value.setUTCDate(1);
+        value.setDate(1);
 
         return this._getDateOnly(value);
     },
     getMonthStartDate: function(date)
     {
         var value = new Date(date);
-        value.setUTCDate(1);
+        value.setDate(1);
 
         return this._getDateOnly(value);
     },
@@ -1707,7 +1687,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
 
         var value = null;
         if(text) {
-            value = this._convertToUTC(Date.parseLocale(text, this.get_format()));
+            value = Date.parseLocale(text, this.get_format());
         }
         if(isNaN(value)) {
             value = null;
@@ -1840,7 +1820,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                 }
                 break;
             case "month":
-                if(target.month == visibleDate.getUTCMonth()) {
+                if(target.month == visibleDate.getMonth()) {
                     this._switchMode("days");
                 } else {
                     this._visibleDate = target.date;
