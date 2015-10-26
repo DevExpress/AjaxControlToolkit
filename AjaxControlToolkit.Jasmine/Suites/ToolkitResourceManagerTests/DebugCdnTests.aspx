@@ -19,10 +19,6 @@
                     expect(extender.ScriptSource).toBe("Сdn");
                 });
 
-                it("loads cdn debug script", function() {
-                    expect(Sys.Extended.UI.BehaviorBase).not.toBeUndefined();
-                })
-
             });
 
         });
