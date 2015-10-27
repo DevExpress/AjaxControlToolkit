@@ -35,6 +35,19 @@
         CultureName="en-US" />
 
     <asp:TextBox runat="server"
+        ID="RightToLeftNumberTarget" />
+    <act:MaskedEditExtender runat="server"
+        ID="RightToLeftNumberTargetExtender"
+        TargetControlID="RightToLeftNumberTarget"
+        MaskType="Number"
+        ClearMaskOnLostFocus="false"
+        InputDirection="RightToLeft"
+        DisplayMoney="Left"
+        AcceptNegative="Left"
+        Mask="9,999,999.99"
+        CultureName="en-US" />
+
+    <asp:TextBox runat="server"
         ID="PhoneNumberTarget" MaxLength="10" />
     <act:MaskedEditExtender runat="server"
         ID="PhoneNumberTargetExtender"
@@ -64,6 +77,8 @@
                 DATE_EXTENDER_CLIENT_ID = "<%= DateTargetExtender.ClientID %>",
                 NUMBER_WITH_ZERO_TARGET_CLIENT_ID = "<%= NumberWithZeroTarget.ClientID %>",
                 NUMBER_WITH_ZERO_CLIENT_ID = "<%= NumberWithZeroTargetExtender.ClientID %>",
+                RIGHT_TO_LEFT_NUMBER_TARGET_CLIENT_ID = "<%= RightToLeftNumberTarget.ClientID %>",
+                RIGHT_TO_LEFT_NUMBER_CLIENT_ID = "<%= RightToLeftNumberTargetExtender.ClientID %>",
                 PHONE_NUMBER_EXTENDER_CLIENT_ID = "<%= PhoneNumberTargetExtender.ClientID%>",
                 PHONE_NUMBER_TARGET_CLIENT_ID = "<%= PhoneNumberTarget.ClientID %>";
 
@@ -76,6 +91,9 @@
 
                 this.$numberWithZeroTarget = $(NUMBER_WITH_ZERO_TARGET_CLIENT_ID.toIdSelector());
                 this.numberWithZeroExtender = $find(NUMBER_WITH_ZERO_CLIENT_ID);
+
+                this.$rightToLeftTarget = $(RIGHT_TO_LEFT_NUMBER_TARGET_CLIENT_ID.toIdSelector());
+                this.rightToLeftExtender = $find(RIGHT_TO_LEFT_NUMBER_CLIENT_ID);
 
                 this.phoneNumberExtender = $find(PHONE_NUMBER_EXTENDER_CLIENT_ID);
                 this.$phoneNumberTarget = $(PHONE_NUMBER_TARGET_CLIENT_ID.toIdSelector());
@@ -164,6 +182,15 @@
                 this.$numberWithZeroTarget.focus();
 
                 expect(this.$numberWithZeroTarget.val()).toBe(expectedValue);
+            });
+
+            it("does not add zero when focusing with mask", function () {
+                var expectedValue = this.$rightToLeftTarget.val();
+
+                this.$rightToLeftTarget.blur();
+                this.$rightToLeftTarget.focus();
+
+                expect(this.$rightToLeftTarget.val()).toBe(expectedValue);
             });
 
             it("date formatting does not throw an exception when user date format is set (CodePlex item 27921)", function () {

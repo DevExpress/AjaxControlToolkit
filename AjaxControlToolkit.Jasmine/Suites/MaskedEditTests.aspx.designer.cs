@@ -67,6 +67,24 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         protected global::AjaxControlToolkit.MaskedEditExtender NumberWithZeroTargetExtender;
         
         /// <summary>
+        /// RightToLeftNumberTarget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RightToLeftNumberTarget;
+        
+        /// <summary>
+        /// RightToLeftNumberTargetExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender RightToLeftNumberTargetExtender;
+        
+        /// <summary>
         /// PhoneNumberTarget control.
         /// </summary>
         /// <remarks>

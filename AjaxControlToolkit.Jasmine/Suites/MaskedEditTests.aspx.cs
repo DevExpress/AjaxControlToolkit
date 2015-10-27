@@ -10,6 +10,7 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         protected void Page_Load(object sender, EventArgs e) {
 
             PhoneNumberTarget.Text = "1234567890";
+            RightToLeftNumberTarget.Text = "123456789";
         }
     }
 }
