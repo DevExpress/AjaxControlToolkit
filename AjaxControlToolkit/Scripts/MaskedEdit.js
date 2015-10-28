@@ -1985,7 +1985,33 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     containsAMPMLetters: function(value, index)
     {
         var currentAMPMtext = value.substring(index);
+    },
 
+    getMaskCharPositions: function()
+    {
+        var maskCharPositions = [];
+        var mask = this.get_clearMaskOnLostFocus() ? this.getVisibleMask() : this._LogicMaskConv;
+
+        for (var i = 0; i < mask.length; i++) {
+            var char = mask[i];
+            if (this.isMaskChar(char))
+                maskCharPositions.push(i);
+        }
+
+        return maskCharPositions;
+    },
+
+    getVisibleMask: function()
+    {
+        var clearedMask = this.replaceAll(this._LogicMaskConv, this._LogicPrompt, "");
+        clearedMask = this.replaceAll(clearedMask, this._LogicEscape, "");
+        return clearedMask;
+    },
+
+    isMaskChar: function(char)
+    {
+        var maskChars = "9L$CAN?";
+        return maskChars.indexOf(char) == -1;
     },
 
     // Load initial value in mask
@@ -1994,6 +2020,8 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         this._createMask();
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element());
         wrapper.set_Value(this._EmptyMask);
+
+        var maskCharPositions = this.getMaskCharPositions();
 
         if(this._inputDirection == Sys.Extended.UI.MaskedEditInputDirections.LeftToRight) {
             for(i = 0 ; i < parseInt(value.length, 10) ; i++) {
@@ -2049,7 +2077,18 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                     }
                 }
             } else {
-                for(i = parseInt(value.length, 10) ; i > 0  ; i--) {
+
+                var valueLength = value.length;
+                var maskLength = this.get_clearMaskOnLostFocus() ? this.getVisibleMask().length : this._EmptyMask.length;
+                maskCharPositions.splice(0, maskLength - valueLength);
+
+                for (i = parseInt(value.length, 10) ; i > 0  ; i--) {
+
+                    if (!this.get_clearMaskOnLostFocus()
+                        && this._maskType === Sys.Extended.UI.MaskedEditType.Number
+                        && maskCharPositions.indexOf(i - 1) != -1)
+                        continue;
+
                     var c = value.substring(i - 1, i);
 
                     if(this._maskType == Sys.Extended.UI.MaskedEditType.Number && this._acceptNegative != Sys.Extended.UI.MaskedEditShowSymbol.None && "+-".indexOf(c) != -1) {
@@ -2059,14 +2098,15 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                         this.insertSignal(c);
                     }
 
-                    if(this._processKey(logicPosition, c))
+                    if (this._processKey(logicPosition, c)) {
                         this._insertContent(c, logicPosition);
+                        logicPosition = this._getPreviousPosition(logicPosition - 1);
+                    }
 
-                    oldLogicPosition = logicPosition;
-                    logicPosition = this._getPreviousPosition(logicPosition - 1);
+                    //oldLogicPosition = logicPosition;
 
-                    if(this._maskType === Sys.Extended.UI.MaskedEditType.Number && logicPosition === oldLogicPosition)
-                        break;
+                    //if(this._maskType === Sys.Extended.UI.MaskedEditType.Number && logicPosition === oldLogicPosition)
+                    //    break;
                 }
             }
         }
@@ -2519,7 +2559,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         });
 
         if(loadFirst) {
-                    m_arrDateLD = input.split(this.get_cultureDatePlaceholder());
+            m_arrDateLD = input.split(this.get_cultureDatePlaceholder());
             if(this.get_userDateFormat() != Sys.Extended.UI.MaskedEditUserDateFormat.None) {
                 if(this.get_userDateFormat() == Sys.Extended.UI.MaskedEditUserDateFormat.DayMonthYear)
                     this._cultureDateFormat = 'DMY';
@@ -3141,6 +3181,34 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
 
         this._maskvalid = maskvld.substring(this._LogicFirstPos, this._LogicLastPos + 1);
         this._EmptyMask = masktext;
+    },
+
+    replaceAll: function(string, find, replace) {
+        return string.split(find).join(replace);
+    },
+
+    getTextWithoutMask: function(text)
+    {
+        var clearedMask = this.replaceAll(this._LogicMask, this._LogicPrompt, "");
+        clearedMask = this.replaceAll(clearedMask, this._LogicEscape, "");
+
+        var clearedText = "";
+
+        for (var charPos = 0; charPos < text.length; charPos++) {
+            var currentChar = text[charPos];
+
+            if (currentChar == clearedMask[0]) {
+                clearedMask = clearedMask.substring(1);
+            } else
+                clearedText += currentChar;
+        }
+
+        return clearedText;
+    },
+
+    isDataCharacter: function(char)
+    {
+        return char == this._LogicEscape || char == this._LogicPrompt;
     },
 
     // return text without mask but with placeholders 
