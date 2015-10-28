@@ -48,6 +48,19 @@
         CultureName="en-US" />
 
     <asp:TextBox runat="server"
+        ID="RightToLeftNumberClearMaskTarget" />
+    <act:MaskedEditExtender runat="server"
+        ID="RightToLeftNumberClearMaskTargetExtender"
+        TargetControlID="RightToLeftNumberClearMaskTarget"
+        MaskType="Number"
+        ClearMaskOnLostFocus="true"
+        InputDirection="RightToLeft"
+        DisplayMoney="Left"
+        AcceptNegative="Left"
+        Mask="9,999,999.99"
+        CultureName="en-US" />
+
+    <asp:TextBox runat="server"
         ID="PhoneNumberTarget" MaxLength="10" />
     <act:MaskedEditExtender runat="server"
         ID="PhoneNumberTargetExtender"
@@ -79,6 +92,8 @@
                 NUMBER_WITH_ZERO_CLIENT_ID = "<%= NumberWithZeroTargetExtender.ClientID %>",
                 RIGHT_TO_LEFT_NUMBER_TARGET_CLIENT_ID = "<%= RightToLeftNumberTarget.ClientID %>",
                 RIGHT_TO_LEFT_NUMBER_CLIENT_ID = "<%= RightToLeftNumberTargetExtender.ClientID %>",
+                RIGHT_TO_LEFT_NUMBER_CLEARMASK_TARGET_CLIENT_ID = "<%= RightToLeftNumberClearMaskTarget.ClientID %>",
+                RIGHT_TO_LEFT_NUMBER_CLEARMASK_CLIENT_ID = "<%= RightToLeftNumberClearMaskTargetExtender.ClientID %>",
                 PHONE_NUMBER_EXTENDER_CLIENT_ID = "<%= PhoneNumberTargetExtender.ClientID%>",
                 PHONE_NUMBER_TARGET_CLIENT_ID = "<%= PhoneNumberTarget.ClientID %>";
 
@@ -94,6 +109,9 @@
 
                 this.$rightToLeftTarget = $(RIGHT_TO_LEFT_NUMBER_TARGET_CLIENT_ID.toIdSelector());
                 this.rightToLeftExtender = $find(RIGHT_TO_LEFT_NUMBER_CLIENT_ID);
+
+                this.$rightToLeftClearMaskTarget = $(RIGHT_TO_LEFT_NUMBER_CLEARMASK_TARGET_CLIENT_ID.toIdSelector());
+                this.rightToLeftClearMaskExtender = $find(RIGHT_TO_LEFT_NUMBER_CLEARMASK_CLIENT_ID);
 
                 this.phoneNumberExtender = $find(PHONE_NUMBER_EXTENDER_CLIENT_ID);
                 this.$phoneNumberTarget = $(PHONE_NUMBER_TARGET_CLIENT_ID.toIdSelector());
@@ -180,8 +198,19 @@
 
                 this.$numberWithZeroTarget.blur();
                 this.$numberWithZeroTarget.focus();
+                this.$numberWithZeroTarget.blur();
 
                 expect(this.$numberWithZeroTarget.val()).toBe(expectedValue);
+            });
+
+            it("does not add zero when focusing with cleared mask", function () {
+                var expectedValue = this.$rightToLeftClearMaskTarget.val();
+
+                this.$rightToLeftClearMaskTarget.blur();
+                this.$rightToLeftClearMaskTarget.focus();
+                this.$rightToLeftClearMaskTarget.blur();
+
+                expect(this.$rightToLeftClearMaskTarget.val()).toBe(expectedValue);
             });
 
             it("does not add zero when focusing with mask", function () {
@@ -189,6 +218,7 @@
 
                 this.$rightToLeftTarget.blur();
                 this.$rightToLeftTarget.focus();
+                this.$rightToLeftTarget.blur();
 
                 expect(this.$rightToLeftTarget.val()).toBe(expectedValue);
             });

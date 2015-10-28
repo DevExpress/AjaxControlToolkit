@@ -11,6 +11,7 @@ namespace AjaxControlToolkit.Jasmine.Suites {
 
             PhoneNumberTarget.Text = "1234567890";
             RightToLeftNumberTarget.Text = "123456789";
+            RightToLeftNumberClearMaskTarget.Text = "123456789";
         }
     }
 }
