@@ -182,7 +182,7 @@ Sys.Extended.UI.TextBoxWatermarkBehavior.prototype = {
             return;
 
         var classList = this.get_element().className.split();
-        if(classList.indexOf(this._watermarkCssClass) === -1) {
+        if (Array.indexOf(classList, this._watermarkCssClass) === -1) {
             classList.push(this._watermarkCssClass);
             this.get_element().className = classList.join(" ");
         }
