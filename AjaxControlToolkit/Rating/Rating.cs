@@ -16,6 +16,7 @@ namespace AjaxControlToolkit {
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.RatingName + Constants.IconPostfix)]
     public class Rating : Panel, ICallbackEventHandler, IPostBackEventHandler {
         static readonly object EventChange = new object();
+        static readonly object EventClick = new object();
         RatingExtender _extender;
         string _returnFromEvent;
         Orientation _align;
@@ -42,7 +43,6 @@ namespace AjaxControlToolkit {
             }
         }
 
-        // Length of the transition animation in milliseconds
         /// <summary>
         /// An Initial rating value
         /// </summary>
@@ -352,6 +352,21 @@ namespace AjaxControlToolkit {
             }
         }
 
+        /// <summary>
+        /// Fires when rating is set
+        /// </summary>
+        public event RatingEventHandler Click {
+            add { base.Events.AddHandler(Rating.EventClick, value); }
+            remove { base.Events.RemoveHandler(Rating.EventClick, value); }
+        }
+
+        protected virtual void OnClick(RatingEventArgs e) {
+            var eventHandler = (RatingEventHandler)base.Events[Rating.EventClick];
+            if(eventHandler != null) {
+                eventHandler(this, e);
+            }
+        }
+
         #region ICallbackEventHandler Members
 
         /// <summary>
@@ -368,7 +383,13 @@ namespace AjaxControlToolkit {
         /// <param name="eventArgument" type="String">Event argument</param>
         public void RaiseCallbackEvent(string eventArgument) {
             var args = new RatingEventArgs(eventArgument);
-            OnChanged(args);
+
+            OnClick(args);
+
+            var value = Convert.ToInt32(args.Value.Replace(";", ""));
+            if(value != this.CurrentRating)
+                OnChanged(args);
+
             _returnFromEvent = args.CallbackResult;
         }
 
@@ -382,7 +403,12 @@ namespace AjaxControlToolkit {
         /// <param name="eventArgument" type="String">Event argument</param>
         public void RaisePostBackEvent(string eventArgument) {
             var args = new RatingEventArgs(eventArgument);
-            OnChanged(args);
+
+            OnClick(args);
+
+            var value = Convert.ToInt32(args.Value.Replace(";", ""));
+            if(value != this.CurrentRating)
+                OnChanged(args);
         }
 
         #endregion

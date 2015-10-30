@@ -91,6 +91,8 @@ Sys.Extended.UI.RatingBehavior.prototype = {
 
         if(this._ratingValue != this._currentRating)
             this.set_rating(this._currentRating);
+
+        this.doCallback();
     },
 
     _onStarMouseOver: function(e) {
@@ -490,6 +492,21 @@ Sys.Extended.UI.RatingBehavior.prototype = {
         this.set_waitingStarCssClass(value);
     },
 
+    doCallback: function()
+    {
+        if (this._isServerControl) {
+            this._waitingMode(true);
+
+            var args = this._currentRating + ";" + this._tag,
+                id = this._callbackID;
+
+            if (this._autoPostBack)
+                __doPostBack(id, args);
+            else
+                WebForm_DoCallback(id, args, this._receiveServerData, this, this._onError, true)
+        }
+    },
+
     /// <summary>
     /// A current rating value
     /// </summary>
@@ -522,17 +539,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
                 this.raisePropertyChanged('rating');
                 this.raise_rated(this._currentRating);
 
-                if(this._isServerControl) {
-                    this._waitingMode(true);
-
-                    var args = this._currentRating + ";" + this._tag,
-                        id = this._callbackID;
-
-                    if(this._autoPostBack)
-                        __doPostBack(id, args);
-                    else
-                        WebForm_DoCallback(id, args, this._receiveServerData, this, this._onError, true)
-                }
+                this.doCallback();
             }
         }
     },
