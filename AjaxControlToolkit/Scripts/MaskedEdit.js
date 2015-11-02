@@ -1423,16 +1423,19 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         m_mask = m_mask.split(":");
         if(curpos <= 1) {
             type = "H";
-            newcur = 3 + this._LogicFirstPos + QtdDt;
-        } else if(curpos >= 2 && curpos <= 4 && m_mask.length == 2) {
+            newcur = this._LogicFirstPos + QtdDt + 3;
+        } else if(curpos == 2 && m_mask.length == 2) {
             type = "M";
-            newcur = QtdDt + this._LogicFirstPos;
+            newcur = this._LogicFirstPos + QtdDt + 3;
+        } else if (curpos >= 3 && curpos <= 5 && m_mask.length == 2) {
+            type = "M";
+            newcur = this._LogicFirstPos + QtdDt;
         } else if(curpos >= 2 && curpos <= 4 && m_mask.length == 3) {
             type = "M";
-            newcur = 6 + this._LogicFirstPos + QtdDt;
+            newcur = this._LogicFirstPos + QtdDt + 6;
         } else if(m_mask.length == 3) {
             type = "S";
-            newcur = QtdDt + this._LogicFirstPos;
+            newcur = this._LogicFirstPos + QtdDt;
         }
 
         if(type == "")

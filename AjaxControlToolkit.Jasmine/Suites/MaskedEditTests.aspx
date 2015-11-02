@@ -89,12 +89,23 @@
         Mask="99:99:99"
         MaskType="Time"
         AcceptAMPM="True" />
+
+    <asp:TextBox runat="server"
+        ID="ShortTimeTarget" />
+    <act:MaskedEditExtender ID="ShortTimeTargetExtender" runat="server"
+        TargetControlID="ShortTimeTarget"
+        Mask="99:99"
+        MaskType="Time"
+        AcceptAMPM="True" />
+
     <script>
 
         describe("MaskedEdit", function () {
 
             var TIME_TARGET_CLIENT_ID = "<%= TimeTarget.ClientID %>",
                 TIME_TARGET_EXTENDER_CLIENT_ID = "<%= TimeTargetMaskedEditExtender.ClientID %>",
+                SHORT_TIME_TARGET_CLIENT_ID = "<%= ShortTimeTarget.ClientID %>",
+                SHORT_TIME_TARGET_EXTENDER_CLIENT_ID = "<%= ShortTimeTargetExtender.ClientID %>",
                 COMMON_TARGET_CLIENT_ID = "<%= CommonTarget.ClientID%>",
                 COMMON_EXTENDER_CLIENT_ID = "<%= CommonTargetExtender.ClientID%>",
                 DATE_TARGET_CLIENT_ID = "<%= DateTarget.ClientID %>",
@@ -134,6 +145,9 @@
 
                 this.timeExtender = $find(TIME_TARGET_EXTENDER_CLIENT_ID);
                 this.$timeTarget = $(TIME_TARGET_CLIENT_ID.toIdSelector());
+
+                this.shortTimeExtender = $find(SHORT_TIME_TARGET_EXTENDER_CLIENT_ID);
+                this.$shortTimeTarget = $(SHORT_TIME_TARGET_CLIENT_ID.toIdSelector());
             });
 
             it("removes symbol on backspace", function () {
@@ -246,6 +260,22 @@
                 expect(this.$rightToLeftEmptyTarget.val()).toBe("_00.__");
             });
 
+            it("correctly switches shorttime group forward", function () {
+                this.$shortTimeTarget.focus();
+                setCaretToPosition(this.$shortTimeTarget.get(0), 2);
+                pressButtons(this.$shortTimeTarget, ":");
+
+                expect(getCaretPosition(this.$shortTimeTarget.get(0))).toBe(3);
+            });
+
+            it("correctly switches shorttime group backward", function () {
+                this.$shortTimeTarget.focus();
+                setCaretToPosition(this.$shortTimeTarget.get(0), 3);
+                pressButtons(this.$shortTimeTarget, ":");
+
+                expect(getCaretPosition(this.$shortTimeTarget.get(0))).toBe(0);
+            });
+
             it("date formatting does not throw an exception when user date format is set (CodePlex item 27921)", function () {
                 this.dateExtender._UserDateFormat = Sys.Extended.UI.MaskedEditUserDateFormat.DayMonthYear;
 
@@ -335,6 +365,35 @@
                 target.simulate("keypress", { charCode: charCode });
             }
         };
+
+        function getCaretPosition(input) {
+
+            // Initialize
+            var caretPos = 0;
+
+            // IE Support
+            if (document.selection) {
+
+                // Set focus on the element
+                input.focus();
+
+                // To get cursor position, get empty selection range
+                var selection = document.selection.createRange();
+
+                // Move selection start to 0 position
+                selection.moveStart('character', -input.value.length);
+
+                // The caret position is selection length
+                caretPos = selection.text.length;
+            }
+
+                // Firefox support
+            else if (input.selectionStart || input.selectionStart == '0')
+                caretPos = input.selectionStart;
+
+            // Return results
+            return caretPos;
+        }
 
     </script>
 </asp:Content>
