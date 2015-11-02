@@ -547,29 +547,8 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                             this._insertContent(c, logiccur);
                             curpos = this._getNextPosition(logiccur + 1);
                         } else {
-                            var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()),
-                                ClearText = this._getClearMask(wrapper.get_Value());
-
-                            if(ClearText != "") {
-                                var pospt = ClearText.indexOf(this.get_cultureDecimalPlaceholder());
-
-                                if(pospt != -1) {
-                                    var intnum = ClearText.substring(0, pospt);
-                                    if(intnum == "0" || intnum == "-0") {
-                                        this.setSelectionRange(this._LogicLastInt - 1, this._LogicLastInt);
-                                        this._deleteTextSelection();
-                                        curpos = this._LogicLastInt;
-                                        this.setSelectionRange(curpos, curpos);
-                                    }
-                                }
-                            }
-
-                            if(ClearText == "" && c == "0") {
-                                curpos = this._LogicLastInt;
-                            } else {
-                                this._insertContentRight(c);
-                                curpos = this._LogicLastInt;
-                            }
+                            this._insertContentRight(c);
+                            curpos = this._LogicLastInt;
                         }
                     }
                 }

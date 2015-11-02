@@ -48,6 +48,17 @@
         CultureName="en-US" />
 
     <asp:TextBox runat="server"
+        ID="RightToLeftNumberEmptyTarget" />
+    <act:MaskedEditExtender runat="server"
+        ID="RightToLeftNumberEmptyTargetExtender"
+        TargetControlID="RightToLeftNumberEmptyTarget"
+        MaskType="Number"
+        ClearMaskOnLostFocus="false"
+        InputDirection="RightToLeft"
+        Mask="999.99"
+        CultureName="en-US" />
+
+    <asp:TextBox runat="server"
         ID="RightToLeftNumberClearMaskTarget" />
     <act:MaskedEditExtender runat="server"
         ID="RightToLeftNumberClearMaskTargetExtender"
@@ -92,6 +103,8 @@
                 NUMBER_WITH_ZERO_CLIENT_ID = "<%= NumberWithZeroTargetExtender.ClientID %>",
                 RIGHT_TO_LEFT_NUMBER_TARGET_CLIENT_ID = "<%= RightToLeftNumberTarget.ClientID %>",
                 RIGHT_TO_LEFT_NUMBER_CLIENT_ID = "<%= RightToLeftNumberTargetExtender.ClientID %>",
+                RIGHT_TO_LEFT_NUMBER_EMPTY_TARGET_CLIENT_ID = "<%= RightToLeftNumberEmptyTarget.ClientID %>",
+                RIGHT_TO_LEFT_NUMBER_EMPTY_CLIENT_ID = "<%= RightToLeftNumberEmptyTargetExtender.ClientID %>",
                 RIGHT_TO_LEFT_NUMBER_CLEARMASK_TARGET_CLIENT_ID = "<%= RightToLeftNumberClearMaskTarget.ClientID %>",
                 RIGHT_TO_LEFT_NUMBER_CLEARMASK_CLIENT_ID = "<%= RightToLeftNumberClearMaskTargetExtender.ClientID %>",
                 PHONE_NUMBER_EXTENDER_CLIENT_ID = "<%= PhoneNumberTargetExtender.ClientID%>",
@@ -109,6 +122,9 @@
 
                 this.$rightToLeftTarget = $(RIGHT_TO_LEFT_NUMBER_TARGET_CLIENT_ID.toIdSelector());
                 this.rightToLeftExtender = $find(RIGHT_TO_LEFT_NUMBER_CLIENT_ID);
+
+                this.$rightToLeftEmptyTarget = $(RIGHT_TO_LEFT_NUMBER_EMPTY_TARGET_CLIENT_ID.toIdSelector());
+                this.rightToLeftEmptyExtender = $find(RIGHT_TO_LEFT_NUMBER_EMPTY_CLIENT_ID);
 
                 this.$rightToLeftClearMaskTarget = $(RIGHT_TO_LEFT_NUMBER_CLEARMASK_TARGET_CLIENT_ID.toIdSelector());
                 this.rightToLeftClearMaskExtender = $find(RIGHT_TO_LEFT_NUMBER_CLEARMASK_CLIENT_ID);
@@ -221,6 +237,13 @@
                 this.$rightToLeftTarget.blur();
 
                 expect(this.$rightToLeftTarget.val()).toBe(expectedValue);
+            });
+
+            it("allows entering leading zeros", function () {
+                this.$rightToLeftEmptyTarget.focus();
+                pressButtons(this.$rightToLeftEmptyTarget, "00");
+                
+                expect(this.$rightToLeftEmptyTarget.val()).toBe("_00.__");
             });
 
             it("date formatting does not throw an exception when user date format is set (CodePlex item 27921)", function () {
