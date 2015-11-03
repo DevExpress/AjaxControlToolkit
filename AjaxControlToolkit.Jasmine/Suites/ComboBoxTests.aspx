@@ -48,6 +48,14 @@
                             code: 46
                         }
                     });
+
+                    this.f5KeyPressEvent = new Sys.UI.DomEvent({
+                        charCode: 0,
+                        type: "keypress",
+                        shiftKey: false
+                    });
+
+                    this.f5KeyPressEvent.charCode = 116;
                 });
 
                 it("contains input container", function() {
@@ -179,6 +187,13 @@
                     }
 
                     expect(this.$itemsContainer.children("li").eq(itemsCount - 1).attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                });
+
+                it("F5 handles correctly (CodePlex item 27480)", function () {
+                    debugger;
+                    var info = this.extender._getTextSelectionInfo(this.extender.get_textBoxControl(), this.f5KeyPressEvent);
+
+                    expect(info.typedCharacter).toBe(String.fromCharCode(0));
                 });
             });
         });
