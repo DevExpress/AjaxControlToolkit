@@ -91,12 +91,14 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
         // Want zIndex to big enough that the background sits above everything else
         // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
+        this._backgroundElement.style.zIndex = Sys.Extended.UI.zIndex.ModalPopupBackground;
         if(this._backgroundCssClass)
             this._backgroundElement.className = this._backgroundCssClass;
 
         this._foregroundElement.parentNode.appendChild(this._backgroundElement);
         this._foregroundElement.style.display = 'none';
         this._foregroundElement.style.position = 'fixed';
+        this._foregroundElement.style.zIndex = parseInt($common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex)) + 1;
 
         this._showHandler = Function.createDelegate(this, this._onShow);
         $addHandler(this.get_element(), 'click', this._showHandler);
@@ -296,11 +298,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._isAnimationJustEnded = false;
         }
 
-        var zindex = 10000 + (Sys.Extended.UI.ModalPopupBehavior._openCount++ * 1000);
-        this._showing = true;
-        this._backgroundElement.style.zIndex = zindex;
-        this._foregroundElement.style.zIndex = zindex + 1;
-
         this.populate();
         this._attachPopup();
 
@@ -454,7 +451,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
     _hideImplementation: function() {
         // Internal implementation to hide the modal dialog
-        Sys.Extended.UI.ModalPopupBehavior._openCount--;
         this._backgroundElement.style.display = 'none';
         this._foregroundElement.style.display = 'none';
 
@@ -1116,7 +1112,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 };
 
 Sys.Extended.UI.ModalPopupBehavior.registerClass('Sys.Extended.UI.ModalPopupBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
-Sys.Extended.UI.ModalPopupBehavior._openCount = 0;
 
 Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function(behaviorID, show) {
     // This static function (that is intended to be called from script emitted
