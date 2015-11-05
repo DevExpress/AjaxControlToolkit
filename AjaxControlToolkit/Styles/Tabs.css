@@ -5,17 +5,14 @@
 
 .ajax__tab_default .ajax__tab_outer {
     display: inline-block;
-    display: -moz-inline-box;
 }
 
 .ajax__tab_default .ajax__tab_inner {
     display: inline-block;
-    display: -moz-inline-box;
 }
 
 .ajax__tab_default .ajax__tab_tab {
     display: inline-block;
-    display: -moz-inline-box;
     overflow: hidden;
     text-align: center;
 }
