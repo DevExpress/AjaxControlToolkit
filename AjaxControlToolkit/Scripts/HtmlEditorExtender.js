@@ -718,10 +718,6 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                 element.id = '';
                 element.removeAttribute('id');
             } catch(ex) { }
-
-            try {
-                element.removeAttribute('width');
-            } catch(ex) { }
         }
 
         var html = this._editableDiv.innerHTML;

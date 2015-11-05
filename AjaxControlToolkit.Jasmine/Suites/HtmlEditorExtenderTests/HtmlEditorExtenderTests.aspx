@@ -462,6 +462,26 @@
 
                 $("#SubmitButton").click();
             });
+
+            it("keeps width attribute in img elements", function(done) {
+                var text = "<img width=\"100\">";
+
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.switchTab("source").setContent(text);
+
+                var endRequestHandler = function() {
+                    var extender = $find("<%= TargetExtender.ClientID %>"),
+                        wrapper = new HtmlEditorWrapper(extender);
+
+                    expect(wrapper.currentState.editorContent("source")).toEqual(text);
+
+                    done();
+                };
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+
+                $("#SubmitButton").click();
+            });
         });
     </script>
 
