@@ -288,6 +288,7 @@ namespace AjaxControlToolkit {
             buttonList.Add(new Outdent());
             buttonList.Add(new InsertHorizontalRule());
             buttonList.Add(new HorizontalSeparator());
+            buttonList.Add(new CleanWord());
         }
 
         // Combine Element list from all toolbar buttons.

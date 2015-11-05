@@ -1,6 +1,6 @@
 Type.registerNamespace('Sys.Extended.UI');
 
-Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
+Sys.Extended.UI.HtmlEditorExtenderBehavior = function (element) {
     Sys.Extended.UI.HtmlEditorExtenderBehavior.initializeBase(this, [element]);
     this._textbox = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(element);
 
@@ -190,7 +190,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._imageCancelClickDelegate = null;
 
     // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
-    if((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
+    if ((typeof (WebForm_OnSubmit) == 'function') && !Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit) {
         Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit = WebForm_OnSubmit;
         WebForm_OnSubmit = Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit;
     }
@@ -198,7 +198,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
 
 Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 
-    initialize: function() {
+    initialize: function () {
         Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'initialize');
         HtmlEditorExtender_editableDivs[HtmlEditorExtender_editableDivs.length] = this;
 
@@ -208,23 +208,23 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._createButton();
         this._createEditableDiv();
 
-        if(this.get_displaySourceTab()) {
+        if (this.get_displaySourceTab()) {
             this._createSourceViewDiv();
             this._createTopButtonContainer2();
         }
 
         // get form that contains textbox
         var formElement = this._textbox._element.parentNode;
-        while(formElement != null && formElement.nodeName != 'FORM')
+        while (formElement != null && formElement.nodeName != 'FORM')
             formElement = formElement.parentNode;
 
-        if(formElement == null)
+        if (formElement == null)
             throw 'Missing Form tag';
 
         var id = this.get_id();
         this._popupDiv = $get(id + '_popupDiv');
-        if(this._popupDiv == null) {
-            if(id.indexOf('_') != -1)
+        if (this._popupDiv == null) {
+            if (id.indexOf('_') != -1)
                 id = id.substring(id.lastIndexOf('_') + 1);
             else
                 id = '';
@@ -232,7 +232,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             this._popupDiv = $get(id + '_popupDiv');
         }
 
-        if(this._popupDiv != null) {
+        if (this._popupDiv != null) {
             this._popupBehavior = $create(Sys.Extended.UI.PopupBehavior, { 'id': id + '_ImagePopupBehavior', 'parentElement': this.get_element(), 'unselectable': 'on' }, null, null, this._popupDiv);
             this._btnCancel = $get(id + '_btnCancel');
             this._imageCancelClickDelegate = Function.createDelegate(this, this._btnCancel_click);
@@ -247,7 +247,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._editableDivOnFocusDelegate = Function.createDelegate(this, this._editableDiv_onfocus);
         this._btnClickDelegate = Function.createDelegate(this, this._executeCommand);
 
-        if(this.get_displaySourceTab()) {
+        if (this.get_displaySourceTab()) {
             this._contentViewClickDelegate = Function.createDelegate(this, this._contentView_click);
             this._sourceViewClickDelegate = Function.createDelegate(this, this._sourceView_click);
             this._sourceViewDivOnBlurDelegate = Function.createDelegate(this, this._sourceViewDiv_onblur);
@@ -259,32 +259,32 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $addHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate, true);
         $addHandler(this._topButtonContainer, 'click', this._btnClickDelegate, true);
 
-        if(this.get_displaySourceTab()) {
+        if (this.get_displaySourceTab()) {
             $addHandler(this._contentViewButton, 'click', this._contentViewClickDelegate, true);
             $addHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate, true);
             $addHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate, true);
         }
     },
 
-    _dispose: function() {
+    _dispose: function () {
         $removeHandler(this._textbox._element, 'blur', this._textBoxOnBlurDelegate);
         $removeHandler(this._editableDiv, 'blur', this._editableDivOnBlurDelegate);
         $removeHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate);
         $removeHandler(this._topButtonContainer, 'click', this._btnClickDelegate);
 
-        if(this.get_displaySourceTab()) {
+        if (this.get_displaySourceTab()) {
             $removeHandler(this._contentViewButton, 'click', this._contentViewClickDelegate);
             $removeHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate);
             $removeHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate);
         }
 
-        if(this._popupDiv != null)
+        if (this._popupDiv != null)
             $removeHandler(this._btnCancel, 'click', this._imageCancelClickDelegate);
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
     },
 
-    _createContainer: function() {
+    _createContainer: function () {
         var e = this.get_element();
         this._container = $common.createElementFromTemplate(this._containerTemplate, e.parentNode);
 
@@ -301,21 +301,21 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $common.wrapElement(this._textbox._element, this._container, this._container);
     },
 
-    _createTopButtonContainer: function() {
+    _createTopButtonContainer: function () {
         this._topButtonContainer = $common.createElementFromTemplate(this._topButtonContainerTemplate, this._container);
     },
 
-    _createButton: function() {
+    _createButton: function () {
         var isIE = Sys.Browser.agent == Sys.Browser.InternetExplorer;
-        for(i = 0; i < this._toolbarButtons.length; i++) {
+        for (i = 0; i < this._toolbarButtons.length; i++) {
             var _btn;
 
-            if(this._toolbarButtons[i].CommandName == 'HorizontalSeparator') {
+            if (this._toolbarButtons[i].CommandName == 'HorizontalSeparator') {
                 _btn = $common.createElementFromTemplate({
                     nodeName: "span",
                     cssClasses: ['ajax__html_editor_extender_separator']
                 }, this._topButtonContainer);
-            } else if(this._toolbarButtons[i].CommandName == 'FontName') {
+            } else if (this._toolbarButtons[i].CommandName == 'FontName') {
                 _btn = $common.createElementFromTemplate({
                     nodeName: "nobr",
                     properties: {
@@ -350,9 +350,9 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                         }
                     },
                     events: {
-                        change: function(e) {
+                        change: function (e) {
                             var value = this.options[this.selectedIndex].value;
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 document.execCommand("fontname", false, value);
                             }, 200);
                         }
@@ -370,7 +370,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                     { Text: "WingDings", Value: "wingdings" }
                 ];
 
-                for(x in option) {
+                for (x in option) {
                     var elOptNew = document.createElement('option');
 
                     elOptNew.text = option[x].Text;
@@ -378,7 +378,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 
                     try {
                         _select.add(elOptNew, null); // standards compliant; doesn't work in IE
-                    } catch(ex) {
+                    } catch (ex) {
                         _select.add(elOptNew); // IE only
                     }
                 }
@@ -387,7 +387,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                 _select.setAttribute('name', this._toolbarButtons[i].CommandName);
                 _select.setAttribute('title', this._toolbarButtons[i].Tooltip);
                 _select.setAttribute('unselectable', 'on');
-            } else if(this._toolbarButtons[i].CommandName == 'FontSize') {
+            } else if (this._toolbarButtons[i].CommandName == 'FontSize') {
                 _btn = $common.createElementFromTemplate({
                     nodeName: "nobr",
                     properties: {
@@ -422,9 +422,9 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                         }
                     },
                     events: {
-                        change: function(e) {
+                        change: function (e) {
                             var value = this.options[this.selectedIndex].value;
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 document.execCommand("fontsize", false, value);
                             }, 200);
                         }
@@ -441,7 +441,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                     { Text: "7", Value: "7" }
                 ];
 
-                for(x in option) {
+                for (x in option) {
                     var elOptNew = document.createElement('option');
 
                     elOptNew.text = option[x].Text;
@@ -449,7 +449,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 
                     try {
                         _select.add(elOptNew, null); // standards compliant; doesn't work in IE
-                    } catch(ex) {
+                    } catch (ex) {
                         _select.add(elOptNew); // IE only
                     }
                 }
@@ -458,7 +458,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                 _select.setAttribute('name', this._toolbarButtons[i].CommandName);
                 _select.setAttribute('title', this._toolbarButtons[i].Tooltip);
                 _select.setAttribute('unselectable', 'on');
-            } else if(this._toolbarButtons[i].CommandName == 'ForeColor') {
+            } else if (this._toolbarButtons[i].CommandName == 'ForeColor') {
                 _btn = $common.createElementFromTemplate({
                     nodeName: "span",
                     properties: {
@@ -492,7 +492,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                 }, _btn);
 
                 this._foreColor.setAttribute('unselectable', 'on');
-            } else if(this._toolbarButtons[i].CommandName == 'BackColor') {
+            } else if (this._toolbarButtons[i].CommandName == 'BackColor') {
                 _btn = $common.createElementFromTemplate({
                     nodeName: "span",
                     properties: {
@@ -533,7 +533,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                     Paste: 1
                 };
 
-                if(Sys.Browser.agent != Sys.Browser.InternetExplorer && map[this._toolbarButtons[i].CommandName]) {
+                if (Sys.Browser.agent != Sys.Browser.InternetExplorer && map[this._toolbarButtons[i].CommandName]) {
                     // don't render button
                 } else {
                     _btn = $common.createElementFromTemplate({
@@ -557,13 +557,13 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }
     },
 
-    _createEditableDiv: function() {
+    _createEditableDiv: function () {
         var id = this.get_id(),
             height;
 
         // need to make visible to get height if this is hidden under parent element
         this._elementVisible(this._container, true);
-        if(this.get_displaySourceTab())
+        if (this.get_displaySourceTab())
             height = this._container.clientHeight - (this._topButtonContainer.clientHeight + 25);
         else
             height = this._container.clientHeight - this._topButtonContainer.clientHeight;
@@ -592,13 +592,13 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $common.setVisible(this._textbox._element, false);
     },
 
-    _createTopButtonContainer2: function() {
+    _createTopButtonContainer2: function () {
         this._topButtonContainer2 = $common.createElementFromTemplate(this._topButtonContainerTemplate2, this._container);
         this._contentViewButton = $common.createElementFromTemplate(this._buttonContentTemplate, this._topButtonContainer2);
         this._sourceViewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._topButtonContainer2);
     },
 
-    _createSourceViewDiv: function() {
+    _createSourceViewDiv: function () {
         var id = this.get_id(),
             height = this._container.clientHeight - 25;
 
@@ -619,26 +619,26 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $common.setVisible(this._sourceViewDiv, false);
     },
 
-    _editableDiv_onblur: function() {
+    _editableDiv_onblur: function () {
         this._textbox._element.value = this._encodeHtml();
         this._isFocusInEditableDiv = false;
 
-        if(this._oldContents != this._editableDiv.innerHTML) {
+        if (this._oldContents != this._editableDiv.innerHTML) {
             this._isDirty = true;
             this._oldContents = this._editableDiv.innerHTML;
             this._raiseEvent('change');
         }
     },
 
-    _editableDiv_onfocus: function() {
+    _editableDiv_onfocus: function () {
         this._isFocusInEditableDiv = false;
     },
 
-    _sourceViewDiv_onblur: function() {
-        if(this._oldContents != (this._sourceViewDiv.innerText || this._sourceViewDiv.textContent)) {
+    _sourceViewDiv_onblur: function () {
+        if (this._oldContents != (this._sourceViewDiv.innerText || this._sourceViewDiv.textContent)) {
             this._isDirty = true;
 
-            if(this._sourceViewDiv.textContent != undefined)
+            if (this._sourceViewDiv.textContent != undefined)
                 this._editableDiv.innerHTML = this._sourceViewDiv.textContent;
             else
                 this._editableDiv.innerHTML = this._sourceViewDiv.innerText;
@@ -648,16 +648,16 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }
     },
 
-    _textBox_onblur: function() {
+    _textBox_onblur: function () {
         this._editableDiv.innerHTML = this._textbox._element.value;
     },
 
-    _contentView_click: function() {
-        if(this._viewMode != 'content') {
+    _contentView_click: function () {
+        if (this._viewMode != 'content') {
             $common.setVisible(this._topButtonContainer, true);
             $common.setVisible(this._editableDiv, true);
 
-            if(this._sourceViewDiv.textContent != undefined)
+            if (this._sourceViewDiv.textContent != undefined)
                 this._editableDiv.innerHTML = this._sourceViewDiv.textContent;
             else
                 this._editableDiv.innerHTML = this._sourceViewDiv.innerText;
@@ -668,11 +668,11 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }
     },
 
-    _sourceView_click: function() {
-        if(this._viewMode != 'source') {
+    _sourceView_click: function () {
+        if (this._viewMode != 'source') {
             $common.setVisible(this._sourceViewDiv, true);
 
-            if(this._sourceViewDiv.textContent != undefined)
+            if (this._sourceViewDiv.textContent != undefined)
                 this._sourceViewDiv.textContent = this._editableDiv.innerHTML;
             else
                 this._sourceViewDiv.innerText = this._editableDiv.innerHTML;
@@ -684,7 +684,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }
     },
 
-    _btnCancel_click: function() {
+    _btnCancel_click: function () {
         this._popupBehavior.hide();
     },
 
@@ -696,40 +696,40 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         align: 'al_ign_'
     },
 
-    _rgbToHex: function(s) {
+    _rgbToHex: function (s) {
         var a = /rgb\s?\(\s?(\d+)\s?,\s?(\d+)\s?,\s?(\d+)\s?\)/.exec(s);
 
         return '#' + (parseInt(a[3], 10) | (parseInt(a[2], 10) << 8) | (parseInt(a[1], 10) << 16)).toString(16);
     },
 
-    _encodeHtml: function() {
+    _encodeHtml: function () {
         //Encode html tags
         var isIE = Sys.Browser.agent == Sys.Browser.InternetExplorer,
             elements = this._editableDiv.getElementsByTagName('*'),
             element;
 
-        for(var i = 0; element = elements[i]; i++) {
+        for (var i = 0; element = elements[i]; i++) {
             try {
                 element.className = '';
                 element.removeAttribute('class');
-            } catch(ex) { }
+            } catch (ex) { }
 
             try {
                 element.id = '';
                 element.removeAttribute('id');
-            } catch(ex) { }
+            } catch (ex) { }
         }
 
         var html = this._editableDiv.innerHTML;
-        if(isIE) {
+        if (isIE) {
             //force attributes to be double quoted
             var allTags = /\<[^\>]+\>/g;
 
-            html = html.replace(allTags, function(tag) {
+            html = html.replace(allTags, function (tag) {
                 var sQA = '',
                     nQA = '';
 
-                if(tag.toLowerCase().substring(0, 2) != '<a') {
+                if (tag.toLowerCase().substring(0, 2) != '<a') {
                     sQA = /\=\'([^\'])*\'/g; //single quoted attributes
                     nQA = /\=([^\"][^\s\/\>]*)/g; //non double quoted attributes
 
@@ -742,8 +742,8 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 
         //convert rgb colors to hex
         var fixRGB = this._rgbToHex;
-        var replaceRGB = function() {
-            html = html.replace(/(\<[^\>]+)(rgb\s?\(\d{1,3}\s?\,\s?\d{1,3}\s?\,\s?\d{1,3}\s?\))([^\>]*\>)/gi, function(text, p1, p2, p3) {
+        var replaceRGB = function () {
+            html = html.replace(/(\<[^\>]+)(rgb\s?\(\d{1,3}\s?\,\s?\d{1,3}\s?\,\s?\d{1,3}\s?\))([^\>]*\>)/gi, function (text, p1, p2, p3) {
                 return (p1 || '') + ((p2 && fixRGB(p2)) || '') + (p3 || '');
             });
         };
@@ -765,24 +765,24 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         return html;
     },
 
-    _editableDiv_submit: function() {
+    _editableDiv_submit: function () {
         var char = 0,
             selection = null;
 
-        setTimeout(function() {
-            if(this._editableDiv != null)
+        setTimeout(function () {
+            if (this._editableDiv != null)
                 this._editableDiv.focus();
         }, 0);
 
-        if(Sys.Browser.agent != Sys.Browser.Firefox) {
-            if(document.selection) {
+        if (Sys.Browser.agent != Sys.Browser.Firefox) {
+            if (document.selection) {
                 selection = document.selection.createRange();
                 selection.moveStart('character', char);
                 selection.select();
             } else {
                 selection = window.getSelection();
 
-                if(this._editableDiv.firstChild !== null)
+                if (this._editableDiv.firstChild !== null)
                     selection.collapse(this._editableDiv.firstChild, char);
             }
         }
@@ -791,14 +791,13 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     _isHtmlElement: function (obj) {
-        if(obj instanceof HTMLElement)
+        if (obj instanceof HTMLElement)
             return true;
 
         return false;
     },
 
-    isValidTarget: function(target)
-    {
+    isValidTarget: function (target) {
         if (target.name == undefined
             ||
             target.name == ""
@@ -809,14 +808,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         return true;
     },
 
-    _executeCommand: function(command) {
-        if(!this.isValidTarget(command.target))
+    _executeCommand: function (command) {
+        if (!this.isValidTarget(command.target))
             return;
 
         var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox,
             delcolorPicker_onchange = Function.createDelegate(this, this._colorPicker_onchange);
 
-        if(isFireFox)
+        if (isFireFox)
             document.execCommand('styleWithCSS', false, false);
 
         var map = {
@@ -828,12 +827,12 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             Outdent: 1
         };
 
-        if(map[command.target.name]) {
+        if (map[command.target.name]) {
             try {
                 document.execCommand(command.target.name, false, null);
-            } catch(e) {
+            } catch (e) {
                 //special case for Mozilla Bug #442186
-                if(e && e.result == 2147500037) {
+                if (e && e.result == 2147500037) {
                     //probably firefox bug 442186 - workaround
                     var range = window.getSelection().getRangeAt(0),
                         dummy = document.createElement('div');
@@ -843,17 +842,17 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                     dummy.style.height = '1px;';
 
                     //Triple Click selection Problem in mozilla, the selection contains the content editable div, which creates a problem for some reason, so we collapse the selection to the end, and then re-select everything...
-                    if(range.startContainer.contentEditable == 'true') {
+                    if (range.startContainer.contentEditable == 'true') {
                         window.getSelection().collapseToEnd();
                         restoreSelection = true;
                     }
 
                     var ceNode = window.getSelection().getRangeAt(0).startContainer;
 
-                    while(ceNode && ceNode.contentEditable != 'true')
+                    while (ceNode && ceNode.contentEditable != 'true')
                         ceNode = ceNode.parentNode;
 
-                    if(!ceNode)
+                    if (!ceNode)
                         throw 'Selected node is not editable!';
 
                     ceNode.insertBefore(dummy, ceNode.childNodes[0]);
@@ -861,58 +860,58 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                     dummy.parentNode.removeChild(dummy);
 
                     //RestoreSelection if we changed it...
-                    if(restoreSelection)
+                    if (restoreSelection)
                         window.getSelection().addRange(range);
-                } else if(window.console && window.console.log) {
+                } else if (window.console && window.console.log) {
                     window.console.log(e);
                 }
             }
-        } else if(command.target.name == "createLink") {
+        } else if (command.target.name == "createLink") {
             var url = prompt('Please insert  URL', '');
-            if(url)
+            if (url)
                 document.execCommand('createLink', false, url);
-        } else if(command.target.name == 'ForeColor') {
+        } else if (command.target.name == 'ForeColor') {
             this._commandName = command.target.name;
             this.saveSelection();
 
-            if(!this._foreColorPicker) {
+            if (!this._foreColorPicker) {
                 this._foreColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, {}, {}, {}, this._foreColor);
                 this._foreColorPicker.set_sample(this._foreColor.parentNode);
                 this._foreColorPicker.add_colorSelectionChanged(delcolorPicker_onchange);
             }
             this._foreColorPicker.show();
-        } else if(command.target.name == 'BackColor') {
+        } else if (command.target.name == 'BackColor') {
             this._commandName = command.target.name;
             this.saveSelection();
 
-            if(!this._backColorPicker) {
+            if (!this._backColorPicker) {
                 this._backColorPicker = $create(Sys.Extended.UI.ColorPickerBehavior, {}, {}, {}, this._backColor);
                 this._backColorPicker.set_sample(this._backColor.parentNode);
                 this._backColorPicker.add_colorSelectionChanged(delcolorPicker_onchange);
             }
             this._backColorPicker.show();
-        } else if(command.target.name == 'UnSelect') {
-            if(isFireFox) {
+        } else if (command.target.name == 'UnSelect') {
+            if (isFireFox) {
                 this._editableDiv.focus();
                 var sel = window.getSelection();
                 sel.collapse(this._editableDiv.firstChild, 0);
             } else {
                 document.execCommand(command.target.name, false, null);
             }
-        } else if(command.target.name == 'InsertImage') {
-            // if focus in not at editable div then dom error occurs                                        
-            if(!this._isFocusInEditableDiv)
+        } else if (command.target.name == 'InsertImage') {
+            // if focus in not at editable div then dom error occurs
+            if (!this._isFocusInEditableDiv)
                 this._editableDiv.focus();
 
             this.saveSelection();
 
             var components = Sys.Application.getComponents();
 
-            for(var i = 0; i < components.length; i++) {
+            for (var i = 0; i < components.length; i++) {
                 var component = components[i];
 
-                if(Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component))
-                    if(component._popupBehavior._visible)
+                if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component))
+                    if (component._popupBehavior._visible)
                         return;
             }
 
@@ -925,18 +924,20 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                 left: '',
                 opacity: '1'
             });
+        } else if (command.target.name == 'CleanWord') {
+            this._editableDiv.innerHTML = this.cleanWordHtml(this._editableDiv.innerHTML);
         } else {
             document.execCommand(command.target.name, false, null);
         }
     },
 
     // BackColor & ForeColor colorpicker onchange, fill color to selected text
-    _colorPicker_onchange: function(e) {
+    _colorPicker_onchange: function (e) {
         this.restoreSelection();
 
-        if(/backcolor/i.test(this._commandName)) {
+        if (/backcolor/i.test(this._commandName)) {
             var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox;
-            if(isFireFox) {
+            if (isFireFox) {
                 document.execCommand('stylewithcss', false, true);
                 document.execCommand("hilitecolor", false, "#" + e._selectedColor);
                 document.execCommand('stylewithcss', false, false);
@@ -952,9 +953,9 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.HtmlEditorExtender.saveSelection" />
     saveSelection: function () {
-        if(window.getSelection) //non IE Browsers
+        if (window.getSelection) //non IE Browsers
             this._savedRange = window.getSelection().rangeCount && window.getSelection().getRangeAt(0);
-        else if(document.selection) //IE
+        else if (document.selection) //IE
             this._savedRange = document.selection.createRange();
     },
 
@@ -962,23 +963,23 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     /// Restores selected text
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.HtmlEditorExtender.restoreSelection" />
-    restoreSelection: function() {
+    restoreSelection: function () {
         this._isInFocus = true;
 
         //document.getElementById("area").focus();
-        if(this._savedRange != null) {
-            if(window.getSelection) { //non IE and there is already a selection
+        if (this._savedRange != null) {
+            if (window.getSelection) { //non IE and there is already a selection
                 var s = window.getSelection();
 
-                if(s.rangeCount > 0)
+                if (s.rangeCount > 0)
                     s.removeAllRanges();
 
                 s.addRange(this._savedRange);
             } else {
-                if(document.createRange) { //non IE and no selection
+                if (document.createRange) { //non IE and no selection
                     window.getSelection().addRange(this._savedRange);
                 } else {
-                    if(document.selection) { //IE
+                    if (document.selection) { //IE
                         this._savedRange.select();
                     }
                 }
@@ -986,29 +987,86 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }
     },
 
-    _elementVisible: function(obj, flag) {
-        if(obj.tagName == 'FORM')
+    cleanWordHtml: function (html) {
+        html = this._cleanOP(html);
+        html = this._cleanMSO(html);
+        html = this._cleanStyleAttr(html);
+        html = this._cleanLangAttr(html);
+        html = this._cleanXmlNamespaceTags(html);
+        html = this._cleanComments(html);
+        html = this._cleanFontFamily(html);
+        html = this._cleanSpan(html);
+        html = this._cleanB(html);
+        return html;
+    },
+
+    _cleanOP: function (html) {
+        html = html.replace(/<o:p>\s*<\/o:p>/g, '');
+        html = html.replace(/<o:p>[\s\S]*?<\/o:p>/g, '&nbsp;');
+        return html;
+    },
+
+    _cleanMSO: function (html) {
+        return html.replace(/\s*mso-[^:]+:[^;"]+;?/gi, '');
+    },
+
+    _cleanFontFamily: function (html) {
+        return html.replace(/\s*FONT-FAMILY:[^;"]*;?/gi, '');
+    },
+
+    _cleanSpan: function (html) {
+        html = html.replace(/<SPAN\s*[^>]*>\s*&nbsp;\s*<\/SPAN>/gi, '&nbsp;');
+        html = html.replace(/<SPAN\s*[^>]*><\/SPAN>/gi, '');
+        html = html.replace(/<SPAN\s*>([\s\S]*?)<\/SPAN>/gi, '$1');
+        html = html.replace(/<span>\s*<\/span>/gi, '');
+        return html;
+    },
+
+    _cleanStyleAttr: function (html) {
+        return html.replace(/<(\w[^>]*) style="([^\"]*)"([^>]*)/gi, "<$1$3");
+    },
+
+    _cleanLangAttr: function (html) {
+        return html.replace(/<(\w[^>]*) lang=([^ |>]*)([^>]*)/gi, "<$1$3");
+    },
+
+    _cleanXmlNamespaceTags: function (html) {
+        return html.replace(/<\/?\w+:[^>]*>/gi, '');
+    },
+
+    _cleanComments: function (html) {
+        return html.replace(/<\!--[\s\S]*?-->/g, '');
+    },
+
+    _cleanB: function (html) {
+        html = html.replace(/<b>\s*&nbsp;\s*<\/b>/gi, '');
+        html = html.replace(/<b>\s*<\/b>/gi, '');
+        return html;
+    },
+
+    _elementVisible: function (obj, flag) {
+        if (obj.tagName == 'FORM')
             return;
 
-        if(flag) {
-            if(obj.style.display == 'none') {
+        if (flag) {
+            if (obj.style.display == 'none') {
                 obj.style.display = 'block';
                 obj.setAttribute('displayChanged', true);
             }
 
-            if(obj.style.visibility == 'hidden') {
+            if (obj.style.visibility == 'hidden') {
                 obj.style.visibility = 'visible';
                 obj.setAttribute('visibleChanged', true);
             }
 
             this._elementVisible(obj.parentNode, true);
         } else {
-            if(obj.getAttribute('displayChanged')) {
+            if (obj.getAttribute('displayChanged')) {
                 obj.style.display = 'none';
                 obj.removeAttribute('displayChanged');
             }
 
-            if(obj.getAttribute('visibleChanged')) {
+            if (obj.getAttribute('visibleChanged')) {
                 // creating problem in IE8
                 //obj.style.visibility = 'hidden';
                 obj.removeAttribute('visibleChanged');
@@ -1018,12 +1076,12 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }
     },
 
-    _raiseEvent: function(eventName, eventArgs) {
+    _raiseEvent: function (eventName, eventArgs) {
         // Get handler for event.
         var handler = this.get_events().getHandler(eventName);
 
-        if(handler) {
-            if(!eventArgs)
+        if (handler) {
+            if (!eventArgs)
                 eventArgs = Sys.EventArgs.Empty;
 
             // Fire event.
@@ -1034,7 +1092,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     get_buttonWidth: function () {
         return this._ButtonWidth;
     },
-    get_ButtonWidth: function() {
+    get_ButtonWidth: function () {
         Sys.Extended.Deprecated("get_ButtonWidth()", "get_buttonWidth()");
         return this.get_buttonWidth();
     },
@@ -1045,12 +1103,12 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             this.raisePropertyChanged('ButtonWidth');
         }
     },
-    set_ButtonWidth: function(value) {
+    set_ButtonWidth: function (value) {
         Sys.Extended.Deprecated("set_ButtonWidth(value)", "set_buttonWidth(value)");
         this.set_buttonWidth(value);
     },
 
-    get_buttonHeight: function() {
+    get_buttonHeight: function () {
         return this._ButtonHeight;
     },
     get_ButtonHeight: function () {
@@ -1058,8 +1116,8 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         return this.get_buttonHeight();
     },
 
-    set_buttonHeight: function(value) {
-        if(this._ButtonHeight != value) {
+    set_buttonHeight: function (value) {
+        if (this._ButtonHeight != value) {
             this._ButtonHeight = value;
             this.raisePropertyChanged('ButtonHeight');
         }
@@ -1072,13 +1130,13 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     get_toolbarButtons: function () {
         return this._toolbarButtons;
     },
-    get_ToolbarButtons: function() {
+    get_ToolbarButtons: function () {
         Sys.Extended.Deprecated("get_ToolbarButtons()", "get_toolbarButtons()");
         return this.get_toolbarButtons();
     },
 
-    set_toolbarButtons: function(value) {
-        if(this._toolbarButtons != value) {
+    set_toolbarButtons: function (value) {
+        if (this._toolbarButtons != value) {
             this._toolbarButtons = value;
             this.raisePropertyChanged('ToolbarButtons');
         }
@@ -1088,12 +1146,12 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this.set_toolbarButtons(value);
     },
 
-    get_displaySourceTab: function() {
+    get_displaySourceTab: function () {
         return this._displaySourceTab;
     },
 
-    set_displaySourceTab: function(value) {
-        if(this._displaySourceTab != value) {
+    set_displaySourceTab: function (value) {
+        if (this._displaySourceTab != value) {
             this._displaySourceTab = value;
             this.raisePropertyChanged('DisplaySourceTab');
         }
@@ -1104,14 +1162,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     /// </summary>
     /// <member name="cE:AjaxControlToolkit.HtmlEditorExtender.change" />
     /// <event add="add_change" remove="remove_change" />
-    add_change: function(handler) {
+    add_change: function (handler) {
         this.get_events().addHandler("change", handler);
     },
-    remove_change: function(handler) {
+    remove_change: function (handler) {
         this.get_events().removeHandler("change", handler);
     },
 
-    get_isDirty: function() {
+    get_isDirty: function () {
         return this._isDirty;
     }
 };
@@ -1120,16 +1178,16 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.registerClass('Sys.Extended.UI.HtmlEd
 
 var HtmlEditorExtender_editableDivs = new Array();
 
-Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit = function() {
+Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit = function () {
     var result = Sys.Extended.UI.HtmlEditorExtenderBehavior._originalWebForm_OnSubmit();
 
-    if(result) {
+    if (result) {
         var components = Sys.Application.getComponents();
 
-        for(var i = 0; i < components.length; i++) {
+        for (var i = 0; i < components.length; i++) {
             var component = components[i];
 
-            if(Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component))
+            if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component))
                 component._editableDiv_submit();
         }
     }
@@ -1137,42 +1195,42 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.WebForm_OnSubmit = function() {
     return result;
 },
 
-Sys.Extended.UI.HtmlEditorExtenderBehavior.IsDirty = function() {
+Sys.Extended.UI.HtmlEditorExtenderBehavior.IsDirty = function () {
     var components = Sys.Application.getComponents();
 
-    for(var i = 0; i < components.length; i++) {
+    for (var i = 0; i < components.length; i++) {
         var component = components[i];
 
-        if(Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component))
-            if(component._isDirty)
+        if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component))
+            if (component._isDirty)
                 return true;
     }
 
     return false;
 },
 
-ajaxClientUploadComplete = function(sender, e) {
+ajaxClientUploadComplete = function (sender, e) {
     var htmlEditorExtender = null,
         components = Sys.Application.getComponents();
 
-    for(var i = 0; i < components.length; i++) {
+    for (var i = 0; i < components.length; i++) {
         var component = components[i];
 
-        if(Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component))
-            if(component._popupBehavior._visible) {
+        if (Sys.Extended.UI.HtmlEditorExtenderBehavior.isInstanceOfType(component))
+            if (component._popupBehavior._visible) {
                 htmlEditorExtender = component;
                 i = component.length;
             }
     }
 
     var postedUrl = e.get_postedUrl().replace('&amp;', '&');
-    if(htmlEditorExtender != null) {
+    if (htmlEditorExtender != null) {
         htmlEditorExtender.restoreSelection();
 
-        if(document.selection && document.selection.createRange) {
+        if (document.selection && document.selection.createRange) {
             try {
                 htmlEditorExtender._savedRange.pasteHTML('<img src=\'' + postedUrl + '\' />');
-            } catch(Error) {
+            } catch (Error) {
                 var node = document.createElement("img");
                 node.src = postedUrl;
                 htmlEditorExtender._savedRange.insertNode(node);

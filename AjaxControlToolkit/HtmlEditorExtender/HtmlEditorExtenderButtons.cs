@@ -520,6 +520,24 @@ namespace AjaxControlToolkit {
         }
     }
 
+    public class CleanWord : HtmlEditorExtenderButton {
+        public override string CommandName {
+            get { return "CleanWord"; }
+        }
+
+        public override string Tooltip {
+            get { return "Clean Word HTML"; }
+        }
+
+        public override Dictionary<string, string[]> ElementWhiteList {
+            get { return null; }
+        }
+
+        public override Dictionary<string, string[]> AttributeWhiteList {
+            get { return null; }
+        }
+    }
+
     public class FontNameSelector : HtmlEditorExtenderButton {
         public override string CommandName {
             get { return "FontName"; }
