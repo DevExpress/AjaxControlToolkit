@@ -343,14 +343,14 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
         if (!this._isOpen) {
 
             var eventArgs = new Sys.CancelEventArgs();
-            this.raiseShowing(eventArgs);
+            this.raise_showing(eventArgs);
             if (eventArgs.get_cancel()) {
                 return;
             }
 
             this._isOpen = true;
             this._popupBehavior.show();
-            this.raiseShown();
+            this.raise_shown();
         }
     },
 
@@ -361,7 +361,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     hide: function() {
         if (this._isOpen) {
             var eventArgs = new Sys.CancelEventArgs();
-            this.raiseHiding(eventArgs);
+            this.raise_hiding(eventArgs);
             if (eventArgs.get_cancel()) {
                 return;
             }
@@ -370,7 +370,7 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
                 this._popupBehavior.hide();
             }
             this._isOpen = false;
-            this.raiseHidden();
+            this.raise_hidden();
 
             // make sure we clean up the flag due to issues with alert/alt-tab/etc
             this._popupMouseDown = false;
