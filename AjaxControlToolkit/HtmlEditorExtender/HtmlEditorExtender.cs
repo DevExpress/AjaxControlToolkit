@@ -167,7 +167,6 @@ namespace AjaxControlToolkit {
             result = Regex.Replace(result, "[^<]<[^>]*script[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "[^<]<[^>]*filter[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "[^<]<[^>]*behavior[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            result = Regex.Replace(result, "[^<]<[^>]*url[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "[^<]<[^>]*javascript\\:[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "[^<]<[^>]*position\\:[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
