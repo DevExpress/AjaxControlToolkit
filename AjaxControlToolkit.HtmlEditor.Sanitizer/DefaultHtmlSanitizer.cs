@@ -74,9 +74,10 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
                     hasMatch = true;
                 attribute.Value = Regex.Replace(attribute.Value, @"/\*([a]*|[^a]*)\*/", "", RegexOptions.IgnoreCase);
 
-                if(Regex.IsMatch(attribute.Value, @"\s*javascript:.*", RegexOptions.IgnoreCase))
+                if(Regex.IsMatch(attribute.Value, @"\s*j\s*a\s*v\s*a\s*s\s*c\s*r\s*i\s*p\s*t\s*:.*", RegexOptions.IgnoreCase))
                     hasMatch = true;
-                attribute.Value = Regex.Replace(attribute.Value, @"\s*javascript:.*", "", RegexOptions.IgnoreCase);
+                attribute.Value = Regex.Replace(attribute.Value, @"\s*j\s*a\s*v\s*a\s*s\s*c\s*r\s*i\s*p\s*t\s*:.*", "", RegexOptions.IgnoreCase);
+
 
                 if(Regex.IsMatch(attribute.Value, @"\s*s\s*c\s*r\s*i\s*p\s*t\s*", RegexOptions.IgnoreCase))
                     hasMatch = true;
