@@ -175,6 +175,7 @@ namespace AjaxControlToolkit {
             if(EnableSanitization && Sanitizer != null) {
                 var elementWhiteList = MakeCombinedElementList();
                 elementWhiteList.Add("span", new string[0]);
+                elementWhiteList.Add("br", new string[0]);
                 result = Sanitizer.GetSafeHtmlFragment(result, elementWhiteList);
             }
 
