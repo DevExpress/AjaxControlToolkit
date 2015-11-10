@@ -527,31 +527,22 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 
                 this._backColor.setAttribute('unselectable', 'on');
             } else {
-                var map = {
-                    Copy: 1,
-                    Cut: 1,
-                    Paste: 1
-                };
+                _btn = $common.createElementFromTemplate({
+                    nodeName: 'input',
+                    properties: {
+                        type: 'button',
+                        id: this._id + this._toolbarButtons[i].CommandName,
+                        name: this._toolbarButtons[i].CommandName,
+                        title: this._toolbarButtons[i].Tooltip,
+                        style: {
+                            width: '23px',
+                            height: '21px'
+                        }
+                    },
+                    cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName]
+                }, this._topButtonContainer);
+                _btn.setAttribute('unselectable', 'on');
 
-                if (Sys.Browser.agent != Sys.Browser.InternetExplorer && map[this._toolbarButtons[i].CommandName]) {
-                    // don't render button
-                } else {
-                    _btn = $common.createElementFromTemplate({
-                        nodeName: 'input',
-                        properties: {
-                            type: 'button',
-                            id: this._id + this._toolbarButtons[i].CommandName,
-                            name: this._toolbarButtons[i].CommandName,
-                            title: this._toolbarButtons[i].Tooltip,
-                            style: {
-                                width: '23px',
-                                height: '21px'
-                            }
-                        },
-                        cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_' + this._toolbarButtons[i].CommandName]
-                    }, this._topButtonContainer);
-                    _btn.setAttribute('unselectable', 'on');
-                }
                 Array.add(this._buttons, _btn);
             }
         }

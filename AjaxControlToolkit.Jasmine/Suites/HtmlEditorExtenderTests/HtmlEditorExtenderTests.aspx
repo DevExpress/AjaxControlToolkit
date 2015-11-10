@@ -488,6 +488,14 @@
 
                 $("#SubmitButton").click();
             });
+
+            it("renders cut, copy and paste buttons", function() {
+                var $container = $(this.extender._container);
+                
+                expect($container.find(".ajax__html_editor_extender_Cut").length).toBeTruthy();
+                expect($container.find(".ajax__html_editor_extender_Copy").length).toBeTruthy();
+                expect($container.find(".ajax__html_editor_extender_Paste").length).toBeTruthy();
+            });
         });
     </script>
 
