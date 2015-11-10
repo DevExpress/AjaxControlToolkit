@@ -51,6 +51,7 @@ namespace AjaxControlToolkit {
 
         public IHtmlSanitizer Sanitizer {
             get { return _sanitizer.Value; }
+            set { _sanitizer = new Lazy<IHtmlSanitizer>(() => value, true); }
         }
 
         ///<summary>
