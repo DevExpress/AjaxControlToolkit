@@ -149,7 +149,7 @@ namespace AjaxControlToolkit {
             EnsureButtons();
 
             var tags = "font|div|span|br|strong|em|strike|sub|sup|center|blockquote|hr|ol|ul|li|br|s|p|b|i|u|img";
-            var attributes = "style|size|color|face|align|dir|src";
+            var attributes = "style|size|color|face|align|dir|src|width|id|class";
             var attributeCharacters = "\\'\\,\\w\\-#\\s\\:\\;\\?\\&\\.\\-\\=";
             var result = Regex.Replace(value, "\\&quot\\;", "\"", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&apos;", "'", RegexOptions.IgnoreCase);

@@ -699,18 +699,6 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             elements = this._editableDiv.getElementsByTagName('*'),
             element;
 
-        for (var i = 0; element = elements[i]; i++) {
-            try {
-                element.className = '';
-                element.removeAttribute('class');
-            } catch (ex) { }
-
-            try {
-                element.id = '';
-                element.removeAttribute('id');
-            } catch (ex) { }
-        }
-
         var html = this._editableDiv.innerHTML;
         if (isIE) {
             //force attributes to be double quoted

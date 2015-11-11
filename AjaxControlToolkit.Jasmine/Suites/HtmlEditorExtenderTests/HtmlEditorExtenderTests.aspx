@@ -469,6 +469,7 @@
                 var expectedHtml = '<p align="center"><b>ABC ABC </b><b>ABC</b><b>ABC</b></p> <p align="center"></p> <p align="center"><b>ABC ABC</b></p> <p align="center"></p> <p align="center"><img height="37" src="file:///C:/Users/clip_image001.gif" v:shapes="_x0000_s1026 _x0000_s1027 _x0000_s1028 _x0000_s1029 _x0000_s1030 _x0000_s1031"></p> <p align="center"><b>ABC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><b>ABC</b><b>ABC</b></p> <p></p> <p></p> <p>ABC ABC ABC.</p>';
                 expect(cleanedHtml).toBe(expectedHtml);
             });
+
             it("keeps width attribute in img elements", function(done) {
                 var text = "<img width=\"100\">";
 
@@ -486,6 +487,46 @@
 
                 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
 
+                $("#SubmitButton").click();
+            });
+
+            it("keeps id attribute in element", function(done) {
+                var text = "<div id=\"test_id\"></div>";
+
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.switchTab("source").setContent(text);
+
+                var endRequestHandler = function() {
+                    var extender = $find("<%= TargetExtender.ClientID %>"),
+                        wrapper = new HtmlEditorWrapper(extender);
+
+                    expect(wrapper.currentState.editorContent("source")).toEqual(text);
+
+                    done();
+                }
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+                
+                $("#SubmitButton").click();
+            });
+
+            it("keeps class attribute in element", function(done) {
+                var text = "<div class=\"test-class\"></div>";
+
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.switchTab("source").setContent(text);
+
+                var endRequestHandler = function() {
+                    var extender = $find("<%= TargetExtender.ClientID %>"),
+                        wrapper = new HtmlEditorWrapper(extender);
+
+                    expect(wrapper.currentState.editorContent("source")).toEqual(text);
+
+                    done();
+                }
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+                
                 $("#SubmitButton").click();
             });
 
