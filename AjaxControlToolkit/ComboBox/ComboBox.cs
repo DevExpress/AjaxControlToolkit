@@ -534,7 +534,11 @@ namespace AjaxControlToolkit {
             if(!Enabled)
                 return false;
 
-            var newSelectedIndex = Convert.ToInt32(postCollection.GetValues(HiddenFieldControl.UniqueID)[0], CultureInfo.InvariantCulture);
+            var postCollectionValues = postCollection.GetValues(HiddenFieldControl.UniqueID);
+            if(postCollectionValues == null)
+                return false;
+
+            var newSelectedIndex = Convert.ToInt32(postCollectionValues[0], CultureInfo.InvariantCulture);
             EnsureDataBound();
 
             if(newSelectedIndex == -2 && (DropDownStyle == ComboBoxStyle.Simple || DropDownStyle == ComboBoxStyle.DropDown)) {
