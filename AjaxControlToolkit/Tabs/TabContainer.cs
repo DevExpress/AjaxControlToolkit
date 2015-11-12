@@ -452,8 +452,6 @@ namespace AjaxControlToolkit {
 
             if(!Height.IsEmpty)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Height, Height.ToString());
-            else
-                writer.AddStyleAttribute(HtmlTextWriterStyle.Height, "100%");
 
             writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_body");
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_body" + GetSuffixTabStripPlacementCss());
