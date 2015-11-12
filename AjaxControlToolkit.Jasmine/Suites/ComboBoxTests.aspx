@@ -86,6 +86,12 @@
                     expect($buttonContainer.children("button[type=button]").length).toBe(1);
                 });
 
+                it("button has no explicit visibility set", function () {
+                    var $buttonContainer = this.$element.find(COMBOBOX_BUTTON_CONTAINER_CLASS_NAME.toClassSelector());
+                    var button = $buttonContainer.children("button[type=button]").get(0);
+                    expect(button.style.visibility).toBe("");
+                });
+
                 it("items container has proper class", function() {
                     expect(this.$itemsContainer.hasClass(COMBOBOX_ITEM_LIST_CLASS_NAME)).toBeTruthy();
                 });
@@ -190,7 +196,6 @@
                 });
 
                 it("F5 handles correctly (CodePlex item 27480)", function () {
-                    debugger;
                     var info = this.extender._getTextSelectionInfo(this.extender.get_textBoxControl(), this.f5KeyPressEvent);
 
                     expect(info.typedCharacter).toBe(String.fromCharCode(0));

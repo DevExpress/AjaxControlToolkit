@@ -243,10 +243,6 @@ Sys.Extended.UI.ComboBox.prototype = {
         // zero margins & padding (helps particularly in firefox)
         if (style.padding == '')
             style.padding = '0px';
-
-        // button is originally hidden to reduce screen flicker
-        this._buttonControl.style.visibility = 'visible';
-
     },
     initializeOptionList: function () {
 
