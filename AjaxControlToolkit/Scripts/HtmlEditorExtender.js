@@ -791,6 +791,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         if (!this.isValidTarget(command.target))
             return;
 
+        var selection = this._getSelection();
+        if (selection != null) {
+            var isEditDivChild = this._isDescendantOrSelf(this._editableDiv, selection.commonAncestorContainer);
+
+            if (!isEditDivChild)
+                return;
+        }
+
         var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox,
             delcolorPicker_onchange = Function.createDelegate(this, this._colorPicker_onchange);
 
@@ -932,10 +940,40 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.HtmlEditorExtender.saveSelection" />
     saveSelection: function () {
+        if (!(this instanceof Sys.Extended.UI.HtmlEditorExtenderBehavior))
+            return;
+
+        this._savedRange = this._getSelection();
+    },
+
+    _getSelection: function()
+    {
         if (window.getSelection) //non IE Browsers
-            this._savedRange = window.getSelection().rangeCount && window.getSelection().getRangeAt(0);
+            return window.getSelection().rangeCount && window.getSelection().getRangeAt(0);
         else if (document.selection) //IE
-            this._savedRange = document.selection.createRange();
+            return document.selection.createRange();
+
+        return null;
+    },
+
+    _isDescendantOrSelf: function (parent, child) {
+        if (!parent)
+            return false;
+
+        if (!child)
+            return false;
+
+        if (parent == child)
+            return true;
+
+        var node = child.parentNode;
+        while (node != null) {
+            if (node == parent)
+                return true;
+
+            node = node.parentNode;
+        }
+        return false;
     },
 
     /// <summary>
