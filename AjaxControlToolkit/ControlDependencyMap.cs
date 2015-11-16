@@ -31,19 +31,135 @@ namespace AjaxControlToolkit {
 
         static Dictionary<string, ControlDependencyMap> CreateDependencyMaps() {
             var result = new Dictionary<string, ControlDependencyMap>();
+            var assembly = typeof(ControlDependencyMap).Assembly;
 
-            var allActControls = typeof(ControlDependencyMap).Assembly.GetTypes()
-                .Where(c => (c.UnderlyingSystemType.IsSubclassOf(typeof(WebControl)) ||
-                             c.UnderlyingSystemType.IsSubclassOf(typeof(ScriptControl)) ||
-                             c.UnderlyingSystemType.IsSubclassOf(typeof(ExtenderControl)))
-                            && !c.IsAbstract && !c.IsGenericType && c.IsPublic).ToList();
+            var allActControlsNames = new string[] { 
+                "AjaxControlToolkit.Accordion",
+                "AjaxControlToolkit.AccordionContentPanel",
+                "AjaxControlToolkit.AccordionExtender",
+                "AjaxControlToolkit.AccordionPane",
+                "AjaxControlToolkit.ScriptControlBase",
+                "AjaxControlToolkit.AjaxFileUpload",
+                "AjaxControlToolkit.AlwaysVisibleControlExtender",
+                "AjaxControlToolkit.AnimationExtender",
+                "AjaxControlToolkit.AreaChart",
+                "AjaxControlToolkit.AsyncFileUpload",
+                "AjaxControlToolkit.BarChart",
+                "AjaxControlToolkit.BubbleChart",
+                "AjaxControlToolkit.AutoCompleteExtender",
+                "AjaxControlToolkit.BalloonPopupExtender",
+                "AjaxControlToolkit.CalendarExtender",
+                "AjaxControlToolkit.CascadingDropDown",
+                "AjaxControlToolkit.CollapsiblePanelExtender",
+                "AjaxControlToolkit.ColorPickerExtender",
+                "AjaxControlToolkit.ComboBox",
+                "AjaxControlToolkit.ComboBoxButton",
+                "AjaxControlToolkit.ConfirmButtonExtender",
+                "AjaxControlToolkit.DragPanelExtender",
+                "AjaxControlToolkit.DropDownExtender",
+                "AjaxControlToolkit.DropShadowExtender",
+                "AjaxControlToolkit.DynamicPopulateExtender",
+                "AjaxControlToolkit.FilteredTextBoxExtender",
+                "AjaxControlToolkit.Gravatar",
+                "AjaxControlToolkit.HoverExtender",
+                "AjaxControlToolkit.HoverMenuExtender",
+                "AjaxControlToolkit.HtmlEditorExtender",
+                "AjaxControlToolkit.HtmlEditor.Editor",
+                "AjaxControlToolkit.HtmlEditor.Popups.AttachedPopup",
+                "AjaxControlToolkit.HtmlEditor.Popups.AttachedTemplatePopup",
+                "AjaxControlToolkit.HtmlEditor.Popups.OkCancelAttachedTemplatePopup",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.MethodButton",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.BackColorClear",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.BackColorSelector",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Bold",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.BulletedList",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Copy",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Cut",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.DecreaseIndent",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.DesignMode",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.DesignModeBoxButton",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.FixedBackColor",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.FixedForeColor",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.FontName",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.FontSize",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.ForeColor",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.ForeColorClear",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.ForeColorSelector",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.HorizontalSeparator",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.HtmlMode",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.IncreaseIndent",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.InsertHR",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.InsertLink",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Italic",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.JustifyCenter",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.JustifyFull",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.JustifyLeft",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.JustifyRight",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Ltr",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.OrderedList",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Paragraph",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Paste",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.PasteText",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.PasteWord",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.PreviewMode",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Redo",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.RemoveAlignment",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.RemoveLink",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.RemoveStyles",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Rtl",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.StrikeThrough",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.SubScript",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.SuperScript",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Underline",
+                "AjaxControlToolkit.HtmlEditor.ToolbarButtons.Undo",
+                "AjaxControlToolkit.LineChart",
+                "AjaxControlToolkit.ListSearchExtender",
+                "AjaxControlToolkit.MaskedEditExtender",
+                "AjaxControlToolkit.MaskedEditValidator",
+                "AjaxControlToolkit.ModalPopupExtender",
+                "AjaxControlToolkit.MultiHandleSliderExtender",
+                "AjaxControlToolkit.MutuallyExclusiveCheckBoxExtender",
+                "AjaxControlToolkit.NoBot",
+                "AjaxControlToolkit.NoBotExtender",
+                "AjaxControlToolkit.NumericUpDownExtender",
+                "AjaxControlToolkit.PagingBulletedListExtender",
+                "AjaxControlToolkit.PasswordStrength",
+                "AjaxControlToolkit.PieChart",
+                "AjaxControlToolkit.PopupControlExtender",
+                "AjaxControlToolkit.PopupExtender",
+                "AjaxControlToolkit.Rating",
+                "AjaxControlToolkit.RatingExtender",
+                "AjaxControlToolkit.BulletedList",
+                "AjaxControlToolkit.BulletedListItem",
+                "AjaxControlToolkit.DraggableListItemExtender",
+                "AjaxControlToolkit.DropWatcherExtender",
+                "AjaxControlToolkit.ReorderList",
+                "AjaxControlToolkit.ReorderListItem",
+                "AjaxControlToolkit.ResizableControlExtender",
+                "AjaxControlToolkit.Seadragon",
+                "AjaxControlToolkit.SeadragonControl",
+                "AjaxControlToolkit.SeadragonFixedOverlay",
+                "AjaxControlToolkit.SeadragonScalableOverlay",
+                "AjaxControlToolkit.SliderExtender",
+                "AjaxControlToolkit.TabContainer",
+                "AjaxControlToolkit.TabPanel",
+                "AjaxControlToolkit.ToggleButtonExtender",
+                "AjaxControlToolkit.RoundedCornersExtender",
+                "AjaxControlToolkit.SlideShowExtender",
+                "AjaxControlToolkit.TextBoxWatermarkExtender",
+                "AjaxControlToolkit.Twitter",
+                "AjaxControlToolkit.UpdatePanelAnimationExtender",
+                "AjaxControlToolkit.ValidatorCalloutExtender"};
 
             // Retrieve all dependencies in controls to build ControlTypeMaps
-            foreach(var type in allActControls)
-                result[type.FullName] = BuildDependencyMap(type);
+            foreach (var typeName in allActControlsNames) {
+                var type = assembly.GetType(typeName);
+                result[typeName] = BuildDependencyMap(type);
+            }
 
-            foreach(var type in ToolkitConfig.CustomControls)
+            foreach (var type in ToolkitConfig.CustomControls) {
                 result[type.FullName] = BuildDependencyMap(type);
+            }
 
             return result;
         }
@@ -72,11 +188,11 @@ namespace AjaxControlToolkit {
                 .ToList();
 
             // For extender control, we should check also the dependencies of target control type
-            foreach(var targetCtlType in ctlType.GetCustomAttributes(true)
+            foreach (var targetCtlType in ctlType.GetCustomAttributes(true)
                 .Where(a => a is TargetControlTypeAttribute)) {
 
                 var targetType = ((TargetControlTypeAttribute)targetCtlType).TargetControlType;
-                if(!members.Contains(targetType) && !dependencies.Contains(targetType))
+                if (!members.Contains(targetType) && !dependencies.Contains(targetType))
                     members.Add(targetType);
             }
 
@@ -84,7 +200,7 @@ namespace AjaxControlToolkit {
             dependencies.AddRange(members.ToList());
 
             // Iterate every dependency to find nested dependencies
-            foreach(var member in members) {
+            foreach (var member in members) {
                 SeekDependencies(member, ref dependencies);
             }
         }
@@ -92,7 +208,7 @@ namespace AjaxControlToolkit {
         static IEnumerable<Type> GetMemberTypes(MemberInfo memberInfo) {
             Type type = null;
 
-            switch(memberInfo.MemberType) {
+            switch (memberInfo.MemberType) {
                 case MemberTypes.Event:
                     type = ((EventInfo)memberInfo).EventHandlerType;
                     break;
@@ -109,7 +225,7 @@ namespace AjaxControlToolkit {
                     // Special case for nested type, we will iterate the nested members here
                     var members = ((Type)memberInfo).GetMembers();
                     var ntypes = new List<Type>();
-                    foreach(var m in members) {
+                    foreach (var m in members) {
                         var mtypes = GetMemberTypes(m).Where(x => !ntypes.Contains(x));
                         ntypes.AddRange(mtypes);
                     }
