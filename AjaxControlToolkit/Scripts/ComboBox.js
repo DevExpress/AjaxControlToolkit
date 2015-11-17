@@ -1740,10 +1740,17 @@ Sys.Extended.UI.ComboBox.prototype = {
         return parseInt(selectedIndex);
     },
     set_selectedIndex: function (value) {
-        if (this.get_hiddenFieldControl().value !== value.toString()) {
+        if(this.get_hiddenFieldControl().value !== value.toString()) {
+            var oldIndex = +this.get_hiddenFieldControl().value;
+
             this.get_hiddenFieldControl().value = value.toString();
             this._ensureSelectedIndex();
             this.raisePropertyChanged('selectedIndex');
+
+            this.raise_selectedIndexChanged({
+                oldIndex: oldIndex,
+                newIndex: value
+            });
         }
     },
     
@@ -1838,6 +1845,24 @@ Sys.Extended.UI.ComboBox.prototype = {
             this.raisePropertyChanged('listItemHoverCssClass');
         }
     },
+
+    /// <summary>
+    /// An event handler rised when selected index changed
+    /// </summary>
+    /// <member name="cE:AjaxControlToolkit.ComboBox.selectedIndexChanged" />
+    /// <event add="add_selectedIndexChanged" remove="remove_selectedIndexChanged" raise="raise_selectedIndexChanged" />
+    add_selectedIndexChanged: function(handler) {
+        this.get_events().addHandler("selectedIndexChanged", handler);
+    },
+    remove_selectedIndexChanged: function(handler) {
+        this.get_events().removeHandler("selectedIndexChanged", handler);
+    },
+    raise_selectedIndexChanged: function(eventArgs) {
+        var handler = this.get_events().getHandler('selectedIndexChanged');
+        if(handler) {
+            handler(this, eventArgs);
+        }
+    }
 };
 Sys.Extended.UI.ComboBox.registerClass('Sys.Extended.UI.ComboBox', Sys.UI.Control);
 
