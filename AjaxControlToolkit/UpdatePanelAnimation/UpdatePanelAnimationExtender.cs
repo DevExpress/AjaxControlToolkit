@@ -88,9 +88,13 @@ namespace AjaxControlToolkit {
             ReplaceStaticAnimationTargets(_updated);
 
             var targetPanel = TargetControl as UpdatePanel;
-            var triggers = targetPanel.Triggers;
-            foreach(var trigger in triggers) {
-                var triggerControlClientID = FindControl((trigger as AsyncPostBackTrigger).ControlID).ClientID;
+            foreach(var trigger in targetPanel.Triggers) {
+                var asyncTrigger = trigger as AsyncPostBackTrigger;
+
+                if (asyncTrigger == null)
+                    continue;
+
+                var triggerControlClientID = FindControl(asyncTrigger.ControlID).ClientID;
                 _triggerControlsClientID.Add(triggerControlClientID);
             }
         }
