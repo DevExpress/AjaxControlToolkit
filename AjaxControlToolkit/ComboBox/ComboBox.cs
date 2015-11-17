@@ -481,8 +481,11 @@ namespace AjaxControlToolkit {
         }
 
         protected virtual void AddButtonAttributesToRender(HtmlTextWriter writer) {
-            if(!DesignMode)
+            if(!DesignMode) {
+                ButtonControl.TabIndex = -1;
+
                 return;
+            }
 
             ButtonControl.Width = Unit.Pixel(14);
             ButtonControl.Height = Unit.Pixel(14);

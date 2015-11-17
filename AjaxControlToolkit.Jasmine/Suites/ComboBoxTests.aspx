@@ -200,6 +200,10 @@
 
                     expect(info.typedCharacter).toBe(String.fromCharCode(0));
                 });
+
+                it("dropdown button has no tabbing", function() {
+                    expect(this.$button.attr("tabindex")).toBe("-1");
+                });
             });
         });
     </script>
