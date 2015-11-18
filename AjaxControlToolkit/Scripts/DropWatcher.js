@@ -112,14 +112,6 @@ Sys.Extended.UI.DragDropList.prototype = {
 
         dragVisualContainer.appendChild(this._dragVisual);
 
-        var newOffset = Sys.Extended.UI.DragDropManager._getInstance().getScrollOffset(dragObject, true);
-        if(oldOffset.x !== newOffset.x || oldOffset.y !== newOffset.y) {
-            var diff = Sys.Extended.UI.DragDropManager._getInstance().subtractPoints(oldOffset, newOffset);
-            var location = Sys.Extended.UI.DragDropManager._getInstance().subtractPoints(currentLocation, diff);
-
-            $common.setLocation(dragVisualContainer, location);
-        }
-
         return dragVisualContainer;
     },
 
