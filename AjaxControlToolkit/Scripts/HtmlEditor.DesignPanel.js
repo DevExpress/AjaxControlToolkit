@@ -1772,7 +1772,9 @@ Sys.Extended.UI.HtmlEditor.DesignPanel.prototype = {
             var node = range.startContainer,
                 pos = range.startOffset;
 
-            if(node.ownerDocument.id != "EditorDocument")
+            if(node.ownerDocument.id != "EditorDocument"
+                &&
+                node.ownerDocument.uniqueID.substring(0, 6) != "ms__id")
                 return false;
 
             if((range.startContainer.nodeType == 1 && range.startContainer.tagName.toUpperCase() == "TR") ||
