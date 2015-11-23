@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>AjaxKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net40\HtmlAgilityPack.dll</HintPath>
@@ -56,6 +62,7 @@
     <Compile Include="BundleResolverTests.cs" />
     <Compile Include="BaseValidatorTests.cs" />
     <Compile Include="ComponentDescriber\ComponentDescriberTests.cs" />
+    <Compile Include="InheritanceTests.cs" />
     <Compile Include="HtmlEditorExtenderTests.cs" />
     <Compile Include="DocumentationTests\CodePlexDocRendererTests.cs" />
     <Compile Include="TabPanelTests.cs" />
@@ -79,6 +86,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="AjaxKey.snk" />
     <None Include="TestData\AjaxControlToolkit.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

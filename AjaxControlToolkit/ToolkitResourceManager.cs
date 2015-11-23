@@ -114,45 +114,61 @@ namespace AjaxControlToolkit {
             var controlTypes = new Bundling.BundleResolver(new Bundling.DefaultCache())
                 .GetControlTypesInBundles(toolkitBundles, GetConfigPath());
 
-            return GetStyleNames(controlTypes.ToArray())
+            return GetStyleEntries(controlTypes.ToArray())
                 .Distinct()
-                .Select(name => FormatStyleVirtualPath(name, false))
+                .Select(entry => FormatStyleVirtualPath(entry.ResourceName, false))
                 .ToArray();
         }
 
         internal static IEnumerable<string> GetStyleHrefs(Control control) {
-            return GetStyleNames(control.GetType()).Select(name => GetStyleHref(name, control));
+            return GetStyleEntries(new Type[] { control.GetType()}).Select(name => GetStyleHref(name, control, control.Page.ClientScript.GetWebResourceUrl));
         }
 
-        internal static string GetStyleHref(string name, Control control) {
+        internal static string GetStyleHref(string entryName, Control control) {
+            return GetStyleHref(new ResourceEntry(entryName, control.GetType(), 0), control);
+        }
+
+        internal static string GetStyleHref(ResourceEntry entry, Control control) {
+            return GetStyleHref(entry, control, control.Page.ClientScript.GetWebResourceUrl);
+        }
+
+        internal static string GetStyleHref(ResourceEntry entry, Control control, Func<Type, string, string> getWebResourceUrlFunc) {
             var minified = !IsDebuggingEnabled();
             var controlType = control.GetType();
 
-            if(IsCdnEnabled()) {
+            if (controlType.Assembly != entry.Assembly)
+                controlType = controlType.BaseType;
+
+            if (IsCdnEnabled()) {
                 var prefix = IsSecureConnection() ? Constants.CdnSecurePrefix : Constants.CdnPrefix;
-                return FormatStyleVirtualPath(name, minified).Replace("~/", prefix);
+                return FormatStyleVirtualPath(entry.ResourceName, minified).Replace("~/", prefix);
             }
 
             return ToolkitConfig.UseStaticResources
-                ? FormatStyleVirtualPath(name, minified)
-                : control.Page.ClientScript.GetWebResourceUrl(controlType, FormatStyleResourceName(name, minified));
+                ? FormatStyleVirtualPath(entry.ResourceName, minified)
+                : getWebResourceUrlFunc(controlType, GetStyleResourceName(entry, minified));
         }
 
-        static IEnumerable<string> GetStyleNames(params Type[] controlTypes) {
-            foreach(var type in controlTypes) {
-                foreach(var entry in GetStyleEntries(type))
-                    yield return entry.ResourceName;
+        static string GetStyleResourceName(ResourceEntry entry, bool minified) {
+            var isActAssembly = entry.Assembly == typeof(ToolkitResourceManager).Assembly;
+            return FormatStyleResourceName(entry.ResourceName, minified, isActAssembly);
+        }
+
+        internal static IEnumerable<ResourceEntry> GetStyleEntries(params Type[] controlTypes) {
+            foreach (var type in controlTypes) {
+                foreach (var entry in GetStyleEntries(type))
+                    yield return entry;
             }
 
-            yield return Constants.BackgroundStylesName;
+            yield return new ResourceEntry(Constants.BackgroundStylesName, typeof(ExtenderControlBase), 0);
         }
 
         static string FormatStyleVirtualPath(string name, bool minified) {
             return Constants.StylesVirtualPath + name + (minified ? Constants.MinCssPostfix : Constants.CssPostfix);
         }
 
-        static string FormatStyleResourceName(string name, bool minified) {
-            return Constants.StyleResourcePrefix + name + (minified ? Constants.MinCssPostfix : Constants.CssPostfix);
+        static string FormatStyleResourceName(string name, bool minified, bool useActPrefix) {
+            return (useActPrefix ? Constants.StyleResourcePrefix : "") + name + (minified ? Constants.MinCssPostfix : Constants.CssPostfix);
         }
 
         public static void RegisterCssReferences(Control control) {
@@ -365,7 +381,7 @@ namespace AjaxControlToolkit {
             return ScriptManager.GetCurrent(page);
         }
 
-        struct ResourceEntry : IEquatable<ResourceEntry> {
+        internal struct ResourceEntry : IEquatable<ResourceEntry> {
             public readonly string ResourceName;
             public readonly Type ComponentType;
             public readonly int Order;
@@ -381,6 +397,10 @@ namespace AjaxControlToolkit {
 
             public string AssemblyName {
                 get { return ComponentType == null ? "" : ComponentType.Assembly.FullName; }
+            }
+
+            public Assembly Assembly {
+                get { return ComponentType == null ? null : ComponentType.Assembly; }
             }
 
             public override int GetHashCode() {

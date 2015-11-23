@@ -12,6 +12,11 @@ using System.Web.UI;
 [assembly: AllowPartiallyTrustedCallers]
 [assembly: ComVisible(false)]
 [assembly: SecurityRules(SecurityRuleSet.Level1)]
+[assembly: InternalsVisibleTo("AjaxControlToolkit.Tests,PublicKey=00240000048000009400000006020000002400005253413100040000010001008f2bd4c3c90ec8" +
+                                                                    "8546137e913600741fdddd929f05d032d52fd1606b88609899b3f737a0e6881c5f3bba0a18fc60" +
+                                                                    "528790f652e64a418687fb538c3c86d325866d6db0721e16df48b1b7c6ebb07bc883d4a119e85e" +
+                                                                    "ace1110842f59712385ebe6ae2a0229e205ef8e284cec0a217ce1eecbd63c1bf47478555fc9e36" +
+                                                                    "af1ef1b3")]
 
 [assembly: WebResource(Constants.AccordionName + Constants.DebugJsPostfix, "text/javascript", CdnPath = Constants.CdnScriptDebugPrefix + Constants.AccordionName + Constants.DebugJsPostfix, CdnSupportsSecureConnection = true)]
 [assembly: WebResource(Constants.AccordionName + Constants.JsPostfix, "text/javascript", CdnPath = Constants.CdnScriptReleasePrefix + Constants.AccordionName + Constants.JsPostfix, CdnSupportsSecureConnection = true)]
