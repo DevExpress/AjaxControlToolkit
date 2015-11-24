@@ -45,9 +45,9 @@ namespace AjaxControlToolkit {
         internal static IEnumerable<ScriptReference> GetControlScriptReferences(Type type) {
             return new Localization().GetLocalizationScriptReferences().Concat(
                 GetScriptEntries(type).Select(entry => new ScriptReference {
-                Assembly = entry.AssemblyName,
-                Name = entry.ResourceName + Constants.JsPostfix
-            }));
+                    Assembly = entry.AssemblyName,
+                    Name = entry.ResourceName + Constants.JsPostfix
+                }));
         }
 
         static IEnumerable<EmbeddedScript> GetEmbeddedScripts(params string[] toolkitBundles) {
@@ -121,7 +121,7 @@ namespace AjaxControlToolkit {
         }
 
         internal static IEnumerable<string> GetStyleHrefs(Control control) {
-            return GetStyleEntries(new Type[] { control.GetType()}).Select(name => GetStyleHref(name, control, control.Page.ClientScript.GetWebResourceUrl));
+            return GetStyleEntries(new Type[] { control.GetType() }).Select(name => GetStyleHref(name, control, control.Page.ClientScript.GetWebResourceUrl));
         }
 
         internal static string GetStyleHref(string entryName, Control control) {
@@ -136,10 +136,10 @@ namespace AjaxControlToolkit {
             var minified = !IsDebuggingEnabled();
             var controlType = control.GetType();
 
-            if (controlType.Assembly != entry.Assembly)
+            if(controlType.Assembly != entry.Assembly)
                 controlType = controlType.BaseType;
 
-            if (IsCdnEnabled()) {
+            if(IsCdnEnabled()) {
                 var prefix = IsSecureConnection() ? Constants.CdnSecurePrefix : Constants.CdnPrefix;
                 return FormatStyleVirtualPath(entry.ResourceName, minified).Replace("~/", prefix);
             }
@@ -155,8 +155,8 @@ namespace AjaxControlToolkit {
         }
 
         internal static IEnumerable<ResourceEntry> GetStyleEntries(params Type[] controlTypes) {
-            foreach (var type in controlTypes) {
-                foreach (var entry in GetStyleEntries(type))
+            foreach(var type in controlTypes) {
+                foreach(var entry in GetStyleEntries(type))
                     yield return entry;
             }
 
@@ -373,7 +373,7 @@ namespace AjaxControlToolkit {
             var context = HttpContext.Current;
             if(context == null)
                 return null;
-            
+
             var page = context.Handler as Page;
             if(page == null)
                 return null;
