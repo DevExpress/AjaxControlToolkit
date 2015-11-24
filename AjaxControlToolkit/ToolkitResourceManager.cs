@@ -21,8 +21,6 @@ namespace AjaxControlToolkit {
             _cssCache = new Dictionary<Type, List<ResourceEntry>>();
 
         static ToolkitResourceManager() {
-            if(ToolkitConfig.UseStaticResources)
-                RegisterScriptMappings();
         }
 
         public static void RegisterControl(Type type) {
@@ -81,8 +79,15 @@ namespace AjaxControlToolkit {
             return Path.Combine(HttpRuntime.AppDomainAppPath, AjaxControlToolkit.Bundling.BundleResolver.ConfigFileVirtualPath);
         }
 
-        public static void RegisterScriptMappings() {
-            foreach(var script in GetEmbeddedScripts()) {
+        public static void RegisterScriptMappings(string bundleName = null) {
+            IEnumerable<EmbeddedScript> scripts = null;
+
+            if(!String.IsNullOrWhiteSpace(bundleName))
+                scripts = GetEmbeddedScripts(bundleName);
+            else
+                scripts = GetEmbeddedScripts();
+
+            foreach(var script in scripts) {
                 ScriptManager.ScriptResourceMapping.AddDefinition(script.Name + Constants.JsPostfix, script.SourceAssemlby, new ScriptResourceDefinition() {
                     Path = FormatScriptReleaseVirtualPath(script.Name),
                     DebugPath = FormatScriptDebugVirtualPath(script.Name),

@@ -6,11 +6,17 @@ namespace AjaxControlToolkit.StaticResources {
     public class PreApplicationStartCode {
 
         public static void Start() {
+            if(ToolkitConfig.UseStaticResources)
+                ToolkitResourceManager.RegisterScriptMappings(null);
+
             CreateScriptBundle(null);
             CreateStyleBundle(null);
 
             var bundleResolver = new AjaxControlToolkit.Bundling.BundleResolver(new AjaxControlToolkit.Bundling.DefaultCache());
             foreach(var bundleName in bundleResolver.GetControlBundles()) {
+                if(ToolkitConfig.UseStaticResources)
+                    ToolkitResourceManager.RegisterScriptMappings(bundleName);
+
                 CreateScriptBundle(bundleName);
                 CreateStyleBundle(bundleName);
             }
