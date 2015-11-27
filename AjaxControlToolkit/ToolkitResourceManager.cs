@@ -52,9 +52,7 @@ namespace AjaxControlToolkit {
             var result = new List<EmbeddedScript>();
 
             var toolkitAssembly = typeof(ToolkitResourceManager).Assembly;
-            foreach(var scriptName in new Localization().GetAllLocalizationScripts()) {
-                result.Add(new EmbeddedScript(scriptName, toolkitAssembly));
-            }
+            result.AddRange(new Localization().GetAllLocalizationEmbeddedScripts());
 
             var trace = new HashSet<string>();
             var bundleResolver = new Bundling.BundleResolver(new Bundling.DefaultCache());
@@ -88,7 +86,7 @@ namespace AjaxControlToolkit {
                 scripts = GetEmbeddedScripts();
 
             foreach(var script in scripts) {
-                ScriptManager.ScriptResourceMapping.AddDefinition(script.Name + Constants.JsPostfix, script.SourceAssemlby, new ScriptResourceDefinition() {
+                ScriptManager.ScriptResourceMapping.AddDefinition(script.Name + Constants.JsPostfix, script.SourceAssembly, new ScriptResourceDefinition() {
                     Path = FormatScriptReleaseVirtualPath(script.Name),
                     DebugPath = FormatScriptDebugVirtualPath(script.Name),
                     CdnPath = Constants.CdnScriptReleasePrefix + script.Name + Constants.JsPostfix,
@@ -101,7 +99,7 @@ namespace AjaxControlToolkit {
         public static void RemoveScriptMappingsRegistration() {
             var toolkitAssembly = typeof(ToolkitResourceManager).Assembly;
             foreach(var script in GetEmbeddedScripts()) {
-                ScriptManager.ScriptResourceMapping.RemoveDefinition(script.Name + Constants.JsPostfix, script.SourceAssemlby);
+                ScriptManager.ScriptResourceMapping.RemoveDefinition(script.Name + Constants.JsPostfix, script.SourceAssembly);
             }
         }
 
@@ -419,16 +417,6 @@ namespace AjaxControlToolkit {
             public bool Equals(ResourceEntry other) {
                 return ResourceName.Equals(other.ResourceName, StringComparison.OrdinalIgnoreCase)
                     && ComponentType == other.ComponentType;
-            }
-        }
-
-        class EmbeddedScript {
-            public Assembly SourceAssemlby { get; private set; }
-            public string Name { get; private set; }
-
-            public EmbeddedScript(string name, Assembly sourceAssembly) {
-                Name = name;
-                SourceAssemlby = sourceAssembly;
             }
         }
     }

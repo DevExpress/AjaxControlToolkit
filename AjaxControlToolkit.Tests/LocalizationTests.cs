@@ -6,6 +6,7 @@ using NUnit.Framework;
 using Moq;
 using System.Globalization;
 using System.Web.UI;
+using System.Reflection;
 
 namespace AjaxControlToolkit.Tests {
 
@@ -16,7 +17,7 @@ namespace AjaxControlToolkit.Tests {
         [SetUp]
         public void SetUp() {
             _moqLocalization.Setup(p => p.IsLocalizationEnabled()).Returns(true);
-            _moqLocalization.Setup(p => p.KnownLocales).Returns(new[] { "en", "en-AU" });
+            _moqLocalization.Setup(p => p.BuiltinLocales).Returns(new[] { "en", "en-AU" });
         }
 
         [Test, SetUICulture("it")]
@@ -37,6 +38,31 @@ namespace AjaxControlToolkit.Tests {
         [Test, SetUICulture("en-BZ")]
         public void BaseLocaleForSpecificLocale() {
             Assert.AreEqual("en", _moqLocalization.Object.GetLocaleKey());
+        }
+
+        [Test, SetUICulture("ru")]
+        public void CustomLocale() {
+            Localization.AddLocale("ru", "TestLocalizationRu", Assembly.GetExecutingAssembly());
+            Assert.AreEqual("ru", _moqLocalization.Object.GetLocaleKey());
+        }
+
+        [Test]
+        public void CustomLocalizationEmbeddedScriptsName() {
+            Localization.AddLocale("ru", "TestLocalizationRu", Assembly.GetExecutingAssembly());
+            Assert.IsTrue(_moqLocalization.Object.GetAllLocalizationEmbeddedScripts().Select(s => s.Name).Contains("TestLocalizationRu"));
+        }
+
+        [Test]
+        public void CustomLocalizationEmbeddedScriptsAssembly() {
+            var assembly = Assembly.GetExecutingAssembly();
+            Localization.AddLocale("ru", "TestLocalizationRu", assembly);
+            Assert.IsTrue(_moqLocalization.Object.GetAllLocalizationEmbeddedScripts().Select(s => s.SourceAssembly).Contains(assembly));
+        }
+
+        [Test]
+        public void BuiltinLocalizationEmbeddedScriptsAssembly() {
+            var toolkitAssembly = typeof(Localization).Assembly;
+            Assert.IsTrue(_moqLocalization.Object.GetAllLocalizationEmbeddedScripts().Where(r => r.Name == "Localization.Resources").Select(s => s.SourceAssembly).Contains(toolkitAssembly));
         }
     }
 }

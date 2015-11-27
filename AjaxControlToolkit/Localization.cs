@@ -12,49 +12,78 @@ namespace AjaxControlToolkit {
 
     public class Localization {
         static readonly object _locker = new object();
-        static ICollection<string> _knownLocales;
+        static ICollection<string> _builtinLocales;
+        static IDictionary<string, LocaleScriptInfo> _customLocales = new Dictionary<string, LocaleScriptInfo>();
 
         static Localization() {
             PopulateKnownLocales();
         }
 
-        public virtual ICollection<string> KnownLocales {
-            get { return _knownLocales; }
+        public virtual ICollection<string> BuiltinLocales {
+            get { return _builtinLocales; }
         }
 
-        static Assembly Assembly {
+        public static void AddLocale(string localeKey, string scriptName, Assembly scriptAssembly) {
+            lock(_locker) {
+                if(_customLocales == null)
+                    _customLocales = new Dictionary<string, LocaleScriptInfo>();
+
+                _customLocales[localeKey] = new LocaleScriptInfo(localeKey, scriptName, scriptAssembly);
+            }
+        }
+
+        static Assembly ToolkitAssembly {
             get { return typeof(Localization).Assembly; }
         }
 
         static void PopulateKnownLocales() {
             lock(_locker) {
-                if(_knownLocales != null)
+                if(_builtinLocales != null)
                     return;
 
-                _knownLocales = new HashSet<string>();
+                _builtinLocales = new HashSet<string>();
 
-                foreach(var resource in Assembly.GetManifestResourceNames()) {
+                foreach(var resource in ToolkitAssembly.GetManifestResourceNames()) {
                     var pattern = "^" + Regex.Escape(Constants.LocalizationScriptName) + @"\.(?<key>[\w-]+)\.debug\.js";
                     var match = Regex.Match(resource, pattern);
                     if(match.Success)
-                        _knownLocales.Add(match.Groups["key"].Value);
+                        _builtinLocales.Add(match.Groups["key"].Value);
                 }
             }
         }
 
         public IEnumerable<ScriptReference> GetLocalizationScriptReferences() {
-            yield return CreateScriptReference("");
-
             var localeKey = new Localization().GetLocaleKey();
-            if(!String.IsNullOrEmpty(localeKey))
-                yield return CreateScriptReference(localeKey);
+
+            var scriptReferences = GetAllLocaleScriptInfo()
+                .Where(i => i.LocaleKey == "" || i.LocaleKey == localeKey)
+                .Select(i => CreateScriptReference(i.LocaleKey, i.ScriptAsssembly));
+
+            foreach(var reference in scriptReferences)
+                yield return reference;
         }
 
-        public IEnumerable<string> GetAllLocalizationScripts() {
-            yield return FormatScriptName("");
+        public IEnumerable<EmbeddedScript> GetAllLocalizationEmbeddedScripts() {
+            var scriptInfos = GetAllLocaleScriptInfo().Select(i => new EmbeddedScript(i.ScriptName, i.ScriptAsssembly));
 
-            foreach(var locale in KnownLocales)
-                yield return FormatScriptName(locale);
+            foreach(var info in scriptInfos)
+                yield return info;
+        }
+
+        IEnumerable<LocaleScriptInfo> GetAllLocaleScriptInfo() {
+            yield return new LocaleScriptInfo("", Constants.LocalizationScriptName, ToolkitAssembly);
+
+            var returnedLocales = new HashSet<string>();
+
+            foreach(var localeKey in _customLocales.Keys) {
+                returnedLocales.Add(localeKey);
+                yield return new LocaleScriptInfo(localeKey, GetCustomScriptName(localeKey), _customLocales[localeKey].ScriptAsssembly);
+            }
+
+            foreach(var localeKey in BuiltinLocales) {
+                if(!returnedLocales.Contains(localeKey))
+                    yield return new LocaleScriptInfo(localeKey, FormatScriptName(localeKey), ToolkitAssembly);
+            }
         }
 
         public string GetLocaleKey() {
@@ -73,8 +102,20 @@ namespace AjaxControlToolkit {
             return scriptManager.EnableScriptLocalization;
         }
 
-        static ScriptReference CreateScriptReference(string localeKey) {
-            return new ScriptReference(FormatScriptName(localeKey) + Constants.JsPostfix, Assembly.FullName);
+        static ScriptReference CreateScriptReference(string localeKey, Assembly assembly) {
+            var embeddedScript = CreateEmbeddedScriptReference(localeKey, assembly);
+            return new ScriptReference(embeddedScript.Name + Constants.JsPostfix, embeddedScript.SourceAssembly.FullName);
+        }
+
+        static EmbeddedScript CreateEmbeddedScriptReference(string localeKey, Assembly scriptAssembly) {
+            if(ToolkitAssembly == scriptAssembly)
+                return new EmbeddedScript(FormatScriptName(localeKey), ToolkitAssembly);
+
+            return new EmbeddedScript(GetCustomScriptName(localeKey), scriptAssembly);
+        }
+
+        static string GetCustomScriptName(string localeKey) {
+            return _customLocales[localeKey].ScriptName;
         }
 
         static string FormatScriptName(string localeKey) {
@@ -91,11 +132,23 @@ namespace AjaxControlToolkit {
         }
 
         private string GetLocale(string culture) {
-            return KnownLocales.Contains(culture) ? culture : null;
+            return BuiltinLocales.Concat(_customLocales.Keys).Contains(culture) ? culture : null;
         }
 
         private string GetLanguage(string cultureName) {
             return cultureName.Split('-')[0];
+        }
+
+        private class LocaleScriptInfo {
+            public string LocaleKey { get; private set; }
+            public string ScriptName { get; private set; }
+            public Assembly ScriptAsssembly { get; private set; }
+
+            public LocaleScriptInfo(string localeKey, string scriptName, Assembly scriptAssembly) {
+                LocaleKey = localeKey;
+                ScriptName = scriptName;
+                ScriptAsssembly = scriptAssembly;
+            }
         }
     }
 

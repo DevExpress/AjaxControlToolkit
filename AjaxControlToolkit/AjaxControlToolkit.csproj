@@ -62,6 +62,7 @@
     <Compile Include="AjaxControlToolkitConfigSection.cs" />
     <Compile Include="CustomControlElement.cs" />
     <Compile Include="CustomControlsCollection.cs" />
+    <Compile Include="EmbeddedScript.cs" />
     <Compile Include="ExtenderBase\IScriptComponentDescriptor.cs" />
     <Compile Include="ExtenderBase\ScriptComponentDescriptorWrapper.cs" />
     <Compile Include="ToolkitConfig.cs" />
