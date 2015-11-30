@@ -664,15 +664,20 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             $common.setVisible(this._sourceViewDiv, true);
 
             if (this._sourceViewDiv.textContent != undefined)
-                this._sourceViewDiv.textContent = this._editableDiv.innerHTML;
+                this._sourceViewDiv.textContent = this.cleanHtml(this._editableDiv.innerHTML);
             else
-                this._sourceViewDiv.innerText = this._editableDiv.innerHTML;
+                this._sourceViewDiv.innerText = this.cleanHtml(this._editableDiv.innerHTML);
 
             this._oldContents = this._editableDiv.innerHTML;
             $common.setVisible(this._editableDiv, false);
             $common.setVisible(this._topButtonContainer, false);
             this._viewMode = 'source';
         }
+    },
+
+    cleanHtml: function(html)
+    {
+        return html.replace(/<br>/g, "<br />");
     },
 
     _btnCancel_click: function () {
