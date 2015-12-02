@@ -87,7 +87,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
             var element = this.get_element();
             var panels = args.get_panelsUpdated();
             for(var i = 0; i < panels.length; i++) {
-                if(panels[i].parentNode == element)
+                if(panels[i].parentNode == element) {
                     if(this._alwaysFinishOnUpdatingAnimation) {
                         this._tryAndStopOnUpdating();
                     }
@@ -95,7 +95,8 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
                         this._onUpdating.quit();
                         this._onUpdated.play();
                     }
-                break;
+                    break;
+                }
             }
         }
     },
