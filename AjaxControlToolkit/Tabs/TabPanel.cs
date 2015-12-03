@@ -250,6 +250,7 @@ namespace AjaxControlToolkit {
 
         protected internal virtual void RenderHeader(HtmlTextWriter writer) {
             writer.AddAttribute(HtmlTextWriterAttribute.Id, ClientID + "_tab");
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab");
             RenderBeginTag(writer);
 
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ajax__tab_outer");

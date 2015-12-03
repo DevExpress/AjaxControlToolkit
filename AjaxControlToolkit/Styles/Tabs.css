@@ -1,4 +1,11 @@
 ﻿/* default layout */
+.ajax__tab_default .ajax__tab {
+    display: block;
+    float: left;
+    height: 21px;
+    margin-top: 1px;
+}
+
 .ajax__tab_default .ajax__tab_header {
     white-space: normal !important;
 }
@@ -15,6 +22,7 @@
     display: inline-block;
     overflow: hidden;
     text-align: center;
+    outline: none;
 }
 
 .ajax__tab_xp .ajax__tab_disabled {
@@ -28,7 +36,14 @@
     background-repeat: repeat-x;
     font-family: verdana,tahoma,helvetica;
     font-size: 11px;
-    height: 21px;
+}
+
+.ajax__tab_xp .ajax__tab_header:before, .ajax__tab_xp .ajax__tab_header:after {
+    content: "";
+    display: table;
+}
+.ajax__tab_xp .ajax__tab_header:after {
+    clear: both;
 }
 
 .ajax__tab_xp .ajax__tab_header .ajax__tab_outer {
@@ -88,6 +103,10 @@
 }
 
 /* xp theme vertical left */
+.ajax__tab_xp .ajax__tab_header_verticalleft .ajax__tab {
+    float: none;
+}
+
 .ajax__tab_xp .ajax__tab_header_verticalleft {
     background-position: right;
     background-repeat: repeat-y;
