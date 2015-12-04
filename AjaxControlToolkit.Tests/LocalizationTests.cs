@@ -64,5 +64,33 @@ namespace AjaxControlToolkit.Tests {
             var toolkitAssembly = typeof(Localization).Assembly;
             Assert.IsTrue(_moqLocalization.Object.GetAllLocalizationEmbeddedScripts().Where(r => r.Name == "Localization.Resources").Select(s => s.SourceAssembly).Contains(toolkitAssembly));
         }
+
+        [Test, SetUICulture("ru")]
+        public void CustomLocalizationDebugMode()
+        {
+            Mock<Localization> _localization = new Mock<Localization>();
+            _localization.Setup(p => p.IsLocalizationEnabled()).Returns(true);
+            _localization.Setup(p => p.BuiltinLocales).Returns(new[] { "en", "en-AU" });
+            _localization.Setup(p => p.IsDebuggingEnabled()).Returns(true);
+
+            var assembly = Assembly.GetExecutingAssembly();
+            Localization.AddLocale("ru", "TestLocalizationRu", assembly);
+
+            Assert.IsTrue(_localization.Object.GetLocalizationScriptReferences().Select(s => s.Name).Contains("TestLocalizationRu.js"));
+        }
+
+        [Test, SetUICulture("ru")]
+        public void CustomLocalizationReleaseMode()
+        {
+            Mock<Localization> _localization = new Mock<Localization>();
+            _localization.Setup(p => p.IsLocalizationEnabled()).Returns(true);
+            _localization.Setup(p => p.BuiltinLocales).Returns(new[] { "en", "en-AU" });
+            _localization.Setup(p => p.IsDebuggingEnabled()).Returns(false);
+
+            var assembly = Assembly.GetExecutingAssembly();
+            Localization.AddLocale("ru", "TestLocalizationRu", assembly);
+
+            Assert.IsTrue(_localization.Object.GetLocalizationScriptReferences().Select(s => s.Name).Contains("TestLocalizationRu.min.js"));
+        }
     }
 }

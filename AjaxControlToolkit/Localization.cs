@@ -53,7 +53,7 @@ namespace AjaxControlToolkit {
         }
 
         public IEnumerable<ScriptReference> GetLocalizationScriptReferences() {
-            var localeKey = new Localization().GetLocaleKey();
+            var localeKey = GetLocaleKey();
 
             var scriptReferences = GetAllLocaleScriptInfo()
                 .Where(i => i.LocaleKey == "" || i.LocaleKey == localeKey)
@@ -102,16 +102,22 @@ namespace AjaxControlToolkit {
             return scriptManager.EnableScriptLocalization;
         }
 
-        static ScriptReference CreateScriptReference(string localeKey, Assembly assembly) {
-            var embeddedScript = CreateEmbeddedScriptReference(localeKey, assembly);
-            return new ScriptReference(embeddedScript.Name + Constants.JsPostfix, embeddedScript.SourceAssembly.FullName);
+        ScriptReference CreateScriptReference(string localeKey, Assembly scriptAssembly) {
+            if(ToolkitAssembly == scriptAssembly)
+                return new ScriptReference(FormatScriptName(localeKey) + Constants.JsPostfix, ToolkitAssembly.FullName);
+
+            return new ScriptReference(GetCustomScriptName(localeKey) + GetScriptSuffix(), scriptAssembly.FullName);
         }
 
-        static EmbeddedScript CreateEmbeddedScriptReference(string localeKey, Assembly scriptAssembly) {
-            if(ToolkitAssembly == scriptAssembly)
-                return new EmbeddedScript(FormatScriptName(localeKey), ToolkitAssembly);
+        private string GetScriptSuffix() {
+            if(IsDebuggingEnabled())
+                return ".js";
 
-            return new EmbeddedScript(GetCustomScriptName(localeKey), scriptAssembly);
+            return ".min.js";
+        }
+
+        public virtual bool IsDebuggingEnabled() {
+            return HttpContext.Current.IsDebuggingEnabled;
         }
 
         static string GetCustomScriptName(string localeKey) {
