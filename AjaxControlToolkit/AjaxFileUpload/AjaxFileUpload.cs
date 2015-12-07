@@ -96,7 +96,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not to hide file upalod list container after the uploading finished
+        /// Whether or not to hide file upload list container after the uploading finished
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]
@@ -104,6 +104,17 @@ namespace AjaxControlToolkit {
         public bool ClearFileListAfterUpload {
             get { return bool.Parse((string)ViewState["ClearFileListAfterUpload"] ?? "false");  }
             set { ViewState["ClearFileListAfterUpload"] = value.ToString(); }
+        }
+
+        /// <summary>
+        /// Whether or not to use absolute path for AjaxFileUploadHandler
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(true)]
+        [ClientPropertyName("useAbsoluteHandlerPath")]
+        public bool UseAbsoluteHandlerPath {
+            get { return bool.Parse((string)ViewState["UseAbsoluteHandlerPath"] ?? "true"); }
+            set { ViewState["UseAbsoluteHandlerPath"] = value.ToString(); }
         }
 
         ///<summary>

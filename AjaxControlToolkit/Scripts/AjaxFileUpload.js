@@ -715,7 +715,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         xhrReq.addEventListener("load", xhrDelegate(this.onUploadCompleteHandler), false);
         xhrReq.addEventListener("error", xhrDelegate(this.onUploadFailedHandler), false);
         xhrReq.addEventListener("abort", xhrDelegate(this.onUploadCanceledHandler), false);
-        xhrReq.open("POST", control._uploadUrl + '?contextKey=' + control.get_id() + '&fileId=' + id + '&fileName=' + fileName + '&chunked=' + (chunked ? "true" : "false") + '&firstChunk=' + firstChunk, true);
+        xhrReq.open("POST", (control.get_useAbsoluteHandlerPath() ? "/" : "") + control._uploadUrl + '?contextKey=' + control.get_id() + '&fileId=' + id + '&fileName=' + fileName + '&chunked=' + (chunked ? "true" : "false") + '&firstChunk=' + firstChunk, true);
         form.append("act-file-data", blob);
         xhrReq.send(form);
     };
@@ -960,6 +960,14 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     this._chunkSize = 4096;
 
     this._clearFileListAfterUpload = false;
+
+    /// <summary>
+    /// Whether or not to use absolute path for AjaxFileUploadHandler
+    /// </summary>
+    /// <getter>get_useAbsoluteHandlerPath</getter>
+    /// <setter>set_useAbsoluteHandlerPath</setter>
+    /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.useAbsoluteHandlerPath" />
+    this._useAbsoluteHandlerPath = true;
 
     // fields
     this._uploadUrl = 'AjaxFileUploadHandler.axd';
@@ -1481,6 +1489,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_clearFileListAfterUpload: function(value) {
         this._clearFileListAfterUpload = value;
+    },
+
+    get_useAbsoluteHandlerPath: function() {
+        return this._useAbsoluteHandlerPath;
+    },
+    set_useAbsoluteHandlerPath: function(value) {
+        this._useAbsoluteHandlerPath = value;
     },
 
     /// <summary>
