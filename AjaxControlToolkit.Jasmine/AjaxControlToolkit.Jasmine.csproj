@@ -94,6 +94,7 @@
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjaxWebForms.js" />
     <Content Include="Scripts\MicrosoftAjaxWebForms.debug.js" />
+    <Content Include="Suites\AccordionTests.aspx" />
     <Content Include="Suites\AjaxFileUploadTests.aspx" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.js" />
@@ -146,6 +147,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\AccordionTests.aspx.cs">
+      <DependentUpon>AccordionTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\AccordionTests.aspx.designer.cs">
+      <DependentUpon>AccordionTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\AjaxFileUploadTests.aspx.cs">
       <DependentUpon>AjaxFileUploadTests.aspx</DependentUpon>

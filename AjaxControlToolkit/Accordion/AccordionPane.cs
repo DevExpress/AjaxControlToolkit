@@ -101,10 +101,8 @@ namespace AjaxControlToolkit {
             // Create the controls
             Controls.Clear();
             _header = new AccordionContentPanel(null, -1, AccordionItemType.Header);
-            _header.ID = String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}_header", ID);
             Controls.Add(_header);
             _content = new AccordionContentPanel(null, -1, AccordionItemType.Content);
-            _content.ID = String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}_content", ID);
             Controls.Add(_content);
 
             // By default, collapse the content sections so the
