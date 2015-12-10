@@ -14,6 +14,7 @@ namespace AjaxControlToolkit {
         static readonly object _locker = new object();
         static ICollection<string> _builtinLocales;
         static IDictionary<string, LocaleScriptInfo> _customLocales = new Dictionary<string, LocaleScriptInfo>();
+        static IDictionary<string, Func<string, ScriptReference>> _externalLocales = new Dictionary<string, Func<string, ScriptReference>>();
 
         static Localization() {
             PopulateKnownLocales();
@@ -29,6 +30,15 @@ namespace AjaxControlToolkit {
                     _customLocales = new Dictionary<string, LocaleScriptInfo>();
 
                 _customLocales[localeKey] = new LocaleScriptInfo(localeKey, scriptName, scriptAssembly);
+            }
+        }
+
+        public static void AddExternalLocale(string localeKey, Func<string, ScriptReference> scriptReferenceProvider) {
+            lock(_locker) {
+                if(_externalLocales == null)
+                    _externalLocales = new Dictionary<string, Func<string, ScriptReference>>();
+
+                _externalLocales[localeKey] = scriptReferenceProvider;
             }
         }
 
@@ -55,9 +65,20 @@ namespace AjaxControlToolkit {
         public IEnumerable<ScriptReference> GetLocalizationScriptReferences() {
             var localeKey = GetLocaleKey();
 
-            var scriptReferences = GetAllLocaleScriptInfo()
-                .Where(i => i.LocaleKey == "" || i.LocaleKey == localeKey)
-                .Select(i => CreateScriptReference(i.LocaleKey, i.ScriptAsssembly));
+            var localeScriptInfos = GetAllLocaleScriptInfo()
+                .Where(i => i.LocaleKey == "" || i.LocaleKey == localeKey);
+
+            IEnumerable<ScriptReference> scriptReferences = null;
+
+            if(_externalLocales.ContainsKey(localeKey)) {
+                var externalScriptReference = _externalLocales[localeKey](localeKey);
+
+                scriptReferences = localeScriptInfos
+                    .Where(i => i.LocaleKey == "")
+                    .Select(i => CreateScriptReference(i.LocaleKey, i.ScriptAsssembly))
+                    .Concat(new List<ScriptReference>() { externalScriptReference });
+            } else
+                scriptReferences = localeScriptInfos.Select(i => CreateScriptReference(i.LocaleKey, i.ScriptAsssembly));
 
             foreach(var reference in scriptReferences)
                 yield return reference;
@@ -138,7 +159,7 @@ namespace AjaxControlToolkit {
         }
 
         private string GetLocale(string culture) {
-            return BuiltinLocales.Concat(_customLocales.Keys).Contains(culture) ? culture : null;
+            return BuiltinLocales.Concat(_customLocales.Keys).Concat(_externalLocales.Keys).Contains(culture) ? culture : null;
         }
 
         private string GetLanguage(string cultureName) {
