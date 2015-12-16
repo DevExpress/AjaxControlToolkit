@@ -449,7 +449,7 @@ namespace AjaxControlToolkit {
 
             string sendingControlID = this.Page.Request.QueryString[Constants.FileUploadIDKey];
 
-            if((sendingControlID != null && sendingControlID == this.ClientID) || sendingControlID == null) {
+            if(sendingControlID == null || sendingControlID == this.ClientID) {
                 ReceivedFile(this.ClientID);
                 if(sendingControlID != null && sendingControlID.StartsWith(this.ClientID)) {
                     string result;
