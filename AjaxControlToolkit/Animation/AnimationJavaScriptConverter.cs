@@ -82,7 +82,7 @@ namespace AjaxControlToolkit {
                 if(children != null)
                     foreach(var c in children) {
                         var child = c as IDictionary<string, object>;
-                        if(c != null)
+                        if(child != null)
                             animation.Children.Add(Deserialize(child));
                     }
             }
