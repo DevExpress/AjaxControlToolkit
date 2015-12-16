@@ -72,7 +72,11 @@
 }
 
 .ajax__calendar_footer {
-    height: 15px;
+    /*
+    position: relative;
+    height: auto;
+    min-height: 100%;
+    */
 }
 
 .ajax__calendar_today {
