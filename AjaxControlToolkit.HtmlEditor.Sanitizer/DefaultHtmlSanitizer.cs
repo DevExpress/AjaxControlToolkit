@@ -25,7 +25,6 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
             return html.DocumentNode.InnerHtml;
         }
 
-
         static void Sanitize(IHtmlNode rootNode, IDictionary<string, string[]> whiteList) {
             CleanNodes(rootNode.Children, whiteList);
 

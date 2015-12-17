@@ -184,6 +184,9 @@ namespace AjaxControlToolkit {
                 result = Sanitizer.GetSafeHtmlFragment(result, elementWhiteList);
             }
 
+            // HtmlAgilityPack vanishes self-closing <hr /> tag, so replace it after sanitization
+            result = result.Replace("<hr>", "<hr />");
+
             return result;
         }
 
