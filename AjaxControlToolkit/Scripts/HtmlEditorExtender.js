@@ -817,6 +817,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }
 
         var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox,
+            isWebKit = Sys.Browser.agent == Sys.Browser.Safari,
             delcolorPicker_onchange = Function.createDelegate(this, this._colorPicker_onchange);
 
         if(!this.isSimpleTextDecoration(command.target.name))
@@ -934,7 +935,10 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             var indentedHtml = "<blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>" + selectionHtml + "</div></blockquote>";
             document.execCommand("insertHTML", false, indentedHtml);
         } else if(command.target.name == 'InsertHorizontalRule') {
-            document.execCommand("insertHTML", false, "<hr />");
+            if(isWebKit)
+                document.execCommand("insertHTML", false, "<hr />");
+            else
+                document.execCommand(command.target.name, false, null);
         } else {
             document.execCommand(command.target.name, false, null);
         }
