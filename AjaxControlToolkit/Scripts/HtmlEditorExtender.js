@@ -818,6 +818,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 
         var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox,
             isWebKit = Sys.Browser.agent == Sys.Browser.Safari,
+            isIE = (Sys.Browser.agent == Sys.Browser.InternetExplorer || Sys.Browser.agent == null),
             delcolorPicker_onchange = Function.createDelegate(this, this._colorPicker_onchange);
 
         if(!this.isSimpleTextDecoration(command.target.name))
@@ -931,9 +932,13 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         } else if(command.target.name == 'CleanWord') {
             this._editableDiv.innerHTML = this.cleanWordHtml(this._editableDiv.innerHTML);
         } else if(command.target.name == 'Indent') {
-            var selectionHtml = this._getSelectionHtml();
-            var indentedHtml = "<blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>" + selectionHtml + "</div></blockquote>";
-            document.execCommand("insertHTML", false, indentedHtml);
+            if(isIE)
+                document.execCommand(command.target.name, false, null);
+            else {
+                var selectionHtml = this._getSelectionHtml();
+                var indentedHtml = "<blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>" + selectionHtml + "</div></blockquote>";
+                document.execCommand("insertHTML", false, indentedHtml);
+            }
         } else if(command.target.name == 'InsertHorizontalRule') {
             if(isWebKit)
                 document.execCommand("insertHTML", false, "<hr />");
