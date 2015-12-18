@@ -157,8 +157,11 @@
                     wrapper.setContent("a").selectText().pressToolbarButtons(["subscript"]);
 
                     actualSourceText = wrapper.currentState.editorContent("source");
-
-                    expect(actualSourceText).toBe("<span style=\"vertical-align: sub;\">a</span>");
+                    
+                    if(this.ua.browser.family == "Chrome")
+                        expect(actualSourceText).toBe("<span style=\"vertical-align: sub;\">a</span>");
+                    else
+                        expect(actualSourceText).toBe("<sub>a</sub>");
                 });
 
                 it("defines superscript via CSS", function() {
@@ -167,7 +170,10 @@
 
                     actualSourceText = wrapper.currentState.editorContent("source");
 
-                    expect(actualSourceText).toBe("<span style=\"vertical-align: super;\">a</span>");
+                    if(this.ua.browser.family == "Chrome")
+                        expect(actualSourceText).toBe("<span style=\"vertical-align: super;\">a</span>");
+                    else
+                        expect(actualSourceText).toBe("<sup>a</sup>");
                 });
 
                 it("defines left indent via CSS", function() {
@@ -212,7 +218,10 @@
 
                     actualSourceText = wrapper.currentState.editorContent("source");
 
-                    expect(actualSourceText).toBe("<ol><li>a<br /></li></ol>");
+                    if(this.ua.browser.family == "Chrome")
+                        expect(actualSourceText).toBe("<ol><li>a<br /></li></ol>");
+                    else
+                        expect(actualSourceText).toBe("<ol><li>a</li></ol>");
                 });
 
                 it("renders unordered list", function() {
@@ -221,7 +230,10 @@
 
                     actualSourceText = wrapper.currentState.editorContent("source");
 
-                    expect(actualSourceText).toBe("<ul><li>a<br /></li></ul>");
+                    if(this.ua.browser.family == "Chrome")
+                        expect(actualSourceText).toBe("<ul><li>a<br /></li></ul>");
+                    else
+                        expect(actualSourceText).toBe("<ul><li>a</li></ul>");
                 });
 
                 it("defines background color style via CSS", function() {
@@ -261,7 +273,10 @@
 
                     actualSourceText = wrapper.currentState.editorContent("source");
 
-                    expect(actualSourceText).toBe("<span style=\"font-size: x-large;\">a</span>");
+                    if(this.ua.browser.family == "Chrome")
+                        expect(actualSourceText).toBe("<span style=\"font-size: x-large;\">a</span>");
+                    else
+                        expect(actualSourceText).toBe("<font size=\"5\">a</font>");
                 });
 
                 it("indents text correctly", function() {
@@ -444,14 +459,18 @@
             });
 
             it("subscript button works properly", function() {
-                var testContentText = "lorem ipsum dolor sit amet",
-                    expectedSourceText = "<span style=\"vertical-align: sub;\">lorem</span> ipsum dolor sit amet",
-                    actualSourceText;
+                var testContentText = "lorem ipsum dolor sit amet";
+                var expectedSourceText = "";
+                
+                if(this.ua.browser.family == "Chrome")
+                    expectedSourceText = "<span style=\"vertical-align: sub;\">lorem</span> ipsum dolor sit amet";
+                else
+                    expectedSourceText = "<sub>lorem</sub> ipsum dolor sit amet";
 
                 var wrapper = new HtmlEditorWrapper(this.extender);
                 wrapper.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["subscript"]);
 
-                actualSourceText = wrapper.currentState.editorContent("source");
+                var actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(expectedSourceText);
 
                 wrapper.pressToolbarButtons(["subscript"]);
@@ -461,14 +480,18 @@
             });
 
             it("superscript button works properly", function() {
-                var testContentText = "lorem ipsum dolor sit amet",
-                    expectedSourceText = "<span style=\"vertical-align: super;\">lorem</span> ipsum dolor sit amet",
-                    actualSourceText;
+                var testContentText = "lorem ipsum dolor sit amet";
+                var expectedSourceText = "";
+
+                if(this.ua.browser.family == "Chrome")
+                    expectedSourceText = "<span style=\"vertical-align: super;\">lorem</span> ipsum dolor sit amet";
+                else
+                    expectedSourceText = "<sup>lorem</sup> ipsum dolor sit amet";
 
                 var wrapper = new HtmlEditorWrapper(this.extender);
                 wrapper.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["superscript"]);
 
-                actualSourceText = wrapper.currentState.editorContent("source");
+                var actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(expectedSourceText);
 
                 wrapper.pressToolbarButtons(["superscript"]);
@@ -535,8 +558,7 @@
 
                 var ajaxFileUpload = $find(this.extender._id + "_ajaxFileUpload");
                 
-                var ua = detect.parse(navigator.userAgent);
-                    imageUrl = (ua.browser.family === "Firefox" ? "HtmlEditorExtenderTests/" : "") + "superhero.png";
+                var imageUrl = (this.ua.browser.family === "Firefox" ? "HtmlEditorExtenderTests/" : "") + "superhero.png";
 
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", imageUrl, true);
@@ -614,11 +636,16 @@
                 var wrapper = new HtmlEditorWrapper(this.extenderSanitized);
                 wrapper.switchTab("source").setContent("<a href='javascript:alert(\"hello world\");'>test link</a>");
 
+                var expectedText = "<a href=\"\">test link</a>";
+
+                if(this.ua.browser.family == "Firefox")
+                    expectedText = "&lt;a href='javascript:alert(\"hello world\");'&gt;test link&lt;/a&gt;";
+
                 var endRequestHandler = function() {
                     var extender = $find("<%= TargetExtenderSanitized.ClientID %>"),
                         wrapper = new HtmlEditorWrapper(extender);
 
-                    expect(wrapper.currentState.editorContent("source")).toEqual("<a href=\"\">test link</a>");
+                    expect(wrapper.currentState.editorContent("source")).toEqual(expectedText);
 
                     done();
                 };
@@ -637,6 +664,10 @@
 
             it("keeps width attribute in img elements", function(done) {
                 var text = "<img width=\"100\">";
+                var expectedText = text;
+
+                if(this.ua.browser.family == "Firefox")
+                    expectedText = "&lt;img width=\"100\"&gt;";
 
                 var wrapper = new HtmlEditorWrapper(this.extender);
                 wrapper.switchTab("source").setContent(text);
@@ -645,7 +676,7 @@
                     var extender = $find("<%= TargetExtender.ClientID %>"),
                         wrapper = new HtmlEditorWrapper(extender);
 
-                    expect(wrapper.currentState.editorContent("source")).toEqual(text);
+                    expect(wrapper.currentState.editorContent("source")).toEqual(expectedText);
 
                     done();
                 };
@@ -657,6 +688,10 @@
 
             it("keeps id attribute in element", function(done) {
                 var text = "<div id=\"test_id\"></div>";
+                var expectedText = text;
+
+                if(this.ua.browser.family == "Firefox")
+                    expectedText = "&lt;div id=\"test_id\"&gt;&lt;/div&gt;";
 
                 var wrapper = new HtmlEditorWrapper(this.extender);
                 wrapper.switchTab("source").setContent(text);
@@ -665,7 +700,7 @@
                     var extender = $find("<%= TargetExtender.ClientID %>"),
                         wrapper = new HtmlEditorWrapper(extender);
 
-                    expect(wrapper.currentState.editorContent("source")).toEqual(text);
+                    expect(wrapper.currentState.editorContent("source")).toEqual(expectedText);
 
                     done();
                 }
@@ -677,6 +712,10 @@
 
             it("keeps class attribute in element", function(done) {
                 var text = "<div class=\"test-class\"></div>";
+                var expectedText = text;
+
+                if(this.ua.browser.family == "Firefox")
+                    expectedText = "&lt;div class=\"test-class\"&gt;&lt;/div&gt;";
 
                 var wrapper = new HtmlEditorWrapper(this.extender);
                 wrapper.switchTab("source").setContent(text);
@@ -685,7 +724,7 @@
                     var extender = $find("<%= TargetExtender.ClientID %>"),
                         wrapper = new HtmlEditorWrapper(extender);
 
-                    expect(wrapper.currentState.editorContent("source")).toEqual(text);
+                    expect(wrapper.currentState.editorContent("source")).toEqual(expectedText);
 
                     done();
                 }
