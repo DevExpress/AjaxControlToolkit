@@ -13,9 +13,9 @@
                 Height="300" />
 
             <act:HtmlEditorExtender runat="server"
-                TargetControlID="Target" 
-                ID="TargetExtender" 
-                EnableSanitization="false" 
+                TargetControlID="Target"
+                ID="TargetExtender"
+                EnableSanitization="false"
                 DisplaySourceTab="true">
                 <Toolbar>
                     <act:Undo />
@@ -59,9 +59,9 @@
                 Height="300" />
 
             <act:HtmlEditorExtender runat="server"
-                TargetControlID="TargetSanitized" 
-                ID="TargetExtenderSanitized" 
-                EnableSanitization="true" 
+                TargetControlID="TargetSanitized"
+                ID="TargetExtenderSanitized"
+                EnableSanitization="true"
                 DisplaySourceTab="true">
                 <Toolbar>
                     <act:Undo />
@@ -99,7 +99,7 @@
                 </Toolbar>
             </act:HtmlEditorExtender>
 
-            <asp:Button ID="SubmitButton" runat="server" Text="Submit button" ClientIDMode="Static"/>
+            <asp:Button ID="SubmitButton" runat="server" Text="Submit button" ClientIDMode="Static" />
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -119,21 +119,92 @@
             });
 
             describe("XHTML compatibility", function() {
-                it("renders bold tag", function() {
-                    var wrapper = new HtmlEditorWrapper(this.extender);
-                    wrapper.setContent("a").selectText().pressToolbarButtons(["bold"]);
+                var userAgent = detect.parse(navigator.userAgent);
 
-                    actualSourceText = wrapper.currentState.editorContent("source");
-                    expect(actualSourceText).toBe("<b>a</b>");
-                });
+                if(userAgent.browser.family != "IE") {
+                    it("renders bold tag", function() {
+                        var wrapper = new HtmlEditorWrapper(this.extender);
+                        wrapper.setContent("a").selectText().pressToolbarButtons(["bold"]);
 
-                it("renders italic tag", function() {
-                    var wrapper = new HtmlEditorWrapper(this.extender);
-                    wrapper.setContent("a").selectText().pressToolbarButtons(["italic"]);
+                        actualSourceText = wrapper.currentState.editorContent("source");
+                        expect(actualSourceText).toBe("<b>a</b>");
+                    });
 
-                    actualSourceText = wrapper.currentState.editorContent("source");
-                    expect(actualSourceText).toBe("<i>a</i>");
-                });
+                    it("renders italic tag", function() {
+                        var wrapper = new HtmlEditorWrapper(this.extender);
+                        wrapper.setContent("a").selectText().pressToolbarButtons(["italic"]);
+
+                        actualSourceText = wrapper.currentState.editorContent("source");
+                        expect(actualSourceText).toBe("<i>a</i>");
+                    });
+
+                    it("defines strike through via style", function() {
+                        var wrapper = new HtmlEditorWrapper(this.extender);
+                        wrapper.setContent("a").selectText().pressToolbarButtons(["strike-through"]);
+
+                        actualSourceText = wrapper.currentState.editorContent("source");
+                        expect(actualSourceText).toBe("<span style=\"text-decoration: line-through;\">a</span>");
+                    });
+
+                    it("defines left indent via style", function() {
+                        var wrapper = new HtmlEditorWrapper(this.extender);
+                        wrapper.setContent("a").selectText().pressToolbarButtons(["justify-right"]).selectText().pressToolbarButtons(["justify-left"]);
+
+                        actualSourceText = wrapper.currentState.editorContent("source");
+                        expect(actualSourceText).toBe("<div style=\"text-align: left;\">a</div>");
+                    });
+
+                    it("defines center indent via style", function() {
+                        var wrapper = new HtmlEditorWrapper(this.extender);
+                        wrapper.setContent("a").selectText().pressToolbarButtons(["justify-center"]);
+
+                        actualSourceText = wrapper.currentState.editorContent("source");
+                        expect(actualSourceText).toBe("<div style=\"text-align: center;\">a</div>");
+                    });
+
+                    it("defines right indent via style", function() {
+                        var wrapper = new HtmlEditorWrapper(this.extender);
+                        wrapper.setContent("a").selectText().pressToolbarButtons(["justify-right"]);
+
+                        actualSourceText = wrapper.currentState.editorContent("source");
+                        expect(actualSourceText).toBe("<div style=\"text-align: right;\">a</div>");
+                    });
+
+                    it("defines justify indent via style", function() {
+                        var wrapper = new HtmlEditorWrapper(this.extender);
+                        wrapper.setContent("a").selectText().pressToolbarButtons(["justify-full"]);
+
+                        actualSourceText = wrapper.currentState.editorContent("source");
+                        expect(actualSourceText).toBe("<div style=\"text-align: justify;\">a</div>");
+                    });
+
+                    it("defines background color style via style", function() {
+                        var wrapper = new HtmlEditorWrapper(this.extender);
+                        wrapper.setContent("a").selectText();
+                        this.extender.setColor("BackColor", "#000000");
+
+                        actualSourceText = wrapper.currentState.editorContent("source");
+                        expect(actualSourceText).toBe("<span style=\"background-color: rgb(0, 0, 0);\">a</span>");
+                    });
+
+                    it("defines foreground color style via style", function() {
+                        var wrapper = new HtmlEditorWrapper(this.extender);
+                        wrapper.setContent("a").selectText();
+                        this.extender.setColor("ForeColor", "#ff0000");
+
+                        actualSourceText = wrapper.currentState.editorContent("source");
+                        expect(actualSourceText).toBe("<span style=\"color: rgb(255, 0, 0);\">a</span>");
+                    });
+
+                    it("defines font family via style", function() {
+                        var wrapper = new HtmlEditorWrapper(this.extender);
+                        wrapper.setContent("a").selectText();
+                        this.extender.setFontFamily("Tahoma");
+
+                        actualSourceText = wrapper.currentState.editorContent("source");
+                        expect(actualSourceText).toBe("<span style=\"font-family: Tahoma;\">a</span>");
+                    });
+                }
 
                 it("renders undeline tag", function() {
                     var wrapper = new HtmlEditorWrapper(this.extender);
@@ -143,28 +214,19 @@
                     expect(actualSourceText).toBe("<u>a</u>");
                 });
 
-                it("defines strike through via CSS", function() {
-                    var wrapper = new HtmlEditorWrapper(this.extender);
-                    wrapper.setContent("a").selectText().pressToolbarButtons(["strike-through"]);
-
-                    actualSourceText = wrapper.currentState.editorContent("source");
-
-                    expect(actualSourceText).toBe("<span style=\"text-decoration: line-through;\">a</span>");
-                });
-
-                it("defines subscript via CSS", function() {
+                it("defines subscript via style", function() {
                     var wrapper = new HtmlEditorWrapper(this.extender);
                     wrapper.setContent("a").selectText().pressToolbarButtons(["subscript"]);
 
                     actualSourceText = wrapper.currentState.editorContent("source");
-                    
+
                     if(this.ua.browser.family == "Chrome")
                         expect(actualSourceText).toBe("<span style=\"vertical-align: sub;\">a</span>");
                     else
                         expect(actualSourceText).toBe("<sub>a</sub>");
                 });
 
-                it("defines superscript via CSS", function() {
+                it("defines superscript via style", function() {
                     var wrapper = new HtmlEditorWrapper(this.extender);
                     wrapper.setContent("a").selectText().pressToolbarButtons(["superscript"]);
 
@@ -174,42 +236,6 @@
                         expect(actualSourceText).toBe("<span style=\"vertical-align: super;\">a</span>");
                     else
                         expect(actualSourceText).toBe("<sup>a</sup>");
-                });
-
-                it("defines left indent via CSS", function() {
-                    var wrapper = new HtmlEditorWrapper(this.extender);
-                    wrapper.setContent("a").selectText().pressToolbarButtons(["justify-right"]).selectText().pressToolbarButtons(["justify-left"]);
-
-                    actualSourceText = wrapper.currentState.editorContent("source");
-
-                    expect(actualSourceText).toBe("<div style=\"text-align: left;\">a</div>");
-                });
-
-                it("defines center indent via CSS", function() {
-                    var wrapper = new HtmlEditorWrapper(this.extender);
-                    wrapper.setContent("a").selectText().pressToolbarButtons(["justify-center"]);
-
-                    actualSourceText = wrapper.currentState.editorContent("source");
-
-                    expect(actualSourceText).toBe("<div style=\"text-align: center;\">a</div>");
-                });
-
-                it("defines right indent via CSS", function() {
-                    var wrapper = new HtmlEditorWrapper(this.extender);
-                    wrapper.setContent("a").selectText().pressToolbarButtons(["justify-right"]);
-
-                    actualSourceText = wrapper.currentState.editorContent("source");
-
-                    expect(actualSourceText).toBe("<div style=\"text-align: right;\">a</div>");
-                });
-
-                it("defines justify indent via CSS", function() {
-                    var wrapper = new HtmlEditorWrapper(this.extender);
-                    wrapper.setContent("a").selectText().pressToolbarButtons(["justify-full"]);
-
-                    actualSourceText = wrapper.currentState.editorContent("source");
-
-                    expect(actualSourceText).toBe("<div style=\"text-align: justify;\">a</div>");
                 });
 
                 it("renders ordered list", function() {
@@ -236,37 +262,7 @@
                         expect(actualSourceText).toBe("<ul><li>a</li></ul>");
                 });
 
-                it("defines background color style via CSS", function() {
-                    var wrapper = new HtmlEditorWrapper(this.extender);
-                    wrapper.setContent("a").selectText();
-                    this.extender.setColor("BackColor", "#000000");
-
-                    actualSourceText = wrapper.currentState.editorContent("source");
-
-                    expect(actualSourceText).toBe("<span style=\"background-color: rgb(0, 0, 0);\">a</span>");
-                });
-
-                it("defines foreground color style via CSS", function() {
-                    var wrapper = new HtmlEditorWrapper(this.extender);
-                    wrapper.setContent("a").selectText();
-                    this.extender.setColor("ForeColor", "#ff0000");
-
-                    actualSourceText = wrapper.currentState.editorContent("source");
-
-                    expect(actualSourceText).toBe("<span style=\"color: rgb(255, 0, 0);\">a</span>");
-                });
-
-                it("defines font family via CSS", function() {
-                    var wrapper = new HtmlEditorWrapper(this.extender);
-                    wrapper.setContent("a").selectText();
-                    this.extender.setFontFamily("Tahoma");
-
-                    actualSourceText = wrapper.currentState.editorContent("source");
-
-                    expect(actualSourceText).toBe("<span style=\"font-family: Tahoma;\">a</span>");
-                });
-
-                it("defines font size via CSS", function() {
+                it("defines font size via style", function() {
                     var wrapper = new HtmlEditorWrapper(this.extender);
                     wrapper.setContent("a").selectText();
                     this.extender.setFontSize("5");
@@ -285,7 +281,10 @@
 
                     actualSourceText = wrapper.currentState.editorContent("source");
 
-                    expect(actualSourceText).toBe("<blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>a</div></blockquote>");
+                    if(userAgent.browser.family == "IE")
+                        expect(actualSourceText).toBe("<blockquote style=\"margin-right: 0px;\" dir=\"ltr\"><p>a</p></blockquote>");
+                    else
+                        expect(actualSourceText).toBe("<blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>a</div></blockquote>");
                 });
 
                 it("outdents text correctly", function() {
@@ -294,11 +293,14 @@
 
                     actualSourceText = wrapper.currentState.editorContent("source");
 
-                    expect(actualSourceText).toBe("<div>a</div>");
+                    if(userAgent.browser.family == "IE")
+                        expect(actualSourceText).toBe("<p style=\"margin-right: 0px;\" dir=\"ltr\">a</p>");
+                    else
+                        expect(actualSourceText).toBe("<div>a</div>");
                 });
             });
 
-           it("rejects select click target", function() {
+            it("rejects select click target", function() {
                 var target = { tagName: "SELECT" };
                 expect(this.extender.isValidTarget(target)).toBeFalsy();
             });
@@ -442,14 +444,16 @@
             });
 
             it("strike through button works properly", function() {
-                var testContentText = "lorem ipsum dolor sit amet",
-                    expectedSourceText = "<span style=\"text-decoration: line-through;\">lorem</span> ipsum dolor sit amet",
-                    actualSourceText;
+                var testContentText = "lorem ipsum dolor sit amet";
+                var expectedSourceText = "<span style=\"text-decoration: line-through;\">lorem</span> ipsum dolor sit amet";
+
+                if(this.ua.browser.family == "IE")
+                    expectedSourceText = "<strike>lorem</strike> ipsum dolor sit amet";
 
                 var wrapper = new HtmlEditorWrapper(this.extender);
                 wrapper.setContent(testContentText).selectText(0, 5).pressToolbarButtons(["strike-through"]);
 
-                actualSourceText = wrapper.currentState.editorContent("source");
+                var actualSourceText = wrapper.currentState.editorContent("source");
                 expect(actualSourceText).toEqual(expectedSourceText);
 
                 wrapper.pressToolbarButtons(["strike-through"]);
@@ -461,7 +465,7 @@
             it("subscript button works properly", function() {
                 var testContentText = "lorem ipsum dolor sit amet";
                 var expectedSourceText = "";
-                
+
                 if(this.ua.browser.family == "Chrome")
                     expectedSourceText = "<span style=\"vertical-align: sub;\">lorem</span> ipsum dolor sit amet";
                 else
@@ -501,7 +505,7 @@
             });
 
             it("saveSelection method doesn't throw exception if no text selected", function() {
-            	expect(this.extender.saveSelection).not.toThrow();
+                expect(this.extender.saveSelection).not.toThrow();
             });
 
             it("_executeCommand method doesn't throw exception if forecolor button is pressed", function() {
@@ -557,7 +561,7 @@
                 wrapper.pressToolbarButtons(["insert-image"]);
 
                 var ajaxFileUpload = $find(this.extender._id + "_ajaxFileUpload");
-                
+
                 var imageUrl = (this.ua.browser.family === "Firefox" ? "HtmlEditorExtenderTests/" : "") + "superhero.png";
 
                 var xhr = new XMLHttpRequest();
@@ -655,7 +659,7 @@
                 $("#SubmitButton").click();
             });
 
-            it("cleans Word HTML", function () {
+            it("cleans Word HTML", function() {
                 var wordHtml = '<p align="center" style="margin-top:0cm;margin-right:24.1pt; margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-align:center"><b><span lang="RU" style="font-size:9.0pt; font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;">ABC ABC </span></b><b><span style="font-size:9.0pt;font-family: Arial;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:EN-US">ABC</span></b><b><span style="font-size:9.0pt;font-family: Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"> </span></b><b><span style="font-size:9.0pt;font-family:Arial;mso-bidi-font-family: &quot;Times New Roman&quot;;mso-ansi-language:EN-US">ABC</span></b><b><span lang="RU" style="font-size:9.0pt;font-family:Arial;mso-bidi-font-family: &quot;Times New Roman&quot;"><o:p></o:p></span></b></p> <p align="center" style="margin-top:0cm;margin-right:24.1pt; margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-align:center"><b><span lang="RU" style="font-size:9.0pt; font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></b></p> <p align="center" style="margin-top:0cm;margin-right:24.1pt; margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-align:center"><b><span lang="RU" style="font-size:9.0pt; font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;">ABC ABC<o:p></o:p></span></b></p> <p align="center" style="margin-top:0cm;margin-right:24.1pt; margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-align:center"><b><span lang="RU" style="font-size:9.0pt; font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></b></p> <p align="center" style="margin-top:0cm;margin-right:24.1pt; margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-align:center"><!--[if gte vml 1]><v:group id="_x0000_s1026" style=\'position:absolute;left:0;text-align:left; margin-left:71.4pt;margin-top:2.55pt;width:210.5pt;height:26pt;z-index:-1\' coordorigin="9885,1859" coordsize="5250,675"> <v:roundrect id="_x0000_s1027" style=\'position:absolute;left:9885;top:1859; width:1830;height:675\' arcsize="10923f"/> <v:roundrect id="_x0000_s1028" style=\'position:absolute;left:12090;top:1859; width:1350;height:675\' arcsize="10923f"/> <v:roundrect id="_x0000_s1029" style=\'position:absolute;left:13783;top:1859; width:1352;height:675\' arcsize="10923f"/> <v:shapetype id="_x0000_t32" coordsize="21600,21600" o:spt="32" o:oned="t" path="m,l21600,21600e" filled="f"> <v:path arrowok="t" fillok="f" o:connecttype="none"/> <o:lock v:ext="edit" shapetype="t"/> </v:shapetype><v:shape id="_x0000_s1030" type="#_x0000_t32" style=\'position:absolute; left:13440;top:2197;width:343;height:1;flip:y\' o:connectortype="straight"> <v:stroke endarrow="block"/> </v:shape><v:shape id="_x0000_s1031" type="#_x0000_t32" style=\'position:absolute; left:11715;top:2197;width:375;height:1\' o:connectortype="straight"> <v:stroke endarrow="block"/> </v:shape></v:group><![endif]--><!--[if !vml]--><span style="mso-ignore:vglayout; position:absolute;z-index:-1;left:0px;margin-left:94px;margin-top:2px; width:283px;height:37px"><img height="37" src="file:///C:/Users/clip_image001.gif" v:shapes="_x0000_s1026 _x0000_s1027 _x0000_s1028 _x0000_s1029 _x0000_s1030 _x0000_s1031"></span><!--[endif]--><b><span lang="RU" style="font-size:9.0pt; font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></b></p> <p align="center" style="margin-top:0cm;margin-right:24.1pt; margin-bottom:0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-align:center"><b><span lang="RU" style="font-size:9.0pt; font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;">ABC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></b><b><span style="font-size:9.0pt;font-family:Arial;mso-bidi-font-family: &quot;Times New Roman&quot;;mso-ansi-language:EN-US">ABC</span></b><b><span style="font-size:9.0pt;font-family: Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"> </span></b><b><span style="font-size:9.0pt;font-family:Arial;mso-bidi-font-family: &quot;Times New Roman&quot;;mso-ansi-language:EN-US">ABC</span></b><b><span style="font-size:9.0pt;font-family:Arial;mso-bidi-font-family: &quot;Times New Roman&quot;"> <span lang="RU"><o:p></o:p></span></span></b></p> <p style="margin-top:0cm;margin-right:24.1pt;margin-bottom: 0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-align:justify"><b><span lang="RU" style="font-size:9.0pt; font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></b></p> <p style="margin-top:0cm;margin-right:24.1pt;margin-bottom: 0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-align:justify"><b><span lang="RU" style="font-size:9.0pt; font-family:Arial;mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p>&nbsp;</o:p></span></b></p> <p style="margin-top:0cm;margin-right:24.1pt;margin-bottom: 0cm;margin-left:14.2pt;margin-bottom:.0001pt;text-align:justify"><span lang="RU" style="font-size:9.0pt;font-family:Arial">ABC ABC ABC.<o:p></o:p></span></p>';
                 var cleanedHtml = this.extender.cleanWordHtml(wordHtml);
                 var expectedHtml = '<p align="center"><b>ABC ABC </b><b>ABC</b><b>ABC</b></p> <p align="center"></p> <p align="center"><b>ABC ABC</b></p> <p align="center"></p> <p align="center"><img height="37" src="file:///C:/Users/clip_image001.gif" v:shapes="_x0000_s1026 _x0000_s1027 _x0000_s1028 _x0000_s1029 _x0000_s1030 _x0000_s1031"></p> <p align="center"><b>ABC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><b>ABC</b><b>ABC</b></p> <p></p> <p></p> <p>ABC ABC ABC.</p>';
@@ -706,7 +710,7 @@
                 }
 
                 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
-                
+
                 $("#SubmitButton").click();
             });
 
@@ -730,13 +734,13 @@
                 }
 
                 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
-                
+
                 $("#SubmitButton").click();
             });
 
             it("renders cut, copy and paste buttons", function() {
                 var $container = $(this.extender._container);
-                
+
                 expect($container.find(".ajax__html_editor_extender_Cut").length).toBeTruthy();
                 expect($container.find(".ajax__html_editor_extender_Copy").length).toBeTruthy();
                 expect($container.find(".ajax__html_editor_extender_Paste").length).toBeTruthy();
