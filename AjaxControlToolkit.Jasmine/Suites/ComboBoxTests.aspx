@@ -56,6 +56,12 @@
                     });
 
                     this.f5KeyPressEvent.charCode = 116;
+
+                    this.enterPressEvent = new Sys.UI.DomEvent({
+                        keyCode: 13,
+                        type: "keypress",
+                        shiftKey: false                        
+                    });
                 });
 
                 it("contains input container", function() {
@@ -203,6 +209,13 @@
 
                 it("dropdown button has no tabbing", function() {
                     expect(this.$button.attr("tabindex")).toBe("-1");
+                });
+
+                it("does not postback on item Enter press", function() {
+                    spyOn(window, '__doPostBack').and.callFake(function() { });
+                    this.extender._handleArrowKey(this.keyDownEvent);
+                    this.extender._handleEnterKey(this.enterPressEvent);
+                    expect(__doPostBack).not.toHaveBeenCalled();
                 });
             });
         });
