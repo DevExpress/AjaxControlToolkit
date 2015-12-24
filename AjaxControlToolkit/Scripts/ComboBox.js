@@ -184,14 +184,10 @@ Sys.Extended.UI.ComboBox.prototype = {
             "click": this._textBoxClickHandler,
             "focus": this._textBoxFocusHandler,
             "blur": this._textBoxBlurHandler,
-            "keypress": this._textBoxKeyPressHandler
+            "keypress": this._textBoxKeyPressHandler,
+            "keydown": this._textBoxKeyDownHandler
         }, this);
-
-        if (Sys.Browser.agent == Sys.Browser.InternetExplorer || Sys.Browser.agent === Sys.Browser.Safari
-            || Sys.Browser.agent === Sys.Browser.WebKit) {
-            $addHandler(this.get_textBoxControl(), "keydown", this._textBoxKeyDownHandler);
-        }
-
+        
         $addHandlers(this.get_buttonControl(),
         {
             'click': this._buttonClickHandler,
