@@ -49,7 +49,25 @@ namespace AjaxControlToolkit.Jasmine {
         }
 
         int CountSpecsInFile(string filePath) {
-            return Regex.Matches(File.ReadAllText(filePath), "\\s+it\\(").Count;
+            var text = File.ReadAllText(filePath);
+            var totalSpecs = Regex.Matches(text, "\\s+it\\(").Count;
+            totalSpecs -= SubtractBrowserDependentSpecs(text, Request.Browser.Browser);
+            return totalSpecs;
+        }
+
+        private int SubtractBrowserDependentSpecs(string text, string browser) {
+            var regex = new Regex(@"<%\s*if\s*\(\s*Request\.Browser\.Browser\s*(?<CompareOperator>[!=]+)\s*""" + browser + @"""\s*\)\s*{\s*%>");
+            var match = regex.Match(text);
+            if(match.Success
+                &&
+                (match.Groups["CompareOperator"].Value == "!=")) {
+                    var beginBlockEndPosition = match.Index + match.Length;
+                    var browserDependentTestsTextEndIndex = text.IndexOf("<% } %>", beginBlockEndPosition);
+                    var browserDependentTestsText = text.Substring(beginBlockEndPosition, browserDependentTestsTextEndIndex - beginBlockEndPosition);
+                    return Regex.Matches(browserDependentTestsText, "\\s+it\\(").Count;
+            }
+
+            return 0;
         }
 
         string GetRelativePath(string fullPath, string basePath) {

@@ -121,90 +121,90 @@
             describe("XHTML compatibility", function() {
                 var userAgent = detect.parse(navigator.userAgent);
 
-                if(userAgent.browser.family != "IE") {
-                    it("renders bold tag", function() {
-                        var wrapper = new HtmlEditorWrapper(this.extender);
-                        wrapper.setContent("a").selectText().pressToolbarButtons(["bold"]);
+                    <% if(Request.Browser.Browser != "InternetExplorer") { %>
+                it("renders bold tag", function() {
+                    var wrapper = new HtmlEditorWrapper(this.extender);
+                    wrapper.setContent("a").selectText().pressToolbarButtons(["bold"]);
 
-                        actualSourceText = wrapper.currentState.editorContent("source");
-                        expect(actualSourceText).toBe("<b>a</b>");
-                    });
+                    actualSourceText = wrapper.currentState.editorContent("source");
+                    expect(actualSourceText).toBe("<b>a</b>");
+                });
 
-                    it("renders italic tag", function() {
-                        var wrapper = new HtmlEditorWrapper(this.extender);
-                        wrapper.setContent("a").selectText().pressToolbarButtons(["italic"]);
+                it("renders italic tag", function() {
+                    var wrapper = new HtmlEditorWrapper(this.extender);
+                    wrapper.setContent("a").selectText().pressToolbarButtons(["italic"]);
 
-                        actualSourceText = wrapper.currentState.editorContent("source");
-                        expect(actualSourceText).toBe("<i>a</i>");
-                    });
+                    actualSourceText = wrapper.currentState.editorContent("source");
+                    expect(actualSourceText).toBe("<i>a</i>");
+                });
 
-                    it("defines strike through via style", function() {
-                        var wrapper = new HtmlEditorWrapper(this.extender);
-                        wrapper.setContent("a").selectText().pressToolbarButtons(["strike-through"]);
+                it("defines strike through via style", function() {
+                    var wrapper = new HtmlEditorWrapper(this.extender);
+                    wrapper.setContent("a").selectText().pressToolbarButtons(["strike-through"]);
 
-                        actualSourceText = wrapper.currentState.editorContent("source");
-                        expect(actualSourceText).toBe("<span style=\"text-decoration: line-through;\">a</span>");
-                    });
+                    actualSourceText = wrapper.currentState.editorContent("source");
+                    expect(actualSourceText).toBe("<span style=\"text-decoration: line-through;\">a</span>");
+                });
 
-                    it("defines left indent via style", function() {
-                        var wrapper = new HtmlEditorWrapper(this.extender);
-                        wrapper.setContent("a").selectText().pressToolbarButtons(["justify-right"]).selectText().pressToolbarButtons(["justify-left"]);
+                it("defines left indent via style", function() {
+                    var wrapper = new HtmlEditorWrapper(this.extender);
+                    wrapper.setContent("a").selectText().pressToolbarButtons(["justify-right"]).selectText().pressToolbarButtons(["justify-left"]);
 
-                        actualSourceText = wrapper.currentState.editorContent("source");
-                        expect(actualSourceText).toBe("<div style=\"text-align: left;\">a</div>");
-                    });
+                    actualSourceText = wrapper.currentState.editorContent("source");
+                    expect(actualSourceText).toBe("<div style=\"text-align: left;\">a</div>");
+                });
 
-                    it("defines center indent via style", function() {
-                        var wrapper = new HtmlEditorWrapper(this.extender);
-                        wrapper.setContent("a").selectText().pressToolbarButtons(["justify-center"]);
+                it("defines center indent via style", function() {
+                    var wrapper = new HtmlEditorWrapper(this.extender);
+                    wrapper.setContent("a").selectText().pressToolbarButtons(["justify-center"]);
 
-                        actualSourceText = wrapper.currentState.editorContent("source");
-                        expect(actualSourceText).toBe("<div style=\"text-align: center;\">a</div>");
-                    });
+                    actualSourceText = wrapper.currentState.editorContent("source");
+                    expect(actualSourceText).toBe("<div style=\"text-align: center;\">a</div>");
+                });
 
-                    it("defines right indent via style", function() {
-                        var wrapper = new HtmlEditorWrapper(this.extender);
-                        wrapper.setContent("a").selectText().pressToolbarButtons(["justify-right"]);
+                it("defines right indent via style", function() {
+                    var wrapper = new HtmlEditorWrapper(this.extender);
+                    wrapper.setContent("a").selectText().pressToolbarButtons(["justify-right"]);
 
-                        actualSourceText = wrapper.currentState.editorContent("source");
-                        expect(actualSourceText).toBe("<div style=\"text-align: right;\">a</div>");
-                    });
+                    actualSourceText = wrapper.currentState.editorContent("source");
+                    expect(actualSourceText).toBe("<div style=\"text-align: right;\">a</div>");
+                });
 
-                    it("defines justify indent via style", function() {
-                        var wrapper = new HtmlEditorWrapper(this.extender);
-                        wrapper.setContent("a").selectText().pressToolbarButtons(["justify-full"]);
+                it("defines justify indent via style", function() {
+                    var wrapper = new HtmlEditorWrapper(this.extender);
+                    wrapper.setContent("a").selectText().pressToolbarButtons(["justify-full"]);
 
-                        actualSourceText = wrapper.currentState.editorContent("source");
-                        expect(actualSourceText).toBe("<div style=\"text-align: justify;\">a</div>");
-                    });
+                    actualSourceText = wrapper.currentState.editorContent("source");
+                    expect(actualSourceText).toBe("<div style=\"text-align: justify;\">a</div>");
+                });
 
-                    it("defines background color style via style", function() {
-                        var wrapper = new HtmlEditorWrapper(this.extender);
-                        wrapper.setContent("a").selectText();
-                        this.extender.setColor("BackColor", "#000000");
+                it("defines background color style via style", function() {
+                    var wrapper = new HtmlEditorWrapper(this.extender);
+                    wrapper.setContent("a").selectText();
+                    this.extender.setColor("BackColor", "#000000");
 
-                        actualSourceText = wrapper.currentState.editorContent("source");
-                        expect(actualSourceText).toBe("<span style=\"background-color: rgb(0, 0, 0);\">a</span>");
-                    });
+                    actualSourceText = wrapper.currentState.editorContent("source");
+                    expect(actualSourceText).toBe("<span style=\"background-color: rgb(0, 0, 0);\">a</span>");
+                });
 
-                    it("defines foreground color style via style", function() {
-                        var wrapper = new HtmlEditorWrapper(this.extender);
-                        wrapper.setContent("a").selectText();
-                        this.extender.setColor("ForeColor", "#ff0000");
+                it("defines foreground color style via style", function() {
+                    var wrapper = new HtmlEditorWrapper(this.extender);
+                    wrapper.setContent("a").selectText();
+                    this.extender.setColor("ForeColor", "#ff0000");
 
-                        actualSourceText = wrapper.currentState.editorContent("source");
-                        expect(actualSourceText).toBe("<span style=\"color: rgb(255, 0, 0);\">a</span>");
-                    });
+                    actualSourceText = wrapper.currentState.editorContent("source");
+                    expect(actualSourceText).toBe("<span style=\"color: rgb(255, 0, 0);\">a</span>");
+                });
 
-                    it("defines font family via style", function() {
-                        var wrapper = new HtmlEditorWrapper(this.extender);
-                        wrapper.setContent("a").selectText();
-                        this.extender.setFontFamily("Tahoma");
+                it("defines font family via style", function() {
+                    var wrapper = new HtmlEditorWrapper(this.extender);
+                    wrapper.setContent("a").selectText();
+                    this.extender.setFontFamily("Tahoma");
 
-                        actualSourceText = wrapper.currentState.editorContent("source");
-                        expect(actualSourceText).toBe("<span style=\"font-family: Tahoma;\">a</span>");
-                    });
-                }
+                    actualSourceText = wrapper.currentState.editorContent("source");
+                    expect(actualSourceText).toBe("<span style=\"font-family: Tahoma;\">a</span>");
+                });
+                <% } %>
 
                 it("renders undeline tag", function() {
                     var wrapper = new HtmlEditorWrapper(this.extender);
