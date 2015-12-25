@@ -12,6 +12,38 @@
         AutoCompleteMode="SuggestAppend" />
 
     <script>
+        function parseStyle(style) {
+            var styleObject = {};
+
+            var elements = style.split(";");
+            for(var i = 0; i < elements.length; i++) {
+                var styleKeyValue = elements[i].trim().split(":");
+
+                if(styleKeyValue[0])
+                    styleObject[styleKeyValue[0].trim()] = styleKeyValue[1].trim();
+            }
+
+            return styleObject;
+        }
+
+        function areEqual(obj1, obj2) {
+            if(!compareFields(obj1, obj2))
+                return false;
+
+            if(!compareFields(obj2, obj1))
+                return false;
+
+            return true;
+        }
+
+        function compareFields(obj1, obj2) {
+            for(var key in obj1)
+                if(obj1[key] != obj2[key]) 
+                    return false;
+
+            return true;
+        }
+
         describe("ComboBox", function() {
 
             var COMBOBOX_CLIENT_ID = "<%= TargetExtender.ClientID %>";
@@ -21,10 +53,10 @@
                 COMBOBOX_BUTTON_CONTAINER_CLASS_NAME = "ajax__combobox_buttoncontainer",
                 COMBOBOX_ITEM_LIST_CLASS_NAME = "ajax__combobox_itemlist";
 
-            var COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE = "color: highlighttext; background-color: highlight;";
+            var COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE = { "color": "highlighttext", "background-color": "highlight" };
 
             describe("Rendering", function() {
-               
+
                 beforeEach(function() {
                     this.extender = $find(COMBOBOX_CLIENT_ID);
 
@@ -60,7 +92,7 @@
                     this.enterPressEvent = new Sys.UI.DomEvent({
                         keyCode: 13,
                         type: "keypress",
-                        shiftKey: false                        
+                        shiftKey: false
                     });
                 });
 
@@ -92,7 +124,7 @@
                     expect($buttonContainer.children("button[type=button]").length).toBe(1);
                 });
 
-                it("button has no explicit visibility set", function () {
+                it("button has no explicit visibility set", function() {
                     var $buttonContainer = this.$element.find(COMBOBOX_BUTTON_CONTAINER_CLASS_NAME.toClassSelector());
                     var button = $buttonContainer.children("button[type=button]").get(0);
                     expect(button.style.visibility).toBe("");
@@ -166,12 +198,16 @@
 
                 it("first list item is selected after first keydown", function() {
                     this.extender._handleArrowKey(this.keyDownEvent);
-                    expect(this.$itemsContainer.children("li").first().attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                    var styleObject = parseStyle(this.$itemsContainer.children("li").first().attr("style"));
+                    var stylesEqual = areEqual(styleObject, COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                    expect(stylesEqual).toBe(true);
                 });
 
-                it("first list item is selected after first alphabetic keypress", function () {
+                it("first list item is selected after first alphabetic keypress", function() {
                     this.extender._onTextBoxKeyPress(this.keyPressEvent);
-                    expect(this.$itemsContainer.children("li").first().attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                    var styleObject = parseStyle(this.$itemsContainer.children("li").first().attr("style"));
+                    var stylesEqual = areEqual(styleObject, COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                    expect(stylesEqual).toBe(true);
                 });
 
                 it("appropriate list item is selected after some keydowns", function() {
@@ -181,14 +217,18 @@
                         this.extender._handleArrowKey(this.keyDownEvent);
                     }
 
-                    expect(this.$itemsContainer.children("li").eq(itemsCount - 1).attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                    var styleObject = parseStyle(this.$itemsContainer.children("li").eq(itemsCount - 1).attr("style"));
+                    var stylesEqual = areEqual(styleObject, COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                    expect(stylesEqual).toBe(true);
                 });
 
                 it("highlight list item is not changed after keyup, if it were the first one", function() {
                     this.extender._handleArrowKey(this.keyDownEvent);
                     this.extender._handleArrowKey(this.keyUpEvent);
 
-                    expect(this.$itemsContainer.children("li").eq(0).attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                    var styleObject = parseStyle(this.$itemsContainer.children("li").eq(0).attr("style"));
+                    var stylesEqual = areEqual(styleObject, COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                    expect(stylesEqual).toBe(true);
                 });
 
                 it("highlight list item is not changed after keydown, if it were the last one", function() {
@@ -198,10 +238,12 @@
                         this.extender._handleArrowKey(this.keyDownEvent);
                     }
 
-                    expect(this.$itemsContainer.children("li").eq(itemsCount - 1).attr("style")).toBe(COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                    var styleObject = parseStyle(this.$itemsContainer.children("li").eq(itemsCount - 1).attr("style"));
+                    var stylesEqual = areEqual(styleObject, COMBOBOX_LIST_ITEM_HIGHLIGHT_STYLE);
+                    expect(stylesEqual).toBe(true);
                 });
 
-                it("F5 handles correctly (CodePlex item 27480)", function () {
+                it("F5 handles correctly (CodePlex item 27480)", function() {
                     var info = this.extender._getTextSelectionInfo(this.extender.get_textBoxControl(), this.f5KeyPressEvent);
 
                     expect(info.typedCharacter).toBe(String.fromCharCode(0));
