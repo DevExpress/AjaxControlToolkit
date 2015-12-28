@@ -7,6 +7,8 @@
         <asp:ContentPlaceHolder runat="server" ID="TestSuiteName" />
     </title>
 
+    <base href="<%# GetCurrentPage() %>" target="_blank">
+
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/Infrastructure/Scripts/Libs/jasmine-2.2.0/jasmine.css") %>
     </asp:PlaceHolder>

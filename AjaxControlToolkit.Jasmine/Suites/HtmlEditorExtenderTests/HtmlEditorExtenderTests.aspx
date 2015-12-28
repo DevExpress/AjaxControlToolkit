@@ -562,7 +562,7 @@
 
                 var ajaxFileUpload = $find(this.extender._id + "_ajaxFileUpload");
 
-                var imageUrl = (this.ua.browser.family === "Firefox" ? "HtmlEditorExtenderTests/" : "") + "superhero.png";
+                var imageUrl = "superhero.png";
 
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", imageUrl, true);
@@ -642,9 +642,6 @@
 
                 var expectedText = "<a href=\"\">test link</a>";
 
-                if(this.ua.browser.family == "Firefox")
-                    expectedText = "&lt;a href='javascript:alert(\"hello world\");'&gt;test link&lt;/a&gt;";
-
                 var endRequestHandler = function() {
                     var extender = $find("<%= TargetExtenderSanitized.ClientID %>"),
                         wrapper = new HtmlEditorWrapper(extender);
@@ -669,10 +666,7 @@
             it("keeps width attribute in img elements", function(done) {
                 var text = "<img width=\"100\">";
                 var expectedText = text;
-
-                if(this.ua.browser.family == "Firefox")
-                    expectedText = "&lt;img width=\"100\"&gt;";
-
+                
                 var wrapper = new HtmlEditorWrapper(this.extender);
                 wrapper.switchTab("source").setContent(text);
 
@@ -694,9 +688,6 @@
                 var text = "<div id=\"test_id\"></div>";
                 var expectedText = text;
 
-                if(this.ua.browser.family == "Firefox")
-                    expectedText = "&lt;div id=\"test_id\"&gt;&lt;/div&gt;";
-
                 var wrapper = new HtmlEditorWrapper(this.extender);
                 wrapper.switchTab("source").setContent(text);
 
@@ -717,9 +708,6 @@
             it("keeps class attribute in element", function(done) {
                 var text = "<div class=\"test-class\"></div>";
                 var expectedText = text;
-
-                if(this.ua.browser.family == "Firefox")
-                    expectedText = "&lt;div class=\"test-class\"&gt;&lt;/div&gt;";
 
                 var wrapper = new HtmlEditorWrapper(this.extender);
                 wrapper.switchTab("source").setContent(text);
