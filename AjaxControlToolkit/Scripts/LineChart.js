@@ -211,6 +211,9 @@ Sys.Extended.UI.LineChart.prototype = {
             this.roundedTickRange = Math.ceil(unroundedTickSize / pow10x) * pow10x;
         }
 
+        if(this.roundedTickRange == 0)
+            this.roundedTickRange = 1;
+
         this.startX = this.startX + (this.roundedTickRange * 10 * this._valueAxisLines / 10).toString().length * this.charLength;
     },
 
