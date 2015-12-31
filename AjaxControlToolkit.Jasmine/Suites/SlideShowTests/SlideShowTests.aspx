@@ -157,13 +157,18 @@
                 }
             });
 
-            it("next button calls '_clickNext' method", function() {
+            it("next button calls '_clickNext' method", function(done) {
                 this.$playStopButton.click();
 
                 spyOn(this.extender, "_clickNext");
-                this.$nextButton.click();
 
-                expect(this.extender._clickNext).toHaveBeenCalled();
+                var self = this;
+
+                setTimeout(function() {
+                    self.$nextButton.click();
+                    expect(self.extender._clickNext).toHaveBeenCalled();
+                    done();
+                }, 500);
             });
 
             it("next button replaces image with the next one", function(done) {
@@ -171,32 +176,39 @@
 
                 var nextIndex = this.extender._currentIndex + 1;
 
-                this.$nextButton.click();
-
                 var that = this;
+
                 setTimeout(function() {
-                    expect(that.extender._currentIndex).toBe(nextIndex);
+                    that.$nextButton.click();
 
-                    var imageLink = $(that.extender._currentImage).find("a"),
-				        img = $(imageLink).find("img");
+                    setTimeout(function() {
+                        expect(that.extender._currentIndex).toBe(nextIndex);
 
-                    expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
-                    expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
+                        var imageLink = $(that.extender._currentImage).find("a"),
+                            img = $(imageLink).find("img");
 
-                    expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
-                    expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
+                        expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
+                        expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
 
-                    done();
-                }, ANIMATION_SPEED + 200);
+                        expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
+                        expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
+
+                        done();
+                    }, ANIMATION_SPEED + 200);
+                }, 500);
             });
 
-            it("previous button calls '_clickPrevious' method", function() {
+            it("previous button calls '_clickPrevious' method", function(done) {
                 this.$playStopButton.click();
 
                 spyOn(this.extender, "_clickPrevious");
-                this.$prevButton.click();
 
-                expect(this.extender._clickPrevious).toHaveBeenCalled();
+                var self = this;
+                setTimeout(function() {
+                    self.$prevButton.click();
+                    expect(self.extender._clickPrevious).toHaveBeenCalled();
+                    done();
+                }, 500);
             });
 
             it("previous button replaces image with the previous one", function(done) {
@@ -206,23 +218,27 @@
                 if(prevIndex < 0)
                     prevIndex = this.extender._slides.length - 1;
 
-                this.$prevButton.click();
-
                 var that = this;
+
                 setTimeout(function() {
-                    expect(that.extender._currentIndex).toBe(prevIndex);
+                    that.$prevButton.click();
 
-                    var imageLink = $(that.extender._currentImage).find("a"),
-				        img = $(imageLink).find("img");
+                    setTimeout(function() {
 
-                    expect(IMAGES[prevIndex].url).toBe($(imageLink).attr("href"));
-                    expect(IMAGES[prevIndex].path).toBe($(img).attr("src"));
+                        expect(that.extender._currentIndex).toBe(prevIndex);
 
-                    expect(IMAGES[prevIndex].name).toBe($(that.imageTitleLabel).text());
-                    expect(IMAGES[prevIndex].description).toBe($(that.imageDescriptionLabel).text());
+                        var imageLink = $(that.extender._currentImage).find("a"),
+                            img = $(imageLink).find("img");
 
-                    done();
-                }, ANIMATION_SPEED + 200);
+                        expect(IMAGES[prevIndex].url).toBe($(imageLink).attr("href"));
+                        expect(IMAGES[prevIndex].path).toBe($(img).attr("src"));
+
+                        expect(IMAGES[prevIndex].name).toBe($(that.imageTitleLabel).text());
+                        expect(IMAGES[prevIndex].description).toBe($(that.imageDescriptionLabel).text());
+
+                        done();
+                    }, ANIMATION_SPEED + 200);
+                }, 500)
             });
 
             it("play button calls '_play' function when clicked", function() {
