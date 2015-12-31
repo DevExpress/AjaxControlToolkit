@@ -105,10 +105,16 @@
                 });
 
                 it("icon cell image has proper width and height", function() {
-                    var $iconCellImage = this.$container.find(VALIDATOR_CALLOUT_ICON_CELL_CLASS_NAME.toClassSelector()).children("img");
+                    var self = this;
+                    
+                    setTimeout(function() {
+                        var $iconCellImage = this.$container.find(VALIDATOR_CALLOUT_ICON_CELL_CLASS_NAME.toClassSelector()).children("img");
 
-                    expect($iconCellImage.width()).toBe(VALIDATOR_CALLOUT_ERROR_IMAGE_WIDTH);
-                    expect($iconCellImage.height()).toBe(VALIDATOR_CALLOUT_ERROR_IMAGE_HEIGHT);
+                        setTimeout(function() {
+                            expect($iconCellImage.width()).toBe(VALIDATOR_CALLOUT_ERROR_IMAGE_WIDTH);
+                            expect($iconCellImage.height()).toBe(VALIDATOR_CALLOUT_ERROR_IMAGE_HEIGHT);
+                        }, 500);
+                    }, 500);
                 });
 
                 it("error message cell contains proper html", function() {
@@ -123,11 +129,18 @@
                     expect($closeButtonCell.find("img").length).toBe(1)
                 });
 
-                it("close button cell image has proper width and height", function() {
-                    var $closeButtonImage = this.$container.find(VALIDATOR_CALLOUT_CLOSE_BUTTON_CELL_CLASS_NAME.toClassSelector()).find("img");
-
-                    expect($closeButtonImage.width()).toBe(VALIDATOR_CALLOUT_CLOSE_BUTTON_IMAGE_WIDTH);
-                    expect($closeButtonImage.height()).toBe(VALIDATOR_CALLOUT_CLOSE_BUTTON_IMAGE_HEIGHT);
+                it("close button cell image has proper width and height", function(done) {
+                    var self = this;
+                    setTimeout(function() {
+                        var $closeButtonImage = self.$container.find(VALIDATOR_CALLOUT_CLOSE_BUTTON_CELL_CLASS_NAME.toClassSelector()).find("img");
+                        setTimeout(function() {
+                            var width = $closeButtonImage.width();
+                            var height = $closeButtonImage.height();
+                            expect(width).toBe(VALIDATOR_CALLOUT_CLOSE_BUTTON_IMAGE_WIDTH);
+                            expect(height).toBe(VALIDATOR_CALLOUT_CLOSE_BUTTON_IMAGE_HEIGHT);
+                            done();
+                        }, 500);
+                    }, 500);
                 });
 
                 it("popup table hasn't cellpadding attribute", function() {
