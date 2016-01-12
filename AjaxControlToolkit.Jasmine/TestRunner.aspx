@@ -48,7 +48,7 @@
             </div>
         </section>
 
-        <iframe class="control-container"></iframe>
+        <iframe class="control-container" id="testframe"></iframe>
     </form>
 
     <asp:PlaceHolder runat="server">

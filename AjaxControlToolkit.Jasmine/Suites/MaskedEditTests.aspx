@@ -91,6 +91,15 @@
         AcceptAMPM="True" />
 
     <asp:TextBox runat="server"
+        ID="CzechTimeTarget" />
+    <act:MaskedEditExtender ID="CzechTimeTargetMaskedEditExtender" runat="server"
+        TargetControlID="CzechTimeTarget"
+        Mask="99:99:99"
+        MaskType="Time"
+        AcceptAMPM="True"
+        CultureName="cs-CZ" />
+
+    <asp:TextBox runat="server"
         ID="ShortTimeTarget" />
     <act:MaskedEditExtender ID="ShortTimeTargetExtender" runat="server"
         TargetControlID="ShortTimeTarget"
@@ -102,8 +111,11 @@
 
         describe("MaskedEdit", function () {
 
-            var TIME_TARGET_CLIENT_ID = "<%= TimeTarget.ClientID %>",
+            var
+                TIME_TARGET_CLIENT_ID = "<%= TimeTarget.ClientID %>",
                 TIME_TARGET_EXTENDER_CLIENT_ID = "<%= TimeTargetMaskedEditExtender.ClientID %>",
+                CZECH_TIME_TARGET_CLIENT_ID = "<%= CzechTimeTarget.ClientID %>",
+                CZECH_TIME_TARGET_EXTENDER_CLIENT_ID = "<%= CzechTimeTargetMaskedEditExtender.ClientID %>",
                 SHORT_TIME_TARGET_CLIENT_ID = "<%= ShortTimeTarget.ClientID %>",
                 SHORT_TIME_TARGET_EXTENDER_CLIENT_ID = "<%= ShortTimeTargetExtender.ClientID %>",
                 COMMON_TARGET_CLIENT_ID = "<%= CommonTarget.ClientID%>",
@@ -145,6 +157,9 @@
 
                 this.timeExtender = $find(TIME_TARGET_EXTENDER_CLIENT_ID);
                 this.$timeTarget = $(TIME_TARGET_CLIENT_ID.toIdSelector());
+
+                this.czechTimeExtender = $find(CZECH_TIME_TARGET_EXTENDER_CLIENT_ID);
+                this.$czechTimeTarget = $(CZECH_TIME_TARGET_CLIENT_ID.toIdSelector());
 
                 this.shortTimeExtender = $find(SHORT_TIME_TARGET_EXTENDER_CLIENT_ID);
                 this.$shortTimeTarget = $(SHORT_TIME_TARGET_CLIENT_ID.toIdSelector());
@@ -254,9 +269,8 @@
             });
 
             it("allows entering leading zeros", function () {
-                this.$rightToLeftEmptyTarget.focus();
+                setCaretToPosition(this.$rightToLeftEmptyTarget.get(0), 3);
                 pressButtons(this.$rightToLeftEmptyTarget, "00");
-                
                 expect(this.$rightToLeftEmptyTarget.val()).toBe("_00.__");
             });
 
@@ -268,12 +282,14 @@
                 expect(getCaretPosition(this.$shortTimeTarget.get(0))).toBe(3);
             });
 
-            it("correctly switches shorttime group backward", function () {
-                this.$shortTimeTarget.focus();
+            it("correctly switches shorttime group backward", function (done) {
                 setCaretToPosition(this.$shortTimeTarget.get(0), 3);
                 pressButtons(this.$shortTimeTarget, ":");
-
-                expect(getCaretPosition(this.$shortTimeTarget.get(0))).toBe(0);
+                var self = this;
+                setTimeout(function() {
+                    expect(getCaretPosition(self.$shortTimeTarget.get(0))).toBe(0);
+                    done();
+                }, 500);
             });
 
             it("date formatting does not throw an exception when user date format is set (CodePlex item 27921)", function () {
@@ -305,20 +321,17 @@
                 expect(this.$timeTarget.val()).toBe("05:00:00 AM");
             });
 
-            it("loads value with AMPM for cs-CZ", function () {
+            it("loads value with AMPM for cs-CZ", function() {
+
                 spyOn(this.timeExtender, "getCurrentHour").and.callFake(function (date) {
                     return "14";
                 });
+              
+                this.$czechTimeTarget.focus();
+                pressButtons(this.$czechTimeTarget, "050000");
+                this.$czechTimeTarget.blur();
 
-                spyOn(this.timeExtender, "get_cultureAMPMPlaceholder").and.callFake(function () {
-                    return "dop.;odp.";
-                });
-
-                this.$timeTarget.focus();
-                pressButtons(this.$timeTarget, "050000");
-                this.$timeTarget.blur();
-
-                expect(this.$timeTarget.val()).toBe("05:00:00 dop.");
+                expect(this.$czechTimeTarget.val()).toBe("05:00:00 dop.");
             });
         });
 
