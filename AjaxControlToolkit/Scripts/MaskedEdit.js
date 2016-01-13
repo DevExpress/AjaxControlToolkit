@@ -236,11 +236,6 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             this._focusHandler = null;
         }
 
-        if(this._focusHandler) {
-            $removeHandler(e, "focus", this._focusHandler);
-            this._focusHandler = null;
-        }
-
         if(this._blurHandler) {
             $removeHandler(e, "blur", this._blurHandler);
             this._blurHandler = null;
