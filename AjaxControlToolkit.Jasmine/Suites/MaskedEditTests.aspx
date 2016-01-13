@@ -88,7 +88,8 @@
         TargetControlID="TimeTarget"
         Mask="99:99:99"
         MaskType="Time"
-        AcceptAMPM="True" />
+        AcceptAMPM="True"
+        CultureName="en-US" />
 
     <asp:TextBox runat="server"
         ID="CzechTimeTarget" />
@@ -109,11 +110,11 @@
 
     <script>
 
-        describe("MaskedEdit", function () {
+        describe("MaskedEdit", function() {
 
             var
                 TIME_TARGET_CLIENT_ID = "<%= TimeTarget.ClientID %>",
-                TIME_TARGET_EXTENDER_CLIENT_ID = "<%= TimeTargetMaskedEditExtender.ClientID %>",
+                TIME_TARGET_EXTENDER_CLIENT_ID = "<%= TimeTargetMaskedEditExtender.ClientID %>";
                 CZECH_TIME_TARGET_CLIENT_ID = "<%= CzechTimeTarget.ClientID %>",
                 CZECH_TIME_TARGET_EXTENDER_CLIENT_ID = "<%= CzechTimeTargetMaskedEditExtender.ClientID %>",
                 SHORT_TIME_TARGET_CLIENT_ID = "<%= ShortTimeTarget.ClientID %>",
@@ -133,7 +134,7 @@
                 PHONE_NUMBER_EXTENDER_CLIENT_ID = "<%= PhoneNumberTargetExtender.ClientID%>",
                 PHONE_NUMBER_TARGET_CLIENT_ID = "<%= PhoneNumberTarget.ClientID %>";
 
-            beforeEach(function () {
+            beforeEach(function() {
                 this.$commonTarget = $(COMMON_TARGET_CLIENT_ID.toIdSelector());
                 this.commonExtender = $find(COMMON_EXTENDER_CLIENT_ID);
 
@@ -305,108 +306,124 @@
                 expect(this.$phoneNumberTarget.val()).toBe("(123) 456-7890");
             });
 
-            it("loads value with AMPM", function () {
-                spyOn(this.timeExtender, "getCurrentHour").and.callFake(function (date) {
-                    return "14";
-                });
-
-                spyOn(this.timeExtender, "get_cultureAMPMPlaceholder").and.callFake(function () {
-                    return "AM;PM";
-                });
+            it("loads value with AMPM", function(done) {
+                var self = this;
 
                 this.$timeTarget.focus();
-                pressButtons(this.$timeTarget, "050000");
-                this.$timeTarget.blur();
 
-                expect(this.$timeTarget.val()).toBe("05:00:00 AM");
+                setTimeout(function() {
+                    $removeHandler(self.timeExtender.get_element(), "focus", self.timeExtender._focusHandler);
+                    self.timeExtender._focusHandler = null;
+
+                    pressButtons(self.$timeTarget, "050000");
+
+                    setTimeout(function() {
+                        self.$timeTarget.blur();
+
+                        setTimeout(function() {
+                            expect(self.$timeTarget.val()).toBe("05:00:00 AM");
+
+                            self.timeExtender._focusHandler = Function.createDelegate(self.timeExtender, self.timeExtender._onFocus);
+                            $addHandler(self.timeExtender.get_element(), "focus", self.timeExtender._focusHandler);
+
+                            done();
+                        }, 200);
+                    }, 200);
+                }, 200);
             });
 
-            it("loads value with AMPM for cs-CZ", function() {
-
-                spyOn(this.timeExtender, "getCurrentHour").and.callFake(function (date) {
-                    return "14";
-                });
-              
+            it("loads value with AMPM for cs-CZ", function(done) {
+                var self = this;
                 this.$czechTimeTarget.focus();
-                pressButtons(this.$czechTimeTarget, "050000");
-                this.$czechTimeTarget.blur();
 
-                expect(this.$czechTimeTarget.val()).toBe("05:00:00 dop.");
+                setTimeout(function() {
+                    pressButtons(self.$czechTimeTarget, "050000");
+
+                    setTimeout(function() {
+                        self.$czechTimeTarget.blur();
+
+                        setTimeout(function() {
+                            expect(self.$czechTimeTarget.val()).toBe("05:00:00 dop.");
+                            done();
+                        }, 200);
+                    }, 200);
+                }, 200);
+
             });
         });
 
-        function getKeyboardEvent(prefs) {
-            var keyboardEvent = document.createEvent("KeyboardEvent");
-            var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
+            function getKeyboardEvent(prefs) {
+                var keyboardEvent = document.createEvent("KeyboardEvent");
+                var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
 
-            keyboardEvent[initMethod](
-                prefs.typeArg,
-                prefs.canBubbleArg,
-                prefs.cancelableArg,
-                prefs.viewArg,
-                prefs.ctrlKeyArg,
-                prefs.altKeyArg,
-                prefs.shiftKeyArg,
-                prefs.metaKeyArg,
-                prefs.keyCodeArg,
-                prefs.charCodeArg
-            );
+                keyboardEvent[initMethod](
+                    prefs.typeArg,
+                    prefs.canBubbleArg,
+                    prefs.cancelableArg,
+                    prefs.viewArg,
+                    prefs.ctrlKeyArg,
+                    prefs.altKeyArg,
+                    prefs.shiftKeyArg,
+                    prefs.metaKeyArg,
+                    prefs.keyCodeArg,
+                    prefs.charCodeArg
+                );
 
-            return keyboardEvent;
-        };
+                return keyboardEvent;
+            };
 
-        function setCaretToPosition(input, pos) {
-            setSelectionRange(input, pos, pos);
-        };
+            function setCaretToPosition(input, pos) {
+                setSelectionRange(input, pos, pos);
+            };
 
-        function setSelectionRange(input, selectionStart, selectionEnd) {
-            if (input.setSelectionRange) {
-                input.focus();
-                input.setSelectionRange(selectionStart, selectionEnd);
-            } else if (input.createTextRange) {
-                var range = input.createTextRange();
-                range.collapse(true);
-                range.moveEnd('character', selectionEnd);
-                range.moveStart('character', selectionStart);
-                range.select();
+            function setSelectionRange(input, selectionStart, selectionEnd) {
+                if(input.setSelectionRange) {
+                    input.focus();
+                    input.setSelectionRange(selectionStart, selectionEnd);
+                } else if(input.createTextRange) {
+                    var range = input.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd('character', selectionEnd);
+                    range.moveStart('character', selectionStart);
+                    range.select();
+                }
+            };
+
+            function pressButtons(target, sequence) {
+                for(var i = 0; i < sequence.length; i++) {
+                    var charCode = sequence.charCodeAt(i);
+                    target.simulate("keypress", { charCode: charCode });
+                }
+            };
+
+            function getCaretPosition(input) {
+
+                // Initialize
+                var caretPos = 0;
+
+                // IE Support
+                if(document.selection) {
+
+                    // Set focus on the element
+                    input.focus();
+
+                    // To get cursor position, get empty selection range
+                    var selection = document.selection.createRange();
+
+                    // Move selection start to 0 position
+                    selection.moveStart('character', -input.value.length);
+
+                    // The caret position is selection length
+                    caretPos = selection.text.length;
+                }
+
+                    // Firefox support
+                else if(input.selectionStart || input.selectionStart == '0')
+                    caretPos = input.selectionStart;
+
+                // Return results
+                return caretPos;
             }
-        };
-
-        function pressButtons(target, sequence) {
-            for (var i = 0; i < sequence.length; i++) {
-                var charCode = sequence.charCodeAt(i);
-                target.simulate("keypress", { charCode: charCode });
-            }
-        };
-
-        function getCaretPosition(input) {
-
-            // Initialize
-            var caretPos = 0;
-
-            // IE Support
-            if (document.selection) {
-
-                // Set focus on the element
-                input.focus();
-
-                // To get cursor position, get empty selection range
-                var selection = document.selection.createRange();
-
-                // Move selection start to 0 position
-                selection.moveStart('character', -input.value.length);
-
-                // The caret position is selection length
-                caretPos = selection.text.length;
-            }
-
-                // Firefox support
-            else if (input.selectionStart || input.selectionStart == '0')
-                caretPos = input.selectionStart;
-
-            // Return results
-            return caretPos;
-        }
 
     </script>
 </asp:Content>

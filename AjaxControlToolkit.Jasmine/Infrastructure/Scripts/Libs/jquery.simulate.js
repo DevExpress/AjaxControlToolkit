@@ -181,7 +181,8 @@
                 $.extend(event, options);
             }
 
-            if(!!/msie [\w.]+/.exec(navigator.userAgent.toLowerCase()) || (({}).toString.call(window.opera) === "[object Opera]")) {
+            if((!(window.ActiveXObject) && "ActiveXObject" in window)
+                 || (({}).toString.call(window.opera) === "[object Opera]")) {
                 event.keyCode = (options.charCode > 0) ? options.charCode : options.keyCode;
                 event.charCode = undefined;
             }
