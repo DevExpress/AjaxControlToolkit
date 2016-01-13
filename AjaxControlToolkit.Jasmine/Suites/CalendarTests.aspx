@@ -238,7 +238,7 @@
 
                 it("can navigate years", function () {
                     var title = this.$header.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector());
-                    var date = new Date(2015, 1, 1);
+                    var date = new Date();
                     title.click();
                     expect(title.text()).toBe(date.getFullYear().toString());
 
