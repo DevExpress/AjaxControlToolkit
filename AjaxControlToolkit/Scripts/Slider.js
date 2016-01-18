@@ -639,7 +639,6 @@ Sys.Extended.UI.SliderBehavior.prototype = {
 
     onDrag: function() {
         var dragHandleBounds = this._getBoundsInternal(this._dragHandle);
-        var handleBounds = this._getHandleBounds();
         var sliderBounds = this._getRailBounds();
 
         var handlePosition;
