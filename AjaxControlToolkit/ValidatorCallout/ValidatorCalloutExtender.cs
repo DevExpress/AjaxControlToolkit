@@ -12,6 +12,10 @@ namespace AjaxControlToolkit {
     /// ValidatorCallout is an ASP.NET AJAX extender that enhances the functionality
     /// of existing ASP.NET validators.
     /// </summary>
+    /// <remarks>
+    /// Note that starting with .NET Framework 4.5 ASP.NET uses unobtrusive validation, which is incompatible with ValidatorCalloutExtender.
+    /// To make ValidatorCalloutExtender work please disable the unobtrusive validation as described here: http://jupaol.blogspot.ru/2012/09/enabling-unobtrusive-validation-from.html
+    /// </remarks>
     [Designer(typeof(ValidatorCalloutExtenderDesigner))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(PopupExtender))]
