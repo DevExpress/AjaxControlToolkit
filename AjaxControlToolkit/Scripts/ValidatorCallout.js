@@ -33,12 +33,15 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
         Sys.Extended.UI.ValidatorCalloutBehavior.callBaseMethod(this, 'initialize');
         var elt = this.get_element();
 
-        // Override the evaluation method of the current validator
-        if(elt.evaluationfunction) {
-            this._originalValidationMethod = Function.createDelegate(elt, elt.evaluationfunction);
-            this._validationMethodOverride = Function.createDelegate(this, this._onvalidate);
-            elt.evaluationfunction = this._validationMethodOverride;
+        var self = this;
+
+        if(window.jQuery) {
+            $(function() {
+                self._checkPageValidators(self, elt);
+            });
         }
+
+        this._overrideEvaluationFunction(elt, this);
 
         // Check for failed server-side validation (indicated by non-empty ClientState)
         var clientState = this.get_ClientState();
@@ -48,6 +51,33 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             if(this._highlightCssClass)
                 Sys.UI.DomElement.addCssClass(this._elementToValidate, this._highlightCssClass);
             this.show();
+        }
+    },
+
+    _checkPageValidators: function(self, elt) {
+        if(typeof (Page_Validators) === "undefined")
+            return;
+
+        for(i = 0; i < Page_Validators.length; i++) {
+            val = Page_Validators[i];
+
+            if(val.ValidatorCalloutBehavior !== self)
+                continue;
+
+            if(typeof (val.evaluationfunction) === "function") {
+                elt.evaluationfunction = val.evaluationfunction;
+                self._overrideEvaluationFunction(elt, self);
+                break;
+            }
+        }
+    },
+
+    _overrideEvaluationFunction: function(elt, self) {
+        // Override the evaluation method of the current validator
+        if(elt.evaluationfunction) {
+            self._originalValidationMethod = Function.createDelegate(elt, elt.evaluationfunction);
+            self._validationMethodOverride = Function.createDelegate(self, self._onvalidate);
+            elt.evaluationfunction = self._validationMethodOverride;
         }
     },
 
@@ -214,7 +244,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
                 {},
                 null,
                 this._popupTable);
-            
+
             if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopLeft)
                 this._popupBehavior.set_positioningMode(Sys.Extended.UI.PositioningMode.TopLeft);
             else if(this._popupPosition == Sys.Extended.UI.ValidatorCalloutPosition.TopRight)
