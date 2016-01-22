@@ -191,10 +191,10 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     _setZIndex: function() {
-        var topModalPopupBackgroundZIndex = this._findTopModalPopupBackgroundZIndex();
+        var topModalPopupBackgroundZIndex = parseInt(this._findTopModalPopupBackgroundZIndex());
         // Want zIndex to big enough that the background sits above everything else
         // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
-        this._backgroundElement.style.zIndex = topModalPopupBackgroundZIndex ? (topModalPopupBackgroundZIndex + 1) : Sys.Extended.UI.zIndex.ModalPopupBackground;
+        this._backgroundElement.style.zIndex = topModalPopupBackgroundZIndex ? parseInt(topModalPopupBackgroundZIndex + 1) : parseInt(Sys.Extended.UI.zIndex.ModalPopupBackground);
         this._foregroundElement.style.zIndex = parseInt($common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex)) + 1;
     },
 
@@ -220,7 +220,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
         var backgroundsZindex = {};
 
-        //var topModalPopupID = undefined;
         var topZIndex = undefined;
 
         for(var i = 0; i < backgrounds.length; i++) {
@@ -229,7 +228,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
 
             if(backgrounds[i].style.zIndex > topZIndex) {
                 topZIndex = backgrounds[i].style.zIndex;
-                //topModalPopupID = backgrounds[i].id.replace("_backgroundElement", "");;
             }
         }
 
