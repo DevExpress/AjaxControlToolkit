@@ -129,7 +129,7 @@ namespace AjaxControlToolkit {
             var controlType = control.GetType();
 
             if(IsCdnEnabled()) {
-                var prefix = IsSecureConnection() ? Constants.CdnSecurePrefix : Constants.CdnPrefix;
+                var prefix = (IsSecureConnection() ? "https:" : "http:") + Constants.CdnPrefix;
                 return FormatStyleVirtualPath(name, minified).Replace("~/", prefix);
             }
 
