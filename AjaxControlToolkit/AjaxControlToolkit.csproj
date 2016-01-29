@@ -397,19 +397,61 @@
     <Compile Include="ValidatorCallout\ValidatorCalloutPosition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ToolboxIcons\Accordion.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\AjaxFileUpload.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\AlwaysVisibleControl.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\Animation.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\AreaChart.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\AsyncFileUpload.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\AutoComplete.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\BalloonPopup.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\BarChart.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\BubbleChart.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\Calendar.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\CascadingDropDown.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\CollapsiblePanel.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\ColorPicker.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\ComboBox.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\ConfirmButton.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\DragPanel.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\DropDown.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\DropShadow.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\DynamicPopulate.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\FilteredTextBox.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\Gravatar.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\HoverMenu.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\HtmlEditor.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\HtmlEditorExtender.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\LineChart.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\ListSearch.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\MaskedEdit.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\ModalPopup.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\MultiHandleSlider.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\MutuallyExclusiveCheckBox.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\NoBot.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\NumericUpDown.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\PagingBulletedList.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\PasswordStrength.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\PieChart.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\PopupControl.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\Rating.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\ReorderList.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\ResizableControl.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\RoundedCorners.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\Seadragon.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\Slider.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\SlideShow.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\Tabs.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\TextBoxWatermark.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\ToggleButton.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\Twitter.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\UpdatePanelAnimation.bmp" />
+    <EmbeddedResource Include="ToolboxIcons\ValidatorCallout.bmp" />
     <EmbeddedResource Include="Styles\NumericUpDown.css" />
     <EmbeddedResource Include="Styles\NumericUpDown.min.css">
       <DependentUpon>NumericUpDown.css</DependentUpon>
     </EmbeddedResource>
     <Content Include="Styles\README.txt" />
-    <EmbeddedResource Include="ToolboxIcons\AjaxFileUpload.ico" />
-    <EmbeddedResource Include="ToolboxIcons\AreaChart.ico" />
-    <EmbeddedResource Include="ToolboxIcons\AsyncFileUpload.ico" />
-    <EmbeddedResource Include="ToolboxIcons\BarChart.ico" />
-    <EmbeddedResource Include="ToolboxIcons\BubbleChart.ico" />
-    <EmbeddedResource Include="ToolboxIcons\LineChart.ico" />
-    <EmbeddedResource Include="ToolboxIcons\PieChart.ico" />
-    <EmbeddedResource Include="ToolboxIcons\Seadragon.ico" />
     <EmbeddedResource Include="Images\AsyncFileUpload.Button.png" />
     <EmbeddedResource Include="Images\BalloonPopup.CloudSprite.gif" />
     <EmbeddedResource Include="Images\BalloonPopup.CloudSprite.png" />
@@ -599,7 +641,6 @@
     <EmbeddedResource Include="Styles\HtmlEditorExtender.min.css">
       <DependentUpon>HtmlEditorExtender.css</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolboxIcons\HtmlEditorExtender.ico" />
     <EmbeddedResource Include="Styles\HtmlEditor.HtmlPanel.min.css">
       <DependentUpon>HtmlEditor.HtmlPanel.css</DependentUpon>
     </EmbeddedResource>
@@ -608,7 +649,6 @@
     <EmbeddedResource Include="Styles\HtmlEditor.Document.min.css">
       <DependentUpon>HtmlEditor.Document.css</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolboxIcons\HtmlEditor.ico" />
     <EmbeddedResource Include="Styles\HtmlEditor.Editor.min.css">
       <DependentUpon>HtmlEditor.Editor.css</DependentUpon>
     </EmbeddedResource>
@@ -620,12 +660,10 @@
       <DependentUpon>ComboBox.css</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Styles\ComboBox.css" />
-    <EmbeddedResource Include="ToolboxIcons\ComboBox.ico" />
     <EmbeddedResource Include="Styles\Twitter.min.css">
       <DependentUpon>Twitter.css</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Styles\Twitter.css" />
-    <EmbeddedResource Include="ToolboxIcons\Twitter.ico" />
     <EmbeddedResource Include="Styles\PieChart.css" />
     <EmbeddedResource Include="Styles\PieChart.min.css">
       <DependentUpon>PieChart.css</DependentUpon>
@@ -642,13 +680,10 @@
     <EmbeddedResource Include="Styles\BarChart.min.css">
       <DependentUpon>BarChart.css</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolboxIcons\Gravatar.ico" />
     <EmbeddedResource Include="Styles\ColorPicker.css" />
     <EmbeddedResource Include="Styles\ColorPicker.min.css">
       <DependentUpon>ColorPicker.css</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolboxIcons\ColorPicker.ico" />
-    <EmbeddedResource Include="ToolboxIcons\MultiHandleSlider.ico" />
     <Content Include="Scripts\AjaxFileUpload.js" />
     <Content Include="Scripts\AjaxFileUpload.min.js">
       <DependentUpon>AjaxFileUpload.js</DependentUpon>
@@ -774,7 +809,6 @@
     <Content Include="Scripts\ConfirmButton.min.js">
       <DependentUpon>ConfirmButton.js</DependentUpon>
     </Content>
-    <EmbeddedResource Include="ToolboxIcons\ConfirmButton.ico" />
     <EmbeddedResource Include="Styles\BalloonPopup.Cloud.css" />
     <EmbeddedResource Include="Styles\BalloonPopup.Rectangle.css" />
     <EmbeddedResource Include="Styles\BalloonPopup.Cloud.min.css">
@@ -1028,7 +1062,6 @@
     <Content Include="Scripts\Tabs.min.js">
       <DependentUpon>Tabs.js</DependentUpon>
     </Content>
-    <EmbeddedResource Include="ToolboxIcons\Tabs.ico" />
     <EmbeddedResource Include="Styles\Tabs.css" />
     <EmbeddedResource Include="Styles\Tabs.min.css">
       <DependentUpon>Tabs.css</DependentUpon>
@@ -1038,11 +1071,6 @@
       <DependentUpon>MultiHandleSlider.css</DependentUpon>
     </EmbeddedResource>
     <Content Include="Scripts\Tabs.js" />
-    <EmbeddedResource Include="ToolboxIcons\BalloonPopup.ico" />
-    <EmbeddedResource Include="ToolboxIcons\ListSearch.ico" />
-    <EmbeddedResource Include="ToolboxIcons\PopupControl.ico" />
-    <EmbeddedResource Include="ToolboxIcons\DropDown.ico" />
-    <EmbeddedResource Include="ToolboxIcons\ModalPopup.ico" />
     <Content Include="Scripts\Calendar.js" />
     <Content Include="Scripts\Calendar.min.js">
       <DependentUpon>Calendar.js</DependentUpon>
@@ -1106,11 +1134,6 @@
     <EmbeddedResource Include="Styles\ValidatorCallout.min.css">
       <DependentUpon>ValidatorCallout.css</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolboxIcons\Calendar.ico" />
-    <EmbeddedResource Include="ToolboxIcons\DynamicPopulate.ico" />
-    <EmbeddedResource Include="ToolboxIcons\ToggleButton.ico" />
-    <EmbeddedResource Include="ToolboxIcons\HoverMenu.ico" />
-    <EmbeddedResource Include="ToolboxIcons\ValidatorCallout.ico" />
     <Content Include="Scripts\Accordion.js" />
     <Content Include="Scripts\Accordion.min.js">
       <DependentUpon>Accordion.js</DependentUpon>
@@ -1144,7 +1167,6 @@
       <DependentUpon>UpdatePanelAnimation.js</DependentUpon>
     </Content>
     <EmbeddedResource Include="Styles\Slider.css" />
-    <EmbeddedResource Include="ToolboxIcons\Accordion.ico" />
     <EmbeddedResource Include="Styles\Slider.min.css">
       <DependentUpon>Slider.css</DependentUpon>
     </EmbeddedResource>
@@ -1165,11 +1187,6 @@
     <Content Include="Styles\Backgrounds_static.min.css">
       <DependentUpon>Backgrounds_static.css</DependentUpon>
     </Content>
-    <EmbeddedResource Include="ToolboxIcons\AutoComplete.ico" />
-    <EmbeddedResource Include="ToolboxIcons\ReorderList.ico" />
-    <EmbeddedResource Include="ToolboxIcons\Slider.ico" />
-    <EmbeddedResource Include="ToolboxIcons\CascadingDropDown.ico" />
-    <EmbeddedResource Include="ToolboxIcons\UpdatePanelAnimation.ico" />
     <Content Include="Scripts\AlwaysVisibleControl.js" />
     <Content Include="Scripts\AlwaysVisibleControl.min.js">
       <DependentUpon>AlwaysVisibleControl.js</DependentUpon>
@@ -1333,23 +1350,6 @@
     <EmbeddedResource Include="Styles\SlideShow.min.css">
       <DependentUpon>SlideShow.css</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToolboxIcons\AlwaysVisibleControl.ico" />
-    <EmbeddedResource Include="ToolboxIcons\Animation.ico" />
-    <EmbeddedResource Include="ToolboxIcons\CollapsiblePanel.ico" />
-    <EmbeddedResource Include="ToolboxIcons\DragPanel.ico" />
-    <EmbeddedResource Include="ToolboxIcons\DropShadow.ico" />
-    <EmbeddedResource Include="ToolboxIcons\FilteredTextBox.ico" />
-    <EmbeddedResource Include="ToolboxIcons\MaskedEdit.ico" />
-    <EmbeddedResource Include="ToolboxIcons\MutuallyExclusiveCheckBox.ico" />
-    <EmbeddedResource Include="ToolboxIcons\NoBot.ico" />
-    <EmbeddedResource Include="ToolboxIcons\PagingBulletedList.ico" />
-    <EmbeddedResource Include="ToolboxIcons\NumericUpDown.ico" />
-    <EmbeddedResource Include="ToolboxIcons\PasswordStrength.ico" />
-    <EmbeddedResource Include="ToolboxIcons\Rating.ico" />
-    <EmbeddedResource Include="ToolboxIcons\ResizableControl.ico" />
-    <EmbeddedResource Include="ToolboxIcons\RoundedCorners.ico" />
-    <EmbeddedResource Include="ToolboxIcons\SlideShow.ico" />
-    <EmbeddedResource Include="ToolboxIcons\TextBoxWatermark.ico" />
   </ItemGroup>
   <!-- Using custom names for embedded scripts to respect ScriptManager naming conventions -->
   <ItemGroup>

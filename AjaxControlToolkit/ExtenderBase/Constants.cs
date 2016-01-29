@@ -16,7 +16,7 @@ namespace AjaxControlToolkit {
             CssPostfix = ".css",
             MinCssPostfix = ".min" + CssPostfix,
 
-            IconPostfix = ".ico",
+            IconPostfix = ".bmp",
 
             ContentVirtualPath = "~/Content/AjaxControlToolkit/",
             StylesVirtualPath = ContentVirtualPath + "Styles/",
