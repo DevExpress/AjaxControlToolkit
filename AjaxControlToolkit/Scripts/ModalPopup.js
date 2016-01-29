@@ -73,32 +73,8 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._dragHandleElement = $get(this._popupDragHandleControlID);
 
         this._popupElement = $get(this._popupControlID);
-        if(this._dropShadow) {
-            this._foregroundElement = document.createElement('div');
-            this._foregroundElement.id = this.get_id() + '_foregroundElement';
-            this._popupElement.parentNode.appendChild(this._foregroundElement);
-            this._foregroundElement.appendChild(this._popupElement);
-        } else {
-            this._foregroundElement = this._popupElement;
-        }
 
-        this._backgroundElement = document.createElement('div');
-        this._backgroundElement.id = this.get_id() + '_backgroundElement';
-        this._backgroundElement.style.display = 'none';
-        this._backgroundElement.style.position = 'fixed';
-        this._backgroundElement.style.left = '0px';
-        this._backgroundElement.style.top = '0px';
-
-        // Want zIndex to big enough that the background sits above everything else
-        // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
-        this._backgroundElement.style.zIndex = Sys.Extended.UI.zIndex.ModalPopupBackground;
-        if(this._backgroundCssClass)
-            this._backgroundElement.className = this._backgroundCssClass;
-
-        this._foregroundElement.parentNode.appendChild(this._backgroundElement);
-        this._foregroundElement.style.display = 'none';
-        this._foregroundElement.style.position = 'fixed';
-        this._foregroundElement.style.zIndex = parseInt($common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex)) + 1;
+        this._createDomElements();
 
         this._showHandler = Function.createDelegate(this, this._onShow);
         $addHandler(this.get_element(), 'click', this._showHandler);
@@ -184,6 +160,78 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
 
         Sys.Extended.UI.ModalPopupBehavior.callBaseMethod(this, 'dispose');
+    },
+
+    _createDomElements: function() {
+        if(this._dropShadow) {
+            this._foregroundElement = document.createElement('div');
+            this._foregroundElement.id = this.get_id() + '_foregroundElement';
+            this._popupElement.parentNode.appendChild(this._foregroundElement);
+            this._foregroundElement.appendChild(this._popupElement);
+        } else {
+            this._foregroundElement = this._popupElement;
+        }
+
+        this._backgroundElement = document.createElement('div');
+        this._backgroundElement.dataset.actControlType = "modalPopupBackground";
+        this._backgroundElement.id = this.get_id() + '_backgroundElement';
+        this._backgroundElement.style.display = 'none';
+        this._backgroundElement.style.position = 'fixed';
+        this._backgroundElement.style.left = '0px';
+        this._backgroundElement.style.top = '0px';
+
+        if(this._backgroundCssClass)
+            this._backgroundElement.className = this._backgroundCssClass;
+
+        this._foregroundElement.parentNode.appendChild(this._backgroundElement);
+        this._foregroundElement.style.display = 'none';
+        this._foregroundElement.style.position = 'fixed';
+
+        this._setZIndex();
+    },
+
+    _setZIndex: function() {
+        var topModalPopupBackgroundZIndex = parseInt(this._findTopModalPopupBackgroundZIndex());
+        // Want zIndex to big enough that the background sits above everything else
+        // CSS 2.1 defines no bounds for the <integer> type, so pick arbitrarily
+        this._backgroundElement.style.zIndex = topModalPopupBackgroundZIndex ? parseInt(topModalPopupBackgroundZIndex + 1) : parseInt(Sys.Extended.UI.zIndex.ModalPopupBackground);
+        this._foregroundElement.style.zIndex = parseInt($common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex)) + 1;
+    },
+
+    _getAllElementsWithAttribute: function(attribute) {
+        var matchingElements = [];
+        var allElements = document.getElementsByTagName('*');
+        for(var i = 0, n = allElements.length; i < n; i++) {
+            if(allElements[i].getAttribute(attribute) !== null) {
+                matchingElements.push(allElements[i]);
+            }
+        }
+        return matchingElements;
+    },
+
+    _findTopModalPopupBackgroundZIndex: function() {
+        var actElements = this._getAllElementsWithAttribute("data-act-control-type");
+        var backgrounds = [];
+
+        for(var i = 0; i < actElements.length; i++) {
+            if(actElements[i].dataset.actControlType == "modalPopupBackground")
+                backgrounds.push(actElements[i]);
+        }
+
+        var backgroundsZindex = {};
+
+        var topZIndex = undefined;
+
+        for(var i = 0; i < backgrounds.length; i++) {
+            if(topZIndex == undefined)
+                topZIndex = backgrounds[i].style.zIndex;
+
+            if(backgrounds[i].style.zIndex > topZIndex) {
+                topZIndex = backgrounds[i].style.zIndex;
+            }
+        }
+
+        return topZIndex;
     },
 
     _attachPopup: function() {
@@ -301,6 +349,8 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this.populate();
         this._attachPopup();
 
+        this._setZIndex();
+
         this._backgroundElement.style.display = '';
         this._foregroundElement.style.display = '';
         this._popupElement.style.display = '';
@@ -320,7 +370,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
                 }
             }
         }
-
 
         // Disable TAB
         this.disableTab();
@@ -883,7 +932,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
     set_OnOkScript: function(value) {
         Sys.Extended.Deprecated("set_OnOkScript(value)", "set_onOkScript(value)");
-        this.set_onOkScript(value); 
+        this.set_onOkScript(value);
     },
 
     /// <summary>
