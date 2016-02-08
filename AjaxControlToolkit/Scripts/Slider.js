@@ -624,7 +624,7 @@ Sys.Extended.UI.SliderBehavior.prototype = {
     },
 
     /// <summary>
-    /// Slider dra mode 
+    /// Slider drag mode 
     /// </summary>
     /// <getter>dragMode</getter>
     /// <member name="cP:AjaxControlToolkit.SliderExtender.dragMode" />
