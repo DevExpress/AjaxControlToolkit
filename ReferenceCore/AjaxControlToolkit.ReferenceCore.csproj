@@ -64,6 +64,7 @@
     <Compile Include="Parsing\DocParser.cs" />
     <Compile Include="Parsing\RawDoc.cs" />
     <Compile Include="PropertyDoc.cs" />
+    <Compile Include="Rendering\GitHubDocRenderer.cs" />
     <Compile Include="Rendering\CodePlexDocRenderer.cs" />
     <Compile Include="ExtenderDoc.cs" />
     <Compile Include="Rendering\IDocRenderer.cs" />
