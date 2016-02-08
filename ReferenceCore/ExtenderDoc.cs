@@ -162,7 +162,7 @@ namespace AjaxControlToolkit.Reference.Core {
             foreach(var  property in properties) {
                 var remarks = "";
                 if(property.Remarks != null)
-                    remarks = _renderer.RenderText("Remarks:", italic: true, bold: true) + " " + _renderer.RenderText(_renderer.Sanitize(property.Remarks), italic: true);
+                    remarks = _renderer.RenderText("Remarks:", italic: true, bold: true) + " " + _renderer.RenderText(_renderer.Sanitize(property.Remarks).Trim(), italic: true);
 
                 dict.Add(property.Name, property.Summary + remarks);
             }
