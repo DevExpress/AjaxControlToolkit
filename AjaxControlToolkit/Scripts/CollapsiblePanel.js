@@ -171,7 +171,7 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
     },
 
     /// <summary>
-    /// Event handler to epxand or collapse the panel (based on its current state)
+    /// Event handler to expand or collapse the panel (based on its current state)
     /// This is the public function that should be called instead of _toggle if
     /// you wish to programmatically open and close the collapsible panel
     /// </summary>
