@@ -94,8 +94,8 @@ namespace AjaxControlToolkit.Reference.Core {
         IEnumerable<string> FormatMethodParams(MethodDoc methodDoc) {
             foreach(var param in methodDoc.Params) {
                 var header = _renderer.RenderText(param.Name, bold: true);
-                var type = _renderer.RenderText("Type: ", italic: true) + _renderer.RenderText(param.TypeName);
-                var description = _renderer.RenderText("Description: ", italic: true) + _renderer.Sanitize(param.Description);
+                var type = _renderer.RenderText("Type:", italic: true) + " " + _renderer.RenderText(param.TypeName);
+                var description = _renderer.RenderText("Description:", italic: true) + " " + _renderer.Sanitize(param.Description);
 
                 yield return
                     _renderer.RenderListItem(header, false, 1) +
@@ -134,13 +134,13 @@ namespace AjaxControlToolkit.Reference.Core {
                 if(!String.IsNullOrWhiteSpace(clientPropertyDoc.GetterName))
                     propertiesStringBuilder.Append(
                         _renderer.RenderLineBreak() +
-                        _renderer.RenderText("Getter name: ", italic: true) +
+                        _renderer.RenderText("Getter name:", italic: true) + " " +
                         _renderer.RenderText(clientPropertyDoc.GetterName + "()"));
 
                 if(!String.IsNullOrWhiteSpace(clientPropertyDoc.SetterName))
                     propertiesStringBuilder.Append(
                         _renderer.RenderLineBreak() +
-                        _renderer.RenderText("Setter name: ", italic: true) +
+                        _renderer.RenderText("Setter name:", italic: true) + " " +
                         _renderer.RenderText(clientPropertyDoc.SetterName + "(value)"));
 
                 propertiesStringBuilder.Append(_renderer.RenderLineBreak());
@@ -162,7 +162,7 @@ namespace AjaxControlToolkit.Reference.Core {
             foreach(var  property in properties) {
                 var remarks = "";
                 if(property.Remarks != null)
-                    remarks = _renderer.RenderText("Remarks: ", italic: true, bold: true) + _renderer.RenderText(_renderer.Sanitize(property.Remarks), italic: true);
+                    remarks = _renderer.RenderText("Remarks:", italic: true, bold: true) + " " + _renderer.RenderText(_renderer.Sanitize(property.Remarks), italic: true);
 
                 dict.Add(property.Name, property.Summary + remarks);
             }
@@ -183,11 +183,11 @@ namespace AjaxControlToolkit.Reference.Core {
                 eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(eventDoc.Summary)));
                 eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(eventDoc.Remarks)));
 
-                eventsStringBuilder.Append(_renderer.RenderText("Add event handler method: ", italic: true) + _renderer.RenderText(eventDoc.AddMethodName + "(handler)"));
-                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Remove event handler method: ", italic: true) + _renderer.RenderText(eventDoc.RemoveMethodName + "(handler)"));
+                eventsStringBuilder.Append(_renderer.RenderText("Add event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.AddMethodName + "(handler)"));
+                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Remove event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.RemoveMethodName + "(handler)"));
 
                 if(!String.IsNullOrWhiteSpace(eventDoc.RaiseMethodName))
-                    eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Raise event method: ", italic: true) + _renderer.RenderText(eventDoc.RaiseMethodName + "()"));
+                    eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Raise event method:", italic: true) + " " + _renderer.RenderText(eventDoc.RaiseMethodName + "()"));
 
                 eventsStringBuilder.Append(_renderer.RenderLineBreak());
             }
