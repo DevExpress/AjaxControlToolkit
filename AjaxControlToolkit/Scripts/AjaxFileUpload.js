@@ -1480,7 +1480,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
 
     /// <summary>
     /// Whether or not to hide the file upload list container after uploading finished
-    /// </summary
+    /// </summary>
     /// <getter>get_clearQueueContainerAfterUpload</getter>
     /// <setter>set_clearQueueContainerAfterUpload</setter>
     /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.clearQueueContainerAfterUpload" />
