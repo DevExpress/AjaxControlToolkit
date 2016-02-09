@@ -2,6 +2,7 @@
 using AjaxControlToolkit.Reference.Core.Parsing;
 using AjaxControlToolkit.Reference.Core.Rendering;
 using AjaxControlToolkit.ReferenceCore.Parsing;
+
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -79,19 +80,11 @@ namespace AjaxControlToolkit.Reference.Controllers {
                 FillClientMembers(doc, typeFullName);
             }
 
-            var codeplexDocRenderer = new CodePlexDocRenderer();
+            var codeplexDocRenderer = new GitHubDocRenderer();
             var extenderDoc = new ExtenderDoc(codeplexDocRenderer);
             var markup = extenderDoc.BuildDoc(doc.Types);
-            var wikiEngine = new WikiPlex.WikiEngine();
-
-            var pageStyle = 
-                "<style>" + 
-                    "html { font-family: 'Segoe UI'; font-size: 13px; }" +
-                    "table { border-collapse: collapse; font-size: 13px; } " +
-                    "table td, th { border: 1px solid #aaa; height: 28px; padding: 3px; text-align: left; } table th { font-family: 'Segoe UI Semibold' }" +
-                    "b, h1, h2 { font-family: 'Segoe UI Semibold' }" +
-                "</style>";
-            return Content(pageStyle + wikiEngine.Render(markup));
+            
+            return Content(markup);
         }
 
         string GetNeededType(string typeName) {
