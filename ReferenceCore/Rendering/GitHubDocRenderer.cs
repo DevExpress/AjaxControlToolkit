@@ -49,8 +49,12 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             return new String(' ', (level - 1) * 4) + (ordered ? "1." : "*") + " " + text + NewLine();
         }
 
-        public string RenderLineBreak() {
+        public string RenderNewParagraph() {
             return "\n\n";
+        }
+
+        public string RenderLineBreak() {
+            return "<br>";
         }
 
         private string NewLine() {

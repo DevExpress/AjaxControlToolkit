@@ -73,7 +73,7 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void RenderLineBreakTest() {
-            var actualText = _gitHubRenderer.RenderLineBreak();
+            var actualText = _gitHubRenderer.RenderNewParagraph();
             Assert.AreEqual("\n\n", actualText);
         }
 

@@ -50,7 +50,11 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             if(String.IsNullOrWhiteSpace(text))
                 return String.Empty;
 
-            return new String(ordered ? '#' : '*', level) + " " + text + RenderLineBreak();
+            return new String(ordered ? '#' : '*', level) + " " + text + RenderNewParagraph();
+        }
+
+        public string RenderNewParagraph() {
+            return "\n";
         }
 
         public string RenderLineBreak() {
@@ -61,10 +65,10 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             var descriptionStringBuilder = new StringBuilder();
 
             descriptionStringBuilder.Append(String.Format("|| {0} || {1} ||", "Name", "Description"));
-            descriptionStringBuilder.Append(this.RenderLineBreak());
+            descriptionStringBuilder.Append(this.RenderNewParagraph());
             foreach(var value in values) {
                 descriptionStringBuilder.Append(String.Format("| {0} | {1} |", RenderText(value.Key), RenderText(value.Value)));
-                descriptionStringBuilder.Append(this.RenderLineBreak());
+                descriptionStringBuilder.Append(this.RenderNewParagraph());
             }
 
             return descriptionStringBuilder.ToString();

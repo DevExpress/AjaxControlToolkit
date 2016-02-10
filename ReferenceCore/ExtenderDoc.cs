@@ -31,23 +31,129 @@ namespace AjaxControlToolkit.Reference.Core {
             RenderTypeDescription(typeDoc.Summary);
             RenderTypeRemarks(typeDoc.Remarks);
 
-            RenderProperties(typeDoc.Properties.OrderBy(p => p.Name));
-            RenderMethods(typeDoc.Methods.OrderBy(m => m.Name), "Methods");
-            RenderEvents(typeDoc.Events.OrderBy(e => e.Name));
-            
-            RenderClientProperties(typeDoc.ClientProperties.OrderBy(p => p.Name));
-            RenderMethods(typeDoc.ClientMethods.OrderBy(m => m.Name), "Client methods");
-            RenderClientEvents(typeDoc.ClientEvents.OrderBy(p => p.Name));
+            RenderProperties(typeDoc.Properties);
+            RenderMethods(typeDoc.Methods, "Methods");
+            RenderEvents(typeDoc.Events);
+
+            RenderClientProperties(typeDoc.ClientProperties);
+            RenderMethods(typeDoc.ClientMethods, "Client methods");
+            RenderClientEvents(typeDoc.ClientEvents);
+
+            RenderClientPropertiesExpanded(typeDoc.ClientProperties);
+            RenderMethodsExpanded(typeDoc.Methods, "Methods");
+            RenderMethodsExpanded(typeDoc.ClientMethods, "Client methods");
+            RenderClientEventsExpanded(typeDoc.ClientEvents);
 
             return _docStringBuilder.ToString();
         }
 
+        private void RenderClientPropertiesExpanded(IEnumerable<ClientPropertyDoc> clientProperties) {
+            RenderMembersExpanded(clientProperties,
+               "Client properties",
+               (propertyDoc) => RenderPropertyAccessors(propertyDoc));
+        }
+
+        private void RenderClientEventsExpanded(IEnumerable<ClientEventDoc> clientEvents) {
+            RenderMembersExpanded(clientEvents,
+                "Client events",
+                (eventDoc) => RenderEventMethods(eventDoc));
+        }
+
+        void RenderMethodsExpanded(IEnumerable<MethodDoc> methods, string headerText) {
+            RenderMembersExpanded(methods,
+                headerText,
+                (methodDoc) => RenderMethodParams(methodDoc),
+                (methodDoc) => BuildMethodSignature(methodDoc));
+        }
+
+        void RenderMembersExpanded(IEnumerable<DocBase> memberDocs, string headerText, Func<DocBase, string> additionalInfoRenderer, Func<DocBase, string> memberNameTransform = null) {
+            if(memberDocs.Count() <= 0)
+                return;
+
+            var sectionStringBuilder = new StringBuilder();
+            sectionStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderHeader(headerText, level: 2));
+
+            foreach(var memberDoc in memberDocs) {
+                var methodNameTransformed = memberNameTransform != null ? memberNameTransform(memberDoc) : memberDoc.Name;
+                sectionStringBuilder.Append(_renderer.RenderNewParagraph());
+                sectionStringBuilder.Append(_renderer.RenderHeader(methodNameTransformed, 3));
+                sectionStringBuilder.Append(_renderer.RenderNewParagraph());
+                sectionStringBuilder.Append(_renderer.RenderText(_renderer.Sanitize(memberDoc.Summary)));
+
+                if(!String.IsNullOrWhiteSpace(memberDoc.Remarks)) {
+                    var remarks = _renderer.RenderText("Remarks:", italic: true, bold: true) + " " + _renderer.RenderText(_renderer.Sanitize(memberDoc.Remarks).Trim(), italic: true);
+                    sectionStringBuilder.Append(_renderer.RenderNewParagraph() + remarks);
+                }
+
+                sectionStringBuilder.Append(additionalInfoRenderer(memberDoc));
+            }
+
+            _docStringBuilder.Append(sectionStringBuilder.ToString());
+        }
+
+        string RenderMethodParams(DocBase member) {
+            if(!(member is MethodDoc))
+                return "";
+
+            var methodDoc = (MethodDoc)member;
+            var paramsStringBuilder = new StringBuilder();
+
+            if(methodDoc.Params.Count() > 0) {
+                paramsStringBuilder.Append(_renderer.RenderNewParagraph());
+                paramsStringBuilder.Append(_renderer.RenderText("Params:", italic: true));
+
+                foreach(var item in FormatMethodParams(methodDoc))
+                    paramsStringBuilder.Append(_renderer.RenderNewParagraph() + item);
+            }
+
+            return paramsStringBuilder.ToString();
+        }
+
+        string RenderEventMethods(DocBase member) {
+            if(!(member is ClientEventDoc))
+                return "";
+
+            var eventDoc = (ClientEventDoc)member;
+            var eventMethodsStringBuilder = new StringBuilder();
+
+            eventMethodsStringBuilder.Append(_renderer.RenderText("Add event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.AddMethodName + "(handler)"));
+            eventMethodsStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText("Remove event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.RemoveMethodName + "(handler)"));
+
+            if(!String.IsNullOrWhiteSpace(eventDoc.RaiseMethodName))
+                eventMethodsStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText("Raise event method:", italic: true) + " " + _renderer.RenderText(eventDoc.RaiseMethodName + "()"));
+
+            eventMethodsStringBuilder.Append(_renderer.RenderNewParagraph());
+            return eventMethodsStringBuilder.ToString();
+        }
+
+        string RenderPropertyAccessors(DocBase member) {
+            if(!(member is ClientPropertyDoc))
+                return "";
+
+            var clientPropertyDoc = (ClientPropertyDoc)member;
+            var propertyAccessorsStringBuilder = new StringBuilder();
+
+            if(!String.IsNullOrWhiteSpace(clientPropertyDoc.GetterName))
+                propertyAccessorsStringBuilder.Append(
+                    _renderer.RenderNewParagraph() +
+                    _renderer.RenderText("Getter name:", italic: true) + " " +
+                    _renderer.RenderText(clientPropertyDoc.GetterName + "()"));
+
+            if(!String.IsNullOrWhiteSpace(clientPropertyDoc.SetterName))
+                propertyAccessorsStringBuilder.Append(
+                    _renderer.RenderNewParagraph() +
+                    _renderer.RenderText("Setter name:", italic: true) + " " +
+                    _renderer.RenderText(clientPropertyDoc.SetterName + "(value)"));
+
+            return propertyAccessorsStringBuilder.ToString();
+        }
+
         void RenderTypeRemarks(string typeRemarks) {
-            _docStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(typeRemarks)));
+            _docStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText(_renderer.Sanitize(typeRemarks)));
         }
 
         void RenderTypeName(string typeName) {
-            _docStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader(typeName));
+            _docStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderHeader(typeName));
         }
 
         void RenderSampleSiteLink(string typeName) {
@@ -56,39 +162,51 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderTypeDescription(string typeDescription) {
-            _docStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(typeDescription)));
+            _docStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText(_renderer.Sanitize(typeDescription)));
+        }
+
+        void RenderTable(IEnumerable<DocBase> members, string tableName, Func<DocBase, string> memberNameTransform = null) {
+            if(members.Count() <= 0)
+                return;
+
+            var tableStringBuilder = new StringBuilder();
+            tableStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderHeader(tableName, level: 2));
+            tableStringBuilder.Append(_renderer.RenderNewParagraph());
+
+            var dict = new Dictionary<string, string>();
+
+            foreach(var member in members) {
+                var memberNameTransformed = memberNameTransform == null ? member.Name : memberNameTransform(member);
+                var remarks = "";
+                if(!String.IsNullOrWhiteSpace(member.Remarks))
+                    remarks = _renderer.RenderText("Remarks:", italic: true, bold: true) + " " + _renderer.RenderText(_renderer.Sanitize(member.Remarks).Trim(), italic: true);
+
+                dict.Add(memberNameTransformed, _renderer.Sanitize(member.Summary) + _renderer.RenderLineBreak() + remarks);
+            }
+            tableStringBuilder.Append(_renderer.RenderDescriptionBlock(dict));
+
+            _docStringBuilder.Append(tableStringBuilder.ToString());
         }
 
         void RenderMethods(IEnumerable<MethodDoc> methods, string headerText) {
-            if(methods.Count() <= 0)
-                return;
+            RenderTable(methods, headerText, (methodDoc) => BuildMethodSignature(methodDoc));
+        }
 
-            var methodsStringBuilder = new StringBuilder();
-            methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader(headerText, level: 2));
+        private string BuildMethodSignature(DocBase docBase) {
+            if(!(docBase is MethodDoc))
+                return docBase.Name;
 
-            foreach(var methodDoc in methods) {
-                var methodNameWithSignature = methodDoc.Name + "(";
-                if(methodDoc.Params.Count() > 0) {
-                    foreach(var param in methodDoc.Params)
-                        methodNameWithSignature += param.Name + ", ";
+            var methodDoc = (MethodDoc)docBase;
 
-                    methodNameWithSignature = methodNameWithSignature.Substring(0, methodNameWithSignature.Length - 2);
-                }
-                methodNameWithSignature += ")";
+            var methodNameWithSignature = methodDoc.Name + "(";
+            if(methodDoc.Params.Count() > 0) {
+                foreach(var param in methodDoc.Params)
+                    methodNameWithSignature += param.Name + ", ";
 
-                methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(methodNameWithSignature, bold: true));
-                methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(methodDoc.Summary)));
-                methodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(methodDoc.Remarks)));
-
-                if(methodDoc.Params.Count() > 0) {
-                    methodsStringBuilder.Append(_renderer.RenderText("Params:", italic: true));
-
-                    foreach(var item in FormatMethodParams(methodDoc))
-                        methodsStringBuilder.Append(_renderer.RenderLineBreak() + item);
-                }
+                methodNameWithSignature = methodNameWithSignature.Substring(0, methodNameWithSignature.Length - 2);
             }
-
-            _docStringBuilder.Append(methodsStringBuilder.ToString());
+            methodNameWithSignature += ")";
+            return methodNameWithSignature;
         }
 
         IEnumerable<string> FormatMethodParams(MethodDoc methodDoc) {
@@ -105,94 +223,19 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderEvents(IEnumerable<EventDoc> events) {
-            if(events.Count() <= 0)
-                return;
-
-            var eventsStringBuilder = new StringBuilder();
-            eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Events", level: 2));
-
-            foreach(var eventDoc in events) {
-                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(eventDoc.Name, bold: true));
-                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(eventDoc.Summary)));
-                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(eventDoc.Remarks)));
-            }
-
-            _docStringBuilder.Append(eventsStringBuilder.ToString());
+            RenderTable(events, "Events");
         }
 
         void RenderClientProperties(IEnumerable<ClientPropertyDoc> clientProperties) {
-            if(clientProperties.Count() <= 0)
-                return;
-
-            var propertiesStringBuilder = new StringBuilder();
-            propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Client properties", level: 2));
-
-            foreach(var clientPropertyDoc in clientProperties) {
-                propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(clientPropertyDoc.Name, bold: true));
-                propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(clientPropertyDoc.Summary)));
-
-                if(!String.IsNullOrWhiteSpace(clientPropertyDoc.GetterName))
-                    propertiesStringBuilder.Append(
-                        _renderer.RenderLineBreak() +
-                        _renderer.RenderText("Getter name:", italic: true) + " " +
-                        _renderer.RenderText(clientPropertyDoc.GetterName + "()"));
-
-                if(!String.IsNullOrWhiteSpace(clientPropertyDoc.SetterName))
-                    propertiesStringBuilder.Append(
-                        _renderer.RenderLineBreak() +
-                        _renderer.RenderText("Setter name:", italic: true) + " " +
-                        _renderer.RenderText(clientPropertyDoc.SetterName + "(value)"));
-
-                propertiesStringBuilder.Append(_renderer.RenderLineBreak());
-            }
-
-            _docStringBuilder.Append(propertiesStringBuilder.ToString());
+            RenderTable(clientProperties, "Client properties");
         }
 
         void RenderProperties(IEnumerable<PropertyDoc> properties) {
-            if(properties.Count() <= 0)
-                return;
-
-            var propertiesStringBuilder = new StringBuilder();
-            propertiesStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Properties", level: 2));
-
-            propertiesStringBuilder.Append(_renderer.RenderLineBreak());
-
-            var dict = new Dictionary<string, string>();
-            foreach(var  property in properties) {
-                var remarks = "";
-                if(property.Remarks != null)
-                    remarks = _renderer.RenderText("Remarks:", italic: true, bold: true) + " " + _renderer.RenderText(_renderer.Sanitize(property.Remarks).Trim(), italic: true);
-
-                dict.Add(property.Name, property.Summary + remarks);
-            }
-            propertiesStringBuilder.Append(_renderer.RenderDescriptionBlock(dict));
-
-            _docStringBuilder.Append(propertiesStringBuilder.ToString());
+            RenderTable(properties, "Properties");
         }
 
         void RenderClientEvents(IEnumerable<ClientEventDoc> clientEvents) {
-            if(clientEvents.Count() <= 0)
-                return;
-
-            var eventsStringBuilder = new StringBuilder();
-            eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderHeader("Client events", level: 2));
-
-            foreach(var eventDoc in clientEvents) {
-                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(eventDoc.Name, bold: true));
-                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(eventDoc.Summary)));
-                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText(_renderer.Sanitize(eventDoc.Remarks)));
-
-                eventsStringBuilder.Append(_renderer.RenderText("Add event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.AddMethodName + "(handler)"));
-                eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Remove event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.RemoveMethodName + "(handler)"));
-
-                if(!String.IsNullOrWhiteSpace(eventDoc.RaiseMethodName))
-                    eventsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Raise event method:", italic: true) + " " + _renderer.RenderText(eventDoc.RaiseMethodName + "()"));
-
-                eventsStringBuilder.Append(_renderer.RenderLineBreak());
-            }
-
-            _docStringBuilder.Append(eventsStringBuilder.ToString());
+            RenderTable(clientEvents, "Client events");
         }
 
     }

@@ -73,7 +73,7 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void RenderLineBreakTest() {
-            var actualText = _codePlexRenderer.RenderLineBreak();
+            var actualText = _codePlexRenderer.RenderNewParagraph();
             Assert.AreEqual("\n", actualText);
         }
 
