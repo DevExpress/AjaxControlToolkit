@@ -167,7 +167,7 @@ namespace AjaxControlToolkit.Reference.Core {
             _docStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText(_renderer.Sanitize(typeDescription)));
         }
 
-        void RenderTable(IEnumerable<DocBase> members, string tableName, Func<DocBase, string> memberNameTransform = null, bool generateMemberLink = false) {
+        void RenderTable(IEnumerable<DocBase> members, string tableName, Func<DocBase, string> memberNameTransform = null, bool generateMemberLink = false, bool renderRemarks = true) {
             if(members.Count() <= 0)
                 return;
 
@@ -176,14 +176,16 @@ namespace AjaxControlToolkit.Reference.Core {
             tableStringBuilder.Append(_renderer.RenderNewParagraph());
 
             var dict = new Dictionary<string, string>();
-            var regex= new Regex("[^a-zA-Z0-9 -]");
+            var regex = new Regex("[^a-zA-Z0-9 -]");
 
             foreach(var member in members) {
                 var memberNameTransformed = memberNameTransform == null ? member.Name : memberNameTransform(member);
                 var memberNameLink = "#" + regex.Replace(memberNameTransformed.ToLower(), "").Replace(" ", "-");
 
                 var remarks = "";
-                if(!String.IsNullOrWhiteSpace(member.Remarks))
+                if(renderRemarks
+                    &&
+                    !String.IsNullOrWhiteSpace(member.Remarks))
                     remarks = _renderer.RenderText("Remarks:", italic: true, bold: true) + " " + _renderer.RenderText(_renderer.Sanitize(member.Remarks).Trim(), italic: true);
 
                 dict.Add(generateMemberLink ? String.Format("[{0}]({1})", memberNameTransformed, memberNameLink) : memberNameTransformed,
@@ -195,7 +197,7 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderMethods(IEnumerable<MethodDoc> methods, string headerText) {
-            RenderTable(methods, headerText, (methodDoc) => BuildMethodSignature(methodDoc), true);
+            RenderTable(methods, headerText, (methodDoc) => BuildMethodSignature(methodDoc), true, false);
         }
 
         private string BuildMethodSignature(DocBase docBase) {
@@ -233,7 +235,7 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderClientProperties(IEnumerable<ClientPropertyDoc> clientProperties) {
-            RenderTable(clientProperties, "Client properties", null, true);
+            RenderTable(clientProperties, "Client properties", null, true, false);
         }
 
         void RenderProperties(IEnumerable<PropertyDoc> properties) {
@@ -241,7 +243,7 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderClientEvents(IEnumerable<ClientEventDoc> clientEvents) {
-            RenderTable(clientEvents, "Client events", null, true);
+            RenderTable(clientEvents, "Client events", null, true, false);
         }
 
     }
