@@ -38,9 +38,9 @@ Sys.Extended.UI.AsyncFileUpload = function(element) {
     /// <summary>
     /// A name of the form.
     /// </summary>
-    /// <getter>get_postBackUrl</getter>
-    /// <setter>set_postBackUrl</setter>
-    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.postBackUrl" />
+    /// <getter>get_formName</getter>
+    /// <setter>set_formName</setter>
+    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.formName" />
     this._formName = "";
     this._iframe = null;
     this._waitTimer = null;
@@ -139,13 +139,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
     set_postBackUrl: function(value) {
         this._postBackUrl = value;
     },
-
-    /// <summary>
-    /// Name of the form
-    /// </summary>
-    /// <getter>get_formName</getter>
-    /// <setter>set_formName</setter>
-    /// <member name="cP:AjaxControlToolkit.AsyncFileUpload.formName" />
+    
     get_formName: function() {
         return this._formName;
     },
