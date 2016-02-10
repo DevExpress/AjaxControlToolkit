@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace AjaxControlToolkit.Reference.Core {
 
@@ -77,6 +78,7 @@ namespace AjaxControlToolkit.Reference.Core {
                 var methodNameTransformed = memberNameTransform != null ? memberNameTransform(memberDoc) : memberDoc.Name;
                 sectionStringBuilder.Append(_renderer.RenderNewParagraph());
                 sectionStringBuilder.Append(_renderer.RenderHeader(methodNameTransformed, 3));
+
                 sectionStringBuilder.Append(_renderer.RenderNewParagraph());
                 sectionStringBuilder.Append(_renderer.RenderText(_renderer.Sanitize(memberDoc.Summary)));
 
@@ -165,7 +167,7 @@ namespace AjaxControlToolkit.Reference.Core {
             _docStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText(_renderer.Sanitize(typeDescription)));
         }
 
-        void RenderTable(IEnumerable<DocBase> members, string tableName, Func<DocBase, string> memberNameTransform = null) {
+        void RenderTable(IEnumerable<DocBase> members, string tableName, Func<DocBase, string> memberNameTransform = null, bool generateMemberLink = false) {
             if(members.Count() <= 0)
                 return;
 
@@ -174,14 +176,18 @@ namespace AjaxControlToolkit.Reference.Core {
             tableStringBuilder.Append(_renderer.RenderNewParagraph());
 
             var dict = new Dictionary<string, string>();
+            var regex= new Regex("[^a-zA-Z0-9 -]");
 
             foreach(var member in members) {
                 var memberNameTransformed = memberNameTransform == null ? member.Name : memberNameTransform(member);
+                var memberNameLink = "#" + regex.Replace(memberNameTransformed.ToLower(), "").Replace(" ", "-");
+
                 var remarks = "";
                 if(!String.IsNullOrWhiteSpace(member.Remarks))
                     remarks = _renderer.RenderText("Remarks:", italic: true, bold: true) + " " + _renderer.RenderText(_renderer.Sanitize(member.Remarks).Trim(), italic: true);
 
-                dict.Add(memberNameTransformed, _renderer.Sanitize(member.Summary) + _renderer.RenderLineBreak() + remarks);
+                dict.Add(generateMemberLink ? String.Format("[{0}]({1})", memberNameTransformed, memberNameLink) : memberNameTransformed,
+                    _renderer.Sanitize(member.Summary) + _renderer.RenderLineBreak() + remarks);
             }
             tableStringBuilder.Append(_renderer.RenderDescriptionBlock(dict));
 
@@ -189,7 +195,7 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderMethods(IEnumerable<MethodDoc> methods, string headerText) {
-            RenderTable(methods, headerText, (methodDoc) => BuildMethodSignature(methodDoc));
+            RenderTable(methods, headerText, (methodDoc) => BuildMethodSignature(methodDoc), true);
         }
 
         private string BuildMethodSignature(DocBase docBase) {
@@ -227,7 +233,7 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderClientProperties(IEnumerable<ClientPropertyDoc> clientProperties) {
-            RenderTable(clientProperties, "Client properties");
+            RenderTable(clientProperties, "Client properties", null, true);
         }
 
         void RenderProperties(IEnumerable<PropertyDoc> properties) {
@@ -235,7 +241,7 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderClientEvents(IEnumerable<ClientEventDoc> clientEvents) {
-            RenderTable(clientEvents, "Client events");
+            RenderTable(clientEvents, "Client events", null, true);
         }
 
     }
