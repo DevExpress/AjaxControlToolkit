@@ -151,7 +151,8 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         void RenderTypeRemarks(string typeRemarks) {
-            _docStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText(_renderer.Sanitize(typeRemarks)));
+            var remarksBody = _renderer.Sanitize(typeRemarks).Replace("\\*", "<br>\\*");
+            _docStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText(remarksBody));
         }
 
         void RenderTypeName(string typeName) {
