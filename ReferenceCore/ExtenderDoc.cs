@@ -118,7 +118,7 @@ namespace AjaxControlToolkit.Reference.Core {
             var eventDoc = (ClientEventDoc)member;
             var eventMethodsStringBuilder = new StringBuilder();
 
-            eventMethodsStringBuilder.Append(_renderer.RenderText("Add event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.AddMethodName + "(handler)"));
+            eventMethodsStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText("Add event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.AddMethodName + "(handler)"));
             eventMethodsStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText("Remove event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.RemoveMethodName + "(handler)"));
 
             if(!String.IsNullOrWhiteSpace(eventDoc.RaiseMethodName))
