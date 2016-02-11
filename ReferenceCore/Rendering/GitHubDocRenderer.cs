@@ -14,7 +14,7 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             return text
                 .Replace("*", "\\*")
                 .Replace("_", "\\_")
-                .Replace("1.", "\\1\\.")
+                .Replace("1. ", "\\1\\. ")
                 .Replace("#", "\\#");
         }
 
