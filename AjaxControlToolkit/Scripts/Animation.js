@@ -379,8 +379,8 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
     /// <summary>
     /// Generic OnHoverOut Animation's behavior
     /// </summary>
-    /// <getter>get_onHoverOverBehavior</getter>
-    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onHoverOverBehavior" />
+    /// <getter>get_onHoverOutBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onHoverOutBehavior" />
     get_onHoverOutBehavior: function() {
         return this._onHoverOut;
     },
