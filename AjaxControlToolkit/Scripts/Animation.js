@@ -212,8 +212,8 @@ Sys.Extended.UI.Animation.AnimationBehavior.prototype = {
     /// <summary>
     /// Generic OnMouseOver Animation's behavior
     /// </summary>
-    /// <getter>get_onLoadBehavior</getter>
-    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onLoadBehavior" />
+    /// <getter>get_onMouseOverBehavior</getter>
+    /// <member name="cP:AjaxControlToolkit.AnimationExtender.onMouseOverBehavior" />
     get_onMouseOverBehavior: function() {
         return this._onMouseOver;
     },
