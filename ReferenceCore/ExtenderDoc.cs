@@ -119,10 +119,10 @@ namespace AjaxControlToolkit.Reference.Core {
             var eventMethodsStringBuilder = new StringBuilder();
 
             eventMethodsStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText("Add event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.AddMethodName + "(handler)"));
-            eventMethodsStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText("Remove event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.RemoveMethodName + "(handler)"));
+            eventMethodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Remove event handler method:", italic: true) + " " + _renderer.RenderText(eventDoc.RemoveMethodName + "(handler)"));
 
             if(!String.IsNullOrWhiteSpace(eventDoc.RaiseMethodName))
-                eventMethodsStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText("Raise event method:", italic: true) + " " + _renderer.RenderText(eventDoc.RaiseMethodName + "()"));
+                eventMethodsStringBuilder.Append(_renderer.RenderLineBreak() + _renderer.RenderText("Raise event method:", italic: true) + " " + _renderer.RenderText(eventDoc.RaiseMethodName + "()"));
 
             eventMethodsStringBuilder.Append(_renderer.RenderNewParagraph());
             return eventMethodsStringBuilder.ToString();
@@ -143,7 +143,7 @@ namespace AjaxControlToolkit.Reference.Core {
 
             if(!String.IsNullOrWhiteSpace(clientPropertyDoc.SetterName))
                 propertyAccessorsStringBuilder.Append(
-                    _renderer.RenderNewParagraph() +
+                    _renderer.RenderLineBreak() +
                     _renderer.RenderText("Setter name:", italic: true) + " " +
                     _renderer.RenderText(clientPropertyDoc.SetterName + "(value)"));
 
