@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit {
+#pragma warning disable 1591
+namespace AjaxControlToolkit {
 
     // OnDemand behavior. Used by TabPanel and will only take effect when OnDemand = true on TabContainer
     public enum OnDemandMode {
@@ -11,3 +12,5 @@
     }
 
 }
+
+#pragma warning restore 1591

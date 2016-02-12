@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 using AjaxControlToolkit.HtmlEditor.Popups;
 using System.Web.UI;
 
@@ -38,3 +39,5 @@ namespace AjaxControlToolkit.HtmlEditor.ToolbarButtons {
     }
 
 }
+
+#pragma warning restore 1591

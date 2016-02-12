@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit {
+#pragma warning disable 1591
+namespace AjaxControlToolkit {
 
     public enum GravatarDefaultImageBehavior {
         Default,
@@ -10,3 +11,5 @@
     }
 
 }
+
+#pragma warning restore 1591

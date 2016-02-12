@@ -1,4 +1,5 @@
-﻿using System;
+#pragma warning disable 1591
+using System;
 using System.ComponentModel.Design;
 using System.IO;
 using System.Reflection;
@@ -58,3 +59,5 @@ namespace AjaxControlToolkit.Design {
     }
 
 }
+
+#pragma warning restore 1591

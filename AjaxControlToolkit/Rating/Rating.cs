@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -231,7 +232,6 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Alignment of the stars (Vertical or Horizontal)
         /// </summary>
-        /// <remarks>
         [Browsable(true)]
         [Themeable(true)]
         [Category("Appearance")]
@@ -452,3 +452,5 @@ namespace AjaxControlToolkit {
     }
 
 }
+
+#pragma warning restore 1591

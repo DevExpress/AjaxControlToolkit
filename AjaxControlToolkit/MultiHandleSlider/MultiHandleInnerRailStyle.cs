@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit {
+#pragma warning disable 1591
+namespace AjaxControlToolkit {
 
     public enum MultiHandleInnerRailStyle {
         AsIs, // The rail style is presented as it is defined.
@@ -6,3 +7,5 @@
     }
 
 }
+
+#pragma warning restore 1591

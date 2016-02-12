@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+#pragma warning disable 1591
+using System.Collections.Generic;
 
 namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
 
@@ -7,3 +8,5 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
     }
 
 }
+
+#pragma warning restore 1591

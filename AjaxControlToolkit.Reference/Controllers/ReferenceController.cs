@@ -93,7 +93,6 @@ namespace AjaxControlToolkit.Reference.Controllers {
                     return "AccordionExtender";
                 default:
                     return typeName;
-                    break;
             }
         }
 

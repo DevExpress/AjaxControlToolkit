@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 using AjaxControlToolkit.Design;
 using System.Diagnostics.CodeAnalysis;
 using System.Web.UI;
@@ -9,3 +10,5 @@ namespace AjaxControlToolkit.Design {
     }
 
 }
+
+#pragma warning restore 1591

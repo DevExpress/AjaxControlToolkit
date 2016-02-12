@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit {
+#pragma warning disable 1591
+namespace AjaxControlToolkit {
 
     public enum PopupControlPopupPosition {
         Center = 0,
@@ -9,3 +10,4 @@
     }
 
 }
+#pragma warning restore 1591

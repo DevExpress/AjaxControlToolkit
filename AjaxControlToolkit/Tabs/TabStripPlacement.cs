@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit {
+#pragma warning disable 1591
+namespace AjaxControlToolkit {
 
     // Display the tabs on top of the panel or below (default is top)
     public enum TabStripPlacement {
@@ -9,3 +10,4 @@
     }
 
 }
+#pragma warning restore 1591

@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -54,3 +55,5 @@ namespace AjaxControlToolkit.HtmlEditor.Popups {
     }
 
 }
+
+#pragma warning restore 1591

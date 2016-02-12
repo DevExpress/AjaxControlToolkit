@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     // Enum choosing how the CollapsiblePanel does it's animation - via width or height
@@ -7,3 +8,5 @@ namespace AjaxControlToolkit {
     }
 
 }
+
+#pragma warning restore 1591

@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     public static class Constants {
@@ -356,3 +357,5 @@ namespace AjaxControlToolkit {
     }
 
 }
+
+#pragma warning restore 1591

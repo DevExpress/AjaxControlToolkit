@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 namespace AjaxControlToolkit.Design {
 
     public class NumericUpDownExtenderDesigner : ExtenderControlBaseDesigner<NumericUpDownExtender> {
@@ -13,3 +14,5 @@ namespace AjaxControlToolkit.Design {
     }
 
 }
+
+#pragma warning restore 1591

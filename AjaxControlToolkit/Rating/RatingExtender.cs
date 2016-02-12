@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 using System;
 using System.ComponentModel;
 using System.Globalization;
@@ -161,3 +162,5 @@ namespace AjaxControlToolkit {
     }
 
 }
+
+#pragma warning restore 1591

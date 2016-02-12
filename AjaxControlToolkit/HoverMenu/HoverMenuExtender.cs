@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
@@ -58,6 +59,7 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// The number of pixels to offset the popup from its default position as specified by PopupPosition. Default is 0 
+        /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(0)]
         [ClientPropertyName("offsetX")]
@@ -168,3 +170,5 @@ namespace AjaxControlToolkit {
     }
 
 }
+
+#pragma warning restore 1591

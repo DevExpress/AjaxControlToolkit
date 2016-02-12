@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit.Design {
+#pragma warning disable 1591
+namespace AjaxControlToolkit.Design {
 
     public class SlideShowExtenderDesigner : ExtenderControlBaseDesigner<SlideShowExtender> {
         // Signature of the page method for SlideShow's web service that
@@ -10,3 +11,5 @@
     }
 
 }
+
+#pragma warning restore 1591

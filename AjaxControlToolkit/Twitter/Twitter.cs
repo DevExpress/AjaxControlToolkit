@@ -1,4 +1,5 @@
-﻿using AjaxControlToolkit.Design;
+#pragma warning disable 1591
+using AjaxControlToolkit.Design;
 using AjaxControlToolkit.ToolboxIcons;
 using System;
 using System.Collections.Generic;
@@ -467,3 +468,5 @@ namespace AjaxControlToolkit {
     }
 
 }
+
+#pragma warning restore 1591

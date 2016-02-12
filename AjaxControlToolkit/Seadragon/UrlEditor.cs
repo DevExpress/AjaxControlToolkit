@@ -1,4 +1,5 @@
-﻿using System.Security.Permissions;
+#pragma warning disable 1591
+using System.Security.Permissions;
 using System.Web.UI.Design;
 
 namespace AjaxControlToolkit {
@@ -16,3 +17,4 @@ namespace AjaxControlToolkit {
     }
 
 }
+#pragma warning restore 1591

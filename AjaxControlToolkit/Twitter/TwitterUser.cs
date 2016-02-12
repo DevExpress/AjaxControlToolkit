@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit {
+#pragma warning disable 1591
+namespace AjaxControlToolkit {
 
     public class TwitterUser {
 
@@ -16,3 +17,5 @@
     }
 
 }
+
+#pragma warning restore 1591

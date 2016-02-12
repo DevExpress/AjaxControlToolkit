@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit {
+#pragma warning disable 1591
+namespace AjaxControlToolkit {
 
     public enum AsyncFileUploaderStyle {
         Traditional,
@@ -6,3 +7,4 @@
     }
 
 }
+#pragma warning restore 1591

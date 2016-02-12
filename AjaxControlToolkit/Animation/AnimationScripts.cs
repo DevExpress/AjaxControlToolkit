@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     // The AnimationScripts class is used to load all of the animation support for the AJAX
@@ -10,3 +11,5 @@ namespace AjaxControlToolkit {
     }
 
 }
+
+#pragma warning restore 1591

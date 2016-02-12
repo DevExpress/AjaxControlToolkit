@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Permissions;
@@ -81,3 +82,5 @@ namespace AjaxControlToolkit.MaskedEditValidatorCompatibility {
     }
 
 }
+
+#pragma warning restore 1591

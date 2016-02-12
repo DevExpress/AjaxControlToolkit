@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit {
+#pragma warning disable 1591
+namespace AjaxControlToolkit {
 
     public enum BalloonPopupPosition {
         Auto = 0,
@@ -9,3 +10,5 @@
     }
 
 }
+
+#pragma warning restore 1591

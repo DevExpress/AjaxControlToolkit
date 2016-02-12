@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit {
+#pragma warning disable 1591
+namespace AjaxControlToolkit {
 
     public enum AreaChartType {
         Basic,
@@ -6,3 +7,5 @@
     }
 
 }
+
+#pragma warning restore 1591

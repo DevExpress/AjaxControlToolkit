@@ -1,4 +1,5 @@
-﻿namespace AjaxControlToolkit {
+#pragma warning disable 1591
+namespace AjaxControlToolkit {
 
     public enum AjaxFileUploadMode {
         // Automaticallu use Mode="Client" if the browser supports HTML5 progress. 
@@ -16,3 +17,4 @@
     }
 
 }
+#pragma warning restore 1591

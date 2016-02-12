@@ -1,3 +1,4 @@
+#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     public enum CalendarPosition {
@@ -10,3 +11,5 @@ namespace AjaxControlToolkit {
     }
 
 }
+
+#pragma warning restore 1591
