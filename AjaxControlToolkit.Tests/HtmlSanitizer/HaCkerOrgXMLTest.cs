@@ -2,7 +2,9 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Xml;
 
 namespace AjaxControlToolkit.Tests.HtmlSanititzer {
@@ -23,11 +25,10 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
                 StringAssert.AreNotEqualIgnoringCase(htmlFragment, actual, message);
         }
 
-        IEnumerable<TestCaseData> TestCases {
+        static IEnumerable<TestCaseData> TestCases {
             get {
                 var source = new XmlDocument();
-                source.Load("../AjaxControlToolkit.Tests/HtmlSanitizer/XssAttacks.xml");
-
+                source.Load(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"HtmlSanitizer\XssAttacks.xml"));
                 foreach(XmlNode node in source.SelectNodes("/xss/attack"))
                     yield return new TestCaseData(node["code"].InnerText, " ---> " + node["label"].InnerText);
             }

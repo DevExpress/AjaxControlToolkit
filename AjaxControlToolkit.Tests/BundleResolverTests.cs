@@ -65,10 +65,9 @@ namespace AjaxControlToolkit.Tests {
         }
 
         [Test]
-        [ExpectedException(typeof(Exception), MatchType = MessageMatch.Contains, ExpectedMessage = "AjaxControlToolkit.config file is not defined")]
         public void CustomBundleWithoutConfigFileShouldErrorTest() {
             var resolver = new BundleResolver(_moqCache.Object);
-            resolver.GetControlTypesInBundles(new[] { "Accordion" }, "nonexistantfile");
+            Assert.Throws<Exception>(() => resolver.GetControlTypesInBundles(new[] { "Accordion" }, "nonexistantfile"), "AjaxControlToolkit.config file is not defined");
         }
 
         [Test]
