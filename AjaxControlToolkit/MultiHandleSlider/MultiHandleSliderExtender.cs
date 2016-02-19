@@ -1,9 +1,11 @@
 #pragma warning disable 1591
 using AjaxControlToolkit.Design;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -209,12 +211,30 @@ namespace AjaxControlToolkit {
         /// The list of controls used to bind slider handle values. These should be Label or TextBox controls
         /// </summary>
         [Description("The list of controls used to bind slider handle values. These should be Label or TextBox controls.")]
-        [ExtenderControlProperty(true, true)]
         [PersistenceMode(PersistenceMode.InnerProperty)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [DefaultValue(null)]
         [NotifyParentProperty(true)]
-        [ClientPropertyName("multiHandleSliderTargets")]
+        [Editor(typeof(MultiHandleSliderTargetsEditor), typeof(UITypeEditor))]
         public Collection<MultiHandleSliderTarget> MultiHandleSliderTargets {
+            get {
+                if(!DesignMode)
+                    return ClientMultiHandleSliderTargets;
+                return new Collection<MultiHandleSliderTarget>();
+            }
+        }
+
+        /// <summary>
+        /// The list of controls used to bind slider handle values. These should be Label or TextBox controls
+        /// </summary>
+        [Description("The list of controls used to bind slider handle values. These should be Label or TextBox controls.")]
+        [PersistenceMode(PersistenceMode.InnerProperty)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [ExtenderControlProperty(true, true)]
+        [ClientPropertyName("multiHandleSliderTargets")]
+        public Collection<MultiHandleSliderTarget> ClientMultiHandleSliderTargets {
             get { return GetPropertyValue<Collection<MultiHandleSliderTarget>>("MultiHandleSliderTargets", null); }
             set { SetPropertyValue<Collection<MultiHandleSliderTarget>>("MultiHandleSliderTargets", value); }
         }
