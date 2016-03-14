@@ -47,10 +47,10 @@
                 });
 
                 it("client state saves selected item", function(done) {
-                    var target1 = this.$pageContainer.children().eq(2)[0];
-                    var event1 = new MouseEvent("click");
-                    Object.defineProperty(event1, "target", { value: target1, enumerable: true });
-                    target1._events.click[0].browserHandler(event1);
+                    var target = this.$pageContainer.children().eq(2)[0];
+                    var event = new MouseEvent("click");
+                    Object.defineProperty(event, "target", { value: target, enumerable: true });
+                    target._events.click[0].browserHandler(event);
 
                     __doPostBack(BULLET_LIST_UNIQUE_ID, '1');
 
