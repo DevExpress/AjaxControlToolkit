@@ -3,6 +3,7 @@ using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
@@ -13,6 +14,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(AnimationExtender))]
     [TargetControlType(typeof(WebControl))]
+    [TargetControlType(typeof(HtmlControl))]
     [ToolboxItem(false)]
     [Designer(typeof(PopupExtenderDesigner))]
     public class PopupExtender : AnimationExtenderControlBase {
