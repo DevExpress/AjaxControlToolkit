@@ -31,7 +31,7 @@
     </asp:UpdatePanel>
 
     <script>
-        describe("DropDown", function() {
+        describe("PagingBulletedList", function() {
 
             var BULLET_LIST_CLIENT_ID = "<%= TestList.ClientID %>";
             var BULLET_LIST_UNIQUE_ID = "<%= TestList.UniqueID %>";
@@ -48,9 +48,10 @@
 
                 it("client state saves selected item", function(done) {
                     var target = this.$pageContainer.children().eq(2)[0];
-                    var event = new MouseEvent("click");
+                    var event = document.createEvent("MouseEvent");
+                    event.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
                     Object.defineProperty(event, "target", { value: target, enumerable: true });
-                    target._events.click[0].browserHandler(event);
+                    target.dispatchEvent(event);
 
                     __doPostBack(BULLET_LIST_UNIQUE_ID, '1');
 
