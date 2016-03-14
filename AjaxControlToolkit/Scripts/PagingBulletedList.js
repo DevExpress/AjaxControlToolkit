@@ -537,11 +537,12 @@ Sys.Extended.UI.PagingBulletedListBehavior.prototype = {
     },
     set_clientSort: function(value) {
         if(this._clientSortValue != value) {
-            // Clear ClientState to set 0 index
-            this.set_ClientState("0;" + this.get_indexSize() + ";" + this.get_maxItemPerPage() + ";" + value);
-
             this._clientSortValue = value;
+
             if(this.get_isInitialized()) {
+                // Clear ClientState to set 0 index
+                this.set_ClientState("0;" + this.get_indexSize() + ";" + this.get_maxItemPerPage() + ";" + value);
+
                 if(this._clientSortValue)
                     this._tabValueObject.sort(this.liElementSortText);
                 else
