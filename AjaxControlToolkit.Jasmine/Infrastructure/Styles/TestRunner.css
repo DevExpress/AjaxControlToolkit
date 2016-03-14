@@ -62,6 +62,7 @@ form {
   font-size: 13px;
   height: 100%;
   width: 200px;
+  overflow-y: scroll;
 }
 .suite-list .suite-item {
   padding: 6px 5px 5px;
