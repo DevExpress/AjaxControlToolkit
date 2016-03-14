@@ -31,7 +31,7 @@
     </asp:UpdatePanel>
 
     <script>
-        describe("DropDown", function() {
+        describe("PagingBulletedList", function() {
 
             var BULLET_LIST_CLIENT_ID = "<%= TestList.ClientID %>";
             var BULLET_LIST_UNIQUE_ID = "<%= TestList.UniqueID %>";
