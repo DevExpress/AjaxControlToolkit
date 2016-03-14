@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using AjaxControlToolkit.Design;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace AjaxControlToolkit {
 
@@ -15,6 +16,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationScripts))]
     [ClientScriptResource("Sys.Extended.UI.Animation.AnimationBehavior", Constants.AnimationName)]
     [TargetControlType(typeof(WebControl))]
+    [TargetControlType(typeof(HtmlControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AnimationName + Constants.IconPostfix)]
     public class AnimationExtender : AnimationExtenderControlBase {
         Animation _onLoad;

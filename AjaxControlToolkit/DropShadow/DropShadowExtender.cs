@@ -2,6 +2,7 @@ using AjaxControlToolkit.Design;
 using System.ComponentModel;
 using System.Drawing;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
@@ -15,6 +16,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(RoundedCornersExtender), 2)]
     [RequiredScript(typeof(TimerScript), 3)]
     [TargetControlType(typeof(WebControl))]
+    [TargetControlType(typeof(HtmlControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.DropShadowName + Constants.IconPostfix)]
     public class DropShadowExtender : ExtenderControlBase {
         /// <summary>

@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
@@ -12,6 +13,7 @@ namespace AjaxControlToolkit {
     /// DropDown is an ASP.NET AJAX extender that can be attached almost to any ASP.NET control to provide a SharePoint-style drop-down menu.
     /// </summary>
     [TargetControlType(typeof(WebControl))]
+    [TargetControlType(typeof(HtmlControl))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(HoverExtender))]

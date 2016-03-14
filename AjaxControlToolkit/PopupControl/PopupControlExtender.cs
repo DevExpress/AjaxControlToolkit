@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
@@ -21,6 +22,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [TargetControlType(typeof(WebControl))]
+    [TargetControlType(typeof(HtmlControl))]
     [Designer(typeof(PopupControlExtenderDesigner))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.PopupControlName + Constants.IconPostfix)]
     public class PopupControlExtender : DynamicPopulateExtenderControlBase {

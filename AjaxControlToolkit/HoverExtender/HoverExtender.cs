@@ -4,12 +4,14 @@ using System.Web.UI;
 using System.ComponentModel;
 using AjaxControlToolkit.Design;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 namespace AjaxControlToolkit {
 
     [Designer(typeof(HoverExtenderDesigner))]
     [ClientScriptResource("Sys.Extended.UI.HoverBehavior", Constants.HoverName)]
     [TargetControlType(typeof(WebControl))]
+    [TargetControlType(typeof(HtmlControl))]
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ToolboxItem(false)]
     public class HoverExtender : ExtenderControlBase {

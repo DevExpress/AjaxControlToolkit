@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
@@ -27,7 +28,8 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(DragPanelExtender))]
     [RequiredScript(typeof(DropShadowExtender))]
     [RequiredScript(typeof(AnimationExtender))]
-    [TargetControlType(typeof(Control))]
+    [TargetControlType(typeof(WebControl))]
+    [TargetControlType(typeof(HtmlControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ModalPopup + Constants.IconPostfix)]
     public class ModalPopupExtender : DynamicPopulateExtenderControlBase {
         // Desired visibility state: true, false or none

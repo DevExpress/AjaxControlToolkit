@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit {
@@ -17,6 +18,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [ClientScriptResource("Sys.Extended.UI.ResizableControlBehavior", Constants.ResizableControlName)]
     [TargetControlType(typeof(WebControl))]
+    [TargetControlType(typeof(HtmlControl))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ResizableControlName + Constants.IconPostfix)]
     public class ResizableControlExtender : ExtenderControlBase {
         const int MaximumValue = 100000;
