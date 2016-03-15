@@ -612,10 +612,13 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
 
     // #endregion
 
-    this.addFilesToQueue = function(files) {
-        // Validate and generate file item from HTML5 files.
+    this.addFilesToQueue = function (files) {
 
-        for(var i = 0; i < files.length; i++) {
+        var startUpload = true;
+        var fileCount = files.length;   // store original value for later purposes (under WebKit/Blink the collection lenght is modified )
+
+        // Validate and generate file item from HTML5 files.
+        for (var i = 0; i < files.length; i++) {
 
             var blob = files[i],
                 slices = 0;
@@ -636,15 +639,22 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
 
             // validate it, add it if it's OK
             if(control.fileTypeIsValid(fileItem.type)) {
-                if(!control.addFileToQueue(fileItem))
+                if (!control.addFileToQueue(fileItem)) {
+                    startUpload = false;
                     break;
+                }
             } else {
+                startUpload = false;
                 control.confirmFileIsInvalid(fileItem);
             }
         }
 
         // reset input file value so 'change' event can be fired again with same file name.
         elements.inputFile.value = null;
+
+        if (fileCount > 0 && startUpload && control.get_autoStartUpload()) {
+            control.startUpload();
+        }
     };
 
     this.cancelUpload = function() {
@@ -918,6 +928,14 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     this._mode = 0;
 
     /// <summary>
+    /// Whether or not automatically start upload files after drag/drop or select in file dialog. The default is false
+    /// </summary>
+    /// <getter>get_autoStartUpload</getter>
+    /// <setter>set_autoStartUpload</setter>
+    /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.autoStartUpload" />
+    this._autoStartUpload = false;
+
+    /// <summary>
     /// Whether or not AjaxFileUpload supports server polling.
     /// </summary>
     /// <getter>get_serverPollingSupport</getter>
@@ -1134,6 +1152,18 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             }
         }
     },
+
+    /// <summary>
+    /// Manually starts upload process
+    /// </summary>
+    startUpload: function () {
+        if (this._isUploading || !this._filesInQueue.length) {
+            return;
+        }
+
+        this._onUploadOrCancelButtonClickedHandler();
+    },
+
 
     /// <summary>
     /// If set to true, it will set the control state to enabled (ready to upload),
@@ -1448,6 +1478,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_mode: function(value) {
         this._mode = value;
+    },
+
+    get_autoStartUpload: function () {
+        return this._autoStartUpload;
+    },
+    set_autoStartUpload: function (value) {
+        this._autoStartUpload = value;
     },
 
     get_serverPollingSupport: function() {
