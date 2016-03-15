@@ -173,7 +173,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
 
         this._backgroundElement = document.createElement('div');
-        this._backgroundElement.dataset.actControlType = "modalPopupBackground";
+        this._backgroundElement.setAttribute( 'actControlType', 'modalPopupBackground');
         this._backgroundElement.id = this.get_id() + '_backgroundElement';
         this._backgroundElement.style.display = 'none';
         this._backgroundElement.style.position = 'fixed';
@@ -214,7 +214,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         var backgrounds = [];
 
         for(var i = 0; i < actElements.length; i++) {
-            if(actElements[i].dataset.actControlType == "modalPopupBackground")
+            if(actElements[i].setAttribute('actControlType' , 'modalPopupBackground'))
                 backgrounds.push(actElements[i]);
         }
 
