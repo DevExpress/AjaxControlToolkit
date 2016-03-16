@@ -199,16 +199,6 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The CSS class override used to define custom look and feel for tabs
-        /// </summary>        
-        [DefaultValue("")]
-        [Category("Appearance")]
-        public override string CssClass {
-            get { return base.CssClass; }
-            set { base.CssClass = value; }
-        }
-
-        /// <summary>
         /// The CSS theme to pick from built-in CSS file
         /// </summary>        
         [DefaultValue("ajax__tab_xp")]
@@ -359,12 +349,12 @@ namespace AjaxControlToolkit {
 
         protected override Style CreateControlStyle() {
             var style = new TabContainerStyle(ViewState);
-            style.CssClass = MergeWithTheme(CssClass);
+            style.CssClass = GetCssClasses();
             return style;
         }
 
-        private string MergeWithTheme(string customCssClass) {
-            return String.Join(" ", customCssClass, _cssTheme);
+        string GetCssClasses() {
+            return String.Join(" ", CssClass, CssTheme).Trim();
         }
 
         int GetServerActiveTabIndex(int clientActiveTabIndex) {
@@ -440,7 +430,7 @@ namespace AjaxControlToolkit {
         protected override void AddAttributesToRender(HtmlTextWriter writer) {
             Style.Remove(HtmlTextWriterStyle.Visibility);
 
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, MergeWithTheme(CssClass));
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, GetCssClasses());
 
             if(_useVerticalStripPlacement)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
