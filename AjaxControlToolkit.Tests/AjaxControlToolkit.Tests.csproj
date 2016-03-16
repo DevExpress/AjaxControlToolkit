@@ -81,6 +81,7 @@
     <Compile Include="BaseValidatorTests.cs" />
     <Compile Include="ComponentDescriber\ComponentDescriberTests.cs" />
     <Compile Include="DocumentationTests\GitHubDocRendererTests.cs" />
+    <Compile Include="TabContainerTests.cs" />
     <Compile Include="ToolkitResourceManagerTests.cs" />
     <Compile Include="HtmlEditorExtenderTests.cs" />
     <Compile Include="DocumentationTests\CodePlexDocRendererTests.cs" />

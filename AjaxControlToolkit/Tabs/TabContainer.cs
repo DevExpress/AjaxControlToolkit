@@ -355,7 +355,7 @@ namespace AjaxControlToolkit {
             return String.Join(" ", CssClass, GetCssThemeClass()).Trim();
         }
 
-        private string GetCssThemeClass() {
+        string GetCssThemeClass() {
             switch(CssTheme) {
                 case TabsCssTheme.None:
                     return String.Empty;
@@ -441,7 +441,9 @@ namespace AjaxControlToolkit {
         protected override void AddAttributesToRender(HtmlTextWriter writer) {
             Style.Remove(HtmlTextWriterStyle.Visibility);
 
-            writer.AddAttribute(HtmlTextWriterAttribute.Class, GetCssClasses());
+            var cssClasses = GetCssClasses();
+            if(!String.IsNullOrWhiteSpace(cssClasses))
+                writer.AddAttribute(HtmlTextWriterAttribute.Class, cssClasses);
 
             if(_useVerticalStripPlacement)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
