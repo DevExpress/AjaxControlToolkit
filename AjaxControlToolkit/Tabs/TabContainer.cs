@@ -358,7 +358,7 @@ namespace AjaxControlToolkit {
         private string GetCssThemeClass() {
             switch(CssTheme) {
                 case TabsCssTheme.None:
-                    return "";
+                    return String.Empty;
                 case TabsCssTheme.XP:
                     return "ajax__tab_xp";
                 case TabsCssTheme.Plain:
