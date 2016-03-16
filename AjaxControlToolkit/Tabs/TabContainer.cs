@@ -35,7 +35,7 @@ namespace AjaxControlToolkit {
         bool _useVerticalStripPlacement;
         Unit _verticalStripWidth = new Unit(120, UnitType.Pixel);
         bool _onDemand;
-        string _cssTheme = "ajax__tab_xp";
+        TabsCssTheme _cssTheme = TabsCssTheme.XP;
 
         public TabContainer()
             : base(true, HtmlTextWriterTag.Div) {
@@ -199,11 +199,11 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// The CSS theme to pick from built-in CSS file
+        /// Gets or sets a CSS theme predefined in a CSS file
         /// </summary>        
-        [DefaultValue("ajax__tab_xp")]
+        [DefaultValue(TabsCssTheme.XP)]
         [Category("Appearance")]
-        public string CssTheme {
+        public TabsCssTheme CssTheme {
             get { return _cssTheme; }
             set { _cssTheme = value; }
         }
@@ -348,13 +348,24 @@ namespace AjaxControlToolkit {
         }
 
         protected override Style CreateControlStyle() {
-            var style = new TabContainerStyle(ViewState);
-            style.CssClass = GetCssClasses();
-            return style;
+            return new TabContainerStyle(ViewState);
         }
 
         string GetCssClasses() {
-            return String.Join(" ", CssClass, CssTheme).Trim();
+            return String.Join(" ", CssClass, GetCssThemeClass()).Trim();
+        }
+
+        private string GetCssThemeClass() {
+            switch(CssTheme) {
+                case TabsCssTheme.None:
+                    return "";
+                case TabsCssTheme.XP:
+                    return "ajax__tab_xp";
+                case TabsCssTheme.Plain:
+                    return "ajax__tab_plain";
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         int GetServerActiveTabIndex(int clientActiveTabIndex) {
