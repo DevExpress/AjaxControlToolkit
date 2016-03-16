@@ -35,6 +35,7 @@ namespace AjaxControlToolkit {
         bool _useVerticalStripPlacement;
         Unit _verticalStripWidth = new Unit(120, UnitType.Pixel);
         bool _onDemand;
+        string _cssTheme = "ajax__tab_xp";
 
         public TabContainer()
             : base(true, HtmlTextWriterTag.Div) {
@@ -199,15 +200,22 @@ namespace AjaxControlToolkit {
 
         /// <summary>
         /// The CSS class override used to define custom look and feel for tabs
-        /// </summary>
-        /// <remarks>
-        /// See the Tabs Theming section for more details
-        /// </remarks>
-        [DefaultValue("ajax__tab_xp")]
+        /// </summary>        
+        [DefaultValue("")]
         [Category("Appearance")]
         public override string CssClass {
             get { return base.CssClass; }
             set { base.CssClass = value; }
+        }
+
+        /// <summary>
+        /// The CSS theme to pick from built-in CSS file
+        /// </summary>        
+        [DefaultValue("ajax__tab_xp")]
+        [Category("Appearance")]
+        public string CssTheme {
+            get { return _cssTheme; }
+            set { _cssTheme = value; }
         }
 
         /// <summary>
@@ -351,8 +359,12 @@ namespace AjaxControlToolkit {
 
         protected override Style CreateControlStyle() {
             var style = new TabContainerStyle(ViewState);
-            style.CssClass = String.IsNullOrEmpty(CssClass) ? "ajax__tab_xp" : CssClass;
+            style.CssClass = MergeWithTheme(CssClass);
             return style;
+        }
+
+        private string MergeWithTheme(string customCssClass) {
+            return String.Join(" ", customCssClass, _cssTheme);
         }
 
         int GetServerActiveTabIndex(int clientActiveTabIndex) {
@@ -427,8 +439,8 @@ namespace AjaxControlToolkit {
 
         protected override void AddAttributesToRender(HtmlTextWriter writer) {
             Style.Remove(HtmlTextWriterStyle.Visibility);
-            if(!ControlStyleCreated)
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, String.IsNullOrEmpty(CssClass) ? "ajax__tab_xp" : CssClass);
+
+            writer.AddAttribute(HtmlTextWriterAttribute.Class, MergeWithTheme(CssClass));
 
             if(_useVerticalStripPlacement)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");
