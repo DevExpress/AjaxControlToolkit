@@ -35,7 +35,7 @@ namespace AjaxControlToolkit {
         bool _useVerticalStripPlacement;
         Unit _verticalStripWidth = new Unit(120, UnitType.Pixel);
         bool _onDemand;
-        TabsCssTheme _cssTheme = TabsCssTheme.XP;
+        TabCssTheme _cssTheme = TabCssTheme.XP;
 
         public TabContainer()
             : base(true, HtmlTextWriterTag.Div) {
@@ -201,11 +201,13 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Gets or sets a CSS theme predefined in a CSS file
         /// </summary>        
-        [DefaultValue(TabsCssTheme.XP)]
+        [DefaultValue(TabCssTheme.XP)]
         [Category("Appearance")]
-        public TabsCssTheme CssTheme {
-            get { return _cssTheme; }
-            set { _cssTheme = value; }
+        [ExtenderControlProperty]
+        [ClientPropertyName("cssTheme")]
+        public TabCssTheme CssTheme {
+            get { return (TabCssTheme)(ViewState["CssTheme"] ?? TabCssTheme.XP); }
+            set { ViewState["CssTheme"] = value; }
         }
 
         /// <summary>
@@ -348,24 +350,9 @@ namespace AjaxControlToolkit {
         }
 
         protected override Style CreateControlStyle() {
-            return new TabContainerStyle(ViewState);
-        }
-
-        string GetCssClasses() {
-            return String.Join(" ", CssClass, GetCssThemeClass()).Trim();
-        }
-
-        string GetCssThemeClass() {
-            switch(CssTheme) {
-                case TabsCssTheme.None:
-                    return String.Empty;
-                case TabsCssTheme.XP:
-                    return "ajax__tab_xp";
-                case TabsCssTheme.Plain:
-                    return "ajax__tab_plain";
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            var style = new TabContainerStyle(ViewState);
+            style.CssClass = CssClass;
+            return style;
         }
 
         int GetServerActiveTabIndex(int clientActiveTabIndex) {
@@ -441,9 +428,8 @@ namespace AjaxControlToolkit {
         protected override void AddAttributesToRender(HtmlTextWriter writer) {
             Style.Remove(HtmlTextWriterStyle.Visibility);
 
-            var cssClasses = GetCssClasses();
-            if(!String.IsNullOrWhiteSpace(cssClasses))
-                writer.AddAttribute(HtmlTextWriterAttribute.Class, cssClasses);
+            if(!ControlStyleCreated && !String.IsNullOrWhiteSpace(CssClass))
+                writer.AddAttribute(HtmlTextWriterAttribute.Class, CssClass);
 
             if(_useVerticalStripPlacement)
                 writer.AddStyleAttribute(HtmlTextWriterStyle.Display, "block");

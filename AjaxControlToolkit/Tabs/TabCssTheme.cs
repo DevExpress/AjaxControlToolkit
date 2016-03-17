@@ -1,5 +1,5 @@
 ﻿namespace AjaxControlToolkit {
-    public enum TabsCssTheme {
+    public enum TabCssTheme {
         None,
         XP,
         Plain

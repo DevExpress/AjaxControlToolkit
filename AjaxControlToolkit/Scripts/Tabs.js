@@ -1,5 +1,13 @@
 Type.registerNamespace("Sys.Extended.UI");
 
+Sys.Extended.UI.TabCssTheme = function() { }
+Sys.Extended.UI.TabCssTheme.prototype = {
+    None: 0,
+    XP: 1,
+    Plain: 2
+}
+Sys.Extended.UI.TabCssTheme.registerEnum("Sys.Extended.UI.TabCssTheme", true);
+
 Sys.Extended.UI.TabStripPlacement = function() { }
 Sys.Extended.UI.TabStripPlacement.prototype = {
     Top: 0,
@@ -26,6 +34,7 @@ Sys.Extended.UI.TabContainer = function(element) {
     this._activeTabIndex = -1;
     this._scrollBars = Sys.Extended.UI.ScrollBars.None;
     this._tabs = null;
+    this._cssTheme = Sys.Extended.UI.TabCssTheme.XP;
     this._header = null;
     this._body = null;
     this._loaded = false;
@@ -232,6 +241,7 @@ Sys.Extended.UI.TabContainer.prototype = {
 
         // default classes
         $common.addCssClasses(elt, [
+            this._getCssThemeClass(this.get_cssTheme()),
             "ajax__tab_container",
             "ajax__tab_default"
         ]);
@@ -245,6 +255,30 @@ Sys.Extended.UI.TabContainer.prototype = {
         $clearHandlers(this.get_element());
         Sys.Application.remove_load(this._app_onload$delegate);
         Sys.Extended.UI.TabContainer.callBaseMethod(this, "dispose");
+    },
+
+    get_cssTheme: function()
+    {
+        return this._cssTheme;
+    },
+    set_cssTheme: function(value)
+    {
+        this._cssTheme = value;
+    },
+
+    _getCssThemeClass: function(theme)
+    {
+        switch(theme)
+        {
+            case Sys.Extended.UI.TabCssTheme.None:
+                return "";
+            case Sys.Extended.UI.TabCssTheme.XP:
+                return "ajax__tab_xp";
+            case Sys.Extended.UI.TabCssTheme.Plain:
+                return "ajax__tab_plain";
+            default:
+                throw Error.argument('theme', String.format(Sys.Extended.UI.Resources.Tabs_UnknownTheme, type.getName()));
+        }
     },
 
     /// <summary>

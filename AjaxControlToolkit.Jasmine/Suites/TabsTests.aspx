@@ -21,6 +21,10 @@
 
     </act:TabContainer>
 
+    <act:TabContainer ID="CustomTabContainer" runat="server" CssClass="test-class" CssTheme="Plain" >
+        <act:TabPanel runat="server"></act:TabPanel>
+    </act:TabContainer>
+
     <script>
         describe("Tabs", function() {
             var TABS_COUNT = 2,
@@ -38,16 +42,30 @@
                 TAB_INNER_CLASS_NAME = "ajax__tab_inner";
 
             var TEST_TAB_CONTAINER_CLIENT_ID = "<%= TestTabContainer.ClientID %>";
+            var CUSTOM_TAB_CONTAINER_CLIENT_ID = "<%= CustomTabContainer.ClientID %>";
 
             describe("Rendering", function() {
 
                 beforeEach(function() {
                     this.element = $find(TEST_TAB_CONTAINER_CLIENT_ID)._element;
+                    this.customElement = $find(CUSTOM_TAB_CONTAINER_CLIENT_ID)._element;
+                });
+
+                it("root div has proper default classes", function() {
+                    var classList = this.element.classList,
+                        expectedClassList = ["ajax__tab_xp", "ajax__tab_container", "ajax__tab_default"];
+
+                    expect(expectedClassList.length).toBe(classList.length);
+
+                    for(var i = 0; i < expectedClassList.length; i++)
+                        expect(expectedClassList[i]).toBeAnyOf(classList);
                 });
 
                 it("root div has proper classes", function() {
-                    var classList = this.element.classList,
-                        expectedClassList = ["ajax__tab_xp", "ajax__tab_container", "ajax__tab_default"];
+                    var classList = this.customElement.classList,
+                        expectedClassList = [ "test-class", "ajax__tab_plain", "ajax__tab_container", "ajax__tab_default"];
+
+                    expect(expectedClassList.length).toBe(classList.length);
 
                     for(var i = 0; i < expectedClassList.length; i++)
                         expect(expectedClassList[i]).toBeAnyOf(classList);

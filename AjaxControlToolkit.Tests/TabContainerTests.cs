@@ -9,25 +9,26 @@ namespace AjaxControlToolkit.Tests {
 
     [TestFixture]
     public class TabContainerTests {
-
         [Test]
-        public void AddAttributesToRender() {
-            var wrapper = new TabContainerWrapper();
+        public void CssClassDoesNotContainCssTheme() {
 
-            foreach(var theme in Enum.GetValues(typeof(TabsCssTheme))) {
-                wrapper.CssTheme = (TabsCssTheme)theme;
+            foreach(var theme in Enum.GetValues(typeof(TabCssTheme))) {
+                var wrapper = new TabContainerWrapper();
+                wrapper.CssTheme = (TabCssTheme)theme;
+                var testCssClass = "test-class";
+                wrapper.CssClass = testCssClass;
+
                 var layout = wrapper.RenderAttributes();
+                var classValue = GetClassAttribute(layout);
 
-                using(var reader = XmlReader.Create(new StringReader(layout))) {
-                    reader.Read();
+                Assert.AreEqual(testCssClass, classValue);
+            }
+        }
 
-                    var hasClassAttribute = reader.MoveToAttribute("class");
-
-                    if((TabsCssTheme)theme == TabsCssTheme.None)
-                        Assert.False(hasClassAttribute);
-                    else 
-                        Assert.True(!String.IsNullOrWhiteSpace(reader.Value));
-                }
+        string GetClassAttribute(string layout) {
+            using(var reader = XmlReader.Create(new StringReader(layout))) {
+                reader.Read();
+                return reader.MoveToAttribute("class") ? reader.Value : null;
             }
         }
 
