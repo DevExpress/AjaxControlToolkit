@@ -154,6 +154,7 @@ Sys.Extended.UI.Resources = {
     "Tabs_OwnerExpected": "owner must be set before initialize",
     "Tabs_PropertySetAfterInitialization": "{0} cannot be changed after initialization",
     "Tabs_PropertySetBeforeInitialization": "{0} cannot be changed before initialization",
+    "Tabs_UnknownTheme": "Theme {0} cannot be converted to a CSS class",
     "ValidatorCallout_DefaultErrorMessage": "This control is invalid",
     "MultiHandleSlider_CssHeightWidthRequired": "You must specify a CSS width and height for all handle styles as well as the rail.",
     "AsyncFileUpload_InternalErrorMessage": "The AsyncFileUpload control has encountered an error with the uploader in this page. Please refresh the page and try again.",

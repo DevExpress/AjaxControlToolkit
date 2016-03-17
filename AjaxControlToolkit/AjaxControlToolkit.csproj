@@ -66,6 +66,7 @@
     <Compile Include="ExtenderBase\IScriptComponentDescriptor.cs" />
     <Compile Include="ExtenderBase\ScriptComponentDescriptorWrapper.cs" />
     <Compile Include="MultiHandleSlider\MultiHandleSliderTargetsEditor.cs" />
+    <Compile Include="Tabs\TabCssTheme.cs" />
     <Compile Include="ToolkitConfig.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadCompleteAllEventArgs.cs" />
