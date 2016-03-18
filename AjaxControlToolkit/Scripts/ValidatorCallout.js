@@ -40,8 +40,8 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
                 self._checkPageValidators(self, elt);
             });
         }
-
-        this._overrideEvaluationFunction(elt, this);
+        else
+            this._overrideEvaluationFunction(elt, this);
 
         // Check for failed server-side validation (indicated by non-empty ClientState)
         var clientState = this.get_ClientState();
