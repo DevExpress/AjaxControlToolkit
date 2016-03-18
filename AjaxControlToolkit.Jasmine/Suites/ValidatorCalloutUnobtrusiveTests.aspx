@@ -29,12 +29,12 @@
             describe("Rendering", function() {
                 beforeEach(function() {
                     this.extender = $find(VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID);
-                    this.$container = $(this.extender._popupTable);
                 });
 
                 it("shows validator", function() {
                     this.extender._onvalidate(Page_Validators[0]);
-                    expect(this.$container.is(":visible")).toBeTruthy();
+                    var $container = $("#" + VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
+                    expect($container.is(":visible")).toBeTruthy();
                 });
             });
         });
