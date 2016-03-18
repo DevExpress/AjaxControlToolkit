@@ -101,6 +101,7 @@
     <Content Include="Suites\BalloonPopupTests.aspx" />
     <Content Include="Suites\DropDownTests.aspx" />
     <Content Include="Suites\HtmlEditorExtenderTests\superhero.png" />
+    <Content Include="Suites\ModalPopupTests.aspx" />
     <Content Include="Suites\PagingBulletedListTests.aspx" />
     <Content Include="Suites\UpdatePanelAnimationTests.aspx" />
     <Content Include="Suites\TextBoxWatermarkTests.aspx" />
@@ -176,6 +177,13 @@
     </Compile>
     <Compile Include="Suites\DropDownTests.aspx.designer.cs">
       <DependentUpon>DropDownTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\ModalPopupTests.aspx.cs">
+      <DependentUpon>ModalPopupTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ModalPopupTests.aspx.designer.cs">
+      <DependentUpon>ModalPopupTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\PagingBulletedListTests.aspx.cs">
       <DependentUpon>PagingBulletedListTests.aspx</DependentUpon>
