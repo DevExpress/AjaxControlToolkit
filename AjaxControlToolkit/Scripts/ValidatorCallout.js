@@ -26,22 +26,14 @@ Sys.Extended.UI.ValidatorCalloutBehavior = function Sys$Extended$UI$ValidatorCal
     this._isBuilt = false;
     this._focusHandler = Function.createDelegate(this, this._onfocus);
     this._closeClickHandler = Function.createDelegate(this, this._oncloseClick);
+    this._originalValidationMethodOverriden = false;
+
+    Sys.Application.add_load(this._loadHandler);
 };
 
 Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     initialize: function() {
         Sys.Extended.UI.ValidatorCalloutBehavior.callBaseMethod(this, 'initialize');
-        var elt = this.get_element();
-
-        var self = this;
-
-        if(window.jQuery) {
-            $(function() {
-                self._checkPageValidators(self, elt);
-            });
-        }
-        else
-            this._overrideEvaluationFunction(elt, this);
 
         // Check for failed server-side validation (indicated by non-empty ClientState)
         var clientState = this.get_ClientState();
@@ -50,34 +42,65 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             // Apply HightLightCssClass for failed server-side validation
             if(this._highlightCssClass)
                 Sys.UI.DomElement.addCssClass(this._elementToValidate, this._highlightCssClass);
+
             this.show();
         }
     },
 
-    _checkPageValidators: function(self, elt) {
+    _loadHandler: function(app, args) {
+        var components = args.get_components();
+
+        for(var i = 0; i < components.length; i++) {
+            var component = components[i];
+
+            if(component instanceof Sys.Extended.UI.ValidatorCalloutBehavior) {
+                component.attachToValidator();
+            }
+        }
+    },
+
+    attachToValidator: function() {
+        var element = this.get_element();
+        var self = this;
+
+        if(!this._originalValidationMethodOverriden) {
+            if(window.jQuery) {
+                $(function() {
+                    self.checkPageValidators(element);
+                });
+            }
+            else
+                self.overrideEvaluationFunction(element);
+
+            this._originalValidationMethodOverriden = true;
+        }
+    },
+
+    checkPageValidators: function(element) {
         if(typeof (Page_Validators) === "undefined")
             return;
 
         for(i = 0; i < Page_Validators.length; i++) {
-            val = Page_Validators[i];
+            var validator = Page_Validators[i];
 
-            if(val.ValidatorCalloutBehavior !== self)
+            if(validator.ValidatorCalloutBehavior !== this)
                 continue;
 
-            if(typeof (val.evaluationfunction) === "function") {
-                elt.evaluationfunction = val.evaluationfunction;
-                self._overrideEvaluationFunction(elt, self);
+            if(typeof (validator.evaluationfunction) === "function") {
+                element.evaluationfunction = validator.evaluationfunction;
+                this.overrideEvaluationFunction(element);
                 break;
             }
         }
     },
 
-    _overrideEvaluationFunction: function(elt, self) {
+    overrideEvaluationFunction: function(element) {
         // Override the evaluation method of the current validator
-        if(elt.evaluationfunction) {
-            self._originalValidationMethod = Function.createDelegate(elt, elt.evaluationfunction);
-            self._validationMethodOverride = Function.createDelegate(self, self._onvalidate);
-            elt.evaluationfunction = self._validationMethodOverride;
+        if(element.evaluationfunction) {
+            this._originalValidationMethod = Function.createDelegate(element, element.evaluationfunction);
+            this._validationMethodOverride = Function.createDelegate(this, this._onvalidate);
+            element.evaluationfunction = this._validationMethodOverride;
+            element.removeAttribute("data-val-evaluationfunction");
         }
     },
 
