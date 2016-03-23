@@ -13,6 +13,9 @@ namespace AjaxControlToolkit.Jasmine.App_Start {
                          "~/Infrastructure/Scripts/Libs/jasmine-2.2.0/jasmine-html.js",
                          "~/Infrastructure/Scripts/Libs/jasmine-2.2.0/boot.js"));
 
+            bundles.Add(new StyleBundle("~/bundles/jasmine-style")
+                .Include("~/Infrastructure/Scripts/Libs/jasmine-2.2.0/jasmine.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Infrastructure/Scripts/Libs/jquery-2.1.4.js",
                 "~/Infrastructure/Scripts/Libs/jquery.simulate.js"));
 

@@ -10,7 +10,7 @@
     <base href="<%# GetCurrentPage() %>" target="_blank">
 
     <asp:PlaceHolder runat="server">
-        <%: Styles.Render("~/Infrastructure/Scripts/Libs/jasmine-2.2.0/jasmine.css") %>
+        <%: Styles.Render("~/bundles/jasmine-style") %>
     </asp:PlaceHolder>
 
     <asp:PlaceHolder runat="server">
@@ -26,7 +26,7 @@
             var queryString = new jasmine.QueryString({
                 getWindowLocation: function() { return window.location; }
             });
-            var specIndex = +queryString.getParam("specIndex");
+            var specIndex = queryString.getParam("specIndex");
 
             var env = jasmine.getEnv();
             env.specFilter = function(spec) {
