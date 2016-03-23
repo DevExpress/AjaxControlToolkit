@@ -124,6 +124,7 @@
     <Content Include="Suites\MaskedEditValidatorTests.aspx" />
     <Content Include="Suites\ColorPickerTests.aspx" />
     <Content Include="Suites\NumericUpDownTests.aspx" />
+    <Content Include="Suites\ValidatorCalloutUpdatePanelUnobtrusiveTests.aspx" />
     <Content Include="Suites\ValidatorCalloutUnobtrusiveTests.aspx" />
     <Content Include="Suites\ValidatorCalloutTests.aspx" />
     <Content Include="Suites\PasswordStrengthTests.aspx" />
@@ -284,6 +285,13 @@
       <DependentUpon>NumericUpDownTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\ReorderListTests\ReorderListItems.cs" />
+    <Compile Include="Suites\ValidatorCalloutUpdatePanelUnobtrusiveTests.aspx.cs">
+      <DependentUpon>ValidatorCalloutUpdatePanelUnobtrusiveTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\ValidatorCalloutUpdatePanelUnobtrusiveTests.aspx.designer.cs">
+      <DependentUpon>ValidatorCalloutUpdatePanelUnobtrusiveTests.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Suites\ValidatorCalloutUnobtrusiveTests.aspx.cs">
       <DependentUpon>ValidatorCalloutUnobtrusiveTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
