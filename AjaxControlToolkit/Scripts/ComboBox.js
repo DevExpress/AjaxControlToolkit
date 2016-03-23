@@ -251,7 +251,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         var optionListControl = this.get_optionListControl();
 
         // force inline display on Safari by moving the list to the bottom of the form.
-        if (Sys.Browser.agent === Sys.Browser.Safari || Sys.Browser.agent === Sys.Browser.WebKit) {
+        if (Sys.Browser.agent === Sys.Browser.Safari) {
             //this.get_element().removeChild(optionListControl);
             var parentOfOptionList = optionListControl.parentNode;
             if (parentOfOptionList != null)
@@ -1232,33 +1232,6 @@ Sys.Extended.UI.ComboBox.prototype = {
             ) {
                 return true;
             }
-        }
-        else if (Sys.Browser.agent == Sys.Browser.WebKit) {
-
-            // allow special funky apple webkit keypresses
-            if (code == 8            // BACKSPACE in Safari 3
-                || code == 9         // TAB in Safari 3
-                || code == 19        // PAUSE BREAK Safari 3
-                || code == 33        // PAGEUP in Safari 3
-                || code == 34        // PAGEDOWN in Safari 3
-                || code == 35        // END in Safari 3
-                || code == 36        // HOME in Safari 3
-                || code == 37        // ARROWLEFT in Safari 3
-                || code == 39        // ARROWRIGHT in Safari 3
-                || code == 45        // INSERT in Safari 3
-                || code == 46        // DELETE in Safari 3
-                || code == 91        // WINDOWS LEFT Safari 3
-                || code == 92        // WINDOWS RIGHT Safari 3
-                || code == 93        // MENU Safari 3
-                || code == 113       // F2 Safari 3
-                || code == 115       // F4 Safari 3
-                || code == 118       // F7 Safari 3
-                || code == 119       // F8 Safari 3
-                || code == 120       // F9 Safari 3
-                || code == 122       // F11 Safari 3
-                || code == 145       // SCROLL LOCK Safari 3
-            )
-                return true;
         }
         else if (Sys.Browser.agent != Sys.Browser.InternetExplorer) {
 
