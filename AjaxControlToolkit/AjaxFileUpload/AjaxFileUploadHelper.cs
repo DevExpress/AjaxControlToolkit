@@ -12,11 +12,28 @@ namespace AjaxControlToolkit {
         const int ChunkSize = 1024 * 1024 * 4;
         const int ChunkSizeForPolling = 64 * 1024;
 
+        /// <summary>
+        /// User defined base folder for uploading files
+        /// </summary>
         public static string RootTempFolderPath { get; set; }
+
+        /// <summary>
+        /// Specifies to use advanced HttpRequest.GetBufferlessInputStream() method or classic HttpRequest.InputStream property
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// In enviroments where HttpRequest.GetBufferlessInputStream() method throws exception (when entity body has already been loaded and parsed), classic HttpRequest.InputStream property can be used
+        /// </para>
+        /// <para>
+        /// This property might be obsolete after upgrade .NET 4.5 and higher (this behavior can be tested by HttpRequest.ReadEntityBodyMode)
+        /// </para>
+        /// </remarks>
+        public static bool UseBufferlessInputStream { get; set; }
 
         static AjaxFileUploadHelper()
         {
             RootTempFolderPath = Path.GetTempPath();
+            UseBufferlessInputStream = true;
         }
 
         public static void Abort(HttpContext context, string fileId) {
@@ -31,13 +48,14 @@ namespace AjaxControlToolkit {
             var firstChunk = bool.Parse(request.QueryString["firstChunk"] ?? "false");
             var usePoll = bool.Parse(request.QueryString["usePoll"] ?? "false");
 
-            using(var stream = request.GetBufferlessInputStream()) {
+            using (var stream = UseBufferlessInputStream ? request.GetBufferlessInputStream() : request.InputStream)
+            {
                 var success = false;
                 success = ProcessStream(
                     context, stream, fileId, fileName,
                     chunked, firstChunk, usePoll);
 
-                if(!success)
+                if (!success)
                     request.Form.Clear();
 
                 return success;
