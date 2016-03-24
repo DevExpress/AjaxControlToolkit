@@ -77,6 +77,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjaxFileUploadTests.cs" />
     <Compile Include="BundleResolverTests.cs" />
     <Compile Include="BaseValidatorTests.cs" />
     <Compile Include="ComponentDescriber\ComponentDescriberTests.cs" />
