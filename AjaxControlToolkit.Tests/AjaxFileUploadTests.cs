@@ -2,11 +2,14 @@
 using System;
 using System.Data.SqlClient;
 using System.Drawing.Printing;
+using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Security;
 using System.Security.Permissions;
+using System.Text;
 using System.Web;
+using System.Web.Caching;
 
 namespace AjaxControlToolkit.Tests {
 
@@ -14,18 +17,37 @@ namespace AjaxControlToolkit.Tests {
     public class AjaxFileUploadTests {
 
         [Test]
-        public void MediumTrust() {
+        public void SetRootTempFolderPath_MediumTrust() {
             var appDomain = CreateMediumTrustDomain();
             var wrapper = (TestClassWrapper)appDomain.CreateInstanceAndUnwrap(
                 typeof(TestClassWrapper).Assembly.FullName,
                 typeof(TestClassWrapper).FullName);
 
-            Assert.DoesNotThrow(() => wrapper.TestMethod(), "Medium trust environment exception");
+            Assert.DoesNotThrow(() => wrapper.SetRootTempFolderPath(), "Medium trust environment exception");
         }
 
-        class TestClassWrapper : MarshalByRefObject {
-            public void TestMethod() {
+        [Test]
+        public void ProcessStream_MediumTrust() {
+            var appDomain = CreateMediumTrustDomain();
+            var wrapper = (TestClassWrapper)appDomain.CreateInstanceAndUnwrap(
+                typeof(TestClassWrapper).Assembly.FullName,
+                typeof(TestClassWrapper).FullName);
+
+            Assert.DoesNotThrow(() => wrapper.ProcessStreamNonChunked(), "Medium trust environment exception");
+        }
+
+        public class TestClassWrapper : MarshalByRefObject {
+            public void SetRootTempFolderPath() {
                 AjaxFileUploadHelper.RootTempFolderPath = "";
+            }
+
+            public void ProcessStreamNonChunked() {
+                var stream = GenerateStreamFromString("abc");
+                new AjaxFileUploadHelper().ProcessStream(new Cache(), stream, "fileId", "fileName", false, false, false);
+            }
+
+            private MemoryStream GenerateStreamFromString(string value) {
+                return new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
             }
         }
 
@@ -50,9 +72,9 @@ namespace AjaxControlToolkit.Tests {
             permissions.AddPermission(new ReflectionPermission(ReflectionPermissionFlag.RestrictedMemberAccess));
 
             permissions.AddPermission(new SecurityPermission(
-                SecurityPermissionFlag.Execution 
-                | SecurityPermissionFlag.ControlThread 
-                | SecurityPermissionFlag.ControlPrincipal 
+                SecurityPermissionFlag.Execution
+                | SecurityPermissionFlag.ControlThread
+                | SecurityPermissionFlag.ControlPrincipal
                 | SecurityPermissionFlag.RemotingConfiguration));
 
             var sqlPermission = new SqlClientPermission(PermissionState.Unrestricted);

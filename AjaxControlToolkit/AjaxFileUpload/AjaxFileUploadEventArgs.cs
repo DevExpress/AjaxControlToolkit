@@ -14,6 +14,7 @@ namespace AjaxControlToolkit {
         string _contentType = String.Empty;
         string _postedUrl = string.Empty;
         AjaxFileUploadState _state = AjaxFileUploadState.Unknown;
+        StorageStrategy _storage = null;
 
         public AjaxFileUploadEventArgs(string fileId, AjaxFileUploadState state, string statusMessage, string fileName, int fileSize, string contentType) {
             _fileId = fileId;
@@ -22,6 +23,7 @@ namespace AjaxControlToolkit {
             _fileName = fileName;
             _fileSize = fileSize;
             _contentType = contentType;
+            _storage = StorageStrategy.GetStorage();
         }
 
         public string FileId {
@@ -64,18 +66,14 @@ namespace AjaxControlToolkit {
         }
 
         public Stream GetStreamContents() {
-            var dir = AjaxFileUpload.BuildTempFolder(this._fileId);
-            return File.OpenRead(Path.Combine(dir, this._fileName));
+            var dir = _storage.GetTempFolder(this._fileId);
+            return _storage.ReadFileStream(Path.Combine(dir, this._fileName));
         }
 
         public void DeleteTemporaryData() {
-            var dirInfo = new DirectoryInfo(AjaxFileUpload.BuildTempFolder(this._fileId));
-            if(dirInfo.Exists)
-                dirInfo.Delete(true);
+            var dir = _storage.GetTempFolder(this._fileId);
+            _storage.DeleteDirectory(dir);
         }
-
-
-
     }
 
 }

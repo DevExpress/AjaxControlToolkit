@@ -3,26 +3,27 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 
 namespace AjaxControlToolkit {
 
     public class AjaxFileUploadStates {
-        readonly HttpContext _httpContext;
+        readonly Cache _cache;
         readonly string _id;
 
-        public AjaxFileUploadStates(HttpContext context, string id) {
-            _httpContext = context;
+        public AjaxFileUploadStates(Cache cache, string id) {
+            _cache = cache;
             _id = id;
         }
 
         public decimal FileLength {
-            get { return decimal.Parse((string)_httpContext.Cache[GetSessionName("fileLength")] ?? "0"); }
-            set { _httpContext.Cache[GetSessionName("fileLength")] = value.ToString(); }
+            get { return decimal.Parse((string)_cache[GetSessionName("fileLength")] ?? "0"); }
+            set { _cache[GetSessionName("fileLength")] = value.ToString(); }
         }
 
         public decimal Uploaded {
-            get { return decimal.Parse((string)_httpContext.Cache[GetSessionName("uploaded")] ?? "0"); }
-            set { _httpContext.Cache[GetSessionName("uploaded")] = value.ToString(); }
+            get { return decimal.Parse((string)_cache[GetSessionName("uploaded")] ?? "0"); }
+            set { _cache[GetSessionName("uploaded")] = value.ToString(); }
         }
 
         public decimal Percent {
@@ -38,18 +39,18 @@ namespace AjaxControlToolkit {
         }
 
         public bool Abort {
-            get { return bool.Parse((string)_httpContext.Cache[GetSessionName("abort")] ?? "false"); }
-            set { _httpContext.Cache[GetSessionName("abort")] = value.ToString(); }
+            get { return bool.Parse((string)_cache[GetSessionName("abort")] ?? "false"); }
+            set { _cache[GetSessionName("abort")] = value.ToString(); }
         }
 
         public List<string> BlockList {
             get {
-                if(_httpContext.Cache[GetSessionName("blockList")] == null)
-                    _httpContext.Cache[GetSessionName("blockList")] = new List<string>();
+                if(_cache[GetSessionName("blockList")] == null)
+                    _cache[GetSessionName("blockList")] = new List<string>();
 
-                return (List<string>)_httpContext.Cache[GetSessionName("blockList")];
+                return (List<string>)_cache[GetSessionName("blockList")];
             }
-            set { _httpContext.Cache[GetSessionName("blockList")] = value; }
+            set { _cache[GetSessionName("blockList")] = value; }
         }
 
         string GetSessionName(string name) {

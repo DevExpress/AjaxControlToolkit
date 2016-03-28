@@ -11,6 +11,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Drawing;
 using System.Collections.ObjectModel;
+using System.IO.IsolatedStorage;
 
 namespace AjaxControlToolkit {
 
@@ -25,13 +26,14 @@ namespace AjaxControlToolkit {
     public class AjaxFileUpload : ScriptControlBase {
 
         static List<string> _contextKeys = new List<string>();
-        const string TemporaryUploadFolderName = "_AjaxFileUpload";
 
         // Location of uploaded temporary file path
         string _uploadedFilePath = null;
+        StorageStrategy _storage = null;
 
         public AjaxFileUpload()
             : base(true, HtmlTextWriterTag.Div) {
+                _storage = StorageStrategy.GetStorage();
         }
 
         internal static ReadOnlyCollection<string> ContextKeyCollection {
@@ -103,7 +105,7 @@ namespace AjaxControlToolkit {
         [DefaultValue(false)]
         [ClientPropertyName("clearFileListAfterUpload")]
         public bool ClearFileListAfterUpload {
-            get { return bool.Parse((string)ViewState["ClearFileListAfterUpload"] ?? "false");  }
+            get { return bool.Parse((string)ViewState["ClearFileListAfterUpload"] ?? "false"); }
             set { ViewState["ClearFileListAfterUpload"] = value.ToString(); }
         }
 
@@ -331,15 +333,17 @@ namespace AjaxControlToolkit {
         void XhrDone(string fileId) {
             AjaxFileUploadEventArgs args;
 
-            var tempFolder = BuildTempFolder(fileId);
-            if(!Directory.Exists(tempFolder))
+            var tempFolder = _storage.GetTempFolder(fileId);
+            _storage.BuildTempFolder(tempFolder);
+
+            if(!_storage.DirectoryExists(tempFolder))
                 return;
 
-            var files = Directory.GetFiles(tempFolder);
+            var files = _storage.GetFiles(tempFolder);
             if(files.Length == 0)
                 return;
 
-            var fileInfo = new FileInfo(files[0]);
+            var fileInfo = _storage.GetFileStats(files[0]);
             _uploadedFilePath = fileInfo.FullName;
 
             args = new AjaxFileUploadEventArgs(
@@ -353,11 +357,11 @@ namespace AjaxControlToolkit {
         }
 
         void XhrCancel(string fileId) {
-            AjaxFileUploadHelper.Abort(Context, fileId);
+            AjaxFileUploadHelper.Abort(Context.Cache, fileId);
         }
 
         void XhrPoll(string fileId) {
-            Page.Response.Write((new AjaxFileUploadStates(Context, fileId)).Percent.ToString());
+            Page.Response.Write((new AjaxFileUploadStates(Context.Cache, fileId)).Percent.ToString());
         }
         /// <summary>
         /// Saves the uploaded file with the specified file name
@@ -378,22 +382,9 @@ namespace AjaxControlToolkit {
         }
 
         public static void CleanAllTemporaryData() {
-            var dirInfo = new DirectoryInfo(BuildRootTempFolder());
-            foreach(var dir in dirInfo.GetDirectories()) {
-                dir.Delete(true);
-            }
-        }
-
-        public static string BuildTempFolder(string fileId) {
-            return Path.Combine(BuildRootTempFolder(), fileId);
-        }
-
-        public static string BuildRootTempFolder() {
-            var rootTempFolder = Path.Combine(AjaxFileUploadHelper.RootTempFolderPath, TemporaryUploadFolderName);
-            if(!Directory.Exists(rootTempFolder))
-                Directory.CreateDirectory(rootTempFolder);
-
-            return rootTempFolder;
+            var storage = StorageStrategy.GetStorage();
+            var rootDir = storage.GetRootTempFolder();
+            storage.DeleteRootDirectories();
         }
 
         internal void CreateChilds() {
