@@ -33,7 +33,7 @@ namespace AjaxControlToolkit {
 
         public AjaxFileUpload()
             : base(true, HtmlTextWriterTag.Div) {
-                _storage = StorageStrategy.GetStorage();
+            _storage = StorageStrategy.GetStorage();
         }
 
         internal static ReadOnlyCollection<string> ContextKeyCollection {
@@ -357,11 +357,11 @@ namespace AjaxControlToolkit {
         }
 
         void XhrCancel(string fileId) {
-            AjaxFileUploadHelper.Abort(Context.Cache, fileId);
+            AjaxFileUploadHelper.Abort(new CacheWrapper(Context.Cache), fileId);
         }
 
         void XhrPoll(string fileId) {
-            Page.Response.Write((new AjaxFileUploadStates(Context.Cache, fileId)).Percent.ToString());
+            Page.Response.Write((new AjaxFileUploadStates(new CacheWrapper(Context.Cache), fileId)).Percent.ToString());
         }
         /// <summary>
         /// Saves the uploaded file with the specified file name

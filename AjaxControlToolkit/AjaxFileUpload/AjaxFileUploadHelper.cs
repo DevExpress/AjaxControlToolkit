@@ -21,7 +21,7 @@ namespace AjaxControlToolkit {
             storage = StorageStrategy.GetStorage();
         }
 
-        public static void Abort(Cache cache, string fileId) {
+        public static void Abort(IWebCache cache, string fileId) {
             (new AjaxFileUploadStates(cache, fileId)).Abort = true;
         }
 
@@ -36,7 +36,7 @@ namespace AjaxControlToolkit {
             using(var stream = request.GetBufferlessInputStream()) {
                 var success = false;
                 success = ProcessStream(
-                    context.Cache, stream, fileId, fileName,
+                    new CacheWrapper(context.Cache), stream, fileId, fileName,
                     chunked, firstChunk, usePoll);
 
                 if(!success)
@@ -46,102 +46,102 @@ namespace AjaxControlToolkit {
             }
         }
 
-        public bool ProcessStream(Cache cache, Stream source, string fileId, string fileName, bool chunked, bool isFirstChunk, bool usePoll) {
-            //FileHeaderInfo headerInfo = null;
-            //Stream destination = null;
-            //var states = new AjaxFileUploadStates(cache, fileId);
+        internal bool ProcessStream(IWebCache cache, Stream source, string fileId, string fileName, bool chunked, bool isFirstChunk, bool usePoll) {
+            FileHeaderInfo headerInfo = null;
+            Stream destination = null;
+            var states = new AjaxFileUploadStates(cache, fileId);
 
-            //using(var tmpStream = new MemoryStream()) {
-            //    var totalBytesRead = 0;
-            //    var done = false;
-            //    var fileLength = 0;
+            using(var tmpStream = new MemoryStream()) {
+                var totalBytesRead = 0;
+                var done = false;
+                var fileLength = 0;
 
-            //    while(true) {
-            //        if(states.Abort)
-            //            return false;
+                while(true) {
+                    if(states.Abort)
+                        return false;
 
-            //        // read per chunk
-            //        var chunkSize = usePoll ? ChunkSizeForPolling : ChunkSize;
-            //        if(chunkSize > source.Length) {
-            //            chunkSize = (int)source.Length;
-            //            if(usePoll)
-            //                states.FileLength = chunkSize;
-            //        }
+                    // read per chunk
+                    var chunkSize = usePoll ? ChunkSizeForPolling : ChunkSize;
+                    if(chunkSize > source.Length) {
+                        chunkSize = (int)source.Length;
+                        if(usePoll)
+                            states.FileLength = chunkSize;
+                    }
 
-            //        var chunk = new byte[chunkSize];
-            //        var index = 0;
-            //        while(index < chunk.Length) {
-            //            var bytesRead = source.Read(chunk, index, chunk.Length - index);
-            //            if(bytesRead == 0)
-            //                break;
+                    var chunk = new byte[chunkSize];
+                    var index = 0;
+                    while(index < chunk.Length) {
+                        var bytesRead = source.Read(chunk, index, chunk.Length - index);
+                        if(bytesRead == 0)
+                            break;
 
-            //            if(usePoll)
-            //                states.Uploaded += bytesRead;
+                        if(usePoll)
+                            states.Uploaded += bytesRead;
 
-            //            index += bytesRead;
-            //        }
+                        index += bytesRead;
+                    }
 
-            //        totalBytesRead += index;
+                    totalBytesRead += index;
 
-            //        // Byte is not empty nor reach end of file
-            //        if(index != 0) {
-            //            // Keep seeking header info until it's found
-            //            if(headerInfo == null) {
-            //                // Append every first byte into temporary memory stream
-            //                tmpStream.Write(chunk, 0, index);
+                    // Byte is not empty nor reach end of file
+                    if(index != 0) {
+                        // Keep seeking header info until it's found
+                        if(headerInfo == null) {
+                            // Append every first byte into temporary memory stream
+                            tmpStream.Write(chunk, 0, index);
 
-            //                // Load it all into byte array, and try parse it so we can get header info
-            //                var firstBytes = tmpStream.ToArray();
+                            // Load it all into byte array, and try parse it so we can get header info
+                            var firstBytes = tmpStream.ToArray();
 
-            //                // Find header info from first bytes.
-            //                headerInfo = MultipartFormDataParser.ParseHeaderInfo(firstBytes, Encoding.UTF8);
+                            // Find header info from first bytes.
+                            headerInfo = MultipartFormDataParser.ParseHeaderInfo(firstBytes, Encoding.UTF8);
 
-            //                // If it's found, then start writing to file.
-            //                if(headerInfo != null) {
-            //                    // Calculate total file length.
-            //                    fileLength = ((int)(source.Length - headerInfo.BoundaryDelimiterLength) - headerInfo.StartIndex);
-            //                    if(usePoll)
-            //                        states.FileLength = fileLength;
+                            // If it's found, then start writing to file.
+                            if(headerInfo != null) {
+                                // Calculate total file length.
+                                fileLength = ((int)(source.Length - headerInfo.BoundaryDelimiterLength) - headerInfo.StartIndex);
+                                if(usePoll)
+                                    states.FileLength = fileLength;
 
-            //                    // Only write file data, so not all bytes are written.
-            //                    var lengthToWrite = totalBytesRead - headerInfo.StartIndex;
-            //                    if(lengthToWrite > fileLength) {
-            //                        lengthToWrite = fileLength;
-            //                        done = true;
-            //                    }
+                                // Only write file data, so not all bytes are written.
+                                var lengthToWrite = totalBytesRead - headerInfo.StartIndex;
+                                if(lengthToWrite > fileLength) {
+                                    lengthToWrite = fileLength;
+                                    done = true;
+                                }
 
-            //                    // Get first chunk of file data.
-            //                    var firstChunk = new byte[lengthToWrite];
-            //                    Buffer.BlockCopy(firstBytes, headerInfo.StartIndex, firstChunk, 0, lengthToWrite);
+                                // Get first chunk of file data.
+                                var firstChunk = new byte[lengthToWrite];
+                                Buffer.BlockCopy(firstBytes, headerInfo.StartIndex, firstChunk, 0, lengthToWrite);
 
-            //                    destination = GetDestination(fileId, fileName, chunked, isFirstChunk, destination);
+                                destination = GetDestination(fileId, fileName, chunked, isFirstChunk, destination);
 
-            //                    // Writing it now.
-            //                    destination.Write(firstChunk, 0, lengthToWrite);
-            //                }
-            //            } else {
-            //                var length = index;
+                                // Writing it now.
+                                destination.Write(firstChunk, 0, lengthToWrite);
+                            }
+                        } else {
+                            var length = index;
 
-            //                // Reach in the end of stream, remove last boundary
-            //                if(destination.Length + index > fileLength) {
-            //                    length -= headerInfo.BoundaryDelimiterLength;
-            //                    done = true;
-            //                }
+                            // Reach in the end of stream, remove last boundary
+                            if(destination.Length + index > fileLength) {
+                                length -= headerInfo.BoundaryDelimiterLength;
+                                done = true;
+                            }
 
-            //                destination.Write(chunk, 0, length);
-            //            }
-            //        }
+                            destination.Write(chunk, 0, length);
+                        }
+                    }
 
-            //        // There is no byte to read anymore, upload is finished.
-            //        if(done || index != chunk.Length) {
-            //            if(destination != null) {
-            //                destination.Close();
-            //                destination.Dispose();
-            //            }
-            //            break;
-            //        }
-            //    }
-            //}
+                    // There is no byte to read anymore, upload is finished.
+                    if(done || index != chunk.Length) {
+                        if(destination != null) {
+                            destination.Close();
+                            destination.Dispose();
+                        }
+                        break;
+                    }
+                }
+            }
             return true;
         }
 

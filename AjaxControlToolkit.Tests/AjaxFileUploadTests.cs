@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing.Printing;
 using System.IO;
@@ -17,16 +19,6 @@ namespace AjaxControlToolkit.Tests {
     public class AjaxFileUploadTests {
 
         [Test]
-        public void SetRootTempFolderPath_MediumTrust() {
-            var appDomain = CreateMediumTrustDomain();
-            var wrapper = (TestClassWrapper)appDomain.CreateInstanceAndUnwrap(
-                typeof(TestClassWrapper).Assembly.FullName,
-                typeof(TestClassWrapper).FullName);
-
-            Assert.DoesNotThrow(() => wrapper.SetRootTempFolderPath(), "Medium trust environment exception");
-        }
-
-        [Test]
         public void ProcessStream_MediumTrust() {
             var appDomain = CreateMediumTrustDomain();
             var wrapper = (TestClassWrapper)appDomain.CreateInstanceAndUnwrap(
@@ -36,18 +28,49 @@ namespace AjaxControlToolkit.Tests {
             Assert.DoesNotThrow(() => wrapper.ProcessStreamNonChunked(), "Medium trust environment exception");
         }
 
+        [Test]
+        public void ProcessStreamWithTempRootPath_MediumTrust() {
+            var appDomain = CreateMediumTrustDomain();
+            var wrapper = (TestClassWrapper)appDomain.CreateInstanceAndUnwrap(
+                typeof(TestClassWrapper).Assembly.FullName,
+                typeof(TestClassWrapper).FullName);
+
+            Assert.Throws<SecurityException>(() => wrapper.ProcessStreamWithTempRootPathNonChunked(), "Medium trust environment exception");
+        }
+
         public class TestClassWrapper : MarshalByRefObject {
-            public void SetRootTempFolderPath() {
-                AjaxFileUploadHelper.RootTempFolderPath = "";
-            }
 
             public void ProcessStreamNonChunked() {
-                var stream = GenerateStreamFromString("abc");
-                new AjaxFileUploadHelper().ProcessStream(new Cache(), stream, "fileId", "fileName", false, false, false);
+                AjaxFileUploadHelper.RootTempFolderPath = "";
+                var stream = GenerateStreamFromString("------WebKitFormBoundaryuzPlX1oHHDDbSusw\r\nContent-Disposition: form-data; name=\"act-file-data\"; filename=\"1#.txt\"\r\nContent-Type: text/plain\r\n\r\n123\r\n------WebKitFormBoundaryuzPlX1oHHDDbSusw--\r\n");
+                new AjaxFileUploadHelper().ProcessStream(new FakeCache(), stream, "fileId", "fileName", false, false, false);
             }
 
-            private MemoryStream GenerateStreamFromString(string value) {
+            public void ProcessStreamWithTempRootPathNonChunked() {
+                AjaxFileUploadHelper.RootTempFolderPath = @"D:\";
+                var stream = GenerateStreamFromString("------WebKitFormBoundaryuzPlX1oHHDDbSusw\r\nContent-Disposition: form-data; name=\"act-file-data\"; filename=\"1#.txt\"\r\nContent-Type: text/plain\r\n\r\n123\r\n------WebKitFormBoundaryuzPlX1oHHDDbSusw--\r\n");
+                new AjaxFileUploadHelper().ProcessStream(new FakeCache(), stream, "fileId", "fileName", false, false, false);
+            }
+
+            MemoryStream GenerateStreamFromString(string value) {
                 return new MemoryStream(Encoding.UTF8.GetBytes(value ?? ""));
+            }
+
+            private class FakeCache : IWebCache {
+
+                Dictionary<string, object> set = new Dictionary<string, object>();
+
+                public object this[string key] {
+                    get {
+                        if(set.ContainsKey(key))
+                            return set[key];
+
+                        return null;
+                    }
+                    set {
+                        set[key] = value;
+                    }
+                }
             }
         }
 

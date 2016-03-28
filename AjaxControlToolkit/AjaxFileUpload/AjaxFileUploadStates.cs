@@ -8,10 +8,10 @@ using System.Web.Caching;
 namespace AjaxControlToolkit {
 
     public class AjaxFileUploadStates {
-        readonly Cache _cache;
+        readonly IWebCache _cache;
         readonly string _id;
 
-        public AjaxFileUploadStates(Cache cache, string id) {
+        public AjaxFileUploadStates(IWebCache cache, string id) {
             _cache = cache;
             _id = id;
         }
