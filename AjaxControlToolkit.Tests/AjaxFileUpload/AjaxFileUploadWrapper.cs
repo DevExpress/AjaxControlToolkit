@@ -22,7 +22,7 @@ namespace AjaxControlToolkit.Tests {
 
         void ProcessStream() {
             var stream = GenerateStreamFromString(testStream);
-            new AjaxFileUploadHelper().ProcessStream(new FakeCache(), stream, "fileId", "fileName", false, false, false);
+            AjaxFileUploadHelper.ProcessStream(new FakeCache(), stream, "fileId", "fileName", false, false, false);
         }
 
         MemoryStream GenerateStreamFromString(string value) {

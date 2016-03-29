@@ -10,10 +10,9 @@ using System.Web.Caching;
 
 namespace AjaxControlToolkit {
 
-    public class AjaxFileUploadHelper {
+    public static class AjaxFileUploadHelper {
         const int ChunkSize = 1024 * 1024 * 4;
         const int ChunkSizeForPolling = 64 * 1024;
-        Storage storage = Storage.GetStorage();
 
         public static string RootTempFolderPath { get; set; }
         
@@ -21,7 +20,7 @@ namespace AjaxControlToolkit {
             (new AjaxFileUploadStates(cache, fileId)).Abort = true;
         }
 
-        public bool Process(HttpContext context) {
+        public static bool Process(HttpContext context) {
             var request = context.Request;
             var fileId = request.QueryString["fileId"];
             var fileName = request.QueryString["fileName"];
@@ -42,7 +41,7 @@ namespace AjaxControlToolkit {
             }
         }
 
-        internal bool ProcessStream(IWebCache cache, Stream source, string fileId, string fileName, bool chunked, bool isFirstChunk, bool usePoll) {
+        internal static bool ProcessStream(IWebCache cache, Stream source, string fileId, string fileName, bool chunked, bool isFirstChunk, bool usePoll) {
             FileHeaderInfo headerInfo = null;
             Stream destination = null;
             var states = new AjaxFileUploadStates(cache, fileId);
@@ -110,7 +109,22 @@ namespace AjaxControlToolkit {
                                 var firstChunk = new byte[lengthToWrite];
                                 Buffer.BlockCopy(firstBytes, headerInfo.StartIndex, firstChunk, 0, lengthToWrite);
 
-                                destination = GetDestination(fileId, fileName, chunked, isFirstChunk, destination);
+                                // Prepare temporary folder, we use file id as a folder name.
+                                var tempFolder = Storage.GetTempFolder(fileId);
+                                if(!Directory.Exists(tempFolder)) Directory.CreateDirectory(tempFolder);
+
+                                // Build temporary file path.
+                                var tmpFilePath = Path.Combine(tempFolder, fileName);
+
+                                if(!IsSubDirectory(Storage.GetRootTempFolder(), Path.GetDirectoryName(tmpFilePath)))
+                                    throw new Exception("Insecure operation prevented");
+
+                                if(!chunked || isFirstChunk)
+                                    // Create new file, if this is a first chunk or file is not chunked.
+                                    destination = new FileStream(tmpFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
+                                else
+                                    // Append data to existing teporary file for next chunks
+                                    destination = new FileStream(tmpFilePath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
 
                                 // Writing it now.
                                 destination.Write(firstChunk, 0, lengthToWrite);
@@ -141,23 +155,15 @@ namespace AjaxControlToolkit {
             return true;
         }
 
-        Stream GetDestination(string fileId, string fileName, bool chunked, bool isFirstChunk, Stream destination) {
-            // Prepare temporary folder, we use file id as a folder name.
-            var tempFolder = storage.GetTempFolder(fileId);
-            storage.CreateDirectory(tempFolder);
+        static bool IsSubDirectory(string parentDirectory, string childDirectory) {
+            var directoryInfo = new DirectoryInfo(childDirectory).Parent;
+            while(directoryInfo != null) {
+                if(directoryInfo.FullName == parentDirectory)
+                    return true;
+                directoryInfo = directoryInfo.Parent;
+            }
 
-            // Build temporary file path.
-            var tmpFilePath = Path.Combine(tempFolder, fileName);
-
-            if(!storage.IsSubDirectory(storage.GetRootTempFolder(), Path.GetDirectoryName(tmpFilePath)))
-                throw new Exception("Insecure operation prevented");
-
-            if(!chunked || isFirstChunk)
-                destination = storage.CreateFileStream(tmpFilePath);
-            else
-                destination = storage.AppendFileStream(tmpFilePath);
-
-            return destination;
+            return false;
         }
     }
 

@@ -29,7 +29,6 @@ namespace AjaxControlToolkit {
 
         // Location of uploaded temporary file path
         string _uploadedFilePath = null;
-        Storage _storage = Storage.GetStorage();
 
         public AjaxFileUpload()
             : base(true, HtmlTextWriterTag.Div) {
@@ -332,17 +331,17 @@ namespace AjaxControlToolkit {
         void XhrDone(string fileId) {
             AjaxFileUploadEventArgs args;
 
-            var tempFolder = _storage.GetTempFolder(fileId);
-            _storage.BuildTempFolder(tempFolder);
+            var tempFolder = Storage.GetTempFolder(fileId);
+            Storage.BuildTempFolder(tempFolder);
 
-            if(!_storage.DirectoryExists(tempFolder))
+            if(!Directory.Exists(tempFolder))
                 return;
 
-            var files = _storage.GetFiles(tempFolder);
+            var files = Directory.GetFiles(tempFolder);
             if(files.Length == 0)
                 return;
 
-            var fileInfo = _storage.GetFileStats(files[0]);
+            var fileInfo = new FileInfo(files[0]);
             _uploadedFilePath = fileInfo.FullName;
 
             args = new AjaxFileUploadEventArgs(
@@ -373,14 +372,18 @@ namespace AjaxControlToolkit {
             if(File.Exists(fileName))
                 File.Delete(fileName);
 
-            _storage.CopyFile(_uploadedFilePath, fileName);
-            _storage.DeleteDirectory(dir);
+            File.Copy(_uploadedFilePath, fileName);
+            File.Delete(_uploadedFilePath);
+
+            // Delete temporary data
+            Directory.Delete(dir);
         }
 
         public static void CleanAllTemporaryData() {
-            var storage = Storage.GetStorage();
-            var rootDir = storage.GetRootTempFolder();
-            storage.DeleteRootDirectories();
+            var dirInfo = new DirectoryInfo(Storage.GetRootTempFolder());
+            foreach(var dir in dirInfo.GetDirectories()) {
+                dir.Delete(true);
+            }
         }
 
         internal void CreateChilds() {
