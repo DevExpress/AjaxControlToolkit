@@ -61,7 +61,6 @@
     <Compile Include="Accordion\AutoSize.cs" />
     <Compile Include="AjaxControlToolkitConfigSection.cs" />
     <Compile Include="AjaxFileUpload\CacheWrapper.cs" />
-    <Compile Include="AjaxFileUpload\FileStats.cs" />
     <Compile Include="AjaxFileUpload\IWebCache.cs" />
     <Compile Include="AjaxFileUpload\Storage.cs" />
     <Compile Include="CustomControlElement.cs" />
