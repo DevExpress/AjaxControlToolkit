@@ -8,15 +8,20 @@ namespace AjaxControlToolkit.Tests {
 
     class AjaxFileUploadWrapper : MarshalByRefObject {
 
+        const string testStream = "------WebKitFormBoundaryuzPlX1oHHDDbSusw\r\nContent-Disposition: form-data; name=\"act-file-data\"; filename=\"1#.txt\"\r\nContent-Type: text/plain\r\n\r\n123\r\n------WebKitFormBoundaryuzPlX1oHHDDbSusw--\r\n";
+
         public void ProcessStreamWithoutTempRootPath() {
             AjaxFileUploadHelper.RootTempFolderPath = "";
-            var stream = GenerateStreamFromString("------WebKitFormBoundaryuzPlX1oHHDDbSusw\r\nContent-Disposition: form-data; name=\"act-file-data\"; filename=\"1#.txt\"\r\nContent-Type: text/plain\r\n\r\n123\r\n------WebKitFormBoundaryuzPlX1oHHDDbSusw--\r\n");
-            new AjaxFileUploadHelper().ProcessStream(new FakeCache(), stream, "fileId", "fileName", false, false, false);
+            ProcessStream();
         }
 
         public void ProcessStreamWithTempRootPath() {
             AjaxFileUploadHelper.RootTempFolderPath = @"C:\";
-            var stream = GenerateStreamFromString("------WebKitFormBoundaryuzPlX1oHHDDbSusw\r\nContent-Disposition: form-data; name=\"act-file-data\"; filename=\"1#.txt\"\r\nContent-Type: text/plain\r\n\r\n123\r\n------WebKitFormBoundaryuzPlX1oHHDDbSusw--\r\n");
+            ProcessStream();
+        }
+
+        void ProcessStream() {
+            var stream = GenerateStreamFromString(testStream);
             new AjaxFileUploadHelper().ProcessStream(new FakeCache(), stream, "fileId", "fileName", false, false, false);
         }
 
