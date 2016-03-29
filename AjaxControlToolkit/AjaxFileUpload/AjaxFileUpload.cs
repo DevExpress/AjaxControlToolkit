@@ -331,7 +331,9 @@ namespace AjaxControlToolkit {
         void XhrDone(string fileId) {
             AjaxFileUploadEventArgs args;
 
-            var tempFolder = BuildTempFolder(fileId);
+            var tempFolder = GetTempFolder(fileId);
+            BuildTempFolder(tempFolder);
+
             if(!Directory.Exists(tempFolder))
                 return;
 
@@ -378,20 +380,31 @@ namespace AjaxControlToolkit {
         }
 
         public static void CleanAllTemporaryData() {
-            var dirInfo = new DirectoryInfo(BuildRootTempFolder());
+            var dirInfo = new DirectoryInfo(GetRootTempFolder());
             foreach(var dir in dirInfo.GetDirectories()) {
                 dir.Delete(true);
             }
         }
 
-        public static string BuildTempFolder(string fileId) {
-            return Path.Combine(BuildRootTempFolder(), fileId);
+        public static string GetTempFolder(string fileId)
+        {
+            return Path.Combine(GetRootTempFolder(), fileId);
         }
 
-        public static string BuildRootTempFolder() {
-            var rootTempFolder = Path.Combine(AjaxFileUploadHelper.RootTempFolderPath, TemporaryUploadFolderName);
-            if(!Directory.Exists(rootTempFolder))
-                Directory.CreateDirectory(rootTempFolder);
+        public static void BuildTempFolder(string fileId) {
+            var tempFolder = GetTempFolder(fileId);
+
+            if(!Directory.Exists(tempFolder))
+                Directory.CreateDirectory(tempFolder);
+        }
+
+        public static string GetRootTempFolder() {
+            string rootTempFolder = "";
+
+            if(String.IsNullOrWhiteSpace(AjaxFileUploadHelper.RootTempFolderPath))
+                rootTempFolder = Path.Combine(AjaxFileUploadHelper.RootTempFolderPath, TemporaryUploadFolderName);
+            else
+                rootTempFolder = AjaxFileUploadHelper.RootTempFolderPath;
 
             return rootTempFolder;
         }
