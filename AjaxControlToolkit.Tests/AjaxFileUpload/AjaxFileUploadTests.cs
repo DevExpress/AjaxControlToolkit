@@ -12,27 +12,22 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void ProcessStream_MediumTrust() {
-            var appDomain = new AppDomainBuilder().CreateMediumTrustDomain();
-            var wrapper = (AjaxFileUploadWrapper)appDomain.CreateInstanceAndUnwrap(
-                typeof(AjaxFileUploadWrapper).Assembly.FullName,
-                typeof(AjaxFileUploadWrapper).FullName);
-
-            Assert.DoesNotThrow(() => wrapper.ProcessStreamWithoutTempRootPath(), "Medium trust environment exception");
+            var ajaxFileUploadWrapper = CreateWrapper();
+            Assert.DoesNotThrow(() => ajaxFileUploadWrapper.ProcessStreamWithoutTempRootPath(), "Medium trust environment exception");
         }
 
         [Test]
         public void ProcessStreamWithTempRootPath_MediumTrust() {
-            var appDomain = new AppDomainBuilder().CreateMediumTrustDomain();
-            var wrapper = (AjaxFileUploadWrapper)appDomain.CreateInstanceAndUnwrap(
-                typeof(AjaxFileUploadWrapper).Assembly.FullName,
-                typeof(AjaxFileUploadWrapper).FullName);
-
-            Assert.Throws<SecurityException>(() => wrapper.ProcessStreamWithTempRootPath(), "Medium trust environment exception");
+            var ajaxFileUploadWrapper = CreateWrapper();
+            Assert.Throws<SecurityException>(() => ajaxFileUploadWrapper.ProcessStreamWithTempRootPath(), "Medium trust environment exception");
         }
 
-        [Test]
-        public void SaveAs() {
-            
+        AjaxFileUploadWrapper CreateWrapper() {
+            var appDomain = new AppDomainBuilder().CreateMediumTrustDomain();
+
+            return (AjaxFileUploadWrapper)appDomain.CreateInstanceAndUnwrap(
+                typeof(AjaxFileUploadWrapper).Assembly.FullName,
+                typeof(AjaxFileUploadWrapper).FullName);
         }
     }
 }
