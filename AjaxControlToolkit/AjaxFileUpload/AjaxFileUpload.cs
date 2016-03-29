@@ -374,11 +374,8 @@ namespace AjaxControlToolkit {
             if(File.Exists(fileName))
                 File.Delete(fileName);
 
-            File.Copy(_uploadedFilePath, fileName);
-            File.Delete(_uploadedFilePath);
-
-            // Delete temporary data
-            Directory.Delete(dir);
+            _storage.CopyFile(_uploadedFilePath, fileName);
+            _storage.DeleteDirectory(dir);
         }
 
         public static void CleanAllTemporaryData() {

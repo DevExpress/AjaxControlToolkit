@@ -51,5 +51,7 @@ namespace AjaxControlToolkit {
         internal abstract FileStats GetFileStats(string path);
 
         internal abstract void DeleteRootDirectories();
+
+        internal abstract void CopyFile(string source, string destination);
     }
 }

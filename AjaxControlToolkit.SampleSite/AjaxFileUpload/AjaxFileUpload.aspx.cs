@@ -56,8 +56,7 @@ public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page {
         }
 
         // In a real app, you would call SaveAs() to save the uploaded file somewhere
-        // AjaxFileUpload1.SaveAs(MapPath("~/App_Data/" + file.FileName), true);
-
+        // AjaxFileUpload1.SaveAs(MapPath("~/App_Data/" + file.FileName));
     }
 
     protected void AjaxFileUpload1_UploadCompleteAll(object sender, AjaxFileUploadCompleteAllEventArgs e) {

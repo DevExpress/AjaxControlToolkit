@@ -92,5 +92,11 @@ namespace AjaxControlToolkit {
         internal override void DeleteRootDirectories() {
             DeleteDirectoryRecursively("");
         }
+
+        internal override void CopyFile(string source, string destination) {
+            using(var writer = new FileStream(destination, FileMode.Create, FileAccess.Write, FileShare.None))
+            using(var file = new IsolatedStorageFileStream(source, FileMode.Open, FileAccess.Read, FileShare.None, isoStorage))
+                file.CopyTo(writer);
+        }
     }
 }

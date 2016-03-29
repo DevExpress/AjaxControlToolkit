@@ -67,5 +67,9 @@ namespace AjaxControlToolkit {
             foreach(var dir in dirInfo.GetDirectories())
                 dir.Delete(true);
         }
+
+        internal override void CopyFile(string source, string destination) {
+            File.Copy(source, destination);
+        }
     }
 }
