@@ -62,10 +62,8 @@
     <Compile Include="AjaxControlToolkitConfigSection.cs" />
     <Compile Include="AjaxFileUpload\CacheWrapper.cs" />
     <Compile Include="AjaxFileUpload\FileStats.cs" />
-    <Compile Include="AjaxFileUpload\FileSystemStrategy.cs" />
-    <Compile Include="AjaxFileUpload\IsolatedStorageStrategy.cs" />
     <Compile Include="AjaxFileUpload\IWebCache.cs" />
-    <Compile Include="AjaxFileUpload\StorageStrategy.cs" />
+    <Compile Include="AjaxFileUpload\Storage.cs" />
     <Compile Include="CustomControlElement.cs" />
     <Compile Include="CustomControlsCollection.cs" />
     <Compile Include="EmbeddedScript.cs" />

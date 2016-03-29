@@ -29,11 +29,10 @@ namespace AjaxControlToolkit {
 
         // Location of uploaded temporary file path
         string _uploadedFilePath = null;
-        StorageStrategy _storage = null;
+        Storage _storage = Storage.GetStorage();
 
         public AjaxFileUpload()
             : base(true, HtmlTextWriterTag.Div) {
-            _storage = StorageStrategy.GetStorage();
         }
 
         internal static ReadOnlyCollection<string> ContextKeyCollection {
@@ -379,7 +378,7 @@ namespace AjaxControlToolkit {
         }
 
         public static void CleanAllTemporaryData() {
-            var storage = StorageStrategy.GetStorage();
+            var storage = Storage.GetStorage();
             var rootDir = storage.GetRootTempFolder();
             storage.DeleteRootDirectories();
         }

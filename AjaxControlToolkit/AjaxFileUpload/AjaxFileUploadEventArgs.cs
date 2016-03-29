@@ -14,7 +14,7 @@ namespace AjaxControlToolkit {
         string _contentType = String.Empty;
         string _postedUrl = string.Empty;
         AjaxFileUploadState _state = AjaxFileUploadState.Unknown;
-        StorageStrategy _storage = null;
+        Storage _storage = null;
 
         public AjaxFileUploadEventArgs(string fileId, AjaxFileUploadState state, string statusMessage, string fileName, int fileSize, string contentType) {
             _fileId = fileId;
@@ -23,7 +23,7 @@ namespace AjaxControlToolkit {
             _fileName = fileName;
             _fileSize = fileSize;
             _contentType = contentType;
-            _storage = StorageStrategy.GetStorage();
+            _storage = Storage.GetStorage();
         }
 
         public string FileId {

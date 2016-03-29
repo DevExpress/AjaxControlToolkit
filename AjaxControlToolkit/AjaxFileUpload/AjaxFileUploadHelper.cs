@@ -13,14 +13,10 @@ namespace AjaxControlToolkit {
     public class AjaxFileUploadHelper {
         const int ChunkSize = 1024 * 1024 * 4;
         const int ChunkSizeForPolling = 64 * 1024;
-        StorageStrategy storage = null;
+        Storage storage = Storage.GetStorage();
 
         public static string RootTempFolderPath { get; set; }
-
-        public AjaxFileUploadHelper() {
-            storage = StorageStrategy.GetStorage();
-        }
-
+        
         public static void Abort(IWebCache cache, string fileId) {
             (new AjaxFileUploadStates(cache, fileId)).Abort = true;
         }
