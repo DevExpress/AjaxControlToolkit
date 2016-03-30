@@ -14,11 +14,6 @@ namespace AjaxControlToolkit {
 
         public static string RootTempFolderPath { get; set; }
 
-        static AjaxFileUploadHelper()
-        {
-            RootTempFolderPath = Path.GetTempPath();
-        }
-
         public static void Abort(HttpContext context, string fileId) {
             (new AjaxFileUploadStates(context, fileId)).Abort = true;
         }

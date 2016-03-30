@@ -1,5 +1,6 @@
 ﻿using AjaxControlToolkit.Jasmine.App_Start;
 using System;
+using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
 
@@ -10,6 +11,7 @@ namespace AjaxControlToolkit.Jasmine {
             RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            AjaxFileUploadHelper.RootTempFolderPath = HttpContext.Current.Server.MapPath(@"~\Temp");
             AjaxControlToolkit.ToolkitResourceManager.RegisterControl(typeof(Suites.ToolkitResourceManager.TestExtender));
         }
 
