@@ -11,8 +11,8 @@
             "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
             "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
 
-        // create "Temp" folder beforehand to avoid site recompilation: http://stackoverflow.com/questions/2699460/
-        AjaxFileUploadHelper.RootTempFolderPath = HttpContext.Current.Server.MapPath(@"~\Temp");
+        // In Medium Trust environments, set AjaxFileUploadHelper.RootTempFolderPath to an existing directory located within the web application root.
+        AjaxFileUploadHelper.RootTempFolderPath = HttpContext.Current.Server.MapPath("~/Temp");
         BundleTable.EnableOptimizations = true;
     }
 
