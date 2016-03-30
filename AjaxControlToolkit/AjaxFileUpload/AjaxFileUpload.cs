@@ -389,12 +389,20 @@ namespace AjaxControlToolkit {
         }
 
         public static string BuildRootTempFolder() {
-            var rootTempFolder = AjaxFileUploadHelper.RootTempFolderPath ?? Path.Combine(Path.GetTempPath(), TemporaryUploadFolderName);
+            var userPath = AjaxFileUploadHelper.RootTempFolderPath;
 
-            if(!Directory.Exists(rootTempFolder))
-                Directory.CreateDirectory(rootTempFolder);
+            if(userPath != null) {
+                if(!Directory.Exists(userPath))
+                    throw new IOException(String.Format("Temp directory '{0}' does not exist."));
+                return userPath;
+            }
 
-            return rootTempFolder;
+            var defaultPath = Path.Combine(Path.GetTempPath(), TemporaryUploadFolderName);
+
+            if(!Directory.Exists(defaultPath))
+                Directory.CreateDirectory(defaultPath);
+
+            return defaultPath;
         }
 
         internal void CreateChilds() {
