@@ -25,7 +25,7 @@ namespace AjaxControlToolkit {
     public class AjaxFileUpload : ScriptControlBase {
 
         static List<string> _contextKeys = new List<string>();
-        const string TemporaryUploadFolderName = "_AjaxFileUpload";
+        const string DefaultTempSubDir = "_AjaxFileUpload";
 
         // Location of uploaded temporary file path
         string _uploadedFilePath = null;
@@ -397,7 +397,7 @@ namespace AjaxControlToolkit {
                 return userPath;
             }
 
-            var defaultPath = Path.Combine(Path.GetTempPath(), TemporaryUploadFolderName);
+            var defaultPath = Path.Combine(Path.GetTempPath(), DefaultTempSubDir);
 
             if(!Directory.Exists(defaultPath))
                 Directory.CreateDirectory(defaultPath);
