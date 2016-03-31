@@ -12,7 +12,7 @@
             "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
 
         // In Medium Trust environments, set AjaxFileUploadHelper.RootTempFolderPath to an existing directory located within the web application root.
-        AjaxFileUploadHelper.RootTempFolderPath = HttpContext.Current.Server.MapPath("~/Temp");
+        AjaxFileUploadHelper.RootTempFolderPath = "~/Temp";
         BundleTable.EnableOptimizations = true;
     }
 

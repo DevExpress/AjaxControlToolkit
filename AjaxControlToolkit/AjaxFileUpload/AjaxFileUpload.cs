@@ -392,9 +392,12 @@ namespace AjaxControlToolkit {
             var userPath = AjaxFileUploadHelper.RootTempFolderPath;
 
             if(userPath != null) {
-                if(!Directory.Exists(userPath))
-                    throw new IOException(String.Format("Temp directory '{0}' does not exist."));
-                return userPath;
+                var physicalPath = GetPhysicalPath(userPath);
+
+                if(!Directory.Exists(physicalPath))
+                    throw new IOException(String.Format("Temp directory '{0}' does not exist.", physicalPath));
+
+                return physicalPath;
             }
 
             var defaultPath = Path.Combine(Path.GetTempPath(), DefaultTempSubDir);
@@ -403,6 +406,13 @@ namespace AjaxControlToolkit {
                 Directory.CreateDirectory(defaultPath);
 
             return defaultPath;
+        }
+
+        static string GetPhysicalPath(string path) {
+            if(path.StartsWith("~"))
+                return HttpContext.Current.Server.MapPath(path);
+
+            return path;
         }
 
         internal void CreateChilds() {

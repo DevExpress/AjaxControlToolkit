@@ -11,7 +11,7 @@ namespace AjaxControlToolkit.Jasmine {
             RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            AjaxFileUploadHelper.RootTempFolderPath = HttpContext.Current.Server.MapPath("~/Temp");
+            AjaxFileUploadHelper.RootTempFolderPath = "~/Temp";
             AjaxControlToolkit.ToolkitResourceManager.RegisterControl(typeof(Suites.ToolkitResourceManager.TestExtender));
         }
 
