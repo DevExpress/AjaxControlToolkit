@@ -25,7 +25,7 @@ namespace AjaxControlToolkit {
     public class AjaxFileUpload : ScriptControlBase {
 
         static List<string> _contextKeys = new List<string>();
-        const string TemporaryUploadFolderName = "_AjaxFileUpload";
+        const string DefaultTempSubDir = "_AjaxFileUpload";
 
         // Location of uploaded temporary file path
         string _uploadedFilePath = null;
@@ -389,11 +389,30 @@ namespace AjaxControlToolkit {
         }
 
         public static string BuildRootTempFolder() {
-            var rootTempFolder = Path.Combine(AjaxFileUploadHelper.RootTempFolderPath, TemporaryUploadFolderName);
-            if(!Directory.Exists(rootTempFolder))
-                Directory.CreateDirectory(rootTempFolder);
+            var userPath = AjaxFileUploadHelper.RootTempFolderPath;
 
-            return rootTempFolder;
+            if(userPath != null) {
+                var physicalPath = GetPhysicalPath(userPath);
+
+                if(!Directory.Exists(physicalPath))
+                    throw new IOException(String.Format("Temp directory '{0}' does not exist.", physicalPath));
+
+                return physicalPath;
+            }
+
+            var defaultPath = Path.Combine(Path.GetTempPath(), DefaultTempSubDir);
+
+            if(!Directory.Exists(defaultPath))
+                Directory.CreateDirectory(defaultPath);
+
+            return defaultPath;
+        }
+
+        static string GetPhysicalPath(string path) {
+            if(path.StartsWith("~"))
+                return HttpContext.Current.Server.MapPath(path);
+
+            return path;
         }
 
         internal void CreateChilds() {
