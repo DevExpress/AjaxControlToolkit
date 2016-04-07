@@ -952,9 +952,8 @@ Sys.Extended.UI.ComboBox.prototype = {
                     liElement.style.backgroundColor = 'Highlight';
                     liElement.style.color = 'HighlightText';
                 }
-                else {
-                    liElement.className = this.get_listItemHoverCssClass;
-                }
+                else 
+                    liElement.className = this.get_listItemHoverCssClass();
             }
 
             // unselect previously highlighted item
