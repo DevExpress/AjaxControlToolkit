@@ -40,6 +40,15 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         protected global::AjaxControlToolkit.TabPanel DisabledTabPanel;
         
         /// <summary>
+        /// ThirdTabPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel ThirdTabPanel;
+        
+        /// <summary>
         /// CustomTabContainer control.
         /// </summary>
         /// <remarks>

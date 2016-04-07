@@ -19,6 +19,11 @@
             Enabled="false">
         </act:TabPanel>
 
+        <act:TabPanel runat="server"
+            ID="ThirdTabPanel"
+            HeaderText="Inactive Tab Panel">
+        </act:TabPanel>
+
     </act:TabContainer>
 
     <act:TabContainer ID="CustomTabContainer" runat="server" CssClass="test-class" CssTheme="Plain" >
@@ -27,7 +32,7 @@
 
     <script>
         describe("Tabs", function() {
-            var TABS_COUNT = 2,
+            var TABS_COUNT = 3,
 
                 TAB_HEADER_CLASS_NAME = "ajax__tab_header",
                 TAB_BODY_CLASS_NAME = "ajax__tab_body",
@@ -118,6 +123,7 @@
                         secondHeader = header.children()[1];
 
                     expect(secondHeader.id).toBe(this.element.id + "_DisabledTabPanel_tab");
+                    debugger;
                     expect(DISABLED_TAB_CLASS_NAME).toBeAnyOf(secondHeader.classList);
                 });
 
@@ -156,6 +162,17 @@
                     expect($headerTab.children().children().length).toBe(1);
                     expect($headerTab.children().children().eq(0).is("span")).toBeTruthy();
                     expect($headerTab.children().children().eq(0).attr("class")).toBe(TAB_INNER_CLASS_NAME);
+                });
+
+                it("does not disable previous tab header", function() {
+                    var header = $(this.element).find(TAB_HEADER_CLASS_NAME.toClassSelector());
+                    var firstHeader = header.children()[0];
+                    var thirdHeader = header.children()[2];
+                    var target = thirdHeader.firstChild.firstChild.firstChild.firstChild;
+                    var event = createMouseEvent("click", target);
+                    target.dispatchEvent(event);
+
+                    expect(DISABLED_TAB_CLASS_NAME).not.toBeAnyOf(firstHeader.classList);
                 });
 
             });
