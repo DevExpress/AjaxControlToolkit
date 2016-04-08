@@ -20,6 +20,7 @@ namespace AjaxControlToolkit {
     [DefaultProperty("VerticalOffset")]
     [TargetControlType(typeof(WebControl))]
     [TargetControlType(typeof(HtmlControl))]
+    [TargetControlType(typeof(UpdateProgress))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AlwaysVisibleControlName + Constants.IconPostfix)]
     public class AlwaysVisibleControlExtender : ExtenderControlBase {
 
