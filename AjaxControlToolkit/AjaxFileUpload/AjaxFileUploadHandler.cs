@@ -18,7 +18,7 @@ namespace AjaxControlToolkit {
         public void ProcessRequest(HttpContext context) {
             var request = context.Request;
 
-            if(!AjaxFileUpload.ContextKeyCollection.Contains(request.QueryString["contextKey"]))
+            if(request.QueryString["contextKey"] != AjaxFileUpload.ContextKey)
                 throw new Exception("Invalid context key");
 
             if(request.Headers["Content-Type"] != null &&
