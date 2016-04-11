@@ -1,5 +1,6 @@
 #pragma warning disable 1591
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Reflection;
@@ -133,14 +134,35 @@ namespace AjaxControlToolkit.HtmlEditor.Popups {
             }
         }
 
+        string GetResourceString(string key) {
+            switch(key) {
+                case "HtmlEditor_toolbar_popup_LinkProperties_button_Cancel":
+                    return "Cancel";
+                case "HtmlEditor_toolbar_popup_LinkProperties_button_OK":
+                    return "OK";
+                case "HtmlEditor_toolbar_popup_LinkProperties_field_URL":
+                    return "URL";
+                case "HtmlEditor_toolbar_popup_LinkProperties_field_Target":
+                    return "Target";
+                case "HtmlEditor_toolbar_popup_LinkProperties_field_Target_New":
+                    return "New window";
+                case "HtmlEditor_toolbar_popup_LinkProperties_field_Target_Current":
+                    return "Current window";
+                case "HtmlEditor_toolbar_popup_LinkProperties_field_Target_Parent":
+                    return "Parent window";
+                case "HtmlEditor_toolbar_popup_LinkProperties_field_Target_Top":
+                    return "Top window";
+                default:
+                    throw new ArgumentOutOfRangeException("key", key, "Unknown resource key");
+            }
+        }
+
         protected string GetButton(string name) {
-            //return _rm.GetString("HtmlEditor_toolbar_popup_" + GetType().Name + "_button_" + name);
-            return ""; //TODO: resources
+            return GetResourceString("HtmlEditor_toolbar_popup_" + GetType().Name + "_button_" + name); //TODO: resources
         }
 
         protected string GetField(string name) {
-            //return _rm.GetString("HtmlEditor_toolbar_popup_" + GetType().Name + "_field_" + name);
-            return ""; //TODO: resources
+            return GetResourceString("HtmlEditor_toolbar_popup_" + GetType().Name + "_field_" + name); //TODO: resources
         }
 
         protected string GetField(string name, string subName) {
