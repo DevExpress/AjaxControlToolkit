@@ -15,4 +15,4 @@ AjaxControlToolkit.Reference/bin/
 .vs/
 ReferenceCore/bin/
 AjaxControlToolkit.SampleSite/vwd.webinfo
-AjaxControlToolkit.Jasmine/Temp/
+AjaxControlToolkit.Jasmine/Temp/*
