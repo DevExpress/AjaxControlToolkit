@@ -109,7 +109,7 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
             var elt = this.get_element();
 
             // create the DOM elements
-            var elementToValidate = this._elementToValidate = $get(elt.controltovalidate);
+            var elementToValidate = this._elementToValidate = $get(elt.controltovalidate != null ? elt.controltovalidate : elt.getAttribute('data-val-controltovalidate'));
             var popupTableBody = document.createElement("tbody");
             var popupTableRow = document.createElement("tr");
             var calloutCell = document.createElement("td");
@@ -330,7 +330,8 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
     },
 
     _getErrorMessage: function() {
-        return this.get_element().errormessage || Sys.Extended.UI.Resources.ValidatorCallout_DefaultErrorMessage;
+        var element = this.get_element();
+        return element.errormessage || element.getAttribute('data-val-errormessage') || Sys.Extended.UI.Resources.ValidatorCallout_DefaultErrorMessage;
     },
 
     /// <summary>
