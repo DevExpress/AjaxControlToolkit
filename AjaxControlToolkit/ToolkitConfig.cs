@@ -36,6 +36,10 @@ namespace AjaxControlToolkit {
             get { return ConfigSection.HtmlSanitizer; }
         }
 
+        public static string TempFolder {
+            get { return ConfigSection.TempFolder; }
+        }
+
         public static IEnumerable<Type> CustomControls {
             get {
                 foreach(var control in ConfigSection.CustomControls)
