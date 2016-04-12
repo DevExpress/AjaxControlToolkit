@@ -534,11 +534,14 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     this.raiseUploadError = function(xhr) {
 
         control.raise_uploadError(xhr);
-        control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
 
         if(xhrPoll)
             xhrPoll.abort();
         control._currentFileId = null;
+    };
+
+    this.resetUI = function() {
+        control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
     };
 
 };
