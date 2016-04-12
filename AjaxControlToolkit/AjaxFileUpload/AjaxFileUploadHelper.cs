@@ -12,8 +12,6 @@ namespace AjaxControlToolkit {
         const int ChunkSize = 1024 * 1024 * 4;
         const int ChunkSizeForPolling = 64 * 1024;
 
-        public static string RootTempFolderPath { get; set; }
-
         public static void Abort(HttpContext context, string fileId) {
             (new AjaxFileUploadStates(context, fileId)).Abort = true;
         }

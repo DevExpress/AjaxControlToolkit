@@ -388,9 +388,9 @@ namespace AjaxControlToolkit {
         }
 
         public static string BuildRootTempFolder() {
-            var userPath = AjaxFileUploadHelper.RootTempFolderPath;
+            var userPath = ToolkitConfig.TempFolder;
 
-            if(userPath != null) {
+            if(!String.IsNullOrWhiteSpace(userPath)) {
                 var physicalPath = GetPhysicalPath(userPath);
 
                 if(!Directory.Exists(physicalPath))
