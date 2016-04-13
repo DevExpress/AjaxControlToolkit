@@ -93,8 +93,8 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// A maximum size of a file to be uploaded in Kbytes.
-        /// Non-positive value means size is unlimited.
+        /// The maximum size of a file to be uploaded in Kbytes.
+        /// A non-positive value means the size is unlimited. 
         /// The default is 0.
         /// </summary>
         [ExtenderControlProperty]

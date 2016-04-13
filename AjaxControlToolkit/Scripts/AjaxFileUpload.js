@@ -1006,12 +1006,12 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     this._useAbsoluteHandlerPath = true;
 
     /// <summary>
-    /// A maximum size of a file to be uploaded in Kbytes.
-    /// Non-positive value means size is unlimited.
+    /// The maximum size of a file to be uploaded in Kbytes.
+    /// A non-positive value means the size is unlimited. 
     /// </summary>
     /// <getter>get_maxFileSize</getter>
     /// <setter>set_maxFileSize</setter>
-    /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.useAbsoluteHandlerPath" />
+    /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.maxFileSize" />
     this._maxFileSize = 0;
 
     // fields
@@ -1348,7 +1348,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     /// <summary>
-    /// Checks whether the file size is larger than upload size limit.
+    /// Checks if the file size is larger than the upload size limit. 
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.fileSizeExceeded" />
     /// <param name="fileSize" type="Number">File size in bytes</param>
