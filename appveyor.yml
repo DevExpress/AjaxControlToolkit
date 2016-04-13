@@ -1,12 +1,14 @@
 version: '{build}'
 
-os: Visual Studio 2013
-
 init:
   - git config --global core.autocrlf true
 
 cache:
-  - packages -> **\packages.config
+  - '%LocalAppData%\NuGet\Cache -> **\packages.config'
+  
+install:
+- ps: if(Test-Path 'C:\Tools\NuGet3') { $nugetDir = 'C:\Tools\NuGet3' } else { $nugetDir = 'C:\Tools\NuGet' }
+- ps: (New-Object Net.WebClient).DownloadFile('https://dist.nuget.org/win-x86-commandline/v3.3.0/nuget.exe', "$nugetDir\NuGet.exe")
 
 before_build:
   - ps: nuget restore
