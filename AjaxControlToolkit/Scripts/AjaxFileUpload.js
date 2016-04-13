@@ -1363,7 +1363,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     /// Sends alert to a user that the file type is not acceptable. The processor uses this method after validation.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.confirmFileIsInvalid" />
-    /// <param name="fileItem" type="Object">File trying to be added to queue</param>
+    /// <param name="fileItem" type="Object">A file attempting to be added to the upload queue.</param>
     confirmFileIsInvalid: function(fileItem) {
         var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
         alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_WrongFileType, utils.getFileName(fileItem.value), fileItem.type));
@@ -1373,7 +1373,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     /// Sends alert to a user that the file size is too large. The processor uses this method after validation.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.confirmFileIsTooLarge" />
-    /// <param name="fileItem" type="Object">File trying to be added to queue</param>
+    /// <param name="fileItem" type="Object">A file attempting to be added to the upload queue.</param>
     confirmFileIsTooLarge: function(fileItem) {
         var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
         alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_TooLargeFile, utils.getFileName(fileItem.value), this.get_maxFileSize()));
