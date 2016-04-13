@@ -186,7 +186,8 @@ Sys.Extended.UI.Resources = {
     "AjaxFileUpload_Canceled": "cancelled",
     "AjaxFileUpload_error": "error",
     "AjaxFileUpload_MaxNumberOfFilesExceeded": "Maximum number of files exceeded",
-    "AjaxFileUpload_WrongFileType": "Can\u0027t add file \u0027{0}\u0027 to upload list. File with type \u0027{1}\u0027 is not allowed"
+    "AjaxFileUpload_WrongFileType": "Can\u0027t add file \u0027{0}\u0027 to upload list. File with type \u0027{1}\u0027 is not allowed",
+    "AjaxFileUpload_TooLargeFile": "The \u0027{0}\u0027 file size exceeds the {1} bytes limit."
 };
 
 Type.registerNamespace('Sys.Extended.UI.Localization');

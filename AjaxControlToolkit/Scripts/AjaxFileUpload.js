@@ -307,6 +307,11 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
             return;
         }
 
+        if(!control.fileSizeExceded(fileItem.value.size)) {
+            control.confirmFileIsTooLarge(fileItem);
+            return;
+        }
+
         control.addFileToQueue(fileItem);
         this.createInputFileElement();
 
@@ -656,6 +661,12 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
                 continue;
             }
 
+            if(!control.fileSizeExceded(fileItem.value.size))
+            {
+                control.confirmFileIsTooLarge(fileItem);
+                continue;
+            }
+
             if(!control.addFileToQueue(fileItem))
                 break;
         }
@@ -994,6 +1005,15 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.useAbsoluteHandlerPath" />
     this._useAbsoluteHandlerPath = true;
 
+    /// <summary>
+    /// A maximum size of a file to be uploaded in Kbytes.
+    /// Non-positive value means size is unlimited.
+    /// </summary>
+    /// <getter>get_maxFileSize</getter>
+    /// <setter>set_maxFileSize</setter>
+    /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.useAbsoluteHandlerPath" />
+    this._maxFileSize = 0;
+
     // fields
     this._uploadUrl = 'AjaxFileUploadHandler.axd';
     this._useHtml5Support = false;
@@ -1324,6 +1344,18 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     /// <summary>
+    /// Checks whether the file size is larger than upload size limit.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.fileSizeExceeded" />
+    /// <param name="fileSize" type="Number">File size in bytes</param>
+    fileSizeExceeded: function(fileSize) {
+        if(this.get_maxFileSize() <= 0)
+            return true;
+
+        return fileSize > this.get_maxFileSize() * 1024;
+    },
+
+    /// <summary>
     /// Sends alert to a user that the file type is not acceptable. The processor uses this method after validation.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.confirmFileIsInvalid" />
@@ -1331,6 +1363,16 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     confirmFileIsInvalid: function(fileItem) {
         var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
         alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_WrongFileType, utils.getFileName(fileItem.value), fileItem.type));
+    },
+
+    /// <summary>
+    /// Sends alert to a user that the file size is too large. The processor uses this method after validation.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.confirmFileIsTooLarge" />
+    /// <param name="fileItem" type="Object">File trying to be added to queue</param>
+    confirmFileIsTooLarge: function(fileItem) {
+        var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
+        alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_TooLargeFile, utils.getFileName(fileItem.value), fileItem.value.size));
     },
 
     /// <summary>
@@ -1525,6 +1567,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_useAbsoluteHandlerPath: function(value) {
         this._useAbsoluteHandlerPath = value;
+    },
+
+    get_maxFileSize: function() {
+        return this._maxFileSize;
+    },
+    set_maxFileSize: function(value) {
+        this._maxFileSize = value;
     },
 
     /// <summary>
