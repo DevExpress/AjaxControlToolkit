@@ -302,12 +302,13 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         };
 
 
-        if(control.fileTypeIsValid(fileItem.type)) {
-            control.addFileToQueue(fileItem);
-            this.createInputFileElement();
-        } else {
+        if(!control.fileTypeIsValid(fileItem.type)) {
             control.confirmFileIsInvalid(fileItem);
+            return;
         }
+
+        control.addFileToQueue(fileItem);
+        this.createInputFileElement();
 
     };
 
@@ -415,8 +416,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         xhr.send(null);
     },
 
-    this.getQueryString = function()
-    {
+    this.getQueryString = function() {
         return "&" + window.location.search.replace("?", "");
     },
 
@@ -593,7 +593,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
 
     this.createInputFileElement = function() {
         var currentInputFile = elements.inputFile;
-        
+
         delete currentInputFile;
 
         // create new input file element in same location
@@ -651,12 +651,13 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
             };
 
             // validate it, add it if it's OK
-            if(control.fileTypeIsValid(fileItem.type)) {
-                if(!control.addFileToQueue(fileItem))
-                    break;
-            } else {
+            if(!control.fileTypeIsValid(fileItem.type)) {
                 control.confirmFileIsInvalid(fileItem);
+                continue;
             }
+
+            if(!control.addFileToQueue(fileItem))
+                break;
         }
 
         // reset input file value so 'change' event can be fired again with same file name.
@@ -689,7 +690,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         }
     };
 
-    this.resetUI = function () {
+    this.resetUI = function() {
         $common.setVisible(elements.progressBarContainer, false);
         $common.setVisible(control._elements.uploadOrCancelButton, false);
 
@@ -1129,8 +1130,10 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             var xhr = new XMLHttpRequest(),
                 self = this;
 
-            xhr.open("POST", '?contextKey=' + this.get_id()
-                + "&start=1&queue=" + this._filesInQueue.length
+            xhr.open("POST",
+                '?contextKey=' + this.get_contextKey()
+                + '&controlID=' + this.get_id()
+                + '&start=1&queue=' + this._filesInQueue.length
                 + this.getQueryString());
             xhr.onreadystatechange = function() {
                 if(xhr.readyState == 4) {
@@ -1195,10 +1198,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             self = this,
             currentFile = this._filesInQueue[this._currentQueueIndex - 1];
 
-        xhr.open("POST", '?contextKey=' + this.get_id()
-            + "&complete=1&queue=" + this._filesInQueue.length
-            + "&uploaded=" + (this._currentQueueIndex - (currentFile._isUploaded ? 0 : 1))
-            + "&reason=" + (this._canceled ? "cancel" : "done")
+        xhr.open("POST",
+            '?contextKey=' + this.get_contextKey()
+            + '&controlID=' + this.get_id()
+            + '&complete=1&queue=' + this._filesInQueue.length
+            + '&uploaded=' + (this._currentQueueIndex - (currentFile._isUploaded ? 0 : 1))
+            + '&reason=' + (this._canceled ? "cancel" : "done")
             + this.getQueryString());
 
         xhr.onreadystatechange = function() {
@@ -1213,7 +1218,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             }
         };
         xhr.send(null);
-        
+
         if(this.get_clearFileListAfterUpload()) {
             for(var i = 0; i < this._filesInQueue.length; i += 1) {
                 var item = this._filesInQueue[i];
@@ -1350,7 +1355,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
 
         xhr.onreadystatechange = function(e) {
             if(xhr.readyState == 4) {
-                if (xhr.status == 200 && xhr.responseText != "") {
+                if(xhr.status == 200 && xhr.responseText != "") {
 
                     // Mark as done and invoke event handler
                     self.raise_uploadComplete(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
@@ -1369,8 +1374,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         xhr.send();
     },
 
-    getQueryString: function()
-    {
+    getQueryString: function() {
         return "&" + window.location.search.replace("?", "");
     },
 
