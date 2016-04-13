@@ -307,7 +307,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
             return;
         }
 
-        if(!control.fileSizeExceeded(fileItem.value.size)) {
+        if(control.fileSizeExceeded(fileItem.value.size)) {
             control.confirmFileIsTooLarge(fileItem);
             return;
         }
@@ -661,7 +661,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
                 continue;
             }
 
-            if(!control.fileSizeExceeded(fileItem.value.size))
+            if(control.fileSizeExceeded(fileItem.value.size))
             {
                 control.confirmFileIsTooLarge(fileItem);
                 continue;
@@ -1354,9 +1354,9 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     /// <param name="fileSize" type="Number">File size in bytes</param>
     fileSizeExceeded: function(fileSize) {
         if(this.get_maxFileSize() <= 0)
-            return true;
+            return false;
 
-        return fileSize > this.get_maxFileSize() * 1024;
+        return fileSize > this.getMaxFileSizeInBytes();
     },
 
     /// <summary>
@@ -1376,7 +1376,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     /// <param name="fileItem" type="Object">File trying to be added to queue</param>
     confirmFileIsTooLarge: function(fileItem) {
         var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
-        alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_TooLargeFile, utils.getFileName(fileItem.value), fileItem.value.size));
+        alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_TooLargeFile, utils.getFileName(fileItem.value), this.get_maxFileSize()));
+    },
+
+    getMaxFileSizeInBytes: function()
+    {
+        return this.get_maxFileSize() * 1024;
     },
 
     /// <summary>

@@ -90,7 +90,8 @@
         OnUploadCompleteAll="AjaxFileUpload1_UploadCompleteAll" 
         OnUploadStart="AjaxFileUpload1_UploadStart" 
         OnClientUploadStart="onClientUploadStart"
-        OnClientUploadError="onClientUploadError" />
+        OnClientUploadError="onClientUploadError"
+        MaxFileSize="1024"/>
 
     <div id="uploadCompleteInfo"></div>
     <br />
