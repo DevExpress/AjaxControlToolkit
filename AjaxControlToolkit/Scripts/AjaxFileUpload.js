@@ -307,7 +307,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
             return;
         }
 
-        if(!control.fileSizeExceded(fileItem.value.size)) {
+        if(!control.fileSizeExceeded(fileItem.value.size)) {
             control.confirmFileIsTooLarge(fileItem);
             return;
         }
@@ -661,7 +661,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
                 continue;
             }
 
-            if(!control.fileSizeExceded(fileItem.value.size))
+            if(!control.fileSizeExceeded(fileItem.value.size))
             {
                 control.confirmFileIsTooLarge(fileItem);
                 continue;
