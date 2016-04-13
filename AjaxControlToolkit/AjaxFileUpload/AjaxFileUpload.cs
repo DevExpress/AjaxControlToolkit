@@ -93,6 +93,19 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
+        /// The maximum size of a file to be uploaded in Kbytes.
+        /// A non-positive value means the size is unlimited. 
+        /// The default is 0.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(0)]
+        [ClientPropertyName("maxFileSize")]
+        public int MaxFileSize {
+            get { return int.Parse((string)ViewState["MaxFileSize"] ?? "0"); }
+            set { ViewState["MaxFileSize"] = value.ToString(); }
+        }
+
+        /// <summary>
         /// Whether or not to hide file upload list container after the uploading finished
         /// </summary>
         [ExtenderControlProperty]
