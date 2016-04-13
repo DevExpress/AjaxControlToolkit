@@ -1150,8 +1150,10 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             var xhr = new XMLHttpRequest(),
                 self = this;
 
-            xhr.open("POST", '?contextKey=' + this.get_id()
-                + "&start=1&queue=" + this._filesInQueue.length
+            xhr.open("POST",
+                '?contextKey=' + this.get_contextKey()
+                + '&controlID=' + this.get_id()
+                + '&start=1&queue=' + this._filesInQueue.length
                 + this.getQueryString());
             xhr.onreadystatechange = function() {
                 if(xhr.readyState == 4) {
@@ -1216,10 +1218,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             self = this,
             currentFile = this._filesInQueue[this._currentQueueIndex - 1];
 
-        xhr.open("POST", '?contextKey=' + this.get_id()
-            + "&complete=1&queue=" + this._filesInQueue.length
-            + "&uploaded=" + (this._currentQueueIndex - (currentFile._isUploaded ? 0 : 1))
-            + "&reason=" + (this._canceled ? "cancel" : "done")
+        xhr.open("POST",
+            '?contextKey=' + this.get_contextKey()
+            + '&controlID=' + this.get_id()
+            + '&complete=1&queue=' + this._filesInQueue.length
+            + '&uploaded=' + (this._currentQueueIndex - (currentFile._isUploaded ? 0 : 1))
+            + '&reason=' + (this._canceled ? "cancel" : "done")
             + this.getQueryString());
 
         xhr.onreadystatechange = function() {
