@@ -563,6 +563,11 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         e.stopPropagation();
         e.preventDefault();
         this.addFilesToQueue(e.dataTransfer.files);
+
+        if (control.get_autoStartUpload()) {
+            control.startUpload();
+        }
+
     };
 
     this.onFileDragOverHandler = function(e) {
@@ -573,6 +578,10 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
     this.onFileSelectedHandler = function(e) {
         this.addFilesToQueue(e.target.files);
         this.createInputFileElement();
+
+        if (control.get_autoStartUpload()) {
+            control.startUpload();
+        }
     };
 
     this.createInputFileElement = function() {
@@ -614,9 +623,6 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
 
     this.addFilesToQueue = function (files) {
 
-        var startUpload = true;
-        var fileCount = files.length;   // store original value for later purposes (under WebKit/Blink the collection lenght is modified )
-
         // Validate and generate file item from HTML5 files.
         for (var i = 0; i < files.length; i++) {
 
@@ -640,21 +646,15 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
             // validate it, add it if it's OK
             if(control.fileTypeIsValid(fileItem.type)) {
                 if (!control.addFileToQueue(fileItem)) {
-                    startUpload = false;
                     break;
                 }
             } else {
-                startUpload = false;
                 control.confirmFileIsInvalid(fileItem);
             }
         }
 
         // reset input file value so 'change' event can be fired again with same file name.
         elements.inputFile.value = null;
-
-        if (fileCount > 0 && startUpload && control.get_autoStartUpload()) {
-            control.startUpload();
-        }
     };
 
     this.cancelUpload = function() {
