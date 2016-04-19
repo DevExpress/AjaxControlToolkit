@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AjaxControlToolkit.Reference</RootNamespace>
     <AssemblyName>AjaxControlToolkit.Reference</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -51,11 +51,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -89,10 +93,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ReferenceController.cs" />
+    <Compile Include="Controllers\ReleaseNotesController.cs" />
+    <Compile Include="GitHubIssue.cs" />
+    <Compile Include="GitHubLabel.cs" />
+    <Compile Include="GitHubMilestone.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolkitTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\AjaxControlToolkit\Scripts\*.js" Exclude="..\AjaxControlToolkit\Scripts\*.min.js">
@@ -116,7 +125,9 @@
     </Content>
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\ReleaseNotes\Index.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

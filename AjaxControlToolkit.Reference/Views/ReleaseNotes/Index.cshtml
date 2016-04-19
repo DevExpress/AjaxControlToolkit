@@ -1,0 +1,12 @@
+﻿@model string[]
+@using AjaxControlToolkit.Reference.Core
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<ul>
+    @foreach(var milestone in Model) {
+        <li>@Html.ActionLink(milestone, "Milestone", "ReleaseNotes", new { id = milestone }, null)</li>
+    }    
+</ul>

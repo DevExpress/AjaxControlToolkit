@@ -7,6 +7,6 @@
 
 <ul>
     @foreach(var typeName in Model) {
-        <li>@Html.ActionLink(typeName, "Markup", "Reference", new { typeName = typeName }, null) (<a href="@LinkHelper.GetSampleSiteLink(typeName)">demo</a>)</li>
+        <li>@Html.ActionLink(typeName, "Markup", "Reference", new { id = typeName }, null) (<a href="@LinkHelper.GetSampleSiteLink(typeName)">demo</a>)</li>
     }    
 </ul>

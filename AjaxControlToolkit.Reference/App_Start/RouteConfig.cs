@@ -12,8 +12,8 @@ namespace AjaxControlToolkit.Reference {
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{typeName}",
-                defaults: new { controller = "Reference", action = "Index", typeName = UrlParameter.Optional }
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "ReleaseNotes", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
