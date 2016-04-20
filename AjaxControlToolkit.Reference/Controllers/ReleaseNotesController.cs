@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
+using AjaxControlToolkit.Reference.Core;
+using AjaxControlToolkit.Reference.Core.Rendering;
 
 namespace AjaxControlToolkit.Reference.Controllers {
     public class ReleaseNotesController : Controller {
@@ -20,6 +22,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
         }
 
         public ContentResult Milestone(string id) {
+            var milestone = id;
             var closedIssues = new List<GitHubIssue>();
             WebResponse response = GetResponse("https://api.github.com/repos/DevExpress/AjaxControlToolkit/issues?state=closed");
 
@@ -30,9 +33,23 @@ namespace AjaxControlToolkit.Reference.Controllers {
             }
             closedIssues.AddRange(GetIssuesPart(response));
 
-            var invalidIssues = ValidateLabeledIssuesWithoutMilestone(closedIssues);            
+            var invalidIssues = ValidateLabeledIssuesWithoutMilestone(closedIssues);
+            var validIssues = GetMilestoneIssues(closedIssues, milestone);
 
-            return Content(closedIssues.ToString());
+            var docRenderer = new GitHubDocRenderer();
+            var releaseNotes = new ReleaseNotes(docRenderer);
+
+            return Content(releaseNotes.BuildReleaseNotes(validIssues, invalidIssues));
+        }
+
+        private IEnumerable<GitHubIssue> GetMilestoneIssues(IEnumerable<GitHubIssue> closedIssues, string milestone) {
+            return closedIssues.Where(issue =>
+                IsTargetMilestone(issue, milestone)
+                && issue.Labels.Any(label => IsReleaseNotesLabel(label)));
+        }
+
+        private static bool IsTargetMilestone(GitHubIssue issue, string milestone) {
+            return issue.Milestone != null && issue.Milestone.Title == milestone;
         }
 
         private IEnumerable<GitHubIssue> ValidateLabeledIssuesWithoutMilestone(IEnumerable<GitHubIssue> closedIssues) {

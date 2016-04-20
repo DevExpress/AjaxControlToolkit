@@ -94,14 +94,10 @@
   <ItemGroup>
     <Compile Include="Controllers\ReferenceController.cs" />
     <Compile Include="Controllers\ReleaseNotesController.cs" />
-    <Compile Include="GitHubIssue.cs" />
-    <Compile Include="GitHubLabel.cs" />
-    <Compile Include="GitHubMilestone.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToolkitTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\AjaxControlToolkit\Scripts\*.js" Exclude="..\AjaxControlToolkit\Scripts\*.min.js">

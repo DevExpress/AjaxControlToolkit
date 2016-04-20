@@ -1,7 +1,9 @@
-﻿namespace AjaxControlToolkit.Reference {
+﻿using System.Linq;
+using System.Collections.Generic;
+
+namespace AjaxControlToolkit.Reference {
     public class ToolkitTypes {
-        public static string[] GetTypeNames() {
-            return new string[] {
+        private static string[] typeBaseNames = new string[] {
                 "Accordion",
                 "AjaxFileUpload",
                 "AlwaysVisibleControlExtender",
@@ -45,15 +47,20 @@
                 "RoundedCornersExtender",
                 "Seadragon",
                 "SliderExtender",
-                "SlideShowExtender",
-                "TabContainer",
-                "TabPanel",
+                "SlideShowExtender",                
                 "TextBoxWatermarkExtender",
                 "ToggleButtonExtender",
                 "Twitter",
                 "UpdatePanelAnimationExtender",
                 "ValidatorCalloutExtender"
             };
+
+        public static IEnumerable<string> GetTypeNames() {
+            return typeBaseNames.Concat(new string[] { "TabContainer", "TabPanel" });
+        }
+
+        public static IEnumerable<string> GetIssueTypeNames() {
+            return typeBaseNames.Concat(new string[] { "HtmlEditor", "Tabs" });
         }
     }
 }

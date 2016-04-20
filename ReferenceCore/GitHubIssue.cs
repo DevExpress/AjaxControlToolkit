@@ -6,11 +6,11 @@ using System.Text;
 namespace AjaxControlToolkit.Reference {
     public class GitHubIssue {
 
-        public string Url { get; set; } // "https://api.github.com/repos/DevExpress/AjaxControlToolkit/issues/70",
-        public int Number { get; set; } //70,
-        public string Title { get; set; }// "Deprecate HtmlEditor in favor of HtmlEditorExtender",
+        public string Url { get; set; }
+        public int Number { get; set; }
+        public string Title { get; set; }
         public List<GitHubLabel> Labels;
-        public string State { get; set; }// "closed",
+        public string State { get; set; }
         public GitHubMilestone Milestone { get; set; }
         public object pull_request { get; set; }
 

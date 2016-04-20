@@ -27,8 +27,8 @@ namespace AjaxControlToolkit.Reference.Controllers {
                 FillClientMembers(doc, typeFullName);
             }
 
-            var codeplexDocRenderer = new GitHubDocRenderer();
-            var extenderDoc = new ExtenderDoc(codeplexDocRenderer);
+            var docRenderer = new GitHubDocRenderer();
+            var extenderDoc = new ExtenderDoc(docRenderer);
             var markup = extenderDoc.BuildDoc(doc.Types);
             
             return Content(markup);

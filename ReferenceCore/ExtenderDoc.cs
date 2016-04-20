@@ -7,12 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace AjaxControlToolkit.Reference.Core {
 
-    public class ExtenderDoc {
-        IDocRenderer _renderer;
-        StringBuilder _docStringBuilder = new StringBuilder();
-
-        public ExtenderDoc(IDocRenderer renderer) {
-            _renderer = renderer;
+    public class ExtenderDoc : MarkupBuilder {
+        public ExtenderDoc(IDocRenderer renderer)
+            : base(renderer) {
         }
 
         public string BuildDoc(IEnumerable<TypeDoc> typeDocs) {
@@ -25,7 +22,7 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         public string BuildTypeDoc(TypeDoc typeDoc) {
-            _docStringBuilder.Clear();
+            _markupStringBuilder.Clear();
 
             RenderTypeName(typeDoc.Name);
             RenderSampleSiteLink(typeDoc.Name);
@@ -45,7 +42,7 @@ namespace AjaxControlToolkit.Reference.Core {
             RenderMethodsExpanded(typeDoc.ClientMethods, "Client methods");
             RenderClientEventsExpanded(typeDoc.ClientEvents);
 
-            return _docStringBuilder.ToString();
+            return _markupStringBuilder.ToString();
         }
 
         private void RenderClientPropertiesExpanded(IEnumerable<ClientPropertyDoc> clientProperties) {
@@ -90,7 +87,7 @@ namespace AjaxControlToolkit.Reference.Core {
                 sectionStringBuilder.Append(additionalInfoRenderer(memberDoc));
             }
 
-            _docStringBuilder.Append(sectionStringBuilder.ToString());
+            _markupStringBuilder.Append(sectionStringBuilder.ToString());
         }
 
         string RenderMethodParams(DocBase member) {
@@ -152,20 +149,20 @@ namespace AjaxControlToolkit.Reference.Core {
 
         void RenderTypeRemarks(string typeRemarks) {
             var remarksBody = _renderer.Sanitize(typeRemarks).Replace("\\*", "<br>\\*");
-            _docStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText(remarksBody));
+            _markupStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText(remarksBody));
         }
 
         void RenderTypeName(string typeName) {
-            _docStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderHeader(typeName));
+            _markupStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderHeader(typeName));
         }
 
         void RenderSampleSiteLink(string typeName) {
             var url = LinkHelper.GetSampleSiteLink(typeName);
-            _docStringBuilder.Append(String.Format(" ({0})", _renderer.RenderUrl("demo", url)));
+            _markupStringBuilder.Append(String.Format(" ({0})", _renderer.RenderUrl("demo", url)));
         }
 
         void RenderTypeDescription(string typeDescription) {
-            _docStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText(_renderer.Sanitize(typeDescription)));
+            _markupStringBuilder.Append(_renderer.RenderNewParagraph() + _renderer.RenderText(_renderer.Sanitize(typeDescription)));
         }
 
         void RenderTable(IEnumerable<DocBase> members, string tableName, Func<DocBase, string> memberNameTransform = null, bool generateMemberLink = false, bool renderRemarks = true) {
@@ -194,7 +191,7 @@ namespace AjaxControlToolkit.Reference.Core {
             }
             tableStringBuilder.Append(_renderer.RenderDescriptionBlock(dict));
 
-            _docStringBuilder.Append(tableStringBuilder.ToString());
+            _markupStringBuilder.Append(tableStringBuilder.ToString());
         }
 
         void RenderMethods(IEnumerable<MethodDoc> methods, string headerText) {
