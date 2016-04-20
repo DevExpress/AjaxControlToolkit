@@ -38,8 +38,11 @@ namespace AjaxControlToolkit.Reference.Controllers {
 
             var docRenderer = new GitHubDocRenderer();
             var releaseNotes = new ReleaseNotes(docRenderer);
+            var markup = releaseNotes.BuildReleaseNotes(validIssues.OrderBy(issue => issue.Number), invalidIssues);
 
-            return Content(releaseNotes.BuildReleaseNotes(validIssues, invalidIssues));
+            Debug.WriteLine("Issues count: " + releaseNotes.GetIssueCount());
+
+            return Content(markup);
         }
 
         private IEnumerable<GitHubIssue> GetMilestoneIssues(IEnumerable<GitHubIssue> closedIssues, string milestone) {

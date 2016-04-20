@@ -54,10 +54,13 @@
     <Compile Include="ClientEventDoc.cs" />
     <Compile Include="DocBase.cs" />
     <Compile Include="Documentation.cs" />
+    <Compile Include="BugfixesBuilder.cs" />
+    <Compile Include="EnhancementsBuilder.cs" />
     <Compile Include="EventDoc.cs" />
     <Compile Include="GitHubIssue.cs" />
     <Compile Include="GitHubLabel.cs" />
     <Compile Include="GitHubMilestone.cs" />
+    <Compile Include="IssueBuilder.cs" />
     <Compile Include="LinkHelper.cs" />
     <Compile Include="MarkupBuilder.cs" />
     <Compile Include="MethodDoc.cs" />

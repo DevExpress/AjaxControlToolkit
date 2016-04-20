@@ -3,51 +3,53 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AjaxControlToolkit.ReferenceCore;
 
 namespace AjaxControlToolkit.Reference.Core {
     public class ReleaseNotes : MarkupBuilder {
+        private int issueCounter;
+
         public ReleaseNotes(IDocRenderer renderer)
             : base(renderer) {
         }
 
+        public int GetIssueCount() {
+            return issueCounter;
+        }
+
         public string BuildReleaseNotes(IEnumerable<GitHubIssue> validIssues, IEnumerable<GitHubIssue> invalidIssues) {
+            issueCounter = 0;
             _markupStringBuilder.Clear();
 
             BuildWarningSection(invalidIssues);
 
-            BuildEnhancements(validIssues);
-            BuildBugfixes(validIssues);
+            BuildIssuesKind(new EnhancementsBuilder(validIssues));
+            BuildIssuesKind(new BugfixesBuilder(validIssues));
 
             return _markupStringBuilder.ToString();
         }
 
-        private void BuildEnhancements(IEnumerable<GitHubIssue> validIssues) {
-            if(HasEnhancements(validIssues)) {
-                _markupStringBuilder.Append(_renderer.RenderHeader("Features and improvements:", 2));
+        private void BuildIssuesKind(IssueBuilder issueBuilder) {
+            if(issueBuilder.HasIssues()) {
+                _markupStringBuilder.Append(_renderer.RenderHeader(issueBuilder.GetHeader(), 2));
                 _markupStringBuilder.Append(_renderer.RenderNewParagraph());
             }
 
-            var commonEnhancements = GetCommonEnhancements(validIssues);
-            BuildCommonEnhancements(commonEnhancements);
-            BuildSpecificEnhancements(validIssues);
+            BuildCommonIssues(issueBuilder.GetCommonIssues());
+            BuildSpecificIssues(issueBuilder.GetSpecificIssues());
         }
 
-        private void BuildBugfixes(IEnumerable<GitHubIssue> validIssues) {
+        private void BuildCommonIssues(IEnumerable<GitHubIssue> commonIssues) {
+            if(commonIssues.Any())
+                BuildTypeIssues(commonIssues, "All controls");
         }
 
-        private void BuildCommonEnhancements(IEnumerable<GitHubIssue> enhancements) {
-            if(enhancements.Any())
-                BuildTypeEnhancements(enhancements, "All controls");
-        }
-
-        private void BuildSpecificEnhancements(IEnumerable<GitHubIssue> validIssues) {
+        private void BuildSpecificIssues(IEnumerable<GitHubIssue> specificIssues) {
             foreach(var typeName in ToolkitTypes.GetIssueTypeNames()) {
-                var typeEnhancements = validIssues.Where(issue => issue.Labels != null
-                    && IsEnhancement(issue)
-                    && issue.Labels.Any(label => label.Name == typeName));
+                var typeIssues = specificIssues.Where(issue => issue.Labels.Select(label => label.Name).Contains(typeName));
 
-                if(typeEnhancements.Any())
-                    BuildTypeEnhancements(typeEnhancements, GetReadableTypeName(typeName));
+                if(typeIssues.Any())
+                    BuildTypeIssues(typeIssues, GetReadableTypeName(typeName));
             }
         }
 
@@ -60,36 +62,25 @@ namespace AjaxControlToolkit.Reference.Core {
             }
         }
 
-        private void BuildTypeEnhancements(IEnumerable<GitHubIssue> typeEnhancements, string typeName) {
+        private void BuildTypeIssues(IEnumerable<GitHubIssue> typeIssues, string typeName) {
             _markupStringBuilder.Append(_renderer.RenderHeader(typeName, 3));
             _markupStringBuilder.Append(_renderer.RenderNewParagraph());
 
-            foreach(var enhancement in typeEnhancements)
+            foreach(var issue in typeIssues) {
                 _markupStringBuilder.Append(
                     _renderer.RenderListItem(
                         String.Format("Item {0} - {1}",
-                            _renderer.RenderUrl(enhancement.Number.ToString(), enhancement.Url),
-                            _renderer.RenderText(enhancement.Title))));
+                            _renderer.RenderUrl(issue.Number.ToString(), issue.Url),
+                            _renderer.RenderText(issue.Title))));
+
+                issueCounter++;
+            }
 
             _markupStringBuilder.Append(_renderer.RenderNewParagraph());
         }
 
-        private static bool IsEnhancement(GitHubIssue issue) {
-            return issue.Labels != null && issue.Labels.Select(label => label.Name).Contains("enhancement");
-        }
-
-        private IEnumerable<GitHubIssue> GetCommonEnhancements(IEnumerable<GitHubIssue> validIssues) {
-            return validIssues.Where(issue =>
-                IsEnhancement(issue)
-                && issue
-                .Labels
-                .Select(label => label.Name)
-                .All(name => !ToolkitTypes.GetIssueTypeNames()
-                .Contains(name)));
-        }
-
-        private bool HasEnhancements(IEnumerable<GitHubIssue> validIssues) {
-            return validIssues.Any(issue => IsEnhancement(issue));
+        private bool IsBugfix(GitHubIssue issue) {
+            return issue.Labels != null && issue.Labels.Select(label => label.Name).Contains("bug");
         }
 
         private void BuildWarningSection(IEnumerable<GitHubIssue> invalidIssues) {
@@ -97,6 +88,7 @@ namespace AjaxControlToolkit.Reference.Core {
                 return;
 
             _markupStringBuilder.Append(_renderer.RenderHeader("Warning: labeled issues without milestone detected"));
+            _markupStringBuilder.Append(_renderer.RenderNewParagraph());
 
             foreach(var issue in invalidIssues)
                 _markupStringBuilder.Append(_renderer.RenderListItem(_renderer.RenderUrl(issue.Title, issue.Url)));
