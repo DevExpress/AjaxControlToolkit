@@ -1375,9 +1375,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Styles\HtmlEditor.DesignPanel.css" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="bundleconfig.json" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"$(TargetDir)LinkStaticResources"</PostBuildEvent>
