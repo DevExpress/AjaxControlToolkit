@@ -15,64 +15,11 @@ namespace AjaxControlToolkit.Reference.Controllers {
         const string ActNamespace = "AjaxControlToolkit";
 
         public ActionResult Index() {
-            var typeNames = new string[] {
-                "Accordion",
-                "AjaxFileUpload",
-                "AlwaysVisibleControlExtender",
-                "Animation",
-                "AreaChart",
-                "AsyncFileUpload",
-                "AutoCompleteExtender",
-                "BalloonPopupExtender",
-                "BarChart",
-                "BubbleChart",
-                "CalendarExtender",
-                "CascadingDropDown",
-                "CollapsiblePanelExtender",
-                "ColorPickerExtender",
-                "ComboBox",
-                "ConfirmButtonExtender",
-                "DragPanelExtender",
-                "DropDownExtender",
-                "DropShadowExtender",
-                "DynamicPopulateExtender",
-                "FilteredTextBoxExtender",
-                "Gravatar",
-                "HoverMenuExtender",
-                "HtmlEditorExtender",
-                "LineChart",
-                "ListSearchExtender",
-                "MaskedEditExtender",
-                "MaskedEditValidator",
-                "ModalPopupExtender",
-                "MultiHandleSliderExtender",
-                "MutuallyExclusiveCheckBoxExtender",
-                "NoBot",
-                "NumericUpDownExtender",
-                "PagingBulletedListExtender",
-                "PasswordStrength",
-                "PieChart",
-                "PopupControlExtender",
-                "Rating",
-                "ReorderList",
-                "ResizableControlExtender",
-                "RoundedCornersExtender",
-                "Seadragon",
-                "SliderExtender",
-                "SlideShowExtender",
-                "TabContainer",
-                "TabPanel",
-                "TextBoxWatermarkExtender",
-                "ToggleButtonExtender",
-                "Twitter",
-                "UpdatePanelAnimationExtender",
-                "ValidatorCalloutExtender"
-            };
-
-            return View(typeNames);
+            return View(ToolkitTypes.GetTypeNames());
         }
 
-        public ContentResult Markup(string typeName) {
+        public ContentResult Markup(string id) {
+            var typeName = id;
             var doc = GetDoc(typeName);
 
             foreach(var docType in doc.Types.ToList()) {
@@ -80,8 +27,8 @@ namespace AjaxControlToolkit.Reference.Controllers {
                 FillClientMembers(doc, typeFullName);
             }
 
-            var codeplexDocRenderer = new GitHubDocRenderer();
-            var extenderDoc = new ExtenderDoc(codeplexDocRenderer);
+            var docRenderer = new GitHubDocRenderer();
+            var extenderDoc = new ExtenderDoc(docRenderer);
             var markup = extenderDoc.BuildDoc(doc.Types);
             
             return Content(markup);

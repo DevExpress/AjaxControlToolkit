@@ -54,8 +54,15 @@
     <Compile Include="ClientEventDoc.cs" />
     <Compile Include="DocBase.cs" />
     <Compile Include="Documentation.cs" />
+    <Compile Include="BugfixesBuilder.cs" />
+    <Compile Include="EnhancementsBuilder.cs" />
     <Compile Include="EventDoc.cs" />
+    <Compile Include="GitHubIssue.cs" />
+    <Compile Include="GitHubLabel.cs" />
+    <Compile Include="GitHubMilestone.cs" />
+    <Compile Include="IssueBuilder.cs" />
     <Compile Include="LinkHelper.cs" />
+    <Compile Include="MarkupBuilder.cs" />
     <Compile Include="MethodDoc.cs" />
     <Compile Include="ParamInfo.cs" />
     <Compile Include="Parsing\CommentBlock.cs" />
@@ -64,10 +71,12 @@
     <Compile Include="Parsing\DocParser.cs" />
     <Compile Include="Parsing\RawDoc.cs" />
     <Compile Include="PropertyDoc.cs" />
+    <Compile Include="ReleaseNotes.cs" />
     <Compile Include="Rendering\GitHubDocRenderer.cs" />
     <Compile Include="Rendering\CodePlexDocRenderer.cs" />
     <Compile Include="ExtenderDoc.cs" />
     <Compile Include="Rendering\IDocRenderer.cs" />
+    <Compile Include="ToolkitTypes.cs" />
     <Compile Include="TypeDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
