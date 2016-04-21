@@ -7,7 +7,7 @@ Sys.Extended.UI.HtmlEditor.DesignPanelEventHandler = function(ev) {
         if(editor._editPanel != Sys.Extended.UI.HtmlEditor.LastFocusedEditPanel)
             return true;
 
-        if(Sys.Extended.UI.HtmlEditor.isIESelection) {
+        if(Sys.Extended.UI.HtmlEditor.isIE) {
             try {
                 var selka = this._doc.selection,
                     rrr = this._createRange(selka);

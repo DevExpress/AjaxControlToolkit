@@ -8,9 +8,8 @@ Sys.Extended.UI.HtmlEditor.TrimAll = function(value) {
     return value.replace(/[\x00-\x1F]/g, "").replace(/^[\x20]+/g, "").replace(/[\x20]+$/g, "");
 };
 
-Sys.Extended.UI.HtmlEditor.isIE = (Sys.Browser.agent == Sys.Browser.InternetExplorer || (Sys.Browser.agent == null && Sys.Browser.version == 5 && Sys.Browser.name == "Netscape"));
-Sys.Extended.UI.HtmlEditor.isIESelection = (Sys.Browser.agent == Sys.Browser.InternetExplorer);
-Sys.Extended.UI.HtmlEditor.isSafari = (Sys.Browser.agent == Sys.Browser.Safari);
+Sys.Extended.UI.HtmlEditor.isIE = (Sys.Browser.agent == Sys.Browser.InternetExplorer);
+Sys.Extended.UI.HtmlEditor.isSafari = (Sys.Browser.agent == Sys.Browser.Safari || (Sys.Browser.agent == null && Sys.Browser.version == 5 && Sys.Browser.name == "Netscape"));
 Sys.Extended.UI.HtmlEditor.isOpera = (Sys.Browser.agent == Sys.Browser.Opera);
 
 Sys.Extended.UI.HtmlEditor.tryReplaceRgb = function(value) {
@@ -1199,7 +1198,7 @@ Sys.Extended.UI.HtmlEditor.getSelParent = function(editor) {
         range = editor._createRange(sel),
         parent = null;
 
-    if(Sys.Extended.UI.HtmlEditor.isIESelection) {
+    if(Sys.Extended.UI.HtmlEditor.isIE) {
         if(sel.type.toLowerCase() == "control")
             parent = range.item(0);
         else
