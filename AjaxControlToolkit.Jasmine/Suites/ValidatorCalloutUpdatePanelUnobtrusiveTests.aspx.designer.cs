@@ -10,51 +10,60 @@
 namespace AjaxControlToolkit.Jasmine.Suites {
     
     
-    public partial class TabsTests {
+    public partial class ValidatorCalloutUpdatePanelUnobtrusiveTests {
         
         /// <summary>
-        /// TestTabContainer control.
+        /// TestUpdatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabContainer TestTabContainer;
+        protected global::System.Web.UI.UpdatePanel TestUpdatePanel;
         
         /// <summary>
-        /// ActiveTabPanel control.
+        /// txtUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel ActiveTabPanel;
+        protected global::System.Web.UI.WebControls.TextBox txtUpdate;
         
         /// <summary>
-        /// DisabledTabPanel control.
+        /// UpdatePanelRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel DisabledTabPanel;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator UpdatePanelRequiredFieldValidator;
         
         /// <summary>
-        /// ThirdTabPanel control.
+        /// UpdatePanelTargetExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel ThirdTabPanel;
+        protected global::AjaxControlToolkit.ValidatorCalloutExtender UpdatePanelTargetExtender;
         
         /// <summary>
-        /// CustomTabContainer control.
+        /// btnSaveUserForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabContainer CustomTabContainer;
+        protected global::System.Web.UI.WebControls.Button btnSaveUserForm;
+        
+        /// <summary>
+        /// btnPostback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPostback;
     }
 }

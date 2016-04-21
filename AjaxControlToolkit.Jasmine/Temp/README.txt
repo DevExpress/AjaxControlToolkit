@@ -1,0 +1,1 @@
+Temp directory for AjaxFileUpload.

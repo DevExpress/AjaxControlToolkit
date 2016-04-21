@@ -26,6 +26,12 @@ namespace AjaxControlToolkit {
             set { base["htmlSanitizer"] = value; }
         }
 
+        [ConfigurationProperty("tempFolder", IsRequired = false)]
+        public string TempFolder {
+            get { return (string)base["tempFolder"]; }
+            set { base["tempFolder"] = value; }
+        }
+
         [ConfigurationProperty("customControls", IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(CustomControlsCollection))]
         public CustomControlsCollection CustomControls {

@@ -24,18 +24,14 @@ namespace AjaxControlToolkit {
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AjaxFileUploadName + Constants.IconPostfix)]
     public class AjaxFileUpload : ScriptControlBase {
 
-        static List<string> _contextKeys = new List<string>();
-        const string TemporaryUploadFolderName = "_AjaxFileUpload";
+        internal const string ContextKey = "{DA8BEDC8-B952-4d5d-8CC2-59FE922E2923}";
+        const string DefaultTempSubDir = "_AjaxFileUpload";
 
         // Location of uploaded temporary file path
         string _uploadedFilePath = null;
 
         public AjaxFileUpload()
             : base(true, HtmlTextWriterTag.Div) {
-        }
-
-        internal static ReadOnlyCollection<string> ContextKeyCollection {
-            get { return _contextKeys.AsReadOnly(); }
         }
 
         bool IsDesignMode {
@@ -94,6 +90,19 @@ namespace AjaxControlToolkit {
         public int ChunkSize {
             get { return int.Parse((string)ViewState["ChunkSize"] ?? "4096"); }
             set { ViewState["ChunkSize"] = value.ToString(); }
+        }
+
+        /// <summary>
+        /// The maximum size of a file to be uploaded in Kbytes.
+        /// A non-positive value means the size is unlimited. 
+        /// The default is 0.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(0)]
+        [ClientPropertyName("maxFileSize")]
+        public int MaxFileSize {
+            get { return int.Parse((string)ViewState["MaxFileSize"] ?? "0"); }
+            set { ViewState["MaxFileSize"] = value.ToString(); }
         }
 
         /// <summary>
@@ -223,7 +232,11 @@ namespace AjaxControlToolkit {
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
             if(!IsDesignMode) {
-                if(!string.IsNullOrEmpty(Page.Request.QueryString["contextkey"]) && Page.Request.QueryString["contextkey"] == ClientID)
+                if(!string.IsNullOrEmpty(Page.Request.QueryString["contextkey"])
+                    && 
+                    Page.Request.QueryString["contextkey"] == ContextKey
+                    &&
+                    Page.Request.QueryString["controlID"] == ClientID)
                     IsInFileUploadPostBack = true;
             }
         }
@@ -234,15 +247,14 @@ namespace AjaxControlToolkit {
             // Register an empty OnSubmit statement so the ASP.NET WebForm_OnSubmit method will be automatically
             // created and our behavior will be able to disable input file controls prior to submission
             ScriptManager.RegisterOnSubmitStatement(this, typeof(AjaxFileUpload), "AjaxFileUploadOnSubmit", "null;");
-
-            if(!_contextKeys.Contains(ClientID))
-                _contextKeys.Add(ClientID);
         }
 
         XhrType ParseRequest(out string fileId) {
             fileId = Page.Request.QueryString["guid"];
 
-            if(Page.Request.QueryString["contextkey"] != ClientID)
+            if(Page.Request.QueryString["contextkey"] != ContextKey
+                ||
+                Page.Request.QueryString["controlID"] != ClientID)
                 return XhrType.None;
 
             if(!string.IsNullOrEmpty(fileId)) {
@@ -401,11 +413,30 @@ namespace AjaxControlToolkit {
         }
 
         public static string BuildRootTempFolder() {
-            var rootTempFolder = Path.Combine(AjaxFileUploadHelper.RootTempFolderPath, TemporaryUploadFolderName);
-            if(!Directory.Exists(rootTempFolder))
-                Directory.CreateDirectory(rootTempFolder);
+            var userPath = ToolkitConfig.TempFolder;
 
-            return rootTempFolder;
+            if(!String.IsNullOrWhiteSpace(userPath)) {
+                var physicalPath = GetPhysicalPath(userPath);
+
+                if(!Directory.Exists(physicalPath))
+                    throw new IOException(String.Format("Temp directory '{0}' does not exist.", physicalPath));
+
+                return physicalPath;
+            }
+
+            var defaultPath = Path.Combine(Path.GetTempPath(), DefaultTempSubDir);
+
+            if(!Directory.Exists(defaultPath))
+                Directory.CreateDirectory(defaultPath);
+
+            return defaultPath;
+        }
+
+        static string GetPhysicalPath(string path) {
+            if(path.StartsWith("~"))
+                return HttpContext.Current.Server.MapPath(path);
+
+            return path;
         }
 
         internal void CreateChilds() {
@@ -546,7 +577,7 @@ namespace AjaxControlToolkit {
             if(IsDesignMode)
                 return;
 
-            descriptor.AddProperty("contextKey", ClientID);
+            descriptor.AddProperty("contextKey", ContextKey);
             descriptor.AddProperty("postBackUrl", Page.Request.RawUrl);
             descriptor.AddProperty("serverPollingSupport", ServerPollingSupport);
 

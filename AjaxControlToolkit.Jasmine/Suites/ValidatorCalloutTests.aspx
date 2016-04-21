@@ -104,15 +104,16 @@
                     expect($iconCell.find("img").length).toBe(1);
                 });
 
-                it("icon cell image has proper width and height", function() {
+                it("icon cell image has proper width and height", function(done) {
                     var self = this;
                     
                     setTimeout(function() {
-                        var $iconCellImage = this.$container.find(VALIDATOR_CALLOUT_ICON_CELL_CLASS_NAME.toClassSelector()).children("img");
+                        var $iconCellImage = self.$container.find(VALIDATOR_CALLOUT_ICON_CELL_CLASS_NAME.toClassSelector()).children("img");
 
                         setTimeout(function() {
                             expect($iconCellImage.width()).toBe(VALIDATOR_CALLOUT_ERROR_IMAGE_WIDTH);
                             expect($iconCellImage.height()).toBe(VALIDATOR_CALLOUT_ERROR_IMAGE_HEIGHT);
+                            done();
                         }, 500);
                     }, 500);
                 });

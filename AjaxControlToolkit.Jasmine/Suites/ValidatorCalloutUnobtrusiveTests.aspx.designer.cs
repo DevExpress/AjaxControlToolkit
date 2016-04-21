@@ -10,51 +10,33 @@
 namespace AjaxControlToolkit.Jasmine.Suites {
     
     
-    public partial class TabsTests {
+    public partial class ValidatorCalloutUnobtrusiveTests {
         
         /// <summary>
-        /// TestTabContainer control.
+        /// TestTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabContainer TestTabContainer;
+        protected global::System.Web.UI.WebControls.TextBox TestTextBox;
         
         /// <summary>
-        /// ActiveTabPanel control.
+        /// TestRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel ActiveTabPanel;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TestRequiredFieldValidator;
         
         /// <summary>
-        /// DisabledTabPanel control.
+        /// TargetExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel DisabledTabPanel;
-        
-        /// <summary>
-        /// ThirdTabPanel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel ThirdTabPanel;
-        
-        /// <summary>
-        /// CustomTabContainer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.TabContainer CustomTabContainer;
+        protected global::AjaxControlToolkit.ValidatorCalloutExtender TargetExtender;
     }
 }

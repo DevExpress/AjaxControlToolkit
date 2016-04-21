@@ -302,12 +302,18 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         };
 
 
-        if(control.fileTypeIsValid(fileItem.type)) {
-            control.addFileToQueue(fileItem);
-            this.createInputFileElement();
-        } else {
+        if(!control.fileTypeIsValid(fileItem.type)) {
             control.confirmFileIsInvalid(fileItem);
+            return;
         }
+
+        if(control.fileSizeExceeded(fileItem.value.size)) {
+            control.confirmFileIsTooLarge(fileItem);
+            return;
+        }
+
+        control.addFileToQueue(fileItem);
+        this.createInputFileElement();
 
     };
 
@@ -374,7 +380,12 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
 
         // only add 1 file input element to be uploaded
         form.appendChild(inputElement);
-        form.setAttribute("action", control._uploadUrl + '?contextKey=' + control.get_id() + '&fileId=' + control._currentFileId + '&fileName=' + fileItem._fileName + '&usePoll=' + (control.get_serverPollingSupport() ? "true" : "false"));
+        form.setAttribute("action", control._uploadUrl
+            + '?contextKey=' + control.get_contextKey()
+            + '&controlID=' + control.get_id()
+            + '&fileId=' + control._currentFileId
+            + '&fileName=' + fileItem._fileName
+            + '&usePoll=' + (control.get_serverPollingSupport() ? "true" : "false"));
 
         // upload it now
         form.submit();
@@ -389,7 +400,12 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         if(xhrPoll)
             xhrPoll.abort();
 
-        xhr.open("POST", '?contextKey=' + control.get_id() + "&cancel=1&guid=" + control._currentFileId + self.getQueryString(), true);
+        xhr.open("POST",
+            '?contextKey=' + control.get_contextKey()
+            + '&controlID=' + control.get_id()
+            + '&cancel=1&guid=' + control._currentFileId
+            + self.getQueryString(), true);
+
         xhr.onreadystatechange = function() {
             self.setThrobber(false);
             if(xhr.readyState == 4) {
@@ -405,8 +421,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         xhr.send(null);
     },
 
-    this.getQueryString = function()
-    {
+    this.getQueryString = function() {
         return "&" + window.location.search.replace("?", "");
     },
 
@@ -491,7 +506,10 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         if(!value || !control._currentFileId)
             return;
 
-        xhrPoll.open("GET", '?contextKey=' + control.get_id() + "&poll=1&guid=" + control._currentFileId, true);
+        xhrPoll.open("GET",
+            '?contextKey=' + control.get_contextKey()
+            + '&controlID=' + control.get_id()
+            + '&poll=1&guid=' + control._currentFileId, true);
         xhrPoll.send(null);
     };
 
@@ -521,11 +539,14 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
     this.raiseUploadError = function(xhr) {
 
         control.raise_uploadError(xhr);
-        control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
 
         if(xhrPoll)
             xhrPoll.abort();
         control._currentFileId = null;
+    };
+
+    this.resetUI = function() {
+        control.setFileStatus(control._currentFileId, 'error', Sys.Extended.UI.Resources.AjaxFileUpload_error);
     };
 
 };
@@ -586,7 +607,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
 
     this.createInputFileElement = function() {
         var currentInputFile = elements.inputFile;
-        
+
         delete currentInputFile;
 
         // create new input file element in same location
@@ -644,13 +665,19 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
             };
 
             // validate it, add it if it's OK
-            if(control.fileTypeIsValid(fileItem.type)) {
-                if (!control.addFileToQueue(fileItem)) {
-                    break;
-                }
-            } else {
+            if(!control.fileTypeIsValid(fileItem.type)) {
                 control.confirmFileIsInvalid(fileItem);
+                continue;
             }
+
+            if(control.fileSizeExceeded(fileItem.value.size))
+            {
+                control.confirmFileIsTooLarge(fileItem);
+                continue;
+            }
+
+            if(!control.addFileToQueue(fileItem))
+                break;
         }
 
         // reset input file value so 'change' event can be fired again with same file name.
@@ -683,7 +710,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         }
     };
 
-    this.resetUI = function () {
+    this.resetUI = function() {
         $common.setVisible(elements.progressBarContainer, false);
         $common.setVisible(control._elements.uploadOrCancelButton, false);
 
@@ -725,7 +752,15 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         xhrReq.addEventListener("load", xhrDelegate(this.onUploadCompleteHandler), false);
         xhrReq.addEventListener("error", xhrDelegate(this.onUploadFailedHandler), false);
         xhrReq.addEventListener("abort", xhrDelegate(this.onUploadCanceledHandler), false);
-        xhrReq.open("POST", (control.get_useAbsoluteHandlerPath() ? "/" : "") + control._uploadUrl + '?contextKey=' + control.get_id() + '&fileId=' + id + '&fileName=' + fileName + '&chunked=' + (chunked ? "true" : "false") + '&firstChunk=' + firstChunk, true);
+        xhrReq.open("POST",
+            (control.get_useAbsoluteHandlerPath() ? "/" : "") + control._uploadUrl
+            + '?contextKey=' + control.get_contextKey()
+            + '&controlID=' + control.get_id()
+            + '&fileId=' + id
+            + '&fileName=' + fileName
+            + '&chunked=' + (chunked ? "true" : "false")
+            + '&firstChunk=' + firstChunk, true);
+
         form.append("act-file-data", blob);
         xhrReq.send(form);
     };
@@ -987,6 +1022,15 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.useAbsoluteHandlerPath" />
     this._useAbsoluteHandlerPath = true;
 
+    /// <summary>
+    /// The maximum size of a file to be uploaded in Kbytes.
+    /// A non-positive value means the size is unlimited. 
+    /// </summary>
+    /// <getter>get_maxFileSize</getter>
+    /// <setter>set_maxFileSize</setter>
+    /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.maxFileSize" />
+    this._maxFileSize = 0;
+
     // fields
     this._uploadUrl = 'AjaxFileUploadHandler.axd';
     this._useHtml5Support = false;
@@ -1123,8 +1167,10 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             var xhr = new XMLHttpRequest(),
                 self = this;
 
-            xhr.open("POST", '?contextKey=' + this.get_id()
-                + "&start=1&queue=" + this._filesInQueue.length
+            xhr.open("POST",
+                '?contextKey=' + this.get_contextKey()
+                + '&controlID=' + this.get_id()
+                + '&start=1&queue=' + this._filesInQueue.length
                 + this.getQueryString());
             xhr.onreadystatechange = function() {
                 if(xhr.readyState == 4) {
@@ -1201,10 +1247,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             self = this,
             currentFile = this._filesInQueue[this._currentQueueIndex - 1];
 
-        xhr.open("POST", '?contextKey=' + this.get_id()
-            + "&complete=1&queue=" + this._filesInQueue.length
-            + "&uploaded=" + (this._currentQueueIndex - (currentFile._isUploaded ? 0 : 1))
-            + "&reason=" + (this._canceled ? "cancel" : "done")
+        xhr.open("POST",
+            '?contextKey=' + this.get_contextKey()
+            + '&controlID=' + this.get_id()
+            + '&complete=1&queue=' + this._filesInQueue.length
+            + '&uploaded=' + (this._currentQueueIndex - (currentFile._isUploaded ? 0 : 1))
+            + '&reason=' + (this._canceled ? "cancel" : "done")
             + this.getQueryString());
 
         xhr.onreadystatechange = function() {
@@ -1219,7 +1267,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             }
         };
         xhr.send(null);
-        
+
         if(this.get_clearFileListAfterUpload()) {
             for(var i = 0; i < this._filesInQueue.length; i += 1) {
                 var item = this._filesInQueue[i];
@@ -1329,13 +1377,40 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
 
     /// <summary>
+    /// Checks if the file size is larger than the upload size limit. 
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.fileSizeExceeded" />
+    /// <param name="fileSize" type="Number">File size in bytes</param>
+    fileSizeExceeded: function(fileSize) {
+        if(this.get_maxFileSize() <= 0)
+            return false;
+
+        return fileSize > this.getMaxFileSizeInBytes();
+    },
+
+    /// <summary>
     /// Sends alert to a user that the file type is not acceptable. The processor uses this method after validation.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.confirmFileIsInvalid" />
-    /// <param name="fileItem" type="Object">File trying to be added to queue</param>
+    /// <param name="fileItem" type="Object">A file attempting to be added to the upload queue.</param>
     confirmFileIsInvalid: function(fileItem) {
         var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
         alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_WrongFileType, utils.getFileName(fileItem.value), fileItem.type));
+    },
+
+    /// <summary>
+    /// Sends alert to a user that the file size is too large. The processor uses this method after validation.
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.confirmFileIsTooLarge" />
+    /// <param name="fileItem" type="Object">A file attempting to be added to the upload queue.</param>
+    confirmFileIsTooLarge: function(fileItem) {
+        var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
+        alert(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_TooLargeFile, utils.getFileName(fileItem.value), this.get_maxFileSize()));
+    },
+
+    getMaxFileSizeInBytes: function()
+    {
+        return this.get_maxFileSize() * 1024;
     },
 
     /// <summary>
@@ -1348,10 +1423,15 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         var xhr = new XMLHttpRequest(),
             self = this;
 
-        xhr.open("POST", "?contextKey=" + this.get_id() + "&done=1&guid=" + fileItem._id + this.getQueryString(), true);
+        xhr.open("POST",
+            '?contextKey=' + this.get_contextKey()
+            + '&controlID=' + this.get_id()
+            + '&done=1&guid=' + fileItem._id
+            + this.getQueryString(), true);
+
         xhr.onreadystatechange = function(e) {
             if(xhr.readyState == 4) {
-                if (xhr.status == 200 && xhr.responseText != "") {
+                if(xhr.status == 200 && xhr.responseText != "") {
 
                     // Mark as done and invoke event handler
                     self.raise_uploadComplete(Sys.Serialization.JavaScriptSerializer.deserialize(xhr.responseText));
@@ -1370,8 +1450,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         xhr.send();
     },
 
-    getQueryString: function()
-    {
+    getQueryString: function() {
         return "&" + window.location.search.replace("?", "");
     },
 
@@ -1533,6 +1612,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_useAbsoluteHandlerPath: function(value) {
         this._useAbsoluteHandlerPath = value;
+    },
+
+    get_maxFileSize: function() {
+        return this._maxFileSize;
+    },
+    set_maxFileSize: function(value) {
+        this._maxFileSize = value;
     },
 
     /// <summary>

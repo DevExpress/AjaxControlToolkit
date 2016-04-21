@@ -66,6 +66,7 @@
     <Compile Include="ExtenderBase\IScriptComponentDescriptor.cs" />
     <Compile Include="ExtenderBase\ScriptComponentDescriptorWrapper.cs" />
     <Compile Include="MultiHandleSlider\MultiHandleSliderTargetsEditor.cs" />
+    <Compile Include="Tabs\TabCssTheme.cs" />
     <Compile Include="ToolkitConfig.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUpload.cs" />
     <Compile Include="AjaxFileUpload\AjaxFileUploadCompleteAllEventArgs.cs" />
@@ -452,6 +453,9 @@
     <EmbeddedResource Include="Styles\NumericUpDown.min.css">
       <DependentUpon>NumericUpDown.css</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Scripts\ValidatorCallout.min.js">
+      <DependentUpon>ValidatorCallout.js</DependentUpon>
+    </Content>
     <Content Include="Styles\README.txt" />
     <EmbeddedResource Include="Images\AsyncFileUpload.Button.png" />
     <EmbeddedResource Include="Images\BalloonPopup.CloudSprite.gif" />
@@ -1120,9 +1124,6 @@
     <Content Include="Scripts\HtmlEditor.ToolbarButtons.Underline.js" />
     <Content Include="Scripts\HtmlEditor.ToolbarButtons.Undo.js" />
     <Content Include="Scripts\ValidatorCallout.js" />
-    <Content Include="Scripts\ValidatorCallout.min.js">
-      <DependentUpon>ValidatorCallout.js</DependentUpon>
-    </Content>
     <EmbeddedResource Include="Styles\Calendar.css" />
     <EmbeddedResource Include="Styles\Calendar.min.css">
       <DependentUpon>Calendar.css</DependentUpon>

@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace AjaxControlToolkit.HtmlEditor {
 
+    [Obsolete("HtmlEditor is obsolete. Use HtmlEditorExtender instead.")]
     [Designer("AjaxControlToolkit.Design.EditorDesigner, AjaxControlToolkit")]
     [ToolboxItem(false)]
     [ValidationPropertyAttribute("Content")]

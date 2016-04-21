@@ -48,9 +48,7 @@
 
                 it("client state saves selected item", function(done) {
                     var target = this.$pageContainer.children().eq(2)[0];
-                    var event = document.createEvent("MouseEvent");
-                    event.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                    Object.defineProperty(event, "target", { value: target, enumerable: true });
+                    var event = createMouseEvent("click", target);
                     target.dispatchEvent(event);
 
                     __doPostBack(BULLET_LIST_UNIQUE_ID, '1');
