@@ -584,6 +584,11 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         e.stopPropagation();
         e.preventDefault();
         this.addFilesToQueue(e.dataTransfer.files);
+
+        if (control.get_autoStartUpload()) {
+            control.startUpload();
+        }
+
     };
 
     this.onFileDragOverHandler = function(e) {
@@ -594,6 +599,10 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
     this.onFileSelectedHandler = function(e) {
         this.addFilesToQueue(e.target.files);
         this.createInputFileElement();
+
+        if (control.get_autoStartUpload()) {
+            control.startUpload();
+        }
     };
 
     this.createInputFileElement = function() {
@@ -633,10 +642,10 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
 
     // #endregion
 
-    this.addFilesToQueue = function(files) {
-        // Validate and generate file item from HTML5 files.
+    this.addFilesToQueue = function (files) {
 
-        for(var i = 0; i < files.length; i++) {
+        // Validate and generate file item from HTML5 files.
+        for (var i = 0; i < files.length; i++) {
 
             var blob = files[i],
                 slices = 0;
@@ -954,6 +963,14 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     this._mode = 0;
 
     /// <summary>
+    /// Whether or not automatically start upload files after drag/drop or select in file dialog. The default is false
+    /// </summary>
+    /// <getter>get_autoStartUpload</getter>
+    /// <setter>set_autoStartUpload</setter>
+    /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.autoStartUpload" />
+    this._autoStartUpload = false;
+
+    /// <summary>
     /// Whether or not AjaxFileUpload supports server polling.
     /// </summary>
     /// <getter>get_serverPollingSupport</getter>
@@ -1181,6 +1198,18 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             }
         }
     },
+
+    /// <summary>
+    /// Manually starts upload process
+    /// </summary>
+    startUpload: function () {
+        if (this._isUploading || !this._filesInQueue.length) {
+            return;
+        }
+
+        this._onUploadOrCancelButtonClickedHandler();
+    },
+
 
     /// <summary>
     /// If set to true, it will set the control state to enabled (ready to upload),
@@ -1528,6 +1557,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_mode: function(value) {
         this._mode = value;
+    },
+
+    get_autoStartUpload: function () {
+        return this._autoStartUpload;
+    },
+    set_autoStartUpload: function (value) {
+        this._autoStartUpload = value;
     },
 
     get_serverPollingSupport: function() {

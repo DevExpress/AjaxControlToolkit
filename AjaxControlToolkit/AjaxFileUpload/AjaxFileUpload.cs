@@ -140,6 +140,18 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
+        /// Whether or not automatically start upload files after drag/drop or select in file dialog. The default is false
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(false)]
+        [ClientPropertyName("autoStartUpload")]
+        public bool AutoStartUpload
+        {
+            get { return bool.Parse((string)ViewState["AutoStartUpload"] ?? "false"); }
+            set { ViewState["AutoStartUpload"] = value.ToString(); }
+        }
+
+        /// <summary>
         /// An event raised when the file upload starts.
         /// </summary>
         [Bindable(true)]
