@@ -13,7 +13,7 @@ namespace AjaxControlToolkit.Tests {
             var dir = Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location);            
             IWebDriver driver = new ChromeDriver(dir);
             driver.Navigate().GoToUrl("http://localhost:49290");
-
+            driver.Quit();
             Assert.AreEqual(1, 1);
         }
     }
