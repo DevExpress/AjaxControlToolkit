@@ -1,5 +1,5 @@
+!/bin/chromedriver.exe
 /bin
-!bin/chromedriver.exe
 obj
 *.suo
 *.user
