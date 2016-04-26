@@ -47,8 +47,7 @@
                 $countBadge;
 
             $element = $("<div />", {
-                class: isSuccess ? "test-result-success" : "test-result-failure",
-                text: description
+                class: isSuccess ? "test-result-success" : "test-result-failure"
             });
 
             var descriptionParts = result.fullName.split(" ");
@@ -59,12 +58,20 @@
                 class: "suite-name-badge"
             });
 
+            $testName = $("<span />", {
+                text: description,
+                class: "test-name"
+            });
+
             $countBadge = $("<span />", {
                 text: result.passedExpectations.length + "/" + result.failedExpectations.length,
                 class: "count-badge"
             })
 
-            $element.prepend($suiteBadge).append($countBadge);
+            $element
+                .prepend($suiteBadge)
+                .append($testName)
+                .append($countBadge);
 
             if(!isSuccess)
                 $element.append(getStackTraceElement(result));
