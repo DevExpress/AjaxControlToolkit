@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
-using Moq;
-using System.Globalization;
-using System.Web.UI;
-using AjaxControlToolkit.Reference.Core.Rendering;
 using AjaxControlToolkit.Reference.Core;
 using AjaxControlToolkit.Reference;
 using System.IO;
