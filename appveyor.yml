@@ -17,7 +17,11 @@ build:
 
 test:
   assemblies: bin\AjaxControlToolkit.Tests.dll
-  
+ 
+ environment:
+  GitHubAccessToken:
+    secure: BTxryhieXviqZEIP/spJN05bl3v6ivYF943Cg2TucWJIL/MLvYMAsZiEQ9lyt6Gw
+ 
 on_success:
 - ps: >-
     if([string]::IsNullOrEmpty($env:APPVEYOR_PULL_REQUEST_NUMBER))
