@@ -106,7 +106,6 @@ namespace AjaxControlToolkit.Reference.Core {
         static void FillClientMembers(Documentation doc, string typeFullName, string scriptsFolder) {
             var actAssembly = typeof(ToolkitResourceManager).Assembly;
             var type = actAssembly.GetType(typeFullName, true);      
-            
 
             if(type.IsSubclassOf(typeof(ExtenderControlBase))
                 ||
