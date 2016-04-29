@@ -1,14 +1,7 @@
 ﻿using AjaxControlToolkit.Reference.Core;
-using AjaxControlToolkit.Reference.Core.Parsing;
 using AjaxControlToolkit.Reference.Core.Rendering;
-using AjaxControlToolkit.ReferenceCore.Parsing;
 
-using System;
-using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using System.Xml.Linq;
-using IO = System.IO;
 
 namespace AjaxControlToolkit.Reference.Controllers {
 
