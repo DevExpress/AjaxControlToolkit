@@ -18,7 +18,7 @@ build:
 test:
   assemblies: bin\AjaxControlToolkit.Tests.dll
  
- environment:
+environment:
   GitHubAccessToken:
     secure: BTxryhieXviqZEIP/spJN05bl3v6ivYF943Cg2TucWJIL/MLvYMAsZiEQ9lyt6Gw
  
