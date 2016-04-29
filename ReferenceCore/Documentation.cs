@@ -115,7 +115,7 @@ namespace AjaxControlToolkit.Reference.Core {
                 type == typeof(ComboBox)) {
                     var clientScriptName = type
                         .GetCustomAttributesData()
-                        .First(a => a.AttributeType == typeof(ClientScriptResourceAttribute))
+                        .First(a => a.Constructor.DeclaringType == typeof(ClientScriptResourceAttribute))
                         .ConstructorArguments[1]
                         .Value;                    
                 var jsFileName = clientScriptName + ".js";
