@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.Referenc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.ReferenceCore", "ReferenceCore\AjaxControlToolkit.ReferenceCore.csproj", "{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AjaxControlToolkit.WikiReferenceUpdater", "AjaxControlToolkit.WikiReferenceUpdater\AjaxControlToolkit.WikiReferenceUpdater.csproj", "{907D2321-2D67-43FB-8276-2B7FF37F301E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E55F6C8F-46E6-49A7-8B25-7C779BC7682B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{907D2321-2D67-43FB-8276-2B7FF37F301E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{907D2321-2D67-43FB-8276-2B7FF37F301E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{907D2321-2D67-43FB-8276-2B7FF37F301E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{907D2321-2D67-43FB-8276-2B7FF37F301E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
