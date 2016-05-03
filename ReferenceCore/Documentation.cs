@@ -1,7 +1,10 @@
 ﻿using AjaxControlToolkit.Reference.Core.Parsing;
+using AjaxControlToolkit.ReferenceCore.Parsing;
 using System;
 using System.Collections.Generic;
-using AjaxControlToolkit.ReferenceCore.Parsing;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace AjaxControlToolkit.Reference.Core {
 
@@ -68,6 +71,72 @@ namespace AjaxControlToolkit.Reference.Core {
 
         public IEnumerable<TypeDoc> Types {
             get { return _types.Values; }
+        }
+
+        public static Documentation Get(string type, string xmlDocFolder, string scriptsFolder) {
+            var doc = new Documentation();
+            var xml = LoadXml(Path.Combine(xmlDocFolder, "AjaxControltoolkit.xml"));
+
+            var members = xml.Root.Element("members").Elements()
+                .Where(el => el.Attribute("name").Value.Contains("AjaxControlToolkit." + type))
+                .Select(el => new RawDoc(el.Attribute("name").Value) {
+                    Elements = el.Elements()
+                })
+                .OrderBy(el => el.TargetFullName);
+
+            doc.Add(members, ContentType.Xml);
+
+            foreach(var docType in doc.Types.ToList()) {
+                var typeFullName = docType.Namespace + "." + GetNeededType(docType.Name);
+                FillClientMembers(doc, typeFullName, scriptsFolder);
+            }
+
+            return doc;
+        }
+
+        static string GetNeededType(string typeName) {
+            switch(typeName) {
+                case "Accordion":
+                    return "AccordionExtender";
+                default:
+                    return typeName;
+            }
+        }
+
+        static void FillClientMembers(Documentation doc, string typeFullName, string scriptsFolder) {
+            var actAssembly = typeof(ToolkitResourceManager).Assembly;
+            var type = actAssembly.GetType(typeFullName, true);      
+
+            if(type.IsSubclassOf(typeof(ExtenderControlBase))
+                ||
+                type.IsSubclassOf(typeof(ScriptControlBase))
+                ||
+                type == typeof(ComboBox)) {
+                    var clientScriptName = type
+                        .GetCustomAttributesData()
+                        .First(a => a.Constructor.DeclaringType == typeof(ClientScriptResourceAttribute))
+                        .ConstructorArguments[1]
+                        .Value;                    
+                var jsFileName = clientScriptName + ".js";
+
+                var jsLines = File.ReadAllLines(Path.Combine(scriptsFolder, jsFileName));
+                var commentParser = new CommentParser();
+                var clientMembers = commentParser.ParseFile(jsLines, typeFullName);
+
+                doc.Add(clientMembers, ContentType.Text);
+            }
+        }
+
+        static XDocument LoadXml(string fileName) {
+            XDocument xml;
+            if(!File.Exists(fileName))
+                throw new ArgumentException(String.Format("File '{0}' not found", fileName), "fileName");
+
+            xml = XDocument.Load(fileName);
+            if(xml == null)
+                throw new ArgumentException(String.Format("Unable to load XML from '{0}'", fileName), "fileName");
+
+            return xml;
         }
     }
 }

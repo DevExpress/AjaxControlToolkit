@@ -17,3 +17,35 @@ build:
 
 test:
   assemblies: bin\AjaxControlToolkit.Tests.dll
+ 
+environment:
+  GitHubAccessToken:
+    secure: BTxryhieXviqZEIP/spJN05bl3v6ivYF943Cg2TucWJIL/MLvYMAsZiEQ9lyt6Gw
+ 
+on_success:
+- ps: >-
+    if([string]::IsNullOrEmpty($env:APPVEYOR_PULL_REQUEST_NUMBER))
+
+    {
+
+    git config --global credential.helper store
+
+    Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GitHubAccessToken):x-oauth-basic@github.com`n"
+
+    git config --global user.email "$env:GitUserEmail"
+
+    git config --global user.name "$env:GitUserName"
+
+    git clone -q $env:WikiRepoUrl $env:WikiRepoPath
+
+    & "$env:APPVEYOR_BUILD_FOLDER\$env:WikiUpdaterPath" $env:WikiRepoPath
+
+    cd $env:WikiRepoPath
+
+    git config core.autocrlf false
+
+    git commit -q -m "Reference update" -a
+
+    git push origin master -q
+
+    }

@@ -1202,6 +1202,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     /// <summary>
     /// Manually starts upload process
     /// </summary>
+    /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.startUpload" />
     startUpload: function () {
         if (this._isUploading || !this._filesInQueue.length) {
             return;
