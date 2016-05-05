@@ -17,7 +17,7 @@ namespace AjaxControlToolkit.Tests {
             var driver = new ChromeDriver(dir);
 
             try {
-                driver.Navigate().GoToUrl("http://localhost/JasmineTests/TestRunner.aspx");
+                driver.Navigate().GoToUrl("http://localhost/TestRunner.aspx");
 
                 var selectAllCheckbox = driver.FindElement(By.XPath("//label[text()='SELECT ALL']"));
                 selectAllCheckbox.Click();
