@@ -60,7 +60,7 @@ namespace AjaxControlToolkit.Tests {
 
                 Assert.Fail("Test timed out");
             } finally {
-                //driver.Quit();
+                driver.Quit();
             }
         }
     }
