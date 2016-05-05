@@ -1139,6 +1139,10 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     _onUploadOrCancelButtonClickedHandler: function(e) {
         var files = this._filesInQueue;
+
+        if(!this.validateFiles(files))
+            return;
+
         if(!files.length) {
             alert(Sys.Extended.UI.Resources.AjaxFileUpload_SelectFileToUpload);
             return;
@@ -1197,6 +1201,11 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                 }
             }
         }
+    },
+
+    validateFiles: function(files)
+    {
+        return true;
     },
 
     /// <summary>
