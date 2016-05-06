@@ -136,7 +136,7 @@ namespace AjaxControlToolkit {
             return GetStyleHref(entry, control, control.Page.ClientScript.GetWebResourceUrl);
         }
 
-        internal static string GetStyleHref(ResourceEntry entry, Control control, Func<Type, string, string> getWebResourceUrlFunc) {
+        public static string GetStyleHref(ResourceEntry entry, Control control, Func<Type, string, string> getWebResourceUrlFunc) {
             var minified = !IsDebuggingEnabled();
             var controlType = control.GetType();
 
@@ -385,7 +385,7 @@ namespace AjaxControlToolkit {
             return ScriptManager.GetCurrent(page);
         }
 
-        internal struct ResourceEntry : IEquatable<ResourceEntry> {
+        public struct ResourceEntry : IEquatable<ResourceEntry> {
             public readonly string ResourceName;
             public readonly Type ComponentType;
             public readonly int Order;

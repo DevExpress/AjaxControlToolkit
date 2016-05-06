@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>AjaxKey.snk</AssemblyOriginatorKeyFile>
@@ -72,13 +72,18 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebDriver, Version=2.53.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.53.0\lib\net40\WebDriver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BundleResolverTests.cs" />
     <Compile Include="BaseValidatorTests.cs" />
+    <Compile Include="BundleResolverTests.cs" />
+    <Compile Include="JasmineTests.cs" />
     <Compile Include="ComponentDescriber\ComponentDescriberTests.cs" />
     <Compile Include="DocumentationTests\DocumentationTests.cs" />
     <Compile Include="DocumentationTests\GitHubDocRendererTests.cs" />
