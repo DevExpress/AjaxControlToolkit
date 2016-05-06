@@ -67,8 +67,8 @@
                             var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
                             expect($container.is(":visible")).toBeTruthy();
                             done();
-                        }, 200);
-                    }, 200);
+                        }, 500);
+                    }, 500);
                 });
 
                 it("validates inside UpdatePanel after 2 postbacks", function(done) {
@@ -84,9 +84,9 @@
                                 var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
                                 expect($container.is(":visible")).toBeTruthy();
                                 done();
-                            }, 200);
-                        }, 200);
-                    }, 200);
+                            }, 500);
+                        }, 500);
+                    }, 500);
                 });
 
             });

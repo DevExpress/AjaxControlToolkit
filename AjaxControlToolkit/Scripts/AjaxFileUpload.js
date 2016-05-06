@@ -1203,6 +1203,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         }
     },
 
+    /// <summary>
+    /// Validates files in queue before uploading.
+    /// Returns true if validation is passed, otherwise false
+    /// </summary>
+    /// <member name="cM:AjaxControlToolkit.AjaxFileUpload.validateFiles" />
+    /// <param name="files" type="Object">An array of files in the upload queue</param>
     validateFiles: function(files)
     {
         return true;
