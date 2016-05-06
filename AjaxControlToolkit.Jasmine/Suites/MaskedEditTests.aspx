@@ -291,18 +291,19 @@
             });
 
             it("correctly switches shorttime group backward", function(done) {
-                this.$shortTimeTarget.focus();
-                setCaretToPosition(this.$shortTimeTarget.get(0), 3);
                 var self = this;
+                self.$shortTimeTarget.focus();
 
                 setTimeout(function() {
+                    self.$shortTimeTarget.get(0).selectionStart = 3;
                     pressButtonsWithDelay(self.$shortTimeTarget, ":", true);
-                    
+
                     setTimeout(function() {
                         expect(getCaretPosition(self.$shortTimeTarget.get(0))).toBe(0);
                         done();
                     }, 500);
                 }, 500);
+
             });
 
             it("date formatting does not throw an exception when user date format is set (CodePlex item 27921)", function() {
@@ -404,88 +405,90 @@
             });
         });
 
-            function getKeyboardEvent(prefs) {
-                var keyboardEvent = document.createEvent("KeyboardEvent");
-                var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
+        function getKeyboardEvent(prefs) {
+            var keyboardEvent = document.createEvent("KeyboardEvent");
+            var initMethod = typeof keyboardEvent.initKeyboardEvent !== 'undefined' ? "initKeyboardEvent" : "initKeyEvent";
 
-                keyboardEvent[initMethod](
-                    prefs.typeArg,
-                    prefs.canBubbleArg,
-                    prefs.cancelableArg,
-                    prefs.viewArg,
-                    prefs.ctrlKeyArg,
-                    prefs.altKeyArg,
-                    prefs.shiftKeyArg,
-                    prefs.metaKeyArg,
-                    prefs.keyCodeArg,
-                    prefs.charCodeArg
-                );
+            keyboardEvent[initMethod](
+                prefs.typeArg,
+                prefs.canBubbleArg,
+                prefs.cancelableArg,
+                prefs.viewArg,
+                prefs.ctrlKeyArg,
+                prefs.altKeyArg,
+                prefs.shiftKeyArg,
+                prefs.metaKeyArg,
+                prefs.keyCodeArg,
+                prefs.charCodeArg
+            );
 
-                return keyboardEvent;
-            };
+            return keyboardEvent;
+        };
 
-            function setCaretToPosition(input, pos) {
-                setSelectionRange(input, pos, pos);
-            };
+        function setCaretToPosition(input, pos) {
+            setSelectionRange(input, pos, pos);
+        };
 
-            function setSelectionRange(input, selectionStart, selectionEnd) {
-                if(input.setSelectionRange) {
-                    input.focus();
-                    input.setSelectionRange(selectionStart, selectionEnd);
-                } else if(input.createTextRange) {
-                    var range = input.createTextRange();
-                    range.collapse(true);
-                    range.moveEnd('character', selectionEnd);
-                    range.moveStart('character', selectionStart);
-                    range.select();
-                }
-            };
-
-            function pressButtons(target, sequence) {
-                for(var i = 0; i < sequence.length; i++) {
-                    var charCode = sequence.charCodeAt(i);
-                    target.simulate("keypress", { charCode: charCode });
-                }
-            };
-
-            function pressButtonsWithDelay(target, sequence, shiftKey) {
-                for(var i = 0; i < sequence.length; i++) {
-                    var charCode = sequence.charCodeAt(i);
-                    target.simulate("keydown", { charCode: charCode, shiftKey: shiftKey || false });
-                    setTimeout(function() {
-                        target.simulate("keypress", { charCode: charCode, shiftKey: shiftKey || false });
-                    }, 200);
-                }
-            };
-
-            function getCaretPosition(input) {
-
-                // Initialize
-                var caretPos = 0;
-
-                // IE Support
-                if(document.selection) {
-
-                    // Set focus on the element
-                    input.focus();
-
-                    // To get cursor position, get empty selection range
-                    var selection = document.selection.createRange();
-
-                    // Move selection start to 0 position
-                    selection.moveStart('character', -input.value.length);
-
-                    // The caret position is selection length
-                    caretPos = selection.text.length;
-                }
-
-                    // Firefox support
-                else if(input.selectionStart || input.selectionStart == '0')
-                    caretPos = input.selectionStart;
-
-                // Return results
-                return caretPos;
+        function setSelectionRange(input, selectionStart, selectionEnd) {
+            if(input.setSelectionRange) {
+                input.focus();
+                input.setSelectionRange(selectionStart, selectionEnd);
+            } else if(input.createTextRange) {
+                var range = input.createTextRange();
+                range.collapse(true);
+                range.moveEnd('character', selectionEnd);
+                range.moveStart('character', selectionStart);
+                range.select();
             }
+        };
+
+        function pressButtons(target, sequence) {
+            for(var i = 0; i < sequence.length; i++) {
+                var charCode = sequence.charCodeAt(i);
+                target.simulate("keypress", { charCode: charCode });
+            }
+        };
+
+        function pressButtonsWithDelay(target, sequence, shiftKey, selectionStart) {
+
+
+            for(var i = 0; i < sequence.length; i++) {
+                var charCode = sequence.charCodeAt(i);
+                target.simulate("keydown", { charCode: charCode, shiftKey: shiftKey || false });
+                setTimeout(function() {
+                    target.simulate("keypress", { charCode: charCode, shiftKey: shiftKey || false });
+                }, 200);
+            }
+        };
+
+        function getCaretPosition(input) {
+
+            // Initialize
+            var caretPos = 0;
+
+            // IE Support
+            if(document.selection) {
+
+                // Set focus on the element
+                input.focus();
+
+                // To get cursor position, get empty selection range
+                var selection = document.selection.createRange();
+
+                // Move selection start to 0 position
+                selection.moveStart('character', -input.value.length);
+
+                // The caret position is selection length
+                caretPos = selection.text.length;
+            }
+
+                // Firefox support
+            else if(input.selectionStart || input.selectionStart == '0')
+                caretPos = input.selectionStart;
+
+            // Return results
+            return caretPos;
+        }
 
     </script>
 </asp:Content>
