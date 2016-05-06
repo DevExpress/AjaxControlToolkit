@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -13,20 +14,33 @@ namespace AjaxControlToolkit.Tests {
 
         TimeSpan maxTimeout = TimeSpan.FromMinutes(2);
         TimeSpan checkInterval = TimeSpan.FromSeconds(5);
+        string siteUrl;
+
+        [SetUp]
+        public void Setup() {
+            siteUrl = Environment.GetEnvironmentVariable("AjaxControlToolkitTestSiteUrl");
+
+            if(String.IsNullOrWhiteSpace(siteUrl))
+                siteUrl = "http://localhost/JasmineTests/TestRunner.aspx";
+        }
 
         [Test]
         public void Chrome() {
             var dir = Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location);
             var driver = new ChromeDriver(dir);
-            var siteUrl = Environment.GetEnvironmentVariable("AjaxControlToolkitTestSiteUrl");
 
-            if(String.IsNullOrWhiteSpace(siteUrl))
-                siteUrl = "http://localhost/JasmineTests/TestRunner.aspx";
-
-            TestBrowser(driver, siteUrl, maxTimeout, checkInterval);
+            TestBrowser(driver);
         }
 
-        void TestBrowser(IWebDriver driver, string siteUrl, TimeSpan maxTimeout, TimeSpan checkInterval) {
+        [Test]
+        public void InternetExplorer() {
+            var dir = Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location);
+            var driver = new InternetExplorerDriver(dir);
+
+            TestBrowser(driver);
+        }
+
+        void TestBrowser(IWebDriver driver) {
             try {
                 driver.Navigate().GoToUrl(siteUrl);
 
