@@ -295,7 +295,7 @@
                 self.$shortTimeTarget.focus();
 
                 setTimeout(function() {
-                    self.$shortTimeTarget.get(0).selectionStart = 3;
+                    setCaretToPosition(self.$shortTimeTarget.get(0), 3);
                     pressButtonsWithDelay(self.$shortTimeTarget, ":", true);
 
                     setTimeout(function() {
