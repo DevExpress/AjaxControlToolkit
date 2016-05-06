@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using System;
 using System.Diagnostics;
@@ -28,6 +29,13 @@ namespace AjaxControlToolkit.Tests {
         public void Chrome() {
             var dir = Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location);
             var driver = new ChromeDriver(dir);
+
+            TestBrowser(driver);
+        }
+
+        [Test]
+        public void FireFox() {
+            var driver = new FirefoxDriver();
 
             TestBrowser(driver);
         }
