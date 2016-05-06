@@ -1,4 +1,5 @@
 !/bin/chromedriver.exe
+!/bin/IEDriverServer.exe
 /bin
 obj
 *.suo
