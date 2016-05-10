@@ -43,14 +43,15 @@ namespace AjaxControlToolkit.Tests {
         [Test]
         public void InternetExplorer() {
             var dir = Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location);
-            var driver = new InternetExplorerDriver(dir);
+            var driver = new InternetExplorerDriver(dir, new InternetExplorerOptions(), TimeSpan.FromMinutes(3));
 
             TestBrowser(driver);
         }
 
-        void TestBrowser(IWebDriver driver) {
+        void TestBrowser(IWebDriver driver) {            
+
             try {
-                driver.Navigate().GoToUrl(siteUrl);
+                driver.Navigate().GoToUrl(siteUrl);                
 
                 var selectAllCheckbox = driver.FindElement(By.XPath("//label[text()='SELECT ALL']"));
                 selectAllCheckbox.Click();
