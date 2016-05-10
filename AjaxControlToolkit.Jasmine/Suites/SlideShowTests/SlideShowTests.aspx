@@ -90,24 +90,27 @@
             });
 
             it("enables/disables prev and next buttons after play/stop button pressed", function(done) {
+                var that = this;
                 this.$playStopButton.click();
 
-                expect(this.$playStopButton.val()).toBe(PLAY_BUTTON_TEXT);
+                setTimeout(function() {
+                    expect(that.$playStopButton.val()).toBe(PLAY_BUTTON_TEXT);
 
-                expect(this.$prevButton.is(":enabled")).toBeTruthy();
-                expect(this.$nextButton.is(":enabled")).toBeTruthy();
+                    expect(that.$prevButton.is(":enabled")).toBeTruthy();
+                    expect(that.$nextButton.is(":enabled")).toBeTruthy();
 
-                var that = this;
-                setTimeout(function() { //TODO: check if this needed
-                    that.$playStopButton.click();
+                   
+                    setTimeout(function() { //TODO: check if this needed
+                        that.$playStopButton.click();
 
-                    expect(that.$playStopButton.val()).toBe(STOP_BUTTON_TEXT);
+                        expect(that.$playStopButton.val()).toBe(STOP_BUTTON_TEXT);
 
-                    expect(that.$prevButton.is(":disabled")).toBeTruthy();
-                    expect(that.$nextButton.is(":disabled")).toBeTruthy();
+                        expect(that.$prevButton.is(":disabled")).toBeTruthy();
+                        expect(that.$nextButton.is(":disabled")).toBeTruthy();
 
-                    done();
-                }, 20);
+                        done();
+                    }, 20);
+                }, 200);
             });
 
             it("gets all images from service method in proper order with correct attributes", function() {
