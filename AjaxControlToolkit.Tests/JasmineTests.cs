@@ -49,14 +49,19 @@ namespace AjaxControlToolkit.Tests {
         }
 
         void TestBrowser(IWebDriver driver) {
+            var actionSleepInterval = TimeSpan.FromSeconds(1);
+
             try {
                 driver.Navigate().GoToUrl(siteUrl);
+                Thread.Sleep(actionSleepInterval);
 
                 var selectAllCheckbox = driver.FindElement(By.XPath("//label[text()='SELECT ALL']"));
                 selectAllCheckbox.Click();
+                Thread.Sleep(actionSleepInterval);
 
                 var runButton = driver.FindElement(By.ClassName("run-button"));
                 runButton.Click();
+                Thread.Sleep(actionSleepInterval);
 
                 var currentSpecCount = driver.FindElement(By.XPath("//div[@class='spec-counter']/span[@class='current']"));
                 var totalSpecCount = driver.FindElement(By.XPath("//div[@class='spec-counter']/span[@class='total']"));
