@@ -65,8 +65,10 @@ Sys.Extended.UI.ValidatorCalloutBehavior.prototype = {
 
         if(!this._originalValidationMethodOverriden) {
             if(window.jQuery) {
-                $(function() {
-                    self.checkPageValidators(element);
+                window.jQuery(function($) {
+                    $(function() {
+                        self.checkPageValidators(element);
+                    });
                 });
             }
             else
