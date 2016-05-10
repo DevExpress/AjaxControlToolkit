@@ -43,25 +43,21 @@ namespace AjaxControlToolkit.Tests {
         [Test]
         public void InternetExplorer() {
             var dir = Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location);
-            var driver = new InternetExplorerDriver(dir);
+            var driver = new InternetExplorerDriver(dir, new InternetExplorerOptions(), TimeSpan.FromMinutes(3));
 
             TestBrowser(driver);
         }
 
-        void TestBrowser(IWebDriver driver) {
-            var actionSleepInterval = TimeSpan.FromSeconds(1);
+        void TestBrowser(IWebDriver driver) {            
 
             try {
-                driver.Navigate().GoToUrl(siteUrl);
-                Thread.Sleep(actionSleepInterval);
+                driver.Navigate().GoToUrl(siteUrl);                
 
                 var selectAllCheckbox = driver.FindElement(By.XPath("//label[text()='SELECT ALL']"));
                 selectAllCheckbox.Click();
-                Thread.Sleep(actionSleepInterval);
 
                 var runButton = driver.FindElement(By.ClassName("run-button"));
                 runButton.Click();
-                Thread.Sleep(actionSleepInterval);
 
                 var currentSpecCount = driver.FindElement(By.XPath("//div[@class='spec-counter']/span[@class='current']"));
                 var totalSpecCount = driver.FindElement(By.XPath("//div[@class='spec-counter']/span[@class='total']"));
