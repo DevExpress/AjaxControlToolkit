@@ -30,6 +30,15 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.displaySourceTab" />
     this._displaySourceTab = false;
 
+
+    /// <summary>
+    /// Determines whether The HtmlEditor is readonly
+    /// </summary>
+    /// <getter>get_readOnly</getter>
+    /// <setter>set_readOnly</setter>
+    /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.readOnly" />
+    this._readOnly = false;
+
     /// <summary>
     /// Button width in pixels
     /// </summary>
@@ -64,7 +73,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
                 overflow: 'auto',
                 clear: 'both'
             },
-            contentEditable: true
+            contentEditable: !this._readOnly
         },
         cssClasses: ['ajax__html_editor_extender_texteditor']
     };
@@ -78,7 +87,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
                 overflow: 'auto',
                 clear: 'both'
             },
-            contentEditable: true
+            contentEditable: !this._readOnly
         },
         cssClasses: ['ajax__html_editor_extender_texteditor']
     };
@@ -583,7 +592,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                     overflow: 'auto',
                     clear: 'both'
                 },
-                contentEditable: true
+                contentEditable: !this._readOnly
             },
             cssClasses: ['ajax__html_editor_extender_texteditor']
         }, this._container);
@@ -614,7 +623,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                     overflow: 'auto',
                     clear: 'both'
                 },
-                contentEditable: true
+                contentEditable: !this._readOnly
             },
             cssClasses: ['ajax__html_editor_extender_texteditor']
         }, this._container);
@@ -944,7 +953,16 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                 document.execCommand("insertHTML", false, "<hr />");
             else
                 document.execCommand(command.target.name, false, null);
-        } else {
+        }
+        else if (command.target.name === 'ForeColorClear') {
+            if (isIE) {
+                this.setColor('foreColor', '');  //ie8
+            } else {
+                this.setColor('foreColor', 'inherit');  
+            }
+                
+        }
+        else {
             document.execCommand(command.target.name, false, null);
         }
     },
@@ -1232,6 +1250,15 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             this.raisePropertyChanged('DisplaySourceTab');
         }
     },
+
+    get_readOnly: function() {
+        return this._readOnly;
+    },
+
+    set_readOnly: function(value) {
+        this._readOnly = value;
+    },
+
 
     /// <summary>
     /// Fires when text change occurs

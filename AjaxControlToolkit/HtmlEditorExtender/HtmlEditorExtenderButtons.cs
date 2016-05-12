@@ -617,6 +617,30 @@ namespace AjaxControlToolkit {
         }
     }
 
+
+    public class ForeColorClear : HtmlEditorExtenderButton
+    {
+        public override string CommandName
+        {
+            get { return "ForeColorClear"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Fore Color Clear"; }
+        }
+
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get { return null; }
+        }
+
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get { return null;}
+        }
+    }
+
     public class Indent : HtmlEditorExtenderButton {
         public override string CommandName {
             get { return "Indent"; }
