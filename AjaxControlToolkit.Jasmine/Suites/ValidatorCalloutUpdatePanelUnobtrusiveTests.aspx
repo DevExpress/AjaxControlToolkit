@@ -84,9 +84,9 @@
                                 var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
                                 expect($container.is(":visible")).toBeTruthy();
                                 done();
-                            }, 500);
-                        }, 500);
-                    }, 500);
+                            }, 1000);
+                        }, 1000);
+                    }, 1000);
                 });
 
             });
