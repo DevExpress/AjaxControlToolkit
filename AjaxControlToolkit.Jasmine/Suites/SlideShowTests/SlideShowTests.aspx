@@ -175,12 +175,11 @@
             });
 
             it("next button replaces image with the next one", function(done) {
+                var that = this;
                 this.$playStopButton.click();
+
                 setTimeout(function() {
-
-                    var nextIndex = this.extender._currentIndex + 1;
-
-                    var that = this;
+                    var nextIndex = that.extender._currentIndex + 1;
 
                     setTimeout(function() {
                         that.$nextButton.click();
