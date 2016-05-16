@@ -16,6 +16,14 @@ build:
   publish_wap: true
   verbosity: minimal
 
+artifacts:
+- path: bin/AjaxControlToolkit.dll
+  name: AjaxControlToolkit.dll
+- path: bin/AjaxControlToolkit.pdb
+  name: AjaxControlToolkit.pdb
+- path: bin/AjaxControlToolkit.XML
+  name: AjaxControlToolkit.xml
+  
 test:
   assemblies: bin\AjaxControlToolkit.Tests.dll
  

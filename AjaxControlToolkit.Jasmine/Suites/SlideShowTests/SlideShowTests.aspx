@@ -175,29 +175,30 @@
             });
 
             it("next button replaces image with the next one", function(done) {
+                var that = this;
                 this.$playStopButton.click();
 
-                var nextIndex = this.extender._currentIndex + 1;
-
-                var that = this;
-
                 setTimeout(function() {
-                    that.$nextButton.click();
+                    var nextIndex = that.extender._currentIndex + 1;
 
                     setTimeout(function() {
-                        expect(that.extender._currentIndex).toBe(nextIndex);
+                        that.$nextButton.click();
 
-                        var imageLink = $(that.extender._currentImage).find("a"),
-                            img = $(imageLink).find("img");
+                        setTimeout(function() {
+                            expect(that.extender._currentIndex).toBe(nextIndex);
 
-                        expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
-                        expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
+                            var imageLink = $(that.extender._currentImage).find("a"),
+                                img = $(imageLink).find("img");
 
-                        expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
-                        expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
+                            expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
+                            expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
 
-                        done();
-                    }, ANIMATION_SPEED + 200);
+                            expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
+                            expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
+
+                            done();
+                        }, ANIMATION_SPEED + 500);
+                    }, 500);
                 }, 500);
             });
 
