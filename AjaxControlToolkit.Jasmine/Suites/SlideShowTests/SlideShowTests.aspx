@@ -5,7 +5,6 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="TestSuite" runat="server">
-    <script src="../../Infrastructure/Scripts/TestUtils/RunAsync.js" type="text/javascript"></script>
     <script runat="server" type="text/c#">
     
         [System.Web.Services.WebMethod]
@@ -204,32 +203,7 @@
                 function() {
                     return that.extender._currentImage === that.extender._nextImage;
                 }, ANIMATION_SPEED + timeout, checkInterval);
-=======
-                this.$playStopButton.click();
 
-                setTimeout(function() {
-                    var nextIndex = that.extender._currentIndex + 1;
-
-                    setTimeout(function() {
-                        that.$nextButton.click();
-
-                        setTimeout(function() {
-                            expect(that.extender._currentIndex).toBe(nextIndex);
-
-                            var imageLink = $(that.extender._currentImage).find("a"),
-                                img = $(imageLink).find("img");
-
-                            expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
-                            expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
-
-                            expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
-                            expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
-
-                            done();
-                        }, ANIMATION_SPEED + timeout);
-                    }, timeout);
-                }, timeout);
->>>>>>> 2b9405d598cea5048a6ba27d394240914d884fc6
             });
 
             it("previous button calls '_clickPrevious' method", function(done) {
