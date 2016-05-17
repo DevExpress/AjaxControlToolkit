@@ -72,6 +72,7 @@
                 });
 
                 it("validates inside UpdatePanel after 2 postbacks", function(done) {
+                    var timeout = 1000;
                     $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
 
                     setTimeout(function() {
@@ -84,9 +85,9 @@
                                 var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
                                 expect($container.is(":visible")).toBeTruthy();
                                 done();
-                            }, 500);
-                        }, 500);
-                    }, 500);
+                            }, timeout);
+                        }, timeout);
+                    }, timeout);
                 });
 
             });
