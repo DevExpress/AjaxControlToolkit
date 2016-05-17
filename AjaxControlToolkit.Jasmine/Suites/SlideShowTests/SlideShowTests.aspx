@@ -99,7 +99,7 @@
                     expect(that.$prevButton.is(":enabled")).toBeTruthy();
                     expect(that.$nextButton.is(":enabled")).toBeTruthy();
 
-
+                   
                     setTimeout(function() { //TODO: check if this needed
                         that.$playStopButton.click();
 
