@@ -5,6 +5,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="TestSuite" runat="server">
+    <script src="../../Infrastructure/Scripts/TestUtils/RunAsync.js" type="text/javascript"></script>
     <script runat="server" type="text/c#">
     
         [System.Web.Services.WebMethod]
@@ -38,7 +39,7 @@
     <act:SlideShowExtender ID="TestSlideShow" runat="server"
         TargetControlID="TestImage"
         SlideShowServiceMethod="GetSlides"
-        AutoPlay="true"
+        AutoPlay="false"
         ImageTitleLabelID="ImageTitle"
         ImageDescriptionLabelID="ImageDescription"
         NextButtonID="NextButton"
@@ -91,7 +92,6 @@
 
             it("enables/disables prev and next buttons after play/stop button pressed", function(done) {
                 var that = this;
-                this.$playStopButton.click();
 
                 setTimeout(function() {
                     expect(that.$playStopButton.val()).toBe(PLAY_BUTTON_TEXT);
@@ -99,7 +99,7 @@
                     expect(that.$prevButton.is(":enabled")).toBeTruthy();
                     expect(that.$nextButton.is(":enabled")).toBeTruthy();
 
-                   
+
                     setTimeout(function() { //TODO: check if this needed
                         that.$playStopButton.click();
 
@@ -161,8 +161,6 @@
             });
 
             it("next button calls '_clickNext' method", function(done) {
-                this.$playStopButton.click();
-
                 spyOn(this.extender, "_clickNext");
 
                 var self = this;
@@ -175,35 +173,31 @@
             });
 
             it("next button replaces image with the next one", function(done) {
-                this.$playStopButton.click();
-
-                var nextIndex = this.extender._currentIndex + 1;
-
                 var that = this;
+                var timeout = 500;
+                var checkInterval = 100;
 
-                setTimeout(function() {
-                    that.$nextButton.click();
+                var nextIndex = that.extender._currentIndex + 1;
+                that.$nextButton.click();
 
-                    setTimeout(function() {
-                        expect(that.extender._currentIndex).toBe(nextIndex);
+                runAsync(function(){
+                    var imageLink = $(that.extender._currentImage).find("a"),
+                        img = $(imageLink).find("img");
 
-                        var imageLink = $(that.extender._currentImage).find("a"),
-                            img = $(imageLink).find("img");
+                    expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
+                    expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
 
-                        expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
-                        expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
+                    expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
+                    expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
 
-                        expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
-                        expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
-
-                        done();
-                    }, ANIMATION_SPEED + 200);
-                }, 500);
+                    done();
+                },
+                function() {
+                    return that.extender._currentImage === that.extender._nextImage;
+                }, ANIMATION_SPEED + timeout, checkInterval);
             });
 
             it("previous button calls '_clickPrevious' method", function(done) {
-                this.$playStopButton.click();
-
                 spyOn(this.extender, "_clickPrevious");
 
                 var self = this;
@@ -215,8 +209,6 @@
             });
 
             it("previous button replaces image with the previous one", function(done) {
-                this.$playStopButton.click();
-
                 var prevIndex = this.extender._currentIndex - 1;
                 if(prevIndex < 0)
                     prevIndex = this.extender._slides.length - 1;
@@ -255,6 +247,8 @@
                 var nextIndex = this.extender._currentIndex + 1;
 
                 var that = this;
+                this.$playStopButton.click();
+
                 setTimeout(function() {
                     var imageLink = $(that.extender._currentImage).find("a"),
 				        img = $(imageLink).find("img");
