@@ -176,6 +176,7 @@
 
             it("next button replaces image with the next one", function(done) {
                 var that = this;
+                var timeout = 500;
                 this.$playStopButton.click();
 
                 setTimeout(function() {
@@ -197,9 +198,9 @@
                             expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
 
                             done();
-                        }, ANIMATION_SPEED + 500);
-                    }, 500);
-                }, 500);
+                        }, ANIMATION_SPEED + timeout);
+                    }, timeout);
+                }, timeout);
             });
 
             it("previous button calls '_clickPrevious' method", function(done) {
