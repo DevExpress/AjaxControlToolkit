@@ -113,16 +113,25 @@
                 }, 200);
             });
 
-            it("gets all images from service method in proper order with correct attributes", function() {
-                expect(IMAGES.length).toBe(this.images.length);
+            it("gets all images from service method in proper order with correct attributes", function(done) {
+                var self = this;
+                var timeout = 500;
+                var checkInterval = 100;
 
-                for(var i = 0; i < IMAGES.length; i++) {
-                    var imageLink = $(this.images[i]).find("a");
-                    var img = $(imageLink).find("img");
+                runAsync(function() { 
+                    for(var i = 0; i < IMAGES.length; i++) {
+                        var imageLink = $(self.images[i]).find("a");
+                        var img = $(imageLink).find("img");
 
-                    expect(IMAGES[i].url).toBe($(imageLink).attr("href"));
-                    expect(IMAGES[i].path).toBe($(img).attr("src"));
-                }
+                        expect(IMAGES[i].url).toBe($(imageLink).attr("href"));
+                        expect(IMAGES[i].path).toBe($(img).attr("src"));
+
+                        done();
+                    }
+                },
+                function() {
+                    return IMAGES.length == self.images.length;
+                }, timeout, checkInterval);
             });
 
             it("calls 'raisePropertyChanged' method", function() {
