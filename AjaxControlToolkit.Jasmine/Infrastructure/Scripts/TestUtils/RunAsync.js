@@ -1,13 +1,13 @@
-﻿function runAsync(runFunction, checkCondition, checkInterval)
+﻿function runAsync(predicate, next, checkInterval)
 {
-    var runFunctionIntervalTimer = setInterval(function() {
-        if(checkCondition()) {
+    var nextIntervalTimer = setInterval(function() {
+        if(predicate()) {
             cancel();
-            runFunction();
+            next();
         }
     }, checkInterval || 50);
 
     function cancel() {
-        clearInterval(runFunctionIntervalTimer);
+        clearInterval(nextIntervalTimer);
     }
 }

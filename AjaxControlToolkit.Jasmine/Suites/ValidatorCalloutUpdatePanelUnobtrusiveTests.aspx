@@ -86,25 +86,25 @@
                     $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
 
                     runAsync(function() {
+                        return postBackCount === 1;
+                    },
+                    function() {
                         $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
 
                         runAsync(function() {
+                            return postBackCount === 2;
+                        },
+                        function() {
                             $("#" + SAVE_BUTTON_CLIENT_ID).click();
 
                             runAsync(function() {
-                                done();
-                            },
-                            function() {
                                 var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
                                 return $container.is(":visible");
+                            },
+                            function() {
+                                done();
                             }, checkInterval);
-                        },
-                        function() {
-                            return postBackCount === 2;
                         }, checkInterval);
-                    },
-                    function() {
-                        return postBackCount === 1;
                     }, checkInterval);
                 });
 

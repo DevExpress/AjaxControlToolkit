@@ -116,7 +116,10 @@
                 var self = this;
                 var checkInterval = 100;
 
-                runAsync(function() { 
+                runAsync(function() {
+                    return IMAGES.length == self.images.length;
+                },
+                function() { 
                     for(var i = 0; i < IMAGES.length; i++) {
                         var imageLink = $(self.images[i]).find("a");
                         var img = $(imageLink).find("img");
@@ -126,9 +129,6 @@
 
                         done();
                     }
-                },
-                function() {
-                    return IMAGES.length == self.images.length;
                 }, checkInterval);
             });
 
@@ -186,7 +186,10 @@
                 var nextIndex = that.extender._currentIndex + 1;
                 that.$nextButton.click();
 
-                runAsync(function(){
+                runAsync(function() {
+                    return that.extender._currentImage === that.extender._nextImage;
+                },
+                function() {
                     var imageLink = $(that.extender._currentImage).find("a"),
                         img = $(imageLink).find("img");
 
@@ -197,11 +200,7 @@
                     expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
 
                     done();
-                },
-                function() {
-                    return that.extender._currentImage === that.extender._nextImage;
                 }, checkInterval);
-
             });
 
             it("previous button calls '_clickPrevious' method", function(done) {
