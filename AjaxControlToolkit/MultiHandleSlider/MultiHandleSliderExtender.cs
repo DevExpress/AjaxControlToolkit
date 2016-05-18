@@ -218,9 +218,13 @@ namespace AjaxControlToolkit {
         [Editor(typeof(MultiHandleSliderTargetsEditor), typeof(UITypeEditor))]
         public Collection<MultiHandleSliderTarget> MultiHandleSliderTargets {
             get {
-                if(!DesignMode)
-                    return ClientMultiHandleSliderTargets;
-                return new Collection<MultiHandleSliderTarget>();
+                if(DesignMode)
+                    return new Collection<MultiHandleSliderTarget>();
+
+                if(ClientMultiHandleSliderTargets == null)
+                    ClientMultiHandleSliderTargets = new Collection<MultiHandleSliderTarget>();
+
+                return ClientMultiHandleSliderTargets;
             }
         }
 
