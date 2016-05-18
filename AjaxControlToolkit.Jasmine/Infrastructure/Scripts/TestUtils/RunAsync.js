@@ -5,7 +5,7 @@
             cancel();
             runFunction();
         }
-    }, checkInterval || 1);
+    }, checkInterval || 50);
 
     function cancel() {
         clearInterval(runFunctionIntervalTimer);
