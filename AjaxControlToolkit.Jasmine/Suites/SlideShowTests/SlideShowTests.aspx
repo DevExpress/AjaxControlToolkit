@@ -184,7 +184,6 @@
 
             it("next button replaces image with the next one", function(done) {
                 var that = this;
-                var checkInterval = 100;
 
                 var nextIndex = that.extender._currentIndex + 1;
                 that.$nextButton.click();
