@@ -85,19 +85,19 @@
 
                     $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
 
-                    runAsync(function() {
+                    waitFor(function() {
                         return postBackCount === 1;
                     },
                     function() {
                         $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
 
-                        runAsync(function() {
+                        waitFor(function() {
                             return postBackCount === 2;
                         },
                         function() {
                             $("#" + SAVE_BUTTON_CLIENT_ID).click();
 
-                            runAsync(function() {
+                            waitFor(function() {
                                 var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
                                 return $container.is(":visible");
                             },

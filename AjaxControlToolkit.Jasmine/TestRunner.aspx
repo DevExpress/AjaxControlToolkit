@@ -55,7 +55,7 @@
         <%: Scripts.Render("~/bundles/jquery") %>
         <%: Scripts.Render("~/Infrastructure/Scripts/TestUtils/extensionMethods.js") %>
         <%: Scripts.Render("~/Infrastructure/Scripts/TestUtils/NativeEvents.js") %>
-        <%: Scripts.Render("~/Infrastructure/Scripts/TestUtils/RunAsync.js") %>
+        <%: Scripts.Render("~/Infrastructure/Scripts/TestUtils/WaitFor.js") %>
         <%: Scripts.Render("~/Infrastructure/Scripts/TestRunner.js") %>
     </asp:PlaceHolder>
 </body>

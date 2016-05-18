@@ -1,5 +1,4 @@
-﻿function runAsync(predicate, next, checkInterval)
-{
+﻿function waitFor(predicate, next, checkInterval){
     var nextIntervalTimer = setInterval(function() {
         if(predicate()) {
             clear();

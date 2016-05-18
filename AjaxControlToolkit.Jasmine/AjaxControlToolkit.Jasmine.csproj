@@ -91,7 +91,7 @@
     <Content Include="Infrastructure\Scripts\TestUtils\ExtensionMethods.js" />
     <Content Include="Infrastructure\Scripts\TestUtils\HtmlEditorWrapper.js" />
     <Content Include="Infrastructure\Scripts\TestUtils\NativeEvents.js" />
-    <Content Include="Infrastructure\Scripts\TestUtils\RunAsync.js" />
+    <Content Include="Infrastructure\Scripts\TestUtils\WaitFor.js" />
     <Content Include="Infrastructure\Styles\TestRunner.css">
       <DependentUpon>TestRunner.less</DependentUpon>
     </Content>

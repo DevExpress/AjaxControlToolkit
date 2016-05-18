@@ -116,7 +116,7 @@
                 var self = this;
                 var checkInterval = 100;
 
-                runAsync(function() {
+                waitFor(function() {
                     return IMAGES.length == self.images.length;
                 },
                 function() { 
@@ -186,7 +186,7 @@
                 var nextIndex = that.extender._currentIndex + 1;
                 that.$nextButton.click();
 
-                runAsync(function() {
+                waitFor(function() {
                     return that.extender._currentImage === that.extender._nextImage;
                 },
                 function() {
