@@ -92,23 +92,25 @@
             it("enables/disables prev and next buttons after play/stop button pressed", function(done) {
                 var that = this;
 
-                setTimeout(function() {
-                    expect(that.$playStopButton.val()).toBe(PLAY_BUTTON_TEXT);
-
+                waitFor(function() {
+                    return that.$playStopButton.val() === PLAY_BUTTON_TEXT;
+                },
+                function() {
                     expect(that.$prevButton.is(":enabled")).toBeTruthy();
                     expect(that.$nextButton.is(":enabled")).toBeTruthy();
 
+                    that.$playStopButton.click();
                    
-                    setTimeout(function() { //TODO: check if this needed
-                        that.$playStopButton.click();
-
-                        expect(that.$playStopButton.val()).toBe(STOP_BUTTON_TEXT);
+                    waitFor(function() { 
+                        return that.$playStopButton.val() === STOP_BUTTON_TEXT;
+                    },
+                    function(){
 
                         expect(that.$prevButton.is(":disabled")).toBeTruthy();
                         expect(that.$nextButton.is(":disabled")).toBeTruthy();
 
                         done();
-                    }, 20);
+                    }, 200);
                 }, 200);
             });
 
