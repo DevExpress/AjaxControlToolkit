@@ -80,7 +80,6 @@
                 });
 
                 it("validates inside UpdatePanel after 2 postbacks", function(done) {
-                    var timeout = 1000;
                     var checkInterval = 1000;
                     postBackCount = 0;
 
@@ -98,15 +97,15 @@
                             function() {
                                 var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
                                 return $container.is(":visible");
-                            });
+                            }, checkInterval);
                         },
                         function() {
                             return postBackCount === 2;
-                        }, timeout, checkInterval);
+                        }, checkInterval);
                     },
                     function() {
                         return postBackCount === 1;
-                    }, timeout, checkInterval);
+                    }, checkInterval);
                 });
 
             });

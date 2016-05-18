@@ -114,7 +114,6 @@
 
             it("gets all images from service method in proper order with correct attributes", function(done) {
                 var self = this;
-                var timeout = 500;
                 var checkInterval = 100;
 
                 runAsync(function() { 
@@ -130,7 +129,7 @@
                 },
                 function() {
                     return IMAGES.length == self.images.length;
-                }, timeout, checkInterval);
+                }, checkInterval);
             });
 
             it("calls 'raisePropertyChanged' method", function() {
@@ -182,7 +181,6 @@
 
             it("next button replaces image with the next one", function(done) {
                 var that = this;
-                var timeout = 500;
                 var checkInterval = 100;
 
                 var nextIndex = that.extender._currentIndex + 1;
@@ -202,7 +200,7 @@
                 },
                 function() {
                     return that.extender._currentImage === that.extender._nextImage;
-                }, ANIMATION_SPEED + timeout, checkInterval);
+                }, checkInterval);
 
             });
 

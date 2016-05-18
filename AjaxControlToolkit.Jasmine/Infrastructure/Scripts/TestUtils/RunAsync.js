@@ -1,4 +1,4 @@
-﻿function runAsync(runFunction, checkCondition, timeout, checkInterval)
+﻿function runAsync(runFunction, checkCondition, checkInterval)
 {
     var runFunctionIntervalTimer = setInterval(function() {
         if(checkCondition()) {
@@ -7,13 +7,7 @@
         }
     }, checkInterval || 1);
 
-    var runFunctionTimeoutTimer = setTimeout(function() {
-        cancel();
-        runFunction();
-    }, timeout);
-
     function cancel() {
         clearInterval(runFunctionIntervalTimer);
-        clearTimeout(runFunctionTimeoutTimer);
     }
 }
