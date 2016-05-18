@@ -2,12 +2,12 @@
 {
     var nextIntervalTimer = setInterval(function() {
         if(predicate()) {
-            cancel();
+            clear();
             next();
         }
     }, checkInterval || 50);
 
-    function cancel() {
+    function clear() {
         clearInterval(nextIntervalTimer);
     }
 }
