@@ -92,32 +92,36 @@
             it("enables/disables prev and next buttons after play/stop button pressed", function(done) {
                 var that = this;
 
-                setTimeout(function() {
-                    expect(that.$playStopButton.val()).toBe(PLAY_BUTTON_TEXT);
-
+                waitFor(function() {
+                    return that.$playStopButton.val() === PLAY_BUTTON_TEXT;
+                },
+                function() {
                     expect(that.$prevButton.is(":enabled")).toBeTruthy();
                     expect(that.$nextButton.is(":enabled")).toBeTruthy();
 
+                    that.$playStopButton.click();
                    
-                    setTimeout(function() { //TODO: check if this needed
-                        that.$playStopButton.click();
-
-                        expect(that.$playStopButton.val()).toBe(STOP_BUTTON_TEXT);
+                    waitFor(function() { 
+                        return that.$playStopButton.val() === STOP_BUTTON_TEXT;
+                    },
+                    function(){
 
                         expect(that.$prevButton.is(":disabled")).toBeTruthy();
                         expect(that.$nextButton.is(":disabled")).toBeTruthy();
 
                         done();
-                    }, 20);
+                    }, 200);
                 }, 200);
             });
 
             it("gets all images from service method in proper order with correct attributes", function(done) {
                 var self = this;
-                var timeout = 500;
                 var checkInterval = 100;
 
-                runAsync(function() { 
+                waitFor(function() {
+                    return IMAGES.length == self.images.length;
+                },
+                function() { 
                     for(var i = 0; i < IMAGES.length; i++) {
                         var imageLink = $(self.images[i]).find("a");
                         var img = $(imageLink).find("img");
@@ -127,10 +131,7 @@
 
                         done();
                     }
-                },
-                function() {
-                    return IMAGES.length == self.images.length;
-                }, timeout, checkInterval);
+                }, checkInterval);
             });
 
             it("calls 'raisePropertyChanged' method", function() {
@@ -182,13 +183,15 @@
 
             it("next button replaces image with the next one", function(done) {
                 var that = this;
-                var timeout = 500;
                 var checkInterval = 100;
 
                 var nextIndex = that.extender._currentIndex + 1;
                 that.$nextButton.click();
 
-                runAsync(function(){
+                waitFor(function() {
+                    return that.extender._currentImage === that.extender._nextImage;
+                },
+                function() {
                     var imageLink = $(that.extender._currentImage).find("a"),
                         img = $(imageLink).find("img");
 
@@ -199,11 +202,7 @@
                     expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
 
                     done();
-                },
-                function() {
-                    return that.extender._currentImage === that.extender._nextImage;
-                }, ANIMATION_SPEED + timeout, checkInterval);
-
+                }, checkInterval);
             });
 
             it("previous button calls '_clickPrevious' method", function(done) {

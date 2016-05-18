@@ -80,33 +80,32 @@
                 });
 
                 it("validates inside UpdatePanel after 2 postbacks", function(done) {
-                    var timeout = 1000;
                     var checkInterval = 1000;
                     postBackCount = 0;
 
                     $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
 
-                    runAsync(function() {
-                        $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
-
-                        runAsync(function() {
-                            $("#" + SAVE_BUTTON_CLIENT_ID).click();
-
-                            runAsync(function() {
-                                done();
-                            },
-                            function() {
-                                var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
-                                return $container.is(":visible");
-                            });
-                        },
-                        function() {
-                            return postBackCount === 2;
-                        }, timeout, checkInterval);
+                    waitFor(function() {
+                        return postBackCount === 1;
                     },
                     function() {
-                        return postBackCount === 1;
-                    }, timeout, checkInterval);
+                        $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
+
+                        waitFor(function() {
+                            return postBackCount === 2;
+                        },
+                        function() {
+                            $("#" + SAVE_BUTTON_CLIENT_ID).click();
+
+                            waitFor(function() {
+                                var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
+                                return $container.is(":visible");
+                            },
+                            function() {
+                                done();
+                            }, checkInterval);
+                        }, checkInterval);
+                    }, checkInterval);
                 });
 
             });
