@@ -39,6 +39,14 @@
 
 
     <script>
+        var postBackCount = 0;
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        prm.add_endRequest(function(sender, e) {
+            if(sender._postBackSettings.panelsToUpdate != null)
+                postBackCount++;
+        });
+
+
         describe("ValidatorCallout", function() {
 
             var UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID = "<%= UpdatePanelTargetExtender.ClientID %>";
@@ -72,21 +80,32 @@
                 });
 
                 it("validates inside UpdatePanel after 2 postbacks", function(done) {
+                    postBackCount = 0;
+
                     $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
 
-                    setTimeout(function() {
-                        $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
+                    waitFor(
+                        function() {
+                            return postBackCount === 1;
+                        },
+                        function() {
+                            $("#" + POSTBACK_BUTTON_CLIENT_ID).click();
 
-                        setTimeout(function() {
-                            $("#" + SAVE_BUTTON_CLIENT_ID).click();
+                            waitFor(
+                                function() {
+                                    return postBackCount === 2;
+                                },
+                                function() {
+                                    $("#" + SAVE_BUTTON_CLIENT_ID).click();
 
-                            setTimeout(function() {
-                                var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
-                                expect($container.is(":visible")).toBeTruthy();
-                                done();
-                            }, 500);
-                        }, 500);
-                    }, 500);
+                                    waitFor(
+                                        function() {
+                                            var $container = $("#" + UPDATEPANEL_VALIDATOR_CALLOUT_EXTENDER_CLIENT_ID + "_popupTable");
+                                            return $container.is(":visible");
+                                        },                                        
+                                        done);
+                                });
+                        });
                 });
 
             });
