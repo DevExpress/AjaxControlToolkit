@@ -190,7 +190,7 @@
 
                 waitFor(
                     function() {
-                        return that.extender._currentImage === that.extender._nextImage;
+                        return that.extender._currentImage === that.extender._nextImage && that.extender._previousImage.className === 'ajax__slide_show_slideAnimation';
                     },
                     function() {
                         var imageLink = $(that.extender._currentImage).find("a"),
