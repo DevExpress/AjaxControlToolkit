@@ -190,20 +190,14 @@
 
                 waitFor(
                     function() {
-                        return that.extender._currentImage === that.extender._nextImage && that.extender._previousImage.className === 'ajax__slide_show_slideAnimation';
-                    },
-                    function() {
                         var imageLink = $(that.extender._currentImage).find("a"),
                             img = $(imageLink).find("img");
 
-                        expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
-                        expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
-
-                        expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
-                        expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
-
-                        done();
-                    });
+                        return IMAGES[nextIndex].url === $(imageLink).attr("href")
+                        && IMAGES[nextIndex].path === $(img).attr("src")
+                        && IMAGES[nextIndex].name === $(that.imageTitleLabel).text()
+                        && IMAGES[nextIndex].description === $(that.imageDescriptionLabel).text();
+                    }, done);
             });
 
             it("previous button calls '_clickPrevious' method", function(done) {
