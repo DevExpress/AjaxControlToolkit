@@ -82,11 +82,9 @@
                 this.imageDescriptionLabel = this.extender._imageDescriptionLabel;
 
                 var that = this;
-                setTimeout(function() {
-                    that.images = that.extender._images;
-
-                    done();
-                }, 100); // for control initialization
+                waitFor(function() {
+                    return that.extender._slides !== null;
+                }, done);
             });
 
             it("enables/disables prev and next buttons after play/stop button pressed", function(done) {
@@ -120,18 +118,18 @@
 
                 waitFor(
                     function() {
-                        return IMAGES.length == self.images.length;
+                        return IMAGES.length === self.extender._images.length;
                     },
                     function() { 
                         for(var i = 0; i < IMAGES.length; i++) {
-                            var imageLink = $(self.images[i]).find("a");
+                            var imageLink = $(self.extender._images[i]).find("a");
                             var img = $(imageLink).find("img");
 
                             expect(IMAGES[i].url).toBe($(imageLink).attr("href"));
                             expect(IMAGES[i].path).toBe($(img).attr("src"));
-
-                            done();
                         }
+
+                        done();
                     });
             });
 
@@ -190,20 +188,14 @@
 
                 waitFor(
                     function() {
-                        return that.extender._currentImage === that.extender._nextImage;
-                    },
-                    function() {
                         var imageLink = $(that.extender._currentImage).find("a"),
                             img = $(imageLink).find("img");
 
-                        expect(IMAGES[nextIndex].url).toBe($(imageLink).attr("href"));
-                        expect(IMAGES[nextIndex].path).toBe($(img).attr("src"));
-
-                        expect(IMAGES[nextIndex].name).toBe($(that.imageTitleLabel).text());
-                        expect(IMAGES[nextIndex].description).toBe($(that.imageDescriptionLabel).text());
-
-                        done();
-                    });
+                        return IMAGES[nextIndex].url === $(imageLink).attr("href")
+                        && IMAGES[nextIndex].path === $(img).attr("src")
+                        && IMAGES[nextIndex].name === $(that.imageTitleLabel).text()
+                        && IMAGES[nextIndex].description === $(that.imageDescriptionLabel).text();
+                    }, done);
             });
 
             it("previous button calls '_clickPrevious' method", function(done) {
@@ -218,31 +210,31 @@
             });
 
             it("previous button replaces image with the previous one", function(done) {
-                var prevIndex = this.extender._currentIndex - 1;
-                if(prevIndex < 0)
-                    prevIndex = this.extender._slides.length - 1;
-
                 var that = this;
 
-                setTimeout(function() {
-                    that.$prevButton.click();
+                waitFor(
+                    function() {
+                        return that.extender && that.extender._slides;
+                    },
+                    function(){
+                        var prevIndex = that.extender._currentIndex - 1;
 
-                    setTimeout(function() {
+                        if(prevIndex < 0)
+                            prevIndex = that.extender._slides.length - 1;
 
-                        expect(that.extender._currentIndex).toBe(prevIndex);
+                        that.$prevButton.click();
 
-                        var imageLink = $(that.extender._currentImage).find("a"),
-                            img = $(imageLink).find("img");
+                        waitFor(
+                            function() {
+                                var imageLink = $(that.extender._currentImage).find("a"),
+                                    img = $(imageLink).find("img");
 
-                        expect(IMAGES[prevIndex].url).toBe($(imageLink).attr("href"));
-                        expect(IMAGES[prevIndex].path).toBe($(img).attr("src"));
-
-                        expect(IMAGES[prevIndex].name).toBe($(that.imageTitleLabel).text());
-                        expect(IMAGES[prevIndex].description).toBe($(that.imageDescriptionLabel).text());
-
-                        done();
-                    }, ANIMATION_SPEED + 200);
-                }, 500)
+                                return IMAGES[prevIndex].url === $(imageLink).attr("href")
+                                && IMAGES[prevIndex].path === $(img).attr("src")
+                                && IMAGES[prevIndex].name === $(that.imageTitleLabel).text()
+                                && IMAGES[prevIndex].description === $(that.imageDescriptionLabel).text();
+                            }, done);
+                });
             });
 
             it("play button calls '_play' function when clicked", function() {
