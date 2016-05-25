@@ -19,10 +19,6 @@ build:
 test:
   assemblies: bin\AjaxControlToolkit.Tests.dll
  
-environment:
-  GitHubAccessToken:
-    secure: BTxryhieXviqZEIP/spJN05bl3v6ivYF943Cg2TucWJIL/MLvYMAsZiEQ9lyt6Gw
- 
 services: iis
  
 before_test:
