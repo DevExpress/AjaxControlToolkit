@@ -1505,7 +1505,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
         this._currentQueueIndex = Array.indexOf(this._filesInQueue, fileItem) + 1;
 
         this.setFileStatus(fileItem, 'uploading', Sys.Extended.UI.Resources.AjaxFileUpload_Uploading);
-        this.setStatusMessage('Uploading ' + this._currentQueueIndex + ' of ' + this._filesInQueue.length + ' file(s)');
+        this.setStatusMessage(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_UploadingFileInQueue, this._currentQueueIndex, this._filesInQueue.length));
     },
 
     /// <summary>
