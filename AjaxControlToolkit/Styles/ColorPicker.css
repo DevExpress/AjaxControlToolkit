@@ -1,8 +1,7 @@
-﻿.ajax__colorPicker_container {
+.ajax__colorPicker_container {
     background-color: #fff;
     overflow: hidden;
     position: absolute;
-    width: 201px;
 }
 
 .ajax__colorPicker_container table {
