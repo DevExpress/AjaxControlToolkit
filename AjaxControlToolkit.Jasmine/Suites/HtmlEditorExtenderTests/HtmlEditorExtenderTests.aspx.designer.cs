@@ -13,6 +13,33 @@ namespace AjaxControlToolkit.Jasmine.Suites {
     public partial class HtmlEditorExtenderTests {
         
         /// <summary>
+        /// LocalUpdatePanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel LocalUpdatePanel;
+        
+        /// <summary>
+        /// UpdatePanelButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UpdatePanelButton;
+        
+        /// <summary>
+        /// SimpleTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SimpleTextBox;
+        
+        /// <summary>
         /// Target control.
         /// </summary>
         /// <remarks>
