@@ -231,7 +231,6 @@ namespace AjaxControlToolkit {
 
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
-
             if(!IsDesignMode) {
                 if(!string.IsNullOrEmpty(Page.Request.QueryString["contextkey"])
                     && 
