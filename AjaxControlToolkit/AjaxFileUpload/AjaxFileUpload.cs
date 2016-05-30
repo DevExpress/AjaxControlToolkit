@@ -244,6 +244,9 @@ namespace AjaxControlToolkit {
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
 
+            if(ProcessRequest())
+                return;
+
             // Register an empty OnSubmit statement so the ASP.NET WebForm_OnSubmit method will be automatically
             // created and our behavior will be able to disable input file controls prior to submission
             ScriptManager.RegisterOnSubmitStatement(this, typeof(AjaxFileUpload), "AjaxFileUploadOnSubmit", "null;");
@@ -277,9 +280,7 @@ namespace AjaxControlToolkit {
             return XhrType.None;
         }
 
-        protected override void OnPreRender(EventArgs e) {
-            base.OnPreRender(e);
-
+        bool ProcessRequest() {
             string fileId;
             var xhrType = ParseRequest(out fileId);
 
@@ -315,7 +316,10 @@ namespace AjaxControlToolkit {
                 }
 
                 Page.Response.End();
+                return true;
             }
+
+            return false;
         }
 
         void XhrStart() {
