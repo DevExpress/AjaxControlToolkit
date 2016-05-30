@@ -280,7 +280,7 @@ namespace AjaxControlToolkit {
             return XhrType.None;
         }
 
-        bool ProcessRequest() {
+        void ProcessRequest() {
             string fileId;
             var xhrType = ParseRequest(out fileId);
 
@@ -316,10 +316,8 @@ namespace AjaxControlToolkit {
                 }
 
                 Page.Response.End();
-                return true;
             }
 
-            return false;
         }
 
         void XhrStart() {
