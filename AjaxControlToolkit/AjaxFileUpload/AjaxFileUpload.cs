@@ -231,6 +231,7 @@ namespace AjaxControlToolkit {
 
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
+
             if(!IsDesignMode) {
                 if(!string.IsNullOrEmpty(Page.Request.QueryString["contextkey"])
                     && 
@@ -238,15 +239,14 @@ namespace AjaxControlToolkit {
                     &&
                     Page.Request.QueryString["controlID"] == ClientID)
                     IsInFileUploadPostBack = true;
+
+                ProcessRequest();
             }
         }
 
         protected override void OnLoad(EventArgs e) {
             base.OnLoad(e);
-
-            if(ProcessRequest())
-                return;
-
+            
             // Register an empty OnSubmit statement so the ASP.NET WebForm_OnSubmit method will be automatically
             // created and our behavior will be able to disable input file controls prior to submission
             ScriptManager.RegisterOnSubmitStatement(this, typeof(AjaxFileUpload), "AjaxFileUploadOnSubmit", "null;");
