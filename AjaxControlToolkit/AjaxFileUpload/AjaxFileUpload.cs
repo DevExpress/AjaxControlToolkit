@@ -231,25 +231,28 @@ namespace AjaxControlToolkit {
 
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
-            if(!IsDesignMode) {
-                if(!string.IsNullOrEmpty(Page.Request.QueryString["contextkey"])
+            if(IsDesignMode || !IsControlRequest()) 
+                return;
+                
+            IsInFileUploadPostBack = true;
+
+            var processor = new UploadRequestProcessor {
+                Context = Context,               
+                UploadStart = UploadStart,
+                UploadComplete = UploadComplete,
+                UploadCompleteAll = UploadCompleteAll,
+                SetUploadedFilePath = SetUploadedFilePath
+            };
+
+            processor.ProcessRequest();
+        }
+
+        bool IsControlRequest() {
+            return  !string.IsNullOrEmpty(Page.Request.QueryString["contextkey"])
                     && 
                     Page.Request.QueryString["contextkey"] == ContextKey
                     &&
-                    Page.Request.QueryString["controlID"] == ClientID)
-                    IsInFileUploadPostBack = true;
-
-                var processor = new UploadRequestProcessor {
-                    Context = Context,
-                    ClientID = ClientID,
-                    UploadStart = UploadStart,
-                    UploadComplete = UploadComplete,
-                    UploadCompleteAll = UploadCompleteAll,
-                    SetUploadedFilePath = SetUploadedFilePath
-                };
-
-                processor.ProcessRequest();
-            }
+                    Page.Request.QueryString["controlID"] == ClientID;
         }
 
         void SetUploadedFilePath(string path) {
@@ -472,7 +475,6 @@ namespace AjaxControlToolkit {
 
         class UploadRequestProcessor {
             public HttpContext Context;
-            public string ClientID;
 
             public EventHandler<AjaxFileUploadStartEventArgs> UploadStart;
             public EventHandler<AjaxFileUploadEventArgs> UploadComplete;
@@ -528,12 +530,7 @@ namespace AjaxControlToolkit {
 
             XhrType ParseRequest(out string fileId) {
                 fileId = Request.QueryString["guid"];
-
-                if(Request.QueryString["contextkey"] != ContextKey
-                    ||
-                    Request.QueryString["controlID"] != ClientID)
-                    return XhrType.None;
-
+              
                 if(!string.IsNullOrEmpty(fileId)) {
                     if(Request.QueryString["poll"] == "1")
                         return XhrType.Poll;
