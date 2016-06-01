@@ -107,7 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Content Include="..\bin\AjaxControlToolkit.XML">
+    <Content Include="..\bin\Debug\AjaxControlToolkit.XML">
       <Link>AjaxControlToolkit.XML</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -27,7 +27,7 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void Chrome() {
-            var dir = Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location);
+            var dir = Directory.GetParent(Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location)).FullName;
             var driver = new ChromeDriver(dir);
 
             TestBrowser(driver);
@@ -42,7 +42,7 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void InternetExplorer() {
-            var dir = Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location);
+            var dir = Directory.GetParent(Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location)).FullName;
             var driver = new InternetExplorerDriver(dir, new InternetExplorerOptions(), TimeSpan.FromMinutes(3));
 
             TestBrowser(driver);
