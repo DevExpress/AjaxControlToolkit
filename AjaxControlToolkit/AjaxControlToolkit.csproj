@@ -31,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\bin\Release\AjaxControlToolkit.XML</DocumentationFile>
+    <DocumentationFile>..\bin\AjaxControlToolkit.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -454,6 +454,9 @@
     <EmbeddedResource Include="Styles\NumericUpDown.min.css">
       <DependentUpon>NumericUpDown.css</DependentUpon>
     </EmbeddedResource>
+    <Content Include="..\bin\AjaxControlToolkit.XML">
+      <Link>AjaxControlToolkit.XML</Link>
+    </Content>
     <Content Include="Scripts\ValidatorCallout.min.js">
       <DependentUpon>ValidatorCallout.js</DependentUpon>
     </Content>
