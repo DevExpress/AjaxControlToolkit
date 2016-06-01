@@ -231,7 +231,7 @@ namespace AjaxControlToolkit {
 
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
-            if(IsDesignMode || !IsControlRequest()) 
+            if(IsDesignMode || !IsFileUploadParamsPresent()) 
                 return;
                 
             IsInFileUploadPostBack = true;
@@ -247,7 +247,7 @@ namespace AjaxControlToolkit {
             processor.ProcessRequest();
         }
 
-        bool IsControlRequest() {
+        bool IsFileUploadParamsPresent() {
             return  !string.IsNullOrEmpty(Page.Request.QueryString["contextkey"])
                     && 
                     Page.Request.QueryString["contextkey"] == ContextKey
