@@ -19,6 +19,9 @@ build:
   project: AjaxControlToolkit.sln
   publish_wap: true
   verbosity: minimal
+  
+artifacts:
+  - path: bin/$(configuration)/AjaxControlToolkit.???
 
 test:
   assemblies: bin\AjaxControlToolkit.Tests.dll
