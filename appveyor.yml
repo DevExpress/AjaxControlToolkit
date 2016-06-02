@@ -5,6 +5,10 @@ os: Visual Studio 2013
 init:
   - git config --global core.autocrlf true
 
+configuration:
+  - Release
+  - Debug
+ 
 cache:
   - packages -> **\packages.config
 
