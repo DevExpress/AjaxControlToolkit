@@ -5,6 +5,10 @@ os: Visual Studio 2013
 init:
   - git config --global core.autocrlf true
 
+configuration:
+  - Release
+  - Debug
+ 
 cache:
   - packages -> **\packages.config
 
@@ -15,13 +19,16 @@ build:
   project: AjaxControlToolkit.sln
   publish_wap: true
   verbosity: minimal
+  
+after_build:
+- ps: "New-Item AjaxControlToolkit.StaticResources\\Content\\AjaxControlToolkit\\Images -type directory\nNew-Item AjaxControlToolkit.StaticResources\\Content\\AjaxControlToolkit\\Styles -type directory\nNew-Item AjaxControlToolkit.StaticResources\\Scripts\\AjaxControlToolkit\\Debug -type directory\nNew-Item AjaxControlToolkit.StaticResources\\Scripts\\AjaxControlToolkit\\Release -type directory\n\nCopy-Item -Path AjaxControlToolkit.StaticResources\\Images\\* -Destination AjaxControlToolkit.StaticResources\\Content\\AjaxControlToolkit\\Images -Recurse \nCopy-Item -Path AjaxControlToolkit.StaticResources\\Styles\\* -Destination AjaxControlToolkit.StaticResources\\Content\\AjaxControlToolkit\\Styles -Recurse \nCopy-Item -Path AjaxControlToolkit.StaticResources\\Scripts\\Debug\\* -Destination AjaxControlToolkit.StaticResources\\Scripts\\AjaxControlToolkit\\Debug -Recurse \nCopy-Item -Path AjaxControlToolkit.StaticResources\\Scripts\\Release\\* -Destination AjaxControlToolkit.StaticResources\\Scripts\\AjaxControlToolkit\\Release -Recurse \n\nPush-Location -Path \"AjaxControlToolkit.StaticResources\"\n7z a ..\\AjaxControlToolkit.StaticResources.zip Content\\AjaxControlToolkit\\Images -ir!Content\\AjaxControlToolkit\\Styles\\* -ir!Scripts\\AjaxControlToolkit\\Debug\\* -ir!Scripts\\AjaxControlToolkit\\Release\\*\nPop-Location"
+  
+artifacts:
+  - path: bin/$(configuration)/AjaxControlToolkit.???
+  - path: AjaxControlToolkit.StaticResources.zip
 
 test:
   assemblies: bin\AjaxControlToolkit.Tests.dll
- 
-environment:
-  GitHubAccessToken:
-    secure: BTxryhieXviqZEIP/spJN05bl3v6ivYF943Cg2TucWJIL/MLvYMAsZiEQ9lyt6Gw
  
 services: iis
  

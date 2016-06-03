@@ -231,14 +231,32 @@ namespace AjaxControlToolkit {
 
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
-            if(!IsDesignMode) {
-                if(!string.IsNullOrEmpty(Page.Request.QueryString["contextkey"])
+            if(IsDesignMode || !IsControlRequest()) 
+                return;
+                
+            IsInFileUploadPostBack = true;
+
+            var processor = new UploadRequestProcessor {
+                Context = Context,               
+                UploadStart = UploadStart,
+                UploadComplete = UploadComplete,
+                UploadCompleteAll = UploadCompleteAll,
+                SetUploadedFilePath = SetUploadedFilePath
+            };
+
+            processor.ProcessRequest();
+        }
+
+        bool IsControlRequest() {
+            return  !string.IsNullOrEmpty(Page.Request.QueryString["contextkey"])
                     && 
                     Page.Request.QueryString["contextkey"] == ContextKey
                     &&
-                    Page.Request.QueryString["controlID"] == ClientID)
-                    IsInFileUploadPostBack = true;
-            }
+                    Page.Request.QueryString["controlID"] == ClientID;
+        }
+
+        void SetUploadedFilePath(string path) {
+            _uploadedFilePath = path;
         }
 
         protected override void OnLoad(EventArgs e) {
@@ -249,140 +267,6 @@ namespace AjaxControlToolkit {
             ScriptManager.RegisterOnSubmitStatement(this, typeof(AjaxFileUpload), "AjaxFileUploadOnSubmit", "null;");
         }
 
-        XhrType ParseRequest(out string fileId) {
-            fileId = Page.Request.QueryString["guid"];
-
-            if(Page.Request.QueryString["contextkey"] != ContextKey
-                ||
-                Page.Request.QueryString["controlID"] != ClientID)
-                return XhrType.None;
-
-            if(!string.IsNullOrEmpty(fileId)) {
-                if(Page.Request.QueryString["poll"] == "1")
-                    return XhrType.Poll;
-
-                if(Page.Request.QueryString["cancel"] == "1")
-                    return XhrType.Cancel;
-
-                if(Page.Request.QueryString["done"] == "1")
-                    return XhrType.Done;
-            }
-
-            if(Page.Request.QueryString["complete"] == "1")
-                return XhrType.Complete;
-
-            if(Page.Request.QueryString["start"] == "1")
-                return XhrType.Start;
-
-            return XhrType.None;
-        }
-
-        protected override void OnPreRender(EventArgs e) {
-            base.OnPreRender(e);
-
-            string fileId;
-            var xhrType = ParseRequest(out fileId);
-
-            if(xhrType != XhrType.None) {
-                Page.Response.ClearContent();
-                Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-                // Process xhr request
-                switch(xhrType) {
-                    case XhrType.Poll:
-                        // Upload progress polling request
-                        XhrPoll(fileId);
-                        break;
-
-                    case XhrType.Cancel:
-                        // Cancel upload request
-                        XhrCancel(fileId);
-                        break;
-
-                    case XhrType.Done:
-                        // A file is successfully uploaded
-                        XhrDone(fileId);
-                        break;
-
-                    case XhrType.Complete:
-                        // All files successfully uploaded
-                        XhrComplete();
-                        break;
-
-                    case XhrType.Start:
-                        XhrStart();
-                        break;
-                }
-
-                Page.Response.End();
-            }
-        }
-
-        void XhrStart() {
-            var filesInQueue = int.Parse(Page.Request.QueryString["queue"] ?? "0");
-            var args = new AjaxFileUploadStartEventArgs(filesInQueue);
-            if(UploadStart != null)
-                UploadStart(this, args);
-            Page.Response.Write(new JavaScriptSerializer().Serialize(args));
-        }
-
-        void XhrComplete() {
-            var filesInQueue = int.Parse(Page.Request.QueryString["queue"] ?? "0");
-            var filesUploaded = int.Parse(Page.Request.QueryString["uploaded"] ?? "0");
-            var reason = Page.Request.QueryString["reason"];
-
-            AjaxFileUploadCompleteAllReason completeReason;
-            switch(reason) {
-                case "done":
-                    completeReason = AjaxFileUploadCompleteAllReason.Success;
-                    break;
-
-                case "cancel":
-                    completeReason = AjaxFileUploadCompleteAllReason.Canceled;
-                    break;
-
-                default:
-                    completeReason = AjaxFileUploadCompleteAllReason.Unknown;
-                    break;
-            }
-
-            var args = new AjaxFileUploadCompleteAllEventArgs(filesInQueue, filesUploaded, completeReason);
-            if(UploadCompleteAll != null)
-                UploadCompleteAll(this, args);
-            Page.Response.Write(new JavaScriptSerializer().Serialize(args));
-        }
-
-        void XhrDone(string fileId) {
-            AjaxFileUploadEventArgs args;
-
-            var tempFolder = BuildTempFolder(fileId);
-            if(!Directory.Exists(tempFolder))
-                return;
-
-            var files = Directory.GetFiles(tempFolder);
-            if(files.Length == 0)
-                return;
-
-            var fileInfo = new FileInfo(files[0]);
-            _uploadedFilePath = fileInfo.FullName;
-
-            args = new AjaxFileUploadEventArgs(
-                fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
-                fileInfo.Extension);
-
-            if(UploadComplete != null)
-                UploadComplete(this, args);
-
-            Page.Response.Write(new JavaScriptSerializer().Serialize(args));
-        }
-
-        void XhrCancel(string fileId) {
-            AjaxFileUploadHelper.Abort(Context, fileId);
-        }
-
-        void XhrPoll(string fileId) {
-            Page.Response.Write((new AjaxFileUploadStates(Context, fileId)).Percent.ToString());
-        }
         /// <summary>
         /// Saves the uploaded file with the specified file name
         /// </summary>
@@ -587,6 +471,155 @@ namespace AjaxControlToolkit {
                     descriptor.AddElementProperty("throbber", control.ClientID);
             }
         }
+
+
+        class UploadRequestProcessor {
+            public HttpContext Context;
+
+            public EventHandler<AjaxFileUploadStartEventArgs> UploadStart;
+            public EventHandler<AjaxFileUploadEventArgs> UploadComplete;
+            public EventHandler<AjaxFileUploadCompleteAllEventArgs> UploadCompleteAll;
+            public Action<string> SetUploadedFilePath;
+
+            HttpRequest Request {
+                get { return Context.Request; } 
+            }
+
+            HttpResponse Response {
+                get { return Context.Response; }
+            }
+
+            public void ProcessRequest() {
+                string fileId;
+                var xhrType = ParseRequest(out fileId);
+
+                if(xhrType != XhrType.None) {
+                    Response.ClearContent();
+                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+                    // Process xhr request
+                    switch(xhrType) {
+                        case XhrType.Poll:
+                            // Upload progress polling request
+                            XhrPoll(fileId);
+                            break;
+
+                        case XhrType.Cancel:
+                            // Cancel upload request
+                            XhrCancel(fileId);
+                            break;
+
+                        case XhrType.Done:
+                            // A file is successfully uploaded
+                            XhrDone(fileId);
+                            break;
+
+                        case XhrType.Complete:
+                            // All files successfully uploaded
+                            XhrComplete();
+                            break;
+
+                        case XhrType.Start:
+                            XhrStart();
+                            break;
+                    }
+
+                    Response.End();
+                }
+            }
+
+            XhrType ParseRequest(out string fileId) {
+                fileId = Request.QueryString["guid"];
+              
+                if(!string.IsNullOrEmpty(fileId)) {
+                    if(Request.QueryString["poll"] == "1")
+                        return XhrType.Poll;
+
+                    if(Request.QueryString["cancel"] == "1")
+                        return XhrType.Cancel;
+
+                    if(Request.QueryString["done"] == "1")
+                        return XhrType.Done;
+                }
+
+                if(Request.QueryString["complete"] == "1")
+                    return XhrType.Complete;
+
+                if(Request.QueryString["start"] == "1")
+                    return XhrType.Start;
+
+                return XhrType.None;
+            }
+
+            void XhrStart() {
+                var filesInQueue = int.Parse(Request.QueryString["queue"] ?? "0");
+                var args = new AjaxFileUploadStartEventArgs(filesInQueue);
+                if(UploadStart != null)
+                    UploadStart(this, args);
+                Response.Write(new JavaScriptSerializer().Serialize(args));
+            }
+
+            void XhrComplete() {
+                var filesInQueue = int.Parse(Request.QueryString["queue"] ?? "0");
+                var filesUploaded = int.Parse(Request.QueryString["uploaded"] ?? "0");
+                var reason = Request.QueryString["reason"];
+
+                AjaxFileUploadCompleteAllReason completeReason;
+                switch(reason) {
+                    case "done":
+                        completeReason = AjaxFileUploadCompleteAllReason.Success;
+                        break;
+
+                    case "cancel":
+                        completeReason = AjaxFileUploadCompleteAllReason.Canceled;
+                        break;
+
+                    default:
+                        completeReason = AjaxFileUploadCompleteAllReason.Unknown;
+                        break;
+                }
+
+                var args = new AjaxFileUploadCompleteAllEventArgs(filesInQueue, filesUploaded, completeReason);
+                if(UploadCompleteAll != null)
+                    UploadCompleteAll(this, args);
+                Response.Write(new JavaScriptSerializer().Serialize(args));
+            }
+
+            void XhrDone(string fileId) {
+                AjaxFileUploadEventArgs args;
+
+                var tempFolder = BuildTempFolder(fileId);
+                if(!Directory.Exists(tempFolder))
+                    return;
+
+                var files = Directory.GetFiles(tempFolder);
+                if(files.Length == 0)
+                    return;
+
+                var fileInfo = new FileInfo(files[0]);
+                SetUploadedFilePath(fileInfo.FullName);
+
+                args = new AjaxFileUploadEventArgs(
+                    fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
+                    fileInfo.Extension);
+
+                if(UploadComplete != null)
+                    UploadComplete(this, args);
+
+                Response.Write(new JavaScriptSerializer().Serialize(args));
+            }
+
+            void XhrCancel(string fileId) {
+                AjaxFileUploadHelper.Abort(Context, fileId);
+            }
+
+            void XhrPoll(string fileId) {
+                Response.Write((new AjaxFileUploadStates(Context, fileId)).Percent.ToString());
+            }
+        
+        }
+
+
     }
 
 }
