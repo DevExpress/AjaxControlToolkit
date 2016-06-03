@@ -34,6 +34,3 @@ services: iis
  
 before_test:
 - ps: "& \"C:\\Program Files\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe\" -verb:sync -source:iisApp=\"$env:APPVEYOR_BUILD_FOLDER\\AjaxControlToolkit.Jasmine\" -dest:iisApp=`\"Default Web Site`\"\n\n\n$FilesAndFolders = gci \"C:\\inetpub\\wwwroot\" -recurse | % {$_.FullName}\nforeach($FileAndFolder in $FilesAndFolders)\n{\n    $item = gi -literalpath $FileAndFolder \n    $acl = $item.GetAccessControl() \n    $permission = \"Everyone\",\"FullControl\",\"Allow\"\n    $rule = New-Object System.Security.AccessControl.FileSystemAccessRule $permission\n    $acl.SetAccessRule($rule)\n    $item.SetAccessControl($acl)\n}"
-
-artifacts:
-- path: bin/AjaxControlToolkit.???
