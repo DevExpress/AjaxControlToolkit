@@ -7,6 +7,15 @@
 <asp:Content ContentPlaceHolderID="TestSuite" runat="server">
     <asp:UpdatePanel runat="server" UpdateMode="Conditional">
         <ContentTemplate>
+
+            <asp:UpdatePanel ID="LocalUpdatePanel" runat="server">
+                <ContentTemplate>
+                    <asp:Button ID="UpdatePanelButton" runat="server" Text="Update panel" ClientIDMode="Static" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
+            <asp:TextBox runat="server" ID="SimpleTextBox" ClientIDMode="Static" />
+
             <asp:TextBox runat="server"
                 ID="Target"
                 Width="500"
@@ -107,7 +116,9 @@
         describe("HtmlEditorExtender", function() {
 
             var HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= TargetExtender.ClientID %>",
-                HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID = "<%= TargetExtenderSanitized.ClientID %>";
+                HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID = "<%= TargetExtenderSanitized.ClientID %>",
+                SIMPLE_TEXTBOX_CLIENT_ID = "<%= SimpleTextBox.ClientID %>",
+                UPDATE_PANEL_BUTTON_CLIENT_ID = "<%= UpdatePanelButton.ClientID %>";
 
             var HTML_EDITOR_COLOR_PICKER_CONTAINER_CLASS_NAME = "ajax__colorPicker";
 
@@ -732,6 +743,25 @@
                 expect($container.find(".ajax__html_editor_extender_Cut").length).toBeTruthy();
                 expect($container.find(".ajax__html_editor_extender_Copy").length).toBeTruthy();
                 expect($container.find(".ajax__html_editor_extender_Paste").length).toBeTruthy();
+            });
+
+            it("correctly loses editable div focus", function(done) {
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent("abc");
+
+                var textbox = $("#" + SIMPLE_TEXTBOX_CLIENT_ID);
+                textbox.focus();
+
+                var endRequestHandler = function() {
+                    expect(document.activeElement).toEqual(textbox.get(0));
+
+                    done();
+                }
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+
+                var button = $("#" + UPDATE_PANEL_BUTTON_CLIENT_ID);
+                button.click();
             });
         });
     </script>
