@@ -28,7 +28,7 @@ artifacts:
   - path: AjaxControlToolkit.StaticResources.zip
 
 test:
-  assemblies: bin\$env:CONFIGURATION\AjaxControlToolkit.Tests.dll
+  assemblies: bin\$(configuration)\AjaxControlToolkit.Tests.dll
  
 services: iis
  
