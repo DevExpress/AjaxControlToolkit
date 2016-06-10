@@ -337,7 +337,8 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
                         zIndex: 0,
                         cursor: 'pointer',
                         position: 'absolute'
-                    }
+                    },
+                    multiple: true
                 }
             }, currentInputFile.parentNode);
 
@@ -622,7 +623,8 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
                         zIndex: 0,
                         cursor: 'pointer',
                         position: 'absolute'
-                    }
+                    },
+                    multiple: true
                 }
             }, currentInputFile.parentNode);
 
