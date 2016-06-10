@@ -1364,113 +1364,6 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
             this.invalidate();
         }
     },
-    _switchNextRange: function(date, dontAnimate) {
-        // Switches the visible month in the days view
-        // param name "date" of type "Date" is the visible date to switch to
-        // param name "dontAnimate" of type "Boolean" prevents animation from occuring if the control is animated
-
-        // Check _isAnimating to make sure we don't animate horizontally and vertically at the same time
-        if(this._isAnimating) {
-            return;
-        }
-
-        // Check if can switch month depending on the startDate and endDAte
-        if(date && !this._canSwitchNextRange(date)) {
-            return;
-        }
-
-        this._switchRange(date, dontAnimate);
-    },
-    _switchPrevRange: function (date, dontAnimate) {
-        // Switches the visible month in the days view
-        // param name "date" of type "Date" is the visible date to switch to
-        // param name "dontAnimate" of type "Boolean" prevents animation from occuring if the control is animated
-
-        // Check _isAnimating to make sure we don't animate horizontally and vertically at the same time
-        if (this._isAnimating) {
-            return;
-        }
-
-        // Check if can switch month depending on the startDate and endDAte
-        if (date && !this._canSwitchPrevRange(date)) {
-            return;
-        }
-
-        this._switchRange(date, dontAnimate);
-    },
-    _switchRange: function (date, dontAnimate)
-    {
-        var visibleDate = this._getEffectiveVisibleDate();
-        if((date && date.getFullYear() == visibleDate.getFullYear() && date.getMonth() == visibleDate.getMonth())) {
-            dontAnimate = true;
-        }
-
-        if(this._animated && !dontAnimate) {
-            this._isAnimating = true;
-
-            var newElement = this._modes[this._mode];
-            var oldElement = newElement.cloneNode(true);
-            this._body.appendChild(oldElement);
-            if(visibleDate > date) {
-
-                // animating down
-                // the newIndex element is the top
-                // the oldIndex element is the bottom (visible)
-
-                // move in, fade in
-                $common.setLocation(newElement, { x: -162, y: 0 });
-                $common.setVisible(newElement, true);
-                this._modeChangeMoveTopOrLeftAnimation.set_propertyKey("left");
-                this._modeChangeMoveTopOrLeftAnimation.set_target(newElement);
-                this._modeChangeMoveTopOrLeftAnimation.set_startValue(-this._width);
-                this._modeChangeMoveTopOrLeftAnimation.set_endValue(0);
-
-                // move out, fade out
-                $common.setLocation(oldElement, { x: 0, y: 0 });
-                $common.setVisible(oldElement, true);
-                this._modeChangeMoveBottomOrRightAnimation.set_propertyKey("left");
-                this._modeChangeMoveBottomOrRightAnimation.set_target(oldElement);
-                this._modeChangeMoveBottomOrRightAnimation.set_startValue(0);
-                this._modeChangeMoveBottomOrRightAnimation.set_endValue(this._width);
-
-            } else {
-                // animating up
-                // the oldIndex element is the top (visible)
-                // the newIndex element is the bottom
-
-                // move out, fade out
-                $common.setLocation(oldElement, { x: 0, y: 0 });
-                $common.setVisible(oldElement, true);
-                this._modeChangeMoveTopOrLeftAnimation.set_propertyKey("left");
-                this._modeChangeMoveTopOrLeftAnimation.set_target(oldElement);
-                this._modeChangeMoveTopOrLeftAnimation.set_endValue(-this._width);
-                this._modeChangeMoveTopOrLeftAnimation.set_startValue(0);
-
-                // move in, fade in
-                $common.setLocation(newElement, { x: 162, y: 0 });
-                $common.setVisible(newElement, true);
-                this._modeChangeMoveBottomOrRightAnimation.set_propertyKey("left");
-                this._modeChangeMoveBottomOrRightAnimation.set_target(newElement);
-                this._modeChangeMoveBottomOrRightAnimation.set_endValue(0);
-                this._modeChangeMoveBottomOrRightAnimation.set_startValue(this._width);
-            }
-            this._visibleDate = date;
-            this.invalidate();
-
-            var endHandler = Function.createDelegate(this, function() {
-                this._body.removeChild(oldElement);
-                oldElement = null;
-                this._isAnimating = false;
-                this._modeChangeAnimation.remove_ended(endHandler);
-            });
-            this._modeChangeAnimation.add_ended(endHandler);
-            this._modeChangeAnimation.play();
-        } else {
-            this._visibleDate = date;
-            this.invalidate();
-        }
-    },
-    
 
     _canSwitchMonth: function(date) {
         switch(this._mode) {
@@ -1491,28 +1384,8 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
                 break;
         }
         return true;
-    },
-    _canSwitchNextRange: function (date) {
-        switch (this._mode) {
-            case "days":
-                return this._isInNextDateRange(date, "M");
-            case "months":
-                return this._isInNextDateRange(date, "y");
-            case "years":
-                return this._isInNextDateRange(date, "yy");
-        }
-    },
-    _canSwitchPrevRange: function (date) {
-        switch (this._mode) {
-            case "days":
-                return this._isInPrevDateRange(date, "M");
-            case "months":
-                return this._isInPrevDateRange(date, "y");
-            case "years":
-                return this._isInPrevDateRange(date, "yy");
-        }
-    },
-
+    },    
+    
     _switchMode: function(mode, dontAnimate) {
         // Switches the visible view from "days" to "months" to "years"
         // param name "mode" of type "String" is the view mode to switch to
