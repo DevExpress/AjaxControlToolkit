@@ -173,6 +173,7 @@ Sys.Extended.UI.Resources = {
     "AjaxFileUpload_SelectFileToUpload": "Please select file(s) to upload.",
     "AjaxFileUpload_Pending": "pending",
     "AjaxFileUpload_FileInQueue": "{0} file(s) in queue.",
+    "AjaxFileUpload_UploadingFileInQueue": "Uploading {0} of {1} file(s)",
     "AjaxFileUpload_UploadingHtml5File": "Uploading file: {0} of size {1} bytes.",
     "AjaxFileUpload_UploadingInputFile": "Uploading file: {0}.",
     "AjaxFileUpload_UploadError": "An Error occured during file upload.",

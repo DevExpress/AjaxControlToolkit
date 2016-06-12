@@ -753,27 +753,6 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     _editableDiv_submit: function() {
-        var char = 0,
-            selection = null;
-
-        setTimeout(function() {
-            if(this._editableDiv != null)
-                this._editableDiv.focus();
-        }, 0);
-
-        if(Sys.Browser.agent != Sys.Browser.Firefox) {
-            if(document.selection) {
-                selection = document.selection.createRange();
-                selection.moveStart('character', char);
-                selection.select();
-            } else {
-                selection = window.getSelection();
-
-                if(this._editableDiv.firstChild !== null)
-                    selection.collapse(this._editableDiv.firstChild, char);
-            }
-        }
-
         this._textbox._element.value = this._encodeHtml();
     },
 

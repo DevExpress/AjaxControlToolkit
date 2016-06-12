@@ -13,7 +13,7 @@ namespace AjaxControlToolkit.Tests {
     [TestFixture]
     public class JasmineTests {
 
-        TimeSpan maxTimeout = TimeSpan.FromMinutes(3);
+        TimeSpan maxTimeout = TimeSpan.FromMinutes(4);
         TimeSpan checkInterval = TimeSpan.FromSeconds(5);
         string siteUrl;
 

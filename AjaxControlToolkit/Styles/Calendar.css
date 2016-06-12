@@ -1,3 +1,9 @@
+.ajax__calendar * {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
 .ajax__calendar_container {
     cursor: default;
     font-family: tahoma,verdana,helvetica;

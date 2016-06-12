@@ -1437,7 +1437,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
 
         // typedCharacter, textBoxValue, selectionPrefix, selectionSuffix, selectionTextFirst
-        info.typedCharacter = String.fromCharCode(e.rawEvent.charCode);
+        info.typedCharacter = String.fromCharCode(e.rawEvent.charCode || e.rawEvent.keyCode);
         info.textBoxValue = textBox.value;
         info.selectionPrefix = (info.textBoxValue.length >= info.selectionStart)
             ? info.textBoxValue.substring(0, info.selectionStart)
