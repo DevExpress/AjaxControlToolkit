@@ -85,6 +85,24 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         protected global::AjaxControlToolkit.CalendarExtender BothDatesCalendarExtender;
         
         /// <summary>
+        /// RangeExceedsDecadeTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox RangeExceedsDecadeTextBox;
+        
+        /// <summary>
+        /// RangeExceedsDecadeTextBoxCalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender RangeExceedsDecadeTextBoxCalendarExtender;
+        
+        /// <summary>
         /// SelectedDateTextBox control.
         /// </summary>
         /// <remarks>
