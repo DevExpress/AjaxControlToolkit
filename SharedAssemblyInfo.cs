@@ -11,3 +11,11 @@ using System.Resources;
 [assembly: AssemblyFileVersion("16.1.1.0")]
 
 [assembly: NeutralResourcesLanguage("en-US")]
+
+#if DEBUG
+[assembly: AssemblyDescription("ASP.NET AJAX Control Toolkit (debug version)")]
+[assembly: AssemblyConfiguration("Debug")]
+#else
+[assembly: AssemblyDescription("ASP.NET AJAX Control Toolkit")]
+[assembly: AssemblyConfiguration("Release")]
+#endif
