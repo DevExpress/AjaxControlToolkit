@@ -9,6 +9,9 @@ init:
 install:
 - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/nunit-3-2-0.ps1'))
 
+environment:
+  AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
+
 configuration:
   - Release
   - Debug
