@@ -13,9 +13,7 @@ using System.Resources;
 [assembly: NeutralResourcesLanguage("en-US")]
 
 #if DEBUG
-[assembly: AssemblyDescription("ASP.NET AJAX Control Toolkit (debug version)")]
 [assembly: AssemblyConfiguration("Debug")]
 #else
-[assembly: AssemblyDescription("ASP.NET AJAX Control Toolkit")]
 [assembly: AssemblyConfiguration("Release")]
 #endif
