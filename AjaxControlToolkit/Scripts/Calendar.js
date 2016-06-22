@@ -1033,8 +1033,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         return true;
     },
 
-    _isInYearsDateRange: function(date, switchMode)
-    {
+    _isInYearsDateRange: function(date, switchMode) {
         var startYear = this._getRangeStartYear(date);
         var endYear = this._getRangeEndYear(date);
 
@@ -1053,8 +1052,8 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
 
             case Sys.Extended.UI.CalendarSwitchViewMode.RangeZoom:
                 if(startYear > this._startDate.getFullYear()
-                        &&
-                        endYear < this._endDate.getFullYear())
+                   &&
+                   endYear < this._endDate.getFullYear())
                     return true;
 
                 return false;
@@ -1063,8 +1062,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         }
     },
     
-    _getRangeStartYear: function(date)
-    {
+    _getRangeStartYear: function(date) {
         return date.getFullYear();
     },
 
@@ -1294,8 +1292,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         }
     },
 
-    _animateViewSwitch: function(date, visibleDate)
-    {
+    _animateViewSwitch: function(date, visibleDate) {
         this._isAnimating = true;
 
         var newElement = this._modes[this._mode];
@@ -1786,7 +1783,7 @@ Sys.Extended.UI.CalendarDefaultView.prototype = {
 }
 Sys.Extended.UI.CalendarDefaultView.registerEnum('Sys.Extended.UI.CalendarDefaultView');
 
-Sys.Extended.UI.CalendarSwitchViewMode = function() {   
+Sys.Extended.UI.CalendarSwitchViewMode = function() {
     throw Error.invalidOperation();
 }
 Sys.Extended.UI.CalendarSwitchViewMode.prototype = {
