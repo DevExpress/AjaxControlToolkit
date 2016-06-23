@@ -1012,8 +1012,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
             case "yy":
                 if(this._startDate && this._endDate) {
                     return this._isInYearsDateRange(date, switchMode);
-                }
-                else {
+                } else {
                     if(!this._startDate && !this._endDate)
                         return true;
 
