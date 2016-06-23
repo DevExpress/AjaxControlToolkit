@@ -1757,11 +1757,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
 }
 Sys.Extended.UI.CalendarBehavior.registerClass("Sys.Extended.UI.CalendarBehavior", Sys.Extended.UI.BehaviorBase);
 
-Sys.Extended.UI.CalendarPosition = function() {
-    // Position of the popup relative to the target control
-    throw Error.invalidOperation();
-}
-Sys.Extended.UI.CalendarPosition.prototype = {
+Sys.Extended.UI.CalendarPosition = {
     BottomLeft: 0,
     BottomRight: 1,
     TopLeft: 2,
@@ -1769,25 +1765,15 @@ Sys.Extended.UI.CalendarPosition.prototype = {
     Right: 4,
     Left: 5
 }
-Sys.Extended.UI.CalendarPosition.registerEnum('Sys.Extended.UI.CalendarPosition');
 
-Sys.Extended.UI.CalendarDefaultView = function() {
-    // Choices for default view of the calendar when it first pops up.
-    throw Error.invalidOperation();
-}
-Sys.Extended.UI.CalendarDefaultView.prototype = {
+Sys.Extended.UI.CalendarDefaultView = {
     Days: 0,
     Months: 1,
     Years: 2
 }
-Sys.Extended.UI.CalendarDefaultView.registerEnum('Sys.Extended.UI.CalendarDefaultView');
 
-Sys.Extended.UI.CalendarSwitchViewMode = function() {
-    throw Error.invalidOperation();
-}
-Sys.Extended.UI.CalendarSwitchViewMode.prototype = {
+Sys.Extended.UI.CalendarSwitchViewMode = {
     PreviousRange: 0,
     NextRange: 1,
     RangeZoom: 2
 }
-Sys.Extended.UI.CalendarSwitchViewMode.registerEnum('Sys.Extended.UI.CalendarSwitchViewMode');
