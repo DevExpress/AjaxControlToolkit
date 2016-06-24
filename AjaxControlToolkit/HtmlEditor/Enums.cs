@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 namespace AjaxControlToolkit.HtmlEditor {
 
     public enum ActiveModeType { Design, Html, Preview };
@@ -9,4 +8,3 @@ namespace AjaxControlToolkit.HtmlEditor {
 
 }
 
-#pragma warning restore 1591

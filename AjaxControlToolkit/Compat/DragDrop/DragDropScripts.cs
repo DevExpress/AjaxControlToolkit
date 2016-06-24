@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     [RequiredScript(typeof(TimerScript))]
@@ -7,4 +6,3 @@ namespace AjaxControlToolkit {
     public static class DragDropScripts {
     }
 }
-#pragma warning restore 1591

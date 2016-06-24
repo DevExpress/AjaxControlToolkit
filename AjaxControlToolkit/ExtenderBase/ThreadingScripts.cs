@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     [ClientScriptResource(null, Constants.ThreadingScriptName)]
@@ -7,4 +6,3 @@ namespace AjaxControlToolkit {
 
 }
 
-#pragma warning restore 1591

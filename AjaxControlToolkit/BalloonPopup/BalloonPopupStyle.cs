@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     public enum BalloonPopupStyle {
@@ -9,4 +8,3 @@ namespace AjaxControlToolkit {
 
 }
 
-#pragma warning restore 1591

@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 using AjaxControlToolkit.HtmlEditor;
 using System;
 using System.ComponentModel;
@@ -79,4 +78,3 @@ namespace AjaxControlToolkit.Design {
 
 }
 
-#pragma warning restore 1591

@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 using System.Xml.Serialization;
 
 namespace AjaxControlToolkit.Bundling {
@@ -30,4 +29,3 @@ namespace AjaxControlToolkit.Bundling {
         public string Assembly { get; set; }
     }
 }
-#pragma warning restore 1591
