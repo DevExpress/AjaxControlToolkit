@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     // Display the tabs on top of the panel or below (default is top)
@@ -10,4 +9,3 @@ namespace AjaxControlToolkit {
     }
 
 }
-#pragma warning restore 1591

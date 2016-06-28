@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     public enum SeadragonOverlayPlacement {
@@ -14,4 +13,3 @@ namespace AjaxControlToolkit {
     }
 
 }
-#pragma warning restore 1591
