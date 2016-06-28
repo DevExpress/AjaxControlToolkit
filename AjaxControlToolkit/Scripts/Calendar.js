@@ -1764,16 +1764,16 @@ Sys.Extended.UI.CalendarPosition = {
     TopRight: 3,
     Right: 4,
     Left: 5
-}
+};
 
 Sys.Extended.UI.CalendarDefaultView = {
     Days: 0,
     Months: 1,
     Years: 2
-}
+};
 
 Sys.Extended.UI.CalendarSwitchViewMode = {
     PreviousRange: 0,
     NextRange: 1,
     RangeZoom: 2
-}
+};
