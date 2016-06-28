@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 
 namespace AjaxControlToolkit {
 
@@ -11,4 +10,3 @@ namespace AjaxControlToolkit {
     }
 }
 
-#pragma warning restore 1591

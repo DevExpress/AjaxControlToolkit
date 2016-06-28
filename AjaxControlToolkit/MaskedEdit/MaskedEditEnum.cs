@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     public enum MaskedEditType {
@@ -37,4 +36,3 @@ namespace AjaxControlToolkit {
 
 }
 
-#pragma warning restore 1591
