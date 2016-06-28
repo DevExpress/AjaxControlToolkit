@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 namespace AjaxControlToolkit {
 
     // Choices for default view of the calendar when it first pops up.
@@ -10,4 +9,3 @@ namespace AjaxControlToolkit {
 
 }
 
-#pragma warning restore 1591

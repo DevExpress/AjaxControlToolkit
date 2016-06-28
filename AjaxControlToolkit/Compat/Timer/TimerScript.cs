@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 using System.Web.UI;
 
 namespace AjaxControlToolkit {
@@ -7,4 +6,3 @@ namespace AjaxControlToolkit {
     public static class TimerScript {
     }
 }
-#pragma warning restore 1591
