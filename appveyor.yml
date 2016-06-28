@@ -5,9 +5,12 @@ os: Visual Studio 2013
 init:
   - git config --global core.autocrlf true
 
-# Workaround for NUnit Console Runner v3.2.1 timeout bug (#1509). Try to remove it when a fix is available.
+
 install:
+# Workaround for NUnit Console Runner v3.2.1 timeout bug (#1509). Try to remove it when a fix is available.
 - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/nunit-3-2-0.ps1'))
+# Workaround, as FireFox 47 crashes on Selenium test startup. Wait until stable FireFox is out.
+- choco install firefox -version 46.0.1
   
 cache:
   - packages -> **\packages.config
