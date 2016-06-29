@@ -20,7 +20,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     /// <getter>get_isDirty</getter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.isDirty" />
     this._isDirty = false;
-    this._viewMode = 'content';
+    this._lastEditMode = 'content';
 
     /// <summary>
     /// Determines whether or not to display a source view tab/button to see the source view of HtmlEditorExtender
@@ -28,6 +28,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     /// <getter>get_displaySourceTab</getter>
     /// <setter>set_displaySourceTab</setter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.displaySourceTab" />
+    this._displaySourceTab = false;
+
+    /// <summary>
+    /// Determines whether or not to display a preview tab/button to see the content preview of HtmlEditorExtender
+    /// </summary>
+    /// <getter>get_displayPreviewTab</getter>
+    /// <setter>set_displayPreviewTab</setter>
+    /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.displayPreviewTab" />
     this._displaySourceTab = false;
 
     /// <summary>
@@ -168,6 +176,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._toolbarButtons = null;
     this._editableDiv = null;
     this._sourceViewDiv = null;
+    this._previewDiv = null;
     this._topButtonContainer = null;
     this._topButtonContainer2 = null;
     this._buttons = [];
@@ -176,6 +185,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._txtBoxForColor = null;
     this._contentViewButton = null;
     this._sourceViewButton = null;
+    this._previewButton = null;
     this._popupDiv = null;
     this._btnDone = null;
     this._btnCancel = null;
@@ -187,6 +197,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._contentViewClickDelegate = null;
     this._sourceViewClickDelegate = null;
     this._sourceViewDivOnBlurDelegate = null;
+    this._previewClickDelegate = null;
     this._imageCancelClickDelegate = null;
 
     // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
@@ -247,9 +258,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._editableDivOnFocusDelegate = Function.createDelegate(this, this._editableDiv_onfocus);
         this._btnClickDelegate = Function.createDelegate(this, this._executeCommand);
 
-        if(this.get_displaySourceTab()) {
-            this._contentViewClickDelegate = Function.createDelegate(this, this._contentView_click);
+        if(this.get_displaySourceTab())
             this._sourceViewClickDelegate = Function.createDelegate(this, this._sourceView_click);
+
+        if(this.get_displayPreviewTab())
+            this._previewClickDelegate = Function.createDelegate(this, this._preview_click);
+
+        if(this._hasMultipleTabs()) {
+            this._contentViewClickDelegate = Function.createDelegate(this, this._contentView_click);
             this._sourceViewDivOnBlurDelegate = Function.createDelegate(this, this._sourceViewDiv_onblur);
         }
 
@@ -259,9 +275,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $addHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate, true);
         $addHandler(this._topButtonContainer, 'click', this._btnClickDelegate, true);
 
-        if(this.get_displaySourceTab()) {
-            $addHandler(this._contentViewButton, 'click', this._contentViewClickDelegate, true);
+        if(this.get_displaySourceTab())
             $addHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate, true);
+
+        if(this.get_displayPreviewTab())
+            $addHandler(this._previewButton, 'click', this._previewClickDelegate, true);
+
+        if(this._hasMultipleTabs()) {
+            $addHandler(this._contentViewButton, 'click', this._contentViewClickDelegate, true);
             $addHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate, true);
         }
     },
@@ -272,9 +293,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $removeHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate);
         $removeHandler(this._topButtonContainer, 'click', this._btnClickDelegate);
 
-        if(this.get_displaySourceTab()) {
-            $removeHandler(this._contentViewButton, 'click', this._contentViewClickDelegate);
+        if(this.get_displaySourceTab())
             $removeHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate);
+
+        if(this.get_displayPreviewTab())
+            $removeHandler(this.previewButton, 'click', this._previewClickDelegate);
+
+        if(this._hasMultipleTabs()) {
+            $removeHandler(this._contentViewButton, 'click', this._contentViewClickDelegate);
             $removeHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate);
         }
 
@@ -282,6 +308,10 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             $removeHandler(this._btnCancel, 'click', this._imageCancelClickDelegate);
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
+    },
+
+    _hasMultipleTabs: function(){
+        return this.get_displaySourceTab || this.get_displayPreviewTab();
     },
 
     _createContainer: function() {
@@ -656,7 +686,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     _contentView_click: function() {
-        if(this._viewMode != 'content') {
+        if(this._lastEditMode != 'content') {
             $common.setVisible(this._topButtonContainer, true);
             $common.setVisible(this._editableDiv, true);
 
@@ -667,12 +697,13 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 
             this._oldContents = this._editableDiv.innerHTML;
             $common.setVisible(this._sourceViewDiv, false);
-            this._viewMode = 'content';
+            $common.setVisible(this._previewDiv, false);
+            this._lastEditMode = 'content';
         }
     },
 
     _sourceView_click: function() {
-        if(this._viewMode != 'source') {
+        if(this._lastEditMode != 'source') {
             $common.setVisible(this._sourceViewDiv, true);
 
             if(this._sourceViewDiv.textContent != undefined)
@@ -683,8 +714,25 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             this._oldContents = this._editableDiv.innerHTML;
             $common.setVisible(this._editableDiv, false);
             $common.setVisible(this._topButtonContainer, false);
-            this._viewMode = 'source';
+            $common.setVisible(this._previewDiv, false);
+            this._lastEditMode = 'source';
         }
+    },
+
+    _preview_click: function () {
+            $common.setVisible(this._previewDiv, true);
+
+            if(this._lastEditMode === 'source') {
+                if(this._sourceViewDiv.textContent != undefined)
+                    this._previewDiv.innerHTML = this._sourceViewDiv.textContent;
+                else
+                    this._previewDiv.innerHTML = this._sourceViewDiv.innerText;
+            } else
+                this._previewDiv.innerHTML = this._editableDiv.innerHTML;
+
+            $common.setVisible(this._editableDiv, false);
+            $common.setVisible(this._sourceViewDiv, false);
+            $common.setVisible(this._topButtonContainer, false);
     },
 
     cleanHtml: function(html) {
@@ -1209,6 +1257,17 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         if(this._displaySourceTab != value) {
             this._displaySourceTab = value;
             this.raisePropertyChanged('DisplaySourceTab');
+        }
+    },
+
+    get_displayPreviewTab: function () {
+        return this._displayPreviewTab;
+    },
+
+    set_displayPreviewTab: function (value) {
+        if(this._displayPreviewTab != value) {
+            this._displayPreviewTab = value;
+            this.raisePropertyChanged('DisplayPreviewTab');
         }
     },
 
