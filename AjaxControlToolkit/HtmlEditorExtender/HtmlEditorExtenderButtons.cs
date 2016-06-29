@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 using System.Collections.Generic;
 
 namespace AjaxControlToolkit {
@@ -753,4 +752,3 @@ namespace AjaxControlToolkit {
 
     #endregion
 }
-#pragma warning restore 1591

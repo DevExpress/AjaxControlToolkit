@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 using System.Web.UI.WebControls;
 using System.Web.UI;
 
@@ -9,4 +8,3 @@ namespace AjaxControlToolkit.Design {
 
 }
 
-#pragma warning restore 1591

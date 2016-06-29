@@ -1,4 +1,3 @@
-#pragma warning disable 1591
 namespace AjaxControlToolkit.Design {
 
     public class SlideShowExtenderDesigner : ExtenderControlBaseDesigner<SlideShowExtender> {
@@ -12,4 +11,3 @@ namespace AjaxControlToolkit.Design {
 
 }
 
-#pragma warning restore 1591
