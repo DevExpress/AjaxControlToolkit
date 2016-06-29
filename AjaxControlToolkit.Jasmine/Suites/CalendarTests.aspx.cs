@@ -20,6 +20,10 @@ namespace AjaxControlToolkit.Jasmine.Suites {
             BothDatesCalendarExtender.EndDate = new DateTime(2015, 2, 2);
             BothDatesCalendarExtender.SelectedDate = selectedDate;
 
+            RangeExceedsDecadeTextBoxCalendarExtender.StartDate = new DateTime(2000, 1, 1);
+            RangeExceedsDecadeTextBoxCalendarExtender.EndDate = new DateTime(2030, 1, 1);
+            RangeExceedsDecadeTextBoxCalendarExtender.SelectedDate = selectedDate;
+
             SelectedDateCalendarExtender.SelectedDate = selectedDate;
         }
     }
