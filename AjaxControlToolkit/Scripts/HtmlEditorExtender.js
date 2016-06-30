@@ -153,15 +153,15 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
         cssClasses: ['ajax__html_editor_extender_buttoncontainer']
     };
 
-    this._topButtonContainerTemplate2 = {
+    this._bottomButtonsContainerTemplate = {
         nodeName: 'div',
         properties: {
-            id: id + '_ExtenderButtonContainer2',
+            id: id + '_ExtenderModeButtonContainer',
             style: {
                 clear: 'both'
             }
         },
-        cssClasses: ['ajax__html_editor_extender_buttoncontainer2']
+        cssClasses: ['ajax__html_editor_extender_modebuttonscontainer']
     };
 
     // variables
@@ -178,7 +178,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._sourceViewDiv = null;
     this._previewDiv = null;
     this._topButtonContainer = null;
-    this._topButtonContainer2 = null;
+    this._bottomButtonsContainer = null;
     this._buttons = [];
     this._requested_buttons = new Array();
     this._colorPicker = null;
@@ -221,7 +221,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 
         if(this.get_displaySourceTab()) {
             this._createSourceViewDiv();
-            this._createTopButtonContainer2();
+            this._createBottomButtonsContainer();
         }
 
         // get form that contains textbox
@@ -625,10 +625,10 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $common.setVisible(this._textbox._element, false);
     },
 
-    _createTopButtonContainer2: function() {
-        this._topButtonContainer2 = $common.createElementFromTemplate(this._topButtonContainerTemplate2, this._container);
-        this._contentViewButton = $common.createElementFromTemplate(this._buttonContentTemplate, this._topButtonContainer2);
-        this._sourceViewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._topButtonContainer2);
+    _createBottomButtonsContainer: function() {
+        this._bottomButtonsContainer = $common.createElementFromTemplate(this._bottomButtonsContainerTemplate, this._container);
+        this._contentViewButton = $common.createElementFromTemplate(this._buttonContentTemplate, this._bottomButtonsContainer);
+        this._sourceViewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._bottomButtonsContainer);
     },
 
     _createSourceViewDiv: function() {
