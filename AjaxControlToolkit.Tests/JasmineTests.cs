@@ -13,19 +13,19 @@ namespace AjaxControlToolkit.Tests {
     [TestFixture]
     public class JasmineTests {
 
-        TimeSpan maxTimeout = TimeSpan.FromMinutes(4);
-        TimeSpan checkInterval = TimeSpan.FromSeconds(5);
-        string siteUrl;
-        string driverDir;
+        TimeSpan _maxTimeout = TimeSpan.FromMinutes(4);
+        TimeSpan _checkInterval = TimeSpan.FromSeconds(5);
+        string _siteUrl;
+        string _driverDir;
 
         [SetUp]
         public void Setup() {
-            siteUrl = Environment.GetEnvironmentVariable("AjaxControlToolkitTestSiteUrl");
+            _siteUrl = Environment.GetEnvironmentVariable("AjaxControlToolkitTestSiteUrl");
 
-            if(String.IsNullOrWhiteSpace(siteUrl))
-                siteUrl = "http://localhost/JasmineTests/TestRunner.aspx";
+            if(String.IsNullOrWhiteSpace(_siteUrl))
+                _siteUrl = "http://localhost/JasmineTests/TestRunner.aspx";
 
-            driverDir = GetDriverDirectory();
+            _driverDir = GetDriverDirectory();
         }
 
         static string GetDriverDirectory() {
@@ -34,14 +34,14 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void Chrome() {
-            var driver = new ChromeDriver(driverDir);
+            var driver = new ChromeDriver(_driverDir);
 
             TestBrowser(driver);
         }
 
         [Test]
         public void FireFox() {
-            var driverService = FirefoxDriverService.CreateDefaultService(driverDir, "geckodriver.exe");
+            var driverService = FirefoxDriverService.CreateDefaultService(_driverDir, "geckodriver.exe");
             driverService.FirefoxBinaryPath = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
             driverService.HideCommandPromptWindow = true;
             driverService.SuppressInitialDiagnosticInformation = true;
@@ -52,7 +52,7 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void InternetExplorer() {
-            var driver = new InternetExplorerDriver(driverDir, new InternetExplorerOptions(), TimeSpan.FromMinutes(3));
+            var driver = new InternetExplorerDriver(_driverDir, new InternetExplorerOptions(), TimeSpan.FromMinutes(3));
 
             TestBrowser(driver);
         }
@@ -60,7 +60,7 @@ namespace AjaxControlToolkit.Tests {
         void TestBrowser(IWebDriver driver) {            
 
             try {
-                driver.Navigate().GoToUrl(siteUrl);                
+                driver.Navigate().GoToUrl(_siteUrl);                
 
                 var selectAllCheckbox = driver.FindElement(By.XPath("//label[text()='SELECT ALL']"));
                 selectAllCheckbox.Click();
@@ -74,8 +74,8 @@ namespace AjaxControlToolkit.Tests {
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                while(stopwatch.ElapsedMilliseconds < maxTimeout.TotalMilliseconds) {
-                    Thread.Sleep(checkInterval);
+                while(stopwatch.ElapsedMilliseconds < _maxTimeout.TotalMilliseconds) {
+                    Thread.Sleep(_checkInterval);
                     CheckTestResults(driver, currentSpecCount, totalSpecCount);
                 }
 
