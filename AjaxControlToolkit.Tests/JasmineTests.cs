@@ -16,6 +16,7 @@ namespace AjaxControlToolkit.Tests {
         TimeSpan maxTimeout = TimeSpan.FromMinutes(4);
         TimeSpan checkInterval = TimeSpan.FromSeconds(5);
         string siteUrl;
+        string driverDir;
 
         [SetUp]
         public void Setup() {
@@ -23,25 +24,35 @@ namespace AjaxControlToolkit.Tests {
 
             if(String.IsNullOrWhiteSpace(siteUrl))
                 siteUrl = "http://localhost/JasmineTests/TestRunner.aspx";
+
+            driverDir = GetDriverDirectory();
+        }
+
+        static string GetDriverDirectory() {
+            return Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location);
         }
 
         [Test]
         public void Chrome() {
-            var driver = new ChromeDriver(GetWebDriverDirectory());
+            var driver = new ChromeDriver(driverDir);
 
             TestBrowser(driver);
         }
 
         [Test]
         public void FireFox() {
-            var driver = new FirefoxDriver();
+            var driverService = FirefoxDriverService.CreateDefaultService(driverDir, "geckodriver.exe");
+            driverService.FirefoxBinaryPath = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
+            driverService.HideCommandPromptWindow = true;
+            driverService.SuppressInitialDiagnosticInformation = true;
+            var driver = new FirefoxDriver(driverService, new FirefoxOptions(), TimeSpan.FromSeconds(60));
 
             TestBrowser(driver);
         }
 
         [Test]
         public void InternetExplorer() {
-            var driver = new InternetExplorerDriver(GetWebDriverDirectory(), new InternetExplorerOptions(), TimeSpan.FromMinutes(3));
+            var driver = new InternetExplorerDriver(driverDir, new InternetExplorerOptions(), TimeSpan.FromMinutes(3));
 
             TestBrowser(driver);
         }
