@@ -92,7 +92,6 @@
     <Compile Include="ToolkitResourceManagerTests.cs" />
     <Compile Include="HtmlEditorExtenderTests.cs" />
     <Compile Include="DocumentationTests\CodePlexDocRendererTests.cs" />
-    <Compile Include="TabPanelTests.cs" />
     <Compile Include="HtmlSanitizer\HaCkerOrgXMLTest.cs" />
     <Compile Include="LocalizationTests.cs" />
     <Compile Include="HtmlSanitizer\DefaultHtmlSanitizerTests.cs" />
