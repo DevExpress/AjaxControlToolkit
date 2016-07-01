@@ -264,17 +264,16 @@
         <em>CssTheme</em>="XP"
         <em>ScrollBars</em>="None"
         <em>UseVerticalStripPlacement</em>="true"
-        <em>VerticalStripWidth</em>="120px"
-        &gt;
-    <strong>&lt;ajaxToolkit:TabPanel</strong> runat="server" 
+        <em>VerticalStripWidth</em>="120px"&gt;        
+    &lt;ajaxToolkit:TabPanel runat="server" 
         <em>HeaderText</em>="Signature and Bio"
         <em>Enabled</em>="true"
         <em>ScrollBars</em>="Auto"
-        <em>OnDemandMode</em>="Once"
+        <em>OnDemandMode</em>="Once"&gt;
         &lt;ContentTemplate&gt;
             ...
         &lt;/ContentTemplate&gt;
-    <strong>/&gt;</strong>
+    &lt;/ajaxToolkit:TabPanel&gt;
 &lt;/ajaxToolkit:TabContainer&gt;
             </pre>
             <b>TabContainer Properties</b>
