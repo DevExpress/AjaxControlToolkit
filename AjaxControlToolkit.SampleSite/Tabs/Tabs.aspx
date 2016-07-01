@@ -274,7 +274,7 @@
         &lt;ContentTemplate&gt;
             ...
         &lt;/ContentTemplate&gt;
-    <strong>/&gt;</strong>
+    &lt;/ajaxToolkit:TabPanel&gt;
 &lt;/ajaxToolkit:TabContainer&gt;
             </pre>
             <b>TabContainer Properties</b>
