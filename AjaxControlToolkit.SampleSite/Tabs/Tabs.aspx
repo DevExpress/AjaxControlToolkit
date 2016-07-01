@@ -270,7 +270,7 @@
         <em>HeaderText</em>="Signature and Bio"
         <em>Enabled</em>="true"
         <em>ScrollBars</em>="Auto"
-        <em>OnDemandMode</em>="Once"
+        <em>OnDemandMode</em>="Once"&gt;
         &lt;ContentTemplate&gt;
             ...
         &lt;/ContentTemplate&gt;
