@@ -2,9 +2,9 @@
 ## Bugs & Feature Requests
 
 Please report bugs and feature requests to the project's [issue tracker](https://github.com/DevExpress/AjaxControlToolkit/issues).  
-For bugs, provide us with a sample project which we can debug on our side. Attach it as a ZIP file or provide a GitHub link.
+For bugs, send a sample project which we can debug on our side. Attach it as a ZIP file or provide a GitHub link.
 
-If it is not possible, please provide:
+If it is not possible, please describe in detail:
 * Minimal steps to reproduce the bug.
 * The AJAX Control Toolkit version you are using.
 * The installation method (installer, NuGet package or a custom build from the source code)
