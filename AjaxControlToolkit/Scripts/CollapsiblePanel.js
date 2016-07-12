@@ -554,10 +554,10 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
                 }
             }
 
-            // Change the image
+            // Change the image if we have one
             if (this._imageControlID && this._collapsedImage) {
                 var i = $get(this._imageControlID);
-                if (i) {
+                if (i && i.tagName === "IMG") {
                     i.src = this._collapsedImage;
                     if (this._expandedText || this._collapsedText) {
                         i.title = this._collapsedText;
@@ -574,10 +574,10 @@ Sys.Extended.UI.CollapsiblePanelBehavior.prototype = {
                 }
             }
             
-            // Change the image
+            // Change the image if we have one
             if (this._imageControlID && this._expandedImage) {
                 var i = $get(this._imageControlID);
-                if (i) {
+                if (i && i.tagName === "IMG") {
                     i.src = this._expandedImage;
                     if (this._expandedText || this._collapsedText) {
                             i.title = this._expandedText;
