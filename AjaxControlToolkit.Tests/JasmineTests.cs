@@ -108,10 +108,5 @@ namespace AjaxControlToolkit.Tests {
                 Assert.Fail(exceptionMessage);
             }
         }
-
-        static string GetWebDriverDirectory() {
-            var dir = Directory.GetParent(Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location)).FullName;
-            return dir;
-        }
     }
 }
