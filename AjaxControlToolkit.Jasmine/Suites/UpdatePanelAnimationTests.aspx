@@ -92,12 +92,13 @@
             var BUTTON_TRIGGER_CLIENT_ID = "<%= btnTrigger.ClientID %>";
             var BUTTON_NON_TRIGGER_CLIENT_ID = "<%= btnNonTrigger.ClientID %>";
             var DROPDOWNLIST_CLIENT_ID = "<%= TestDropDownList.ClientID %>";
+            var playSpy;
 
             describe("Postback", function() {
 
                 beforeEach(function() {
                     this.extender = $find("animation");
-                    spyOn(this.extender._onUpdating.__proto__, 'play');
+                    playSpy = spyOn(this.extender._onUpdating.__proto__, 'play');
                     spyOn(window, 'onUpdating');
                     spyOn(window, 'onUpdated');
                 });
