@@ -216,6 +216,11 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
     },
     clearHandlers: function () {
+        var optionListParent = this.get_optionListControl().parentElement;
+        while(optionListParent) {
+            $clearHandlers(optionListParent);
+            optionListParent = optionListParent.parentElement;
+        }
 
         $clearHandlers(this.get_optionListControl());
         $clearHandlers(this.get_textBoxControl());
