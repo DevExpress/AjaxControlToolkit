@@ -138,6 +138,7 @@ Sys.Extended.UI.ComboBox.prototype = {
         this._popupShowingHandler = Function.createDelegate(this, this._popupShowing);
         this._popupShownHandler = Function.createDelegate(this, this._popupShown);
         this._popupHidingHandler = Function.createDelegate(this, this._popupHiding);
+        this._scrollHandler = Function.createDelegate(this, this._onScroll);
 
     },
     clearDelegates: function () {
@@ -206,6 +207,12 @@ Sys.Extended.UI.ComboBox.prototype = {
         else {
             $addHandler(optionListControl, 'mousewheel', this._listMouseWheelHandler);
             $addHandler(document, 'mousewheel', this._documentMouseWheelHandler);
+        }
+
+        var parent = optionListControl.parentElement;
+        while(parent) {
+            $addHandler(parent, 'scroll', this._scrollHandler);
+            parent = parent.parentElement;
         }
     },
     clearHandlers: function () {
@@ -895,6 +902,11 @@ Sys.Extended.UI.ComboBox.prototype = {
         }
         return true;
 
+    },
+    _onScroll: function(e) {
+        if(this._popupBehavior._visible) {
+            this._popupBehavior.hide();
+        }
     },
     _handleTextBoxFocus: function (e) {
 

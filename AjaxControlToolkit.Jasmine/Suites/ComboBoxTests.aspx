@@ -6,10 +6,16 @@
 
 <asp:Content ContentPlaceHolderID="TestSuite" runat="server">
 
-    <act:ComboBox runat="server"
-        ID="TargetExtender"
-        DropDownStyle="DropDownList"
-        AutoCompleteMode="SuggestAppend" />
+    <div style="height:50px; overflow-y: scroll;">
+        Content<br />
+        Content<br />
+        Content<br />
+        Content<br />
+        <act:ComboBox runat="server"
+            ID="TargetExtender"
+            DropDownStyle="DropDownList"
+            AutoCompleteMode="SuggestAppend" />
+    </div>
 
     <script>
         function parseStyle(style) {
@@ -258,6 +264,16 @@
                     this.extender._handleArrowKey(this.keyDownEvent);
                     this.extender._handleEnterKey(this.enterPressEvent);
                     expect(__doPostBack).not.toHaveBeenCalled();
+                });
+
+                it("closes option list on scroll", function (done) {
+                    this.$button.click();
+                    this.$element.parent()[0].scrollTop += 1;
+
+                    var self = this;
+                    waitFor(function () {
+                        return !self.$itemsContainer.is(":visible")
+                    }, done);
                 });
             });
         });
