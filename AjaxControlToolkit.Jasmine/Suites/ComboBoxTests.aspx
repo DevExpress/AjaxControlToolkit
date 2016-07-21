@@ -272,7 +272,7 @@
 
                     var self = this;
                     waitFor(function () {
-                        return !self.$itemsContainer.is(":visible")
+                        return !self.$itemsContainer.is(":visible");
                     }, done);
                 });
             });
