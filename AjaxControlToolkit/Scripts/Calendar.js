@@ -1766,7 +1766,6 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
             result.setHours(Number(time[1]));
             result.setMinutes(Number(time[2]));
             result.setSeconds(Number(time[3]));
-            result.setMilliseconds(Number(String(time[4]).substr(0, 3)) || 0);
         }
         return result;
     }
