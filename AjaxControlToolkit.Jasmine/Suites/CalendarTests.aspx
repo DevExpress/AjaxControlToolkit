@@ -453,7 +453,6 @@
                 });
 
                 it("parses date correctly", function () {
-                    debugger;
                     var date = this.extender.parseDateSortableFormat("2016-07-25T13:08:55");
                     var expectedDate = new Date(2016, 6, 25, 13, 8, 55);
                     
