@@ -301,15 +301,15 @@ Sys.Extended.UI.FirstDayOfWeek.prototype = {
 }
 Sys.Extended.UI.FirstDayOfWeek.registerEnum("Sys.Extended.UI.FirstDayOfWeek");
 
-function isArray(obj) {
-    return Object.prototype.toString.call(obj) === "[object Array]";
-}
+Date.fromISO = function (isoString) {
+    function isArray(obj) {
+        return Object.prototype.toString.call(obj) === "[object Array]";
+    }
 
-function parseISO8601(isoString) {
     var result = new Date(60 * new Date(0).getTimezoneOffset() * 1e3),
         chunks = isoString.replace("Z", "").split("T"),
-        date = /(\d{4})-(\d{2})-(\d{2})/.exec(chunks[0]),
-        time = /(\d{2}):(\d{2}):(\d{2})\.?(\d{0,7})?/.exec(chunks[1]);
+        date = /(\d{4})-?(\d{2})-?(\d{2})/.exec(chunks[0]),
+        time = /(\d{2}):?(\d{2}):?(\d{2})\.?(\d{0,7})?/.exec(chunks[1]);
     result.setFullYear(Number(date[1]));
     result.setMonth(Number(date[2]) - 1);
     result.setDate(Number(date[3]));
