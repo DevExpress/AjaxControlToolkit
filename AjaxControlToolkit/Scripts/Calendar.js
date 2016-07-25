@@ -1756,7 +1756,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
     parseDateSortableFormat: function (dateString) {
         var result = new Date(60 * new Date(0).getTimezoneOffset() * 1e3),
-        chunks = dateString.replace("Z", "").split("T"),
+        chunks = dateString.split("T"),
         date = /(\d{4})-(\d{2})-(\d{2})/.exec(chunks[0]),
         time = /(\d{2}):(\d{2}):(\d{2})\.?(\d{0,7})?/.exec(chunks[1]);
         result.setFullYear(Number(date[1]));
