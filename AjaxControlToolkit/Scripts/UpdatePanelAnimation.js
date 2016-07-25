@@ -68,7 +68,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
 
         if(!this._postBackPending) {
             if(this._triggerControlsClientID.length == 0
-                || this._triggerControlsClientID.indexOf(sender._activeElement.id) != -1)
+                || this._triggerControlsClientID.indexOf(beginRequestEventArgs._postBackElement.id) != -1)
             {
                 this._postBackPending = true;
                 this._onUpdated.quit();
