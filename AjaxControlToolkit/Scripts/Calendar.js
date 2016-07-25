@@ -324,7 +324,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
     set_selectedDate: function(value) {
         if(value && (String.isInstanceOfType(value)) && (value.length != 0)) {
-            value = Date.fromISO(value);
+            value = parseISO8601(value);
         }
 
         if(this._selectedDate != value) {

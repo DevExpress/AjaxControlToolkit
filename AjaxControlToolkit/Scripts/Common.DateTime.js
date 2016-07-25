@@ -301,35 +301,23 @@ Sys.Extended.UI.FirstDayOfWeek.prototype = {
 }
 Sys.Extended.UI.FirstDayOfWeek.registerEnum("Sys.Extended.UI.FirstDayOfWeek");
 
-(function(){
-    var D= new Date('2011-06-02T09:34:29+02:00');
-    if(!D || +D!== 1307000069000){
-        Date.fromISO= function(s){
-            var day, tz,
-            rx=/^(\d{4}\-\d\d\-\d\d([tT ][\d:\.]*)?)([zZ]|([+\-])(\d\d):(\d\d))?$/,
-            p= rx.exec(s) || [];
-            if(p[1]){
-                day= p[1].split(/\D/);
-                for(var i= 0, L= day.length; i<L; i++){
-                    day[i]= parseInt(day[i], 10) || 0;
-                };
-                day[1]-= 1;
-                day= new Date(Date.UTC.apply(Date, day));
-                if(!day.getDate()) return NaN;
-                if(p[5]){
-                    tz= (parseInt(p[5], 10)*60);
-                    if(p[6]) tz+= parseInt(p[6], 10);
-                    if(p[4]== '+') tz*= -1;
-                    if(tz) day.setUTCMinutes(day.getUTCMinutes()+ tz);
-                }
-                return day;
-            }
-            return NaN;
-        }
+function isArray(obj) {
+    return Object.prototype.toString.call(obj) === "[object Array]";
+}
+
+function parseISO8601(isoString) {
+    var result = new Date(60 * new Date(0).getTimezoneOffset() * 1e3),
+        chunks = isoString.replace("Z", "").split("T"),
+        date = /(\d{4})-(\d{2})-(\d{2})/.exec(chunks[0]),
+        time = /(\d{2}):(\d{2}):(\d{2})\.?(\d{0,7})?/.exec(chunks[1]);
+    result.setFullYear(Number(date[1]));
+    result.setMonth(Number(date[2]) - 1);
+    result.setDate(Number(date[3]));
+    if(isArray(time) && time.length) {
+        result.setHours(Number(time[1]));
+        result.setMinutes(Number(time[2]));
+        result.setSeconds(Number(time[3]));
+        result.setMilliseconds(Number(String(time[4]).substr(0, 3)) || 0)
     }
-    else{
-        Date.fromISO= function(s){
-            return new Date(s);
-        }
-    }
-})()
+    return result;
+}
