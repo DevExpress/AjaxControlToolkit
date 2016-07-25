@@ -447,33 +447,16 @@
                 });
             });
 
-            describe("Date", function() {
-               
+            describe("Parsing", function () {
+                beforeEach(function () {
+                    this.extender = $find(CALENDAR_EXTENDER_CLIENT_ID);
+                });
+
                 it("parses date correctly", function () {
-                    var date = Date.fromISO("2016-07-25");
-                    var expectedDate = new Date(2016, 6, 25);
-
-                    expect(date.getTime()).toBe(expectedDate.getTime());
-                });
-
-                it("ignores UTC offset", function () {
-                    var date = Date.fromISO("2016-07-25T09:27:50+12:34");
-                    var expectedDate = new Date(2016, 6, 25, 9, 27, 50);
-
-                    expect(date.getTime()).toBe(expectedDate.getTime());
-                });
-
-                it("parses UTC date correctly", function () {
-                    var date = Date.fromISO("2016-07-25T09:27:50Z");
-                    var expectedDate = new Date(2016, 6, 25, 9, 27, 50);
-
-                    expect(date.getTime()).toBe(expectedDate.getTime());
-                });
-
-                it("parses UTC date correctly", function () {
-                    var date = Date.fromISO("20160725T092750Z");
-                    var expectedDate = new Date(2016, 6, 25, 9, 27, 50);
-
+                    debugger;
+                    var date = this.extender.parseDateSortableFormat("2016-07-25T13:08:55");
+                    var expectedDate = new Date(2016, 6, 25, 13, 8, 55);
+                    
                     expect(date.getTime()).toBe(expectedDate.getTime());
                 });
             });

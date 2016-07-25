@@ -300,24 +300,3 @@ Sys.Extended.UI.FirstDayOfWeek.prototype = {
     Default : 7
 }
 Sys.Extended.UI.FirstDayOfWeek.registerEnum("Sys.Extended.UI.FirstDayOfWeek");
-
-Date.fromISO = function (isoString) {
-    function isArray(obj) {
-        return Object.prototype.toString.call(obj) === "[object Array]";
-    }
-
-    var result = new Date(60 * new Date(0).getTimezoneOffset() * 1e3),
-        chunks = isoString.replace("Z", "").split("T"),
-        date = /(\d{4})-?(\d{2})-?(\d{2})/.exec(chunks[0]),
-        time = /(\d{2}):?(\d{2}):?(\d{2})\.?(\d{0,7})?/.exec(chunks[1]);
-    result.setFullYear(Number(date[1]));
-    result.setMonth(Number(date[2]) - 1);
-    result.setDate(Number(date[3]));
-    if(isArray(time) && time.length) {
-        result.setHours(Number(time[1]));
-        result.setMinutes(Number(time[2]));
-        result.setSeconds(Number(time[3]));
-        result.setMilliseconds(Number(String(time[4]).substr(0, 3)) || 0)
-    }
-    return result;
-}

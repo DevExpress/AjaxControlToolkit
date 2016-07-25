@@ -324,7 +324,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
     set_selectedDate: function(value) {
         if(value && (String.isInstanceOfType(value)) && (value.length != 0)) {
-            value = Date.fromISO(value);
+            value = this.parseDateSortableFormat(value);
         }
 
         if(this._selectedDate != value) {
@@ -1753,6 +1753,22 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         }
         // make sure we clean up the flag due to issues with alert/alt-tab/etc
         this._popupMouseDown = false;
+    },
+    parseDateSortableFormat: function (dateString) {
+        var result = new Date(60 * new Date(0).getTimezoneOffset() * 1e3),
+        chunks = dateString.replace("Z", "").split("T"),
+        date = /(\d{4})-(\d{2})-(\d{2})/.exec(chunks[0]),
+        time = /(\d{2}):(\d{2}):(\d{2})\.?(\d{0,7})?/.exec(chunks[1]);
+        result.setFullYear(Number(date[1]));
+        result.setMonth(Number(date[2]) - 1);
+        result.setDate(Number(date[3]));
+        if(time.length) {
+            result.setHours(Number(time[1]));
+            result.setMinutes(Number(time[2]));
+            result.setSeconds(Number(time[3]));
+            result.setMilliseconds(Number(String(time[4]).substr(0, 3)) || 0);
+        }
+        return result;
     }
 }
 Sys.Extended.UI.CalendarBehavior.registerClass("Sys.Extended.UI.CalendarBehavior", Sys.Extended.UI.BehaviorBase);
