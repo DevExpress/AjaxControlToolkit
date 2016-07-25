@@ -1756,12 +1756,14 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
     parseDateSortableFormat: function (dateString) {
         var result = new Date(60 * new Date(0).getTimezoneOffset() * 1e3),
-        chunks = dateString.split("T"),
-        date = /(\d{4})-(\d{2})-(\d{2})/.exec(chunks[0]),
-        time = /(\d{2}):(\d{2}):(\d{2})\.?(\d{0,7})?/.exec(chunks[1]);
+            chunks = dateString.split("T"),
+            date = /(\d{4})-(\d{2})-(\d{2})/.exec(chunks[0]),
+            time = /(\d{2}):(\d{2}):(\d{2})\.?(\d{0,7})?/.exec(chunks[1]);
+
         result.setFullYear(Number(date[1]));
         result.setMonth(Number(date[2]) - 1);
         result.setDate(Number(date[3]));
+
         if(time.length) {
             result.setHours(Number(time[1]));
             result.setMinutes(Number(time[2]));
