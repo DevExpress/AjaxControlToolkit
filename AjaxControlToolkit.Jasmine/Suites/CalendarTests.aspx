@@ -446,6 +446,37 @@
                     expect(this.selectedDateExtender._selectedDate.localeFormat(this.selectedDateExtender._format)).toBe(this.selectedDateExtender._textbox.get_Value());
                 });
             });
+
+            describe("Date", function() {
+               
+                it("parses date correctly", function () {
+                    var date = Date.fromISO("2016-07-25");
+                    var expectedDate = new Date(2016, 6, 25);
+
+                    expect(date.getTime()).toBe(expectedDate.getTime());
+                });
+
+                it("ignores UTC offset", function () {
+                    var date = Date.fromISO("2016-07-25T09:27:50+12:34");
+                    var expectedDate = new Date(2016, 6, 25, 9, 27, 50);
+
+                    expect(date.getTime()).toBe(expectedDate.getTime());
+                });
+
+                it("parses UTC date correctly", function () {
+                    var date = Date.fromISO("2016-07-25T09:27:50Z");
+                    var expectedDate = new Date(2016, 6, 25, 9, 27, 50);
+
+                    expect(date.getTime()).toBe(expectedDate.getTime());
+                });
+
+                it("parses UTC date correctly", function () {
+                    var date = Date.fromISO("20160725T092750Z");
+                    var expectedDate = new Date(2016, 6, 25, 9, 27, 50);
+
+                    expect(date.getTime()).toBe(expectedDate.getTime());
+                });
+            });
         });
     </script>
 
