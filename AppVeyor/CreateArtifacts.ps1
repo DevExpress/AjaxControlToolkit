@@ -1,4 +1,4 @@
-if($env:APPVEYOR_SCHEDULED_BUILD)
+#if($env:APPVEYOR_SCHEDULED_BUILD)
 {
 	New-Item AjaxControlToolkit.StaticResources\Content\AjaxControlToolkit\Images -type directory
 	New-Item AjaxControlToolkit.StaticResources\Content\AjaxControlToolkit\Styles -type directory
@@ -16,7 +16,7 @@ if($env:APPVEYOR_SCHEDULED_BUILD)
 
 	7z a AjaxControlToolkit.SampleSite.zip AjaxControlToolkit.SampleSite\
 
-	Push-Location -Path "bin\$env:CONFIGURATION"
+	Push-Location -Path "bin\Release"
 	7z a ..\..\AjaxControlToolkit-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.???
 	Pop-Location
 }
