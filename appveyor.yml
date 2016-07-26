@@ -23,10 +23,7 @@ before_build:
 build:
   project: AjaxControlToolkit.sln
   publish_wap: true
-  verbosity: minimal
-  
-after_build:
-- ps: '& "AppVeyor\CreateArtifacts.ps1"'
+  verbosity: minimal  
   
 artifacts:
   - path: AjaxControlToolkit-nightly-*.zip
@@ -40,3 +37,4 @@ test:
 
 after_test:
 - ps: '& "AppVeyor\BuildCoreProjectInRelease.ps1"'
+- ps: '& "AppVeyor\CreateArtifacts.ps1"'
