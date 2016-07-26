@@ -9,10 +9,10 @@ Copy-Item -Path AjaxControlToolkit.StaticResources\Scripts\Debug\* -Destination 
 Copy-Item -Path AjaxControlToolkit.StaticResources\Scripts\Release\* -Destination AjaxControlToolkit.StaticResources\Scripts\AjaxControlToolkit\Release -Recurse 
 
 Push-Location -Path "AjaxControlToolkit.StaticResources"
-7z a ..\AjaxControlToolkit.StaticResources.zip Content\AjaxControlToolkit\Images -ir!Content\AjaxControlToolkit\Styles\* -ir!Scripts\AjaxControlToolkit\Debug\* -ir!Scripts\AjaxControlToolkit\Release\*
+7z a ..\AjaxControlToolkit.StaticResources-nightly-$env:APPVEYOR_BUILD_NUMBER.zip Content\AjaxControlToolkit\Images -ir!Content\AjaxControlToolkit\Styles\* -ir!Scripts\AjaxControlToolkit\Debug\* -ir!Scripts\AjaxControlToolkit\Release\*
 Pop-Location
 
-7z a AjaxControlToolkit.SampleSite.zip AjaxControlToolkit.SampleSite\
+7z a AjaxControlToolkit.SampleSite-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.SampleSite\
 
 Push-Location -Path "bin\Release"
 7z a ..\..\AjaxControlToolkit-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.??? -ir!AjaxControlToolkit.HtmlEditor.Sanitizer.??? -ir!AjaxControlToolkit.StaticResources.???
