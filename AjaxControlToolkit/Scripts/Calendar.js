@@ -1755,21 +1755,15 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         this._popupMouseDown = false;
     },
     parseDateSortableFormat: function (dateString) {
-        var result = new Date(60 * new Date(0).getTimezoneOffset() * 1e3),
-            chunks = dateString.split("T"),
-            date = /(\d{4})-(\d{2})-(\d{2})/.exec(chunks[0]),
-            time = /(\d{2}):(\d{2}):(\d{2})\.?(\d{0,7})?/.exec(chunks[1]);
+        var dateParts = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\.?(\d{0,7})?/.exec(dateString);
 
-        result.setFullYear(Number(date[1]));
-        result.setMonth(Number(date[2]) - 1);
-        result.setDate(Number(date[3]));
-
-        if(time.length) {
-            result.setHours(Number(time[1]));
-            result.setMinutes(Number(time[2]));
-            result.setSeconds(Number(time[3]));
-        }
-        return result;
+        return new Date(
+            dateParts[1],
+            dateParts[2] - 1,
+            dateParts[3],
+            dateParts[4],
+            dateParts[5],
+            dateParts[6]);
     }
 }
 Sys.Extended.UI.CalendarBehavior.registerClass("Sys.Extended.UI.CalendarBehavior", Sys.Extended.UI.BehaviorBase);
