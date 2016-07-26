@@ -12,13 +12,11 @@ install:
 environment:
   AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
 
-configuration:
-  - Release
-  - Debug
- 
 cache:
   - packages -> **\packages.config
 
+services: iis
+  
 before_build:
   - ps: nuget restore
 
@@ -34,10 +32,11 @@ artifacts:
   - path: AjaxControlToolkit-nightly-*.zip
   - path: AjaxControlToolkit.StaticResources.zip
 
-test:
-  assemblies: bin\$(configuration)\AjaxControlToolkit.Tests.dll
- 
-services: iis
- 
 before_test:
 - ps: '& "AppVeyor\DeployJasmineSite.ps1"'
+  
+test:
+  assemblies: bin\Debug\AjaxControlToolkit.Tests.dll
+
+after_test:
+- ps: '& "AppVeyor\BuildCoreProjectInRelease.ps1"'

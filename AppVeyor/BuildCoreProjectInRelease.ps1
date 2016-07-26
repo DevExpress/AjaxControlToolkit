@@ -1,0 +1,1 @@
+msbuild "AjaxControlToolkit\AjaxControlToolkit.csproj" /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
