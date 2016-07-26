@@ -15,5 +15,5 @@ Pop-Location
 7z a AjaxControlToolkit.SampleSite.zip AjaxControlToolkit.SampleSite\
 
 Push-Location -Path "bin\Release"
-7z a ..\..\AjaxControlToolkit-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.???
+7z a ..\..\AjaxControlToolkit-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.??? -ir!AjaxControlToolkit.HtmlEditor.Sanitizer.??? -ir!AjaxControlToolkit.StaticResources.???
 Pop-Location
