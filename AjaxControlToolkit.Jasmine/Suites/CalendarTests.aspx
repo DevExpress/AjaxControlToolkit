@@ -446,6 +446,19 @@
                     expect(this.selectedDateExtender._selectedDate.localeFormat(this.selectedDateExtender._format)).toBe(this.selectedDateExtender._textbox.get_Value());
                 });
             });
+
+            describe("Parsing", function () {
+                beforeEach(function () {
+                    this.extender = $find(CALENDAR_EXTENDER_CLIENT_ID);
+                });
+
+                it("parses date correctly", function () {
+                    var date = this.extender._parseDateSortableFormat("2016-07-25T13:08:55");
+                    var expectedDate = new Date(2016, 6, 25, 13, 8, 55);
+                    
+                    expect(date.getTime()).toBe(expectedDate.getTime());
+                });
+            });
         });
     </script>
 

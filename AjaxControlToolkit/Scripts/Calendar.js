@@ -324,7 +324,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
     set_selectedDate: function(value) {
         if(value && (String.isInstanceOfType(value)) && (value.length != 0)) {
-            value = Date.fromISO(value);
+            value = this._parseDateSortableFormat(value);
         }
 
         if(this._selectedDate != value) {
@@ -1753,6 +1753,17 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         }
         // make sure we clean up the flag due to issues with alert/alt-tab/etc
         this._popupMouseDown = false;
+    },
+    _parseDateSortableFormat: function (dateString) {
+        var dateParts = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\.?(\d{0,7})?/.exec(dateString);
+
+        return new Date(
+            dateParts[1],
+            dateParts[2] - 1,
+            dateParts[3],
+            dateParts[4],
+            dateParts[5],
+            dateParts[6]);
     }
 }
 Sys.Extended.UI.CalendarBehavior.registerClass("Sys.Extended.UI.CalendarBehavior", Sys.Extended.UI.BehaviorBase);
