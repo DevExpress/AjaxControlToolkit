@@ -20,6 +20,15 @@ Pop-Location
 $sampleSiteFolder = "AjaxControlToolkit.SampleSite\"
 Copy-Item AppVeyor\SampleSite.sln -Destination $sampleSiteFolder
 nuget restore "$sampleSiteFolder\packages.config" -SolutionDirectory $sampleSiteFolder
+$sampleSiteBinFolder = Join-Path $siteFolderPath "bin"
+Get-ChildItem $sampleSiteBinFolder -Filter *.refresh | `
+ForEach-Object {
+	$content = Get-Content $_.FullName
+	$content = $content -replace "^\.\.\\", ""
+	$content | Out-File $_.FullName
+}
+msbuild "$sampleSiteFolder\SampleSite.sln"
+
 Copy-Item "bin\Release\AjaxControlToolkit.dll" -Destination "$sampleSiteFolder\bin"
 Copy-Item "bin\Release\AjaxControlToolkit.HtmlEditor.Sanitizer.dll" -Destination "$sampleSiteFolder\bin"
 
