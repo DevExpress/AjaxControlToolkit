@@ -19,8 +19,8 @@ Pop-Location
 
 $sampleSiteFolder = "AjaxControlToolkit.SampleSite\"
 Copy-Item AppVeyor\SampleSite.sln -Destination $sampleSiteFolder
-nuget restore "$siteFolderPath\packages.config" -SolutionDirectory $sampleSiteFolder
+nuget restore "$sampleSiteFolder\packages.config" -SolutionDirectory $sampleSiteFolder
 Copy-Item "bin\Release\AjaxControlToolkit.dll" -Destination "$sampleSiteFolder\bin"
 Copy-Item "bin\Release\AjaxControlToolkit.HtmlEditor.Sanitizer.dll" -Destination "$sampleSiteFolder\bin"
 
-7z a AjaxControlToolkit.SampleSite-nightly-$env:APPVEYOR_BUILD_NUMBER.zip $(sampleSiteFolder)
+7z a AjaxControlToolkit.SampleSite-nightly-$env:APPVEYOR_BUILD_NUMBER.zip $sampleSiteFolder
