@@ -8,16 +8,16 @@ Copy-Item -Path AjaxControlToolkit.StaticResources\Styles\* -Destination AjaxCon
 Copy-Item -Path AjaxControlToolkit.StaticResources\Scripts\Debug\* -Destination AjaxControlToolkit.StaticResources\Scripts\AjaxControlToolkit\Debug -Recurse 
 Copy-Item -Path AjaxControlToolkit.StaticResources\Scripts\Release\* -Destination AjaxControlToolkit.StaticResources\Scripts\AjaxControlToolkit\Release -Recurse 
 
+$archiveSuffix = "preview"
+
 Push-Location -Path "AjaxControlToolkit.StaticResources"
-7z a ..\AjaxControlToolkit.StaticResources-nightly-$env:APPVEYOR_BUILD_NUMBER.zip Content\AjaxControlToolkit\Images -ir!Content\AjaxControlToolkit\Styles\* -ir!Scripts\AjaxControlToolkit\Debug\* -ir!Scripts\AjaxControlToolkit\Release\* ..\bin\Release\AjaxControlToolkit.StaticResources.???
+7z a ..\AjaxControlToolkit.StaticResources-$archiveSuffix-$env:APPVEYOR_BUILD_NUMBER.zip Content\AjaxControlToolkit\Images -ir!Content\AjaxControlToolkit\Styles\* -ir!Scripts\AjaxControlToolkit\Debug\* -ir!Scripts\AjaxControlToolkit\Release\* ..\bin\Release\AjaxControlToolkit.StaticResources.???
 Pop-Location
 
 Push-Location -Path "bin\Release"
-7z a ..\..\AjaxControlToolkit-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.??? 
-7z a ..\..\AjaxControlToolkit.HtmlEditor.Sanitizer-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.HtmlEditor.Sanitizer.???
+7z a ..\..\AjaxControlToolkit-$archiveSuffix-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.??? 
+7z a ..\..\AjaxControlToolkit.HtmlEditor.Sanitizer-$archiveSuffix-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.HtmlEditor.Sanitizer.???
 Pop-Location
-
-
 
 $sampleSiteFolder = "AjaxControlToolkit.SampleSite\"
 Copy-Item "bin\Release\AjaxControlToolkit.dll" -Destination "$sampleSiteFolder\bin"
@@ -36,4 +36,4 @@ Remove-Item "$sampleSiteFolder\bin\*" -Exclude *.dll
 Remove-Item "$sampleSiteFolder\packages" -Recurse -Force
 Remove-Item "$sampleSiteFolder\packages.config"
 
-7z a AjaxControlToolkit.SampleSite-nightly-$env:APPVEYOR_BUILD_NUMBER.zip $sampleSiteFolder
+7z a AjaxControlToolkit.SampleSite-$archiveSuffix-$env:APPVEYOR_BUILD_NUMBER.zip $sampleSiteFolder

@@ -26,10 +26,10 @@ build:
   verbosity: minimal  
   
 artifacts:
-  - path: AjaxControlToolkit-nightly-*.zip
-  - path: AjaxControlToolkit.StaticResources-nightly-*.zip
-  - path: AjaxControlToolkit.HtmlEditor.Sanitizer-nightly-*.zip
-  - path: AjaxControlToolkit.SampleSite-nightly-*.zip
+  - path: AjaxControlToolkit-preview-*.zip
+  - path: AjaxControlToolkit.StaticResources-preview-*.zip
+  - path: AjaxControlToolkit.HtmlEditor.Sanitizer-preview-*.zip
+  - path: AjaxControlToolkit.SampleSite-preview-*.zip
 
 before_test:
 - ps: '& "AppVeyor\DeployJasmineSite.ps1"'
