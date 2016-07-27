@@ -70,7 +70,7 @@ namespace AjaxControlToolkit.Reference.Core {
                 _markupStringBuilder.Append(
                     _renderer.RenderListItem(
                         String.Format("Item {0} - {1}",
-                            _renderer.RenderUrl(issue.Number.ToString(), issue.Url),
+                            _renderer.RenderUrl(issue.Number.ToString(), issue.Html_Url),
                             _renderer.RenderText(issue.Title))));
 
                 issueCounter++;
@@ -91,7 +91,7 @@ namespace AjaxControlToolkit.Reference.Core {
             _markupStringBuilder.Append(_renderer.RenderNewParagraph());
 
             foreach(var issue in invalidIssues)
-                _markupStringBuilder.Append(_renderer.RenderListItem(_renderer.RenderUrl(issue.Title, issue.Url)));
+                _markupStringBuilder.Append(_renderer.RenderListItem(_renderer.RenderUrl(issue.Title, issue.Html_Url)));
         }
     }
 }

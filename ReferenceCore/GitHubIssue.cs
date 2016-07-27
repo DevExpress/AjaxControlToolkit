@@ -6,7 +6,7 @@ using System.Text;
 namespace AjaxControlToolkit.Reference {
     public class GitHubIssue {
 
-        public string Url { get; set; }
+        public string Html_Url { get; set; }
         public int Number { get; set; }
         public string Title { get; set; }
         public List<GitHubLabel> Labels;
