@@ -17,6 +17,8 @@ Push-Location -Path "bin\Release"
 7z a ..\..\AjaxControlToolkit.HtmlEditor.Sanitizer-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.HtmlEditor.Sanitizer.???
 Pop-Location
 
+
+
 $sampleSiteFolder = "AjaxControlToolkit.SampleSite\"
 Copy-Item "bin\Release\AjaxControlToolkit.dll" -Destination "$sampleSiteFolder\bin"
 Copy-Item "bin\Release\AjaxControlToolkit.HtmlEditor.Sanitizer.dll" -Destination "$sampleSiteFolder\bin"
@@ -27,7 +29,7 @@ Get-ChildItem $sampleSiteBinFolder -Filter *.refresh | `
 ForEach-Object {
 	$content = Get-Content $_.FullName
 	$dllFileName = $content -replace "^\.\.\\", ""
-	Copy-Item "$sampleSiteBinFolder/$dllFileName" $sampleSiteBinFolder -Force
+	Copy-Item "$sampleSiteFolder/$dllFileName" $sampleSiteBinFolder -Force
 }
 
 Remove-Item "$sampleSiteFolder\bin\*" -Exclude *.dll
