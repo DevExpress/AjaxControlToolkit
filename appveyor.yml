@@ -28,6 +28,7 @@ build:
 artifacts:
   - path: AjaxControlToolkit-nightly-*.zip
   - path: AjaxControlToolkit.StaticResources-nightly-*.zip
+  - path: AjaxControlToolkit.HtmlEditor.Sanitizer-nightly-*.zip
   - path: AjaxControlToolkit.SampleSite-nightly-*.zip
 
 before_test:
