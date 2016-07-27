@@ -22,6 +22,7 @@ Pop-Location
 $sampleSiteFolder = "AjaxControlToolkit.SampleSite\"
 Copy-Item "bin\Release\AjaxControlToolkit.dll" -Destination "$sampleSiteFolder\bin"
 Copy-Item "bin\Release\AjaxControlToolkit.HtmlEditor.Sanitizer.dll" -Destination "$sampleSiteFolder\bin"
+Copy-Item "bin\Release\AjaxControlToolkit.StaticResources.dll" -Destination "$sampleSiteFolder\bin"
 Copy-Item AppVeyor\SampleSite.sln -Destination $sampleSiteFolder
 nuget restore "$sampleSiteFolder\packages.config" -SolutionDirectory $sampleSiteFolder
 $sampleSiteBinFolder = Join-Path $sampleSiteFolder "bin"
