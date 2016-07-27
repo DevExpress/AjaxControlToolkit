@@ -20,7 +20,7 @@ Pop-Location
 $sampleSiteFolder = "AjaxControlToolkit.SampleSite\"
 Copy-Item AppVeyor\SampleSite.sln -Destination $sampleSiteFolder
 nuget restore "$sampleSiteFolder\packages.config" -SolutionDirectory $sampleSiteFolder
-$sampleSiteBinFolder = Join-Path $siteFolderPath "bin"
+$sampleSiteBinFolder = Join-Path $sampleSiteFolder "bin"
 Get-ChildItem $sampleSiteBinFolder -Filter *.refresh | `
 ForEach-Object {
 	$content = Get-Content $_.FullName
