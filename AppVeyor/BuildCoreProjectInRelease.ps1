@@ -1,2 +1,0 @@
-msbuild "AjaxControlToolkit.LinkStaticResources\AjaxControlToolkit.LinkStaticResources.csproj" /p:Configuration=Release /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-msbuild "AjaxControlToolkit\AjaxControlToolkit.csproj" /p:Configuration=Release /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
