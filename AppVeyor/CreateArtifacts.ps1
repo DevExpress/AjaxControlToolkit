@@ -8,7 +8,7 @@ Copy-Item -Path AjaxControlToolkit.StaticResources\Styles\* -Destination AjaxCon
 Copy-Item -Path AjaxControlToolkit.StaticResources\Scripts\Debug\* -Destination AjaxControlToolkit.StaticResources\Scripts\AjaxControlToolkit\Debug -Recurse 
 Copy-Item -Path AjaxControlToolkit.StaticResources\Scripts\Release\* -Destination AjaxControlToolkit.StaticResources\Scripts\AjaxControlToolkit\Release -Recurse 
 
-$archiveSuffix = "preview"
+$archiveSuffix = "build"
 
 Push-Location -Path "AjaxControlToolkit.StaticResources"
 7z a ..\AjaxControlToolkit.StaticResources-$archiveSuffix-$env:APPVEYOR_BUILD_NUMBER.zip Content\AjaxControlToolkit\Images -ir!Content\AjaxControlToolkit\Styles\* -ir!Scripts\AjaxControlToolkit\Debug\* -ir!Scripts\AjaxControlToolkit\Release\* ..\bin\Release\AjaxControlToolkit.StaticResources.???
