@@ -33,4 +33,9 @@ Push-Location -Path $sampleSiteFolder
 msbuild "SampleSite.sln"
 Pop-Location
 
+Remove-Item "$sampleSiteFolder\bin\*" -Exclude *.dll
+Remove-Item "$sampleSiteFolder\packages" -Recurse -Force
+Remove-Item "$sampleSiteFolder\PrecompiledWeb" -Recurse -Force
+Remove-Item "$sampleSiteFolder\packages.config"
+
 7z a AjaxControlToolkit.SampleSite-nightly-$env:APPVEYOR_BUILD_NUMBER.zip $sampleSiteFolder
