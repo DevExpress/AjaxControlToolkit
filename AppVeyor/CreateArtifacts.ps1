@@ -26,16 +26,12 @@ $sampleSiteBinFolder = Join-Path $sampleSiteFolder "bin"
 Get-ChildItem $sampleSiteBinFolder -Filter *.refresh | `
 ForEach-Object {
 	$content = Get-Content $_.FullName
-	$content = $content -replace "^\.\.\\", ""
-	$content | Out-File $_.FullName
+	$dllFileName = $content -replace "^\.\.\\", ""
+	Copy-Item "$sampleSiteBinFolder/$dllFileName" $sampleSiteBinFolder -Force
 }
-Push-Location -Path $sampleSiteFolder
-msbuild "SampleSite.sln"
-Pop-Location
 
 Remove-Item "$sampleSiteFolder\bin\*" -Exclude *.dll
 Remove-Item "$sampleSiteFolder\packages" -Recurse -Force
-Remove-Item "$sampleSiteFolder\PrecompiledWeb" -Recurse -Force
 Remove-Item "$sampleSiteFolder\packages.config"
 
 7z a AjaxControlToolkit.SampleSite-nightly-$env:APPVEYOR_BUILD_NUMBER.zip $sampleSiteFolder
