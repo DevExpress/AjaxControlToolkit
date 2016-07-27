@@ -27,7 +27,9 @@ ForEach-Object {
 	$content = $content -replace "^\.\.\\", ""
 	$content | Out-File $_.FullName
 }
-msbuild "$sampleSiteFolder\SampleSite.sln"
+Push-Location -Path $sampleSiteFolder
+msbuild "SampleSite.sln"
+Pop-Location
 
 Copy-Item "bin\Release\AjaxControlToolkit.dll" -Destination "$sampleSiteFolder\bin"
 Copy-Item "bin\Release\AjaxControlToolkit.HtmlEditor.Sanitizer.dll" -Destination "$sampleSiteFolder\bin"
