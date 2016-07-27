@@ -12,12 +12,9 @@ Push-Location -Path "AjaxControlToolkit.StaticResources"
 7z a ..\AjaxControlToolkit.StaticResources-nightly-$env:APPVEYOR_BUILD_NUMBER.zip Content\AjaxControlToolkit\Images -ir!Content\AjaxControlToolkit\Styles\* -ir!Scripts\AjaxControlToolkit\Debug\* -ir!Scripts\AjaxControlToolkit\Release\* ..\bin\Release\AjaxControlToolkit.StaticResources.???
 Pop-Location
 
-Push-Location -Path "AjaxControlToolkit.HtmlEditor.Sanitizer"
-7z a ..\AjaxControlToolkit.HtmlEditor.Sanitizer-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.HtmlEditor.Sanitizer.???
-Pop-Location
-
 Push-Location -Path "bin\Release"
 7z a ..\..\AjaxControlToolkit-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.??? 
+7z a ..\..\AjaxControlToolkit.HtmlEditor.Sanitizer-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.HtmlEditor.Sanitizer.???
 Pop-Location
 
 7z a AjaxControlToolkit.SampleSite-nightly-$env:APPVEYOR_BUILD_NUMBER.zip AjaxControlToolkit.SampleSite\
