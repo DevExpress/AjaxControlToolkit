@@ -25,7 +25,7 @@ namespace AjaxControlToolkit.Tests {
         }
 
         static string GetScriptFolder() {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\AjaxControlToolkit\Scripts");
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\AjaxControlToolkit\Scripts");
         }
 
         static string GetXmlDocFolder() {
