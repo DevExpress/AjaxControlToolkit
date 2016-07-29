@@ -45,7 +45,7 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         private void BuildSpecificIssues(IEnumerable<GitHubIssue> specificIssues) {
-            foreach(var typeName in ToolkitTypes.GetIssueTypeNames()) {
+            foreach(var typeName in ToolkitTypes.GetIssueTypeNames().OrderBy(name => name)) {
                 var typeIssues = specificIssues.Where(issue => issue.Labels.Select(label => label.Name).Contains(typeName));
 
                 if(typeIssues.Any())
