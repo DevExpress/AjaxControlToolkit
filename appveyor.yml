@@ -7,7 +7,7 @@ init:
 
 install:
 # Workaround for NUnit Console Runner v3.2.1 timeout bug (#1509). Try to remove it when a fix is available.
-- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/nunit-3-2-0.ps1'))
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/nunit-3-2-0.ps1'))
 
 environment:
   AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
@@ -31,11 +31,11 @@ artifacts:
   - path: AjaxControlToolkit.SampleSite-build-*.zip
 
 before_test:
-- powershell -File AppVeyor\DeployJasmineSite.ps1
+  - powershell -File AppVeyor\DeployJasmineSite.ps1
   
 test:
   assemblies: bin\Debug\AjaxControlToolkit.Tests.dll
 
 after_test:
-- msbuild AjaxControlToolkit.sln /p:Configuration=Release /v:m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
-- powershell -File AppVeyor\CreateArtifacts.ps1
+  - msbuild AjaxControlToolkit.sln /p:Configuration=Release /v:m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  - powershell -File AppVeyor\CreateArtifacts.ps1
