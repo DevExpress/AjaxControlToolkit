@@ -242,14 +242,15 @@ namespace AjaxControlToolkit {
             if(txtBox != null)
                 txtBox.Text = Decode(txtBox.Text);
 
-            var hasImageButton = false;
-            foreach(HtmlEditorExtenderButton button in buttonList) {
-                if(button.CommandName == "InsertImage")
-                    hasImageButton = true;
-            }
+            ajaxFileUpload.Visible = HasImageButton();
+        }
 
-            if(!hasImageButton)
-                ajaxFileUpload.Visible = false;
+        bool HasImageButton() {
+            foreach(var button in buttonList)
+                if(button.CommandName == "InsertImage")
+                    return true;
+
+            return false;
         }
 
         // When user defines/customize buttons on design time Toolbar property will accessed twice
