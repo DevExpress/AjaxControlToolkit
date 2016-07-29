@@ -64,7 +64,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\bin\AjaxControlToolkit.dll">
+    <Content Include="..\bin\Release\AjaxControlToolkit.dll">
       <Link>AjaxControlToolkit.dll</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

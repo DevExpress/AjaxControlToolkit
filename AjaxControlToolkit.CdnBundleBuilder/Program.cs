@@ -20,8 +20,8 @@ namespace AjaxControlToolkit.CdnBundleBuilder {
 
             var context = new BundleContext(CreateHttpContext(), BundleTable.Bundles, String.Empty);
 
-            File.WriteAllText("../AjaxControlToolkit.StaticResources/Scripts/Bundle.js", scriptBundle.GenerateBundleResponse(context).Content);
-            File.WriteAllText("../AjaxControlToolkit.StaticResources/Styles/Bundle.css", styleBundle.GenerateBundleResponse(context).Content);
+            File.WriteAllText("../../AjaxControlToolkit.StaticResources/Scripts/Bundle.js", scriptBundle.GenerateBundleResponse(context).Content);
+            File.WriteAllText("../../AjaxControlToolkit.StaticResources/Styles/Bundle.css", styleBundle.GenerateBundleResponse(context).Content);
         }
 
         static HttpContextWrapper CreateHttpContext() {
@@ -34,8 +34,8 @@ namespace AjaxControlToolkit.CdnBundleBuilder {
         class VirtualPathProviderImpl : VirtualPathProvider {
             public override VirtualFile GetFile(string virtualPath) {
                 virtualPath = virtualPath
-                    .Replace("~/Scripts/AjaxControlToolkit/", "../AjaxControlToolkit.StaticResources/Scripts/")
-                    .Replace("~/Content/AjaxControlToolkit/Styles", "../AjaxControlToolkit.StaticResources/Styles/");
+                    .Replace("~/Scripts/AjaxControlToolkit/", "../../AjaxControlToolkit.StaticResources/Scripts/")
+                    .Replace("~/Content/AjaxControlToolkit/Styles", "../../AjaxControlToolkit.StaticResources/Styles/");
 
                 return new VirtualFileImpl(virtualPath);
             }

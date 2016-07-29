@@ -5,26 +5,38 @@ os: Visual Studio 2013
 init:
   - git config --global core.autocrlf true
 
-
 install:
 # Workaround for NUnit Console Runner v3.2.1 timeout bug (#1509). Try to remove it when a fix is available.
 - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/nunit-3-2-0.ps1'))
-  
+
+environment:
+  AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
+
 cache:
   - packages -> **\packages.config
 
+services: iis
+  
 before_build:
   - ps: nuget restore
 
 build:
   project: AjaxControlToolkit.sln
   publish_wap: true
-  verbosity: minimal
+  verbosity: minimal  
+  
+artifacts:
+  - path: AjaxControlToolkit-build-*.zip
+  - path: AjaxControlToolkit.StaticResources-build-*.zip
+  - path: AjaxControlToolkit.HtmlEditor.Sanitizer-build-*.zip
+  - path: AjaxControlToolkit.SampleSite-build-*.zip
 
-test:
-  assemblies: bin\AjaxControlToolkit.Tests.dll
- 
-services: iis
- 
 before_test:
-- ps: "& \"C:\\Program Files\\IIS\\Microsoft Web Deploy V3\\msdeploy.exe\" -verb:sync -source:iisApp=\"$env:APPVEYOR_BUILD_FOLDER\\AjaxControlToolkit.Jasmine\" -dest:iisApp=`\"Default Web Site`\"\n\n\n$FilesAndFolders = gci \"C:\\inetpub\\wwwroot\" -recurse | % {$_.FullName}\nforeach($FileAndFolder in $FilesAndFolders)\n{\n    $item = gi -literalpath $FileAndFolder \n    $acl = $item.GetAccessControl() \n    $permission = \"Everyone\",\"FullControl\",\"Allow\"\n    $rule = New-Object System.Security.AccessControl.FileSystemAccessRule $permission\n    $acl.SetAccessRule($rule)\n    $item.SetAccessControl($acl)\n}"
+- ps: '& "AppVeyor\DeployJasmineSite.ps1"'
+  
+test:
+  assemblies: bin\Debug\AjaxControlToolkit.Tests.dll
+
+after_test:
+- ps: 'msbuild "AjaxControlToolkit.sln" /p:Configuration=Release /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"'
+- ps: '& "AppVeyor\CreateArtifacts.ps1"'

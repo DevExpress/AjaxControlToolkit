@@ -12,7 +12,7 @@ namespace AjaxControlToolkit.LinkStaticResources {
     class Program {
 
         static void Main(string[] args) {
-            string solutionDirPath = Directory.GetParent(Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName).FullName;
+            string solutionDirPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName).FullName).FullName;
 
             string
                 outputDir = Path.Combine(solutionDirPath, @"AjaxControlToolkit.StaticResources\"),

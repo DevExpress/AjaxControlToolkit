@@ -29,7 +29,7 @@ namespace AjaxControlToolkit.Tests {
         }
 
         static string GetDriverDirectory() {
-            return Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location);
+            return Directory.GetParent(Path.GetDirectoryName(typeof(JasmineTests).Assembly.Location)).FullName;
         }
 
         [Test]
