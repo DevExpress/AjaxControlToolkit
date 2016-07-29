@@ -18,7 +18,7 @@ cache:
 services: iis
   
 before_build:
-  - ps: nuget restore
+  - nuget restore
 
 build:
   project: AjaxControlToolkit.sln
@@ -31,11 +31,11 @@ artifacts:
   - path: AjaxControlToolkit.SampleSite-build-*.zip
 
 before_test:
-- ps: '& "AppVeyor\DeployJasmineSite.ps1"'
+- powershell -File AppVeyor\DeployJasmineSite.ps1
   
 test:
   assemblies: bin\Debug\AjaxControlToolkit.Tests.dll
 
 after_test:
-- ps: 'msbuild "AjaxControlToolkit.sln" /p:Configuration=Release /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"'
-- ps: '& "AppVeyor\CreateArtifacts.ps1"'
+- msbuild AjaxControlToolkit.sln /p:Configuration=Release /v:m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+- powershell -File AppVeyor\CreateArtifacts.ps1
