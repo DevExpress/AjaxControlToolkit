@@ -22,7 +22,6 @@ before_build:
 
 build:
   project: AjaxControlToolkit.sln
-  publish_wap: true
   verbosity: minimal  
   
 artifacts:
