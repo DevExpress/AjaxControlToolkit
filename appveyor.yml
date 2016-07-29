@@ -7,7 +7,7 @@ init:
 
 install:
 # Workaround for NUnit Console Runner v3.2.1 timeout bug (#1509). Try to remove it when a fix is available.
-- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/nunit-3-2-0.ps1'))
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/nunit-3-2-0.ps1'))
 
 environment:
   AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
@@ -18,25 +18,24 @@ cache:
 services: iis
   
 before_build:
-  - ps: nuget restore
+  - nuget restore
 
 build:
   project: AjaxControlToolkit.sln
-  publish_wap: true
   verbosity: minimal  
   
-artifacts:
-  - path: AjaxControlToolkit-build-*.zip
-  - path: AjaxControlToolkit.StaticResources-build-*.zip
-  - path: AjaxControlToolkit.HtmlEditor.Sanitizer-build-*.zip
-  - path: AjaxControlToolkit.SampleSite-build-*.zip
-
 before_test:
-- ps: '& "AppVeyor\DeployJasmineSite.ps1"'
+  - powershell -File AppVeyor\DeployJasmineSite.ps1
   
 test:
   assemblies: bin\Debug\AjaxControlToolkit.Tests.dll
 
 after_test:
-- ps: 'msbuild "AjaxControlToolkit.sln" /p:Configuration=Release /verbosity:minimal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"'
-- ps: '& "AppVeyor\CreateArtifacts.ps1"'
+  - msbuild AjaxControlToolkit.sln /p:Configuration=Release /v:m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  - powershell -File AppVeyor\CreateArtifacts.ps1
+
+artifacts:
+  - path: AjaxControlToolkit-build-*.zip
+  - path: AjaxControlToolkit.StaticResources-build-*.zip
+  - path: AjaxControlToolkit.HtmlEditor.Sanitizer-build-*.zip
+  - path: AjaxControlToolkit.SampleSite-build-*.zip
