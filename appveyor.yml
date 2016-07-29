@@ -24,12 +24,6 @@ build:
   project: AjaxControlToolkit.sln
   verbosity: minimal  
   
-artifacts:
-  - path: AjaxControlToolkit-build-*.zip
-  - path: AjaxControlToolkit.StaticResources-build-*.zip
-  - path: AjaxControlToolkit.HtmlEditor.Sanitizer-build-*.zip
-  - path: AjaxControlToolkit.SampleSite-build-*.zip
-
 before_test:
   - powershell -File AppVeyor\DeployJasmineSite.ps1
   
@@ -39,3 +33,9 @@ test:
 after_test:
   - msbuild AjaxControlToolkit.sln /p:Configuration=Release /v:m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
   - powershell -File AppVeyor\CreateArtifacts.ps1
+
+artifacts:
+  - path: AjaxControlToolkit-build-*.zip
+  - path: AjaxControlToolkit.StaticResources-build-*.zip
+  - path: AjaxControlToolkit.HtmlEditor.Sanitizer-build-*.zip
+  - path: AjaxControlToolkit.SampleSite-build-*.zip
