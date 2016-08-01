@@ -381,7 +381,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
 
         // only add 1 file input element to be uploaded
         form.appendChild(inputElement);
-        form.setAttribute("action", control._uploadUrl
+        form.setAttribute("action", control._uploadHandlerPath
             + '?contextKey=' + control.get_contextKey()
             + '&controlID=' + control.get_id()
             + '&fileId=' + control._currentFileId
@@ -755,7 +755,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         xhrReq.addEventListener("error", xhrDelegate(this.onUploadFailedHandler), false);
         xhrReq.addEventListener("abort", xhrDelegate(this.onUploadCanceledHandler), false);
         xhrReq.open("POST",
-            (control.get_useAbsoluteHandlerPath() ? "/" : "") + control._uploadUrl
+            (control.get_useAbsoluteHandlerPath() ? "/" : "") + control.get_uploadHandlerPath
             + '?contextKey=' + control.get_contextKey()
             + '&controlID=' + control.get_id()
             + '&fileId=' + id
@@ -1033,8 +1033,13 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.maxFileSize" />
     this._maxFileSize = 0;
 
-    // fields
-    this._uploadUrl = 'AjaxFileUploadHandler.axd';
+    /// <summary>
+    /// The path to the upload handler.
+    /// </summary>
+    /// <getter>get_uploadHandlerPath</getter>
+    /// <setter>set_uploadHandlerPath</setter>
+    /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.uploadHandlerPath" />
+    this._uploadHandlerPath = 'AjaxFileUploadHandler.axd';
     this._useHtml5Support = false;
     this._elements = null;
     this._processor = null;
@@ -1637,6 +1642,13 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_maxFileSize: function(value) {
         this._maxFileSize = value;
+    },
+
+    get_uploadHandlerPath: function () {
+        return this._uploadHandlerPath;
+    },
+    set_uploadHandlerPath: function (value) {
+        this._uploadHandlerPath = value;
     },
 
     /// <summary>
