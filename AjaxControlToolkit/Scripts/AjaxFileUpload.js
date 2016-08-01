@@ -381,7 +381,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
 
         // only add 1 file input element to be uploaded
         form.appendChild(inputElement);
-        form.setAttribute("action", control._uploadHandlerPath
+        form.setAttribute("action", control.get_uploadHandlerPath()
             + '?contextKey=' + control.get_contextKey()
             + '&controlID=' + control.get_id()
             + '&fileId=' + control._currentFileId
@@ -755,7 +755,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         xhrReq.addEventListener("error", xhrDelegate(this.onUploadFailedHandler), false);
         xhrReq.addEventListener("abort", xhrDelegate(this.onUploadCanceledHandler), false);
         xhrReq.open("POST",
-            (control.get_useAbsoluteHandlerPath() ? "/" : "") + control.get_uploadHandlerPath
+            control.get_uploadHandlerPath()
             + '?contextKey=' + control.get_contextKey()
             + '&controlID=' + control.get_id()
             + '&fileId=' + id
