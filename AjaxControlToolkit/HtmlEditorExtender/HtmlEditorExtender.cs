@@ -33,6 +33,7 @@ namespace AjaxControlToolkit {
         HtmlEditorExtenderButtonCollection buttonList = null;
         AjaxFileUpload ajaxFileUpload = null;
         bool enableSanitization = true;
+        const string InsertImageCommandName = "InsertImage";
 
         static IHtmlSanitizer CreateSanitizer() {
 
@@ -212,6 +213,11 @@ namespace AjaxControlToolkit {
                 if(ImageUploadComplete != null) {
                     ajaxFileUpload.UploadComplete += ImageUploadComplete;
                 }
+                if(HasImageButton()) {
+                    var button = (InsertImage)ToolbarButtons.FirstOrDefault(b => b.CommandName == InsertImageCommandName);
+                    if(!String.IsNullOrWhiteSpace(button.AjaxFileUploadHandlerPath))
+                        ajaxFileUpload.UploadHandlerPath = button.AjaxFileUploadHandlerPath;
+                }
                 popupdiv.Controls.Add(ajaxFileUpload);
 
                 var btnCancel = new HtmlGenericControl("div");
@@ -246,11 +252,7 @@ namespace AjaxControlToolkit {
         }
 
         bool HasImageButton() {
-            foreach(var button in buttonList)
-                if(button.CommandName == "InsertImage")
-                    return true;
-
-            return false;
+            return ToolbarButtons.Any(b => b.CommandName == InsertImageCommandName);
         }
 
         // When user defines/customize buttons on design time Toolbar property will accessed twice
