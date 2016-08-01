@@ -118,6 +118,7 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Whether or not to use absolute path for AjaxFileUploadHandler
         /// </summary>
+        [Obsolete]
         [ExtenderControlProperty]
         [DefaultValue(true)]
         [ClientPropertyName("useAbsoluteHandlerPath")]
@@ -125,6 +126,17 @@ namespace AjaxControlToolkit {
             get { return bool.Parse((string)ViewState["UseAbsoluteHandlerPath"] ?? "true"); }
             set { ViewState["UseAbsoluteHandlerPath"] = value.ToString(); }
         }
+
+        ///// <summary>
+        ///// Whether or not to use absolute path for AjaxFileUploadHandler
+        ///// </summary>
+        //[ExtenderControlProperty]
+        //[DefaultValue(true)]
+        //[ClientPropertyName("useAbsoluteHandlerPath")]
+        //public string UploadHandlerPath {
+        //    get { return bool.Parse((string)ViewState["UseAbsoluteHandlerPath"] ?? "true"); }
+        //    set { ViewState["UseAbsoluteHandlerPath"] = value.ToString(); }
+        //}
 
         ///<summary>
         /// How AjaxFileUpload displays a progress bar.
