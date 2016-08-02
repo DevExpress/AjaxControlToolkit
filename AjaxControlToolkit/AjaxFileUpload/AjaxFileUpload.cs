@@ -128,7 +128,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// Whether or not to use absolute path for AjaxFileUploadHandler
+        /// Upload handler path
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue("/AjaxFileUploadHandler.axd")]
