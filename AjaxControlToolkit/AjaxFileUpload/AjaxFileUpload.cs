@@ -134,7 +134,7 @@ namespace AjaxControlToolkit {
         [DefaultValue("/AjaxFileUploadHandler.axd")]
         [ClientPropertyName("uploadHandlerPath")]
         public string UploadHandlerPath {
-            get { return (string)ViewState["UploadHandlerPath"] ?? "AjaxFileUploadHandler.axd"; }
+            get { return (string)ViewState["UploadHandlerPath"] ?? "/AjaxFileUploadHandler.axd"; }
             set { ViewState["UploadHandlerPath"] = value; }
         }
 
