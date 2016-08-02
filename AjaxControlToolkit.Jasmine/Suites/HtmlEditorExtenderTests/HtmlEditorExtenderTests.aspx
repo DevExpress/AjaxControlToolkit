@@ -109,6 +109,19 @@
             </act:HtmlEditorExtender>
 
             <asp:Button ID="SubmitButton" runat="server" Text="Submit button" ClientIDMode="Static" />
+
+            <asp:TextBox runat="server"
+                ID="TargetForExtenderWithImageButton"
+                Width="500"
+                Height="300" />
+
+            <act:HtmlEditorExtender runat="server"
+                TargetControlID="TargetForExtenderWithImageButton"
+                ID="HtmlEditorExtenderWithImageButton" >
+                <Toolbar>                    
+                    <act:InsertImage AjaxFileUploadHandlerPath="somepath" />
+                </Toolbar>
+            </act:HtmlEditorExtender>
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -117,6 +130,7 @@
 
             var HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= TargetExtender.ClientID %>",
                 HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID = "<%= TargetExtenderSanitized.ClientID %>",
+                HTML_EDITOR_EXTENDER_WITH_IMAGEBUTTON_CLIENT_ID = "<%= HtmlEditorExtenderWithImageButton.ClientID %>",
                 SIMPLE_TEXTBOX_CLIENT_ID = "<%= SimpleTextBox.ClientID %>",
                 UPDATE_PANEL_BUTTON_CLIENT_ID = "<%= UpdatePanelButton.ClientID %>";
 
@@ -125,6 +139,7 @@
             beforeEach(function() {
                 this.extender = $find(HTML_EDITOR_EXTENDER_CLIENT_ID);
                 this.extenderSanitized = $find(HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID);
+                this.extenderWithImageButton = $find(HTML_EDITOR_EXTENDER_WITH_IMAGEBUTTON_CLIENT_ID);
 
                 this.ua = detect.parse(navigator.userAgent);
             });
@@ -762,6 +777,11 @@
 
                 var button = $("#" + UPDATE_PANEL_BUTTON_CLIENT_ID);
                 button.click();
+            });
+
+            it("sets AjaxFileUpload upload handler path", function () {
+                var ajaxFileUpload = $find(this.extenderWithImageButton.get_id() + "_ajaxFileUpload");
+                expect(ajaxFileUpload.get_uploadHandlerPath()).toBe("somepath");
             });
         });
     </script>

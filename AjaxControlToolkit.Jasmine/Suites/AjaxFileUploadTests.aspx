@@ -69,6 +69,10 @@
                     expect(1).toBe(1);
             });
 
+            it("returns root-based handler path by default", function () {
+                expect(this.ajaxFileUploadExtender.get_uploadHandlerPath()).toBe("/AjaxFileUploadHandler.axd");
+            });
+
         });
     </script>
 </asp:Content>
