@@ -584,6 +584,10 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
     this.onFileDroppedHandler = function(e) {
         e.stopPropagation();
         e.preventDefault();
+
+        if(!control.get_enabled())
+            return;
+
         this.addFilesToQueue(e.dataTransfer.files);
 
         if (control.get_autoStartUpload()) {
@@ -1040,6 +1044,13 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     /// <setter>set_uploadHandlerPath</setter>
     /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.uploadHandlerPath" />
     this._uploadHandlerPath = '/AjaxFileUploadHandler.axd';
+    /// <summary>
+    /// Whether the control is enabled.
+    /// </summary>
+    /// <getter>get_enabled</getter>
+    /// <setter>set_enabled</setter>
+    /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.enabled" />
+    this._enabled = true;
     this._useHtml5Support = false;
     this._elements = null;
     this._processor = null;
@@ -1649,6 +1660,12 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
     },
     set_uploadHandlerPath: function (value) {
         this._uploadHandlerPath = value;
+    },
+    get_enabled: function () {
+        return this.enabled;
+    },
+    set_enabled: function (value) {
+        this.enabled = value;
     },
 
     /// <summary>
