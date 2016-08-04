@@ -728,53 +728,49 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     _contentView_click: function() {
-        if(this._lastEditMode != 'content') {
-            $common.setVisible(this._topButtonContainer, true);
-            $common.setVisible(this._editableDiv, true);
+        $common.setVisible(this._topButtonContainer, true);
+        $common.setVisible(this._editableDiv, true);
 
-            if(this._sourceViewDiv.textContent != undefined)
-                this._editableDiv.innerHTML = this._sourceViewDiv.textContent;
-            else
-                this._editableDiv.innerHTML = this._sourceViewDiv.innerText;
+        if(this._sourceViewDiv.textContent != undefined)
+            this._editableDiv.innerHTML = this._sourceViewDiv.textContent;
+        else
+            this._editableDiv.innerHTML = this._sourceViewDiv.innerText;
 
-            this._oldContents = this._editableDiv.innerHTML;
-            $common.setVisible(this._sourceViewDiv, false);
-            $common.setVisible(this._previewDiv, false);
-            this._lastEditMode = 'content';
-        }
+        this._oldContents = this._editableDiv.innerHTML;
+        $common.setVisible(this._sourceViewDiv, false);
+        $common.setVisible(this._previewDiv, false);
+        this._lastEditMode = 'content';
     },
 
     _sourceView_click: function() {
-        if(this._lastEditMode != 'source') {
-            $common.setVisible(this._sourceViewDiv, true);
+        $common.setVisible(this._sourceViewDiv, true);
 
-            if(this._sourceViewDiv.textContent != undefined)
-                this._sourceViewDiv.textContent = this.cleanHtml(this._editableDiv.innerHTML);
-            else
-                this._sourceViewDiv.innerText = this.cleanHtml(this._editableDiv.innerHTML);
+        if(this._sourceViewDiv.textContent != undefined)
+            this._sourceViewDiv.textContent = this.cleanHtml(this._editableDiv.innerHTML);
+        else
+            this._sourceViewDiv.innerText = this.cleanHtml(this._editableDiv.innerHTML);
 
-            this._oldContents = this._editableDiv.innerHTML;
-            $common.setVisible(this._editableDiv, false);
-            $common.setVisible(this._topButtonContainer, false);
-            $common.setVisible(this._previewDiv, false);
-            this._lastEditMode = 'source';
-        }
+        this._oldContents = this._editableDiv.innerHTML;
+        $common.setVisible(this._editableDiv, false);
+        $common.setVisible(this._topButtonContainer, false);
+        $common.setVisible(this._previewDiv, false);
+        this._lastEditMode = 'source';
     },
 
     _preview_click: function () {
-            $common.setVisible(this._previewDiv, true);
+        $common.setVisible(this._previewDiv, true);
 
-            if(this._lastEditMode === 'source') {
-                if(this._sourceViewDiv.textContent != undefined)
-                    this._previewDiv.innerHTML = this._sourceViewDiv.textContent;
-                else
-                    this._previewDiv.innerHTML = this._sourceViewDiv.innerText;
-            } else
-                this._previewDiv.innerHTML = this._editableDiv.innerHTML;
+        if(this._lastEditMode === 'source') {
+            if(this._sourceViewDiv.textContent != undefined)
+                this._previewDiv.innerHTML = this._sourceViewDiv.textContent;
+            else
+                this._previewDiv.innerHTML = this._sourceViewDiv.innerText;
+        } else
+            this._previewDiv.innerHTML = this._editableDiv.innerHTML;
 
-            $common.setVisible(this._editableDiv, false);
-            $common.setVisible(this._sourceViewDiv, false);
-            $common.setVisible(this._topButtonContainer, false);
+        $common.setVisible(this._editableDiv, false);
+        $common.setVisible(this._sourceViewDiv, false);
+        $common.setVisible(this._topButtonContainer, false);
     },
 
     cleanHtml: function(html) {
