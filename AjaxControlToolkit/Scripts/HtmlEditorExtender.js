@@ -327,7 +327,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     _hasMultipleTabs: function(){
-        return this.get_displaySourceTab || this.get_displayPreviewTab();
+        return this.get_displaySourceTab() || this.get_displayPreviewTab();
     },
 
     _createContainer: function() {
