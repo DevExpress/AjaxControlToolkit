@@ -196,12 +196,20 @@
     background-position: -943px 0;
 }
 
+.ajax__html_editor_extender_preview {
+    background-position: -989px 0;
+}
+
 .ajax__html_editor_extender_content:active {
     background-position: -920px -21px;
 }
 
 .ajax__html_editor_extender_source:active {
     background-position: -943px -21px;
+}
+
+.ajax__html_editor_extender_preview:active {
+    background-position: -998px -21px;
 }
 
 .ajax__html_editor_extender_separator {

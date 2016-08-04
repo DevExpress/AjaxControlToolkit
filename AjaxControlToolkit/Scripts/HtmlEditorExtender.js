@@ -127,6 +127,18 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
         cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_source']
     };
 
+    this._buttonPreviewTemplate = {
+        nodeName: 'input',
+        properties: {
+            type: 'button',
+            style: {
+                width: this._ButtonWidth + 'px',
+                height: this._ButtonHeight + 'px'
+            }
+        },
+        cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_preview']
+    };
+
     this._textboxTemplate = {
         nodeName: 'input',
         properties: {
@@ -219,10 +231,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._createButton();
         this._createEditableDiv();
 
-        if(this.get_displaySourceTab()) {
+        if(this.get_displaySourceTab())
             this._createSourceViewDiv();
+
+        if(this.get_displayPreviewTab())
+            this._createPreviewDiv();
+
+        if(this._hasMultipleTabs())
             this._createBottomButtonsContainer();
-        }
 
         // get form that contains textbox
         var formElement = this._textbox._element.parentNode;
@@ -629,6 +645,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._bottomButtonsContainer = $common.createElementFromTemplate(this._bottomButtonsContainerTemplate, this._container);
         this._contentViewButton = $common.createElementFromTemplate(this._buttonContentTemplate, this._bottomButtonsContainer);
         this._sourceViewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._bottomButtonsContainer);
+        this._previewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._bottomButtonsContainer);
     },
 
     _createSourceViewDiv: function() {
@@ -650,6 +667,27 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }, this._container);
 
         $common.setVisible(this._sourceViewDiv, false);
+    },
+
+    _createPreviewDiv: function () {
+        var id = this.get_id(),
+            height = this._container.clientHeight - 25;
+
+        this._previewDiv = $common.createElementFromTemplate({
+            nodeName: 'div',
+            properties: {
+                id: id + '_ExtenderPreview',
+                style: {
+                    height: height + 'px',
+                    overflow: 'auto',
+                    clear: 'both'
+                },
+                contentEditable: true
+            },
+            cssClasses: ['ajax__html_editor_extender_texteditor']
+        }, this._container);
+
+        $common.setVisible(this._previewDiv, false);
     },
 
     _editableDiv_onblur: function() {
