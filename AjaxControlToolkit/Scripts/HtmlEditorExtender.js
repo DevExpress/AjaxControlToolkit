@@ -645,7 +645,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._bottomButtonsContainer = $common.createElementFromTemplate(this._bottomButtonsContainerTemplate, this._container);
         this._contentViewButton = $common.createElementFromTemplate(this._buttonContentTemplate, this._bottomButtonsContainer);
         this._sourceViewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._bottomButtonsContainer);
-        this._previewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._bottomButtonsContainer);
+        this._previewButton = $common.createElementFromTemplate(this._buttonPreviewTemplate, this._bottomButtonsContainer);
     },
 
     _createSourceViewDiv: function() {
