@@ -475,6 +475,7 @@ namespace AjaxControlToolkit {
             descriptor.AddProperty("contextKey", ContextKey);
             descriptor.AddProperty("postBackUrl", Page.Request.RawUrl);
             descriptor.AddProperty("serverPollingSupport", ServerPollingSupport);
+            descriptor.AddProperty("enabled", Enabled);
 
             if(ThrobberID != String.Empty) {
                 Control control = FindControl(ThrobberID);
