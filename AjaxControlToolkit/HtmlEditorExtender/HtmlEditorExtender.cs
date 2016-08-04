@@ -108,6 +108,17 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("DisplaySourceTab", value); }
         }
 
+        ///<summary>
+        /// Determines whether or not to display a preview tab/button to see the source view of HtmlEditorExtender
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(false)]
+        [ClientPropertyName("displayPreviewTab")]
+        public bool DisplayPreviewTab {
+            get { return GetPropertyValue("DisplayPreviewTab", false); }
+            set { SetPropertyValue("DisplayPreviewTab", value); }
+        }
+
         /// <summary>
         /// The name of a JavaScript function to attach to the client-side Change event
         /// </summary>

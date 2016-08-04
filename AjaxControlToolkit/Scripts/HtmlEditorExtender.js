@@ -36,7 +36,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     /// <getter>get_displayPreviewTab</getter>
     /// <setter>set_displayPreviewTab</setter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.displayPreviewTab" />
-    this._displaySourceTab = false;
+    this._displayPreviewTab = false;
 
     /// <summary>
     /// Button width in pixels
@@ -644,8 +644,12 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     _createBottomButtonsContainer: function() {
         this._bottomButtonsContainer = $common.createElementFromTemplate(this._bottomButtonsContainerTemplate, this._container);
         this._contentViewButton = $common.createElementFromTemplate(this._buttonContentTemplate, this._bottomButtonsContainer);
-        this._sourceViewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._bottomButtonsContainer);
-        this._previewButton = $common.createElementFromTemplate(this._buttonPreviewTemplate, this._bottomButtonsContainer);
+
+        if(this.get_displaySourceTab())
+            this._sourceViewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._bottomButtonsContainer);
+
+        if(this.get_displayPreviewTab())
+            this._previewButton = $common.createElementFromTemplate(this._buttonPreviewTemplate, this._bottomButtonsContainer);
     },
 
     _createSourceViewDiv: function() {
