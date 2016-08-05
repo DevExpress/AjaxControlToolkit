@@ -685,8 +685,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
                     height: height + 'px',
                     overflow: 'auto',
                     clear: 'both'
-                },
-                contentEditable: true
+                }
             },
             cssClasses: ['ajax__html_editor_extender_texteditor']
         }, this._container);
