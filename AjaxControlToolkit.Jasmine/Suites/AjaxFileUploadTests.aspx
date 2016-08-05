@@ -33,15 +33,19 @@
 
     <act:AjaxFileUpload runat="server" ID="TestAjaxFileUpload2" />
 
+    <act:AjaxFileUpload runat="server" ID="DisabledAjaxFileUpload" Enabled="false" />
+
     <script>
         describe("AjaxFileUpload", function() {
 
             var AJAX_FILE_UPLOAD_CLIENT_ID = "<%= TestAjaxFileUpload.ClientID %>";
             var AJAX_FILE_UPLOAD2_CLIENT_ID = "<%= TestAjaxFileUpload2.ClientID %>";
+            var DISABLED_AJAX_FILE_UPLOAD_CLIENT_ID = "<%= DisabledAjaxFileUpload.ClientID %>";
 
             beforeEach(function() {
                 this.ajaxFileUploadExtender = $find(AJAX_FILE_UPLOAD_CLIENT_ID);
                 this.ajaxFileUploadExtender2 = $find(AJAX_FILE_UPLOAD2_CLIENT_ID);
+                this.disabledAjaxFileUploadExtender = $find(DISABLED_AJAX_FILE_UPLOAD_CLIENT_ID);
             });
 
             it("hides upload button inside tabs", function() {
@@ -67,6 +71,21 @@
                 }
                 else
                     expect(1).toBe(1);
+            });
+
+            it("returns root-based handler path by default", function () {
+                expect(this.ajaxFileUploadExtender.get_uploadHandlerPath()).toBe("/AjaxFileUploadHandler.axd");
+            });
+
+            it("reads Enabled property from server", function () {
+                expect(this.disabledAjaxFileUploadExtender.get_enabled()).toBe(false);
+            });
+
+            it("does not allow to drop files if disabled", function () {
+                spyOn(this.disabledAjaxFileUploadExtender._processor, "addFilesToQueue");
+                var fakeEvent = { stopPropagation: function () { }, preventDefault: function () { } };
+                this.disabledAjaxFileUploadExtender._processor.onFileDroppedHandler(fakeEvent);
+                expect(this.disabledAjaxFileUploadExtender._processor.addFilesToQueue).not.toHaveBeenCalled();
             });
 
         });

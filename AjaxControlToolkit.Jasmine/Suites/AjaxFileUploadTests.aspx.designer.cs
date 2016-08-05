@@ -47,5 +47,14 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AjaxFileUpload TestAjaxFileUpload2;
+        
+        /// <summary>
+        /// DisabledAjaxFileUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AjaxFileUpload DisabledAjaxFileUpload;
     }
 }

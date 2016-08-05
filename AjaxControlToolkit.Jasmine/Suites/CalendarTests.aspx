@@ -39,6 +39,14 @@
         Animated="false"/>
 
     <asp:TextBox runat="server"
+        ID="RangeExceedsDecadeTextBox" />
+
+    <act:CalendarExtender runat="server"
+        ID="RangeExceedsDecadeTextBoxCalendarExtender"
+        TargetControlID="RangeExceedsDecadeTextBox"
+        Animated="false"/>
+
+    <asp:TextBox runat="server"
         ID="SelectedDateTextBox" />
 
     <act:CalendarExtender runat="server"
@@ -47,7 +55,7 @@
         Animated="false"/>
 
     <script>
-        function getExpectedYearRangeText(year) {
+        function getYearsRangeText(year) {
             var yearText = year.toString();
             var startYearText = yearText.substring(3, 0) + "0";
             var endYearText = yearText.substring(3, 0) + "9";
@@ -60,6 +68,7 @@
             var START_DATE_CALENDAR_EXTENDER_CLIENT_ID = "<%= StartDateCalendarExtender.ClientID %>";
             var END_DATE_CALENDAR_EXTENDER_CLIENT_ID = "<%= EndDateCalendarExtender.ClientID %>";
             var BOTH_DATES_CALENDAR_EXTENDER_CLIENT_ID = "<%= BothDatesCalendarExtender.ClientID %>";
+            var RANGE_EXCEEDS_DECADE_CALENDAR_EXTENDER_CLIENT_ID = "<%= RangeExceedsDecadeTextBoxCalendarExtender.ClientID %>";
             var SELECTED_DATE_CALENDAR_EXTENDER_CLIENT_ID = "<%= SelectedDateCalendarExtender.ClientID %>";
 
             var CALENDAR_CLASS_NAME = "ajax__calendar",
@@ -243,19 +252,19 @@
                     expect(title.text()).toBe(date.getFullYear().toString());
 
                     title.click();
-                    var expectedYearsText = getExpectedYearRangeText(date.getFullYear());
+                    var expectedYearsText = getYearsRangeText(date.getFullYear());
                     expect(title.text()).toBe(expectedYearsText);
 
                     var next = this.$header.find(CALENDAR_HEADER_NEXT_CLASS_NAME.toClassSelector());
                     next.click();
-                    var expectedYearsTextAfterNextClick = getExpectedYearRangeText(date.getFullYear() + 10);
+                    var expectedYearsTextAfterNextClick = getYearsRangeText(date.getFullYear() + 10);
                     expect(title.text()).toBe(expectedYearsTextAfterNextClick);
 
                     var prev = this.$header.find(CALENDAR_HEADER_PREV_CLASS_NAME.toClassSelector());
                     prev.click();
                     expect(title.text()).toBe(expectedYearsText);
 
-                    var expectedYearsTextAfterPrevClick = getExpectedYearRangeText(date.getFullYear() - 10);
+                    var expectedYearsTextAfterPrevClick = getYearsRangeText(date.getFullYear() - 10);
                     prev.click();
                     expect(title.text()).toBe(expectedYearsTextAfterPrevClick);
                 });
@@ -312,12 +321,12 @@
                     expect(title.text()).toBe(date.getFullYear().toString());
 
                     title.click();
-                    var expectedYearsText = getExpectedYearRangeText(date.getFullYear());
+                    var expectedYearsText = getYearsRangeText(date.getFullYear());
                     expect(title.text()).toBe(expectedYearsText);
 
                     var next = this.$startDateHeader.find(CALENDAR_HEADER_NEXT_CLASS_NAME.toClassSelector());
                     next.click();
-                    var expectedYearsTextAfterNextClick = getExpectedYearRangeText(date.getFullYear() + 10);
+                    var expectedYearsTextAfterNextClick = getYearsRangeText(date.getFullYear() + 10);
                     expect(title.text()).toBe(expectedYearsTextAfterNextClick);
 
                     var prev = this.$startDateHeader.find(CALENDAR_HEADER_PREV_CLASS_NAME.toClassSelector());
@@ -345,12 +354,12 @@
                     expect(title.text()).toBe(date.getFullYear().toString());
 
                     title.click();
-                    var expectedYearsText = getExpectedYearRangeText(date.getFullYear());
+                    var expectedYearsText = getYearsRangeText(date.getFullYear());
                     expect(title.text()).toBe(expectedYearsText);
 
                     var prev = this.$endDateHeader.find(CALENDAR_HEADER_PREV_CLASS_NAME.toClassSelector());
                     prev.click();
-                    var expectedYearsTextAfterPrevClick = getExpectedYearRangeText(date.getFullYear() - 10);
+                    var expectedYearsTextAfterPrevClick = getYearsRangeText(date.getFullYear() - 10);
                     expect(title.text()).toBe(expectedYearsTextAfterPrevClick);
 
                     var next = this.$endDateHeader.find(CALENDAR_HEADER_NEXT_CLASS_NAME.toClassSelector());
@@ -371,23 +380,62 @@
                     this.$bothDatesHeader = this.$bothDatesContainer.children(CALENDAR_HEADER_CLASS_NAME.toClassSelector());
                 });
 
-                it("can navigate years with start and end date", function () {
+                it("can not navigate years back with date range within decade", function() {
                     var title = this.$bothDatesHeader.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector());
                     var startDate = new Date(2015, 1, 1);
                     title.click();
-                    expect(title.text()).toBe(startDate.getFullYear().toString());
-
                     title.click();
-                    var expectedYearsText = getExpectedYearRangeText(startDate.getFullYear());
-                    expect(title.text()).toBe(expectedYearsText);
+                    var expectedYearsText = getYearsRangeText(startDate.getFullYear());
 
                     var prev = this.$bothDatesHeader.find(CALENDAR_HEADER_PREV_CLASS_NAME.toClassSelector());
                     prev.click();
                     expect(title.text()).toBe(expectedYearsText);
+                });
 
+                it("can not navigate years forward with date range within decade", function() {
+                    var title = this.$bothDatesHeader.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector());
+                    var startDate = new Date(2015, 1, 1);
+                    title.click();
+                    title.click();
+                    var expectedYearsText = getYearsRangeText(startDate.getFullYear());
+                    
                     var next = this.$bothDatesHeader.find(CALENDAR_HEADER_NEXT_CLASS_NAME.toClassSelector());
                     next.click();
                     expect(title.text()).toBe(expectedYearsText);
+                });
+
+                beforeEach(function() {
+                    this.rangeExceedsDecadeExtender = $find(RANGE_EXCEEDS_DECADE_CALENDAR_EXTENDER_CLIENT_ID);
+
+                    this.rangeExceedsDecadeExtender.show();
+
+                    this.rangeExceedsDecadeCalendar = $(this.rangeExceedsDecadeExtender._container);
+                    this.$rangeExceedsDecadeContainer = this.rangeExceedsDecadeCalendar.children(CALENDAR_CONTAINER_CLASS_NAME.toClassSelector());
+                    this.$rangeExceedsDecadeHeader = this.$rangeExceedsDecadeContainer.children(CALENDAR_HEADER_CLASS_NAME.toClassSelector());
+                });
+
+                it("can navigate years back with date range exceeding decade", function() {
+                    var title = this.$rangeExceedsDecadeHeader.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector());
+                    var startDate = new Date(2015, 1, 1);
+                    title.click();
+                    title.click();
+                    var unexpectedYearsText = getYearsRangeText(startDate.getFullYear());
+
+                    var prev = this.$rangeExceedsDecadeHeader.find(CALENDAR_HEADER_PREV_CLASS_NAME.toClassSelector());
+                    prev.click();
+                    expect(title.text()).not.toBe(unexpectedYearsText);
+                });
+
+                it("can navigate years forward with date range exceeding decade", function() {
+                    var title = this.$rangeExceedsDecadeHeader.find(CALENDAR_HEADER_TITLE_CLASS_NAME.toClassSelector());
+                    var startDate = new Date(2015, 1, 1);
+                    title.click();
+                    title.click();
+                    var unexpectedYearsText = getYearsRangeText(startDate.getFullYear());
+
+                    var next = this.$rangeExceedsDecadeHeader.find(CALENDAR_HEADER_NEXT_CLASS_NAME.toClassSelector());
+                    next.click();
+                    expect(title.text()).not.toBe(unexpectedYearsText);
                 });
 
                 beforeEach(function () {
@@ -396,6 +444,19 @@
 
                 it("sets selected date", function () {
                     expect(this.selectedDateExtender._selectedDate.localeFormat(this.selectedDateExtender._format)).toBe(this.selectedDateExtender._textbox.get_Value());
+                });
+            });
+
+            describe("Parsing", function () {
+                beforeEach(function () {
+                    this.extender = $find(CALENDAR_EXTENDER_CLIENT_ID);
+                });
+
+                it("parses date correctly", function () {
+                    var date = this.extender._parseDateSortableFormat("2016-07-25T13:08:55");
+                    var expectedDate = new Date(2016, 6, 25, 13, 8, 55);
+                    
+                    expect(date.getTime()).toBe(expectedDate.getTime());
                 });
             });
         });

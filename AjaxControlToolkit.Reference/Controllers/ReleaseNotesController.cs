@@ -16,7 +16,7 @@ using AjaxControlToolkit.Reference.Core.Rendering;
 namespace AjaxControlToolkit.Reference.Controllers {
     public class ReleaseNotesController : Controller {
         public ActionResult Index() {
-            var milestones = new string[] { "16.2" };
+            var milestones = new string[] { "16.1.1" };
 
             return View(milestones);
         }

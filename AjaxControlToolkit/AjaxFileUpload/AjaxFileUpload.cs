@@ -118,12 +118,24 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Whether or not to use absolute path for AjaxFileUploadHandler
         /// </summary>
+        [Obsolete("Use UploadHandlerPath instead.")]
         [ExtenderControlProperty]
         [DefaultValue(true)]
         [ClientPropertyName("useAbsoluteHandlerPath")]
         public bool UseAbsoluteHandlerPath {
             get { return bool.Parse((string)ViewState["UseAbsoluteHandlerPath"] ?? "true"); }
             set { ViewState["UseAbsoluteHandlerPath"] = value.ToString(); }
+        }
+
+        /// <summary>
+        /// Upload handler path
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue("/AjaxFileUploadHandler.axd")]
+        [ClientPropertyName("uploadHandlerPath")]
+        public string UploadHandlerPath {
+            get { return (string)ViewState["UploadHandlerPath"] ?? "/AjaxFileUploadHandler.axd"; }
+            set { ViewState["UploadHandlerPath"] = value; }
         }
 
         ///<summary>
@@ -463,6 +475,7 @@ namespace AjaxControlToolkit {
             descriptor.AddProperty("contextKey", ContextKey);
             descriptor.AddProperty("postBackUrl", Page.Request.RawUrl);
             descriptor.AddProperty("serverPollingSupport", ServerPollingSupport);
+            descriptor.AddProperty("enabled", Enabled);
 
             if(ThrobberID != String.Empty) {
                 Control control = FindControl(ThrobberID);
