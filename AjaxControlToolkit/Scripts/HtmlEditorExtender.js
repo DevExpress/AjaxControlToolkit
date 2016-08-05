@@ -20,7 +20,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     /// <getter>get_isDirty</getter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.isDirty" />
     this._isDirty = false;
-    this._lastEditMode = 'content';
+    this._lastMode = Sys.Extended.UI.HtmlEditorExtenderMode.Content;
 
     /// <summary>
     /// Determines whether or not to display a source view tab/button to see the source view of HtmlEditorExtender
@@ -727,7 +727,10 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._editableDiv.innerHTML = this._textbox._element.value;
     },
 
-    _contentView_click: function() {
+    _contentView_click: function () {
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Content)
+            return;
+
         $common.setVisible(this._topButtonContainer, true);
         $common.setVisible(this._editableDiv, true);
 
@@ -739,10 +742,13 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._oldContents = this._editableDiv.innerHTML;
         $common.setVisible(this._sourceViewDiv, false);
         $common.setVisible(this._previewDiv, false);
-        this._lastEditMode = 'content';
+        this._lastMode = Sys.Extended.UI.HtmlEditorExtenderMode.Content;
     },
 
-    _sourceView_click: function() {
+    _sourceView_click: function () {
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Source)
+            return;
+
         $common.setVisible(this._sourceViewDiv, true);
 
         if(this._sourceViewDiv.textContent != undefined)
@@ -754,18 +760,23 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $common.setVisible(this._editableDiv, false);
         $common.setVisible(this._topButtonContainer, false);
         $common.setVisible(this._previewDiv, false);
-        this._lastEditMode = 'source';
+        this._lastMode = Sys.Extended.UI.HtmlEditorExtenderMode.Source;
     },
 
     _preview_click: function () {
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Preview)
+            return;
+
         $common.setVisible(this._previewDiv, true);
 
-        if(this._lastEditMode === 'source') {
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Source) {
             if(this._sourceViewDiv.textContent != undefined)
                 this._previewDiv.innerHTML = this._sourceViewDiv.textContent;
             else
                 this._previewDiv.innerHTML = this._sourceViewDiv.innerText;
-        } else
+        }
+
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Content)
             this._previewDiv.innerHTML = this._editableDiv.innerHTML;
 
         $common.setVisible(this._editableDiv, false);
@@ -1394,4 +1405,10 @@ ajaxClientUploadComplete = function(sender, e) {
             htmlEditorExtender._savedRange.insertNode(node);
         }
     }
+};
+
+Sys.Extended.UI.HtmlEditorExtenderMode = {
+    Content: 0,
+    Source: 1,
+    Preview: 2
 };
