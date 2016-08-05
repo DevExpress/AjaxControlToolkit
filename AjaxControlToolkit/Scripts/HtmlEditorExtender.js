@@ -782,6 +782,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $common.setVisible(this._editableDiv, false);
         $common.setVisible(this._sourceViewDiv, false);
         $common.setVisible(this._topButtonContainer, false);
+        this._lastMode = Sys.Extended.UI.HtmlEditorExtenderMode.Preview;
     },
 
     cleanHtml: function(html) {
