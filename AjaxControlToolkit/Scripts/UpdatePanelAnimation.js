@@ -68,7 +68,6 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
         // "beginRequestEventArgs" - event arguments
         Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.callBaseMethod(this, '_partialUpdateBeginRequest', [sender, beginRequestEventArgs]);
 
-        debugger;
         if(!this._postBackPending) {
             if(this._isTriggeredByTriggerControl(beginRequestEventArgs._postBackElement.id)
                 || this._isTriggeredByChildControl(sender, beginRequestEventArgs)) {                    
