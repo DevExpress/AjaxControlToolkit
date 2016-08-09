@@ -66,6 +66,19 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
+        /// An optional property that ignores update panel animation
+        /// if the postback is caused by a panel's immediate children
+        /// </summary>
+        [DefaultValue(false)]
+        [Browsable(true)]
+        [ExtenderControlProperty]
+        [ClientPropertyName("ignoreChildrenTriggers")]
+        public bool IgnoreChildrenTriggers {
+            get { return GetPropertyValue<bool>("IgnoreChildrenTriggers", false); }
+            set { SetPropertyValue("IgnoreChildrenTriggers", value); }
+        }
+
+        /// <summary>
         /// ClientID's of the trigger controls
         /// </summary>
         [DefaultValue(null)]

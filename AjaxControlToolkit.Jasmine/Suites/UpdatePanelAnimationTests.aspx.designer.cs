@@ -119,5 +119,32 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.UpdatePanelAnimationExtender UpdatePanelExtenderChildrenAsTriggers;
+        
+        /// <summary>
+        /// UpdatePanelWithChildrenAsTriggers2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelWithChildrenAsTriggers2;
+        
+        /// <summary>
+        /// btnChildTrigger2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnChildTrigger2;
+        
+        /// <summary>
+        /// UpdatePanelExtenderChildrenAsTriggers2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.UpdatePanelAnimationExtender UpdatePanelExtenderChildrenAsTriggers2;
     }
 }

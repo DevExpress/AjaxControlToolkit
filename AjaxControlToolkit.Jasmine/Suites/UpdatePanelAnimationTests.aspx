@@ -105,6 +105,33 @@
         </Animations>
     </act:UpdatePanelAnimationExtender>
 
+    <asp:UpdatePanel ID="UpdatePanelWithChildrenAsTriggers2" runat="server" ChildrenAsTriggers="true">
+        <ContentTemplate>
+            <asp:Button runat="server" Text="Button" ID="btnChildTrigger2" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+    <act:UpdatePanelAnimationExtender
+        ID="UpdatePanelExtenderChildrenAsTriggers2"
+        runat="server"
+        TargetControlID="UpdatePanelWithChildrenAsTriggers2"
+        AlwaysFinishOnUpdatingAnimation="true"
+        IgnoreChildrenTriggers="true"
+        BehaviorID="animationForChildrenTriggers2">
+        <Animations>
+            <OnUpdating>
+            <Parallel duration="0">
+                <ScriptAction Script="onUpdating();" />
+                </Parallel>
+            </OnUpdating>
+            <OnUpdated>
+            <Parallel duration="0">
+                <ScriptAction Script="onUpdated();" />
+            </Parallel>
+            </OnUpdated>
+        </Animations>
+    </act:UpdatePanelAnimationExtender>
+
     <script>
         function onUpdating() {
         }
@@ -118,6 +145,7 @@
             var BUTTON_NON_TRIGGER_CLIENT_ID = "<%= btnNonTrigger.ClientID %>";
             var DROPDOWNLIST_CLIENT_ID = "<%= TestDropDownList.ClientID %>";
             var BUTTON_CHILD_TRIGGER_CLIENT_ID = "<%= btnChildTrigger.ClientID %>";
+            var BUTTON_CHILD_TRIGGER2_CLIENT_ID = "<%= btnChildTrigger2.ClientID %>";
             var playSpy;
 
             describe("Postback", function() {
@@ -125,8 +153,8 @@
                 beforeEach(function() {
                     this.extender = $find("animation");
                     this.extenderForChildrenTriggers = $find("animationForChildrenTriggers");
+                    this.extenderForChildrenTriggers2 = $find("animationForChildrenTriggers2");
                     playSpy = spyOn(this.extender._onUpdating.__proto__, 'play');
-                    //playSpyForChildrenTriggers = spyOn(this.extenderForChildrenTriggers._onUpdating.__proto__, 'play');
                     spyOn(window, 'onUpdating');
                     spyOn(window, 'onUpdated');
                 });
@@ -164,6 +192,11 @@
                         function () {
                             return playSpy.calls.any();
                         }, done);
+                });
+
+                it("does not react to ignored child trigger", function () {
+                    $("#" + BUTTON_CHILD_TRIGGER2_CLIENT_ID).click();
+                    expect(this.extenderForChildrenTriggers2._onUpdated.__proto__.play).not.toHaveBeenCalled();
                 });
             });
         });
