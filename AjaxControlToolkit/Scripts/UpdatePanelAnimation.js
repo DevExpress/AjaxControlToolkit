@@ -13,6 +13,8 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior = function(element) {
     this._pageLoadedHandler = null;
     this._alwaysFinishOnUpdatingAnimation = null;
     this._triggerControlsClientID = null;
+    this._updatePanelID = "";
+    this._updatePanelClientID = "";
 };
 Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     initialize: function() {
@@ -66,15 +68,36 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
         // "beginRequestEventArgs" - event arguments
         Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.callBaseMethod(this, '_partialUpdateBeginRequest', [sender, beginRequestEventArgs]);
 
+        debugger;
         if(!this._postBackPending) {
-            if(this._triggerControlsClientID.length == 0
-                || this._triggerControlsClientID.indexOf(beginRequestEventArgs._postBackElement.id) != -1)
-            {
+            if(this._isTriggeredByTriggerControl(beginRequestEventArgs._postBackElement.id)
+                || this._isTriggeredByChildControl(sender, beginRequestEventArgs)) {                    
                 this._postBackPending = true;
                 this._onUpdated.quit();
                 this._onUpdating.play();
             }
         }
+    },
+
+    _isTriggeredByTriggerControl: function(postBackElementID) {
+        return this._triggerControlsClientID.length 
+            && this._triggerControlsClientID.indexOf(postBackElementID) != -1;
+    },
+
+    _isTriggeredByChildControl: function (sender, beginRequestEventArgs) {
+        if(!beginRequestEventArgs._updatePanelsToUpdate)
+            return false;
+
+        if(beginRequestEventArgs._updatePanelsToUpdate.indexOf(this.get_updatePanelID()) === -1)
+            return false;
+
+        var panelIndex = sender._updatePanelIDs.indexOf(this.get_updatePanelID());
+
+        if(!sender._updatePanelHasChildrenAsTriggers[panelIndex])
+            return false;
+
+        var postBackElement = document.getElementById(beginRequestEventArgs._postBackElement.id);
+        return postBackElement.parentElement.id === this.get_updatePanelClientID();
     },
 
     _pageLoaded: function(sender, args) {
@@ -236,6 +259,38 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     set_TriggerControlsClientID: function(value) {
         Sys.Extended.Deprecated("set_TriggerControlsClientID(value)", "set_triggerControlsClientID(value)");
         this.set_triggerControlsClientID(value);
+    },
+
+    /// <summary>
+    /// ID of the target update panel
+    /// </summary>
+    /// <getter>get_updatePanelID</getter>
+    /// <setter>set_updatePanelID</setter>
+    /// <member name="cP:AjaxControlToolkit.UpdatePanelAnimationExtender.updatePanelID" />
+    get_updatePanelID: function () {
+        return this._updatePanelID;
+    },
+    set_updatePanelID: function (value) {
+        if(this._updatePanelID != value) {
+            this._updatePanelID = value;
+            this.raisePropertyChanged('updatePanelID');
+        }
+    },
+
+    /// <summary>
+    /// Client ID of the target update panel
+    /// </summary>
+    /// <getter>get_updatePanelClientID</getter>
+    /// <setter>set_updatePanelClientID</setter>
+    /// <member name="cP:AjaxControlToolkit.UpdatePanelAnimationExtender.updatePanelClientID" />
+    get_updatePanelClientID: function () {
+        return this._updatePanelClientID;
+    },
+    set_updatePanelClientID: function (value) {
+        if(this._updatePanelClientID != value) {
+            this._updatePanelClientID = value;
+            this.raisePropertyChanged('updatePanelClientID');
+        }
     }
 };
 Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.registerClass('Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior', Sys.Extended.UI.BehaviorBase);

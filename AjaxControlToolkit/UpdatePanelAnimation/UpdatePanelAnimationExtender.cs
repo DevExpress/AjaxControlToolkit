@@ -99,6 +99,13 @@ namespace AjaxControlToolkit {
             }
         }
 
+        protected override void RenderScriptAttributes(ScriptBehaviorDescriptor descriptor) {
+            base.RenderScriptAttributes(descriptor);
+
+            descriptor.AddProperty("updatePanelID", TargetControl.UniqueID);
+            descriptor.AddProperty("updatePanelClientID", TargetControl.ClientID);
+        }
+
         // Replace any statically defined AnimationTarget properties with a corresponding
         // TargetScript dynamic animation property
         void ReplaceStaticAnimationTargets(Animation animation) {
