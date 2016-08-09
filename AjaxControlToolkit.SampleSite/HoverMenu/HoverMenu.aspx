@@ -175,7 +175,7 @@
                 the value should be "-5".</li>
                 <li><strong>HoverDelay</strong> - The time, in milliseconds, before the popup displays after hovering over the target control.  Default is 0.</li>
                 <li><strong>PopDelay</strong> - The time, in milliseconds, for the popup to remain visible after the mouse moves away from the target control. Default is 100.</li>
-                <li><strong>Animations</strong> - Generic animations for the HoverMenu extender.  See the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a> for more details.
+                <li><strong>Animations</strong> - Generic animations for the HoverMenu extender.  See the <a href="https://github.com/DevExpress/AjaxControlToolkit/wiki/Animation">Animation Reference</a> for more details.
                 <ul>
                     <li><strong>OnShow</strong> - The OnShow animation will be played each time the hover menu is displayed.
                         The hover menu will be positioned correctly but hidden.  The animation can use

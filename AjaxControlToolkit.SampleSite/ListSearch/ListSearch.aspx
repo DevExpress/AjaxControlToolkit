@@ -64,7 +64,7 @@
                 <li><strong>QueryPattern</strong> - Indicates how the typed characters should be used in the search query. The default pattern queries for results that start with the typed word. </li>
                 <li><strong>IsSorted</strong> - Indicates if items added to the List are expected to be sorted. The default is false. If set to true it allows the code to perform a faster search instead of having to determine the same before performing the search.</li>
                 <li><strong>QueryTimeout</strong> - Indicates whether the search query should be reset after the timeout if no match is found. The default is 0, meaning no auto reset behavior. </li>
-                <li><strong>Animations</strong> - Generic animations for the ListSearch extender.  See the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a> for more details.
+                <li><strong>Animations</strong> - Generic animations for the ListSearch extender.  See the <a href="https://github.com/DevExpress/AjaxControlToolkit/wiki/Animation">Animation Reference</a> for more details.
                     <ul>
                         <li><strong>OnShow</strong> - The OnShow animation will be played each time the extender's
                             prompt is displayed.  The prompt will be positioned correctly but hidden.

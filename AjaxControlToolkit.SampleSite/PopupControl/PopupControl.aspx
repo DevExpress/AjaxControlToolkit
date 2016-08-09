@@ -107,7 +107,7 @@
                 <li><strong>CommitProperty</strong> - Optional setting specifying the property on the control being extended that should be set with the result of the popup</li>
                 <li><strong>CommitScript</strong> - Optional setting specifying additional script to run after setting the result of the popup</li>
                 <li><strong>OffsetX/OffsetY</strong> - The number of pixels to offset the Popup from its default position, as specified by Position.</li>
-                <li><strong>Animations</strong> - Generic animations for the PopupControlExtender.  See the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a> for more details.
+                <li><strong>Animations</strong> - Generic animations for the PopupControlExtender.  See the <a href="https://github.com/DevExpress/AjaxControlToolkit/wiki/Animation">Animation Reference</a> for more details.
                     <ul>
                         <li><strong>OnShow</strong> - The OnShow animation will be played each time the popup is displayed.
                             The popup will be positioned correctly but hidden.  The animation can use

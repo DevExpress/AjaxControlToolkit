@@ -118,7 +118,7 @@
             popup  on the client  onFocus event. Default value is false.</li>
                 <li><strong>DisplayOnClick</strong> - Optional setting specifying whether to display balloon popup  
             on the client  onClick event. Default value is true.</li>
-                <li><strong>Animations</strong> - Generic animations for the PopupControlExtender. See the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a> for more details.
+                <li><strong>Animations</strong> - Generic animations for the PopupControlExtender. See the <a href="https://github.com/DevExpress/AjaxControlToolkit/wiki/Animation">Animation Reference</a> for more details.
                 <ul>
                     <li><strong>OnShow</strong> - The OnShow animation will be played each time the popup
                         is displayed. The popup will be positioned correctly but hidden. The animation can

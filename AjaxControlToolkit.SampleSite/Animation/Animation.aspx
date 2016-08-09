@@ -221,7 +221,7 @@
             <br />
             <p>
                 The framework provides a lot of useful animations to handle movement, resizing, fading,
-                etc. All the animations and their properties are described in the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a>.
+                etc. All the animations and their properties are described in the <a href="https://github.com/DevExpress/AjaxControlToolkit/wiki/Animation">Animation Reference</a>.
             </p>
         </Content>
     </samples:InfoBlock>
