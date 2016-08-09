@@ -81,9 +81,7 @@
 
     <asp:UpdatePanel ID="UpdatePanelWithChildrenAsTriggers" runat="server" ChildrenAsTriggers="true">
         <ContentTemplate>
-          Content
-          <br />
-          <asp:Button runat="server" Text="Button" ID="btnChildTrigger" />
+            <asp:Button runat="server" Text="Button" ID="btnChildTrigger" />
         </ContentTemplate>
     </asp:UpdatePanel>
 
