@@ -119,7 +119,6 @@
             var DROPDOWNLIST_CLIENT_ID = "<%= TestDropDownList.ClientID %>";
             var BUTTON_CHILD_TRIGGER_CLIENT_ID = "<%= btnChildTrigger.ClientID %>";
             var playSpy;
-            var playSpyForChildrenTriggers;
 
             describe("Postback", function() {
 
