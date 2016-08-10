@@ -70,7 +70,6 @@ namespace AjaxControlToolkit {
         /// if the postback is caused by a panel's immediate children
         /// </summary>
         [DefaultValue(false)]
-        [Browsable(true)]
         [ExtenderControlProperty]
         [ClientPropertyName("childrenAsTriggers")]
         public bool ChildrenAsTriggers {
