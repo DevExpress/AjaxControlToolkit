@@ -27,14 +27,14 @@
     <act:UpdatePanelAnimationExtender ID="TargetExtender" runat="server" TargetControlID="TestUpdatePanel" AlwaysFinishOnUpdatingAnimation="true" BehaviorID="animation">
         <Animations>
             <OnUpdating>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdating();" />
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdating();" />
                 </Parallel>
             </OnUpdating>
             <OnUpdated>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdated();" />
-            </Parallel>
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdated();" />
+                </Parallel>
             </OnUpdated>
         </Animations>
     </act:UpdatePanelAnimationExtender>
@@ -67,14 +67,14 @@
         AlwaysFinishOnUpdatingAnimation="true">
         <Animations>
             <OnUpdating>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdating();" />
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdating();" />
                 </Parallel>
             </OnUpdating>
             <OnUpdated>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdated();" />
-            </Parallel>
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdated();" />
+                </Parallel>
             </OnUpdated>
         </Animations>
     </act:UpdatePanelAnimationExtender>
@@ -93,14 +93,14 @@
         BehaviorID="animationForChildrenTriggers">
         <Animations>
             <OnUpdating>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdating();" />
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdating();" />
                 </Parallel>
             </OnUpdating>
             <OnUpdated>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdated();" />
-            </Parallel>
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdated();" />
+                </Parallel>
             </OnUpdated>
         </Animations>
     </act:UpdatePanelAnimationExtender>
@@ -120,14 +120,14 @@
         BehaviorID="animationForChildrenTriggers2">
         <Animations>
             <OnUpdating>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdating();" />
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdating();" />
                 </Parallel>
             </OnUpdating>
             <OnUpdated>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdated();" />
-            </Parallel>
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdated();" />
+                </Parallel>
             </OnUpdated>
         </Animations>
     </act:UpdatePanelAnimationExtender>
