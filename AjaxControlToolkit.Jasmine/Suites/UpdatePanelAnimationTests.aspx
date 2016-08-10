@@ -116,7 +116,7 @@
         runat="server"
         TargetControlID="UpdatePanelWithChildrenAsTriggers2"
         AlwaysFinishOnUpdatingAnimation="true"
-        IgnoreChildrenTriggers="true"
+        ChildrenAsTriggers="true"
         BehaviorID="animationForChildrenTriggers2">
         <Animations>
             <OnUpdating>
@@ -147,6 +147,7 @@
             var BUTTON_CHILD_TRIGGER_CLIENT_ID = "<%= btnChildTrigger.ClientID %>";
             var BUTTON_CHILD_TRIGGER2_CLIENT_ID = "<%= btnChildTrigger2.ClientID %>";
             var playSpy;
+            var playSpyChildrenAsTriggers;
 
             describe("Postback", function() {
 
@@ -185,18 +186,18 @@
                         }, done);
                 });
 
-                it("is updated by child trigger", function (done) {
+                it("is not updated by child trigger", function () {
                     $("#" + BUTTON_CHILD_TRIGGER_CLIENT_ID).click();
-                        
+                    expect(this.extenderForChildrenTriggers._onUpdated.__proto__.play).not.toHaveBeenCalled();
+                });
+
+                it("reacts to child trigger", function (done) {
+                    $("#" + BUTTON_CHILD_TRIGGER2_CLIENT_ID).click();
+
                     waitFor(
                         function () {
                             return playSpy.calls.any();
                         }, done);
-                });
-
-                it("does not react to ignored child trigger", function () {
-                    $("#" + BUTTON_CHILD_TRIGGER2_CLIENT_ID).click();
-                    expect(this.extenderForChildrenTriggers2._onUpdated.__proto__.play).not.toHaveBeenCalled();
                 });
             });
         });

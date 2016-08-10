@@ -72,10 +72,10 @@ namespace AjaxControlToolkit {
         [DefaultValue(false)]
         [Browsable(true)]
         [ExtenderControlProperty]
-        [ClientPropertyName("ignoreChildrenTriggers")]
-        public bool IgnoreChildrenTriggers {
-            get { return GetPropertyValue<bool>("IgnoreChildrenTriggers", false); }
-            set { SetPropertyValue("IgnoreChildrenTriggers", value); }
+        [ClientPropertyName("childrenAsTriggers")]
+        public bool ChildrenAsTriggers {
+            get { return GetPropertyValue<bool>("ChildrenAsTriggers", false); }
+            set { SetPropertyValue("ChildrenAsTriggers", value); }
         }
 
         /// <summary>

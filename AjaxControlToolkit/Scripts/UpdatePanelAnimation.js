@@ -15,7 +15,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior = function(element) {
     this._triggerControlsClientID = null;
     this._updatePanelID = "";
     this._updatePanelClientID = "";
-    this._ignoreChildrenTriggers = false;
+    this._childrenAsTriggers = false;
 };
 Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     initialize: function() {
@@ -85,7 +85,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     },
 
     _isTriggeredByChildControl: function (sender, beginRequestEventArgs) {
-        if(this.get_ignoreChildrenTriggers())
+        if(!this.get_childrenAsTriggers())
             return false;
 
         if(!beginRequestEventArgs._updatePanelsToUpdate)
@@ -300,16 +300,16 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     /// An optional property that ignores update panel animation
     /// if the postback is caused by a panel's immediate children
     /// </summary>
-    /// <getter>get_ignoreChildrenTriggers</getter>
-    /// <setter>set_ignoreChildrenTriggers</setter>
-    /// <member name="cP:AjaxControlToolkit.UpdatePanelAnimationExtender.ignoreChildrenTriggers" />
-    get_ignoreChildrenTriggers: function () {
-        return this._ignoreChildrenTriggers;
+    /// <getter>get_childrenAsTriggers</getter>
+    /// <setter>set_childrenAsTriggers</setter>
+    /// <member name="cP:AjaxControlToolkit.UpdatePanelAnimationExtender.childrenAsTriggers" />
+    get_childrenAsTriggers: function () {
+        return this._childrenAsTriggers;
     },
-    set_ignoreChildrenTriggers: function (value) {
-        if(this._ignoreChildrenTriggers != value) {
-            this._ignoreChildrenTriggers = value;
-            this.raisePropertyChanged('ignoreChildrenTriggers');
+    set_childrenAsTriggers: function (value) {
+        if(this._childrenAsTriggers != value) {
+            this._childrenAsTriggers = value;
+            this.raisePropertyChanged('childrenAsTriggers');
         }
     }
 };
