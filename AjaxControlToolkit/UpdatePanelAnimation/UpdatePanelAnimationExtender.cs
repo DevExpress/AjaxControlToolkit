@@ -66,7 +66,7 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
-        /// An optional property that ignores update panel animation
+        /// An optional property that enables update panel animation
         /// if the postback is caused by a panel's immediate children
         /// </summary>
         [DefaultValue(false)]
