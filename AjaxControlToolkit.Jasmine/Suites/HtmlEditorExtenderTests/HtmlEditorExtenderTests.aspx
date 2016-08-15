@@ -122,6 +122,18 @@
                     <act:InsertImage AjaxFileUploadHandlerPath="somepath" />
                 </Toolbar>
             </act:HtmlEditorExtender>
+
+            <asp:TextBox runat="server"
+                ID="PreviewTextBox"
+                Width="500"
+                Height="300" />
+
+            <act:HtmlEditorExtender runat="server"
+                TargetControlID="PreviewTextBox"
+                ID="PreviewHtmlEditorExtender"
+                DisplaySourceTab="true"
+                DisplayPreviewTab="true">
+            </act:HtmlEditorExtender>
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -131,6 +143,7 @@
             var HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= TargetExtender.ClientID %>",
                 HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID = "<%= TargetExtenderSanitized.ClientID %>",
                 HTML_EDITOR_EXTENDER_WITH_IMAGEBUTTON_CLIENT_ID = "<%= HtmlEditorExtenderWithImageButton.ClientID %>",
+                PREVIEW_HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= PreviewHtmlEditorExtender.ClientID %>",
                 SIMPLE_TEXTBOX_CLIENT_ID = "<%= SimpleTextBox.ClientID %>",
                 UPDATE_PANEL_BUTTON_CLIENT_ID = "<%= UpdatePanelButton.ClientID %>";
 
@@ -140,6 +153,7 @@
                 this.extender = $find(HTML_EDITOR_EXTENDER_CLIENT_ID);
                 this.extenderSanitized = $find(HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID);
                 this.extenderWithImageButton = $find(HTML_EDITOR_EXTENDER_WITH_IMAGEBUTTON_CLIENT_ID);
+                this.previewExtender = $find(PREVIEW_HTML_EDITOR_EXTENDER_CLIENT_ID);
 
                 this.ua = detect.parse(navigator.userAgent);
             });
@@ -782,6 +796,30 @@
             it("sets AjaxFileUpload upload handler path", function () {
                 var ajaxFileUpload = $find(this.extenderWithImageButton.get_id() + "_ajaxFileUpload");
                 expect(ajaxFileUpload.get_uploadHandlerPath()).toBe("somepath");
+            });
+
+            it("switches to preview mode", function () {
+                var wrapper = new HtmlEditorWrapper(this.previewExtender);
+                wrapper.switchTab("preview");
+                expect(wrapper.currentState.tab()).toBe("preview");
+            });
+
+            it("switches to preview, then to source mode", function () {
+                var wrapper = new HtmlEditorWrapper(this.previewExtender);
+                wrapper.switchTab("preview").switchTab("source");
+                expect(wrapper.currentState.tab()).toBe("source");
+            });
+
+            it("switches to preview, source, content mode", function () {
+                var wrapper = new HtmlEditorWrapper(this.previewExtender);
+                wrapper.switchTab("preview").switchTab("source").switchTab("content");
+                expect(wrapper.currentState.tab()).toBe("content");
+            });
+
+            it("switches to preview, then to content mode", function () {
+                var wrapper = new HtmlEditorWrapper(this.previewExtender);
+                wrapper.switchTab("preview").switchTab("content");
+                expect(wrapper.currentState.tab()).toBe("content");
             });
         });
     </script>

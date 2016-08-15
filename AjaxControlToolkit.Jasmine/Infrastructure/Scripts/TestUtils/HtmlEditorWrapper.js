@@ -2,7 +2,8 @@
 
     var HTML_EDITOR_TABS = {
         "source": "ajax__html_editor_extender_source",
-        "content": "ajax__html_editor_extender_content"
+        "content": "ajax__html_editor_extender_content",
+        "preview": "ajax__html_editor_extender_preview"
     };
 
     var HTML_EDITOR_BUTTON_CLASS_NAME_PREFIX = "ajax__html_editor_extender_",
@@ -44,6 +45,7 @@
         var extender = htmlEditorExtender,
             $editableDiv = $(extender._editableDiv),
             $sourceViewDiv = $(extender._sourceViewDiv),
+            $previewDiv = $(extender._previewDiv),
             $container = $(extender._container);
 
         this.TOOLBAR_BUTTONS = HTML_EDITOR_BUTTONS;
@@ -53,7 +55,10 @@
                 if($editableDiv.is(":visible"))
                     return "content";
 
-                return "source";
+                if($sourceViewDiv.is(":visible"))
+                    return "source";
+
+                return "preview";
             },
             //NOTE: we need to switch the tab of HtmlEditorExtender to apply setting of content
             editorContent: function(tab) {

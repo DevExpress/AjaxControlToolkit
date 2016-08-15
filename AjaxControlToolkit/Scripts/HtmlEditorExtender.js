@@ -20,7 +20,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     /// <getter>get_isDirty</getter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.isDirty" />
     this._isDirty = false;
-    this._viewMode = 'content';
+    this._lastMode = Sys.Extended.UI.HtmlEditorExtenderMode.Content;
 
     /// <summary>
     /// Determines whether or not to display a source view tab/button to see the source view of HtmlEditorExtender
@@ -29,6 +29,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     /// <setter>set_displaySourceTab</setter>
     /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.displaySourceTab" />
     this._displaySourceTab = false;
+
+    /// <summary>
+    /// Determines whether or not to display a preview tab/button providing access to HtmlEditorExtender’s preview
+    /// </summary>
+    /// <getter>get_displayPreviewTab</getter>
+    /// <setter>set_displayPreviewTab</setter>
+    /// <member name="cP:AjaxControlToolkit.HtmlEditorExtender.displayPreviewTab" />
+    this._displayPreviewTab = false;
 
     /// <summary>
     /// Button width in pixels
@@ -119,6 +127,18 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
         cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_source']
     };
 
+    this._buttonPreviewTemplate = {
+        nodeName: 'input',
+        properties: {
+            type: 'button',
+            style: {
+                width: this._ButtonWidth + 'px',
+                height: this._ButtonHeight + 'px'
+            }
+        },
+        cssClasses: ['ajax__html_editor_extender_button ajax__html_editor_extender_preview']
+    };
+
     this._textboxTemplate = {
         nodeName: 'input',
         properties: {
@@ -145,15 +165,15 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
         cssClasses: ['ajax__html_editor_extender_buttoncontainer']
     };
 
-    this._topButtonContainerTemplate2 = {
+    this._bottomButtonsContainerTemplate = {
         nodeName: 'div',
         properties: {
-            id: id + '_ExtenderButtonContainer2',
+            id: id + '_ExtenderModeButtonContainer',
             style: {
                 clear: 'both'
             }
         },
-        cssClasses: ['ajax__html_editor_extender_buttoncontainer2']
+        cssClasses: ['ajax__html_editor_extender_modebuttonscontainer']
     };
 
     // variables
@@ -168,14 +188,16 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._toolbarButtons = null;
     this._editableDiv = null;
     this._sourceViewDiv = null;
+    this._previewDiv = null;
     this._topButtonContainer = null;
-    this._topButtonContainer2 = null;
+    this._bottomButtonsContainer = null;
     this._buttons = [];
     this._requested_buttons = new Array();
     this._colorPicker = null;
     this._txtBoxForColor = null;
     this._contentViewButton = null;
     this._sourceViewButton = null;
+    this._previewButton = null;
     this._popupDiv = null;
     this._btnDone = null;
     this._btnCancel = null;
@@ -187,6 +209,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._contentViewClickDelegate = null;
     this._sourceViewClickDelegate = null;
     this._sourceViewDivOnBlurDelegate = null;
+    this._previewClickDelegate = null;
     this._imageCancelClickDelegate = null;
 
     // Hook into the ASP.NET WebForm_OnSubmit function to encode html tags prior to submission
@@ -208,10 +231,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._createButton();
         this._createEditableDiv();
 
-        if(this.get_displaySourceTab()) {
+        if(this.get_displaySourceTab())
             this._createSourceViewDiv();
-            this._createTopButtonContainer2();
-        }
+
+        if(this.get_displayPreviewTab())
+            this._createPreviewDiv();
+
+        if(this._hasMultipleTabs())
+            this._createBottomButtonsContainer();
 
         // get form that contains textbox
         var formElement = this._textbox._element.parentNode;
@@ -247,9 +274,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._editableDivOnFocusDelegate = Function.createDelegate(this, this._editableDiv_onfocus);
         this._btnClickDelegate = Function.createDelegate(this, this._executeCommand);
 
-        if(this.get_displaySourceTab()) {
-            this._contentViewClickDelegate = Function.createDelegate(this, this._contentView_click);
+        if(this.get_displaySourceTab())
             this._sourceViewClickDelegate = Function.createDelegate(this, this._sourceView_click);
+
+        if(this.get_displayPreviewTab())
+            this._previewClickDelegate = Function.createDelegate(this, this._preview_click);
+
+        if(this._hasMultipleTabs()) {
+            this._contentViewClickDelegate = Function.createDelegate(this, this._contentView_click);
             this._sourceViewDivOnBlurDelegate = Function.createDelegate(this, this._sourceViewDiv_onblur);
         }
 
@@ -259,9 +291,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $addHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate, true);
         $addHandler(this._topButtonContainer, 'click', this._btnClickDelegate, true);
 
-        if(this.get_displaySourceTab()) {
-            $addHandler(this._contentViewButton, 'click', this._contentViewClickDelegate, true);
+        if(this.get_displaySourceTab())
             $addHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate, true);
+
+        if(this.get_displayPreviewTab())
+            $addHandler(this._previewButton, 'click', this._previewClickDelegate, true);
+
+        if(this._hasMultipleTabs()) {
+            $addHandler(this._contentViewButton, 'click', this._contentViewClickDelegate, true);
             $addHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate, true);
         }
     },
@@ -272,9 +309,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $removeHandler(this._editableDiv, 'focus', this._editableDivOnFocusDelegate);
         $removeHandler(this._topButtonContainer, 'click', this._btnClickDelegate);
 
-        if(this.get_displaySourceTab()) {
-            $removeHandler(this._contentViewButton, 'click', this._contentViewClickDelegate);
+        if(this.get_displaySourceTab())
             $removeHandler(this._sourceViewButton, 'click', this._sourceViewClickDelegate);
+
+        if(this.get_displayPreviewTab())
+            $removeHandler(this.previewButton, 'click', this._previewClickDelegate);
+
+        if(this._hasMultipleTabs()) {
+            $removeHandler(this._contentViewButton, 'click', this._contentViewClickDelegate);
             $removeHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate);
         }
 
@@ -282,6 +324,10 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             $removeHandler(this._btnCancel, 'click', this._imageCancelClickDelegate);
 
         Sys.Extended.UI.HtmlEditorExtenderBehavior.callBaseMethod(this, 'dispose');
+    },
+
+    _hasMultipleTabs: function(){
+        return this.get_displaySourceTab() || this.get_displayPreviewTab();
     },
 
     _createContainer: function() {
@@ -595,10 +641,15 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $common.setVisible(this._textbox._element, false);
     },
 
-    _createTopButtonContainer2: function() {
-        this._topButtonContainer2 = $common.createElementFromTemplate(this._topButtonContainerTemplate2, this._container);
-        this._contentViewButton = $common.createElementFromTemplate(this._buttonContentTemplate, this._topButtonContainer2);
-        this._sourceViewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._topButtonContainer2);
+    _createBottomButtonsContainer: function() {
+        this._bottomButtonsContainer = $common.createElementFromTemplate(this._bottomButtonsContainerTemplate, this._container);
+        this._contentViewButton = $common.createElementFromTemplate(this._buttonContentTemplate, this._bottomButtonsContainer);
+
+        if(this.get_displaySourceTab())
+            this._sourceViewButton = $common.createElementFromTemplate(this._buttonSourceTemplate, this._bottomButtonsContainer);
+
+        if(this.get_displayPreviewTab())
+            this._previewButton = $common.createElementFromTemplate(this._buttonPreviewTemplate, this._bottomButtonsContainer);
     },
 
     _createSourceViewDiv: function() {
@@ -620,6 +671,26 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }, this._container);
 
         $common.setVisible(this._sourceViewDiv, false);
+    },
+
+    _createPreviewDiv: function () {
+        var id = this.get_id(),
+            height = this._container.clientHeight - 25;
+
+        this._previewDiv = $common.createElementFromTemplate({
+            nodeName: 'div',
+            properties: {
+                id: id + '_ExtenderPreview',
+                style: {
+                    height: height + 'px',
+                    overflow: 'auto',
+                    clear: 'both'
+                }
+            },
+            cssClasses: ['ajax__html_editor_extender_texteditor']
+        }, this._container);
+
+        $common.setVisible(this._previewDiv, false);
     },
 
     _editableDiv_onblur: function() {
@@ -655,36 +726,62 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         this._editableDiv.innerHTML = this._textbox._element.value;
     },
 
-    _contentView_click: function() {
-        if(this._viewMode != 'content') {
-            $common.setVisible(this._topButtonContainer, true);
-            $common.setVisible(this._editableDiv, true);
+    _contentView_click: function () {
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Content)
+            return;
 
-            if(this._sourceViewDiv.textContent != undefined)
-                this._editableDiv.innerHTML = this._sourceViewDiv.textContent;
-            else
-                this._editableDiv.innerHTML = this._sourceViewDiv.innerText;
+        $common.setVisible(this._topButtonContainer, true);
+        $common.setVisible(this._editableDiv, true);
 
-            this._oldContents = this._editableDiv.innerHTML;
-            $common.setVisible(this._sourceViewDiv, false);
-            this._viewMode = 'content';
-        }
+        if(this._sourceViewDiv.textContent != undefined)
+            this._editableDiv.innerHTML = this._sourceViewDiv.textContent;
+        else
+            this._editableDiv.innerHTML = this._sourceViewDiv.innerText;
+
+        this._oldContents = this._editableDiv.innerHTML;
+        $common.setVisible(this._sourceViewDiv, false);
+        $common.setVisible(this._previewDiv, false);
+        this._lastMode = Sys.Extended.UI.HtmlEditorExtenderMode.Content;
     },
 
-    _sourceView_click: function() {
-        if(this._viewMode != 'source') {
-            $common.setVisible(this._sourceViewDiv, true);
+    _sourceView_click: function () {
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Source)
+            return;
 
+        $common.setVisible(this._sourceViewDiv, true);
+
+        if(this._sourceViewDiv.textContent != undefined)
+            this._sourceViewDiv.textContent = this.cleanHtml(this._editableDiv.innerHTML);
+        else
+            this._sourceViewDiv.innerText = this.cleanHtml(this._editableDiv.innerHTML);
+
+        this._oldContents = this._editableDiv.innerHTML;
+        $common.setVisible(this._editableDiv, false);
+        $common.setVisible(this._topButtonContainer, false);
+        $common.setVisible(this._previewDiv, false);
+        this._lastMode = Sys.Extended.UI.HtmlEditorExtenderMode.Source;
+    },
+
+    _preview_click: function () {
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Preview)
+            return;
+
+        $common.setVisible(this._previewDiv, true);
+
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Source) {
             if(this._sourceViewDiv.textContent != undefined)
-                this._sourceViewDiv.textContent = this.cleanHtml(this._editableDiv.innerHTML);
+                this._previewDiv.innerHTML = this._sourceViewDiv.textContent;
             else
-                this._sourceViewDiv.innerText = this.cleanHtml(this._editableDiv.innerHTML);
-
-            this._oldContents = this._editableDiv.innerHTML;
-            $common.setVisible(this._editableDiv, false);
-            $common.setVisible(this._topButtonContainer, false);
-            this._viewMode = 'source';
+                this._previewDiv.innerHTML = this._sourceViewDiv.innerText;
         }
+
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Content)
+            this._previewDiv.innerHTML = this._editableDiv.innerHTML;
+
+        $common.setVisible(this._editableDiv, false);
+        $common.setVisible(this._sourceViewDiv, false);
+        $common.setVisible(this._topButtonContainer, false);
+        this._lastMode = Sys.Extended.UI.HtmlEditorExtenderMode.Preview;
     },
 
     cleanHtml: function(html) {
@@ -1212,6 +1309,17 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         }
     },
 
+    get_displayPreviewTab: function () {
+        return this._displayPreviewTab;
+    },
+
+    set_displayPreviewTab: function (value) {
+        if(this._displayPreviewTab != value) {
+            this._displayPreviewTab = value;
+            this.raisePropertyChanged('DisplayPreviewTab');
+        }
+    },
+
     /// <summary>
     /// Fires when text change occurs
     /// </summary>
@@ -1297,4 +1405,10 @@ ajaxClientUploadComplete = function(sender, e) {
             htmlEditorExtender._savedRange.insertNode(node);
         }
     }
+};
+
+Sys.Extended.UI.HtmlEditorExtenderMode = {
+    Content: 0,
+    Source: 1,
+    Preview: 2
 };
