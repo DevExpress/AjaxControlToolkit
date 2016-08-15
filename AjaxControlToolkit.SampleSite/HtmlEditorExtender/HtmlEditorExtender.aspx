@@ -138,7 +138,7 @@
                 <li><strong>Toolbar</strong> - This provides facility to customize toolbar as per requirement. This tag is optional and if user does not provide toolbar tag then by default all buttons will be populated in the toolbar. User must add at least 1 button in the toolbar tag.</li>
                 <li><strong>Sanitizer</strong> - Returns the Sanitizer or null when no Sanitizer is configured.</li>
                 <li><strong>DisplaySourceTab</strong> - Whether to display source tab to switch to Source view to see html contents.</li>
-                <li><strong>DisplayPreviewTab</strong> - Whether or not to display a preview tab/button to see the source view of HtmlEditorExtender.</li>
+                <li><strong>DisplayPreviewTab</strong> - Whether or not to display a preview tab/button providing access to HtmlEditorExtender’s preview.</li>
                 <li><strong>EnableSanitization</strong> - Whether to use sanitizer provider or not. By default value of this property is true.</li>
             </ul>
         </Content>

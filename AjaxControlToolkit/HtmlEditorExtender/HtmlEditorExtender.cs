@@ -99,7 +99,7 @@ namespace AjaxControlToolkit {
         }
 
         ///<summary>
-        /// Determines whether or not to display a source view tab/button to see the source view of HtmlEditorExtender
+        /// Determines whether or not to display a preview tab/button providing access to HtmlEditorExtender’s preview
         /// </summary>
         [ExtenderControlProperty]
         [DefaultValue(false)]

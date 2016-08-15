@@ -31,7 +31,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior = function(element) {
     this._displaySourceTab = false;
 
     /// <summary>
-    /// Determines whether or not to display a preview tab/button to see the content preview of HtmlEditorExtender
+    /// Determines whether or not to display a preview tab/button providing access to HtmlEditorExtender’s preview
     /// </summary>
     /// <getter>get_displayPreviewTab</getter>
     /// <setter>set_displayPreviewTab</setter>
