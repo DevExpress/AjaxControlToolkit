@@ -110,6 +110,18 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
+        /// Determines if the Html Editor is readOnly.
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(false)]
+        [ClientPropertyName("readOnly")]
+        public bool ReadOnly
+        {
+            get { return GetPropertyValue("ReadOnly", false); }
+            set { SetPropertyValue("ReadOnly",value);}
+        }
+
+        /// <summary>
         /// The name of a JavaScript function to attach to the client-side Change event
         /// </summary>
         [ExtenderControlEvent]
