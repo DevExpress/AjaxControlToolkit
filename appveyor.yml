@@ -1,20 +1,21 @@
 version: '{build}'
 
-os: Visual Studio 2013
-
 init:
   - git config --global core.autocrlf true
 
 install:
 # Workaround for NUnit Console Runner v3.2.1 timeout bug (#1509). Try to remove it when a fix is available.
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/nunit-3-2-0.ps1'))
+# Workaround for NuGet MSBuild auto-detection bug (#1392)
+  - ps: if(Test-Path 'C:\Tools\NuGet3') { $nugetDir = 'C:\Tools\NuGet3' } else { $nugetDir = 'C:\Tools\NuGet' }
+  - ps: (New-Object Net.WebClient).DownloadFile('https://dist.nuget.org/win-x86-commandline/v3.3.0/nuget.exe', "$nugetDir\NuGet.exe")
 
 environment:
   AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
 
 cache:
-  - packages -> **\packages.config
-
+  - '%LocalAppData%\NuGet\Cache -> **\packages.config'
+  
 services: iis
   
 before_build:
