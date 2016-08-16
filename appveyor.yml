@@ -19,7 +19,7 @@ cache:
 services: iis
   
 before_build:
-  - nuget restore AjaxControlToolkit.sln
+  - nuget restore
 
 build:
   project: AjaxControlToolkit.sln
