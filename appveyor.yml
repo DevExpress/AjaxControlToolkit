@@ -14,6 +14,7 @@ environment:
 
 cache:
   - packages -> **\packages.config
+  - nuget.exe
 
 services: iis
   
