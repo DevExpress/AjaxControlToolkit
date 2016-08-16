@@ -14,7 +14,7 @@ environment:
   AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
 
 cache:
-  - '%LocalAppData%\NuGet\Cache -> **\packages.config'
+  - packages -> **\packages.config
   
 services: iis
   
