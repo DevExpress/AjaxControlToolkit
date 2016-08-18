@@ -116,7 +116,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
                (evt.ctrlKey /* Control keys */))
             return;
 
-        if(Sys.Browser.agent === Sys.Browser.Safari) {
+        if("keyIdentifier" in evt.rawEvent) {
             // Safari
             // Note (Garbin): used the underlying rawEvent insted of the DomEvent instance.
             if(evt.rawEvent.ctrlKey || evt.rawEvent.altKey || evt.rawEvent.metaKey)
