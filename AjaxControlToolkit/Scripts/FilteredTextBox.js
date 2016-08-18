@@ -90,13 +90,11 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
 
         // scanCode = event.charCode
 
-        // In Safari, charCode, which, and keyCode will all be filled with the same value,
-        // as well as keyIdentifier, which has the string representation either as "end" or "U+00000008"
+        // In Safari, charCode, which, and keyCode will all be filled with the same value
 
-        // 1) Check for ctrl/alt/meta -> bail if true
-        // 2) Check for keyIdentifier.startsWith("U+") -> bail if false
-        // 3) Check keyCode < 0x20 -> bail
-        // 4) Special case Delete (63272) -> bail
+        // 1) Check for ctrl/alt/meta -> bail if true        
+        // 2) Check keyCode < 0x20 -> bail
+        // 3) Special case Delete (63272) -> bail
 
         var scanCode;
 
@@ -118,21 +116,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
                (evt.ctrlKey /* Control keys */))
             return;
 
-        if(evt.rawEvent.keyIdentifier) {
-            // Safari
-            // Note (Garbin): used the underlying rawEvent insted of the DomEvent instance.
-            if(evt.rawEvent.ctrlKey || evt.rawEvent.altKey || evt.rawEvent.metaKey)
-                return;
-
-            if(evt.rawEvent.keyIdentifier.substring(0, 2) != "U+")
-                return;
-
-            scanCode = evt.rawEvent.charCode;
-            if(scanCode == 63272 /* Delete */)
-                return;
-        } else {
-            scanCode = evt.charCode;
-        }
+        scanCode = evt.charCode;
 
         if(scanCode && scanCode >= 0x20 /* space */) {
             var c = String.fromCharCode(scanCode);
