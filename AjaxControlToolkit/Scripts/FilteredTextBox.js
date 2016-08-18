@@ -90,7 +90,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
 
         // scanCode = event.charCode
 
-        // In Safari, charCode, which, and keyCode will all be filled with the same value
+        // In Safari, charCode, which, and keyCode will all be filled with the same value,
         // as well as keyIdentifier, which has the string representation either as "end" or "U+00000008"
 
         // 1) Check for ctrl/alt/meta -> bail if true
