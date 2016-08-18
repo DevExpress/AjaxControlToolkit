@@ -179,7 +179,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
 
         // Else if it was decided that it shouldn't be allowed,
         // raise the Filtered event and return false to filter the key
-        this.raiseFiltered(new Sys.Extended.UI.FilteredTextBoxEventArgs(key));
+        this.raise_filtered(new Sys.Extended.UI.FilteredTextBoxEventArgs(key));
 
         return false;
     },
