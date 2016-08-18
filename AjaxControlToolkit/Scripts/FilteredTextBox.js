@@ -116,7 +116,18 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
                (evt.ctrlKey /* Control keys */))
             return;
 
-        scanCode = evt.charCode;
+        if(Sys.Browser.agent === Sys.Browser.Safari) {
+            // Safari
+            // Note (Garbin): used the underlying rawEvent insted of the DomEvent instance.
+            if(evt.rawEvent.ctrlKey || evt.rawEvent.altKey || evt.rawEvent.metaKey)
+                return;
+
+            scanCode = evt.rawEvent.charCode;
+            if(scanCode == 63272 /* Delete */)
+                return;
+        } else {
+            scanCode = evt.charCode;
+        }
 
         if(scanCode && scanCode >= 0x20 /* space */) {
             var c = String.fromCharCode(scanCode);
