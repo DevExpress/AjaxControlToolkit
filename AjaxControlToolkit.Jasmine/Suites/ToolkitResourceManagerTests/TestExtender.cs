@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-[assembly: WebResource("TestExtender.js", "text/javascript", CdnPath = "../ToolkitResourceManagerTests/Scripts/TestExtender.cdn.js")]
-[assembly: WebResource("TestExtender.debug.js", "text/javascript", CdnPath = "../ToolkitResourceManagerTests/Scripts/TestExtender.cdn.debug.js")]
+[assembly: WebResource("TestExtender.js", "text/javascript")]
+[assembly: WebResource("TestExtender.debug.js", "text/javascript")]
 
 namespace AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManager {
 
