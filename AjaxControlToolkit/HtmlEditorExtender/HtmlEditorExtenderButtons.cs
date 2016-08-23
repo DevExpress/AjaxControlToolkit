@@ -10,10 +10,13 @@ namespace AjaxControlToolkit
         string _Tooltip = string.Empty;
 
         /// <summary>
-        /// Determines text to display as a tooltip;
+        /// 
+        /// Determines text to display as a tooltip; {0} denotes the current handle's value in the format string
+        /// 
         /// </summary>
-        [Description("Determines the text to display as the tooltip;")]
+        [Description("Determines the text to display as the tooltip; {0} denotes the current handle's value in the format string.")]
         [DefaultValue("")]
+        [ClientPropertyName("tooltip")]
         public virtual string Tooltip
         {
             get { return (_Tooltip.Length == 0 ? CommandName : _Tooltip); }
@@ -33,11 +36,6 @@ namespace AjaxControlToolkit
     // Bold class represents to bold tag
     public class Bold : HtmlEditorExtenderButton
     {
-        public Bold()
-        {
-            Tooltip = "Bold";
-        }
-
         public override string CommandName
         {
             get { return "Bold"; }
@@ -67,11 +65,6 @@ namespace AjaxControlToolkit
 
     public class Italic : HtmlEditorExtenderButton
     {
-        public Italic()
-        {
-            Tooltip = "Italic";
-        }
-
         public override string CommandName
         {
             get { return "Italic"; }
@@ -101,11 +94,6 @@ namespace AjaxControlToolkit
 
     public class Underline : HtmlEditorExtenderButton
     {
-        public Underline()
-        {
-            Tooltip = "Underline";
-        }
-
         public override string CommandName
         {
             get { return "Underline"; }
@@ -134,14 +122,14 @@ namespace AjaxControlToolkit
 
     public class StrikeThrough : HtmlEditorExtenderButton
     {
-        public StrikeThrough()
-        {
-            Tooltip = "Strike Through";
-        }
-
         public override string CommandName
         {
             get { return "StrikeThrough"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Strike Through"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -167,14 +155,14 @@ namespace AjaxControlToolkit
 
     public class Subscript : HtmlEditorExtenderButton
     {
-        public Subscript()
-        {
-            Tooltip = "Sub Script";
-        }
-
         public override string CommandName
         {
             get { return "Subscript"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Sub Script"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -195,14 +183,14 @@ namespace AjaxControlToolkit
 
     public class Superscript : HtmlEditorExtenderButton
     {
-        public Superscript()
-        {
-            Tooltip = "Super Script";
-        }
-
         public override string CommandName
         {
             get { return "Superscript"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Super Script"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -223,14 +211,14 @@ namespace AjaxControlToolkit
 
     public class JustifyLeft : HtmlEditorExtenderButton
     {
-        public JustifyLeft()
-        {
-            Tooltip = "Justify Left";
-        }
-
         public override string CommandName
         {
             get { return "JustifyLeft"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Justify Left"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -258,14 +246,14 @@ namespace AjaxControlToolkit
 
     public class JustifyRight : HtmlEditorExtenderButton
     {
-        public JustifyRight()
-        {
-            Tooltip = "Justify Right";
-        }
-
         public override string CommandName
         {
             get { return "JustifyRight"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Justify Right"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -293,14 +281,14 @@ namespace AjaxControlToolkit
 
     public class JustifyCenter : HtmlEditorExtenderButton
     {
-        public JustifyCenter()
-        {
-            Tooltip = "Justify Center";
-        }
-
         public override string CommandName
         {
             get { return "JustifyCenter"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Justify Center"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -328,14 +316,14 @@ namespace AjaxControlToolkit
 
     public class JustifyFull : HtmlEditorExtenderButton
     {
-        public JustifyFull()
-        {
-            Tooltip = "Justify Full";
-        }
-
         public override string CommandName
         {
             get { return "JustifyFull"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Justify Full"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -363,14 +351,14 @@ namespace AjaxControlToolkit
 
     public class InsertOrderedList : HtmlEditorExtenderButton
     {
-        public InsertOrderedList()
-        {
-            Tooltip = "Insert Ordered List";
-        }
-
         public override string CommandName
         {
             get { return "insertOrderedList"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Insert Ordered List"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -392,14 +380,14 @@ namespace AjaxControlToolkit
 
     public class InsertUnorderedList : HtmlEditorExtenderButton
     {
-        public InsertUnorderedList()
-        {
-            Tooltip = "Insert Unordered List";
-        }
-
         public override string CommandName
         {
             get { return "insertUnorderedList"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Insert Unordered List"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -421,11 +409,6 @@ namespace AjaxControlToolkit
 
     public class Undo : HtmlEditorExtenderButton
     {
-        public Undo()
-        {
-            Tooltip = "Undo";
-        }
-
         public override string CommandName
         {
             get { return "Undo"; }
@@ -444,11 +427,6 @@ namespace AjaxControlToolkit
 
     public class Redo : HtmlEditorExtenderButton
     {
-        public Redo()
-        {
-            Tooltip = "Redo";
-        }
-
         public override string CommandName
         {
             get { return "Redo"; }
@@ -467,14 +445,14 @@ namespace AjaxControlToolkit
 
     public class CreateLink : HtmlEditorExtenderButton
     {
-        public CreateLink()
-        {
-            Tooltip = "Create Link";
-        }
-
         public override string CommandName
         {
             get { return "createLink"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Create Link"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -500,12 +478,12 @@ namespace AjaxControlToolkit
 
     public class Delete : HtmlEditorExtenderButton
     {
-        public Delete()
+        public override string CommandName
         {
-            Tooltip = "Delete";
+            get { return "Delete"; }
         }
 
-        public override string CommandName
+        public override string Tooltip
         {
             get { return "Delete"; }
         }
@@ -523,14 +501,14 @@ namespace AjaxControlToolkit
 
     public class SelectAll : HtmlEditorExtenderButton
     {
-        public SelectAll()
-        {
-            Tooltip = "Select All";
-        }
-
         public override string CommandName
         {
             get { return "SelectAll"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Select All"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -546,12 +524,12 @@ namespace AjaxControlToolkit
 
     public class UnSelect : HtmlEditorExtenderButton
     {
-        public UnSelect()
+        public override string CommandName
         {
-            Tooltip = "UnSelect";
+            get { return "UnSelect"; }
         }
 
-        public override string CommandName
+        public override string Tooltip
         {
             get { return "UnSelect"; }
         }
@@ -569,12 +547,12 @@ namespace AjaxControlToolkit
 
     public class UnLink : HtmlEditorExtenderButton
     {
-        public UnLink()
+        public override string CommandName
         {
-            Tooltip = "UnLink";
+            get { return "UnLink"; }
         }
 
-        public override string CommandName
+        public override string Tooltip
         {
             get { return "UnLink"; }
         }
@@ -592,14 +570,14 @@ namespace AjaxControlToolkit
 
     public class BackgroundColorSelector : HtmlEditorExtenderButton
     {
-        public BackgroundColorSelector()
-        {
-            Tooltip = "Back Color";
-        }
-
         public override string CommandName
         {
             get { return "BackColor"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Back Color"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -626,12 +604,12 @@ namespace AjaxControlToolkit
 
     public class Copy : HtmlEditorExtenderButton
     {
-        public Copy()
+        public override string CommandName
         {
-            Tooltip = "Copy";
+            get { return "Copy"; }
         }
 
-        public override string CommandName
+        public override string Tooltip
         {
             get { return "Copy"; }
         }
@@ -649,12 +627,12 @@ namespace AjaxControlToolkit
 
     public class Cut : HtmlEditorExtenderButton
     {
-        public Cut()
+        public override string CommandName
         {
-            Tooltip = "Cut";
+            get { return "Cut"; }
         }
 
-        public override string CommandName
+        public override string Tooltip
         {
             get { return "Cut"; }
         }
@@ -672,12 +650,12 @@ namespace AjaxControlToolkit
 
     public class Paste : HtmlEditorExtenderButton
     {
-        public Paste()
+        public override string CommandName
         {
-            Tooltip = "Paste";
+            get { return "Paste"; }
         }
 
-        public override string CommandName
+        public override string Tooltip
         {
             get { return "Paste"; }
         }
@@ -695,14 +673,14 @@ namespace AjaxControlToolkit
 
     public class CleanWord : HtmlEditorExtenderButton
     {
-        public CleanWord()
-        {
-            Tooltip = "Clean Word HTML";
-        }
-
         public override string CommandName
         {
             get { return "CleanWord"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Clean Word HTML"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -718,14 +696,14 @@ namespace AjaxControlToolkit
 
     public class FontNameSelector : HtmlEditorExtenderButton
     {
-        public FontNameSelector()
-        {
-            Tooltip = "Font Name";
-        }
-
         public override string CommandName
         {
             get { return "FontName"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Font Name"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -751,14 +729,14 @@ namespace AjaxControlToolkit
 
     public class FontSizeSelector : HtmlEditorExtenderButton
     {
-        public FontSizeSelector()
-        {
-            Tooltip = "Font Size";
-        }
-
         public override string CommandName
         {
             get { return "FontSize"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Font Size"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -784,14 +762,14 @@ namespace AjaxControlToolkit
 
     public class ForeColorSelector : HtmlEditorExtenderButton
     {
-        public ForeColorSelector()
-        {
-            Tooltip = "Fore Color";
-        }
-
         public override string CommandName
         {
             get { return "ForeColor"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Fore Color"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -817,12 +795,12 @@ namespace AjaxControlToolkit
 
     public class Indent : HtmlEditorExtenderButton
     {
-        public Indent()
+        public override string CommandName
         {
-            Tooltip = "Indent";
+            get { return "Indent"; }
         }
 
-        public override string CommandName
+        public override string Tooltip
         {
             get { return "Indent"; }
         }
@@ -851,14 +829,14 @@ namespace AjaxControlToolkit
 
     public class InsertHorizontalRule : HtmlEditorExtenderButton
     {
-        public InsertHorizontalRule()
-        {
-            Tooltip = "Insert Horizontal Rule";
-        }
-
         public override string CommandName
         {
             get { return "InsertHorizontalRule"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Insert Horizontal Rule"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -885,12 +863,12 @@ namespace AjaxControlToolkit
 
     public class Outdent : HtmlEditorExtenderButton
     {
-        public Outdent()
+        public override string CommandName
         {
-            Tooltip = "Outdent";
+            get { return "Outdent"; }
         }
 
-        public override string CommandName
+        public override string Tooltip
         {
             get { return "Outdent"; }
         }
@@ -908,14 +886,14 @@ namespace AjaxControlToolkit
 
     public class RemoveFormat : HtmlEditorExtenderButton
     {
-        public RemoveFormat()
-        {
-            Tooltip = "Remove Format";
-        }
-
         public override string CommandName
         {
             get { return "RemoveFormat"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Remove Format"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -931,14 +909,14 @@ namespace AjaxControlToolkit
 
     public class HorizontalSeparator : HtmlEditorExtenderButton
     {
-        public HorizontalSeparator()
-        {
-            Tooltip = "Separator";
-        }
-
         public override string CommandName
         {
             get { return "HorizontalSeparator"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Separator"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
@@ -954,14 +932,14 @@ namespace AjaxControlToolkit
 
     public class InsertImage : HtmlEditorExtenderButton
     {
-        public InsertImage()
-        {
-            Tooltip = "Insert Image";
-        }
-
         public override string CommandName
         {
             get { return "InsertImage"; }
+        }
+
+        public override string Tooltip
+        {
+            get { return "Insert Image"; }
         }
 
         public override Dictionary<string, string[]> ElementWhiteList
