@@ -748,8 +748,6 @@ namespace AjaxControlToolkit {
                 return attributeWhiteList;
             }
         }
-
-        public string AjaxFileUploadHandlerPath { get; set; }
     }
 
     #endregion
