@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace AjaxControlToolkit {
-    public abstract class HtmlEditorExtenderButton {
+namespace AjaxControlToolkit
+{
+    public abstract class HtmlEditorExtenderButton
+    {
         public abstract string CommandName { get; }
 
         string _Tooltip = string.Empty;
@@ -12,7 +14,8 @@ namespace AjaxControlToolkit {
         /// </summary>
         [Description("Determines the text to display as the tooltip;")]
         [DefaultValue("")]
-        public virtual string Tooltip {
+        public virtual string Tooltip
+        {
             get { return (_Tooltip.Length == 0 ? CommandName : _Tooltip); }
             set { _Tooltip = value; }
         }
@@ -28,17 +31,22 @@ namespace AjaxControlToolkit {
     #region button classes
 
     // Bold class represents to bold tag
-    public class Bold : HtmlEditorExtenderButton {
-        public Bold() {
+    public class Bold : HtmlEditorExtenderButton
+    {
+        public Bold()
+        {
             Tooltip = "Bold";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Bold"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("b", new string[] { "style" });
                 elementWhiteList.Add("strong", new string[] { "style" });
@@ -46,8 +54,10 @@ namespace AjaxControlToolkit {
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("style", new string[] { });
                 return attributeWhiteList;
@@ -55,17 +65,22 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class Italic : HtmlEditorExtenderButton {
-        public Italic() {
+    public class Italic : HtmlEditorExtenderButton
+    {
+        public Italic()
+        {
             Tooltip = "Italic";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Italic"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("i", new string[] { "style" });
                 elementWhiteList.Add("em", new string[] { "style" });
@@ -73,8 +88,10 @@ namespace AjaxControlToolkit {
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("style", new string[] { });
                 return attributeWhiteList;
@@ -82,25 +99,32 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class Underline : HtmlEditorExtenderButton {
-        public Underline() {
+    public class Underline : HtmlEditorExtenderButton
+    {
+        public Underline()
+        {
             Tooltip = "Underline";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Underline"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("u", new string[] { "style" });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("style", new string[] { });
                 return attributeWhiteList;
@@ -108,25 +132,32 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class StrikeThrough : HtmlEditorExtenderButton {
-        public StrikeThrough() {
+    public class StrikeThrough : HtmlEditorExtenderButton
+    {
+        public StrikeThrough()
+        {
             Tooltip = "Strike Through";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "StrikeThrough"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("strike", new string[] { "style" });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("style", new string[] { });
                 return attributeWhiteList;
@@ -134,61 +165,78 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class Subscript : HtmlEditorExtenderButton {
-        public Subscript() {
+    public class Subscript : HtmlEditorExtenderButton
+    {
+        public Subscript()
+        {
             Tooltip = "Sub Script";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Subscript"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("sub", new string[] { });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class Superscript : HtmlEditorExtenderButton {
-        public Superscript() {
+    public class Superscript : HtmlEditorExtenderButton
+    {
+        public Superscript()
+        {
             Tooltip = "Super Script";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Superscript"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("sup", new string[] { });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class JustifyLeft : HtmlEditorExtenderButton {
-        public JustifyLeft() {
+    public class JustifyLeft : HtmlEditorExtenderButton
+    {
+        public JustifyLeft()
+        {
             Tooltip = "Justify Left";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "JustifyLeft"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("p", new string[] { "align" });
                 elementWhiteList.Add("div", new string[] { "style", "align" });
@@ -196,8 +244,10 @@ namespace AjaxControlToolkit {
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("style", new string[] { "text-align" });
                 attributeWhiteList.Add("align", new string[] { "left" });
@@ -206,17 +256,22 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class JustifyRight : HtmlEditorExtenderButton {
-        public JustifyRight() {
+    public class JustifyRight : HtmlEditorExtenderButton
+    {
+        public JustifyRight()
+        {
             Tooltip = "Justify Right";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "JustifyRight"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("p", new string[] { "align" });
                 elementWhiteList.Add("div", new string[] { "style", "align" });
@@ -224,8 +279,10 @@ namespace AjaxControlToolkit {
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("style", new string[] { "text-align" });
                 attributeWhiteList.Add("align", new string[] { "right" });
@@ -234,17 +291,22 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class JustifyCenter : HtmlEditorExtenderButton {
-        public JustifyCenter() {
+    public class JustifyCenter : HtmlEditorExtenderButton
+    {
+        public JustifyCenter()
+        {
             Tooltip = "Justify Center";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "JustifyCenter"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("p", new string[] { "align" });
                 elementWhiteList.Add("div", new string[] { "style", "align" });
@@ -252,8 +314,10 @@ namespace AjaxControlToolkit {
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("style", new string[] { "text-align" });
                 attributeWhiteList.Add("align", new string[] { "center" });
@@ -262,17 +326,22 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class JustifyFull : HtmlEditorExtenderButton {
-        public JustifyFull() {
+    public class JustifyFull : HtmlEditorExtenderButton
+    {
+        public JustifyFull()
+        {
             Tooltip = "Justify Full";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "JustifyFull"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("p", new string[] { "align" });
                 elementWhiteList.Add("div", new string[] { "style", "align" });
@@ -280,8 +349,10 @@ namespace AjaxControlToolkit {
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("style", new string[] { "text-align" });
                 attributeWhiteList.Add("align", new string[] { "justify" });
@@ -290,17 +361,22 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class InsertOrderedList : HtmlEditorExtenderButton {
-        public InsertOrderedList() {
+    public class InsertOrderedList : HtmlEditorExtenderButton
+    {
+        public InsertOrderedList()
+        {
             Tooltip = "Insert Ordered List";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "insertOrderedList"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("ol", new string[] { });
                 elementWhiteList.Add("li", new string[] { });
@@ -308,22 +384,28 @@ namespace AjaxControlToolkit {
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class InsertUnorderedList : HtmlEditorExtenderButton {
-        public InsertUnorderedList() {
+    public class InsertUnorderedList : HtmlEditorExtenderButton
+    {
+        public InsertUnorderedList()
+        {
             Tooltip = "Insert Unordered List";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "insertUnorderedList"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("ul", new string[] { });
                 elementWhiteList.Add("li", new string[] { });
@@ -331,66 +413,84 @@ namespace AjaxControlToolkit {
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class Undo : HtmlEditorExtenderButton {
-        public Undo() {
+    public class Undo : HtmlEditorExtenderButton
+    {
+        public Undo()
+        {
             Tooltip = "Undo";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Undo"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class Redo : HtmlEditorExtenderButton {
-        public Redo() {
+    public class Redo : HtmlEditorExtenderButton
+    {
+        public Redo()
+        {
             Tooltip = "Redo";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Redo"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class CreateLink : HtmlEditorExtenderButton {
-        public CreateLink() {
+    public class CreateLink : HtmlEditorExtenderButton
+    {
+        public CreateLink()
+        {
             Tooltip = "Create Link";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "createLink"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("a", new string[] { "href" });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("href", new string[] { });
                 return null;
@@ -398,89 +498,114 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class Delete : HtmlEditorExtenderButton {
-        public Delete() {
+    public class Delete : HtmlEditorExtenderButton
+    {
+        public Delete()
+        {
             Tooltip = "Delete";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Delete"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class SelectAll : HtmlEditorExtenderButton {
-        public SelectAll() {
+    public class SelectAll : HtmlEditorExtenderButton
+    {
+        public SelectAll()
+        {
             Tooltip = "Select All";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "SelectAll"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class UnSelect : HtmlEditorExtenderButton {
-        public UnSelect() {
+    public class UnSelect : HtmlEditorExtenderButton
+    {
+        public UnSelect()
+        {
             Tooltip = "UnSelect";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "UnSelect"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class UnLink : HtmlEditorExtenderButton {
-        public UnLink() {
+    public class UnLink : HtmlEditorExtenderButton
+    {
+        public UnLink()
+        {
             Tooltip = "UnLink";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "UnLink"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class BackgroundColorSelector : HtmlEditorExtenderButton {
-        public BackgroundColorSelector() {
+    public class BackgroundColorSelector : HtmlEditorExtenderButton
+    {
+        public BackgroundColorSelector()
+        {
             Tooltip = "Back Color";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "BackColor"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("font", new string[] { "style" });
                 elementWhiteList.Add("span", new string[] { "style" });
@@ -488,8 +613,10 @@ namespace AjaxControlToolkit {
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("style", new string[] { "background-color" });
                 return attributeWhiteList;
@@ -497,97 +624,124 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class Copy : HtmlEditorExtenderButton {
-        public Copy() {
+    public class Copy : HtmlEditorExtenderButton
+    {
+        public Copy()
+        {
             Tooltip = "Copy";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Copy"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class Cut : HtmlEditorExtenderButton {
-        public Cut() {
+    public class Cut : HtmlEditorExtenderButton
+    {
+        public Cut()
+        {
             Tooltip = "Cut";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Cut"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class Paste : HtmlEditorExtenderButton {
-        public Paste() {
+    public class Paste : HtmlEditorExtenderButton
+    {
+        public Paste()
+        {
             Tooltip = "Paste";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Paste"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class CleanWord : HtmlEditorExtenderButton {
-        public CleanWord() {
+    public class CleanWord : HtmlEditorExtenderButton
+    {
+        public CleanWord()
+        {
             Tooltip = "Clean Word HTML";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "CleanWord"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class FontNameSelector : HtmlEditorExtenderButton {
-        public FontNameSelector() {
+    public class FontNameSelector : HtmlEditorExtenderButton
+    {
+        public FontNameSelector()
+        {
             Tooltip = "Font Name";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "FontName"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("font", new string[] { "face" });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("face", new string[] { });
                 return attributeWhiteList;
@@ -595,25 +749,32 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class FontSizeSelector : HtmlEditorExtenderButton {
-        public FontSizeSelector() {
+    public class FontSizeSelector : HtmlEditorExtenderButton
+    {
+        public FontSizeSelector()
+        {
             Tooltip = "Font Size";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "FontSize"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("font", new string[] { "size" });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("size", new string[] { });
                 return attributeWhiteList;
@@ -621,25 +782,32 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class ForeColorSelector : HtmlEditorExtenderButton {
-        public ForeColorSelector() {
+    public class ForeColorSelector : HtmlEditorExtenderButton
+    {
+        public ForeColorSelector()
+        {
             Tooltip = "Fore Color";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "ForeColor"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("font", new string[] { "color" });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("color", new string[] { });
                 return attributeWhiteList;
@@ -647,25 +815,32 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class Indent : HtmlEditorExtenderButton {
-        public Indent() {
+    public class Indent : HtmlEditorExtenderButton
+    {
+        public Indent()
+        {
             Tooltip = "Indent";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Indent"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("blockquote", new string[] { "style", "dir" });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("style", new string[] { "margin-right", "margin", "padding", "border" });
                 attributeWhiteList.Add("dir", new string[] { "ltr", "rtl", "auto" });
@@ -674,25 +849,32 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class InsertHorizontalRule : HtmlEditorExtenderButton {
-        public InsertHorizontalRule() {
+    public class InsertHorizontalRule : HtmlEditorExtenderButton
+    {
+        public InsertHorizontalRule()
+        {
             Tooltip = "Insert Horizontal Rule";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "InsertHorizontalRule"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("hr", new string[] { "size", "width" });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("size", new string[] { });
                 attributeWhiteList.Add("width", new string[] { });
@@ -701,79 +883,101 @@ namespace AjaxControlToolkit {
         }
     }
 
-    public class Outdent : HtmlEditorExtenderButton {
-        public Outdent() {
+    public class Outdent : HtmlEditorExtenderButton
+    {
+        public Outdent()
+        {
             Tooltip = "Outdent";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "Outdent"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class RemoveFormat : HtmlEditorExtenderButton {
-        public RemoveFormat() {
+    public class RemoveFormat : HtmlEditorExtenderButton
+    {
+        public RemoveFormat()
+        {
             Tooltip = "Remove Format";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "RemoveFormat"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class HorizontalSeparator : HtmlEditorExtenderButton {
-        public HorizontalSeparator() {
+    public class HorizontalSeparator : HtmlEditorExtenderButton
+    {
+        public HorizontalSeparator()
+        {
             Tooltip = "Separator";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "HorizontalSeparator"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
             get { return null; }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
             get { return null; }
         }
     }
 
-    public class InsertImage : HtmlEditorExtenderButton {
-        public InsertImage() {
+    public class InsertImage : HtmlEditorExtenderButton
+    {
+        public InsertImage()
+        {
             Tooltip = "Insert Image";
         }
 
-        public override string CommandName {
+        public override string CommandName
+        {
             get { return "InsertImage"; }
         }
 
-        public override Dictionary<string, string[]> ElementWhiteList {
-            get {
+        public override Dictionary<string, string[]> ElementWhiteList
+        {
+            get
+            {
                 var elementWhiteList = new Dictionary<string, string[]>();
                 elementWhiteList.Add("img", new string[] { "src" });
                 return elementWhiteList;
             }
         }
 
-        public override Dictionary<string, string[]> AttributeWhiteList {
-            get {
+        public override Dictionary<string, string[]> AttributeWhiteList
+        {
+            get
+            {
                 var attributeWhiteList = new Dictionary<string, string[]>();
                 attributeWhiteList.Add("src", new string[] { });
                 return attributeWhiteList;

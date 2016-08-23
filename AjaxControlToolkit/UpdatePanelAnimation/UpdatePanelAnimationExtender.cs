@@ -66,6 +66,18 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
+        /// An optional property that enables update panel animation
+        /// if the postback is caused by a panel's immediate children
+        /// </summary>
+        [DefaultValue(false)]
+        [ExtenderControlProperty]
+        [ClientPropertyName("childrenAsTriggers")]
+        public bool ChildrenAsTriggers {
+            get { return GetPropertyValue<bool>("ChildrenAsTriggers", false); }
+            set { SetPropertyValue("ChildrenAsTriggers", value); }
+        }
+
+        /// <summary>
         /// ClientID's of the trigger controls
         /// </summary>
         [DefaultValue(null)]
@@ -97,6 +109,13 @@ namespace AjaxControlToolkit {
                 var triggerControlClientID = FindControl(asyncTrigger.ControlID).ClientID;
                 _triggerControlsClientID.Add(triggerControlClientID);
             }
+        }
+
+        protected override void RenderScriptAttributes(ScriptBehaviorDescriptor descriptor) {
+            base.RenderScriptAttributes(descriptor);
+
+            descriptor.AddProperty("updatePanelID", TargetControl.UniqueID);
+            descriptor.AddProperty("updatePanelClientID", TargetControl.ClientID);
         }
 
         // Replace any statically defined AnimationTarget properties with a corresponding
