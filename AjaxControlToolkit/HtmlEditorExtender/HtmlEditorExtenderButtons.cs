@@ -10,9 +10,7 @@ namespace AjaxControlToolkit
         string _Tooltip = string.Empty;
 
         /// <summary>
-        /// 
         /// Determines text to display as a tooltip; {0} denotes the current handle's value in the format string
-        /// 
         /// </summary>
         [Description("Determines the text to display as the tooltip; {0} denotes the current handle's value in the format string.")]
         [DefaultValue("")]
