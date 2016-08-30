@@ -15,6 +15,16 @@
                 when you choose a color)</em>
         </div>
     </div>
+    <div>
+        <b>Color picker with continuous palette: </b>
+        <br />
+        <asp:TextBox runat="server" ID="ColorContinuous" MaxLength="6" AutoCompleteType="None" /><br />
+        <ajaxToolkit:ColorPickerExtender ID="continuousCPE" runat="server" OnClientColorSelectionChanged="colorChanged" TargetControlID="ColorContinuous" PaletteStyle="Continuous" />
+        <div style="font-size: 90%">
+            <em>(Set the focus to the textbox to show the color picker popup; the popup dismisses automatically
+                when you choose a color)</em>
+        </div>
+    </div>
     <script type="text/javascript">
         function colorChanged(sender) {
             sender.get_element().style.color = "#" + sender.get_selectedColor();
