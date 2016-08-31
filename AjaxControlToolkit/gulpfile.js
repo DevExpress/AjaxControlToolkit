@@ -12,23 +12,23 @@ var cssPaths = ['Styles/*.css', '!Styles/*.min.css'];
 var cssDest = 'Styles/.';
 
 gulp.task('minify-js', function () {
-	return gulp.src(jsPaths)
-		.pipe(plumber())
-	  .pipe(watch(jsPaths))	  
-      .pipe(uglify())
-      .pipe(rename({
-          extname: '.min.js'
-      }))
-      .pipe(gulp.dest(jsDest));
+    return gulp.src(jsPaths)
+        .pipe(plumber())
+        .pipe(watch(jsPaths))
+        .pipe(uglify())
+        .pipe(rename({
+            extname: '.min.js'
+        }))
+        .pipe(gulp.dest(jsDest));
 });
 
 gulp.task('minify-css', function () {
     return gulp.src(cssPaths)
-		.pipe(plumber())
-      .pipe(watch(cssPaths))
-      .pipe(cssmin())
-      .pipe(rename({
-          extname: '.min.css'
-      }))
-      .pipe(gulp.dest(cssDest));
+        .pipe(plumber())
+        .pipe(watch(cssPaths))
+        .pipe(cssmin())
+        .pipe(rename({
+            extname: '.min.css'
+        }))
+        .pipe(gulp.dest(cssDest));
 });
