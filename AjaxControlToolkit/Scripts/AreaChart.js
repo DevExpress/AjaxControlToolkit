@@ -1,4 +1,4 @@
-﻿Type.regissterNamespace("Sys.Extended.UI");
+﻿Type.registerNamespace("Sys.Extended.UI");
 
 Sys.Extended.UI.AreaChart = function(element) {
     Sys.Extended.UI.AreaChart.initializeBase(this, [element]);
