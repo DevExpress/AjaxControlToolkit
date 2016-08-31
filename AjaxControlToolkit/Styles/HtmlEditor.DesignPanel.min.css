@@ -1,1 +1,1 @@
-﻿table{border:#000 1px dashed}td{border:#000 1px dashed}div{border:#00f 1px dashed;margin:0;padding:0}form{border:red 1px dashed}.spell_highlighted{background-color:blue;color:#ff0}
+table,td{border:1px dashed #000}div{border:1px dashed #00F;margin:0;padding:0}form{border:1px dashed red}.spell_highlighted{background-color:#00f;color:#ff0}
