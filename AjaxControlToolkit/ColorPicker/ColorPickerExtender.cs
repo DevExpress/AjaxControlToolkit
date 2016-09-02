@@ -81,6 +81,17 @@ namespace AjaxControlToolkit {
         }
 
         /// <summary>
+        /// Indicates which color palette the color picker uses. The default is Default.
+        /// </summary>        
+        [ExtenderControlProperty]
+        [ClientPropertyName("paletteStyle")]
+        [DefaultValue(ColorPickerPaletteStyle.Default)]
+        public virtual ColorPickerPaletteStyle PaletteStyle {
+            get { return GetPropertyValue("paletteStyle", ColorPickerPaletteStyle.Default); }
+            set { SetPropertyValue("paletteStyle", value); }
+        }
+
+        /// <summary>
         /// A color value that the ColorPicker extender is initialized with.
         /// </summary>
         [DefaultValue("")]
