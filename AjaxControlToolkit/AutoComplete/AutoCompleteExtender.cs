@@ -62,6 +62,9 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// ID of an element that will serve as the completion list.
         /// </summary>
+        /// <remarks>
+        /// Deprecated. Use the default flyout and style that using the CssClass properties.
+        /// </remarks>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("completionListElementID")]

@@ -118,6 +118,9 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Whether or not to use absolute path for AjaxFileUploadHandler
         /// </summary>
+        /// <remarks>
+        /// Deprecated. Use UploadHandlerPath instead.
+        /// </remarks>
         [Obsolete("Use UploadHandlerPath instead.")]
         [ExtenderControlProperty]
         [DefaultValue(true)]
