@@ -7,7 +7,6 @@
 
     <script>
         describe("BarChart", function () {
-            debugger;
             var CHART_WITH_AUTOID_CLIENT_ID = "<%= TargetControlWithAutoID.ClientID %>";
             var CHART_WITH_PREDICTABLEID_CLIENT_ID = "<%= TargetControlWithPredictableID.ClientID %>";
 
