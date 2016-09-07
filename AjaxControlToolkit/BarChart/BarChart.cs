@@ -105,6 +105,12 @@ namespace AjaxControlToolkit {
                     throw new Exception("Name is missing the BarChartSeries. Please provide a name in the BarChartSeries.");
             }
         }
+
+        protected override void DescribeComponent(ScriptComponentDescriptor descriptor) {
+            base.DescribeComponent(descriptor);
+
+            descriptor.AddElementProperty("container", ContainerID);
+        }
     }
 
 }
