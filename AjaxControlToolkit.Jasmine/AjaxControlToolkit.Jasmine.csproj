@@ -110,6 +110,7 @@
     <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.js" />
     <Content Include="Suites\BalloonPopupTests.aspx" />
+    <Content Include="Suites\BarChartTests.aspx" />
     <Content Include="Suites\DropDownTests.aspx" />
     <Content Include="Suites\HtmlEditorExtenderTests\superhero.png" />
     <Content Include="Suites\ModalPopupTests.aspx" />
@@ -156,6 +157,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Suites\BarChartMasterPage.master.cs">
+      <DependentUpon>BarChartMasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\BarChartMasterPage.master.designer.cs">
+      <DependentUpon>BarChartMasterPage.master</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,6 +187,13 @@
     </Compile>
     <Compile Include="Suites\BalloonPopupTests.aspx.designer.cs">
       <DependentUpon>BalloonPopupTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\BarChartTests.aspx.cs">
+      <DependentUpon>BarChartTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\BarChartTests.aspx.designer.cs">
+      <DependentUpon>BarChartTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\DropDownTests.aspx.cs">
       <DependentUpon>DropDownTests.aspx</DependentUpon>
@@ -398,6 +413,7 @@
     <Content Include="Infrastructure\Styles\TestRunner.css.map">
       <DependentUpon>TestRunner.css</DependentUpon>
     </Content>
+    <Content Include="Suites\BarChartMasterPage.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
