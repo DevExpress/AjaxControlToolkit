@@ -108,7 +108,6 @@ namespace AjaxControlToolkit {
 
         protected override void DescribeComponent(ScriptComponentDescriptor descriptor) {
             base.DescribeComponent(descriptor);
-
             descriptor.AddElementProperty("container", ContainerID);
         }
     }

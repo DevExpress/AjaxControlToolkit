@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit.Jasmine {
     public partial class BarChartMasterPage : System.Web.UI.MasterPage {
         protected void Page_Load(object sender, EventArgs e) {
-
         }
     }
 }
