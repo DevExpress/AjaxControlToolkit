@@ -35,12 +35,18 @@
     <script>
         describe("Accordion", function() {
             var LINKBUTTON_UNIQUE_ID = "<%= TestLinkButton.UniqueID %>";
+            var ACCORDION_CLIENT_ID = "<%= TestAccordion.ClientID %>";
 
             it("renders correct child ID", function() {
                 var parts = LINKBUTTON_UNIQUE_ID.split("$");
 
                 expect(parts[1]).toBe("TestSuite");
                 expect(parts[3]).toBe("TestLinkButton");
+            });
+
+            it("renders correct pane header class", function () {
+                var pane = $("#" + ACCORDION_CLIENT_ID).find("div:nth-child(4)");
+                expect(pane.attr("class")).toBe("B");                
             });
 
         });
