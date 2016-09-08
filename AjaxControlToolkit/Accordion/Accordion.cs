@@ -486,10 +486,6 @@ namespace AjaxControlToolkit {
                 var content = Panes[index].ContentContainer;
                 if(content != null)
                     content.Collapsed = false;
-
-                // Set the CSS class for the open panes header
-                if(!String.IsNullOrEmpty(HeaderSelectedCssClass))
-                    Panes[index].HeaderCssClass = HeaderSelectedCssClass;
             }
         }
 
