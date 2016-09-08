@@ -49,6 +49,19 @@
                 expect(pane.attr("class")).toBe("B");                
             });
 
+            it("renders correct pane header class after leaving it", function () {
+                var pane1 = $("#" + ACCORDION_CLIENT_ID).find("div:nth-child(2)");
+                var pane2 = $("#" + ACCORDION_CLIENT_ID).find("div:nth-child(4)");
+
+                var firstClick = createMouseEvent("click", pane2[0]);
+                pane2[0].dispatchEvent(firstClick);
+
+                var secondClick = createMouseEvent("click", pane1[0]);
+                pane1[0].dispatchEvent(secondClick);
+
+                expect(pane2.attr("class")).toBe("B");
+            });
+
         });
     </script>
 </asp:Content>
