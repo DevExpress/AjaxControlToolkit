@@ -11,7 +11,7 @@
             <act:Accordion ID="TestAccordion" runat="server" HeaderCssClass="accordionHeader" HeaderSelectedCssClass="accordionHeaderSelected"
                 ContentCssClass="accordionContent" CssClass="accReports" TransitionDuration="250">
                 <Panes>
-                    <act:AccordionPane ID="TestAccordionPane" runat="server" ContentCssClass="" HeaderCssClass="">
+                    <act:AccordionPane ID="TestAccordionPane" runat="server" ContentCssClass="" HeaderCssClass="A">
                         <Header>Employee Time</Header>
                         <Content>
                             <asp:Panel ID="TestPanel" runat="server">
@@ -22,6 +22,10 @@
                                 </asp:UpdatePanel>
                             </asp:Panel>
                         </Content>
+                    </act:AccordionPane>
+                    <act:AccordionPane ID="AccordionPane2" runat="server" ContentCssClass="" HeaderCssClass="B">
+                        <Header>Header</Header>
+                        <Content>Content</Content>
                     </act:AccordionPane>
                 </Panes>
             </act:Accordion>
