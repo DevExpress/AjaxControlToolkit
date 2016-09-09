@@ -2,9 +2,6 @@
 
 Sys.Extended.UI.BarChart = function(element) {
     Sys.Extended.UI.BarChart.initializeBase(this, [element]);
-    var id = this.get_id();
-    id = id.replace("_ctl00", "");
-    this._parentDiv = document.getElementById(id + "__ParentDiv");
 
     this._chartWidth = '300';
     this._chartHeight = '200';
@@ -18,6 +15,7 @@ Sys.Extended.UI.BarChart = function(element) {
     this._valueAxisLineColor = '';
     this._categoryAxisLineColor = '';
     this._baseLineColor = '';
+    this._container = null;
 
     // variables
     this.yMax = 0;
@@ -51,6 +49,8 @@ Sys.Extended.UI.BarChart.prototype = {
         if(this._valueAxisLines == 0) {
             this._valueAxisLines = 9;
         }
+        
+        this._parentDiv = this.get_container();
 
         if(this._chartType == Sys.Extended.UI.BarChartType.Column || this._chartType == Sys.Extended.UI.BarChartType.StackedColumn)
             this.generateColumnChart();
@@ -838,7 +838,14 @@ Sys.Extended.UI.BarChart.prototype = {
     },
     set_baseLineColor: function(value) {
         this._baseLineColor = value;
-    }
+    },
+
+    get_container: function () {
+        return this._container;
+    },
+    set_container: function (value) {
+        this._container = value;
+    },
 };
 
 Sys.Extended.UI.BarChart.registerClass("Sys.Extended.UI.BarChart", Sys.Extended.UI.ControlBase);
