@@ -334,6 +334,8 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
 
     // Check the browser version and document mode to see if IE8 in standards-compliant mode is used
     this._isIE8InStandardMode = (Sys.Browser.agent == Sys.Browser.InternetExplorer && Sys.Browser.version > 7 && Sys.Browser.documentMode != 0);
+
+    this._paneHeaderClassNames = [];
 }
 Sys.Extended.UI.AccordionBehavior.prototype = {
     // The initialize function is responsible for getting the selected index from
@@ -466,6 +468,8 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
         // Add the new pane at the bottom of the accordion
         Array.add(this._panes, pane);
+
+        this._paneHeaderClassNames.push(pane.header.className);
 
         // Setup the layout attributes for the pane so that it will be in a proper opened or
         // closed state (we don't bother setting the opacity of the wrapper with
@@ -637,7 +641,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
             }
         }
 
-        pane.header.className = this._selectedIndex === index ? (this._headerSelectedCssClass || this._headerCssClass) : this._headerCssClass;
+        pane.header.className = this._selectedIndex === index
+            ? (this._headerSelectedCssClass || this._headerCssClass)
+            : (this._paneHeaderClassNames[index] || this._headerCssClass);
     },
 
     _addResizeHandler: function() {
@@ -813,7 +819,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
 
         //This sets the header CSS class to the non-selected case.
         if(lastPane) {
-            lastPane.header.className = this._headerCssClass;
+            lastPane.header.className = this._paneHeaderClassNames[lastIndex] || this._headerCssClass;
         }
 
         //This sets the selected header CSS class if available.
