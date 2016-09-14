@@ -38,5 +38,30 @@ namespace AjaxControlToolkit.Tests {
             var expected = text;
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void DoNotStripTagsWithAttributeNameStartsWithScript() {
+            var extender = new HtmlEditorExtender {
+                EnableSanitization = false
+            };
+
+            var text = @"<mrow class=""MJX-TeXAtom-ORD""><mstyle displaystyle=""true"" scriptlevel=""0""></mstyle></mrow>";
+            var actual = extender.Decode(text);
+            var expected = text;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void StripScriptTagWithoutAttributes() {
+            var extender = new HtmlEditorExtender {
+                EnableSanitization = false
+            };
+
+            var text = @" <script>";
+            var actual = extender.Decode(text);
+
+            Assert.AreEqual("", actual);
+        }
     }
 }
