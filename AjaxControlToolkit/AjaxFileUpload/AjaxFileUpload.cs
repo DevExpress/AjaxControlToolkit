@@ -57,8 +57,10 @@ namespace AjaxControlToolkit {
         /// This can be used to avoid execution of unnecessary code during a partial postback. 
         /// The default is false.
         /// </summary>
+        /// <remarks>Deprecated. Always false.</remarks>
         [Browsable(false)]
         [DefaultValue(false)]
+        [Obsolete("Always false.")]
         public bool IsInFileUploadPostBack { get; set; }
 
         /// <summary>
@@ -248,8 +250,6 @@ namespace AjaxControlToolkit {
             if(IsDesignMode || !AreFileUploadParamsPresent()) 
                 return;
                 
-            IsInFileUploadPostBack = true;
-
             var processor = new UploadRequestProcessor {
                 Context = Context,               
                 UploadStart = UploadStart,
