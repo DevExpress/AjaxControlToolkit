@@ -489,7 +489,7 @@ namespace AjaxControlToolkit {
 
         string ResolveUploadHandlerPath(string uploadHandlerPath) {
             if(String.IsNullOrWhiteSpace(uploadHandlerPath))
-                return Path.Combine(Page.Request.ApplicationPath, "AjaxFileUploadHandler.axd").Replace("\\", "/");
+                return String.Format("{0}/{1}", Page.Request.ApplicationPath, "AjaxFileUploadHandler.axd");
 
             return uploadHandlerPath;
         }
