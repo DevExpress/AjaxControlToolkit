@@ -1043,7 +1043,7 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     /// <getter>get_uploadHandlerPath</getter>
     /// <setter>set_uploadHandlerPath</setter>
     /// <member name="cP:AjaxControlToolkit.AjaxFileUpload.uploadHandlerPath" />
-    this._uploadHandlerPath = '/AjaxFileUploadHandler.axd';
+    this._uploadHandlerPath = '';
     /// <summary>
     /// Whether the control is enabled.
     /// </summary>
