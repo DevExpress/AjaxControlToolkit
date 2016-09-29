@@ -138,11 +138,9 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Upload handler path
         /// </summary>
-        [ExtenderControlProperty]
-        [DefaultValue("/AjaxFileUploadHandler.axd")]
-        [ClientPropertyName("uploadHandlerPath")]
+        [DefaultValue("")]
         public string UploadHandlerPath {
-            get { return (string)ViewState["UploadHandlerPath"] ?? "/AjaxFileUploadHandler.axd"; }
+            get { return (string)ViewState["UploadHandlerPath"] ?? ""; }
             set { ViewState["UploadHandlerPath"] = value; }
         }
 
@@ -488,8 +486,23 @@ namespace AjaxControlToolkit {
                 if(control != null)
                     descriptor.AddElementProperty("throbber", control.ClientID);
             }
+
+            descriptor.AddProperty("uploadHandlerPath", ResolveUploadHandlerPath(UploadHandlerPath));
         }
 
+        string ResolveUploadHandlerPath(string uploadHandlerPath) {
+            if(String.IsNullOrWhiteSpace(uploadHandlerPath))
+                return CombineUrl(Page.Request.ApplicationPath, "AjaxFileUploadHandler.axd");
+
+            return uploadHandlerPath;
+        }
+
+        static string CombineUrl(string part1, string part2) {
+            if(!part1.EndsWith("/"))
+                part1 += "/";
+
+            return part1 + part2;
+        }
 
         class UploadRequestProcessor {
             public HttpContext Context;
