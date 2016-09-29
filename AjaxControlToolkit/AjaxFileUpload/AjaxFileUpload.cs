@@ -61,6 +61,7 @@ namespace AjaxControlToolkit {
         [Browsable(false)]
         [DefaultValue(false)]
         [Obsolete("Always false.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsInFileUploadPostBack { get; set; }
 
         /// <summary>
@@ -127,6 +128,8 @@ namespace AjaxControlToolkit {
         [ExtenderControlProperty]
         [DefaultValue(true)]
         [ClientPropertyName("useAbsoluteHandlerPath")]
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool UseAbsoluteHandlerPath {
             get { return bool.Parse((string)ViewState["UseAbsoluteHandlerPath"] ?? "true"); }
             set { ViewState["UseAbsoluteHandlerPath"] = value.ToString(); }

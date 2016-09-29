@@ -148,6 +148,8 @@ namespace AjaxControlToolkit {
         [DefaultValue(false)]
         [Obsolete("The drag feature on modal popup will be automatically turned on if you specify the PopupDragHandleControlID property. Setting the Drag property is a noop")]
         [ClientPropertyName("drag")]
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Drag {
             get { return GetPropertyValue("stringDrag", false); }
             set { SetPropertyValue("stringDrag", value); }
