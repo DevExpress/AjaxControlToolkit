@@ -70,6 +70,8 @@ namespace AjaxControlToolkit {
         [ClientPropertyName("completionListElementID")]
         [IDReferenceProperty(typeof(WebControl))]
         [Obsolete("Instead of passing in CompletionListElementID, use the default flyout and style that using the CssClass properties.")]
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual string CompletionListElementID {
             get { return GetPropertyValue("CompletionListElementID", String.Empty); }
             set { SetPropertyValue("CompletionListElementID", value); }
