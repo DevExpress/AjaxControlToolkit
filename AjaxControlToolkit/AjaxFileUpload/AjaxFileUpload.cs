@@ -494,9 +494,9 @@ namespace AjaxControlToolkit {
             return uploadHandlerPath;
         }
 
-        string CombineUrl(string part1, string part2) {
+        static string CombineUrl(string part1, string part2) {
             if(!part1.EndsWith("/"))
-                part1 = part1 + "/";
+                part1 += "/";
 
             return part1 + part2;
         }
