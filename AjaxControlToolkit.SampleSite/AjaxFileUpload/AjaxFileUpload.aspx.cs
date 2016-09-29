@@ -10,28 +10,23 @@ using System.Web.UI.WebControls;
 public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
+        if(Request.QueryString["preview"] != "1" || string.IsNullOrEmpty(Request.QueryString["fileId"]))
+            return;
 
-        if(AjaxFileUpload1.IsInFileUploadPostBack) {
-            // something for ajax file upload partial postback request
-        } else {
-            if(Request.QueryString["preview"] != "1" || string.IsNullOrEmpty(Request.QueryString["fileId"]))
-                return;
+        var fileId = Request.QueryString["fileId"];
+        string fileContentType = null;
+        byte[] fileContents = null;
 
-            var fileId = Request.QueryString["fileId"];
-            string fileContentType = null;
-            byte[] fileContents = null;
+        fileContents = (byte[])Session["fileContents_" + fileId];
+        fileContentType = (string)Session["fileContentType_" + fileId];
 
-            fileContents = (byte[])Session["fileContents_" + fileId];
-            fileContentType = (string)Session["fileContentType_" + fileId];
+        if(fileContents == null)
+            return;
 
-            if(fileContents == null)
-                return;
-
-            Response.Clear();
-            Response.ContentType = fileContentType;
-            Response.BinaryWrite(fileContents);
-            Response.End();
-        }
+        Response.Clear();
+        Response.ContentType = fileContentType;
+        Response.BinaryWrite(fileContents);
+        Response.End();
     }
 
     protected void AjaxFileUpload1_OnUploadComplete(object sender, AjaxFileUploadEventArgs file) {
