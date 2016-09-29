@@ -9,7 +9,6 @@ Sys.Extended.UI.BarChart = function(element) {
     this._categoriesAxis = '';
     this._series = null;
     this._chartType = Sys.Extended.UI.BarChartType.Column;
-    this._theme = 'BarChart';
     this._valueAxisLines = 9;
     this._chartTitleColor = '';
     this._valueAxisLineColor = '';
@@ -340,8 +339,7 @@ Sys.Extended.UI.BarChart.prototype = {
 
     // This creates svg and its initial contents.
     initializeSVG: function() {
-        var svgContents = String.format('<?xml-stylesheet type="text/css" href="{0}.css"?>', this._theme);
-        svgContents = svgContents + String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" style="position: relative; display: block;">', this._chartWidth, this._chartHeight);
+        var svgContents = String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" style="position: relative; display: block;">', this._chartWidth, this._chartHeight);
         svgContents = svgContents + '<defs>';
         svgContents = svgContents + '<linearGradient gradientTransform="rotate(0)">';
         svgContents = svgContents + '<stop offset="0%" id="LinearGradient1"></stop>';
@@ -760,19 +758,6 @@ Sys.Extended.UI.BarChart.prototype = {
     },
     set_chartType: function(value) {
         this._chartType = value;
-    },
-
-    /// <summary>
-    /// Enables you to control the appearance of the bar chart with a Cascading Style Sheet file
-    /// </summary>
-    /// <getter>get_theme</getter>
-    /// <setter>set_theme</setter>
-    /// <member name="cP:AjaxControlToolkit.BarChart.theme" />
-    get_theme: function() {
-        return this._theme;
-    },
-    set_theme: function(value) {
-        this._theme = value;
     },
 
     /// <summary>

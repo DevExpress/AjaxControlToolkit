@@ -42,11 +42,6 @@ namespace AjaxControlToolkit {
         [ClientPropertyName("chartTitleColor")]
         public string ChartTitleColor { get; set; }
 
-        [ExtenderControlProperty]
-        [DefaultValue("PieChart")]
-        [ClientPropertyName("theme")]
-        public string Theme { get; set; }
-
         protected override void CreateChildControls() {
             var root = new HtmlGenericControl("div");
             root.ID = "_ParentDiv";
