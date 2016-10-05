@@ -274,7 +274,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     },
     set_endDate: function(value) {
         if(this._endDate != value) {
-            this._endDate = new Date(value);
+            this._endDate = this._parseDateSortableFormat(value);
             this.raisePropertyChanged('endDate');
         }
     },
