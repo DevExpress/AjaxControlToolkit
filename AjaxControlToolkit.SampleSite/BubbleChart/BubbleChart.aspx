@@ -5,18 +5,37 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <br />
-    <ajaxToolkit:BubbleChart ID="BubbleChart1" runat="server" ChartHeight="300" ChartWidth="450"
-        ChartTitle="Industry Share in Market and Growth" ChartTitleColor="#0E426C" XAxisLineColor="#D08AD9"
-        YAxisLineColor="#D08AD9" BaseLineColor="#A156AB" YAxisLines="6" XAxisLines="6"
-        BubbleSizes="5" XAxisLabel="Market share of Industry" YAxisLabel="Revenue of Industry" BubbleLabel=" (Growth in %)">
+    <ajaxToolkit:BubbleChart
+        ID="BubbleChart1" 
+        runat="server" 
+        ChartHeight="300" 
+        ChartWidth="450"
+        ChartTitle="Industry Share in Market and Growth" 
+        ChartTitleColor="#0E426C" 
+        XAxisLineColor="#D08AD9"
+        YAxisLineColor="#D08AD9" 
+        BaseLineColor="#A156AB" 
+        YAxisLines="6" 
+        XAxisLines="6"
+        BubbleSizes="5" 
+        XAxisLabel="Market share of Industry" 
+        YAxisLabel="Revenue of Industry" 
+        BubbleLabel=" (Growth in %)">
         <bubblechartvalues>
-            <ajaxToolkit:BubbleChartValue Category="Software" X="0" Y="90000" Data="7" BubbleColor="#6C1E83" />
-            <ajaxToolkit:BubbleChartValue Category="Foods" X="35" Y="150000" Data="5" BubbleColor="#D08AD9" />
-            <ajaxToolkit:BubbleChartValue Category="Health" X="32" Y="140000" Data="6" BubbleColor="#6586A7" />
-            <ajaxToolkit:BubbleChartValue Category="Manufacturing" X="22" Y="84000" Data="4" BubbleColor="#0E426C" />
-            <ajaxToolkit:BubbleChartValue Category="Travel" X="8" Y="26000" Data="7" BubbleColor="#A156AB" />
-            <ajaxToolkit:BubbleChartValue Category="Entertainment" X="28" Y="97000" Data="9" BubbleColor="#990033" />
-            <ajaxToolkit:BubbleChartValue Category="Construction" X="15" Y="58000" Data="5" BubbleColor="#669900" />
+            <ajaxToolkit:BubbleChartValue Category="Software" 
+                X="0" Y="90000" Data="7" BubbleColor="#6C1E83" />
+            <ajaxToolkit:BubbleChartValue Category="Foods" 
+                X="35" Y="150000" Data="5" BubbleColor="#D08AD9" />
+            <ajaxToolkit:BubbleChartValue Category="Health" 
+                X="32" Y="140000" Data="6" BubbleColor="#6586A7" />
+            <ajaxToolkit:BubbleChartValue Category="Manufacturing" 
+                X="22" Y="84000" Data="4" BubbleColor="#0E426C" />
+            <ajaxToolkit:BubbleChartValue Category="Travel" 
+                X="8" Y="26000" Data="7" BubbleColor="#A156AB" />
+            <ajaxToolkit:BubbleChartValue Category="Entertainment" 
+                X="28" Y="97000" Data="9" BubbleColor="#990033" />
+            <ajaxToolkit:BubbleChartValue Category="Construction" 
+                X="15" Y="58000" Data="5" BubbleColor="#669900" />
         </bubblechartvalues>
     </ajaxToolkit:BubbleChart>
     <br />
@@ -33,39 +52,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeBlockInfo">
         <Header>BubbleChart Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:BubbleChart ID=&quot;BubbleChart1&quot; runat=&quot;server&quot; 
-<em>ChartHeight</em>=&quot;300&quot; <em>ChartWidth</em>=&quot;450&quot; 
-<em>ChartTitle</em>=&quot;Industry share in Market&quot; 
-<em>ChartTitleColor</em>=&quot;#0E426C&quot; <em>XAxisLineColor</em>=&quot;#D08AD9&quot; 
-<em>YAxisLineColor</em>=&quot;#D08AD9&quot; <em>BaseLineColor</em>=&quot;#A156AB&quot; 
-<em>YAxisLines</em>=&quot;6&quot; <em>XAxisLines</em>=&quot;6&quot; <em>BubbleSizes</em>=&quot;5&quot;
-<em>XAxisLabel</em>=&quot;Market share of Industry&quot; 
-<em>YAxisLabel</em>=&quot;Revenue of Industry&quot; <em>BubbleLabel</em>=&quot; (Growth in %)&quot;&gt;
-&lt;BubbleChartValues&gt;
-    &lt;ajaxToolkit:BubbleChartValue Category=&quot;Software&quot; 
-    X=&quot;25&quot; Y=&quot;90000&quot; Data=&quot;7&quot; <em>BubbleColor</em>=&quot;#6C1E83&quot; /&gt;
-    &lt;ajaxToolkit:BubbleChartValue Category=&quot;Foods&quot; 
-    X=&quot;35&quot; Y=&quot;150000&quot; Data=&quot;5&quot; <em>BubbleColor</em>=&quot;#D08AD9&quot; /&gt;
-    &lt;ajaxToolkit:BubbleChartValue Category=&quot;Health&quot; 
-    X=&quot;32&quot; Y=&quot;140000&quot; Data=&quot;6&quot; <em>BubbleColor</em>=&quot;#990033&quot; /&gt;
-    &lt;ajaxToolkit:BubbleChartValue Category=&quot;Manufacuring&quot; 
-    X=&quot;22&quot; Y=&quot;84000&quot; Data=&quot;4&quot; <em>BubbleColor</em>=&quot;#6586A7&quot; /&gt;
-    &lt;ajaxToolkit:BubbleChartValue Category=&quot;Travel&quot; 
-    X=&quot;8&quot; Y=&quot;26000&quot; Data=&quot;7&quot; <em>BubbleColor</em>=&quot;#0E426C&quot; /&gt;
-    &lt;ajaxToolkit:BubbleChartValue Category=&quot;Entertainment&quot; 
-    X=&quot;28&quot; Y=&quot;97000&quot; Data=&quot;9&quot; <em>BubbleColor</em>=&quot;#A156AB&quot; /&gt;
-    &lt;ajaxToolkit:BubbleChartValue Category=&quot;Construction&quot; 
-    X=&quot;15&quot; Y=&quot;58000&quot; Data=&quot;5&quot; <em>BubbleColor</em>=&quot;#A156AB&quot; /&gt;
-&lt;/BubbleChartValues&gt;
-&lt;/ajaxToolkit:BubbleChart&gt;
-        </pre>
+            <div runat="server" id="codeBlock" />
             <b>Properties</b>
             <ul>
                 <li><strong>ChartHeight</strong> - This property enables you to customize the height of the the chart.</li>
