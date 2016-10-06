@@ -4,12 +4,23 @@
     Accordion Demonstration
 </asp:Content>
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
-    <ajaxToolkit:Accordion ID="MyAccordion" runat="server" SelectedIndex="0"
-        HeaderCssClass="accordionHeader" HeaderSelectedCssClass="accordionHeaderSelected"
-        ContentCssClass="accordionContent" FadeTransitions="false" FramesPerSecond="40"
-        TransitionDuration="250" AutoSize="None" RequireOpenedPane="false" SuppressHeaderPostbacks="true">
+    <ajaxToolkit:Accordion
+        ID="MyAccordion" 
+        runat="server" 
+        SelectedIndex="0"
+        HeaderCssClass="accordionHeader" 
+        HeaderSelectedCssClass="accordionHeaderSelected"
+        ContentCssClass="accordionContent" 
+        FadeTransitions="false" 
+        FramesPerSecond="40"
+        TransitionDuration="250" 
+        AutoSize="None" 
+        RequireOpenedPane="false" 
+        SuppressHeaderPostbacks="true">
         <Panes>
-            <ajaxToolkit:AccordionPane ID="AccordionPane1" runat="server">
+            <ajaxToolkit:AccordionPane
+                ID="AccordionPane1"
+                runat="server">
                 <Header><a href="#" class="accordionLink">1. Accordion</a></Header>
                 <Content>
                     The Accordion is a web control that allows you to provide multiple panes and display them one at a time.
@@ -129,56 +140,29 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="InfoCode">
         <Header>Accordion Properties</Header>
         <Content>
-            <p>The control above is initialized with this code. The <em>italic</em> properties are optional:</p>
-            <pre>&lt;ajaxToolkit:Accordion
-                <em>ID</em>="MyAccordion"
-                runat="Server"
-                <em>SelectedIndex</em>="0"
-                <em>HeaderCssClass</em>="accordionHeader"
-                <em>HeaderSelectedCssClass</em>="accordionHeaderSelected"
-                <em>ContentCssClass</em>="accordionContent"
-                <em>AutoSize</em>="None"
-                <em>FadeTransitions</em>="true"
-                <em>TransitionDuration</em>="250"
-                <em>FramesPerSecond</em>="40"
-                <em>RequireOpenedPane</em>="false"
-                <em>SuppressHeaderPostbacks</em>="true"&gt;
-                <strong><em>&lt;Panes&gt;</em></strong>
-                    &lt;ajaxToolkit:AccordionPane
-                        <em>HeaderCssClass</em>="accordionHeader"
-                        <em>HeaderSelectedCssClass</em>="accordionHeaderSelected"
-                        <em>ContentCssClass</em>="accordionContent"&gt;
-                        &lt;Header&gt; . . . &lt;/Header&gt;
-                        &lt;Content&gt; . . . &lt;/Content&gt;
-                    &lt;/ajaxToolkit:AccordionPane&gt;
-                    .
-                    .
-                    .
-                <strong><em>&lt;/Panes&gt;</em></strong>
-                <em>&lt;HeaderTemplate&gt;...&lt;/HeaderTemplate&gt;</em>
-                <em>&lt;ContentTemplate&gt;...&lt;/ContentTemplate&gt;</em>
-                &lt;/ajaxToolkit:Accordion&gt;</pre>
-                    <ul>
-                        <li><strong>SelectedIndex</strong> - The AccordionPane to be initially visible</li>
-                        <li><strong>HeaderCssClass</strong> - Name of the CSS class to use for the headers.  This can be either applied to the Accordion as a default for all AccordionPanes, or an individual AccordionPane.</li>
-                        <li><strong>HeaderSelectedCssClass</strong> - Name of the CSS class to use for the selected header.  This can be either applied to the Accordion as a default for all AccordionPanes, or an individual AccordionPane.</li>
-                        <li><strong>ContentCssClass</strong> - Name of the CSS class to use for the content.  This can be either applied to the Accordion as a default for all AccordionPanes, or an individual AccordionPane.</li>
-                        <li><strong>FadeTransitions</strong> - True to use the fading transition effect, false for standard transitions.</li>
-                        <li><strong>TransitionDuration</strong> - Number of milliseconds to animate the transitions</li>
-                        <li><strong>FramesPerSecond</strong> - Number of frames per second used in the transition animations</li>
-                        <li><strong>AutoSize</strong> - Restrict the growth of the Accordion.  The values of the AutoSize enumeration are described above.</li>
-                        <li><strong>RequireOpenedPane</strong> - Prevent closing the currently opened pane when its header is clicked (which ensures one pane is always open).  The default value is true.</li>
-                        <li><strong>SuppressHeaderPostbacks</strong> - Prevent the client-side click handlers of elements inside a header from firing (this is especially useful when you want to include hyperlinks in your headers for accessibility)</li>
-                        <li><strong>Panes</strong> - Collection of AccordionPane controls</li>
-                        <li><strong>HeaderTemplate</strong> - The Header template contains the markup that should be used for an pane's header when databinding</li>
-                        <li><strong>ContentTemplate</strong> - The Content template contains the markup that should be used for a pane's content when databinding</li>
-                        <li><strong>DataSource</strong> - The data source to use.  DataBind() must be called.</li>
-                        <li><strong>DataSourceID</strong> - The ID of the data source to use.</li>
-                        <li><strong>DataMember</strong> - The member to bind to when using a DataSourceID</li>
-                    </ul>
+            <p>The control above is initialized with this code.</p>
+            <div runat="server" ID="CodeBlock" />
+            <ul>
+                <li><strong>SelectedIndex</strong> - The AccordionPane to be initially visible</li>
+                <li><strong>HeaderCssClass</strong> - Name of the CSS class to use for the headers.  This can be either applied to the Accordion as a default for all AccordionPanes, or an individual AccordionPane.</li>
+                <li><strong>HeaderSelectedCssClass</strong> - Name of the CSS class to use for the selected header.  This can be either applied to the Accordion as a default for all AccordionPanes, or an individual AccordionPane.</li>
+                <li><strong>ContentCssClass</strong> - Name of the CSS class to use for the content.  This can be either applied to the Accordion as a default for all AccordionPanes, or an individual AccordionPane.</li>
+                <li><strong>FadeTransitions</strong> - True to use the fading transition effect, false for standard transitions.</li>
+                <li><strong>TransitionDuration</strong> - Number of milliseconds to animate the transitions</li>
+                <li><strong>FramesPerSecond</strong> - Number of frames per second used in the transition animations</li>
+                <li><strong>AutoSize</strong> - Restrict the growth of the Accordion.  The values of the AutoSize enumeration are described above.</li>
+                <li><strong>RequireOpenedPane</strong> - Prevent closing the currently opened pane when its header is clicked (which ensures one pane is always open).  The default value is true.</li>
+                <li><strong>SuppressHeaderPostbacks</strong> - Prevent the client-side click handlers of elements inside a header from firing (this is especially useful when you want to include hyperlinks in your headers for accessibility)</li>
+                <li><strong>Panes</strong> - Collection of AccordionPane controls</li>
+                <li><strong>HeaderTemplate</strong> - The Header template contains the markup that should be used for an pane's header when databinding</li>
+                <li><strong>ContentTemplate</strong> - The Content template contains the markup that should be used for a pane's content when databinding</li>
+                <li><strong>DataSource</strong> - The data source to use.  DataBind() must be called.</li>
+                <li><strong>DataSourceID</strong> - The ID of the data source to use.</li>
+                <li><strong>DataMember</strong> - The member to bind to when using a DataSourceID</li>
+            </ul>
         </Content>
     </samples:InfoBlock>
 

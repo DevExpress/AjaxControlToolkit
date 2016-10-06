@@ -187,7 +187,7 @@ strong {
 
 pre, code {
     display: block;
-    margin: 15px 15px 15px 0;
+    margin: 15px 0px;
     padding: 10px;
     border: 1px dashed #CCC;
     background-color: #FFF;
