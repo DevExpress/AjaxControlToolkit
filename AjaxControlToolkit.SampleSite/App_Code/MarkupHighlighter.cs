@@ -75,6 +75,9 @@ public class MarkupHighlighter {
         if(_filePath.EndsWith("Accordion.aspx"))
             return new AccordionMarkupCleaner().Clean(markup);
 
+        if(_filePath.EndsWith("AutoComplete.aspx"))
+            return new AutoCompleteMarkupCleaner().Clean(markup);
+
         return markup;
     }
 }
