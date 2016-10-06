@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Web.UI.HtmlControls;
+using System.Web;
 
 public class MarkupHighlighter {
     string _filePath;
@@ -21,8 +22,8 @@ public class MarkupHighlighter {
             _filePath = filePath;
     }
 
-    public static void HighlightMarkup(string filePath, string controlID, InfoBlock.InfoBlock codeInfoBlock) {
-        var markup = new MarkupHighlighter(filePath).GetHighlightedMarkup(controlID);
+    public static void HighlightMarkup(string controlID, InfoBlock.InfoBlock codeInfoBlock) {
+        var markup = new MarkupHighlighter(HttpContext.Current.Request.PhysicalPath).GetHighlightedMarkup(controlID);
         var control = codeInfoBlock.FindControl("codeBlock") as HtmlGenericControl;
         control.InnerHtml = markup;
     }

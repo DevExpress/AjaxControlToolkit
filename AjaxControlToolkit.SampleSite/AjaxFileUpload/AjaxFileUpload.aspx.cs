@@ -11,7 +11,7 @@ public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
         if(Request.QueryString["preview"] != "1" || string.IsNullOrEmpty(Request.QueryString["fileId"])) {
-            MarkupHighlighter.HighlightMarkup(Request.PhysicalPath, AjaxFileUpload1.ID, codeInfoBlock);
+            MarkupHighlighter.HighlightMarkup(AjaxFileUpload1.ID, codeInfoBlock);
             return;
         }
 

@@ -9,6 +9,6 @@ public partial class Animation_Animation : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        MarkupHighlighter.HighlightMarkup(Request.PhysicalPath, "ae", codeInfoBlock);
+        MarkupHighlighter.HighlightMarkup("ae", codeInfoBlock);
     }
 }
