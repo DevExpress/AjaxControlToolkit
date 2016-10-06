@@ -18,7 +18,7 @@ public partial class AlwaysVisibleControl_AlwaysVisibleControl : System.Web.UI.P
         if(!IsPostBack)
             avce.Enabled = false;
 
-        MarkupHighlighter.HighlightMarkup(Request.PhysicalPath, "avce", codeInfoBlock);
+        MarkupHighlighter.HighlightMarkup(Request.PhysicalPath, avce.ID, codeInfoBlock);
     }
 
     /// Update properties of the extender
