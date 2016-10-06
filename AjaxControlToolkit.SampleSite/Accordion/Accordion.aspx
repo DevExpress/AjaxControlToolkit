@@ -18,9 +18,7 @@
         RequireOpenedPane="false" 
         SuppressHeaderPostbacks="true">
         <Panes>
-            <ajaxToolkit:AccordionPane
-                ID="AccordionPane1"
-                runat="server">
+            <ajaxToolkit:AccordionPane ID="AccordionPane1" runat="server">
                 <Header><a href="#" class="accordionLink">1. Accordion</a></Header>
                 <Content>
                     The Accordion is a web control that allows you to provide multiple panes and display them one at a time.
