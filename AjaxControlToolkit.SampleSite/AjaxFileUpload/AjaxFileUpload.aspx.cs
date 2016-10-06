@@ -10,8 +10,10 @@ using System.Web.UI.WebControls;
 public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
-        if(Request.QueryString["preview"] != "1" || string.IsNullOrEmpty(Request.QueryString["fileId"]))
+        if(Request.QueryString["preview"] != "1" || string.IsNullOrEmpty(Request.QueryString["fileId"])) {
+            MarkupHighlighter.HighlightMarkup(Request.PhysicalPath, "AjaxFileUpload1", codeInfoBlock);
             return;
+        }
 
         var fileId = Request.QueryString["fileId"];
         string fileContentType = null;

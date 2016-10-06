@@ -82,9 +82,17 @@
     Click <i>Select File</i> to select an image file to upload. You can upload a maximum of 10 jpeg files (files with the .jpg or .jpeg extension)
     <br />
     <asp:Label runat="server" ID="myThrobber" Style="display: none;"><img align="absmiddle" alt="" src="uploading.gif"/></asp:Label>
-    <ajaxToolkit:AjaxFileUpload ID="AjaxFileUpload1" runat="server" Padding-Bottom="4"
-        Padding-Left="2" Padding-Right="1" Padding-Top="4" ThrobberID="myThrobber" OnClientUploadComplete="onClientUploadComplete"
-        OnUploadComplete="AjaxFileUpload1_OnUploadComplete" MaximumNumberOfFiles="10"
+    <ajaxToolkit:AjaxFileUpload
+        ID="AjaxFileUpload1"
+        runat="server"
+        Padding-Bottom="4"
+        Padding-Left="2"
+        Padding-Right="1"
+        Padding-Top="4"
+        ThrobberID="myThrobber"
+        OnClientUploadComplete="onClientUploadComplete"
+        OnUploadComplete="AjaxFileUpload1_OnUploadComplete"
+        MaximumNumberOfFiles="10"
         AllowedFileTypes="jpg,jpeg" 
         OnClientUploadCompleteAll="onClientUploadCompleteAll" 
         OnUploadCompleteAll="AjaxFileUpload1_UploadCompleteAll" 
@@ -224,22 +232,13 @@
             </pre>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>AjaxFileUpload Events, Properties and Methods</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The control above is initialized with this code.
             </p>
-
-            <pre>
-&lt;ajaxToolkit:AjaxFileUpload ID="AjaxFileUpload1"
-    <em>ThrobberID=&quot;myThrobber&quot;</em>
-    <em>ContextKeys=&quot;fred&quot;</em>
-    <em>AllowedFileTypes=&quot;jpg,jpeg&quot;</em>
-    <em>MaximumNumberOfFiles=10</em>
-    runat="server"/&gt;
-            </pre>
+            <div runat="server" ID="codeBlock" />
             <b>Events</b>
             <ul>
                 <li><strong>UploadedComplete</strong> - Raised on the server when a file is uploaded successfully. In this event an instance of AjaxFileUploadEventArgs is passed in the argument that contains file name, size and content type.</li>
