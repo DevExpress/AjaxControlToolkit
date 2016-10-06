@@ -11,6 +11,7 @@ public partial class AsyncFileUploader_AsyncFileUpload : System.Web.UI.Page {
     protected void Page_Load(object sender, EventArgs e) {
         AsyncFileUpload1.UploadedComplete += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload1_UploadedComplete);
         AsyncFileUpload1.UploadedFileError += new EventHandler<AsyncFileUploadEventArgs>(AsyncFileUpload1_UploadedFileError);
+        MarkupHighlighter.HighlightMarkup(AsyncFileUpload1.ID, codeInfoBlock);
     }
 
     void AsyncFileUpload1_UploadedComplete(object sender, AsyncFileUploadEventArgs e) {

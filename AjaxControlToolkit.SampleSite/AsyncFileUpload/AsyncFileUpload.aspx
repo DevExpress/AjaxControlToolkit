@@ -35,9 +35,14 @@
     <br />
 
     <ajaxToolkit:AsyncFileUpload
-        OnClientUploadError="uploadError" OnClientUploadComplete="uploadComplete"
-        runat="server" ID="AsyncFileUpload1" Width="400px" UploaderStyle="Modern"
-        UploadingBackColor="#CCFFFF" ThrobberID="myThrobber" />
+        ID="AsyncFileUpload1"
+        runat="server" 
+        OnClientUploadError="uploadError"
+        OnClientUploadComplete="uploadComplete"
+        Width="400px"
+        UploaderStyle="Modern"
+        UploadingBackColor="#CCFFFF" 
+        ThrobberID="myThrobber" />
     &nbsp;<asp:Label runat="server" ID="myThrobber" Style="display: none;"><img alt="" src="uploading.gif" /></asp:Label>
     <div><strong>The latest Server-side event:</strong></div>
     <asp:Label runat="server" Text="&nbsp;" ID="uploadResult" />
@@ -57,19 +62,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>AsyncFileUpload Events, Properties and Methods</Header>
         <Content>
             <p>
-                The control above is initialized with this code.  The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-            <div style="display: block; margin: 15px 15px 15px 0; padding: 10px; border: 1px dashed #CCC; background-color: #FFF; font-family: 'Courier New', Monospace; font-size: 0.9em; font-style: normal;">
-                <span style="color: blue">&lt;</span><span style="color: #a31515">ajaxToolkit</span><span style="color: blue">:</span><span style="color: #a31515">AsyncFileUpload</span>&nbsp;<span style="color: red; font-style: italic">OnClientUploadError</span><span style="color: blue">=&quot;uploadError&quot;<br />
-                </span><span style="color: red; font-style: italic">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClientUploadComplete</span><span style="color: blue">=&quot;uploadComplete&quot;</span>&nbsp;<span style="color: red">runat</span><span style="color: blue">=&quot;server&quot;<br />
-                </span><span style="color: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ID</span><span style="color: blue">=&quot;AsyncFileUpload1&quot;</span> <span style="color: red; font-style: italic">Width</span><span style="color: blue">=&quot;400px&quot; </span><span style="color: red; font-style: italic">UploaderStyle</span><span style="color: blue">=&quot;Modern&quot;<br />
-                </span><span style="color: red; font-style: italic">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UploadingBackColor</span><span style="color: blue">=&quot;#CCFFFF&quot;</span><span style="color: red; font-style: italic">&nbsp;ThrobberID</span><span style="color: blue">=&quot;myThrobber&quot;<br />
-                    /&gt;</span>
-            </div>
+            <div runat="server" id="codeBlock" />
             <b>Events</b>
             <ul>
                 <li><strong>UploadedComplete</strong> - Fired on the server side when the file successfully uploaded</li>
