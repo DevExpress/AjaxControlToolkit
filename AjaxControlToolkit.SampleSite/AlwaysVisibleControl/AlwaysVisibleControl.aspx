@@ -15,7 +15,9 @@
                         <span id="currentTime" runat="server" style="font-size: xx-large; font-weight: bold; line-height: 40px;" />
                     </div>
                 </asp:Panel>
-                <ajaxToolkit:AlwaysVisibleControlExtender ID="avce" runat="server"
+                <ajaxToolkit:AlwaysVisibleControlExtender
+                    ID="avce"
+                    runat="server"
                     TargetControlID="timer"
                     VerticalSide="Top"
                     VerticalOffset="10"
@@ -76,18 +78,11 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>AlwaysVisibleControl Properties</Header>
         <Content>
-            The always visible extender has been initialized with these properties. The properties
-            in <em>italics</em> are optional.<br /><br />
-            <pre>&lt;ajaxToolkit:AlwaysVisibleControlExtender ID="ace" runat="server"
-            TargetControlID="timer"
-            <em>VerticalSide</em>="Top"
-            <em>VerticalOffset</em>="10"
-            <em>HorizontalSide</em>="Right"
-            <em>HorizontalOffset</em>="10"
-            <em>ScrollEffectDuration</em>=".1"/&gt;</pre>
+            The always visible extender has been initialized with these properties.
+            <div runat="server" ID="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - ID of control for this extender to always make visible</li>
                 <li><strong>HorizontalOffset</strong> - Distance to the HorizontalSide edge of the browser in pixels from the same side of the target control.  The default is 0 pixels.</li>
