@@ -7,13 +7,27 @@
     <br />
     <strong>Column Chart:</strong>
     <br />
-    <ajaxToolkit:BarChart ID="BarChart1" runat="server" ChartHeight="300" ChartWidth="450"
-        ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
-        ChartType="Column" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9"
-        ValueAxisLineColor="#D08AD9" BaseLineColor="#A156AB">
+    <ajaxToolkit:BarChart
+        ID="BarChart1" 
+        runat="server" 
+        ChartHeight="300" 
+        ChartWidth="450"
+        ChartTitle="United States versus European Widget Production" 
+        CategoriesAxis="2007,2008,2009,2010,2011,2012"
+        ChartType="Column" 
+        ChartTitleColor="#0E426C" 
+        CategoryAxisLineColor="#D08AD9"
+        ValueAxisLineColor="#D08AD9" 
+        BaseLineColor="#A156AB">
         <series>
-            <ajaxToolkit:BarChartSeries Name="United States" BarColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
-            <ajaxToolkit:BarChartSeries Name="Europe"  BarColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />
+            <ajaxToolkit:BarChartSeries 
+                Name="United States" 
+                BarColor="#6C1E83" 
+                Data="110, 189, 255, 95, 107, 140" />
+            <ajaxToolkit:BarChartSeries 
+                Name="Europe"
+                BarColor="#D08AD9" 
+                Data="49, 77, 95, 68, 70, 79" />
         </series>
     </ajaxToolkit:BarChart>
     <br />
@@ -71,27 +85,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>BarChart Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:BarChart ID=&quot;BarChart1&quot; runat=&quot;server&quot; 
-<em>ChartHeight</em>=&quot;300&quot; <em>ChartWidth</em>=&quot;450&quot; ChartType=&quot;Column&quot;
-<em>ChartTitle</em>=&quot;United States versus European Widget Production&quot; 
-CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot;  
-<em>ChartTitleColor</em>=&quot;#0E426C&quot; <em>CategoryAxisLineColor</em>=&quot;#D08AD9&quot; 
-<em>ValueAxisLineColor</em>=&quot;#D08AD9&quot; <em>BaseLineColor</em>=&quot;#A156AB&quot; &gt;
-&lt;Series&gt;
-    &lt;ajaxToolkit:BarChartSeries Name=&quot;United States&quot; <em>BarColor</em>=&quot;#6C1E83&quot; 
-    Data=&quot;110, 189, 255, 95, 107, 140&quot; /&gt;
-    &lt;ajaxToolkit:BarChartSeries Name=&quot;Europe&quot; <em>BarColor</em>=&quot;#D08AD9&quot; 
-    Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
-&lt;/Series&gt;
-&lt;/ajaxToolkit:BarChart&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <br />
             <strong>BarChart Properties</strong>
             <ul>
