@@ -6,13 +6,27 @@
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <strong>Basic Type:</strong>
     <br />
-    <ajaxToolkit:AreaChart ID="AreaChart1" runat="server" ChartHeight="300" ChartWidth="450"
-        ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
-        ChartType="Basic" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9"
+    <ajaxToolkit:AreaChart
+        ID="AreaChart1" 
+        runat="server" 
+        ChartHeight="300" 
+        ChartWidth="450"
+        ChartTitle="United States versus European Widget Production" 
+        CategoriesAxis="2007,2008,2009,2010,2011,2012"
+        ChartType="Basic" 
+        ChartTitleColor="#0E426C" 
+        CategoryAxisLineColor="#D08AD9" 
+        ValueAxisLineColor="#D08AD9"
         BaseLineColor="#A156AB">
         <series>
-            <ajaxToolkit:AreaChartSeries Name="United States" AreaColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
-            <ajaxToolkit:AreaChartSeries Name="Europe" AreaColor="#669900" Data="49, 77, 95, 68, 70, 79" />
+            <ajaxToolkit:AreaChartSeries
+                Name="United States"
+                AreaColor="#6C1E83"
+                Data="110, 189, 255, 95, 107, 140" />
+            <ajaxToolkit:AreaChartSeries
+                Name="Europe"
+                AreaColor="#669900"
+                Data="49, 77, 95, 68, 70, 79" />
         </series>
     </ajaxToolkit:AreaChart>
     <br />
@@ -44,26 +58,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="CodeInfoBlock">
         <Header>AreaChart Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:AreaChart ID=&quot;AreaChart1&quot; runat=&quot;server&quot; 
-<em>ChartHeight</em>=&quot;300&quot; <em>ChartWidth</em>=&quot;450&quot; <em>ChartType</em>=&quot;Basic&quot;
-<em>ChartTitle</em>=&quot;United States versus European Widget Production&quot; 
-CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot; 
-<em>ChartTitleColor</em>=&quot;#0E426C&quot; <em>CategoryAxisLineColor</em>=&quot;#D08AD9&quot; 
-<em>ValueAxisLineColor</em>=&quot;#D08AD9&quot; <em>BaseLineColor</em>=&quot;#A156AB&quot;&gt;
-&lt;Series&gt;
-    &lt;ajaxToolkit:AreaChartSeries Name=&quot;United States&quot; 
-    <em>AreaColor</em>=&quot;#6C1E83&quot; Data=&quot;110, 189, 255, 95, 107, 140&quot; /&gt;
-    &lt;ajaxToolkit:AreaChartSeries Name=&quot;Europe&quot; 
-    <em>AreaColor</em>=&quot;#D08AD9&quot; Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
-&lt;/Series&gt;
-&lt;/ajaxToolkit:AreaChart&gt;</pre>
+            <div runat="server" id="codeBlock" />
             <strong>AreaChart Properties</strong>
             <ul>
                 <li><strong>ChartHeight</strong> - This property enables you to customize the height of the chart.</li>
