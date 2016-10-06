@@ -58,7 +58,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="CodeInfoBlock">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>AreaChart Properties</Header>
         <Content>
             <p>
