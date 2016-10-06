@@ -138,11 +138,11 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="InfoCode">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>Accordion Properties</Header>
         <Content>
             <p>The control above is initialized with this code.</p>
-            <div runat="server" ID="CodeBlock" />
+            <div runat="server" ID="codeBlock" />
             <ul>
                 <li><strong>SelectedIndex</strong> - The AccordionPane to be initially visible</li>
                 <li><strong>HeaderCssClass</strong> - Name of the CSS class to use for the headers.  This can be either applied to the Accordion as a default for all AccordionPanes, or an individual AccordionPane.</li>

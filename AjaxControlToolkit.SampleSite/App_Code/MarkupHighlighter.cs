@@ -3,9 +3,16 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Web.UI.HtmlControls;
 
 public class MarkupHighlighter {
-    public string GetHighlightedMarkup(string filePath, string controlID) {
+    public static void HighlightMarkup(string filePath, string controlID, InfoBlock.InfoBlock codeInfoBlock) {
+        var markup = new MarkupHighlighter().GetHighlightedMarkup(filePath, controlID);
+        var control = codeInfoBlock.FindControl("codeBlock") as HtmlGenericControl;
+        control.InnerHtml = markup;
+    }
+
+    string GetHighlightedMarkup(string filePath, string controlID) {
         if(!filePath.EndsWith(".aspx"))
             filePath += ".aspx";
 
