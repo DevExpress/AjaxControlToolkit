@@ -1,0 +1,13 @@
+﻿<ajaxToolkit:AnimationExtender
+    ID="ae"
+    runat="server"
+    TargetControlID="ctrl">
+        <Animations>
+            <OnLoad> ... </OnLoad>
+            <OnClick> ... </OnClick>
+            <OnMouseOver> ... </OnMouseOver>
+            <OnMouseOut> ... </OnMouseOut>
+            <OnHoverOver> ... </OnHoverOver>
+            <OnHoverOut> ... </OnHoverOut>
+        </Animations>
+</ajaxToolkit:AnimationExtender>

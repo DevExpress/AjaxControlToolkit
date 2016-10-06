@@ -6,17 +6,29 @@ using System.Text.RegularExpressions;
 using System.Web.UI.HtmlControls;
 
 public class MarkupHighlighter {
+    string _filePath;
+
+    public MarkupHighlighter(string filePath) {
+        var dir = Path.GetDirectoryName(filePath);
+        var fileWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
+        var extension = Path.GetExtension(filePath);
+
+        var markupFile = Path.Combine(dir, fileWithoutExtension + ".markup");
+
+        if(File.Exists(markupFile))
+            _filePath = markupFile;
+        else
+            _filePath = filePath;
+    }
+
     public static void HighlightMarkup(string filePath, string controlID, InfoBlock.InfoBlock codeInfoBlock) {
-        var markup = new MarkupHighlighter().GetHighlightedMarkup(filePath, controlID);
+        var markup = new MarkupHighlighter(filePath).GetHighlightedMarkup(controlID);
         var control = codeInfoBlock.FindControl("codeBlock") as HtmlGenericControl;
         control.InnerHtml = markup;
     }
 
-    string GetHighlightedMarkup(string filePath, string controlID) {
-        if(!filePath.EndsWith(".aspx"))
-            filePath += ".aspx";
-
-        var sourceCode = File.ReadAllText(filePath);
+    string GetHighlightedMarkup(string controlID) {
+        var sourceCode = File.ReadAllText(_filePath);
         var controlMarkup = GetControlMarkup(sourceCode, controlID);
         var cleanedControlMarkup = CleanControlMarkup(controlMarkup);
 
@@ -24,8 +36,8 @@ public class MarkupHighlighter {
     }
 
     string GetControlMarkup(string text, string controlID) {
-        var generalTagPattern = @"\r\n\s*<ajaxToolkit:(?<tag>\w+).*?ID=""{0}"".*?<\/ajaxToolkit:\k<tag>>";
-        var selfClosingTagPattern = @"\r\n\s*<ajaxToolkit:.*?ID=""{0}"".*?\/>";
+        var generalTagPattern = @"(\r\n)?\s*<ajaxToolkit:(?<tag>\w+).*?ID=""{0}"".*?<\/ajaxToolkit:\k<tag>>";
+        var selfClosingTagPattern = @"(\r\n)?\s*<ajaxToolkit:.*?ID=""{0}"".*?\/>";
         var pattern = generalTagPattern + "|" + selfClosingTagPattern;
         var match = Regex.Match(text, String.Format(pattern, controlID), RegexOptions.Singleline);
 
@@ -58,35 +70,10 @@ public class MarkupHighlighter {
         return newLines;
     }
 
-    protected string CustomClean(string markup) {
-        markup = RemoveExtraAccordionPanes(markup);
-        markup = RemoveAccordionHeaderContent(markup);
-        return RemoveAccordionContentContent(markup);
-    }
-
-    private static string RemoveExtraAccordionPanes(string markup) {
-        var pattern = @"<ajaxToolkit:AccordionPane.*?<\/ajaxToolkit:AccordionPane>";
-        var matches = Regex.Matches(markup, pattern, RegexOptions.Singleline);
-
-        if(matches.Count == 0)
-            return markup;
-
-        for(int i = 1; i < matches.Count; i++)
-            markup = markup.Replace(matches[i].Value, ".");
+    protected virtual string CustomClean(string markup) {
+        if(_filePath.EndsWith("Accordion.aspx"))
+            return new AccordionMarkupCleaner().Clean(markup);
 
         return markup;
-    }
-
-    string RemoveAccordionHeaderContent(string markup) {
-        return RemoveTagContent(markup, "Header");
-    }
-
-    string RemoveAccordionContentContent(string markup) {
-        return RemoveTagContent(markup, "Content");
-    }
-
-    private static string RemoveTagContent(string markup, string tagName) {
-        var pattern = String.Format(@"<{0}>.*?<\/{0}>", tagName);
-        return Regex.Replace(markup, pattern, String.Format( @"<{0}>...</{0}>", tagName), RegexOptions.Singleline);
     }
 }

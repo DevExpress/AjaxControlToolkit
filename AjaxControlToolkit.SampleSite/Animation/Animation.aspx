@@ -225,23 +225,12 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>Animation Properties</Header>
         <Content>
             The animation behavior can be applied with the following extender (the <em>italic</em> properties
             are optional, and the ellipses represent a generic animation description):
-            <br /><br />
-            <pre>&lt;ajaxToolkit:AnimationExtender ID="ae"
-              runat="server" TargetControlID="ctrl"&gt;
-                <em>&lt;Animations&gt;
-                    &lt;OnLoad&gt; ... &lt;/OnLoad&gt;
-                    &lt;OnClick&gt; ... &lt;/OnClick&gt;
-                    &lt;OnMouseOver&gt; ... &lt;/OnMouseOver&gt;
-                    &lt;OnMouseOut&gt; ... &lt;/OnMouseOut&gt;
-                    &lt;OnHoverOver&gt; ... &lt;/OnHoverOver&gt;
-                    &lt;OnHoverOut&gt; ... &lt;/OnHoverOut&gt;
-                &lt;/Animations&gt;</em>
-            &lt;/ajaxToolkit:AnimationExtender&gt;</pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - ID of the target control whose events are used to animate (this is also the default target of the animations)</li>
                 <li><strong>OnLoad</strong> - Generic animation played as soon as the page is loaded</li>
