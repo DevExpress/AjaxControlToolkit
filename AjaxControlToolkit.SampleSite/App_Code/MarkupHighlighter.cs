@@ -22,13 +22,19 @@ public class MarkupHighlighter {
             _filePath = filePath;
     }
 
-    public static void HighlightMarkup(string controlID, InfoBlock.InfoBlock codeInfoBlock, string codeBlockID = "codeBlock") {
-        var markup = new MarkupHighlighter(HttpContext.Current.Request.PhysicalPath).GetHighlightedMarkup(controlID);
+    public static void HighlightScriptMarkup(string scriptID, InfoBlock.InfoBlock codeInfoBlock, string codeBlockID) {
+        var markup = new MarkupHighlighter(HttpContext.Current.Request.PhysicalPath).GetHighlightedScriptMarkup(scriptID);
         var control = codeInfoBlock.FindControl(codeBlockID) as HtmlGenericControl;
         control.InnerHtml = markup;
     }
 
-    string GetHighlightedMarkup(string controlID) {
+    public static void HighlightControlMarkup(string controlID, InfoBlock.InfoBlock codeInfoBlock, string codeBlockID = "codeBlock") {
+        var markup = new MarkupHighlighter(HttpContext.Current.Request.PhysicalPath).GetHighlightedControlMarkup(controlID);
+        var control = codeInfoBlock.FindControl(codeBlockID) as HtmlGenericControl;
+        control.InnerHtml = markup;
+    }
+
+    string GetHighlightedControlMarkup(string controlID) {
         var sourceCode = File.ReadAllText(_filePath);
         var controlMarkup = GetControlMarkup(sourceCode, controlID);
         var cleanedControlMarkup = CleanControlMarkup(controlMarkup);
@@ -36,8 +42,25 @@ public class MarkupHighlighter {
         return new CodeColorizer().Colorize(cleanedControlMarkup, Languages.Aspx);
     }
 
+    string GetHighlightedScriptMarkup(string scriptID) {
+        var sourceCode = File.ReadAllText(_filePath);
+        var scriptMarkup = GetScriptMarkup(sourceCode, scriptID);
+        var cleanedControlMarkup = CleanScriptMarkup(scriptMarkup);
+
+        return new CodeColorizer().Colorize(cleanedControlMarkup, Languages.JavaScript);
+    }
+
+    string GetScriptMarkup(string text, string scriptID) {
+        var pattern = @"<script[^>]*?id=""{0}""[^<]*?<\/script>";
+        var match = Regex.Match(text, String.Format(pattern, scriptID), RegexOptions.Singleline);
+
+        if(!match.Success)
+            return null;
+
+        return match.Value;
+    }
+
     string GetControlMarkup(string text, string controlID) {
-        
         var selfClosingTagPattern = @"(\r\n)?\s*<ajaxToolkit:[^>]*?ID=""{0}""[^<]*?\/>";
         var match = Regex.Match(text, String.Format(selfClosingTagPattern, controlID), RegexOptions.Singleline);
 
@@ -59,6 +82,13 @@ public class MarkupHighlighter {
         return CustomClean(markup);
     }
 
+    string CleanScriptMarkup(string markup) {
+        var multilineMarkup = GetMultilineMarkup(markup);
+        multilineMarkup = RemoveMarginalLines(multilineMarkup);
+        multilineMarkup = DecreaseIndent(multilineMarkup);
+        return String.Join("\r\n", multilineMarkup);
+    }
+
     string[] GetMultilineMarkup(string markup) {
         return markup.Split(
                 new string[] { "\r\n" },
@@ -66,11 +96,20 @@ public class MarkupHighlighter {
     }
 
     string[] DecreaseIndent(string[] lines) {
-        string[] newLines = new string[lines.Length];
+        var newLines = new string[lines.Length];
         int indent = lines[0].TakeWhile(Char.IsWhiteSpace).Count();
 
         for(int i = 0; i < lines.Length; i++)
             newLines[i] = lines[i].Substring(indent);
+
+        return newLines;
+    }
+
+    string[] RemoveMarginalLines(string[] lines) {
+        var newLines = new string[lines.Length - 2];
+
+        for(int i = 1; i < lines.Length - 1; i++)
+            newLines[i - 1] = lines[i];
 
         return newLines;
     }

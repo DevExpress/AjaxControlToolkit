@@ -7,6 +7,6 @@ using System.Web.UI.WebControls;
 
 public partial class Calendar_Calendar : System.Web.UI.Page {
     protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightMarkup(calendarButtonExtender.ID, codeInfoBlock);
+        MarkupHighlighter.HighlightControlMarkup(calendarButtonExtender.ID, codeInfoBlock);
     }
 }

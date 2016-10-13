@@ -8,6 +8,6 @@ using System.Web.UI.WebControls;
 public partial class AreaChart_AreaChart : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightMarkup(AreaChart1.ID, codeInfoBlock);
+        MarkupHighlighter.HighlightControlMarkup(AreaChart1.ID, codeInfoBlock);
     }
 }

@@ -29,9 +29,10 @@
                 when you choose a color)</em>
         </div>
     </div>
-    <script type="text/javascript">
+    <script type="text/javascript" id="colorPickerScript">
         function colorChanged(sender) {
-            sender.get_element().style.color = "#" + sender.get_selectedColor();
+            sender.get_element().style.color =
+                "#" + sender.get_selectedColor();
         }
     </script>
     <br />
@@ -80,10 +81,7 @@
             <p>The first example of the color picker has been initialized with this code:</p>
             <div runat="server" id="codeBlock1" />
             <p>A <em>colorChanged</em> JavaScript function has been defined as following:</p>
-            <pre>function colorChanged(sender) {
-  sender.get_element().style.color = 
-       "#" + sender.get_selectedColor();
-}</pre>
+            <div runat="server" id="scriptCodeBlock" />
             <p>
                 The color picker associated with a button has been initialized with this code. The properties
             in <em>italic</em> are optional:
