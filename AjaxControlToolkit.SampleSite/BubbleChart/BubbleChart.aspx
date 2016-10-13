@@ -52,7 +52,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeBlockInfo">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>BubbleChart Properties</Header>
         <Content>
             <p>
