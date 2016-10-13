@@ -25,7 +25,9 @@
         </p>
     </asp:Panel>
 
-    <ajaxToolkit:CollapsiblePanelExtender ID="cpeDemo" runat="Server"
+    <ajaxToolkit:CollapsiblePanelExtender
+        ID="cpeDemo"
+        runat="Server"
         TargetControlID="Panel1"
         ExpandControlID="Panel2"
         CollapseControlID="Panel2"
@@ -75,31 +77,13 @@
 	        </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>CollapsiblePanel Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-        <pre>
-&lt;ajaxToolkit:CollapsiblePanelExtender ID="cpe" runat="Server"
-    TargetControlID="Panel1"
-    <em>CollapsedSize</em>="0"
-    <em>ExpandedSize</em>="300"
-    <em>Collapsed</em>="True"
-    <em>ExpandControlID</em>="LinkButton1"
-    <em>CollapseControlID</em>="LinkButton1"
-    <em>AutoCollapse</em>="False"
-    <em>AutoExpand</em>="False"
-    <em>ScrollContents</em>="True"
-    <em>TextLabelID</em>="Label1"
-    <em>CollapsedText</em>="Show Details..."
-    <em>ExpandedText</em>="Hide Details" 
-    <em>ImageControlID</em>="Image1"
-    <em>ExpandedImage</em>="~/images/collapse.jpg"
-    <em>CollapsedImage</em>="~/images/expand.jpg"
-    <em>ExpandDirection</em>="Vertical" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - the Panel to operate expand and collapse.</li>
                 <li><strong>CollapsedSize</strong> - The size of the target, in pixels, when it is in the collapsed state.</li>
