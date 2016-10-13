@@ -38,11 +38,11 @@ public class MarkupHighlighter {
 
     string GetControlMarkup(string text, string controlID) {
         
-        var selfClosingTagPattern = @"(\r\n)?\s*<ajaxToolkit:.*?ID=""{0}""[^<]*?\/>";
+        var selfClosingTagPattern = @"(\r\n)?\s*<ajaxToolkit:[^>]*?ID=""{0}""[^<]*?\/>";
         var match = Regex.Match(text, String.Format(selfClosingTagPattern, controlID), RegexOptions.Singleline);
 
         if(!match.Success) {
-            var generalTagPattern = @"(\r\n)?\s*<ajaxToolkit:(?<tag>\w+).*?ID=""{0}"".*?<\/ajaxToolkit:\k<tag>>";
+            var generalTagPattern = @"(\r\n)?\s*<ajaxToolkit:(?<tag>\w+)[^>]*?ID=""{0}"".*?<\/ajaxToolkit:\k<tag>>";
             match = Regex.Match(text, String.Format(generalTagPattern, controlID), RegexOptions.Singleline);
         }
 
