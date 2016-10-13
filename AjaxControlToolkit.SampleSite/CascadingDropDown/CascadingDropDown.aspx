@@ -24,9 +24,15 @@
     </table>
     <br />
 
-    <ajaxToolkit:CascadingDropDown ID="CascadingDropDown1" runat="server" TargetControlID="DropDownList1"
-        Category="Make" PromptText="Please select a make" LoadingText="[Loading makes...]"
-        ServicePath="CarsService.asmx" ServiceMethod="GetDropDownContents" />
+    <ajaxToolkit:CascadingDropDown 
+        ID="CascadingDropDown1" 
+        runat="server" 
+        TargetControlID="DropDownList1"
+        Category="Make" 
+        PromptText="Please select a make" 
+        LoadingText="[Loading makes...]"
+        ServicePath="CarsService.asmx" 
+        ServiceMethod="GetDropDownContents" />
 
     <ajaxToolkit:CascadingDropDown ID="CascadingDropDown2" runat="server" TargetControlID="DropDownList2"
         Category="Model" PromptText="Please select a model" LoadingText="[Loading models...]"
@@ -80,21 +86,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>CascadingDropDown Properties</Header>
         <Content>
              <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>&lt;ajaxToolkit:CascadingDropDown ID="CDD1" runat="server"
-                TargetControlID="DropDownList2"
-                Category="Model"
-                <em>PromptText</em>="Please select a model"
-                <em>LoadingText</em>="[Loading models...]"
-                <em>ServicePath</em>="CarsService.asmx"
-                ServiceMethod="GetDropDownContents"
-                <em>ParentControlID</em>="DropDownList1"
-                <em>SelectedValue</em>="SomeValue" /&gt;</pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the DropDownList to populate.</li>
                 <li><strong>Category</strong> - The name of the category this DropDownList represents.</li>
