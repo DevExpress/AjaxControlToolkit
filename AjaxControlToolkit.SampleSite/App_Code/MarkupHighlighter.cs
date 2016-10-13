@@ -22,9 +22,9 @@ public class MarkupHighlighter {
             _filePath = filePath;
     }
 
-    public static void HighlightMarkup(string controlID, InfoBlock.InfoBlock codeInfoBlock) {
+    public static void HighlightMarkup(string controlID, InfoBlock.InfoBlock codeInfoBlock, string codeBlockID = "codeBlock") {
         var markup = new MarkupHighlighter(HttpContext.Current.Request.PhysicalPath).GetHighlightedMarkup(controlID);
-        var control = codeInfoBlock.FindControl("codeBlock") as HtmlGenericControl;
+        var control = codeInfoBlock.FindControl(codeBlockID) as HtmlGenericControl;
         control.InnerHtml = markup;
     }
 

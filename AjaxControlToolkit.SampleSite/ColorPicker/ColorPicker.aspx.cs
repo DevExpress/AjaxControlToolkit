@@ -7,5 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class ColorPicker_Default : System.Web.UI.Page {
     protected void Page_Load(object sender, EventArgs e) {
+        MarkupHighlighter.HighlightMarkup(defaultCPE.ID, codeInfoBlock, "codeBlock1");
+        MarkupHighlighter.HighlightMarkup(buttonCPE.ID, codeInfoBlock, "codeBlock2");
     }
 }

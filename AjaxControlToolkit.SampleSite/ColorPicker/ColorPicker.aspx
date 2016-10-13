@@ -9,7 +9,11 @@
         <b>Default color picker: </b>
         <br />
         <asp:TextBox runat="server" ID="Color1" MaxLength="6" AutoCompleteType="None" /><br />
-        <ajaxToolkit:ColorPickerExtender ID="defaultCPE" runat="server" OnClientColorSelectionChanged="colorChanged" TargetControlID="Color1" />
+        <ajaxToolkit:ColorPickerExtender 
+            ID="defaultCPE" 
+            runat="server" 
+            OnClientColorSelectionChanged="colorChanged" 
+            TargetControlID="Color1" />
         <div style="font-size: 90%">
             <em>(Set the focus to the textbox to show the color picker popup; the popup dismisses automatically
                 when you choose a color)</em>
@@ -36,8 +40,13 @@
         <asp:TextBox runat="server" ID="Color2" AutoCompleteType="None" MaxLength="6" Style="float: left" />
         <asp:ImageButton runat="Server" ID="Image1" Style="float: left; margin: 0 3px" ImageUrl="~/Images/cp_button.png" AlternateText="Click to show color picker" />
         <asp:Panel ID="Sample1" Style="width: 18px; height: 18px; border: 1px solid #000; margin: 0 3px; float: left" runat="server" />
-        <ajaxToolkit:ColorPickerExtender ID="buttonCPE" runat="server"
-            TargetControlID="Color2" PopupButtonID="Image1" SampleControlID="Sample1" SelectedColor="33ffcc" />
+        <ajaxToolkit:ColorPickerExtender 
+            ID="buttonCPE" 
+            runat="server"
+            TargetControlID="Color2" 
+            PopupButtonID="Image1" 
+            SampleControlID="Sample1" 
+            SelectedColor="33ffcc" />
         <br style="clear: both" />
         <div style="font-size: 90%">
             <em>(Click the image button to show the color picker; enter a valid color value in to the TextBox to 
@@ -65,14 +74,11 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" Collapsed="true">
+    <samples:InfoBlock runat="server" Collapsed="true" ID="codeInfoBlock">
         <Header>ColorPicker Properties</Header>
         <Content>
             <p>The first example of the color picker has been initialized with this code:</p>
-            <pre>&lt;ajaxToolkit:ColorPickerExtender runat="server" 
-    ID="ColorPickerExtender1"
-    TargetControlID="Color1"
-    OnClientColorSelectionChanged="colorChanged" /&gt;</pre>
+            <div runat="server" id="codeBlock1" />
             <p>A <em>colorChanged</em> JavaScript function has been defined as following:</p>
             <pre>function colorChanged(sender) {
   sender.get_element().style.color = 
@@ -82,11 +88,7 @@
                 The color picker associated with a button has been initialized with this code. The properties
             in <em>italic</em> are optional:
             </p>
-            <pre>&lt;ajaxToolkit:ColorPickerExtender runat="server"
-    TargetControlID="Color2"  
-    <em>PopupButtonID</em>="Image1"
-    <em>SampleControlID</em>="Sample1"
-    <em>SelectedColor</em>="33ffcc" /&gt;</pre>
+            <div runat="server" id="codeBlock2" />"
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the TextBox to extend with the color picker.</li>
                 <li><strong>PopupButtonID</strong> - The ID of a control to show the ColorPicker popup
