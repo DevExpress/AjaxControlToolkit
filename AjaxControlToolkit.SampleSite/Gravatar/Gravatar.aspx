@@ -7,7 +7,12 @@
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     Displays gravatar for an email account:
     <br />
-    <ajaxToolkit:Gravatar ID="Gravatar1" Email="test@devexpress.com" Size="200" Rating="R" runat="server" />
+    <ajaxToolkit:Gravatar 
+        ID="Gravatar1" 
+        Email="test@devexpress.com" 
+        Size="200" 
+        Rating="R" 
+        runat="server" />
     <br />
     <hr />
     Displays default image for an email which doesn't meet rating requirments:
@@ -60,19 +65,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>Gravatar Properties</Header>
         <Content>
             <p>
-                The first sample above is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The first sample above is initialized with this code.
             </p>        
-        <pre>&lt;ajaxToolkit:Gravatar runat="server"
-            Email="test@superexpert.com"
-            <em>Size</em>="200"
-            <em>Rating</em>="R"
-            <em>DefaultImageBehavior="Identicon"</em>
-            <em>DefaultImage</em>="http://tinyurl.com/3bpsaac" /&gt;</pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>Email</strong> - email that is associated with account at gravatar.</li>
                 <li><strong>Size</strong> - The requested size of the image that gravatar needs to render (both width and height).</li>
