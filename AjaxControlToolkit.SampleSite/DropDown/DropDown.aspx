@@ -13,7 +13,9 @@
         <asp:LinkButton runat="server" ID="Option2" Text="Java Cyclone" CssClass="ContextMenuItem" OnClick="OnSelect" />
         <asp:LinkButton runat="server" ID="Option3" Text="Dry Fruit" CssClass="ContextMenuItem" OnClick="OnSelect" />
     </asp:Panel>
-    <ajaxToolkit:DropDownExtender runat="server" ID="DDE"
+    <ajaxToolkit:DropDownExtender 
+        runat="server" 
+        ID="DDE"
         TargetControlID="TextLabel"
         DropDownControlID="DropPanel" />
     <br />
@@ -53,18 +55,13 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>DropDown Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:DropDownExtender runat="server" ID="DDE"
-    TargetControlID="TextLabel" 
-    <em>DropDownControlID</em>="DropPanel" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the control which needs a drop-down.</li>
                 <li><strong>DropDownControlID</strong> - The ID of the control which will be displayed as the dropdown.</li>
