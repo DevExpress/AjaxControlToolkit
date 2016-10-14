@@ -42,7 +42,9 @@
                                 </table>
                             </asp:Panel>
 
-                            <ajaxToolkit:HoverMenuExtender ID="hme2" runat="Server"
+                            <ajaxToolkit:HoverMenuExtender
+                                ID="hme2" 
+                                runat="Server"
                                 HoverCssClass="popupHover"
                                 PopupControlID="PopupMenu"
                                 PopupPosition="Left"
@@ -136,21 +138,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>HoverMenu Properties</Header>
         <Content>
             <p>
-                Each row of the GridView above contains a HoverMenu which is initialized with this code.
-            The <em>italic</em> properties are optional:
+                Each row of the GridView above contains a HoverMenu which is initialized with this code.            
             </p>
-            <pre>&lt;ajaxToolkit:HoverMenuExtender ID="hme2" runat="Server"
-    TargetControlID="Panel9"
-    PopupControlID="PopupMenu"
-    <em>HoverCssClass="popupHover"
-    PopupPosition="Left"
-    OffsetX="0"
-    OffsetY="0"
-    PopDelay="50"</em> /&gt;</pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The control that the extender is targeting.
                 When the mouse cursor is over this control, the hover menu popup will be displayed.</li>
