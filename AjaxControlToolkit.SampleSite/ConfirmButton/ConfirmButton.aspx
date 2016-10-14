@@ -14,7 +14,9 @@
         <ContentTemplate>
 
             <asp:LinkButton ID="LinkButton" runat="server" OnClick="Button_Click">Click Me</asp:LinkButton>
-            <ajaxToolkit:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server"
+            <ajaxToolkit:ConfirmButtonExtender
+                ID="ConfirmButtonExtender1" 
+                runat="server"
                 TargetControlID="LinkButton"
                 ConfirmText="Are you sure you want to click the LinkButton?"
                 OnClientCancel="cancelClick" />
@@ -54,19 +56,13 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>ConfirmButton Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-            are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:ConfirmButtonExtender ID="cbe" runat="server"
-    TargetControlID="LinkButton1"
-    ConfirmText="Are you sure you want to click this?"
-    <em>OnClientCancel</em>="CancelClick" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the button or link for this extender to operate on.</li>
                 <li><strong>ConfirmText</strong> - The text to show when you want to confirm the click. (Note: HTML entities can be used here (ex: "&amp;#10;" for new-line))</li>
