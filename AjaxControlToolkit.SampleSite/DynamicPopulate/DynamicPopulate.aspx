@@ -48,7 +48,10 @@
     <asp:Panel ID="Panel1" runat="server" CssClass="dynamicPopulate_Normal" />
     <br />
 
-    <ajaxToolkit:DynamicPopulateExtender ID="dp" BehaviorID="dp1" runat="server"
+    <ajaxToolkit:DynamicPopulateExtender 
+        ID="dp" 
+        BehaviorID="dp1" 
+        runat="server"
         TargetControlID="Panel1"
         ClearContentsDuringUpdate="true"
         PopulateTriggerControlID="Label1"
@@ -68,21 +71,14 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>DynamicPopulate Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The properties in <em>italic</em> are optional. The
+                The control above is initialized with this code. The
                 CustomScript or the ServiceMethod field needs to be specified.
             </p>
-            <pre>
-&lt;ajaxToolkit:DynamicPopulateExtender ID="dp" runat="server"
-    TargetControlID="Panel1" 
-    <em>ClearContentsDuringUpdate</em>="true" 
-    <em>PopulateTriggerControlID</em>="Label1" 
-    <em>ServiceMethod</em>="GetHtml" 
-    <em>UpdatingCssClass</em>="dynamicPopulate_Updating" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the button or link for this extender to operate on</li>
                 <li><strong>ClearContentsDuringUpdate</strong> - true (default) to clear the HTML contents of the target element when an update begins</li>
