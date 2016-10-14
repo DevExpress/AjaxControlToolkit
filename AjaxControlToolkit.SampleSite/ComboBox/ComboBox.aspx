@@ -33,10 +33,15 @@
                     <br />
                 </asp:Panel>
                 <div>
-                    <ajaxToolkit:ComboBox ID="ComboBox1" runat="server" DropDownStyle="DropDownList"
-                        AutoCompleteMode="SuggestAppend" CssClass="" OnItemInserted="ComboBox1_ItemInserted"
-                        OnSelectedIndexChanged="ComboBox1_SelectedIndexChanged" AppendDataBoundItems="false">
-                    </ajaxToolkit:ComboBox>
+                    <ajaxToolkit:ComboBox 
+                        ID="ComboBox1" 
+                        runat="server" 
+                        DropDownStyle="DropDownList"
+                        AutoCompleteMode="SuggestAppend" 
+                        CssClass="" 
+                        OnItemInserted="ComboBox1_ItemInserted"
+                        OnSelectedIndexChanged="ComboBox1_SelectedIndexChanged" 
+                        AppendDataBoundItems="false" />
                     <br />
                     <asp:Button ID="ManualPostBackButton" runat="server" Text="Submit" />
                 </div>
@@ -198,23 +203,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" Collapsed="true">
+    <samples:InfoBlock runat="server" Collapsed="true" ID="codeInfoBlock">
         <Header>ComboBox Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-            are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>&lt;ajaxToolkit:ComboBox ID="ComboBox1" runat="server" 
-    <em>DropDownStyle</em>="DropDown" 
-    <em>AutoCompleteMode</em>="None"
-    <em>CaseSensitive</em>="false"
-    <em>RenderMode</em>="Inline"
-    <em>ItemInsertLocation</em>="Append"
-    <em>ListItemHoverCssClass</em>="ComboBoxListItemHover"
-      <em>&lt;asp:ListItem&gt;...&lt;/asp:ListIem&gt;</em>
-      ...
-&lt;/ajaxToolkit:ComboBox&gt;</pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong><em>DropDownStyle</em></strong> - Determines whether the user is allowed
                 to enter text that does not match an item in the list, and whether the list is always

@@ -38,8 +38,17 @@ public class MarkupHighlighter {
         var sourceCode = File.ReadAllText(_filePath);
         var controlMarkup = GetControlMarkup(sourceCode, controlID);
         var cleanedControlMarkup = CleanControlMarkup(controlMarkup);
+        var colorizeReadyMarkup = PrepareMarkupForColorizer(cleanedControlMarkup);
+        var colorizedMarkup = new CodeColorizer().Colorize(colorizeReadyMarkup, Languages.Aspx);
+        return RestoreMarkupFormatting(colorizedMarkup);
+    }
 
-        return new CodeColorizer().Colorize(cleanedControlMarkup, Languages.Aspx);
+    string RestoreMarkupFormatting(string colorizedMarkup) {
+        return colorizedMarkup.Replace("&quot;ATTRIBUTE_DUMMY_VALUE&quot;", "&quot;&quot;");
+    }
+
+    string PrepareMarkupForColorizer(string markup) {
+        return markup.Replace("\"\"", "\"ATTRIBUTE_DUMMY_VALUE\"");
     }
 
     string GetHighlightedScriptMarkup(string scriptID) {

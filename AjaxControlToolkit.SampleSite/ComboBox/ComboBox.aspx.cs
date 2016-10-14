@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class ComboBox_ComboBox : Page {
     protected void Page_Load(object sender, EventArgs e) {
+        MarkupHighlighter.HighlightControlMarkup(ComboBox1.ID, codeInfoBlock);
     }
 
     private static string[] wordListText;
