@@ -31,7 +31,9 @@
         </div>
     </asp:Panel>
 
-    <ajaxToolkit:DropShadowExtender ID="DropShadowExtender1" runat="server"
+    <ajaxToolkit:DropShadowExtender
+        ID="DropShadowExtender1" 
+        runat="server"
         BehaviorID="DropShadowBehavior1"
         TargetControlID="Panel1"
         Width="5"
@@ -92,19 +94,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>DropShadow Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The properties in <em>italic</em> are optional.
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:DropShadowExtender ID="dse" runat="server"
-    TargetControlID="Panel1" 
-    <em>Opacity=".8" 
-    Rounded="true"
-    TrackPosition="true"</em> /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the button or link for this extender to operate on</li>
                 <li><strong>Width - </strong>The width, in pixels of the drop shadow. Default value is 5.</li><li><strong>Opacity </strong> - The opacity of the drop shadow, from 0 (fully transparent) to 1.0 (fully opaque). The default value is .5.</li>
