@@ -20,6 +20,8 @@ public partial class HtmlEditorExtender_HtmlEditorExtender : System.Web.UI.Page 
                 Response.End();
             }
         }
+
+        MarkupHighlighter.HighlightControlMarkup(htmlEditorExtender1.ID, codeInfoBlock);
     }
 
     protected void ajaxFileUpload_OnUploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e) {

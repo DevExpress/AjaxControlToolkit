@@ -10,7 +10,11 @@
         <ContentTemplate>
             <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10"
                 Text="Hello <b>world!</b>" /><br />
-            <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1" runat="server" DisplaySourceTab="true">
+            <ajaxToolkit:HtmlEditorExtender
+                ID="htmlEditorExtender1"
+                TargetControlID="txtBox1"
+                runat="server"
+                DisplaySourceTab="true">
             </ajaxToolkit:HtmlEditorExtender>
             <br />
 
@@ -80,53 +84,13 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" Collapsed="false">
+    <samples:InfoBlock runat="server" Collapsed="false" ID="codeInfoBlock">
         <Header>HTMLEditorExtender Properties</Header>
         <Content>
             <p>
-                The HtmlEditorExtender is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The HtmlEditorExtender is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:HtmlEditorExtender ID=&quot;HtmlEditorExtender1&quot; 
-    TargetControlID=&quot;TextBox1&quot; DisplaySourceTab=&quot;true&quot; 
-    runat=&quot;server&quot;/&gt;<em>
-    &lt;Toolbar&gt; 
-        &lt;ajaxToolkit:Undo /&gt;
-        &lt;ajaxToolkit:Redo /&gt;
-        &lt;ajaxToolkit:Bold /&gt;
-        &lt;ajaxToolkit:Italic /&gt;
-        &lt;ajaxToolkit:Underline /&gt;
-        &lt;ajaxToolkit:StrikeThrough /&gt;
-        &lt;ajaxToolkit:Subscript /&gt;
-        &lt;ajaxToolkit:Superscript /&gt;
-        &lt;ajaxToolkit:JustifyLeft /&gt;
-        &lt;ajaxToolkit:JustifyCenter /&gt;
-        &lt;ajaxToolkit:JustifyRight /&gt;
-        &lt;ajaxToolkit:JustifyFull /&gt;
-        &lt;ajaxToolkit:InsertOrderedList /&gt;
-        &lt;ajaxToolkit:InsertUnorderedList /&gt;
-        &lt;ajaxToolkit:CreateLink /&gt;
-        &lt;ajaxToolkit:UnLink /&gt;
-        &lt;ajaxToolkit:RemoveFormat /&gt;
-        &lt;ajaxToolkit:SelectAll /&gt;
-        &lt;ajaxToolkit:UnSelect /&gt;
-        &lt;ajaxToolkit:Delete /&gt;
-        &lt;ajaxToolkit:Cut /&gt;
-        &lt;ajaxToolkit:Copy /&gt;
-        &lt;ajaxToolkit:Paste /&gt;
-        &lt;ajaxToolkit:BackgroundColorSelector /&gt;
-        &lt;ajaxToolkit:ForeColorSelector /&gt;
-        &lt;ajaxToolkit:FontNameSelector /&gt;
-        &lt;ajaxToolkit:FontSizeSelector /&gt;
-        &lt;ajaxToolkit:Indent /&gt;
-        &lt;ajaxToolkit:Outdent /&gt;
-        &lt;ajaxToolkit:InsertHorizontalRule /&gt;
-        &lt;ajaxToolkit:HorizontalSeparator /&gt;
-        &lt;ajaxToolkit:InsertImage /&gt;
-    &lt;/Toolbar&gt;</em>
-&lt;/ajaxToolkit:HtmlEditorExtender&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <b>Events</b>
             <ul>
                 <li><strong>ImageUploadComplete</strong> - Raised on the server when an image is uploaded successfully. In this event an instance of AjaxFileUploadEventArgs is passed in the argument that contains file name, size and content type.</li>

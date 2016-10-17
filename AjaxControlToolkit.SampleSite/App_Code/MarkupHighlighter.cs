@@ -28,10 +28,20 @@ public class MarkupHighlighter {
         control.InnerHtml = markup;
     }
 
+    public static void HighlightScriptMarkup(string scriptID, HtmlGenericControl codeBlock) {
+        var markup = new MarkupHighlighter(HttpContext.Current.Request.PhysicalPath).GetHighlightedScriptMarkup(scriptID);
+        codeBlock.InnerHtml = markup;
+    }
+
     public static void HighlightControlMarkup(string controlID, InfoBlock.InfoBlock codeInfoBlock, string codeBlockID = "codeBlock") {
         var markup = new MarkupHighlighter(HttpContext.Current.Request.PhysicalPath).GetHighlightedControlMarkup(controlID);
         var control = codeInfoBlock.FindControl(codeBlockID) as HtmlGenericControl;
         control.InnerHtml = markup;
+    }
+
+    public static void HighlightControlMarkup(string controlID, HtmlGenericControl codeBlock) {
+        var markup = new MarkupHighlighter(HttpContext.Current.Request.PhysicalPath).GetHighlightedControlMarkup(controlID);
+        codeBlock.InnerHtml = markup;
     }
 
     string GetHighlightedControlMarkup(string controlID) {
@@ -70,12 +80,17 @@ public class MarkupHighlighter {
     }
 
     string GetControlMarkup(string text, string controlID) {
-        var selfClosingTagPattern = @"(\r\n)?\s*<ajaxToolkit:[^>]*?ID=""{0}""[^<]*?\/>";
-        var match = Regex.Match(text, String.Format(selfClosingTagPattern, controlID), RegexOptions.Singleline);
+        var selfClosingAspTagPattern = @"(\r\n)?\s*<asp:[^>]*?ID=""{0}"".*?\/>";
+        var match = Regex.Match(text, String.Format(selfClosingAspTagPattern, controlID), RegexOptions.Singleline);
 
         if(!match.Success) {
-            var generalTagPattern = @"(\r\n)?\s*<ajaxToolkit:(?<tag>\w+)[^>]*?ID=""{0}"".*?<\/ajaxToolkit:\k<tag>>";
-            match = Regex.Match(text, String.Format(generalTagPattern, controlID), RegexOptions.Singleline);
+            var selfClosingToolkitTagPattern = @"(\r\n)?\s*<ajaxToolkit:[^>]*?ID=""{0}""[^<]*?\/>";
+            match = Regex.Match(text, String.Format(selfClosingToolkitTagPattern, controlID), RegexOptions.Singleline);
+        }
+
+        if(!match.Success) {
+            var generalToolkitTagPattern = @"(\r\n)?\s*<ajaxToolkit:(?<tag>\w+)[^>]*?ID=""{0}"".*?<\/ajaxToolkit:\k<tag>>";
+            match = Regex.Match(text, String.Format(generalToolkitTagPattern, controlID), RegexOptions.Singleline);
         }
 
         if(!match.Success)

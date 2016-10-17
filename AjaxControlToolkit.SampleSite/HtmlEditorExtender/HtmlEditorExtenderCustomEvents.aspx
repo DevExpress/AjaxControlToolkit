@@ -4,11 +4,12 @@
     HTMLEditorExtender Custom events demonstration
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="DemoContent" runat="Server">
-    <script>
+    <script id="contentChangedScript">
         function onContentsChange() {
             alert('contents changed');
         }
-
+    </script>
+    <script>
         function windowUnload() {
             if(Sys.Extended.UI.HtmlEditorExtenderBehavior.IsDirty()) {
                 alert('unsaved data');
@@ -22,10 +23,19 @@
     </script>
     <asp:UpdatePanel ID="updatePanel1" runat="server">
         <ContentTemplate>
-            <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10"
+            <asp:TextBox 
+                runat="server" 
+                ID="txtBox1" 
+                TextMode="MultiLine" 
+                Columns="50" 
+                Rows="10"
                 Text="Hello <b>world!</b>" /><br />
-            <ajaxToolkit:HtmlEditorExtender ID="htmlEditorExtender1" TargetControlID="txtBox1"
-                OnClientChange="onContentsChange" runat="server" DisplaySourceTab="true">
+            <ajaxToolkit:HtmlEditorExtender 
+                ID="htmlEditorExtender1" 
+                TargetControlID="txtBox1"
+                OnClientChange="onContentsChange" 
+                runat="server" 
+                DisplaySourceTab="true">
             </ajaxToolkit:HtmlEditorExtender>
             <br />
             <br />
@@ -37,26 +47,8 @@
     <br />
     <p>The above example shows how to use onClientChange handler to get onChange event</p>
     <p>The Sample is initialized with this code.</p>
-        <pre>
-    &lt;script&gt;
-        function onContentsChange() {
-            alert('contents changed');
-        }
-    &lt;/script&gt;
-
-    &lt;asp:TextBox runat="server"
-        ID="txtBox1" 
-        TextMode="MultiLine" 
-        Columns="50" 
-        Rows="10" 
-        Text="Hello &lt;b&gt;world!&lt;/b&gt;" /&gt;
-    
-    &lt;ajaxToolkit:HtmlEditorExtender 
-        ID="htmlEditorExtender1" 
-        TargetControlID="txtBox1" 
-        OnClientChange="onContentsChange" 
-        runat="server" &gt;
-    &lt;/ajaxToolkit:HtmlEditorExtender&gt;
-        </pre>
+    <div runat="server" id="codeBlock1" />
+    <div runat="server" id="codeBlock2" />
+    <div runat="server" id="codeBlock3" />
 </asp:Content>
 
