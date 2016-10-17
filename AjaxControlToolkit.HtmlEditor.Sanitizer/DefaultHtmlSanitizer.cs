@@ -120,11 +120,31 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
 
             // HtmlEntity Escape
             var sbAttriuteValue = new StringBuilder();
-            foreach(char c in attribute.Value.ToCharArray()) {
-                sbAttriuteValue.Append(EncodeCharacterToHtmlEntityEscape(c));
+            var chars = attribute.Value.ToCharArray();
+
+            for(int i = 0; i < chars.Length; i++) {
+                if(IsAmpersand(chars, i)) {
+                    sbAttriuteValue.Append("&#x26;");
+                    i += 4;
+                } else
+                    sbAttriuteValue.Append(EncodeCharacterToHtmlEntityEscape(chars[i]));
             }
 
             attribute.Value = sbAttriuteValue.ToString();
+        }
+
+        static bool IsAmpersand(char[] chars, int index) {
+            var ampChars = "&amp;".ToCharArray();
+
+            if(index + ampChars.Length - 1 > chars.Length)
+                return false;
+
+            for(int i = 0; i < ampChars.Length; i++) {
+                if(ampChars[i] != chars[index + i])
+                    return false;
+            }
+
+            return true;
         }
 
         static string EncodeCharacterToHtmlEntityEscape(char c) {
