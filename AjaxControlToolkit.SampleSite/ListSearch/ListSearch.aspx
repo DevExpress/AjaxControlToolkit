@@ -23,9 +23,13 @@
     <br />
     <p>
         <asp:DropDownList ID="DropDownList1" runat="server" Width="100px" />
-        <ajaxToolkit:ListSearchExtender ID="ListSearchExtender2" runat="server"
-            TargetControlID="DropDownList1" PromptCssClass="ListSearchExtenderPrompt"
-            QueryPattern="Contains" QueryTimeout="2000">
+        <ajaxToolkit:ListSearchExtender
+            ID="ListSearchExtender2"
+            runat="server"
+            TargetControlID="DropDownList1" 
+            PromptCssClass="ListSearchExtenderPrompt"
+            QueryPattern="Contains" 
+            QueryTimeout="2000">
         </ajaxToolkit:ListSearchExtender>
     </p>
 </asp:Content>
@@ -41,22 +45,13 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>ListSearchExtender Properties</Header>
         <Content>
             <p>
-                The controls above are initialized with code like this. The <em>italic</em>
-                properties are optional:
+               The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:ListSearchExtender id="LSE" runat="server"
-    TargetControlID="ListBox1"
-<em>    PromptText="Type to search"</em>
-<em>    PromptCssClass="ListSearchExtenderPrompt"</em>
-<em>    PromptPosition="Top"</em>
-<em>    AutoResetTimeout="0"</em>
-<em>    IsSorted="true"</em>/&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>PromptText</strong> - Message to display when the ListBox or DropDownList is given focus. Default is 'Type to search'. The PromptText is replaced by the search text typed by the user.</li>
                 <li><strong>PromptCssClass</strong> - The name of the CSS class to apply to the prompt message.</li>
