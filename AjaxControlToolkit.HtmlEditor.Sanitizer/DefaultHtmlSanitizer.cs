@@ -127,7 +127,7 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
 
             attribute.Value = sbAttriuteValue.ToString();
         }
-       
+
         static string EncodeCharacterToHtmlEntityEscape(char c) {
             string hex;
             // check for alphnumeric characters
