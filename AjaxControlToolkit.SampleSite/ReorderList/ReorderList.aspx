@@ -109,26 +109,13 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>ReorderList Properties</Header>
         <Content>
              <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:ReorderList ID="ReorderList1" runat="server" 
-    DataSourceID="ObjectDataSource1"
-    <em>DragHandleAlignment</em>="Left" 
-    <em>ItemInsertLocation</em>="Beginning"
-    DataKeyField="ItemID" 
-    SortOrderField="Priority"
-    AllowReorder="true"&gt;
-        &lt;ItemTemplate&gt;...&lt;/ItemTemplate&gt;
-        &lt;ReorderTemplate&gt;...&lt;/ReorderTemplate&gt;
-        &lt;DragHandleTemplate&gt;...&lt;/DragHandleTemplate&gt;
-        &lt;InsertItemTemplate&gt;...&lt;/InsertItemTemplate&gt;
-&lt;/ajaxToolkit:ReorderList&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>DataSourceID</strong> - The DataSource to use to populate this control</li>
                 <li><strong>DataKeyField</strong> - The primary key field for the data</li>

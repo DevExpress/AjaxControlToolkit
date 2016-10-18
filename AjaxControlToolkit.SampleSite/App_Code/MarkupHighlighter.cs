@@ -149,6 +149,9 @@ public class MarkupHighlighter {
         if(_filePath.EndsWith("PasswordStrength.aspx"))
             return new PasswordStrengthMarkupCleaner().Clean(markup);
 
+        if(_filePath.EndsWith("ReorderList.aspx"))
+            return new ReorderListMarkupCleaner().Clean(markup);
+
         return markup;
     }
 }
