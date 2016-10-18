@@ -10,7 +10,9 @@
                 <b>Must Have</b><br />
                 <asp:CheckBox runat="server" ID="MustHaveGuestBedroomCheckBox"
                     Text="Guest Bed Downstairs" /><br />
-                <ajaxToolkit:MutuallyExclusiveCheckBoxExtender runat="server" ID="MustHaveGuestBedroomCheckBoxEx"
+                <ajaxToolkit:MutuallyExclusiveCheckBoxExtender
+                    runat="server" 
+                    ID="MustHaveGuestBedroomCheckBoxEx"
                     TargetControlID="MustHaveGuestBedroomCheckBox"
                     Key="GuestBedroomCheckBoxes" />
 
@@ -113,16 +115,11 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>MutuallyExclusiveCheckBox Properties</Header>
         <Content>
             <p>The control above is initialized with this code.</p>
-            <pre>
-&lt;ajaxToolkit:MutuallyExclusiveCheckboxExtender runat="server"
-    ID="MustHaveGuestBedroomCheckBoxEx"
-    TargetControlID="MustHaveGuestBedroomCheckBox" 
-    Key="GuestBedroomCheckBoxes" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the CheckBox to modify</li>
                 <li><strong>Key</strong> - The unique key to use to associate checkboxes.  This key does not
