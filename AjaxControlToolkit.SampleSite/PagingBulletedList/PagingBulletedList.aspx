@@ -238,7 +238,9 @@
             <asp:ListItem>write</asp:ListItem>
             <asp:ListItem>writeln</asp:ListItem>
         </asp:BulletedList>
-        <ajaxToolkit:PagingBulletedListExtender ID="PagingBulletedListExtender1" runat="server"
+        <ajaxToolkit:PagingBulletedListExtender
+            ID="PagingBulletedListExtender1"
+            runat="server"
             BehaviorID="PagingBulletedListBehavior1"
             TargetControlID="BulletedList1"
             ClientSort="true"
@@ -272,23 +274,13 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>PagingBulletedList Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:PagingBulletedListExtender ID="PBLE1" runat="server"
-    TargetControlID="BulletedList1" 
-    <em>ClientSort</em>="true"
-    <em>IndexSize</em>="1"
-    <em>MaxItemPerPage</em>="20"
-    <em>Separator</em>=" - "
-    <em>SelectIndexCssClass</em>="selectIndex"
-    <em>UnselectIndexCssClass</em>="unSelectIndex" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the BulletedList to page</li>
                 <li><strong>ClientSort</strong> - Whether or not the items should be sorted client-side</li>
