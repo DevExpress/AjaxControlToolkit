@@ -17,6 +17,8 @@ public partial class Rating_Rating : System.Web.UI.Page {
         ThaiRating.RatingDirection = (lstDirection.SelectedIndex == 1)
             ? RatingDirection.RightToLeftBottomToTop
             : RatingDirection.LeftToRightTopToBottom;
+
+        MarkupHighlighter.HighlightControlMarkup(ThaiRating.ID, codeInfoBlock);
     }
 
     protected void Submit_Click(object sender, EventArgs e) {

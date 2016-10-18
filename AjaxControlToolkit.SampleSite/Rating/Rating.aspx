@@ -8,7 +8,10 @@
     <asp:UpdatePanel runat="server" ID="up1">
             <ContentTemplate>
                 <div style="float: left;">How spicy do you like your Thai food? &nbsp;</div>
-                <ajaxToolkit:Rating ID="ThaiRating" runat="server" BehaviorID="RatingBehavior1"
+                <ajaxToolkit:Rating
+                    ID="ThaiRating"
+                    runat="server"
+                    BehaviorID="RatingBehavior1"
                     CurrentRating="2"
                     MaxRating="5"
                     StarCssClass="ratingStar"
@@ -62,22 +65,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>Rating Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:Rating ID="ThaiRating" runat="server"
-    <em>CurrentRating</em>="2"
-    <em>MaxRating</em>="5"
-    <em>StarCssClass</em>="ratingStar"
-    <em>WaitingStarCssClass</em>="savedRatingStar"
-    <em>FilledStarCssClass</em>="filledRatingStar"
-    <em>EmptyStarCssClass</em>="emptyRatingStar"
-    <em>OnChanged</em>="ThaiRating_Changed" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>AutoPostBack</strong> - True to cause a postback on rating item click.</li>
                 <li><strong>CurrentRating</strong> - Initial rating value</li>
