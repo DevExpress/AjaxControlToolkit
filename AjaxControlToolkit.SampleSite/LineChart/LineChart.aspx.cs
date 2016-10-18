@@ -8,5 +8,6 @@ using System.Web.UI.WebControls;
 public partial class LineChart_LineChart : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
+        MarkupHighlighter.HighlightControlMarkup(LineChart1.ID, codeInfoBlock);
     }
 }
