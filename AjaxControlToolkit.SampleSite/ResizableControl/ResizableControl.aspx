@@ -58,7 +58,9 @@
         }
     </script>
 
-    <ajaxToolkit:ResizableControlExtender ID="ResizableControlExtender1" runat="server"
+    <ajaxToolkit:ResizableControlExtender
+        ID="ResizableControlExtender1"
+        runat="server"
         BehaviorID="ResizableControlBehavior1"
         TargetControlID="PanelImage"
         ResizableCssClass="resizingImage"
@@ -100,25 +102,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>ResizableControl Properties</Header>
         <Content>
              <p>
-                The controls above are initialized with code like this. The <em>italic</em> properties are optional:
+                The controls above are initialized with code like this.
             </p>
-            <pre>
-&lt;ajaxToolkit:ResizableControlExtender ID="RCE" runat="server"
-    TargetControlID="PanelImage"
-    HandleCssClass="handleImage"
-    <em>ResizableCssClass</em>="resizingImage"
-    <em>MinimumWidth</em>="50"
-    <em>MinimumHeight</em>="20"
-    <em>MaximumWidth</em>="260"
-    <em>MaximumHeight</em>="130"
-    <em>OnClientResize</em>="OnClientResizeImage"
-    <em>HandleOffsetX</em>="3"
-    <em>HandleOffsetY</em>="3" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the element that becomes resizable</li>
                 <li><strong>HandleCssClass</strong> - The name of the CSS class to apply to the resize handle</li>
