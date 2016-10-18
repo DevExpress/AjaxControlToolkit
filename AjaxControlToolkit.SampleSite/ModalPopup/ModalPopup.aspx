@@ -70,9 +70,17 @@
             </p>
         </div>
     </asp:Panel>
-    <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender" runat="server" TargetControlID="LinkButton1"
-        PopupControlID="Panel1" BackgroundCssClass="modalBackground" OkControlID="OkButton"
-        OnOkScript="onOk()" CancelControlID="CancelButton" DropShadow="true" PopupDragHandleControlID="Panel3" />
+    <ajaxToolkit:ModalPopupExtender
+        ID="ModalPopupExtender" 
+        runat="server" 
+        TargetControlID="LinkButton1"
+        PopupControlID="Panel1" 
+        BackgroundCssClass="modalBackground" 
+        OkControlID="OkButton"
+        OnOkScript="onOk()" 
+        CancelControlID="CancelButton" 
+        DropShadow="true" 
+        PopupDragHandleControlID="Panel3" />
     <br />
     <br />
     <hr />
@@ -185,31 +193,14 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>ModalPopup Properties</Header>
         <Content>
             <p>
                 The control above is initialized with this code. The display on the modal popup
-            element is set to none to avoid a flicker on render. The <em>italic</em> properties
-            are optional:
+            element is set to none to avoid a flicker on render.
             </p>
-            <pre>&lt;ajaxToolkit:ModalPopupExtender ID="MPE" runat="server"
-    TargetControlID="LinkButton1"
-    PopupControlID="Panel1"
-    <em>BackgroundCssClass</em>="modalBackground" 
-    <em>DropShadow</em>="true" 
-    <em>OkControlID</em>="OkButton" 
-    <em>OnOkScript</em>="onOk()"
-    <em>CancelControlID</em>="CancelButton" 
-    <em>PopupDragHandleControlID</em>="Panel3" &gt;
-        &lt;Animations&gt;
-            &lt;OnShowing&gt; ..  &lt;/OnShowing&gt;
-            &lt;OnShown&gt;   ..  &lt;/OnShown&gt;    
-            &lt;OnHiding&gt;  ..  &lt;/OnHiding&gt;            
-            &lt;OnHidden&gt;  ..  &lt;/OnHidden&gt;            
-        &lt;/Animations&gt;
-    &lt;/ajaxToolkit:ModalPopupExtender&gt;
-    </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the element that activates the modal
                 popup</li>
