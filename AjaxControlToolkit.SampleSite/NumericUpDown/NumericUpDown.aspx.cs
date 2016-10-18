@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 public partial class NumericUpDown_NumericUpDown : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
+        MarkupHighlighter.HighlightControlMarkup(NumericUpDownExtender1.ID, codeInfoBlock);
     }
 
     protected void Button1_Click(object sender, EventArgs e) {

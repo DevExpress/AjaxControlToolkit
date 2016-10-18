@@ -37,7 +37,9 @@
             <br />
             <asp:Label ID="Label1" runat="server" Text="[No response provided yet]" />
 
-            <ajaxToolkit:NumericUpDownExtender ID="NumericUpDownExtender1" runat="server"
+            <ajaxToolkit:NumericUpDownExtender 
+                ID="NumericUpDownExtender1" 
+                runat="server"
                 TargetControlID="TextBox1"
                 Width="120"
                 RefValues=""
@@ -92,26 +94,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>NumericUpDown Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:NumericUpDownExtender ID="NUD1" runat="server"
-    TargetControlID="TextBox1" 
-    Width="100"
-    <em>RefValues</em>="January;February;March;April"
-    <em>TargetButtonDownID</em>="Button1"
-    <em>TargetButtonUpID</em>="Button2"
-    <em>ServiceDownPath</em>="WebService1.asmx"
-    <em>ServiceDownMethod</em>="PrevValue"
-    <em>ServiceUpPath</em>="WebService1.asmx"
-    <em>ServiceUpMethod</em>="NextValue"
-    <em>Tag</em>="1" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the TextBox to modify</li>
                 <li><strong>Width</strong> - Combined size of the TextBox and Up/Down buttons (min value 25).
