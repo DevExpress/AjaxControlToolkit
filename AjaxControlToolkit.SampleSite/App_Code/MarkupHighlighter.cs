@@ -146,6 +146,9 @@ public class MarkupHighlighter {
         if(_filePath.EndsWith("AutoComplete.aspx"))
             return new AutoCompleteMarkupCleaner().Clean(markup);
 
+        if(_filePath.EndsWith("PasswordStrength.aspx"))
+            return new PasswordStrengthMarkupCleaner().Clean(markup);
+
         return markup;
     }
 }

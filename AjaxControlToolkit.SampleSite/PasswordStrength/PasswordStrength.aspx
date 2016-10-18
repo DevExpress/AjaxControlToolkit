@@ -8,14 +8,22 @@
     <asp:TextBox ID="TextBox1" Width="150" runat="server" autocomplete="off" /><br />
     <asp:Label ID="TextBox1_HelpLabel" runat="server" /><br />
     <br />
-    <ajaxToolkit:PasswordStrength ID="PasswordStrength1" runat="server" TargetControlID="TextBox1"
+    <ajaxToolkit:PasswordStrength 
+        ID="PasswordStrength1" 
+        runat="server" 
+        TargetControlID="TextBox1"
         DisplayPosition="RightSide"
         StrengthIndicatorType="Text"
         PreferredPasswordLength="10"
         PrefixText="Strength:"
         HelpStatusLabelID="TextBox1_HelpLabel"
         TextStrengthDescriptions="Very Poor;Weak;Average;Strong;Excellent"
-        StrengthStyles="TextIndicator_TextBox1_Strength1;TextIndicator_TextBox1_Strength2;TextIndicator_TextBox1_Strength3;TextIndicator_TextBox1_Strength4;TextIndicator_TextBox1_Strength5"
+        StrengthStyles="
+            TextIndicator_TextBox1_Strength1;
+            TextIndicator_TextBox1_Strength2;
+            TextIndicator_TextBox1_Strength3;
+            TextIndicator_TextBox1_Strength4;
+            TextIndicator_TextBox1_Strength5"
         MinimumNumericCharacters="0"
         MinimumSymbolCharacters="0"
         RequiresUpperAndLowerCaseCharacters="false" />
@@ -87,23 +95,9 @@
         <Header>PasswordStrength Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with similar code.
             </p>
-            <pre>
-&lt;ajaxToolkit:PasswordStrength ID="PS" runat="server"
-    TargetControlID="TextBox1"
-    <em>DisplayPosition="RightSide"</em>
-    <em>StrengthIndicatorType="Text"</em>
-    <em>PreferredPasswordLength="10"</em>
-    <em>PrefixText="Strength:"</em>
-    <em>TextCssClass="TextIndicator_TextBox1"</em>
-    <em>MinimumNumericCharacters="0"</em>
-    <em>MinimumSymbolCharacters="0"</em>
-    <em>RequiresUpperAndLowerCaseCharacters="false"</em>
-    <em>TextStrengthDescriptions="Very Poor;Weak;Average;Strong;Excellent"</em>
-    <em>TextStrengthDescriptionStyles="cssClass1;cssClass2;cssClass3;cssClass4;cssClass5</em>
-    <em>CalculationWeightings="50;15;15;20"</em> /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - ID of the TextBox to attach to</li>
                 <li><strong>DisplayPosition</strong> - Positioning of the strength indicator relative to the target control</li>
