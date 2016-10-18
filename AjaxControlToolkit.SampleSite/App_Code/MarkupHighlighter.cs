@@ -8,6 +8,7 @@ using System.Web;
 
 public class MarkupHighlighter {
     string _filePath;
+    const string ATTRIBUTE_DUMMY_VALUE = "ATTRIBUTE_DUMMY_VALUE";
 
     public MarkupHighlighter(string filePath) {
         var dir = Path.GetDirectoryName(filePath);
@@ -54,11 +55,11 @@ public class MarkupHighlighter {
     }
 
     string RestoreMarkupFormatting(string colorizedMarkup) {
-        return colorizedMarkup.Replace("&quot;ATTRIBUTE_DUMMY_VALUE&quot;", "&quot;&quot;");
+        return colorizedMarkup.Replace("&quot;" + ATTRIBUTE_DUMMY_VALUE + "&quot;", "&quot;&quot;");
     }
 
     string PrepareMarkupForColorizer(string markup) {
-        return markup.Replace("\"\"", "\"ATTRIBUTE_DUMMY_VALUE\"");
+        return markup.Replace("\"\"", "\""+ ATTRIBUTE_DUMMY_VALUE + "\"");
     }
 
     string GetHighlightedScriptMarkup(string scriptID) {
