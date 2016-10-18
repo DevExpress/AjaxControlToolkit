@@ -22,7 +22,9 @@
                     <tr>
                         <td style="width: 140px;">
                             <asp:TextBox ID="sliderOne" runat="server" AutoPostBack="true" Text="0" />
-                            <ajaxToolkit:MultiHandleSliderExtender ID="multiHandleSliderExtenderOne" runat="server"
+                            <ajaxToolkit:MultiHandleSliderExtender
+                                ID="multiHandleSliderExtenderOne" 
+                                runat="server"
                                 BehaviorID="multiHandleSliderExtenderOne"
                                 TargetControlID="sliderOne"
                                 Minimum="-100"
@@ -216,23 +218,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" Collapsed="true">
+    <samples:InfoBlock runat="server" Collapsed="true" ID="codeInfoBlock">
         <Header>MultiHandleSlider Properties</Header>
         <Content>
             <p>
-                The first example above is initialized with this code. The <em>italic</em> properties are optional:
+                The first example above is initialized with this code.
             </p>
-            <pre>&lt;ajaxToolkit:MultiHandleSlider ID="multiHandleSliderExtenderOne"
-    runat="server"
-    TargetControlID="sliderOne"
-    BehaviorID="multiHandleSliderOne"
-    <em>BoundControlID</em>="lblSliderOne"
-    <em>Minimum</em>="-100"
-    <em>Maximum</em>="100"
-    <em>Steps</em>="5"
-    <em>Length</em>="100"
-    <em>ToolTipText</em>="{0}"/&gt;                                                        
-</pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>Minimum</strong> - Minimum value allowed.</li>
                 <li><strong>Maximum</strong> - Maximum value allowed.</li>
