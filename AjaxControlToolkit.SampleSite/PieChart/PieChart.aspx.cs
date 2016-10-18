@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 public partial class PieChart_PieChart : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
+        MarkupHighlighter.HighlightControlMarkup(pieChart1.ID, codeInfoBlock);
     }
 
 }
