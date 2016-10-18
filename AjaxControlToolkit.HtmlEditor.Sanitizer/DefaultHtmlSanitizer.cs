@@ -117,36 +117,17 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
             }
 
             attribute.Value = HttpUtility.HtmlEncode(attribute.Value);
+            attribute.Value = attribute.Value.Replace("&amp;", "&");
 
             // HtmlEntity Escape
             var sbAttriuteValue = new StringBuilder();
-            var chars = attribute.Value.ToCharArray();
-
-            for(int i = 0; i < chars.Length; i++) {
-                if(IsAmpersand(chars, i)) {
-                    sbAttriuteValue.Append("&#x26;");
-                    i += 4;
-                } else
-                    sbAttriuteValue.Append(EncodeCharacterToHtmlEntityEscape(chars[i]));
+            foreach(char c in attribute.Value.ToCharArray()) {
+                sbAttriuteValue.Append(EncodeCharacterToHtmlEntityEscape(c));
             }
 
             attribute.Value = sbAttriuteValue.ToString();
         }
-
-        static bool IsAmpersand(char[] chars, int index) {
-            var ampChars = "&amp;".ToCharArray();
-
-            if(index + ampChars.Length - 1 > chars.Length)
-                return false;
-
-            for(int i = 0; i < ampChars.Length; i++) {
-                if(ampChars[i] != chars[index + i])
-                    return false;
-            }
-
-            return true;
-        }
-
+       
         static string EncodeCharacterToHtmlEntityEscape(char c) {
             string hex;
             // check for alphnumeric characters
