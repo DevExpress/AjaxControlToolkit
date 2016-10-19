@@ -44,7 +44,11 @@
         <div>
             Displays status messages (tweets) for a Twitter account:
             <br /><br />
-            <ajaxToolkit:Twitter ID="Twitter1" Mode="Profile" ScreenName="ScottGu" runat="server" />
+            <ajaxToolkit:Twitter
+                ID="Twitter1"
+                Mode="Profile"
+                ScreenName="ScottGu"
+                runat="server" />
             <br />
             <hr />
             Displays status messages (tweets) for a Twitter account using a custom LayoutTemplate and StatusTemplate:
@@ -114,13 +118,10 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" Collapsed="true">
+    <samples:InfoBlock runat="server" Collapsed="true" ID="codeInfoBlock">
         <Header>Twitter Properties</Header>
         <Content>
-            <pre>&lt;ajaxToolkit:Twitter 
-            Mode="Profile"
-            ScreenName="ScottGu" 
-            runat="server" /&gt;</pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>Mode</strong> - either Profile or Search mode.</li>
                 <li><strong>ScreenName</strong> - required in Profile mode. The Twitter user to display. </li>
