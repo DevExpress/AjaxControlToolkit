@@ -9,6 +9,7 @@ public partial class TextBoxWatermark_TextBoxWatermark : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
         SetLabelText();
+        MarkupHighlighter.HighlightControlMarkup(TextBoxWatermarkExtender1.ID, codeInfoBlock);
     }
 
     protected void Button1_Click(object sender, EventArgs e) {
