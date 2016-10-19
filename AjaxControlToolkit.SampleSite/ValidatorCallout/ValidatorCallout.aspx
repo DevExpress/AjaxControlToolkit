@@ -24,7 +24,9 @@
         ControlToValidate="NameTextBox"
         Display="None"
         ErrorMessage="<b>Required Field Missing</b><br />A name is required." />
-    <ajaxToolkit:ValidatorCalloutExtender runat="Server" ID="NReqE"
+    <ajaxToolkit:ValidatorCalloutExtender
+        runat="Server" 
+        ID="NReqE"
         TargetControlID="NReq"
         HighlightCssClass="validatorCalloutHighlight" />
 
@@ -68,23 +70,13 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>ValidatorCallout Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The control above is initialized with this code.
             </p>
-<pre>&lt;ajaxToolkit:ValidatorCalloutExtender 
-    runat="Server"
-    ID="PNReqE"
-    TargetControlID="PNReq" 
-    <em>Width</em>="350px"
-    <em>HighlightCssClass</em>="highlight" 
-    <em>CssClass</em>="CustomValidatorCalloutStyle"
-    <em>PopupPosition</em>="Right"
-    <em>WarningIconImageUrl</em>="warning.gif"
-    <em>CloseImageUrl</em>="close.gif" /&gt;</pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the Validator to extend</li>
                 <li><strong>Width</strong> - The width of the callout</li>
