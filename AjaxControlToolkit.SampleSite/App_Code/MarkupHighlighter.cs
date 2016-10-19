@@ -176,6 +176,9 @@ public class MarkupHighlighter {
         if(_filePath.EndsWith("Tabs.aspx"))
             return new TabsMarkupCleaner().Clean(markup);
 
+        if(_filePath.EndsWith("UpdatePanelAnimation.aspx"))
+            return new UpdatePanelAnimationMarkupCleaner().Clean(markup);
+
         return markup;
     }
 }
