@@ -173,6 +173,9 @@ public class MarkupHighlighter {
         if(_filePath.EndsWith("Seadragon.aspx"))
             return new SeadragonMarkupCleaner().Clean(markup);
 
+        if(_filePath.EndsWith("Tabs.aspx"))
+            return new TabsMarkupCleaner().Clean(markup);
+
         return markup;
     }
 }

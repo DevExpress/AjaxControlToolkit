@@ -44,9 +44,17 @@
         <br />
     <br />
     Toolkit User Profile:
-        <ajaxToolkit:TabContainer runat="server" ID="Tabs" Height="138px" OnClientActiveTabChanged="ActiveTabChanged"
-            ActiveTabIndex="0" Width="402px">
-            <ajaxToolkit:TabPanel runat="server" ID="Panel1" HeaderText="Signature and Bio">
+        <ajaxToolkit:TabContainer
+            runat="server"
+            ID="Tabs"
+            Height="138px" 
+            OnClientActiveTabChanged="ActiveTabChanged"
+            ActiveTabIndex="0"
+            Width="402px">
+            <ajaxToolkit:TabPanel
+                runat="server"
+                ID="Panel1"
+                HeaderText="Signature and Bio">
                 <ContentTemplate>
                     <asp:UpdatePanel ID="updatePanel1" runat="server">
                         <ContentTemplate>
@@ -245,37 +253,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server">
+    <samples:InfoBlock runat="server" ID="codeInfoBlock">
         <Header>Tabs Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:TabContainer runat="server" 
-        <em>OnClientActiveTabChanged</em>="ClientFunction" 
-        <em>Height</em>="150px"
-        <em>Width</em>="400px"
-        <em>ActiveTabIndex</em>="1"
-        <em>OnDemand</em>="true"
-        <em>AutoPostBack</em>="false"
-        <em>TabStripPlacement</em>="Top"
-        <em>CssClass</em>=""
-        <em>CssTheme</em>="XP"
-        <em>ScrollBars</em>="None"
-        <em>UseVerticalStripPlacement</em>="true"
-        <em>VerticalStripWidth</em>="120px"&gt;        
-    &lt;ajaxToolkit:TabPanel runat="server" 
-        <em>HeaderText</em>="Signature and Bio"
-        <em>Enabled</em>="true"
-        <em>ScrollBars</em>="Auto"
-        <em>OnDemandMode</em>="Once"&gt;
-        &lt;ContentTemplate&gt;
-            ...
-        &lt;/ContentTemplate&gt;
-    &lt;/ajaxToolkit:TabPanel&gt;
-&lt;/ajaxToolkit:TabContainer&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <b>TabContainer Properties</b>
             <ul>
                 <li><strong>ActiveTabChanged (Event)</strong> - Fired on the server side when a tab
