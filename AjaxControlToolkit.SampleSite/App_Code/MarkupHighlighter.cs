@@ -55,6 +55,24 @@ public class MarkupHighlighter {
     }
 
     string RestoreMarkupFormatting(string colorizedMarkup) {
+        var markup = RestoreEmptyAttributes(colorizedMarkup);
+        return TransformSeadragonMenuElement(markup);
+    }
+
+    string TransformSeadragonMenuElement(string markup) {
+        var pattern = "<span style=\"[^\"]+?\">Menu<\\/span>"
+            + "\\s*<span style=\"[^\"]+?\">runat<\\/span>"
+            + "\\s*<span style=\"[^\"]+?\">=<\\/span>"
+            + "\\s*<span style=\"[^\"]+?\">&quot;server&quot;<\\/span>";
+
+        var match = Regex.Match(markup, pattern, RegexOptions.Singleline);
+        if(match.Success)
+            markup = markup.Replace(match.Value, match.Value + " ...");
+
+        return markup;
+    }
+
+    string RestoreEmptyAttributes(string colorizedMarkup) {
         return colorizedMarkup.Replace("&quot;" + ATTRIBUTE_DUMMY_VALUE + "&quot;", "&quot;&quot;");
     }
 
@@ -151,6 +169,9 @@ public class MarkupHighlighter {
 
         if(_filePath.EndsWith("ReorderList.aspx"))
             return new ReorderListMarkupCleaner().Clean(markup);
+
+        if(_filePath.EndsWith("Seadragon.aspx"))
+            return new SeadragonMarkupCleaner().Clean(markup);
 
         return markup;
     }
