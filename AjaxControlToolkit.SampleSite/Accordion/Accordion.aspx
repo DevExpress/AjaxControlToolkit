@@ -140,7 +140,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>Accordion Properties</Header>
         <Content>
             <p>The control above is initialized with this code.</p>
