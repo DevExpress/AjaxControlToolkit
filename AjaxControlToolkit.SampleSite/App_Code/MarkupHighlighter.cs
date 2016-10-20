@@ -5,12 +5,30 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Web.UI.HtmlControls;
 using System.Web;
+using System.Collections.Generic;
+using System.Web.UI;
 
 public class MarkupHighlighter {
     string _filePath;
+    Page _page;
     const string ATTRIBUTE_DUMMY_VALUE = "ATTRIBUTE_DUMMY_VALUE";
 
     public MarkupHighlighter(string filePath) {
+        var dir = Path.GetDirectoryName(filePath);
+        var fileWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
+        var extension = Path.GetExtension(filePath);
+
+        var markupFile = Path.Combine(dir, fileWithoutExtension + ".markup");
+
+        if(File.Exists(markupFile))
+            _filePath = markupFile;
+        else
+            _filePath = filePath;
+    }
+
+    public MarkupHighlighter(Page page) {
+        _page = page;
+        var filePath = page.Request.PhysicalPath;
         var dir = Path.GetDirectoryName(filePath);
         var fileWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
         var extension = Path.GetExtension(filePath);
@@ -34,6 +52,74 @@ public class MarkupHighlighter {
         codeBlock.InnerHtml = markup;
     }
 
+    public static void HighlightControlMarkups(Page page) {
+        new MarkupHighlighter(page).HighlightControlMarkups();
+    }
+
+    void HighlightControlMarkups() {
+        var sourceCode = File.ReadAllText(_filePath);
+        var controlMarkups = GetControlMarkups(sourceCode);
+        foreach(var markup in controlMarkups) {
+            var cleanedControlMarkup = CleanControlMarkup(markup.Lines);
+            var colorizeReadyMarkup = PrepareMarkupForColorizer(cleanedControlMarkup);
+            var colorizedMarkup = new CodeColorizer().Colorize(colorizeReadyMarkup, Languages.Aspx);
+            var restoredMarkup = RestoreMarkupFormatting(colorizedMarkup);
+            var codeInfoBlock = GetControlByType<HtmlGenericControl>(_page, c => c.ID == markup.CodeBlockID);
+            codeInfoBlock.InnerHtml = restoredMarkup;
+        }
+    }
+
+    public T GetControlByType<T>(Control root, Func<T, bool> predicate = null) where T : Control {
+        if(root == null)
+            throw new ArgumentNullException("root");
+
+        var stack = new Stack<Control>(new Control[] { root });
+
+        while(stack.Count > 0) {
+            var control = stack.Pop();
+            T match = control as T;
+
+            if(match != null && (predicate == null || predicate(match)))
+                return match;
+
+            foreach(Control childControl in control.Controls)
+                stack.Push(childControl);
+        }
+
+        return default(T);
+    }
+
+    IEnumerable<Markup> GetControlMarkups(string text) {
+        var lines = GetMultilineMarkup(text);
+        var startMarkerPattern = @"<%--start highlighted block\s*(?<codeBlockID>\w?)--%>";
+        var finishMarkerPattern = @"<%--fihish highlighted block--%>";
+        var codeBlockID = "codeBlock";
+        ICollection<Markup> markups = new List<Markup>();
+        Markup markup = null;
+        bool blockStarted = false;
+
+        for(int i = 0; i < lines.Length; i++) {
+            if(!blockStarted) {
+                var match = Regex.Match(lines[i], startMarkerPattern);
+                if(match.Success) {
+                    markup = new Markup();
+                    markup.CodeBlockID = !String.IsNullOrWhiteSpace(match.Groups["codeBlockID"].Value) ? match.Groups["codeBlockID"].Value : codeBlockID;
+                    blockStarted = true;
+                }
+            }
+            else {
+                var match = Regex.Match(lines[i], finishMarkerPattern);
+                if(match.Success) {
+                    markups.Add(markup);
+                    blockStarted = false;
+                } else
+                    markup.Lines.Add(lines[i]);
+            }
+        }
+        
+        return markups;
+    }
+
     public static void HighlightControlMarkup(string controlID, InfoBlock.InfoBlock codeInfoBlock, string codeBlockID = "codeBlock") {
         var markup = new MarkupHighlighter(HttpContext.Current.Request.PhysicalPath).GetHighlightedControlMarkup(controlID);
         var control = codeInfoBlock.FindControl(codeBlockID) as HtmlGenericControl;
@@ -46,12 +132,14 @@ public class MarkupHighlighter {
     }
 
     string GetHighlightedControlMarkup(string controlID) {
-        var sourceCode = File.ReadAllText(_filePath);
-        var controlMarkup = GetControlMarkup(sourceCode, controlID);
-        var cleanedControlMarkup = CleanControlMarkup(controlMarkup);
-        var colorizeReadyMarkup = PrepareMarkupForColorizer(cleanedControlMarkup);
-        var colorizedMarkup = new CodeColorizer().Colorize(colorizeReadyMarkup, Languages.Aspx);
-        return RestoreMarkupFormatting(colorizedMarkup);
+        return null;
+        return null;
+        //var sourceCode = File.ReadAllText(_filePath);
+        //var controlMarkup = GetControlMarkup(sourceCode, controlID);
+        //var cleanedControlMarkup = CleanControlMarkup(controlMarkup);
+        //var colorizeReadyMarkup = PrepareMarkupForColorizer(cleanedControlMarkup);
+        //var colorizedMarkup = new CodeColorizer().Colorize(colorizeReadyMarkup, Languages.Aspx);
+        //return RestoreMarkupFormatting(colorizedMarkup);
     }
 
     string RestoreMarkupFormatting(string colorizedMarkup) {
@@ -81,11 +169,12 @@ public class MarkupHighlighter {
     }
 
     string GetHighlightedScriptMarkup(string scriptID) {
-        var sourceCode = File.ReadAllText(_filePath);
-        var scriptMarkup = GetScriptMarkup(sourceCode, scriptID);
-        var cleanedControlMarkup = CleanScriptMarkup(scriptMarkup);
+        return null;
+        //var sourceCode = File.ReadAllText(_filePath);
+        //var scriptMarkup = GetScriptMarkup(sourceCode, scriptID);
+        //var cleanedControlMarkup = CleanScriptMarkup(scriptMarkup);
 
-        return new CodeColorizer().Colorize(cleanedControlMarkup, Languages.JavaScript);
+        //return new CodeColorizer().Colorize(cleanedControlMarkup, Languages.JavaScript);
     }
 
     string GetScriptMarkup(string text, string scriptID) {
@@ -118,18 +207,16 @@ public class MarkupHighlighter {
         return match.Value;
     }
 
-    string CleanControlMarkup(string markup) {
-        var multilineMarkup = GetMultilineMarkup(markup);
-        multilineMarkup = DecreaseIndent(multilineMarkup);
-        markup = String.Join("\r\n", multilineMarkup);
-        return CustomClean(markup);
+    string CleanControlMarkup(IEnumerable<string> markup) {
+        markup = DecreaseIndent(markup);
+        var singleLineMarkup = String.Join("\r\n", markup);
+        return CustomClean(singleLineMarkup);
     }
 
-    string CleanScriptMarkup(string markup) {
-        var multilineMarkup = GetMultilineMarkup(markup);
-        multilineMarkup = RemoveMarginalLines(multilineMarkup);
-        multilineMarkup = DecreaseIndent(multilineMarkup);
-        return String.Join("\r\n", multilineMarkup);
+    string CleanScriptMarkup(IEnumerable<string> markup) {
+        markup = RemoveMarginalLines(markup);
+        markup = DecreaseIndent(markup);
+        return String.Join("\r\n", markup);
     }
 
     string[] GetMultilineMarkup(string markup) {
@@ -138,23 +225,18 @@ public class MarkupHighlighter {
                 StringSplitOptions.RemoveEmptyEntries);
     }
 
-    string[] DecreaseIndent(string[] lines) {
-        var newLines = new string[lines.Length];
-        int indent = lines[0].TakeWhile(Char.IsWhiteSpace).Count();
+    IEnumerable<string> DecreaseIndent(IEnumerable<string> lines) {
+        var newLines = new List<string>(lines.Count());
+        int indent = lines.First().TakeWhile(Char.IsWhiteSpace).Count();
 
-        for(int i = 0; i < lines.Length; i++)
-            newLines[i] = lines[i].Substring(indent);
+        foreach(var line in lines)
+            newLines.Add(line.Substring(indent));
 
         return newLines;
     }
 
-    string[] RemoveMarginalLines(string[] lines) {
-        var newLines = new string[lines.Length - 2];
-
-        for(int i = 1; i < lines.Length - 1; i++)
-            newLines[i - 1] = lines[i];
-
-        return newLines;
+    IEnumerable<string> RemoveMarginalLines(IEnumerable<string> lines) {
+        return lines.Skip(1).Take(lines.Count() - 2);
     }
 
     protected virtual string CustomClean(string markup) {

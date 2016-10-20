@@ -4,6 +4,7 @@
     Accordion Demonstration
 </asp:Content>
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
+    <%--start highlighted block--%>
     <ajaxToolkit:Accordion
         ID="MyAccordion" 
         runat="server" 
@@ -62,6 +63,7 @@
             </ajaxToolkit:AccordionPane>
         </Panes>
     </ajaxToolkit:Accordion>
+    <%--fihish highlighted block--%>
 
     Fade Transitions:
     <input id="fade" type="checkbox" onclick="toggleFade();" value="false" /><br />
