@@ -82,6 +82,7 @@
     Click <i>Select File</i> to select an image file to upload. You can upload a maximum of 10 jpeg files (files with the .jpg or .jpeg extension)
     <br />
     <asp:Label runat="server" ID="myThrobber" Style="display: none;"><img align="absmiddle" alt="" src="uploading.gif"/></asp:Label>
+    <%--start highlighted block--%>
     <ajaxToolkit:AjaxFileUpload
         ID="AjaxFileUpload1"
         runat="server"
@@ -100,6 +101,7 @@
         OnClientUploadStart="onClientUploadStart"
         OnClientUploadError="onClientUploadError"
         MaxFileSize="1024"/>
+    <%--fihish highlighted block--%>
 
     <div id="uploadCompleteInfo"></div>
     <br />
@@ -232,7 +234,7 @@
             </pre>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>AjaxFileUpload Events, Properties and Methods</Header>
         <Content>
             <p>
