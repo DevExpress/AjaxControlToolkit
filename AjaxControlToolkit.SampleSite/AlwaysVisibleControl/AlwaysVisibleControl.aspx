@@ -15,6 +15,7 @@
                         <span id="currentTime" runat="server" style="font-size: xx-large; font-weight: bold; line-height: 40px;" />
                     </div>
                 </asp:Panel>
+                <%--start highlighted block--%>
                 <ajaxToolkit:AlwaysVisibleControlExtender
                     ID="avce"
                     runat="server"
@@ -24,6 +25,7 @@
                     HorizontalSide="Right"
                     HorizontalOffset="10"
                     ScrollEffectDuration=".1" />
+                <%--fihish highlighted block--%>
             </div>
             <p>
                 Choose a position for the clock from the list below. Scroll your browser window to see
@@ -78,7 +80,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>AlwaysVisibleControl Properties</Header>
         <Content>
             The always visible extender has been initialized with these properties.
