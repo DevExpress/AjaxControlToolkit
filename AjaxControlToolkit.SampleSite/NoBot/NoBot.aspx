@@ -43,7 +43,12 @@
             </div>
         </asp:View>
     </asp:MultiView>
-    <ajaxToolkit:NoBot ID="NoBot1" runat="server" OnGenerateChallengeAndResponse="CustomChallengeResponse" />
+    <%--start highlighted block--%>
+    <ajaxToolkit:NoBot 
+        ID="NoBot1" 
+        runat="server" 
+        OnGenerateChallengeAndResponse="CustomChallengeResponse" />
+    <%--fihish highlighted block--%>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
@@ -81,16 +86,8 @@
     <samples:InfoBlock runat="server">
         <Header>NoBot Properties</Header>
         <Content>
-            <p>The control above is initialized with this code. The <em>italic</em> properties are optional:</p>
-            <pre>
-&lt;ajaxToolkit:NoBot
-    ID="NoBot2"
-    runat="server"
-    <em>OnGenerateChallengeAndResponse</em>="CustomChallengeResponse"
-    <em>ResponseMinimumDelaySeconds</em>="2"
-    <em>CutoffWindowSeconds</em>="60"
-    <em>CutoffMaximumInstances</em>="5" /&gt;
-            </pre>
+            <p>The control above is initialized with this code.</p>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>OnGenerateChallengeAndResponse</strong> - Optional EventHandler&lt;NoBotEventArgs&gt;
                     providing a custom implementation of the challenge/response code</li>

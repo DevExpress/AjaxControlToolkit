@@ -27,11 +27,14 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </asp:Panel>
-    <ajaxToolkit:PopupControlExtender ID="PopupControlExtender1" runat="server"
+    <%--start highlighted block--%>
+    <ajaxToolkit:PopupControlExtender 
+        ID="PopupControlExtender1"
+        runat="server"
         TargetControlID="DateTextBox"
         PopupControlID="Panel1"
         Position="Bottom" />
-
+    <%--fihish highlighted block--%>
     Reminder message:
         <asp:TextBox ID="MessageTextBox" runat="server" Width="200" autocomplete="off" /><br />
     <i>Please select 'Cancel' to discard changes.</i>
@@ -92,14 +95,9 @@
         </Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:PopupControlExtender ID="PopEx" runat="server"
-    TargetControlID="DateTextBox"
-    PopupControlID="Panel1"
-    <em>Position</em>="Bottom" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the control to attach to</li>
                 <li><strong>PopupControlID</strong> - The ID of the control to display</li>

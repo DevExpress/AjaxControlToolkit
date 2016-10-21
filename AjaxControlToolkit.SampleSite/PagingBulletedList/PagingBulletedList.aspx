@@ -238,7 +238,10 @@
             <asp:ListItem>write</asp:ListItem>
             <asp:ListItem>writeln</asp:ListItem>
         </asp:BulletedList>
-        <ajaxToolkit:PagingBulletedListExtender ID="PagingBulletedListExtender1" runat="server"
+        <%--start highlighted block--%>
+        <ajaxToolkit:PagingBulletedListExtender
+            ID="PagingBulletedListExtender1"
+            runat="server"
             BehaviorID="PagingBulletedListBehavior1"
             TargetControlID="BulletedList1"
             ClientSort="true"
@@ -246,6 +249,7 @@
             Separator=" - "
             SelectIndexCssClass="selectIndex"
             UnselectIndexCssClass="unselectIndex" />
+        <%--fihish highlighted block--%>
     </div>
     <input id="radioOption1" name="radioOption" type="radio" value="1" onclick="onChangeSelectOption()" />
     <label for="radioOption1">Index size 1</label>
@@ -276,19 +280,9 @@
         <Header>PagingBulletedList Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:PagingBulletedListExtender ID="PBLE1" runat="server"
-    TargetControlID="BulletedList1" 
-    <em>ClientSort</em>="true"
-    <em>IndexSize</em>="1"
-    <em>MaxItemPerPage</em>="20"
-    <em>Separator</em>=" - "
-    <em>SelectIndexCssClass</em>="selectIndex"
-    <em>UnselectIndexCssClass</em>="unSelectIndex" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the BulletedList to page</li>
                 <li><strong>ClientSort</strong> - Whether or not the items should be sorted client-side</li>

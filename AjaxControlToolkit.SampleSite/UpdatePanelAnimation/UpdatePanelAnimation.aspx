@@ -29,66 +29,72 @@
     <input type="checkbox" id="effect_collapse" checked="checked" /><label for="effect_collapse">Collapse</label><br />
     <input type="checkbox" id="effect_color" checked="checked" /><label for="effect_color">Color Background</label><br />
     <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
-
-    <ajaxToolkit:UpdatePanelAnimationExtender ID="upae" BehaviorID="animation" runat="server" TargetControlID="update" AlwaysFinishOnUpdatingAnimation="true">
+    <%--start highlighted block--%>
+    <ajaxToolkit:UpdatePanelAnimationExtender
+        ID="upae" 
+        BehaviorID="animation" 
+        runat="server" 
+        TargetControlID="update" 
+        AlwaysFinishOnUpdatingAnimation="true">
         <Animations>
-                <OnUpdating>
-                    <Sequence>
-                        <%-- Store the original height of the panel --%>
-                        <ScriptAction Script="var b = $find('animation'); b._originalHeight = b._element.offsetHeight;" />
+            <OnUpdating>
+                <Sequence>
+                    <%-- Store the original height of the panel --%>
+                    <ScriptAction Script="var b = $find('animation'); b._originalHeight = b._element.offsetHeight;" />
                         
-                        <%-- Disable all the controls --%>
-                        <Parallel duration="0">
-                            <EnableAction AnimationTarget="btnUpdate" Enabled="false" />
-                            <EnableAction AnimationTarget="effect_color" Enabled="false" />
-                            <EnableAction AnimationTarget="effect_collapse" Enabled="false" />
-                            <EnableAction AnimationTarget="effect_fade" Enabled="false" />
-                        </Parallel>
-                        <StyleAction Attribute="overflow" Value="hidden" />
+                    <%-- Disable all the controls --%>
+                    <Parallel duration="0">
+                        <EnableAction AnimationTarget="btnUpdate" Enabled="false" />
+                        <EnableAction AnimationTarget="effect_color" Enabled="false" />
+                        <EnableAction AnimationTarget="effect_collapse" Enabled="false" />
+                        <EnableAction AnimationTarget="effect_fade" Enabled="false" />
+                    </Parallel>
+                    <StyleAction Attribute="overflow" Value="hidden" />
                         
-                        <%-- Do each of the selected effects --%>
-                        <Parallel duration=".25" Fps="30">
-                            <Condition ConditionScript="$get('effect_fade').checked">
-                                <FadeOut AnimationTarget="up_container" minimumOpacity=".2" />
-                            </Condition>
-                            <Condition ConditionScript="$get('effect_collapse').checked">
-                                <Resize Height="0" />
-                            </Condition>
-                            <Condition ConditionScript="$get('effect_color').checked">
-                                <Color AnimationTarget="up_container" PropertyKey="backgroundColor"
-                                    EndValue="#FF0000" StartValue="#40669A" />
-                            </Condition>
-                        </Parallel>
-                    </Sequence>
-                </OnUpdating>
-                <OnUpdated>
-                    <Sequence>
-                        <%-- Do each of the selected effects --%>
-                        <Parallel duration=".25" Fps="30">
-                            <Condition ConditionScript="$get('effect_fade').checked">
-                                <FadeIn AnimationTarget="up_container" minimumOpacity=".2" />
-                            </Condition>
-                            <Condition ConditionScript="$get('effect_collapse').checked">
-                                <%-- Get the stored height --%>
-                                <Resize HeightScript="$find('animation')._originalHeight" />
-                            </Condition>
-                            <Condition ConditionScript="$get('effect_color').checked">
-                                <Color AnimationTarget="up_container" PropertyKey="backgroundColor"
-                                    StartValue="#FF0000" EndValue="#40669A" />
-                            </Condition>
-                        </Parallel>
+                    <%-- Do each of the selected effects --%>
+                    <Parallel duration=".25" Fps="30">
+                        <Condition ConditionScript="$get('effect_fade').checked">
+                            <FadeOut AnimationTarget="up_container" minimumOpacity=".2" />
+                        </Condition>
+                        <Condition ConditionScript="$get('effect_collapse').checked">
+                            <Resize Height="0" />
+                        </Condition>
+                        <Condition ConditionScript="$get('effect_color').checked">
+                            <Color AnimationTarget="up_container" PropertyKey="backgroundColor"
+                                EndValue="#FF0000" StartValue="#40669A" />
+                        </Condition>
+                    </Parallel>
+                </Sequence>
+            </OnUpdating>
+            <OnUpdated>
+                <Sequence>
+                    <%-- Do each of the selected effects --%>
+                    <Parallel duration=".25" Fps="30">
+                        <Condition ConditionScript="$get('effect_fade').checked">
+                            <FadeIn AnimationTarget="up_container" minimumOpacity=".2" />
+                        </Condition>
+                        <Condition ConditionScript="$get('effect_collapse').checked">
+                            <%-- Get the stored height --%>
+                            <Resize HeightScript="$find('animation')._originalHeight" />
+                        </Condition>
+                        <Condition ConditionScript="$get('effect_color').checked">
+                            <Color AnimationTarget="up_container" PropertyKey="backgroundColor"
+                                StartValue="#FF0000" EndValue="#40669A" />
+                        </Condition>
+                    </Parallel>
                         
-                        <%-- Enable all the controls --%>
-                        <Parallel duration="0">
-                            <EnableAction AnimationTarget="effect_fade" Enabled="true" />
-                            <EnableAction AnimationTarget="effect_collapse" Enabled="true" />
-                            <EnableAction AnimationTarget="effect_color" Enabled="true" />
-                            <EnableAction AnimationTarget="btnUpdate" Enabled="true" />
-                        </Parallel>                            
-                    </Sequence>
-                </OnUpdated>
+                    <%-- Enable all the controls --%>
+                    <Parallel duration="0">
+                        <EnableAction AnimationTarget="effect_fade" Enabled="true" />
+                        <EnableAction AnimationTarget="effect_collapse" Enabled="true" />
+                        <EnableAction AnimationTarget="effect_color" Enabled="true" />
+                        <EnableAction AnimationTarget="btnUpdate" Enabled="true" />
+                    </Parallel>                            
+                </Sequence>
+            </OnUpdated>
         </Animations>
     </ajaxToolkit:UpdatePanelAnimationExtender>
+    <%--fihish highlighted block--%>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
@@ -121,17 +127,8 @@
     <samples:InfoBlock runat="server">
         <Header>UpdatePanelAnimation Properties</Header>
         <Content>
-            The <span class="codeReference">UpdatePanel</span> animation behavior can be applied with the following extender (the <em>italic</em> properties are optional, and the ellipses represent a generic animation description):
-            <pre>
-&lt;ajaxToolkit:UpdatePanelAnimationExtender ID=&quot;ae&quot;
-    runat=&quot;server&quot; TargetControlID=&quot;up&quot; 
-    AlwaysFinishOnUpdatingAnimation=&quot;true&quot; &gt;
-        <em>&lt;Animations&gt;
-        &lt;OnUpdating&gt; ... &lt;/OnUpdating&gt;
-        &lt;OnUpdated&gt; ... &lt;/OnUpdated&gt;
-    &lt;/Animations&gt;</em>
-&lt;/ajaxToolkit:UpdatePanelAnimationExtender&gt;
-            </pre>
+            The <span class="codeReference">UpdatePanel</span> animation behavior can be applied with the following extender (the ellipses represent a generic animation description):
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - ID of the <span class="codeReference">UpdatePanel</span> whose updates are used to play the animations (this is also the default target of the animations)</li>
                 <li><strong>OnUpdating</strong> - Generic animation played as when any <span class="codeReference">UpdatePanel</span> begins updating</li>

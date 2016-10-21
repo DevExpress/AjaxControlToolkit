@@ -25,8 +25,13 @@
     <b>Calendar with an associated button:</b><br />
     <asp:TextBox runat="server" ID="Date5" />
     <asp:ImageButton runat="Server" ID="Image1" ImageUrl="~/Images/Calendar_scheduleHS.png" AlternateText="Click to show calendar" /><br />
-    <ajaxToolkit:CalendarExtender ID="calendarButtonExtender" runat="server" TargetControlID="Date5"
+    <%--start highlighted block--%>
+    <ajaxToolkit:CalendarExtender 
+        ID="calendarButtonExtender" 
+        runat="server" 
+        TargetControlID="Date5"
         PopupButtonID="Image1" />
+    <%--fihish highlighted block--%>
     <div style="font-size: 90%">
         <em>(Click the image button to show the calendar; this calendar dismisses automatically
                 when you choose a date)</em>
@@ -76,14 +81,9 @@
         <Header>Calendar Properties</Header>
         <Content>
             <p>
-                The calendar associated with a button has been initialized with this code. The properties
-            in <em>italic</em> are optional:
+                The calendar associated with a button has been initialized with this code.
             </p>
-            <pre>&lt;ajaxToolkit:Calendar runat="server"
-    TargetControlID="Date1"
-    <em>CssClass</em>="ClassName"
-    <em>Format</em>="MMMM d, yyyy"
-    <em>PopupButtonID</em>="Image1" /&gt;</pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the TextBox to extend with the calendar.</li>
                 <li><strong>CssClass</strong> - Name of the CSS class used to style the calendar. See

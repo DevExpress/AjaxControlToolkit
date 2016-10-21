@@ -22,16 +22,29 @@
     <div class="demoheading">
         Seadragon control with default properties
     </div>
-    <ajaxToolkit:Seadragon ID="Seadragon" CssClass="seadragon" runat="server" SourceUrl="sample.xml">
+    <%--start highlighted block codeBlock1--%>
+    <ajaxToolkit:Seadragon
+        ID="Seadragon" 
+        CssClass="seadragon" 
+        runat="server" 
+        SourceUrl="sample.xml">
     </ajaxToolkit:Seadragon>
-
+    <%--fihish highlighted block--%>
     <div class="demoheading">
         Seadragon with a scalable overlay and a regular control
     </div>
-    <ajaxToolkit:Seadragon ID="Seadragon2" CssClass="seadragon" runat="server" SourceUrl="dzc_output.xml">
+    <%--start highlighted block codeBlock2--%>
+    <ajaxToolkit:Seadragon 
+        ID="Seadragon2" 
+        CssClass="seadragon" 
+        runat="server" 
+        SourceUrl="dzc_output.xml">
         <ControlsCollection>
-            <ajaxToolkit:SeadragonControl ID="SeadragonControl1" runat="server" Anchor="TopRight">
-                <asp:Menu ID="Menu1" runat="server" BackColor="#FFFBD6" DynamicHorizontalOffset="2" Font-Names="Verdana"
+            <ajaxToolkit:SeadragonControl
+                ID="SeadragonControl1" 
+                runat="server" 
+                Anchor="TopRight">
+                <asp:Menu runat="server" ID="Menu1" BackColor="#FFFBD6" DynamicHorizontalOffset="2" Font-Names="Verdana"
                     Font-Size="10px" ForeColor="#990000" Orientation="Horizontal" StaticSubMenuIndent="10px"
                     Font-Bold="True">
                     <StaticSelectedStyle BackColor="#FFCC66" />
@@ -51,12 +64,18 @@
             </ajaxToolkit:SeadragonControl>
         </ControlsCollection>
         <OverlaysCollection>
-            <ajaxToolkit:SeadragonScalableOverlay ID="SeadragonScalableOverlay1" runat="server" Rect-Height="0.24"
-                Rect-Width="0.26" CssClass="overlay"
-                Rect-Point-X="0.14" Rect-Point-Y="0.06">
+            <ajaxToolkit:SeadragonScalableOverlay
+                ID="SeadragonScalableOverlay1" 
+                runat="server" 
+                Rect-Height="0.24"
+                Rect-Width="0.26" 
+                CssClass="overlay"
+                Rect-Point-X="0.14" 
+                Rect-Point-Y="0.06">
             </ajaxToolkit:SeadragonScalableOverlay>
         </OverlaysCollection>
     </ajaxToolkit:Seadragon>
+    <%--fihish highlighted block--%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="InfoContent" runat="Server">
     <samples:InfoBlock runat="server" Collapsed="false">
@@ -73,47 +92,11 @@
             <p>
                 First example above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:Seadragon ID="Seadragon"
-	runat="server"
-	SourceUrl="sample.xml"&gt;
-	CssClass="seadragon"
-&lt;/ajaxToolkit:Seadragon&gt;
-</pre>
+            <div runat="server" id="codeBlock1" />
             <p>
                 Second example above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:Seadragon ID="Seadragon2"
-  runat="server"
-  CssClass="seadragon"
-  SourceUrl="dzc_output.xml"&gt;
-  &lt;ControlsCollection&gt;
-    &lt;ajaxToolkit:SeadragonControl runat="server"
-      Anchor="TOP_RIGHT"&gt;
-      &lt;asp:Menu runat="server" ...&gt;
-        <i>set menu style</i>
-        &lt;Items&gt;
-          &lt;asp:MenuItem Text="Menu" Value="Menu" /&gt;
-          &lt;asp:MenuItem Text="Control" Value="Control" /&gt;
-          &lt;asp:MenuItem Text="Over" Value="Over" /&gt;
-          &lt;asp:MenuItem Text="Seadragon" Value="Seadragon" /&gt;
-        &lt;/Items&gt;
-      &lt;/asp:Menu&gt;
-    &lt;/ajaxToolkit:SeadragonControl&gt;
-  &lt;/ControlsCollection&gt;
-  &lt;OverlaysCollection&gt;
-    &lt;ajaxToolkit:SeadragonScalableOverlay 
-      runat="server"
-      Rect-Height="0.24"
-      Rect-Width="0.26" 
-      CssClass="overlay" 
-      Rect-Point-X="0.14" 
-      Rect-Point-Y="0.06"     
-    &lt;/ajaxToolkit:SeadragonScalableOverlay&gt;
-  &lt;/OverlaysCollection&gt;
-&lt;/ajaxToolkit:Seadragon&gt;
-</pre>
+            <div runat="server" id="codeBlock2" />
             <ul>
                 <li><strong>animationTime </strong>- The amount of time in seconds that animations should last. Default is 1.5.</li>
                 <li><strong>blendTime</strong> - The amount of time in seconds that new tiles take to blend from transparent to opaque. Default is 0.5.</li>

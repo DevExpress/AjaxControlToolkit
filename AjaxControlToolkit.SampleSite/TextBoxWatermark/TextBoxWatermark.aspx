@@ -8,11 +8,14 @@
         <ContentTemplate>
             First name:
             <asp:TextBox ID="TextBox1" CssClass="unwatermarked" Width="150" runat="server" /><br />
-            <ajaxToolkit:TextBoxWatermarkExtender ID="TextBoxWatermarkExtender1" runat="server"
+            <%--start highlighted block--%>
+            <ajaxToolkit:TextBoxWatermarkExtender 
+                ID="TextBoxWatermarkExtender1"
+                runat="server"
                 TargetControlID="TextBox1"
                 WatermarkText="Type First Name Here"
                 WatermarkCssClass="watermarked" />
-
+            <%--fihish highlighted block--%>
             Last name:
             <asp:TextBox ID="TextBox2" CssClass="unwatermarked" Width="150" runat="server" /><br />
             <br />
@@ -47,15 +50,9 @@
         <Header>TextBoxWatermark Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:TextBoxWatermarkExtender ID="TBWE2" runat="server"
-    TargetControlID="TextBox1"
-    WatermarkText="Type First Name Here"
-    <em>WatermarkCssClass</em>="watermarked" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the TextBox to operate on</li>
                 <li><strong>WatermarkText</strong> - The text to show when the control has no value</li>

@@ -7,7 +7,10 @@
     <strong>Enter a Number (format: <em>9,999,999.99</em>):</strong>
     <br />
     <asp:TextBox ID="TextBox2" runat="server" Width="130px" Height="16px" ValidationGroup="MKE" />
-    <ajaxToolkit:MaskedEditExtender ID="MaskedEditExtender2" runat="server"
+    <%--start highlighted block codeBlock1--%>
+    <ajaxToolkit:MaskedEditExtender
+        ID="MaskedEditExtender2"
+        runat="server"
         TargetControlID="TextBox2"
         Mask="9,999,999.99"
         MessageValidatorTip="true"
@@ -18,7 +21,11 @@
         AcceptNegative="Left"
         DisplayMoney="Left"
         ErrorTooltipEnabled="True" />
-    <ajaxToolkit:MaskedEditValidator ID="MaskedEditValidator2" runat="server"
+    <%--fihish highlighted block--%>
+    <%--start highlighted block codeBlock2--%>
+    <ajaxToolkit:MaskedEditValidator
+        ID="MaskedEditValidator2"
+        runat="server"
         ControlExtender="MaskedEditExtender2"
         ControlToValidate="TextBox2"
         IsValidEmpty="false"
@@ -35,6 +42,7 @@
         MaximumValueBlurredMessage="*"
         MinimumValueBlurredText="*"
         ValidationGroup="MKE" />
+    <%--fihish highlighted block--%>
     <br />
     <em><span style="font-size: 8pt">Tip: Type '.' to switch</span></em>
     <br />
@@ -142,21 +150,9 @@
         <Header>MaskedEdit Properties</Header>
         <Content>
             <p>
-                The number control above is initialized with this code. The <em>italic</em> properties are optional.
+                The number control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:MaskedEditExtender
-    TargetControlID="TextBox2" 
-    Mask="9,999,999.99"
-    <em>MessageValidatorTip</em>="true" 
-    <em>OnFocusCssClass</em>="MaskedEditFocus" 
-    <em>OnInvalidCssClass</em>="MaskedEditError"
-    <em>MaskType</em>="Number" 
-    <em>InputDirection</em>="RightToLeft" 
-    <em>AcceptNegative</em>="Left" 
-    <em>DisplayMoney</em>="Left"
-    <em>ErrorTooltipEnabled</em>="True"/&gt;
-            </pre>
+            <div runat="server" id="codeBlock1" />
             <ul>
                 <li><strong>MaskType</strong> - Type of validation to perform:<br />
                     None - No validation<br />
@@ -246,25 +242,8 @@
     <samples:InfoBlock runat="server">
         <Header>MaskedEditValidator Properties</Header>
         <Content>
-        The control above is initialized with this code. The <em>italic</em> properties are optional.
-        <pre>
-&lt;ajaxToolkit:MaskedEditValidator
-    ControlExtender="MaskedEditExtender2"
-    <em>ControlToValidate</em>="TextBox2" 
-    <em>IsValidEmpty</em>="False" 
-    <em>MaximumValue</em>="12000" 
-    <em>EmptyValueMessage</em>="Number is required"
-    <em>InvalidValueMessage</em>="Number is invalid"
-    <em>MaximumValueMessage</em>="Number &gt; 12000"
-    <em>MinimumValueMessage</em>="Number &lt; -100"
-    <em>MinimumValue</em>="-100" 
-    <em>EmptyValueBlurredText</em>="*" 
-    <em>InvalidValueBlurredMessage</em>="*" 
-    <em>MaximumValueBlurredMessage</em>="*" 
-    <em>MinimumValueBlurredText</em>="*"
-    <em>Display</em>="Dynamic" 
-    <em>TooltipMessage</em>="Input a number: -100 up to 12.000"/&gt;
-            </pre>
+        The control above is initialized with this code.
+        <div runat="server" id="codeBlock2" />
             <ul>
                 <li><strong>ControlToValidate</strong> - ID of the TextBox to validate</li>
                 <li><strong>ControlExtender</strong> - ID of the MaskedEditExtender attached to the TextBox</li>

@@ -93,22 +93,27 @@
             </td>
         </tr>
     </table>
-
-    <ajaxToolkit:SliderExtender ID="SliderExtender1" runat="server"
+    <%--start highlighted block codeBlock1--%>
+    <ajaxToolkit:SliderExtender
+        ID="SliderExtender1"
+        runat="server"
         BehaviorID="Slider1"
         TargetControlID="Slider1"
         Minimum="-100"
         Maximum="100"
         BoundControlID="Slider1_BoundControl"
         Steps="5" />
-
-    <ajaxToolkit:SliderExtender ID="SliderExtender2" runat="server"
+    <%--fihish highlighted block--%>
+    <%--start highlighted block codeBlock2--%>
+    <ajaxToolkit:SliderExtender
+        ID="SliderExtender2"
+        runat="server"
         BehaviorID="Slider2"
         TargetControlID="Slider2"
         BoundControlID="Slider2_BoundControl"
         Orientation="Vertical"
         EnableHandleAnimation="true" />
-
+    <%--fihish highlighted block--%>
     <ajaxToolkit:SliderExtender ID="SliderExtender3" runat="server"
         BehaviorID="Slider3"
         TargetControlID="Slider3"
@@ -168,21 +173,10 @@
         <Header>Slider Properties</Header>
         <Content>
             <p>
-                The controls above are initialized with this code. The <em>italic</em> properties are optional:
+                The controls above are initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:SliderExtender ID="SliderExtender1" runat="server"
-    TargetControlID="Slider1"
-    <em>Minimum</em>="-100"
-    <em>Maximum</em>="100"
-    <em>BoundControlID</em>="Slider1_BoundControl"
-    <em>Steps</em>="5" /&gt;
-&lt;ajaxToolkit:SliderExtender ID="SliderExtender2" runat="server"
-    TargetControlID="Slider2"
-    <em>BoundControlID</em>="Slider2_BoundControl"
-    <em>Orientation</em>="Vertical"
-    <em>EnableHandleAnimation</em>="true" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock1" />
+            <div runat="server" id="codeBlock2" />
             <ul>
                 <li><strong>Minimum</strong> - Minimum value allowed.</li>
                 <li><strong>Maximum</strong> - Maximum value allowed.</li>

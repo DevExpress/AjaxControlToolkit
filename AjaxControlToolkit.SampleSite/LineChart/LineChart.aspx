@@ -6,15 +6,28 @@
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <br />
     <strong>Basic Type:</strong>
-    <ajaxToolkit:LineChart ID="LineChart1" runat="server" ChartHeight="300" ChartWidth="450"
-        ChartTitle="United States versus European Widget Production" CategoriesAxis="2007,2008,2009,2010,2011,2012"
-        ChartType="Basic" ChartTitleColor="#0E426C" CategoryAxisLineColor="#D08AD9" ValueAxisLineColor="#D08AD9"
-        BaseLineColor="#A156AB" AreaDataLabel=" thousands">
+    <%--start highlighted block--%>
+    <ajaxToolkit:LineChart 
+        ID="LineChart1" 
+        runat="server" 
+        ChartHeight="300" 
+        ChartWidth="450"
+        ChartTitle="United States versus European Widget Production" 
+        CategoriesAxis="2007,2008,2009,2010,2011,2012"
+        ChartType="Basic" 
+        ChartTitleColor="#0E426C" 
+        CategoryAxisLineColor="#D08AD9" 
+        ValueAxisLineColor="#D08AD9"
+        BaseLineColor="#A156AB" 
+        AreaDataLabel=" thousands">
         <series>
-            <ajaxToolkit:LineChartSeries Name="United States" LineColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
-            <ajaxToolkit:LineChartSeries Name="Europe" LineColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />                
+            <ajaxToolkit:LineChartSeries Name="United States" 
+                LineColor="#6C1E83" Data="110, 189, 255, 95, 107, 140" />
+            <ajaxToolkit:LineChartSeries Name="Europe" 
+                LineColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />                
         </series>
     </ajaxToolkit:LineChart>
+    <%--fihish highlighted block--%>
     <br />
     <strong>Stacked Type:</strong>
     <ajaxToolkit:LineChart ID="LineChart2" runat="server" ChartHeight="300" ChartWidth="450"
@@ -48,23 +61,9 @@
         <Header>LineChart Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:LineChart ID=&quot;LineChart1&quot; runat=&quot;server&quot; 
-<em>ChartWidth</em>=&quot;450&quot; <em>ChartHeight</em>=&quot;300&quot; ChartType=&quot;Basic&quot; 
-<em>ChartTitle</em>=&quot;United States versus European Widget Production&quot; 
-CategoriesAxis=&quot;2007,2008,2009,2010,2011,2012&quot; 
-<em>ChartTitleColor</em>=&quot;#0E426C&quot; <em>CategoryAxisLineColor</em>=&quot;#D08AD9&quot; 
-<em>ValueAxisLineColor</em>=&quot;#D08AD9&quot; <em>BaseLineColor</em>=&quot;#A156AB&quot;&gt;
-&lt;Series&gt;
-    &lt;ajaxToolkit:LineChartSeries Name=&quot;United States&quot; 
-    <em>LineColor</em>=&quot;#6C1E83&quot; Data=&quot;110, 189, 255, 95, 107, 140&quot; /&gt;
-    &lt;ajaxToolkit:LineChartSeries Name=&quot;Europe&quot;  
-    <em>LineColor</em>=&quot;#D08AD9&quot; Data=&quot;49, 77, 95, 68, 70, 79&quot; /&gt;
-&lt;/Series&gt;
-&lt;/ajaxToolkit:LineChart&gt;
-        </pre>
+            <div runat="server" id="codeBlock" />
             <strong>LineChart Properties</strong>
             <ul>
                 <li><strong>ChartHeight</strong> - This property enables you to customize the height of the chart.</li>

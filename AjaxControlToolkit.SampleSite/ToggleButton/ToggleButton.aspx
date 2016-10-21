@@ -7,15 +7,20 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:CheckBox ID="CheckBox1" Checked="true" Text="I like ASP.NET" runat="server" /><br />
-            <ajaxToolkit:ToggleButtonExtender ID="ToggleButtonExtender1" runat="server"
+            <%--start highlighted block--%>
+            <ajaxToolkit:ToggleButtonExtender
+                ID="ToggleButtonExtender1"
+                runat="server"
                 TargetControlID="CheckBox1"
                 ImageWidth="19"
                 ImageHeight="19"
                 UncheckedImageUrl="ToggleButton_Unchecked.gif"
                 CheckedImageUrl="ToggleButton_Checked.gif"
-                CheckedImageAlternateText="It's really nice to hear from you that you like ASP.NET"
-                UncheckedImageAlternateText="I don't understand why you don't like ASP.NET" />
-
+                CheckedImageAlternateText
+                    ="It's really nice to hear from you that you like ASP.NET"
+                UncheckedImageAlternateText
+                    ="I don't understand why you don't like ASP.NET" />
+            <%--fihish highlighted block--%>
             <asp:CheckBox ID="CheckBox2" Checked="true" Text='I like ASP.NET AJAX' runat="server" /><br />
             <br />
             <ajaxToolkit:ToggleButtonExtender ID="ToggleButtonExtender2" runat="server"
@@ -49,19 +54,9 @@
         <Header>ToggleButton Properties</Header>
         <Content>
             <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:ToggleButtonExtender ID="ToggleEx" runat="server"
-    TargetControlID="CheckBox1" 
-    ImageWidth="19" 
-    ImageHeight="19"
-    <em>CheckedImageAlternateText</em>="Check"
-    <em>UncheckedImageAlternateText</em>="UnCheck"
-    UncheckedImageUrl="ToggleButton_Unchecked.gif" 
-    CheckedImageUrl="ToggleButton_Checked.gif" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the CheckBox to modify</li>
                 <li><strong>ImageHeight\ImageWidth</strong> - The height and width of the image</li>

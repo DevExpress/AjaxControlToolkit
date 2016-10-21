@@ -30,7 +30,10 @@
             <asp:Button runat="Server" ID="prevButton" Text="Prev" Font-Size="Larger" />
             <asp:Button runat="Server" ID="playButton" Text="Play" Font-Size="Larger" />
             <asp:Button runat="Server" ID="nextButton" Text="Next" Font-Size="Larger" />
-            <ajaxToolkit:SlideShowExtender ID="slideshowextend1" runat="server" 
+            <%--start highlighted block--%>
+            <ajaxToolkit:SlideShowExtender 
+                ID="slideshowextend1" 
+                runat="server" 
                 TargetControlID="Image1"
                 SlideShowServiceMethod="GetSlides" 
                 AutoPlay="true" 
@@ -41,7 +44,9 @@
                 StopButtonText="Stop"
                 PreviousButtonID="prevButton" 
                 PlayButtonID="playButton" 
-                Loop="true" SlideShowAnimationType="SlideRight" />
+                Loop="true" 
+                SlideShowAnimationType="SlideRight" />
+            <%--fihish highlighted block--%>
         </div>
 </asp:Content>
 
@@ -70,24 +75,9 @@
         <Header>SlideShow Properties</Header>
         <Content>
              <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
+                The control above is initialized with this code.
             </p>
-            <pre>
-&lt;ajaxToolkit:SlideShowExtender ID="SlideShowExtender1" runat="server" 
-    TargetControlID="Image1" 
-    SlideShowServiceMethod="GetSlides" 
-    <em>AutoPlay="true" </em>
-    <em>ImageTitleLabelID="imageTitle"</em>
-    <em>ImageDescriptionLabelID="imageDescription"</em>
-    <em>NextButtonID="nextButton" </em>
-    <em>PlayButtonText="Play" </em>
-    <em>StopButtonText="Stop" </em>
-    <em>PreviousButtonID="prevButton" </em>
-    <em>PlayButtonID="playButton" </em>
-    <em>Loop="true" </em>
-    <em>SlideShowAnimationType="SlideRight" </em>/&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>SlideShowServicePath</strong> - Path to the webservice that the extender will pull the images from.</li>
                 <li><strong>SlideShowServiceMethod</strong> - The webservice method that will be called to supply images. 

@@ -39,13 +39,14 @@
         TargetControlID="TextBox2"
         FilterType="LowercaseLetters" />
 
+    <%--start highlighted block--%>
     <ajaxToolkit:FilteredTextBoxExtender
         ID="FilteredTextBoxExtender3"
         runat="server"
         TargetControlID="TextBox3"
         FilterType="Custom, Numbers"
         ValidChars="+-=/*()." />
-
+    <%--fihish highlighted block--%>
     <ajaxToolkit:FilteredTextBoxExtender
         ID="FilteredTextBoxExtender4"
         runat="server"
@@ -70,12 +71,7 @@
         <Header>FilteredTextBox Properties</Header>
         <Content>
             <p>The math-symbols example above is initialized with this code:</p>
-            <pre>
-&lt;ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server"
-    TargetControlID="TextBox3"
-    FilterType="Custom, Numbers"
-    <em>ValidChars</em>="+-=/*()." /&gt;
-        </pre>
+            <div runat="server" id="codeBlock" />
         <ul>
             <li><strong>TargetControlID</strong> - The ID of the text box for this extender to operate on</li>
             <li><strong>FilterType</strong> - A the type of filter to apply, as a comma-separated combination of

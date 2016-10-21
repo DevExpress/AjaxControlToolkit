@@ -15,9 +15,19 @@
     <asp:Panel ID="Panel2" runat="server">
         This Balloon Popup uses the Cloud style.
     </asp:Panel>
-    <ajaxToolkit:BalloonPopupExtender ID="PopupControlExtender2" runat="server" TargetControlID="MessageTextBox"
-        BalloonPopupControlID="Panel2" Position="BottomRight" BalloonStyle="Cloud" BalloonSize="Small"
-        UseShadow="false" DisplayOnClick="true" DisplayOnFocus="true" />
+    <%--start highlighted block--%>
+    <ajaxToolkit:BalloonPopupExtender
+        ID="PopupControlExtender2" 
+        runat="server" 
+        TargetControlID="MessageTextBox"
+        BalloonPopupControlID="Panel2" 
+        Position="BottomRight" 
+        BalloonStyle="Cloud" 
+        BalloonSize="Small"
+        UseShadow="false" 
+        DisplayOnClick="true" 
+        DisplayOnFocus="true" />
+    <%--fihish highlighted block--%>
     <br /><br />
     <asp:HyperLink ID="link1" runat="server">Click Here to Show the Balloon Popup</asp:HyperLink>
     <br /><br />
@@ -71,26 +81,11 @@
 
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>BalloonPopupExtender Properties</Header>
-        <Content>
-            Height="0px">
+        <Content>            
         <p>
-            The BalloonPopupExtender is initialized with this code. The <em>italic</em> properties
-            are optional:
+            The BalloonPopupExtender is initialized with this code.
         </p>
-            <pre>&lt;ajaxToolkit:BalloonPopupExtender ID="PopupControlExtender2" runat="server"
-        TargetControlID="MessageTextBox"
-        BalloonPopupControlID="Panel2"
-        <em>Position</em>="BottomRight" 
-        <em>BalloonStyle</em>="Cloud"
-        <em>BalloonSize</em>="Small"
-        <em>CustomCssUrl</em>="CustomStyle/BalloonPopupOvalStyle.css"
-        <em>CustomClassName</em>="oval"
-        <em>UseShadow</em>="true" 
-        <em>ScrollBars</em>="Auto"
-        <em>DisplayOnMouseOver</em>="true"
-        <em>DisplayOnFocus</em>="false"
-        <em>DisplayOnClick</em>=&quot;true&quot; /&gt;</pre>
-
+        <div runat ="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of the control to attach to.</li>
                 <li><strong>BalloonPopupControlID</strong> - The ID of the control to display.</li>

@@ -8,10 +8,11 @@
             that start with the text you have typed.
             <br /><br />
             <asp:TextBox runat="server" ID="myTextBox" Width="300" autocomplete="off" />
+            <%--start highlighted block--%>
             <ajaxToolkit:AutoCompleteExtender
-                runat="server" 
-                BehaviorID="AutoCompleteEx"
                 ID="autoComplete1" 
+                runat="server" 
+                BehaviorID="AutoCompleteEx"                
                 TargetControlID="myTextBox"
                 ServicePath="AutoComplete.asmx" 
                 ServiceMethod="GetCompletionList"
@@ -21,7 +22,8 @@
                 CompletionSetCount="20"
                 CompletionListCssClass="autocomplete_completionListElement" 
                 CompletionListItemCssClass="autocomplete_listItem" 
-                CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"
+                CompletionListHighlightedItemCssClass
+                    ="autocomplete_highlightedListItem"
                 DelimiterCharacters=";, :"
                 ShowOnlyCurrentWordInCompletionListItem="true" >
                 <Animations>
@@ -58,7 +60,7 @@
                     </OnHide>
                 </Animations>
             </ajaxToolkit:AutoCompleteExtender>
-
+            <%--fihish highlighted block--%>
             <script type="text/javascript">
                 // Work around browser behavior of "auto-submitting" simple forms
                 var frm = document.getElementById("aspnetForm");
@@ -100,32 +102,9 @@
         <Header>AutoComplete Properties</Header>
         <Content>
             <p>
-                The textbox is linked with an AutoCompleteExtender which is initialized with this code.
-                The <em>italic</em> properties are optional:
+                The textbox is linked with an AutoCompleteExtender which is initialized with this code.                
             </p>
-            <pre>
-&lt;ajaxToolkit:AutoCompleteExtender 
-    runat="server" 
-    ID="autoComplete1" 
-    TargetControlID="myTextBox"
-    ServiceMethod="GetCompletionList"
-    <em>ServicePath</em>="AutoComplete.asmx"
-    <em>MinimumPrefixLength</em>="2" 
-    <em>CompletionInterval</em>="1000"
-    <em>EnableCaching</em>="true"
-    <em>CompletionSetCount</em>="20" 
-    <em>CompletionListCssClass</em>="autocomplete_completionListElement" 
-    <em>CompletionListItemCssClass</em>="autocomplete_listItem" 
-    <em>CompletionListHighlightedItemCssClass</em>="autocomplete_highlightedListItem"
-    <em>DelimiterCharacters</em>=";, :"
-    <em>ShowOnlyCurrentWordInCompletionListItem</em>="true"&gt;
-        <em>&lt;Animations&gt;
-            &lt;OnShow&gt; ... &lt;/OnShow&gt;
-            &lt;OnHide&gt; ... &lt;/OnHide&gt;
-        &lt;/Animations&gt;</em>
-&lt;/ajaxToolkit:AutoCompleteExtender&gt;
-    
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The TextBox control where the user types content to be automatically completed</li>
                 <li><strong>ServiceMethod</strong> - The web service method to be called.  The signature of this method must match the following:

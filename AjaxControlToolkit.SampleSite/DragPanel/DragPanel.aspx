@@ -33,10 +33,13 @@
         </asp:Panel>
     </div>
     <div style="clear: both;"></div>
-
-    <ajaxToolkit:DragPanelExtender ID="DragPanelExtender1" runat="server"
+    <%--start highlighted block--%>
+    <ajaxToolkit:DragPanelExtender 
+        ID="DragPanelExtender1" 
+        runat="server"
         TargetControlID="Panel6"
         DragHandleID="Panel7" />
+    <%--fihish highlighted block--%>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
     <samples:InfoBlock runat="server" Collapsed="false">
@@ -57,11 +60,7 @@
             <p>
                 The control above is initialized with this code:<br />
             </p>
-            <pre>
-&lt;ajaxToolkit:DragPanelExtender ID="DPE1" runat="server"
-    TargetControlID="Panel3"
-    DragHandleID="Panel4" /&gt;
-            </pre>
+            <div runat="server" id="codeBlock" />
             <ul>
                 <li><strong>TargetControlID</strong> - The ID of a Panel to make draggable.</li>
                 <li><strong>DragHandleID</strong> - The ID of a control that will serve as the "drag handle" for the panel.  When the user clicks and drags this control, the panel will move.</li>
