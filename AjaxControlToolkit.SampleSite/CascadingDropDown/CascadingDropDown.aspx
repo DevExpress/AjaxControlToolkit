@@ -23,7 +23,7 @@
         </tr>
     </table>
     <br />
-
+    <%--start highlighted block--%>
     <ajaxToolkit:CascadingDropDown 
         ID="CascadingDropDown1" 
         runat="server" 
@@ -33,7 +33,7 @@
         LoadingText="[Loading makes...]"
         ServicePath="CarsService.asmx" 
         ServiceMethod="GetDropDownContents" />
-
+    <%--fihish highlighted block--%>
     <ajaxToolkit:CascadingDropDown ID="CascadingDropDown2" runat="server" TargetControlID="DropDownList2"
         Category="Model" PromptText="Please select a model" LoadingText="[Loading models...]"
         ServiceMethod="GetDropDownContentsPageMethod" ParentControlID="DropDownList1" />
@@ -86,7 +86,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>CascadingDropDown Properties</Header>
         <Content>
              <p>

@@ -10,10 +10,6 @@ using System.Web.UI.WebControls;
 
 public partial class CascadingDropDown_CascadingDropDown : System.Web.UI.Page {
 
-    protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightControlMarkup(CascadingDropDown1.ID, codeInfoBlock);
-    }
-
     protected void DropDownList3_SelectedIndexChanged(object sender, EventArgs e) {
         var make = DropDownList1.SelectedItem.Text;
         var model = DropDownList2.SelectedItem.Text;
