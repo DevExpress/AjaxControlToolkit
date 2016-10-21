@@ -22,16 +22,18 @@
     <div class="demoheading">
         Seadragon control with default properties
     </div>
+    <%--start highlighted block codeBlock1--%>
     <ajaxToolkit:Seadragon
         ID="Seadragon" 
         CssClass="seadragon" 
         runat="server" 
         SourceUrl="sample.xml">
     </ajaxToolkit:Seadragon>
-
+    <%--fihish highlighted block--%>
     <div class="demoheading">
         Seadragon with a scalable overlay and a regular control
     </div>
+    <%--start highlighted block codeBlock2--%>
     <ajaxToolkit:Seadragon 
         ID="Seadragon2" 
         CssClass="seadragon" 
@@ -73,6 +75,7 @@
             </ajaxToolkit:SeadragonScalableOverlay>
         </OverlaysCollection>
     </ajaxToolkit:Seadragon>
+    <%--fihish highlighted block--%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="InfoContent" runat="Server">
     <samples:InfoBlock runat="server" Collapsed="false">
@@ -83,7 +86,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>Seadragon Properties</Header>
         <Content>
             <p>
