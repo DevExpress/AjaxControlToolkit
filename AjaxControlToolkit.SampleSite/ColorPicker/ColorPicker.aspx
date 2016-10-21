@@ -9,11 +9,13 @@
         <b>Default color picker: </b>
         <br />
         <asp:TextBox runat="server" ID="Color1" MaxLength="6" AutoCompleteType="None" /><br />
+        <%--start highlighted block codeBlock1--%>
         <ajaxToolkit:ColorPickerExtender 
             ID="defaultCPE" 
             runat="server" 
             OnClientColorSelectionChanged="colorChanged" 
             TargetControlID="Color1" />
+        <%--fihish highlighted block--%>
         <div style="font-size: 90%">
             <em>(Set the focus to the textbox to show the color picker popup; the popup dismisses automatically
                 when you choose a color)</em>
@@ -29,11 +31,13 @@
                 when you choose a color)</em>
         </div>
     </div>
-    <script type="text/javascript" id="colorPickerScript">
+    <script type="text/javascript">
+        <%--start highlighted block scriptCodeBlock js--%>
         function colorChanged(sender) {
             sender.get_element().style.color =
                 "#" + sender.get_selectedColor();
         }
+        <%--fihish highlighted block--%>
     </script>
     <br />
     <div>
@@ -41,6 +45,7 @@
         <asp:TextBox runat="server" ID="Color2" AutoCompleteType="None" MaxLength="6" Style="float: left" />
         <asp:ImageButton runat="Server" ID="Image1" Style="float: left; margin: 0 3px" ImageUrl="~/Images/cp_button.png" AlternateText="Click to show color picker" />
         <asp:Panel ID="Sample1" Style="width: 18px; height: 18px; border: 1px solid #000; margin: 0 3px; float: left" runat="server" />
+        <%--start highlighted block codeBlock2--%>
         <ajaxToolkit:ColorPickerExtender 
             ID="buttonCPE" 
             runat="server"
@@ -48,6 +53,7 @@
             PopupButtonID="Image1" 
             SampleControlID="Sample1" 
             SelectedColor="33ffcc" />
+        <%--fihish highlighted block--%>
         <br style="clear: both" />
         <div style="font-size: 90%">
             <em>(Click the image button to show the color picker; enter a valid color value in to the TextBox to 
@@ -75,7 +81,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" Collapsed="true" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server" Collapsed="true">
         <Header>ColorPicker Properties</Header>
         <Content>
             <p>The first example of the color picker has been initialized with this code:</p>

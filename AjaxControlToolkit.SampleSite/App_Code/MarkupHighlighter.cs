@@ -62,10 +62,21 @@ public class MarkupHighlighter {
         foreach(var markup in controlMarkups) {
             var cleanedControlMarkup = CleanControlMarkup(markup.Lines);
             var colorizeReadyMarkup = PrepareMarkupForColorizer(cleanedControlMarkup);
-            var colorizedMarkup = new CodeColorizer().Colorize(colorizeReadyMarkup, Languages.Aspx);
+            string colorizedMarkup = ColorizeMarkup(colorizeReadyMarkup, markup.Language);
             var restoredMarkup = RestoreMarkupFormatting(colorizedMarkup);
             var codeInfoBlock = GetControlByType<HtmlGenericControl>(_page, c => c.ID == markup.CodeBlockID);
             codeInfoBlock.InnerHtml = restoredMarkup;
+        }
+    }
+
+    static string ColorizeMarkup(string colorizeReadyMarkup, string language) {
+        switch(language) {
+            case "aspx":
+                return new CodeColorizer().Colorize(colorizeReadyMarkup, Languages.Aspx);
+            case "js":
+                return new CodeColorizer().Colorize(colorizeReadyMarkup, Languages.JavaScript);
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
@@ -103,7 +114,7 @@ public class MarkupHighlighter {
             return markups;
         }
 
-        var startMarkerPattern = @"<%--start highlighted block\s*(?<codeBlockID>\w?)--%>";
+        var startMarkerPattern = @"<%--start highlighted block(\s+(?<codeBlockID>\w+?))?(\s+(?<language>\w+?))?--%>";
         var finishMarkerPattern = @"<%--fihish highlighted block--%>";
         bool blockStarted = false;
 
@@ -113,10 +124,13 @@ public class MarkupHighlighter {
                 if(match.Success) {
                     markup = new Markup();
                     markup.CodeBlockID = !String.IsNullOrWhiteSpace(match.Groups["codeBlockID"].Value) ? match.Groups["codeBlockID"].Value : codeBlockID;
+
+                    if(!String.IsNullOrWhiteSpace(match.Groups["language"].Value))
+                        markup.Language = match.Groups["language"].Value;
+
                     blockStarted = true;
                 }
-            }
-            else {
+            } else {
                 var match = Regex.Match(lines[i], finishMarkerPattern);
                 if(match.Success) {
                     markups.Add(markup);
@@ -125,7 +139,7 @@ public class MarkupHighlighter {
                     markup.Lines.Add(lines[i]);
             }
         }
-        
+
         return markups;
     }
 
@@ -174,7 +188,7 @@ public class MarkupHighlighter {
     }
 
     string PrepareMarkupForColorizer(string markup) {
-        return markup.Replace("\"\"", "\""+ ATTRIBUTE_DUMMY_VALUE + "\"");
+        return markup.Replace("\"\"", "\"" + ATTRIBUTE_DUMMY_VALUE + "\"");
     }
 
     string GetHighlightedScriptMarkup(string scriptID) {
