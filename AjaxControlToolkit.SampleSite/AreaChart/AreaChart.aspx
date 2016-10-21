@@ -6,6 +6,7 @@
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <strong>Basic Type:</strong>
     <br />
+    <%--start highlighted block--%>
     <ajaxToolkit:AreaChart
         ID="AreaChart1" 
         runat="server" 
@@ -29,6 +30,7 @@
                 Data="49, 77, 95, 68, 70, 79" />
         </series>
     </ajaxToolkit:AreaChart>
+    <%--fihish highlighted block--%>
     <br />
     <strong>Stacked Type:</strong>
     <br />
@@ -58,7 +60,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>AreaChart Properties</Header>
         <Content>
             <p>
