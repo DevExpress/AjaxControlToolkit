@@ -25,11 +25,13 @@
     <b>Calendar with an associated button:</b><br />
     <asp:TextBox runat="server" ID="Date5" />
     <asp:ImageButton runat="Server" ID="Image1" ImageUrl="~/Images/Calendar_scheduleHS.png" AlternateText="Click to show calendar" /><br />
+    <%--start highlighted block--%>
     <ajaxToolkit:CalendarExtender 
         ID="calendarButtonExtender" 
         runat="server" 
         TargetControlID="Date5"
         PopupButtonID="Image1" />
+    <%--fihish highlighted block--%>
     <div style="font-size: 90%">
         <em>(Click the image button to show the calendar; this calendar dismisses automatically
                 when you choose a date)</em>
@@ -75,7 +77,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" Collapsed="true" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server" Collapsed="true">
         <Header>Calendar Properties</Header>
         <Content>
             <p>
