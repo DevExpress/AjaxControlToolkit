@@ -7,12 +7,14 @@
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     Displays gravatar for an email account:
     <br />
+    <%--start highlighted block--%>
     <ajaxToolkit:Gravatar 
         ID="Gravatar1" 
         Email="test@devexpress.com" 
         Size="200" 
         Rating="R" 
         runat="server" />
+    <%--fihish highlighted block--%>
     <br />
     <hr />
     Displays default image for an email which doesn't meet rating requirments:
@@ -65,7 +67,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>Gravatar Properties</Header>
         <Content>
             <p>
