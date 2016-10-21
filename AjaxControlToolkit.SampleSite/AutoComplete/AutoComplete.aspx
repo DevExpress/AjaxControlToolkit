@@ -8,6 +8,7 @@
             that start with the text you have typed.
             <br /><br />
             <asp:TextBox runat="server" ID="myTextBox" Width="300" autocomplete="off" />
+            <%--start highlighted block--%>
             <ajaxToolkit:AutoCompleteExtender
                 ID="autoComplete1" 
                 runat="server" 
@@ -59,7 +60,7 @@
                     </OnHide>
                 </Animations>
             </ajaxToolkit:AutoCompleteExtender>
-
+            <%--fihish highlighted block--%>
             <script type="text/javascript">
                 // Work around browser behavior of "auto-submitting" simple forms
                 var frm = document.getElementById("aspnetForm");
@@ -97,7 +98,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>AutoComplete Properties</Header>
         <Content>
             <p>
