@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 public partial class ResizableControl_ResizableControl : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightControlMarkup(ResizableControlExtender1.ID, codeInfoBlock);
     }
 
     protected void Button2_Click(object sender, EventArgs e) {

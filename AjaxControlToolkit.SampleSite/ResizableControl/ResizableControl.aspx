@@ -57,7 +57,7 @@
             }
         }
     </script>
-
+    <%--start highlighted block--%>
     <ajaxToolkit:ResizableControlExtender
         ID="ResizableControlExtender1"
         runat="server"
@@ -72,6 +72,7 @@
         HandleOffsetX="3"
         HandleOffsetY="3"
         OnClientResize="OnClientResizeImage" />
+    <%--fihish highlighted block--%>
     <ajaxToolkit:ResizableControlExtender ID="ResizableControlExtender2" runat="server"
         TargetControlID="PanelText"
         ResizableCssClass="resizingText"
@@ -102,7 +103,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>ResizableControl Properties</Header>
         <Content>
              <p>
