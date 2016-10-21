@@ -24,7 +24,7 @@
             <%= DemoData.ContentFillerText %>
         </p>
     </asp:Panel>
-
+    <%--start highlighted block--%>
     <ajaxToolkit:CollapsiblePanelExtender
         ID="cpeDemo"
         runat="Server"
@@ -40,7 +40,7 @@
         CollapsedImage="~/Images/expand_blue.jpg"
         SuppressPostBack="true"
         SkinID="CollapsiblePanelDemo" />
-
+    <%--fihish highlighted block--%>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
@@ -77,7 +77,7 @@
 	        </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>CollapsiblePanel Properties</Header>
         <Content>
             <p>
