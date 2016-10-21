@@ -33,12 +33,13 @@
         </asp:Panel>
     </div>
     <div style="clear: both;"></div>
-
+    <%--start highlighted block--%>
     <ajaxToolkit:DragPanelExtender 
         ID="DragPanelExtender1" 
         runat="server"
         TargetControlID="Panel6"
         DragHandleID="Panel7" />
+    <%--fihish highlighted block--%>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
     <samples:InfoBlock runat="server" Collapsed="false">
