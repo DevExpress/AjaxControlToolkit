@@ -13,11 +13,13 @@
         <asp:LinkButton runat="server" ID="Option2" Text="Java Cyclone" CssClass="ContextMenuItem" OnClick="OnSelect" />
         <asp:LinkButton runat="server" ID="Option3" Text="Dry Fruit" CssClass="ContextMenuItem" OnClick="OnSelect" />
     </asp:Panel>
+    <%--start highlighted block--%>
     <ajaxToolkit:DropDownExtender 
         runat="server" 
         ID="DDE"
         TargetControlID="TextLabel"
         DropDownControlID="DropPanel" />
+    <%--fihish highlighted block--%>
     <br />
     <asp:UpdatePanel ID="Update" runat="server">
         <ContentTemplate>
@@ -55,7 +57,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>DropDown Properties</Header>
         <Content>
             <p>
