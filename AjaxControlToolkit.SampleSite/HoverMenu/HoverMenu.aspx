@@ -41,7 +41,7 @@
                                     </tr>
                                 </table>
                             </asp:Panel>
-
+                            <%--start highlighted block--%>
                             <ajaxToolkit:HoverMenuExtender
                                 ID="hme2" 
                                 runat="Server"
@@ -50,6 +50,7 @@
                                 PopupPosition="Left"
                                 TargetControlID="Panel9"
                                 PopDelay="25" />
+                            <%--fihish highlighted block--%>
                         </ItemTemplate>
                         <EditItemTemplate>
                             <asp:Panel ID="Panel9" runat="server" Width="80%">

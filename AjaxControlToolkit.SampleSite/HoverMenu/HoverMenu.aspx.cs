@@ -9,6 +9,5 @@ public partial class HoverMenu_HoverMenu : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        MarkupHighlighter.HighlightControlMarkup("hme2", codeInfoBlock);
     }
 }
