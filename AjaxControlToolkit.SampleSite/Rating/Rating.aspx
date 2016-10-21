@@ -8,6 +8,7 @@
     <asp:UpdatePanel runat="server" ID="up1">
             <ContentTemplate>
                 <div style="float: left;">How spicy do you like your Thai food? &nbsp;</div>
+                <%--start highlighted block--%>
                 <ajaxToolkit:Rating
                     ID="ThaiRating"
                     runat="server"
@@ -20,7 +21,7 @@
                     EmptyStarCssClass="emptyRatingStar"
                     OnChanged="ThaiRating_Changed"
                     style="float: left;" />
-                   
+                <%--fihish highlighted block--%>
                 <div style="clear:left;">
                     <table>
                         <tr>
@@ -65,7 +66,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>Rating Properties</Header>
         <Content>
             <p>
