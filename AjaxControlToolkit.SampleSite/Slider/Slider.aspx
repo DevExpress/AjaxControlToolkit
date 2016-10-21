@@ -93,7 +93,7 @@
             </td>
         </tr>
     </table>
-
+    <%--start highlighted block codeBlock1--%>
     <ajaxToolkit:SliderExtender
         ID="SliderExtender1"
         runat="server"
@@ -103,7 +103,8 @@
         Maximum="100"
         BoundControlID="Slider1_BoundControl"
         Steps="5" />
-
+    <%--fihish highlighted block--%>
+    <%--start highlighted block codeBlock2--%>
     <ajaxToolkit:SliderExtender
         ID="SliderExtender2"
         runat="server"
@@ -112,7 +113,7 @@
         BoundControlID="Slider2_BoundControl"
         Orientation="Vertical"
         EnableHandleAnimation="true" />
-
+    <%--fihish highlighted block--%>
     <ajaxToolkit:SliderExtender ID="SliderExtender3" runat="server"
         BehaviorID="Slider3"
         TargetControlID="Slider3"
@@ -168,7 +169,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>Slider Properties</Header>
         <Content>
             <p>
