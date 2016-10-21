@@ -30,6 +30,7 @@
             <asp:Button runat="Server" ID="prevButton" Text="Prev" Font-Size="Larger" />
             <asp:Button runat="Server" ID="playButton" Text="Play" Font-Size="Larger" />
             <asp:Button runat="Server" ID="nextButton" Text="Next" Font-Size="Larger" />
+            <%--start highlighted block--%>
             <ajaxToolkit:SlideShowExtender 
                 ID="slideshowextend1" 
                 runat="server" 
@@ -45,6 +46,7 @@
                 PlayButtonID="playButton" 
                 Loop="true" 
                 SlideShowAnimationType="SlideRight" />
+            <%--fihish highlighted block--%>
         </div>
 </asp:Content>
 
@@ -69,7 +71,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>SlideShow Properties</Header>
         <Content>
              <p>
