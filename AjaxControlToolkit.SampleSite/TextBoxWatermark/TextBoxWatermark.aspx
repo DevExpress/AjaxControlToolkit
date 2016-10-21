@@ -8,13 +8,14 @@
         <ContentTemplate>
             First name:
             <asp:TextBox ID="TextBox1" CssClass="unwatermarked" Width="150" runat="server" /><br />
+            <%--start highlighted block--%>
             <ajaxToolkit:TextBoxWatermarkExtender 
                 ID="TextBoxWatermarkExtender1"
                 runat="server"
                 TargetControlID="TextBox1"
                 WatermarkText="Type First Name Here"
                 WatermarkCssClass="watermarked" />
-
+            <%--fihish highlighted block--%>
             Last name:
             <asp:TextBox ID="TextBox2" CssClass="unwatermarked" Width="150" runat="server" /><br />
             <br />
@@ -45,7 +46,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>TextBoxWatermark Properties</Header>
         <Content>
             <p>
