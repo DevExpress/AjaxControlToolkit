@@ -7,10 +7,6 @@ using System.Web.UI.WebControls;
 
 public partial class PopupControl_PopupControl : Page {
 
-    protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightControlMarkup(PopupControlExtender1.ID, codeInfoBlock);
-    }
-
     protected void ReminderButton_Click(object sender, EventArgs e) {
         string text;
         try {

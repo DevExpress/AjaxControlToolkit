@@ -27,13 +27,14 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </asp:Panel>
+    <%--start highlighted block--%>
     <ajaxToolkit:PopupControlExtender 
         ID="PopupControlExtender1"
         runat="server"
         TargetControlID="DateTextBox"
         PopupControlID="Panel1"
         Position="Bottom" />
-
+    <%--fihish highlighted block--%>
     Reminder message:
         <asp:TextBox ID="MessageTextBox" runat="server" Width="200" autocomplete="off" /><br />
     <i>Please select 'Cancel' to discard changes.</i>
@@ -88,7 +89,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>
             PopupControl Properties
         </Header>
