@@ -30,7 +30,7 @@
                 SuppressPostBack="true" />
         </div>
     </asp:Panel>
-
+    <%--start highlighted block--%>
     <ajaxToolkit:DropShadowExtender
         ID="DropShadowExtender1" 
         runat="server"
@@ -41,7 +41,7 @@
         Radius="6"
         Opacity=".75"
         TrackPosition="true" />
-
+    <%--fihish highlighted block--%>
     <div style="padding: 15px;">
         <label for="chkShadow">Show Drop Shadow: </label>
         <input type="checkbox" checked="checked" id="chkShadow"
@@ -94,7 +94,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>DropShadow Properties</Header>
         <Content>
             <p>

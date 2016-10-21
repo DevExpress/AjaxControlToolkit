@@ -8,6 +8,5 @@ using System.Web.UI.WebControls;
 public partial class DropShadow_DropShadow : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightControlMarkup(DropShadowExtender1.ID, codeInfoBlock);
     }
 }
