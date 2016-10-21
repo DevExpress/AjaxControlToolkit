@@ -242,16 +242,9 @@ public class MarkupHighlighter {
     }
 
     string[] GetMultilineMarkup(string markup) {
-        var lines = markup.Split(
-                new string[] { "\r\n" },
+        return markup.Split(
+                new string[] { "\r\n", "\n" },
                 StringSplitOptions.RemoveEmptyEntries);
-
-        if(lines.Length == 1)
-            lines = markup.Split(
-                new string[] { "\n" },
-                StringSplitOptions.RemoveEmptyEntries);
-
-        return lines;
     }
 
     IEnumerable<string> DecreaseIndent(IEnumerable<string> lines) {

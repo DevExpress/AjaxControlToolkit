@@ -10,11 +10,13 @@
                 <b>Must Have</b><br />
                 <asp:CheckBox runat="server" ID="MustHaveGuestBedroomCheckBox"
                     Text="Guest Bed Downstairs" /><br />
+                <%--start highlighted block--%>
                 <ajaxToolkit:MutuallyExclusiveCheckBoxExtender
                     runat="server" 
                     ID="MustHaveGuestBedroomCheckBoxEx"
                     TargetControlID="MustHaveGuestBedroomCheckBox"
                     Key="GuestBedroomCheckBoxes" />
+                <%--fihish highlighted block--%>
 
                 <asp:CheckBox runat="server" ID="MustHaveSplitPlanCheckBox"
                     Text="Split Plan" /><br />
@@ -115,7 +117,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>MutuallyExclusiveCheckBox Properties</Header>
         <Content>
             <p>The control above is initialized with this code.</p>
