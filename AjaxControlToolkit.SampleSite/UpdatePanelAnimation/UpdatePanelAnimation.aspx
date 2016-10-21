@@ -29,7 +29,7 @@
     <input type="checkbox" id="effect_collapse" checked="checked" /><label for="effect_collapse">Collapse</label><br />
     <input type="checkbox" id="effect_color" checked="checked" /><label for="effect_color">Color Background</label><br />
     <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click" />
-
+    <%--start highlighted block--%>
     <ajaxToolkit:UpdatePanelAnimationExtender
         ID="upae" 
         BehaviorID="animation" 
@@ -94,6 +94,7 @@
             </OnUpdated>
         </Animations>
     </ajaxToolkit:UpdatePanelAnimationExtender>
+    <%--fihish highlighted block--%>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
@@ -123,7 +124,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>UpdatePanelAnimation Properties</Header>
         <Content>
             The <span class="codeReference">UpdatePanel</span> animation behavior can be applied with the following extender (the ellipses represent a generic animation description):
