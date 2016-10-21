@@ -43,10 +43,12 @@
             </div>
         </asp:View>
     </asp:MultiView>
+    <%--start highlighted block--%>
     <ajaxToolkit:NoBot 
         ID="NoBot1" 
         runat="server" 
         OnGenerateChallengeAndResponse="CustomChallengeResponse" />
+    <%--fihish highlighted block--%>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
@@ -81,7 +83,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>NoBot Properties</Header>
         <Content>
             <p>The control above is initialized with this code.</p>

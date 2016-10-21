@@ -13,7 +13,6 @@ public partial class NoBot_NoBot : Page {
         if(!IsPostBack) {
             // Display input view
             MultiView1.SetActiveView(View1);
-            MarkupHighlighter.HighlightControlMarkup(NoBot1.ID, codeInfoBlock);
             return;
         }
         // Display results view
@@ -30,7 +29,6 @@ public partial class NoBot_NoBot : Page {
             sb.AppendFormat("{0}: {1}<br />", kvp.Key.ToString("u"), kvp.Value);
 
         Label2.Text = sb.ToString();
-        MarkupHighlighter.HighlightControlMarkup(NoBot1.ID, codeInfoBlock);
     }
 
     protected void CustomChallengeResponse(object sender, NoBotEventArgs e) {
