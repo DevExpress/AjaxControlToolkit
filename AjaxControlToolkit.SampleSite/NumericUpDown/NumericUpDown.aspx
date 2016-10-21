@@ -36,7 +36,7 @@
             <br />
             <br />
             <asp:Label ID="Label1" runat="server" Text="[No response provided yet]" />
-
+            <%--start highlighted block--%>
             <ajaxToolkit:NumericUpDownExtender 
                 ID="NumericUpDownExtender1" 
                 runat="server"
@@ -49,6 +49,7 @@
                 TargetButtonUpID=""
                 Minimum="1"
                 Maximum="7" />
+            <%--fihish highlighted block--%>
             <ajaxToolkit:NumericUpDownExtender ID="NumericUpDownExtender2" runat="server"
                 TargetControlID="TextBox2"
                 Width="120"
@@ -94,7 +95,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>NumericUpDown Properties</Header>
         <Content>
             <p>
