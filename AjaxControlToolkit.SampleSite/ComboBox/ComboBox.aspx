@@ -33,6 +33,7 @@
                     <br />
                 </asp:Panel>
                 <div>
+                    <%--start highlighted block--%>
                     <ajaxToolkit:ComboBox 
                         ID="ComboBox1" 
                         runat="server" 
@@ -42,6 +43,7 @@
                         OnItemInserted="ComboBox1_ItemInserted"
                         OnSelectedIndexChanged="ComboBox1_SelectedIndexChanged" 
                         AppendDataBoundItems="false" />
+                    <%--fihish highlighted block--%>
                     <br />
                     <asp:Button ID="ManualPostBackButton" runat="server" Text="Submit" />
                 </div>
@@ -203,7 +205,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" Collapsed="true" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server" Collapsed="true">
         <Header>ComboBox Properties</Header>
         <Content>
             <p>
