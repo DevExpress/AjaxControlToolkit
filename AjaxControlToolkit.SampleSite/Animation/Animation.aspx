@@ -225,7 +225,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>Animation Properties</Header>
         <Content>
             The animation behavior can be applied with the following extender (the <em>italic</em> properties

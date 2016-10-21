@@ -91,11 +91,20 @@ public class MarkupHighlighter {
 
     IEnumerable<Markup> GetControlMarkups(string text) {
         var lines = GetMultilineMarkup(text);
+        ICollection<Markup> markups = new List<Markup>();
+        var codeBlockID = "codeBlock";
+        Markup markup = null;
+
+        if(_filePath.EndsWith(".markup")) {
+            markup = new Markup();
+            markup.CodeBlockID = codeBlockID;
+            markup.Lines = lines;
+            markups.Add(markup);
+            return markups;
+        }
+
         var startMarkerPattern = @"<%--start highlighted block\s*(?<codeBlockID>\w?)--%>";
         var finishMarkerPattern = @"<%--fihish highlighted block--%>";
-        var codeBlockID = "codeBlock";
-        ICollection<Markup> markups = new List<Markup>();
-        Markup markup = null;
         bool blockStarted = false;
 
         for(int i = 0; i < lines.Length; i++) {
