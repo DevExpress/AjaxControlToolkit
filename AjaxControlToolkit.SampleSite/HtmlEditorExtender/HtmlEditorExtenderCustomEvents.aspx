@@ -4,12 +4,13 @@
     HTMLEditorExtender Custom events demonstration
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="DemoContent" runat="Server">
-    <script id="contentChangedScript">
+    <script>
+        <%--start highlighted block codeBlock1 js--%>
         function onContentsChange() {
             alert('contents changed');
         }
-    </script>
-    <script>
+        <%--fihish highlighted block--%>
+
         function windowUnload() {
             if(Sys.Extended.UI.HtmlEditorExtenderBehavior.IsDirty()) {
                 alert('unsaved data');
@@ -23,20 +24,25 @@
     </script>
     <asp:UpdatePanel ID="updatePanel1" runat="server">
         <ContentTemplate>
-            <asp:TextBox 
-                runat="server" 
-                ID="txtBox1" 
-                TextMode="MultiLine" 
-                Columns="50" 
+            <%--start highlighted block codeBlock2--%>
+            <asp:TextBox
+                runat="server"
+                ID="txtBox1"
+                TextMode="MultiLine"
+                Columns="50"
                 Rows="10"
-                Text="Hello <b>world!</b>" /><br />
-            <ajaxToolkit:HtmlEditorExtender 
-                ID="htmlEditorExtender1" 
+                Text="Hello <b>world!</b>" />
+            <%--fihish highlighted block--%>
+            <br />
+            <%--start highlighted block codeBlock3--%>
+            <ajaxToolkit:HtmlEditorExtender
+                ID="htmlEditorExtender1"
                 TargetControlID="txtBox1"
-                OnClientChange="onContentsChange" 
-                runat="server" 
+                OnClientChange="onContentsChange"
+                runat="server"
                 DisplaySourceTab="true">
             </ajaxToolkit:HtmlEditorExtender>
+            <%--fihish highlighted block--%>
             <br />
             <br />
             <asp:Button runat="server" Text="Submit content" ID="submit" />

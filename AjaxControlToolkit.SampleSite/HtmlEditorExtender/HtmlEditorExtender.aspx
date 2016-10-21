@@ -10,12 +10,14 @@
         <ContentTemplate>
             <asp:TextBox runat="server" ID="txtBox1" TextMode="MultiLine" Columns="50" Rows="10"
                 Text="Hello <b>world!</b>" /><br />
+            <%--start highlighted block--%>
             <ajaxToolkit:HtmlEditorExtender
                 ID="htmlEditorExtender1"
                 TargetControlID="txtBox1"
                 runat="server"
                 DisplaySourceTab="true">
             </ajaxToolkit:HtmlEditorExtender>
+            <%--fihish highlighted block--%>
             <br />
 
             <b>HtmlEditorExtender with a custom toolbar, which adds support for image uploading. The bottom toolbar also provides the source view and preview buttons changing the display mode to HTML markup and rendered HTML respectively:</b>
@@ -84,7 +86,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" Collapsed="false" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server" Collapsed="false">
         <Header>HTMLEditorExtender Properties</Header>
         <Content>
             <p>

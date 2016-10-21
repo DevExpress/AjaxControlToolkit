@@ -156,7 +156,6 @@ public class MarkupHighlighter {
 
     string GetHighlightedControlMarkup(string controlID) {
         return null;
-        return null;
         //var sourceCode = File.ReadAllText(_filePath);
         //var controlMarkup = GetControlMarkup(sourceCode, controlID);
         //var cleanedControlMarkup = CleanControlMarkup(controlMarkup);
@@ -243,9 +242,16 @@ public class MarkupHighlighter {
     }
 
     string[] GetMultilineMarkup(string markup) {
-        return markup.Split(
+        var lines = markup.Split(
                 new string[] { "\r\n" },
                 StringSplitOptions.RemoveEmptyEntries);
+
+        if(lines.Length == 1)
+            lines = markup.Split(
+                new string[] { "\n" },
+                StringSplitOptions.RemoveEmptyEntries);
+
+        return lines;
     }
 
     IEnumerable<string> DecreaseIndent(IEnumerable<string> lines) {
