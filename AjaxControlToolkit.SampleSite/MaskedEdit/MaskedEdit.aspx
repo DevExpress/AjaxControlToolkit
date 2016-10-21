@@ -7,6 +7,7 @@
     <strong>Enter a Number (format: <em>9,999,999.99</em>):</strong>
     <br />
     <asp:TextBox ID="TextBox2" runat="server" Width="130px" Height="16px" ValidationGroup="MKE" />
+    <%--start highlighted block codeBlock1--%>
     <ajaxToolkit:MaskedEditExtender
         ID="MaskedEditExtender2"
         runat="server"
@@ -20,6 +21,8 @@
         AcceptNegative="Left"
         DisplayMoney="Left"
         ErrorTooltipEnabled="True" />
+    <%--fihish highlighted block--%>
+    <%--start highlighted block codeBlock2--%>
     <ajaxToolkit:MaskedEditValidator
         ID="MaskedEditValidator2"
         runat="server"
@@ -39,6 +42,7 @@
         MaximumValueBlurredMessage="*"
         MinimumValueBlurredText="*"
         ValidationGroup="MKE" />
+    <%--fihish highlighted block--%>
     <br />
     <em><span style="font-size: 8pt">Tip: Type '.' to switch</span></em>
     <br />
@@ -142,13 +146,13 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock1">
+    <samples:InfoBlock runat="server">
         <Header>MaskedEdit Properties</Header>
         <Content>
             <p>
                 The number control above is initialized with this code.
             </p>
-            <div runat="server" id="codeBlock" />
+            <div runat="server" id="codeBlock1" />
             <ul>
                 <li><strong>MaskType</strong> - Type of validation to perform:<br />
                     None - No validation<br />
@@ -235,11 +239,11 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock2">
+    <samples:InfoBlock runat="server">
         <Header>MaskedEditValidator Properties</Header>
         <Content>
         The control above is initialized with this code.
-        <div runat="server" id="codeBlock" />
+        <div runat="server" id="codeBlock2" />
             <ul>
                 <li><strong>ControlToValidate</strong> - ID of the TextBox to validate</li>
                 <li><strong>ControlExtender</strong> - ID of the MaskedEditExtender attached to the TextBox</li>
