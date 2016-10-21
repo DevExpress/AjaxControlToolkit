@@ -276,7 +276,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>PagingBulletedList Properties</Header>
         <Content>
             <p>

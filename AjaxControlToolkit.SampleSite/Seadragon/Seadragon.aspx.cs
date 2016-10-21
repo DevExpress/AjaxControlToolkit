@@ -9,5 +9,6 @@ public partial class Seadragon_Seadragon : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
     }
 }

@@ -139,7 +139,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>HoverMenu Properties</Header>
         <Content>
             <p>
