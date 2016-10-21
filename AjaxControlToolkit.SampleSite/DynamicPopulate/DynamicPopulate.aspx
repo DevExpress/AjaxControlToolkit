@@ -47,7 +47,7 @@
     </p>
     <asp:Panel ID="Panel1" runat="server" CssClass="dynamicPopulate_Normal" />
     <br />
-
+    <%--start highlighted block--%>
     <ajaxToolkit:DynamicPopulateExtender 
         ID="dp" 
         BehaviorID="dp1" 
@@ -57,6 +57,7 @@
         PopulateTriggerControlID="Label1"
         ServiceMethod="GetHtml"
         UpdatingCssClass="dynamicPopulate_Updating" />
+    <%--fihish highlighted block--%>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
@@ -71,7 +72,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>DynamicPopulate Properties</Header>
         <Content>
             <p>

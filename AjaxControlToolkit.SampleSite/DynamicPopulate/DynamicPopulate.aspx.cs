@@ -11,7 +11,6 @@ using System.Web.UI.WebControls;
 public partial class DynamicPopulate_DynamicPopulate : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightControlMarkup(dp.ID, codeInfoBlock);
     }
 
     [WebMethod]
