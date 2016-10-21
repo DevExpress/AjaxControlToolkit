@@ -23,6 +23,7 @@
     <br />
     <p>
         <asp:DropDownList ID="DropDownList1" runat="server" Width="100px" />
+        <%--start highlighted block--%>
         <ajaxToolkit:ListSearchExtender
             ID="ListSearchExtender2"
             runat="server"
@@ -31,6 +32,7 @@
             QueryPattern="Contains" 
             QueryTimeout="2000">
         </ajaxToolkit:ListSearchExtender>
+        <%--fihish highlighted block--%>
     </p>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
@@ -45,7 +47,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>ListSearchExtender Properties</Header>
         <Content>
             <p>

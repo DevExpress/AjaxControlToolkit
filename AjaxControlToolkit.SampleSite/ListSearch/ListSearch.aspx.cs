@@ -13,7 +13,5 @@ public partial class ListSearch_ListSearch : Page
         ListBox1.DataBind();
         DropDownList1.DataSource = DemoData.ContentFillerWords;
         DropDownList1.DataBind();
-
-        MarkupHighlighter.HighlightControlMarkup(ListSearchExtender2.ID, codeInfoBlock);
     }
 }
