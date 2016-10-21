@@ -6,6 +6,7 @@
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <br />
     <strong>Basic Type:</strong>
+    <%--start highlighted block--%>
     <ajaxToolkit:LineChart 
         ID="LineChart1" 
         runat="server" 
@@ -26,6 +27,7 @@
                 LineColor="#D08AD9" Data="49, 77, 95, 68, 70, 79" />                
         </series>
     </ajaxToolkit:LineChart>
+    <%--fihish highlighted block--%>
     <br />
     <strong>Stacked Type:</strong>
     <ajaxToolkit:LineChart ID="LineChart2" runat="server" ChartHeight="300" ChartWidth="450"
@@ -55,7 +57,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>LineChart Properties</Header>
         <Content>
             <p>
