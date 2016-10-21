@@ -8,6 +8,7 @@
     <asp:TextBox ID="TextBox1" Width="150" runat="server" autocomplete="off" /><br />
     <asp:Label ID="TextBox1_HelpLabel" runat="server" /><br />
     <br />
+    <%--start highlighted block--%>
     <ajaxToolkit:PasswordStrength 
         ID="PasswordStrength1" 
         runat="server" 
@@ -27,6 +28,7 @@
         MinimumNumericCharacters="0"
         MinimumSymbolCharacters="0"
         RequiresUpperAndLowerCaseCharacters="false" />
+    <%--fihish highlighted block--%>
 
     Average Complexity, Bar Indicator<br />
     <asp:TextBox ID="TextBox2" Width="150" TextMode="Password" runat="server" autocomplete="off" /><br />

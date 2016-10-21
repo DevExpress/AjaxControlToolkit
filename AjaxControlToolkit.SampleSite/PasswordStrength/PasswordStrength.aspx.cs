@@ -8,6 +8,5 @@ using System.Web.UI.WebControls;
 public partial class PasswordStrength_PasswordStrength : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightControlMarkup(PasswordStrength1.ID, InfoBlock2);
     }
 }
