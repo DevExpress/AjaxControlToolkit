@@ -238,6 +238,7 @@
             <asp:ListItem>write</asp:ListItem>
             <asp:ListItem>writeln</asp:ListItem>
         </asp:BulletedList>
+        <%--start highlighted block--%>
         <ajaxToolkit:PagingBulletedListExtender
             ID="PagingBulletedListExtender1"
             runat="server"
@@ -248,6 +249,7 @@
             Separator=" - "
             SelectIndexCssClass="selectIndex"
             UnselectIndexCssClass="unselectIndex" />
+        <%--fihish highlighted block--%>
     </div>
     <input id="radioOption1" name="radioOption" type="radio" value="1" onclick="onChangeSelectOption()" />
     <label for="radioOption1">Index size 1</label>
