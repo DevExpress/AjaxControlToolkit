@@ -8,6 +8,5 @@ using System.Web.UI.WebControls;
 public partial class FilteredTextBox_FilteredTextBox : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightControlMarkup(FilteredTextBoxExtender3.ID, codeInfoBlock);
     }
 }

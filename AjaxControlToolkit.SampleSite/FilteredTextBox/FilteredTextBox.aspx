@@ -39,13 +39,14 @@
         TargetControlID="TextBox2"
         FilterType="LowercaseLetters" />
 
+    <%--start highlighted block--%>
     <ajaxToolkit:FilteredTextBoxExtender
         ID="FilteredTextBoxExtender3"
         runat="server"
         TargetControlID="TextBox3"
         FilterType="Custom, Numbers"
         ValidChars="+-=/*()." />
-
+    <%--fihish highlighted block--%>
     <ajaxToolkit:FilteredTextBoxExtender
         ID="FilteredTextBoxExtender4"
         runat="server"
@@ -66,7 +67,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>FilteredTextBox Properties</Header>
         <Content>
             <p>The math-symbols example above is initialized with this code:</p>
