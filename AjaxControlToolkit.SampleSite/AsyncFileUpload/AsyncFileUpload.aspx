@@ -33,7 +33,7 @@
     Click '<i>Select File</i>' for asynchronous uploading.
     <br />
     <br />
-
+    <%--start highlighted block--%>
     <ajaxToolkit:AsyncFileUpload
         ID="AsyncFileUpload1"
         runat="server" 
@@ -43,6 +43,7 @@
         UploaderStyle="Modern"
         UploadingBackColor="#CCFFFF" 
         ThrobberID="myThrobber" />
+    <%--fihish highlighted block--%>
     &nbsp;<asp:Label runat="server" ID="myThrobber" Style="display: none;"><img alt="" src="uploading.gif" /></asp:Label>
     <div><strong>The latest Server-side event:</strong></div>
     <asp:Label runat="server" Text="&nbsp;" ID="uploadResult" />
@@ -62,7 +63,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>AsyncFileUpload Events, Properties and Methods</Header>
         <Content>
             <p>
