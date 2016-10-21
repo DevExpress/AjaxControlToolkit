@@ -7,6 +7,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:CheckBox ID="CheckBox1" Checked="true" Text="I like ASP.NET" runat="server" /><br />
+            <%--start highlighted block--%>
             <ajaxToolkit:ToggleButtonExtender
                 ID="ToggleButtonExtender1"
                 runat="server"
@@ -19,7 +20,7 @@
                     ="It's really nice to hear from you that you like ASP.NET"
                 UncheckedImageAlternateText
                     ="I don't understand why you don't like ASP.NET" />
-
+            <%--fihish highlighted block--%>
             <asp:CheckBox ID="CheckBox2" Checked="true" Text='I like ASP.NET AJAX' runat="server" /><br />
             <br />
             <ajaxToolkit:ToggleButtonExtender ID="ToggleButtonExtender2" runat="server"
@@ -49,7 +50,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>ToggleButton Properties</Header>
         <Content>
             <p>
