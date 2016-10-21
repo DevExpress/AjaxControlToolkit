@@ -27,6 +27,5 @@ public partial class Twitter_Twitter : Page {
 
         MissingKeysPanel.Visible = !enableControl;
         DemoPanel.Visible = enableControl;
-        MarkupHighlighter.HighlightControlMarkup(Twitter1.ID, codeInfoBlock);
     }
 }

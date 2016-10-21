@@ -44,11 +44,13 @@
         <div>
             Displays status messages (tweets) for a Twitter account:
             <br /><br />
+            <%--start highlighted block--%>
             <ajaxToolkit:Twitter
                 ID="Twitter1"
                 Mode="Profile"
                 ScreenName="ScottGu"
                 runat="server" />
+            <%--fihish highlighted block--%>
             <br />
             <hr />
             Displays status messages (tweets) for a Twitter account using a custom LayoutTemplate and StatusTemplate:
@@ -118,7 +120,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" Collapsed="true" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server" Collapsed="true">
         <Header>Twitter Properties</Header>
         <Content>
             <div runat="server" id="codeBlock" />
