@@ -8,6 +8,7 @@
     <asp:UpdatePanel ID="up1" runat="server">
         <ContentTemplate>
             <div class="reorderListDemo">
+                <%--start highlighted block--%>
                 <ajaxToolkit:ReorderList ID="ReorderList1" runat="server"
                     PostBackOnReorder="false"
                     DataSourceID="ObjectDataSource1"
@@ -49,6 +50,7 @@
                         </div>
                     </InsertItemTemplate>
                 </ajaxToolkit:ReorderList>
+                <%--fihish highlighted block--%>
             </div>
 
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" DeleteMethod="Delete"
@@ -109,7 +111,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>ReorderList Properties</Header>
         <Content>
              <p>
