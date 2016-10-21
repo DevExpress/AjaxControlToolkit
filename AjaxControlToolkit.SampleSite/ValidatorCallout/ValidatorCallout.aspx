@@ -24,12 +24,13 @@
         ControlToValidate="NameTextBox"
         Display="None"
         ErrorMessage="<b>Required Field Missing</b><br />A name is required." />
+    <%--start highlighted block--%>
     <ajaxToolkit:ValidatorCalloutExtender
         runat="Server" 
         ID="NReqE"
         TargetControlID="NReq"
         HighlightCssClass="validatorCalloutHighlight" />
-
+    <%--fihish highlighted block--%>
     <asp:RequiredFieldValidator runat="server" ID="PNReq"
         ControlToValidate="PhoneNumberTextBox"
         Display="None"
@@ -70,7 +71,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>ValidatorCallout Properties</Header>
         <Content>
             <p>
