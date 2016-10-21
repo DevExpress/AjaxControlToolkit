@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 
 public partial class ModalPopup_ModalPopup : Page {
     protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightControlMarkup(ModalPopupExtender.ID, codeInfoBlock);
     }
 
     protected void showModalPopupServerOperatorButton_Click(object sender, EventArgs e) {

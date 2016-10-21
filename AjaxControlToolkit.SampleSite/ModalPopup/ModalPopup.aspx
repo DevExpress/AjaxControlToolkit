@@ -70,6 +70,7 @@
             </p>
         </div>
     </asp:Panel>
+    <%--start highlighted block--%>
     <ajaxToolkit:ModalPopupExtender
         ID="ModalPopupExtender" 
         runat="server" 
@@ -81,6 +82,7 @@
         CancelControlID="CancelButton" 
         DropShadow="true" 
         PopupDragHandleControlID="Panel3" />
+    <%--fihish highlighted block--%>
     <br />
     <br />
     <hr />
@@ -193,7 +195,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>ModalPopup Properties</Header>
         <Content>
             <p>
