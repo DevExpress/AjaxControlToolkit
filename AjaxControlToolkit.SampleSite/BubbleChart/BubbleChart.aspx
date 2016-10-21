@@ -5,6 +5,7 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <br />
+    <%--start highlighted block--%>
     <ajaxToolkit:BubbleChart
         ID="BubbleChart1" 
         runat="server" 
@@ -38,6 +39,7 @@
                 X="15" Y="58000" Data="5" BubbleColor="#669900" />
         </bubblechartvalues>
     </ajaxToolkit:BubbleChart>
+    <%--fihish highlighted block--%>
     <br />
 </asp:Content>
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
@@ -52,7 +54,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>BubbleChart Properties</Header>
         <Content>
             <p>
