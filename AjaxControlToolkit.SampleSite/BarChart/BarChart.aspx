@@ -7,6 +7,7 @@
     <br />
     <strong>Column Chart:</strong>
     <br />
+    <%--start highlighted block--%>
     <ajaxToolkit:BarChart
         ID="BarChart1" 
         runat="server" 
@@ -30,6 +31,7 @@
                 Data="49, 77, 95, 68, 70, 79" />
         </series>
     </ajaxToolkit:BarChart>
+    <%--fihish highlighted block--%>
     <br />
     <strong>StackedColumn Chart:</strong>
     <br />
@@ -85,7 +87,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>BarChart Properties</Header>
         <Content>
             <p>
