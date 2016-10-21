@@ -22,6 +22,7 @@
                     <tr>
                         <td style="width: 140px;">
                             <asp:TextBox ID="sliderOne" runat="server" AutoPostBack="true" Text="0" />
+                            <%--start highlighted block--%>
                             <ajaxToolkit:MultiHandleSliderExtender
                                 ID="multiHandleSliderExtenderOne" 
                                 runat="server"
@@ -34,6 +35,7 @@
                                 BoundControlID="lblSliderOne"
                                 TooltipText="{0}">
                             </ajaxToolkit:MultiHandleSliderExtender>
+                            <%--fihish highlighted block--%>
                         </td>
                         <td style="width: 15px"></td>
                         <td style="width: auto">
@@ -218,7 +220,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" Collapsed="true" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server" Collapsed="true">
         <Header>MultiHandleSlider Properties</Header>
         <Content>
             <p>

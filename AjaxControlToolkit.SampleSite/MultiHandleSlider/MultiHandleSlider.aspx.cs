@@ -7,6 +7,5 @@ using System.Web.UI.WebControls;
 
 public partial class MultiHandleSlider_MultiHandleSlider : System.Web.UI.Page {
     protected void Page_Load(object sender, EventArgs e) {
-        MarkupHighlighter.HighlightControlMarkup(multiHandleSliderExtenderOne.ID, codeInfoBlock);
     }
 }
