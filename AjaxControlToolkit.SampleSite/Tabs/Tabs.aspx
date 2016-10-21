@@ -44,6 +44,7 @@
         <br />
     <br />
     Toolkit User Profile:
+        <%--start highlighted block--%>
         <ajaxToolkit:TabContainer
             runat="server"
             ID="Tabs"
@@ -112,6 +113,7 @@
             <ajaxToolkit:TabPanel ID="PanelDP" HeaderText="Dynamic" DynamicServicePath="~/Tabs/Tabs.aspx" DynamicServiceMethod="GetHtml" DynamicContextKey="G" runat="server">
             </ajaxToolkit:TabPanel>
         </ajaxToolkit:TabContainer>
+        <%--fihish highlighted block--%>
     <br />
     <asp:CheckBox runat="server" ID="showComponents" Checked="true" Text=" Show Controls Owned"
         onclick="ToggleHidden(this.checked)" />
@@ -253,7 +255,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>Tabs Properties</Header>
         <Content>
             <p>

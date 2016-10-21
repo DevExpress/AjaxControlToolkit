@@ -11,7 +11,6 @@ public partial class Tabs_Tabs : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
         CurrentTab.Text = Tabs.ActiveTab.HeaderText;
-        MarkupHighlighter.HighlightControlMarkup(Tabs.ID, codeInfoBlock);
     }
 
     [WebMethod]
