@@ -54,7 +54,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>DragPanel Properties</Header>
         <Content>
             <p>
