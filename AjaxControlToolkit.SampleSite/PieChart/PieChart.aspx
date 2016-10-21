@@ -5,6 +5,7 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="DemoContent" runat="Server">
     <br />
+    <%--start highlighted block--%>
     <ajaxToolkit:PieChart 
         ID="pieChart1" 
         runat="server" 
@@ -29,6 +30,7 @@
                 Data="8" PieChartValueColor="#4508A2" />
         </PieChartValues>
     </ajaxToolkit:PieChart>
+    <%--fihish highlighted block--%>
     <br />
 </asp:Content>
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
@@ -43,7 +45,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>PieChart Properties</Header>
         <Content>
             <p>
