@@ -14,12 +14,14 @@
         <ContentTemplate>
 
             <asp:LinkButton ID="LinkButton" runat="server" OnClick="Button_Click">Click Me</asp:LinkButton>
+            <%--start highlighted block--%>
             <ajaxToolkit:ConfirmButtonExtender
                 ID="ConfirmButtonExtender1" 
                 runat="server"
                 TargetControlID="LinkButton"
                 ConfirmText="Are you sure you want to click the LinkButton?"
                 OnClientCancel="cancelClick" />
+            <%--fihish highlighted block--%>
             <br />
             <br />
             <asp:Button ID="Button" runat="server" Text="Click Me" OnClick="Button_Click" /><br />
@@ -56,7 +58,7 @@
             </p>
         </Content>
     </samples:InfoBlock>
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>ConfirmButton Properties</Header>
         <Content>
             <p>
