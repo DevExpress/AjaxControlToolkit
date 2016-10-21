@@ -12,7 +12,7 @@
             </div>
         </div>
     </asp:Panel>
-
+    <%--start highlighted block--%>
     <ajaxToolkit:RoundedCornersExtender
         ID="RoundedCornersExtender1" 
         runat="server"
@@ -20,7 +20,7 @@
         TargetControlID="Panel1"
         Radius="6"
         Corners="All" />
-
+    <%--fihish highlighted block--%>
     <div style="padding-top: 3px;">CornerRadius:</div>
     <div style="padding: 10px;">
         <input type="radio" id="radius0" name="radiusValues" value="0" onclick="$find('RoundedCornersBehavior1').set_Radius(this.value);" />
@@ -83,7 +83,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server">
         <Header>RoundedCorners Properties</Header>
         <Content>
             <p>The control above is initialized with this code.
