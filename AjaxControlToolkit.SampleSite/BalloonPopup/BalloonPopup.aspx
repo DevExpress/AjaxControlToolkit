@@ -15,6 +15,7 @@
     <asp:Panel ID="Panel2" runat="server">
         This Balloon Popup uses the Cloud style.
     </asp:Panel>
+    <%--start highlighted block--%>
     <ajaxToolkit:BalloonPopupExtender
         ID="PopupControlExtender2" 
         runat="server" 
@@ -26,6 +27,7 @@
         UseShadow="false" 
         DisplayOnClick="true" 
         DisplayOnFocus="true" />
+    <%--fihish highlighted block--%>
     <br /><br />
     <asp:HyperLink ID="link1" runat="server">Click Here to Show the Balloon Popup</asp:HyperLink>
     <br /><br />
@@ -77,7 +79,7 @@
         </Content>
     </samples:InfoBlock>
 
-    <samples:InfoBlock runat="server" Collapsed="false" ID="codeInfoBlock">
+    <samples:InfoBlock runat="server" Collapsed="false">
         <Header>BalloonPopupExtender Properties</Header>
         <Content>            
         <p>
