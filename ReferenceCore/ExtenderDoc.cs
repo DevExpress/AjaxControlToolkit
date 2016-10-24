@@ -29,18 +29,18 @@ namespace AjaxControlToolkit.Reference.Core {
             RenderTypeDescription(typeDoc.Summary);
             RenderTypeRemarks(typeDoc.Remarks);
 
-            RenderProperties(typeDoc.Properties);
-            RenderMethods(typeDoc.Methods, "Methods");
-            RenderEvents(typeDoc.Events);
+            RenderProperties(typeDoc.Properties.OrderBy(p => p.Name));
+            RenderMethods(typeDoc.Methods.OrderBy(m => m.Name), "Methods");
+            RenderEvents(typeDoc.Events.OrderBy(e => e.Name));
 
-            RenderClientProperties(typeDoc.ClientProperties);
-            RenderMethods(typeDoc.ClientMethods, "Client methods");
-            RenderClientEvents(typeDoc.ClientEvents);
+            RenderClientProperties(typeDoc.ClientProperties.OrderBy(p => p.Name));
+            RenderMethods(typeDoc.ClientMethods.OrderBy(m => m.Name), "Client methods");
+            RenderClientEvents(typeDoc.ClientEvents.OrderBy(e => e.Name));
 
-            RenderClientPropertiesExpanded(typeDoc.ClientProperties);
-            RenderMethodsExpanded(typeDoc.Methods, "Methods");
-            RenderMethodsExpanded(typeDoc.ClientMethods, "Client methods");
-            RenderClientEventsExpanded(typeDoc.ClientEvents);
+            RenderClientPropertiesExpanded(typeDoc.ClientProperties.OrderBy(p => p.Name));
+            RenderMethodsExpanded(typeDoc.Methods.OrderBy(m => m.Name), "Methods");
+            RenderMethodsExpanded(typeDoc.ClientMethods.OrderBy(m => m.Name), "Client methods");
+            RenderClientEventsExpanded(typeDoc.ClientEvents.OrderBy(e => e.Name));
 
             return _markupStringBuilder.ToString();
         }
