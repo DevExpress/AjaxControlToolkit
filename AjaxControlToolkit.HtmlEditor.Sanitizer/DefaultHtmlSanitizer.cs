@@ -132,7 +132,7 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
             if((c <= 31 && c != '\t' && c != '\n' && c != '\r') || (c >= 127 && c <= 159))
                 return "&#xfffd;"; // Let's entity encode this instead of returning it
             else
-                return String.Empty + c;
+                return c.ToString();
         }
     }
 
