@@ -128,28 +128,11 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
         }
 
         static string EncodeCharacterToHtmlEntityEscape(char c) {
-            string hex;
-            // check for alphnumeric characters
-            if(c < 0xFF) {
-                hex = GetEncodedChar(c);
-                if(hex == null)
-                    return String.Empty + c;
-            } else {
-                hex = ((int)(c)).ToString("X2");
-            }
-
             // check for illegal characters
-            if((c <= 0x1f && c != '\t' && c != '\n' && c != '\r') || (c >= 0x7f && c <= 0x9f))
-                hex = "fffd"; // Let's entity encode this instead of returning it
-
-            return "&#x" + hex + ";";
-        }
-
-        static string GetEncodedChar(int charCode) {
-            if(charCode >= 0x30 && charCode <= 0x39 || charCode >= 0x41 && charCode <= 0x5A || charCode >= 0x61 && charCode <= 0x7A)
-                return null;
+            if((c <= 31 && c != '\t' && c != '\n' && c != '\r') || (c >= 127 && c <= 159))
+                return "&#xfffd;"; // Let's entity encode this instead of returning it
             else
-                return charCode.ToString("X2");
+                return String.Empty + c;
         }
     }
 
