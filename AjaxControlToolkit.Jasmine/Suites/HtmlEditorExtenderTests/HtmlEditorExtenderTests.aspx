@@ -698,13 +698,13 @@
 
             it("handles ampersand inside an attribute correctly", function(done) {
                 var wrapper = new HtmlEditorWrapper(this.extender);
-                wrapper.setContent('<a href="http://www.codeplex.com?a=1&b=2">aaa</a>', "source");
+                wrapper.setContent('<a href="http://www.codeplex.com?a=1&amp;b=2">aaa</a>', "source");
 
                 var endRequestHandler = function() {
                     var extender = $find("<%= TargetExtender.ClientID %>"),
                         wrapper = new HtmlEditorWrapper(extender);
 
-                    expect(wrapper.currentState.editorContent("source")).toEqual('<a href="http://www.codeplex.com?a=1&b=2">aaa</a>');
+                    expect(wrapper.currentState.editorContent("source")).toEqual('<a href="http://www.codeplex.com?a=1&amp;b=2">aaa</a>');
 
                     Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
 
