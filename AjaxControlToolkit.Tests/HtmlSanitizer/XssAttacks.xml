@@ -134,13 +134,6 @@
     <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;ns&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;ns&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;ns&quot;&gt;O8.54&lt;/span&gt;]</browser>
   </attack>
   <attack>
-    <name>IMG Embedded commands 1</name>
-    <code>&lt;IMG SRC=&quot;http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode&quot;&gt;</code>
-    <desc>This works when the webpage where this is injected (like a web-board) is behind password protection and that password protection works with other commands on the same domain.  This can be used to delete users, add users (if the user who visits the page is an administrator), send credentials elsewhere, etc...  This is one of the lesser used but more useful XSS vectors.</desc>
-    <label>HTML Element Attacks</label>
-    <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>  
-  <attack>
     <name>IMG STYLE w/expression</name>
     <code>
       exp/*&lt;XSS STYLE=&apos;no\xss:noxss(&quot;*//*&quot;);
@@ -963,47 +956,6 @@
     <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
   </attack>
   <attack>
-    <name>IP Encoding</name>
-    <code>&lt;A HREF=&quot;http://66.102.7.147/&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>URL string evasion (assuming &quot;http://www.google.com/&quot; is programmatically disallowed).</desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>URL Encoding</name>
-    <code>&lt;A HREF=&quot;http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>URL string evasion (assuming &quot;http://www.google.com/&quot; is programmatically disallowed).</desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>Dword Encoding</name>
-    <code>&lt;A HREF=&quot;http://1113982867/&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>URL string evasion (assuming &quot;http://www.google.com/&quot; is programmatically disallowed).</desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>Hex Encoding</name>
-    <code>&lt;A HREF=&quot;http://0x42.0x0000066.0x7.0x93/&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>
-      URL string evasion (assuming &quot;http://www.google.com/&quot; is programmatically disallowed).
-      The total size of each number allowed is somewhere in the neighborhood of 240 total characters as you can see on the second digit, and since the hex number is between 0 and F the leading zero on the third hex digit is not required.
-    </desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>Octal Encoding</name>
-    <code>&lt;A HREF=&quot;http://0102.0146.0007.00000223/&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>
-      URL string evasion (assuming &quot;http://www.google.com/&quot; is programmatically disallowed).
-      Padding is allowed, although you must keep it above 4 total characters per class - as in class A, class B, etc...
-    </desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
     <name>Mixed Encoding</name>
     <code>&lt;A HREF=&quot;h&#x0A;tt&#09;p://6&amp;#09;6.000146.0x7.147/&quot;&gt;XSS&lt;/A&gt;</code>
     <desc>
@@ -1012,55 +964,7 @@
     </desc>
     <label>URL Obfuscation</label>
     <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>Protocol Resolution Bypass</name>
-    <code>&lt;A HREF=&quot;//www.google.com/&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>
-      URL string evasion (assuming &quot;http://www.google.com/&quot; is programmatically disallowed).
-      Protocol resolution bypass (// translates to http:// which saves a few more bytes). This is really handy when space is an issue too (two less characters can go a long way) and can easily bypass regex like &quot;(ht|f)tp(s)?://&quot; (thanks to Ozh (http://planetOzh.com/) for part of this one). You can also change the &quot;//&quot; to &quot;\\&quot;. You do need to keep the slashes in place, however, otherwise this will be interpreted as a relative path URL.
-    </desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>Firefox Lookups 1</name>
-    <code>&lt;A HREF=&quot;//google&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>Firefox uses Google&apos;s &quot;feeling lucky&quot; function to redirect the user to any keywords you type in. So if your exploitable page is the top for some random keyword (as you see here) you can use that feature against any Firefox user. This uses Firefox&apos;s &quot;keyword:&quot; protocol. You can concatenate several keywords by using something like the following &quot;keyword:XSS+RSnake&quot;</desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;ns&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;ns&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;ns&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>Firefox Lookups 2</name>
-    <code>&lt;A HREF=&quot;http://ha.ckers.org@google&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>This uses a very tiny trick that appears to work Firefox only, because if it&apos;s implementation of the &quot;feeling lucky&quot; function.  Unlike the next one this does not work in Opera because Opera believes that this is the old HTTP Basic Auth phishing attack, which it is not.  It&apos;s simply a malformed URL.  If you click okay on the dialogue it will work, but as a result of the erroneous dialogue box I am saying that this is not supported in Opera.</desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;ns&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;ns&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;ns&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>Firefox Lookups 3</name>
-    <code>&lt;A HREF=&quot;http://google:ha.ckers.org&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>This uses a malformed URL that appears to work in Firefox and Opera only, because if their implementation of the &quot;feeling lucky&quot; function.  Like all of the above it requires that you are #1 in Google for the keyword in question (in this case &quot;google&quot;).</desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;ns&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;ns&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>Removing Cnames</name>
-    <code>&lt;A HREF=&quot;http://google.com/&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>
-      URL string evasion (assuming &quot;http://www.google.com/&quot; is programmatically disallowed).
-      When combined with the above URL, removing &quot;www.&quot; will save an additional 4 bytes for a total byte savings of 9 for servers that have this set up properly.
-    </desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>Extra dot for Absolute DNS</name>
-    <code>&lt;A HREF=&quot;http://www.google.com./&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>URL string evasion (assuming &quot;http://www.google.com/&quot; is programmatically disallowed).</desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
+  </attack>    
   <attack>
     <name>JavaScript Link Location</name>
     <code>&lt;A HREF=&quot;javascript:document.location=&apos;http://www.google.com/&apos;&quot;&gt;XSS&lt;/A&gt;</code>
@@ -1070,12 +974,5 @@
     </desc>
     <label>URL Obfuscation</label>
     <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
-  <attack>
-    <name>Content Replace</name>
-    <code>&lt;A HREF=&quot;http://www.gohttp://www.google.com/ogle.com/&quot;&gt;XSS&lt;/A&gt;</code>
-    <desc>Content replace as an attack vector (assuming &quot;http://www.google.com/&quot; is programmatically replaced with null). I actually used a similar attack vector against a several separate real world XSS filters by using the conversion filter itself (like http://quickwired.com/kallahar/smallprojects/php_xss_filter_function.php) to help create the attack vector (&quot;java&amp;#x26;#x09;script:&quot; was converted into &quot;java&amp;#x09;script:&quot;.</desc>
-    <label>URL Obfuscation</label>
-    <browser>Browser support: [&lt;span class=&quot;s&quot;&gt;IE6.0&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;NS8.1-IE&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;NS8.1-G&lt;/span&gt;|&lt;span class=&quot;s&quot;&gt;FF1.5&lt;/span&gt;] [&lt;span class=&quot;s&quot;&gt;O8.54&lt;/span&gt;]</browser>
-  </attack>
+  </attack>  
 </xss>

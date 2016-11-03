@@ -634,7 +634,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             cssClasses: ['ajax__html_editor_extender_texteditor']
         }, this._container);
 
-        this._textbox._element.value = this._textbox._element.value.replace(/&#x26;amp&#x3B;/g, '&#x26;');
+        this._textbox._element.value = this._textbox._element.value.replace(/&amp;/g, '&');
         this._editableDiv.innerHTML = this._textbox._element.value;
         this._oldContents = this._editableDiv.innerHTML;
 

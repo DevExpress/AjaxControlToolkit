@@ -676,6 +676,46 @@
                 $("#SubmitButton").click();
             });
 
+            it("handles ampersand outside an attribute correctly", function(done) {
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent("&");
+
+                var endRequestHandler = function() {
+                    var extender = $find("<%= TargetExtender.ClientID %>"),
+                        wrapper = new HtmlEditorWrapper(extender);
+
+                    expect(wrapper.currentState.editorContent()).toEqual("&");
+
+                    Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
+
+                    done();
+                };
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+
+                $("#SubmitButton").click();
+            });
+
+            it("handles ampersand inside an attribute correctly", function(done) {
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent('<a href="http://www.codeplex.com?a=1&amp;b=2">aaa</a>', "source");
+
+                var endRequestHandler = function() {
+                    var extender = $find("<%= TargetExtender.ClientID %>"),
+                        wrapper = new HtmlEditorWrapper(extender);
+
+                    expect(wrapper.currentState.editorContent("source")).toEqual('<a href="http://www.codeplex.com?a=1&amp;b=2">aaa</a>');
+
+                    Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
+
+                    done();
+                };
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+
+                $("#SubmitButton").click();
+            });
+
             it("removes all link href attribute value with javascript code after postback", function(done) {
                 var wrapper = new HtmlEditorWrapper(this.extenderSanitized);
                 wrapper.switchTab("source").setContent("<a href='javascript:alert(\"hello world\");'>test link</a>");
