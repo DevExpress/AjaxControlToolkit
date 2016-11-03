@@ -117,6 +117,7 @@ namespace AjaxControlToolkit.HtmlEditor.Sanitizer {
             }
 
             attribute.Value = HttpUtility.HtmlEncode(attribute.Value);
+            attribute.Value = attribute.Value.Replace("&amp;", "&");
 
             // HtmlEntity Escape
             var sbAttriuteValue = new StringBuilder();
