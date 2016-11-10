@@ -58,40 +58,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>FilteredTextBox Description</Header>
         <Content>
-            <p>
-                FilteredTextBox is an extender which prevents a user from entering invalid characters
-                into a text box.  Note that since this effect can be avoided by deactivating JavaScript, 
-                you should use this extender as a convenience for your users, but you must never expect
-                that the data being sent to the server consists of "valid" chars only.
-            </p>
+            <div runat="server" ControlType="FilteredTextBoxExtender" ContentType="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>FilteredTextBox Properties</Header>
         <Content>
-            <p>The math-symbols example above is initialized with this code:</p>
-            <pre>
-&lt;ajaxToolkit:FilteredTextBoxExtender ID="ftbe" runat="server"
-    TargetControlID="TextBox3"
-    FilterType="Custom, Numbers"
-    <em>ValidChars</em>="+-=/*()." /&gt;
-        </pre>
-        <ul>
-            <li><strong>TargetControlID</strong> - The ID of the text box for this extender to operate on</li>
-            <li><strong>FilterType</strong> - A the type of filter to apply, as a comma-separated combination of
-                <b>Numbers</b>, <b>LowercaseLetters</b>, <b>UppercaseLetters</b>, and <b>Custom</b>.  If Custom is
-                specified, the ValidChars field will be used in addition to other settings such as Numbers.</li>
-            <li><strong>FilterMode</strong> - A the filter mode to apply, either <b>ValidChars</b> (default) or 
-                <b>InvalidChars</b>. If set to InvalidChars, FilterType must be set to Custom; if set to ValidChars,
-                FilterType must contain Custom.</li>
-            <li><strong>ValidChars</strong> - A string consisting of all characters considered valid for the text
-                field, if "Custom" is specified as the filter type.  Otherwise this parameter is ignored.</li>
-            <li><strong>InvalidChars</strong> - A string consisting of all characters considered invalid for the text
-                field, if "Custom" is specified as the filter type and "InvalidChars" as the filter mode.  
-                Otherwise this parameter is ignored.</li>
-            <li><strong>FilterInterval</strong> - An integer containing the interval (in milliseconds) in which 
-                the field's contents are filtered, defaults to 250.</li>
-        </ul>
+            <div runat="server" ControlType="FilteredTextBoxExtender" ContentType="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>
