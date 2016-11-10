@@ -7,16 +7,30 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
     public class HtmlDocRenderer {
         
-        public string RenderList(IEnumerable<DocBase> members) {
+        public string RenderMembers(TypeDoc doc) {
             var sb = new StringBuilder();
+
+            RenderList(sb, doc.Properties, "Properties");
+            RenderNewLine(sb);
+            RenderList(sb, doc.Methods, "Methods");
+            RenderNewLine(sb);
+            RenderList(sb, doc.Events, "Events");
+
+            return sb.ToString();
+        }
+
+        void RenderNewLine(StringBuilder sb) {
+            sb.Append("<br />");
+        }
+
+        void RenderList(StringBuilder sb, IEnumerable<DocBase> members, string header) {
+            sb.Append(RenderBold(header));
             sb.Append("<ul>");
 
             foreach(var member in members)
                 RenderListItem(sb, member);
 
             sb.Append("</ul>");
-
-            return sb.ToString();
         }
 
         void RenderListItem(StringBuilder sb, DocBase member) {

@@ -107,9 +107,9 @@
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
-        <Header>Accordion Properties</Header>
+        <Header>Accordion Members</Header>
         <Content>
-            <div runat="server" ControlType="Accordion" ContentType="properties" />
+            <div runat="server" ControlType="Accordion" ContentType="members" />
         </Content>
     </samples:InfoBlock>
 

@@ -23,13 +23,13 @@ namespace AjaxControlToolkit.WikiReferenceUpdater {
 
                 var htmlDescripton = new HtmlDocRenderer().RenderDescription(doc.Types.FirstOrDefault().Summary);
                 SaveHtmlDescription(typeName, htmlDescripton);
-                var htmlProperties = new HtmlDocRenderer().RenderList(doc.Types.FirstOrDefault().Properties);
+                var htmlProperties = new HtmlDocRenderer().RenderMembers(doc.Types.FirstOrDefault());
                 SaveHtmlProperties(typeName, htmlProperties);
             }
         }
 
         static void SaveHtmlProperties(string typeName, string html) {
-            var path = Path.Combine(GetHtmlFileFolder(), typeName + ".Properties.html");
+            var path = Path.Combine(GetHtmlFileFolder(), typeName + ".Members.html");
             File.WriteAllText(path, html);
         }
 
