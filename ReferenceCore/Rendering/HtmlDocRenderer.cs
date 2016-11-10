@@ -15,7 +15,7 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
             if(doc.Methods.Any()) {
                 RenderNewLine(sb);
-                RenderList(sb, doc.Methods.OrderBy(m => m.Name), "Methods");
+                RenderList(sb, doc.Methods.OrderBy(m => m.Name), "Methods", ExtenderDoc.BuildMethodSignature);
             }
 
             if(doc.Events.Any()) {
@@ -30,19 +30,20 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             sb.Append("<br />");
         }
 
-        void RenderList(StringBuilder sb, IEnumerable<DocBase> members, string header) {
+        void RenderList(StringBuilder sb, IEnumerable<DocBase> members, string header, Func<DocBase, string> memberNameTransform = null) {
             sb.Append(RenderBold(header));
             sb.Append("<ul>");
 
             foreach(var member in members)
-                RenderListItem(sb, member);
+                RenderListItem(sb, member, memberNameTransform);
 
             sb.Append("</ul>");
         }
 
-        void RenderListItem(StringBuilder sb, DocBase member) {
+        void RenderListItem(StringBuilder sb, DocBase member, Func<DocBase, string> memberNameTransform = null) {
             sb.Append("<li>");
-            sb.Append(RenderBold(member.Name));
+            var memberName = memberNameTransform == null ? member.Name : memberNameTransform(member);
+            sb.Append(RenderBold(memberName));
             sb.Append(" - ");
             sb.Append(member.Summary);
             sb.Append("</li>");

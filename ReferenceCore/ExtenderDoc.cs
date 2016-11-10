@@ -198,7 +198,7 @@ namespace AjaxControlToolkit.Reference.Core {
             RenderTable(methods, headerText, (methodDoc) => BuildMethodSignature(methodDoc), true, false);
         }
 
-        private string BuildMethodSignature(DocBase docBase) {
+        public static string BuildMethodSignature(DocBase docBase) {
             if(!(docBase is MethodDoc))
                 return docBase.Name;
 
