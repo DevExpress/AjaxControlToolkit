@@ -111,80 +111,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>HoverMenu Description</Header>
         <Content>
-            <p>
-                HoverMenu is an ASP.NET AJAX extender that can be attached to any ASP.NET WebControl, and will
-            associate that control with a popup panel do display additional content.  When the user moves
-            the mouse cursor over the main control two things happen:
-            </p>
-            <ol>
-                <li>The popup panel is displayed at a position specified by the page developer (at the left, right,
-                top, or bottom of the main control)</li>
-                <li>Optionally, a CSS style is applied to the control
-                to specify it as "hot"</li>
-            </ol>
-            <p>
-                In the sample above, an ASP.NET GridView is populated with data from a database.  In each row of
-            the GridView, a HoverMenu associates the content of the row with a Panel containing links that
-            operate on that row.
-            </p>
-            <br />
-            <p>
-                Mouse over the GridView above to see this behavior.  Upon choosing "Edit", the row will go into
-            edit mode, and you'll notice the menu will appear to the right of the content, demonstrating the
-            ability to choose the popup position.
-            </p>
+            <div runat="server" ControlType="HoverMenuExtender" ContentType="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>HoverMenu Properties</Header>
         <Content>
-            <p>
-                Each row of the GridView above contains a HoverMenu which is initialized with this code.
-            The <em>italic</em> properties are optional:
-            </p>
-            <pre>&lt;ajaxToolkit:HoverMenuExtender ID="hme2" runat="Server"
-    TargetControlID="Panel9"
-    PopupControlID="PopupMenu"
-    <em>HoverCssClass="popupHover"
-    PopupPosition="Left"
-    OffsetX="0"
-    OffsetY="0"
-    PopDelay="50"</em> /&gt;</pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The control that the extender is targeting.
-                When the mouse cursor is over this control, the hover menu popup will be displayed.</li>
-                <li><strong>PopupControlID</strong> - The ID of the control to display when mouse is
-                over the target control.  In this case, it's just a simple panel with two links:
-                    <pre>&lt;asp:Panel CssClass="popupMenu" ID="PopupMenu" 
-        runat="server"&gt;
-        &lt;asp:LinkButton ID="LinkButton1" runat="server" 
-            CommandName="Edit" Text="Edit" /&gt;
-        &lt;br /&gt;
-        &lt;asp:LinkButton ID="LinkButton2" runat="server" 
-            CommandName="Delete" Text="Delete" /&gt;
-    &lt;/asp:Panel&gt;</pre>
-                </li>
-                <li><strong>HoverCssClass</strong> - The CSS class to apply to the target when the hover
-                menu popup is visible.</li>
-                <li><strong>PopupPostion</strong> - Where the popup should be positioned relative to
-                the target control. Can be Left (Default), Right, Top, Bottom, Center.</li>
-                <li><strong>OffsetX/OffsetY</strong> - The number of pixels to offset the Popup from
-                it's default position, as specified by PopupPosition. So if you want it to
-                popup to the left of the target and have a 5px space between the popup and the target,
-                the value should be "-5".</li>
-                <li><strong>HoverDelay</strong> - The time, in milliseconds, before the popup displays after hovering over the target control.  Default is 0.</li>
-                <li><strong>PopDelay</strong> - The time, in milliseconds, for the popup to remain visible after the mouse moves away from the target control. Default is 100.</li>
-                <li><strong>Animations</strong> - Generic animations for the HoverMenu extender.  See the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a> for more details.
-                <ul>
-                    <li><strong>OnShow</strong> - The OnShow animation will be played each time the hover menu is displayed.
-                        The hover menu will be positioned correctly but hidden.  The animation can use
-                        <span class="codeReference">&lt;HideAction Visible="true" /&gt;</span> to display the hover
-                        menu along with any other visual effects.</li>
-                    <li><strong>OnHide</strong> - The OnHide animation will be played each time the hover menu is hidden.</li>
-                </ul>
-                </li>
-            </ul>
+            <div runat="server" ControlType="HoverMenuExtender" ContentType="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>
