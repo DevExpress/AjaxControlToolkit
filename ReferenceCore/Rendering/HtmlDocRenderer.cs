@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Web;
 
@@ -11,10 +12,16 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             var sb = new StringBuilder();
 
             RenderList(sb, doc.Properties, "Properties");
-            RenderNewLine(sb);
-            RenderList(sb, doc.Methods, "Methods");
-            RenderNewLine(sb);
-            RenderList(sb, doc.Events, "Events");
+
+            if(doc.Methods.Any()) {
+                RenderNewLine(sb);
+                RenderList(sb, doc.Methods, "Methods");
+            }
+
+            if(doc.Events.Any()) {
+                RenderNewLine(sb);
+                RenderList(sb, doc.Events, "Events");
+            }
 
             return sb.ToString();
         }
