@@ -23,51 +23,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>PieChart Description</Header>
         <Content>
-            <p>
-                The PieChart control enables you to render a pie chart from one or more PieChartValues.
-                This control is compatible with any browser which supports SVG including Internet
-                Explorer 9 and above.
-            </p>
+            <div runat="server" ControlType="PieChart" ContentType="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>PieChart Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:PieChart ID=&quot;pieChart1&quot; runat=&quot;server&quot; <em>ChartHeight</em>=&quot;300&quot; 
-<em>ChartWidth</em>=&quot;450&quot; <em>ChartTitle</em>=&quot;Widget Production in the world&quot; 
-<em>ChartTitleColor</em>=&quot;#0E426C&quot;&gt; 
-&lt;PieChartValues&gt;
-    &lt;ajaxToolkit:PieChartValue Category=&quot;United States&quot; Data=&quot;45&quot; 
-    <em>PieChartValueColor</em>=&quot;#6C1E83&quot; <em>PieChartValueStrokeColor</em>=&quot;black&quot; /&gt;
-    &lt;ajaxToolkit:PieChartValue Category=&quot;Europe&quot; Data=&quot;25&quot; 
-    <em>PieChartValueColor</em>=&quot;#D08AD9&quot; <em>PieChartValueStrokeColor</em>=&quot;black&quot; /&gt;
-    &lt;ajaxToolkit:PieChartValue Category=&quot;Asia&quot; Data=&quot;17&quot; 
-    <em>PieChartValueColor</em>=&quot;#6586A7&quot; <em>PieChartValueStrokeColor</em>=&quot;black&quot; /&gt;
-    &lt;ajaxToolkit:PieChartValue Category=&quot;Australia&quot; Data=&quot;13&quot; 
-    <em>PieChartValueColor</em>=&quot;#0E426C&quot; <em>PieChartValueStrokeColor</em>=&quot;black&quot; /&gt;
-&lt;/PieChartValues&gt;
-&lt;/ajaxToolkit:PieChart &gt;
-        </pre>
-            <strong>PieChart Properties</strong>
-            <ul>
-                <li><strong>ChartHeight</strong> - This property enables you to customize the height of the chart.</li>
-                <li><strong>ChartWidth</strong> - This property enables you to customize the width of the chart.</li>
-                <li><strong>ChartTitle</strong> - This property enables you to set the title of the chart.</li>
-                <li><strong>ChartTitleColor</strong> - This property enables you to set the font color of the chart title.</li>
-            </ul>
-            <br />
-            <strong>PieChartValue Properties:</strong>
-            <ul>
-                <li><strong>Category</strong> - This property is required and provides name for a particular PieChartValue.</li>
-                <li><strong>Data</strong> - This property is required and provides Data for a particular PieChartValue.</li>
-                <li><strong>PieChartValueColor</strong> - This property enables you to set the color of segment for a particular PieChartValue.</li>
-                <li><strong>PieChartValueStrokeColor</strong> - This property enables you to set the stroke color of segment for a particular PieChartValue.</li>
-            </ul>
+            <div runat="server" ControlType="PieChart" ContentType="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>
