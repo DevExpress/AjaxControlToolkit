@@ -45,41 +45,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ConfirmButton Description</Header>
         <Content>
-            <p>
-                ConfirmButton is a simple extender that catches clicks on a button (or any instance of a type 
-                derived from Button) and displays a message to the user. If the "OK" button is clicked, the 
-                button or link functions normally. If not, the click is trapped and the button will not perform 
-                its default submit behavior; optionally, a client script is executed if the OnClientCancel property 
-                is set. This is useful for delete links or anything else that requires confirmation from the user.
-            </p>
+            <div runat="server" ControlType="ConfirmButtonExtender" ContentType="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>ConfirmButton Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-            are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:ConfirmButtonExtender ID="cbe" runat="server"
-    TargetControlID="LinkButton1"
-    ConfirmText="Are you sure you want to click this?"
-    <em>OnClientCancel</em>="CancelClick" /&gt;
-            </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the button or link for this extender to operate on.</li>
-                <li><strong>ConfirmText</strong> - The text to show when you want to confirm the click. (Note: HTML entities can be used here (ex: "&amp;#10;" for new-line))</li>
-                <li><strong>OnClientCancel</strong> - The client-side script that executes when the cancel button is clicked in the confirm dialog.</li>
-                <li><strong>ConfirmOnFormSubmit</strong> - True if the confirm dialog should wait until just before the form submits to display. This is useful when ASP.NET validators are in use and the confirm should be shown only after all validators pass.</li>
-                <li><strong>DisplayModalPopupID</strong> - Optionally specifies the ID of a ModalPopup control to use for displaying the confirmation dialog (instead of window.confirm). When using DisplayModalPopupID, the following conditions must be met:
-                <ul>
-                    <li>The ModalPopup must be configured to work against the same TargetControlID as the ConfirmButton (and should work properly if the ConfirmButton is disabled).</li>
-                    <li>The ModalPopup must specify OkControlID and/or CancelControlID to identify the buttons corresponding to window.confirm's OK/Cancel buttons.</li>
-                    <li>The ModalPopup must not specify OnOkScript or OnCancelScript.</li>
-                </ul>
-                </li>
-            </ul>
+            <div runat="server" ControlType="ConfirmButtonExtender" ContentType="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>
