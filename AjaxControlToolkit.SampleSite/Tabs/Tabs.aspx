@@ -218,104 +218,21 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Tabs Description</Header>
         <Content>
-            <p>
-                TabContainer is an ASP.NET AJAX Control which creates a set of Tabs that can be
-                used to organize page content. A TabContainer is a host for a number of TabPanel
-                controls.
-                <br />
-                <br />
-                Each TabPanel defines its HeaderText or HeaderTemplate as well as a ContentTemplate
-                that defines its content. The most recent tab should remain selected after a postback,
-                and the Enabled state of tabs should remain after a postback as well.
-                <br />
-                <br />
-                TabContainer layout provides option to set TabPanels at top, topright, bottom, bottomright.
-                TabContainer also provides option to set TabPanels at left, leftbottom, right and
-                rightbottom by setting UseVerticalStripPlacement to true.
-                <br />
-                <br />
-                Tabs can be loaded all at one time or on demand. Each tab provides functionality
-                to load tab in three different modes - always, once or none. 
-                <br />
-                <br />
-                Tab can be accessed by keyboard. After focus is set on the tab container then you can navigate to different
-                tabs by using the left and right arrow keys. When tabs are displayed vertically then Up and Down arrow keys can be 
-                used to navigate from tab to tab.
-            </p>
+            <div runat="server" ControlType="TabContainer" ContentType="description" />
+            <div runat="server" ControlType="TabPanel" ContentType="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>Tabs Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:TabContainer runat="server" 
-        <em>OnClientActiveTabChanged</em>="ClientFunction" 
-        <em>Height</em>="150px"
-        <em>Width</em>="400px"
-        <em>ActiveTabIndex</em>="1"
-        <em>OnDemand</em>="true"
-        <em>AutoPostBack</em>="false"
-        <em>TabStripPlacement</em>="Top"
-        <em>CssClass</em>=""
-        <em>CssTheme</em>="XP"
-        <em>ScrollBars</em>="None"
-        <em>UseVerticalStripPlacement</em>="true"
-        <em>VerticalStripWidth</em>="120px"&gt;        
-    &lt;ajaxToolkit:TabPanel runat="server" 
-        <em>HeaderText</em>="Signature and Bio"
-        <em>Enabled</em>="true"
-        <em>ScrollBars</em>="Auto"
-        <em>OnDemandMode</em>="Once"&gt;
-        &lt;ContentTemplate&gt;
-            ...
-        &lt;/ContentTemplate&gt;
-    &lt;/ajaxToolkit:TabPanel&gt;
-&lt;/ajaxToolkit:TabContainer&gt;
-            </pre>
-            <b>TabContainer Properties</b>
-            <ul>
-                <li><strong>ActiveTabChanged (Event)</strong> - Fired on the server side when a tab
-                    is changed after a postback</li>
-                <li><strong>OnClientActiveTabChanged</strong> - The name of a javascript function to
-                    attach to the client-side tabChanged event</li>
-                <li><strong>CssClass</strong> - A css class override used to define a custom look and
-                    feel for the tabs. See the Tabs Theming section for more details.</li>
-                <li><strong>ActiveTabIndex</strong> - The first tab to show</li>
-                <li><strong>Height</strong> - sets the height of the body of the tabs (does not include
-                    the TabPanel headers)</li>
-                <li><strong>Width</strong> - sets the width of the body of the tabs</li>
-                <li><strong>ScrollBars</strong> - Whether to display scrollbars (None, Horizontal, Vertical,
-                    Both, Auto) in the body of the TabContainer</li>
-                <li><strong>TabStripPlacement</strong> - Whether to render the tabs on top of the container
-                    or below (Top, Bottom) </li>
-                <li><strong>UseVerticalStripPlacement</strong> - Whether to render the tabs on left or right 
-                    of the container</li>
-                <li><strong>VerticalStripWidth</strong> - Width of the tab panels when displaying tabs 
-                vertically</li>
-                <li><strong>AutoPostBack</strong> - Make auto postback from the javascript when tab index changes.</li>
-                <li><strong>OnDemand</strong> - Whether to render/load tabs onDemand or all at page load</li>
-            </ul>
-            <b>TabPanel Properties</b>
-            <ul>
-                <li><strong>Enabled</strong> - Whether to display the Tab for the TabPanel by default.
-                    This can be changed on the client.</li>
-                <li><strong>OnClientClick</strong> - The name of a javascript function to attach to
-                    the client-side click event of the tab.</li>
-                <li><strong>HeaderText</strong> - The text to display in the Tab</li>
-                <li><strong>HeaderTemplate</strong> - A TemplateInstance.Single ITemplate to use to
-                    render the header</li>
-                <li><strong>ContentTemplate</strong> - A TemplateInstance.Single ITemplate to use to
-                    render the body</li>
-                <li><strong>Enabled</strong> - Make tab enable or not</li>
-                <li><strong>ScrollBars</strong> - Whether to display scrollbars (None, Horizontal, Vertical,
-                    Both, Auto) in the body of the TabPanel</li>
-                <li><strong>OnDemandMode</strong> - When container's onDemand is true then whether to load tab - 
-                Always, Once, None</li>
-            </ul>
+            <h2>TabContainer</h2>
+            <br />
+            <div runat="server" ControlType="TabContainer" ContentType="members" />
+            <br />
+            <h2>TabPanel</h2>
+            <br />
+            <div runat="server" ControlType="TabPanel" ContentType="members" />
         </Content>
     </samples:InfoBlock>
 
