@@ -46,63 +46,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Calendar Description</Header>
         <Content>
-            <p>
-                Calendar is an ASP.NET AJAX extender that can be attached to any ASP.NET TextBox
-                control. It provides client-side date-picking functionality with customizable date
-                format and UI in a popup control. You can interact with the calendar by clicking
-                on a day to set the date, or the "Today" link to set the current date.
-            </p>
-            <br />
-            <p>
-                In addition, the left and right arrows can be used to move forward or back a month.
-                By clicking on the title of the calendar you can change the view from Days in the
-                current month, to Months in the current year. Another click will switch to Years
-                in the current Decade. This action allows you to easily jump to dates in the past
-                or the future from within the calendar control.
-            </p>
-            <br />
-            <p>
-                The page uses the culture setting <strong><%= System.Globalization.CultureInfo.CurrentCulture.NativeName %></strong>
-                which was specified by the browser. The page properties have Culture="auto" and
-                UICulture="auto" set to enable the same. See this
-                <a href="http://msdn2.microsoft.com/en-us/library/bz9tc508.aspx">MSDN article</a>
-                for more information. The ScriptManager on this Calendar demo page has EnableScriptGlobalization="true"
-                and EnableScriptLocalization="true".
-            </p>
+            <div runat="server" ControlType="CalendarExtender" ContentType="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="true">
         <Header>Calendar Properties</Header>
         <Content>
-            <p>
-                The calendar associated with a button has been initialized with this code. The properties
-            in <em>italic</em> are optional:
-            </p>
-            <pre>&lt;ajaxToolkit:Calendar runat="server"
-    TargetControlID="Date1"
-    <em>CssClass</em>="ClassName"
-    <em>Format</em>="MMMM d, yyyy"
-    <em>PopupButtonID</em>="Image1" /&gt;</pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the TextBox to extend with the calendar.</li>
-                <li><strong>CssClass</strong> - Name of the CSS class used to style the calendar. See
-                the Calendar Theming section for more information.</li>
-                <li><strong>Format</strong> - <a href="http://msdn2.microsoft.com/en-us/library/bb79761a-ca08-44ee-b142-b06b3e2fc22b.aspx">Format string</a> used to display the selected date.</li>
-                <li><strong>PopupButtonID</strong> - The ID of a control to show the calendar popup
-                when clicked. If this value is not set, the calendar will pop up when the textbox
-                receives focus.</li>
-                <li><strong>PopupPosition</strong> - Indicates where the calendar popup should appear 
-                at the BottomLeft(default), BottomRight, TopLeft, TopRight, Left or Right of the TextBox.</li>
-                <li><strong>SelectedDate</strong> - Indicates the date the Calendar extender is 
-                initialized with.</li>
-                <li>
-                    <strong>StartDate</strong> - Indicates start date for range that available for selection.
-                </li>
-                <li>
-                    <strong>EndDate</strong> - Indicates end date for range that available for selection.
-                </li>
-            </ul>
+            <div runat="server" ControlType="CalendarExtender" ContentType="members" />
         </Content>
     </samples:InfoBlock>
 
