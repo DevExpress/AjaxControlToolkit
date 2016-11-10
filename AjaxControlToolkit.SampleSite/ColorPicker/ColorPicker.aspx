@@ -50,58 +50,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ColorPicker Description</Header>
         <Content>
-            <p>
-                ColorPicker is an ASP.NET AJAX extender that can be attached to any ASP.NET TextBox
-                control. It provides client-side color-picking functionality with UI in a popup control. 
-                You can interact with the color picker by clicking on a color to select the color. 
-                Optionally, a PopupButton control and a SampleControl can be provided which allows 
-                customizing ColorPicker's behavior.
-            </p>
-            <br />
-            <p>
-                In addition, if a custom color value is entered in a targeted TextBox then the sample control 
-                if it's used can demonstrate a custom color even if it's not in a color picker palette.
-            </p>
+            <div runat="server" ControlType="ColorPickerExtender" ContentType="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="true">
         <Header>ColorPicker Properties</Header>
         <Content>
-            <p>The first example of the color picker has been initialized with this code:</p>
-            <pre>&lt;ajaxToolkit:ColorPickerExtender runat="server" 
-    ID="ColorPickerExtender1"
-    TargetControlID="Color1"
-    OnClientColorSelectionChanged="colorChanged" /&gt;</pre>
-            <p>A <em>colorChanged</em> JavaScript function has been defined as following:</p>
-            <pre>function colorChanged(sender) {
-  sender.get_element().style.color = 
-       "#" + sender.get_selectedColor();
-}</pre>
-            <p>
-                The color picker associated with a button has been initialized with this code. The properties
-            in <em>italic</em> are optional:
-            </p>
-            <pre>&lt;ajaxToolkit:ColorPickerExtender runat="server"
-    TargetControlID="Color2"  
-    <em>PopupButtonID</em>="Image1"
-    <em>SampleControlID</em>="Sample1"
-    <em>SelectedColor</em>="33ffcc" /&gt;</pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the TextBox to extend with the color picker.</li>
-                <li><strong>PopupButtonID</strong> - The ID of a control to show the ColorPicker popup
-                when clicked. If this value is not set, the color picker will pop up when the textbox
-                receives focus.</li>
-                <li><strong>SampleControlID</strong> - The ID of a control to show the ColorPicker's selected color. 
-                If this value is set and the color picker popup is open the background color of the sample control 
-                will sample the hovered color. If this value is not set, the selected color is not shown.</li>
-                <li><strong>PopupPosition</strong> - Indicates where the color picker popup should appear 
-                at the BottomLeft(default), BottomRight, TopLeft, TopRight, Left or Right of the TextBox.</li>
-                <li><strong>SelectedColor</strong> - Indicates the color value the ColorPicker extender is 
-                initialized with.</li>
-                <li><strong>OnClientColorSelectionChanged</strong> - A client JavaScript function that will be called
-                when the <strong>colorSelectionChanged</strong> event is raised.</li>
-            </ul>
+            <div runat="server" ControlType="ColorPickerExtender" ContentType="members" />
         </Content>
     </samples:InfoBlock>
 
