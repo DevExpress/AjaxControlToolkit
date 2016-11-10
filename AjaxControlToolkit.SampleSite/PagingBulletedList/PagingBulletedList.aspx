@@ -263,41 +263,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>PagingBulletedList Description</Header>
         <Content>
-            <p>
-                PagingBulletedList is an ASP.NET AJAX extender that can be attached to an ASP.NET BulletedList
-                control and provide client-side sorted paging.  It is very flexible and lets you specify
-                either the number of characters used in the heading indices or the maximum number of items
-                to display per index.  If the input is not sorted (either on the server or client), it will
-                generated more header indices but still function appropriately.
-            </p>
+            <div runat="server" ControlType="PagingBulletedListExtender" ContentType="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>PagingBulletedList Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:PagingBulletedListExtender ID="PBLE1" runat="server"
-    TargetControlID="BulletedList1" 
-    <em>ClientSort</em>="true"
-    <em>IndexSize</em>="1"
-    <em>MaxItemPerPage</em>="20"
-    <em>Separator</em>=" - "
-    <em>SelectIndexCssClass</em>="selectIndex"
-    <em>UnselectIndexCssClass</em>="unSelectIndex" /&gt;
-            </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the BulletedList to page</li>
-                <li><strong>ClientSort</strong> - Whether or not the items should be sorted client-side</li>
-                <li><strong>IndexSize</strong> - Number of characters in the index headings (ignored if MaxItemPerPage is set)</li>
-                <li><strong>MaxItemPerPage</strong> - Maximum number of items per page (ignores the IndexSize property)</li>
-                <li><strong>Separator</strong> - Separator text to be placed between indices</li>
-                <li><strong>SelectIndexCssClass</strong> - CSS class for the selected index.</li>
-                <li><strong>UnselectIndexCssClass</strong> - CSS class for indices that aren't selected</li>
-            </ul>
+            <div runat="server" ControlType="PagingBulletedListExtender" ContentType="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>
