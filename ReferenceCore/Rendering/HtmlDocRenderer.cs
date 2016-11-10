@@ -7,20 +7,20 @@ using System.Web;
 namespace AjaxControlToolkit.Reference.Core.Rendering {
 
     public class HtmlDocRenderer {
-        
+
         public string RenderMembers(TypeDoc doc) {
             var sb = new StringBuilder();
 
-            RenderList(sb, doc.Properties, "Properties");
+            RenderList(sb, doc.Properties.OrderBy(p => p.Name), "Properties");
 
             if(doc.Methods.Any()) {
                 RenderNewLine(sb);
-                RenderList(sb, doc.Methods, "Methods");
+                RenderList(sb, doc.Methods.OrderBy(m => m.Name), "Methods");
             }
 
             if(doc.Events.Any()) {
                 RenderNewLine(sb);
-                RenderList(sb, doc.Events, "Events");
+                RenderList(sb, doc.Events.OrderBy(e => e.Name), "Events");
             }
 
             return sb.ToString();
