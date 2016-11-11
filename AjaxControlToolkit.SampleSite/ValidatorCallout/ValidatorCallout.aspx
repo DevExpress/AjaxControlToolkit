@@ -61,45 +61,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ValidatorCallout Description</Header>
         <Content>
-            <p>
-                ValidatorCallout is an ASP.NET AJAX extender that enhances the functionality of existing ASP.NET
-                validators.  To use this control, add an input field and a validator control as you normally would.
-                Then add the ValidatorCallout and set its TargetControlID property to reference the validator control.
-            </p>
+            <div runat="server" data-control-type="ValidatorCalloutExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>ValidatorCallout Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
-            </p>
-<pre>&lt;ajaxToolkit:ValidatorCalloutExtender 
-    runat="Server"
-    ID="PNReqE"
-    TargetControlID="PNReq" 
-    <em>Width</em>="350px"
-    <em>HighlightCssClass</em>="highlight" 
-    <em>CssClass</em>="CustomValidatorCalloutStyle"
-    <em>PopupPosition</em>="Right"
-    <em>WarningIconImageUrl</em>="warning.gif"
-    <em>CloseImageUrl</em>="close.gif" /&gt;</pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the Validator to extend</li>
-                <li><strong>Width</strong> - The width of the callout</li>
-                <li><strong>CssClass</strong> - Name of the CSS class used to style the ValidatorCallout. See the ValidatorCallout Theming section for more information. </li>
-                <li><strong>HighlightCssClass</strong> - A CssClass to apply to the invalid field</li>
-                <li><strong>WarningIconImageUrl</strong> - The path to a custom warning icon image</li>
-                <li><strong>CloseImageUrl</strong> - The path to a custom close image</li>
-                <li><strong>PopupPosition</strong> - Indicates where the ValidatorCallout popup should appear at the BottomLeft, BottomRight, TopLeft, TopRight, Left or Right (default) of the control to validate.</li>
-                <li><strong>Animations</strong> - Generic animations for the ValidatorCallout extender.  See the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a> for more details.
-                    <ul>
-                        <li><strong>OnShow</strong> - The OnShow animation will be played each time the validation popup is displayed.  The popup will be positioned correctly but hidden.  The animation can use <span class="codeReference">&lt;HideAction Visible="true" /&gt;</span> to display the popup along with any other visual effects.</li>
-                        <li><strong>OnHide</strong> - The OnHide animation will be played each time the validation popup is hidden.</li>
-                    </ul>
-                </li>
-            </ul>
+            <div runat="server" data-control-type="ValidatorCalloutExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server" Collapsed="false">

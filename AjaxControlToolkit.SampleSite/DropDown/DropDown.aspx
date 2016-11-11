@@ -44,37 +44,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>DropDown Description</Header>
         <Content>
-            <p>
-                DropDown is an ASP.NET AJAX extender that can be attached to almost any ASP.NET control to provide
-                a SharePoint-style drop-down menu.  The displayed menu is merely another panel or control.  In the
-                above sample the drop-down is a Panel which contains LinkButtons.  The drop-down is activated by left-
-                or right-clicking the attached control.  If the behavior is attached to a Hyperlink or LinkButton, 
-                clicking on the link itself will operate normally.
-            </p>
+            <div runat="server" data-control-type="DropDownExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>DropDown Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:DropDownExtender runat="server" ID="DDE"
-    TargetControlID="TextLabel" 
-    <em>DropDownControlID</em>="DropPanel" /&gt;
-            </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the control which needs a drop-down.</li>
-                <li><strong>DropDownControlID</strong> - The ID of the control which will be displayed as the dropdown.</li>
-                <li><strong>Animations</strong> - Generic animations for the DropDown extender.  See the <a href="https://ajaxcontroltoolkit.codeplex.com/wikipage?title=Animation%20Control%20Reference">Animation Reference</a> for more details.
-                <ul>
-                    <li><strong>OnShow</strong> - The OnShow animation will be played each time the dropdowns displayed.  The dropdown will be positioned correctly but hidden.  The animation can use <span class="codeReference">&lt;HideAction Visible="true" /&gt;</span> to display the dropdown along with any other visual effects.</li>
-                    <li><strong>OnHide</strong> - The OnHide animation will be played each time the dropdown is hidden.</li>
-                </ul>
-                </li>
-            </ul>
+            <div runat="server" data-control-type="DropDownExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

@@ -3,6 +3,7 @@ using AjaxControlToolkit.Reference.Core;
 using AjaxControlToolkit.Reference.Core.Rendering;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace AjaxControlToolkit.WikiReferenceUpdater {
     class Program {
@@ -19,7 +20,26 @@ namespace AjaxControlToolkit.WikiReferenceUpdater {
                 var markup = extenderDoc.BuildDoc(doc.Types);
                 var markdownFilePath = Path.Combine(wikiRepoPath, typeName.Replace("Extender", "") + ".md");
                 File.WriteAllText(markdownFilePath, markup);
+
+                var htmlDescripton = new HtmlDocRenderer().RenderDescription(doc.Types.FirstOrDefault().Summary);
+                SaveHtmlDescription(typeName, htmlDescripton);
+                var htmlProperties = new HtmlDocRenderer().RenderMembers(doc.Types.FirstOrDefault());
+                SaveHtmlProperties(typeName, htmlProperties);
             }
+        }
+
+        static void SaveHtmlProperties(string typeName, string html) {
+            var path = Path.Combine(GetHtmlFileFolder(), typeName + ".Members.html");
+            File.WriteAllText(path, html);
+        }
+
+        static void SaveHtmlDescription(string typeName, string html) {
+            var path = Path.Combine(GetHtmlFileFolder(), typeName + ".Description.html");
+            File.WriteAllText(path, html);
+        }
+
+        static string GetHtmlFileFolder() {
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\AjaxControlToolkit.SampleSite\App_Data\ControlReference");
         }
 
         static string GetScriptFolder() {

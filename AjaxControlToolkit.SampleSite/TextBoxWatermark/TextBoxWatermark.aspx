@@ -32,35 +32,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>TextBoxWatermark Description</Header>
         <Content>
-            <p>
-                TextBoxWatermark is an ASP.NET AJAX extender that can be attached to an ASP.NET TextBox
-                control to get "watermark" behavior.  When a watermarked TextBox is empty, it displays a
-                message to the user with a custom CSS style.  Once the user has typed some text into the
-                TextBox, the watermarked appearance goes away.  The typical purpose of a watermark is to
-                provide more information to the user about the TextBox itself without cluttering up the
-                rest of the page.
-            </p>
+            <div runat="server" data-control-type="TextBoxWatermarkExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>TextBoxWatermark Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:TextBoxWatermarkExtender ID="TBWE2" runat="server"
-    TargetControlID="TextBox1"
-    WatermarkText="Type First Name Here"
-    <em>WatermarkCssClass</em>="watermarked" /&gt;
-            </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the TextBox to operate on</li>
-                <li><strong>WatermarkText</strong> - The text to show when the control has no value</li>
-                <li><strong>WatermarkCssClass</strong> - The CSS class to apply to the TextBox when it has no value (e.g. the watermark text is shown).</li>
-            </ul>
+            <div runat="server" data-control-type="TextBoxWatermarkExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

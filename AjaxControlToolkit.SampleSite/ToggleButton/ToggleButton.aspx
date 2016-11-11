@@ -38,45 +38,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ToggleButton Description</Header>
         <Content>
-            <p>
-                ToggleButton is an ASP.NET AJAX extender that can be attached to an ASP.NET CheckBox control.
-                ToggleButton enables the use of custom images to show the state of the CheckBox.
-                The behavior of the CheckBox is unaffected.
-            </p>
+            <div runat="server" data-control-type="ToggleButtonExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>ToggleButton Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:ToggleButtonExtender ID="ToggleEx" runat="server"
-    TargetControlID="CheckBox1" 
-    ImageWidth="19" 
-    ImageHeight="19"
-    <em>CheckedImageAlternateText</em>="Check"
-    <em>UncheckedImageAlternateText</em>="UnCheck"
-    UncheckedImageUrl="ToggleButton_Unchecked.gif" 
-    CheckedImageUrl="ToggleButton_Checked.gif" /&gt;
-            </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the CheckBox to modify</li>
-                <li><strong>ImageHeight\ImageWidth</strong> - The height and width of the image</li>
-                <li><strong>CheckedImageUrl</strong> - the URL of the image to show when the toggle button is in the checked state.</li>
-                <li><strong>UncheckedImageUrl</strong> - the URL of the image to show when the toggle button is in the unchecked state. </li>
-                <li><strong>DisabledCheckedImageUrl</strong> - the URL of the image to show when the toggle button is disabled and in the checked state.</li>
-                <li><strong>DisabledUncheckedImageUrl</strong> - the URL of the image to show when the toggle button is disabled and in the unchecked state. </li>
-                <li><strong>CheckedImageOverUrl</strong> - the URL of the image to show when the toggle button is in the checked state and the mouse is over the button.</li>
-                <li><strong>UncheckedImageOverUrl</strong> - the URL of the image to show when the toggle button is in the unchecked state and the mouse is over the button.</li>
-                <li><strong>CheckedImageAlternateText</strong> - the alt text to show when the toggle button is in the checked state.</li>
-                <li><strong>UncheckedImageAlternateText</strong> - the alt text to show when the toggle button is in the unchecked state.</li>
-                <li><strong>CheckedImageOverAlternateText</strong> - the alt text to show when the toggle button is in the checked state and the mouse is over the button.</li>
-                <li><strong>UncheckedImageOverAlternateText</strong> - the alt text to show when the toggle button is in the unchecked state and the mouse is over the button.</li>
-                <li><strong>ImageHeight/ImageWidth</strong> - The height and width, respectively, of the image that will be displayed.</li>
-            </ul>
+            <div runat="server" data-control-type="ToggleButtonExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

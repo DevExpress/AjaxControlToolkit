@@ -63,40 +63,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>AlwaysVisibleControl Description</Header>
         <Content>
-            <p>
-                The AlwaysVisibleControl is a simple extender allowing you to pin controls to the page so that they
-                appear to float over the background body content when it is scrolled or resized.  It targets any ASP.NET
-                control and always keeps the position a specified distance from the desired horizontal and vertical sides.
-            </p>
-            <br />
-            <p>
-                To avoid having the control flash and move when the page loads, it is recommended that you absolutely
-                position the control in the desired location in addition to attaching the extender.
-            </p>
+           <div runat="server" data-control-type="AlwaysVisibleControlExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>AlwaysVisibleControl Properties</Header>
         <Content>
-            The always visible extender has been initialized with these properties. The properties
-            in <em>italics</em> are optional.<br /><br />
-            <pre>&lt;ajaxToolkit:AlwaysVisibleControlExtender ID="ace" runat="server"
-            TargetControlID="timer"
-            <em>VerticalSide</em>="Top"
-            <em>VerticalOffset</em>="10"
-            <em>HorizontalSide</em>="Right"
-            <em>HorizontalOffset</em>="10"
-            <em>ScrollEffectDuration</em>=".1"/&gt;</pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - ID of control for this extender to always make visible</li>
-                <li><strong>HorizontalOffset</strong> - Distance to the HorizontalSide edge of the browser in pixels from the same side of the target control.  The default is 0 pixels.</li>
-                <li><strong>HorizontalSide</strong> - Horizontal edge of the browser (either Left, Center, or Right) used to anchor the target control.  The default is Left.</li>
-                <li><strong>VerticalOffset</strong> - Distance to the VerticalSide edge of the browser in pixels from the same side of the target control.  The default is 0 pixels.</li>
-                <li><strong>VerticalSide</strong> - Vertical edge of the browser (either Top, , or Bottom) used to anchor the target control.  The default is Top.</li>
-                <li><strong>ScrollEffectDuration</strong> - Length in seconds of the scrolling effect to last when the target control is repositioned.  The default is .1 second.</li>
-                <li><strong>UseAnimation</strong> - Whether or not to animate the element into position.  The default is false.</li>
-            </ul>
+            <div runat="server" data-control-type="AlwaysVisibleControlExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

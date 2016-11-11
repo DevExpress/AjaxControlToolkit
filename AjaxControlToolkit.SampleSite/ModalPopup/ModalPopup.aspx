@@ -160,80 +160,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ModalPopup Description</Header>
         <Content>
-            <p>
-                The ModalPopup extender allows a page to display content to the user in a "modal"
-            manner which prevents the user from interacting with the rest of the page. The modal
-            content can be any hierarchy of controls and is displayed above a background that
-            can have a custom style applied to it. 
-            <br />
-                <br />
-                When displayed, only the modal content can 
-            be interacted with; clicking on the rest of the page does nothing. When the user
-            is done interacting with the modal content, a click of an OK/Cancel control dismisses
-            the modal content and optionally runs custom script. The custom script will typically
-            be used to apply whatever changes were made while the modal mode was active. If
-            a postback is required, simply allow the OK/Cancel control to postback and the page
-            to re-render. You can also absolutely position a modal popup by setting the X and
-            Y properties. By default it is centered on the page, however if just X or Y is specified
-            then it is centered vertically or horizontally.
-
-            <br />
-                <br />
-                You can provide OnShowing/OnShown/OnHiding/OnHidden animations which are played when the modal content is shown and hidden. For example, you can
-            use these animations to fade-in and fade-out modal content. 
-            </p>
+            <div runat="server" data-control-type="ModalPopupExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>ModalPopup Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The display on the modal popup
-            element is set to none to avoid a flicker on render. The <em>italic</em> properties
-            are optional:
-            </p>
-            <pre>&lt;ajaxToolkit:ModalPopupExtender ID="MPE" runat="server"
-    TargetControlID="LinkButton1"
-    PopupControlID="Panel1"
-    <em>BackgroundCssClass</em>="modalBackground" 
-    <em>DropShadow</em>="true" 
-    <em>OkControlID</em>="OkButton" 
-    <em>OnOkScript</em>="onOk()"
-    <em>CancelControlID</em>="CancelButton" 
-    <em>PopupDragHandleControlID</em>="Panel3" &gt;
-        &lt;Animations&gt;
-            &lt;OnShowing&gt; ..  &lt;/OnShowing&gt;
-            &lt;OnShown&gt;   ..  &lt;/OnShown&gt;    
-            &lt;OnHiding&gt;  ..  &lt;/OnHiding&gt;            
-            &lt;OnHidden&gt;  ..  &lt;/OnHidden&gt;            
-        &lt;/Animations&gt;
-    &lt;/ajaxToolkit:ModalPopupExtender&gt;
-    </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the element that activates the modal
-                popup</li>
-                <li><strong>PopupControlID</strong> - The ID of the element to display as a modal popup</li>
-                <li><strong>BackgroundCssClass</strong> - The CSS class to apply to the background when
-                the modal popup is displayed</li>
-                <li><strong>DropShadow</strong> - True to automatically add a drop-shadow to the modal
-                popup</li>
-                <li><strong>OkControlID</strong> - The ID of the element that dismisses the modal popup</li>
-                <li><strong>OnOkScript</strong> - Script to run when the modal popup is dismissed with
-                the OkControlID</li>
-                <li><strong>CancelControlID</strong> - The ID of the element that cancels the modal
-                popup</li>
-                <li><strong>OnCancelScript</strong> - Script to run when the modal popup is dismissed
-                with the CancelControlID</li>
-                <li><strong>PopupDragHandleControlID</strong> - The ID of the embedded element that
-                contains the popup header/title which will be used as a drag handle</li>
-                <li><strong>X</strong> - The X coordinate of the top/left corner of the modal popup
-                (the popup will be centered horizontally if not specified)</li>
-                <li><strong>Y</strong> - The Y coordinate of the top/left corner of the modal popup
-                (the popup will be centered vertically if not specified)</li>
-                <li><strong>RepositionMode</strong> - The setting that determines if the popup needs
-                to be repositioned when the window is resized or scrolled.</li>
-            </ul>
+            <div runat="server" data-control-type="ModalPopupExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

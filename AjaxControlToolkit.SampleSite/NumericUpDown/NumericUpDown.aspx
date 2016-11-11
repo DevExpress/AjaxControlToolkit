@@ -81,68 +81,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>NumericUpDown Description</Header>
         <Content>
-            <p>
-                NumericUpDown is an ASP.NET AJAX extender that can be attached to an ASP.NET TextBox control
-                to add "up" and "down" buttons that increment and decrement the value in the TextBox.  The
-                increment and decrement can be simple +1/-1 arithmetic, they can cycle through a provided list
-                of values (like the months of the year), or they can call a Web Service to determine the next
-                value.  Page authors can also provide custom images to be used instead of the default up/down
-                button graphics.
-            </p>
+            <div runat="server" data-control-type="NumericUpDownExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>NumericUpDown Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The <em>italic</em> properties
-                are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:NumericUpDownExtender ID="NUD1" runat="server"
-    TargetControlID="TextBox1" 
-    Width="100"
-    <em>RefValues</em>="January;February;March;April"
-    <em>TargetButtonDownID</em>="Button1"
-    <em>TargetButtonUpID</em>="Button2"
-    <em>ServiceDownPath</em>="WebService1.asmx"
-    <em>ServiceDownMethod</em>="PrevValue"
-    <em>ServiceUpPath</em>="WebService1.asmx"
-    <em>ServiceUpMethod</em>="NextValue"
-    <em>Tag</em>="1" /&gt;
-            </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the TextBox to modify</li>
-                <li><strong>Width</strong> - Combined size of the TextBox and Up/Down buttons (min value 25).
-                    This property is not used if you provide custom buttons.</li>
-                <li><strong>RefValues</strong> - A list of strings separated by semicolons (;) to be used as
-                    an enumeration by NumericUpDown</li>
-                <li><strong>Step</strong> - Step used for simple numeric incrementing and decrementing.
-                    The default value is 1.</li>
-                <li><strong>TargetButtonDownID/TargetButtonUpID</strong> - Reference to custom Up/Down buttons.</li>
-                <li><strong>ServiceDownPath/ServiceUpPath</strong> - Path to a web service that returns the
-                    data used to get the next or previous value.  This property should be left null if ServiceUpMethod
-                    or ServiceDownMethod refers to a page method.  The web service should be decorated with the
-                    System.Web.Script.Services.ScriptService attribute.</li>
-                <li><strong>ServiceDownMethod/ServiceUpMethod</strong> - Web service method that returns the data
-                    used to get the next or previous value, or the name of a method declared on the Page which is
-                    decorated with the WebMethodAttribute.  The signature of this method must match the following:
-            <pre>
-[System.Web.Services.WebMethod]
-[System.Web.Script.Services.ScriptMethod]
-public int NextValue(int current, string tag) { ... }
-            </pre>
-                    Note you can replace "NextValue" with a name of your choice, but the return type and parameter
-                    name and type must exactly match, including case.
-                </li>
-                <li><strong>Tag</strong> - Specifies a custom parameter to pass to the Web Service</li>
-                <li><strong>Minimum</strong> - The minimum value allowed by the extender. Currently,
-                it does not prevent out of range values from being entered into the textbox even if Minimum 
-                or Maximum are specified on the extender, but using the up/down buttons should bring the 
-                value into the allowed range when clicked.</li>
-                <li><strong>Maximum</strong> - The maximum value allowed by the extender.</li>
-            </ul>
+            <div runat="server" data-control-type="NumericUpDownExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

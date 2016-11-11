@@ -49,98 +49,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>HTMLEditorExtender Description</Header>
         <Content>
-            <p>
-                The HtmlEditorExtender is an ASP.NET AJAX Control that enables you to extend the
-                standard ASP.NET TextBox control with support for rich formatting. For example,
-                the HtmlEditorExtender enables users to apply bold, italic, underline, subscript,
-                superscript, and different foreground and background color to text.
-            </p>
-            <br />
-            <p>
-                The HtmlEditorExtender
-                control is very lightweight and takes advantage of HTML5. The new HtmlEditorExtender
-                is compatible with IE6 and newer, and the latest versions of Mozilla Firefox, Google
-                Chrome, and Apple Safari.
-            </p>
-            <br />
-            <p>
-                Furthermore, you can easily customize the
-                toolbar buttons displayed by the HtmlEditorExtender. For example, you can customize
-                the HtmlEditorExtender so that it displays only bold and italic buttons and no other
-                buttons. Same way you can display Add image button and take the advantage to upload
-                and insert images from the HtmlEditorExtender.
-            </p>
-            <p>
-                &nbsp;
-            </p>
-            <p>
-                By default user has to configure sanitizer provider in the web.config file as described 
-                in the below security section. If user does not want to use sanitizer provider
-                then user must set EnableSanitization property to false.
-            </p>
+            <div runat="server" data-control-type="HtmlEditorExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>HTMLEditorExtender Properties</Header>
         <Content>
-            <p>
-                The HtmlEditorExtender is initialized with this code. The <em>italic</em> properties
-                are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:HtmlEditorExtender ID=&quot;HtmlEditorExtender1&quot; 
-    TargetControlID=&quot;TextBox1&quot; DisplaySourceTab=&quot;true&quot; 
-    runat=&quot;server&quot;/&gt;<em>
-    &lt;Toolbar&gt; 
-        &lt;ajaxToolkit:Undo /&gt;
-        &lt;ajaxToolkit:Redo /&gt;
-        &lt;ajaxToolkit:Bold /&gt;
-        &lt;ajaxToolkit:Italic /&gt;
-        &lt;ajaxToolkit:Underline /&gt;
-        &lt;ajaxToolkit:StrikeThrough /&gt;
-        &lt;ajaxToolkit:Subscript /&gt;
-        &lt;ajaxToolkit:Superscript /&gt;
-        &lt;ajaxToolkit:JustifyLeft /&gt;
-        &lt;ajaxToolkit:JustifyCenter /&gt;
-        &lt;ajaxToolkit:JustifyRight /&gt;
-        &lt;ajaxToolkit:JustifyFull /&gt;
-        &lt;ajaxToolkit:InsertOrderedList /&gt;
-        &lt;ajaxToolkit:InsertUnorderedList /&gt;
-        &lt;ajaxToolkit:CreateLink /&gt;
-        &lt;ajaxToolkit:UnLink /&gt;
-        &lt;ajaxToolkit:RemoveFormat /&gt;
-        &lt;ajaxToolkit:SelectAll /&gt;
-        &lt;ajaxToolkit:UnSelect /&gt;
-        &lt;ajaxToolkit:Delete /&gt;
-        &lt;ajaxToolkit:Cut /&gt;
-        &lt;ajaxToolkit:Copy /&gt;
-        &lt;ajaxToolkit:Paste /&gt;
-        &lt;ajaxToolkit:BackgroundColorSelector /&gt;
-        &lt;ajaxToolkit:ForeColorSelector /&gt;
-        &lt;ajaxToolkit:FontNameSelector /&gt;
-        &lt;ajaxToolkit:FontSizeSelector /&gt;
-        &lt;ajaxToolkit:Indent /&gt;
-        &lt;ajaxToolkit:Outdent /&gt;
-        &lt;ajaxToolkit:InsertHorizontalRule /&gt;
-        &lt;ajaxToolkit:HorizontalSeparator /&gt;
-        &lt;ajaxToolkit:InsertImage /&gt;
-    &lt;/Toolbar&gt;</em>
-&lt;/ajaxToolkit:HtmlEditorExtender&gt;
-            </pre>
-            <b>Events</b>
-            <ul>
-                <li><strong>ImageUploadComplete</strong> - Raised on the server when an image is uploaded successfully. In this event an instance of AjaxFileUploadEventArgs is passed in the argument that contains file name, size and content type.</li>
-            </ul>
-            <br />
-            <b>Properties</b>
-            <ul>
-                <li><strong>TargetControlId</strong> - ID of textbox to extend with htmlEditor.</li>
-                <li><strong>Toolbar</strong> - This provides facility to customize toolbar as per requirement. This tag is optional and if user does not provide toolbar tag then by default all buttons will be populated in the toolbar. User must add at least 1 button in the toolbar tag.</li>
-                <li><strong>Sanitizer</strong> - Returns the Sanitizer or null when no Sanitizer is configured.</li>
-                <li><strong>DisplaySourceTab</strong> - Whether to display source tab to switch to Source view to see html contents.</li>
-                <li><strong>DisplayPreviewTab</strong> - Whether or not to display a preview tab/button providing access to HtmlEditorExtender’s preview.</li>
-                <li><strong>EnableSanitization</strong> - Whether to use sanitizer provider or not. By default value of this property is true.</li>
-            </ul>
+            <div runat="server" data-control-type="HtmlEditorExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server" Collapsed="false">
