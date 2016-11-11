@@ -33,14 +33,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Gravatar Description</Header>
         <Content>
-            <div runat="server" ControlType="Gravatar" ContentType="description" />
+            <div runat="server" data-control-type="Gravatar" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>Gravatar Properties</Header>
         <Content>
-            <div runat="server" ControlType="Gravatar" ContentType="members" />
+            <div runat="server" data-control-type="Gravatar" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

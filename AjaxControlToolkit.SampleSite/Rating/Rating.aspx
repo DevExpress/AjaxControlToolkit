@@ -52,14 +52,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Rating Description</Header>
         <Content>
-            <div runat="server" ControlType="Rating" ContentType="description" />
+            <div runat="server" data-control-type="Rating" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>Rating Properties</Header>
         <Content>
-            <div runat="server" ControlType="Rating" ContentType="members" />
+            <div runat="server" data-control-type="Rating" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

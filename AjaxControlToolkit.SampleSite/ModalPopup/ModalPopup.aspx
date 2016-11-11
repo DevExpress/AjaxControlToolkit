@@ -160,14 +160,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ModalPopup Description</Header>
         <Content>
-            <div runat="server" ControlType="ModalPopupExtender" ContentType="description" />
+            <div runat="server" data-control-type="ModalPopupExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>ModalPopup Properties</Header>
         <Content>
-            <div runat="server" ControlType="ModalPopupExtender" ContentType="members" />
+            <div runat="server" data-control-type="ModalPopupExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

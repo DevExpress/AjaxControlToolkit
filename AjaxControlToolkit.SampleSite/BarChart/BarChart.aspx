@@ -58,14 +58,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>BarChart Description</Header>
         <Content>
-            <div runat="server" ControlType="BarChart" ContentType="description" />
+            <div runat="server" data-control-type="BarChart" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>BarChart Properties</Header>
         <Content>
-            <div runat="server" ControlType="BarChart" ContentType="members" />
+            <div runat="server" data-control-type="BarChart" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

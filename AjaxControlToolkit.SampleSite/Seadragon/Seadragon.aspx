@@ -62,13 +62,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Seadragon Description</Header>
         <Content>
-            <div runat="server" ControlType="Seadragon" ContentType="description" />
+            <div runat="server" data-control-type="Seadragon" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>Seadragon Properties</Header>
         <Content>
-            <div runat="server" ControlType="Seadragon" ContentType="members" />
+            <div runat="server" data-control-type="Seadragon" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

@@ -95,14 +95,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>UpdatePanelAnimation Description</Header>
         <Content>
-            <div runat="server" ControlType="UpdatePanelAnimationExtender" ContentType="description" />
+            <div runat="server" data-control-type="UpdatePanelAnimationExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>UpdatePanelAnimation Properties</Header>
         <Content>
-            <div runat="server" ControlType="UpdatePanelAnimationExtender" ContentType="members" />
+            <div runat="server" data-control-type="UpdatePanelAnimationExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

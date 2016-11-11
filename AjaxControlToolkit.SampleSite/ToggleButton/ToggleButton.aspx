@@ -38,13 +38,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ToggleButton Description</Header>
         <Content>
-            <div runat="server" ControlType="ToggleButtonExtender" ContentType="description" />
+            <div runat="server" data-control-type="ToggleButtonExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>ToggleButton Properties</Header>
         <Content>
-            <div runat="server" ControlType="ToggleButtonExtender" ContentType="members" />
+            <div runat="server" data-control-type="ToggleButtonExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

@@ -84,14 +84,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ResizableControl Description</Header>
         <Content>
-            <div runat="server" ControlType="ResizableControlExtender" ContentType="description" />
+            <div runat="server" data-control-type="ResizableControlExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>ResizableControl Properties</Header>
         <Content>
-             <div runat="server" ControlType="ResizableControlExtender" ContentType="members" />
+             <div runat="server" data-control-type="ResizableControlExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

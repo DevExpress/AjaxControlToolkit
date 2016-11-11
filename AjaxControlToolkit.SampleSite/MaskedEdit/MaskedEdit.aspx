@@ -128,28 +128,28 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>MaskedEdit Description</Header>
         <Content>
-            <div runat="server" ControlType="MaskedEditExtender" ContentType="description" />
+            <div runat="server" data-control-type="MaskedEditExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>MaskedEdit Properties</Header>
         <Content>
-            <div runat="server" ControlType="MaskedEditExtender" ContentType="members" />
+            <div runat="server" data-control-type="MaskedEditExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>MaskedEdit Validator Description</Header>
         <Content>
-            <div runat="server" ControlType="MaskedEditValidator" ContentType="description" />
+            <div runat="server" data-control-type="MaskedEditValidator" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>MaskedEditValidator Properties</Header>
         <Content>
-        <div runat="server" ControlType="MaskedEditValidator" ContentType="members" />
+        <div runat="server" data-control-type="MaskedEditValidator" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

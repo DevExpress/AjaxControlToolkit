@@ -73,13 +73,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>AutoComplete Description</Header>
         <Content>
-            <div runat="server" ControlType="AutoCompleteExtender" ContentType="description" />
+            <div runat="server" data-control-type="AutoCompleteExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>AutoComplete Properties</Header>
         <Content>
-            <div runat="server" ControlType="AutoCompleteExtender" ContentType="members" />
+            <div runat="server" data-control-type="AutoCompleteExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

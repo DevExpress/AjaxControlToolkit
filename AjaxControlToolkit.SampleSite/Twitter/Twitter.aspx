@@ -94,14 +94,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Twitter Description</Header>
         <Content>
-            <div runat="server" ControlType="Twitter" ContentType="description" />
+            <div runat="server" data-control-type="Twitter" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="true">
         <Header>Twitter Properties</Header>
         <Content>
-            <div runat="server" ControlType="Twitter" ContentType="members" />
+            <div runat="server" data-control-type="Twitter" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

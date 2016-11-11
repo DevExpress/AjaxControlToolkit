@@ -218,8 +218,8 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Tabs Description</Header>
         <Content>
-            <div runat="server" ControlType="TabContainer" ContentType="description" />
-            <div runat="server" ControlType="TabPanel" ContentType="description" />
+            <div runat="server" data-control-type="TabContainer" data-content-type="description" />
+            <div runat="server" data-control-type="TabPanel" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
@@ -228,11 +228,11 @@
         <Content>
             <h2>TabContainer</h2>
             <br />
-            <div runat="server" ControlType="TabContainer" ContentType="members" />
+            <div runat="server" data-control-type="TabContainer" data-content-type="members" />
             <br />
             <h2>TabPanel</h2>
             <br />
-            <div runat="server" ControlType="TabPanel" ContentType="members" />
+            <div runat="server" data-control-type="TabPanel" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

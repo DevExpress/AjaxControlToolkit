@@ -33,13 +33,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ListSearchExtender Description</Header>
         <Content>
-            <div runat="server" ControlType="ListSearchExtender" ContentType="description" />
+            <div runat="server" data-control-type="ListSearchExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>ListSearchExtender Properties</Header>
         <Content>
-            <div runat="server" ControlType="ListSearchExtender" ContentType="members" />
+            <div runat="server" data-control-type="ListSearchExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server" Collapsed="false">

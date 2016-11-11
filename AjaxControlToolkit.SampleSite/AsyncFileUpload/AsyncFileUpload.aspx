@@ -50,14 +50,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>AsyncFileUpload Description</Header>
         <Content>
-            <div runat="server" ControlType="AsyncFileUpload" ContentType="description" />
+            <div runat="server" data-control-type="AsyncFileUpload" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>AsyncFileUpload Events, Properties and Methods</Header>
         <Content>
-            <div runat="server" ControlType="AsyncFileUpload" ContentType="members" />
+            <div runat="server" data-control-type="AsyncFileUpload" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

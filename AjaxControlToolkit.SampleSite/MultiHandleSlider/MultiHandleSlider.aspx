@@ -191,14 +191,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>MultiHandleSlider Description</Header>
         <Content>
-            <div runat="server" ControlType="MultiHandleSliderExtender" ContentType="description" />
+            <div runat="server" data-control-type="MultiHandleSliderExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="true">
         <Header>MultiHandleSlider Properties</Header>
         <Content>
-            <div runat="server" ControlType="MultiHandleSliderExtender" ContentType="members" />
+            <div runat="server" data-control-type="MultiHandleSliderExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

@@ -50,14 +50,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ColorPicker Description</Header>
         <Content>
-            <div runat="server" ControlType="ColorPickerExtender" ContentType="description" />
+            <div runat="server" data-control-type="ColorPickerExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="true">
         <Header>ColorPicker Properties</Header>
         <Content>
-            <div runat="server" ControlType="ColorPickerExtender" ContentType="members" />
+            <div runat="server" data-control-type="ColorPickerExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

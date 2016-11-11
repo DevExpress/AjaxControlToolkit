@@ -83,14 +83,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>DropShadow Description</Header>
         <Content>
-            <div runat="server" ControlType="DropShadowExtender" ContentType="description" />
+            <div runat="server" data-control-type="DropShadowExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>DropShadow Properties</Header>
         <Content>
-            <div runat="server" ControlType="DropShadowExtender" ContentType="members" />
+            <div runat="server" data-control-type="DropShadowExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

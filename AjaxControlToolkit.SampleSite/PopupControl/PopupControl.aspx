@@ -75,7 +75,7 @@
             PopupControl Description
         </Header>
         <Content>
-            <div runat="server" ControlType="PopupControlExtender" ContentType="description" />
+            <div runat="server" data-control-type="PopupControlExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
@@ -83,7 +83,7 @@
             PopupControl Properties
         </Header>
         <Content>
-            <div runat="server" ControlType="PopupControlExtender" ContentType="members" />
+            <div runat="server" data-control-type="PopupControlExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

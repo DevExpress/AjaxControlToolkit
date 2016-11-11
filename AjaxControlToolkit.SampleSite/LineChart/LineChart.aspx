@@ -32,14 +32,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>LineChart Description</Header>
         <Content>
-            <div runat="server" ControlType="LineChart" ContentType="description" />
+            <div runat="server" data-control-type="LineChart" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>LineChart Properties</Header>
         <Content>
-            <div runat="server" ControlType="LineChart" ContentType="members" />
+            <div runat="server" data-control-type="LineChart" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

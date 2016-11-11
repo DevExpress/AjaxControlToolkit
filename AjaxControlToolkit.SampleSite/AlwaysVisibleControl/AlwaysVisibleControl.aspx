@@ -63,14 +63,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>AlwaysVisibleControl Description</Header>
         <Content>
-           <div runat="server" ControlType="AlwaysVisibleControlExtender" ContentType="description" />
+           <div runat="server" data-control-type="AlwaysVisibleControlExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>AlwaysVisibleControl Properties</Header>
         <Content>
-            <div runat="server" ControlType="AlwaysVisibleControlExtender" ContentType="members" />
+            <div runat="server" data-control-type="AlwaysVisibleControlExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

@@ -81,14 +81,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>NumericUpDown Description</Header>
         <Content>
-            <div runat="server" ControlType="NumericUpDownExtender" ContentType="description" />
+            <div runat="server" data-control-type="NumericUpDownExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>NumericUpDown Properties</Header>
         <Content>
-            <div runat="server" ControlType="NumericUpDownExtender" ContentType="members" />
+            <div runat="server" data-control-type="NumericUpDownExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

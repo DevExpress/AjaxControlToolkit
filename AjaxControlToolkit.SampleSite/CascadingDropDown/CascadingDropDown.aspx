@@ -51,14 +51,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>CascadingDropDown Description</Header>
         <Content>
-            <div runat="server" ControlType="CascadingDropDown" ContentType="description" />
+            <div runat="server" data-control-type="CascadingDropDown" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>CascadingDropDown Properties</Header>
         <Content>
-             <div runat="server" ControlType="CascadingDropDown" ContentType="members" />
+             <div runat="server" data-control-type="CascadingDropDown" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

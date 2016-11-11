@@ -125,14 +125,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ComboBox Description</Header>
         <Content>
-            <div runat="server" ControlType="ComboBox" ContentType="description" />
+            <div runat="server" data-control-type="ComboBox" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="true">
         <Header>ComboBox Properties</Header>
         <Content>
-            <div runat="server" ControlType="ComboBox" ContentType="members" />
+            <div runat="server" data-control-type="ComboBox" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

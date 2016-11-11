@@ -61,13 +61,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ValidatorCallout Description</Header>
         <Content>
-            <div runat="server" ControlType="ValidatorCalloutExtender" ContentType="description" />
+            <div runat="server" data-control-type="ValidatorCalloutExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>ValidatorCallout Properties</Header>
         <Content>
-            <div runat="server" ControlType="ValidatorCalloutExtender" ContentType="members" />
+            <div runat="server" data-control-type="ValidatorCalloutExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server" Collapsed="false">

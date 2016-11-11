@@ -12,14 +12,14 @@ public partial class Layout : System.Web.UI.MasterPage {
     }
 
     protected void Page_Load(object sender, EventArgs e) {
-        var controlDocBlocks = GetControlsByType<HtmlGenericControl>(this).Where(c => c.Attributes["ControlType"] != null);
-        FillDescription(controlDocBlocks.Where(b => b.Attributes["ContentType"] == "description"));
-        FillProperties(controlDocBlocks.Where(b => b.Attributes["ContentType"] == "members"));
+        var controlDocBlocks = GetControlsByType<HtmlGenericControl>(this).Where(c => c.Attributes["data-control-type"] != null);
+        FillDescription(controlDocBlocks.Where(b => b.Attributes["data-content-type"] == "description"));
+        FillProperties(controlDocBlocks.Where(b => b.Attributes["data-content-type"] == "members"));
     }
 
     void FillProperties(IEnumerable<HtmlGenericControl> controlDocBlocks) {
         foreach(var block in controlDocBlocks) {
-            var filePath = Server.MapPath("~/App_Data/ControlReference/" + block.Attributes["ControlType"] + ".Members.html");
+            var filePath = Server.MapPath("~/App_Data/ControlReference/" + block.Attributes["data-control-type"] + ".Members.html");
             var text = File.ReadAllText(filePath);
             block.InnerHtml = text;
         }
@@ -27,7 +27,7 @@ public partial class Layout : System.Web.UI.MasterPage {
 
     void FillDescription(IEnumerable<HtmlGenericControl> controlDocBlocks) {
         foreach(var block in controlDocBlocks) {
-            var filePath = Server.MapPath("~/App_Data/ControlReference/" + block.Attributes["ControlType"] + ".Description.html");
+            var filePath = Server.MapPath("~/App_Data/ControlReference/" + block.Attributes["data-control-type"] + ".Description.html");
             var text = File.ReadAllText(filePath);
             block.InnerHtml = text;
         }

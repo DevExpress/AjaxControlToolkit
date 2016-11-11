@@ -132,14 +132,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Slider Description</Header>
         <Content>
-            <div runat="server" ControlType="SliderExtender" ContentType="description" />
+            <div runat="server" data-control-type="SliderExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>Slider Properties</Header>
         <Content>
-            <div runat="server" ControlType="SliderExtender" ContentType="members" />
+            <div runat="server" data-control-type="SliderExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

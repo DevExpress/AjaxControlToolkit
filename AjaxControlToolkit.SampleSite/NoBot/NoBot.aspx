@@ -50,14 +50,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>NoBot Description</Header>
         <Content>
-            <div runat="server" ControlType="NoBot" ContentType="description" />
+            <div runat="server" data-control-type="NoBot" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>NoBot Properties</Header>
         <Content>
-            <div runat="server" ControlType="NoBot" ContentType="members" />
+            <div runat="server" data-control-type="NoBot" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

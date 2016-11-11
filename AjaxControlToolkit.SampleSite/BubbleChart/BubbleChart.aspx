@@ -25,14 +25,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>BubbleChart Description</Header>
         <Content>
-            <div runat="server" ControlType="BubbleChart" ContentType="description" />
+            <div runat="server" data-control-type="BubbleChart" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>BubbleChart Properties</Header>
         <Content>
-            <div runat="server" ControlType="BubbleChart" ContentType="members" />
+            <div runat="server" data-control-type="BubbleChart" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

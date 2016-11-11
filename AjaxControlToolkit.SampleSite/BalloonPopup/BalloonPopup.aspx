@@ -43,14 +43,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>BalloonPopupExtender Description</Header>
         <Content>
-            <div runat="server" ControlType="BalloonPopupExtender" ContentType="description" />
+            <div runat="server" data-control-type="BalloonPopupExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>BalloonPopupExtender Properties</Header>
         <Content>
-            <div runat="server" ControlType="BalloonPopupExtender" ContentType="members" />
+            <div runat="server" data-control-type="BalloonPopupExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

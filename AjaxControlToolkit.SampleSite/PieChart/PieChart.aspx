@@ -23,14 +23,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>PieChart Description</Header>
         <Content>
-            <div runat="server" ControlType="PieChart" ContentType="description" />
+            <div runat="server" data-control-type="PieChart" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>PieChart Properties</Header>
         <Content>
-            <div runat="server" ControlType="PieChart" ContentType="members" />
+            <div runat="server" data-control-type="PieChart" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

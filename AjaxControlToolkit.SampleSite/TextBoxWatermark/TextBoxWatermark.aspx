@@ -32,14 +32,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>TextBoxWatermark Description</Header>
         <Content>
-            <div runat="server" ControlType="TextBoxWatermarkExtender" ContentType="description" />
+            <div runat="server" data-control-type="TextBoxWatermarkExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>TextBoxWatermark Properties</Header>
         <Content>
-            <div runat="server" ControlType="TextBoxWatermarkExtender" ContentType="members" />
+            <div runat="server" data-control-type="TextBoxWatermarkExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

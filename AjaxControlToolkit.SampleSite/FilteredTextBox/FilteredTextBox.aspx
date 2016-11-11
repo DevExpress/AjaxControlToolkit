@@ -58,13 +58,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>FilteredTextBox Description</Header>
         <Content>
-            <div runat="server" ControlType="FilteredTextBoxExtender" ContentType="description" />
+            <div runat="server" data-control-type="FilteredTextBoxExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>FilteredTextBox Properties</Header>
         <Content>
-            <div runat="server" ControlType="FilteredTextBoxExtender" ContentType="members" />
+            <div runat="server" data-control-type="FilteredTextBoxExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

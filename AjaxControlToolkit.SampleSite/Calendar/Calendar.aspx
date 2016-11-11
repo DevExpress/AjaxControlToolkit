@@ -46,14 +46,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Calendar Description</Header>
         <Content>
-            <div runat="server" ControlType="CalendarExtender" ContentType="description" />
+            <div runat="server" data-control-type="CalendarExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="true">
         <Header>Calendar Properties</Header>
         <Content>
-            <div runat="server" ControlType="CalendarExtender" ContentType="members" />
+            <div runat="server" data-control-type="CalendarExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

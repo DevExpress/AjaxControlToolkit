@@ -49,13 +49,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>HTMLEditorExtender Description</Header>
         <Content>
-            <div runat="server" ControlType="HtmlEditorExtender" ContentType="description" />
+            <div runat="server" data-control-type="HtmlEditorExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>HTMLEditorExtender Properties</Header>
         <Content>
-            <div runat="server" ControlType="HtmlEditorExtender" ContentType="members" />
+            <div runat="server" data-control-type="HtmlEditorExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server" Collapsed="false">

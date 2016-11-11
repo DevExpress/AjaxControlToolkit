@@ -65,14 +65,14 @@
     <samples:InfoBlock ID="InfoBlock1" runat="server" Collapsed="false">
         <Header>PasswordStrength Description</Header>
         <Content>
-            <div runat="server" ControlType="PasswordStrength" ContentType="description" />
+            <div runat="server" data-control-type="PasswordStrength" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock ID="InfoBlock2" runat="server">
         <Header>PasswordStrength Properties</Header>
         <Content>
-            <div runat="server" ControlType="PasswordStrength" ContentType="members" />
+            <div runat="server" data-control-type="PasswordStrength" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

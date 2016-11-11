@@ -107,7 +107,7 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>AjaxFileUpload Description</Header>
         <Content>
-            <div runat="server" ControlType="AjaxFileUpload" ContentType="description" />
+            <div runat="server" data-control-type="AjaxFileUpload" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
@@ -168,7 +168,7 @@
     <samples:InfoBlock runat="server">
         <Header>AjaxFileUpload Events, Properties and Methods</Header>
         <Content>
-            <div runat="server" ControlType="AjaxFileUpload" ContentType="members" />
+            <div runat="server" data-control-type="AjaxFileUpload" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

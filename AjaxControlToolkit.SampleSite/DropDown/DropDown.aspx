@@ -44,13 +44,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>DropDown Description</Header>
         <Content>
-            <div runat="server" ControlType="DropDownExtender" ContentType="description" />
+            <div runat="server" data-control-type="DropDownExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>DropDown Properties</Header>
         <Content>
-            <div runat="server" ControlType="DropDownExtender" ContentType="members" />
+            <div runat="server" data-control-type="DropDownExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

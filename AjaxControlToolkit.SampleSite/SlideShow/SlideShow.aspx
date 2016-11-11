@@ -49,14 +49,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>SlideShow Description</Header>
         <Content>
-            <div runat="server" ControlType="SlideShowExtender" ContentType="description" />
+            <div runat="server" data-control-type="SlideShowExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>SlideShow Properties</Header>
         <Content>
-             <div runat="server" ControlType="SlideShowExtender" ContentType="members" />
+             <div runat="server" data-control-type="SlideShowExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

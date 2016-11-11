@@ -102,14 +102,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Accordion Description</Header>
         <Content>
-            <div runat="server" ControlType="Accordion" ContentType="description" />
+            <div runat="server" data-control-type="Accordion" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>Accordion Members</Header>
         <Content>
-            <div runat="server" ControlType="Accordion" ContentType="members" />
+            <div runat="server" data-control-type="Accordion" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

@@ -111,14 +111,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>HoverMenu Description</Header>
         <Content>
-            <div runat="server" ControlType="HoverMenuExtender" ContentType="description" />
+            <div runat="server" data-control-type="HoverMenuExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>HoverMenu Properties</Header>
         <Content>
-            <div runat="server" ControlType="HoverMenuExtender" ContentType="members" />
+            <div runat="server" data-control-type="HoverMenuExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

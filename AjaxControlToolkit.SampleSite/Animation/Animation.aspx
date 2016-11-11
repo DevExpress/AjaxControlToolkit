@@ -211,13 +211,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Animation Description</Header>
         <Content>
-            <div runat="server" ControlType="Animation" ContentType="description" />
+            <div runat="server" data-control-type="Animation" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>Animation Properties</Header>
         <Content>
-            <div runat="server" ControlType="Animation" ContentType="members" />
+            <div runat="server" data-control-type="Animation" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

@@ -32,14 +32,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>AreaChart Description</Header>
         <Content>
-            <div runat="server" ControlType="AreaChart" ContentType="description" />
+            <div runat="server" data-control-type="AreaChart" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>AreaChart Properties</Header>
         <Content>
-            <div runat="server" ControlType="AreaChart" ContentType="members" />
+            <div runat="server" data-control-type="AreaChart" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>
