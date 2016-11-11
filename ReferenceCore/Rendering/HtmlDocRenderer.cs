@@ -48,22 +48,23 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         }
 
         void RenderList(StringBuilder sb, IEnumerable<DocBase> members, string header, Func<DocBase, string> memberNameTransform = null) {
-            sb.Append(RenderBold(header));
-            sb.Append("<ul>");
+            sb.AppendLine(RenderBold(header));
+            sb.AppendLine("<ul>");
 
             foreach(var member in members)
                 RenderListItem(sb, member, memberNameTransform);
 
-            sb.Append("</ul>");
+            sb.AppendLine("</ul>");            
         }
 
         void RenderListItem(StringBuilder sb, DocBase member, Func<DocBase, string> memberNameTransform = null) {
+            sb.Append("\t");
             sb.Append("<li>");
             var memberName = memberNameTransform == null ? member.Name : memberNameTransform(member);
             sb.Append(RenderBold(memberName));
             sb.Append(" - ");
             sb.Append(member.Summary);
-            sb.Append("</li>");
+            sb.AppendLine("</li>");
         }
 
         string RenderBold(string text) {
