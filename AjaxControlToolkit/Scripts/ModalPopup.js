@@ -508,8 +508,8 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     _layout: function() {
-        var scrollLeft = (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft),
-            scrollTop = (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+        var scrollLeft = (document.documentElement.scrollLeft !== undefined ? document.documentElement.scrollLeft : document.body.scrollLeft),
+            scrollTop = (document.documentElement.scrollTop !== undefined ? document.documentElement.scrollTop : document.body.scrollTop);
 
         var clientBounds = $common.getClientBounds(),
             clientWidth = clientBounds.width,
