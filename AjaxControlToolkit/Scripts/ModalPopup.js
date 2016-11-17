@@ -198,37 +198,31 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._foregroundElement.style.zIndex = parseInt($common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex)) + 1;
     },
 
-    _getAllElementsWithAttribute: function(attribute) {
-        var matchingElements = [];
-        var allElements = document.getElementsByTagName('*');
-        for(var i = 0, n = allElements.length; i < n; i++) {
-            if(allElements[i].getAttribute(attribute) !== null) {
-                matchingElements.push(allElements[i]);
-            }
+    _findModalPopups: function () {
+        var components = Sys.Application.getComponents();
+        var modalPopups = [];
+
+        for(var i = 0; i < components.length; i++) {
+            if(components[i] instanceof Sys.Extended.UI.ModalPopupBehavior)
+                modalPopups.push(components[i]);
         }
-        return matchingElements;
+
+        return modalPopups;
     },
 
-    _findTopModalPopupBackgroundZIndex: function() {
-        var actElements = this._getAllElementsWithAttribute("data-act-control-type");
-        var backgrounds = [];
-
-        for(var i = 0; i < actElements.length; i++) {
-        	if (actElements[i].getAttribute('data-act-control-type') == 'modalPopupBackground')
-                backgrounds.push(actElements[i]);
-        }
-
-        var backgroundsZindex = {};
+    _findTopModalPopupBackgroundZIndex: function () {
+        var modalPopups = this._findModalPopups();
 
         var topZIndex = undefined;
 
-        for(var i = 0; i < backgrounds.length; i++) {
-            if(topZIndex == undefined)
-                topZIndex = backgrounds[i].style.zIndex;
+        for(var i = 0; i < modalPopups.length; i++) {
+            var currentPopupZIndex = modalPopups[i]._backgroundElement.style.zIndex;
 
-            if(backgrounds[i].style.zIndex > topZIndex) {
-                topZIndex = backgrounds[i].style.zIndex;
-            }
+            if(topZIndex == undefined)
+                topZIndex = currentPopupZIndex;
+
+            if(currentPopupZIndex > topZIndex)
+                topZIndex = currentPopupZIndex;
         }
 
         return topZIndex;
