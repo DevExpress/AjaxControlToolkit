@@ -211,46 +211,63 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     _findTopModalPopupBackgroundZIndex: function () {
-        var modalPopups = this._findModalPopups();
-
-        var topZIndex = undefined;
-
-        for(var i = 0; i < modalPopups.length; i++) {
-            var currentPopupZIndex = modalPopups[i]._backgroundElement.style.zIndex;
-
-            if(topZIndex == undefined)
-                topZIndex = currentPopupZIndex;
-
-            if(currentPopupZIndex > topZIndex)
-                topZIndex = currentPopupZIndex;
-        }
-
-        return topZIndex;
+        var topPopup = this._findTopModalPopup();
+        return topPopup ? topPopup._backgroundElement.style.zIndex : undefined;
     },
 
-    _attachPopup: function() {
+    _findTopModalPopup: function () {
+        var modalPopups = this._findModalPopups();
+        var topPopup = undefined;
+
+        for(var i = 0; i < modalPopups.length; i++) {
+            var popup = modalPopups[i];
+
+            if(popup === this)
+                continue;
+
+            if(!$common.getVisible(popup._foregroundElement))
+                continue;
+
+            if(topPopup === undefined)
+                topPopup = popup;
+
+            var currentPopupZIndex = popup._backgroundElement.style.zIndex;
+            var topPopupZIndex = topPopup._backgroundElement.style.zIndex;
+
+            if(currentPopupZIndex > topPopupZIndex)
+                topPopup = popup;
+        }
+
+        return topPopup;
+    },
+
+    _attachPopup: function () {
+        this._removePreviousPopupWindowHandlers();
+
         if(this._dropShadow && !this._dropShadowBehavior)
             this._dropShadowBehavior = $create(Sys.Extended.UI.DropShadowBehavior, {}, null, null, this._popupElement);
 
         if(this._dragHandleElement && !this._dragBehavior)
             this._dragBehavior = $create(Sys.Extended.UI.FloatingBehavior, { "handle": this._dragHandleElement }, null, null, this._foregroundElement);
 
+        this.addWindowHandlers();
+    },
+
+    _removePreviousPopupWindowHandlers: function () {
+        var topPopup = this._findTopModalPopup();
+
+        if(topPopup)
+            topPopup.removeWindowHandlers();
+    },
+
+    addWindowHandlers: function () {
         $addHandler(window, 'resize', this._resizeHandler);
         $addHandler(window, 'scroll', this._scrollHandler);
-
         this._windowHandlersAttached = true;
     },
 
-    _detachPopup: function() {
-        if(this._windowHandlersAttached) {
-            if(this._scrollHandler)
-                $removeHandler(window, 'scroll', this._scrollHandler);
-
-            if(this._resizeHandler)
-                $removeHandler(window, 'resize', this._resizeHandler);
-
-            this._windowHandlersAttached = false;
-        }
+    _detachPopup: function () {
+        this.removeWindowHandlers();
 
         if(this._dragBehavior) {
             this._dragBehavior.dispose();
@@ -260,6 +277,27 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if(this._dropShadowBehavior) {
             this._dropShadowBehavior.dispose();
             this._dropShadowBehavior = null;
+        }
+
+        this._addPreviousPopupWindowHandlers();
+    },
+
+    _addPreviousPopupWindowHandlers: function () {
+        var topPopup = this._findTopModalPopup();
+
+        if(topPopup)
+            topPopup.addWindowHandlers();
+    },
+
+    removeWindowHandlers: function () {
+        if(this._windowHandlersAttached) {
+            if(this._scrollHandler)
+                $removeHandler(window, 'scroll', this._scrollHandler);
+
+            if(this._resizeHandler)
+                $removeHandler(window, 'resize', this._resizeHandler);
+
+            this._windowHandlersAttached = false;
         }
     },
 
