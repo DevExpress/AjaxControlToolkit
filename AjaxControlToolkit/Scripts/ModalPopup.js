@@ -209,7 +209,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             : undefined;
     },
 
-    _attachPopup: function () {
+    _attachPopup: function() {
         Sys.Extended.UI.ModalPopupBehavior.popups.push(this);
 
         if(this._dropShadow && !this._dropShadowBehavior)
@@ -224,7 +224,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._windowHandlersAttached = true;
     },
 
-    _detachPopup: function () {
+    _detachPopup: function() {
         if(this._windowHandlersAttached) {
             if(this._scrollHandler)
                 $removeHandler(window, 'scroll', this._scrollHandler);
@@ -286,7 +286,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
     },
 
-    _onLayout: function (e) {
+    _onLayout: function(e) {
         var lastPopup = this._getLastPopup();
 
         if(lastPopup !== this)
