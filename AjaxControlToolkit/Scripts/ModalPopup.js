@@ -198,51 +198,19 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._foregroundElement.style.zIndex = parseInt($common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex)) + 1;
     },
 
-    _findModalPopups: function () {
-        var components = Sys.Application.getComponents();
-        var modalPopups = [];
-
-        for(var i = 0; i < components.length; i++) {
-            if(components[i] instanceof Sys.Extended.UI.ModalPopupBehavior)
-                modalPopups.push(components[i]);
-        }
-
-        return modalPopups;
-    },
-
     _findTopModalPopupBackgroundZIndex: function () {
-        var topPopup = this._findTopModalPopup();
-        return topPopup ? topPopup._backgroundElement.style.zIndex : undefined;
+        var lastPopup = this._getLastPopup();
+        return lastPopup ? lastPopup._backgroundElement.style.zIndex : undefined;
     },
 
-    _findTopModalPopup: function () {
-        var modalPopups = this._findModalPopups();
-        var topPopup = undefined;
-
-        for(var i = 0; i < modalPopups.length; i++) {
-            var popup = modalPopups[i];
-
-            if(popup === this)
-                continue;
-
-            if(!$common.getVisible(popup._foregroundElement))
-                continue;
-
-            if(topPopup === undefined)
-                topPopup = popup;
-
-            var currentPopupZIndex = popup._backgroundElement.style.zIndex;
-            var topPopupZIndex = topPopup._backgroundElement.style.zIndex;
-
-            if(currentPopupZIndex > topPopupZIndex)
-                topPopup = popup;
-        }
-
-        return topPopup;
+    _getLastPopup: function () {
+        return Sys.Extended.UI.ModalPopupBehavior.popups.length
+            ? Sys.Extended.UI.ModalPopupBehavior.popups[Sys.Extended.UI.ModalPopupBehavior.popups.length - 1]
+            : undefined;
     },
 
     _attachPopup: function () {
-        Sys.Extended.UI.ModalPopupBehavior.lastVisiblePopup = this;
+        Sys.Extended.UI.ModalPopupBehavior.popups.push(this);
 
         if(this._dropShadow && !this._dropShadowBehavior)
             this._dropShadowBehavior = $create(Sys.Extended.UI.DropShadowBehavior, {}, null, null, this._popupElement);
@@ -250,17 +218,22 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         if(this._dragHandleElement && !this._dragBehavior)
             this._dragBehavior = $create(Sys.Extended.UI.FloatingBehavior, { "handle": this._dragHandleElement }, null, null, this._foregroundElement);
 
-        this.addWindowHandlers();
-    },
-
-    addWindowHandlers: function () {
         $addHandler(window, 'resize', this._resizeHandler);
         $addHandler(window, 'scroll', this._scrollHandler);
+
         this._windowHandlersAttached = true;
     },
 
     _detachPopup: function () {
-        this.removeWindowHandlers();
+        if(this._windowHandlersAttached) {
+            if(this._scrollHandler)
+                $removeHandler(window, 'scroll', this._scrollHandler);
+
+            if(this._resizeHandler)
+                $removeHandler(window, 'resize', this._resizeHandler);
+
+            this._windowHandlersAttached = false;
+        }
 
         if(this._dragBehavior) {
             this._dragBehavior.dispose();
@@ -272,22 +245,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._dropShadowBehavior = null;
         }
 
-        var topPopup = this._findTopModalPopup();
-
-        if(topPopup)
-            Sys.Extended.UI.ModalPopupBehavior.lastVisiblePopup = topPopup;
-    },
-
-    removeWindowHandlers: function () {
-        if(this._windowHandlersAttached) {
-            if(this._scrollHandler)
-                $removeHandler(window, 'scroll', this._scrollHandler);
-
-            if(this._resizeHandler)
-                $removeHandler(window, 'resize', this._resizeHandler);
-
-            this._windowHandlersAttached = false;
-        }
+        Sys.Extended.UI.ModalPopupBehavior.popups.pop();
     },
 
     _onShow: function(e) {
@@ -329,7 +287,9 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     _onLayout: function (e) {
-        if(Sys.Extended.UI.ModalPopupBehavior.lastVisiblePopup !== this)
+        var lastPopup = this._getLastPopup();
+
+        if(lastPopup !== this)
             return;
 
         // Handler for scrolling and resizing events that would require a repositioning of the modal dialog
@@ -1201,4 +1161,4 @@ Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function(behaviorID, show) 
     }
 };
 
-Sys.Extended.UI.ModalPopupBehavior.lastVisiblePopup = undefined;
+Sys.Extended.UI.ModalPopupBehavior.popups = [];
