@@ -59,7 +59,7 @@ Sys.Extended.UI.ModalPopupBehavior = function(element) {
     this._isAnimationJustEnded = false;
     this._hidingAnimationEndedHandler = null;
     this._showingAnimationEndedHandler = null;
-
+    this._popups = Sys.Extended.UI.ModalPopupBehavior.popups;
 };
 
 Sys.Extended.UI.ModalPopupBehavior.prototype = {
@@ -204,13 +204,13 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     _getLastPopup: function () {
-        return Sys.Extended.UI.ModalPopupBehavior.popups.length
-            ? Sys.Extended.UI.ModalPopupBehavior.popups[Sys.Extended.UI.ModalPopupBehavior.popups.length - 1]
+        return this._popups.length
+            ? this._popups[this._popups.length - 1]
             : undefined;
     },
 
     _attachPopup: function() {
-        Sys.Extended.UI.ModalPopupBehavior.popups.push(this);
+        this._popups.push(this);
 
         if(this._dropShadow && !this._dropShadowBehavior)
             this._dropShadowBehavior = $create(Sys.Extended.UI.DropShadowBehavior, {}, null, null, this._popupElement);
@@ -245,7 +245,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._dropShadowBehavior = null;
         }
 
-        Sys.Extended.UI.ModalPopupBehavior.popups.pop();
+        this._popups.pop();
     },
 
     _onShow: function(e) {
