@@ -286,11 +286,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
     },
 
     _onLayout: function(e) {
-        var lastPopup = this._getLastPopup();
-
-        if(lastPopup !== this)
-            return;
-
         // Handler for scrolling and resizing events that would require a repositioning of the modal dialog
         var positioning = this.get_repositionMode();
 
@@ -510,8 +505,14 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             // workaround for drag behavior which calls setlocation which in turn
             // changes the position of the panel to be absolute and requiring us
             // to add the scrollLeft so that it is positioned correctly.
-            if(this._foregroundElement.style.position == 'absolute')
-                xCoord += scrollLeft;
+            if(this._foregroundElement.style.position == 'absolute') {
+                var parentForeground = this._getParentForegroundElement();
+
+                if(parentForeground)
+                    xCoord = parentForeground.scrollLeft;
+                else
+                    xCoord += scrollLeft;
+            }
 
             this._foregroundElement.style.left = xCoord + 'px';
         } else {
@@ -531,8 +532,14 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             // workaround for drag behavior which calls setlocation which in turn
             // changes the position of the panel to be absolute and requiring us
             // to add the scrollLeft so that it is positioned correctly.
-            if(this._foregroundElement.style.position == 'absolute')
-                yCoord += scrollTop;
+            if(this._foregroundElement.style.position == 'absolute') {
+                var parentForeground = this._getParentForegroundElement();
+
+                if(parentForeground)
+                    yCoord = parentForeground.scrollTop;
+                else
+                    yCoord += scrollTop;
+            }
 
             this._foregroundElement.style.top = yCoord + 'px';
         } else {
@@ -557,6 +564,31 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // in case things moved around when laying out the foreground element
         this._layoutBackgroundElement();
     },
+
+    _getParentForegroundElement: function () {
+        var el = this._foregroundElement;
+        var otherForegrounds = this._getOtherForegrounds();
+
+        while(el.parentNode) {
+            el = el.parentNode;
+
+            if(Array.contains(otherForegrounds, el))
+                return el;
+        }
+
+        return null;
+    },
+
+    _getOtherForegrounds: function () {
+        var foregrounds = [];
+        var popups = Sys.Extended.UI.ModalPopupBehavior.popups;
+
+        for(var i = 0; i < popups.length; i++)
+            foregrounds.push(popups[i]._foregroundElement);
+
+        return foregrounds;
+    },
+
 
     _layoutForegroundElement: function(xCoord, yCoord) {
         // Set the correct location of the foreground element to ensure that it is absolutely 
