@@ -916,7 +916,7 @@ Sys.Extended.UI.TabPanel.prototype = {
                 this._isAttachedDisabledEvents = false;
             }
             this._addHandlersOnEnabled();
-            Sys.UI.DomElement.removeCssClass(this._tab, "ajax__tab_disabled");            
+            Sys.UI.DomElement.removeCssClass($get(hyperlinkId), "ajax__tab_disabled");
         } else {
             if(this._isAttachedEnabledEvents) {
                 this._removeHandlersOnEnabled();
@@ -932,7 +932,7 @@ Sys.Extended.UI.TabPanel.prototype = {
                     this._owner.set_activeTab(next);
             }
             this._deactivate();
-            Sys.UI.DomElement.addCssClass(this._tab, "ajax__tab_disabled");
+            Sys.UI.DomElement.addCssClass($get(hyperlinkId), "ajax__tab_disabled");
         }
     },
     _setFocus: function(obj) {
