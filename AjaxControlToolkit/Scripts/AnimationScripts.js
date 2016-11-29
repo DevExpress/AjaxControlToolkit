@@ -4,7 +4,7 @@ Type.registerNamespace('Sys.Extended.UI.Animation');
 // this is a very long script and will take awhile to download
 $AA = Sys.Extended.UI.Animation;
 
-$AA.registerAnimation = function(name, type) {
+$AA.registerAnimation = function (name, type) {
     // Register an animation with the AJAX Control Toolkit animation framework. This serves a dual purpose:
     // 1) to add standard utility methods to the animation type (such as a play method that creates
     // an animation, plays it, and disposes it when the animation is over), and 2) to associate a name with the
@@ -30,7 +30,7 @@ $AA.registerAnimation = function(name, type) {
         // dispose of an animation.  This is effectively a "static" function on
         // each animation and will take the same parameters as that animation's
         // constructor.
-        type.play = function() {
+        type.play = function () {
             // Create an animation, play it immediately, and dispose it when finished.
             // The play function takes the same parameters as the type's constructor
 
@@ -42,7 +42,7 @@ $AA.registerAnimation = function(name, type) {
 
             // Add an event handler to dispose the animation when it's finished
             var handler = Function.createDelegate(animation,
-                function() {
+                function () {
                     // Dispose the animation after playing
                     animation.remove_ended(handler);
                     handler = null;
@@ -61,7 +61,7 @@ $AA.registerAnimation = function(name, type) {
     }
 }
 
-$AA.buildAnimation = function(json, defaultTarget) {
+$AA.buildAnimation = function (json, defaultTarget) {
     // The buildAnimation function is used to turn a JSON animation description
     // into an actual animation object that can be played.
     //
@@ -88,7 +88,7 @@ $AA.buildAnimation = function(json, defaultTarget) {
     return $AA.createAnimation(obj, defaultTarget);
 }
 
-$AA.createAnimation = function(obj, defaultTarget) {
+$AA.createAnimation = function (obj, defaultTarget) {
     // The createAnimation function builds a new Sys.Extended.UI.Animation.Animation instance from an object
     // that describes it.
     // Exceptions are thrown when the AnimationName cannot be found.  Also,
@@ -265,7 +265,7 @@ $AA.Animation = function (target, duration, fps) {
     // raised when setting dynamic properties (including both JavaScript evaluation errors
     // and other exceptions raised by property setters) will only be propogated when
     // debugging.
-    
+
     $AA.Animation.initializeBase(this);
 
     ///<summary>
@@ -348,7 +348,7 @@ $AA.Animation = function (target, duration, fps) {
 }
 
 $AA.Animation.prototype = {
-    dispose: function() {
+    dispose: function () {
         if(this._timer) {
             this._timer.dispose();
             this._timer = null;
@@ -528,12 +528,12 @@ $AA.Animation.prototype = {
         return start + (end - start) * (percentage / 100);
     },
 
-    _onTimerTick: function() {
+    _onTimerTick: function () {
         // Handler for the tick event to move the animation along through its duration
         this._updatePercentComplete(this._percentComplete + this._percentDelta, true);
     },
 
-    _updatePercentComplete: function(percentComplete, animate) {
+    _updatePercentComplete: function (percentComplete, animate) {
         // Update the animation and its target given the current percentage of its duration that
         // has already elapsed
         //
@@ -573,8 +573,7 @@ $AA.Animation.prototype = {
     add_started: function (handler) {
         this.get_events().addHandler("started", handler);
     },
-
-    remove_started: function(handler) {
+    remove_started: function (handler) {
         this.get_events().removeHandler("started", handler);
     },
     raise_started: function () {
@@ -595,8 +594,7 @@ $AA.Animation.prototype = {
     add_ended: function (handler) {
         this.get_events().addHandler("ended", handler);
     },
-
-    remove_ended: function(handler) {
+    remove_ended: function (handler) {
         this.get_events().removeHandler("ended", handler);
     },
     raise_ended: function () {
@@ -617,8 +615,7 @@ $AA.Animation.prototype = {
     add_step: function (handler) {
         this.get_events().addHandler("step", handler);
     },
-
-    remove_step: function(handler) {
+    remove_step: function (handler) {
         this.get_events().removeHandler("step", handler);
     },
     raise_step: function () {
@@ -631,13 +628,13 @@ $AA.Animation.prototype = {
         this.raise_ended();
     },
 
-    get_target: function () {
+    get_target: function() {
         if(!this._target && this._parentAnimation) {
             return this._parentAnimation.get_target();
         }
         return this._target;
     },
-    set_target: function(value) {
+    set_target: function (value) {
         if(this._target != value) {
             this._target = value;
             this.raisePropertyChanged('target');
@@ -680,7 +677,7 @@ $AA.Animation.prototype = {
         this.setAnimationTarget(id);
     },
 
-    get_duration: function () {
+    get_duration: function() {
         return this._duration;
     },
     set_duration: function(value) {
@@ -694,7 +691,7 @@ $AA.Animation.prototype = {
     get_fps: function () {
         return this._fps;
     },
-    set_fps: function(value) {
+    set_fps: function (value) {
         value = this._getInteger(value);
         if(this.fps != value) {
             this._fps = value;
@@ -720,38 +717,38 @@ $AA.Animation.prototype = {
         return (this._timer !== null) && this._timer.get_enabled();
     },
 
-    get_percentComplete: function() {
+    get_percentComplete: function () {
         return this._percentComplete;
     },
 
-    _getBoolean: function(value) {
+    _getBoolean: function (value) {
         if(String.isInstanceOfType(value)) {
             return Boolean.parse(value);
         }
         return value;
     },
 
-    _getInteger: function(value) {
+    _getInteger: function (value) {
         if(String.isInstanceOfType(value)) {
             return parseInt(value);
         }
         return value;
     },
 
-    _getFloat: function(value) {
+    _getFloat: function (value) {
         if(String.isInstanceOfType(value)) {
             return parseFloat(value);
         }
         return value;
     },
 
-    _getEnum: function(value, type) {
+    _getEnum: function (value, type) {
         // Helper to convert strings to enum values for property setters
         // Returns value that has been converted if it was a string
         //
         // "value" - value to convert if it's a string
         // "type" - type of the enum to convert to
-        
+
         if(String.isInstanceOfType(value) && type && type.parse) {
             return type.parse(value);
         }
@@ -790,7 +787,7 @@ $AA.ParentAnimation = function (target, duration, fps, animations) {
     }
 }
 $AA.ParentAnimation.prototype = {
-    initialize: function() {
+    initialize: function () {
         // Initialize the parent along with any child animations that have not yet been initialized themselves
         $AA.ParentAnimation.callBaseMethod(this, 'initialize');
 
@@ -805,7 +802,7 @@ $AA.ParentAnimation.prototype = {
         }
     },
 
-    dispose: function() {
+    dispose: function () {
         this.clear();
         this._animations = null;
         $AA.ParentAnimation.callBaseMethod(this, 'dispose');
@@ -1005,7 +1002,7 @@ $AA.SequenceAnimation = function (target, duration, fps, animations, iterations)
     this._iterations = (iterations !== undefined) ? iterations : 1;
 }
 $AA.SequenceAnimation.prototype = {
-    dispose: function () {
+    dispose: function() {
         this._handler = null;
         $AA.SequenceAnimation.callBaseMethod(this, 'dispose');
     },
@@ -1105,7 +1102,7 @@ $AA.SequenceAnimation.prototype = {
         }
     },
 
-    _onEndAnimation: function () {
+    _onEndAnimation: function() {
         // Wait for the end of each animation, and then continue by playing the other animations remaining
         // in the sequence.  Stop when it reaches the last animation and there are no remaining iterations.
 
@@ -1151,18 +1148,18 @@ $AA.SequenceAnimation.prototype = {
         $AA.SequenceAnimation.callBaseMethod(this, 'onEnd');
     },
 
-    get_isActive: function () {
+    get_isActive: function() {
         return true;
     },
 
-    get_isPlaying: function () {
+    get_isPlaying: function() {
         return this._playing && !this._paused;
     },
 
-    get_iterations: function () {
+    get_iterations: function() {
         return this._iterations;
     },
-    set_iterations: function (value) {
+    set_iterations: function(value) {
         value = this._getInteger(value);
         if(this._iterations != value) {
             this._iterations = value;
@@ -1310,7 +1307,7 @@ $AA.ConditionAnimation.prototype = {
     get_conditionScript: function () {
         return this._conditionScript;
     },
-    set_conditionScript: function (value) {
+    set_conditionScript: function(value) {
         if(this._conditionScript != value) {
             this._conditionScript = value;
             this.raisePropertyChanged('conditionScript');
@@ -1371,7 +1368,7 @@ $AA.CaseAnimation.prototype = {
     get_selectScript: function () {
         return this._selectScript;
     },
-    set_selectScript: function (value) {
+    set_selectScript: function(value) {
         if(this._selectScript != value) {
             this._selectScript = value;
             this.raisePropertyChanged('selectScript');
@@ -1382,7 +1379,7 @@ $AA.CaseAnimation.registerClass('Sys.Extended.UI.Animation.CaseAnimation', $AA.S
 $AA.registerAnimation('case', $AA.CaseAnimation);
 
 
-$AA.FadeEffect = function () {
+$AA.FadeEffect = function() {
     // The FadeEffect enumeration determines whether a fade animation is used to fade in or fade out.
     throw Error.invalidOperation();
 }
@@ -1445,7 +1442,7 @@ $AA.FadeAnimation = function (target, duration, fps, effect, minimumOpacity, max
     this._resetOpacities();
 }
 $AA.FadeAnimation.prototype = {
-    _resetOpacities: function () {
+    _resetOpacities: function() {
         // Set the starting and ending opacity values based on the effect (i.e. when we're fading
         // in we go from _min to _max, but we go _max to
         // _min when fading out)
@@ -1459,7 +1456,7 @@ $AA.FadeAnimation.prototype = {
         }
     },
 
-    _createLayout: function () {
+    _createLayout: function() {
         // Create a layout when using Internet Explorer (which entails setting a width and also
         // a background color if it currently has neither)
 
@@ -1534,7 +1531,7 @@ $AA.FadeAnimation.prototype = {
     get_effect: function () {
         return this._effect;
     },
-    set_effect: function (value) {
+    set_effect: function(value) {
         value = this._getEnum(value, $AA.FadeEffect);
         if(this._effect != value) {
             this._effect = value;
@@ -1553,7 +1550,7 @@ $AA.FadeAnimation.prototype = {
     get_minimumOpacity: function () {
         return this._min;
     },
-    set_minimumOpacity: function (value) {
+    set_minimumOpacity: function(value) {
         value = this._getFloat(value);
         if(this._min != value) {
             this._min = value;
@@ -1572,7 +1569,7 @@ $AA.FadeAnimation.prototype = {
     get_maximumOpacity: function () {
         return this._max;
     },
-    set_maximumOpacity: function (value) {
+    set_maximumOpacity: function(value) {
         value = this._getFloat(value);
         if(this._max != value) {
             this._max = value;
@@ -1592,7 +1589,7 @@ $AA.FadeAnimation.prototype = {
     get_forceLayoutInIE: function () {
         return this._forceLayoutInIE;
     },
-    set_forceLayoutInIE: function (value) {
+    set_forceLayoutInIE: function(value) {
         value = this._getBoolean(value);
         if(this._forceLayoutInIE != value) {
             this._forceLayoutInIE = value;
@@ -1730,7 +1727,7 @@ $AA.PulseAnimation.prototype = {
     get_minimumOpacity: function () {
         return this._out.get_minimumOpacity();
     },
-    set_minimumOpacity: function (value) {
+    set_minimumOpacity: function(value) {
         value = this._getFloat(value);
         this._out.set_minimumOpacity(value);
         this._in.set_minimumOpacity(value);
@@ -1746,7 +1743,7 @@ $AA.PulseAnimation.prototype = {
     get_maximumOpacity: function () {
         return this._out.get_maximumOpacity();
     },
-    set_maximumOpacity: function (value) {
+    set_maximumOpacity: function(value) {
         value = this._getFloat(value);
         this._out.set_maximumOpacity(value);
         this._in.set_maximumOpacity(value);
@@ -1764,7 +1761,7 @@ $AA.PulseAnimation.prototype = {
     get_forceLayoutInIE: function () {
         return this._out.get_forceLayoutInIE();
     },
-    set_forceLayoutInIE: function (value) {
+    set_forceLayoutInIE: function(value) {
         value = this._getBoolean(value);
         this._out.set_forceLayoutInIE(value);
         this._in.set_forceLayoutInIE(value);
@@ -1893,7 +1890,7 @@ $AA.PropertyAnimation.prototype = {
     get_property: function () {
         return this._property;
     },
-    set_property: function (value) {
+    set_property: function(value) {
         if(this._property != value) {
             this._property = value;
             this.raisePropertyChanged('property');
@@ -1910,7 +1907,7 @@ $AA.PropertyAnimation.prototype = {
     get_propertyKey: function () {
         return this._propertyKey;
     },
-    set_propertyKey: function (value) {
+    set_propertyKey: function(value) {
         if(this._propertyKey != value) {
             this._propertyKey = value;
             this.raisePropertyChanged('propertyKey');
@@ -1962,7 +1959,7 @@ $AA.DiscreteAnimation.prototype = {
     get_values: function () {
         return this._values;
     },
-    set_values: function (value) {
+    set_values: function(value) {
         if(this._values != value) {
             this._values = value;
             this.raisePropertyChanged('values');
@@ -2006,7 +2003,7 @@ $AA.InterpolatedAnimation.prototype = {
     get_startValue: function () {
         return this._startValue;
     },
-    set_startValue: function (value) {
+    set_startValue: function(value) {
         value = this._getFloat(value);
         if(this._startValue != value) {
             this._startValue = value;
@@ -2023,7 +2020,7 @@ $AA.InterpolatedAnimation.prototype = {
     get_endValue: function () {
         return this._endValue;
     },
-    set_endValue: function (value) {
+    set_endValue: function(value) {
         value = this._getFloat(value);
         if(this._endValue != value) {
             this._endValue = value;
@@ -2206,7 +2203,7 @@ $AA.LengthAnimation.prototype = {
     get_unit: function () {
         return this._unit;
     },
-    set_unit: function (value) {
+    set_unit: function(value) {
         if(this._unit != value) {
             this._unit = value;
             this.raisePropertyChanged('unit');
@@ -2270,12 +2267,12 @@ $AA.MoveAnimation.prototype = {
         this._verticalAnimation.set_endValue(this._relative ? element.offsetTop + this._vertical : this._vertical);
     },
 
-    get_horizontal: function () {
+    get_horizontal: function() {
         // If relative  is true, this is the offset to move horizontally. Otherwise this is the x
         // coordinate on the page where the target should be moved.
         return this._horizontal;
     },
-    set_horizontal: function (value) {
+    set_horizontal: function(value) {
         value = this._getFloat(value);
         if(this._horizontal != value) {
             this._horizontal = value;
@@ -2283,12 +2280,12 @@ $AA.MoveAnimation.prototype = {
         }
     },
 
-    get_vertical: function () {
+    get_vertical: function() {
         // If relative is true, this is the offset to move vertically. Otherwise this is the y
         // coordinate on the page where the target should be moved.
         return this._vertical;
     },
-    set_vertical: function (value) {
+    set_vertical: function(value) {
         value = this._getFloat(value);
         if(this._vertical != value) {
             this._vertical = value;
@@ -2296,11 +2293,11 @@ $AA.MoveAnimation.prototype = {
         }
     },
 
-    get_relative: function () {
+    get_relative: function() {
         // true if we are moving relative to the current position, false if we are moving absolutely
         return this._relative;
     },
-    set_relative: function (value) {
+    set_relative: function(value) {
         value = this._getBoolean(value);
         if(this._relative != value) {
             this._relative = value;
@@ -2380,7 +2377,7 @@ $AA.ResizeAnimation.prototype = {
     get_width: function () {
         return this._width;
     },
-    set_width: function (value) {
+    set_width: function(value) {
         value = this._getFloat(value);
         if(this._width != value) {
             this._width = value;
@@ -2397,7 +2394,7 @@ $AA.ResizeAnimation.prototype = {
     get_height: function () {
         return this._height;
     },
-    set_height: function (value) {
+    set_height: function(value) {
         value = this._getFloat(value);
         if(this._height != value) {
             this._height = value;
@@ -2414,7 +2411,7 @@ $AA.ResizeAnimation.prototype = {
     get_unit: function () {
         this._horizontalAnimation.get_unit();
     },
-    set_unit: function (value) {
+    set_unit: function(value) {
         var unit = this._horizontalAnimation.get_unit();
         if(unit != value) {
             this._horizontalAnimation.set_unit(value);
@@ -2560,7 +2557,7 @@ $AA.ScaleAnimation.prototype = {
     get_scaleFactor: function () {
         return this._scaleFactor;
     },
-    set_scaleFactor: function (value) {
+    set_scaleFactor: function(value) {
         value = this._getFloat(value);
         if(this._scaleFactor != value) {
             this._scaleFactor = value;
@@ -2577,7 +2574,7 @@ $AA.ScaleAnimation.prototype = {
     get_unit: function () {
         return this._unit;
     },
-    set_unit: function (value) {
+    set_unit: function(value) {
         if(this._unit != value) {
             this._unit = value;
             this.raisePropertyChanged('unit');
@@ -2610,7 +2607,7 @@ $AA.ScaleAnimation.prototype = {
     get_scaleFont: function () {
         return this._scaleFont;
     },
-    set_scaleFont: function (value) {
+    set_scaleFont: function(value) {
         value = this._getBoolean(value);
         if(this._scaleFont != value) {
             this._scaleFont = value;
@@ -2628,7 +2625,7 @@ $AA.ScaleAnimation.prototype = {
     get_fontUnit: function () {
         return this._fontUnit;
     },
-    set_fontUnit: function (value) {
+    set_fontUnit: function(value) {
         if(this._fontUnit != value) {
             this._fontUnit = value;
             this.raisePropertyChanged('fontUnit');
@@ -2782,7 +2779,7 @@ $AA.HideAction.prototype = {
     get_visible: function () {
         return this._visible;
     },
-    set_visible: function (value) {
+    set_visible: function(value) {
         if(this._visible != value) {
             this._visible = value;
             this.raisePropertyChanged('visible');
@@ -2837,7 +2834,7 @@ $AA.StyleAction.prototype = {
     get_attribute: function () {
         return this._attribute;
     },
-    set_attribute: function (value) {
+    set_attribute: function(value) {
         if(this._attribute != value) {
             this._attribute = value;
             this.raisePropertyChanged('attribute');
@@ -2853,7 +2850,7 @@ $AA.StyleAction.prototype = {
     get_value: function () {
         return this._value;
     },
-    set_value: function (value) {
+    set_value: function(value) {
         if(this._value != value) {
             this._value = value;
             this.raisePropertyChanged('value');
@@ -2901,7 +2898,7 @@ $AA.OpacityAction.prototype = {
     get_opacity: function () {
         return this._opacity;
     },
-    set_opacity: function (value) {
+    set_opacity: function(value) {
         value = this._getFloat(value);
         if(this._opacity != value) {
             this._opacity = value;
@@ -2950,7 +2947,7 @@ $AA.ScriptAction.prototype = {
     get_script: function () {
         return this._script;
     },
-    set_script: function (value) {
+    set_script: function(value) {
         if(this._script != value) {
             this._script = value;
             this.raisePropertyChanged('script');
