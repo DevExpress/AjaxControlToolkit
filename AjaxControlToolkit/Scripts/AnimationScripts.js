@@ -367,7 +367,7 @@ $AA.Animation.prototype = {
     /// If this animation is the child of another, you must call play on its parent instead.
     /// </remarks>
     /// <member name="cM:AjaxControlToolkit.Animation.play" />
-    play: function () {
+    play: function() {
         // If ownership of this animation has been claimed, then we'll require the parent to
         // handle playing the animation (this is very important because then the entire animation
         // tree runs on the same timer and updates consistently)
@@ -407,7 +407,7 @@ $AA.Animation.prototype = {
     /// If this animation is the child of another, you must call pause on its parent instead.
     /// </remarks>
     /// <member name="cM:AjaxControlToolkit.Animation.pause" />
-    pause: function () {
+    pause: function() {
         if(!this._owner) {
             if(this._timer) {
                 this._timer.set_enabled(false);
@@ -428,7 +428,7 @@ $AA.Animation.prototype = {
     /// <param name="finish" type="Boolean">Whether or not stopping the animation should leave the target element in a state
     /// consistent with the animation playing completely by performing the last step.
     /// The default value is true.</param>
-    stop: function (finish) {
+    stop: function(finish) {
         if(!this._owner) {
             var t = this._timer;
             this._timer = null;
@@ -454,7 +454,7 @@ $AA.Animation.prototype = {
     /// The onStart method is called just before the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.Animation.onStart" />
-    onStart: function () {
+    onStart: function() {
         this.raise_started();
 
         // Initialize any dynamic properties
@@ -476,7 +476,7 @@ $AA.Animation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.Animation.onStep" />
     /// <param name="percentage" type="Number">Percentage of the animation already complete.</param>
-    onStep: function (percentage) {
+    onStep: function(percentage) {
         this.setValue(this.getAnimatedValue(percentage));
         this.raise_step();
     },
@@ -485,7 +485,7 @@ $AA.Animation.prototype = {
     /// The onEnd method is called just after the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.Animation.onEnd" />
-    onEnd: function () {
+    onEnd: function() {
         this.raise_ended();
     },
 
@@ -494,7 +494,7 @@ $AA.Animation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.Animation.getAnimatedValue" />
     /// <param name="percentage" type="Number">Percentage of the animation already complete.</param>
-    getAnimatedValue: function (percentage) {
+    getAnimatedValue: function(percentage) {
         // Returns state of the animation after the given percentage of its duration has elapsed that will
         // be passed to setValue
         throw Error.notImplemented();
@@ -505,7 +505,7 @@ $AA.Animation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.Animation.setValue" />
     /// <param name="value" type="Object">Animation state.</param>
-    setValue: function (value) {
+    setValue: function(value) {
         // Returns current state of the animation (as retreived from getAnimatedValue)
         throw Error.notImplemented();
     },
@@ -518,7 +518,7 @@ $AA.Animation.prototype = {
     /// <param name="start" type="Number">Start of the range to interpolate.</param>
     /// <param name="end" type="Number">End of the range to interpolate.</param>
     /// <param name="percentage" type="Number">Percentage completed in the range to interpolate.</param>
-    interpolate: function (start, end, percentage) {
+    interpolate: function(start, end, percentage) {
         // In the future, we hope to make several implementations of this available so we can dynamically
         // change the apparent speed of the animations, although it may make more sense to modify the
         // _updatePercentComplete function instead.
@@ -560,7 +560,7 @@ $AA.Animation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.Animation.setOwner" />
     /// <param name="owner" type="Object">Parent animation.</param>
-    setOwner: function (owner) {
+    setOwner: function(owner) {
         this._owner = owner;
     },
 
@@ -569,18 +569,18 @@ $AA.Animation.prototype = {
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.Animation.started" />
     ///<event add="add_started" remove="remove_started" raise="raise_started" />
-    add_started: function (handler) {
+    add_started: function(handler) {
         this.get_events().addHandler("started", handler);
     },
-    remove_started: function (handler) {
+    remove_started: function(handler) {
         this.get_events().removeHandler("started", handler);
     },
-    raise_started: function () {
+    raise_started: function() {
         var handlers = this.get_events().getHandler('started');
         if(handlers)
             handlers(this, Sys.EventArgs.Empty);
     },
-    raiseStarted: function () {
+    raiseStarted: function() {
         Sys.Extended.Deprecated("raiseStarted()", "raise_started()");
         this.raise_started();
     },
@@ -590,18 +590,18 @@ $AA.Animation.prototype = {
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.Animation.ended" />
     ///<event add="add_ended" remove="remove_ended" raise="raise_ended" />
-    add_ended: function (handler) {
+    add_ended: function(handler) {
         this.get_events().addHandler("ended", handler);
     },
-    remove_ended: function (handler) {
+    remove_ended: function(handler) {
         this.get_events().removeHandler("ended", handler);
     },
-    raise_ended: function () {
+    raise_ended: function() {
         var handlers = this.get_events().getHandler('ended');
         if(handlers)
             handlers(this, Sys.EventArgs.Empty);
     },
-    raiseEnded: function () {
+    raiseEnded: function() {
         Sys.Extended.Deprecated("raiseEnded()", "raise_ended()");
         this.raise_ended();
     },
@@ -611,18 +611,18 @@ $AA.Animation.prototype = {
     ///</summary>
     ///<member name="cE:AjaxControlToolkit.Animation.step" />
     ///<event add="add_step" remove="remove_step" raise="raise_step" />
-    add_step: function (handler) {
+    add_step: function(handler) {
         this.get_events().addHandler("step", handler);
     },
-    remove_step: function (handler) {
+    remove_step: function(handler) {
         this.get_events().removeHandler("step", handler);
     },
-    raise_step: function () {
+    raise_step: function() {
         var handlers = this.get_events().getHandler('step');
         if(handlers)
             handlers(this, Sys.EventArgs.Empty);
     },
-    raiseStep: function () {
+    raiseStep: function() {
         Sys.Extended.Deprecated("raiseStep()", "raise_step()");
         this.raise_ended();
     },
@@ -647,7 +647,7 @@ $AA.Animation.prototype = {
     /// <param name="id" type="Object">ID of a Sys.UI.DomElement or Sys.UI.Control to use as the target of the animation
     /// If no Sys.UI.DomElement or Sys.UI.Control can be found for the given ID, an
     /// argument exception will be thrown.</param>
-    setAnimationTarget: function (id) {
+    setAnimationTarget: function(id) {
         // Try to find a Sys.UI.DomElement
         var target = null;
         var element = $get(id);
@@ -671,7 +671,7 @@ $AA.Animation.prototype = {
             throw Error.argument('id', String.format(Sys.Extended.UI.Resources.Animation_TargetNotFound, id));
         }
     },
-    set_animationTarget: function (id) {
+    set_animationTarget: function(id) {
         Sys.Extended.Deprecated("setAnimationTarget(id)", "set_animationTarget(id)");
         this.setAnimationTarget(id);
     },
@@ -687,7 +687,7 @@ $AA.Animation.prototype = {
         }
     },
 
-    get_fps: function () {
+    get_fps: function() {
         return this._fps;
     },
     set_fps: function(value) {
@@ -703,7 +703,7 @@ $AA.Animation.prototype = {
     ///</summary>
     ///<getter>get_isActive</getter>
     ///<member name="cP:AjaxControlToolkit.Animation.isActive" />
-    get_isActive: function () {
+    get_isActive: function() {
         return (this._timer !== null);
     },
 
@@ -712,7 +712,7 @@ $AA.Animation.prototype = {
     ///</summary>
     ///<getter>get_isPlaying</getter>
     ///<member name="cP:AjaxControlToolkit.Animation.isPlaying" />
-    get_isPlaying: function () {
+    get_isPlaying: function() {
         return (this._timer !== null) && this._timer.get_enabled();
     },
 
@@ -747,6 +747,7 @@ $AA.Animation.prototype = {
         //
         // "value" - value to convert if it's a string
         // "type" - type of the enum to convert to
+
         if(String.isInstanceOfType(value) && type && type.parse) {
             return type.parse(value);
         }
@@ -772,7 +773,7 @@ $AA.registerAnimation('animation', $AA.Animation);
 /// <param name="duration" type="Number">Length of the animation in seconds. The default is 1.</param>
 /// <param name="fps" type="Number">Number of steps per second. The default is 25.</param>
 /// <param name="animations" type="Object">Array of child animations to be played.</param>
-$AA.ParentAnimation = function (target, duration, fps, animations) {
+$AA.ParentAnimation = function(target, duration, fps, animations) {
     $AA.ParentAnimation.initializeBase(this, [target, duration, fps]);
 
     this._animations = [];
@@ -814,7 +815,7 @@ $AA.ParentAnimation.prototype = {
     ///</summary>
     ///<getter>get_target</getter>
     ///<member name="cP:AjaxControlToolkit.ParentAnimation.animations" />
-    get_animations: function () {
+    get_animations: function() {
         return this._animations;
     },
 
@@ -823,7 +824,7 @@ $AA.ParentAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ParentAnimation.add" />
     /// <param name="animation" type="Object">Child animation to add.</param>
-    add: function (animation) {
+    add: function(animation) {
         if(this._animations) {
             if(animation) {
                 animation._parentAnimation = this;
@@ -839,7 +840,7 @@ $AA.ParentAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ParentAnimation.remove" />
     /// <param name="animation" type="Object">Child animation to remove.</param>
-    remove: function (animation) {
+    remove: function(animation) {
         if(this._animations) {
             if(animation) {
                 animation.dispose();
@@ -854,7 +855,7 @@ $AA.ParentAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ParentAnimation.removeAt" />
     /// <param name="index" type="Number">Index of the child animation to remove.</param>
-    removeAt: function (index) {
+    removeAt: function(index) {
         if(this._animations) {
             var animation = this._animations[index];
             if(animation) {
@@ -870,7 +871,7 @@ $AA.ParentAnimation.prototype = {
     /// This will dispose the cleared child animations.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ParentAnimation.clear" />
-    clear: function () {
+    clear: function() {
         if(this._animations) {
             for(var i = this._animations.length - 1; i >= 0; i--) {
                 this._animations[i].dispose();
@@ -901,7 +902,7 @@ $AA.registerAnimation('parent', $AA.ParentAnimation);
 /// <param name="duration" type="Number">Length of the animation in seconds. The default is 1.</param>
 /// <param name="fps" type="Number">Number of steps per second. The default is 25.</param>
 /// <param name="animations" type="Object">Array of child animations.</param>
-$AA.ParallelAnimation = function (target, duration, fps, animations) {
+$AA.ParallelAnimation = function(target, duration, fps, animations) {
     $AA.ParallelAnimation.initializeBase(this, [target, duration, fps, animations]);
 }
 $AA.ParallelAnimation.prototype = {
@@ -910,7 +911,7 @@ $AA.ParallelAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ParallelAnimation.add" />
     /// <param name="animation" type="Object">Child animation to add.</param>
-    add: function (animation) {
+    add: function(animation) {
         $AA.ParallelAnimation.callBaseMethod(this, 'add', [animation]);
         animation.setOwner(this);
     },
@@ -919,7 +920,7 @@ $AA.ParallelAnimation.prototype = {
     /// Get the child animations ready to play.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ParallelAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         $AA.ParallelAnimation.callBaseMethod(this, 'onStart');
         var animations = this.get_animations();
         for(var i = 0; i < animations.length; i++) {
@@ -932,7 +933,7 @@ $AA.ParallelAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ParallelAnimation.onStart" />
     /// <param name="percentage" type="Number">Percentage of the animation already complete.</param>
-    onStep: function (percentage) {
+    onStep: function(percentage) {
         var animations = this.get_animations();
         for(var i = 0; i < animations.length; i++) {
             animations[i].onStep(percentage);
@@ -943,7 +944,7 @@ $AA.ParallelAnimation.prototype = {
     /// Finish playing all of the child animations.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ParallelAnimation.onEnd" />
-    onEnd: function () {
+    onEnd: function() {
         var animations = this.get_animations();
         for(var i = 0; i < animations.length; i++) {
             animations[i].onEnd();
@@ -974,7 +975,7 @@ $AA.registerAnimation('parallel', $AA.ParallelAnimation);
 /// <param name="animations" type="Object">Array of child animations.</param>
 /// <param name="iterations" type="Number">Number of times to repeatedly play the sequence. If zero or less iterations are specified, the sequence
 /// will repeat forever. The default value is 1 iteration.</param>
-$AA.SequenceAnimation = function (target, duration, fps, animations, iterations) {
+$AA.SequenceAnimation = function(target, duration, fps, animations, iterations) {
     $AA.SequenceAnimation.initializeBase(this, [target, duration, fps, animations]);
 
     // Handler used to determine when an animation has finished
@@ -1014,7 +1015,7 @@ $AA.SequenceAnimation.prototype = {
     /// the child of another, you must call stop on its parent instead.
     /// </remarks>
     /// <member name="cM:AjaxControlToolkit.SequenceAnimation.stop" />
-    stop: function () {
+    stop: function() {
         if(this._playing) {
             var animations = this.get_animations();
             if(this._index < animations.length) {
@@ -1041,7 +1042,7 @@ $AA.SequenceAnimation.prototype = {
     /// If this animation is the child of another, you must call pause on its parent instead.
     /// </remarks>
     /// <member name="cM:AjaxControlToolkit.SequenceAnimation.pause" />
-    pause: function () {
+    pause: function() {
         if(this.get_isPlaying()) {
             var current = this.get_animations()[this._index];
             if(current != null) {
@@ -1059,7 +1060,7 @@ $AA.SequenceAnimation.prototype = {
     /// If this animation is the child of another, you must call play on its parent instead.
     /// </remarks>
     /// <member name="cM:AjaxControlToolkit.SequenceAnimation.play" />
-    play: function () {
+    play: function() {
         var animations = this.get_animations();
         if(!this._playing) {
             this._playing = true;
@@ -1090,7 +1091,7 @@ $AA.SequenceAnimation.prototype = {
     /// The onStart method is called just before the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SequenceAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         $AA.SequenceAnimation.callBaseMethod(this, 'onStart');
         this._remainingIterations = this._iterations - 1;
 
@@ -1133,7 +1134,7 @@ $AA.SequenceAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SequenceAnimation.onStep" />
     /// <param name="percentage" type="Number">Percentage of the animation already complete.</param>
-    onStep: function (percentage) {
+    onStep: function(percentage) {
         throw Error.invalidOperation(Sys.Extended.UI.Resources.Animation_CannotNestSequence);
     },
 
@@ -1141,7 +1142,7 @@ $AA.SequenceAnimation.prototype = {
     /// The onEnd method is called just after the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SequenceAnimation.onEnd" />
-    onEnd: function () {
+    onEnd: function() {
         this._remainingIterations = 0;
         $AA.SequenceAnimation.callBaseMethod(this, 'onEnd');
     },
@@ -1170,7 +1171,7 @@ $AA.SequenceAnimation.prototype = {
     ///</summary>
     ///<getter>get_isInfinite</getter>
     ///<member name="cP:AjaxControlToolkit.SequenceAnimation.isInfinite" />
-    get_isInfinite: function () {
+    get_isInfinite: function() {
         return this._iterations <= 0;
     }
 }
@@ -1191,7 +1192,7 @@ $AA.registerAnimation('sequence', $AA.SequenceAnimation);
 /// <param name="duration" type="Number">Length of the animation in seconds. The default is 1.</param>
 /// <param name="fps" type="Number">Number of steps per second. The default is 25.</param>
 /// <param name="animations" type="Object">Array of child animations to be played.</param>
-$AA.SelectionAnimation = function (target, duration, fps, animations) {
+$AA.SelectionAnimation = function(target, duration, fps, animations) {
     $AA.SelectionAnimation.initializeBase(this, [target, duration, fps, animations]);
 
     // Index of the animation selected to play
@@ -1206,7 +1207,7 @@ $AA.SelectionAnimation.prototype = {
     /// the child animations array, then nothing is played.    
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SelectionAnimation.getSelectedIndex" />
-    getSelectedIndex: function () {
+    getSelectedIndex: function() {
         throw Error.notImplemented();
     },
 
@@ -1214,7 +1215,7 @@ $AA.SelectionAnimation.prototype = {
     /// The onStart method is called just before the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SelectionAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         $AA.SelectionAnimation.callBaseMethod(this, 'onStart');
 
         var animations = this.get_animations();
@@ -1233,7 +1234,7 @@ $AA.SelectionAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SelectionAnimation.onStep" />
     /// <param name="percentage" type="Number">Percentage of the animation already complete.</param>
-    onStep: function (percentage) {
+    onStep: function(percentage) {
         if(this._selected) {
             this._selected.onStep(percentage);
         }
@@ -1243,7 +1244,7 @@ $AA.SelectionAnimation.prototype = {
     /// The onEnd method is called just after the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.SelectionAnimation.onEnd" />
-    onEnd: function () {
+    onEnd: function() {
         if(this._selected) {
             this._selected.onEnd();
             this._selected.setOwner(null);
@@ -1272,7 +1273,7 @@ $AA.registerAnimation('selection', $AA.SelectionAnimation);
 /// <param name="animations" type="Object">Array of child animations to be played.</param>
 /// <param name="conditionScript" type="Object">JavaScript that should evaluate to true or false to determine which child
 /// animation to play.</param>
-$AA.ConditionAnimation = function (target, duration, fps, animations, conditionScript) {
+$AA.ConditionAnimation = function(target, duration, fps, animations, conditionScript) {
     $AA.ConditionAnimation.initializeBase(this, [target, duration, fps, animations]);
 
     // Condition to determine which index we will play
@@ -1284,7 +1285,7 @@ $AA.ConditionAnimation.prototype = {
     /// the child animations array, then nothing is played.    
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ConditionAnimation.getSelectedIndex" />
-    getSelectedIndex: function () {
+    getSelectedIndex: function() {
         var selected = -1;
         if(this._conditionScript && this._conditionScript.length > 0) {
             try {
@@ -1302,7 +1303,7 @@ $AA.ConditionAnimation.prototype = {
     /// <getter>get_conditionScript</getter>
     /// <setter>set_conditionScript</setter>
     /// <member name="cP:AjaxControlToolkit.ConditionAnimation.conditionScript" />
-    get_conditionScript: function () {
+    get_conditionScript: function() {
         return this._conditionScript;
     },
     set_conditionScript: function(value) {
@@ -1331,7 +1332,7 @@ $AA.registerAnimation('condition', $AA.ConditionAnimation);
 /// <param name="animations" type="Object">Array of child animations to be played.</param>
 /// <param name="selectScript" type="Object">JavaScript that should evaluate to the index of the appropriate child animation to play.  
 /// If this returns an index outside the bounds of the child animations array, then nothing is played.</param>
-$AA.CaseAnimation = function (target, duration, fps, animations, selectScript) {
+$AA.CaseAnimation = function(target, duration, fps, animations, selectScript) {
     $AA.CaseAnimation.initializeBase(this, [target, duration, fps, animations]);
 
     // Condition to determine which index we will play
@@ -1343,7 +1344,7 @@ $AA.CaseAnimation.prototype = {
     /// the child animations array, then nothing is played.    
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.CaseAnimation.getSelectedIndex" />
-    getSelectedIndex: function () {
+    getSelectedIndex: function() {
         var selected = -1;
         if(this._selectScript && this._selectScript.length > 0) {
             try {
@@ -1363,7 +1364,7 @@ $AA.CaseAnimation.prototype = {
     /// <getter>get_selectScript</getter>
     /// <setter>set_selectScript</setter>
     /// <member name="cP:AjaxControlToolkit.CaseAnimation.selectScript" />
-    get_selectScript: function () {
+    get_selectScript: function() {
         return this._selectScript;
     },
     set_selectScript: function(value) {
@@ -1408,7 +1409,7 @@ $AA.FadeEffect.registerEnum("Sys.Extended.UI.Animation.FadeEffect", false);
 /// <param name="forceLayoutInIE" type="Boolean">whether or not we should force a layout to be created for Internet Explorer by giving it a width and setting its
 /// background color (the latter is required in case the user has ClearType enabled). The default value is true.
 /// This is obviously ignored when working in other browsers.</param>
-$AA.FadeAnimation = function (target, duration, fps, effect, minimumOpacity, maximumOpacity, forceLayoutInIE) {
+$AA.FadeAnimation = function(target, duration, fps, effect, minimumOpacity, maximumOpacity, forceLayoutInIE) {
     $AA.FadeAnimation.initializeBase(this, [target, duration, fps]);
 
     // The effect determines whether or not we fade in or out
@@ -1485,7 +1486,7 @@ $AA.FadeAnimation.prototype = {
     /// The onStart method is called just before the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.FadeAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         $AA.FadeAnimation.callBaseMethod(this, 'onStart');
 
         this._currentTarget = this.get_target();
@@ -1502,7 +1503,7 @@ $AA.FadeAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.FadeAnimation.getAnimatedValue" />
     /// <param name="percentage" type="Number">Percentage of the animation already complete.</param>
-    getAnimatedValue: function (percentage) {
+    getAnimatedValue: function(percentage) {
         return this.interpolate(this._start, this._end, percentage);
     },
 
@@ -1511,7 +1512,7 @@ $AA.FadeAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.FadeAnimation.setValue" />
     /// <param name="value" type="Number">Current opacity (as retreived from getAnimatedValue).</param>
-    setValue: function (value) {
+    setValue: function(value) {
         // This method will be replaced by a dynamically generated function that requires no logic
         // to determine whether it should use filters or the style's opacity.
         if(this._currentTarget) {
@@ -1526,7 +1527,7 @@ $AA.FadeAnimation.prototype = {
     ///<getter>get_effect</getter>
     ///<setter>set_effect</setter>
     ///<member name="cP:AjaxControlToolkit.FadeAnimation.effect" />
-    get_effect: function () {
+    get_effect: function() {
         return this._effect;
     },
     set_effect: function(value) {
@@ -1545,7 +1546,7 @@ $AA.FadeAnimation.prototype = {
     ///<getter>get_minimumOpacity</getter>
     ///<setter>set_minimumOpacity</setter>
     ///<member name="cP:AjaxControlToolkit.FadeAnimation.minimumOpacity" />
-    get_minimumOpacity: function () {
+    get_minimumOpacity: function() {
         return this._min;
     },
     set_minimumOpacity: function(value) {
@@ -1564,7 +1565,7 @@ $AA.FadeAnimation.prototype = {
     ///<getter>get_maximumOpacity</getter>
     ///<setter>set_maximumOpacity</setter>
     ///<member name="cP:AjaxControlToolkit.FadeAnimation.maximumOpacity" />
-    get_maximumOpacity: function () {
+    get_maximumOpacity: function() {
         return this._max;
     },
     set_maximumOpacity: function(value) {
@@ -1584,7 +1585,7 @@ $AA.FadeAnimation.prototype = {
     ///<getter>get_forceLayoutInIE</getter>
     ///<setter>set_forceLayoutInIE</setter>
     ///<member name="cP:AjaxControlToolkit.FadeAnimation.forceLayoutInIE" />
-    get_forceLayoutInIE: function () {
+    get_forceLayoutInIE: function() {
         return this._forceLayoutInIE;
     },
     set_forceLayoutInIE: function(value) {
@@ -1600,11 +1601,11 @@ $AA.FadeAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.FadeAnimation.setStartValue" />
     /// <param name="value" type="Number">Opacity to start fade animation with.</param>
-    setStartValue: function (value) {
+    setStartValue: function(value) {
         value = this._getFloat(value);
         this._start = value;
     },
-    set_startValue: function (value) {
+    set_startValue: function(value) {
         Sys.Extended.Deprecated("setStartValue(value)", "set_startValue(value)");
         this.setStartValue(value);
     }
@@ -1628,7 +1629,7 @@ $AA.registerAnimation('fade', $AA.FadeAnimation);
 /// <param name="forceLayoutInIE" type="Boolean">whether or not we should force a layout to be created for Internet Explorer by giving it a width and setting its
 /// background color (the latter is required in case the user has ClearType enabled). The default value is true.
 /// This is obviously ignored when working in other browsers.</param>
-$AA.FadeInAnimation = function (target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE) {
+$AA.FadeInAnimation = function(target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE) {
     $AA.FadeInAnimation.initializeBase(this, [target, duration, fps, $AA.FadeEffect.FadeIn, minimumOpacity, maximumOpacity, forceLayoutInIE]);
 }
 $AA.FadeInAnimation.prototype = {
@@ -1636,7 +1637,7 @@ $AA.FadeInAnimation.prototype = {
     /// The onStart method is called just before the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.FadeInAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         $AA.FadeInAnimation.callBaseMethod(this, 'onStart');
 
         if(this._currentTarget) {
@@ -1664,7 +1665,7 @@ $AA.registerAnimation('fadeIn', $AA.FadeInAnimation);
 /// <param name="forceLayoutInIE" type="Boolean">whether or not we should force a layout to be created for Internet Explorer by giving it a width and setting its
 /// background color (the latter is required in case the user has ClearType enabled). The default value is true.
 /// This is obviously ignored when working in other browsers.</param>
-$AA.FadeOutAnimation = function (target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE) {
+$AA.FadeOutAnimation = function(target, duration, fps, minimumOpacity, maximumOpacity, forceLayoutInIE) {
     $AA.FadeOutAnimation.initializeBase(this, [target, duration, fps, $AA.FadeEffect.FadeOut, minimumOpacity, maximumOpacity, forceLayoutInIE]);
 }
 $AA.FadeOutAnimation.prototype = {
@@ -1672,7 +1673,7 @@ $AA.FadeOutAnimation.prototype = {
     /// The onStart method is called just before the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.FadeOutAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         $AA.FadeOutAnimation.callBaseMethod(this, 'onStart');
 
         if(this._currentTarget) {
@@ -1704,7 +1705,7 @@ $AA.registerAnimation('fadeOut', $AA.FadeOutAnimation);
 /// <param name="forceLayoutInIE" type="Boolean">whether or not we should force a layout to be created for Internet Explorer by giving it a width and setting its
 /// background color (the latter is required in case the user has ClearType enabled). The default value is true.
 /// This is obviously ignored when working in other browsers.</param>
-$AA.PulseAnimation = function (target, duration, fps, iterations, minimumOpacity, maximumOpacity, forceLayoutInIE) {
+$AA.PulseAnimation = function(target, duration, fps, iterations, minimumOpacity, maximumOpacity, forceLayoutInIE) {
     $AA.PulseAnimation.initializeBase(this, [target, duration, fps, null, ((iterations !== undefined) ? iterations : 3)]);
 
     // Create the FadeOutAnimation
@@ -1722,7 +1723,7 @@ $AA.PulseAnimation.prototype = {
     ///<getter>get_minimumOpacity</getter>
     ///<setter>set_minimumOpacity</setter>
     ///<member name="cP:AjaxControlToolkit.PulseAnimation.minimumOpacity" />
-    get_minimumOpacity: function () {
+    get_minimumOpacity: function() {
         return this._out.get_minimumOpacity();
     },
     set_minimumOpacity: function(value) {
@@ -1738,7 +1739,7 @@ $AA.PulseAnimation.prototype = {
     ///<getter>get_maximumOpacity</getter>
     ///<setter>set_maximumOpacity</setter>
     ///<member name="cP:AjaxControlToolkit.PulseAnimation.maximumOpacity" />
-    get_maximumOpacity: function () {
+    get_maximumOpacity: function() {
         return this._out.get_maximumOpacity();
     },
     set_maximumOpacity: function(value) {
@@ -1756,7 +1757,7 @@ $AA.PulseAnimation.prototype = {
     ///<getter>get_forceLayoutInIE</getter>
     ///<setter>set_forceLayoutInIE</setter>
     ///<member name="cP:AjaxControlToolkit.PulseAnimation.forceLayoutInIE" />
-    get_forceLayoutInIE: function () {
+    get_forceLayoutInIE: function() {
         return this._out.get_forceLayoutInIE();
     },
     set_forceLayoutInIE: function(value) {
@@ -1771,13 +1772,13 @@ $AA.PulseAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PulseAnimation.setDuration" />
     /// <param name="value" type="Number">Length of the animation in seconds.</param>
-    setDuration: function (value) {
+    setDuration: function(value) {
         value = this._getFloat(value);
         $AA.PulseAnimation.callBaseMethod(this, 'set_duration', [value]);
         this._in.set_duration(value);
         this._out.set_duration(value);
     },
-    set_duration: function (value) {
+    set_duration: function(value) {
         Sys.Extended.Deprecated("setDuration(value)", "set_duration(value)");
         this.setDuration(value);
     },
@@ -1787,13 +1788,13 @@ $AA.PulseAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PulseAnimation.setFps" />
     /// <param name="value" type="Number">Number of steps per second..</param>
-    setFps: function (value) {
+    setFps: function(value) {
         value = this._getInteger(value);
         $AA.PulseAnimation.callBaseMethod(this, 'set_fps', [value]);
         this._in.set_fps(value);
         this._out.set_fps(value);
     },
-    set_fps: function (value) {
+    set_fps: function(value) {
         Sys.Extended.Deprecated("setFps(value)", "set_fps(value)");
         this.setFps(value);
     }
@@ -1819,7 +1820,7 @@ $AA.registerAnimation('pulse', $AA.PulseAnimation);
 /// <param name="propertyKey" type="Object">optional key of the property to be set (which indicates the value property[propertyKey], 
 /// like style['backgroundColor']). Note that for the style property, the key must be in a JavaScript friendly 
 /// format (i.e. backgroundColor instead of background-color).</param>
-$AA.PropertyAnimation = function (target, duration, fps, property, propertyKey) {
+$AA.PropertyAnimation = function(target, duration, fps, property, propertyKey) {
     $AA.PropertyAnimation.initializeBase(this, [target, duration, fps]);
 
     // Name of the property to set
@@ -1839,7 +1840,7 @@ $AA.PropertyAnimation.prototype = {
     /// The onStart method is called just before the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PropertyAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         $AA.PropertyAnimation.callBaseMethod(this, 'onStart');
 
         this._currentTarget = this.get_target();
@@ -1850,7 +1851,7 @@ $AA.PropertyAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PropertyAnimation.setValue" />
     /// <param name="value" type="Object">Value to set.</param>
-    setValue: function (value) {
+    setValue: function(value) {
         var element = this._currentTarget;
         if(element && this._property && this._property.length > 0) {
             if(this._propertyKey && this._propertyKey.length > 0 && element[this._property]) {
@@ -1865,7 +1866,7 @@ $AA.PropertyAnimation.prototype = {
     /// Get the property's current value.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.PropertyAnimation.getValue" />
-    getValue: function () {
+    getValue: function() {
         var element = this.get_target();
         if(element && this._property && this._property.length > 0) {
             var property = element[this._property];
@@ -1885,7 +1886,7 @@ $AA.PropertyAnimation.prototype = {
     /// <getter>get_property</getter>
     /// <setter>set_property</setter>
     /// <member name="cP:AjaxControlToolkit.PropertyAnimation.property" />
-    get_property: function () {
+    get_property: function() {
         return this._property;
     },
     set_property: function(value) {
@@ -1902,7 +1903,7 @@ $AA.PropertyAnimation.prototype = {
     /// <getter>get_propertyKey</getter>
     /// <setter>set_propertyKey</setter>
     /// <member name="cP:AjaxControlToolkit.PropertyAnimation.propertyKey" />
-    get_propertyKey: function () {
+    get_propertyKey: function() {
         return this._propertyKey;
     },
     set_propertyKey: function(value) {
@@ -1931,7 +1932,7 @@ $AA.registerAnimation('property', $AA.PropertyAnimation);
 /// like style['backgroundColor']). Note that for the style property, the key must be in a JavaScript friendly 
 /// format (i.e. backgroundColor instead of background-color).</param>
 /// <param name="values" type="Object">Array of possible values of the property that will be iterated over as the animation is played.</param>
-$AA.DiscreteAnimation = function (target, duration, fps, property, propertyKey, values) {
+$AA.DiscreteAnimation = function(target, duration, fps, property, propertyKey, values) {
     $AA.DiscreteAnimation.initializeBase(this, [target, duration, fps, property, propertyKey]);
 
     // Values to assign to the property
@@ -1943,7 +1944,7 @@ $AA.DiscreteAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.DiscreteAnimation.getAnimatedValue" />
     /// <param name="percentage" type="Number">Percentage of the animation already complete.</param>
-    getAnimatedValue: function (percentage) {
+    getAnimatedValue: function(percentage) {
         var index = Math.floor(this.interpolate(0, this._values.length - 1, percentage));
         return this._values[index];
     },
@@ -1954,7 +1955,7 @@ $AA.DiscreteAnimation.prototype = {
     /// <getter>get_values</getter>
     /// <setter>set_values</setter>
     /// <member name="cP:AjaxControlToolkit.DiscreteAnimation.values" />
-    get_values: function () {
+    get_values: function() {
         return this._values;
     },
     set_values: function(value) {
@@ -1984,7 +1985,7 @@ $AA.registerAnimation('discrete', $AA.DiscreteAnimation);
 /// format (i.e. backgroundColor instead of background-color).</param>
 /// <param name="startValue" type="Object">Start of the range of values.</param>
 /// <param name="endValue" type="Object">End of the range of values.</param>
-$AA.InterpolatedAnimation = function (target, duration, fps, property, propertyKey, startValue, endValue) {
+$AA.InterpolatedAnimation = function(target, duration, fps, property, propertyKey, startValue, endValue) {
     $AA.InterpolatedAnimation.initializeBase(this, [target, duration, fps, ((property !== undefined) ? property : 'style'), propertyKey]);
 
     // Start and end values
@@ -1998,7 +1999,7 @@ $AA.InterpolatedAnimation.prototype = {
     /// <getter>get_startValue</getter>
     /// <setter>set_startValue</setter>
     /// <member name="cP:AjaxControlToolkit.InterpolatedAnimation.startValue" />
-    get_startValue: function () {
+    get_startValue: function() {
         return this._startValue;
     },
     set_startValue: function(value) {
@@ -2015,7 +2016,7 @@ $AA.InterpolatedAnimation.prototype = {
     /// <getter>get_endValue</getter>
     /// <setter>set_endValue</setter>
     /// <member name="cP:AjaxControlToolkit.InterpolatedAnimation.endValue" />
-    get_endValue: function () {
+    get_endValue: function() {
         return this._endValue;
     },
     set_endValue: function(value) {
@@ -2047,7 +2048,7 @@ $AA.registerAnimation('interpolated', $AA.InterpolatedAnimation);
 /// format (i.e. backgroundColor instead of background-color).</param>
 /// <param name="startValue" type="Object">Start of the range of values.</param>
 /// <param name="endValue" type="Object">End of the range of values.</param>
-$AA.ColorAnimation = function (target, duration, fps, property, propertyKey, startValue, endValue) {
+$AA.ColorAnimation = function(target, duration, fps, property, propertyKey, startValue, endValue) {
     $AA.ColorAnimation.initializeBase(this, [target, duration, fps, property, propertyKey, startValue, endValue]);
 
     // Cached start/end RBG triplets
@@ -2064,7 +2065,7 @@ $AA.ColorAnimation.prototype = {
     /// Determine which dimensions of color will be animated.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ColorAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         $AA.ColorAnimation.callBaseMethod(this, 'onStart');
 
         this._start = $AA.ColorAnimation.getRGB(this.get_startValue());
@@ -2080,7 +2081,7 @@ $AA.ColorAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ColorAnimation.getAnimatedValue" />
     /// <param name="percentage" type="Number">Percentage of the animation already complete.</param>
-    getAnimatedValue: function (percentage) {
+    getAnimatedValue: function(percentage) {
         var r = this._start.Red;
         var g = this._start.Green;
         var b = this._start.Blue;
@@ -2102,7 +2103,7 @@ $AA.ColorAnimation.prototype = {
     /// </summary>
     /// <setter>set_startValue</setter>
     /// <member name="cP:AjaxControlToolkit.ColorAnimation.startValue" />
-    set_startValue: function (value) {
+    set_startValue: function(value) {
         if(this._startValue != value) {
             this._startValue = value;
             this.raisePropertyChanged('startValue');
@@ -2114,7 +2115,7 @@ $AA.ColorAnimation.prototype = {
     /// </summary>
     /// <setter>set_startValue</setter>
     /// <member name="cP:AjaxControlToolkit.ColorAnimation.endValue" />
-    set_endValue: function (value) {
+    set_endValue: function(value) {
         if(this._endValue != value) {
             this._endValue = value;
             this.raisePropertyChanged('endValue');
@@ -2127,7 +2128,7 @@ $AA.ColorAnimation.prototype = {
 /// </summary>
 /// <member name="cM:AjaxControlToolkit.ColorAnimation.getRGB" static="true" />
 /// <param name="color" type="String">Color formatted as a 7-character hex string (like #246ACF).</param>
-$AA.ColorAnimation.getRGB = function (color) {
+$AA.ColorAnimation.getRGB = function(color) {
     if(!color || color.length != 7) {
         throw String.format(Sys.Extended.UI.Resources.Animation_InvalidColor, color);
     }
@@ -2145,7 +2146,7 @@ $AA.ColorAnimation.getRGB = function (color) {
 /// <param name="red" type="Object">Value of the color's red dimension.</param>
 /// <param name="green" type="Object">Value of the color's green dimension.</param>
 /// <param name="blue" type="Object">Value of the color's blue dimension.</param>
-$AA.ColorAnimation.toColor = function (red, green, blue) {
+$AA.ColorAnimation.toColor = function(red, green, blue) {
     var r = red.toString(16);
     var g = green.toString(16);
     var b = blue.toString(16);
@@ -2175,7 +2176,7 @@ $AA.registerAnimation('color', $AA.ColorAnimation);
 /// <param name="startValue" type="Object">Start of the range of values.</param>
 /// <param name="endValue" type="Object">End of the range of values.</param>
 /// <param name="unit" type="String">Unit of the interpolated values. The default value is 'px'.</param>
-$AA.LengthAnimation = function (target, duration, fps, property, propertyKey, startValue, endValue, unit) {
+$AA.LengthAnimation = function(target, duration, fps, property, propertyKey, startValue, endValue, unit) {
     $AA.LengthAnimation.initializeBase(this, [target, duration, fps, property, propertyKey, startValue, endValue]);
 
     // Unit of length (which defaults to px)
@@ -2187,7 +2188,7 @@ $AA.LengthAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.LengthAnimation.getAnimatedValue" />
     /// <param name="percentage" type="Number">Percentage of the animation already complete.</param>    
-    getAnimatedValue: function (percentage) {
+    getAnimatedValue: function(percentage) {
         var value = this.interpolate(this.get_startValue(), this.get_endValue(), percentage);
         return Math.round(value) + this._unit;
     },
@@ -2198,7 +2199,7 @@ $AA.LengthAnimation.prototype = {
     /// <getter>get_unit</getter>
     /// <setter>set_unit</setter>
     /// <member name="cP:AjaxControlToolkit.LengthAnimation.unit" />   
-    get_unit: function () {
+    get_unit: function() {
         return this._unit;
     },
     set_unit: function(value) {
@@ -2233,7 +2234,7 @@ $AA.registerAnimation('length', $AA.LengthAnimation);
 /// coordinate on the page where the target should be moved.</param>
 /// <param name="relative" type="Boolean">true if we are moving relative to the current position, false if we are moving absolutely.</param>
 /// <param name="unit" type="String">Unit of the interpolated values. The default value is 'px'.</param>
-$AA.MoveAnimation = function (target, duration, fps, horizontal, vertical, relative, unit) {
+$AA.MoveAnimation = function(target, duration, fps, horizontal, vertical, relative, unit) {
     $AA.MoveAnimation.initializeBase(this, [target, duration, fps, null]);
 
     // Distance to move horizontally and vertically
@@ -2252,7 +2253,7 @@ $AA.MoveAnimation.prototype = {
     /// The onStart method is called just before the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.MoveAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         // Use the target's current position as the starting point for the animation
         $AA.MoveAnimation.callBaseMethod(this, 'onStart');
 
@@ -2303,11 +2304,11 @@ $AA.MoveAnimation.prototype = {
         }
     },
 
-    get_unit: function () {
+    get_unit: function() {
         // Length unit for the size of the target. The default value is 'px'.
         this._horizontalAnimation.get_unit();
     },
-    set_unit: function (value) {
+    set_unit: function(value) {
         var unit = this._horizontalAnimation.get_unit();
         if(unit != value) {
             this._horizontalAnimation.set_unit(value);
@@ -2333,7 +2334,7 @@ $AA.registerAnimation('move', $AA.MoveAnimation);
 /// <param name="width" type="Number">New width of the target.</param>
 /// <param name="height" type="Number">New height of the target.</param>
 /// <param name="unit" type="String">Length unit for the size of the target. The default value is 'px'.</param>
-$AA.ResizeAnimation = function (target, duration, fps, width, height, unit) {
+$AA.ResizeAnimation = function(target, duration, fps, width, height, unit) {
     $AA.ResizeAnimation.initializeBase(this, [target, duration, fps, null]);
 
     // New size of the element
@@ -2351,7 +2352,7 @@ $AA.ResizeAnimation.prototype = {
     /// The onStart method is called just before the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ResizeAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         // Use the target's current size as the starting point for the animation
         $AA.ResizeAnimation.callBaseMethod(this, 'onStart');
 
@@ -2372,7 +2373,7 @@ $AA.ResizeAnimation.prototype = {
     ///<getter>get_width</getter>
     ///<setter>set_width</setter>
     ///<member name="cP:AjaxControlToolkit.ResizeAnimation.width" />
-    get_width: function () {
+    get_width: function() {
         return this._width;
     },
     set_width: function(value) {
@@ -2389,7 +2390,7 @@ $AA.ResizeAnimation.prototype = {
     ///<getter>get_height</getter>
     ///<setter>set_height</setter>
     ///<member name="cP:AjaxControlToolkit.ResizeAnimation.height" />
-    get_height: function () {
+    get_height: function() {
         return this._height;
     },
     set_height: function(value) {
@@ -2406,7 +2407,7 @@ $AA.ResizeAnimation.prototype = {
     ///<getter>get_unit</getter>
     ///<setter>set_unit</setter>
     ///<member name="cP:AjaxControlToolkit.ResizeAnimation.unit" />
-    get_unit: function () {
+    get_unit: function() {
         this._horizontalAnimation.get_unit();
     },
     set_unit: function(value) {
@@ -2444,7 +2445,7 @@ $AA.registerAnimation('resize', $AA.ResizeAnimation);
 /// <param name="scaleFont" type="Boolean">Whether the font should be scaled along with the size.</param>
 /// <param name="fontUnit" type="String">Unit of the font, which is only used if scaleFont is true.
 /// The default value is 'pt'.</param>
-$AA.ScaleAnimation = function (target, duration, fps, scaleFactor, unit, center, scaleFont, fontUnit) {
+$AA.ScaleAnimation = function(target, duration, fps, scaleFactor, unit, center, scaleFont, fontUnit) {
     $AA.ScaleAnimation.initializeBase(this, [target, duration, fps]);
 
     // Percentage to scale
@@ -2472,7 +2473,7 @@ $AA.ScaleAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ScaleAnimation.getAnimatedValue" />
     /// <param name="percentage" type="Number">Percentage of the animation already complete.</param>
-    getAnimatedValue: function (percentage) {
+    getAnimatedValue: function(percentage) {
         return this.interpolate(1.0, this._scaleFactor, percentage);
     },
 
@@ -2480,7 +2481,7 @@ $AA.ScaleAnimation.prototype = {
     /// The onStart method is called just before the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ScaleAnimation.onStart" />
-    onStart: function () {
+    onStart: function() {
         // Cache the initial size because it will be used to determine how much to scale the element at each step of the animation
         $AA.ScaleAnimation.callBaseMethod(this, 'onStart');
 
@@ -2505,7 +2506,7 @@ $AA.ScaleAnimation.prototype = {
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ScaleAnimation.setValue" />
     /// <param name="scale" type="Number">Percentage to scale the target.</param>
-    setValue: function (scale) {
+    setValue: function(scale) {
         if(this._element) {
             var width = Math.round(this._initialWidth * scale);
             var height = Math.round(this._initialHeight * scale);
@@ -2533,7 +2534,7 @@ $AA.ScaleAnimation.prototype = {
     /// The onEnd method is called just after the animation is played each time.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ScaleAnimation.onEnd" />    
-    onEnd: function () {
+    onEnd: function() {
         // Wipe the cached values after the animation completes
         this._element = null;
         this._initialHeight = null;
@@ -2552,7 +2553,7 @@ $AA.ScaleAnimation.prototype = {
     ///<getter>get_scaleFactore</getter>
     ///<setter>set_scaleFactore</setter>
     ///<member name="cP:AjaxControlToolkit.ScaleAnimation.scaleFactor" />
-    get_scaleFactor: function () {
+    get_scaleFactor: function() {
         return this._scaleFactor;
     },
     set_scaleFactor: function(value) {
@@ -2569,7 +2570,7 @@ $AA.ScaleAnimation.prototype = {
     ///<getter>get_unit</getter>
     ///<setter>set_unit</setter>
     ///<member name="cP:AjaxControlToolkit.ScaleAnimation.unit" />
-    get_unit: function () {
+    get_unit: function() {
         return this._unit;
     },
     set_unit: function(value) {
@@ -2585,10 +2586,10 @@ $AA.ScaleAnimation.prototype = {
     ///<getter>get_center</getter>
     ///<setter>set_center</setter>
     ///<member name="cP:AjaxControlToolkit.ScaleAnimation.center" />
-    get_center: function () {
+    get_center: function() {
         return this._center;
     },
-    set_center: function (value) {
+    set_center: function(value) {
         value = this._getBoolean(value);
         if(this._center != value) {
             this._center = value;
@@ -2602,7 +2603,7 @@ $AA.ScaleAnimation.prototype = {
     ///<getter>get_scaleFont</getter>
     ///<setter>set_scaleFont</setter>
     ///<member name="cP:AjaxControlToolkit.ScaleAnimation.scaleFont" />
-    get_scaleFont: function () {
+    get_scaleFont: function() {
         return this._scaleFont;
     },
     set_scaleFont: function(value) {
@@ -2620,7 +2621,7 @@ $AA.ScaleAnimation.prototype = {
     ///<getter>get_fontUnit</getter>
     ///<setter>set_fontUnit</setter>
     ///<member name="cP:AjaxControlToolkit.ScaleAnimation.fontUnit" />
-    get_fontUnit: function () {
+    get_fontUnit: function() {
         return this._fontUnit;
     },
     set_fontUnit: function(value) {
@@ -2647,7 +2648,7 @@ $AA.registerAnimation('scale', $AA.ScaleAnimation);
 /// <param name="target" type="Object">Target of the animation.</param>
 /// <param name="duration" type="Number">Length of the animation in seconds. The default is 1.</param>
 /// <param name="fps" type="Number">Number of steps per second. The default is 25.</param>
-$AA.Action = function (target, duration, fps) {
+$AA.Action = function(target, duration, fps) {
     $AA.Action.initializeBase(this, [target, duration, fps]);
 
     // Set the duration to 0 if it wasn't specified
@@ -2660,7 +2661,7 @@ $AA.Action.prototype = {
     /// Calls the doAction method when the animation completes.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.Action.onEnd" />
-    onEnd: function () {
+    onEnd: function() {
         this.doAction();
         $AA.Action.callBaseMethod(this, 'onEnd');
     },
@@ -2669,7 +2670,7 @@ $AA.Action.prototype = {
     /// The doAction method must be implemented by all actions.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.Action.doAction" />
-    doAction: function () {
+    doAction: function() {
         throw Error.notImplemented();
     },
 
@@ -2677,14 +2678,14 @@ $AA.Action.prototype = {
     /// Empty implementation of required abstract method.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.Action.getAnimatedValue" />
-    getAnimatedValue: function () {
+    getAnimatedValue: function() {
     },
 
     /// <summary>
     /// Empty implementation of required abstract method.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.Action.setValue" />
-    setValue: function () {
+    setValue: function() {
     }
 }
 $AA.Action.registerClass('Sys.Extended.UI.Animation.Action', $AA.Animation);
@@ -2701,7 +2702,7 @@ $AA.registerAnimation('action', $AA.Action);
 /// <param name="duration" type="Number">Length of the animation in seconds. The default is 1.</param>
 /// <param name="fps" type="Number">Number of steps per second. The default is 25.</param>
 /// <param name="enabled" type="Boolean">Whether or not the target is disabled. The default value is true.</param>
-$AA.EnableAction = function (target, duration, fps, enabled) {
+$AA.EnableAction = function(target, duration, fps, enabled) {
     $AA.EnableAction.initializeBase(this, [target, duration, fps]);
 
     // Whether to enable or disable
@@ -2712,7 +2713,7 @@ $AA.EnableAction.prototype = {
     /// Sets the enabled property of the target.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.EnableAction.doAction" />
-    doAction: function () {
+    doAction: function() {
         var element = this.get_target();
         if(element) {
             element.disabled = !this._enabled;
@@ -2725,10 +2726,10 @@ $AA.EnableAction.prototype = {
     ///<getter>get_enabled</getter>
     ///<setter>set_enabled</setter>
     ///<member name="cP:AjaxControlToolkit.EnableAction.enabled" />
-    get_enabled: function () {
+    get_enabled: function() {
         return this._enabled;
     },
-    set_enabled: function (value) {
+    set_enabled: function(value) {
         value = this._getBoolean(value);
         if(this._enabled != value) {
             this._enabled = value;
@@ -2751,7 +2752,7 @@ $AA.registerAnimation('enableAction', $AA.EnableAction);
 /// <param name="duration" type="Number">Length of the animation in seconds. The default is 1.</param>
 /// <param name="fps" type="Number">Number of steps per second. The default is 25.</param>
 /// <param name="visible" type="Boolean">true to show the target, false to hide it. The default value is false.</param>
-$AA.HideAction = function (target, duration, fps, visible) {
+$AA.HideAction = function(target, duration, fps, visible) {
     $AA.HideAction.initializeBase(this, [target, duration, fps]);
 
     this._visible = visible;
@@ -2761,7 +2762,7 @@ $AA.HideAction.prototype = {
     /// Hides the target element.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.HideAction.doAction" />
-    doAction: function () {
+    doAction: function() {
         var element = this.get_target();
         if(element) {
             $common.setVisible(element, this._visible);
@@ -2774,7 +2775,7 @@ $AA.HideAction.prototype = {
     ///<getter>get_visible</getter>
     ///<setter>set_visible</setter>
     ///<member name="cP:AjaxControlToolkit.HideAction.visible" />
-    get_visible: function () {
+    get_visible: function() {
         return this._visible;
     },
     set_visible: function(value) {
@@ -2800,7 +2801,7 @@ $AA.registerAnimation('hideAction', $AA.HideAction);
 /// <param name="attribute" type="String">Style attribute to set (this must be in a JavaScript friendly format, i.e. backgroundColor
 /// instead of background-color).</param>
 /// <param name="value" type="Object">Value to set the attribute.</param>
-$AA.StyleAction = function (target, duration, fps, attribute, value) {
+$AA.StyleAction = function(target, duration, fps, attribute, value) {
     $AA.StyleAction.initializeBase(this, [target, duration, fps]);
 
     // Style attribute (like "backgroundColor" or "borderWidth"
@@ -2815,7 +2816,7 @@ $AA.StyleAction.prototype = {
     /// Assigns the value to the style's attribute.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.StyleAction.doAction" />
-    doAction: function () {
+    doAction: function() {
         var element = this.get_target();
         if(element) {
             element.style[this._attribute] = this._value;
@@ -2829,7 +2830,7 @@ $AA.StyleAction.prototype = {
     ///<getter>get_attribute</getter>
     ///<setter>set_attribute</setter>
     ///<member name="cP:AjaxControlToolkit.StyleAction.attribute" />
-    get_attribute: function () {
+    get_attribute: function() {
         return this._attribute;
     },
     set_attribute: function(value) {
@@ -2845,7 +2846,7 @@ $AA.StyleAction.prototype = {
     ///<getter>get_value</getter>
     ///<setter>set_value</setter>
     ///<member name="cP:AjaxControlToolkit.StyleAction.value" />
-    get_value: function () {
+    get_value: function() {
         return this._value;
     },
     set_value: function(value) {
@@ -2869,7 +2870,7 @@ $AA.registerAnimation('styleAction', $AA.StyleAction);
 /// <param name="duration" type="Number">Length of the animation in seconds. The default is 1.</param>
 /// <param name="fps" type="Number">Number of steps per second. The default is 25.</param>
 /// <param name="opacity" type="Number">Opacity to set the target.</param>
-$AA.OpacityAction = function (target, duration, fps, opacity) {
+$AA.OpacityAction = function(target, duration, fps, opacity) {
     $AA.OpacityAction.initializeBase(this, [target, duration, fps]);
 
     // Opacity
@@ -2880,7 +2881,7 @@ $AA.OpacityAction.prototype = {
     /// Sets the target element's opacity.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.OpacityAction.doAction" />
-    doAction: function () {
+    doAction: function() {
         var element = this.get_target();
         if(element) {
             $common.setElementOpacity(element, this._opacity);
@@ -2893,7 +2894,7 @@ $AA.OpacityAction.prototype = {
     ///<getter>get_opacity</getter>
     ///<setter>set_opacity</setter>
     ///<member name="cP:AjaxControlToolkit.OpacityAction.opacity" />
-    get_opacity: function () {
+    get_opacity: function() {
         return this._opacity;
     },
     set_opacity: function(value) {
@@ -2918,7 +2919,7 @@ $AA.registerAnimation('opacityAction', $AA.OpacityAction);
 /// <param name="duration" type="Number">Length of the animation in seconds. The default is 1.</param>
 /// <param name="fps" type="Number">Number of steps per second. The default is 25.</param>
 /// <param name="script" type="String">JavaScript to execute.</param>
-$AA.ScriptAction = function (target, duration, fps, script) {
+$AA.ScriptAction = function(target, duration, fps, script) {
     $AA.ScriptAction.initializeBase(this, [target, duration, fps]);
 
     // Script to execute
@@ -2929,7 +2930,7 @@ $AA.ScriptAction.prototype = {
     /// Executes the script.
     /// </summary>
     /// <member name="cM:AjaxControlToolkit.ScriptAction.doAction" />
-    doAction: function () {
+    doAction: function() {
         try {
             eval(this._script);
         } catch(ex) {
@@ -2942,7 +2943,7 @@ $AA.ScriptAction.prototype = {
     ///<getter>get_script</getter>
     ///<setter>set_script</setter>
     ///<member name="cP:AjaxControlToolkit.ScriptAction.script" />
-    get_script: function () {
+    get_script: function() {
         return this._script;
     },
     set_script: function(value) {
