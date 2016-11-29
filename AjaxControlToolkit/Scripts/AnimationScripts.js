@@ -246,7 +246,7 @@ $AA.createAnimation = function(obj, defaultTarget) {
 /// <param name="target" type="Object">Target of the animation.</param>
 /// <param name="duration" type="Number">Length of the animation in seconds. The default is 1.</param>
 /// <param name="fps" type="Number">Number of steps per second. The default is 25.</param>
-$AA.Animation = function (target, duration, fps) {
+$AA.Animation = function(target, duration, fps) {
     // Animations need to be as fast as possible - even in debug mode.  Don't add validation code to
     // methods involved in every step of the animation.   
     //
@@ -265,6 +265,7 @@ $AA.Animation = function (target, duration, fps) {
     // raised when setting dynamic properties (including both JavaScript evaluation errors
     // and other exceptions raised by property setters) will only be propogated when
     // debugging.
+
     $AA.Animation.initializeBase(this);
 
     ///<summary>
