@@ -4,7 +4,7 @@ Type.registerNamespace('Sys.Extended.UI.Animation');
 // this is a very long script and will take awhile to download
 $AA = Sys.Extended.UI.Animation;
 
-$AA.registerAnimation = function (name, type) {
+$AA.registerAnimation = function(name, type) {
     // Register an animation with the AJAX Control Toolkit animation framework. This serves a dual purpose:
     // 1) to add standard utility methods to the animation type (such as a play method that creates
     // an animation, plays it, and disposes it when the animation is over), and 2) to associate a name with the
@@ -30,7 +30,7 @@ $AA.registerAnimation = function (name, type) {
         // dispose of an animation.  This is effectively a "static" function on
         // each animation and will take the same parameters as that animation's
         // constructor.
-        type.play = function () {
+        type.play = function() {
             // Create an animation, play it immediately, and dispose it when finished.
             // The play function takes the same parameters as the type's constructor
 
@@ -42,7 +42,7 @@ $AA.registerAnimation = function (name, type) {
 
             // Add an event handler to dispose the animation when it's finished
             var handler = Function.createDelegate(animation,
-                function () {
+                function() {
                     // Dispose the animation after playing
                     animation.remove_ended(handler);
                     handler = null;
@@ -61,7 +61,7 @@ $AA.registerAnimation = function (name, type) {
     }
 }
 
-$AA.buildAnimation = function (json, defaultTarget) {
+$AA.buildAnimation = function(json, defaultTarget) {
     // The buildAnimation function is used to turn a JSON animation description
     // into an actual animation object that can be played.
     //
@@ -88,7 +88,7 @@ $AA.buildAnimation = function (json, defaultTarget) {
     return $AA.createAnimation(obj, defaultTarget);
 }
 
-$AA.createAnimation = function (obj, defaultTarget) {
+$AA.createAnimation = function(obj, defaultTarget) {
     // The createAnimation function builds a new Sys.Extended.UI.Animation.Animation instance from an object
     // that describes it.
     // Exceptions are thrown when the AnimationName cannot be found.  Also,
@@ -265,7 +265,6 @@ $AA.Animation = function (target, duration, fps) {
     // raised when setting dynamic properties (including both JavaScript evaluation errors
     // and other exceptions raised by property setters) will only be propogated when
     // debugging.
-
     $AA.Animation.initializeBase(this);
 
     ///<summary>
@@ -348,7 +347,7 @@ $AA.Animation = function (target, duration, fps) {
 }
 
 $AA.Animation.prototype = {
-    dispose: function () {
+    dispose: function() {
         if(this._timer) {
             this._timer.dispose();
             this._timer = null;
@@ -497,7 +496,6 @@ $AA.Animation.prototype = {
     getAnimatedValue: function (percentage) {
         // Returns state of the animation after the given percentage of its duration has elapsed that will
         // be passed to setValue
-
         throw Error.notImplemented();
     },
 
@@ -528,12 +526,12 @@ $AA.Animation.prototype = {
         return start + (end - start) * (percentage / 100);
     },
 
-    _onTimerTick: function () {
+    _onTimerTick: function() {
         // Handler for the tick event to move the animation along through its duration
         this._updatePercentComplete(this._percentComplete + this._percentDelta, true);
     },
 
-    _updatePercentComplete: function (percentComplete, animate) {
+    _updatePercentComplete: function(percentComplete, animate) {
         // Update the animation and its target given the current percentage of its duration that
         // has already elapsed
         //
@@ -634,7 +632,7 @@ $AA.Animation.prototype = {
         }
         return this._target;
     },
-    set_target: function (value) {
+    set_target: function(value) {
         if(this._target != value) {
             this._target = value;
             this.raisePropertyChanged('target');
@@ -691,7 +689,7 @@ $AA.Animation.prototype = {
     get_fps: function () {
         return this._fps;
     },
-    set_fps: function (value) {
+    set_fps: function(value) {
         value = this._getInteger(value);
         if(this.fps != value) {
             this._fps = value;
@@ -717,38 +715,37 @@ $AA.Animation.prototype = {
         return (this._timer !== null) && this._timer.get_enabled();
     },
 
-    get_percentComplete: function () {
+    get_percentComplete: function() {
         return this._percentComplete;
     },
 
-    _getBoolean: function (value) {
+    _getBoolean: function(value) {
         if(String.isInstanceOfType(value)) {
             return Boolean.parse(value);
         }
         return value;
     },
 
-    _getInteger: function (value) {
+    _getInteger: function(value) {
         if(String.isInstanceOfType(value)) {
             return parseInt(value);
         }
         return value;
     },
 
-    _getFloat: function (value) {
+    _getFloat: function(value) {
         if(String.isInstanceOfType(value)) {
             return parseFloat(value);
         }
         return value;
     },
 
-    _getEnum: function (value, type) {
+    _getEnum: function(value, type) {
         // Helper to convert strings to enum values for property setters
         // Returns value that has been converted if it was a string
         //
         // "value" - value to convert if it's a string
         // "type" - type of the enum to convert to
-
         if(String.isInstanceOfType(value) && type && type.parse) {
             return type.parse(value);
         }
@@ -787,7 +784,7 @@ $AA.ParentAnimation = function (target, duration, fps, animations) {
     }
 }
 $AA.ParentAnimation.prototype = {
-    initialize: function () {
+    initialize: function() {
         // Initialize the parent along with any child animations that have not yet been initialized themselves
         $AA.ParentAnimation.callBaseMethod(this, 'initialize');
 
@@ -802,7 +799,7 @@ $AA.ParentAnimation.prototype = {
         }
     },
 
-    dispose: function () {
+    dispose: function() {
         this.clear();
         this._animations = null;
         $AA.ParentAnimation.callBaseMethod(this, 'dispose');
