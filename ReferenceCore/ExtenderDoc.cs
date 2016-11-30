@@ -8,24 +8,83 @@ using System.Text.RegularExpressions;
 namespace AjaxControlToolkit.Reference.Core {
 
     public class ExtenderDoc : MarkupBuilder {
-        public ExtenderDoc(IDocRenderer renderer)
+        bool _renderSampleSiteLink;
+        bool _forceHeaderRendering;
+
+        public ExtenderDoc(IDocRenderer renderer, bool renderSampleSiteLink = true, bool forceHeaderRendering = false)
             : base(renderer) {
+            _renderSampleSiteLink = renderSampleSiteLink;
+            _forceHeaderRendering = forceHeaderRendering;
         }
 
-        public string BuildDoc(IEnumerable<TypeDoc> typeDocs) {
+        public string BuildDoc(IEnumerable<TypeDoc> typeDocs, IEnumerable<TypeDoc> animationTypeDocs = null) {
             var sb = new StringBuilder();
 
+            if(animationTypeDocs != null)
+                sb.AppendLine(BuildAnimationScriptsTree(typeDocs.FirstOrDefault(), animationTypeDocs));
+
             foreach(var typeDoc in typeDocs)
-                sb.Append(BuildTypeDoc(typeDoc));
+                sb.AppendLine(
+                    BuildTypeDoc(
+                        typeDoc, typeDoc.Equals(typeDocs.First())));
 
             return sb.ToString();
         }
 
-        public string BuildTypeDoc(TypeDoc typeDoc) {
+        string BuildAnimationScriptsTree(TypeDoc typeDoc, IEnumerable<TypeDoc> animationTypeDocs) {
             _markupStringBuilder.Clear();
 
-            RenderTypeName(typeDoc.Name);
-            RenderSampleSiteLink(typeDoc.Name);
+            foreach(var animationTypeDoc in animationTypeDocs) {
+                var baseTypeShortName = RemoveRootNamespace(animationTypeDoc.BaseTypeName);
+                var typeLevel = GetTypeLevel(baseTypeShortName, animationTypeDocs);
+                _markupStringBuilder.Append(
+                    _renderer.RenderListItem(
+                        animationTypeDoc.Name != typeDoc?.Name 
+                            ? _renderer.RenderWikiPageLink(animationTypeDoc.Name) 
+                            : animationTypeDoc.Name, 
+                        false, 
+                        typeLevel));
+            }
+
+            return _markupStringBuilder.ToString();
+        }
+
+        int GetTypeLevel(string baseTypeName, IEnumerable<TypeDoc> typeDocs) {
+            var typeDocsWithShortBaseNames = typeDocs.Select(t =>
+                new TypeDoc(
+                    String.Format("{0}.{1}", t.Namespace, t.Name),
+                    RemoveRootNamespace(t.BaseTypeName)));
+
+            if(String.IsNullOrWhiteSpace(baseTypeName))
+                return 1;
+
+            var baseType = typeDocsWithShortBaseNames
+                .FirstOrDefault(t => t.BaseTypeName == baseTypeName);
+
+            var counter = 0;
+
+            while(baseType != null) {
+                baseType = typeDocsWithShortBaseNames
+                    .FirstOrDefault(t => t.Name == baseType.BaseTypeName);
+
+                counter++;
+            }
+
+            return counter;
+        }
+
+        public string BuildTypeDoc(TypeDoc typeDoc, bool isFirstTypeDoc) {
+            _markupStringBuilder.Clear();
+
+            if(!isFirstTypeDoc || _forceHeaderRendering)
+                RenderTypeName(typeDoc.Name);
+            else
+                if(_renderSampleSiteLink)
+                RenderSampleSiteLink(typeDoc.Name);
+
+            if(!String.IsNullOrWhiteSpace(typeDoc.BaseTypeName))
+                RenderBaseTypeReference(typeDoc.BaseTypeName);
+
             RenderTypeDescription(typeDoc.Summary);
             RenderTypeRemarks(typeDoc.Remarks);
 
@@ -43,6 +102,19 @@ namespace AjaxControlToolkit.Reference.Core {
             RenderClientEventsExpanded(typeDoc.ClientEvents.OrderBy(e => e.Name));
 
             return _markupStringBuilder.ToString();
+        }
+
+        void RenderBaseTypeReference(string baseTypeName) {
+            var baseTypeShortName = RemoveRootNamespace(baseTypeName);
+            var baseTypeAnchor = GenerateAnchor(baseTypeShortName);
+            _markupStringBuilder.Append(_renderer.RenderText(String.Format(" (inherits {0})", _renderer.RenderWikiPageLink(baseTypeShortName))));
+        }
+
+        static string RemoveRootNamespace(string baseTypeName) {
+            if(String.IsNullOrWhiteSpace(baseTypeName))
+                return null;
+
+            return baseTypeName.Replace("AjaxControlToolkit.", "");
         }
 
         private void RenderClientPropertiesExpanded(IEnumerable<ClientPropertyDoc> clientProperties) {
@@ -158,7 +230,7 @@ namespace AjaxControlToolkit.Reference.Core {
 
         void RenderSampleSiteLink(string typeName) {
             var url = LinkHelper.GetSampleSiteLink(typeName);
-            _markupStringBuilder.Append(String.Format(" ({0})", _renderer.RenderUrl("demo", url)));
+            _markupStringBuilder.Append(_renderer.RenderUrl("Demo Page", url));
         }
 
         void RenderTypeDescription(string typeDescription) {
@@ -174,11 +246,11 @@ namespace AjaxControlToolkit.Reference.Core {
             tableStringBuilder.Append(_renderer.RenderNewParagraph());
 
             var dict = new Dictionary<string, string>();
-            var regex = new Regex("[^a-zA-Z0-9 -]");
+
 
             foreach(var member in members) {
                 var memberNameTransformed = memberNameTransform == null ? member.Name : memberNameTransform(member);
-                var memberNameLink = "#" + regex.Replace(memberNameTransformed.ToLower(), "").Replace(" ", "-");
+                string memberAnchor = GenerateAnchor(memberNameTransformed);
 
                 var remarks = "";
                 if(renderRemarks
@@ -186,12 +258,19 @@ namespace AjaxControlToolkit.Reference.Core {
                     !String.IsNullOrWhiteSpace(member.Remarks))
                     remarks = _renderer.RenderText("Remarks:", italic: true, bold: true) + " " + _renderer.RenderText(_renderer.Sanitize(member.Remarks).Trim(), italic: true);
 
-                dict.Add(generateMemberLink ? String.Format("[{0}]({1})", memberNameTransformed, memberNameLink) : memberNameTransformed,
+                dict.Add(generateMemberLink
+                        ? _renderer.RenderUrl(memberNameTransformed, memberAnchor)
+                        : memberNameTransformed,
                     _renderer.Sanitize(member.Summary) + _renderer.RenderLineBreak() + remarks);
             }
             tableStringBuilder.Append(_renderer.RenderDescriptionBlock(dict));
 
             _markupStringBuilder.Append(tableStringBuilder.ToString());
+        }
+
+        private static string GenerateAnchor(string text) {
+            var regex = new Regex("[^a-zA-Z0-9 -]");
+            return "#" + regex.Replace(text.ToLower(), "").Replace(" ", "-");
         }
 
         void RenderMethods(IEnumerable<MethodDoc> methods, string headerText) {

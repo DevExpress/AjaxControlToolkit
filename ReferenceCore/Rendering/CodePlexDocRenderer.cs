@@ -77,5 +77,9 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
         public string RenderUrl(string text, string url) {
             return String.Format("[url:{0}|{1}]", text, url);
         }
+
+        public string RenderWikiPageLink(string text, string pageName = null) {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace AjaxControlToolkit.Reference.Core {
             if(!nameMatch.Success)
                 throw new ArgumentException("Unable to split fullName", "fullName");
 
-            Name = nameMatch.Groups["name"].Value;
+            Name = nameMatch.Groups["name"].Value == "ctor" ? ".ctor" : nameMatch.Groups["name"].Value;
             Namespace = nameMatch.Groups["namespace"].Value;
         }
 
