@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using Moq;
-using System.Globalization;
-using System.Web.UI;
 using AjaxControlToolkit.Reference.Core.Rendering;
 
 namespace AjaxControlToolkit.Tests {
@@ -142,7 +138,7 @@ namespace AjaxControlToolkit.Tests {
         public void SanitizeNumberListTest() {
             var text = "1. text";
             var actualText = _gitHubRenderer.Sanitize(text);
-            Assert.AreEqual("\\1\\. text", actualText);
+            Assert.AreEqual("1\\. text", actualText);
         }
 
         [Test]
@@ -169,5 +165,21 @@ namespace AjaxControlToolkit.Tests {
             var actualText = _gitHubRenderer.RenderDescriptionBlock(values);
             Assert.AreEqual("| Name | Description |\n| --- | --- |\n| Name1 | Description1 |\n| Name2 | Description2 |\n", actualText);
         }
+
+        [Test]
+        public void RenderDefaultWikiPageLink() {
+            var text = "abc";
+            var actualText = _gitHubRenderer.RenderWikiPageLink(text);
+            Assert.AreEqual("[[abc]]", actualText);
+        }
+
+        [Test]
+        public void RenderNonDefaultWikiPageLink() {
+            var text = "abc";
+            var pageName = "bcd";
+            var actualText = _gitHubRenderer.RenderWikiPageLink(text, pageName);
+            Assert.AreEqual("[[abc|bcd]]", actualText);
+        }
+
     }
 }
