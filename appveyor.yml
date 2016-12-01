@@ -31,7 +31,7 @@ before_test:
   
 test_script: 
   - cd AjaxControlToolkit\Scripts && eslint .
-  - nunit3-console "%APPVEYOR_BUILD_FOLDER%\bin\Debug\AjaxControlToolkit.Tests.dll"
+  - nunit3-console "bin\Debug\AjaxControlToolkit.Tests.dll"
 
 after_test:
   - msbuild AjaxControlToolkit.sln /p:Configuration=Release /v:m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
