@@ -269,8 +269,8 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         private static string GenerateAnchor(string text) {
-            var regex = new Regex("[^a-zA-Z0-9 -]");
-            return "#" + regex.Replace(text.ToLower(), "").Replace(" ", "-");
+            var textWithoutParentheses = Regex.Replace(text.ToLower(), "[(|)]+", "");
+            return "#" + Regex.Replace(textWithoutParentheses, "\\W+", "-").Trim('-');
         }
 
         void RenderMethods(IEnumerable<MethodDoc> methods, string headerText) {
