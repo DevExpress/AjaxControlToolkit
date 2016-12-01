@@ -7,7 +7,7 @@ namespace AjaxControlToolkit.Reference {
                 "Accordion",
                 "AjaxFileUpload",
                 "AlwaysVisibleControlExtender",
-                "Animation",
+                "AnimationExtender",
                 "AreaChart",
                 "AsyncFileUpload",
                 "AutoCompleteExtender",
@@ -61,6 +61,36 @@ namespace AjaxControlToolkit.Reference {
 
         public static IEnumerable<string> GetIssueTypeNames() {
             return typeBaseNames.Concat(new string[] { "HtmlEditor", "Tabs" });
+        }
+
+        public static IEnumerable<string> GetAnimationTypeNames() {
+            return new string[] {
+                "Animation",
+                "ParentAnimation",
+                "ParallelAnimation",
+                "SequenceAnimation",
+                "SelectionAnimation",
+                "ConditionAnimation",
+                "CaseAnimation",
+                "FadeAnimation",
+                "FadeInAnimation",
+                "FadeOutAnimation",
+                "PulseAnimation",
+                "PropertyAnimation",
+                "DiscreteAnimation",
+                "InterpolatedAnimation",
+                "ColorAnimation",
+                "LengthAnimation",
+                "MoveAnimation",
+                "ResizeAnimation",
+                "ScaleAnimation",
+                "Action",
+                "EnableAction",
+                "HideAction",
+                "StyleAction",
+                "OpacityAction",
+                "ScriptAction"
+            };
         }
     }
 }

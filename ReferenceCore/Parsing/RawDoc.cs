@@ -15,6 +15,7 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
 
         public string TargetFullName { get; set; }
         public string TargetNamePrefix { get; set; }
+        public string BaseTypeName { get; set; }
         public IEnumerable<XElement> Elements { get; set; }
     }
 }

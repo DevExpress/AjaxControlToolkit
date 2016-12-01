@@ -14,7 +14,7 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
             return text
                 .Replace("*", "\\*")
                 .Replace("_", "\\_")
-                .Replace("1. ", "\\1\\. ")
+                .Replace("1. ", "1\\. ")
                 .Replace("#", "\\#");
         }
 
@@ -80,6 +80,13 @@ namespace AjaxControlToolkit.Reference.Core.Rendering {
 
         public string RenderUrl(string text, string url) {
             return String.Format("[{0}]({1})", text, url);
+        }
+
+        public string RenderWikiPageLink(string text, string pageName = null) {
+            if(String.IsNullOrWhiteSpace(pageName))
+                return String.Format("[[{0}]]", text);
+
+            return String.Format("[[{0}|{1}]]", text, pageName);
         }
     }
 }
