@@ -6,6 +6,8 @@ init:
 install:
 # Workaround for NuGet restore path failure (https://github.com/NuGet/Home/issues/3235)
   - if not exist "nuget.exe" (appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v3.3.0/nuget.exe)
+  - ps: Install-Product node 6
+  - npm install --depth=0 -g eslint
 
 environment:
   AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
@@ -13,6 +15,7 @@ environment:
 cache:
   - packages -> **\packages.config
   - nuget.exe
+  - '%APPDATA%\npm-cache' 
 
 services: iis
   
@@ -26,8 +29,9 @@ build:
 before_test:
   - powershell -File AppVeyor\DeployJasmineSite.ps1
   
-test:
-  assemblies: bin\Debug\AjaxControlToolkit.Tests.dll
+test_script: 
+  - cd AjaxControlToolkit\Scripts && eslint .
+  - nunit3-console "%APPVEYOR_BUILD_FOLDER%\bin\Debug\AjaxControlToolkit.Tests.dll"
 
 after_test:
   - msbuild AjaxControlToolkit.sln /p:Configuration=Release /v:m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
