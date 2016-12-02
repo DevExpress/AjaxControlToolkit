@@ -499,7 +499,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         var xCoord = 0;
         var yCoord = 0;
         if(this._xCoordinate < 0) {
-            var foregroundelementwidth = _getForegrountElementWidth();
+            var foregroundelementwidth = this._getForegrountElementWidth();
             xCoord = ((clientWidth - foregroundelementwidth) / 2);
 
             // workaround for drag behavior which calls setlocation which in turn
