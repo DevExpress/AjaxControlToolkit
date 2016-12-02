@@ -499,17 +499,17 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         var xCoord = 0;
         var yCoord = 0;
         if(this._xCoordinate < 0) {
-            var foregroundelementwidth = this._getForegrountElementWidth();
+            var foregroundelementwidth = this._getForegroundElementWidth();
             xCoord = ((clientWidth - foregroundelementwidth) / 2);
 
             // workaround for drag behavior which calls setlocation which in turn
             // changes the position of the panel to be absolute and requiring us
             // to add the scrollLeft so that it is positioned correctly.
             if(this._foregroundElement.style.position == 'absolute') {
-                var parentForeground = this._getParentForegroundElement();
+                var parentPopup = this._getParentPopup();
 
-                if(parentForeground)
-                    xCoord = (parentForeground._getForegrountElementWidth() - foregroundelementwidth) / 2;
+                if(parentPopup)
+                    xCoord = (parentPopup._getForegroundElementWidth() - foregroundelementwidth) / 2;
                 else
                     xCoord += scrollLeft;
             }
@@ -526,17 +526,17 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
 
         if(this._yCoordinate < 0) {
-            var foregroundelementheight = this._getForegrountElementHeight();
+            var foregroundelementheight = this._getForegroundElementHeight();
             yCoord = ((clientHeight - foregroundelementheight) / 2);
 
             // workaround for drag behavior which calls setlocation which in turn
             // changes the position of the panel to be absolute and requiring us
             // to add the scrollLeft so that it is positioned correctly.
             if(this._foregroundElement.style.position == 'absolute') {
-                var parentForeground = this._getParentForegroundElement();
+                var parentPopup = this._getParentPopup();
 
-                if(parentForeground)
-                    yCoord = (parentForeground._getForegrountElementHeight() - foregroundelementheight) / 2;
+                if(parentPopup)
+                    yCoord = (parentPopup._getForegroundElementHeight() - foregroundelementheight) / 2;
                 else
                     yCoord += scrollTop;
             }
@@ -565,23 +565,25 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._layoutBackgroundElement();
     },
 
-    _getForegrountElementWidth: function (){
+    _getForegroundElementWidth: function (){
         return this._foregroundElement.offsetWidth ? this._foregroundElement.offsetWidth : this._foregroundElement.scrollWidth;
     },
 
-    _getForegrountElementHeight: function() {
+    _getForegroundElementHeight: function() {
         return this._foregroundElement.offsetHeight ? this._foregroundElement.offsetHeight : this._foregroundElement.scrollHeight;
     },
 
-    _getParentForegroundElement: function () {
+    _getParentPopup: function () {
         var el = this._foregroundElement;
         var otherForegrounds = this._getOtherForegrounds();
 
         while(el.parentNode) {
             el = el.parentNode;
 
-            if(Array.contains(otherForegrounds, el))
-                return el;
+            var index = Array.indexOf(otherForegrounds, el)
+
+            if(index !== -1)
+                return Sys.Extended.UI.ModalPopupBehavior.popups[index];
         }
 
         return null;
