@@ -499,7 +499,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         var xCoord = 0;
         var yCoord = 0;
         if(this._xCoordinate < 0) {
-            var foregroundelementwidth = this._foregroundElement.offsetWidth ? this._foregroundElement.offsetWidth : this._foregroundElement.scrollWidth;
+            var foregroundelementwidth = _getForegrountElementWidth();
             xCoord = ((clientWidth - foregroundelementwidth) / 2);
 
             // workaround for drag behavior which calls setlocation which in turn
@@ -509,7 +509,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
                 var parentForeground = this._getParentForegroundElement();
 
                 if(parentForeground)
-                    xCoord = parentForeground.scrollLeft;
+                    xCoord = (parentForeground._getForegrountElementWidth() - foregroundelementwidth) / 2;
                 else
                     xCoord += scrollLeft;
             }
@@ -526,7 +526,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
 
         if(this._yCoordinate < 0) {
-            var foregroundelementheight = this._foregroundElement.offsetHeight ? this._foregroundElement.offsetHeight : this._foregroundElement.scrollHeight;
+            var foregroundelementheight = this._getForegrountElementHeight();
             yCoord = ((clientHeight - foregroundelementheight) / 2);
 
             // workaround for drag behavior which calls setlocation which in turn
@@ -536,7 +536,7 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
                 var parentForeground = this._getParentForegroundElement();
 
                 if(parentForeground)
-                    yCoord = parentForeground.scrollTop;
+                    yCoord = (parentForeground._getForegrountElementHeight() - foregroundelementheight) / 2;
                 else
                     yCoord += scrollTop;
             }
@@ -563,6 +563,14 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // layout background element again to make sure it covers the whole background 
         // in case things moved around when laying out the foreground element
         this._layoutBackgroundElement();
+    },
+
+    _getForegrountElementWidth: function (){
+        return this._foregroundElement.offsetWidth ? this._foregroundElement.offsetWidth : this._foregroundElement.scrollWidth;
+    },
+
+    _getForegrountElementHeight: function() {
+        return this._foregroundElement.offsetHeight ? this._foregroundElement.offsetHeight : this._foregroundElement.scrollHeight;
     },
 
     _getParentForegroundElement: function () {
