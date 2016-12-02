@@ -120,11 +120,13 @@
 
                 it("second(disabled) tab header has proper id and class", function() {
                     var header = $(this.element).find(TAB_HEADER_CLASS_NAME.toClassSelector()),
-                        secondHeader = header.children()[1];
+                        secondHeader = header.children()[1],
+                        secondHeaderLink = secondHeader.children[0].children[0].children[0];
 
                     expect(secondHeader.id).toBe(this.element.id + "_DisabledTabPanel_tab");
-                    debugger;
-                    expect(DISABLED_TAB_CLASS_NAME).toBeAnyOf(secondHeader.classList);
+
+                    expect(DISABLED_TAB_CLASS_NAME).not.toBeAnyOf(secondHeader.classList);
+                    expect(DISABLED_TAB_CLASS_NAME).toBeAnyOf(secondHeaderLink.classList);
                 });
 
                 it("boby div contains " + TABS_COUNT + " div elements", function() {

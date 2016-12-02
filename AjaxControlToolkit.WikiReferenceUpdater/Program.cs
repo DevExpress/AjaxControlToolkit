@@ -12,13 +12,20 @@ namespace AjaxControlToolkit.WikiReferenceUpdater {
             var xmlDocFolder = GetXmlDocFolder();
             var scriptsFolder = GetScriptFolder();
             var docRenderer = new GitHubDocRenderer();
-            var extenderDoc = new ExtenderDoc(docRenderer);
+            var typeNames = ToolkitTypes.GetTypeNames().Concat(ToolkitTypes.GetAnimationTypeNames());
 
-            var typeNames = ToolkitTypes.GetTypeNames();
             foreach(var typeName in typeNames) {
+                var renderSampleSiteLink = Documentation.IsRenderSampleSiteLink(typeName);
+                var forceHeaderRendering = Documentation.IsForceHeaderRendering(typeName);
+                var extenderDoc = new ExtenderDoc(docRenderer, renderSampleSiteLink, forceHeaderRendering);
                 var doc = Documentation.Get(typeName, xmlDocFolder, scriptsFolder);
-                var markup = extenderDoc.BuildDoc(doc.Types);
-                var markdownFilePath = Path.Combine(wikiRepoPath, typeName.Replace("Extender", "") + ".md");
+
+                Documentation animationDocs = null;
+                if(Documentation.IsAnimationScriptsRelatedType(typeName))
+                    animationDocs = Documentation.GetAnimationScriptsReference(scriptsFolder);
+
+                var markup = extenderDoc.BuildDoc(doc.Types, animationDocs?.Types);
+                var markdownFilePath = Path.Combine(wikiRepoPath, typeName + ".md");
                 File.WriteAllText(markdownFilePath, markup);
 
                 var htmlDescripton = new HtmlDocRenderer().RenderDescription(doc.Types.FirstOrDefault().Summary);
