@@ -246,7 +246,7 @@ Sys.Extended.UI.Animation.UpdatePanelAnimationBehavior.prototype = {
     /// <setter>set_triggerControlsClientID</setter>
     /// <member name="cP:AjaxControlToolkit.UpdatePanelAnimationExtender.triggerControlsClientID" />
     get_triggerControlsClientID: function() {
-        return this._triggerControlsClientID;;
+        return this._triggerControlsClientID;
     },
     set_triggerControlsClientID: function(value) {
         if(this._triggerControlsClientID != value) {

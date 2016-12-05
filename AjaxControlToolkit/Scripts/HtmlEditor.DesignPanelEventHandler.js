@@ -339,7 +339,6 @@ Sys.Extended.UI.HtmlEditor.DesignPanelEventHandler = function(ev) {
                                                 Sys.Extended.UI.HtmlEditor._stopEvent(ev);
 
                                                 return false;
-                                                break;
                                             case "x":
                                                 if(this.isShadowed()) {
                                                     Sys.Extended.UI.HtmlEditor._stopEvent(ev);
@@ -441,14 +440,12 @@ Sys.Extended.UI.HtmlEditor.DesignPanelEventHandler = function(ev) {
                                                 Sys.Extended.UI.HtmlEditor._stopEvent(ev);
 
                                                 return false;
-                                                break;
                                             case "0": // test KEY
                                                 var str1 = "Your browser:\n\n" + navigator.userAgent;
                                                 alert(str1);
                                                 Sys.Extended.UI.HtmlEditor._stopEvent(ev);
 
                                                 return false;
-                                                break;
                                             case "9":
                                                 if(!Sys.Extended.UI.HtmlEditor.isIE) {
                                                     var sel = editor._getSelection(),
@@ -491,7 +488,6 @@ Sys.Extended.UI.HtmlEditor.DesignPanelEventHandler = function(ev) {
 
                                                 Sys.Extended.UI.HtmlEditor._stopEvent(ev);
                                                 return false;
-                                                break;
                                         }
                                     }
                         if(cmd) {

@@ -1026,8 +1026,6 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
 
                     return false;
                 }
-
-                break;
         }
         return true;
     },
