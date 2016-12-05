@@ -471,7 +471,7 @@ Sys.Extended.UI.PasswordStrengthExtenderBehavior.prototype = {
         // Casing Criteria
         // Does it contain lowercase AND uppercase Text
         if(this._requiresUpperAndLowerCaseCharacters == true ||
-            (typeof (this._requiresUpperAndLowerCaseCharacters) == 'String' && Boolean.parse(this._requiresUpperAndLowerCaseCharacters) == true)) {
+            (typeof (this._requiresUpperAndLowerCaseCharacters) == 'string' && Boolean.parse(this._requiresUpperAndLowerCaseCharacters) == true)) {
             var lowercaseRegex = new RegExp("[a-z]", "g");
             var uppercaseRegex = new RegExp("[A-Z]", "g");
 
