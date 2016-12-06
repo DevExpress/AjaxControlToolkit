@@ -1,6 +1,7 @@
 {
 	"rules":{
 		"no-cond-assign": 2,
-		"valid-typeof": 2
+		"valid-typeof": 2,
+		"no-unreachable": 2
 	}
 }
