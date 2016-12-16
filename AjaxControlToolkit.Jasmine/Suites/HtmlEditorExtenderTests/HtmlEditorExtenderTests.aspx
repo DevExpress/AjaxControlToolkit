@@ -134,6 +134,17 @@
                 DisplaySourceTab="true"
                 DisplayPreviewTab="true">
             </act:HtmlEditorExtender>
+
+            <asp:TextBox runat="server"
+                ID="FocusedTextBox"
+                Width="500"
+                Height="300" />
+
+            <act:HtmlEditorExtender runat="server"
+                TargetControlID="FocusedTextBox"
+                ID="FocusedHtmlEditorExtender">
+            </act:HtmlEditorExtender>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -144,6 +155,7 @@
                 HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID = "<%= TargetExtenderSanitized.ClientID %>",
                 HTML_EDITOR_EXTENDER_WITH_IMAGEBUTTON_CLIENT_ID = "<%= HtmlEditorExtenderWithImageButton.ClientID %>",
                 PREVIEW_HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= PreviewHtmlEditorExtender.ClientID %>",
+                FOCUSED_HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= FocusedHtmlEditorExtender.ClientID %>",
                 SIMPLE_TEXTBOX_CLIENT_ID = "<%= SimpleTextBox.ClientID %>",
                 UPDATE_PANEL_BUTTON_CLIENT_ID = "<%= UpdatePanelButton.ClientID %>";
 
@@ -154,6 +166,7 @@
                 this.extenderSanitized = $find(HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID);
                 this.extenderWithImageButton = $find(HTML_EDITOR_EXTENDER_WITH_IMAGEBUTTON_CLIENT_ID);
                 this.previewExtender = $find(PREVIEW_HTML_EDITOR_EXTENDER_CLIENT_ID);
+                this.focusedExtender = $find(FOCUSED_HTML_EDITOR_EXTENDER_CLIENT_ID);
 
                 this.ua = detect.parse(navigator.userAgent);
             });
@@ -860,6 +873,10 @@
                 var wrapper = new HtmlEditorWrapper(this.previewExtender);
                 wrapper.switchTab("preview").switchTab("content");
                 expect(wrapper.currentState.tab()).toBe("content");
+            });
+
+            it("does not lose focus on load", function() {                
+                expect(this.focusedExtender._editableDiv).toBe(document.activeElement);
             });
         });
     </script>
