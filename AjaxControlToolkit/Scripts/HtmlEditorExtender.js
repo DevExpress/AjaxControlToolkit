@@ -226,6 +226,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         HtmlEditorExtender_editableDivs[HtmlEditorExtender_editableDivs.length] = this;
 
         this._button_list = new Array();
+        var focused = this._element === document.activeElement;
         this._createContainer();
         this._createTopButtonContainer();
         this._createButton();
@@ -301,6 +302,9 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             $addHandler(this._contentViewButton, 'click', this._contentViewClickDelegate, true);
             $addHandler(this._sourceViewDiv, 'blur', this._sourceViewDivOnBlurDelegate, true);
         }
+
+        if(focused)
+            this._editableDiv.focus();
     },
 
     _dispose: function() {

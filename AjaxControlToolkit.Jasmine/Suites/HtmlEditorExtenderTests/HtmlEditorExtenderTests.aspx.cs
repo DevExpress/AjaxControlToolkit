@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit.Jasmine.Suites {
     public partial class HtmlEditorExtenderTests : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-
+            FocusedTextBox.Focus();
         }
     }
 }
