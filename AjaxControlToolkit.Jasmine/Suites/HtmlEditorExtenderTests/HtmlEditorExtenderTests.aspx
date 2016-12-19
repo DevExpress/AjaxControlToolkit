@@ -316,6 +316,10 @@
                 });
 
                 it("indents text correctly", function() {
+                    // avoid flaky test in Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=1006793
+                    if(userAgent.browser.family === "Firefox")
+                        return;
+
                     var wrapper = new HtmlEditorWrapper(this.extender);
                     wrapper.setContent("a").selectText().pressToolbarButtons(["indent"]);
 
@@ -328,6 +332,10 @@
                 });
 
                 it("outdents text correctly", function() {
+                    // avoid flaky test in Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=1006793
+                    if(userAgent.browser.family === "Firefox")
+                        return;
+
                     var wrapper = new HtmlEditorWrapper(this.extender);
                     wrapper.setContent("a").selectText().pressToolbarButtons(["indent"]).pressToolbarButtons(["outdent"]);;
 
