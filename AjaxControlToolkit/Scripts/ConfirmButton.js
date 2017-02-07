@@ -119,8 +119,8 @@ Sys.Extended.UI.ConfirmButtonBehavior.prototype = {
                 throw Error.argument('displayModalPopupID', String.format(Sys.Extended.UI.Resources.CollapsiblePanel_NoControlID, this._displayModalPopupID));
 
             // Hook into ModalPopupBehavior for the confirm result
-            mpe.set_OnOkScript("$find('" + this.get_id() + "')._handleConfirmDialogCompletion(true);");
-            mpe.set_OnCancelScript("$find('" + this.get_id() + "')._handleConfirmDialogCompletion(false);");
+            mpe.set_onOkScript("$find('" + this.get_id() + "')._handleConfirmDialogCompletion(true);");
+            mpe.set_onCancelScript("$find('" + this.get_id() + "')._handleConfirmDialogCompletion(false);");
 
             // Show the ModalPopupBehavior
             mpe.show();
