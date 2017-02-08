@@ -461,15 +461,13 @@
 
                 it("parses dates earlier than 100 years correctly", function() {
                     var date = this.extender._parseTextValue("1/1/0099");
-                    var constructedDate = new Date(date);
                     var expectedYear = 1999;
 
-                    expect(constructedDate.getFullYear()).toBe(expectedYear);
+                    expect(date.getFullYear()).toBe(expectedYear);
                 });
 
                 it("parses dates equal or later than 100 years correctly", function() {
                     var date = this.extender._parseTextValue("1/1/0100");
-                    var constructedDate = new Date(date);
                     var expectedYear = 100;
 
                     expect(date.getFullYear()).toBe(expectedYear);
