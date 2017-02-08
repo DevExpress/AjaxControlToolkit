@@ -458,6 +458,13 @@
                     
                     expect(date.getTime()).toBe(expectedDate.getTime());
                 });
+
+                it("parses dates before 1900 correctly", function() {
+                    var date = this.extender._parseTextValue("1/1/0001");
+                    var expectedYear = 1;
+
+                    expect(date.getYear()).toBe(expectedYear);
+                });
             });
         });
     </script>
