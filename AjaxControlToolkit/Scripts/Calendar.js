@@ -1547,7 +1547,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         var value = null;
         if(text) {
             value = Date.parseLocale(text, this.get_format());
-            if(value.getYear() < 0)
+            if(value.getYear() < 100)
                 value.setYear(value.getFullYear());
         }
         if(isNaN(value)) {
