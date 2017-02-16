@@ -205,22 +205,22 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     //
     // "element" - the DOM element the behavior is associated with.  It should contain an
     // even number of child divs (such that ith pane has a header at div 2i and
-    // has content at div 2i+1).fcoooun
+    // has content at div 2i+1).
     Sys.Extended.UI.AccordionBehavior.initializeBase(this, [element]);
 
-    // The _selectedIndex variable is used to track the currently visible content
-    // pane.  It is persisted via ClientState so that it can be restored on PostBack.
-    // If 0 <= _selectedIndex < _panes.Length is not true, then no pane is selected
-    // (and they all appear collapsed).  While any index outside the bounds of the
-    // _panes array indicates that no pane is selected, we don't automatically set
-    // the value to a sentinel like -1 (especially on the server) because it's
-    // possible for additional panes to be added at any time.  We abstract this
-    // problem using the getPane() function which returns the selected pane when
-    // it's called with no arguments (and returns null when the current selected
-    // index is invalid).
+   
 
     ///<summary>
-    /// An index of currently selected pane.
+    /// The _selectedIndex variable is used to track the currently visible content
+    /// pane.  It is persisted via ClientState so that it can be restored on PostBack.
+    /// If 0 <= _selectedIndex < _panes.Length is not true, then no pane is selected
+    /// (and they all appear collapsed).  While any index outside the bounds of the
+    /// _panes array indicates that no pane is selected, we don't automatically set
+    /// the value to a sentinel like -1 (especially on the server) because it's
+    /// possible for additional panes to be added at any time.  We abstract this
+    /// problem using the getPane() function which returns the selected pane when
+    /// it's called with no arguments (and returns null when the current selected
+    /// index is invalid).
     ///</summary>
     ///<getter>get_selectedIndex</getter>
     ///<setter>set_selectedIndex</setter>
