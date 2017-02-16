@@ -207,7 +207,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     // even number of child divs (such that ith pane has a header at div 2i and
     // has content at div 2i+1).
     Sys.Extended.UI.AccordionBehavior.initializeBase(this, [element]);
-   
+
     ///<summary>
     /// The _selectedIndex variable is used to track the currently visible content
     /// pane.  It is persisted via ClientState so that it can be restored on PostBack.
