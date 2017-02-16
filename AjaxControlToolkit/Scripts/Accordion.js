@@ -227,6 +227,12 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     ///<member name="cP:AjaxControlToolkit.AccordionExtender.selectedIndex" />
     this._selectedIndex = 0;
 
+    ///<summary>
+    /// Panes count.
+    ///</summary>
+    ///<getter>getCount</getter>
+    ///<member name="cM:AjaxControlToolkit.Accordion.count" />
+
     // The _panes array represents the collection of Accordion panes.  Each element of
     // the array is an object of the form {header, content, animation} corresponding
     // to that pane's header section, content section, and the animation used to open
@@ -309,7 +315,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     this._headerClickHandler = null;
 
     ///<summary>
-    /// The CSS class applied to the header.
+    /// The _headerSelectedCssClass is the css class applied to the selected header.
     ///</summary>
     ///<getter>get_headerCssClass</getter>
     ///<setter>set_headerCssClass</setter>
@@ -317,7 +323,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     this._headerCssClass = '';
 
     ///<summary>
-    /// The CSS class applied to the selected header.
+    /// The _headerSelectedCssClass is the css class applied to the selected header.
     ///</summary>
     ///<getter>get_headerSelectedCssClass</getter>
     ///<setter>get_headerSelectedCssClass</setter>
