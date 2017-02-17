@@ -222,7 +222,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     ///</summary>
     ///<getter>get_selectedIndex</getter>
     ///<setter>set_selectedIndex</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.selectedIndex" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.selectedIndex" />
     this._selectedIndex = 0;
 
     ///<summary>
@@ -255,7 +255,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     ///</summary>
     ///<getter>get_fadeTransitions</getter>
     ///<setter>set_fadeTransitions</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.fadeTransitions" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.fadeTransitions" />
     this._fadeTransitions = false;
 
     ///<summary>
@@ -264,7 +264,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     ///</summary>
     ///<getter>get_transitionDuration</getter>
     ///<setter>set_transitionDuration</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.transitionDuration" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.transitionDuration" />
     this._duration = 0.25;
 
     ///<summary>
@@ -273,7 +273,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     ///</summary>
     ///<getter>get_framesPerSecond</getter>
     ///<setter>set_framesPerSecond</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.framesPerSecond" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.framesPerSecond" />
     this._framesPerSecond = 30;
 
     ///<summary>
@@ -283,7 +283,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     /// If it is set to Fill, then it will always be equal to its available space.
     ///</summary>
     ///<getter>get_autoSize</getter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.autoSize" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.autoSize" />
     this._autoSize = Sys.Extended.UI.AutoSize.None;
 
     ///<summary>
@@ -292,7 +292,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     ///</summary>
     ///<getter>get_requireOpenedPane</getter>
     ///<setter>set_requireOpenedPane</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.requireOpenedPane" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.requireOpenedPane" />
     this._requireOpenedPane = true;
 
     ///<summary>
@@ -302,7 +302,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     ///</summary>
     ///<getter>get_suppressHeaderPostbacks</getter>
     ///<setter>set_suppressHeaderPostbacks</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.suppressHeaderPostbacks" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.suppressHeaderPostbacks" />
     this._suppressHeaderPostbacks = false;
 
     // Size of all the headers
@@ -317,7 +317,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     ///</summary>
     ///<getter>get_headerCssClass</getter>
     ///<setter>set_headerCssClass</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.headerCssClass" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.headerCssClass" />
     this._headerCssClass = '';
 
     ///<summary>
@@ -325,7 +325,7 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     ///</summary>
     ///<getter>get_headerSelectedCssClass</getter>
     ///<setter>get_headerSelectedCssClass</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.headerSelectedCssClass" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.headerSelectedCssClass" />
     this._headerSelectedCssClass = '';
 
     // The _resizeHandler is a reference to the global event handler used to patch
@@ -423,7 +423,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     ///</summary>
     /// <param name="header" type="Object">header element of the new Accordion pane</param>
     /// <param name="content" type="Object">content element of the new Accordion pane</param>
-    /// <member name="cM:AjaxControlToolkit.Accordion.addPane" />
+    /// <member name="cM:AjaxControlToolkit.AccordionExtender.addPane" />
     addPane: function(header, content) {
         // New pane object added to the end of the Accordion's pane collection.  The pane
         // is an object of the form {header, content, animation} corresponding to that
@@ -1107,7 +1107,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     ///<summary>
     /// Fires when an Accordion pane is clicked, but before Accordion changes the pane.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.Accordion.selectedIndexChanging" />
+    ///<member name="cE:AjaxControlToolkit.AccordionExtender.selectedIndexChanging" />
     ///<event add="add_selectedIndexChanging" remove="remove_selectedIndexChanging" raise="raise_selectedIndexChanging" />
     add_selectedIndexChanging: function(handler) {
         this.get_events().addHandler('selectedIndexChanging', handler);
@@ -1129,7 +1129,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     ///<summary>
     /// Fires when an Accordion pane is clicked, but after Accordion changes the pane.	
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.Accordion.selectedIndexChanged" />
+    ///<member name="cE:AjaxControlToolkit.AccordionExtender.selectedIndexChanged" />
     ///<event add="add_selectedIndexChanged" remove="remove_selectedIndexChanged" raise="raise_selectedIndexChanged" />
     add_selectedIndexChanged: function(handler) {
         this.get_events().addHandler('selectedIndexChanged', handler);
@@ -1154,7 +1154,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     /// <param name="index" type="Number">index of the desired Accordion pane.  If the index is not provided, we use
     /// the currently selected index.  In the event the provided index (or the currently
     /// selected index) is outside the bounds of the panes collection, we return null.</param>
-    /// <member name="cM:AjaxControlToolkit.Accordion.getPane" />
+    /// <member name="cM:AjaxControlToolkit.AccordionExtender.getPane" />
     getPane: function(index) {
         if(index === undefined || index === null) {
             index = this._selectedIndex;
@@ -1169,7 +1169,7 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     ///<summary>
     /// Panes count.
     ///</summary>
-    /// <member name="cM:AjaxControlToolkit.Accordion.getCount" />
+    /// <member name="cM:AjaxControlToolkit.AccordionExtender.getCount" />
     getCount: function() {
         return this._panes ? this._panes.length : 0;
     },
