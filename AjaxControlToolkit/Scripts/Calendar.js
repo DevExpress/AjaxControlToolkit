@@ -264,7 +264,7 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
     set_startDate: function(value) {
         // The property of the start date for range
         if(this._startDate != value) {
-            this._startDate = new Date(value);
+            this._startDate = this._parseDateSortableFormat(value);
             this.raisePropertyChanged('startDate');
         }
     },
@@ -1547,6 +1547,8 @@ Sys.Extended.UI.CalendarBehavior.prototype = {
         var value = null;
         if(text) {
             value = Date.parseLocale(text, this.get_format());
+            if(value.getFullYear() < 100)
+                value.setYear(value.getFullYear());
         }
         if(isNaN(value)) {
             value = null;

@@ -458,6 +458,20 @@
                     
                     expect(date.getTime()).toBe(expectedDate.getTime());
                 });
+
+                it("parses dates earlier than 100 years correctly", function() {
+                    var date = this.extender._parseTextValue("1/1/0099");
+                    var expectedYear = 1999;
+
+                    expect(date.getFullYear()).toBe(expectedYear);
+                });
+
+                it("parses dates equal or later than 100 years correctly", function() {
+                    var date = this.extender._parseTextValue("1/1/0100");
+                    var expectedYear = 100;
+
+                    expect(date.getFullYear()).toBe(expectedYear);
+                });
             });
         });
     </script>
