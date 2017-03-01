@@ -231,8 +231,6 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             if(this._resizeHandler)
                 $removeHandler(window, 'resize', this._resizeHandler);
 
-            Sys.Extended.UI.ModalPopupBehavior.popups.pop();
-            
             this._windowHandlersAttached = false;
         }
 
@@ -245,6 +243,9 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._dropShadowBehavior.dispose();
             this._dropShadowBehavior = null;
         }
+        
+        if(this._getLastPopup() == this)
+            Sys.Extended.UI.ModalPopupBehavior.popups.pop();
     },
 
     _onShow: function(e) {
