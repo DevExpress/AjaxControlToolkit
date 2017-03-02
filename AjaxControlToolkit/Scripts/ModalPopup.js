@@ -243,8 +243,9 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._dropShadowBehavior.dispose();
             this._dropShadowBehavior = null;
         }
-
-        Sys.Extended.UI.ModalPopupBehavior.popups.pop();
+        
+        if(this._getLastPopup() == this)
+            Sys.Extended.UI.ModalPopupBehavior.popups.pop();
     },
 
     _onShow: function(e) {
