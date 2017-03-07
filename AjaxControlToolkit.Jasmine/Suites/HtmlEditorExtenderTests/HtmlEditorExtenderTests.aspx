@@ -886,6 +886,13 @@
             it("does not lose focus on load", function() {                
                 expect(this.focusedExtender._editableDiv).toBe(document.activeElement);
             });
+
+            it("does not lose content on preview mode switch, then content mode switch", function() {
+                var wrapper = new HtmlEditorWrapper(this.previewExtender);
+                wrapper.setContent("a").switchTab("preview").switchTab("content");
+                var actualContentText = wrapper.currentState.editorContent();
+                expect(actualContentText).toBe("a");
+            });
         });
     </script>
 

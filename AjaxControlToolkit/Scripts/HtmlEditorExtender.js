@@ -754,10 +754,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
 
         $common.setVisible(this._sourceViewDiv, true);
 
-        if(this._sourceViewDiv.textContent != undefined)
-            this._sourceViewDiv.textContent = this.cleanHtml(this._editableDiv.innerHTML);
-        else
-            this._sourceViewDiv.innerText = this.cleanHtml(this._editableDiv.innerHTML);
+        this._copyContentToSource();
 
         this._oldContents = this._editableDiv.innerHTML;
         $common.setVisible(this._editableDiv, false);
@@ -771,6 +768,9 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             return;
 
         $common.setVisible(this._previewDiv, true);
+
+        if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Content)
+            this._copyContentToSource();
 
         if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Source) {
             if(this._sourceViewDiv.textContent != undefined)
@@ -786,6 +786,13 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         $common.setVisible(this._sourceViewDiv, false);
         $common.setVisible(this._topButtonContainer, false);
         this._lastMode = Sys.Extended.UI.HtmlEditorExtenderMode.Preview;
+    },
+
+    _copyContentToSource: function() {
+        if(this._sourceViewDiv.textContent != undefined)
+            this._sourceViewDiv.textContent = this.cleanHtml(this._editableDiv.innerHTML);
+        else
+            this._sourceViewDiv.innerText = this.cleanHtml(this._editableDiv.innerHTML);
     },
 
     cleanHtml: function(html) {
