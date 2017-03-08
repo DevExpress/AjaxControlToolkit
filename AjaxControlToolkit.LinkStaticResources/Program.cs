@@ -11,6 +11,8 @@ namespace AjaxControlToolkit.LinkStaticResources {
 
     class Program {
 
+        static LinkedList<string> bundleEntries = new LinkedList<string>();
+
         static void Main(string[] args) {
             string solutionDirPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Assembly.GetEntryAssembly().Location).FullName).FullName).FullName;
 
@@ -24,15 +26,21 @@ namespace AjaxControlToolkit.LinkStaticResources {
                 samplesStylesDir = samplesDir + @"Content\AjaxControlToolkit\Styles\",
                 samplesImagesDir = samplesDir + @"Content\AjaxControlToolkit\Images\";
 
+            DeleteBundleConfigJson(solutionDirPath);
+
             foreach(var path in Directory.EnumerateFiles(Path.Combine(solutionDirPath, @"AjaxControlToolkit\Scripts"), "*.js")) {
                 LinkScript(scriptsDir, path);
                 LinkScript(samplesScriptsDir, path);
+                AddScriptToBundleConfig(path);
             }
 
             foreach(var path in Directory.EnumerateFiles(Path.Combine(solutionDirPath, @"AjaxControlToolkit\Scripts\Localization"), "*.js")) {
                 LinkScript(scriptsDir, path, TransformLocalizationScriptName);
                 LinkScript(samplesScriptsDir, path, TransformLocalizationScriptName);
+                AddScriptToBundleConfig(path);
             }
+
+            CreateBundleConfigJson(solutionDirPath);
 
             foreach(var path in Directory.EnumerateFiles(Path.Combine(solutionDirPath, @"AjaxControlToolkit\Styles"), "*.css")) {
                 LinkStyle(stylesDir, path);
@@ -45,6 +53,43 @@ namespace AjaxControlToolkit.LinkStaticResources {
                     LinkStyle(samplesImagesDir, path);
                 }
             }
+        }
+
+        static void CreateBundleConfigJson(string solutionDirPath) {
+            File.WriteAllText(
+                GetBundleConfigPath(solutionDirPath), 
+                String.Format(
+                    "[{0}]", 
+                    String.Join(
+                        ",",
+                        bundleEntries)));
+        }
+
+        static void DeleteBundleConfigJson(string solutionDirPath) {
+            try {
+                File.Delete(GetBundleConfigPath(solutionDirPath));
+            } catch(Exception) { }
+        }
+
+        static string GetBundleConfigPath(string solutionDirPath) {
+            return Path.Combine(solutionDirPath, @"AjaxControlToolkit\bundleconfig.json");
+        }
+
+        static void AddScriptToBundleConfig(string path) {
+            var regex = new Regex(@"Scripts\\(Localization\\)?\w+\.js");
+            var match = regex.Match(path);
+
+            if(match.Success)
+                AddBundleEntry(match.Value.Replace(@"\", "/"));
+        }
+
+        static void AddBundleEntry(string value) {
+            var entry = String.Format(
+                @"{{""outputFileName"":""{0}"",""inputFiles"":[""{1}""]}}",
+                    value.Replace(".js", ".min.js"),
+                    value);
+
+            bundleEntries.AddLast(entry);
         }
 
         static void LinkScript(string prefix, string path, Func<string, string> fileNameTransformer = null) {
