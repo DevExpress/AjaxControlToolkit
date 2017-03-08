@@ -12,7 +12,7 @@ namespace AjaxControlToolkitVsPackage {
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0"/*, IconResourceID = 400*/)]
     [Guid("e79bade7-6755-466f-9788-3d8243bdcc5f")]
-    [ProvideToolboxItems(2)]
+    [ProvideToolboxItems(3)]
     public sealed class AjaxControlToolkitVsPackage : Package {
 
         const string
