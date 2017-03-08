@@ -39,16 +39,7 @@ Sys.Extended.UI.BubbleChart = function(element) {
     /// <setter>set_bubbleChartClientValues</setter>
     /// <member name="cP:AjaxControlToolkit.BubbleChart.bubbleChartClientValues" />
     this._bubbleChartClientValues = null;
-
-    /// <summary>
-    /// Enables you to control the appearance of the bar chart with a CSS file.
-    /// The default is 'BubbleChart'
-    /// </summary>
-    /// <getter>get_theme</getter>
-    /// <setter>set_theme</setter>
-    /// <member name="cP:AjaxControlToolkit.BubbleChart.theme" />
-    this._theme = 'BubbleChart';
-
+   
     /// <summary>
     /// Enables you to set interval size for the Y axis line of the chart.
     /// The default is 6
@@ -265,9 +256,7 @@ Sys.Extended.UI.BubbleChart.prototype = {
     },
 
     intializeSVG: function() {
-        var svgContents = String.format('<?xml-stylesheet type="text/css" href="{0}.css"?>', this._theme);
-        svgContents = String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" preserveAspectRatio="xMidYMid meet" viewbox="0 0 {2} {3}" style="position: relative; display: block;" onload="init(evt)">', this._chartWidth, this._chartHeight, parseFloat(this._chartWidth) * 0.99, parseFloat(this._chartHeight) * 0.99);
-        //svgContents = svgContents + "<script type=\"text/ecmascript\"> function init(evt) { if ( window.svgDocument == null ) { gDocument = evt.target.ownerDocument;   } } function ShowTooltip(evt) {        alert('called');    } </script>";
+        var svgContents = String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" preserveAspectRatio="xMidYMid meet" viewbox="0 0 {2} {3}" style="position: relative; display: block;" onload="init(evt)">', this._chartWidth, this._chartHeight, parseFloat(this._chartWidth) * 0.99, parseFloat(this._chartHeight) * 0.99);
         svgContents = svgContents + String.format('<path fill="none" stroke-opacity="1" fill-opacity="1" stroke-linejoin="round" stroke-linecap="square" d="M5 {0} {1} {0} {1} {2} 5 {2} z"/>', parseInt(this._chartHeight) * 1 / 10 + 5, parseInt(this._chartWidth) - 5, parseInt(this._chartHeight) - parseInt(this._chartHeight) * 1 / 10);
         svgContents = svgContents + String.format('<path id="ChartBackGround" stroke="" d="M0 0 {0} 0 {0} {1} 0 {1} z"/>', this._chartWidth, parseInt(this._chartHeight) - 5);
         svgContents = svgContents + String.format('<path fill="#ffffff" stroke-opacity="1" fill-opacity="0" stroke-linejoin="round" stroke-linecap="square" stroke="" d="M5 {0} {1} {0} {1} {2} 5 {2} z" />', parseInt(this._chartHeight) * 1 / 10 + 5, parseInt(this._chartWidth) - 5, parseInt(this._chartHeight) - parseInt(this._chartHeight) * 1 / 10);
@@ -585,13 +574,6 @@ Sys.Extended.UI.BubbleChart.prototype = {
     set_BubbleChartClientValues: function(value) {
         Sys.Extended.Deprecated("set_BubbleChartClientValues", "set_bubbleChartClientValues");
         this.set_bubbleChartClientValues(value);
-    },
-
-    get_theme: function() {
-        return this._theme;
-    },
-    set_theme: function(value) {
-        this._theme = value;
     },
 
     get_yAxisLines: function() {

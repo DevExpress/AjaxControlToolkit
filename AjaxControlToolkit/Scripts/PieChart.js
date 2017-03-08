@@ -10,7 +10,6 @@ Sys.Extended.UI.PieChart = function(element) {
     this._chartHeight = '300';
     this._chartTitle = '';
     this._pieChartClientValues = null;
-    this._theme = 'PieChart';
     this._chartTitleColor = '';
     this.charLength = 3.5;
 }
@@ -36,8 +35,7 @@ Sys.Extended.UI.PieChart.prototype = {
             startY = parseInt(this._chartHeight) / 2.25;
 
         // initialize SVG
-        var svgContents = String.format('<?xml-stylesheet type="text/css" href="{0}.css"?>', this._theme);
-        svgContents = String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" style="position: relative; display: block;">', this._chartWidth, this._chartHeight);
+        var svgContents = String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" style="position: relative; display: block;">', this._chartWidth, this._chartHeight);
         svgContents = svgContents + '<defs>';
         svgContents = svgContents + String.format('<radialGradient gradientUnits="userSpaceOnUse" r="{0}" fy="{1}" fx="{2}" cy="{1}" cx="{2}">', radius, startX, startY);
         svgContents = svgContents + '<stop offset="0%" id="RadialGradient1"></stop>';
@@ -212,19 +210,6 @@ Sys.Extended.UI.PieChart.prototype = {
     set_PieChartClientValues: function(value) {
         Sys.Extended.Deprecated("set_PieChartClientValues(value)", "set_pieChartClientValues(value)");
         this.set_pieChartClientValues(value);
-    },
-
-    /// <summary>
-    /// A theme of the chart
-    /// </summary>
-    /// <getter>get_theme</getter>
-    /// <setter>set_theme</setter>
-    /// <member name="cP:AjaxControlToolkit.PieChart.theme" />
-    get_theme: function() {
-        return this._theme;
-    },
-    set_theme: function(value) {
-        this._theme = value;
     },
 
     /// <summary>

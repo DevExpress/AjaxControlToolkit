@@ -63,14 +63,6 @@ Sys.Extended.UI.AreaChart = function(element) {
     this._chartType = Sys.Extended.UI.AreaChartType.Basic;
 
     /// <summary>
-    /// A CSS file name for AreaChart. The default value is 'AreaChart'.
-    /// </summary>
-    /// <getter>get_theme</getter>
-    /// <setter>set_theme</setter>
-    /// <member name="cP:AjaxControlToolkit.AreaChart.theme" />
-    this._theme = 'AreaChart';
-
-    /// <summary>
     /// Value axis lines count. The default value is 9.
     /// </summary>
     /// <getter>get_valueAxisLines</getter>
@@ -398,8 +390,7 @@ Sys.Extended.UI.AreaChart.prototype = {
     },
 
     initializeSVG: function() {
-        var svgContents = String.format('<?xml-stylesheet type="text/css" href="{0}.css"?>', this._theme);
-        svgContents = svgContents + String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" style="position: relative; display: block;">', this._chartWidth, this._chartHeight);
+        var svgContents = String.format('<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="{0}" height="{1}" style="position: relative; display: block;">', this._chartWidth, this._chartHeight);
         svgContents = svgContents + '<defs>';
         svgContents = svgContents + '<linearGradient gradientTransform="rotate(0)">';
         svgContents = svgContents + '<stop offset="0%" id="LinearGradient1"></stop>';
@@ -530,13 +521,6 @@ Sys.Extended.UI.AreaChart.prototype = {
     },
     set_chartType: function(value) {
         this._chartType = value;
-    },
-
-    get_theme: function() {
-        return this._theme;
-    },
-    set_theme: function(value) {
-        this._theme = value;
     },
 
     get_valueAxisLines: function() {
