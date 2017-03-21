@@ -196,11 +196,10 @@
                     wrapper.setContent("a").selectText().pressToolbarButtons(["strike-through"]);
 
                     actualSourceText = wrapper.currentState.editorContent("source");
-                    <% if(Request.Browser.Browser == "Chrome") { %>
-                    expect(actualSourceText).toBe("<span style=\"text-decoration-line: line-through;\">a</span>");
-                    <% } else { %>
-                    expect(actualSourceText).toBe("<span style=\"text-decoration: line-through;\">a</span>");
-                    <% } %>
+                    if(userAgent.browser.family === "Chrome")
+                        expect(actualSourceText).toBe("<span style=\"text-decoration-line: line-through;\">a</span>");
+                    else
+                        expect(actualSourceText).toBe("<span style=\"text-decoration: line-through;\">a</span>");
                 });
 
                 it("defines left indent via style", function() {
@@ -510,11 +509,12 @@
 
             it("strike through button works properly", function() {
                 var testContentText = "lorem ipsum dolor sit amet";
-                <% if(Request.Browser.Browser == "Chrome") { %>
-                var expectedSourceText = "<span style=\"text-decoration-line: line-through;\">lorem</span> ipsum dolor sit amet";
-                <% } else { %>
-                var expectedSourceText = "<span style=\"text-decoration: line-through;\">lorem</span> ipsum dolor sit amet";
-                <% } %>
+                var expectedSourceText;
+
+                if(this.ua.browser.family === "Chrome")
+                    expectedSourceText = "<span style=\"text-decoration-line: line-through;\">lorem</span> ipsum dolor sit amet";
+                else
+                    expectedSourceText = "<span style=\"text-decoration: line-through;\">lorem</span> ipsum dolor sit amet";
 
                 if(this.ua.browser.family == "IE")
                     expectedSourceText = "<strike>lorem</strike> ipsum dolor sit amet";
